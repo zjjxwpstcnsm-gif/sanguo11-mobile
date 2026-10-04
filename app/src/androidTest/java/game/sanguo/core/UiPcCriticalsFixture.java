@@ -7,6 +7,8 @@ import game.sanguo.core.map.SourceGridCoord;
  * skill/crew setup is saved and validated before any normal command. The frozen
  * core test fixture is left unchanged. */
 public final class UiPcCriticalsFixture {
+    /** Detached fixture preparation only; production media never uses rule mutation. */
+    public static void releasePreparedGovernor(World world,int officerId){world.strategy.releaseGovernor(officerId);}
     public static final class Case {
         public final World world;public final int actor,target;public final boolean tactic;public final War.Plot plot;
         public final int selector;public final String label;
