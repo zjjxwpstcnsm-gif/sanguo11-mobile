@@ -1,0 +1,378 @@
+{
+  "baseCommit": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "completedMediaHead": "b1f7c24675294c5c90c592871fe257eaa69bae9c",
+  "branch": "codex/portrait-audio-restoration",
+  "paths": [
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "7843e8164120731ae9eb47641e09f23e86916e4710d08e3c22338cffbdcaeacb",
+      "afterSha256": "2944e12a1b4a35dfeb16401216425cfed03f156fae2dcbb4c45339929209a888",
+      "afterBytes": 11550
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/MediaBridgeInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "ff4728eea5fe810840e34b5da1b93960ad241fa9464a4b280f3b46d48e4375ef",
+      "afterBytes": 5588
+    },
+    {
+      "path": "app/src/main/assets/audio/pc-media-manifest.json",
+      "beforeSha256": null,
+      "afterSha256": "d30084901225c82005ebd0e5f6a2a5d3167472a78e4c15ed68557cf2657060c5",
+      "afterBytes": 1311
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/technique-33.wav",
+      "beforeSha256": null,
+      "afterSha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "afterBytes": 90450
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "39361646adceeb707afca3398cc20a77cf21c51113c812c385a325b2ab021ee3",
+      "afterSha256": "d7a7731cf2851b9346274b35e90a3a66fe08b55e91391fd91fb8ced280766d10",
+      "afterBytes": 6800
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java",
+      "beforeSha256": "0af7e7479aa930b1b93b4e48b197b2cf68a54473892910609de92332061a7a55",
+      "afterSha256": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08",
+      "afterBytes": 4551
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/BridgeJson.java",
+      "beforeSha256": null,
+      "afterSha256": "1e6462f2bf4918cf3f01109956b7d23b385a748a01a20efb3f6ba573cd76e1bd",
+      "afterBytes": 2504
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/bridge/BridgeMediaWireTest.java",
+      "beforeSha256": null,
+      "afterSha256": "86cfa608f1b2347267889906f6777e0f0210c879bff367e10cdf72133194ebfe",
+      "afterBytes": 4103
+    },
+    {
+      "path": "docs/handoff/20261004/session2/CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "4a6025c392a91f144c3c162e1b669244abbf7bc09cb33a191ad0f5050eb593b3",
+      "afterBytes": 2292
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INTEGRATION_REQUEST.md",
+      "beforeSha256": null,
+      "afterSha256": "614cea0b78668882d6256b5db50efd23ec99926a0af3609bd6cb5dcef76e7d6a",
+      "afterBytes": 2610
+    },
+    {
+      "path": "docs/handoff/20261004/session2/SOURCE_AUDIT.json",
+      "beforeSha256": null,
+      "afterSha256": "082ac88b24833036e6616402135e83adce0c86543359ea700f35c4d6addd20aa",
+      "afterBytes": 4254
+    },
+    {
+      "path": "docs/handoff/20261004/session2/STATUS.json",
+      "beforeSha256": null,
+      "afterSha256": "15aa50abd6218f6ac37ec1c6ccfeacfee246c72ab67db41413a80676d2bb655b",
+      "afterBytes": 4520
+    },
+    {
+      "path": "docs/handoff/20261004/session2/audio-native-bindings-current.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "068e76b96a45a2dae844895d0075f302ec0864bbf6508d9a71baf6eac6deddb0",
+      "afterBytes": 34434
+    },
+    {
+      "path": "docs/handoff/20261004/session2/audio-native-bindings.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "599008642f26ef8c8e1ce4a39ab7084559f63f46a1f89eb0bbf17bbdc6a15579",
+      "afterBytes": 33868
+    },
+    {
+      "path": "docs/handoff/20261004/session2/audio-reproducibility.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "fd6dee9e164197e7eb12c8699aae95a01d3a97e8b8b0c20a33879981e6912714",
+      "afterBytes": 253613
+    },
+    {
+      "path": "docs/handoff/20261004/session2/audio-samples-manifest.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "d13aaef11285f3ecac33c9befd947bed32951b9e38d3f1fc78c6a6fe271fd38b",
+      "afterBytes": 415842
+    },
+    {
+      "path": "docs/handoff/20261004/session2/inheritance.json",
+      "beforeSha256": null,
+      "afterSha256": "dfd5316b2f1473261feb128ba33a47c2e3a02ee5cd5afb03afd8863faf368579",
+      "afterBytes": 805434
+    },
+    {
+      "path": "docs/handoff/20261004/session2/installed-wire-01.json",
+      "beforeSha256": null,
+      "afterSha256": "c50943cfdd80277c056d217d2dff8eda81fbd5cf547d25a50d795d409cc9e7c4",
+      "afterBytes": 20201
+    },
+    {
+      "path": "docs/handoff/20261004/session2/installed-wire-batch.json",
+      "beforeSha256": null,
+      "afterSha256": "1ae4e9ea8072182090887f5ef20d2679d27fd6259d4cbb5589db848f61a571ae",
+      "afterBytes": 75173
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/bridge-installed-build-repair1.log",
+      "beforeSha256": null,
+      "afterSha256": "88cbd89211c13c2731a607f9084644b7b2b0036ffe012a7c9b9f4ae8f1b64d22",
+      "afterBytes": 5603
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/bridge-installed-build.log",
+      "beforeSha256": null,
+      "afterSha256": "e9a6a7499a8ad4fb10fec4056d127638c345bdfef039c6a939d473d76c51d484",
+      "afterBytes": 6749
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/decoder-tests.log",
+      "beforeSha256": null,
+      "afterSha256": "eb248631095b6faf45bcae67a3299f8e7c33750c20bfafa2462746cbeb4a4052",
+      "afterBytes": 102
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/pc33-build.log",
+      "beforeSha256": null,
+      "afterSha256": "ea747401faf6aed385e26ca28feb13408f4fccfbb908851ae5393f87ecd14c56",
+      "afterBytes": 5586
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/wire-client-actual.log",
+      "beforeSha256": null,
+      "afterSha256": "164fb7719ef6310a7f6da25997579c0e2df61d5ea4bf051d28effb44d3c640c6",
+      "afterBytes": 105
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/wire-client-installed-repair1.log",
+      "beforeSha256": null,
+      "afterSha256": "164fb7719ef6310a7f6da25997579c0e2df61d5ea4bf051d28effb44d3c640c6",
+      "afterBytes": 105
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/wire-client-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "a1625754bd3aca303eb2c9c026cda5ad2b0ad86b797d46f46ff633f8ef03e234",
+      "afterBytes": 402
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/wire-java.log",
+      "beforeSha256": null,
+      "afterSha256": "71de58f7b1f103426db4f7558ffc3ff3fa0aac4d94467c190cd1a89632c1c820",
+      "afterBytes": 79
+    },
+    {
+      "path": "docs/handoff/20261004/session2/logs/wire-runtime-bridge.log",
+      "beforeSha256": null,
+      "afterSha256": "45f86e259fbcab99ce99d7c36eaaf7411f34e258de7f98721a84bd15144a751e",
+      "afterBytes": 1596
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-audio-lifecycle-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "875f7b2631ab2aa0540a50294274fa4127e8797e9d8c8d6e48902dbecd505759",
+      "afterBytes": 20318
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-audio-lifecycle-mixed-pcm.json",
+      "beforeSha256": null,
+      "afterSha256": "4bd385f22df78b852a3387a6c669d5bc79a50e7b5a92159be7ff91155339ed58",
+      "afterBytes": 3112
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-audio-lifecycle-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "6c8da91173c975ee8386239f8a132bef0cd2409f55b24591f5b5bbb16739d2d9",
+      "afterBytes": 387
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-build-identity.json",
+      "beforeSha256": null,
+      "afterSha256": "c08b6b415ffef149b7c37ce5adee1bf2a5115c81cf21bbe1ddf1fa52be8a5a45",
+      "afterBytes": 726
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-install-build-race-failure.json",
+      "beforeSha256": null,
+      "afterSha256": "ed095f6ead0d1156a50764a0c0f4ba61c7d05b58b38557d36e34a58aa24145f9",
+      "afterBytes": 20162
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-opening-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "a7432669b597022b9f9a25b229cb7a8372e63a1bb9f7e9dea76a3dad5ecae0ca",
+      "afterBytes": 20410
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-opening-missing-guard-failure.json",
+      "beforeSha256": null,
+      "afterSha256": "4adcbc9f848f3447b829b23bb62c01e8c9fa031df12a43eda086f907be62c6c8",
+      "afterBytes": 20224
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-technique-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "38774eb6dd168d4fb2de59e43a8d8704977baf01864d99105642e33fc982cb19",
+      "afterBytes": 20248
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-technique-mixed-pcm.json",
+      "beforeSha256": null,
+      "afterSha256": "9e68fbb86262c8223bef571cf9322c0b451fa2618a71df7edb0c44b5fdfd03fa",
+      "afterBytes": 856
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-technique-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "395ddc93dc8a7308f0ca0244362e7af16b2389f436d2a3986316739145efe3d7",
+      "afterBytes": 387
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-wire-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "285f5c2da056385a172523bdc361797ca50b21a2f5c91da050034b2ee9e1fd5a",
+      "afterBytes": 20176
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-pixels-manifest.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "77e154c5c5638bbb477681b93001e99c464e3b850716a6c884628892de7728c8",
+      "afterBytes": 524136
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-reproducibility.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "9ebe45338b422f3b1fd30dcfd8740d7607fee8414b6b9da6ae83227cee3e198d",
+      "afterBytes": 238389
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-source-join.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "561aef38c73e768659ab210420e170d4a0872f060984891f5684f099bbbd3302",
+      "afterBytes": 4072636
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-voice-source-join.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "b7394cdba27415c4b06be1df4e3b9e385e7fd7044ea8e5c2bb46973799c8d389",
+      "afterBytes": 4098748
+    },
+    {
+      "path": "docs/handoff/20261004/session2/protected-source-guard.json",
+      "beforeSha256": null,
+      "afterSha256": "3b07198f5d5eca5c0283cb03cde9d1517109dd40e511fa726ba980e4a9642bd8",
+      "afterBytes": 101483
+    },
+    {
+      "path": "docs/handoff/20261004/session2/sound-bank-reproducibility.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "b60a5994168fe287fbb5df00777fad26e701dd3a544ffc74cc4c70d73fc59b17",
+      "afterBytes": 11091
+    },
+    {
+      "path": "docs/handoff/20261004/session2/sound-banks-manifest.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "8f8fba35c910fe954d1b470a766edd60f46491b6c21f89b6b58043978f08e0c1",
+      "afterBytes": 42808
+    },
+    {
+      "path": "tools/architecture-client/Program.cs",
+      "beforeSha256": "5b74e95a699574070a5b15e0a79050e80017d236f1a3a8ff1e87a726c50e5e64",
+      "afterSha256": "67eaa329b3c06e19503f00f5a80ee2f1e444eabf486bc79984a5e15999e97ff6",
+      "afterBytes": 11141
+    },
+    {
+      "path": "tools/audio/check_device_mix.py",
+      "beforeSha256": "75f554678713054697840756714131055595b0739e0bde6a977762301f2fcb29",
+      "afterSha256": "ffa3b1023156bc7542df41e93ee90f76d8a23e33479d93bb1cb3b45237004fe1",
+      "afterBytes": 2896
+    },
+    {
+      "path": "tools/audio/import_pc_audio.py",
+      "beforeSha256": null,
+      "afterSha256": "0f9a345d65a950c729aa8a5b7d6bb4c4798ad81d90d8702d3a20c19743e45a35",
+      "afterBytes": 7511
+    },
+    {
+      "path": "tools/audio/import_pc_sound_banks.py",
+      "beforeSha256": null,
+      "afterSha256": "0cbc974ea611a92e45e50569a17339a94e8973b727b4322c51eb797b3459f6af",
+      "afterBytes": 6501
+    },
+    {
+      "path": "tools/audio/inspect_pc_audio_bindings.py",
+      "beforeSha256": null,
+      "afterSha256": "21b8866613fff0f61e5f57065215ba6c16c9f31a34f2c45fe62b7e82eb51aba7",
+      "afterBytes": 11594
+    },
+    {
+      "path": "tools/audio/stage_pc_technique_sound.py",
+      "beforeSha256": null,
+      "afterSha256": "7b1222847f1c57d824cca3166b713dec4c7eebcf4cdf13142d7016343dd40f65",
+      "afterBytes": 2840
+    },
+    {
+      "path": "tools/media/compare_conversions.py",
+      "beforeSha256": null,
+      "afterSha256": "96debee2fdfe6a27d09e53d3c86d29a48d783d1965770295c3c619a081b47f46",
+      "afterBytes": 1738
+    },
+    {
+      "path": "tools/media/import_pc_portraits.py",
+      "beforeSha256": null,
+      "afterSha256": "329acc906a0070cbd73f19146e76ddd0f3396d3217d13f5bda75f8cf9df01362",
+      "afterBytes": 4521
+    },
+    {
+      "path": "tools/media/inspect_pc_portrait_inputs.py",
+      "beforeSha256": null,
+      "afterSha256": "7b4a5c3250dfda9e459295f28491111506b23bdd5c9882e7dc358f4e29b1552d",
+      "afterBytes": 9168
+    },
+    {
+      "path": "tools/media/requirements.txt",
+      "beforeSha256": null,
+      "afterSha256": "b2cec77b3e55a661579a0d60ace4c7ae1819af93c9d7561f914e113858c4e26b",
+      "afterBytes": 70
+    },
+    {
+      "path": "tools/media/test_media_decoders.py",
+      "beforeSha256": null,
+      "afterSha256": "99a0e108a2b3cdf67267e36702dbbaf2493f7f10a2677183e9219d1ede37e61c",
+      "afterBytes": 1579
+    },
+    {
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": null,
+      "afterSha256": "fe7d5f7e68bb6d00cd2522693458ea79e04846123f7cef9b36eb3af5717bd698",
+      "afterBytes": 4283
+    },
+    {
+      "path": "unity/Assets/Sanguo/Client/State/ClientState.cs",
+      "beforeSha256": "ec12405135be22c1c22f22b3cc15479fa938c88d3cf178d7fad2a68f5214f74e",
+      "afterSha256": "397c31096bd29391d9212b2f6bbbb787c41e9785df5ec6e3ae0f69b1bf85428d",
+      "afterBytes": 4152
+    },
+    {
+      "path": "unity/Assets/Sanguo/Client/Sync/BridgeSync.cs",
+      "beforeSha256": "47b04c379940b50795ccf7c57d0100a4c95d21569386ff8544c965bfb75f1add",
+      "afterSha256": "18655def6f0c41180155e9482956f7ebb53775967f77e28c4b215cf4a8fb6b0f",
+      "afterBytes": 6135
+    },
+    {
+      "path": "unity/Assets/Sanguo/Contracts/BridgeContracts.cs",
+      "beforeSha256": "c71d7ec10d271e3ab960eaa9c70b7d17d5c66541773195bfc3bb93790140c391",
+      "afterSha256": "fa38d6d8c0785b9465107c22edf1aabeb441e6e29303193ba3c473f3e3de6bad",
+      "afterBytes": 1833
+    }
+  ],
+  "globalTestManifestChangesSeparateCommits": [
+    "c9bc765",
+    "fc87a08"
+  ],
+  "publicCoreApiRuntimeMainActivityExact": true
+}

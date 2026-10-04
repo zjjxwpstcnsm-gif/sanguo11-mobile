@@ -88,7 +88,8 @@
     "identityVerifiedRequests": 10656,
     "decodedFacePixels": 2892,
     "decodedKovs": 2027,
-    "decodedOriginalPcmBanks": 203
+    "decodedOriginalPcmBanks": 203,
+    "originalFaceRegistry": 6601
   },
   "originalRestoredAudioSamples": 1,
   "uniqueCurrentShortSamples": 10,
@@ -112,5 +113,16 @@
     "C# installed JSON harness initially assumed a receipt not present in that suite",
     "Unfrozen install caught by exact test APK readback guard; no UI suite executed",
     "Opening suite missing required reuseSlotSha before correct rerun"
-  ]
+  ],
+  "portraitIndexAccepted": false,
+  "rejectedPortraitMappingNote": "REJECTED_PORTRAIT_INDEX.md",
+  "correctedFaceSourceSummary": {
+    "facesWithAllThreeImages": 964,
+    "nonemptyImagesPerGroup": [
+      964,
+      964,
+      964
+    ],
+    "threeEmptyFaces": 1236
+  }
 }

@@ -39,8 +39,12 @@ def convert(installation, output):
         if offset != end or offset+size > len(data):
             raise ValueError('Noncontiguous/out-of-bounds FCE entry')
         end = offset+size
-        group, face = index//count, start+index % count
-        row = dict(resourceIndex=index, faceId=face, imageGroup=group, offset=offset, bytes=size,
+        # Original46e41b..46e45a loads count large entries then count*2
+        # interleaved small entries at registry+2400*8+start*16.
+        group = 0 if index < count else 1+(index-count) % 2
+        face = start+index if index < count else start+(index-count)//2
+        registry = face if group == 0 else 2400+face*2+group-1
+        row = dict(resourceIndex=index, sourceRegistryIndex=registry, faceId=face, imageGroup=group, offset=offset, bytes=size,
                    officerId=None, nativeId=None, sourceVariant=None, runtimeRole='UNVERIFIED')
         rows.append(row)
         if not size:
@@ -74,6 +78,7 @@ def convert(installation, output):
                     sourceSha256=sha(data), descriptorSha256=sha(data[20:table]),
                     sourceFaceCount=count, sourceImageCount=images,
                     decodedImages=sum(bool(r['bytes']) for r in rows), effectiveOfficerCoverage=0,
+                    indexLayout='Original46e41b..46e45a: large[count], then (small1,small2)[count]; registry large=face, small=2400+2*face+form-1',
                     status='PIXELS_ONLY_NOT_RUNTIME_OR_ALL_OFFICER_ACCEPTANCE', entries=rows,
                     limits=['Three source image groups retained without guessing dialogue/duel usage.',
                             'Empty entries are not aliases or invented fallback pixels.',
