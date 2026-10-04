@@ -29,6 +29,11 @@ if __name__=='__main__':
     p.add_argument('--reuse-installed',action='store_true');p.add_argument('--wave',type=Path);p.add_argument('--cue',action='append',default=[])
     p.add_argument('--capture-only',action='store_true',help='Retain raw PCM window without short-cue recognition; separate media waveform proof required')
     a=p.parse_args()
+    markers={'MediaBridgeInstrumentation':'MEDIA_WIRE PASS','PortraitPixelsInstrumentation':'PORTRAIT_PIXELS PASS',
+        'PortraitFlowInstrumentation':'PORTRAIT_FLOW PASS','MusicSourceInstrumentation':'MUSIC_SOURCE PASS',
+        'MusicPlaybackInstrumentation':'MUSIC_PLAYBACK PASS','TechniquePointsInstrumentation':'PASS TECHNIQUE HUD',
+        'TechniqueFactsInstrumentation':'PASS TECHNIQUE FACTS','UiUxInstrumentation':'UIUX PASS'}
+    if a.pass_marker!=markers[a.runner]:raise ValueError('Runner pass marker differs; device untouched')
     if a.output.exists():raise ValueError('Fresh output required')
     # Preflight before force-stop/installation. Reject another currently running instrumentation.
     adb=[str(ROOT/'out/toolchain/android-sdk/platform-tools/adb'),'-s',a.serial]
