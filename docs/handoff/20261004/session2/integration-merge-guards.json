@@ -353,21 +353,6 @@
   ],
   "ignoredInheritedInputs": [
     {
-      "path": "docs/uiux/evidence-12/05-\u5f81\u5175-review.png",
-      "bytes": 342021,
-      "sha256": "f78f7ac1e24b98fe7e01b2fc96f0afd05157e289d14db18bde0c6f977f1c4c99"
-    },
-    {
-      "path": "docs/uiux/evidence-12/06-\u5f81\u5175-result.png",
-      "bytes": 569004,
-      "sha256": "50feeb00731df9e8f439a372af5098daee056f0be387fc2d0f5a5940a86dd85d"
-    },
-    {
-      "path": "docs/uiux/evidence-12/06-\u8bad\u7ec3-result.png",
-      "bytes": 541711,
-      "sha256": "c86577f7c5416fd7cf88fd3cc3277c95f7f99837ee44410378981bc8de5f9187"
-    },
-    {
       "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
       "bytes": 121016,
       "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
@@ -389,5 +374,23 @@
     }
   ],
   "metadataWipImported": false,
-  "publicPatchesApplied": false
+  "publicPatchesApplied": false,
+  "repeatedTrackedCopiesByteEqual": [
+    {
+      "path": "docs/uiux/evidence-12/05-\u5f81\u5175-review.png",
+      "bytes": 342021,
+      "sha256": "f78f7ac1e24b98fe7e01b2fc96f0afd05157e289d14db18bde0c6f977f1c4c99"
+    },
+    {
+      "path": "docs/uiux/evidence-12/06-\u5f81\u5175-result.png",
+      "bytes": 569004,
+      "sha256": "50feeb00731df9e8f439a372af5098daee056f0be387fc2d0f5a5940a86dd85d"
+    },
+    {
+      "path": "docs/uiux/evidence-12/06-\u8bad\u7ec3-result.png",
+      "bytes": 541711,
+      "sha256": "c86577f7c5416fd7cf88fd3cc3277c95f7f99837ee44410378981bc8de5f9187"
+    }
+  ],
+  "filenameInventoryCorrection": "NUL-delimited Git inventory avoids escaped CJK filenames; three matching tracked screenshots were unnecessarily copied and misclassified; all source bytes preserved."
 }

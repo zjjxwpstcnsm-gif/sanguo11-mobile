@@ -1,6 +1,6 @@
 # 批七：顺序整合与正常全目录、详情和冷读回
 
-目标active，完整头像/音频还原未完成。原媒体目录与分支保留；新增独立整合目录/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile、codex/portrait-audio-restoration-integration。从媒体完成320ddda顺序合入人物完成9e171f2，87个完成增量路径逐文件与该commit一致；不读取/复制人物未提交的第四批研究。完整固定输入已跟踪者随Git继承，额外7个忽略输入（含4个JNI）按完整继承清单SHA复制；见integration-merge-guards.json。
+目标active，完整头像/音频还原未完成。原媒体目录与分支保留；新增独立整合目录/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile、codex/portrait-audio-restoration-integration。从媒体完成320ddda顺序合入人物完成9e171f2，87个完成增量路径逐文件与该commit一致；不读取/复制人物未提交的第四批研究。完整固定输入已跟踪者随Git继承，额外4个忽略JNI输入按完整继承清单SHA复制；见integration-merge-guards.json。
 
 本整合目录依照已登记的公共入口契约应用snapshot portrait bind、逐事实HUD/演示回调；MainActivity/MapHost/TurnPlayback前后SHA、两个精确补丁见integration-public-guards.json。两补丁第一处上下文重叠，初次只成功应用portrait bind；随后重新生成Main hunk，保留portrait行，原Map/Turn补丁前像仍严格一致。没有复制旧MainActivity或旧AA核心。core/game-api/game-runtime与9e171f2无任何增量；只有人物会话已完成的只读来源/文本成果被顺序合入。
 
@@ -27,3 +27,5 @@
 新组合包正常公开HUD声音线路现已取得本批实际证据：相同生产APK9b39ad...重新构建/安装只读观察测试包f32ce7567d8f7fa0bffeb5978f302063c4838bd216b507a7536fdcbb9b07c016，实际3D战法选择/取消/双击确认/暴击结束，真实权威fact ID、parentId、presentationParentId、完整state及before/after/delta/cause/phase输出integration-normal-tactic-facts.json。观察器只复制GameEvent，没有订阅HUD或手动释放演示阶段；声音heard以实际fact.id命中，取消没有committed事实，规则伤害/完整Save/RNG与独立控制一致。新混音区间仅从PID53152实际打开的5582文件复制；原PC33与两个已标移动端原创的战法/暴击声在相邻时刻重叠。旧单样本检查未达阈值保留失败，不降低门限；新check_pc33_tactic_mix.py只拟合这三个预声明样本，精确原采样率相位、正且可闻独立系数、Gram可识别性及>.999联合/PC33去已知干扰相关。实际联合0.9999997620093539、PC330.9999995511763713，排除PC33模型残差远大于完整模型；这证明当前正常事实原33实际混音出现，不是所有战斗音色已原版。实际wire18与该wire C#52亦通过，仍非Unity Player。
 
 本批全部测试结束后原用户保存/库/偏好逐字节恢复，无新增内部用户文件。原AVD及5554背景录音不变；当前独立5582可继续串行使用，须重新检查ActiveInstrumentation与锁。完整语音/BGM场景/其余9原SFX、其它15源/所有PC头像形态与演示副本、ARM和完整多回合组合矩阵仍未完成，目标继续active。
+
+源码封存最后核验发现Git默认将三个中文截图路径转义，普通ls-files字符串集误将其算为额外忽略输入；截图实际已经在Git archive中且字节相同，旧封存重复3项。改为NUL分隔路径，实际额外忽略输入只有4JNI，更新分类并重新封存；不删除任何源码/资源。
