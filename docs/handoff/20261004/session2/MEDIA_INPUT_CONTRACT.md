@@ -85,6 +85,10 @@ nativeId/sourceVariant 必须来自保存的实际来源绑定或明确的已提
 
 这条unit caller的只读输入应提供实际已提交的`actorUnitId/speakerRole=unitLeader/speakerOfficerId/currentAbilityBytes[0..3]/sourceActorValidRaw`及原动作→profile调用证据；主将角色是具体源调用依据，native部队slot与项目unit.id不能直接等同。能力从同state的已提交query/事实读取，不由媒体重算官职、经验、伤病或成长。更上游仍可能选择profile时调用RNG，不能把下层readonly扩大为所有上游都无需随机事实。缺少原动作profile及实际parent时维持未绑定。
 
+批二十二补充原显示callback564cb0：其读取renderer+4的raw动作域6..28（22..25静默），FSM阶段另在renderer+c；不可将两个域混用。活跃分支先用402310(2)的0/1结果选profile，再从具体renderer所指部队取主将。此helper进入4442a0/444150，使用8a5b68计数及6ed37f0的624word状态，与批二十一8a5d44标量百分比RNG不同；本批只读取指令，未执行任一随机源。需要同已提交演示fact中的`rendererActionRaw/rendererChoiceRaw/choiceSourceCall="402310->4442a0->444150"`以及实际该renderer的部队/主将身份，不能用War.Ordinal或当前选中部队补造。
+
+voice-renderer-dispatch-summary.json列完整raw分派，例如raw6在choice0/1为profile37/40，而raw7为37/39；这不是THRUST/SPIRAL对应关系已经成立的证据。原同回调还按renderer240Raw的零/非零分派：零值effect46/sound49，非零effect78/sound78；该字段语义仍未知，不改名critical/success。156项原指令执行将已产生的随机结果作为明确输入边界、捕获voice/effect/sound sink；不执行规则/RNG或将此fixture当正常动作绑定。完整动作身份、阶段条件和已提交choice仍需上游来源闭合。
+
 需先核对原上游演示记录 `+0/+4/+0x98` 的生成，与现有已提交 tactic enum/strike/plotOutcome 的对应。如果现有事实不能表达，向规则所有者请求如下只读事实投影（此处为请求，不修改 core）：
 
 ```

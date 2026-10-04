@@ -1,0 +1,15 @@
+{
+  "baseCommit": "d31aab67130575e6d979852c848a8d73c421b173",
+  "productionAndroidUnchanged": true,
+  "authorityUnchangedCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "paths": {
+    "tools/audio/inspect_pc_voice_renderer_dispatch.py": {
+      "beforeSha256": null,
+      "afterSha256": "f6410e8f83b1f22b0df1296c6760c035c3b53c03f4378676a79a10e07f230323"
+    },
+    "docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md": {
+      "beforeSha256": "158bc334a4d39bc1d519cfaf345ea7f5f4f107c3535d0caa43bea41e30ef5e59",
+      "afterSha256": "dd42ee52bbfa1f69a0b8306db1af270eb9bfbfc63566830cc071c251bad7b999"
+    }
+  }
+}
