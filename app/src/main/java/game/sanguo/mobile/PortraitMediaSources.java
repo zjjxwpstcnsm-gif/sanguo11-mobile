@@ -46,7 +46,10 @@ final class PortraitMediaSources {
         });}catch(RejectedExecutionException busy){entry.pending=false;entry.error="Saved portrait source queue overflow; new detached view required";android.util.Log.w("PcPortrait",entry.error);}
     }
     private static void notifyReady(Entry entry){ArrayList<PcPortraitLoader.Target> listeners=new ArrayList<>(entry.listeners.keySet());entry.listeners.clear();ui.post(()->{for(var target:listeners)target.ready();});}
-    static synchronized PortraitMediaIdentity source(Object view,int id){Entry e=sources.get(view);return e==null?null:e.identities.get(id);}
+    static synchronized PortraitMediaIdentity source(Object view,int id){
+        if(view instanceof game.sanguo.core.World){game.sanguo.core.CustomOfficers.Portrait custom=game.sanguo.core.CustomOfficers.portrait((game.sanguo.core.World)view,id);if(custom!=null&&!custom.ref.isEmpty())return null;}
+        Entry e=sources.get(view);return e==null?null:e.identities.get(id);
+    }
     static synchronized boolean pending(Object view,PcPortraitLoader.Target target){Entry e=sources.get(view);if(e!=null&&e.pending){e.listeners.put(target,true);return true;}return false;}
     static synchronized String error(Object view){if(retired.containsKey(view))return "Retired presentation source";Entry e=sources.get(view);return e==null?"":e.error;}
     static synchronized void discard(Object view){retired.put(view,true);Entry e=sources.remove(view);if(e!=null)notifyReady(e);}
