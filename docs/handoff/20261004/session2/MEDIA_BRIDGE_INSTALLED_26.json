@@ -1,0 +1,22 @@
+{
+  "serial": "emulator-5582",
+  "runner": "MediaBridgeInstrumentation",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-build-26/frozen/app-debug.apk": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/six-turn-authority-test-build-26/frozen/app-debug-androidTest.apk": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69"
+  },
+  "installed_sha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+  "installed_test_sha256": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69",
+  "passed": true,
+  "seconds": 2.14,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/media-wire.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "scope": "Actual Android app-owned schema1 JSON DTO/fact/long compatibility, not Unity Player"
+}

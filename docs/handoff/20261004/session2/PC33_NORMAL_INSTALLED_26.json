@@ -1,0 +1,101 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "run=pc33-normal-installed-26"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-build-26/frozen/app-debug.apk": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/six-turn-authority-test-build-26/frozen/app-debug-androidTest.apk": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69"
+  },
+  "installed_sha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+  "installed_test_sha256": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69",
+  "passed": true,
+  "seconds": 16.81,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "waveform": {
+    "status": "PASS",
+    "scope": "Actual declared normal tactic mix: original PC33 plus two inherited mobile nuisance cues. Not full PC battle audio restoration, microphone or ARM speaker evidence.",
+    "serial": "emulator-5582",
+    "apkSha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+    "waveSha256": "f3273148e3081505fa2d2f150789014f2c045796c72d4196863aa2db68c3df28",
+    "sampleRate": 44100,
+    "intervalSamples": [
+      192120,
+      241024
+    ],
+    "jointCorrelation": 0.9999997531077287,
+    "pc33NuisanceRemovedCorrelation": 0.9999995328298007,
+    "gramCondition": 4.33623371766735,
+    "residualMseWithPc33": 6.828104807071459e-12,
+    "residualMseWithoutPc33": 7.305945947692227e-06,
+    "facts": [
+      {
+        "id": "63acb0cb-a65e-4972-a6a8-61541f318e6f:1:1:LEGACY_COMMITTED:technique:1",
+        "parentId": "63acb0cb-a65e-4972-a6a8-61541f318e6f:1:1:LEGACY_COMMITTED",
+        "presentationParentId": "2:1",
+        "sequence": 1,
+        "owner": 0,
+        "before": 0,
+        "after": 40,
+        "delta": 40,
+        "cause": "TACTIC",
+        "phase": "COMMAND",
+        "state": {
+          "sessionId": "63acb0cb-a65e-4972-a6a8-61541f318e6f",
+          "generation": 1,
+          "revision": 1
+        }
+      }
+    ],
+    "cues": [
+      {
+        "name": "critical",
+        "label": "INHERITED_MOBILE_COMPOSITION",
+        "path": "audio/critical.wav",
+        "sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa",
+        "startSample": 192149,
+        "seconds": 4.357120181405896,
+        "gain": 0.017732709552228342,
+        "audibleRms": 0.002695140004599034,
+        "candidateCorrelation": 0.6119611254527619
+      },
+      {
+        "name": "tactic",
+        "label": "INHERITED_MOBILE_COMPOSITION",
+        "path": "audio/tactic.wav",
+        "sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264",
+        "startSample": 193471,
+        "seconds": 4.387097505668934,
+        "gain": 0.01773315062354017,
+        "audibleRms": 0.0017651423847498118,
+        "candidateCorrelation": 0.416653490447185
+      },
+      {
+        "name": "pc33",
+        "label": "ORIGINAL_PC_HUD33",
+        "path": "audio/pc/technique-33.wav",
+        "sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+        "startSample": 195789,
+        "seconds": 4.439659863945578,
+        "gain": 0.017734522283331097,
+        "audibleRms": 0.0028118097699231896,
+        "candidateCorrelation": 0.8105808643523447
+      }
+    ],
+    "pc33TailSeedCorrelation": 0.9999990681355233,
+    "pc33CoarseCandidateSample": 195552,
+    "pc33TailSeedSample": 195789,
+    "filters": "Same fixed65-tap cutoff FIR; declared isolated HUD33 tail seeds harmonic phase; full original-rate reconstruction and unchanged acceptance thresholds"
+  }
+}

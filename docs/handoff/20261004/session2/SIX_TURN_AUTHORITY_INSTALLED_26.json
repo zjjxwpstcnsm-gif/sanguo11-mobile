@@ -1,0 +1,74 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=longRun",
+    "rounds=6",
+    "run=six-turn-authority-installed-26"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-build-26/frozen/app-debug.apk": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/six-turn-authority-test-build-26/frozen/app-debug-androidTest.apk": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69"
+  },
+  "installed_sha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+  "installed_test_sha256": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69",
+  "passed": true,
+  "seconds": 183.84,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "temporary_campaign": {
+    "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-normal-26/device-evidence/source-campaign.sg11",
+    "sha256": "4d4fe71117421e66bd271e7d105b460850fe7dbb82580642b148773525ad4359",
+    "bytes": 939917,
+    "slots": [
+      "files/auto.sg11",
+      "files/manual3.sg11"
+    ]
+  },
+  "snapshots": [
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-before.sg11",
+      "bytes": 939917,
+      "sha256": "4d4fe71117421e66bd271e7d105b460850fe7dbb82580642b148773525ad4359"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-0.sg11",
+      "bytes": 954073,
+      "sha256": "dd6b000ec6ffa7f95b98ee3edbb0039fda04ee0abdb7343cb5946294925a2cb2"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-1.sg11",
+      "bytes": 966267,
+      "sha256": "f3a4b7edda7a95c63f6abf64680ab0fb1b36bc3f84211a428d33f8c36c52c33b"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-2.sg11",
+      "bytes": 979607,
+      "sha256": "d6bcd3ea14e2ce3a7f3c58c4fd5c1895f7b276abbd87d94ff1ecf3cddaea0320"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-3.sg11",
+      "bytes": 991968,
+      "sha256": "1c81737c3cbaaf412c07dd43ed857c4fb0212f85786ee5d40f5cb744c97ae856"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-4.sg11",
+      "bytes": 1002423,
+      "sha256": "c46dc9ef7a78e92babcef21a055249988fcae328386c471af155e5fca822ef97"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-5.sg11",
+      "bytes": 1013681,
+      "sha256": "76445f56f62a8a15dfb37116c6bdbed7572210244495be4c77de84290c0ce393"
+    }
+  ],
+  "scope": "Actual normal six turns plus pause/skip/Home and full opaque state/RNG snapshots; no original mapBGM or voice assertion"
+}

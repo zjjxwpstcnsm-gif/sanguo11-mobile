@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc_music_mix.py", line 35, in <module>
+    a=p.parse_args();report=check(a.capture,a.reference,a.resource,a.manifest);a.output.write_text(json.dumps(report,indent=2)+'\n');print('PASS original music actual PCM correlation=',report['correlation'])
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc_music_mix.py", line 30, in check
+    if score<.995:raise AssertionError(('Original complete music waveform not found in actual PCM',score))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Original complete music waveform not found in actual PCM', np.float64(0.3358852679200225))
