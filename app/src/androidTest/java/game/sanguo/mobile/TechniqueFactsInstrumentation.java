@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /** Installed HUD/media adapter proof. Public host event/phase patch remains a separate integration gate. */
 public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
@@ -36,6 +38,15 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
             check(control.campaign.repair(city,officer).ok,"control normal repair");
             check(SessionProbe.command(activity,w->w.campaign.repair(city,officer)).ok,"actual normal repair commit");
         });return observed.get(observed.size()-1);
+    }
+    private void evidence()throws Exception{
+        JSONArray events=new JSONArray();
+        for(GameEvent event:observed){JSONArray facts=new JSONArray();for(var fact:event.techniquePointsFacts)facts.put(new JSONObject()
+            .put("id",fact.id).put("parentId",fact.parentId).put("presentationParentId",fact.presentationParentId).put("sequence",fact.sequence)
+            .put("owner",fact.owner).put("before",fact.before).put("after",fact.after).put("delta",fact.delta).put("cause",fact.cause).put("phase",fact.phase));
+            events.put(new JSONObject().put("id",event.id).put("sessionId",event.state.sessionId).put("generation",event.state.generation).put("revision",event.state.revision).put("kind",event.kind).put("facts",facts));}
+        java.nio.file.Files.write(getTargetContext().getFilesDir().toPath().resolve("media-facts.json"),new JSONObject().put("scope","Temporary readonly installed adapter; public host patch unapplied")
+            .put("checks",checks).put("events",events).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
     }
     @Override public void onStart(){Bundle result=new Bundle();String originalScale=null;try{
         originalScale=shell("settings get global animator_duration_scale");
@@ -60,7 +71,11 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         check(control.editor.apply(control.editor.faction(control.player,control.actionPoints[control.player],2000)).ok,"reference loss");
         zeroNet();check(observed.size()==1&&observed.get(0).techniquePointsFacts.size()==2&&observed.get(0).techniquePointsChanges.isEmpty(),"real zero-net commit retains two facts");
         GameEvent event=observed.get(0);
-        check(event.techniquePointsFacts.get(0).presentationParentId.isEmpty()&&event.techniquePointsFacts.get(1).presentationParentId.isEmpty(),"editor copy produces actual blank presentation parents; never fabricate a phase");
+        String firstPhase=event.techniquePointsFacts.get(0).presentationParentId,secondEditorPhase=event.techniquePointsFacts.get(1).presentationParentId;
+        check(!firstPhase.isEmpty()&&!secondEditorPhase.isEmpty()&&!firstPhase.equals(secondEditorPhase),"each actual editor success closes a distinct original journal phase");
+        runOnMainSync(()->hud.releasePresentation(secondEditorPhase));SystemClock.sleep(250);
+        check(hud.rolls==initialRolls,"later authoritative phase cannot overtake the first fact");
+        runOnMainSync(()->hud.releasePresentation(firstPhase));
         SystemClock.sleep(1900);
         check(hud.rolls==initialRolls+2&&shown()==2000,"two opposite actual facts animate despite unchanged NET");
         check(heard(event.techniquePointsFacts.get(0).id)&&heard(event.techniquePointsFacts.get(1).id),"each sound owns exact fact.id");
@@ -96,6 +111,7 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         result.putString("stream","PASS TECHNIQUE FACTS "+checks+" checks; installed normal3D HUD with temporary readonly event/phase test adapter; shared host integration pending\n");
     }catch(Throwable e){result.putString("stream","FAIL TECHNIQUE FACTS "+android.util.Log.getStackTraceString(e));}
     finally{try{
+        evidence();
         runOnMainSync(()->{if(subscription!=null)subscription.close();});finishActivityForRestore();
         if(originalScale!=null){
             if(originalScale.equals("null"))shell("settings delete global animator_duration_scale");
