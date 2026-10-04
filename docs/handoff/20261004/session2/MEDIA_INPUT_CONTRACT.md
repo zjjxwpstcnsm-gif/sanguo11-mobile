@@ -40,6 +40,8 @@ sourceForceNativeId/sourceCityNativeId由会话一批准的来源身份映射决
 
 媒体按原5880e0顺序消费已证明谓词：587f00为真→9；否则587d70为真→城市数>=10选10、其余8；否则587fb0为真→城市数>=10选11、其余7；全部已知为假时seasonRaw0..3→3..6，其它原值→7。更早的未知分支必须等待/resync，不越过未知选后面的曲目。不要求core产生音频编号、不调用规则命令/RNG/earn/save。原repeat1、fade500ms、gain sentinel-1属于媒体来源策略，保留用户实际音量。
 
+批十九已在 app-owned PcMusicPolicy/PcMapMusicDirective 实现上述选择，并由 PcMediaPlayback.sourceMapMusic 只读消费同当前 StateToken 的订阅 parent/fact.id。4096组完整原 selector dispatch 与4125项 Java 对照通过；未知输入停止旧曲、不推断新曲。此入口仍等待正常场景的已提交事实 producer，没有把示例 scene 字符串或测试 adapter 标成普通BGM绑定。源身份/地域/日历及真实场景契约要求保持不变。
+
 当前GameSnapshot只含turn/player及BridgeEntity的项目owner等普通字段，缺少calendar和来源势力/城市身份，不能据此证明上述原音乐上下文。新增JSON应为app-owned加法字段，保持schema1和long精确整数；快照用于基线/resync而非重播音乐/语音事实。同一已建立scene/track不重开，restore或新局取消旧scene；最终需正常新局/多回合/读档实测，解码和adapter通过不能代替普通绑定。
 
 ## 人物来源

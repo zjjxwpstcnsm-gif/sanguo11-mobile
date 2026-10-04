@@ -37,6 +37,16 @@ final class PcMediaPlayback implements AutoCloseable {
     private void observed(GameEvent event){ui();if(ledger.observe(event)){stopTransient();stopMusic();}
         if(event.kind!=GameEvent.Kind.CLOSED&&(!foreground||muted||voiceGain==0||interrupted))ledger.resynchronize(event.state);
         if(ledger.needsResync())stopTransient();}
+    /** Source facts must arrive through the bound session. Unknown facts are consumed without guessed playback. */
+    boolean sourceMapMusic(PcMapMusicDirective directive){
+        ui();if(closed||session==null||!directive.state.equals(session.state()))return false;
+        if(!ledger.claim(directive.state,directive.id,directive.parentId)){if(ledger.needsResync()){stopTransient();stopMusic();}return false;}
+        int selected=directive.selectedMusicId();
+        if(selected==PcMusicPolicy.UNBOUND){stopMusic();android.util.Log.i("PcMusic","UNBOUND id="+directive.id+" parent="+directive.parentId);return false;}
+        sourceMusic(directive.establishedScene,selected,true,500);
+        android.util.Log.i("PcMusic","SOURCE5880e0 id="+directive.id+" parent="+directive.parentId+" phase="+directive.presentationParentId+" musicId="+selected);
+        return true;
+    }
     /** Native track selection and scene role must be proven by the producer. Current ordinary scene bindings remain pending. */
     void sourceMusic(String establishedScene,int nativeMusicId,boolean repeat,int fadeMillis){
         ui();if(closed||session==null||ledger.closed())throw new IllegalStateException("No established source media session");

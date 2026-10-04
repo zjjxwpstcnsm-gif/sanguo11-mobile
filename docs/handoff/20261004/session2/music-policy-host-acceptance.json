@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "nativeVectors": 4096,
+  "unknownAndPriorityChecks": 16,
+  "sourceCallerGateChecks": 13,
+  "nativeReportSha256": "3ead5b9fcb6cb4cf130441102feee5086220068b443e89e7a56388b797aacad4",
+  "paths": {
+    "app/src/main/java/game/sanguo/mobile/PcMusicPolicy.java": "b1ee85696276974f7c2e613648613c9309fcb003de3c298c35b0fd495527ef54",
+    "app/src/main/java/game/sanguo/mobile/PcMapMusicDirective.java": "cfa1ecb6cf55522964b891e5d422e1342eb9ffa8ab78674e9aa6bbf5ac66728f",
+    "game-api/src/main/java/game/sanguo/api/StateToken.java": "028cab35b04551f93c4d94f2c51069c1a680db8072d1687da582e1cfe376a590",
+    "app/src/test/java/game/sanguo/mobile/PcMusicPolicyTest.java": "cdf5dd50113d652cc86791a2327d897fc938c2dd99ed76687ee5d6c9abf6bcae"
+  },
+  "limits": [
+    "Host production Java selector comparison, not normal scene binding or installed playback."
+  ],
+  "committedNativeReportSha256": "7fb095cc89ed5a40805e9ce3d4c1d5fed1dfd6da887f2e6c4688b38c9903469b"
+}
