@@ -30,6 +30,6 @@ def main():
     report=dict(schema=1,sourceFaceSha256=pixels['sourceSha256'],sourceFaceFile=pixels['sourceFile'],metadataCommit=join['metadataCommit'],metadataRequestSha256=join['metadataRequestSha256'],
         registryLayout=pixels['indexLayout'],flagStartFace=start,faceFlags=flags,images=images,identities=identities,decodedImages=len(images),identityJoins=len(identities),pngBytes=total,
         limits=['SourceInfo missing remains unknown; no name or roster-ID inference.', 'Native flags/age selection retained; role-specific imageGroup callers require independent proof.', 'Only supplied primary FCE present; external active override priority is unresolved.'])
-    target=a.assets/'portraits/pc/media-manifest.json.gz';target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(gzip.compress(json.dumps(report,separators=(',',':')).encode(),mtime=0))
+    target=a.assets/'portraits/pc/media-manifest.json';target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(json.dumps(report,separators=(',',':')).encode())
     print('Staged corrected original portrait images=',len(images),'approved joins=',len(identities),'PNG bytes=',total)
 if __name__=='__main__':main()

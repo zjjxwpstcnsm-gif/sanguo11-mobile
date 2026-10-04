@@ -8,7 +8,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.zip.GZIPInputStream;
 
 /** Original face flag/age lookup and exact immutable source join. Load/parse only on the media worker. */
 final class PcPortraitCatalog {
@@ -31,7 +30,7 @@ final class PcPortraitCatalog {
     private final int[] flags;
     PcPortraitCatalog(Context context)throws IOException{
         if(Looper.myLooper()==Looper.getMainLooper())throw new IllegalStateException("Portrait manifest parsed on UI thread");
-        try(var input=new GZIPInputStream(context.getAssets().open("portraits/pc/media-manifest.json.gz"))){
+        try(var input=context.getAssets().open("portraits/pc/media-manifest.json")){
             ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] buffer=new byte[8192];for(int n;(n=input.read(buffer))!=-1;){if(bytes.size()+n>16*1024*1024)throw new IOException("Media manifest too large");bytes.write(buffer,0,n);}
             JSONObject root=new JSONObject(new String(bytes.toByteArray(),java.nio.charset.StandardCharsets.UTF_8));
             if(root.getInt("schema")!=1||!root.getString("sourceFaceSha256").equals("5e6a69ac3555910196465a40a7d02092cc7b8e7dc7de8e106eac1173b6e29519"))throw new IOException("Unexamined FCE source");
