@@ -1,3 +1,5 @@
+当前检查点已更新至批十四，见DELIVERY_CURRENT.md。PC33旧失败是检查器相位选错，12份原录音重新核验通过，撤回播放回归判断；旧记录保留用于复核。最新同包正常新局/全部656目录详情/存档退出及正常战法、原PCM生命周期与共享music/voice adapter PCM均有当次证据；完整普通BGM/voice绑定仍未实现。
+
 当前源码候选38fa0117、归档截点28cdb14d：APK SHA 1ea0afaab989bd9bb6c032f66df06680b3356ab5626f8e728be06efeb7a3d78f，out/media/media-transport-build-03/frozen/app-debug.apk。短语音完整后台解码后再播放，两轮共享41项与实际PCM通过，暂停前underrun为0；首次播放800/688ms，优先级另一次1215ms待优化。最新正常656目录/3详情/存档读回/后台/退出重开324153项通过。全部用户文件字节恢复。PC33同包仍PCM失败，因此不提升DELIVERY_CURRENT。完整源码归档out/media/delivery-13/sanguo11-portrait-audio-source.tar.gz，441172806字节、9658文件/四份JNI，SHA 08897be0396881060406616debdc65555231c5e93d54e1b0b6c8437ef140fe7a；所有内容与28cdb14d源码字节一致，后继本指针和正常补测记录在归档截点之后。BATCH_13.md及media-transport-evidence.json保留增量与失败。
 
 最新未通过候选：bb64e557，APK SHA 24a60cf91d89d8b85fc4da92b0b58dbc83ddee395e18794311092dc3b61fa96b，out/media/pc33-source-build-04/frozen/app-debug.apk。批十二五轮已实际安装、用户字节恢复；临时路径包PC33一次通过，后台缓存正式包PC33仍失败，共享播放器41项通过但本次共享PCM也失败。详见BATCH_12.md及pc33-source-loader-ab.json；不得提升为已验收交付。

@@ -1,13 +1,15 @@
 # 当前可复核媒体检查点（完整目标未完成）
 
-完整源码目录：/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile，分支codex/portrait-audio-restoration-integration。基点8400301的完整dirty成果、168固定输入及四份忽略JNI已经继承；人物/规则沿用已完成9e171f2，本批与该提交core/game-api/game-runtime字节一致，不合人物后续WIP。
+源码工作目录：/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile，分支codex/portrait-audio-restoration-integration。完整继承8400301及R40 dirty成果、168固定输入与四份JNI；只集成已完成9e171f2，不合另一会话后续WIP，规则/API/runtime及metadata本批未修改。
 
-最新生产APK：out/media/voice-source-build-02/frozen/app-debug.apk，源7bec08f87d728b15987708606100067cbfe0dc61，283144775字节，SHAe0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3。已实际安装5582、读回SHA；当前新包正常656目录/3详情、保存读回/后台/退出重开324153项及正常3D战法19项通过。原PC33当次真实PCM去合成干扰相关0.9999995446479859。全部新原音频资产与源码字节一致，用户两存档/全部库/偏好字节恢复一致。x86_64证据，ARM/手机扬声器未验证。
+当前APK：out/media/pc-pcm-build-03/frozen/app-debug.apk，源efd30edf2790d8b08fcfd489beba02885c2faa9a，283155299字节，SHA 00c18c9ce7763dbeac438ff60038d048df748eb04a3312923e04658426b44c1b。5582实际安装/读回，正常新局、656目录和656详情、保存读回、后台、退出重开646114项通过；652批准来源原像素、4未知，不能扩大到所有16来源或全部人物形态。正常3D真实战法19项及PC33实际PCM通过。其它九声仍明确为移动端原创合成；普通原BGM和人物voice绑定仍0。
 
-完整源码/工具/媒体：out/media/delivery-11/sanguo11-portrait-audio-source.tar.gz，源码截点1a82ae631c2ab3585ca43cd4e26fb7067615b5db，441092769字节，SHA894017c2995204f183a95561e74fdddb2eeb3ec54df32adbc41cfba8b16a713c。9572个文件，无重复路径，全部Git跟踪文件和四份守卫JNI均包含；每份归档内容与该源码截点逐字节相同。使用NUL Git文件清单，中文路径不会按引号生成重复。delivery-current-manifest.json与out/media/delivery-11/source-files.json可复核。后继交付指针更新不在该源码截点内，其源码/证据均已包含；旧delivery10与包仍保留但不是当前交付。
+共享音乐/语音的实际父receipt加显式原profile/track adapter40项及真实PCM通过，联合0.9999994546、语音0.9999993906、ducking0.3499442；不是普通场景/动作绑定。原PCM暂停续播、真实world replacement停止、静音/音量/focus/Home/退出释放通过。全部用户保存/库/偏好逐字节恢复；x86_64证据，ARM/手机扬声器未验证。
 
-批八b465f86b已经接入保存来源的演示副本、真实年龄阈值选择和旧view退休；批九11196a67新增原语音选择器8248、原发言侧调用链1850、Java与原向量8240项。原side0/1同时用于选择实际发言侧与声音反馈，不当success/failure；MEDIA_INPUT_CONTRACT.md保留具体speaker/side/slot/动作/StateToken只读事实请求。BATCH_08.md、BATCH_09.md及presentation-voice-incremental-guard.json提供范围、前后SHA与限制。
+完整源码、媒体与工具：out/media/delivery-14/sanguo11-portrait-audio-source.tar.gz，截点2bbf14b9701b8d015109387f38cee03cb05ae33b，441218931字节，SHA f6e395606a41015faa69278a12ae891e859b4adb1179a188c72b910323d5b52f。9715份文件及四份JNI全部包含，无重复路径，每份与源码截点字节一致。后继本指针更新不在该截点内，当前全部实现及验收数据已包含。manifest与source-files.json可复核。
 
-批十完整打包1997原语音候选（24,291,347字节Ogg）和10656批准身份/type连接，独立音频manifest，不改metadata。两次实际Android输出的1997个PCM SHA/帧数一致，均等于原EOS，当前严格生产包27317项；30原音乐/循环再次通过。PyAV172个时轴差异完整记录，不补/裁源，2296实测差异在尾部；所有native PC PCM仍未测。FD固定47、原生线程16..17；解码median64/p95 130/max441ms，稳定PSS约48..54MB。原记录六项执行证明第10字段按上游raw分支选择11/12，旧tacticIndexRaw不得映射War/Army ordinal。BATCH_10.md、voice-source-summary.json与2038路径voice-source-incremental-guard.json保留确切范围。**正常voice触发仍0**；这些是源/codec证据，不是正常播放完成。
+纠正旧PC33失败判断：检查器在周期波形中取错相邻峰约±238采样，修正后12份未改历史录音全部通过，阈值未放宽，原失败记录保留。APK-FD或SoundPool失真结论撤回。BATCH_14.md、pc33-phase-reassessment.json与pc-pcm-incremental-guard.json列新旧证据和范围。
 
-完整目标仍active：其它15来源正常全流程、全部战斗/对话/单挑/动态lookup形态和MOD优先级、原正常BGM/全部语音/其余9原SFX、共享音频focus/noisy/音量和完整生命周期、实际多回合存档退出组合/ARM仍未闭合。当前音频原还原播放只证明PC33；其它两个战法/暴击声仍明确合成。所有未知保留未绑定，没有把选择器/解码/探针冒充正常语音播放。后续继续原演示记录上游与既有提交事实对应，以及完整正常媒体系统。
+性能：该全目录/详情运行全应用PSS337672KiB/FD38，含3D，不能作为音频独立PSS；六路各45203帧原PCM完整预载。头像loadWait median9/p95 29/max3456ms，首项延迟需改善。首个共享语音469ms、优先级423ms仅本轮，旧轮1215ms仍保留，不宣称全部语音延迟达标。
+
+完整目标active：其它15来源正常流程、动态lookup/对话/单挑/战法全部头像形态与MOD优先级、普通原BGM/全部voice/其它原SFX完整事件绑定、更多多回合存档组合及ARM仍未闭合。来源、选择器、解码或adapter证据不会标成正常完整还原。
