@@ -19,3 +19,7 @@ Session 1 负责身份与文字/数值真值，Session 2 负责头像像素、�
 新增 `game-api/.../OfficerSnapshot.java`、`game-runtime/.../query/OfficerQuery.java`、`game-runtime/.../OfficerQueryTest.java`；GameApi/GameSession 增加只读 officers()。DataTable.java 仅增加人物 DTO 重载，OverviewUi 仅武将表接入，MainActivity 仅增加人物查询方法和改写 officerDetail 的文字来源。game-runtime/build.gradle 注册实际 main-style 测试；修改前 SHA 在 identity-dto-before.json。
 
 本批读取保存中的当前人物事实，不查询 ContentCatalog 追填原姓名/生卒/传记。旧档未知 base/growth/XP 的数组为空，不将旧 current 冒充原 base。sourceVariant/nativeId/courtesyName/biography 尚未持久化，一律未核实；这不是来源新局转换完成。正常武将一览搜索/排序与详情共同消费 DTO，头像和定位保留原只读 World 对象接口。
+
+验证工具新增 `tools/content/verify_pc_officer_ui.py`，复用现有正常 widget runner，另封存/恢复所有原外部文件与库；新增文本取证工具 `tools/content/inspect_pc_message_resources.py`，只在独立 VM 执行原 LS11 解压函数，输出隔离文本二进制及取证摘要，不修改任何媒体文件。
+
+补充确切测试文件：tools/content/OfficerUiOpeningWriter.java、ArtOfficerFixtureCanonicalizer.java、canonicalize_pc_officer_fixture.py、android/OfficerInfoInstrumentation.java、build_officer_info_ui_probe.py。仅独立测试 APK/host 夹具，生产规则类全部引用本次实装 APK；不替换或改写现有共享测试 runner。详情截图和每次失败/成功的原日志在 out/session1/，本目录保存摘要及 SHA。

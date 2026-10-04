@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "externalOriginalFileCount": 2902,
+  "externalRestoration": {
+    "allOriginalFilesByteEqual": true,
+    "mismatches": [],
+    "newEvidenceFiles": [
+      "files/uiux/officer-session1-installed-officer-ui-v3-opening/FAIL.png",
+      "files/uiux/officer-session1-installed-officer-ui-v3-opening/progress.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v3-opening/result.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/01-map.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/02-officers.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/03-empty-keyboard.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/04-officers-landscape.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/05-cities.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/06-page-error.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/07-slots.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/08-resumed.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/progress.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/result.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/rotation-51420091.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-general/rotation-51423392.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/01-menu.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/02-overwrite-confirm.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/03-settings.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/04-scenarios.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/05-factions-portrait.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/06-factions-landscape.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/07-new-confirm.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/08-new-map.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/08b-native-preview.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/09-loaded-map.png",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/progress.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/result.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/rotation-51360713.txt",
+      "files/uiux/officer-session1-installed-officer-ui-v4-opening/rotation-51362218.txt",
+      "files/uiux/officer-session1-opening/FAIL.png",
+      "files/uiux/officer-session1-opening/progress.txt",
+      "files/uiux/officer-session1-opening/result.txt"
+    ],
+    "originalFileCount": 2902
+  },
+  "apk_sha256": {
+    "app-debug.apk": "2c4b8536c3e59c639b422f0b9a1d2902ebbbd45e311464ac38045b9bab083919",
+    "app-debug-androidTest.apk": "f220d9323daa07da0ab468713fd942d383f48126a3f9141c59909d1327c00b7e"
+  }
+}

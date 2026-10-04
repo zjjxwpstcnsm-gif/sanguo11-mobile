@@ -1,0 +1,32 @@
+OFFICER INFO PASS 30 checks
+PASS installed DTO includes complete saved roster
+PASS three actual factions available
+PASS native accessibility text input accepted 刘备
+PASS actual search includes saved name 刘备
+PASS search preserves stable target ID 1000
+PASS actual officer row visible
+PASS all five current values match independent saved world 1000
+PASS base and XP retain separate saved values 1000
+PASS merit loyalty and location use same DTO
+PASS missing source fields stay explicit
+PASS search/details preserve every saved byte and RNG 1000
+PASS native accessibility text input accepted 曹操
+PASS actual search includes saved name 曹操
+PASS search preserves stable target ID 2000
+PASS actual officer row visible
+PASS all five current values match independent saved world 2000
+PASS base and XP retain separate saved values 2000
+PASS merit loyalty and location use same DTO
+PASS missing source fields stay explicit
+PASS search/details preserve every saved byte and RNG 2000
+PASS native accessibility text input accepted 张辽
+PASS actual search includes saved name 张辽
+PASS search preserves stable target ID 2004
+PASS actual officer row visible
+PASS all five current values match independent saved world 2004
+PASS base and XP retain separate saved values 2004
+PASS merit loyalty and location use same DTO
+PASS missing source fields stay explicit
+PASS search/details preserve every saved byte and RNG 2004
+PASS three factions inspected through real rows and dialogs
+

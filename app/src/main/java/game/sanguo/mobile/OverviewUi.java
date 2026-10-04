@@ -142,7 +142,12 @@ final class OverviewUi {
         Button faction=a.button(state.owner==-2?"在野武将":state.owner<0?"全部势力":w.faction(state.owner),v->{String[] labels=new String[w.factions.length+2];labels[0]="全部势力";System.arraycopy(w.factions,0,labels,1,w.factions.length);labels[labels.length-1]="在野武将";new AlertDialog.Builder(a).setTitle("按势力筛选").setItems(labels,(d,i)->{state.owner=i==w.factions.length+1?-2:i-1;a.refresh();}).show();});
         Button city=a.button(state.city<0?"全部据点":w.city(state.city).name,v->{List<World.City> all=new ArrayList<>(w.cities);ChoiceDialog.show(a,w,"按据点筛选",all,c->c.name,c->{state.city=c.id;a.refresh();});});
         filters.addView(faction,new LinearLayout.LayoutParams(0,a.dp(48),1));filters.addView(city,new LinearLayout.LayoutParams(0,a.dp(48),1));filters.addView(a.button("清除",v->{state.city=-1;state.owner=-1;state.query="";a.refresh();}),new LinearLayout.LayoutParams(a.dp(56),a.dp(48)));
-        DataTable<World.Officer> table=DataTable.officers(a,w,UiModels.officers(w,"",state.owner,state.city,0),o->"",a::officerDetail);
+        game.sanguo.api.OfficerSnapshot snapshot=a.officerSnapshot();
+        List<World.Officer> rows=new ArrayList<>();for(game.sanguo.api.OfficerSnapshot.Officer o:snapshot.officers){
+            if(state.owner>=0&&o.owner!=state.owner||state.owner==-2&&(o.owner>=0||!o.present)||state.city>=0&&o.cityId!=state.city)continue;
+            World.Officer media=w.officer(o.id);if(media!=null)rows.add(media);
+        }
+        DataTable<World.Officer> table=DataTable.officers(a,rows,snapshot,a::officerDetail);
         Button compactFilters=a.button("筛选",v->new AlertDialog.Builder(a).setTitle("武将筛选").setItems(new String[]{"势力 · "+faction.getText(),"据点 · "+city.getText(),"清除全部筛选"},(d,i)->{if(i==0)faction.performClick();else if(i==1)city.performClick();else{state.city=-1;state.owner=-1;state.query="";a.refresh();}}).setNegativeButton("取消",null).show());
         compactFilters.setContentDescription("武将筛选 · "+faction.getText()+" · "+city.getText());compactFilters.setSelected(state.owner!=-1||state.city!=-1);compactFilters.setVisibility(View.GONE);
         table.searchBar.addView(compactFilters,new LinearLayout.LayoutParams(a.dp(48),a.dp(48)));

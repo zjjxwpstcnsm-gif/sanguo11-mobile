@@ -1,0 +1,66 @@
+{
+  "limits": [
+    "Original decompression only; message IDs and biography/person mapping not yet established",
+    "No runtime text imported, no PC installation write, no Wine"
+  ],
+  "resources": [
+    {
+      "codeSha256": "5d504570fb915779c49f6ce46123893055ad5f5b3cb37c299572728fdee7dad5",
+      "compressedBytes": 12737,
+      "decodedBytes": 104346,
+      "decodedSha256": "9c4587338479adad85f7883238c5212a9c5a50270ba77f91168e97fbbd52710d",
+      "firstBytes": "f001c207000072090000140a0000300a0000ad0a0000ec0a00003f0b0000180c",
+      "inputOffset": 288,
+      "originalFunction": "4711c0",
+      "originalInputConsumed": 12737,
+      "outputGuards": true,
+      "sourceAndDictionaryReadOnly": true,
+      "sourcePath": "Media/msg/S11MSG00.s11",
+      "sourceSha256": "e327f090f74ece39097b42f700c0715823ba134854ccade469ecd4f0b9cd41ae"
+    },
+    {
+      "codeSha256": "5d504570fb915779c49f6ce46123893055ad5f5b3cb37c299572728fdee7dad5",
+      "compressedBytes": 199031,
+      "decodedBytes": 397539,
+      "decodedSha256": "0cb170233fd854ac305fb0b8923381304cf0595a8346a90f675645c01e37b646",
+      "firstBytes": "dc0e723b0000893b00009e3b0000c13b0000ce3b0000e13b0000f63b00000b3c",
+      "inputOffset": 288,
+      "originalFunction": "4711c0",
+      "originalInputConsumed": 199031,
+      "outputGuards": true,
+      "sourceAndDictionaryReadOnly": true,
+      "sourcePath": "Media/msg/S11MSG01.s11",
+      "sourceSha256": "3c0ce5539781c4d56ffe5f3c6c34d9f813e916b7fd5e30b87336d83fca773b62"
+    },
+    {
+      "codeSha256": "5d504570fb915779c49f6ce46123893055ad5f5b3cb37c299572728fdee7dad5",
+      "compressedBytes": 341171,
+      "decodedBytes": 511349,
+      "decodedSha256": "a67d03fe06739cb2e4a06d1064aa842a3d19818c2999fb95a01e48df6b8051da",
+      "firstBytes": "7c09f22500004d270000ac2800005d2a00007e2b00005f2c0000682d0000eb2e",
+      "inputOffset": 288,
+      "originalFunction": "4711c0",
+      "originalInputConsumed": 341171,
+      "outputGuards": true,
+      "sourceAndDictionaryReadOnly": true,
+      "sourcePath": "Media/msg/S11MSG02.s11",
+      "sourceSha256": "7095a926830052372e74c6dfeb85e5e608c9f685f718fc9befd70895e9cb8cc3"
+    },
+    {
+      "codeSha256": "5d504570fb915779c49f6ce46123893055ad5f5b3cb37c299572728fdee7dad5",
+      "compressedBytes": 213038,
+      "decodedBytes": 304691,
+      "decodedSha256": "c3d48bb23a7065bd7e478139405c6879e35943249493010d0f875b2154cd8ba9",
+      "firstBytes": "5e0f7a3d0000a53d00002c3e0000273f00004f3f0000673f0000923f00004d41",
+      "inputOffset": 288,
+      "originalFunction": "4711c0",
+      "originalInputConsumed": 213038,
+      "outputGuards": true,
+      "sourceAndDictionaryReadOnly": true,
+      "sourcePath": "Media/msg/S11MSG03.s11",
+      "sourceSha256": "88c5d07389a57ecf3c2f21ded55dd578cebce0f460c8e1fa5a86de8b83b9d53f"
+    }
+  ],
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb"
+}

@@ -1077,17 +1077,23 @@ public final class MainActivity extends Activity {
             AlertDialog dialog=new AlertDialog.Builder(this).setTitle("补给"+world.officer(target.officerId).name).setView(scroll).setNegativeButton("取消",null).setPositiveButton("预览",(d,n)->{try{int[] amount=new int[3];for(int i=0;i<3;i++)amount[i]=fields[i].getText().toString().isEmpty()?0:Integer.parseInt(fields[i].getText().toString());confirm("移交兵"+amount[0]+"、粮"+amount[1]+"、金"+amount[2]+"；确认后运输队结束本旬行动",()->apply(()->world.supply.convoyTransfer(m.id,target.id,amount[0],amount[1],amount[2])));}catch(NumberFormatException e){message("数量无效","请输入有效整数");}}).show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         });
     }
+    OfficerSnapshot officerSnapshot(){return gameHost.session().officers();}
     void officerDetail(World.Officer o){
-        String stats="统率 "+o.leadership+"    武力 "+o.war+"\n智力 "+o.intelligence+"    政治 "+o.politics+"\n魅力 "+o.charm;
-        if(world.contests.injury(o.id)>0)stats+="\n负伤 · 有效武力 "+world.contests.war(o)+" · 剩"+world.contests.injuryTurns(o.id)+"旬";
-        Government.Rank office=world.government.office(o.id);stats+="\n功绩 "+world.government.merit(o.id)+" · 官职 "+(office==null?"未授官":office.id)+" · 统兵 "+world.government.commandLimit(o.id);
-        stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
-        stats+="\n"+world.life.describe(o.id)+"\n\n"+world.loyalty.describe(o);
-        stats+="\n特技："+Skill.label(o.skillId)+"\n"+Skill.description(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
-        LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(dp(20),dp(8),dp(20),dp(16));content.addView(visualHeader(o,o.name,o.role.label+" · 忠诚 "+o.loyalty,88));
-        TextView description=text(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o),15,paper);content.addView(description);
+        OfficerSnapshot.Officer facts=officerSnapshot().officer(o.id);if(facts==null)return;
+        List<Integer> current=facts.current;
+        String stats="统率 "+current.get(0)+"    武力 "+current.get(1)+"\n智力 "+current.get(2)+"    政治 "+current.get(3)+"\n魅力 "+current.get(4);
+        if(!facts.base.isEmpty())stats+="\n基础（统武智政魅）："+facts.base+"\n经验（统武智政魅）："+facts.experience;
+        else stats+="\n基础与经验：此存档未记录";
+        if(facts.injury>0)stats+="\n负伤 · 剩"+facts.injuryTurns+"旬";
+        stats+="\n功绩 "+facts.merit+" · 官职 "+facts.office+" · 统兵 "+facts.commandLimit;
+        stats+="\n适性：枪"+War.rankLabel(facts.aptitudes.get(0))+" 戟"+War.rankLabel(facts.aptitudes.get(1))+" 弩"+War.rankLabel(facts.aptitudes.get(2))+" 骑"+War.rankLabel(facts.aptitudes.get(3))+" 器"+War.rankLabel(facts.aptitudes.get(4))+" 水"+War.rankLabel(facts.aptitudes.get(5));
+        stats+="\n"+facts.lifeDescription+"\n\n"+facts.loyaltyDescription;
+        stats+="\n特技："+facts.skillName+"\n"+facts.skillDescription+"\n\n"+facts.relationsDescription+"\n\n宝物：\n"+facts.treasuresDescription;
+        stats+="\n字 / 原传记：尚未核实";
+        LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(dp(20),dp(8),dp(20),dp(16));content.addView(visualHeader(o,facts.name,facts.role+" · 忠诚 "+facts.loyalty,88));
+        TextView description=text(stats+"\n身份："+facts.role+" · 忠诚 "+facts.loyalty+"\n\n所在地："+facts.location+"\n状态："+facts.status,15,paper);content.addView(description);
         ScrollView scroll=new ScrollView(this);scroll.addView(content);
-        AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setView(scroll).setNegativeButton("返回",null);
+        AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(facts.name+" · "+facts.faction).setView(scroll).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
         if(world.government.captive(o.id))h=world.government.location(world.government.prisoner(o.id));
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
