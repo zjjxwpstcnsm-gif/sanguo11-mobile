@@ -15,6 +15,7 @@ final class PortraitMediaSources {
         boolean pending;String error="";
     }
     private static final Map<Object,Entry> sources=new WeakHashMap<>();
+    private static final Map<Object,Boolean> retired=new WeakHashMap<>();
     private static final Handler ui=new Handler(Looper.getMainLooper());
     private static final ThreadPoolExecutor worker=new ThreadPoolExecutor(1,1,30,TimeUnit.SECONDS,new ArrayBlockingQueue<>(8),r->new Thread(r,"SavedPortraitSources"),new ThreadPoolExecutor.AbortPolicy());
     static{worker.allowCoreThreadTimeOut(true);}
@@ -30,13 +31,13 @@ final class PortraitMediaSources {
                 PortraitMediaIdentity identity=new PortraitMediaIdentity(id,(Integer)field(source,"nativeId"),(String)field(source,"sourceVariant"),(String)field(source,"sourcePath"),(String)field(source,"sourceSha"),(String)field(source,"recordSha"));
                 if(next.put(id,identity)!=null)throw new IllegalArgumentException("Duplicate portrait source identity");
             }
-            Entry entry=new Entry();entry.identities=Collections.unmodifiableMap(next);Entry previous=sources.put(view,entry);if(previous!=null)notifyReady(previous);
+            retired.remove(view);Entry entry=new Entry();entry.identities=Collections.unmodifiableMap(next);Entry previous=sources.put(view,entry);if(previous!=null)notifyReady(previous);
         }catch(ReflectiveOperationException error){throw new IllegalArgumentException("Completed source DTO contract missing",error);}
     }
     static synchronized boolean bound(Object view){return sources.containsKey(view);}
     /** raw is the detached copy supplied by SaveExtensions.get; names are already copied on the UI boundary. */
     static synchronized void saved(Object view,byte[] raw,Map<Integer,String> names){
-        if(sources.containsKey(view))return;Entry entry=new Entry();sources.put(view,entry);if(raw==null)return;
+        if(sources.containsKey(view)||retired.containsKey(view))return;Entry entry=new Entry();sources.put(view,entry);if(raw==null)return;
         entry.pending=true;WeakReference<Object> key=new WeakReference<>(view);
         try{worker.execute(()->{
             Map<Integer,PortraitMediaIdentity> parsed=Collections.emptyMap();String failure="";
@@ -47,6 +48,6 @@ final class PortraitMediaSources {
     private static void notifyReady(Entry entry){ArrayList<PcPortraitLoader.Target> listeners=new ArrayList<>(entry.listeners.keySet());entry.listeners.clear();ui.post(()->{for(var target:listeners)target.ready();});}
     static synchronized PortraitMediaIdentity source(Object view,int id){Entry e=sources.get(view);return e==null?null:e.identities.get(id);}
     static synchronized boolean pending(Object view,PcPortraitLoader.Target target){Entry e=sources.get(view);if(e!=null&&e.pending){e.listeners.put(target,true);return true;}return false;}
-    static synchronized String error(Object view){Entry e=sources.get(view);return e==null?"":e.error;}
-    static synchronized void discard(Object view){Entry e=sources.remove(view);if(e!=null)notifyReady(e);}
+    static synchronized String error(Object view){if(retired.containsKey(view))return "Retired presentation source";Entry e=sources.get(view);return e==null?"":e.error;}
+    static synchronized void discard(Object view){retired.put(view,true);Entry e=sources.remove(view);if(e!=null)notifyReady(e);}
 }

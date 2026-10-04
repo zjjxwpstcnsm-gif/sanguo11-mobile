@@ -69,7 +69,7 @@ final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target 
     @Override public void draw(Canvas c){
         area.set(getBounds());c.save();path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);
         World view=sourceView.get();boolean waiting=sourceEnabled&&view!=null&&PortraitMediaSources.pending(view,this);
-        if(sourceIdentity==null&&sourceEnabled&&view!=null)sourceIdentity=PortraitMediaSources.source(view,officer.id);
+        if(sourceEnabled&&view!=null)sourceIdentity=PortraitMediaSources.source(view,officer.id);
         boolean rejected=sourceEnabled&&view!=null&&!PortraitMediaSources.error(view).isEmpty();
         Bitmap atlas=index>=0?atlases[index/16]:null;
         Bitmap pixel=original==null?null:original.get(sourceIdentity,sourceYear,0,this);
