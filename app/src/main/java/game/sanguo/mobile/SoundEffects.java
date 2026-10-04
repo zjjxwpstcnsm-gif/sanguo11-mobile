@@ -31,13 +31,20 @@ final class SoundEffects {
     private int focusKind,focusEpoch;
     private final MediaCueLedger sourceLedger=new MediaCueLedger(512);
     private PcMediaPlayback sourceMedia;
+    private game.sanguo.runtime.GameSession effectSession;
+    private game.sanguo.api.GameApi.Subscription effectSubscription;
     private final BroadcastReceiver noisy=new BroadcastReceiver(){@Override public void onReceive(Context c,Intent i){if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(i.getAction())){focusLost=true;if(sourceMedia!=null)sourceMedia.interrupted(true);stop();}}};
     private long uiAt;
     private int played;
     SoundEffects(Context context){this.context=context.getApplicationContext();prefs=context.getSharedPreferences("sound-effects",0);manager=context.getSystemService(AudioManager.class);}
-    void attach(Object owner){owners.add(owner);load();if(!noisyRegistered){context.registerReceiver(noisy,new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));noisyRegistered=true;}}
+    void attach(Object owner){owners.add(owner);load();bindEffectSession();if(!noisyRegistered){context.registerReceiver(noisy,new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));noisyRegistered=true;}}
+    private void bindEffectSession(){
+        if(!(context instanceof GameApplication))return;game.sanguo.runtime.GameSession next=((GameApplication)context).host().session();
+        if(effectSession==next)return;if(effectSubscription!=null)effectSubscription.close();effectSubscription=null;effectSession=next;
+        if(next!=null)effectSubscription=next.subscribe(event->{if(event.kind==game.sanguo.api.GameEvent.Kind.WORLD_REPLACED||event.kind==game.sanguo.api.GameEvent.Kind.CLOSED)stopStreams();});
+    }
     void detach(Object owner){foreground.remove(owner);owners.remove(owner);if(foreground.isEmpty()){if(sourceMedia!=null)sourceMedia.foreground(false);stop();}if(owners.isEmpty())release();}
-    void foreground(Object owner,boolean active){if(active){if(foreground.isEmpty()){focusLost=false;if(sourceMedia!=null)sourceMedia.interrupted(false);}foreground.add(owner);load();if(sourceMedia!=null)sourceMedia.foreground(true);}else{foreground.remove(owner);if(foreground.isEmpty()){if(sourceMedia!=null)sourceMedia.foreground(false);stop();}}}
+    void foreground(Object owner,boolean active){if(active){if(foreground.isEmpty()){focusLost=false;if(sourceMedia!=null)sourceMedia.interrupted(false);}foreground.add(owner);load();bindEffectSession();if(sourceMedia!=null)sourceMedia.foreground(true);}else{foreground.remove(owner);if(foreground.isEmpty()){if(sourceMedia!=null)sourceMedia.foreground(false);stop();}}}
     int volume(){return Math.max(0,Math.min(100,prefs.getInt("volume",75)));}
     boolean muted(){return prefs.getBoolean("muted",false);}
     void volume(int value){prefs.edit().putInt("volume",Math.max(0,Math.min(100,value))).apply();syncSourceGains();if(volume()==0){stopStreams();if(sourceMedia==null||!sourceMedia.needsFocus())stop();}else updateStreams();}
@@ -113,7 +120,7 @@ final class SoundEffects {
     private void updateStreams(){float gain=effectGain();if(pcEffects!=null)pcEffects.volume(gain);if(pool!=null)for(int id:streams)pool.setVolume(id,gain,gain);}
     private void stopStreams(){if(pcEffects!=null)pcEffects.stop();if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
     private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
-    private void release(){stop();if(pcEffects!=null){pcEffects.close();pcEffects=null;}if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
+    private void release(){stop();if(effectSubscription!=null){effectSubscription.close();effectSubscription=null;}effectSession=null;if(pcEffects!=null){pcEffects.close();pcEffects=null;}if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
     boolean loaded(){return samples.size()==Cue.values().length-2&&ready.containsAll(samples.values())&&pcEffects!=null&&pcEffects.ready();}
     boolean active(){return !foreground.isEmpty()&&pool!=null;}

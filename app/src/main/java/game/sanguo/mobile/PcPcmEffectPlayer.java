@@ -41,6 +41,7 @@ final class PcPcmEffectPlayer implements AutoCloseable {
     private static void ui(){if(Looper.myLooper()!=Looper.getMainLooper())throw new IllegalStateException("Serial effect owner required");}
     boolean ready(){ui();return !closed&&slots.size()==VOICES;}
     boolean active(){ui();for(Slot slot:slots)if(slot.active&&Integer.toUnsignedLong(slot.track.getPlaybackHeadPosition())<FRAMES)return true;return false;}
+    long playedFrames(){ui();long frames=0;for(Slot slot:slots)if(slot.active)frames+=Integer.toUnsignedLong(slot.track.getPlaybackHeadPosition());return frames;}
     int play(float gain){ui();if(!ready())return 0;Slot selected=null;
         for(Slot slot:slots)if(!slot.active||Integer.toUnsignedLong(slot.track.getPlaybackHeadPosition())>=FRAMES){selected=slot;break;}
         if(selected==null)selected=slots.get(cursor++%VOICES);
