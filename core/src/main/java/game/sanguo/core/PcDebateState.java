@@ -119,6 +119,28 @@ final class PcDebateState {
         for(int side=0;side<2;side++){int next=Math.max(0,Math.min(3,(1000-speaker(side).health)/250));if(stage[side]!=next){stage[side]=next;stageChanged[side]=true;}}
         return stageChanged[0]||stageChanged[1];
     }
+    /** Original51d800/51ec50; full queue callbacks remain separate. */
+    void reconsider(int side){
+        Speaker speaker=speaker(side);Arrays.fill(speaker.hand,0,speaker.slots,-1);speaker.refill(random);
+        if(speaker.fury>0&&speaker.temper==PcDebateRules.STEADY&&random.percent(40))speaker.hand[1]=(topic+1)*3;
+        Arrays.sort(speaker.hand,0,speaker.slots);reconsiderAvailable[side]=false;
+    }
+    /** Original51ef30 model-only timid sequence, consuming one ordinary card. */
+    void timidBurstStep(){
+        Speaker self=speaker(burstSide);int slot=-1;
+        for(int i=0;i<self.slots;i++)if(self.hand[i]>=1&&self.hand[i]<=9){slot=i;break;}
+        if(slot<0){burstActive=false;return;}
+        int card=self.hand[slot],damage=PcDebateRules.damage(topic,card,self.temper,self.fury,self.modifier,random);
+        damageEffect(burstSide,damage,damage/15,false);self.select(slot);burstIndex++;
+    }
+    /** Original51f060 model-side terminal choice. Simultaneous zero health
+     * checks the initiative side first; it does not invent a draw. */
+    int terminalWinner=-1;
+    boolean checkTerminal(){
+        if(terminalWinner<0){if(leader<0||leader>1)throw new IllegalStateException("Original initiative input required");
+            for(int side:new int[]{leader,1-leader})if(speaker(side).health<=0){terminalWinner=1-side;break;}}
+        return terminalWinner>=0;
+    }
     PcDebateState(int leftIntelligence,int rightIntelligence,int leftTemper,int rightTemper,int leftTalks,int rightTalks,int seed){
         // Existing bounded fixtures explicitly leave the original war cache0.
         this(leftIntelligence,rightIntelligence,leftTemper,rightTemper,leftTalks,rightTalks,seed,0,0);

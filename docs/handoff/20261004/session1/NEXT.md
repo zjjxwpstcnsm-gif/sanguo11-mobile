@@ -1,0 +1,15 @@
+# 继续执行，不宣布目标完成
+
+本会话仍执行用户完整目标及追加单挑/舌战。主目录/PC只读，无Wine、reset、清理资源、旧AA核心覆盖。工作目录固定/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile，分支codex/scenario-officer-restoration。媒体文件和公共progress/STATE/PC_PARITY_STATUS不改。
+
+5554锁仍由本会话持有，5582不使用。实际48行来源设备串行程序在exec session33877；状态out/session1/contest09/source-ui-sweep.json。旧来源16/16已通过，16新局+16新局冷续行仍运行。每轮finally恢复原内部保存/偏好和3177原外部文件；完整结束后还须最终读回并释放自己的锁。禁止提前修改Batch09冻结1024输入，guard位于out/session1/contest09/apk-source-guard.json。既有生产APK SHA62a913f8c8f96ada044f0dca7d92f451b6281c5571102a4d90a1100f7e899a15；测试包SHA40747bbda2896b599805fa598b7fac7560dddb894656ffed7d4b47e9b789fc63。
+
+PcDebateRules/State/Ai仍是未生产调用的阶段移植；四测试由tools/content/test_pc_debate_port.py完整独立编译执行。原AI/progress报告两次字节一致；equipment报告第二次已结束，逐字节一致并封存contest-equipment-native.json.gz。原有有界面counter队列和无界面model行为不同，不能把null-UI完整16轨迹直接用于正式规则。
+
+下一步原完整帧/人控协议：原51e300通过vtable进入/退出/逐帧，51f350负责两侧出牌/熟虑循环，51fd30为原派生憤激/连击阶段，51f660递减/换话题后回phase3。原51f060心理终局已移植；51f0e0外部条件、51f140及51dd10结算尚待调查。原初始leader读取原输入manager+18（65b740仅getter），必须将实际输入与人控标志显式放入模型，不从IQ猜先手。原UI callbacks可能抽取原RNG，必须核算并记录到core，再让媒体只消费事件。
+
+原51d940确证item kind5书籍提供全部话术，Source0孙坚native365从标记25到实际31；source14有效宝物50、其他来源43。完整来源记录要先通过身份/记录SHA连接officerId/nativeId/sourceVariant，旧保存不追填，不按项目enum.ordinal映射原gear/talk/temper。
+
+单挑已执行原50ab90模型构造与50ce00战员初始化、16×850原装备标记，两次来源world/RNG纯读。尚无完整原单挑引擎/正常流程证据。原函数静态反汇编在out/session1/contest10/duel-model-early.txt和duel-model-candidate.txt，不把地址定位或合成HP/斗志当实际开局。
+
+原完整剧本开局/官方-MOD备用生效/人物其他字段与四字形身份和传记缺口都保留。用户确认只有提供安装目录，外部Documents覆盖未知。v31–37及已有38策略不升级；真实旧ART来源38与JVM重编码有继承差异，当前与精确父重编码全等，不能宣称原字节全等。全目标active，无阻塞或完成条件满足。
