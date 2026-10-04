@@ -83,3 +83,7 @@ Batch07追加OfficerSnapshot.SourceInfo只读原字段/身份覆盖信息；保�
 Batch09增加独立真实UI验证工具范围tools/content/android/PcScenarioOpeningInstrumentation.java：实际新局校验670对战属性保存事实、正常武将详情原性格/话术文字；原有正常菜单、多势力、多旬、存取与恢复流程保留。旧Source38冷启动只检其已存事实，不要求或追填新配置。
 
 Batch09追加确切测试工具tools/content/android/PcContestInstrumentation.java，及build_pc_scenario_ui_probe.py的第二独立instrumentation入口、verify_pc_source_opening_ui.py的该测试入口参数。真实来源新局→地图己方据点→舌战登用→选目标/执行者→逐牌→菜单保存/读取→结算；单独冷进程重开实际中途保存。生产对战UI、头像/音频接口不改，未将工程对战公式标为原版已恢复。
+
+## Batch10：原舌战内核运行时移植
+
+前提交d3d82f05；Batch09设备序列正在运行，冻结其已构建生产输入。新增core/src/main/java/game/sanguo/core/PcDebateRules.java、PcDebateState.java（分阶段移植原状态/牌组/RNG，尚非完整引擎），core/src/test/java/game/sanguo/core/PcDebateRulesTest.java、PcDebateStateTest.java及core/src/test/resources/pc-debate/原函数固定夹具；新增tools/content/build_pc_debate_oracle_fixtures.py、inspect_pc_debate_effects.py、inspect_pc_debate_ui_counters.py、test_pc_debate_port.py。本阶段先使原程序逐状态与PC轨迹完全对照，完成前不接入旧/新对战入口或静默换公式。core/build.gradle测试入口曾使设备第4源前置SHA守卫拒绝，已恢复精确Batch09字节；测试改用独立输出目录完整编译core，不修改冻结APK输入。后续完整新保存策略/正常对战入口再登记前镜像SHA。媒体文件、共同台账、AndroidGameBridge、Unity和3D仍不改。

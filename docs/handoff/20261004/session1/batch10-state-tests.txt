@@ -1,0 +1,1 @@
+PASS PcDebateStateTest 16 native initial model/deck/hand/RNG cases, 4593 original legality/immediate effect outputs, 96 original bounded counter queue/hand/RNG cases; complete UI/fury/AI/campaign integration pending

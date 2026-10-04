@@ -1,0 +1,9 @@
+{
+  "parentCommit": "d3d82f05e93d9ae30ccde2a2a51021bfe57e2e8f",
+  "paths": [
+    {
+      "path": "core/build.gradle",
+      "sha256": "e86c924f9272ff1f99a5566032ee5860062588beaf1975314aaa138e532c8f42"
+    }
+  ]
+}

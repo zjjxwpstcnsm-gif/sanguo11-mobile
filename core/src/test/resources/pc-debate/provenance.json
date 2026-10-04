@@ -1,0 +1,16 @@
+{
+  "effectsFixtureSha256": "c1240a73629fba7779a4c4d8d0566c82599fa97f4cd5ea1634ad6f90b50f6513",
+  "effectsOraclePackedSha256": "37922ad1c3529fcefe81ad34b5e49dd67dbb800d86d5e5a719582616fee96dbc",
+  "effectsRecords": 4593,
+  "fixtureSha256": "ea8ddf41b6d4b53a8a1e3e29d863b5a2f7a304c95d295d0ee1fc5839b0a492b4",
+  "fullContestEngineIntegrated": false,
+  "initialCases": 16,
+  "initialFixtureSha256": "e0e20a686ed43e95ec7ffe415ab6ead7c1b0d7112c72be0946fc65f9e8f3fd90",
+  "initialOraclePackedSha256": "193ca13a6bb92a3c1d389934166249611536150a50733ba4fd183fe786a5fca7",
+  "oraclePackedSha256": "bf60b64a209a2c147b11ab2711760ebddea0a6d167ec3999e451518f2d6450e8",
+  "records": 5125,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "uiCounterCases": 96,
+  "uiCountersFixtureSha256": "c8ec9e71f332368c0a01c582ba8965240a2bdb92475096b2ec3ec9b2b8786bb7",
+  "uiCountersOraclePackedSha256": "bf1d77cfce20c2a857869e60177ab06384fc01e33d01653b1e5b2ef67da339b8"
+}
