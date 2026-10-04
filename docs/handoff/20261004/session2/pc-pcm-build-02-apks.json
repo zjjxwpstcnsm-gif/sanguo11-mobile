@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "fde6e48d43cdea7239cdbbc2e998d7c6c7544a34",
+  "verificationToolCommit": "76e45a016acc7c2c8f438f853c81314098b33e2c",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc-pcm-build-02/frozen/app-debug.apk",
+      "bytes": 283155051,
+      "sha256": "0ae1b2b24c1697401195ac068d9aa0b4383aacd5b5fb0ac6834fd97fd41e4cd1"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc-pcm-build-02/frozen/app-debug-androidTest.apk",
+      "bytes": 2064659,
+      "sha256": "c5aa40bd1c207a9baa1fead010e5beb40c15f70d3a2ed78669ef4d6064d3cb74"
+    }
+  ]
+}

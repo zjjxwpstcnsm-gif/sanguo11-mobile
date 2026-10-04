@@ -1,0 +1,32 @@
+{
+  "base": "182d16875e9b67dc0a0ca7b825e2d047385f796c",
+  "sourceCommit": "87bafac0ac58a3bdc1295306052702289f0f319a",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "6daceee90e98a3f53bee9c64729f4061c2db793db1f44f40470ba8ac571e3bc4",
+      "afterSha256": "db5c045af12b7381ffb7a74d041e6bbf6083795404ac68727c7f31a073a61fea"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPcmEffectPlayer.java",
+      "beforeSha256": null,
+      "afterSha256": "f2e11d6a9a02760c7311dd491a32540fbc78c4aa425868779b529da2c1e42396"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "95ae56cd406f30d3844114dc4b4fd14ec5fbce37179183344af645f516b3d890",
+      "afterSha256": "2a3a9bda55c71f9b7bb5a14c20be3e1227036dece47a9e335e0002adca6182cd"
+    },
+    {
+      "path": "tools/audio/check_pc33_tactic_mix.py",
+      "beforeSha256": "877489fb4873fdde5eb7891a39c9312a34ec60f255e7175ba1f53d14d6d151c4",
+      "afterSha256": "3745f7c003c8bf70590bf5902964541fa3beee15f265b69ba179d2530062b043"
+    },
+    {
+      "path": "tools/audio/inspect_pc_music_count_predicate.py",
+      "beforeSha256": null,
+      "afterSha256": "0b42b10419ca9e8d1c9753735329c019a8313b42f801d2a4b825fe80100a12fc"
+    }
+  ],
+  "coreApiRuntimeUnchanged": true
+}
