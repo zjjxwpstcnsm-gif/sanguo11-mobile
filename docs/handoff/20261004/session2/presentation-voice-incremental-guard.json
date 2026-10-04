@@ -1,0 +1,255 @@
+{
+  "baseCommit": "063434d72c8f3e9c90aaa10bd9038a5505858479",
+  "sourceCommit": "11196a670ae7c84ab27eb49bf0418a0ed3ee4e3d",
+  "metadataCompleted": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "rulesApiRuntimeByteEqualMetadataCompleted": true,
+  "scope": "Batch08 presentation and batch09 raw original voice selection, no metadata WIP",
+  "files": [
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "a30c697c0b2b55c78952a2b8f84c5ab47a28b210261134f7974f2b3d3a9c044b",
+      "afterSha256": "f6a8ec5fac7e2a0c5075723eda49814bff7c122586d77e2c29d6d5c050aeb6a6",
+      "afterBytes": 12398
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/PortraitPresentationInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "fb6e54f28d11cffc61967266ab0516f8654b92b62edd9b4507d9341a14ca4751",
+      "afterBytes": 9114
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CriticalScene.java",
+      "beforeSha256": "21fadfc12aaf9c2e25758b8f69e3fc882a1f9460c13d305b61cc564cd0c531c4",
+      "afterSha256": "302dbb03e07b811cd9bbe1216210c5cfb282bf2a4c3d5657fdb29b300aa21b05",
+      "afterBytes": 3161
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeSha256": "200da413a2f4bb31fa7b5ca1e16804ba1433f65690b312012e6fe0cfe8119b7c",
+      "afterSha256": "6f6404e7a6f91361237b1030b0d217a1a169b3d16cc1614a06d44d5b03e48722",
+      "afterBytes": 33927
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "beforeSha256": "091135fa530aabc17018e1e2b940dc1ce4e1b496e4616e5e9b0563261edf7ea6",
+      "afterSha256": "a188f2dfc89e6691af397ccdb34064acbe97f82e9fec3fe21deaf3c8b490158e",
+      "afterBytes": 8821
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoicePolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "569ebccfd683181f44df416d0ca353b7ef7cf444d8f6be31fda280f71f89cbdf",
+      "afterBytes": 3084
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaSources.java",
+      "beforeSha256": "0576824e54bb8e53dca877eef4f36d830bd669e683a57d5ff9fce96856e2bb84",
+      "afterSha256": "c687d224e1c7f7c27b113bdbd910022b1bcc88bc9edae40e2d6b0845e41dc516",
+      "afterBytes": 4638
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitSavedSources.java",
+      "beforeSha256": null,
+      "afterSha256": "88b9bd2aad2db8f80e47e4b19f0c250d32f0ab27dbcbfe4acb3e49def7620fed",
+      "afterBytes": 2621
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcVoicePolicyTest.java",
+      "beforeSha256": null,
+      "afterSha256": "aab1b0ccb46947a8b2bea6f07bb8825ed50250a51c0f60be44443e47f8dc5595",
+      "afterBytes": 1684
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PortraitSavedSourcesTest.java",
+      "beforeSha256": null,
+      "afterSha256": "51323bd4f5ea6ef106773bb87806fd026062cbfaaadfcb2367b0ceb1d349ebd9",
+      "afterBytes": 3394
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_08.md",
+      "beforeSha256": null,
+      "afterSha256": "0d415fd7692ecad37a30fbc5ee68e070a0a5ec0297020eb4605952a4c829d425",
+      "afterBytes": 4880
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_09.md",
+      "beforeSha256": null,
+      "afterSha256": "e7781e043407de8b7030557626da037c235acf54694073f6bd8f778b9522c1f1",
+      "afterBytes": 3828
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INTEGRATION_CONTRACT.md",
+      "beforeSha256": "15ec41d20c74c1a4a620c266133423a3998fbaa6b2bfef70f2e396cfd05a93ba",
+      "afterSha256": "d89122e4f1e77c41467b5b15892cf52599b28a44403025c65ce4f03e9a170223",
+      "afterBytes": 2578
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md",
+      "beforeSha256": "3e05d67c80f22489e9d333b6a3a529d881f8ce11acdadcaf9767be1d1fff1bd5",
+      "afterSha256": "0b05fe37252ddfebe5882145757aa28d8f89c1c42c5633581875419affb0fe14",
+      "afterBytes": 5455
+    },
+    {
+      "path": "docs/handoff/20261004/session2/STATUS.json",
+      "beforeSha256": "b5e682e6fe6851ea7dd43115ab1687901c4fa607688ac00f39b7d84e95e2617a",
+      "afterSha256": "fb7a31ccd42a32bdcef84f66a2e9d86a5d1685723c1d2793d63f6a96a99e56b1",
+      "afterBytes": 18080
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-critical-year-guards.json",
+      "beforeSha256": null,
+      "afterSha256": "de35467de9d534a19f8fa4406ead48889955a64a4a8939741920ddec68576b10",
+      "afterBytes": 768
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-critical-year.patch",
+      "beforeSha256": null,
+      "afterSha256": "f970ab7f4d995c7469261b53288d950e2e5acee0de0ed4a711d94edc1872113e",
+      "afterBytes": 2419
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-critical-facts.json",
+      "beforeSha256": null,
+      "afterSha256": "134dad8e734e46a624a736e57e275bd91d58e572f4d0415936993149eb615182",
+      "afterBytes": 543
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-critical-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "eaacc0f20074b22597e67d18ea1f5826a14396832de2aaa8e187865630f81d76",
+      "afterBytes": 20271
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-critical-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "49dd21f11e8082aee6b4f94ff293e3260e86d81164b334b0c2535d06950db5b7",
+      "afterBytes": 1276
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-critical-pcm.json",
+      "beforeSha256": null,
+      "afterSha256": "623deb0cb8444d9f58640cb00c473f889d8dfbddcd06b6e78af5a6cf24b1b451",
+      "afterBytes": 415
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-critical-waveform.json",
+      "beforeSha256": null,
+      "afterSha256": "d0f6f963115dc024f1e3ec6fcaf90e12ed295c91dfe6c783de732da772f6f5cd",
+      "afterBytes": 2551
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-current-apks.json",
+      "beforeSha256": null,
+      "afterSha256": "2a0e2f10a86798ee9fac9b1b6a8073fd359947bb0a412caceb31162324085b3a",
+      "afterBytes": 652
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-final-build.log",
+      "beforeSha256": null,
+      "afterSha256": "70907df8793a3ce72f5f46d43f12a2226bba15e8262631bdb5ac2c6a459c9556",
+      "afterBytes": 5628
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-first-build-failure.log",
+      "beforeSha256": null,
+      "afterSha256": "0bce1faf5abce645a9930337a605ab783ff0965b3d407b638e4e42c83a1d719b",
+      "afterBytes": 7493
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-host-reader-test.log",
+      "beforeSha256": null,
+      "afterSha256": "b52840104e3d79cd57af8ec9247b681e3b2c829869f91e488adb1be10e456246",
+      "afterBytes": 132
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "cbaacebbf3218b6d710e721792207cb1998ea3a134d3cfdd8cac9093fb012925",
+      "afterBytes": 20575
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "9282579563c728af046c12284dce189fccfb640dbac7676c27ba3db0f6c70238",
+      "afterBytes": 109
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-normal-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "a7470b4b9365bd4348e2313ce52aaac69248374de851da0445338e0a73bbefd8",
+      "afterBytes": 20625
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-normal-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "7914ce9e24442dae16b8f4a64a9618370417f3e03aba0452a98b5a102f303b27",
+      "afterBytes": 95
+    },
+    {
+      "path": "docs/handoff/20261004/session2/presentation-source-runtime.json",
+      "beforeSha256": null,
+      "afterSha256": "90577e9c500c5f4edf6c24575890174c5a686f6dfa49485b6bf74391db11ac12",
+      "afterBytes": 271
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-native-callers.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "4b895bbf597b01cac95cec0e03f68d7e9028c44a7a500de5eb6980583a2dbf43",
+      "afterBytes": 11870
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-native-policy.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "ade70a620a30e752a6d7c903c5fa93f6d09a82432baffeb3b72ba4729b948052",
+      "afterBytes": 39225
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-policy-host-guards.json",
+      "beforeSha256": null,
+      "afterSha256": "300a76d4ad2ece77ede894f8089b55856c5d347dd04501a2d68f345f09188d6f",
+      "afterBytes": 605
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-policy-host.log",
+      "beforeSha256": null,
+      "afterSha256": "8350e73a040f9a6aeb45cb3ab31989d1934cd368320919ee50d8c0262b29646c",
+      "afterBytes": 98
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-policy-reproducibility.json",
+      "beforeSha256": null,
+      "afterSha256": "3139cc4f944017b6521b6d4f38f9e38991f698e169d3b63742352ad42d1ffc77",
+      "afterBytes": 1280
+    },
+    {
+      "path": "tools/audio/inspect_pc_voice_callers.py",
+      "beforeSha256": null,
+      "afterSha256": "3938426e8693323cf402041a970b6f6d9624da169941b6bbe24610bf50ddea23",
+      "afterBytes": 10688
+    },
+    {
+      "path": "tools/audio/inspect_pc_voice_policy.py",
+      "beforeSha256": null,
+      "afterSha256": "fa94212f1f59a341d1678be8f7bc888038834c6d1aba9a4f15772c5082a82599",
+      "afterBytes": 9944
+    },
+    {
+      "path": "tools/audio/stage_pc_voice_policy.py",
+      "beforeSha256": null,
+      "afterSha256": "38db9c4fab5062b4c3b25a98794f58b53941b8a695b6a2fcaa56b0f638524ed1",
+      "afterBytes": 4201
+    },
+    {
+      "path": "tools/audio/verify_pc_voice_policy.py",
+      "beforeSha256": null,
+      "afterSha256": "a19292110b1db6859d8908c844d30038b3a9e1d64ffc944aa4897a13095f1a98",
+      "afterBytes": 2651
+    },
+    {
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "6c6b86ac6a9f39bdfceb9c383f2052896ca007352d24cb00611780348af78412",
+      "afterSha256": "553c48bcc042c98a29575e0b01c2dd582be2be3aba12cc7fdcee16e858c4ed1d",
+      "afterBytes": 5308
+    }
+  ]
+}
