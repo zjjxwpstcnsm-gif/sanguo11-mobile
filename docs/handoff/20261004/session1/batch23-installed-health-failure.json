@@ -1,0 +1,28 @@
+{
+  "serial": "emulator-5554",
+  "apks": {
+    "app-debug.apk": "1e42660894861a8b56666320d43a83c53dbe253225ca6cf58d111ef3753986e8",
+    "pc-opening.apk": "9d40ae753e345dd7e5330057bbe2d205d37da40b4f73308d710ea1a2acf6ab1d"
+  },
+  "passed": false,
+  "error": {
+    "type": "SystemExit",
+    "message": "1"
+  },
+  "externalRestoration": {
+    "allOriginalFilesByteEqual": true,
+    "mismatches": [],
+    "newEvidenceFiles": [
+      "files/session1-pc-health-installed-batch23-health/progress.txt"
+    ],
+    "originalFileCount": 3209,
+    "alreadyByteEqualVerifiedOnDevice": true
+  },
+  "internalRestoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [],
+    "added_files": [],
+    "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+  }
+}

@@ -75,7 +75,7 @@ def run(args):
         for index,suite in enumerate(['officer-info'] if args.info_only else ['opening','general']):
             output=args.output/suite
             flow(SimpleNamespace(serial=args.serial,apk=args.apk,test_apk=args.test_apk,output=output,
-                runner=('PcContestInstrumentation' if args.contest_flow else 'PcScenarioOpeningInstrumentation') if args.info_only else 'UiUxInstrumentation',
+                runner=('PcHealthInstrumentation' if getattr(args,'health_flow',False) else 'PcContestInstrumentation' if args.contest_flow else 'PcScenarioOpeningInstrumentation') if args.info_only else 'UiUxInstrumentation',
                 test_package='game.sanguo.mobile.pcopeningprobe' if args.info_only else PACKAGE+'.test',
                 argument=['suite='+suite,'run=officer-session1-'+args.output.name+'-'+suite,'reuseSlotSha='+campaign_sha]+(['evidenceId='+args.output.name] if getattr(args,'unique_evidence',False) else [])+(['sourceOpening=1','sourceIndex='+str(args.source_index)] if args.source_opening else [])+(['sourceResume=1'] if args.source_resume else [])+(['contestResume=1'] if args.contest_resume else []),
                 pass_marker='PC SOURCE OPENING PASS' if args.info_only else 'UIUX PASS',timeout=1200,reuse_installed=index>0,campaign_save=args.campaign_save,campaign_sha256=campaign_sha))
@@ -127,4 +127,5 @@ if __name__=='__main__':
     parser.add_argument('--contest-flow',action='store_true')
     parser.add_argument('--contest-resume',action='store_true')
     parser.add_argument('--unique-evidence',action='store_true')
+    parser.add_argument('--health-flow',action='store_true')
     run(parser.parse_args())

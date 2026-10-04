@@ -49,10 +49,10 @@ public final class Contests {
         if(busy()||w.officer(officer)==null||profile==null)throw new IllegalArgumentException("配置武将无效或对局进行中");
         profiles.put(officer,profile);
     }
-    public int injury(int officer){Injury injury=injuries.get(officer);return injury==null||injury.until<=w.turn?0:injury.severity;}
+    public int injury(int officer){Injury injury=injuries.get(officer);int legacy=injury==null||injury.until<=w.turn?0:injury.severity;return Math.max(legacy,PcNativeHealthPolicy.injury(w,officer));}
     public int war(World.Officer o){return o==null?0:o.abilityProfile!=null?o.war:Math.max(0,o.war-injury(o.id)*10);}
-    public int injuryTurns(int officer){Injury injury=injuries.get(officer);return injury==null?0:Math.max(0,injury.until-w.turn);}
-    void tick(){injuries.entrySet().removeIf(e->e.getValue().until<=w.turn);w.officerAbilities.refresh();}
+    public int injuryTurns(int officer){Injury injury=injuries.get(officer);int legacy=injury==null?0:Math.max(0,injury.until-w.turn),nativeTurns=PcNativeHealthPolicy.remainingTurns(w,officer);return nativeTurns<0?-1:Math.max(legacy,nativeTurns);}
+    void tick(){injuries.entrySet().removeIf(e->e.getValue().until<=w.turn);PcNativeHealthPolicy.tick(w);w.officerAbilities.refresh();}
     public String duelError(int actor,int target){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.combatError(a);if(error!=null)return error;
         if(w.active!=w.player)return "仅当前玩家可发起交互单挑";

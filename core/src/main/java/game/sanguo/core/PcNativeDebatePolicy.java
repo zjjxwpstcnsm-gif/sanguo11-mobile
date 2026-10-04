@@ -11,6 +11,7 @@ final class PcNativeDebatePolicy {
         // Explicit deterministic verification seed, not certified original
         // PC global startup RNG. Persisted separately from existing SplitMix64.
         setSeed(w,(int)w.strategy.getRandomState());
+        PcNativeHealthPolicy.initializeOpening(w);
     }
     static void setSeed(World w,int seed){try{ByteArrayOutputStream b=new ByteArrayOutputStream();DataOutputStream d=new DataOutputStream(b);d.writeInt(MAGIC);d.writeInt(seed);w.extensions.put(NAMESPACE,b.toByteArray());}catch(IOException impossible){throw new IllegalStateException(impossible);}}
     static int seed(World w)throws IOException{byte[] b=w.extensions.get(NAMESPACE);if(b==null||b.length!=8)throw new IOException("Native debate policy missing");DataInputStream d=new DataInputStream(new ByteArrayInputStream(b));if(d.readInt()!=MAGIC||PcScenarioIdentity.saved(w)==null)throw new IOException("Native policy source invalid");return d.readInt();}

@@ -1085,7 +1085,7 @@ public final class MainActivity extends Activity {
         String stats="统率 "+current.get(0)+"    武力 "+current.get(1)+"\n智力 "+current.get(2)+"    政治 "+current.get(3)+"\n魅力 "+current.get(4);
         if(!facts.base.isEmpty())stats+="\n基础（统武智政魅）："+facts.base+"\n经验（统武智政魅）："+facts.experience;
         else stats+="\n基础与经验：此存档未记录";
-        if(facts.injury>0)stats+="\n负伤 · 剩"+facts.injuryTurns+"旬";
+        if(facts.injury>0)stats+=facts.injuryTurns<0?"\n负伤 · 当前身份暂不恢复":"\n负伤 · 剩"+facts.injuryTurns+"旬";
         stats+="\n功绩 "+facts.merit+" · 官职 "+facts.office+" · 统兵 "+facts.commandLimit;
         stats+="\n适性：枪"+War.rankLabel(facts.aptitudes.get(0))+" 戟"+War.rankLabel(facts.aptitudes.get(1))+" 弩"+War.rankLabel(facts.aptitudes.get(2))+" 骑"+War.rankLabel(facts.aptitudes.get(3))+" 器"+War.rankLabel(facts.aptitudes.get(4))+" 水"+War.rankLabel(facts.aptitudes.get(5));
         stats+="\n"+facts.lifeDescription+"\n\n"+facts.loyaltyDescription;

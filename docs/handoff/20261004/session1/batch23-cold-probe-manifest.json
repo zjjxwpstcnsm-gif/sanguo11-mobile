@@ -1,0 +1,14 @@
+{
+  "package": "game.sanguo.mobile.pcopeningprobe",
+  "runner": "PcScenarioOpeningInstrumentation",
+  "sha256": "a0b56d9ebece168ba24fe5a7acee42b9544a7b82764fa9c81ba666a5ba22840c",
+  "sourceSha256": "39e4e37c7bec5d3b8e2e868912baf866d5cb62070813572b7b11388fa01309c0",
+  "contestSourceSha256": "c2e867405d97c89414804b10c986bf96dd09531becf917b9de1feefed309089e",
+  "healthSourceSha256": "1411787a183248eee9fa15abfaaea07e27e83c6702689d1670e208b24d391c40",
+  "runners": [
+    "PcScenarioOpeningInstrumentation",
+    "PcContestInstrumentation",
+    "PcHealthInstrumentation"
+  ],
+  "onlyAcceptanceClasses": true
+}

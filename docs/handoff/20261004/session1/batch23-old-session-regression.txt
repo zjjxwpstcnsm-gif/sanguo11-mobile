@@ -1,0 +1,1 @@
+GameSessionTest PASS: 1690 assertions; old-source full-save parity, native/bridge commands, isolation, lifecycle, turns and protocol.

@@ -1,0 +1,11 @@
+PC SOURCE OPENING PASS health cold 9 checks
+PASS actual ART complete policy restore
+PASS actual saved fifth-turn original injury
+PASS normal officer search accepts authoritative saved name
+PASS actual injured officer row
+PASS actual searched injured officer row visible
+PASS normal detail uses original recovery calendar
+PASS normal detail uses refreshed injured current ability
+PASS health detail leaves all World/RNG bytes unchanged
+PASS actual fresh-process health detail preserves every saved byte/RNG
+

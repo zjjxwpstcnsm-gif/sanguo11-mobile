@@ -21,10 +21,12 @@ def build(output):
     with zipfile.ZipFile(classpath,'w',zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(app.rglob('*.class')):archive.write(path,str(path.relative_to(app)))
     modules=[ROOT/m/'build/libs'/(m+'.jar') for m in ['core','game-api','game-runtime']]
-    source=ROOT/'tools/content/android/PcScenarioOpeningInstrumentation.java';contest=ROOT/'tools/content/android/PcContestInstrumentation.java'
+    source=ROOT/'tools/content/android/PcScenarioOpeningInstrumentation.java';contest=ROOT/'tools/content/android/PcContestInstrumentation.java';health=ROOT/'tools/content/android/PcHealthInstrumentation.java'
+    source_snapshot=output/'sources';source_snapshot.mkdir()
+    for item in [source,contest,health]:(source_snapshot/item.name).write_bytes(item.read_bytes())
     def run(name,command):
         with (output/(name+'.log')).open('w') as log:subprocess.run(list(map(str,command)),check=True,stdout=log,stderr=log)
-    run('javac',[java.with_name('javac'),'-encoding','UTF-8','--release','17','-cp',os.pathsep.join(map(str,[android,classpath]+modules)),'-d',classes,source,contest])
+    run('javac',[java.with_name('javac'),'-encoding','UTF-8','--release','17','-cp',os.pathsep.join(map(str,[android,classpath]+modules)),'-d',classes,source,contest,health])
     dex=output/'dex.zip';command=[java,'-cp',tools/'lib/d8.jar','com.android.tools.r8.D8','--min-api','29','--lib',android,'--output',dex]
     for jar in [classpath]+modules:command+=['--classpath',jar]
     run('d8',command+sorted(classes.rglob('*.class')))
@@ -33,6 +35,7 @@ def build(output):
 <application android:label="PC source opening acceptance" android:debuggable="true" />
 <instrumentation android:name="game.sanguo.mobile.PcScenarioOpeningInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 <instrumentation android:name="game.sanguo.mobile.PcContestInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+<instrumentation android:name="game.sanguo.mobile.PcHealthInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>\n''')
     resources=output/'resources.apk';run('aapt2',[tools/'aapt2','link','--manifest',manifest,'-I',android,'-o',resources])
     unsigned=output/'unsigned.apk'
@@ -43,7 +46,7 @@ def build(output):
     aligned=output/'aligned.apk';run('zipalign',[tools/'zipalign','-f','4',unsigned,aligned]);apk=output/'pc-opening.apk'
     run('sign',[tools/'apksigner','sign','--ks',ROOT/'tools/android/dev-debug.keystore','--ks-pass','pass:android','--key-pass','pass:android','--out',apk,aligned])
     run('verify',[tools/'apksigner','verify','--print-certs',apk])
-    (output/'manifest.json').write_text(json.dumps(dict(package='game.sanguo.mobile.pcopeningprobe',runner='PcScenarioOpeningInstrumentation',sha256=hashlib.sha256(apk.read_bytes()).hexdigest(),sourceSha256=hashlib.sha256(source.read_bytes()).hexdigest(),onlyAcceptanceClasses=True),indent=2)+'\n')
+    (output/'manifest.json').write_text(json.dumps(dict(package='game.sanguo.mobile.pcopeningprobe',runner='PcScenarioOpeningInstrumentation',sha256=hashlib.sha256(apk.read_bytes()).hexdigest(),sourceSha256=hashlib.sha256(source.read_bytes()).hexdigest(),contestSourceSha256=hashlib.sha256(contest.read_bytes()).hexdigest(),healthSourceSha256=hashlib.sha256(health.read_bytes()).hexdigest(),runners=['PcScenarioOpeningInstrumentation','PcContestInstrumentation','PcHealthInstrumentation'],onlyAcceptanceClasses=True),indent=2)+'\n')
     print(str(apk))
 
 

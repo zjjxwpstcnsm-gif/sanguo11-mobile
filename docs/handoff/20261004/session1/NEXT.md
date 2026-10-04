@@ -1,5 +1,7 @@
 # 继续执行，不宣布目标完成
 
+当前最新Batch23：正常原mode3已有伤势恢复已接明确新native实验策略、15完整旬/冷JVM/真实新APK十旬及实际保存冷重开完成。APK SHA1e42660894861a8b56666320d43a83c53dbe253225ca6cf58d111ef3753986e8；实际ART保存802cef812240ebfb96a461d6201d244dda7023b3955286c9058480a2a0cf9821。最终3209原外部/7内部全等，5554锁释放，5582未用；其它寿命模式/老年新病、默认菜单完整策略仍待。BATCH_23.md为本批边界与重现证据。接下来优先完整单挑模型及舌战一次性招聘/外交/动态隐值结算，不重复静态表和已通过夹具。完整剧本/人物及ARM目标继续active。
+
 当前有效状态（Batch20）：Batch19主分支提交73ebdb18已完成，checkpoint19为out/session1/checkpoint-batch19/source，4753文件/4JNI，manifest SHA76d1b757cb7cc79b7a647ea1e5e8ce15c08a465a84235e3889fec4421e69fc97。48来源流程已终止PASS/恢复，Batch19实际native中途与冷重开通过，5554锁已释放；下文旧进度只作历史记录。Batch20新增192原指导结算/576总回归通过，原32次5c4840登用结果完整返回与6次早期缺页失败保留；生产规则本批不改。优先继续5d3c90剩余奖励/脚本结果、4ab000归属/忠诚公式与伤病恢复后接一次性正式结算；不能把固定70忠诚套回原结果。继续单挑完整引擎和16剧本开局及全部人物缺口。完整记录BATCH_20.md。
 
 本会话仍执行用户完整目标及追加单挑/舌战。主目录/PC只读，无Wine、reset、清理资源、旧AA核心覆盖。工作目录固定/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile，分支codex/scenario-officer-restoration。媒体文件和公共progress/STATE/PC_PARITY_STATUS不改。

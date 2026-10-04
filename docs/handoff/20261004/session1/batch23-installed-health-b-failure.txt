@@ -1,0 +1,9 @@
+PASS actual ART complete policy restore
+PASS actual saved fifth-turn original injury
+FAIL java.lang.AssertionError: Normal control timed out
+	at game.sanguo.mobile.PcHealthInstrumentation.await(PcHealthInstrumentation.java:13)
+	at game.sanguo.mobile.PcHealthInstrumentation.description(PcHealthInstrumentation.java:15)
+	at game.sanguo.mobile.PcHealthInstrumentation.detail(PcHealthInstrumentation.java:21)
+	at game.sanguo.mobile.PcHealthInstrumentation.onStart(PcHealthInstrumentation.java:24)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+
