@@ -6,6 +6,8 @@
 
 批二十二/5a1611f0进一步执行显示callback564cb0，156项raw动作/已产生choice/renderer240条件分派通过，记录profile及effect46/sound49或effect78/sound78。402310的624word随机状态与上述标量RNG不同；二者均未执行。动作身份、原阶段及已提交choice仍待上游契约，renderer240不猜为critical/success；本批无新正常绑定/Android变更/设备操作。完整证据和限制见BATCH_22.md。
 
+批二十三/204bea22执行原记录初始化路由32项和原初始化store4项，record50 raw0/1/2/17→显示动作6/7/8/27，renderer取自record58原格表unit slot；第二坐标角色与上游记录生成仍未闭合。不按编号相似或当前选中补发言者，没有新普通语音/Android改动/设备操作。BATCH_23.md及SHA守卫保留边界，原规则/API/runtime仍与9e171f2一致。
+
 当前APK：out/media/ui-close-build-20/frozen/app-debug.apk，源5de47b15f9ce444e04a774077be72467acd5f20c，283163807字节，SHA 7cc4e77c487f9dac2f6093cb4654953c11235c09bdce4cb0678f67c5a1122e6a。批二十按来源/公共补丁契约和前后SHA顺序接入实际AlertDialog.OnCancel，正常设置页真实BACK播放原sound1；确认dismiss不误播。5582新包实装/读回、66项通过，原3042帧实际PCM相关性0.9999996760，且位于原HUD33 cue-loop锚点之前；移除正常声音的负例被拒绝。完整Save/RNG、全部原用户保存/库/偏好逐字节恢复。BATCH_20.md保存原OS路由和其它UI条件尚未闭合的范围；ARM/手机扬声器未测，普通BGM/人物voice绑定仍0。
 
 批十九旧包b3369237保留在out/media/music-policy-build-19/frozen，源码9fdd972f；完整原音乐选择器4096组与Java4125项对照通过，正常事实producer仍缺。该旧包共享音乐/语音明确adapter42项及PCM联合0.9999994802、语音0.9999994291、ducking0.3499085通过，不能移用为批二十新包共享音乐/语音也已验收。详见BATCH_19.md。
@@ -14,7 +16,7 @@
 
 共享音乐/语音的实际父receipt加显式原profile/track adapter40项及真实PCM通过，联合0.9999994546、语音0.9999993906、ducking0.3499442；不是普通场景/动作绑定。原PCM暂停续播、真实world replacement停止、静音/音量/focus/Home/退出释放通过。全部用户保存/库/偏好逐字节恢复；x86_64证据，ARM/手机扬声器未验证。
 
-完整源码、媒体与工具：out/media/delivery-22/sanguo11-portrait-audio-source.tar.gz，截点5a1611f0609e802e1cd8e417140ec696ed5ec7a3，444299551字节，SHA 26d6003fce75e914ec8f01d1f05726efdce8e11d12bb997d05747250c8c42b0c。9785份文件及四份JNI全部包含，无重复路径，每份与源码截点字节一致；包含来源工具、媒体选择器、顺序入口patch、正常取消声和实际捕获PCM/截图、两组语音随机依赖/完整unit caller/显示分派证据。后继本指针更新不在截点内，manifest与source-files.json可复核。旧归档均保留。
+完整源码、媒体与工具：out/media/delivery-23/sanguo11-portrait-audio-source.tar.gz，截点204bea22a531df506b45d554893e5e10316c46dd，444299030字节，SHA bc4e798967551dd704466e862cc26b6451cb670e18980b81a18c1c8eef9c987a。9789份文件及四份JNI全部包含，无重复路径，每份与源码截点字节一致；包含来源工具、媒体选择器、顺序入口patch、正常取消声和实际捕获PCM/截图、随机依赖/完整unit caller/显示分派/记录初始化证据。后继本指针更新不在截点内，manifest与source-files.json可复核。旧归档均保留。
 
 纠正旧PC33失败判断：检查器在周期波形中取错相邻峰约±238采样，修正后12份未改历史录音全部通过，阈值未放宽，原失败记录保留。APK-FD或SoundPool失真结论撤回。BATCH_14.md、pc33-phase-reassessment.json与pc-pcm-incremental-guard.json列新旧证据和范围。
 
