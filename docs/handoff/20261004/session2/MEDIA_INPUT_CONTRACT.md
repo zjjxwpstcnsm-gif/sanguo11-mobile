@@ -2,6 +2,36 @@
 
 归媒体实现的选择器/播放器不接收规则命令或可写 World，不调用 RNG/earn/save。如下是请求输入，不是已存在接口，也不是给 core 添加音频编号。
 
+## 普通音乐上下文（批十五补充）
+
+已以原代码及全部16个来源核验4488项（music-context-source-native.json.gz）：原城市getter490a10只列42城、virtual40确为原47b2b0势力归属getter；491270把原势力pointer映为native force0..46，49d670以有效势力拥有至少10座原城为真；4825a0在已核验的calendarOffsetRaw=0日期将1–3/4–6/7–9/10–12月映为seasonRaw0/1/2/3。原caller57fc70调用virtual48=480fa0，只有势力+60的controlSlotRaw0..7才进入5880e0。nativeId不是项目player/owner ordinal，不能从名称推断。
+
+建议由规则/metadata所有者提供同StateToken的已提交只读投影，媒体只负责原音乐选择和播放：
+
+```
+MusicSourceContext {
+  state: {sessionId: string, generation: long, revision: long},
+  id: string, parentId: string, presentationParentId: string,
+  sourceVariant: string|null,
+  sourceForceNativeId: int|null,
+  sourceFactionValid: boolean|null,
+  controlSlotRaw: int|null,
+  sourceCalendar: {year: int, month: int, day: int,
+                   calendarOffsetRaw: int|null, seasonRaw: int|null},
+  sourceCityOwnership: [{sourceCityNativeId: int, sourceForceNativeId: int|null}],
+  predicate587f00: boolean|null,
+  predicate587d70: boolean|null,
+  predicate587fb0: boolean|null,
+  sourceSceneBinding: string|null
+}
+```
+
+sourceForceNativeId/sourceCityNativeId由会话一批准的来源身份映射决定，sourceCityOwnership只计实际原城市0..41，关港与自定义城市不得悄悄混入原42城阈值。calendar必须取实际已提交时钟，不由媒体从turn重新计算规则日期。calendarOffsetRaw或scene未知保持null；sourceSceneBinding须对应真实原调用场景，不能填“菜单”来套用未证明的12/16分支。predicate字段是精确契约位置，三者尚未在移动端规则投影闭合；null不是false，不默认选择季节音乐。
+
+媒体按原5880e0顺序消费已证明谓词：587f00为真→9；否则587d70为真→城市数>=10选10、其余8；否则587fb0为真→城市数>=10选11、其余7；全部已知为假时seasonRaw0..3→3..6，其它原值→7。更早的未知分支必须等待/resync，不越过未知选后面的曲目。不要求core产生音频编号、不调用规则命令/RNG/earn/save。原repeat1、fade500ms、gain sentinel-1属于媒体来源策略，保留用户实际音量。
+
+当前GameSnapshot只含turn/player及BridgeEntity的项目owner等普通字段，缺少calendar和来源势力/城市身份，不能据此证明上述原音乐上下文。新增JSON应为app-owned加法字段，保持schema1和long精确整数；快照用于基线/resync而非重播音乐/语音事实。同一已建立scene/track不重开，restore或新局取消旧scene；最终需正常新局/多回合/读档实测，解码和adapter通过不能代替普通绑定。
+
 ## 人物来源
 
 从已提交 StateToken 的人物查询取得：
