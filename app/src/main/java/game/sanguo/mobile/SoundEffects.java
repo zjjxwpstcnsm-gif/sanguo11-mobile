@@ -30,7 +30,7 @@ final class SoundEffects {
     private int focusKind,focusEpoch;
     private final MediaCueLedger sourceLedger=new MediaCueLedger(512);
     private PcMediaPlayback sourceMedia;
-    private final BroadcastReceiver noisy=new BroadcastReceiver(){@Override public void onReceive(Context c,Intent i){if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(i.getAction())){focusLost=true;focused=false;stopStreams();if(sourceMedia!=null){sourceMedia.interrupted(true);sourceMedia.focus(false,false);}}}};
+    private final BroadcastReceiver noisy=new BroadcastReceiver(){@Override public void onReceive(Context c,Intent i){if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(i.getAction())){focusLost=true;if(sourceMedia!=null)sourceMedia.interrupted(true);stop();}}};
     private long uiAt;
     private int played;
     SoundEffects(Context context){this.context=context.getApplicationContext();prefs=context.getSharedPreferences("sound-effects",0);manager=context.getSystemService(AudioManager.class);}

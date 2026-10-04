@@ -29,8 +29,12 @@ final class PcVoiceStreamPlayer implements AutoCloseable {
     private final ExecutorService worker=Executors.newSingleThreadExecutor(r->new Thread(r,"PcVoiceStream"));
     private final Object controls=new Object();
     private volatile float gain=.75f,focusDuck=1;private volatile Job current,last;private volatile boolean closed,paused;
-    private PcVoiceCatalog catalog;
-    PcVoiceStreamPlayer(Context context,Listener listener){this.context=context.getApplicationContext();this.listener=listener;}
+    private PcVoiceCatalog catalog;private volatile long catalogMillis=-1;private volatile String catalogError="";
+    PcVoiceStreamPlayer(Context context,Listener listener){this.context=context.getApplicationContext();this.listener=listener;
+        worker.execute(()->{long began=SystemClock.elapsedRealtime();try{PcVoiceCatalog loaded=new PcVoiceCatalog(this.context);if(!closed)catalog=loaded;}catch(IOException e){catalogError=e.toString();}finally{catalogMillis=SystemClock.elapsedRealtime()-began;}});
+    }
+    boolean prepared(){ui();return catalogMillis>=0&&catalogError.isEmpty();}
+    long catalogMillis(){ui();return catalogMillis;}
     private static void ui(){if(Looper.myLooper()!=Looper.getMainLooper())throw new IllegalStateException("Serial source media owner required");}
     void play(PcVoiceDirective directive){ui();if(closed||current!=null&&!current.released)throw new IllegalStateException("Source voice worker busy/closed");Job job=new Job(directive);current=last=job;worker.execute(()->run(job));}
     void volume(float value,boolean ducked){ui();if(!Float.isFinite(value))throw new IllegalArgumentException("voice gain");gain=Math.max(0,Math.min(1,value));focusDuck=ducked?.2f:1;synchronized(controls){if(current!=null&&current.audio!=null)current.audio.setVolume(gain*focusDuck);}}
@@ -44,7 +48,7 @@ final class PcVoiceStreamPlayer implements AutoCloseable {
     }
     private void run(Job job){File directory=null,pcm=null;AudioTrack audio=null;
         try {
-            check(job);if(catalog==null)catalog=new PcVoiceCatalog(context);
+            check(job);if(catalog==null)throw new IOException("Original voice catalog not prepared: "+catalogError);
             if(catalog.voiceType(job.directive.speaker)!=job.directive.voiceTypeRaw)throw new IOException("Actual saved speaker identity/type does not match original source");
             PcVoiceCatalog.Voice source=catalog.voice(job.directive.nativeVoiceId,job.directive.alternateRaw);if(source==null)throw new IOException("Unknown original voice resource");
             check(job);directory=new File(context.getCacheDir(),"pc-voice-stream-"+job.began);if(!directory.mkdir())throw new IOException("Fresh own voice cache required");pcm=new File(directory,"original.pcm");

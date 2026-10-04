@@ -52,7 +52,7 @@ final class PcMediaPlayback implements AutoCloseable {
     boolean sourceVoice(PcVoiceDirective directive){
         ui();if(closed)return false;if(!ledger.claim(directive.state,directive.id,directive.parentId)){if(ledger.needsResync())stopTransient();return false;}
         if(!foreground||muted||interrupted||voiceGain==0||!owner.requestFocus()){dropped++;return false;}
-        if(pending.size()>=4){dropped++;return false;}
+        if(pending.size()>=4){dropped++;ledger.overflow();stopTransient();return false;}
         pending.addLast(directive);
         if(current!=null&&directive.priority>current.priority){voice.stop();dropped++;}
         pump();return true;
@@ -82,6 +82,8 @@ final class PcMediaPlayback implements AutoCloseable {
     int voiceStarts(){return started;}
     int drops(){return dropped;}
     int pendingVoices(){return pending.size();}
+    boolean voicePrepared(){return voice.prepared();}
+    long voiceCatalogMillis(){return voice.catalogMillis();}
     PcMusicStreamPlayer.Status musicStatus(){return music.status();}
     PcVoiceStreamPlayer.Status voiceStatus(){return voice.status();}
     @Override public void close(){ui();if(closed)return;closed=true;if(subscription!=null)subscription.close();subscription=null;session=null;stopTransient();stopMusic();music.close();voice.close();}

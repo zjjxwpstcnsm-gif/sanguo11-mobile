@@ -40,6 +40,7 @@ final class MediaCueLedger {
         claimed.add(id);return true;
     }
     boolean needsResync(){return resync;}
+    void overflow(){resync=true;parents.clear();}
     boolean closed(){return closed;}
     void retire(){parents.clear();closed=true;}
 }
