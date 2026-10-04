@@ -745,7 +745,9 @@
     "merchant_checks": 66,
     "audio_ui_checks": 51,
     "audio_mixed_cues": 11,
-    "strict_presentations_checks": 1914
+    "strict_presentations_checks": 1914,
+    "native37_longrun_checks": 373,
+    "normal_save_load_exit_reopen_verified": true
   },
   "r34_continuation": {
     "status": "exact d318 default3D856, normal opening64 and occupied terrain51 all passed; native start107 reproduced; real bridge restore regression passed",
@@ -776,7 +778,7 @@
     "bridge_restore_runtime_changed": false
   },
   "r35_continuation": {
-    "status": "same d318 merchant66/audio51/mixed11 and strict presentations1914 passed; source queries reproduced; native37 longrun24 running",
+    "status": "same d318 merchant66/audio51/mixed11/presentations1914 and native37 longrun24 all passed",
     "apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
     "merchant_checks": 66,
     "merchant_seconds": 62.56,
@@ -792,7 +794,7 @@
     "facility_query_world_rng_readonly": true,
     "facility_field14_full_semantics_verified": false,
     "android_facilities_added": false,
-    "current_live_device_job": true,
+    "current_live_device_job": false,
     "arm_actual_device_verified": false,
     "facility_query_same_twice": true,
     "facility_json_sha256": "44760840c64fc4054a5fc2b60ceeff8fa3b56aee112e7fb6638e1ea86d776216",
@@ -801,7 +803,11 @@
     "strict_presentations_checks": 1914,
     "strict_presentations_seconds": 650.26,
     "strict_presentations_original_files_exact": true,
-    "host_wall_clock_jump_observed": true
+    "host_wall_clock_jump_observed": true,
+    "native37_longrun_checks": 373,
+    "native37_longrun_seconds": 554.9,
+    "native37_longrun_original_files_exact": true,
+    "final24_save_sha256": "dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f"
   },
   "r36_source_facilities": {
     "status": "source plot2136/category64 and completion242/setter122 reproduced twice; no Android rule change",
@@ -820,6 +826,22 @@
     "full_construction_flow_verified": false,
     "android_rule_changed": false,
     "failed_unsigned_and_greater_equal_probe_assumptions_preserved": true,
-    "current_live_device_job": "r35-native37-longrun24"
+    "current_live_device_job": false
+  },
+  "r37_city_footprint_source": {
+    "centers": 6,
+    "registered_cells_per_center": 7,
+    "actual_registry_lookup_cases": 42,
+    "actual_cavalry_blocked_cases": 42,
+    "actual_cavalry_outside_positive_cases": 6,
+    "source_coordinate_conversion_executed": true,
+    "complete_shape_registration_function_returned": true,
+    "full_world_rng_unchanged": true,
+    "exact_grid_effects": true,
+    "same_twice": true,
+    "json_sha256": "7c03c6087f9cd658ded615619a459196fb8eae0154b1982ac3c4e8c8df107f8a",
+    "gzip_sha256": "6a45138546ce860ec49d04f3f7d1f1babb80b544675c6d5e349069330a7270c5",
+    "normal_frontend_allocator_executed": false,
+    "full_tactic_damage_authority_verified": false
   }
 }
