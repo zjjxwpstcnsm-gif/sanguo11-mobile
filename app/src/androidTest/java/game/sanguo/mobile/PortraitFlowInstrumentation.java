@@ -62,7 +62,7 @@ public final class PortraitFlowInstrumentation extends Instrumentation {
             runOnMainSync(()->{id[0]=(int)table.list.getAdapter().getItemId(index);table.list.setSelectionFromTop(index,0);});
             while(visible[0]==null&&SystemClock.uptimeMillis()<end){settle();runOnMainSync(()->visible[0]=table.list.getChildAt(index-table.list.getFirstVisiblePosition()));}
             OfficerSnapshot.Officer row=snapshot.officer(id[0]);check(row!=null&&seen.add(row.id),"actual visible stable row ID "+id[0]);check(visible[0]!=null,"actual recycled row shown "+id[0]);
-            OfficerPortrait[] image={null};runOnMainSync(()->image[0]=portrait(visible[0]));verify(image[0],row,control.life.year(),"list");if(row.source==null)unknown++;else mapped++;
+            OfficerPortrait[] image={null};runOnMainSync(()->{TextView name=(TextView)((ViewGroup)visible[0]).getChildAt(0);check(name.getText().toString().equals(row.name),"name text retains DTO");check(name.getLayout()!=null&&name.getLayout().getEllipsisCount(0)==0,"entire officer name visible beside image "+row.id);image[0]=portrait(visible[0]);});verify(image[0],row,control.life.year(),"list");if(row.source==null)unknown++;else mapped++;
             if(allDetails||details<3&&row.source!=null){tap(visible[0]);verify(detailPortrait(),row,control.life.year(),"detail");if(details<3)shot("detail-"+row.id);tap(await(v->v.getId()==android.R.id.button2));details++;}
             if(position%100==0){shot("list-"+position);Files.write(new File(output,"progress.json").toPath(),new JSONObject().put("position",position).put("checks",checks).put("mapped",mapped).put("unknown",unknown).toString().getBytes("UTF-8"));}
         }
