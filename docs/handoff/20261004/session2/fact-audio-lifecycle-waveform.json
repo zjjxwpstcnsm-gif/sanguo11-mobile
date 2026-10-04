@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "scope": "Actual Android playback mixed by emulator WAV backend; no microphone; not ARM hardware speaker quality",
+  "sample_rate": 44100,
+  "seconds": 20.340680272108845,
+  "rms": 0.0014244289938648241,
+  "device_wave_sha256": "f92cdd7e805c1ac4ced4cafc7ae00b3c088833f035a4f04692ba6d624e40b8a5",
+  "unique_sample_hashes": 10,
+  "cues": [
+    {
+      "cue": "attack",
+      "correlation": 0.9991567037513424,
+      "seconds": 8.431927437641724,
+      "asset_sha256": "7c7135de467b4b5323dbc728909196442704c28bbbc6ba40fc35fe8a3eb60495",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "complete",
+      "correlation": 0.9974902805276805,
+      "seconds": 13.318276643990929,
+      "asset_sha256": "ca6489873cdbe7d6eaaf185a6f724e5b3ae7d08739bcc61399dffc9027fce9ae",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "construction",
+      "correlation": 0.9956797959026468,
+      "seconds": 12.343945578231292,
+      "asset_sha256": "3a6e4b74831b26000e0cccb9be73a86815fb71b13fca36f794d81d1ef0e12f31",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "critical",
+      "correlation": 0.9977434999041014,
+      "seconds": 10.380408163265306,
+      "asset_sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "march",
+      "correlation": 0.9994200945446756,
+      "seconds": 7.442721088435374,
+      "asset_sha256": "924fb9142d17f25d1a26f84a4394e370ffac5a026980983baff9e373e55c2d18",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "plot",
+      "correlation": 0.995212588283445,
+      "seconds": 11.373424036281179,
+      "asset_sha256": "b34b65f4f29c173f5942a5a00763c5bc29a42121569b7c8cdd88eeef4b9f0fc6",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "tactic",
+      "correlation": 0.9789226538904252,
+      "seconds": 9.421133786848072,
+      "asset_sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "technique_gain",
+      "correlation": 0.9916564741038174,
+      "seconds": 15.266757369614513,
+      "asset_sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "source": "native PC HUD33"
+    },
+    {
+      "cue": "technique_loss",
+      "correlation": 0.9916564741038174,
+      "seconds": 15.266757369614513,
+      "asset_sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "source": "native PC HUD33"
+    },
+    {
+      "cue": "turn",
+      "correlation": 0.992834484377993,
+      "seconds": 14.312925170068027,
+      "asset_sha256": "1efdf33d5612436ac8972e834f996f66934d49e05a3937f76a6d7c8efdf24b32",
+      "source": "inherited mobile composition"
+    },
+    {
+      "cue": "ui",
+      "correlation": 0.9590349079561974,
+      "seconds": 6.500680272108844,
+      "asset_sha256": "0e76b1ad4dbade966707a014ac68235d060373b87e7ec391c5e3ae3b3c094000",
+      "source": "inherited mobile composition"
+    }
+  ]
+}

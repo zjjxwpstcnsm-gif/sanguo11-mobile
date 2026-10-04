@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
+  "applied": false,
+  "purpose": "Sequential media callbacks only; metadata/page changes inherited from committed session1 source",
+  "patchSha256": "f0aa1998712d3b8ad64f472d33bbf962751aa8c493be2675433de24234ad3a10",
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "beforeSha256": "a38d8d2a844ccaa20450914d2667a17eab2f3e215d88c76cb77c63785d09d52b",
+      "afterSha256": "405538c7405f1bf9f83449a756201cf15d43790fe1e3ebf93c3bce8cf452deaa"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "sourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "beforeSha256": "24f58599ba40f252adac111a91871f3167c2a2b48f5af19bca066ffe1a16cd4c",
+      "afterSha256": "200da413a2f4bb31fa7b5ca1e16804ba1433f65690b312012e6fe0cfe8119b7c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "sourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "beforeSha256": "69fa366c62c5df4fef569f2a149789038ac062cd603fda1fded6b9e887472935",
+      "afterSha256": "9d13abadd7c3a57e489f2f1b0184b81a20ce1684a880075ef8dc1206ae7522fd"
+    }
+  ]
+}

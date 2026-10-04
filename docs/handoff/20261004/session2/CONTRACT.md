@@ -12,7 +12,9 @@ schema1加法扩展：消息state{sessionId,generation,revision}和techniquePoin
 
 ## 当前事实边界
 
-原列表仍32人旧图集/绘制替代；六人源年龄/战法取证不代表全人物还原。11种WAV是移动端原创合成，现有混音证据不是PC声音。原HUD编号33样本身份未知。BGM/语音原调用与全部形态仍待闭合。
+原列表仍32人旧图集/绘制替代；六人源年龄/战法取证不代表全人物还原。原FCE全部6600注册位置已按原机器码核验，964个非空Face各有三张原像素；人物运行时覆盖仍为0。旧小头像分组映射已明确拒收，使用portrait-pixels-current.json.gz。原HUD33现已确定为bank1/slot19，原资源2268头+2267 PCM；已实装正负两别名共享同一原样本并取得x86_64混音证据。其余9种短声音仍为移动端原创合成，BGM/语音的正常场景调用及全部形态仍待闭合。
+
+逐事实队列/HUD拥有独立事实模式，与旧NET模式互斥；真实零净变化、跨sessionId恢复、同revision关闭、暂停、跳过和overflow/resync主机44项通过。公共MainActivity/MapHost/TurnPlayback未改；依据会话一已提交2910997生成fact-host.patch，前后SHA和独立编译证据分别见fact-host-guards.json、fact-host-compile-guards.json。装机专项的临时只读适配器不能算公共入口已闭合。
 
 ## 工作区与验证
 

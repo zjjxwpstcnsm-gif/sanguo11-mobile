@@ -89,6 +89,55 @@
         "added_files": [],
         "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
       }
+    },
+    "techniqueFacts": {
+      "passed": true,
+      "seconds": 24.46,
+      "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+      "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/media-facts.json",
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "audioLifecycleCurrent": {
+      "passed": true,
+      "seconds": 32.91,
+      "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+      "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml",
+          "shared_prefs/sound-effects.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "wireCurrent": {
+      "passed": true,
+      "seconds": 1.93,
+      "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+      "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/media-wire.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
     }
   },
   "checks": {
@@ -106,7 +155,14 @@
     "decodedKovs": 2027,
     "decodedOriginalPcmBanks": 203,
     "originalFaceRegistry": 6601,
-    "installedExit": 15
+    "installedExit": 15,
+    "hostTechniqueFacts": 44,
+    "installedTechniqueFacts": 42,
+    "actualPc33Occurrences": 4,
+    "pcmAlgorithmControls": 3,
+    "installedCurrentAudioLifecycle": 51,
+    "installedCurrentAndroidWire": 18,
+    "clientCurrentInstalledWire": 52
   },
   "originalRestoredAudioSamples": 1,
   "uniqueCurrentShortSamples": 10,
@@ -119,7 +175,7 @@
   "latestPackageIsFullRestoration": false,
   "nextRequired": [
     "Native full portrait form/caller lookup and bounded loader + sourceVariant metadata connection",
-    "Native ordered-fact HUD/audio consumption with exact sequential MainActivity/MapHost patch",
+    "Apply exact guarded committed-source host patch sequentially, then validate actual normal UI callback without probe adapter",
     "BGM normal menu/map scene caller proof and streaming/lifecycle integration",
     "Actor/event/weapon/tactic/plot voice and original sound trigger proof + playback",
     "Complete new combination normal3D battle/plot/multiturn/save/exit/performance acceptance",
@@ -129,7 +185,11 @@
     "Android Files.writeString unsupported compile failure",
     "C# installed JSON harness initially assumed a receipt not present in that suite",
     "Unfrozen install caught by exact test APK readback guard; no UI suite executed",
-    "Opening suite missing required reuseSlotSha before correct rerun"
+    "Opening suite missing required reuseSlotSha before correct rerun",
+    "Fact runner initially required enabled system motion; guard stopped and all user files restored",
+    "Fact probe incorrectly assumed equal parents and then blank editor parents; distinct original success checkpoints retained in corrected6 actual events",
+    "Audio lifecycle acceptance caller misspelled existing UIUX PASS marker; original false wrapper report retained; rerun separate",
+    "PCM checker initial fixed0.02 gain floor rejected quiet real mixer; replaced with8 PCM quantization steps and strict full waveform fit"
   ],
   "portraitIndexAccepted": true,
   "rejectedPortraitMappingNote": "REJECTED_PORTRAIT_INDEX.md",
@@ -145,5 +205,11 @@
   "portraitIndexAcceptanceScope": "Original file->registry->face/form index and pixel conversion only; runtime caller roles still unverified",
   "currentPortraitPixelManifest": "portrait-pixels-current.json.gz",
   "currentPortraitSourceJoin": "portrait-source-join-current.json.gz",
-  "currentPortraitRepeatGuard": "3cc5f5b842479352f7f6f35da767ffe4c5560c647b128219582ba1b88b3565b8"
+  "currentPortraitRepeatGuard": "3cc5f5b842479352f7f6f35da767ffe4c5560c647b128219582ba1b88b3565b8",
+  "factSharedHostPatchApplied": false,
+  "factSharedHostPatchSourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
+  "factSharedHostPatchCompiled": true,
+  "latestIntermediateApkSha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+  "latestIntermediateSourceCommit": "9ff6d93",
+  "latestMediaToolCommit": "f11735db275b2cd519bc59f137fa44d4defafc3b"
 }

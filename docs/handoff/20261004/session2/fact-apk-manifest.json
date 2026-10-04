@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "9ff6d93991395041087ea994c27e68aa6ea10e3a",
+  "buildLog": "out/media/fact-build-06.log",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/fact-frozen-06/app-debug.apk",
+      "bytes": 87636917,
+      "sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/fact-frozen-06/app-debug-androidTest.apk",
+      "bytes": 2027499,
+      "sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08"
+    }
+  ]
+}

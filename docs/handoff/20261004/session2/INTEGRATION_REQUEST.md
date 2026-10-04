@@ -16,6 +16,10 @@ MapHost.replayFrame(TurnJournal.Event,float)在已提交演示阶段35%后，提
 
 本批未修改MainActivity、MapHost、TurnPlayback或core/API/runtime。完成媒体队列后将登记确切diff与前像SHA，再按完成提交顺序集成，不能覆盖另一会话人物页面WIP。
 
+20261004增量：队列与HUD事实模式已提交，44项主机测试包含真实GameSession恢复换sessionId、同revision关闭，以及阶段先跳过而事实后提交的情况。精确待集成diff已保存为fact-host.patch；源为2910997516cec8aad4d0564688f6090e944eddc8，patch SHA f0aa1998712d3b8ad64f472d33bbf962751aa8c493be2675433de24234ad3a10。三个公共文件前后像见fact-host-guards.json。只在独立out目录使用该提交的API/runtime/人物页面源码编译补丁，未读取或复制会话一WIP，编译通过不等于安装整合通过。
+
+补丁还将演示暂停连接到HUD暂停和已加载技巧短流；逐事实音频不会同时播放同提交NET。渲染已结束而尚未提交的阶段只登记skip，迟到事实静默；正在等待提交的阶段不凭预览播放。command阶段按具体journal.id释放/跳过，TurnPlayback的detach/skip/压缩快进仅丢弃瞬态。任何overflow清瞬态并要求baseline resync，不猜遗漏的声音。
+
 ## 声音覆盖
 
 已核实并实装仅原HUD33：bank1/slot19，原2268头+2267PCM，原6f2c30读取格式核实。技巧点正负同样本，不计两个独立原音色。其余9种音效仍为移动端原创合成，BGM/1997语音候选事件/演员角色及所有场景还原继续待闭合。原voice类别表中的71 profile是来源索引，不得猜成71名演员；个人actor+100取自原序列化，事件/语言选择分别取证。

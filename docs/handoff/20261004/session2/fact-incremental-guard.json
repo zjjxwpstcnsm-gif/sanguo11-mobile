@@ -1,0 +1,176 @@
+{
+  "baseCommit": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "protectedFiles": 529,
+  "protectedAllExact": true,
+  "sharedHostPatchApplied": false,
+  "changes": [
+    {
+      "commit": "f59a758e741ef73caf9a629bc6df198262238aeb",
+      "parentCommit": "19392c8d8e091ec0ac79586f606b9939a87788bc",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/TechniqueFactsInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "b2598fcc58fc3988a8e63dd48ee3b70d3e31d4931a59da600798e514f9d4042a"
+    },
+    {
+      "commit": "f59a758e741ef73caf9a629bc6df198262238aeb",
+      "parentCommit": "19392c8d8e091ec0ac79586f606b9939a87788bc",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniqueFactQueue.java",
+      "beforeSha256": null,
+      "afterSha256": "645bb29de09299990ad6af4242948ff2ff8322447d0079f0d7c8ba0269d7a8dc"
+    },
+    {
+      "commit": "f59a758e741ef73caf9a629bc6df198262238aeb",
+      "parentCommit": "19392c8d8e091ec0ac79586f606b9939a87788bc",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniquePointsHud.java",
+      "beforeSha256": "b1be695fe97d6981381de490760fb56eea6e3b8db8ede23ce88cfa8c8073849f",
+      "afterSha256": "d953ea1beef48893f59596370914ae6a1e49783f9e11dad7aeae78f52dd51fc7"
+    },
+    {
+      "commit": "f59a758e741ef73caf9a629bc6df198262238aeb",
+      "parentCommit": "19392c8d8e091ec0ac79586f606b9939a87788bc",
+      "path": "app/src/test/java/game/sanguo/mobile/TechniqueFactQueueTest.java",
+      "beforeSha256": null,
+      "afterSha256": "3bfc0db9325d605cd1ca7f1638b31676ee7af3c0fe3b8799ebd8b5c6d2f79e8c"
+    },
+    {
+      "commit": "f59a758e741ef73caf9a629bc6df198262238aeb",
+      "parentCommit": "19392c8d8e091ec0ac79586f606b9939a87788bc",
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "fe7d5f7e68bb6d00cd2522693458ea79e04846123f7cef9b36eb3af5717bd698",
+      "afterSha256": "b0d92cc8c4741dfbe1134c7c0f501c9a9545361fe5df179fd2e6547333b91a25"
+    },
+    {
+      "commit": "c02c9d65cedde6ba9876e3e74c1546d3dd3d92c7",
+      "parentCommit": "f59a758e741ef73caf9a629bc6df198262238aeb",
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "2944e12a1b4a35dfeb16401216425cfed03f156fae2dcbb4c45339929209a888",
+      "afterSha256": "a45c451fdb150a16683f091c364b752f39f9df35375b6839d57e39937313eb14"
+    },
+    {
+      "commit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "parentCommit": "c02c9d65cedde6ba9876e3e74c1546d3dd3d92c7",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/TechniqueFactsInstrumentation.java",
+      "beforeSha256": "b2598fcc58fc3988a8e63dd48ee3b70d3e31d4931a59da600798e514f9d4042a",
+      "afterSha256": "792ab8e67e9b24ef5686d1ccab460304eb62f8c728c5105662e98910cbfcf034"
+    },
+    {
+      "commit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "parentCommit": "c02c9d65cedde6ba9876e3e74c1546d3dd3d92c7",
+      "path": "tools/audio/check_pc33_occurrences.py",
+      "beforeSha256": null,
+      "afterSha256": "cbf0ee66fcc5ec2d59476ceb9329c81e255809568e15b322745e6b003319f57c"
+    },
+    {
+      "commit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "parentCommit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/TechniqueFactsInstrumentation.java",
+      "beforeSha256": "792ab8e67e9b24ef5686d1ccab460304eb62f8c728c5105662e98910cbfcf034",
+      "afterSha256": "fbf7987d596fe3e97bd389aa63cb6d1e58d38876eb41ce56f2fe9dce19b85ec3"
+    },
+    {
+      "commit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "parentCommit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "d7a7731cf2851b9346274b35e90a3a66fe08b55e91391fd91fb8ced280766d10",
+      "afterSha256": "2cd97ee80da404b36eed7ccb0cb391649c8eb3a3188b1f8149169de3f6abadd7"
+    },
+    {
+      "commit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "parentCommit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniqueFactQueue.java",
+      "beforeSha256": "645bb29de09299990ad6af4242948ff2ff8322447d0079f0d7c8ba0269d7a8dc",
+      "afterSha256": "be3fe442d32e2b8ef335440c2dd95b566aa8d639828612bc291547b1a34d1906"
+    },
+    {
+      "commit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "parentCommit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniquePointsHud.java",
+      "beforeSha256": "d953ea1beef48893f59596370914ae6a1e49783f9e11dad7aeae78f52dd51fc7",
+      "afterSha256": "c2083194d5fa0d5670d4342798935765802c77fd36ecd2c0271594b915330203"
+    },
+    {
+      "commit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "parentCommit": "ba0fef522e7a0af6dc2c7fa8d9658c65e81e9054",
+      "path": "app/src/test/java/game/sanguo/mobile/TechniqueFactQueueTest.java",
+      "beforeSha256": "3bfc0db9325d605cd1ca7f1638b31676ee7af3c0fe3b8799ebd8b5c6d2f79e8c",
+      "afterSha256": "c3ee67e9a5d5379610eb66ed537ba31c12bca5b16027597d9c956e0c3675b3ca"
+    },
+    {
+      "commit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "parentCommit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/TechniqueFactsInstrumentation.java",
+      "beforeSha256": "fbf7987d596fe3e97bd389aa63cb6d1e58d38876eb41ce56f2fe9dce19b85ec3",
+      "afterSha256": "2969acefdb41895a02449236926aa114c503c570106d1fe5ff447e703e6ff275"
+    },
+    {
+      "commit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "parentCommit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniqueFactQueue.java",
+      "beforeSha256": "be3fe442d32e2b8ef335440c2dd95b566aa8d639828612bc291547b1a34d1906",
+      "afterSha256": "b88b379f246dbc1b7b128ebc9e8e554fd4c4383b7ecf307b21b515542495cf31"
+    },
+    {
+      "commit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "parentCommit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniquePointsHud.java",
+      "beforeSha256": "c2083194d5fa0d5670d4342798935765802c77fd36ecd2c0271594b915330203",
+      "afterSha256": "4b7f02da26611f4a723333e0f42789183792897275bff7a74d0ce13ed83afea9"
+    },
+    {
+      "commit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "parentCommit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "path": "app/src/test/java/game/sanguo/mobile/TechniqueFactQueueTest.java",
+      "beforeSha256": "c3ee67e9a5d5379610eb66ed537ba31c12bca5b16027597d9c956e0c3675b3ca",
+      "afterSha256": "2aff44787d2134cb0a208836324692fea6e715aa63ac9ef7bad121ee2cd9aa40"
+    },
+    {
+      "commit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "parentCommit": "affafbc0938806c66b6940416ce9b86fe3f1dba9",
+      "path": "tools/media/prepare_fact_host_patch.py",
+      "beforeSha256": null,
+      "afterSha256": "72b76746a03e565ede01f92f06cf5da9a9438498fb1dbb7eeda770cff11457e3"
+    },
+    {
+      "commit": "d3769d069e15fd4b6c1511dd506a2d2767521078",
+      "parentCommit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/TechniqueFactsInstrumentation.java",
+      "beforeSha256": "2969acefdb41895a02449236926aa114c503c570106d1fe5ff447e703e6ff275",
+      "afterSha256": "54cc927c1ef98ae59993bb18734343cd14482a5ae430249f9636996ec10a4780"
+    },
+    {
+      "commit": "d3769d069e15fd4b6c1511dd506a2d2767521078",
+      "parentCommit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "path": "app/src/main/java/game/sanguo/mobile/TechniqueFactQueue.java",
+      "beforeSha256": "b88b379f246dbc1b7b128ebc9e8e554fd4c4383b7ecf307b21b515542495cf31",
+      "afterSha256": "bf29d72528a8734ddc39965a443c1095ce26f2862a0f445677e474b13fb9c393"
+    },
+    {
+      "commit": "d3769d069e15fd4b6c1511dd506a2d2767521078",
+      "parentCommit": "373965c50e959b124fe49b3c139b3ce222b3d8da",
+      "path": "app/src/test/java/game/sanguo/mobile/TechniqueFactQueueTest.java",
+      "beforeSha256": "2aff44787d2134cb0a208836324692fea6e715aa63ac9ef7bad121ee2cd9aa40",
+      "afterSha256": "aaf28b09d8fab3044edf299c3005ba9174706f5b5d713aa1cc2a61b33d72f6de"
+    },
+    {
+      "commit": "9ff6d93991395041087ea994c27e68aa6ea10e3a",
+      "parentCommit": "d3769d069e15fd4b6c1511dd506a2d2767521078",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/TechniqueFactsInstrumentation.java",
+      "beforeSha256": "54cc927c1ef98ae59993bb18734343cd14482a5ae430249f9636996ec10a4780",
+      "afterSha256": "777d74d948d923b6887f1583715807a62b415247764697a5e669022370a8bc33"
+    },
+    {
+      "commit": "b445e8428e1637dca694585c608213343abac3b3",
+      "parentCommit": "9ff6d93991395041087ea994c27e68aa6ea10e3a",
+      "path": "tools/audio/check_pc33_occurrences.py",
+      "beforeSha256": "cbf0ee66fcc5ec2d59476ceb9329c81e255809568e15b322745e6b003319f57c",
+      "afterSha256": "ff31ab9f19f7b90d078b137e35d81ece7167f690abd667f06431af40afecbe1e"
+    },
+    {
+      "commit": "f11735db275b2cd519bc59f137fa44d4defafc3b",
+      "parentCommit": "b445e8428e1637dca694585c608213343abac3b3",
+      "path": "tools/audio/check_pc33_occurrences.py",
+      "beforeSha256": "ff31ab9f19f7b90d078b137e35d81ece7167f690abd667f06431af40afecbe1e",
+      "afterSha256": "b32d03043f1b51bf522623c2a17b41e470dcbdbf04305cb355977506367785a6"
+    }
+  ]
+}

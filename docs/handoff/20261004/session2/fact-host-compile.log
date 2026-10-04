@@ -1,0 +1,4 @@
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/fact-host-patch-02/committed-dependencies/app/src/main/java/game/sanguo/mobile/OverviewUi.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.

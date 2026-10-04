@@ -1,0 +1,237 @@
+{
+  "status": "PASS",
+  "installed": false,
+  "applied": false,
+  "dependencies": [
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CityActionCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "45fa6cf7ef44990bfb7553162a37f6108935e44d6a031a5538aac48acab7c111"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CityActionPreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "2b8799daf124844e1e5191652cf0562d4dbcd400a5f1d374b07a05c21062288d"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CommandResult.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "9ce5d9e6d5b9ca9638399d3f0377e3196bedd84f885596db2246ad6f93a53f14"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ConstructionCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "12249deba5d57d74ad68e46164630df4c32178c0f4a70ccd89c77fd8279555a9"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ConstructionPreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b2cffd466023fcd91adcc7d883bf98b5dad21f7b6cba8d6ea94fa3a0b9e3dba1"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "60de58f864fecb7ddc0aaf5a214da1abfdb46a470269bc04d08c0fb5ea58291e"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DeploymentCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b71de1710ef0c74d14fd5187be9474f038603fd3a2d8fdf35ead5f597c620494"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DeploymentPreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "af04c2c43065f2466ceb278df658799d3cb6f626e72c9972168cfda8a4df8049"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DiplomacyCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "66823fe880539ae50cfd3762b3f5ea803ad2c5c4aec94585f257efaaba44ce06"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DiplomacyPreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "a44254063ebe9b2eb15f8130a26e13ec06eba3721cee69fd82c42650a7c62c62"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b3b09de5e36dbce68c61a621125a0fc3702bf5630643fd57b4c74c68f66a2267"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "867123143c660106ac41027d3aa5518bdc40b797e2e3b46b8e74b077e018e681"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameEvent.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "5d379458f20e01857a5eb5243045369a161443797e62c4a7e1a80f22c4d19c5b"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameSnapshot.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "489ac116d8fae715ed8862c09b0842e4ce77256c5c88962d37aeec476d6efc06"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GridLayout.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "2290fe72b479d7b851faa4e911942164adf729965956a8a2cf77a2f765205b9a"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerExperienceChange.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "3fd20d71218f0822dc0080a7153059bff72cc4ef70ad83553be697ceac505a47"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "7607218b538988f3760b3a4c0631956a3043d2bb4b320a298a6664ca0f153d68"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ProductionCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "dd3c05a8019019730845b5cf2d15aa4676a341c0ea8b03027d7c535ca2330cb1"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ProductionPreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b6a591ee90e5ba758382e6b137534551436e1708daa400548af79e25fbbf16bd"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/StateToken.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "028cab35b04551f93c4d94f2c51069c1a680db8072d1687da582e1cfe376a590"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TechniquePointsChange.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "f823d32253cd5149dbe9fc27443c0c998f02d7c23bdde1a157d14275affd960f"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TechniquePointsFact.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "3a77a3bfe7a6364e12a4ffba5999a00c9b60e6d460e60a6868e1452d706c6ddc"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TradeCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b3ec1c98810f99a0db154270d96427e9a87b31ed9fcc3142d2b47053d281a820"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TradePreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "407caca17f2bc2f8be539329f3a926004695c4869904da1f1bcc7f4cf58f2035"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TransportCommand.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "d21f7fd8ddd30122c5d81b63724a64677002bbc629c7b379591d4994a1833c37"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TransportPreview.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b7a658366857406e9dc9bab9787fa2c083fa6d66c025b415edb78041e4fca62e"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/bridge/BridgeEntity.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "647717f4e59c7f20d2a86e721c5befee8cfa699b592a4c892b20a5658f1801bf"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/bridge/BridgeMessage.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "cbb9340115b20fbf3af6ae4c2305347a59ca531b32db29f11cb9e9cb437f9f3b"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "25e86250575a739f56c129a5ef4a67f16d3ebea5187a14676a2caf440c289f0d"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/LegacyView.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b9215fa85f8b71d50d865c8dd7452298dd54a454104774c94bfd1cfe0492a063"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/TurnTicket.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "9e4f0fb3f7048cd29958fa0495fcb300ff14b6198dc367cdfef1b4bf232b2430"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/WorldCopies.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "cfc270640c4aed6b3cd3a896fb8fcfc6bbecfd78790d2731eec6742ec2a1ad74"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/bridge/BridgeSession.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "bfdcd22e0c8d9acc711189e832bcba4f7919b3b9d7e0602fc0cf90c266b1e466"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/CityActionQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "028d4de8a5f18bac3e33313531cb825d2ce6898d4cabdf4975aa5197cb4f05da"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ConstructionQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "9fc5b77ffd752fa31fefdf00ae556e33d63d41bf5cba01662096ebc6e8b0a255"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/DeploymentQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "dcfc8d8e5d71bbe185875e228def76ed13fa9c34b043efea70533dc4f6176549"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/DiplomacyQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "d35e50eaddd4e85cd60639f70206b04b50838278f06207585c463a909e0eb556"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "e5abd42dc00cc4fe53ffcc3bdf2ad68de96bebedd64d9499cc8aeedde1626610"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ProductionQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "ec32c5da2f8dfd37a8c7f1592c17e2f9be601d6af91e92c3500a1694986cd2a7"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SnapshotQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "a8eb7b5dd269519f5531abc6b388aee420b85b381cdcf9ac353717c9add8ba1b"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TerrainWireCode.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "b11410722a005c7def9bc32f84cade7496b06fd80a7d0b9692f138304b5c38ca"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TradeQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "23161fc4052b643b161e85a042019b2b8fb466c3ac8754c65f18cb51d941db24"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TransportQuery.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "71002e9bd7e7b1fcb1c7cba712932a57efb8ac9e2e938c8a707b12b17e8eb2d1"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/save/SessionSaves.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "796e7bf081098632c1634df39618a468ff9464e229c019cc8cc6b8dc885c69ea"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DataTable.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "f893904e4bf4ffa9e95952c4b31efb44a687e0a79ae46ed12f9662d130599383"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OverviewUi.java",
+      "commit": "2910997516cec8aad4d0564688f6090e944eddc8",
+      "sha256": "182d4d788368fe690f735f00ec74ea5c6f1a15b00682a4426ffd96dacbed7942"
+    }
+  ]
+}

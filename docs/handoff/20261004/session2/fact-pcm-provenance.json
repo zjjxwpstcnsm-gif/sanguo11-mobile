@@ -1,0 +1,9 @@
+{
+  "serial": "emulator-5582",
+  "emulatorPid": "82554",
+  "source": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/device-mixed-output16.wav",
+  "beginByte": 1184665600,
+  "endByte": 1186676736,
+  "pcmSha256": "737b591cb72089b2ccdbefff54532409415f998bfaea29d97833eca92682334a",
+  "scope": "Actual5582 mixed PCM interval; recorder unmodified; no ARM speaker evidence"
+}

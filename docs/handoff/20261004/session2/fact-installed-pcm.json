@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "scope": "Distinct original HUD33 waveforms in actual emulator PCM; no ARM speaker evidence",
+  "captureSha256": "01dff1a40cc971e6406425b9ff4b7adf038182001fc56358d33f1fa2f1921fe7",
+  "sourceSha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+  "uniqueOriginalSamples": 1,
+  "occurrences": 4,
+  "sampleRate": 44100,
+  "explainedEnergy": 0.9999992050609322,
+  "unionCorrelation": 0.9999996025303877,
+  "starts": [
+    {
+      "seconds": 0.07809523809523809,
+      "gain": 0.017732402299783186,
+      "candidateCorrelation": 0.9361077976186671
+    },
+    {
+      "seconds": 0.6476643990929705,
+      "gain": 0.017732870097506404,
+      "candidateCorrelation": 0.8748201112372724
+    },
+    {
+      "seconds": 3.825260770975057,
+      "gain": 0.017732285881811773,
+      "candidateCorrelation": 0.9772146693379112
+    },
+    {
+      "seconds": 7.332607709750567,
+      "gain": 0.017732285881811773,
+      "candidateCorrelation": 0.9999995656699843
+    }
+  ]
+}

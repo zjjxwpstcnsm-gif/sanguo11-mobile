@@ -1,0 +1,37 @@
+{
+  "serial": "emulator-5582",
+  "runner": "TechniqueFactsInstrumentation",
+  "arguments": [],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/fact-frozen-06/app-debug.apk": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/fact-frozen-06/app-debug-androidTest.apk": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08"
+  },
+  "backup": {
+    "files/auto.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "files/manual3.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    }
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": false,
+  "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+  "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+  "exit_code": 0,
+  "seconds": 24.46,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/media-facts.json",
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  }
+}
