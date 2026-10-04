@@ -16,14 +16,16 @@ import org.json.JSONObject;
 /** Actual packaged Android codec, frame-loop bytes and Save/RNG guards; not normal scene playback acceptance. */
 public final class MusicSourceInstrumentation extends Instrumentation {
     private int checks;
+    private Bundle arguments;
     private void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
-    @Override public void onCreate(Bundle args){super.onCreate(args);start();}
+    @Override public void onCreate(Bundle args){super.onCreate(args);arguments=args==null?new Bundle():args;start();}
     @Override public void onStart(){Bundle result=new Bundle();JSONArray tracks=new JSONArray();AtomicReference<GameSession> game=new AtomicReference<>();byte[][] saved={null};File directory=new File(getTargetContext().getCacheDir(),"music-source-probe-"+android.os.SystemClock.elapsedRealtimeNanos());
         try{
             check(directory.mkdir(),"fresh own media probe cache");
             runOnMainSync(()->{try{game.set(new GameSession(ScenarioCatalog.load("coalition-190",0,20260923L)));saved[0]=game.get().captureSave();}catch(Exception error){throw new IllegalStateException(error);}});
             PcMusicCatalog catalog=new PcMusicCatalog(getTargetContext());check(catalog.tracks().size()==30,"all30 original packaged sources");
             for(var track:catalog.tracks().values()){
+                if(arguments.containsKey("resource")&&Integer.parseInt(arguments.getString("resource"))!=track.resourceId)continue;
                 File pcm=new File(directory,track.resourceId+".pcm");PcVorbisDecoder.Result decoded=PcVorbisDecoder.decode(getTargetContext(),track,pcm,new AtomicBoolean());
                 check(decoded.frames==track.frames&&decoded.bytes==track.frames*track.channels*2,"actual Android original timeline "+track.resourceId);
                 long start=Math.max(0,track.frames-256);byte[] ending=new byte[1024],looping=new byte[1024];
@@ -37,9 +39,11 @@ public final class MusicSourceInstrumentation extends Instrumentation {
                 }
                 tracks.put(new JSONObject().put("resourceId",track.resourceId).put("musicId",track.musicId).put("oggSha256",track.oggSha256).put("referencePcmSha256",track.referencePcmSha256)
                     .put("actualPcmSha256",decoded.pcmSha256).put("referenceByteEqual",decoded.referenceByteEqual).put("frames",decoded.frames).put("bytes",decoded.bytes).put("codec",decoded.codec).put("decodeMillis",decoded.elapsedMillis).put("loopStart",track.loopStart).put("loopEnd",track.loopEnd));
+                if(Boolean.parseBoolean(arguments.getString("retainPcm","false")))Files.copy(pcm.toPath(),getTargetContext().getFilesDir().toPath().resolve("music-source-"+track.resourceId+".pcm"));
                 check(pcm.delete(),"release own temporary PCM cache "+track.resourceId);
             }
             runOnMainSync(()->{try{check(Arrays.equals(saved[0],game.get().captureSave()),"all decoder/cache/loop work preserves full authority Save/RNG");}catch(Exception error){throw new IllegalStateException(error);}});
+            check(tracks.length()==(arguments.containsKey("resource")?1:30),"requested original sources all processed");
             check(directory.delete(),"no own decode cache leak");
             result.putString("musicSource","MUSIC_SOURCE PASS checks="+checks+"; actual Android decoder and sample-loop reads; no scene/audio playback claim");
         }catch(Throwable error){result.putString("musicSource","FAIL "+android.util.Log.getStackTraceString(error));}
