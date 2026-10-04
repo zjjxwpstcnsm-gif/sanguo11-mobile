@@ -36,6 +36,8 @@ sourceForceNativeId/sourceCityNativeId由会话一批准的来源身份映射决
 
 原地域不是可见范围或附近六角半径：单位virtual3c指向+3c的signed-short坐标，按20×(x×200+y)读取格数据bits5..11，再经原4839f0的byte表映射到城市地域。150,150的远单位只要属于相同原地域也被计入。只读投影应提供每单位`sourceUnitNativeId/sourceOwnerNativeId/sourceRegionCityNativeId/troopsRaw`、源地域表身份与有方向的`relationBit/truceCounter`，或由规则所有者提供与这些事实严格对应的已提交原汇总；不由媒体按屏幕距离代替。fixture证明原算法，不证明当前Android地块或项目owner已具相同来源身份，缺失仍null。
 
+批十八补充587fb0的完整原分支：对于查询势力自己的单位，在其进入的原城市地域，对`4b5cc0(queriedForce,regionOwner)`为真直接成立；若原关系位`4811b0(queriedForce,regionOwner)`为真，须同地域存在`587b50`许可的另一关系组单位才成立。对于非查询势力单位，必须`4b5cc0(unitOwner,queriedForce)`为真，且它处在查询势力拥有的原城市地域。后者是反向关系，不能替换为查询势力对该单位owner的关系；同地域陪伴单位来自完整原单位列表，不由当前选中或屏幕可见单位猜。空列表为false。513项原代码fixture已验证，上述依赖身份/地域/有方向关系必须来自同已提交state；尚无普通场景输入时仍null。
+
 媒体按原5880e0顺序消费已证明谓词：587f00为真→9；否则587d70为真→城市数>=10选10、其余8；否则587fb0为真→城市数>=10选11、其余7；全部已知为假时seasonRaw0..3→3..6，其它原值→7。更早的未知分支必须等待/resync，不越过未知选后面的曲目。不要求core产生音频编号、不调用规则命令/RNG/earn/save。原repeat1、fade500ms、gain sentinel-1属于媒体来源策略，保留用户实际音量。
 
 当前GameSnapshot只含turn/player及BridgeEntity的项目owner等普通字段，缺少calendar和来源势力/城市身份，不能据此证明上述原音乐上下文。新增JSON应为app-owned加法字段，保持schema1和long精确整数；快照用于基线/resync而非重播音乐/语音事实。同一已建立scene/track不重开，restore或新局取消旧scene；最终需正常新局/多回合/读档实测，解码和adapter通过不能代替普通绑定。
