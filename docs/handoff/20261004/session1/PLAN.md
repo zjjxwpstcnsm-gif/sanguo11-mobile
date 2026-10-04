@@ -53,3 +53,13 @@ Batch06补充确切测试所有权：game-runtime/src/test/java/game/sanguo/core
 兼容闭合追加 core/BasicCityPolicy.java 和 CityActionPlan.java。显式规则：无新策略标记、且无已存v34基础/成长策略的旧31–33档保留旧巡察公式与10AP；已存v34–37仍为20AP。新建但未启用基础策略的作者世界使用独立保存标记以保留20AP；解码旧档不补标记。新游戏实际数据导入和旧档历史策略证据分别验收，不更改任何golden。
 
 验证脚本追加 scripts/test-unity-u01.sh，仅把已存在的 game-runtime/src/test/java/game/sanguo/core/BridgeFactsFixture.java 纳入实际Java编译输入；不改Unity文件、原fixture、bridge协议或生产序列化。新增 BasicCityPolicyTest.java 位于game-runtime/src/test/java/game/sanguo/core。
+
+## Batch 07：实际来源开局转换
+
+确切所有权：tools/content/inspect_pc_opening_references.py、build_pc_scenario_catalog.py及相应test_pc_opening_references.py；core/PcScenarioCatalog.java、PcScenarioOpening.java、PcScenarioPeople.java（源身份/原状态保存）、core/resources/pc-scenarios/*；game-runtime/.../PcScenarioOpeningTest.java。依赖修改的确切前镜像列于batch07-before.json；MainActivity仅新局菜单/配置路径，ScenarioFactionPicker仅来源/可选势力文字与配置。资料统一沿用PcOfficerSources，未解字形保留source-only身份，不声称全670已严格映射。外部覆盖仍unknown，仅给安装候选来源明确开局选项；不能标官方完整。禁止修改任何媒体或共同manifest。
+
+Batch07追加确切来源初始化入口：MerchantMarket仅initializeSource（保存来源行情，初始不重抽）；Governance仅明确sourceFrame的原爵位保存/读取/继承边界，GovernmentSave仅有原保存证据的初始化任命入口；修改前SHA已追加batch07-before.json。不会降低旧世界校验、改变旧策略或公共媒体。
+
+Batch07追加OfficerSnapshot.SourceInfo只读原字段/身份覆盖信息；保持已有nativeId/sourceVariant/officerId连接字段，四个source-only字形身份明确canonicalIdentityUnmapped。MainActivity只武将文字详情追加该DTO内容，所有肖像调用不变。
+
+实际来源APK验收确切工具：tools/content/android/PcScenarioOpeningInstrumentation.java、build_pc_scenario_ui_probe.py、verify_pc_source_opening_ui.py。独立测试包只引用本批生产类；真实新局菜单/武将查阅/巡察/换旬/保存读取，保留所有设备文件，未改既有公共runner或媒体。

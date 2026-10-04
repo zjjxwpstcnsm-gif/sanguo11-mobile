@@ -1,0 +1,207 @@
+{
+  "parentCommit": "0a64643e74171eb55e63798c6e7d9f2e32898045",
+  "implementationBase": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "changes": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "691665ef48b7b21decf4267d668105d12d7edc01d32cf7532289d4148169c1df",
+      "afterSha256": "30f50ddf15634c140ef5a85de449fe3a3c0fc0c8bb8ec81a9f87f778f154425a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "beforeSha256": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902",
+      "afterSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Governance.java",
+      "beforeSha256": "571431b4f86ba2091938ed97937eb326da73ad4036187cdb12e75eaf2a4a0532",
+      "afterSha256": "0852b0d3b255584c39dbbf5b880c4fd87b1489bfdbff2cd3b267aef34e64e5b0"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/GovernmentSave.java",
+      "beforeSha256": "b6c21ebb079fd9ffe4bd16f132922d79c7d93bdabd86aca31b61025602535023",
+      "afterSha256": "fa59e9bd7106493129862c2ea1006c3e3d43d309b341660333efefbe852d5118"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "beforeSha256": "c6287ab9db4c92604cdc2098d5cd29462ef59b7a5480814d7a8238b2b8db4732",
+      "afterSha256": "3fc1ffac8df3e6ec28c3982977760114b9b29f78f324db393b9e49934ae0d2b9"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MerchantMarket.java",
+      "beforeSha256": "d67380f0675abc48def74d8502d995d47119b983bbd20b785c2746e40dc48d1d",
+      "afterSha256": "49ec34601f36cbc9be6d782b9ab3eb6b3615fc51c7a3968e294c7a38aee9defc"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerAbilities.java",
+      "beforeSha256": "dde0c762902df6e99c352d945d9fb8a27d7ecdbbe754455bddd31a16fbc33934",
+      "afterSha256": "d0fa8fe819be907ea5a20f88657e5d6fa8f7ecf5c20343bacdc822744e1aed4b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+      "beforeSha256": null,
+      "afterSha256": "4e6a0d3d4a5ce058741c834578c3bf5fc710cad13356515da1760661877932f6"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": null,
+      "afterSha256": "8b0cd5d3976648bcc1dd6a8fdf8d588094d17e6ec90b67590bbb78e56339a143"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+      "beforeSha256": null,
+      "afterSha256": "e97e891a3df2de2758abe6c847968af9428e10ef26025cfe658af331d494718f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioCatalog.java",
+      "beforeSha256": "fc7a00c0ca40fe22bba09d7b3c8dad824a87660bbd6d8ea6c6f1d634a0ec3290",
+      "afterSha256": "495d05c25c8d874ba26ca7ea88145592e01687b436e3d571cdeb6acf5efcd443"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "beforeSha256": "498cf2f46f98766a62373819f4bc2862ed9ed6bc63f241244be8e80d0446199d",
+      "afterSha256": "305d99807a3ba7c50663edbc8ce19be90e90c7a71345d0f5502fc77b369f9237"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/catalog.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "134f2553ab3e61e5eb8239db2633ad7721c7284acf08380a0af1706c3fa768a3"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/index.txt",
+      "beforeSha256": null,
+      "afterSha256": "fa609060dd110d8698d544aa74726976fbd0255795bf026917eb7a6b6122428e"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "2061f17815ab0e94cad877b4444e25af9176a0a38559fc6e768c62a61c067af9"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen001-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "d78f238579270fdf8f90600f9914b43d88626752c0b9b5bd42001ff86ec06a79"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen002-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "751e24e5c5dcf68c00dc497fa639bfa9f8987cabace3b81b163e5796f7f78c96"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen003-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "892c8b799d3a61bc215091e8d34d7e3ceadeed1729d84e58a923ffea250bf05f"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen004-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "3132b668aa087a21e20f4280ca0dac20825b3b3e7e58b2fc16794499d75529cc"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen005-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "4237748b36bdad0ba6132d58ef9a3b131aada36293d2bfa2d4b25e02c85e3a5e"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen006-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "1da9cb0170541423dfce72fb86688384911031d5a1d5d7499fe1a4b1ae5910a2"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen007-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "8c9f65c1a0279b7de70c5ca63f557e8511b6f0518f86e1088cd8e70cd831115c"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen008-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "78fb767d93fd335ece58f0d582a25f241f37d1c0196ac92ddf2569c736a97d6b"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen009-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "d052bb3f02257c29b731ff87557741404f45613aa16a6b0730a1b70cdaa1aef7"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen010-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "d4d1b4f4f787986fb399b99622ae8cf7ca46e9d015687329dcba271e0c1af286"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen011-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "2c94e7635cbf69c60d6580e236251f502b4d5da39bf0bddc48e01054e71368cc"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen012-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "1a85f32eb502443c5b8cc8f835c20e9e5a8a334a1fa6ca9dc812fabb241a132a"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen013-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "22f4fa650d19c08aebb427b7c0ed4b0bdf76ea22bd6d876364878a51e1f718c2"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "5ba781df3319db4d61a471d8557dd9f544360ebf97fb692d80625c5c19b3c7c7"
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen015-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "915a58f24633ec601ba370bd35e53ff30a825734b4290e46626b98f1e2930606"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "beforeSha256": "d4f738870a853687c342c4b98293c4d14dbc993f89a5f30a951fb887328c2458",
+      "afterSha256": "ad64e60ac4e0ca6231c751271215be9aca4a97186b6b232e1c757583861173c3"
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "beforeSha256": "e3284e0bbbe831a6569b2719cfabd93d8f11cc38b77f3ea21837c96b77fa2b53",
+      "afterSha256": "594245a1115860c1ed9376a96d3ea34570bb7d90c7b6ff5592aac5a9301a5044"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "beforeSha256": "0e32a4337491a4f96129a584d8c84bda5932d0fbc6c841cc9a947c1e2737acb7",
+      "afterSha256": "5ea9e5dd328ff7c93a2a74a54ff3d99e64d8db25b4135670a5fcb37e85cc2431"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcScenarioOpeningTest.java",
+      "beforeSha256": null,
+      "afterSha256": "d52a8cdf306503d13ff29be33ef584be29d389c7b265dee3bb9422cf1ba1b326"
+    },
+    {
+      "path": "tools/content/android/PcScenarioOpeningInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "055b21df631065359afc5017abd9619aac4f2b5418eb7ad20ded39be71fb9d4e"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_catalog.py",
+      "beforeSha256": null,
+      "afterSha256": "8ab50107c71ce8b304e6d95ccb41101f8768ff42efc84c159b544594f68d1f32"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_ui_probe.py",
+      "beforeSha256": null,
+      "afterSha256": "1b84df5b47507a084f02d17c2dca1080471f249ee18edd54086f9dcb825e7e5e"
+    },
+    {
+      "path": "tools/content/inspect_pc_opening_references.py",
+      "beforeSha256": null,
+      "afterSha256": "2f08f79c8faff545dc6021f859149cb850d2a3ca08e83ed93f1d587a28e6d3cb"
+    },
+    {
+      "path": "tools/content/test_pc_opening_references.py",
+      "beforeSha256": null,
+      "afterSha256": "1877b62b66bb3451f495cbe3a684397730d94e1f966bbcf71b9111b92e6e01f2"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "beforeSha256": null,
+      "afterSha256": "b91e7f769362214d08d6e9afbb2ee2107f0c7eeb7b5231d05a3b18ce03af059e"
+    }
+  ],
+  "goalComplete": false
+}

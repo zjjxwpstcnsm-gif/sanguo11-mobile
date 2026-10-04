@@ -1,0 +1,29 @@
+PC SOURCE OPENING PASS 27 checks
+PASS cold process startup restores saved source metadata
+PASS cold startup retains every captured source-flow byte and RNG
+PASS installed DTO includes complete saved roster
+PASS three actual factions available
+PASS native accessibility text input accepted 衛瓘
+PASS actual search includes saved name 衛瓘
+PASS search preserves stable target ID 10008
+PASS actual officer row visible
+PASS all five current values match independent saved world 10008
+PASS base and XP retain separate saved values 10008
+PASS merit loyalty and location use same DTO
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10008
+PASS native accessibility text input accepted 郭馬
+PASS actual search includes saved name 郭馬
+PASS search preserves stable target ID 10072
+PASS actual officer row visible
+PASS all five current values match independent saved world 10072
+PASS base and XP retain separate saved values 10072
+PASS merit loyalty and location use same DTO
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10072
+PASS three factions inspected through real rows and dialogs
+

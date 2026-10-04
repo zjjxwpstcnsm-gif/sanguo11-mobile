@@ -24,6 +24,12 @@ public final class MerchantMarket {
         for(World.City c:cities)if(c.kind==World.SiteKind.CITY)c.merchantRate=PcMerchantRules.initialRate(w.startMonth,c.merchantRate,rng);
         lastMonth=w.turn/3;enabled=true;
     }
+    /** Installed source read-boundary rates: complete start price recalculation remains an explicit gap. */
+    void initializeSource(){
+        if(!w.pcSourceFrame||enabled||!w.officerAbilities.enabled())throw new IllegalStateException("来源行情只能初始化明确来源新局");
+        for(World.City c:w.cities)if(c.kind==World.SiteKind.CITY&&(c.merchantRate<0||c.merchantRate>255))throw new IllegalArgumentException("来源行情越界");
+        lastMonth=w.turn/3;enabled=true;
+    }
     private List<World.City> ordered(){List<World.City> cities=new ArrayList<>(w.cities);cities.sort(Comparator.comparingInt(c->c.id));return cities;}
     /** Original58f535..58f582 clears harvest in August, before monthly prices.
      * No disaster lifetime is invented; plague/locust read the saved event state. */

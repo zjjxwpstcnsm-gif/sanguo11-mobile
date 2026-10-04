@@ -37,3 +37,7 @@ Session 1 负责身份与文字/数值真值，Session 2 负责头像像素、�
 ## Batch 06 显式来源保存入口
 
 PcScenarioIdentity.Source 的 sourceVariant/path/SHA/SharedSHA/date/unknown 固定保存在新来源存档38；只有明确 PC 来源工厂与38头启用47势力容量。旧31–37同名opaque扩展不激活、不目录追填。普通新工程局仍原保存版本；媒体DTO读取原已存来源连接，头像接口与manifest不变。BasicCityPolicy仅记录新未管理作者局native20策略；旧31–33无标记按历史10AP/巡察规则续行，34–37保持原已存模型。此入口不是16来源开局完成。
+
+## Batch07 来源世界及原字形身份
+
+新增正常PC来源新局候选：每份16独立源的一份才建立世界。SourceInfo新增identityStatus（canonical-identity-verified/source-only-gaiji）和originalInformation；既有officerId/nativeId/sourceVariant保持稳定。source-only四身份以原姓名字节/生年/性别SHA分配，不能当标准人物映射：156234/844857/598828/850922。逐人原记录与未绑定引用、NPC/模板/古代槽保存在PcScenarioPeople独立metadata；媒体可按此三元组读，不并改人物媒体manifest。本批未改头像调用/像素/年龄选择或桥序列化。

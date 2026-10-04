@@ -198,3 +198,11 @@ tasks.register('verifyBasicCityPolicy', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyBasicCityPolicy' }
 tasks.named('test') { dependsOn 'verifyBasicCityPolicy' }
+
+tasks.register("verifyPcScenarioOpening", JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "game.sanguo.core.PcScenarioOpeningTest"
+}
+
+tasks.named('check') { dependsOn 'verifyPcScenarioOpening' }

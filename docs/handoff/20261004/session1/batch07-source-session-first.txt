@@ -1,0 +1,73 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources UP-TO-DATE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :game-api:compileJava UP-TO-DATE
+> Task :game-api:processResources NO-SOURCE
+> Task :game-api:classes UP-TO-DATE
+> Task :game-api:jar UP-TO-DATE
+> Task :game-runtime:compileJava UP-TO-DATE
+> Task :game-runtime:processResources NO-SOURCE
+> Task :game-runtime:classes UP-TO-DATE
+> Task :game-runtime:compileTestJava
+> Task :game-runtime:processTestResources UP-TO-DATE
+> Task :game-runtime:testClasses
+
+> Task :game-runtime:verifyPcScenarioOpening
+PASS source opening Media/scenario/Scen000.s11 player=2 alive=8 source records=670 strict=666 save=2057688; full events and activation still unknown
+PASS source opening Media/scenario/SCEN001.S11 player=0 alive=19 source records=670 strict=666 save=2073377; full events and activation still unknown
+PASS source opening Media/scenario/SCEN002.S11 player=0 alive=19 source records=670 strict=666 save=2074357; full events and activation still unknown
+PASS source opening Media/scenario/SCEN003.S11 player=0 alive=10 source records=670 strict=666 save=2063471; full events and activation still unknown
+PASS source opening Media/scenario/SCEN004.S11 player=0 alive=12 source records=670 strict=666 save=2066011; full events and activation still unknown
+PASS source opening Media/scenario/SCEN005.S11 player=0 alive=7 source records=670 strict=666 save=2059137; full events and activation still unknown
+PASS source opening Media/scenario/SCEN006.S11 player=0 alive=5 source records=670 strict=666 save=2057355; full events and activation still unknown
+PASS source opening Media/scenario/SCEN007.S11 player=0 alive=37 source records=670 strict=666 save=2098203; full events and activation still unknown
+PASS source opening Media/scenario/Scen008.s11 player=0 alive=14 source records=670 strict=666 save=2068450; full events and activation still unknown
+PASS source opening Media/scenario/Scen009.s11 player=0 alive=10 source records=670 strict=666 save=2063370; full events and activation still unknown
+PASS source opening Media/scenario/Scen010.s11 player=0 alive=5 source records=670 strict=666 save=2056659; full events and activation still unknown
+PASS source opening Media/scenario/Scen011.s11 player=0 alive=22 source records=670 strict=666 save=2076637; full events and activation still unknown
+PASS source opening Media/scenario/Scen012.s11 player=2 alive=15 source records=670 strict=666 save=2068934; full events and activation still unknown
+PASS source opening Media/scenario/Scen013.s11 player=0 alive=22 source records=670 strict=666 save=2075958; full events and activation still unknown
+PASS source opening Media/scenario/Scen014.S11 player=0 alive=37 source records=670 strict=666 save=2096975; full events and activation still unknown
+PASS source opening Media/scenario/Scen015.s11 player=2 alive=2 source records=670 strict=666 save=2049423; full events and activation still unknown
+PASS PcScenarioOpeningTest 171856 source record, formal patrol, three full turns and save/RNG/session reopening checks; actual APK flows remain separate
+
+> Task :game-runtime:verifyPcScenarioFrame
+PASS PC frame/session capacity 24 checks; fixture only, source opening/APK unverified
+
+> Task :game-runtime:verifyBasicCityPolicy
+PASS BasicCityPolicyTest 15 historical33/native37/full-save policy checks
+
+> Task :game-runtime:verifyOfficerLegacy
+PASS officer legacy fixture=save-v32-central-native.sg11
+PASS officer legacy fixture=pc-officer-legacy-am.sg11
+PASS officer legacy fixture=pre-base-construction-v33.sg11
+PASS officer legacy fixture=pre-merchant-r25-v34.sg11
+PASS officer legacy fixture=legacy-market-v35/host/coalition-190.sg11
+PASS officer legacy fixture=legacy-market-v35/art/coalition-190.sg11
+PASS officer legacy fixture=legacy-production-v36/coalition-190-host.sg11
+PASS officer legacy fixture=legacy-production-v36/coalition-190-art.sg11
+PASS OfficerQueryLegacy checks=33976 actual v32-v36 fixtures, unchanged query and full-turn continuation; v31 fixture unavailable
+
+> Task :core:compileTestJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :core:processTestResources UP-TO-DATE
+> Task :core:testClasses
+
+> Task :core:verifyCityActionPlan
+PASS CityActionPlanTest checks=1899 searchOutcomes=[GOLD, OFFICER, NOTHING]
+
+[Incubating] Problems report is available at: file:///Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 54s
+15 actionable tasks: 7 executed, 8 up-to-date

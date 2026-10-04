@@ -1,0 +1,40 @@
+PC SOURCE OPENING PASS 38 checks
+PASS cold process startup restores saved source metadata
+PASS cold startup retains every captured source-flow byte and RNG
+PASS installed DTO includes complete saved roster
+PASS three actual factions available
+PASS native accessibility text input accepted 伊籍
+PASS actual search includes saved name 伊籍
+PASS search preserves stable target ID 10002
+PASS actual officer row visible
+PASS all five current values match independent saved world 10002
+PASS base and XP retain separate saved values 10002
+PASS merit loyalty and location use same DTO
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10002
+PASS native accessibility text input accepted 于禁
+PASS actual search includes saved name 于禁
+PASS search preserves stable target ID 10006
+PASS actual officer row visible
+PASS all five current values match independent saved world 10006
+PASS base and XP retain separate saved values 10006
+PASS merit loyalty and location use same DTO
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10006
+PASS native accessibility text input accepted 閻行
+PASS actual search includes saved name 閻行
+PASS search preserves stable target ID 10014
+PASS actual officer row visible
+PASS all five current values match independent saved world 10014
+PASS base and XP retain separate saved values 10014
+PASS merit loyalty and location use same DTO
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10014
+PASS three factions inspected through real rows and dialogs
+

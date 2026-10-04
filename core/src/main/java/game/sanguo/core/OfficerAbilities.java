@@ -45,7 +45,7 @@ public final class OfficerAbilities {
         Lifecycle.Life life=w.life.life(o.id);int birth=life==null?p.sourceBirth:life.birth;
         int age=PcOfficerAbilityRules.age(w.startYear,w.startMonth,1,w.turn,birth,fixedAge);
         Government.Rank rank=w.government.office(o.id);World.Officer spouse=w.officer(w.relations.spouse(o.id));
-        boolean spouseBonus=spouse!=null&&w.life.present(spouse.id)&&(w.skills.has(o,Skill.NEIZHU)||w.skills.has(spouse,Skill.NEIZHU));
+        boolean spouseBonus=spouse!=null&&w.life.abilityPresent(spouse.id)&&(w.skills.has(o,Skill.NEIZHU)||w.skills.has(spouse,Skill.NEIZHU));
         // No curve is invented for an authored/unknown person or unknown birth.
         int curve=birth==0?-1:p.growth[stat];
         return PcOfficerAbilityRules.current(p.base[stat],curve,age,experience,stat,w.contests.injury(o.id),rank==null?-1:rank.abilityStat,rank==null?0:rank.abilityBonus,spouseBonus,p.special,growthDisabled());

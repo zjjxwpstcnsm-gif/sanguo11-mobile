@@ -1,0 +1,587 @@
+[
+  {
+    "native": 44,
+    "id": 20044,
+    "name": "潼關",
+    "source": [
+      68,
+      78
+    ],
+    "priorMap": [
+      61,
+      77
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 45,
+    "id": 20045,
+    "name": "函谷關",
+    "source": [
+      68,
+      86
+    ],
+    "priorMap": [
+      68,
+      78
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 46,
+    "id": 20046,
+    "name": "武關",
+    "source": [
+      61,
+      77
+    ],
+    "priorMap": [
+      68,
+      86
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 47,
+    "id": 20047,
+    "name": "陽平關",
+    "source": [
+      27,
+      83
+    ],
+    "priorMap": [
+      26,
+      84
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 48,
+    "id": 20048,
+    "name": "劍閣",
+    "source": [
+      23,
+      102
+    ],
+    "priorMap": [
+      14,
+      97
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 49,
+    "id": 20049,
+    "name": "葭萌關",
+    "source": [
+      8,
+      125
+    ],
+    "priorMap": [
+      23,
+      102
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 50,
+    "id": 20050,
+    "name": "涪水關",
+    "source": [
+      14,
+      97
+    ],
+    "priorMap": [
+      11,
+      119
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 51,
+    "id": 20051,
+    "name": "綿竹關",
+    "source": [
+      11,
+      119
+    ],
+    "priorMap": [
+      8,
+      125
+    ],
+    "priorTerrain": "R",
+    "sourceTerrain": "R"
+  },
+  {
+    "native": 53,
+    "id": 20053,
+    "name": "高唐港",
+    "source": [
+      79,
+      155
+    ],
+    "priorMap": [
+      134,
+      57
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 54,
+    "id": 20054,
+    "name": "西河港",
+    "source": [
+      134,
+      57
+    ],
+    "priorMap": [
+      63,
+      49
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 55,
+    "id": 20055,
+    "name": "白馬港",
+    "source": [
+      59,
+      55
+    ],
+    "priorMap": [
+      110,
+      63
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 56,
+    "id": 20056,
+    "name": "昌陽港",
+    "source": [
+      110,
+      63
+    ],
+    "priorMap": [
+      176,
+      48
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 57,
+    "id": 20057,
+    "name": "臨濟港",
+    "source": [
+      65,
+      65
+    ],
+    "priorMap": [
+      145,
+      54
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 58,
+    "id": 20058,
+    "name": "海陵港",
+    "source": [
+      145,
+      54
+    ],
+    "priorMap": [
+      166,
+      78
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 59,
+    "id": 20059,
+    "name": "江都港",
+    "source": [
+      176,
+      48
+    ],
+    "priorMap": [
+      173,
+      87
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 60,
+    "id": 20060,
+    "name": "濡須港",
+    "source": [
+      123,
+      66
+    ],
+    "priorMap": [
+      148,
+      110
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 61,
+    "id": 20061,
+    "name": "頓丘港",
+    "source": [
+      166,
+      78
+    ],
+    "priorMap": [
+      123,
+      66
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 63,
+    "id": 20063,
+    "name": "孟津港",
+    "source": [
+      108,
+      123
+    ],
+    "priorMap": [
+      79,
+      70
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 64,
+    "id": 20064,
+    "name": "解縣港",
+    "source": [
+      79,
+      70
+    ],
+    "priorMap": [
+      65,
+      65
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 65,
+    "id": 20065,
+    "name": "新豐港",
+    "source": [
+      173,
+      87
+    ],
+    "priorMap": [
+      64,
+      74
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 66,
+    "id": 20066,
+    "name": "夏陽港",
+    "source": [
+      148,
+      110
+    ],
+    "priorMap": [
+      59,
+      55
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 67,
+    "id": 20067,
+    "name": "房陵港",
+    "source": [
+      143,
+      122
+    ],
+    "priorMap": [
+      59,
+      105
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 68,
+    "id": 20068,
+    "name": "蕪湖港",
+    "source": [
+      81,
+      109
+    ],
+    "priorMap": [
+      163,
+      109
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 69,
+    "id": 20069,
+    "name": "虎林港",
+    "source": [
+      59,
+      105
+    ],
+    "priorMap": [
+      161,
+      122
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 70,
+    "id": 20070,
+    "name": "曲阿港",
+    "source": [
+      64,
+      74
+    ],
+    "priorMap": [
+      177,
+      101
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 71,
+    "id": 20071,
+    "name": "句章港",
+    "source": [
+      63,
+      49
+    ],
+    "priorMap": [
+      187,
+      118
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 72,
+    "id": 20072,
+    "name": "皖口港",
+    "source": [
+      163,
+      109
+    ],
+    "priorMap": [
+      143,
+      122
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 74,
+    "id": 20074,
+    "name": "陸口港",
+    "source": [
+      187,
+      118
+    ],
+    "priorMap": [
+      116,
+      137
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 75,
+    "id": 20075,
+    "name": "鄱陽港",
+    "source": [
+      177,
+      101
+    ],
+    "priorMap": [
+      146,
+      142
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 76,
+    "id": 20076,
+    "name": "盧陵港",
+    "source": [
+      116,
+      137
+    ],
+    "priorMap": [
+      138,
+      167
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 77,
+    "id": 20077,
+    "name": "夏口港",
+    "source": [
+      161,
+      122
+    ],
+    "priorMap": [
+      108,
+      123
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 78,
+    "id": 20078,
+    "name": "湖陽港",
+    "source": [
+      146,
+      142
+    ],
+    "priorMap": [
+      81,
+      109
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 79,
+    "id": 20079,
+    "name": "中廬港",
+    "source": [
+      74,
+      146
+    ],
+    "priorMap": [
+      70,
+      110
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 81,
+    "id": 20081,
+    "name": "漢津港",
+    "source": [
+      73,
+      137
+    ],
+    "priorMap": [
+      89,
+      125
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 82,
+    "id": 20082,
+    "name": "江津港",
+    "source": [
+      138,
+      167
+    ],
+    "priorMap": [
+      73,
+      137
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 83,
+    "id": 20083,
+    "name": "羅縣港",
+    "source": [
+      54,
+      130
+    ],
+    "priorMap": [
+      100,
+      148
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 84,
+    "id": 20084,
+    "name": "洞庭港",
+    "source": [
+      70,
+      110
+    ],
+    "priorMap": [
+      79,
+      155
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 85,
+    "id": 20085,
+    "name": "公安港",
+    "source": [
+      100,
+      148
+    ],
+    "priorMap": [
+      74,
+      146
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  },
+  {
+    "native": 86,
+    "id": 20086,
+    "name": "巫縣港",
+    "source": [
+      89,
+      125
+    ],
+    "priorMap": [
+      54,
+      130
+    ],
+    "priorTerrain": "P",
+    "sourceTerrain": "P"
+  }
+]

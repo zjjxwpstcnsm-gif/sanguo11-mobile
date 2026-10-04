@@ -8,8 +8,14 @@ public final class OfficerSnapshot {
         public final int nativeId;
         public final String sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha;
         public final List<String> unknown;
+        public final String identityStatus,originalInformation;
         public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
                           String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown){
+            this(nativeId,sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha,unknown,"canonical-identity-verified","");
+        }
+        public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
+                          String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown,String identityStatus,String originalInformation){
+            this.identityStatus=identityStatus;this.originalInformation=originalInformation;
             this.nativeId=nativeId;this.sourceVariant=sourceVariant;this.sourcePath=sourcePath;this.sourceSha=sourceSha;this.recordSha=recordSha;
             this.courtesy=courtesy;this.courtesyRaw=courtesyRaw;this.biography=biography;this.biographyResourceSha=biographyResourceSha;
             this.biographyRenderedSha=biographyRenderedSha;this.unknown=List.copyOf(unknown);

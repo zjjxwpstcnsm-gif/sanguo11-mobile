@@ -1096,6 +1096,7 @@ public final class MainActivity extends Activity {
         }
         else{
             stats+="\n字："+(facts.source.courtesy.isEmpty()?(facts.source.courtesyRaw.isEmpty()?"原资源未记":"未解码（"+facts.source.courtesyRaw+"）"):facts.source.courtesy);
+            if(!facts.source.originalInformation.isEmpty())stats+="\n\n"+facts.source.originalInformation;
             stats+="\n原传记：\n"+(facts.source.biography.isEmpty()?"来源传记绑定尚未核实":facts.source.biography);
             stats+="\n资料来源："+facts.source.sourcePath+" · 原编号 "+facts.source.nativeId;
             if(facts.source.unknown.contains("activeResourcePriority"))stats+="\n资源生效优先级尚未核实";
@@ -1220,6 +1221,12 @@ public final class MainActivity extends Activity {
                 option.setAllCaps(false);option.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);option.setContentDescription("选择剧本 "+scenario.name);
                 option.setTextSize(14);list.addView(option,new LinearLayout.LayoutParams(-1,dp(64)));
             }
+            TextView sourceHeading=text("本地 PC 安装来源候选 · 完整事件未核实",13,muted);sourceHeading.setPadding(dp(8),dp(12),dp(8),dp(8));list.addView(sourceHeading);
+            for(PcScenarioCatalog.Source source:PcScenarioCatalog.all()){
+                String label=source.label()+"\n87 据点 · 666 严格身份 + 4 原字形缺口 · "+source.playerForces()+" 候选势力";
+                Button option=button(label,v->{if(holder[0]!=null)holder[0].dismiss();chooseScenarioTemplate(source.identity.scenarioId);});
+                option.setAllCaps(false);option.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);option.setContentDescription("选择PC来源剧本 "+source.identity.path);option.setTextSize(13);list.addView(option,new LinearLayout.LayoutParams(-1,dp(84)));
+            }
             int rows=Math.min(5,Math.max(3,scenarios.size()));
     int target=dp(rows*64+16);
     int cap=Math.max(dp(180),getResources().getDisplayMetrics().heightPixels*58/100);
@@ -1229,6 +1236,7 @@ public final class MainActivity extends Activity {
         }catch(IOException e){showError("剧本读取失败："+e.getMessage());}
     }
     private void chooseScenarioTemplate(String id){
+        if(id.startsWith("pc-scen")){chooseScenarioTemplate(id,null);return;}
         uiReads.run("正在读取地图库…",()->new MapLibrary(this).entries(),entries->{
             if(entries.isEmpty()){chooseScenarioTemplate(id,null);return;}
             String[] labels=new String[entries.size()+1];labels[0]="原版全国地图（始终保留）";
@@ -1241,7 +1249,7 @@ public final class MainActivity extends Activity {
     }
     private void chooseScenarioTemplate(String id,MapPatch pinned){
         uiReads.run("正在读取剧本…",()->{
-            World template=pinned==null?ScenarioCatalog.load(id,0):CustomMaps.preview(pinned,id);
+            World template=id.startsWith("pc-scen")?PcScenarioCatalog.preview(id):pinned==null?ScenarioCatalog.load(id,0):CustomMaps.preview(pinned,id);
             if(pinned!=null)for(CustomMaps.Issue issue:CustomMaps.diagnose(template,pinned,id))if(issue.blocking())throw new IOException(issue.message());
             return template;
         },template->{
@@ -1261,7 +1269,7 @@ public final class MainActivity extends Activity {
         StringBuilder b=new StringBuilder(w.date()+" · "+w.width+"×"+w.height+"格\n");int people=0;for(World.Officer o:w.officers)if(o.owner==side)people++;
         if(!w.customMapId.isEmpty())b.append("自定义地图：").append(w.customMapName).append(" r").append(w.customMapRevision).append("（版本随存档固定）\n");
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
-        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料；地图、领地与资源为历史重建或定制。群英类跨时代配置不按生卒年退场。":"\n重建或定制开局；官方完整资源、事件与归属仍待核验。");return b.toString();
+        b.append(w.dataSource.equals(PcScenarioIdentity.DATA_SOURCE)?"\n来自所选安装文件，开局记录随保存固定。官方/MOD 生效身份、完整事件、未登条件和部分规则仍未核实；不是完整官方复刻。":w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料；地图、领地与资源为历史重建或定制。群英类跨时代配置不按生卒年退场。":"\n重建或定制开局；官方完整资源、事件与归属仍待核验。");return b.toString();
     }
     private void startScenario(String id,int player){startScenario(id,player,null);}
     private void startScenario(String id,int player,MapPatch pinned){

@@ -1,0 +1,14 @@
+{
+  "completeOpening": false,
+  "limits": [
+    "Installed source candidate, not official/active-priority certification",
+    "Direct493400 postload, not complete normal PC start",
+    "Shared Chinese NLS sort/menu settings/opening events remain unknown",
+    "Only supplied installation exists; external Documents/Expansion coverage unknown",
+    "No PC installation writes or Wine; no Android import performed by this reader"
+  ],
+  "packedSha256": "42475ecca2b130a177a4e19260ac446620b4397dc53574699895a044824e697e",
+  "personSlots": 13600,
+  "sites": 1392,
+  "sourceCount": 16
+}
