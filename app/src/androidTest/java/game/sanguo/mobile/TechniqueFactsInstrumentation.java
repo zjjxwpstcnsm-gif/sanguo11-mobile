@@ -22,6 +22,7 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
     private TextView badge;
     private GameApi.Subscription subscription;
     private final List<GameEvent> observed=new ArrayList<>();
+    private String shell(String command)throws Exception{try(var fd=getUiAutomation().executeShellCommand(command);var in=new java.io.FileInputStream(fd.getFileDescriptor());var out=new java.io.ByteArrayOutputStream()){byte[] buffer=new byte[4096];for(int n;(n=in.read(buffer))!=-1;)out.write(buffer,0,n);return new String(out.toByteArray(),java.nio.charset.StandardCharsets.UTF_8).trim();}}
     private byte[] capture()throws Exception{byte[][] value={null};runOnMainSync(()->{try{value[0]=((GameApplication)activity.getApplication()).host().capture();}catch(Exception e){throw new RuntimeException(e);}});return value[0];}
     private int shown(){int[] value={0};runOnMainSync(()->value[0]=Integer.parseInt(badge.getText().toString().split("\n")[1]));return value[0];}
     private boolean heard(String id)throws Exception{boolean[] value={false};runOnMainSync(()->{try{value[0]=((Set<?>)field(sounds,"heard")).contains(id);}catch(Exception e){throw new RuntimeException(e);}});return value[0];}
@@ -29,12 +30,15 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         int points=w.campaign.points(w.player);var gain=w.editor.apply(w.editor.faction(w.player,w.actionPoints[w.player],points+20));
         return gain.ok?w.editor.apply(w.editor.faction(w.player,w.actionPoints[w.player],points)):gain;
     }).ok,"actual normal Activity command commits two opposite writes"));}
-    @Override public void onStart(){Bundle result=new Bundle();try{
+    @Override public void onStart(){Bundle result=new Bundle();String originalScale=null;try{
+        originalScale=shell("settings get global animator_duration_scale");
+        shell("settings put global animator_duration_scale 1");
         World seed=ScenarioCatalog.load("heroes-250",0);check(seed.editor.apply(seed.editor.faction(seed.player,60,2000)).ok,"known source fixture points");
         try(var out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(seed));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
         host=(MapHost)field(activity,"map");ready();hud=(TechniquePointsHud)field(activity,"techniqueHud");sounds=((GameApplication)activity.getApplication()).sounds();badge=(TextView)field(activity,"actionPointsBadge");
-        check(UiMotion.enabled(),"distinct animated fact starts require current enabled system motion; settings unchanged");
+        long motionDeadline=SystemClock.uptimeMillis()+10000;while(!UiMotion.enabled()&&SystemClock.uptimeMillis()<motionDeadline)SystemClock.sleep(25);
+        check(UiMotion.enabled(),"actual motion setting enables distinct fact starts for PCM proof");
         long deadline=SystemClock.uptimeMillis()+10000;while(!sounds.loaded()&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(25);
         check(sounds.loaded()&&sounds.active(),"installed audio ready in normal 3D host");
         runOnMainSync(()->{
@@ -67,6 +71,13 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         check(hud.rolls==initialRolls+2&&shown()==2000&&Arrays.equals(SaveCodec.encode(control),capture()),"real restore resets generation without replay");
         result.putString("stream","PASS TECHNIQUE FACTS "+checks+" checks; installed normal3D HUD with temporary readonly event/phase test adapter; shared host integration pending\n");
     }catch(Throwable e){result.putString("stream","FAIL TECHNIQUE FACTS "+android.util.Log.getStackTraceString(e));}
-    finally{try{runOnMainSync(()->{if(subscription!=null)subscription.close();});finishActivityForRestore();}catch(Throwable e){result.putString("stream","FAIL teardown "+e);}}
+    finally{try{
+        runOnMainSync(()->{if(subscription!=null)subscription.close();});finishActivityForRestore();
+        if(originalScale!=null){
+            if(originalScale.equals("null"))shell("settings delete global animator_duration_scale");
+            else{Double.parseDouble(originalScale);shell("settings put global animator_duration_scale "+originalScale);}
+            check(originalScale.equals(shell("settings get global animator_duration_scale")),"original animation setting restored exactly");
+        }
+    }catch(Throwable e){result.putString("stream","FAIL teardown/setting restore "+e);}}
     finish(Activity.RESULT_OK,result);}
 }
