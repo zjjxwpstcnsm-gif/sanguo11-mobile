@@ -1,0 +1,65 @@
+{
+  "scope": "Source transport; explicitly selected original profile/track only; all failures retained; no normal BGM/voice binding claim",
+  "runs": [
+    {
+      "run": "media-transport-critical-01",
+      "flowPassed": true,
+      "apkSha256": "b1b1e182d84f9e2a15a8c8943d7118c96f71f02c96909884542499a6066bb705",
+      "allOriginalUserFilesByteEqual": true,
+      "wavePath": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-critical-01/captured-window.wav",
+      "waveSha256": "a99b7f8f5a3ce311841932e143845597c8e00a2f81ecfec4a74ca0de0bbb4aa5",
+      "pcmStatus": "FAIL",
+      "verifierOutput": "Traceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 68, in <module>\n    p=argparse.ArgumentParser(description=__doc__);p.add_argument('wave',type=Path);p.add_argument('--flow',type=Path,required=True);p.add_argument('--facts',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.wave,a.flow,a.facts,a.output)\n                                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 58, in inspect\n    raise AssertionError(dict(gains=gains.tolist(),audibleRms=rms.tolist(),condition=condition,joint=joint,pc33=pc33))\nAssertionError: {'gains': [0.017732527536025264, 0.01836874165020331, 0.017329834529010518], 'audibleRms': [0.002695112340515948, 0.0018284085625625947, 0.0027476464976800793], 'condition': 4.334597395557472, 'joint': 0.98806329001563, 'pc33': 0.9773589787880351}\n"
+    },
+    {
+      "run": "media-transport-shared-01",
+      "flowPassed": true,
+      "apkSha256": "b1b1e182d84f9e2a15a8c8943d7118c96f71f02c96909884542499a6066bb705",
+      "allOriginalUserFilesByteEqual": true,
+      "wavePath": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-shared-01/captured-window.wav",
+      "waveSha256": "9e7881856d0ff5d06c23f248dd35425fcb4e87b5a876fdba46dae1562a8b6618",
+      "pcmStatus": "PASS",
+      "verifierOutput": "{\"status\": \"PASS\", \"musicAloneCorrelation\": 0.9999985587119028, \"jointCorrelation\": 0.999999438755231, \"voiceAfterMusicCorrelation\": 0.9999993549431389, \"musicDuckRatio\": 0.3499394762842051}\n"
+    },
+    {
+      "run": "media-transport-shared-02",
+      "flowPassed": true,
+      "apkSha256": "9909a54c1753e43d36be80b842cf2ba839e22e8775202ba068b5612f00710dbb",
+      "allOriginalUserFilesByteEqual": true,
+      "wavePath": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-shared-02/captured-window.wav",
+      "waveSha256": "7c608af0d02384fb5cd8fbee76e254de8155077e056a70518dda08428f429fa7",
+      "pcmStatus": "FAIL",
+      "verifierOutput": "Traceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_shared_source_mix.py\", line 84, in <module>\n    a=p.parse_args();inspect(a.mixed,a.flow,a.observations,a.references,a.output)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_shared_source_mix.py\", line 69, in inspect\n    raise AssertionError(dict(music=music_score,joint=joint,voice=voice_correlation,normalizedCondition=condition,gains=gains.tolist(),duck=duck,beforeRms=before_rms,voiceRms=voice_rms))\nAssertionError: {'music': 0.9999985587119027, 'joint': 0.943246859212746, 'voice': 0.10972227152941653, 'normalizedCondition': 1.011389678316716, 'gains': [0.006256831151108382, 0.00017256171087796574], 'duck': 0.35280847302148505, 'beforeRms': 0.0014269531874881323, 'voiceRms': 1.644803516577777e-05}\n"
+    },
+    {
+      "run": "media-transport-shared-03",
+      "flowPassed": true,
+      "apkSha256": "1ea0afaab989bd9bb6c032f66df06680b3356ab5626f8e728be06efeb7a3d78f",
+      "allOriginalUserFilesByteEqual": true,
+      "wavePath": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-shared-03/captured-window.wav",
+      "waveSha256": "ab1fcc2b39dde0b105153f74be70a23c35cd28088a03cd873063c42f1dfcab50",
+      "pcmStatus": "PASS",
+      "verifierOutput": "{\"status\": \"PASS\", \"musicAloneCorrelation\": 0.9999985587119027, \"jointCorrelation\": 0.9999994446103393, \"voiceAfterMusicCorrelation\": 0.9999993966134619, \"musicDuckRatio\": 0.350001512720951}\n"
+    },
+    {
+      "run": "media-transport-critical-03",
+      "flowPassed": true,
+      "apkSha256": "1ea0afaab989bd9bb6c032f66df06680b3356ab5626f8e728be06efeb7a3d78f",
+      "allOriginalUserFilesByteEqual": true,
+      "wavePath": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-critical-03/captured-window.wav",
+      "waveSha256": "1a310a56523c95672d1584e842daf2debc114606fea228ee506338e7e3aec276",
+      "pcmStatus": "FAIL",
+      "verifierOutput": "Traceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 68, in <module>\n    p=argparse.ArgumentParser(description=__doc__);p.add_argument('wave',type=Path);p.add_argument('--flow',type=Path,required=True);p.add_argument('--facts',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.wave,a.flow,a.facts,a.output)\n                                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 58, in inspect\n    raise AssertionError(dict(gains=gains.tolist(),audibleRms=rms.tolist(),condition=condition,joint=joint,pc33=pc33))\nAssertionError: {'gains': [0.01772946892752301, 0.017940518031895444, 0.0173243558363847], 'audibleRms': [0.0026946474720135594, 0.0017857835561622803, 0.0027467778505744192], 'condition': 4.3450709338263, 'joint': 0.9881990565793987, 'pc33': 0.9772176626512106}\n"
+    },
+    {
+      "run": "media-transport-shared-04",
+      "flowPassed": true,
+      "apkSha256": "1ea0afaab989bd9bb6c032f66df06680b3356ab5626f8e728be06efeb7a3d78f",
+      "allOriginalUserFilesByteEqual": true,
+      "wavePath": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-shared-04/captured-window.wav",
+      "waveSha256": "fa267762954b276118ce0f5429befde170c464be37f715b8ce2a47eb6bee65b8",
+      "pcmStatus": "PASS",
+      "verifierOutput": "{\"status\": \"PASS\", \"musicAloneCorrelation\": 0.9999985587119028, \"jointCorrelation\": 0.9999994051083569, \"voiceAfterMusicCorrelation\": 0.9999993671522519, \"musicDuckRatio\": 0.3499850389799933}\n"
+    }
+  ]
+}

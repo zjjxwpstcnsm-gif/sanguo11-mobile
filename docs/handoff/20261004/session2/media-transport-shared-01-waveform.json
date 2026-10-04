@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "Actual shared original music/voice PCM and measured ducking with actual receipt + explicit test profile/track. Not normal original scene/action binding or ARM/microphone proof.",
+  "serial": "emulator-5582",
+  "apkSha256": "b1b1e182d84f9e2a15a8c8943d7118c96f71f02c96909884542499a6066bb705",
+  "waveSha256": "9e7881856d0ff5d06c23f248dd35425fcb4e87b5a876fdba46dae1562a8b6618",
+  "musicResource": 2261,
+  "voiceResource": 2616,
+  "voiceFactId": "386c2fee-134d-4f3d-ae10-764c2df17431:0:1:PATROLLED:source-probe:first",
+  "parentId": "386c2fee-134d-4f3d-ae10-764c2df17431:0:1:PATROLLED",
+  "presentationParentId": "386c2fee-134d-4f3d-ae10-764c2df17431:0:1:PATROLLED:declared-probe-phase",
+  "musicReferenceSha256": "da252dd916df62689ff1c93aab52843452ce183105b5088673f5baecc3cc4f3d",
+  "voiceReferenceSha256": "a016bed22fe7fc5bc7fdbaa34be17921fc42866b784b072f036ea8a96be13bf0",
+  "musicStartSample": 51595,
+  "voiceStartSample": 156139,
+  "overlapSamples": [
+    164959,
+    178189
+  ],
+  "musicAloneCorrelation": 0.9999985587119027,
+  "voiceCandidateCorrelation": 0.9056554131834537,
+  "jointCorrelation": 0.999999438755231,
+  "voiceAfterMusicCorrelation": 0.9999993549431389,
+  "musicBeforeGain": 0.017734356257162107,
+  "musicDuckedGain": 0.006205951340868822,
+  "voiceGain": 0.01773451984648687,
+  "musicDuckRatio": 0.349939476284205,
+  "normalizedGramCondition": 1.0534106272412929,
+  "musicBeforeRms": 0.0014269531874881323,
+  "voiceRms": 0.0016903982036286505,
+  "method": "Declared templates only; fixed65-tap cutoff FIR; original44100Hz phase refinement; normalized column condition to avoid amplitude-unit scaling; no threshold relaxation"
+}

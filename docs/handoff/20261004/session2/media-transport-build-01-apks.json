@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "de6d5c4d47e2dae2701f5c14f07984eab97d4d86",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-build-01/frozen/app-debug.apk",
+      "bytes": 283154443,
+      "sha256": "b1b1e182d84f9e2a15a8c8943d7118c96f71f02c96909884542499a6066bb705"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-build-01/frozen/app-debug-androidTest.apk",
+      "bytes": 2064579,
+      "sha256": "a98c98f1d85594a7466f57c19afce2cc62e3bd66ad697d6f7d194014c0ddf803"
+    }
+  ]
+}

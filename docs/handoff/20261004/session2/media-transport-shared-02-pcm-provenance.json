@@ -1,0 +1,9 @@
+{
+  "serial": "emulator-5582",
+  "emulatorPid": "53152",
+  "source": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/mixed-recovered.wav",
+  "beginByte": 44822528,
+  "endByte": 47210496,
+  "pcmSha256": "0bb639d0c99ef8607b84a27188ac4b728fa9db0d52998ded3d874e5559303bbb",
+  "scope": "Actual5582 mixed PCM interval; recorder unmodified; no ARM speaker evidence"
+}
