@@ -79,6 +79,12 @@ nativeId/sourceVariant 必须来自保存的实际来源绑定或明确的已提
 
 批十进一步确认：上段旧探针名 `tacticIndexRaw` 实为未命名的十三路语音选择索引，**没有证明它等于工程War/Army战法枚举ordinal或原战法编号**。原`5038e0..503940`在已产生的上游raw结果为0时传12、非0时传11到record构造器；`4fe455..4fe4f7`执行原字段写入，参数1/2/10分别进入record+0/+4/+0x98，最后才由503b32传到4fd630。进入点位于4721d0调用之后，没有执行该调用/规则/RNG，raw含义仍未知。因此禁止按`SPIRAL.ordinal()`等选voice profile。voice-record-fields.json保留源指令/明确边界。
 
+批二十一静态核验已解除上述raw的部分未知：`5038b4`压入50，`5038d8`调用原`4721d0`百分比RNG，其正阈值路径读取并写回`8a5d44`（uint32乘0x6c078965加0x3039，取高16位%100与阈值比较）。返回只为0/1，因此这里是原随机选择11/12，不是已经证明的战斗成功/失败。此RNG从未执行；不能由媒体抽取规则RNG、重掷、默认11/12或用fact hash制造选择。若未来恢复该具体调用，需由权威提供**已提交、同state/id/parent的presentationChoiceRaw0/1及对应原调用身份**，缺失则未绑定；不要求规则所有者为了音频新增随机计算。旧raw2行只是批十明确fixture的分支演示，不是4721d0可返回2的证据。
+
+批二十一另已完整执行只读`564c00 ->56dba0 ->495a40 ->490b00 ->4d19d0 ->4d1290 ->4d1000`：UI payload+8是原ushort部队index，原部队+c是主将nativeId；此具体调用的speaker是原主将，不能扩大为全部其它voice caller均由主将发言。原actor virtual4的有效性要求statusRaw(+a0)为0..8或actor17cRaw非零，不能仅凭批准身份/姓名/当前选中认定可发言；actor17c含义未命名，保留raw。原489030直接读取actor+170+index的已计算current byte，未触发重算或RNG。4020项原执行、3990次实际分派与现有Java政策一致，三MiB原世界/RNG/receiver前后字节一致，无人物有效性/能力getter shim。
+
+这条unit caller的只读输入应提供实际已提交的`actorUnitId/speakerRole=unitLeader/speakerOfficerId/currentAbilityBytes[0..3]/sourceActorValidRaw`及原动作→profile调用证据；主将角色是具体源调用依据，native部队slot与项目unit.id不能直接等同。能力从同state的已提交query/事实读取，不由媒体重算官职、经验、伤病或成长。更上游仍可能选择profile时调用RNG，不能把下层readonly扩大为所有上游都无需随机事实。缺少原动作profile及实际parent时维持未绑定。
+
 需先核对原上游演示记录 `+0/+4/+0x98` 的生成，与现有已提交 tactic enum/strike/plotOutcome 的对应。如果现有事实不能表达，向规则所有者请求如下只读事实投影（此处为请求，不修改 core）：
 
 ```
@@ -98,6 +104,8 @@ VoicePresentationFact {
   mediaPhase, sequence: long
 }
 ```
+
+对原5038d8随机路，补充nullable `presentationChoiceRaw: 0|1|null`及`choiceSourceCall: "5038d8->4721d0"|null`；这两项必须来自已提交记录，不能从success/critical/sideRaw转换，也不能由媒体创建。原unit caller则需要nullable `sourceActorValidRaw`或精确原statusRaw/actor17cRaw投影；未知拒绝普通voice，不以演员身份已批准替代原有效性。
 
 只投影已有已提交事实；若没有可证的原 side/slot 或上游 event 映射，保持 null/未绑定，不调用规则命令/RNG来决定。`517cd0` 的另一链按 side0/1从原域 `+0x10+side*0xa0` 读取实际人物，并把原 eventIndex+13作为profile传给feedbackB；其0..57动作语义仍未知，不先标为计略/单挑或按成功失败推断。
 
