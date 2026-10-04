@@ -72,6 +72,7 @@ final class DataTable<T> extends LinearLayout {
                     int index=DataTable.this.visible[j];TextView text=(TextView)row.getChildAt(j);Column<T> col=columns.get(index);
                     text.setLayoutParams(new LayoutParams(widths[j],-1));text.setGravity(col.numeric?Gravity.CENTER:Gravity.CENTER_VERTICAL);
                     text.setText(col.text.apply(item));text.setTextColor(index==sort?UiTheme.JADE:UiTheme.TEXT);
+                    OfficerPortrait.decorate(a,item,text,index==0);
                 }
                 row.setContentDescription((row.isActivated()?"已选 · ":"")+summary.apply(item));return row;
             }

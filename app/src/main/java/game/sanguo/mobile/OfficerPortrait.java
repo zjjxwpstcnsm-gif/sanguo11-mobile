@@ -5,9 +5,21 @@ import android.graphics.*;
 import android.graphics.drawable.Drawable;
 import game.sanguo.core.*;
 import java.io.*;
+import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 
 /** One bounded atlas allocation, shared by recycled list rows and detail cards. No network or per-face bitmaps. */
 final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target {
+    private static final WeakHashMap<Context,WeakReference<World>> views=new WeakHashMap<>();
+    static void bindView(Context context,World view){views.put(context,new WeakReference<>(view));}
+    /** Visual decoration of recycled table cells; no metadata text, sort or authority access. */
+    static void decorate(Context context,Object item,android.widget.TextView cell,boolean nameColumn){
+        WeakReference<World> reference=views.get(context);World view=reference==null?null:reference.get();
+        Drawable image=nameColumn&&item instanceof World.Officer&&view!=null?new OfficerPortrait(context,view,(World.Officer)item):null;
+        int size=Math.round(28*context.getResources().getDisplayMetrics().density);
+        if(image!=null)image.setBounds(0,0,size,size);
+        cell.setCompoundDrawables(image,null,null,null);cell.setCompoundDrawablePadding(image==null?0:Math.round(4*context.getResources().getDisplayMetrics().density));
+    }
     private static final Bitmap[] atlases=new Bitmap[2];private static boolean loaded;
     private final World.Officer officer;private final int age,index,variant;
     private final Bitmap customImage;
@@ -27,7 +39,7 @@ final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target 
         if(ref.startsWith("builtin:"))try{int n=Integer.parseInt(ref.substring(8));if(n>=0&&n<PortraitCatalog.NAMES.length)selected=n;}catch(NumberFormatException ignored){}
         index=selected;variant=PortraitCatalog.variant(officer.id,officer.name);customImage=ref.endsWith(".png")?CustomOfficerImages.bitmap(ref,png):null;
         sourceYear=w.life.year();sourceIdentity=ref.isEmpty()?PortraitMediaSources.source(w,officer.id):null;original=sourceIdentity==null?null:PcPortraitLoader.shared(context);
-        if(!loaded){loaded=true;String[] files={"portraits/officers.png","portraits/officers-v040.png"};
+        if(sourceIdentity==null&&!loaded){loaded=true;String[] files={"portraits/officers.png","portraits/officers-v040.png"};
             for(int i=0;i<files.length;i++)try(InputStream input=context.getAssets().open(files[i])){
                 atlases[i]=BitmapFactory.decodeStream(input);
             }catch(IOException ignored){/* Deterministic fallback for missing artwork. */}

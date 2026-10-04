@@ -46,6 +46,7 @@ public final class MainActivity extends Activity {
         }
         legacyView=current.legacyView();world=legacyView.draft;
         PortraitMediaSources.bind(world,legacyView.state,current.officers());
+        OfficerPortrait.bindView(this,world);
     }
     private void sessionChanged(GameEvent event){
         if(techniqueHud!=null)techniqueHud.committedFacts(event,world.player);
