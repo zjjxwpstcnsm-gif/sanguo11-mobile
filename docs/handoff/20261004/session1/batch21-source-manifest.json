@@ -1,0 +1,43 @@
+{
+  "base": "e885c3ac8d27996d3496493cfb008663da6e3ec8",
+  "completeGoal": false,
+  "files": [
+    {
+      "bytes": 1333,
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerJoinRules.java",
+      "sha256": "b7702df5087e54b12425b8f4966f6db538ad9b4c12e4115d0cfe17697c93d857"
+    },
+    {
+      "bytes": 1189,
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerJoinRulesTest.java",
+      "sha256": "c07b13dbf1eef89c0fc5dd094bcf937ef5f027232f379afedffed9b0ff9aa912"
+    },
+    {
+      "bytes": 80827,
+      "path": "core/src/test/resources/pc-officer-join/loyalty-original.tsv",
+      "sha256": "65322f919e079e3848efbd3204665c4cb865257e8c839d2ff7e947e90c134827"
+    },
+    {
+      "bytes": 1052,
+      "path": "core/src/test/resources/pc-officer-join/provenance.json",
+      "sha256": "4c2866983dc17a60179c32f9ce5e6c541e25100d580b488f81939112a291ce31"
+    },
+    {
+      "bytes": 5291,
+      "path": "tools/content/inspect_pc_officer_join_loyalty.py",
+      "sha256": "47d74aa2f0eaf0082c683124c8ed50175eec1224fe0fd288bd7d69ca2c782e24"
+    },
+    {
+      "bytes": 5920,
+      "path": "tools/content/inspect_pc_debate_campaign_settlement.py",
+      "sha256": "a1596f99535ac7706796089ac7191b3fb73a40d157345a4a181106821671ac75"
+    },
+    {
+      "bytes": 1602,
+      "path": "tools/content/build_pc_officer_join_fixtures.py",
+      "sha256": "17f80ae2caa5cc55dbf5c54806cfe5f9ae07354f3519fb7835f05f67b5b2d838"
+    }
+  ],
+  "newApkBuilt": false,
+  "productionCampaignSettlementIntegrated": false
+}

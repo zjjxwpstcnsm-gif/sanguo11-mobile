@@ -1,0 +1,1 @@
+PASS PcOfficerJoinRulesTest 2366 raw original loyalty/relationship/boundary results; no ordinary loyalty policy changed

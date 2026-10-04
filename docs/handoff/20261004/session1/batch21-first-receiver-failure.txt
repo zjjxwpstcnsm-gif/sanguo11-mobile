@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_officer_join_loyalty.py", line 58, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('installation',type=Path);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.installation,a.output)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_officer_join_loyalty.py", line 18, in inspect
+    if w.call(0x491310,r)!=365 or struct.unpack('<I',w.u.mem_read(force+4,4))[0]!=365:raise ValueError('Source ruler identity differs')
+ValueError: Source ruler identity differs

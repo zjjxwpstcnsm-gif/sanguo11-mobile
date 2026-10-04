@@ -1,0 +1,2853 @@
+{
+  "counts": {
+    "cases": 128,
+    "recruitCallback": 64,
+    "changedRng": 24
+  },
+  "cases": [
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": -1,
+      "ownerAfter": 2,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": -1,
+      "ownerAfter": 2,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": -1,
+      "ownerAfter": 2,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": -1,
+      "ownerAfter": 2,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 87,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 87,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 87,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 87,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 93,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 93,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 93,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 93,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 18,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 18,
+      "ownerAfter": 18,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 11,
+      "ownerAfter": 8,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 11,
+      "ownerAfter": 8,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 11,
+      "ownerAfter": 8,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 11,
+      "ownerAfter": 8,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 11,
+      "ownerAfter": 11,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 11,
+      "ownerAfter": 11,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 11,
+      "ownerAfter": 11,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 94,
+      "ownerBefore": 11,
+      "ownerAfter": 11,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840",
+        "0x4a75a0"
+      ],
+      "actorMeritDelta": 200,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        5
+      ],
+      "targetRawLoyalty": 88,
+      "ownerBefore": 24,
+      "ownerAfter": 2,
+      "rngAfter": 3031271500
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40",
+        "0x5d3c90",
+        "0x5c4840"
+      ],
+      "actorMeritDelta": 100,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "targetRawLoyalty": 95,
+      "ownerBefore": 24,
+      "ownerAfter": 24,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 0,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 0,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 0,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 0,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 1,
+      "outcome": 0,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 1,
+      "outcome": 1,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 1,
+      "outcome": 2,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "winner": 1,
+      "outcome": 3,
+      "calls": [
+        "0x51dd10",
+        "0x5d3d40"
+      ],
+      "actorMeritDelta": 0,
+      "actorXpDelta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targetRawLoyalty": 0,
+      "ownerBefore": -1,
+      "ownerAfter": -1,
+      "rngAfter": 23
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "sourceByteMap": {
+    "100": [
+      72
+    ],
+    "105": [
+      74
+    ],
+    "172": [
+      104
+    ],
+    "228": [
+      123
+    ],
+    "240": [
+      126
+    ],
+    "244": [
+      127
+    ],
+    "264": [
+      132
+    ],
+    "84": [
+      63
+    ],
+    "96": [
+      70
+    ]
+  },
+  "sourcePath": "Media/scenario/Scen000.s11",
+  "nativeId": 222,
+  "recordOffset": 51504,
+  "recordSha256": "d9d1fcb7d426fcca91803808258098690b49c45b3811325f703547071731bb76",
+  "property23": {
+    "actorReadOffsets": [
+      0,
+      1,
+      2,
+      3,
+      160,
+      161,
+      162,
+      163,
+      172,
+      380,
+      381,
+      382,
+      383
+    ],
+    "recordSourceOffsets": [
+      100,
+      104
+    ],
+    "recordValiditySourceOffsets": [
+      100
+    ],
+    "recordValueSourceOffsets": [
+      104
+    ],
+    "status": "serialized_source_getter",
+    "value": 0
+  }
+}
