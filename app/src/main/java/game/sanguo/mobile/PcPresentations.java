@@ -37,13 +37,15 @@ final class PcPresentations implements AutoCloseable {
             Prepared result=new Prepared();
             try{
                 Set<Integer> images=new TreeSet<>();
+                PcPresentationPlan.dynamicCatalog(PcDynamicPortraitCatalog.read(this.context.getAssets().open("portraits/pc/dynamic-lookup.pcd")));
                 for(int template:PcPresentationPlan.TEMPLATES){
                     PcPresentationTimeline timeline=PcPresentationTimeline.read(this.context.getAssets().open("3d/pc-presentations/template-"+template+".pcps"),template);
                     result.timelines.put(template,timeline);
                     for(ByteBuffer frame:timeline.frames)for(int at=0;at<frame.limit();at+=PcPresentationTimeline.RECORD_BYTES){int image=frame.getInt(at);if(image!=32)images.add(image);}
                 }
                 for(int image:images)result.images.put(image,bitmap(String.format(Locale.ROOT,"3d/pc-effects/image-%02d.png",image)));
-                for(int selector:PcPresentationPlan.SELECTORS)result.images.put(1000+selector,bitmap("3d/pc-presentations/selector-"+selector+".png"));
+                for(int selector=131;selector<=192;selector++)result.images.put(1000+selector,bitmap("3d/pc-presentations/selector-"+selector+".png"));
+                for(int selector:new int[]{126,127})result.images.put(1000+selector,bitmap("3d/pc-presentations/selector-"+selector+".png"));
                 synchronized(this){if(closed)result.recycle();else prepared=result;}
             }catch(Exception failure){result.recycle();error=failure.toString();android.util.Log.e("Sanguo3D","Original presentation assets failed",failure);}
         });
@@ -89,6 +91,7 @@ final class PcPresentations implements AutoCloseable {
             if(!assetsReady())return;
             if(!ready()){warmShaders();return;}
             if(cue==null||phase>=1){hide();return;}
+            if(cue.selector()<0){hide();submittedPhase=phase;submittedCue=cue;rendered++;return;} // Explicit blank rejected source; advance without borrowing pixels or stalling rules.
             PcPresentationTimeline timeline=p.timelines.get(cue.template);if(timeline==null)throw new IOException("Unsupported original template");
             ByteBuffer data=timeline.frame(phase);int count=data.limit()/PcPresentationTimeline.RECORD_BYTES;
             FloatBuffer buffer=buffers.pollFirst();if(buffer==null)return;
@@ -100,7 +103,7 @@ final class PcPresentations implements AutoCloseable {
             int batch=0;
             for(int i=0;i<count;batch++){
                 int end=PcPresentationTimeline.batchEnd(data,i);
-                int at=i*PcPresentationTimeline.RECORD_BYTES,image=data.getInt(at);if(image==32)image=1000+cue.selector;
+                int at=i*PcPresentationTimeline.RECORD_BYTES,image=data.getInt(at);if(image==32)image=1000+cue.selector();
                 MaterialInstance[] pair=instances.get(image);if(pair==null)throw new IOException("Unbound original presentation texture "+image);
                 int instance=manager.getInstance(entities.get(batch));
                 manager.setGeometryAt(instance,0,RenderableManager.PrimitiveType.TRIANGLES,vertices,indices,i*6,(end-i)*6);
@@ -141,7 +144,7 @@ final class PcPresentations implements AutoCloseable {
         }
     }
     private void hide(){for(int i=0;i<visibleBatches;i++)scene.removeEntity(entities.get(i));visibleBatches=0;shown=0;}
-    String report(){return " pc_presentation_ready="+ready()+" pc_presentation_selector="+(cue==null?-1:cue.selector)+" pc_presentation_phase="+phase+" pc_presentation_frames="+rendered+" pc_presentation_quads="+shown+" pc_presentation_batches="+visibleBatches+" pc_presentation_texture_bytes="+textureBytes+" pc_presentation_error="+(error.isEmpty()?"none":error.replace(' ','_'));}
+    String report(){return " pc_presentation_ready="+ready()+" pc_presentation_selector="+(cue==null?-1:cue.selector())+" pc_presentation_source_rejected="+(cue!=null&&cue.selector()<0)+" pc_presentation_phase="+phase+" pc_presentation_frames="+rendered+" pc_presentation_quads="+shown+" pc_presentation_batches="+visibleBatches+" pc_presentation_texture_bytes="+textureBytes+" pc_presentation_error="+(error.isEmpty()?"none":error.replace(' ','_'));}
     @Override public void close(){
         synchronized(this){if(closed)return;closed=true;if(prepared!=null)prepared.recycle();prepared=null;}loader.shutdownNow();cue=null;hide();if(warmFence!=null){engine.destroyFence(warmFence);warmFence=null;}
         for(int entity:entities){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}entities.clear();

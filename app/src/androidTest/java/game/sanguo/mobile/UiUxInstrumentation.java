@@ -458,7 +458,8 @@ public class UiUxInstrumentation extends Instrumentation {
     }
     /** Existing core fixtures arrange combat only; every tested order uses visible UI input. */
     private void criticalAudio()throws Exception{
-        World fixture=game.sanguo.core.ScenarioCatalog.load("heroes-250",0);fixture.units.clear();for(World.Officer officer:fixture.officers)officer.unitId=-1;
+        boolean dynamicPortrait="1".equals(arguments.getString("dynamicPortrait"));
+        World fixture=dynamicPortrait?game.sanguo.core.SaveCodec.decode(capture()):game.sanguo.core.ScenarioCatalog.load("heroes-250",0);fixture.units.clear();for(World.Officer officer:fixture.officers)officer.unitId=-1;
         World.Officer actor=fixture.officers.stream().filter(o->o.owner==0&&!Arrays.asList("刘备","关羽","张飞","赵云","诸葛亮","曹操").contains(o.name)).findFirst().orElseThrow();World.Officer defender=fixture.officers.stream().filter(o->o.owner==1).findFirst().orElseThrow();
         game.sanguo.core.Hex home=fixture.home().hex,start=null,end=null;
         for(int radius=4;radius<30&&start==null;radius++)for(int dx=-radius;dx<=radius&&start==null;dx++)for(int dy=-radius;dy<=radius;dy++){
@@ -469,10 +470,14 @@ public class UiUxInstrumentation extends Instrumentation {
         World.Unit a=new World.Unit(1,0,actor.id,World.Weapon.SPEAR,start,8000,16000),b=new World.Unit(2,1,defender.id,World.Weapon.SPEAR,end,8000,16000);b.status=game.sanguo.core.War.Status.CONFUSED;b.statusTurns=1;fixture.units.add(a);fixture.units.add(b);fixture.strategy.setSeed(52);game.sanguo.core.SaveCodec.decode(game.sanguo.core.SaveCodec.encode(fixture));
         ui(()->{SessionProbe.install(activity,fixture);activity.selectAndFocus(fixture.unit(1).hex);});settle();MapHost host=(MapHost)field(activity,"map");waitNative(host);check(host.sourceVisuals(),"critical fallback is tested on actual PC 3D terrain");
         byte[] original=capture();World reference=game.sanguo.core.SaveCodec.decode(original);game.sanguo.core.TurnJournal referenceJournal=new game.sanguo.core.TurnJournal(reference);World.Result expected=reference.war.tactic(1,2,game.sanguo.core.War.Tactic.SPIRAL);referenceJournal.close();
-        check(expected.ok&&expected.critical!=null&&referenceJournal.events().stream().anyMatch(e->e.critical!=null&&PcPresentationPlan.duration(e)==0),"actual rule critical belongs to an officer without a fullscreen source cue");
+        check(expected.ok&&expected.critical!=null&&referenceJournal.events().stream().anyMatch(e->e.critical!=null&&PcPresentationPlan.duration(e)==0),"actual rule critical belongs outside legacy six-person fullscreen lookup");
+        if(dynamicPortrait){
+            check(!game.sanguo.core.PcOfficerInfo.saved(fixture).isEmpty(),"normal saved campaign contains approved metadata source");
+            check(PortraitMediaSources.source(SessionProbe.view(activity),actor.id)!=null,"production host binds non-six actor source without test source injection");
+        }
         List<game.sanguo.api.GameEvent> mediaCommits=new ArrayList<>();game.sanguo.api.GameApi.Subscription[] mediaObserver={null};ui(()->mediaObserver[0]=((GameApplication)activity.getApplication()).host().session().subscribe(mediaCommits::add));
         SoundEffects audio=((GameApplication)activity.getApplication()).sounds();ui(()->{audio.muted(false);audio.volume(75);});int prior=battlePhases();text("战法");tap(awaitText(game.sanguo.core.War.Tactic.SPIRAL.label+" ·"));tapHex(end);text("取消");check(battlePhases()==prior&&Arrays.equals(original,capture()),"real critical preview cancellation emits no battle phase and no rule change");check(mediaCommits.isEmpty(),"canceled normal tactic emits no committed media facts");
-        tapHex(end);long revision=activity.deploymentState().revision;tap(await(v->v instanceof Button&&"执行".contentEquals(((Button)v).getText())),2);long deadline=SystemClock.uptimeMillis()+10000;while(host.commandEffectsActive()&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(50);check(!host.commandEffectsActive(),"real committed critical presentation finishes");
+        tapHex(end);long revision=activity.deploymentState().revision;tap(await(v->v instanceof Button&&"执行".contentEquals(((Button)v).getText())),2);if(dynamicPortrait)dynamicPortraitFrame(host,actor.id);long deadline=SystemClock.uptimeMillis()+(dynamicPortrait?180000:10000);while(host.commandEffectsActive()&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(50);check(!host.commandEffectsActive(),"real committed critical presentation finishes");
         check(activity.deploymentState().revision==revision+1&&Arrays.equals(game.sanguo.core.SaveCodec.encode(reference),capture()),"critical sound and double submit preserve exact reference damage and RNG");int[] critical={0};ui(()->{try{for(Object value:(Set<?>)field(audio,"heard"))if(value.toString().startsWith("journal:")&&value.toString().endsWith(":critical"))critical[0]++;}catch(Exception e){throw new RuntimeException(e);}});check(critical[0]==1,"source-map critical without a portrait cue is heard exactly once");shot("critical-audio-no-fullscreen-cue");
         check(mediaCommits.size()==1&&!mediaCommits.get(0).techniquePointsFacts.isEmpty(),"normal host receives actual tactic point facts once without test HUD subscription");
         game.sanguo.api.GameEvent committed=mediaCommits.get(0);org.json.JSONArray facts=new org.json.JSONArray();
@@ -482,6 +487,24 @@ public class UiUxInstrumentation extends Instrumentation {
             facts.put(new org.json.JSONObject().put("id",fact.id).put("parentId",fact.parentId).put("presentationParentId",fact.presentationParentId).put("sequence",fact.sequence).put("owner",fact.owner).put("before",fact.before).put("after",fact.after).put("delta",fact.delta).put("cause",fact.cause).put("phase",fact.phase).put("state",new org.json.JSONObject().put("sessionId",fact.state.sessionId).put("generation",fact.state.generation).put("revision",fact.state.revision)));
         }
         ui(()->mediaObserver[0].close());Files.write(new File(output,"critical-facts.json").toPath(),new org.json.JSONObject().put("productionHostOnly",true).put("facts",facts).toString(2).getBytes("UTF-8"));
+    }
+    private void dynamicPortraitFrame(MapHost host,int actorId)throws Exception{
+        long start=SystemClock.uptimeMillis(),deadline=start+180000;Object[] owner={null};int[] selector={-1};float[] phase={0};
+        while(SystemClock.uptimeMillis()<deadline){
+            boolean[] shown={false};ui(()->{try{
+                Object renderer=field(host,"spatial");PcPresentationPlan.Cue cue=(PcPresentationPlan.Cue)field(renderer,"presentationCue");
+                Object current=field(renderer,"pcPresentations");
+                if(cue!=null&&current!=null&&(Integer)field(current,"shown")>0&&(Float)field(current,"phase")>.15f&&host.criticalSubmitted()){
+                    check(cue.identity!=null&&cue.identity.officerId==actorId,"normal non-six cue uses exact source identity");
+                    selector[0]=cue.selector();phase[0]=(Float)field(current,"phase");owner[0]=current;host.pauseCommandEffects(true);shown[0]=true;
+                }
+            }catch(Exception error){throw new RuntimeException(error);}});if(shown[0])break;SystemClock.sleep(20);
+        }
+        check(owner[0]!=null,"real non-six committed event enters source GPU stage");check(selector[0]>=131&&selector[0]<=192,"native source dynamic selector resolved");
+        byte[] frozen=capture();shot("dynamic-portrait-source-frame");long[] bytes={0};ui(()->{try{bytes[0]=(Long)field(owner[0],"textureBytes");check(((Map<?,?>)field(owner[0],"textures")).containsKey(1000+selector[0]),"matching original dynamic atlas uploaded");}catch(Exception error){throw new RuntimeException(error);}});
+        check(bytes[0]>=62L*512*512*4,"all original dynamic atlas memory accounted");SystemClock.sleep(200);ui(()->{try{check(phase[0]==(Float)field(owner[0],"phase"),"pause preserves recorded source pose");}catch(Exception error){throw new RuntimeException(error);}});check(Arrays.equals(frozen,capture()),"GPU preparation/pause/screenshot preserve complete Save and RNG");
+        Files.write(new File(output,"dynamic-portrait.json").toPath(),new org.json.JSONObject().put("officerId",actorId).put("selector",selector[0]).put("sourceFramePhase",phase[0]).put("textureBytes",bytes[0]).put("prepareAndFirstFrameMillis",SystemClock.uptimeMillis()-start).put("normalUiCommand",true).put("sourceIdentityInjectedByTest",false).put("allDynamicSelectorsRendered",false).toString(2).getBytes("UTF-8"));
+        ui(()->host.pauseCommandEffects(false));
     }
     private String shellText(String command)throws Exception{try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command));ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] bytes=new byte[1024];int n;while((n=in.read(bytes))>=0)out.write(bytes,0,n);return out.toString("UTF-8").trim();}}
     private int battlePhases()throws Exception{int[] count={0};ui(()->{try{for(Object value:(Set<?>)field(((GameApplication)activity.getApplication()).sounds(),"heard")){String key=value.toString();if(key.startsWith("journal:")&&(key.endsWith(":action")||key.endsWith(":critical")))count[0]++;}}catch(Exception e){throw new RuntimeException(e);}});return count[0];}

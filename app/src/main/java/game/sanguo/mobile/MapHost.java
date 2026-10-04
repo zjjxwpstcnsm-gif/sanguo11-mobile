@@ -99,7 +99,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         String id="journal:"+event.id;
         boolean critical=event.critical!=null;
         if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}
-        if(fraction>=.35f&&critical&&(!sourceVisuals()||PcPresentationPlan.duration(event)==0))sounds.event(id+":critical",SoundEffects.Cue.CRITICAL);
+        if(fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+":critical",SoundEffects.Cue.CRITICAL);
         completionSound(event);
         SoundEffects.Cue cue=switch(event.kind){case MOVE,ENTER,DEPLOY->SoundEffects.Cue.MARCH;case ATTACK,FACILITY_ATTACK,FACILITY_COUNTER->SoundEffects.Cue.ATTACK;case TACTIC->SoundEffects.Cue.TACTIC;case PLOT->SoundEffects.Cue.PLOT;case RECOVER->SoundEffects.Cue.COMPLETE;default->null;};
         float trigger=cue==SoundEffects.Cue.ATTACK||cue==SoundEffects.Cue.TACTIC?.35f:0;
@@ -120,11 +120,11 @@ final class MapHost extends FrameLayout implements MapPresentation {
             techniqueCommandEvents=Collections.emptyList();
             return;
         }
-        commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?PcPresentationPlan.duration(e):0),e->sourceVisuals()?PcPresentationPlan.duration(e):0);
+        commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?originalCriticalDuration(e):0),e->sourceVisuals()?originalCriticalDuration(e):0);
         if(spatial!=null&&before!=null&&publishedSnapshot!=null&&before.ground==publishedSnapshot.ground){
             commandFinalSnapshot=publishedSnapshot;spatial.snapshot(before);
         }
-        if(sourceVisuals()&&PcPresentationPlan.duration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}
+        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}
         commandEffectTime=android.os.SystemClock.uptimeMillis();postOnAnimation(commandEffectTick);
         if(sourceVisuals())setCriticalSkip(this::cancelCommandEffects);
     }
@@ -132,13 +132,16 @@ final class MapHost extends FrameLayout implements MapPresentation {
         return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();
     }
     boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}
-    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?PcPresentationPlan.duration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}
+    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:PortraitMediaSources.source(world,event.critical.officerId);}
+    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}
+    private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}
+    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}
     boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}
     boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}
     void criticalEvent(TurnJournal.Event event,float fraction){
         if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}
         if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null)sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);
-        List<PcPresentationPlan.Cue> cues=PcPresentationPlan.cues(event);
+        List<PcPresentationPlan.Cue> cues=originalCriticalCues(event);
         if(cues.isEmpty()||fraction>=1){spatial.presentation(null,0);return;}
         float scaled=Math.max(0,fraction)*cues.size();int index=Math.min(cues.size()-1,(int)scaled);
         spatial.presentation(cues.get(index),scaled-index);
@@ -161,8 +164,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(commandEffects==null)return;
         long now=android.os.SystemClock.uptimeMillis();
         boolean sourcePrelude=false;
-        if(sourceVisuals()&&PcPresentationPlan.duration(commandEffects.current())>0){
-            TurnJournal.Event current=commandEffects.current();int prelude=PcPresentationPlan.duration(current);
+        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){
+            TurnJournal.Event current=commandEffects.current();int prelude=originalCriticalDuration(current);
             boolean preparing=commandPreparedEvent!=current;
             float elapsed=commandEffects.fraction()*(prelude+presentationDuration(current));
             if(preparing||elapsed<prelude){
@@ -184,7 +187,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         commandEffects.advance(wallElapsed,this::replayVisible);commandEffectTime=now;
         if(!commandEffects.paused())for(var event:techniqueCommandEvents)if(combatLedger().completed(event))techniqueFinished(event);
         if(commandEffects.done()){cancelCommandEffects();return;}
-        TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?PcPresentationPlan.duration(event):0,action=presentationDuration(event);
+        TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);
         float elapsed=commandEffects.fraction()*(prelude+action);
         if(prelude>0&&elapsed<prelude){replayFrame(event,0);criticalEvent(event,elapsed/prelude);}
         else{criticalEvent(null,0);replayFrame(event,Math.max(0,(elapsed-prelude)/action));}
