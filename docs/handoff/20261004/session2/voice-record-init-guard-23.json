@@ -1,0 +1,16 @@
+{
+  "baseCommit": "16fadab5a8cb7bfed3d39e1fbf843e3b01403a1f",
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "checks": 36,
+  "reportSha256": "7d44b0eb6db5ab4fc7842415321e14be7a571590db1ca11b1b61e07c22de9e85",
+  "addedPaths": {
+    "tools/audio/inspect_pc_voice_record_dispatch.py": "0c43d525a59884f46fd399a0b26812a0e1e1fb3ffa113a692a7c58e86bfa9b91"
+  },
+  "productionAndroidUnchanged": true,
+  "authorityUnchangedCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "modifiedContract": {
+    "path": "docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md",
+    "beforeSha256": "dd42ee52bbfa1f69a0b8306db1af270eb9bfbfc63566830cc071c251bad7b999",
+    "afterSha256": "f40ea8372dc99166ec8b8c13817f8a3f9c3687dcad8aecdf78a65f368e0fd4bc"
+  }
+}

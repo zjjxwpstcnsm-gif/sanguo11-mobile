@@ -89,6 +89,8 @@ nativeId/sourceVariant 必须来自保存的实际来源绑定或明确的已提
 
 voice-renderer-dispatch-summary.json列完整raw分派，例如raw6在choice0/1为profile37/40，而raw7为37/39；这不是THRUST/SPIRAL对应关系已经成立的证据。原同回调还按renderer240Raw的零/非零分派：零值effect46/sound49，非零effect78/sound78；该字段语义仍未知，不改名critical/success。156项原指令执行将已产生的随机结果作为明确输入边界、捕获voice/effect/sound sink；不执行规则/RNG或将此fixture当正常动作绑定。完整动作身份、阶段条件和已提交choice仍需上游来源闭合。
 
+批二十三进一步执行原570490的初始化部分及四个初始化器的实际字段写入：record+50 raw0/1/2/17→rendererActionRaw6/7/8/27。renderer从record+58的原坐标，经原格表unit slot取manager中的对应对象；不是从屏幕选择或直接把记录+5c当发言部队。+5c在57050c之后用于另一阶段，该阶段还有位移路径/效果输入，未执行。需要已提交原演示记录的`record50Raw/record58CoordinateRole/record5cCoordinateRole/actualRendererUnitId/speakerOfficerId`或已有同等事实；坐标角色、record50命名空间尚需原记录生成链，不因其数值与原战法表相近就命名THRUST等。四条显示路由及其profiles具备原执行证据，仍不是工程战法ordinal绑定。
+
 需先核对原上游演示记录 `+0/+4/+0x98` 的生成，与现有已提交 tactic enum/strike/plotOutcome 的对应。如果现有事实不能表达，向规则所有者请求如下只读事实投影（此处为请求，不修改 core）：
 
 ```
