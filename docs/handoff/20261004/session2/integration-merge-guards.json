@@ -1,0 +1,393 @@
+{
+  "mediaParent": "320ddda501f4497956a59298e48c8811ef4dff53",
+  "metadataParent": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "mergedCompletedExactPaths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DataTable.java",
+      "sha256": "f893904e4bf4ffa9e95952c4b31efb44a687e0a79ae46ed12f9662d130599383"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "691665ef48b7b21decf4267d668105d12d7edc01d32cf7532289d4148169c1df"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OverviewUi.java",
+      "sha256": "182d4d788368fe690f735f00ec74ea5c6f1a15b00682a4426ffd96dacbed7942"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "sha256": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerInfo.java",
+      "sha256": "b294e696199ec4c694377c9f01895d037c581652f6bad8acdca66c5ee5741e17"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerSources.java",
+      "sha256": "68b2938a0ea04959093a676f010bbdd54cee177d9e09b8925697ca0d0b95273a"
+    },
+    {
+      "path": "core/src/main/resources/pc-officers/index.txt",
+      "sha256": "8fd6167908a6802673af27e0c58fc6ebb5166d1d7614e351ed2f65875b8f07f1"
+    },
+    {
+      "path": "core/src/main/resources/pc-officers/source-text.bin.gz",
+      "sha256": "77d42c74cc3c44e094354d624d5dff0e2f990c371be9c3f28e5f532d5d0f79d9"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH03_DELTA.json",
+      "sha256": "a2518ee79953baf80e1237b6d002f798a2f9c30f5542fd178eca4e130ecfbf0a"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_01.md",
+      "sha256": "3e9c6ac08d78edfb9220e5bae5b5c64ac5e1cdeae407408474e327cfb3144835"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_02.md",
+      "sha256": "d77319ff0a9ed89010130cd607678588f193220762b0e872f551eebe40665091"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_03.md",
+      "sha256": "a0f4c0890b16f2d9b9ea952e5f5094a7a0412ac69c907e09221f25ba194862d7"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/CONTRACT.md",
+      "sha256": "55b6120322f148659ce366f963cf4e970bde4c9ad033c2b106c1d57746f6eeab"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "eb8d26f3d77138be518a0757d40302a99d9521a507f135186c052cd8a78129b1"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/apk-build-source-guard.json",
+      "sha256": "d44e9550ae305bef6faa0346c95676c20a5ee7e5b324091ab1de556b42b149cb"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/apk-build-validation.log",
+      "sha256": "8f9d07ba6fb9d3b5bfadffb13b8fcbfed00fc4c4abe1403c5202f038640451a4"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/architecture-validation.log",
+      "sha256": "13315ec6f4bcefeb566eba4858bd2b9dc18edafdb33ede1896c217daa88b90d0"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/art-fixture-provenance.json",
+      "sha256": "95c23406596f16d6bddd93dd96ee9f86e9d8c28dd7a3e22e702ae2167e0d0465"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/baseline-verification.json",
+      "sha256": "964080ca71d265b3e84b5d3cb5202b428039a3c180add05f0bba05b5c7ad7a7b"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/biography-messages-native.json.gz",
+      "sha256": "df59adc7519fa577dfce34323e67daa4ce423334db3358c602f25aba2f195e90"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/biography-messages-summary.json",
+      "sha256": "65f1035c48c5663252ca73b7c97e8c681adbb72510e09e465eb60baf705766c4"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/identity-dto-before.json",
+      "sha256": "1b9501e39202426cb6fe87d4ee1ba1f132c777f7c64f5f5a25d93c04b0002ed1"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/inherited-source-manifest.json",
+      "sha256": "1be905be69e5d9b12983ad3ba35ead0e60b5ec6b07daa7887deebc49d1e6fa73"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/inherited-v33-ap-baseline-difference.json",
+      "sha256": "ce40e04b065442fbc9a3f7fb887095698bae46768cf4a398b24c61a0d30c56e3"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-general.json",
+      "sha256": "2de1a065bf167f88aadd26dc8d8068462ee21f8725db95c825e2e0b1ffcde9b5"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-general.txt",
+      "sha256": "16a72d4cf3bbe0eeeae102784e6f9e95f3e25e40491e67c191f369f12146b2f8"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-officer-info.json",
+      "sha256": "ba0408a84fd6458cbcdca1f970126a0418ee6757aa28c69720dd67c0cec642a8"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-officer-info.txt",
+      "sha256": "6c9cf934a7daac2a2078e873ff1f92d4643de8b758551fef81af2e95977938ce"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-opening.json",
+      "sha256": "a782b3f4467f7378117bfad03c1b2b797e2da6465774a9a6fa366a4cc2542b87"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-opening.txt",
+      "sha256": "1b4ebbbd709ad6160c9177e06fab655cb9376cf86c35412a72839bb18e3280d3"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/installed-user-restoration.json",
+      "sha256": "00322499635221eb66d9b208950b9a099d4811829e1674ef4f62b87e3cc89d70"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/loader-format-native.json",
+      "sha256": "a23f77ded5027b92e9976bc8db451b462a9e01bfaf7517a67220946643bb5c1c"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/message-repeat-verification.json",
+      "sha256": "2c4ce0764440c0fa4b90d07bd0010416ec623b161ff4066cee0659a1385ad388"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/message-resources-native.json",
+      "sha256": "e0662ae6fc7703237b02bc11e50db2810f6b0f7fef184c2677eaae928650652b"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/mode-restoration.json",
+      "sha256": "4e4b045b6f236a6eb22949b7c3a1182354075ce723a00b3598524731e5d09044"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/native-tests-final.log",
+      "sha256": "61464ef4ec1602c1a4375d93d245c9d156de439c1a3dd2cc5e8280cde5d51154"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/officer-info-user-restoration.json",
+      "sha256": "dd0df3c1d4e6be477c9f36884b3be05d8648ad5a3efdc73e38e68bee5f8cc7ba"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/officer-jvm-validation.log",
+      "sha256": "fd7d401ae5365a9331af4e4793e761485dc08ee9665998c97fb7895a983615d1"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/officer-metadata-manifest.json.gz",
+      "sha256": "c34aec664e825c91c8fb84c6eea30dab45ec44a8821b5bc05ad4aa37167b4046"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/portrait-requirements.json.gz",
+      "sha256": "e63fae48211df94dc66109a14fff2c8b522fe429e0051dd8e9128a5fec6420b0"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/production-source-sha.json",
+      "sha256": "9acd40da3a8189bd3b05ea965e497cbe74f3dc1b4f93e0a3b28abc91351096f8"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-cold-installed.json",
+      "sha256": "7458ad8dedceb6c7e064257a5ea33f2d944da5f6e4d671b9f54f3ca821ce2546"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-cold-installed.txt",
+      "sha256": "56afad8d350204db2d260471b417ec103275f7b7af2fbb596b2d1cf491c36f90"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-cold-user-restoration.json",
+      "sha256": "9c917db62003fc7bffde433d74b064fb85d25a8dfaf341f897f274c894ddab52"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-fields-native.json.gz",
+      "sha256": "1542571b3c9f50a3751ac86078f825648d5be24efc772d3aac0f5e7b7780ec35"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-fields-repeat-verification.json",
+      "sha256": "0136ba5436329dd675640c9e6e509d8ad15a8f418d64926dc2d8efce32e6f85a"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-fields-summary.json",
+      "sha256": "8d3d1bc31dc432251bda1a353b5f9b0758c0fa17c9f013a33fc1c903245aedc9"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-manifest.json",
+      "sha256": "c2e8bab45f37cb68f3f6768d41065779877447449a676bdeedd39bd7e1ad9767"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-repeat-verification.json",
+      "sha256": "7b8031d148cc0d01eebc99b581d9893eac08ee2fe623e55f6c5b2a297399ae5a"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-apk-source-guard.json",
+      "sha256": "efe0faa6106d47d962c97c7c5fa4f8729165fda203ccc0228d198592d1f2c5bf"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-apks.json",
+      "sha256": "3f0abff1be86b6811cc0fdd24e9c08935cf37c9845f638c6dde4f9b380da2a5a"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-before.json",
+      "sha256": "ec7f050a09ab7f477b64285fcc8ebda2b1b0d841e50deaa2c8ceeb59492429cf"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-build-report.json",
+      "sha256": "84f2a8e1235e1f57941e73bf780987f7b98a98c3c918b54ed55feeeefddf6bef"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-build-tests.log",
+      "sha256": "a76fd8c3f4ea4875a018e2cb00cd8725e0a5f56750f3c1380211d84b76941088"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-default-general.json",
+      "sha256": "fa2962b369936e158a932aeeb38a7e6f315435cf4ebd67955342a8c5fafb6f6b"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-default-general.txt",
+      "sha256": "38240ba2bf47c1cd97dd4a8b16e10e256a39d22d87639083a05cd898a4ec3ac0"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-default-opening.json",
+      "sha256": "b8f83ecfbc3ac3b23598b423f468dfa8f844eb79cf8d4ca4473c0866ebfb6143"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-default-opening.txt",
+      "sha256": "ea295013d43ff5df9b747a690cd3209feaabd1e2c670c6ae9e4b4e7de132f5fc"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-default-restoration.json",
+      "sha256": "6b4aea93f05ca48cd5ac6365dab3188e5b4d3e24612ec7a9923aea1c9c84165f"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-edges.log",
+      "sha256": "38f81967d6e1900d5905b26d2c25b7c4b5f145b098e8dae52a35e1e9927d3e46"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-final-apk-build.log",
+      "sha256": "61cfaaf56673ab927e937909baecba767c44db48fc9d5f33f0816883d11bb7f7"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-installed.json",
+      "sha256": "a3ed3c1cb5943b61d7fb4d87c47847344134e4b595671656cb662cefd942612b"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-installed.txt",
+      "sha256": "4e9c5696618ff1336642682bf111213266a81e073cc6797ef5736d6dba1b666e"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-repeat-verification.json",
+      "sha256": "7024dc79229992e9bbb7499da23afda8a6e32ccb7f5123739a157a96752665f6"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-text-user-restoration.json",
+      "sha256": "9c917db62003fc7bffde433d74b064fb85d25a8dfaf341f897f274c894ddab52"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/working-delta-guard.json",
+      "sha256": "06b4b2cbf0bbd4cf3119885e57036730a8dba9883210249177bf4cce47ed24a0"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "sha256": "b3b09de5e36dbce68c61a621125a0fc3702bf5630643fd57b4c74c68f66a2267"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "sha256": "d4f738870a853687c342c4b98293c4d14dbc993f89a5f30a951fb887328c2458"
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "sha256": "a7e43af79cb5d10d29335fb07388876d0e42dcff783f7ba32ccd329e6c151fe7"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "sha256": "25e86250575a739f56c129a5ef4a67f16d3ebea5187a14676a2caf440c289f0d"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "sha256": "0e32a4337491a4f96129a584d8c84bda5932d0fbc6c841cc9a947c1e2737acb7"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/OfficerQueryTest.java",
+      "sha256": "b7658b36ce33dcf61942bea666c94ff743d5003199797a5f4c76320cd13b2ab0"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/PcOfficerInfoTest.java",
+      "sha256": "c303b452fccd5394fd692bd57726356970536c907aba56bb3293c8961cf8e4f6"
+    },
+    {
+      "path": "tools/content/ArtOfficerFixtureCanonicalizer.java",
+      "sha256": "457ccc6383dbea1b821f3dff79ad82e229676e519bf263a663c6049a81242c41"
+    },
+    {
+      "path": "tools/content/OfficerUiOpeningWriter.java",
+      "sha256": "dccde6698eadc75647f338f4a8f1e64a08ea7ee7e259be1802bf721342286f20"
+    },
+    {
+      "path": "tools/content/android/OfficerInfoInstrumentation.java",
+      "sha256": "eabb7e456d7362c2f03b1c3eeac92dafbe90713d6ef7f6d6672d3be7f94265f1"
+    },
+    {
+      "path": "tools/content/audit_pc_restoration_sources.py",
+      "sha256": "15f39355f734ec29a96f71b3377ef5c9380d980918dd5168d0a88348eff31ad6"
+    },
+    {
+      "path": "tools/content/build_officer_info_ui_probe.py",
+      "sha256": "3dc88ac48a50a7dd2575c29df05a1749b64b40bd7eb77563930bc277b0528db8"
+    },
+    {
+      "path": "tools/content/build_pc_officer_text_catalog.py",
+      "sha256": "db1a8940cffa0c28eea202708e6c90c9500cef8b855072c6dac30e1b6ebdfd0e"
+    },
+    {
+      "path": "tools/content/canonicalize_pc_officer_fixture.py",
+      "sha256": "7b7ee8b28bea279bad107f20c2c32e9f75ccdac501e3fb10753c154d7f38b92e"
+    },
+    {
+      "path": "tools/content/inspect_pc_biography_messages.py",
+      "sha256": "23517b50d7447254e5d80cf3efcf49f4961a63878c36f663c2e78c7092273c49"
+    },
+    {
+      "path": "tools/content/inspect_pc_message_resources.py",
+      "sha256": "7d54cebe0ae3d0a7b080346739f0cce1989460ad1cff972fc6bf7f78d5666d31"
+    },
+    {
+      "path": "tools/content/inspect_pc_officer_fields.py",
+      "sha256": "91c10e88788db3607d0bbb05614a3139d5871bbf2a1a57ca017090e8cfb06e9c"
+    },
+    {
+      "path": "tools/content/inspect_pc_restoration_loader.py",
+      "sha256": "4266e9c828a3bc5d610101d92f6be0c5ba1d3e88a858e2a39433f4ce3ad65490"
+    },
+    {
+      "path": "tools/content/test_pc_officer_fields.py",
+      "sha256": "70462eba8f26dd5d80f78f3c075b2e769d65938c080c363ab006c1f9fa39e6a3"
+    },
+    {
+      "path": "tools/content/test_pc_restoration_sources.py",
+      "sha256": "e54cd4b0459ec6b6a0eee37eb08a053e0b656be39453ac2bad348676d5f74c16"
+    },
+    {
+      "path": "tools/content/verify_pc_officer_ui.py",
+      "sha256": "8586a4880b4b214cb1415aeb2f8260dc86773cc27679ce84faa1de6e8594d6fe"
+    }
+  ],
+  "ignoredInheritedInputs": [
+    {
+      "path": "docs/uiux/evidence-12/05-\u5f81\u5175-review.png",
+      "bytes": 342021,
+      "sha256": "f78f7ac1e24b98fe7e01b2fc96f0afd05157e289d14db18bde0c6f977f1c4c99"
+    },
+    {
+      "path": "docs/uiux/evidence-12/06-\u5f81\u5175-result.png",
+      "bytes": 569004,
+      "sha256": "50feeb00731df9e8f439a372af5098daee056f0be387fc2d0f5a5940a86dd85d"
+    },
+    {
+      "path": "docs/uiux/evidence-12/06-\u8bad\u7ec3-result.png",
+      "bytes": 541711,
+      "sha256": "c86577f7c5416fd7cf88fd3cc3277c95f7f99837ee44410378981bc8de5f9187"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "metadataWipImported": false,
+  "publicPatchesApplied": false
+}

@@ -327,6 +327,10 @@ public final class GameSession implements GameApi, AutoCloseable {
         // rule entities nor serializes reports merely to read bridge/map facts.
         return SnapshotQuery.capture(authority,state());
     }
+    @Override public OfficerSnapshot officers(){
+        thread();if(closed)throw new IllegalStateException("Session closed");
+        return game.sanguo.runtime.query.OfficerQuery.capture(authority,state());
+    }
     public TurnTicket beginTurn()throws IOException{
         write();if(busy())throw new IllegalStateException("HOST_BUSY");
         turn=new TurnTicket(state(),captureSave());return turn;

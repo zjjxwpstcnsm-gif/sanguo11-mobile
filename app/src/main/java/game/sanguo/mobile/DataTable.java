@@ -156,6 +156,26 @@ final class DataTable<T> extends LinearLayout {
         DataTable<World.Officer> table=new DataTable<>(a,officers,officerColumns(w),new int[]{0,14,13,11,12,15,6},o->o.name+" "+o.role.label+" "+w.governance.office(o)+" 功绩"+w.government.merit(o.id)+" 指挥"+w.government.commandLimit(o.id)+" 宝物"+w.treasures.held(o.id).size()+" "+Skill.label(o.skillId)+" "+UiModels.faction(w,o)+" "+UiModels.location(w,o)+" "+UiModels.status(w,o)+" "+extra.apply(o),o->o.id,select,o->{if(a instanceof MainActivity)((MainActivity)a).officerDetail(o);});
         table.columnGroups(new String[]{"履历 / 指挥","能力","归属 / 特技","任务状态"},new int[][]{{0,14,13,11,12,15,6},{0,1,2,3,4,5,6},{0,7,8,9},{0,10,6}});return table;
     }
+    /** Text, search and sorting use the same session DTO as officer details.
+     * World.Officer remains only the existing media/selection identity adapter. */
+    static DataTable<World.Officer> officers(Activity a,List<World.Officer> rows,game.sanguo.api.OfficerSnapshot snapshot,Consumer<World.Officer> select){
+        Function<World.Officer,game.sanguo.api.OfficerSnapshot.Officer> fact=o->Objects.requireNonNull(snapshot.officer(o.id));
+        List<Column<World.Officer>> columns=new ArrayList<>();
+        columns.add(new Column<>("姓名",78,o->fact.apply(o).name,Comparator.comparing(o->fact.apply(o).name),false));
+        String[] names={"统","武","智","政","魅"};for(int i=0;i<5;i++){final int stat=i;columns.add(new Column<>(names[i],44,o->""+fact.apply(o).current.get(stat),Comparator.comparingInt(o->fact.apply(o).current.get(stat)),true));}
+        columns.add(new Column<>("忠诚",50,o->""+fact.apply(o).loyalty,Comparator.comparingInt(o->fact.apply(o).loyalty),true));
+        columns.add(new Column<>("特技",64,o->fact.apply(o).skillName,Comparator.comparing(o->fact.apply(o).skillName),false));
+        columns.add(new Column<>("势力",86,o->fact.apply(o).faction,Comparator.comparing(o->fact.apply(o).faction),false));
+        columns.add(new Column<>("所在地",120,o->fact.apply(o).location,Comparator.comparing(o->fact.apply(o).location),false));
+        columns.add(new Column<>("状态",150,o->fact.apply(o).status,Comparator.comparing(o->fact.apply(o).status),false));
+        columns.add(new Column<>("功绩",82,o->""+fact.apply(o).merit,Comparator.comparingInt(o->fact.apply(o).merit),true));
+        columns.add(new Column<>("指挥兵数",86,o->""+fact.apply(o).commandLimit,Comparator.comparingInt(o->fact.apply(o).commandLimit),true));
+        columns.add(new Column<>("官职",104,o->fact.apply(o).office,Comparator.comparing(o->fact.apply(o).office),false));
+        columns.add(new Column<>("身份",66,o->fact.apply(o).role,Comparator.comparing(o->fact.apply(o).role),false));
+        columns.add(new Column<>("宝物数",66,o->""+fact.apply(o).treasureCount,Comparator.comparingInt(o->fact.apply(o).treasureCount),true));
+        DataTable<World.Officer> table=new DataTable<>(a,rows,columns,new int[]{0,14,13,11,12,15,6},o->fact.apply(o).searchText(),o->o.id,select,select);
+        table.columnGroups(new String[]{"履历 / 指挥","能力","归属 / 特技","任务状态"},new int[][]{{0,14,13,11,12,15,6},{0,1,2,3,4,5,6},{0,7,8,9},{0,10,6}});return table;
+    }
     static void choose(Activity a,World w,String title,List<World.Officer> options,Function<World.Officer,String> extra,Consumer<World.Officer> next,Runnable back){
         choose(a,w,title,options,extra,next,back,null);
     }

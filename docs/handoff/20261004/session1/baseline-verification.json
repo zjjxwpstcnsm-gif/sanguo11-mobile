@@ -1,0 +1,15 @@
+{
+  "implementation_base": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "source": "/Users/paopao/workspace/sanguo11-mobile/out/parity/checkpoint-20261004-r40-closeout-8400301/source",
+  "manifest_sha256": "1be905be69e5d9b12983ad3ba35ead0e60b5ec6b07daa7887deebc49d1e6fa73",
+  "verified_files": 4299,
+  "verified_bytes": 336374894,
+  "extra_checkout_files": [],
+  "all_sha_match": true,
+  "native_build_inputs": [
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so"
+  ]
+}

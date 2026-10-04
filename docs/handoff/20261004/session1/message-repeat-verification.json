@@ -1,0 +1,11 @@
+{
+  "byte_identical": {
+    "S11MSG03.s11.decoded.bin": true,
+    "S11MSG02.s11.decoded.bin": true,
+    "message-resources-native.json": true,
+    "S11MSG00.s11.decoded.bin": true,
+    "S11MSG01.s11.decoded.bin": true
+  },
+  "original_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "decoded_fields_runtime_imported": false
+}

@@ -1,0 +1,7 @@
+{
+  "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java": "7607218b538988f3760b3a4c0631956a3043d2bb4b320a298a6664ca0f153d68",
+  "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java": "e5abd42dc00cc4fe53ffcc3bdf2ad68de96bebedd64d9499cc8aeedde1626610",
+  "app/src/main/java/game/sanguo/mobile/MainActivity.java": "a38d8d2a844ccaa20450914d2667a17eab2f3e215d88c76cb77c63785d09d52b",
+  "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java": "dee87474e81777c2dfbe7b3335ff37abacc6aa43b83e73fb678069c51bd23e50",
+  "game-runtime/build.gradle": "4c533ec367d7b7e5ea5ce31d52dace8257a5f86285cb4dbc2acc7fb7be4c5f98"
+}

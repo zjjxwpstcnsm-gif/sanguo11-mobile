@@ -1,0 +1,12 @@
+[
+  {
+    "file": "out/session1/fields-v2/officer-fields-native.json.gz",
+    "sha256": "1542571b3c9f50a3751ac86078f825648d5be24efc772d3aac0f5e7b7780ec35",
+    "equal": true
+  },
+  {
+    "file": "out/session1/fields/biography-messages-native.json.gz",
+    "sha256": "df59adc7519fa577dfce34323e67daa4ce423334db3358c602f25aba2f195e90",
+    "equal": true
+  }
+]

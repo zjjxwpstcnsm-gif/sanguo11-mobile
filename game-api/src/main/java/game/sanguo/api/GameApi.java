@@ -24,5 +24,6 @@ public interface GameApi {
     ProductionPreview preview(ProductionCommand command);
     CommandResult execute(ProductionCommand command);
     GameSnapshot snapshot();
+    OfficerSnapshot officers();
     Subscription subscribe(Consumer<GameEvent> listener);
 }

@@ -1,0 +1,9 @@
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Exception in thread "main" java.lang.AssertionError: old native baseline complete state step 1
+	at game.sanguo.runtime.GameSessionTest.check(GameSessionTest.java:15)
+	at game.sanguo.runtime.GameSessionTest.baselineParity(GameSessionTest.java:70)
+	at game.sanguo.runtime.GameSessionTest.main(GameSessionTest.java:19)

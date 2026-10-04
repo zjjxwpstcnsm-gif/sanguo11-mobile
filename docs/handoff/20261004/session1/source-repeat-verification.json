@@ -1,0 +1,15 @@
+{
+  "two_full_installation_reads": true,
+  "all_outputs_byte_identical": {
+    "source-manifest.json": true,
+    "officer-metadata-manifest.json.gz": true,
+    "portrait-requirements.json.gz": true,
+    "loader-format-native.json": true
+  },
+  "outputs_sha256": {
+    "source-manifest.json": "c2e8bab45f37cb68f3f6768d41065779877447449a676bdeedd39bd7e1ad9767",
+    "officer-metadata-manifest.json.gz": "c34aec664e825c91c8fb84c6eea30dab45ec44a8821b5bc05ad4aa37167b4046",
+    "portrait-requirements.json.gz": "e63fae48211df94dc66109a14fff2c8b522fe429e0051dd8e9128a5fec6420b0",
+    "loader-format-native.json": "a23f77ded5027b92e9976bc8db451b462a9e01bfaf7517a67220946643bb5c1c"
+  }
+}

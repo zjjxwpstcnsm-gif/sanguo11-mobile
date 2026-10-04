@@ -1,0 +1,19 @@
+{
+  "serial": "emulator-5554",
+  "installedApkSha256": "2c4b8536c3e59c639b422f0b9a1d2902ebbbd45e311464ac38045b9bab083919",
+  "sourceSha256": "457ccc6383dbea1b821f3dff79ad82e229676e519bf263a663c6049a81242c41",
+  "originalFixtureSha256": "d27e35367d103fee397cbf5bcad2e24494792e30d3e6a631e44f38f504f97478",
+  "artFixtureSha256": "0a6048e87672960171856f6285c50b3ccc376310e48ef5e20484a1b0717e4697",
+  "byteDifferences": [
+    16,
+    17,
+    18,
+    19,
+    185561
+  ],
+  "originalBytes": 238831,
+  "artBytes": 238831,
+  "stableArtRoundtrip": true,
+  "userDataTouched": false,
+  "productionClassesFromInstalledApk": true
+}

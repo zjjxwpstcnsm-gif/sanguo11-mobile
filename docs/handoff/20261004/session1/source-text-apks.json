@@ -1,0 +1,12 @@
+[
+  {
+    "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/apks-batch03/app-debug-androidTest.apk",
+    "bytes": 2018919,
+    "sha256": "83a2f1c15272a4a492cae04d25f8099a0a2a67a1ab9d39932e99b5132e32580a"
+  },
+  {
+    "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/apks-batch03/app-debug.apk",
+    "bytes": 91328469,
+    "sha256": "7c5b128be0fc42fe138323ff0274964a09f0ad08d40d4b0def9c06a7646d9e6b"
+  }
+]

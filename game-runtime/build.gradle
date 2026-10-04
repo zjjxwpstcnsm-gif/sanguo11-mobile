@@ -155,3 +155,28 @@ tasks.register('verifyTechniquePointsOrderedFacts', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyTechniquePointsOrderedFacts' }
+
+tasks.register('verifyOfficers', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.OfficerQueryTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyOfficers' }
+
+tasks.register('verifyOfficerLegacy', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.OfficerQueryTest'
+    args rootProject.file('core/src/test/resources').absolutePath
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyOfficerLegacy' }
+
+tasks.register('verifyPcOfficerInfo', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.PcOfficerInfoTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcOfficerInfo' }
