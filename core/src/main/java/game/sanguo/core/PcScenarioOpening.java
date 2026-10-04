@@ -72,6 +72,7 @@ final class PcScenarioOpening {
             if(o==null||o.cityId!=city.id||o.owner!=city.owner)throw new IOException("原太守位置/所属连接未闭合："+site.name);
             city.governorId=o.id;if(o.role!=Strategy.Role.RULER)o.role=Strategy.Role.GOVERNOR;
         }
+        PcContestProfiles.initializeOpening(w,source);
         w.officerAbilities.initializeOpening(null,false,false);
         for(PcScenarioPeople.Person original:source.people){World.Officer o=officers.get(original.nativeId);if(o==null)continue;OfficerAbilities.Profile p=o.abilityProfile;
             p.sourceId=o.id;p.nativeIds=Integer.toString(original.nativeId);p.sourceBirth=original.field(8);

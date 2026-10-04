@@ -1,0 +1,171 @@
+{
+  "parentCommit": "0c9c55492f18bfca91f0850f32c9a9dfde3cd595",
+  "actualCapturedSource38Cases": 16,
+  "parentCurrentHostReencodingAllBytesEqual": true,
+  "allProfilesRemainAbsent": true,
+  "originalArtCaptureUntouched": true,
+  "cases": [
+    {
+      "path": "source000-flow.sg11",
+      "originalBytes": 2062241,
+      "hostReencodedBytes": 2062241,
+      "originalSha256": "e75fada214013b4dd215a625ecc991bde32a6edfc7bfe176e1e509860476d4fe",
+      "parentAndCurrentReencodedSha256": "b3ebdf01193408cf6b9a1beb39705fab06da72e936fcbf0e6e80e42de7e72575",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 185687,
+      "profiles": 0
+    },
+    {
+      "path": "source001-flow.sg11",
+      "originalBytes": 2078733,
+      "hostReencodedBytes": 2078733,
+      "originalSha256": "40982d24a78efcb5d1fd25afd7d1a8205eb8888c1def7332fa363c3fccd2b72a",
+      "parentAndCurrentReencodedSha256": "d427732e127b8eb5d9fffe0a6eca2f34e2c6206343d212c02c21199cc681b515",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 187857,
+      "profiles": 0
+    },
+    {
+      "path": "source002-flow.sg11",
+      "originalBytes": 2079837,
+      "hostReencodedBytes": 2079837,
+      "originalSha256": "b4e7fd94da2dd8ec49f18510918a072371e2c56be551782d2fd1c2720e8ba5eb",
+      "parentAndCurrentReencodedSha256": "657b11ac6040f9660caef796341bfa2947eb85ef93d985b35e3f15f4e3bf494c",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 188927,
+      "profiles": 0
+    },
+    {
+      "path": "source003-flow.sg11",
+      "originalBytes": 2069086,
+      "hostReencodedBytes": 2069086,
+      "originalSha256": "f241665527a6114d637ea54b347cd854bec763ae70218700fddc0dc5306ea46c",
+      "parentAndCurrentReencodedSha256": "50c71f779cd07cdd9f4ddee8971f0c755656c37ba6214d879d367beb7cfb4d44",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 189641,
+      "profiles": 0
+    },
+    {
+      "path": "source004-flow.sg11",
+      "originalBytes": 2072053,
+      "hostReencodedBytes": 2072053,
+      "originalSha256": "582303a2a87195fed541ed8e04de684e8a1f7d1edea3684e2debc7f059ef5662",
+      "parentAndCurrentReencodedSha256": "b6ce0aa5f6425cda224f20354cbae8d22819fea7535526cc3e63c72321918af3",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 189931,
+      "profiles": 0
+    },
+    {
+      "path": "source005-flow.sg11",
+      "originalBytes": 2065195,
+      "hostReencodedBytes": 2065195,
+      "originalSha256": "3e515cdec52be2841488a0c65d015d601cb9dceff79be233eea7407f54252ebc",
+      "parentAndCurrentReencodedSha256": "7f31a2fe4b6e769f0e1fbcb9be0127d034bb8002b9ddc7ca61ab10173b8adbb5",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 189462,
+      "profiles": 0
+    },
+    {
+      "path": "source006-flow.sg11",
+      "originalBytes": 2063442,
+      "hostReencodedBytes": 2063442,
+      "originalSha256": "2f8aa2e5c5766d0fea898998a145d0f9db2b2b7a6d0daeafbcba1fdde5733fa0",
+      "parentAndCurrentReencodedSha256": "fef2ed9ec26c1cc05a181aa7da9a410c32a30f779923b958fef5a9bc3febdc02",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 190203,
+      "profiles": 0
+    },
+    {
+      "path": "source007-flow.sg11",
+      "originalBytes": 2104274,
+      "hostReencodedBytes": 2104274,
+      "originalSha256": "e54bc7d160a8a45920ef031d8998de2ec3e6dc0165f53bea1eb6bbfe6f9816d8",
+      "parentAndCurrentReencodedSha256": "cc1c84a1af8a83076cbfabed1d1aa567899447607aa78f51196013f127b4b243",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 190131,
+      "profiles": 0
+    },
+    {
+      "path": "source008-flow.sg11",
+      "originalBytes": 2074059,
+      "hostReencodedBytes": 2074059,
+      "originalSha256": "e344384947d6b006b33bccf1874a5e2ecd12efaffc0b817229037e63db108ae3",
+      "parentAndCurrentReencodedSha256": "1635b1e1ec84547eddac342254bb94f3894630505913420c35e901113afbd72b",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 189507,
+      "profiles": 0
+    },
+    {
+      "path": "source009-flow.sg11",
+      "originalBytes": 2069193,
+      "hostReencodedBytes": 2069193,
+      "originalSha256": "cb270a2771a8addf07460c181189bcfc2d7d2fbc183714828c3b6dab5e691107",
+      "parentAndCurrentReencodedSha256": "790163e3e9f08bf7db586f0d7a4e0235b5e4d4ff2ecdc3e206bd0de6af649fdd",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 189706,
+      "profiles": 0
+    },
+    {
+      "path": "source010-flow.sg11",
+      "originalBytes": 2062738,
+      "hostReencodedBytes": 2062738,
+      "originalSha256": "d17f268e46a95c5936cebc069aa889650e4ccffe6bc9bd5b9f3d650b9d38b65f",
+      "parentAndCurrentReencodedSha256": "d9e0983d59ffe2236e42cc7fb911e13ef657cd08628df887f381deef5c27548f",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 189494,
+      "profiles": 0
+    },
+    {
+      "path": "source011-flow.sg11",
+      "originalBytes": 2081794,
+      "hostReencodedBytes": 2081794,
+      "originalSha256": "3bd64a1b18af9f3ae0326292a4ba8e8b7c2486c9c9af84f5f7abd40379abedcb",
+      "parentAndCurrentReencodedSha256": "107ff2898599f2e78f357dcd112b300ca53a48f5672d8036d1b8e6e9a6b3c1e6",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 187126,
+      "profiles": 0
+    },
+    {
+      "path": "source012-flow.sg11",
+      "originalBytes": 2074350,
+      "hostReencodedBytes": 2074350,
+      "originalSha256": "dda0080038b6116f5f3bae01a4fbd5f4c9285cdb099b3f7b3eaa1d2639cabb0a",
+      "parentAndCurrentReencodedSha256": "19ddda0357fd3c28c4ba55b4036ddbfa3272c47746c9d5360eaa4b8d7a26ee4c",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 188576,
+      "profiles": 0
+    },
+    {
+      "path": "source013-flow.sg11",
+      "originalBytes": 2081000,
+      "hostReencodedBytes": 2081000,
+      "originalSha256": "f5a0991e514e5134ee1564a8c2c561d4bd6b5c8a306262583080b1c208cb5df8",
+      "parentAndCurrentReencodedSha256": "68a28f782a3801935eb08fecea316cd5afdf0c022f0301757a4045d4565dcfd1",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 186359,
+      "profiles": 0
+    },
+    {
+      "path": "source014-flow.sg11",
+      "originalBytes": 2103046,
+      "hostReencodedBytes": 2103046,
+      "originalSha256": "44c184e70990220302e6ec43af054c9ab2cd674758d13f28082d1c8cfca8a7cf",
+      "parentAndCurrentReencodedSha256": "47736d368516af882abdd94fc41a58422c984984af1351bab5b042c52e0a8698",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 190133,
+      "profiles": 0
+    },
+    {
+      "path": "source015-flow.sg11",
+      "originalBytes": 2053513,
+      "hostReencodedBytes": 2053513,
+      "originalSha256": "36922bfd167d251d9520a2cccd1716d4b74b6328f914efad61fe665c86722bb0",
+      "parentAndCurrentReencodedSha256": "5b1ffbf8e3109a0184bbba22b12892520118b2b03fde34692b83c11463140c44",
+      "originalPayloadMismatches": 1,
+      "firstOriginalPayloadDifference": 184775,
+      "profiles": 0
+    }
+  ],
+  "limit": "Inherited ART-to-host reencoding differences are retained and not counted as byte-equal original input. Actual new-APK cold-start verification still required.",
+  "completeGoal": false
+}

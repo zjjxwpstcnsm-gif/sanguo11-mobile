@@ -1,0 +1,69 @@
+{
+  "parentCommit": "0c9c55492f18bfca91f0850f32c9a9dfde3cd595",
+  "changes": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcContestProfiles.java",
+      "beforeSha256": null,
+      "afterSha256": "51c75ef83f9e828ad7cc32628629d3f31f09251d52ef08d5123e906a701ca903"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "8b0cd5d3976648bcc1dd6a8fdf8d588094d17e6ec90b67590bbb78e56339a143",
+      "afterSha256": "3842716ee46904352d154eed147f47a504ede4c00105b638c6e93e6ce36043e2"
+    },
+    {
+      "path": "core/src/main/resources/pc-contest-profiles/index.txt",
+      "beforeSha256": null,
+      "afterSha256": "146900a8a1d15a57b5927bb8964e7998d44d3f7adff93d0c1c200e505839dad8"
+    },
+    {
+      "path": "core/src/main/resources/pc-contest-profiles/profiles.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "5bdeef55518d85c1ddde019f13cc709c076437a36ed2ff0b8cd824e6d5220f24"
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "beforeSha256": "594245a1115860c1ed9376a96d3ea34570bb7d90c7b6ff5592aac5a9301a5044",
+      "afterSha256": "3737ef450b675d80fd6ccb56dee16e20343312b7b1ceb666e4d38f756552e04b"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "beforeSha256": "5ea9e5dd328ff7c93a2a74a54ff3d99e64d8db25b4135670a5fcb37e85cc2431",
+      "afterSha256": "ca8d048ecf21989655e8a129b36be9256411c7377176cbc00dbc1b13712481f2"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcContestProfilesTest.java",
+      "beforeSha256": null,
+      "afterSha256": "8cbf65f89d987864c7f91ce0c1f8d04bbf3e69fc3a735176f4d8675def02bcb2"
+    },
+    {
+      "path": "tools/content/android/PcContestInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "c2e867405d97c89414804b10c986bf96dd09531becf917b9de1feefed309089e"
+    },
+    {
+      "path": "tools/content/android/PcScenarioOpeningInstrumentation.java",
+      "beforeSha256": "055b21df631065359afc5017abd9619aac4f2b5418eb7ad20ded39be71fb9d4e",
+      "afterSha256": "2a34e4434aa053fd6976ad23a993a923933710be48237b2edd1b906e9300cd0e"
+    },
+    {
+      "path": "tools/content/build_pc_contest_profiles.py",
+      "beforeSha256": null,
+      "afterSha256": "1e71834e8c02879d730e6355f9ad9f4ade4f1af13d9fa53ab5354d86d9723295"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_ui_probe.py",
+      "beforeSha256": "1b84df5b47507a084f02d17c2dca1080471f249ee18edd54086f9dcb825e7e5e",
+      "afterSha256": "07336b7d8afc5615eb94e5677230fad9567b6e6329b8403a6cd18a43e8d29231"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "beforeSha256": "b91e7f769362214d08d6e9afbb2ee2107f0c7eeb7b5231d05a3b18ce03af059e",
+      "afterSha256": "7c43d7397b63cbc665e3841e572869218441c9b5d8bad8fcfd1e04685f49f5da"
+    }
+  ],
+  "sourceTraitsIntegrated": true,
+  "originalNumericEngineIntegrated": false,
+  "allSourceDeviceSweep": "running",
+  "goalComplete": false
+}

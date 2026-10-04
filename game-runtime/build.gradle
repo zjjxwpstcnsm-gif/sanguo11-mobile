@@ -206,3 +206,11 @@ tasks.register("verifyPcScenarioOpening", JavaExec) {
 }
 
 tasks.named('check') { dependsOn 'verifyPcScenarioOpening' }
+
+tasks.register('verifyPcContestProfiles', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcContestProfilesTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcContestProfiles' }

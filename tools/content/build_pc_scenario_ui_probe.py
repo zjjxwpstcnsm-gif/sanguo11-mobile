@@ -21,10 +21,10 @@ def build(output):
     with zipfile.ZipFile(classpath,'w',zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(app.rglob('*.class')):archive.write(path,str(path.relative_to(app)))
     modules=[ROOT/m/'build/libs'/(m+'.jar') for m in ['core','game-api','game-runtime']]
-    source=ROOT/'tools/content/android/PcScenarioOpeningInstrumentation.java'
+    source=ROOT/'tools/content/android/PcScenarioOpeningInstrumentation.java';contest=ROOT/'tools/content/android/PcContestInstrumentation.java'
     def run(name,command):
         with (output/(name+'.log')).open('w') as log:subprocess.run(list(map(str,command)),check=True,stdout=log,stderr=log)
-    run('javac',[java.with_name('javac'),'-encoding','UTF-8','--release','17','-cp',os.pathsep.join(map(str,[android,classpath]+modules)),'-d',classes,source])
+    run('javac',[java.with_name('javac'),'-encoding','UTF-8','--release','17','-cp',os.pathsep.join(map(str,[android,classpath]+modules)),'-d',classes,source,contest])
     dex=output/'dex.zip';command=[java,'-cp',tools/'lib/d8.jar','com.android.tools.r8.D8','--min-api','29','--lib',android,'--output',dex]
     for jar in [classpath]+modules:command+=['--classpath',jar]
     run('d8',command+sorted(classes.rglob('*.class')))
@@ -32,6 +32,7 @@ def build(output):
 <uses-sdk android:minSdkVersion="29" android:targetSdkVersion="35" />
 <application android:label="PC source opening acceptance" android:debuggable="true" />
 <instrumentation android:name="game.sanguo.mobile.PcScenarioOpeningInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+<instrumentation android:name="game.sanguo.mobile.PcContestInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>\n''')
     resources=output/'resources.apk';run('aapt2',[tools/'aapt2','link','--manifest',manifest,'-I',android,'-o',resources])
     unsigned=output/'unsigned.apk'

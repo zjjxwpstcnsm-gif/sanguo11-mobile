@@ -1,0 +1,51 @@
+PC SOURCE OPENING PASS 49 actual contest checks; original numeric state machine integration still pending
+PASS actual original source is selected from ordinary menu
+PASS real source menu imports checked contest traits
+PASS unmodified source opening has an ordinary local debate target
+PASS ordinary source debate trigger control
+PASS normal picker retains actual officer ID 10222
+PASS normal picker actual row visible
+PASS normal picker retains actual officer ID 10116
+PASS normal picker actual row visible
+PASS real recruitment dialog commits full source profiles/costs/RNG
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 时节·小
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 大喝
+PASS normal manual save stores every contest/source/RNG byte
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 道理·中
+PASS normal load restores complete mid-contest data/RNG
+PASS actual normal source contest survives save/reopen
+PASS actual participant consumes sourced talk flags
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 道理·中
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 大喝
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 道理·中
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 时节·中
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 镇静
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 时节·小
+PASS ordinary campaign result control
+PASS normal result widget commits once with complete save/RNG
+PASS normal manual save stores every contest/source/RNG byte
+

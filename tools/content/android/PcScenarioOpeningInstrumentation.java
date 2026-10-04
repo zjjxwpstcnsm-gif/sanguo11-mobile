@@ -86,6 +86,8 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 World fresh=SaveCodec.decode(capture());
                 check(fresh.scenarioId.equals(source.identity.scenarioId)&&fresh.officers.size()==670&&fresh.cities.size()==87&&fresh.factions.length==47,"actual menu creates original sourced roster/sites/capacity");
                 check(!PcOfficerInfo.saved(fresh).isEmpty(),"normal new-game UI installs source world and saved PC text facts");
+                check(PcContestProfiles.saved(fresh).size()==670,"actual menu installs original historical/source-only contest facts");
+                for(PcContestProfiles.Fact f:PcContestProfiles.saved(fresh).values()){Contests.Profile actual=fresh.contests.profile(f.officerId),expected=f.profile();check(actual.temper==expected.temper&&actual.talkMask==expected.talkMask,"actual menu binds per-source contest traits "+f.nativeId);}
                 for(PcOfficerInfo.Person p:PcOfficerInfo.saved(fresh).values())check(p.sourcePath.equals(source.identity.path),"selected source remains explicit in new authority");
                 screenshot("source-new-game");
             }
@@ -104,6 +106,7 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
             check(owners.size()>=2,"three actual factions available");int count=0;
             for(OfficerSnapshot.Officer row:owners.values()){
                 if(count==Math.min(3,owners.size()))break;
+                if(!PcContestProfiles.saved(control).isEmpty())check(row.source.originalInformation.contains("原性格：")&&row.source.originalInformation.contains("原话术标记："),"normal saved officer DTO exposes original contest facts "+row.id);
                 String query=row.source!=null&&!row.source.courtesy.isEmpty()?row.source.courtesy:row.name;
                 Bundle input=new Bundle();input.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,query);
                 boolean[] changed={false};runOnMainSync(()->changed[0]=table.search.performAccessibilityAction(AccessibilityNodeInfo.ACTION_SET_TEXT,input));

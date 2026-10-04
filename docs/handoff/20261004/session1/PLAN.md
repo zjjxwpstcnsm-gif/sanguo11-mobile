@@ -75,3 +75,11 @@ Batch07追加OfficerSnapshot.SourceInfo只读原字段/身份覆盖信息；保�
 追加确切工具所有权：tools/content/inspect_pc_debate_flow.py、test_pc_debate_rules.py。使用原51fcf0派生类构造、51fd10初始化及51e300逐帧状态机；只扩展此前VM漏载的原PE页900000..920000与91ba000..91bb000，精确原字节，不伪造空renderer对象或替换原AI/规则函数。输入为明确的合成原人物夹具，不能标完整PC正常开局或Android已接入。
 
 追加tools/content/inspect_pc_contest_people.py：逐份原152字节人物记录执行原serializer和489780话术getter，保留来源SHA/nativeId/recordSHA/姓名原字节/原性格/五话术，不直接把nativeId当项目ID。仅输出独立metadata，后续按PcScenarioPeople已核实身份连接明确新局，旧保存不补配置。
+
+## Batch09：原人物对战属性正常接入
+
+前镜像0c9c55492f18bfca91f0850f32c9a9dfde3cd595。确切新增：tools/content/build_pc_contest_profiles.py、core/src/main/java/game/sanguo/core/PcContestProfiles.java、core/src/main/resources/pc-contest-profiles/*、game-runtime/src/test/java/game/sanguo/core/PcContestProfilesTest.java。修改core/PcScenarioOpening.java仅明确新局配置，game-runtime/query/OfficerQuery.java仅已保存人物属性文字，game-runtime/build.gradle测试入口。原性格、话术必须显式枚举名称连接，不能按ordinal复制；每源nativeId/recordSHA/原姓名字节/生年/性别核对，依赖PcScenarioPeople已确认人物身份。源NPC/模板只保存元信息，不投放。原对战配置与原编号随存档固定，旧31–37及已有38保存不从新目录追填。此批不将既有工程伤害或牌组宣称为完整原规则，完整原舌战状态机及单挑仍须继续接入并通过真实APK对战续行。
+
+Batch09增加独立真实UI验证工具范围tools/content/android/PcScenarioOpeningInstrumentation.java：实际新局校验670对战属性保存事实、正常武将详情原性格/话术文字；原有正常菜单、多势力、多旬、存取与恢复流程保留。旧Source38冷启动只检其已存事实，不要求或追填新配置。
+
+Batch09追加确切测试工具tools/content/android/PcContestInstrumentation.java，及build_pc_scenario_ui_probe.py的第二独立instrumentation入口、verify_pc_source_opening_ui.py的该测试入口参数。真实来源新局→地图己方据点→舌战登用→选目标/执行者→逐牌→菜单保存/读取→结算；单独冷进程重开实际中途保存。生产对战UI、头像/音频接口不改，未将工程对战公式标为原版已恢复。
