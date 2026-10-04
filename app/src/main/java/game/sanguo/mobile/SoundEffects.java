@@ -24,6 +24,7 @@ final class SoundEffects {
     private final Set<Integer> ready=new HashSet<>(),streams=new HashSet<>(),battleStreams=new HashSet<>();
     private final LinkedHashSet<String> heard=new LinkedHashSet<>();
     private SoundPool pool;
+    private PcPcmEffectPlayer pcEffects;
     private AudioFocusRequest focusRequest;
     private boolean focused,ducked,focusLost,effectsPaused;
     private boolean voiceDucking,noisyRegistered;
@@ -62,12 +63,7 @@ final class SoundEffects {
         candidate.setOnLoadCompleteListener((source,id,status)->{if(pool==source&&status==0)ready.add(id);else if(status!=0)Log.e("GameAudio","load failed sample="+id+" status="+status);});
         for(Cue cue:Cue.values())if(cue!=Cue.TECHNIQUE_GAIN&&cue!=Cue.TECHNIQUE_LOSS)
             try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
-        // Exact original bytes, prepared and hashed off UI. Both directions use
-        // the same original HUD33 sample; loading it twice adds no source meaning.
-        new Thread(()->{try{java.io.File source=PcEffectSourceFile.prepare(context);handler.post(()->{
-            if(pool!=candidate)return;String path=source.getAbsolutePath();
-            int id=candidate.load(path,1);samples.put(Cue.TECHNIQUE_GAIN,id);samples.put(Cue.TECHNIQUE_LOSS,id);
-        });}catch(Exception failure){Log.e("GameAudio","Original PC33 preparation failed",failure);}},"pc-effect-source").start();
+        pcEffects=new PcPcmEffectPlayer(context);
     }
     // Native HUD33 has one proved sample for changed values in either direction.
     // Other cues retain their explicitly labelled mobile compositions until source bindings close.
@@ -99,21 +95,26 @@ final class SoundEffects {
             },handler).build();}
         focused=manager.requestAudioFocus(focusRequest)==AudioManager.AUDIOFOCUS_REQUEST_GRANTED;if(sourceMedia!=null)sourceMedia.focus(focused,ducked);return focused;
     }
-    void pauseEffects(boolean value){effectsPaused=value;if(sourceMedia!=null)sourceMedia.paused(value);if(pool!=null)for(int id:battleStreams){if(value)pool.pause(id);else if(!foreground.isEmpty()&&focused&&!muted())pool.resume(id);}}
+    void pauseEffects(boolean value){effectsPaused=value;if(sourceMedia!=null)sourceMedia.paused(value);if(pcEffects!=null)pcEffects.paused(value||foreground.isEmpty()||!focused||muted());if(pool!=null)for(int id:battleStreams){if(value)pool.pause(id);else if(!foreground.isEmpty()&&focused&&!muted())pool.resume(id);}}
     private static boolean battleCue(Cue cue){return cue==Cue.MARCH||cue==Cue.ATTACK||cue==Cue.TACTIC||cue==Cue.CRITICAL||cue==Cue.PLOT||cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS;}
     private void expireStream(int stream,SoundPool owner){if(pool!=owner)return;if(effectsPaused&&battleStreams.contains(stream)){handler.postDelayed(()->expireStream(stream,owner),500);return;}streams.remove(stream);battleStreams.remove(stream);}
     private void play(Cue cue){
+        if(cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS){
+            if(effectsPaused||foreground.isEmpty()||muted()||volume()==0||pcEffects==null||!pcEffects.ready()||!focus())return;
+            int stream=pcEffects.play(effectGain());if(stream!=0){played++;Log.i("GameAudio","PLAY cue="+cue+" pcmStream="+stream+" count="+played+" gain="+effectGain());}return;
+        }
         Integer sample=samples.get(cue);
         if((effectsPaused&&battleCue(cue))||pool==null||foreground.isEmpty()||muted()||volume()==0||sample==null||!ready.contains(sample)||!focus())return;
         float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;int stream=pool.play(sample,gain,gain,cue==Cue.CRITICAL?2:1,0,1);
         if(stream!=0){played++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played+" gain="+gain+" focused="+focused+" focusKind="+focusKind+" ducked="+ducked+" voiceDucking="+voiceDucking+" sourceMedia="+(sourceMedia!=null));}
         else Log.w("GameAudio","play rejected cue="+cue);
     }
-    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;for(int id:streams)pool.setVolume(id,gain,gain);}}
-    private void stopStreams(){if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
+    private float effectGain(){return volume()/100f*(ducked?.2f:1f)*(voiceDucking?.7f:1f);}
+    private void updateStreams(){float gain=effectGain();if(pcEffects!=null)pcEffects.volume(gain);if(pool!=null)for(int id:streams)pool.setVolume(id,gain,gain);}
+    private void stopStreams(){if(pcEffects!=null)pcEffects.stop();if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
     private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
-    private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
+    private void release(){stop();if(pcEffects!=null){pcEffects.close();pcEffects=null;}if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
-    boolean loaded(){return samples.size()==Cue.values().length&&ready.containsAll(samples.values());}
+    boolean loaded(){return samples.size()==Cue.values().length-2&&ready.containsAll(samples.values())&&pcEffects!=null&&pcEffects.ready();}
     boolean active(){return !foreground.isEmpty()&&pool!=null;}
 }
