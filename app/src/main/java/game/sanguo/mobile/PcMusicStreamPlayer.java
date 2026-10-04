@@ -26,6 +26,7 @@ final class PcMusicStreamPlayer implements AutoCloseable {
         final int musicId,resourceId,fadeMillis;
         final boolean repeat;
         final long began;
+        final long cacheIdentity=SystemClock.elapsedRealtimeNanos();
         final AtomicBoolean cancel=new AtomicBoolean();
         volatile AudioTrack audio;
         volatile String error="";
@@ -90,7 +91,7 @@ final class PcMusicStreamPlayer implements AutoCloseable {
     private void run(Job job){File directory=null,pcm=null;AudioTrack audio=null;
         try{
             cancel(job);PcMusicCatalog.Track track=new PcMusicCatalog(context).track(job.musicId);if(track==null)throw new IOException("Unknown original music ID");
-            directory=new File(context.getCacheDir(),"pc-music-stream-"+job.began+"-"+job.musicId);if(!directory.mkdir())throw new IOException("Fresh own stream cache required");pcm=new File(directory,"original.pcm");
+            directory=new File(context.getCacheDir(),"pc-music-stream-"+job.cacheIdentity+"-"+job.musicId);if(!directory.mkdir())throw new IOException("Fresh own stream cache required");pcm=new File(directory,"original.pcm");
             int minimum=AudioTrack.getMinBufferSize(track.sampleRate,AudioFormat.CHANNEL_OUT_STEREO,AudioFormat.ENCODING_PCM_16BIT);if(minimum<=0)throw new IOException("Unsupported original audio format");
             audio=new AudioTrack.Builder().setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build())
                 .setAudioFormat(new AudioFormat.Builder().setEncoding(AudioFormat.ENCODING_PCM_16BIT).setSampleRate(track.sampleRate).setChannelMask(AudioFormat.CHANNEL_OUT_STEREO).build())

@@ -23,7 +23,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--serial',choices=['emulator-5582'],default='emulator-5582')
     p.add_argument('--apk',type=Path,required=True);p.add_argument('--test-apk',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--runner',choices=['MediaBridgeInstrumentation','PortraitPixelsInstrumentation','PortraitFlowInstrumentation','PortraitPresentationInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','VoiceSourceInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
+    p.add_argument('--runner',choices=['MediaBridgeInstrumentation','PortraitPixelsInstrumentation','PortraitFlowInstrumentation','PortraitPresentationInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','VoiceSourceInstrumentation','SharedMediaInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
     p.add_argument('--argument',action='append',default=[]);p.add_argument('--pass-marker',required=True);p.add_argument('--timeout',type=int,default=1200)
     p.add_argument('--campaign-save',type=Path);p.add_argument('--campaign-sha256')
     p.add_argument('--reuse-installed',action='store_true');p.add_argument('--wave',type=Path);p.add_argument('--cue',action='append',default=[])
@@ -33,6 +33,7 @@ if __name__=='__main__':
         'PortraitFlowInstrumentation':'PORTRAIT_FLOW PASS','PortraitPresentationInstrumentation':'PORTRAIT_PRESENTATION PASS','MusicSourceInstrumentation':'MUSIC_SOURCE PASS',
         'MusicPlaybackInstrumentation':'MUSIC_PLAYBACK PASS','TechniquePointsInstrumentation':'PASS TECHNIQUE HUD',
         'VoiceSourceInstrumentation':'VOICE_SOURCE PASS',
+        'SharedMediaInstrumentation':'SHARED_MEDIA PASS',
         'TechniqueFactsInstrumentation':'PASS TECHNIQUE FACTS','UiUxInstrumentation':'UIUX PASS'}
     if a.pass_marker!=markers[a.runner]:raise ValueError('Runner pass marker differs; device untouched')
     if a.output.exists():raise ValueError('Fresh output required')
