@@ -1,0 +1,43 @@
+{
+  "baseCommit": "4994350dd1f0ad661c97379f33997f8fca904e58",
+  "implementationCommit": "5de47b15f9ce444e04a774077be72467acd5f20c",
+  "authorityUnchangedCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "paths": {
+    "app/src/main/java/game/sanguo/mobile/SoundEffects.java": {
+      "beforeSha256": "2a3a9bda55c71f9b7bb5a14c20be3e1227036dece47a9e335e0002adca6182cd",
+      "afterSha256": "1bbf6e7459e27e21aaf64158527bcddc18aee75e2af6c6f09f35ad87cd927198"
+    },
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": {
+      "beforeSha256": "6fc0b84b0cb82a76b7d5c2ce7a2bb069a8e10bd8a66d0739e90e21940e943705",
+      "afterSha256": "d6c9b54d85d966df32459ab93e862cc6ad7cbc3a4c877e24fba8496650c2bf63"
+    },
+    "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java": {
+      "beforeSha256": "db5c045af12b7381ffb7a74d041e6bbf6083795404ac68727c7f31a073a61fea",
+      "afterSha256": "abdcba594b70a491dc32b1d5b9773facc4186743b3c7256efd451bed92aeea43"
+    },
+    "app/src/main/assets/audio/pc/ui-close-1.wav": {
+      "beforeSha256": null,
+      "afterSha256": "a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6"
+    },
+    "app/src/main/assets/audio/pc/ui-close-manifest.json": {
+      "beforeSha256": null,
+      "afterSha256": "d93c4975a1cf71c73310d5706211f99d4c988f7b9d8827c8634faf3eb476ffe5"
+    },
+    "tools/audio/inspect_pc_ui_close_audio.py": {
+      "beforeSha256": null,
+      "afterSha256": "7dfdd60c569cdc58cce0248ebf632d57edba94c0a8179978024d0f6cc97f96e4"
+    },
+    "tools/audio/stage_pc_ui_close_sound.py": {
+      "beforeSha256": null,
+      "afterSha256": "16deab499f1ce8971c061724751c4f524019fbc4ac8a27181b2426e20da0142d"
+    },
+    "tools/audio/check_pc_ui_close_mix.py": {
+      "beforeSha256": null,
+      "afterSha256": "dad4b18b8fc998093eaebff58364ef857983aa595afe190d3714c2da52f1c241"
+    },
+    "tools/media/prepare_ui_close_host_patch.py": {
+      "beforeSha256": null,
+      "afterSha256": "939114aa1b5ce9fe8ff767cca4d089dcdbe5dc0ab19f1580601d627e396e8bcf"
+    }
+  }
+}

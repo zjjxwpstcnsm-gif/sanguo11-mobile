@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "5de47b15f9ce444e04a774077be72467acd5f20c",
+  "build": "PASS",
+  "apks": {
+    "main": {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/ui-close-build-20/frozen/app-debug.apk",
+      "bytes": 283163807,
+      "sha256": "7cc4e77c487f9dac2f6093cb4654953c11235c09bdce4cb0678f67c5a1122e6a"
+    },
+    "test": {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/ui-close-build-20/frozen/app-debug-androidTest.apk",
+      "bytes": 2066991,
+      "sha256": "bc26278844cf5030ba58fb3b5f368b26bd0f5806d624de6cf68232d010793c84"
+    }
+  },
+  "installed": false,
+  "scope": "Original close sample on actual platform OnCancel; ordinary BGM/voice producers still absent"
+}

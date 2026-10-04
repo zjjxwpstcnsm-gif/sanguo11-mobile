@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "scope": "First actual normal settings Back cancellation; later overlapping cue probe/source OS routing/all UI matrix/ARM unverified",
+  "serial": "emulator-5582",
+  "apkSha256": "7cc4e77c487f9dac2f6093cb4654953c11235c09bdce4cb0678f67c5a1122e6a",
+  "sourceWavSha256": "a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6",
+  "mixedWavSha256": "e105bcce19143597e99b33cd4bf2ffe91f8d7e1983567bcf47c8483eaf53fda3",
+  "normalUiEvent": {
+    "scope": "Actual normal settings dialog Back cancellation, not source OS dispatch or all UI matrix",
+    "nativeSoundId": 1,
+    "cancelAtElapsedMillis": 35618929,
+    "cancelledBefore": 0,
+    "cancelledAfter": 1,
+    "ordinaryDismissAfter": 1,
+    "fullSaveRngByteEqual": true
+  },
+  "occurrences": [
+    {
+      "startSample": 414537,
+      "endSample": 417579,
+      "correlation": 0.9999996760440769,
+      "gain": 0.017731636850582586,
+      "audibleRms": 0.00312125733072973
+    }
+  ],
+  "normalCancellationOccurrence": 0,
+  "explicitCueLoopHud33Anchors": [
+    {
+      "startSample": 1051373,
+      "correlation": 0.9999996407824105
+    },
+    {
+      "startSample": 1093613,
+      "correlation": 0.9996366135933463
+    }
+  ],
+  "laterProbeLimit": "Inherited950ms gap after1.025s HUD33 overlaps source1; no isolated second-source acceptance claim",
+  "method": "Declared source1 full3042frame fit before independently measured HUD33 cue-loop anchor; same fixed65-tap FIR; >.999 positive audible normal source"
+}

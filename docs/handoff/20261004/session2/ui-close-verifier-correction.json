@@ -1,0 +1,8 @@
+{
+  "sourceWaveSha256": "e105bcce19143597e99b33cd4bf2ffe91f8d7e1983567bcf47c8483eaf53fda3",
+  "initialAssumption": "Two independent close1 template matches expected; one found",
+  "cause": "Explicit later close1 cue follows1.025s HUD33 with inherited950ms gap, so its whole sample overlaps native HUD33 tail",
+  "finalProof": "Normal first close1 exact3042frames before independently measured HUD33 cue-loop anchor; normal0->1 counter and ordinary confirmation unchanged; original interval removed negative rejected",
+  "finalThreshold": ">.999 full-rate, positive audible source; unchanged",
+  "laterOverlapProbe": "not accepted as isolated source; no claim of all-cue waveform restoration"
+}
