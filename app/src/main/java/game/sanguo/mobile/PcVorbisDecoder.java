@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /** Original compressed music -> bounded-buffer PCM cache. No decoding or hashing on the UI thread. */
 final class PcVorbisDecoder {
+    interface PcmSink { void write(byte[] buffer,int length)throws IOException; }
     static final class Result {
         final String pcmSha256,codec;
         final long frames,bytes,elapsedMillis;
@@ -24,6 +25,9 @@ final class PcVorbisDecoder {
     private static String hex(byte[] data){StringBuilder value=new StringBuilder();for(byte item:data)value.append(String.format(java.util.Locale.ROOT,"%02x",item&255));return value.toString();}
     private static void cancelled(AtomicBoolean cancel)throws IOException{if(cancel.get()||Thread.currentThread().isInterrupted())throw new IOException("Media decode cancelled");}
     static Result decode(Context context,PcMusicCatalog.Track track,File output,AtomicBoolean cancel)throws IOException {
+        return decode(context,track,output,cancel,null);
+    }
+    static Result decode(Context context,PcMusicCatalog.Track track,File output,AtomicBoolean cancel,PcmSink sink)throws IOException {
         if(Looper.myLooper()==Looper.getMainLooper())throw new IllegalStateException("Music decode on UI thread");
         if(output.exists())throw new IOException("Fresh decoder output required");
         long started=SystemClock.elapsedRealtime();MediaExtractor extractor=new MediaExtractor();MediaCodec codec=null;
@@ -51,7 +55,7 @@ final class PcVorbisDecoder {
                         if(format.getInteger(MediaFormat.KEY_SAMPLE_RATE)!=track.sampleRate||format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)!=track.channels||encoding!=AudioFormat.ENCODING_PCM_16BIT)throw new IOException("Unexamined decoder PCM format");formatSeen=true;}
                     else if(index>=0){
                         try{if(info.size>0&&(info.flags&MediaCodec.BUFFER_FLAG_CODEC_CONFIG)==0){if(!formatSeen||info.size%(track.channels*2)!=0)throw new IOException("Incomplete PCM frame");var data=codec.getOutputBuffer(index);if(data==null)throw new IOException("Missing codec output");data.position(info.offset);data.limit(info.offset+info.size);
-                            while(data.hasRemaining()){int n=Math.min(data.remaining(),buffer.length);data.get(buffer,0,n);target.write(buffer,0,n);pcm.update(buffer,0,n);bytes+=n;if(bytes>track.frames*track.channels*2+8192)throw new IOException("Decoder exceeded source timeline; no implicit trim");}}
+                            while(data.hasRemaining()){int n=Math.min(data.remaining(),buffer.length);data.get(buffer,0,n);target.write(buffer,0,n);pcm.update(buffer,0,n);bytes+=n;if(bytes>track.frames*track.channels*2+8192)throw new IOException("Decoder exceeded source timeline; no implicit trim");if(sink!=null){sink.write(buffer,n);lastProgress=SystemClock.elapsedRealtime();}}}
                             outputEnd=(info.flags&MediaCodec.BUFFER_FLAG_END_OF_STREAM)!=0;lastProgress=SystemClock.elapsedRealtime();
                         }finally{codec.releaseOutputBuffer(index,false);}}
                     if(SystemClock.elapsedRealtime()-lastProgress>10000)throw new IOException("Original music decoder stalled");
