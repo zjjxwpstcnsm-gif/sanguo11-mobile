@@ -17,12 +17,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 final class PcVoiceStreamPlayer implements AutoCloseable {
     interface Listener {void started(PcVoiceDirective directive);void finished(PcVoiceDirective directive);}
     static final class Status {
-        final PcVoiceDirective directive;final long submittedFrames,playedFrames,firstWriteMillis;final boolean released;final String error;
-        Status(Job j){directive=j.directive;submittedFrames=j.submitted;playedFrames=j.played;firstWriteMillis=j.firstWriteMillis;released=j.released;error=j.error;}
+        final PcVoiceDirective directive;final long submittedFrames,playedFrames,firstWriteMillis;final boolean released;final String error,decodedSha256,submittedSha256;final int underruns;
+        Status(Job j){directive=j.directive;submittedFrames=j.submitted;playedFrames=j.played;firstWriteMillis=j.firstWriteMillis;released=j.released;error=j.error;decodedSha256=j.decodedSha256;submittedSha256=j.submittedSha256;underruns=j.underruns;}
     }
     private static final class Job {
         final PcVoiceDirective directive;final long began=SystemClock.elapsedRealtimeNanos();final AtomicBoolean cancel=new AtomicBoolean();
-        volatile AudioTrack audio;volatile long submitted,played,firstWriteMillis=-1;volatile boolean released;volatile String error="";
+        volatile AudioTrack audio;volatile long submitted,played,firstWriteMillis=-1;volatile boolean released;volatile String error="",decodedSha256="",submittedSha256="";volatile int underruns;
         Job(PcVoiceDirective directive){this.directive=directive;}
     }
     private final Context context;private final Listener listener;private final Handler main=new Handler(Looper.getMainLooper());
@@ -58,18 +58,22 @@ final class PcVoiceStreamPlayer implements AutoCloseable {
                 .setAudioFormat(new AudioFormat.Builder().setSampleRate(source.sampleRate).setEncoding(AudioFormat.ENCODING_PCM_16BIT).setChannelMask(mask).build())
                 .setTransferMode(AudioTrack.MODE_STREAM).setBufferSizeInBytes(Math.max(minimum,8192)).build();
             if(audio.getState()!=AudioTrack.STATE_INITIALIZED)throw new IOException("Voice AudioTrack uninitialized");
+            java.security.MessageDigest submittedDigest;
+            try{submittedDigest=java.security.MessageDigest.getInstance("SHA-256");}catch(java.security.NoSuchAlgorithmException impossible){throw new IOException(impossible);}
             AudioTrack output=audio;synchronized(controls){check(job);job.audio=audio;audio.setVolume(gain*focusDuck);audio.play();}
             PcVorbisDecoder.Result decoded=PcVorbisDecoder.decode(context,source,pcm,job.cancel,(buffer,length)->{
                 for(int offset=0;offset<length;){ready(job,output);int accepted=output.write(buffer,offset,length-offset,AudioTrack.WRITE_NON_BLOCKING);
                     if(accepted<0||accepted%(source.channels*2)!=0)throw new IOException("Voice AudioTrack output "+accepted);
-                    if(accepted==0){SystemClock.sleep(5);continue;}offset+=accepted;job.submitted+=accepted/(source.channels*2);
+                    if(accepted==0){SystemClock.sleep(5);continue;}submittedDigest.update(buffer,offset,accepted);offset+=accepted;job.submitted+=accepted/(source.channels*2);job.underruns=output.getUnderrunCount();
                     if(job.firstWriteMillis<0){job.firstWriteMillis=(SystemClock.elapsedRealtimeNanos()-job.began)/1000000;main.post(()->{if(!job.cancel.get()&&!closed)listener.started(job.directive);});}
                     job.played=Integer.toUnsignedLong(output.getPlaybackHeadPosition());}
             });
-            while(job.played<decoded.frames){ready(job,audio);job.played=Integer.toUnsignedLong(audio.getPlaybackHeadPosition());SystemClock.sleep(5);}
+            job.decodedSha256=decoded.pcmSha256;StringBuilder submittedHash=new StringBuilder(64);for(byte b:submittedDigest.digest())submittedHash.append(String.format(java.util.Locale.ROOT,"%02x",b&255));job.submittedSha256=submittedHash.toString();
+            if(!job.decodedSha256.equals(job.submittedSha256))throw new IOException("Original decoded/submitted voice PCM differs");
+            while(job.played<decoded.frames){ready(job,audio);job.played=Integer.toUnsignedLong(audio.getPlaybackHeadPosition());job.underruns=audio.getUnderrunCount();SystemClock.sleep(5);}
         }catch(IOException|RuntimeException error){if(!job.cancel.get()){job.error=error.toString();android.util.Log.e("PcVoice","Original voice stream failed",error);}}
         finally {
-            synchronized(controls){job.audio=null;if(audio!=null){try{audio.pause();audio.flush();}catch(IllegalStateException ignored){}audio.release();}}
+            synchronized(controls){job.audio=null;if(audio!=null){job.underruns=audio.getUnderrunCount();try{audio.pause();audio.flush();}catch(IllegalStateException ignored){}audio.release();}}
             if(pcm!=null){File partial=new File(pcm.getPath()+".part");if(partial.exists()&&!partial.delete())android.util.Log.w("PcVoice","Own partial PCM retained");if(pcm.exists()&&!pcm.delete())android.util.Log.w("PcVoice","Own PCM retained");}
             if(directory!=null&&directory.exists()&&!directory.delete())android.util.Log.w("PcVoice","Own cache directory retained");job.released=true;
             main.post(()->{if(current==job)current=null;if(!closed)listener.finished(job.directive);});

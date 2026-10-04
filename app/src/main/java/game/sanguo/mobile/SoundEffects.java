@@ -62,11 +62,11 @@ final class SoundEffects {
         candidate.setOnLoadCompleteListener((source,id,status)->{if(pool==source&&status==0)ready.add(id);else if(status!=0)Log.e("GameAudio","load failed sample="+id+" status="+status);});
         for(Cue cue:Cue.values())if(cue!=Cue.TECHNIQUE_GAIN&&cue!=Cue.TECHNIQUE_LOSS)
             try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
-        // Exact original bytes, prepared and hashed off UI. Measured APK-FD loading
-        // distorted PC33 on5582; standalone WAV loading preserves the original PCM.
+        // Exact original bytes, prepared and hashed off UI. Both directions use
+        // the same original HUD33 sample; loading it twice adds no source meaning.
         new Thread(()->{try{java.io.File source=PcEffectSourceFile.prepare(context);handler.post(()->{
             if(pool!=candidate)return;String path=source.getAbsolutePath();
-            samples.put(Cue.TECHNIQUE_GAIN,candidate.load(path,1));samples.put(Cue.TECHNIQUE_LOSS,candidate.load(path,1));
+            int id=candidate.load(path,1);samples.put(Cue.TECHNIQUE_GAIN,id);samples.put(Cue.TECHNIQUE_LOSS,id);
         });}catch(Exception failure){Log.e("GameAudio","Original PC33 preparation failed",failure);}},"pc-effect-source").start();
     }
     // Native HUD33 has one proved sample for changed values in either direction.
@@ -114,6 +114,6 @@ final class SoundEffects {
     private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
     private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
-    boolean loaded(){return ready.size()==Cue.values().length;}
+    boolean loaded(){return samples.size()==Cue.values().length&&ready.containsAll(samples.values());}
     boolean active(){return !foreground.isEmpty()&&pool!=null;}
 }

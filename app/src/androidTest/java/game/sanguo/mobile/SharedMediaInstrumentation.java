@@ -32,6 +32,7 @@ public final class SharedMediaInstrumentation extends SceneInstrumentation {
             .put("voiceId",v==null?-1:v.directive.nativeVoiceId).put("voiceFactId",v==null?"":v.directive.id).put("parentId",v==null?"":v.directive.parentId)
             .put("presentationParentId",v==null?"":v.directive.presentationParentId).put("voiceSubmittedFrames",v==null?0:v.submittedFrames).put("voicePlayedFrames",v==null?0:v.playedFrames)
             .put("voiceFirstWriteMillis",v==null?-1:v.firstWriteMillis).put("voiceReleased",v==null||v.released).put("voiceError",v==null?"":v.error)
+            .put("voiceUnderruns",v==null?0:v.underruns).put("voiceDecodedSha256",v==null?"":v.decodedSha256).put("voiceSubmittedSha256",v==null?"":v.submittedSha256)
             .put("musicPlayedFrames",m==null?0:m.playedFrames).put("musicFirstWriteMillis",m==null?-1:m.firstWriteMillis).put("musicReleased",m==null||m.released));
     }
     @Override public void onStart(){Bundle result=new Bundle();try {
