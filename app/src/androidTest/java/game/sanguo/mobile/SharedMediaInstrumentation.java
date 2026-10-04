@@ -32,7 +32,7 @@ public final class SharedMediaInstrumentation extends SceneInstrumentation {
             .put("voiceId",v==null?-1:v.directive.nativeVoiceId).put("voiceFactId",v==null?"":v.directive.id).put("parentId",v==null?"":v.directive.parentId)
             .put("presentationParentId",v==null?"":v.directive.presentationParentId).put("voiceSubmittedFrames",v==null?0:v.submittedFrames).put("voicePlayedFrames",v==null?0:v.playedFrames)
             .put("voiceFirstWriteMillis",v==null?-1:v.firstWriteMillis).put("voiceReleased",v==null||v.released).put("voiceError",v==null?"":v.error)
-            .put("voiceUnderruns",v==null?0:v.underruns).put("voiceDecodedSha256",v==null?"":v.decodedSha256).put("voiceSubmittedSha256",v==null?"":v.submittedSha256)
+            .put("voiceUnderruns",v==null?0:v.underruns).put("voiceFirstPlayMillis",v==null?-1:v.firstPlayMillis).put("voiceDecodedSha256",v==null?"":v.decodedSha256).put("voiceSubmittedSha256",v==null?"":v.submittedSha256)
             .put("musicPlayedFrames",m==null?0:m.playedFrames).put("musicFirstWriteMillis",m==null?-1:m.firstWriteMillis).put("musicReleased",m==null||m.released));
     }
     @Override public void onStart(){Bundle result=new Bundle();try {
@@ -52,8 +52,8 @@ public final class SharedMediaInstrumentation extends SceneInstrumentation {
         await(()->{boolean[] prepared={false};runOnMainSync(()->prepared[0]=media.voicePrepared());return prepared[0];},10000,"original voice catalog prewarmed off UI thread");
         runOnMainSync(()->media.sourceMusic("probe-established3d:source2261",24,true,0));await(()->musicStatus()!=null&&musicStatus().playedFrames>44100,10000,"shared owner original music advances");observe("music-alone");SystemClock.sleep(1200);
         check((Integer)field(sounds,"focusKind")==AudioManager.AUDIOFOCUS_GAIN,"one persistent shared music focus request");
-        directive=plan("first",1);check(admit(directive),"actual receipt membership admits explicit original profile test adapter");await(()->voiceStatus()!=null&&voiceStatus().firstWriteMillis>=0,10000,"original voice PCM submitted on background worker");observe("voice-duck");
-        check(voiceStatus().firstWriteMillis<1000,"prepared original voice first PCM latency below1s");
+        directive=plan("first",1);check(admit(directive),"actual receipt membership admits explicit original profile test adapter");await(()->voiceStatus()!=null&&voiceStatus().firstPlayMillis>=0,10000,"original voice starts after background PCM prebuffer");observe("voice-duck");
+        check(voiceStatus().firstPlayMillis<1000,"prepared original voice playback latency below1s");
         check(!admit(directive),"duplicate fact never replays");SystemClock.sleep(700);runOnMainSync(()->sounds.pauseEffects(true));SystemClock.sleep(250);long head=voiceStatus().playedFrames;SystemClock.sleep(350);check(voiceStatus().playedFrames==head,"animation pause holds current voice position");observe("voice-paused");
         runOnMainSync(()->sounds.pauseEffects(false));await(()->voiceStatus().playedFrames>head,3000,"voice resumes existing source position once");
         await(()->voiceStatus().released,10000,"original voice drains exact source and releases");check(voiceStatus().error.isEmpty(),"original voice has no decoder/AudioTrack error");observe("voice-ended");SystemClock.sleep(900);
