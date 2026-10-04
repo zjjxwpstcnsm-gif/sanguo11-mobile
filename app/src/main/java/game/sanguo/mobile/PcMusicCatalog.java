@@ -12,14 +12,13 @@ import java.util.Map;
 
 /** Independent original media identity. No automatic scene selection or gameplay dependency. Load off main thread. */
 final class PcMusicCatalog {
-    static final class Track {
-        final int musicId,resourceId,sampleRate,channels;
-        final long frames,loopStart,loopEnd;
-        final String asset,oggSha256,referencePcmSha256;
+    static final class Track extends PcAudioSource {
+        final int musicId,resourceId;
+        final long loopStart,loopEnd;
         private Track(JSONObject row)throws Exception {
-            musicId=row.getInt("musicId");resourceId=row.getInt("resourceId");sampleRate=row.getInt("sampleRate");channels=row.getInt("channels");
-            frames=row.getLong("frames");loopStart=row.isNull("loopStartFrame")?-1:row.getLong("loopStartFrame");loopEnd=row.isNull("loopEndFrame")?-1:row.getLong("loopEndFrame");
-            asset=row.getString("asset");oggSha256=row.getString("oggSha256");referencePcmSha256=row.getString("referencePcmSha256");
+            super(row.getString("asset"),row.getString("oggSha256"),row.getString("referencePcmSha256"),row.getInt("sampleRate"),row.getInt("channels"),row.getLong("frames"));
+            musicId=row.getInt("musicId");resourceId=row.getInt("resourceId");
+            loopStart=row.isNull("loopStartFrame")?-1:row.getLong("loopStartFrame");loopEnd=row.isNull("loopEndFrame")?-1:row.getLong("loopEndFrame");
             if(musicId<0||musicId>=30||resourceId!=2237+musicId||!asset.equals("audio/pc/music/"+resourceId+".ogg")
                 ||sampleRate!=44100||channels!=2||frames<1||!oggSha256.matches("[0-9a-f]{64}")||!referencePcmSha256.matches("[0-9a-f]{64}")
                 ||!((loopStart==-1&&loopEnd==-1)||(loopStart>=0&&loopStart<loopEnd&&loopEnd==frames)))throw new IOException("Invalid original music manifest");

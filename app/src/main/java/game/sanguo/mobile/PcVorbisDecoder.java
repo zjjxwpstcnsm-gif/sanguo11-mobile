@@ -13,22 +13,22 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/** Original compressed music -> bounded-buffer PCM cache. No decoding or hashing on the UI thread. */
+/** Original compressed music/voice -> bounded-buffer PCM cache. No decoding/hashing on the UI thread. */
 final class PcVorbisDecoder {
     interface PcmSink { void write(byte[] buffer,int length)throws IOException; }
     static final class Result {
         final String pcmSha256,codec;
         final long frames,bytes,elapsedMillis;
-        final boolean referenceByteEqual;
-        Result(String hash,String codec,long frames,long bytes,long millis,PcMusicCatalog.Track track){pcmSha256=hash;this.codec=codec;this.frames=frames;this.bytes=bytes;elapsedMillis=millis;referenceByteEqual=hash.equals(track.referencePcmSha256);}
+        final boolean referenceByteEqual,sourceFrameEqual;
+        Result(String hash,String codec,long frames,long bytes,long millis,PcAudioSource track){pcmSha256=hash;this.codec=codec;this.frames=frames;this.bytes=bytes;elapsedMillis=millis;referenceByteEqual=hash.equals(track.referencePcmSha256);sourceFrameEqual=frames==track.frames;}
     }
     private static String hex(byte[] data){StringBuilder value=new StringBuilder();for(byte item:data)value.append(String.format(java.util.Locale.ROOT,"%02x",item&255));return value.toString();}
     private static void cancelled(AtomicBoolean cancel)throws IOException{if(cancel.get()||Thread.currentThread().isInterrupted())throw new IOException("Media decode cancelled");}
-    static Result decode(Context context,PcMusicCatalog.Track track,File output,AtomicBoolean cancel)throws IOException {
+    static Result decode(Context context,PcAudioSource track,File output,AtomicBoolean cancel)throws IOException {
         return decode(context,track,output,cancel,null);
     }
-    static Result decode(Context context,PcMusicCatalog.Track track,File output,AtomicBoolean cancel,PcmSink sink)throws IOException {
-        if(Looper.myLooper()==Looper.getMainLooper())throw new IllegalStateException("Music decode on UI thread");
+    static Result decode(Context context,PcAudioSource track,File output,AtomicBoolean cancel,PcmSink sink)throws IOException {
+        if(Looper.myLooper()==Looper.getMainLooper())throw new IllegalStateException("Audio decode on UI thread");
         if(output.exists())throw new IOException("Fresh decoder output required");
         long started=SystemClock.elapsedRealtime();MediaExtractor extractor=new MediaExtractor();MediaCodec codec=null;
         File partial=new File(output.getPath()+".part");boolean published=false;
@@ -58,15 +58,15 @@ final class PcVorbisDecoder {
                             while(data.hasRemaining()){int n=Math.min(data.remaining(),buffer.length);data.get(buffer,0,n);target.write(buffer,0,n);pcm.update(buffer,0,n);bytes+=n;if(bytes>track.frames*track.channels*2+8192)throw new IOException("Decoder exceeded source timeline; no implicit trim");if(sink!=null){sink.write(buffer,n);lastProgress=SystemClock.elapsedRealtime();}}}
                             outputEnd=(info.flags&MediaCodec.BUFFER_FLAG_END_OF_STREAM)!=0;lastProgress=SystemClock.elapsedRealtime();
                         }finally{codec.releaseOutputBuffer(index,false);}}
-                    if(SystemClock.elapsedRealtime()-lastProgress>10000)throw new IOException("Original music decoder stalled");
+                    if(SystemClock.elapsedRealtime()-lastProgress>10000)throw new IOException("Original audio decoder stalled");
                 }
                 target.getFD().sync();
             }
             long frames=bytes/(track.channels*2);
-            if(frames!=track.frames)throw new IOException("Source/Android frame count differs: "+track.frames+"/"+frames+"; no padding or trim guessed");
+            if(track.strictFrameCount&&frames!=track.frames)throw new IOException("Source/Android frame count differs: "+track.frames+"/"+frames+"; no padding or trim guessed");
             cancelled(cancel);if(!partial.renameTo(output))throw new IOException("Cannot publish decoded cache");published=true;
             return new Result(hex(pcm.digest()),name,frames,bytes,SystemClock.elapsedRealtime()-started,track);
-        }catch(IOException error){throw error;}catch(Exception error){throw new IOException("Original music decoder",error);}
+        }catch(IOException error){throw error;}catch(Exception error){throw new IOException("Original audio decoder",error);}
         finally{if(codec!=null){try{codec.stop();}catch(IllegalStateException ignored){}codec.release();}extractor.release();if(!published&&partial.exists()&&!partial.delete())android.util.Log.w("PcAudio","Interrupted own cache output retained: "+partial);}
     }
 }
