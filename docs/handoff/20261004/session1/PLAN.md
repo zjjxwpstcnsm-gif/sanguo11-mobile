@@ -63,3 +63,11 @@ Batch07追加确切来源初始化入口：MerchantMarket仅initializeSource（�
 Batch07追加OfficerSnapshot.SourceInfo只读原字段/身份覆盖信息；保持已有nativeId/sourceVariant/officerId连接字段，四个source-only字形身份明确canonicalIdentityUnmapped。MainActivity只武将文字详情追加该DTO内容，所有肖像调用不变。
 
 实际来源APK验收确切工具：tools/content/android/PcScenarioOpeningInstrumentation.java、build_pc_scenario_ui_probe.py、verify_pc_source_opening_ui.py。独立测试包只引用本批生产类；真实新局菜单/武将查阅/巡察/换旬/保存读取，保留所有设备文件，未改既有公共runner或媒体。
+
+## 单挑与舌战：用户新增目标
+
+2026-10-04用户明确要求一并完成单挑和舌战还原。此职责扩展使用相同本地PC只读来源，纳入最终验收而非独立静态演示。确切核心所有权：core/src/main/java/game/sanguo/core/Duel.java、Debate.java、Contests.java、ContestSave.java；必要的现有奖励/经验入口按实际修改前另行登记。确切运行边界：game-api/src/main/java/game/sanguo/api/ContestCommand.java、拟新增ContestSnapshot.java、game-runtime/src/main/java/game/sanguo/runtime/GameSession.java及拟新增query/ContestQuery.java。确切app文件：app/src/main/java/game/sanguo/mobile/ContestUi.java，只规则信息/按钮/命令路径；MainActivity只正常触发及信息入口，不改头像/音频/演出加载、AndroidGameBridge或3D。测试为core/src/test/java/game/sanguo/core/ContestTest.java、拟新增PcContestRulesTest.java、game-runtime拟新增ContestSessionTest.java及独立实际UI验收工具。
+
+新增原信息工具：tools/content/inspect_pc_contest_catalog.py、后续inspect_pc_duel_rules.py、inspect_pc_debate_rules.py及相应原指令回归；实际拥有的输入输出及SHA逐批登记。现有Duel伤害/暴击/支援/气力、Debate牌组/手数/怒气/伤害/憤激时长均明示工程参数，不能当已还原。严格核实触发、携物、角色性格/话术、对战状态、撤退/胜负/捕获/奖励/经验，并完成中途保存→冷启动续战及重复/过期按钮拒绝，完整Save/RNG核对。旧已保存对战与策略必须显式保留，不能改公式后默默续算；新增来源仅影响明确新局，若需新保存策略另列兼容入口。
+
+媒体会话继续拥有像素、头像变体/年龄选择、音频及演出资源；对战信息需求仅输出本独立契约文件，不并改其manifest/PortraitCatalog/OfficerPortrait/SoundEffects/播放器文件。
