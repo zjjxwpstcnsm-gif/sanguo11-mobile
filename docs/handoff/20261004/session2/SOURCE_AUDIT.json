@@ -1,0 +1,94 @@
+{
+  "portraits": {
+    "schema": 1,
+    "sourcePolicy": "READ_ONLY_NO_WINE",
+    "sourceFile": "Media/face/San11Face00.fce",
+    "sourceSha256": "5e6a69ac3555910196465a40a7d02092cc7b8e7dc7de8e106eac1173b6e29519",
+    "descriptorSha256": "73b4ecc975c907c9b660ac1042ad6b23502819fd46fb421203cc6ddc25eba0de",
+    "sourceFaceCount": 2200,
+    "sourceImageCount": 6600,
+    "decodedImages": 2892,
+    "effectiveOfficerCoverage": 0,
+    "status": "PIXELS_ONLY_NOT_RUNTIME_OR_ALL_OFFICER_ACCEPTANCE",
+    "limits": [
+      "Three source image groups retained without guessing dialogue/duel usage.",
+      "Empty entries are not aliases or invented fallback pixels.",
+      "MOD/backup live precedence and session1 identity mapping still required."
+    ]
+  },
+  "audio": {
+    "schema": 1,
+    "sourcePolicy": "READ_ONLY_NO_WINE",
+    "sourceFile": "Media/san11pkres.bin",
+    "sourceSha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+    "decodedSamples": 2027,
+    "verifiedEventBindings": 0,
+    "effectiveOfficerVoiceCoverage": 0,
+    "decoderReference": "https://github.com/vgmstream/vgmstream/blob/master/src/meta/ogg_vorbis.c",
+    "pyavVersion": "16.1.0",
+    "limits": [
+      "Duration, channels or listening do not prove BGM/event/actor identity.",
+      "No clean retail source supplied; installed MOD bytes preserved without assumed backup activation.",
+      "No event playback or installed APK acceptance claimed."
+    ]
+  },
+  "banks": {
+    "schema": 1,
+    "sourcePolicy": "READ_ONLY_NO_WINE",
+    "sourceFile": "Media/san11pkres.bin",
+    "sourceSha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+    "bindingEvidenceSha256": "07d1a80d62d27c200cd510c86817eef670afa1736e94807f4f33985aa2414192",
+    "decodedSamples": 203,
+    "verifiedEventRoles": 0,
+    "limits": [
+      "PCM rate/channels/block alignment/bits independently verified by original6f2c30 for every nonempty sample.",
+      "Original source PCM payload is retained and WAV round-trip is exact.",
+      "Sound ID table is native verified; complete original command triggers, gain/pitch/loops and installed playback are separate."
+    ]
+  },
+  "portraitJoin": {
+    "schema": 1,
+    "metadataCommit": "a367f33",
+    "metadataRequestSha256": "e63fae48211df94dc66109a14fff2c8b522fe429e0051dd8e9128a5fec6420b0",
+    "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+    "sourceFaceSha256": "5e6a69ac3555910196465a40a7d02092cc7b8e7dc7de8e106eac1173b6e29519",
+    "requestCount": 13600,
+    "identityVerifiedRequests": 10656,
+    "uniqueNativeRecords": 6152,
+    "nativeAgeBoundaryChecks": 3468,
+    "effectiveRuntimeOfficerCoverage": 0,
+    "agePolicy": "Original transition only: face<1000 and year-birth+1 >= actor+120 adds1000. Existing old face does not revert.",
+    "limits": [
+      "Identity copied only from committed session1 contract; unknowns remain null.",
+      "All three source image groups retained; normal/dialogue/duel usage still requires native caller proof.",
+      "Installed Media candidates are not certified MOD live priority or saved runtime source identity.",
+      "Native age slice uses original numeric inputs; no rule command, notification, save or RNG executed."
+    ]
+  },
+  "runtimeAcceptance": {
+    "allOfficerPortraits": false,
+    "bgm": false,
+    "officerVoices": false,
+    "completeEventMatrix": false,
+    "orderedNativeHud": false,
+    "armPhysicalDevice": false
+  },
+  "pc33Build": {
+    "sourceCommit": "fc87a08ce7d52957b2bdb5d836f72806d6731187",
+    "buildLog": "out/media/pc33-build.log",
+    "artifacts": [
+      {
+        "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/pc33-frozen/app-debug.apk",
+        "bytes": 87633361,
+        "sha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc"
+      },
+      {
+        "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/pc33-frozen/app-debug-androidTest.apk",
+        "bytes": 2021347,
+        "sha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4"
+      }
+    ],
+    "globalBuildConfigChanged": false,
+    "androidTestManifestRegistrationCommit": "fc87a08"
+  }
+}

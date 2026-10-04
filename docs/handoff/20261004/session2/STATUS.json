@@ -1,0 +1,116 @@
+{
+  "goalStatus": "active",
+  "goalComplete": false,
+  "baseCommit": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "branch": "codex/portrait-audio-restoration",
+  "pc33SourceCommit": "fc87a08",
+  "installed": {
+    "wire": {
+      "passed": true,
+      "seconds": 2.14,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/media-wire.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "technique": {
+      "passed": true,
+      "seconds": 14.41,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "audioLifecycle": {
+      "passed": true,
+      "seconds": 30.71,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml",
+          "shared_prefs/sound-effects.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "opening": {
+      "passed": true,
+      "seconds": 61.46,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/customOfficers/library.json",
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    }
+  },
+  "checks": {
+    "installedAndroidWire": 18,
+    "installedTechnique": 27,
+    "installedAudioLifecycle": 51,
+    "installedOpening": 64,
+    "clientProtocol": 52,
+    "hostJavaWire": 13,
+    "originalAudioLookup": 3445,
+    "originalAgeBoundaries": 3468,
+    "sourcePortraitRequests": 13600,
+    "identityVerifiedRequests": 10656,
+    "decodedFacePixels": 2892,
+    "decodedKovs": 2027,
+    "decodedOriginalPcmBanks": 203
+  },
+  "originalRestoredAudioSamples": 1,
+  "uniqueCurrentShortSamples": 10,
+  "inheritedSyntheticShortSamples": 9,
+  "fullOfficerRuntimePortraitCoverage": 0,
+  "normalFullMediaMatrixPassed": false,
+  "armPhysicalVerified": false,
+  "publicProtectedFiles": 529,
+  "publicProtectedFilesAllExact": true,
+  "latestPackageIsFullRestoration": false,
+  "nextRequired": [
+    "Native full portrait form/caller lookup and bounded loader + sourceVariant metadata connection",
+    "Native ordered-fact HUD/audio consumption with exact sequential MainActivity/MapHost patch",
+    "BGM normal menu/map scene caller proof and streaming/lifecycle integration",
+    "Actor/event/weapon/tactic/plot voice and original sound trigger proof + playback",
+    "Complete new combination normal3D battle/plot/multiturn/save/exit/performance acceptance",
+    "ARM hardware or explicit unavailable boundary"
+  ],
+  "evidenceFailuresRetained": [
+    "Android Files.writeString unsupported compile failure",
+    "C# installed JSON harness initially assumed a receipt not present in that suite",
+    "Unfrozen install caught by exact test APK readback guard; no UI suite executed",
+    "Opening suite missing required reuseSlotSha before correct rerun"
+  ]
+}

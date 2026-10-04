@@ -61,7 +61,9 @@ def inspect(installation, requests_path, pixels_path, output, metadata_commit):
         field_reads=[(at,size) for at,size,dst in reads if dst==0x120]
         if len(field_reads)!=1:raise ValueError('Unexamined age input serializer')
         slot=call(0x48a5b0,actor)
-        return dict(faceId=face,sexRaw=sex,birth=birth,ageThreshold=threshold,ageFieldRead=field_reads[0],dynamicSelector=131+slot)
+        voice_type=struct.unpack('<i',u.mem_read(actor+0x100,4))[0]
+        return dict(faceId=face,sexRaw=sex,birth=birth,ageThreshold=threshold,ageFieldRead=field_reads[0],dynamicSelector=131+slot,
+                    voiceTypeRaw=voice_type,voiceTypeBasis='Original serialized actor+100 consumed by4d0010; event/language mapping remains separate')
     sources={};cache={};age_cache={};rows=[];assets={(r['faceId'],r['imageGroup']):r for r in pixels['entries']}
     for req in requests:
         name=req['sourcePath'];source=sources.setdefault(name,(installation/name).read_bytes())

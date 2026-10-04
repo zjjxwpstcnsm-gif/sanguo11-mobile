@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "Actual Android playback mixed by emulator WAV backend; no microphone; not ARM hardware speaker quality",
+  "sample_rate": 44100,
+  "seconds": 6.408707482993197,
+  "rms": 0.001681102203014496,
+  "device_wave_sha256": "6b898490a44e19b70a3246cb5087d5a3535986eed94c40870ca9bc556491a042",
+  "unique_sample_hashes": 1,
+  "cues": [
+    {
+      "cue": "technique_gain",
+      "correlation": 0.9922467412567335,
+      "seconds": 2.7098412698412697,
+      "asset_sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "source": "native PC HUD33"
+    },
+    {
+      "cue": "technique_loss",
+      "correlation": 0.9922467412567335,
+      "seconds": 2.7098412698412697,
+      "asset_sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "source": "native PC HUD33"
+    }
+  ]
+}

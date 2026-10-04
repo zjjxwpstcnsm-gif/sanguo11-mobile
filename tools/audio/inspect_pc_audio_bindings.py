@@ -96,6 +96,37 @@ def inspect(installation, output):
     if packet[0] != 1 or packet[2] != 19:raise ValueError('HUD33 original bank/slot differs')
     header_resources = list(struct.unpack('<10I', read(0x7f130c,40)))
     wave_resources = list(struct.unpack('<10I', read(0x7f1334,40)))
+    requested_resources=[]
+    def resource_io(machine,address,size,user):
+        sp=machine.reg_read(UC_X86_REG_ESP);ret=struct.unpack('<I',machine.mem_read(sp,4))[0]
+        if address==0x46dae0:
+            requested_resources.append(struct.unpack('<I',machine.mem_read(sp+8,4))[0])
+            machine.mem_write(manager+0x3400,struct.pack('<I',manager+0x3500))
+            machine.reg_write(UC_X86_REG_EAX,manager+0x3400);consumed=8
+        else:machine.reg_write(UC_X86_REG_EAX,0);consumed=12
+        machine.reg_write(UC_X86_REG_ESP,sp+4+consumed);machine.reg_write(UC_X86_REG_EIP,ret)
+    for address in [0x46dae0,0x6e9240]:u.hook_add(UC_HOOK_CODE,resource_io,begin=address,end=address)
+    music_rows=[]
+    u.mem_write(manager+0x20,struct.pack('<I',manager+0x1000))
+    for music_id in range(30):
+        requested_resources.clear()
+        if call(0x4cf9b0,(music_id,1,0x3f800000,0))!=1 or requested_resources!=[2237+music_id]:raise ValueError('Original BGM resource IO index')
+        music_rows.append(dict(musicId=music_id,resourceId=requested_resources[0],status='ORIGINAL_MUSIC_RESOURCE_INDEX_VERIFIED_SCENE_UNBOUND'))
+    voice_io_checks=0
+    u.mem_write(manager+4,struct.pack('<I',manager+0x1000))
+    for alternate in (False,True):
+        u.mem_write(manager+0x30,struct.pack('<I',int(alternate)))
+        for voice_id in range(1001):
+            requested_resources.clear()
+            expected=2287+voice_id+(996 if alternate and voice_id>=5 else 0)
+            if call(0x4d2380,(0,voice_id,0x3f800000,0))!=1 or requested_resources!=[expected]:raise ValueError('Original voice resource IO index')
+            voice_io_checks+=1
+    actor_voice_types=[]
+    for kind in range(8):
+        destination=manager+0x3200;u.mem_write(destination,bytes(12))
+        call(0x4d0010,(destination,kind))
+        fields=struct.unpack('<3i',u.mem_read(destination,12))
+        actor_voice_types.append(dict(actorVoiceTypeRaw=kind,selectorFields=list(fields),status='ORIGINAL_TYPE_SELECTOR_EXECUTED_ROLE_LABEL_UNKNOWN'))
     pcm_formats=[]
     archive=Archive(installation/'Media/san11pkres.bin')
     try:
@@ -124,14 +155,16 @@ def inspect(installation, output):
                   effectTable=dict(address='8b1468', stride=12, sha256=hashlib.sha256(table).hexdigest()),
                   soundBankHeaderResources=header_resources, soundBankWaveResources=wave_resources,
                   effectLookups=effect_rows, voiceProfiles=profiles,
-                  nativeChecks=200+3+71*14+4+1+len(pcm_formats),pcmFormats=pcm_formats,
+                  nativeChecks=200+3+71*14+4+1+len(pcm_formats)+30+voice_io_checks+8,pcmFormats=pcm_formats,
+                  musicResources=music_rows,voiceResourceIoChecks=voice_io_checks,actorVoiceTypes=actor_voice_types,
+                  tacticVoiceProfileTable=list(struct.unpack('<13i',read(0x838c94,52))),
                   hud33=dict(call='6318b2 -> 4d0570 -> 6e98b0', bank=1, slot=19,
                              headerResource=header_resources[1], waveResource=wave_resources[1], dispatchHex=captures[0],
                              status='ORIGINAL_SAMPLE_SELECTOR_AND_NATIVE_PCM_FORMAT_VERIFIED_PLAYBACK_PENDING'),
                   codeSha256={hex(a):hashlib.sha256(read(a,b-a)).hexdigest() for a,b in [(0x4cff90,0x4cffc1),(0x4cffd0,0x4d000c),(0x4d0570,0x4d0697),(0x4d2380,0x4d2441),(0x6f2c30,0x6f2ca2)]},
                   limits=['Platform availability=1 and critical section imports shimmed, backend captured rather than played.',
                           'No officer identity/profile inference, no BGM event identity or all-event trigger acceptance.',
-                          'Voice resource +2287 and alternate +996 paths are static; profile+variant arithmetic executed unchanged.',
+                          'Music/voice resource IO index executed unchanged with an explicit archive-return/codec boundary shim; no decode/playback in that native harness.',
                           'No original rule command, RNG, save or Wine access.'])
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
