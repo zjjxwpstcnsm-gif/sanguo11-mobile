@@ -71,3 +71,7 @@ Batch07追加OfficerSnapshot.SourceInfo只读原字段/身份覆盖信息；保�
 新增原信息工具：tools/content/inspect_pc_contest_catalog.py、后续inspect_pc_duel_rules.py、inspect_pc_debate_rules.py及相应原指令回归；实际拥有的输入输出及SHA逐批登记。现有Duel伤害/暴击/支援/气力、Debate牌组/手数/怒气/伤害/憤激时长均明示工程参数，不能当已还原。严格核实触发、携物、角色性格/话术、对战状态、撤退/胜负/捕获/奖励/经验，并完成中途保存→冷启动续战及重复/过期按钮拒绝，完整Save/RNG核对。旧已保存对战与策略必须显式保留，不能改公式后默默续算；新增来源仅影响明确新局，若需新保存策略另列兼容入口。
 
 媒体会话继续拥有像素、头像变体/年龄选择、音频及演出资源；对战信息需求仅输出本独立契约文件，不并改其manifest/PortraitCatalog/OfficerPortrait/SoundEffects/播放器文件。
+
+追加确切工具所有权：tools/content/inspect_pc_debate_flow.py、test_pc_debate_rules.py。使用原51fcf0派生类构造、51fd10初始化及51e300逐帧状态机；只扩展此前VM漏载的原PE页900000..920000与91ba000..91bb000，精确原字节，不伪造空renderer对象或替换原AI/规则函数。输入为明确的合成原人物夹具，不能标完整PC正常开局或Android已接入。
+
+追加tools/content/inspect_pc_contest_people.py：逐份原152字节人物记录执行原serializer和489780话术getter，保留来源SHA/nativeId/recordSHA/姓名原字节/原性格/五话术，不直接把nativeId当项目ID。仅输出独立metadata，后续按PcScenarioPeople已核实身份连接明确新局，旧保存不补配置。
