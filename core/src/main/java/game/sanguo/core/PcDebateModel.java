@@ -1,7 +1,7 @@
 package game.sanguo.core;
 
-/** Original51e300/51f1c0 derived model protocol, optional UI branch disabled.
- * Not a production campaign policy: headed callbacks and settlement are pending. */
+/** Original51e300/51f1c0 derived model protocol. Null UI preserves prior mode;
+ * explicit UI effects record numeric callbacks. GUI/campaign binding pending. */
 final class PcDebateModel {
     final PcDebateState state;
     int phase,previousPhase=-1,sub,mercy=-1,outcome;
@@ -38,10 +38,12 @@ final class PcDebateModel {
             PcDebateState.Speaker self=state.speaker(side),other=state.speaker(1-side);
             if(self.intelligence>80&&self.intelligence>other.intelligence+10&&self.modifier+state.random.uniform(200)>=270){state.terminalWinner=side;break;}
         }
-        if(state.terminalWinner>=0){state.speaker(1-state.terminalWinner).health=-100;outcome=3;return true;}return false;
+        if(state.terminalWinner>=0){state.speaker(1-state.terminalWinner).health=-100;outcome=3;if(state.ui!=null)state.ui.callback(state,PcDebateUiRandom.Callback.INSTANT,state.terminalWinner,-1,false,-1);return true;}return false;
     }
-    private void afterTerminalCheck(int nextPhase){phase=state.checkTerminal()?(!externalTerminalChoiceSuppressed&&state.speaker(1-state.terminalWinner).health<=-100?8:9):nextPhase;}
+    private int terminalPhase(){return !externalTerminalChoiceSuppressed&&state.speaker(1-state.terminalWinner).health<=-100?8:9;}
+    private void afterTerminalCheck(int nextPhase){phase=state.checkTerminal()?terminalPhase():nextPhase;}
     void frame(){
+        if(state.ui!=null)state.ui.events.clear();
         if(phase!=previousPhase){sub=0;previousPhase=phase;if(phase==5)state.selectedWinner=PcDebateRules.compare(state.topic,selected[0],selected[1],state.left.temper,state.left.fury,state.right.temper,state.right.fury);}
         switch(phase){
             case 0:if(sub<3)sub++;else phase=1;break;
@@ -57,7 +59,7 @@ final class PcDebateModel {
             case 6:furyFrame();break;
             case 7:if(sub==0){state.endRoundEffects(selected[0],selected[1]);sub++;}else if(sub==1)phase=3;break;
             case 8:
-                if(sub==0){mercy=terminalChoicePreference<0?state.random.uniform(2):terminalChoicePreference;sub++;}
+                if(sub==0){int preference=terminalChoicePreference;if(preference<0&&state.ui!=null)preference=state.ui.terminalPreferences[state.terminalWinner];mercy=preference<0?state.random.uniform(2):preference;sub++;}
                 else if(sub==1){outcome=mercy==0?1:2;sub++;}
                 else if(sub==2)phase=9;break;
             case 9:break;
@@ -85,7 +87,7 @@ final class PcDebateModel {
             case 0:state.selectFuryModelOnly(true);sub++;break;
             case 1:state.activateFuryModelOnly();sub++;break;
             case 2:if(state.burstActive)state.timidBurstStep();else sub=3;break;
-            case 3:if(state.checkTerminal())afterTerminalCheck(7);else sub++;break;
+            case 3:if(state.checkTerminal())phase=terminalPhase();else sub++;break;
             case 4:state.selectFuryModelOnly(false);sub++;break;
             case 5:state.activateFuryModelOnly();sub++;break;
             case 6:if(state.burstActive)state.timidBurstStep();else sub=7;break;

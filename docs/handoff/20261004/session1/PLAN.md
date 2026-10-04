@@ -109,3 +109,9 @@ Batch12确切新增工具inspect_pc_contest_equipment.py、inspect_pc_debate_pro
 ## Batch15：原界面回调随机协议
 
 前镜像28c87906，完整checkpoint14为4650文件，manifest SHA cbbabc657e4b41343176096c5877b876cb67e985450cdd3cd8c17f007b926ed8。确切新增tools/content/inspect_pc_debate_ui_callbacks.py、build_pc_debate_ui_callback_fixtures.py、core/src/main/java/game/sanguo/core/PcDebateUiRandom.java、core/src/test/java/game/sanguo/core/PcDebateUiRandomTest.java及core/src/test/resources/pc-debate/ui-callback-*。修改tools/content/test_pc_debate_port.py仅独立编译测试输入；本目录记录前镜像/差异/原执行报告/测试。原12回调完整执行只写合成队列，记录原RNG抽取和原type8手牌消耗；明确不执行3D/音频/完整GUI调度。新core协议不在未闭合时启用正式World/旧保存。不改Batch09冻结既有输入或媒体文件。
+
+## Batch16：核心帧中的有界界面数值效果
+
+前镜像cf9b1ef6；完整checkpoint15为4663文件，manifest SHA57b5464ce814fedd7ea8a0e112d462d46bc4183bd69fc511a08199abbf0820e1。确切新增tools/content/inspect_pc_debate_headed_effects.py、build_pc_debate_headed_fixtures.py、core/PcDebateUiEffects.java、core测试PcDebateHeadedTest.java及pc-debate/headed-*资源。修改PcDebateState/Model/ModelSave仅新显式有界数值回调模式和完整独立模型保存，test_pc_debate_port.py仅独立测试；前SHA在batch16-before.json。原frame通过明确effects-only夹具在阶段1/5/6/7及熟虑分支绑定原queue回调，逐帧执行原函数/原type8消耗。完整PC GUI、选择widget、渲染调度/战役结算仍单独缺口；不得改原函数假装完整界面。保存版本1继续原null-UI策略和原字节，新模式使用明确版本2，旧World31–38不变。本批不改冻结1024输入、媒体、共享台账或Bridge。
+
+Batch16追加原type4队列：执行51c2c0真实prologue至51c346，保留原51c33f心理台阶记录写入，停在渲染上下文构造之前；不手工回写原UI台阶。新增确切独立冷续行测试core/src/test/java/game/sanguo/core/PcDebateHeadedColdTest.java；新增headed-v1-goldens.tsv冻结前批真实版本1存档，不改前夹具。关系输入执行原47a630/491310/4889e0/488910，只保留合成fixture原判断，真实来源武将关系绑定仍待正式会话接入。
