@@ -4,7 +4,7 @@
 
 新包真实菜单116–121秒循环、刷新同实例、独立音乐65/语音30/音效75、Home/静音/系统耳机噪声/实际恢复当前曲、退出菜单停止、重入、真正destroy和owner0释放通过，Save/RNG及用户文件逐字节恢复。第一原循环AudioTrack欠载0、65536字节有界缓冲、首写394ms。实际未改混音四个固定原曲2秒窗口相关性最小0.999994605，正向可听gain，证明原曲声音真实出现；整首连续相关性0.6577545不达原0.995门槛，完整连续性仍未通过，失败录音/检查器未修改。详见MENU_MUSIC_INSTALLED_25.md。新包Android JSON桥接18项通过；无Unity Player、完整头像新包复验或ARM声明。旧APK24头像QA保持其原范围，不能转移到本包。
 
-两处新的MainActivity入口仅菜单媒体和独立音量组件，先写确切SHA契约再顺序集成；不改人物数值/metadata、规则/API/runtime或公共manifest。当前生产音乐流增加音频优先级和单轨欠载统计，其余旧来源/身份/媒体成果完整继承。批25源码归档正在冻结，完成后记录路径/SHA。
+两处新的MainActivity入口仅菜单媒体和独立音量组件，先写确切SHA契约再顺序集成；不改人物数值/metadata、规则/API/runtime或公共manifest。当前生产音乐流增加音频优先级和单轨欠载统计，其余旧来源/身份/媒体成果完整继承。批25完整源码：`out/media/delivery-25/sanguo11-portrait-audio-source.tar.gz`，截点01dedb6e73dadf9ab3827a176d776428983f852a，9885文件及四JNI逐份字节一致，480663572字节，SHA `5283ad7d9970bebd57305621b3a5fd602836b32dbc0a100d9caa238bb8f8e421`；本后继指针不在归档截点内，实现/来源/验证记录均包含。
 
 独立目录 `/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile`，分支 `codex/portrait-audio-restoration-integration`。继承8400301/R40全部dirty成果、168输入和四JNI；仅顺序集成已完成metadata9e171f2。core/game-api/game-runtime与该提交字节一致，原目录和另一会话不动；人物数值/metadata或公共manifest未改；批25仅按已记录SHA契约追加两处MainActivity媒体入口。
 
