@@ -11,7 +11,7 @@ import java.util.WeakHashMap;
 /** One bounded atlas allocation, shared by recycled list rows and detail cards. No network or per-face bitmaps. */
 final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target {
     private static final WeakHashMap<Context,WeakReference<World>> views=new WeakHashMap<>();
-    static void bindView(Context context,World view){views.put(context,new WeakReference<>(view));}
+    static void bindView(Context context,World view){WeakReference<World> old=views.put(context,new WeakReference<>(view));World previous=old==null?null:old.get();if(previous!=null&&previous!=view)PortraitMediaSources.discard(previous);}
     /** Visual decoration of recycled table cells; no metadata text, sort or authority access. */
     static void decorate(Context context,Object item,android.widget.TextView cell,boolean nameColumn){
         WeakReference<World> reference=views.get(context);World view=reference==null?null:reference.get();
