@@ -1,0 +1,12 @@
+{
+  "apk": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/apks-batch19-compatible/app-debug.apk",
+  "sha256": "c3c9bbf69537c38e59b5fda262044c16bd8ab975a9b9a0c1c337188f8308e16d",
+  "bytes": 98142145,
+  "sourceRoot": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/integration17/source",
+  "sourceInputs": 1037,
+  "sourceGuardSha256": "552a742974e4d724018774f6d15358d53ef879647f5295b48aa03f5d1d254831",
+  "fixedAndroid29StreamToList": true,
+  "installed": false,
+  "originalSettlementProductionEnabled": false,
+  "completeGoal": false
+}

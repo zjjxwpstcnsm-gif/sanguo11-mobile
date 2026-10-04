@@ -127,3 +127,7 @@ Batch17确切新增工具还有tools/content/export_pc_debate_verification.py、
 ## Batch18：统一对局DTO与正常页面
 
 前提交32ec3922；继续验证副本integration17/source的已核实World39接入，冻结设备输入暂不编辑生产。确切新增game-api/src/main/java/game/sanguo/api/ContestSnapshot.java、runtime/query/ContestQuery.java、runtime测试PcDebateQueryTest.java；修改GameApi.java、GameSession.java的纯query入口、PcDebateCampaign.java的不可变原输入事实，app/MainActivity.java仅新增contestSnapshot读取入口，app/ContestUi.java仅原文字/typed按钮分支。不改媒体、Bridge或新旧结算。API/UI同token/contestId/revision，由core产出合法性而非客户端重复原规则。后续增量与batch17合成可复现patch，完整原资源/168固定输入/4JNI及生产冻结1024项不变。原人控/关系/书籍/先手/当前>100/原结算仍待闭合，不默认启用未完整策略。
+
+## Batch19：逐来源原结算核实
+
+前提交2eb14d05；新增tools/content/inspect_pc_debate_settlement.py及独立原报告，必要的原结算规则PcDebateSettlement.java/测试与验证副本桥接按证据追加；先不改冻结生产文件。原Shared+16来源载入边界，真实人物native116/222及47原势力逐原getter/原51dd10；完整原函数、XP/功绩/伤病/势力技巧边界，记录源指纹和全World变更。原UI指针仍为零，不声称完整开局/战役招聘归属回调已经完成。只要实际函数要求未核实外部上下文就保留失败，不补原函数返回值。5554保持活handle33877及原数据恢复；全部源冷续行结束后先最终读回，再新APK真实安装与完整保存恢复。

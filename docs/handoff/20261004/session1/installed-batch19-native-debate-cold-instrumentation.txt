@@ -1,0 +1,53 @@
+PC SOURCE OPENING PASS 51 actual installed native page/card/save/reopen checks; campaign settlement remains pending
+PASS normal process restores complete actual Source World39 native session
+PASS actual process restore matches every supplied World39 field after ART decode/encode; raw host encoding separately retained
+PASS installed normal DTO queries preserve complete World/RNG
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 故事·大
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 時節·大
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 道理·小
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 時節·小
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 道理·小
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 時節·小
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 道理·中
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 道理·小
+PASS original game reaches terminal input
+PASS normal authoritative original card boundary
+PASS original core returns actual legal card
+PASS independent actual native campaign control
+PASS real native card widget stores full World/model/both RNGs · 出牌 · 故事·中
+PASS normal original model reaches terminal phase
+PASS unverified campaign settlement remains clearly pending
+PASS normal manual save stores every contest/source/RNG byte
+

@@ -1,0 +1,13 @@
+{
+  "serial": "emulator-5554",
+  "externalOriginalFiles": 3177,
+  "internalOriginalFiles": 7,
+  "externalMismatches": [],
+  "internalMismatches": [],
+  "allOriginalFilesByteEqual": true,
+  "installedApkSha256": "c3c9bbf69537c38e59b5fda262044c16bd8ab975a9b9a0c1c337188f8308e16d",
+  "normalPagePassed": true,
+  "coldPagePassed": true,
+  "campaignSettlementStillPending": true,
+  "completeGoal": false
+}

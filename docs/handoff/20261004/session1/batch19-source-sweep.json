@@ -1,0 +1,350 @@
+{
+  "stage": "finished",
+  "sources": [
+    {
+      "mode": "old-cold",
+      "index": 0,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 1,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 2,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 3,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 4,
+      "exitCode": 1,
+      "passed": false,
+      "restored": false
+    },
+    {
+      "mode": "old-cold",
+      "index": 4,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 5,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 6,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 7,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 8,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 9,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 10,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 11,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 12,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 13,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 14,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "old-cold",
+      "index": 15,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 0,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 1,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 2,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 3,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 4,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 5,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 6,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 7,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 8,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 9,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 10,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 11,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 12,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 13,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 14,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new",
+      "index": 15,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 0,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 1,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 2,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 3,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 4,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 5,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 6,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 7,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 8,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 9,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 10,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 11,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 12,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 13,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 14,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    },
+    {
+      "mode": "new-cold",
+      "index": 15,
+      "exitCode": 0,
+      "passed": true,
+      "restored": true
+    }
+  ],
+  "completeGoal": false,
+  "originalGuardFailurePreserved": true
+}

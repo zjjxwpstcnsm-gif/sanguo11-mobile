@@ -1,0 +1,17 @@
+{
+  "sourceSweepFinished": true,
+  "passedSourceGroups": {
+    "old-cold": 16,
+    "new": 16,
+    "new-cold": 16
+  },
+  "externalOriginalFiles": 3177,
+  "externalMismatches": [],
+  "internalOriginalFiles": 7,
+  "internalMismatches": [],
+  "allOriginalFilesByteEqual": true,
+  "package": "game.sanguo.mobile.dev",
+  "serial": "emulator-5554",
+  "newOriginalDebateApkInstalled": false,
+  "completeGoal": false
+}

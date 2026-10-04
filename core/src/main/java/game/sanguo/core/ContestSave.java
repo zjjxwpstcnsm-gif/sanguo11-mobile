@@ -13,7 +13,8 @@ final class ContestSave {
         }
         d.writeInt(c.injuries.size());for(Map.Entry<Integer,Contests.Injury> e:c.injuries.entrySet()){d.writeInt(e.getKey());d.writeByte(e.getValue().severity);d.writeInt(e.getValue().until);}
         Contests.Session s=c.session;d.writeBoolean(s!=null);if(s==null)return;
-        d.writeInt(s.id);d.writeInt(s.owner);d.writeInt(s.turn);d.writeInt(s.leftRef);d.writeInt(s.rightRef);d.writeInt(s.city);d.writeInt(s.revision);d.writeBoolean(s.isDuel());
+        d.writeInt(s.id);d.writeInt(s.owner);d.writeInt(s.turn);d.writeInt(s.leftRef);d.writeInt(s.rightRef);d.writeInt(s.city);d.writeInt(s.revision);d.writeByte(s.nativeDebate!=null?2:s.isDuel()?1:0);
+        if(s.nativeDebate!=null){s.nativeDebate.write(d);return;}
         if(s.isDuel()){
             Duel duel=s.duel;d.writeInt(duel.round);d.writeInt(duel.winner);d.writeInt(duel.escaped);d.writeInt(duel.leftIndex);d.writeInt(duel.rightIndex);d.writeUTF(duel.report);
             for(int side=0;side<2;side++){d.writeInt(duel.team(side).size());for(Duel.Fighter f:duel.team(side)){
@@ -24,7 +25,8 @@ final class ContestSave {
             for(int side=0;side<2;side++){Debate.Speaker p=b.speaker(side);d.writeInt(p.officer);d.writeByte(p.temper.ordinal());d.writeInt(p.hp);d.writeInt(p.anger);d.writeInt(p.fury);d.writeInt(p.stage);d.writeBoolean(p.rethink);d.writeInt(p.hand.size());for(Debate.Card card:p.hand){d.writeByte(card.topic==null?-1:card.topic.ordinal());d.writeByte(card.size);d.writeByte(card.talk==null?-1:card.talk.ordinal());}}
         }
     }
-    static void read(World w,DataInputStream d)throws IOException{
+    static void read(World w,DataInputStream d)throws IOException{read(w,d,false);}
+    static void read(World w,DataInputStream d,boolean nativeFormat)throws IOException{
         require(d.readInt()==MARKER,"对局扩展标记错误");Contests c=w.contests;c.nextId=d.readInt();c.lastResult=d.readUTF();
         int n=range(d.readInt(),0,w.officers.size());for(int i=0;i<n;i++){
             int id=d.readInt();Contests.Profile p=new Contests.Profile(Debate.Temper.values()[range(d.readUnsignedByte(),0,3)],range(d.readUnsignedByte(),0,31),range(d.readUnsignedByte(),0,63));
@@ -33,7 +35,8 @@ final class ContestSave {
         n=range(d.readInt(),0,w.officers.size());for(int i=0;i<n;i++){int id=d.readInt();Contests.Injury injury=new Contests.Injury(d.readUnsignedByte(),d.readInt());require(c.injuries.put(id,injury)==null,"伤病记录重复");}
         if(!d.readBoolean())return;
         Contests.Session s=new Contests.Session(d.readInt(),d.readInt(),d.readInt(),d.readInt(),d.readInt(),d.readInt());s.revision=d.readInt();c.session=s;
-        if(d.readBoolean()){
+        int kind=d.readUnsignedByte();if(kind==2){require(nativeFormat,"Native contest requires explicit new format");s.nativeDebate=PcDebateCampaign.read(d);return;}require(kind==0||kind==1,"Contest engine kind invalid");
+        if(kind==1){
             Duel duel=new Duel();s.duel=duel;duel.round=d.readInt();duel.winner=d.readInt();duel.escaped=d.readInt();duel.leftIndex=d.readInt();duel.rightIndex=d.readInt();duel.report=d.readUTF();
             for(int side=0;side<2;side++){n=range(d.readInt(),1,3);for(int i=0;i<n;i++){
                 Duel.Fighter f=new Duel.Fighter(d.readInt(),d.readInt());f.spirit=d.readInt();f.attackBuff=d.readInt();f.guardBuff=d.readInt();f.invulnerable=d.readInt();f.streak=d.readInt();f.wounds=d.readInt();f.stance=Duel.Stance.values()[range(d.readUnsignedByte(),0,3)];f.joined=d.readBoolean();f.hiddenUsed=d.readBoolean();f.feignUsed=d.readBoolean();duel.team(side).add(f);
@@ -52,7 +55,8 @@ final class ContestSave {
         for(Map.Entry<Integer,Contests.Profile> e:c.profiles.entrySet())require(w.officer(e.getKey())!=null&&e.getValue()!=null,"对局配置引用无效");
         for(Map.Entry<Integer,Contests.Injury> e:c.injuries.entrySet()){require(w.officer(e.getKey())!=null,"伤病武将不存在");range(e.getValue().severity,1,3);require(e.getValue().until>w.turn&&e.getValue().until<=w.turn+3,"伤病恢复时间无效");}
         Contests.Session s=c.session;if(s==null)return;
-        range(s.id,1,c.nextId-1);range(s.revision,0,250);require(s.owner==w.player&&s.owner==w.active&&s.turn==w.turn&&!w.gameOver(),"对局势力或时序无效");
+        range(s.id,1,c.nextId-1);range(s.revision,0,s.nativeDebate==null?250:10000);require(s.owner==w.player&&s.owner==w.active&&s.turn==w.turn&&!w.gameOver(),"对局势力或时序无效");
+        if(s.nativeDebate!=null){require(s.duel==null&&s.debate==null&&!s.diplomatic(),"Native engine mixing invalid");s.nativeDebate.validate(w,s);return;}
         require((s.duel==null)!=(s.debate==null),"对局类型无效");
         if(s.isDuel()){
             Duel b=s.duel;range(b.round,0,49);require(b.winner==-2&&b.escaped==-1&&s.city==-1&&s.revision==b.round,"单挑阶段无效");text(b.report,2000,false);

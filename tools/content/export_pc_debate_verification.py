@@ -12,7 +12,7 @@ UI_PATHS=[
  "app/src/main/java/game/sanguo/mobile/MainActivity.java",
  "app/src/main/java/game/sanguo/mobile/ContestUi.java"]
 def export(checkpoint,prototype,output,batch=17):
-    paths=PATHS+(UI_PATHS if batch==18 else [])
+    paths=PATHS+(UI_PATHS if batch in (18,19) else [])
     manifest=json.loads((checkpoint/'manifest.json').read_bytes());base=checkpoint/'source';old={x['path']:x for x in manifest['files']};sha=lambda b:hashlib.sha256(b).hexdigest();rows=[];patch=[]
     for path,row in old.items():
         if sha((base/path).read_bytes())!=row['sha256']:raise ValueError('Checkpoint changed '+path)
@@ -26,4 +26,4 @@ def export(checkpoint,prototype,output,batch=17):
     (output/('batch%d-prototype-manifest.json'%batch)).write_text(json.dumps(dict(baseCommit=manifest['commit'],checkpointManifestSha256=sha((checkpoint/'manifest.json').read_bytes()),inheritedFiles=manifest['fileCount'],patchSha256=sha(p.read_bytes()),changes=rows,prototypeOnly=True,appliedToBranchProduction=False,completeGoal=False),indent=2)+'\n')
     print(json.dumps(dict(paths=len(rows),patchSha256=sha(p.read_bytes()),bytes=p.stat().st_size)))
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('checkpoint',type=Path);p.add_argument('prototype',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--batch',type=int,choices=[17,18],default=17);a=p.parse_args();export(a.checkpoint,a.prototype,a.output,a.batch)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('checkpoint',type=Path);p.add_argument('prototype',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--batch',type=int,choices=[17,18,19],default=17);a=p.parse_args();export(a.checkpoint,a.prototype,a.output,a.batch)

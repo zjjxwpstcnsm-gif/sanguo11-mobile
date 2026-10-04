@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=38, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=39, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -72,7 +72,7 @@ public final class SaveCodec {
         CRC32 crc=new CRC32();crc.update(payload);
         bytes=new ByteArrayOutputStream();d=new DataOutputStream(bytes);
         int legacyVersion=w.pcTechniquePoints.enabled()?37:w.pcProduction.enabled()?36:w.merchantMarket.enabled()?35:w.officerAbilities.enabled()?34:33;
-        d.writeInt(MAGIC);d.writeInt(PcScenarioIdentity.saved(w)==null?legacyVersion:PcScenarioIdentity.SAVE_VERSION);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
+        d.writeInt(MAGIC);d.writeInt(PcNativeDebatePolicy.enabled(w)?39:PcScenarioIdentity.saved(w)==null?legacyVersion:PcScenarioIdentity.SAVE_VERSION);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
         return bytes.toByteArray();
     }
     public static World decode(byte[] data) throws IOException {
@@ -122,7 +122,7 @@ public final class SaveCodec {
         if(version>=6)ArmySave.read(w,d);
         if(version>=7)RulesSave.read(w,d);
         if(version>=8)GovernmentSave.read(w,d,version);
-        if(version>=9)ContestSave.read(w,d);
+        if(version>=9)ContestSave.read(w,d,version>=39);
         if(version>=10)AbilitySave.read(w,d);else w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
         if(version>=11)FieldworksSave.read(w,d);else FieldworksSave.migrate(w);
         if(version>=12)EstatesSave.read(w,d);
@@ -155,6 +155,7 @@ public final class SaveCodec {
         if(version>=36)w.pcProduction.read(d);
         if(version>=37)w.pcTechniquePoints.read(d);
         w.extensions.read(d);
+        if((version==39)!=PcNativeDebatePolicy.enabled(w))throw new IOException("Native debate save policy/version mismatch");
         if(version>=38&&PcScenarioIdentity.saved(w)==null)throw new IOException("存档38仅适用于明确PC来源的新局；来源段缺失");
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         w.districts.migrateLegacySites();
@@ -171,7 +172,7 @@ public final class SaveCodec {
         w.invalidateSiteIndex();SiteFootprint.validate(w);CustomMapSave.validate(w);
         w.aiOrders.validate();
         w.development.validate();w.recruitment.validate();w.envoys.validate();
-        PcScenarioIdentity.validate(w);
+        PcScenarioIdentity.validate(w);if(PcNativeDebatePolicy.enabled(w))PcNativeDebatePolicy.seed(w);
         bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,PcScenarioIdentity.saved(w)==null?32:PcScenarioIdentity.MAX_FACTIONS);
         bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
         require(w.actionPoints.length==w.factions.length,"势力行动力缺失");

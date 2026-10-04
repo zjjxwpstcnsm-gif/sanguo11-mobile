@@ -21,11 +21,12 @@ public final class Contests {
     public static final class Session {
         final int id,owner,turn,leftRef,rightRef,city;
         int revision;
-        Duel duel;Debate debate;
+        Duel duel;Debate debate;PcDebateCampaign nativeDebate;
         Campaign.TreatyKind treaty;int foreign=-1,duration;
         Session(int id,int owner,int turn,int left,int right,int city){this.id=id;this.owner=owner;this.turn=turn;leftRef=left;rightRef=right;this.city=city;}
         public int id(){return id;} public int revision(){return revision;}
         public Duel duel(){return duel;} public Debate debate(){return debate;}
+        public PcDebateCampaign.Facts nativeDebate(){return nativeDebate==null?null:nativeDebate.facts();}
         public boolean isDuel(){return duel!=null;}
         public boolean diplomatic(){return treaty!=null;}
         public String purpose(){return treaty==null?"登用":"外交 · "+treaty.label+" "+duration+"旬";}
@@ -136,8 +137,10 @@ public final class Contests {
     }
     public World.Result persuade(int city,int actor,int target){w.reports.prepare();
         String error=debateError(city,actor,target);if(error!=null)return w.fail(error);
+        if(PcNativeDebatePolicy.enabled(w)){String nativeError=PcDebateCampaign.inputError(w,actor,target);if(nativeError!=null)return w.fail(nativeError);}
         w.spend(w.city(city),w.officer(actor),100);w.officer(target).acted=true;
-        session=new Session(nextId++,w.active,w.turn,actor,target,city);session.debate=new Debate(w,actor,target);
+        session=new Session(nextId++,w.active,w.turn,actor,target,city);
+        if(PcNativeDebatePolicy.enabled(w)){try{session.nativeDebate=new PcDebateCampaign(w,actor,target);}catch(java.io.IOException e){throw new IllegalStateException(e);}}else session.debate=new Debate(w,actor,target);
         return w.success(w.officer(actor).name+"以舌战说服"+w.officer(target).name+"；金100、行动力10已消耗");
     }
     World.Officer foreignSpeaker(int side){
@@ -166,12 +169,14 @@ public final class Contests {
     }
     public World.Result debateCard(int id,int revision,int index){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.nativeDebate!=null){error=session.nativeDebate.cardError(index);if(error!=null)return w.fail(error);session.nativeDebate.card(w,index);session.revision++;return w.success("已按原舌战规则出牌");}
         error=session.debate.error(index);if(error!=null)return w.fail(error);
         session.debate.play(w,index);session.revision++;
         return w.success(session.debate.report);
     }
     public World.Result rethink(int id,int revision){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.nativeDebate!=null)return debateCard(id,revision,0);
         Debate d=session.debate;if(d.winner!=-2||!d.left.canRethink())return w.fail("目前不能再考，心理台阶下降后恢复一次机会");
         // Even a calm fury gets only one rethink per exchange. Reset is keyed to rounds, not clicks.
         if(d.left.fury>0&&d.left.temper==Debate.Temper.CALM&&!d.left.rethink)return w.fail("本合已经再考");
@@ -179,6 +184,7 @@ public final class Contests {
     }
     public World.Result finishDebate(int id,int revision,boolean mercy){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.nativeDebate!=null){if(session.nativeDebate.waitingMercy()){session.nativeDebate.mercy(w,mercy);session.revision++;return w.success("终局选择已记录；原战役结算尚待核实");}return w.fail("原战役结算尚未核实");}
         Debate d=session.debate;if(d.winner==-2)return w.fail("请先完成舌战");
         World.Officer actor=w.officer(session.leftRef),target=w.officer(session.rightRef);
         String text;
@@ -205,6 +211,7 @@ public final class Contests {
             // A voluntary surrender loses the current combatant; retreat remains a separate 100-spirit move.
             session.duel.winner=1;session.duel.active(0).hp=0;session.revision++;return finishDuel();
         }
+        if(session.nativeDebate!=null)return w.fail("原认输处置与战役结算尚未核实");
         if(session.debate.winner!=-2)return w.fail("舌战已结束，请结算结果");
         session.debate.winner=1;session.debate.left.hp=0;session.revision++;
         return finishDebate(session.id,session.revision,false);

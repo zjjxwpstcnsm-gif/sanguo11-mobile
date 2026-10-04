@@ -1,0 +1,41 @@
+{
+  "cases": 384,
+  "fixtureSha256": "d9ca9cb05bddf36facf45d637f174e280dc0ba6163e496f44dff4f3b4dc6df06",
+  "functions": [
+    {
+      "endExclusive": "0x51dfa5",
+      "sha256": "590e7602a6134ce804e1e912aea1f2be515b69c02c96e9d16c31a77d15e52ace",
+      "start": "0x51dd10"
+    },
+    {
+      "endExclusive": "0x4a7270",
+      "sha256": "8c2a2427c5e1e532fcf88f3e2e33097df5a5192d164acf22caaac29ed2903670",
+      "start": "0x4a70d0"
+    },
+    {
+      "endExclusive": "0x4a6db0",
+      "sha256": "4e89315f82e58a4b7cba6545e2809f02ded3d23dfc49704e95ab3888d0f7ca96",
+      "start": "0x4a6d50"
+    },
+    {
+      "endExclusive": "0x4a56b2",
+      "sha256": "26699eff5d6edf5d14367f5f202a8b01257829842be9121a7809abef11197200",
+      "start": "0x4a5690"
+    },
+    {
+      "endExclusive": "0x4b65d3",
+      "sha256": "b1d63e509bb4da155f92bf3450403c44ff2ddef5b263bf0adc8e718117f1d187",
+      "start": "0x4b6580"
+    }
+  ],
+  "limits": [
+    "Actual installation source actors116/222 and forces, before complete opening events",
+    "Boundary fixtures use original XP/merit/injury setters; no invented project identity",
+    "Original UI pointer remains zero; source message context empty; no normal GUI proof",
+    "Recruitment ownership/diplomatic event callback/ordinary party guidance and injury recovery still separate",
+    "Full original51dd10 executed; original setters and RNG not substituted"
+  ],
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceReportSha256": "414b5fb1590e389980fb370114bab4df39fe2308a939c92b9020c38c5af77811",
+  "sources": 16
+}

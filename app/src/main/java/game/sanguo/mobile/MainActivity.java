@@ -1078,6 +1078,7 @@ public final class MainActivity extends Activity {
         });
     }
     OfficerSnapshot officerSnapshot(){return gameHost.session().officers();}
+    ContestSnapshot contestSnapshot(){return gameHost.session().contest();}
     void officerDetail(World.Officer o){
         OfficerSnapshot.Officer facts=officerSnapshot().officer(o.id);if(facts==null)return;
         List<Integer> current=facts.current;
