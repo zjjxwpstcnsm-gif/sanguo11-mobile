@@ -53,7 +53,7 @@ final class SoundEffects {
         if(sourceMedia==null){sourceMedia=new PcMediaPlayback(context,new PcMediaPlayback.Owner(){
             public boolean requestFocus(){return focus();}
             public void voiceDucking(boolean value){voiceDucking=value;updateStreams();}
-            public void idle(){if(streams.isEmpty()&&sourceMedia!=null&&!sourceMedia.needsFocus())stop();}
+            public void idle(){if(streams.isEmpty()&&(pcEffects==null||!pcEffects.active())&&sourceMedia!=null&&!sourceMedia.needsFocus())stop();}
         },sourceLedger);sourceMedia.gains(musicVolume(),voiceVolume(),muted());sourceMedia.foreground(!foreground.isEmpty());sourceMedia.focus(focused,ducked);}
         if(context instanceof GameApplication)sourceMedia.bind(((GameApplication)context).host().session());return sourceMedia;
     }
