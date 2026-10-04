@@ -335,6 +335,7 @@ public final class MainActivity extends Activity {
         CheckBox mute=new CheckBox(this);mute.setText("静音");mute.setTextColor(paper);mute.setChecked(sounds.muted());mute.setOnCheckedChangeListener((v,checked)->sounds.muted(checked));panel.addView(mute);
         TextView label=text("音效音量 "+sounds.volume()+"%",15,paper);panel.addView(label);
         SeekBar volume=new SeekBar(this);volume.setMax(100);volume.setProgress(sounds.volume());volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onProgressChanged(SeekBar b,int value,boolean user){if(user){sounds.volume(value);label.setText("音效音量 "+value+"%");}}public void onStartTrackingTouch(SeekBar b){}public void onStopTrackingTouch(SeekBar b){sounds.ui();}});panel.addView(volume);
+        MediaVolumeControls.add(this,panel,sounds);
         panel.addView(button("试听音效",v->sounds.ui()));AlertDialog dialog=new AlertDialog.Builder(this).setTitle("音效与音量").setView(panel).setPositiveButton("完成",null).create();trackDialog(dialog);dialog.show();UiTheme.dialog(dialog);
     }
     private void showMapTools(){
@@ -772,6 +773,7 @@ public final class MainActivity extends Activity {
         String identity=ui.page+"/"+selected+"/"+ui.selectedUnit+"/"+ui.group;
         if(showPanel&&!identity.equals(panelIdentity))UiMotion.enter(panelHost,portrait());
         panelIdentity=identity;
+        if(sounds!=null)sounds.establishedMenu(this,legacyView.state,showPanel&&ui.page.equals("menu"));
     }
     private void previewMarch(World.Unit unit,Hex target){
         World.City c=world.cityAt(target);

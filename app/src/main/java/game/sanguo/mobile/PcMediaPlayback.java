@@ -17,6 +17,7 @@ final class PcMediaPlayback implements AutoCloseable {
     private final PcMusicStreamPlayer music;private final PcVoiceStreamPlayer voice;
     private GameSession session;private GameApi.Subscription subscription;
     private PcVoiceDirective current;
+    private java.lang.ref.WeakReference<Object> menuOwner=new java.lang.ref.WeakReference<>(null);
     private boolean foreground,focused,ducked,paused,muted,closed,musicWanted,interrupted;
     private final Runnable musicEnd=this::checkMusicEnd;
     private int musicGain=75,voiceGain=75,started,dropped;
@@ -47,11 +48,17 @@ final class PcMediaPlayback implements AutoCloseable {
         android.util.Log.i("PcMusic","SOURCE5880e0 id="+directive.id+" parent="+directive.parentId+" phase="+directive.presentationParentId+" musicId="+selected);
         return true;
     }
+    /** Original559220 established load/new/tutorial/options/exit menu; no rule receipt manufactured. */
+    boolean establishedMenu(Object viewOwner,StateToken actualViewState){
+        ui();if(closed||viewOwner==null||session==null||!session.state().equals(actualViewState))return false;
+        sourceMusic("pc-menu-559220",1,true,500);menuOwner=new java.lang.ref.WeakReference<>(viewOwner);return true;
+    }
+    void leaveMenu(Object viewOwner){ui();if(menuOwner.get()==viewOwner)stopMusic();}
     /** Native track selection and scene role must be proven by the producer. Current ordinary scene bindings remain pending. */
     void sourceMusic(String establishedScene,int nativeMusicId,boolean repeat,int fadeMillis){
         ui();if(closed||session==null||ledger.closed())throw new IllegalStateException("No established source media session");
         if(establishedScene==null||establishedScene.isEmpty()||nativeMusicId<0||nativeMusicId>=30||fadeMillis<0||fadeMillis>10000)throw new IllegalArgumentException("Unverified source music scene/directive");
-        StateToken state=session.state();musicWanted=true;
+        menuOwner.clear();StateToken state=session.state();musicWanted=true;
         music.foreground(foreground);music.volume(musicGain/100f);music.muted(muted);
         if(foreground&&!muted&&musicGain>0)owner.requestFocus();
         music.play(state.sessionId+":"+state.generation+":"+establishedScene,nativeMusicId,repeat,fadeMillis);
@@ -83,7 +90,7 @@ final class PcMediaPlayback implements AutoCloseable {
     }
     void stopTransient(){ui();pending.clear();voice.stop();music.voiceActive(false);owner.voiceDucking(false);}
     void discardPresentation(String parent){ui();pending.removeIf(d->d.presentationParentId.equals(parent));if(current!=null&&current.presentationParentId.equals(parent))voice.stop();}
-    void stopMusic(){ui();musicWanted=false;music.stop();main.removeCallbacksAndMessages(null);owner.idle();}
+    void stopMusic(){ui();menuOwner.clear();musicWanted=false;music.stop();main.removeCallbacksAndMessages(null);owner.idle();}
     boolean hasMusic(){return musicWanted;}
     boolean needsFocus(){return !muted&&(musicWanted&&musicGain>0||hasTransient()&&voiceGain>0);}
     boolean hasTransient(){return current!=null||!pending.isEmpty();}

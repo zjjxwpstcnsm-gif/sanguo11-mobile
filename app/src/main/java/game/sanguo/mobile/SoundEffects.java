@@ -43,7 +43,7 @@ final class SoundEffects {
         if(effectSession==next)return;if(effectSubscription!=null)effectSubscription.close();effectSubscription=null;effectSession=next;
         if(next!=null)effectSubscription=next.subscribe(event->{if(event.kind==game.sanguo.api.GameEvent.Kind.WORLD_REPLACED||event.kind==game.sanguo.api.GameEvent.Kind.CLOSED)stopStreams();});
     }
-    void detach(Object owner){foreground.remove(owner);owners.remove(owner);if(foreground.isEmpty()){if(sourceMedia!=null)sourceMedia.foreground(false);stop();}if(owners.isEmpty())release();}
+    void detach(Object owner){if(sourceMedia!=null)sourceMedia.leaveMenu(owner);foreground.remove(owner);owners.remove(owner);if(foreground.isEmpty()){if(sourceMedia!=null)sourceMedia.foreground(false);stop();}if(owners.isEmpty())release();}
     void foreground(Object owner,boolean active){if(active){if(foreground.isEmpty()){focusLost=false;if(sourceMedia!=null)sourceMedia.interrupted(false);}foreground.add(owner);load();bindEffectSession();if(sourceMedia!=null)sourceMedia.foreground(true);}else{foreground.remove(owner);if(foreground.isEmpty()){if(sourceMedia!=null)sourceMedia.foreground(false);stop();}}}
     int volume(){return Math.max(0,Math.min(100,prefs.getInt("volume",75)));}
     boolean muted(){return prefs.getBoolean("muted",false);}
@@ -54,6 +54,10 @@ final class SoundEffects {
     void musicVolume(int value){prefs.edit().putInt("music-volume",Math.max(0,Math.min(100,value))).apply();syncSourceGains();}
     void voiceVolume(int value){prefs.edit().putInt("voice-volume",Math.max(0,Math.min(100,value))).apply();syncSourceGains();}
     boolean resumeEstablishedMusic(){if(sourceMedia==null||!sourceMedia.hasMusic()||foreground.isEmpty()||muted()||musicVolume()==0)return false;focusLost=false;sourceMedia.interrupted(false);return focus();}
+    /** Called after the actual equivalent native main menu has been built, never from its navigation button. */
+    void establishedMenu(Object owner,game.sanguo.api.StateToken actualViewState,boolean visible){
+        if(visible)sourceMedia().establishedMenu(owner,actualViewState);else if(sourceMedia!=null)sourceMedia.leaveMenu(owner);
+    }
     private void syncSourceGains(){if(sourceMedia!=null)sourceMedia.gains(musicVolume(),voiceVolume(),muted());}
     /** No ordinary BGM/voice trigger is inferred here. Producers must supply established original bindings. */
     PcMediaPlayback sourceMedia(){
