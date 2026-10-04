@@ -11,7 +11,7 @@ public final class PcCriticalsProbe {
     private static void check(boolean v,String s){checks++;if(!v)throw new AssertionError(s);}
     public static void main(String[] args)throws Exception{
         for(War.Plot plot:new War.Plot[]{null,War.Plot.SORCERY,War.Plot.LIGHTNING}){
-            var fixture=PcCriticalsFixture.prepare(plot);boolean tactic=fixture.tactic;World w=fixture.world;
+            var fixture=UiPcCriticalsFixture.prepare(plot);boolean tactic=fixture.tactic;World w=fixture.world;
             World plain=SaveCodec.decode(SaveCodec.encode(w));TurnJournal journal=new TurnJournal(w);
             World.Result result=fixture.command(w),baseline=fixture.command(plain);journal.close();
             check(result.ok&&result.message.equals(baseline.message),"normal command result");
@@ -88,15 +88,15 @@ public final class PcCriticalsProbe {
             check(Arrays.equals(before,SaveCodec.encode(w)),"repeat asset sampling cannot mutate authority/RNG");
             System.out.println(fixture.label+" actor="+fixture.actor+" target="+fixture.target+" selector="+cues.get(0).selector+" original_quads="+timeline.maximum+" result="+result.message);
         }
-        var control=PcCriticalsFixture.prepare(War.Plot.CONFUSE);TurnJournal controlJournal=new TurnJournal(control.world);check(control.command(control.world).ok,"normal successful critical扰乱 control");controlJournal.close();
+        var control=UiPcCriticalsFixture.prepare(War.Plot.CONFUSE);TurnJournal controlJournal=new TurnJournal(control.world);check(control.command(control.world).ok,"normal successful critical扰乱 control");controlJournal.close();
         check(controlJournal.events().stream().allMatch(e->PcPresentationPlan.cues(e).isEmpty()),"扰乱 cannot borrow original妖術 texture126");
-        var custom=PcCriticalsFixture.prepare(true);World.Officer original=custom.world.officer(custom.world.unit(custom.actor).officerId);
+        var custom=UiPcCriticalsFixture.prepare(true);World.Officer original=custom.world.officer(custom.world.unit(custom.actor).officerId);
         World.Officer replacement=new World.Officer(900001,original.name,original.owner,-1,original.leadership,original.war,original.intelligence,original.politics,original.charm);replacement.skillId=original.skillId;System.arraycopy(original.aptitude,0,replacement.aptitude,0,original.aptitude.length);replacement.unitId=custom.actor;
         custom.world.officers.add(replacement);original.unitId=-1;custom.world.unit(custom.actor).officerId=replacement.id;
         TurnJournal customJournal=new TurnJournal(custom.world);check(custom.command(custom.world).ok,"custom officer shares name but has separate identity");customJournal.close();
         check(customJournal.events().stream().anyMatch(e->e.critical!=null&&e.critical.officerId==900001),"custom control really emitted a critical with its own identity");
         check(customJournal.events().stream().allMatch(e->PcPresentationPlan.cues(e).isEmpty()),"same name never substitutes original canonical portrait");
-        for(var fixture:PcCriticalsFixture.presentations())if(fixture.label.endsWith("-young")||fixture.label.endsWith("-old")){
+        for(var fixture:UiPcCriticalsFixture.presentations())if(fixture.label.endsWith("-young")||fixture.label.endsWith("-old")){
             World w=fixture.world,baseline=SaveCodec.decode(SaveCodec.encode(w));TurnJournal journal=new TurnJournal(w);
             World.Result applied=fixture.command(w),controlResult=fixture.command(baseline);journal.close();
             check(applied.ok&&applied.message.equals(controlResult.message),"native portrait normal command "+fixture.label);
