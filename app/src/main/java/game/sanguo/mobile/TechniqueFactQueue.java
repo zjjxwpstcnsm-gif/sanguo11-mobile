@@ -20,7 +20,7 @@ final class TechniqueFactQueue {
     private StateToken state;
     private int owner=-1;
     private long watermark;
-    private boolean foreground,resync;
+    private boolean foreground,resync,paused;
     TechniqueFactQueue(){this(4096);}
     TechniqueFactQueue(int capacity){if(capacity<1)throw new IllegalArgumentException("capacity");this.capacity=capacity;}
     private boolean identity(StateToken next,int side){return state!=null&&state.sessionId.equals(next.sessionId)&&state.generation==next.generation&&owner==side;}
@@ -36,8 +36,9 @@ final class TechniqueFactQueue {
     /** Explicit snapshot recovery after overflow; retains the watermark so the failed batch stays silent. */
     void resynchronize(StateToken next,int side){if(stale(next))return;baseline(next,side);pending.clear();resync=false;}
     void foreground(boolean value){foreground=value;if(!value)pending.clear();}
+    void paused(boolean value){paused=value;}
     void discard(){pending.clear();}
-    void close(){pending.clear();state=null;owner=-1;foreground=false;resync=false;}
+    void close(){pending.clear();state=null;owner=-1;foreground=false;resync=false;paused=false;}
     boolean needsResync(){return resync;}
     int size(){return pending.size();}
     private Result invalid(){pending.clear();resync=true;return Result.RESYNC;}
@@ -74,7 +75,7 @@ final class TechniqueFactQueue {
     /** Skipping a phase discards transient media; it does not manufacture success or play deferred audio. */
     void skipPresentation(String parent){if(parent!=null&&!parent.isEmpty())pending.removeIf(item->item.fact.presentationParentId.equals(parent));}
     TechniquePointsFact poll(){
-        if(!foreground||resync||pending.isEmpty()||!pending.peekFirst().ready)return null;
+        if(!foreground||paused||resync||pending.isEmpty()||!pending.peekFirst().ready)return null;
         return pending.removeFirst().fact;
     }
 }

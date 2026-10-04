@@ -67,8 +67,15 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         runOnMainSync(()->{hud.foreground(false);hud.foreground(true);hud.releasePresentation(secondPhase);activity.refresh();});
         SystemClock.sleep(700);check(hud.rolls==initialRolls+2&&!heard(second.techniquePointsFacts.get(0).id),"background discards pending fact without later replay");
         check(Arrays.equals(SaveCodec.encode(control),capture()),"second zero-net editor commit and background preserve full Save/RNG");
+        zeroNet();GameEvent third=observed.get(2);String thirdPhase=third.techniquePointsFacts.get(0).presentationParentId;
+        runOnMainSync(()->{hud.pauseFacts(true);sounds.pauseEffects(true);hud.releasePresentation(thirdPhase);});
+        SystemClock.sleep(650);check(hud.rolls==initialRolls+2&&!heard(third.techniquePointsFacts.get(0).id),"paused exact phase retains facts without sound");
+        runOnMainSync(()->{sounds.pauseEffects(false);hud.pauseFacts(false);});SystemClock.sleep(1900);
+        check(hud.rolls==initialRolls+4&&shown()==2000&&heard(third.techniquePointsFacts.get(0).id)&&heard(third.techniquePointsFacts.get(1).id),"resume consumes each retained fact once");
+        runOnMainSync(()->{hud.pauseFacts(true);hud.pauseFacts(false);hud.releasePresentation(thirdPhase);});SystemClock.sleep(500);
+        check(hud.rolls==initialRolls+4&&Arrays.equals(SaveCodec.encode(control),capture()),"repeated pause/resume never replays; full Save/RNG unchanged");
         runOnMainSync(()->{SessionProbe.install(activity,control);activity.refresh();hud.releasePresentation(phase);});SystemClock.sleep(500);
-        check(hud.rolls==initialRolls+2&&shown()==2000&&Arrays.equals(SaveCodec.encode(control),capture()),"real restore resets generation without replay");
+        check(hud.rolls==initialRolls+4&&shown()==2000&&Arrays.equals(SaveCodec.encode(control),capture()),"real restore resets generation without replay");
         result.putString("stream","PASS TECHNIQUE FACTS "+checks+" checks; installed normal3D HUD with temporary readonly event/phase test adapter; shared host integration pending\n");
     }catch(Throwable e){result.putString("stream","FAIL TECHNIQUE FACTS "+android.util.Log.getStackTraceString(e));}
     finally{try{

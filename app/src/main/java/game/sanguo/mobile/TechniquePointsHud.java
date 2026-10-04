@@ -17,7 +17,7 @@ final class TechniquePointsHud {
     private ValueAnimator animator;
     private Runnable startFrame;
     private final TechniqueFactQueue facts=new TechniqueFactQueue();
-    private boolean factsMode;
+    private boolean factsMode,factsPaused;
     private int committedPoints;
     int rolls;
     TechniquePointsHud(TextView badge,java.util.function.BiConsumer<String,Boolean> sound){this.badge=badge;this.sound=sound;}
@@ -79,11 +79,17 @@ final class TechniquePointsHud {
     void resynchronizeFacts(StateToken next,int side,int points){if(staleBaseline(next))return;discardPending();facts.resynchronize(next,side);syncFactsBaseline(next,side,points);}
     void releasePresentation(String parent){facts.releasePresentation(parent);pumpFacts();}
     void skipPresentation(String parent){facts.skipPresentation(parent);pumpFacts();}
+    void pauseFacts(boolean value){
+        factsPaused=value;facts.paused(value);
+        if(animator!=null){if(value)animator.pause();else animator.resume();}
+        if(!value)pumpFacts();
+    }
     private void pumpFacts(){
-        if(!factsMode||!foreground||animator!=null||startFrame!=null)return;
+        if(!factsMode||!foreground||factsPaused||animator!=null||startFrame!=null)return;
         TechniquePointsFact fact=facts.poll();if(fact==null)return;
         show(fact.before);target=fact.after;
         startFrame=()->{
+            if(factsPaused&&foreground){badge.postDelayed(startFrame,60);return;}
             startFrame=null;if(!foreground)return;
             sound.accept(fact.id,fact.delta>0);rolls++;
             badge.setContentDescription("本势力技巧点 "+fact.after+" 点，变化 "+(fact.delta>0?"+":"")+fact.delta);

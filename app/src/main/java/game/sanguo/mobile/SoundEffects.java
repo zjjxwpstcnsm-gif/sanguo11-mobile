@@ -65,7 +65,7 @@ final class SoundEffects {
         focused=manager.requestAudioFocus(focusRequest)==AudioManager.AUDIOFOCUS_REQUEST_GRANTED;return focused;
     }
     void pauseEffects(boolean value){effectsPaused=value;if(pool!=null)for(int id:battleStreams){if(value)pool.pause(id);else if(!foreground.isEmpty()&&focused&&!muted())pool.resume(id);}}
-    private static boolean battleCue(Cue cue){return cue==Cue.MARCH||cue==Cue.ATTACK||cue==Cue.TACTIC||cue==Cue.CRITICAL||cue==Cue.PLOT;}
+    private static boolean battleCue(Cue cue){return cue==Cue.MARCH||cue==Cue.ATTACK||cue==Cue.TACTIC||cue==Cue.CRITICAL||cue==Cue.PLOT||cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS;}
     private void expireStream(int stream,SoundPool owner){if(pool!=owner)return;if(effectsPaused&&battleStreams.contains(stream)){handler.postDelayed(()->expireStream(stream,owner),500);return;}streams.remove(stream);battleStreams.remove(stream);}
     private void play(Cue cue){
         Integer sample=samples.get(cue);

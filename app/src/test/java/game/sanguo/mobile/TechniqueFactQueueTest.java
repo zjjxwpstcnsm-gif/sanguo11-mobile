@@ -55,6 +55,10 @@ public final class TechniqueFactQueueTest {
         check(first.presentationParentId.equals("journal:a"),"first correct phase");
         queue.releasePresentation("journal:a");check(queue.poll().presentationParentId.equals("journal:b"),"second exact phase once");
         check(queue.poll().presentationParentId.isEmpty()&&queue.poll()==null,"ordinary committed fact follows phases");
+        var pauseQueue=new TechniqueFactQueue();pauseQueue.baseline(token(1,0),0);pauseQueue.foreground(true);
+        pauseQueue.paused(true);check(pauseQueue.committed(batch(1,1,"paused-phase"),0)==TechniqueFactQueue.Result.ACCEPTED,"paused commit retained");
+        pauseQueue.releasePresentation("paused-phase");check(pauseQueue.poll()==null,"paused phase silent");
+        pauseQueue.paused(false);check(pauseQueue.poll()!=null&&pauseQueue.poll()==null,"resume once");
         queue.committed(batch(1,2,"skipped",""),0);queue.skipPresentation("skipped");
         check(queue.poll().sequence==2&&queue.poll()==null,"skip suppresses only its transient sound");
         queue.committed(batch(1,3,"paused"),0);queue.foreground(false);queue.releasePresentation("paused");queue.foreground(true);
