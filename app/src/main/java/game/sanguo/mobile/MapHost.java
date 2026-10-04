@@ -132,7 +132,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();
     }
     boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}
-    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:PortraitMediaSources.source(world,event.critical.officerId);}
+    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:OfficerPortrait.presentationSource(world,event.critical.officerId);}
     private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}
     private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}
     int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}

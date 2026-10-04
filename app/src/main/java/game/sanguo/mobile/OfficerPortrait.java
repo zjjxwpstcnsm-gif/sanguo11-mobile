@@ -63,6 +63,11 @@ final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target 
         java.util.Map<Integer,String> names=new java.util.HashMap<>();if(raw!=null)for(World.Officer officer:view.officers)names.put(officer.id,officer.name);
         PortraitMediaSources.saved(view,raw,java.util.Collections.unmodifiableMap(names));
     }
+    /** Fullscreen media obeys the same explicit custom override as ordinary portrait cells. */
+    static PortraitMediaIdentity presentationSource(World view,int id){
+        CustomOfficers.Portrait custom=CustomOfficers.portrait(view,id);
+        return custom!=null&&!custom.ref.isEmpty()?null:PortraitMediaSources.source(view,id);
+    }
     private void fill(int color){paint.setColor(color);paint.setStyle(Paint.Style.FILL);}
     private void oval(Canvas c,float l,float t,float r,float b,int color){fill(color);c.drawOval(l,t,r,b,paint);}
     private void poly(Canvas c,int color,float... xy){path.reset();path.moveTo(xy[0],xy[1]);for(int i=2;i<xy.length;i+=2)path.lineTo(xy[i],xy[i+1]);path.close();fill(color);c.drawPath(path,paint);}
