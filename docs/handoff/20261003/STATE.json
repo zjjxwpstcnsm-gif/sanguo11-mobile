@@ -770,5 +770,29 @@
     "bridge_restore_initial_assumption_failure_preserved": true,
     "bridge_restore_registered_regression_passed": true,
     "bridge_restore_runtime_changed": false
+  },
+  "r35_continuation": {
+    "status": "merchant66 and audio51 plus11 actual mixed cues passed; original facility readonly queries passed first run; strict presentations running",
+    "apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "merchant_checks": 66,
+    "merchant_seconds": 62.56,
+    "audio_ui_checks": 51,
+    "audio_ui_seconds": 34.74,
+    "mixed_cues": 11,
+    "mixed_min_correlation": 0.8887288125596823,
+    "wave_sha256": "55f629bd6ba106e03e72838777005340ec37f5c0ae1bf330ff02ffbe6df5ca47",
+    "completed_tests_original_files_exact": true,
+    "facility_match_cases": 4096,
+    "facility_count_cases": 602,
+    "facility_mixed_null_cases": 4,
+    "facility_query_world_rng_readonly": true,
+    "facility_field14_full_semantics_verified": false,
+    "android_facilities_added": false,
+    "current_live_device_job": true,
+    "arm_actual_device_verified": false,
+    "facility_query_same_twice": true,
+    "facility_json_sha256": "44760840c64fc4054a5fc2b60ceeff8fa3b56aee112e7fb6638e1ea86d776216",
+    "facility_gzip_sha256": "3ea334ecc6320b61ecf4b453cce8ceca58e89a5617f8c78d20e5270f23f1e3a7",
+    "facility_exact_presence_checks": 512
   }
 }

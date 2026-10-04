@@ -981,3 +981,5 @@ R33新增core/API/runtime逐次技巧点facts候选：所有现有规则写入�
 2026-10-04 R34续：d318正常新37开局存取64／66.42秒、占格查询51／178.35秒完成，7原文件exact。桥接restore初探“同sessionId”的假设被源replace实际旋转UUID反证，原失败保留；新增恢复边界回归正在JVM验证，未改runtime／schema。
 
 2026-10-04 R34收尾：注册verifyBridge恢复边界检查PASS，实际replace旋转UUID，旧命令和旧成功receipt均被拒绝，重新绑定查询完整Save／RNG不变；无runtime修改。误写任务名verifyBridgeSession的失败保留。同d318新856／64／51和原7文件完整恢复均已归档，目标active。
+
+2026-10-04 R35：d318正常原生37交易66／62.56秒、音效51／34.74秒及真实混音11提示通过，最小相关度.8887288126，原7文件exact恢复。原设施完整匹配4096／计数602／混合null4首轮通过，3MiB及RNG不变；field14完整完工语义与建设准入仍未闭合，未改app／玩法。严格演示正在5554独占执行，24旬续行助手单独构建，目标active。
