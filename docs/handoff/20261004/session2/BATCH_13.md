@@ -12,4 +12,8 @@ PC33增减事件共用一个原SoundPool样本，loaded按全部逻辑cue是否�
 
 六轮均备份并恢复全部用户保存/库/偏好字节，未操作5554录音、不清数据、不启动Wine。media-transport-evidence.json保留每轮包/波形SHA和未放宽阈值的验收输出；逐轮事实、PCM provenance与观察数据已提交。共享场景仍为实际PATROL父receipt加显式原profile/track adapter，正常原BGM/voice绑定仍0；不是正常人物战法语音完成证据。最新包PC33失败，DELIVERY_CURRENT继续保留批十稳定检查点。
 
+同包补测正常656目录/3详情、保存读回/后台/退出重开324153项通过（137.16秒），完整Save/RNG及全部用户文件恢复字节相同。此轮resume=1，未重新跑新局与全部656详情，不能扩大范围。media-transport-normal-installed.json/log保留实际包身份和验收范围。
+
+完整源码/媒体工具归档out/media/delivery-13/sanguo11-portrait-audio-source.tar.gz：截点28cdb14d602049e2b842979e9c7ff5481baf903d，441172806字节，SHA 08897be0396881060406616debdc65555231c5e93d54e1b0b6c8437ef140fe7a。9658个文件、四份忽略JNI全部包含，每份内容与截点源码逐字节相同。后继正常补测和本交付指针不在该截点内，已单独提交；归档包含当前全部实现和语音证据。
+
 继续：解决PC33实际混音差异、语音延迟及所有原声音场景绑定；全头像动态lookup/战斗形态/MOD优先级、多回合组合及ARM/手机扬声器仍待闭合。完整目标active。
