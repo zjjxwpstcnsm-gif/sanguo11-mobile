@@ -489,7 +489,13 @@ public class UiUxInstrumentation extends Instrumentation {
         ui(()->mediaObserver[0].close());Files.write(new File(output,"critical-facts.json").toPath(),new org.json.JSONObject().put("productionHostOnly",true).put("facts",facts).toString(2).getBytes("UTF-8"));
     }
     private void dynamicPortraitFrame(MapHost host,int actorId)throws Exception{
-        long start=SystemClock.uptimeMillis(),deadline=start+180000;Object[] owner={null};int[] selector={-1};float[] phase={0};
+        long start=SystemClock.uptimeMillis(),deadline=start+120000;Object[] owner={null};int[] selector={-1};float[] phase={0};
+        ui(()->{try{
+            check(host.commandEffectsActive(),"normal committed source command starts actual visual sequence");check(UiMotion.enabled(),"source command has actual system animations enabled");
+            World mapView=(World)field(host,"world");PortraitMediaIdentity identity=OfficerPortrait.presentationSource(mapView,actorId);
+            check(identity!=null,"actual MapHost view retains exact source identity after commit");host.pauseCommandEffects(true);
+            Files.write(new File(output,"dynamic-portrait-entry.json").toPath(),new org.json.JSONObject().put("sameViewAsHostAuthority",mapView==SessionProbe.view(activity)).put("sourceKey",identity.key()).put("sourcePath",identity.sourcePath).put("sourceSha",identity.sourceSha).put("recordSha",identity.recordSha).put("hostReport",host.report()).toString(2).getBytes("UTF-8"));
+        }catch(Exception error){throw new RuntimeException(error);}});
         while(SystemClock.uptimeMillis()<deadline){
             boolean[] shown={false};ui(()->{try{
                 Object renderer=field(host,"spatial");PcPresentationPlan.Cue cue=(PcPresentationPlan.Cue)field(renderer,"presentationCue");
@@ -498,12 +504,19 @@ public class UiUxInstrumentation extends Instrumentation {
                     check(cue.identity!=null&&cue.identity.officerId==actorId,"normal non-six cue uses exact source identity");
                     selector[0]=cue.selector();phase[0]=(Float)field(current,"phase");owner[0]=current;host.pauseCommandEffects(true);shown[0]=true;
                 }
+                if(!shown[0]){
+                    check(host.commandEffectsActive(),"source sequence remains active until inspected frame");
+                    if(field(renderer,"presentationCue")==null||host.criticalReady()&&host.criticalSubmitted()){
+                        host.pauseCommandEffects(false);java.lang.reflect.Field clock=MapHost.class.getDeclaredField("commandEffectTime");clock.setAccessible(true);clock.setLong(host,SystemClock.uptimeMillis()-16);
+                        java.lang.reflect.Method tick=MapHost.class.getDeclaredMethod("advanceCommandEffects");tick.setAccessible(true);tick.invoke(host);host.pauseCommandEffects(true);
+                    }
+                }
             }catch(Exception error){throw new RuntimeException(error);}});if(shown[0])break;SystemClock.sleep(20);
         }
         check(owner[0]!=null,"real non-six committed event enters source GPU stage");check(selector[0]>=131&&selector[0]<=192,"native source dynamic selector resolved");
         byte[] frozen=capture();shot("dynamic-portrait-source-frame");long[] bytes={0};ui(()->{try{bytes[0]=(Long)field(owner[0],"textureBytes");check(((Map<?,?>)field(owner[0],"textures")).containsKey(1000+selector[0]),"matching original dynamic atlas uploaded");}catch(Exception error){throw new RuntimeException(error);}});
         check(bytes[0]>=62L*512*512*4,"all original dynamic atlas memory accounted");SystemClock.sleep(200);ui(()->{try{check(phase[0]==(Float)field(owner[0],"phase"),"pause preserves recorded source pose");}catch(Exception error){throw new RuntimeException(error);}});check(Arrays.equals(frozen,capture()),"GPU preparation/pause/screenshot preserve complete Save and RNG");
-        Files.write(new File(output,"dynamic-portrait.json").toPath(),new org.json.JSONObject().put("officerId",actorId).put("selector",selector[0]).put("sourceFramePhase",phase[0]).put("textureBytes",bytes[0]).put("prepareAndFirstFrameMillis",SystemClock.uptimeMillis()-start).put("normalUiCommand",true).put("sourceIdentityInjectedByTest",false).put("allDynamicSelectorsRendered",false).toString(2).getBytes("UTF-8"));
+        Files.write(new File(output,"dynamic-portrait.json").toPath(),new org.json.JSONObject().put("officerId",actorId).put("selector",selector[0]).put("sourceFramePhase",phase[0]).put("textureBytes",bytes[0]).put("prepareAndFirstFrameMillis",SystemClock.uptimeMillis()-start).put("normalUiCommand",true).put("controlledPausedHostTicks",true).put("sourceIdentityInjectedByTest",false).put("allDynamicSelectorsRendered",false).toString(2).getBytes("UTF-8"));
         ui(()->host.pauseCommandEffects(false));
     }
     private String shellText(String command)throws Exception{try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command));ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] bytes=new byte[1024];int n;while((n=in.read(bytes))>=0)out.write(bytes,0,n);return out.toString("UTF-8").trim();}}
