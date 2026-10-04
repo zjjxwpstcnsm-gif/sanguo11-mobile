@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "a8653f150591538c4b2e33ddcb150effc48da4a6",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-build-02/frozen/app-debug.apk",
+      "bytes": 283153571,
+      "sha256": "0f5fa18223b226b775dd97e0603e3ccbc85a422b6223800a78e5235e46dee8f6"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-build-02/frozen/app-debug-androidTest.apk",
+      "bytes": 2064383,
+      "sha256": "13c58455afb194b1ba33dc001a93c3dcf482be161893baad9886f1c048ff657b"
+    }
+  ],
+  "purpose": "legacy focus isolation diagnostic"
+}

@@ -1,3 +1,5 @@
+最新未通过候选：bb64e557，APK SHA 24a60cf91d89d8b85fc4da92b0b58dbc83ddee395e18794311092dc3b61fa96b，out/media/pc33-source-build-04/frozen/app-debug.apk。批十二五轮已实际安装、用户字节恢复；临时路径包PC33一次通过，后台缓存正式包PC33仍失败，共享播放器41项通过但本次共享PCM也失败。详见BATCH_12.md及pc33-source-loader-ab.json；不得提升为已验收交付。
+
 # 最新共享媒体实现检查点：PC33混音回归未通过
 
 源码截点1cfb321aa6cc3309237c1eac162368a29415c02b，完整源码/资产/工具及四份JNI为out/media/delivery-12/sanguo11-portrait-audio-source.tar.gz，441125078字节，SHA8676d5221688400640d6f579c2644a29c8018c71fff54f3023ece9f1ff1720fb。9606份文件逐字节核对、无重复；全部跟踪文件和4份忽略JNI包含。实现ee16461b/ccd6d6bf，40路径增量SHA守卫见shared-media-incremental-guard.json。

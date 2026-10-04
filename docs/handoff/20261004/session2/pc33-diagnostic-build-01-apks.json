@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "ef1d3937558ccb54467f0fcd4739ab4b59fb0737",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-build-01/frozen/app-debug.apk",
+      "bytes": 283153363,
+      "sha256": "d0f89352660ec8c1aa404a26b5e9499e8987dfbe094c72dc035f4aeced6288db"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-build-01/frozen/app-debug-androidTest.apk",
+      "bytes": 2064419,
+      "sha256": "659d239e94f905da6a03aec423a60ac57e8a70bcc5043b2c0d81d310154a20b6"
+    }
+  ],
+  "purpose": "Equivalent gain syntax + actual trace diagnostic, not accepted fix yet"
+}
