@@ -1,0 +1,38 @@
+{
+  "base": "73ebdb182bccb2120e99e24ecaeedcfd1607bfeb",
+  "completeGoal": false,
+  "files": [
+    {
+      "bytes": 6342,
+      "path": "tools/content/inspect_pc_debate_guidance.py",
+      "sha256": "4276d3445c63d8f341b67a69b2d00adfe57569ddf41091b1d55d4182fd3e1e9f"
+    },
+    {
+      "bytes": 5433,
+      "path": "tools/content/inspect_pc_debate_recruitment.py",
+      "sha256": "d26704223b32de1d1e14e003de6f3f3d3e2e02230b64e7372cdf2e2ef383e4c8"
+    },
+    {
+      "bytes": 2169,
+      "path": "tools/content/build_pc_debate_settlement_fixtures.py",
+      "sha256": "3b9d01b06f612423f13fcda0ef777cbd2b628ad89b0febbea219a5a03d882860"
+    },
+    {
+      "bytes": 2026,
+      "path": "core/src/test/java/game/sanguo/core/PcDebateSettlementTest.java",
+      "sha256": "8a0e1537f910cd34895ab4211e85cab9ab84a9a5044acdeea5f1459fa07d425d"
+    },
+    {
+      "bytes": 49912,
+      "path": "core/src/test/resources/pc-debate/settlement-guidance-original.tsv",
+      "sha256": "33f799c29bb2cb78218a484bf9a32d4bc21aa78c884c008c2c2fca3ccf06cc9d"
+    },
+    {
+      "bytes": 1189,
+      "path": "core/src/test/resources/pc-debate/settlement-guidance-provenance.json",
+      "sha256": "65f58275da7e98dae3d7b4ccd3fb5307d013ae8731dd3fec85ef5636417e5863"
+    }
+  ],
+  "newApkBuilt": false,
+  "productionRulesChanged": false
+}

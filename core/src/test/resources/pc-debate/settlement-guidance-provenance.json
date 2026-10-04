@@ -1,0 +1,30 @@
+{
+  "cases": 192,
+  "fixtureSha256": "33f799c29bb2cb78218a484bf9a32d4bc21aa78c884c008c2c2fca3ccf06cc9d",
+  "functions": [
+    {
+      "endExclusive": "0x4a553a",
+      "sha256": "13d288529236d2417709ea98f41a47c895d495130abfa0cb70dca099a8dd5883",
+      "start": "0x4a54a0"
+    },
+    {
+      "endExclusive": "0x51dfa5",
+      "sha256": "590e7602a6134ce804e1e912aea1f2be515b69c02c96e9d16c31a77d15e52ace",
+      "start": "0x51dd10"
+    },
+    {
+      "endExclusive": "0x4a7277",
+      "sha256": "38570c77a84f2523978299a7cf91be5e55c344c42021a339b47d6f0bb7db789c",
+      "start": "0x4a70d0"
+    }
+  ],
+  "limits": [
+    "Only actual Shared/Scen000 source identities, skill84 and active states",
+    "Unit crews and recipient locations explicitly assigned in VM memory; not actual opening units",
+    "Complete original settlement/XP/guidance functions execute without replacement; UI pointer zero",
+    "Original campaign event result, injury recovery and normal GUI remain separate"
+  ],
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceReportSha256": "bc9ef980da60b9852d0b35f1b579361f45fa5468966c61a52298770214afa384",
+  "sources": 1
+}

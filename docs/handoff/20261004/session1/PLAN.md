@@ -131,3 +131,9 @@ Batch17确切新增工具还有tools/content/export_pc_debate_verification.py、
 ## Batch19：逐来源原结算核实
 
 前提交2eb14d05；新增tools/content/inspect_pc_debate_settlement.py及独立原报告，必要的原结算规则PcDebateSettlement.java/测试与验证副本桥接按证据追加；先不改冻结生产文件。原Shared+16来源载入边界，真实人物native116/222及47原势力逐原getter/原51dd10；完整原函数、XP/功绩/伤病/势力技巧边界，记录源指纹和全World变更。原UI指针仍为零，不声称完整开局/战役招聘归属回调已经完成。只要实际函数要求未核实外部上下文就保留失败，不补原函数返回值。5554保持活handle33877及原数据恢复；全部源冷续行结束后先最终读回，再新APK真实安装与完整保存恢复。
+
+## Batch20：原结算同行指导与结果回调
+
+前提交73ebdb182bccb2120e99e24ecaeedcfd1607bfeb。完整checkpoint19保留4753文件/415656335字节、4份JNI，manifest SHA76d1b757cb7cc79b7a647ea1e5e8ce15c08a465a84235e3889fec4421e69fc97。确切新增工具tools/content/inspect_pc_debate_guidance.py；修改build_pc_debate_settlement_fixtures.py仅追加独立guidance报告转换入口、PcDebateSettlementTest.java仅追加原fixture回归与新的settlement-guidance资源。原384fixture及原报告不改。真实来源人物不改名/改技能/改活动状态；部队与所在地仅明确内存夹具，记录实际原getter，不能当实际开局部队。继续原事件外层回调定位，不以静态调用地址宣称登用/外交已闭合。当前5554空闲、无需设备，本批不碰媒体和公共台账。
+
+Batch20追加确切工具tools/content/inspect_pc_debate_recruitment.py：完整执行原5c4840（由5d3c90/5d3d40结果链调用），真实16份Shared+剧本人物116/222、原指定据点坐标、输赢分支。逐原属性和完整World变更/RNG，记录玩家GUI未装配及外层脚本续行缺口；不替换transfer、忠诚或随机函数，不改正式结算入口。

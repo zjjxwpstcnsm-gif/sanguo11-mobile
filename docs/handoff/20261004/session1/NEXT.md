@@ -1,5 +1,7 @@
 # 继续执行，不宣布目标完成
 
+当前有效状态（Batch20）：Batch19主分支提交73ebdb18已完成，checkpoint19为out/session1/checkpoint-batch19/source，4753文件/4JNI，manifest SHA76d1b757cb7cc79b7a647ea1e5e8ce15c08a465a84235e3889fec4421e69fc97。48来源流程已终止PASS/恢复，Batch19实际native中途与冷重开通过，5554锁已释放；下文旧进度只作历史记录。Batch20新增192原指导结算/576总回归通过，原32次5c4840登用结果完整返回与6次早期缺页失败保留；生产规则本批不改。优先继续5d3c90剩余奖励/脚本结果、4ab000归属/忠诚公式与伤病恢复后接一次性正式结算；不能把固定70忠诚套回原结果。继续单挑完整引擎和16剧本开局及全部人物缺口。完整记录BATCH_20.md。
+
 本会话仍执行用户完整目标及追加单挑/舌战。主目录/PC只读，无Wine、reset、清理资源、旧AA核心覆盖。工作目录固定/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile，分支codex/scenario-officer-restoration。媒体文件和公共progress/STATE/PC_PARITY_STATUS不改。
 
 5554锁仍由本会话持有，5582不使用。实际48行来源设备串行程序在exec session33877；状态out/session1/contest09/source-ui-sweep.json。旧来源16/16已通过，16新局+16新局冷续行仍运行。每轮finally恢复原内部保存/偏好和3177原外部文件；完整结束后还须最终读回并释放自己的锁。禁止提前修改Batch09冻结1024输入，guard位于out/session1/contest09/apk-source-guard.json。既有生产APK SHA62a913f8c8f96ada044f0dca7d92f451b6281c5571102a4d90a1100f7e899a15；测试包SHA40747bbda2896b599805fa598b7fac7560dddb894656ffed7d4b47e9b789fc63。

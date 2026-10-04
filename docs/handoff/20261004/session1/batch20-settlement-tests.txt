@@ -1,0 +1,2 @@
+PASS PcDebateSettlementTest settlement-original.tsv 384 full original settlement XP/merit/injury/47 force outputs; 0 guided participants; recovery/recruitment callback remain separate
+PASS PcDebateSettlementTest settlement-guidance-original.tsv 192 full original settlement XP/merit/injury/47 force outputs; 120 guided participants; recovery/recruitment callback remain separate
