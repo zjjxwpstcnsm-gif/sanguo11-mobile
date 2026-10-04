@@ -2,6 +2,8 @@
 
 最新应用APK26：`out/media/portrait-settled-build-26/frozen/app-debug.apk`，源06ef4bfd3d62369205d07324a01c9c6381f7391a，307736122字节，SHA `51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f`。本批生产Java未变，仅修正媒体截图时机、导出完整逐回合Save及增加只读诊断工具。完整656目录/656详情、652批准像素/4未知、存读档/后台/退出重开651.13秒通过；原过渡截图失败保留，稳定截图重新检查。六回合带七份完整Save/RNG字节的183.84秒复验与Android桥接18项通过，全部保存/库/偏好逐字节恢复。仅验证测试包增加Save导出并重建为SHA0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69，应用仍同一SHA。详见PORTRAIT_CAPTURE_CORRECTION_26.md、PORTRAIT_SETTLED_INSTALLED_26.json、SIX_TURN_AUTHORITY_INSTALLED_26.json及MEDIA_BRIDGE_INSTALLED_26.json。
 
+批26完整源码归档：`out/media/delivery-26/sanguo11-portrait-audio-source.tar.gz`，截点ddcc94689a202d09653f547f1aaa23853a266700，9935文件（全部tracked及四份ignored JNI）逐份回读字节一致；496634235字节，SHA `2290d4584708879a0ccf83ffe9007a127caf478ec645a583d43f3dc2c05e92b8`。原目录/另一会话不动，生产Java/API/runtime及公共入口本批未变。归档含本批工具、完整逐回合Save/RNG、正常新包像素/生命周期/混音的通过和失败证据；此后继交付指针本身在归档截点之后。
+
 本包正常菜单生命周期及原曲四个固定录音窗口再次通过，最小相关性0.999994605；整曲0.692432596仍未达到原0.995门槛。额外查询/编译观察轮更差，固定30秒窗口和整曲均失败，全部保留；排除这两项负载也仍不能宣称连续性通过。当前包完整解码与参考逐样本最大差1，解码时间线未见录音跳变，后续输出/混音/录音具体责任未定位。不把全局FastMixer计数当本轨结论。详见MUSIC_TIMELINE_DIAGNOSTIC_26.md、MIXER_OBSERVATION_LIMITS_26.md和MENU_CLEAN_INSTALLED_26.json。地图BGM、人物正常voice、全原SFX、全部来源/caller形态和ARM仍未完成；APK25及以下为历史独立证据。 新包非六人原共享动态头像190、缓存/renderer释放及未暂停战法原PC33实际PCM也完成本包复验，范围和限制见INSTALLED_CLOSEOUT_26.md。
 
 当前最新菜单音乐APK：`out/media/menu-music-build-25-r7/frozen/app-debug.apk`，源81dd448ce7d263ae3fe29ddd6781151238f31635，307736130字节，SHA `8afbe618066681f8408ed2d49613e18523994281d6ade20a434f0afbed19341c`。测试包SHA `aecdcb9cbec240813c16b16544b7ef1d598d1df00fbfc02e29217f145863caf9`。原559220/558b20入口、载入/新局/教学/选项/退出原文字及32原wrapper组合闭合，实际建立后的正常菜单自动播放原music1/resource2238，未按按钮点击猜曲目；菜单音乐正常绑定现为1，地图BGM和人物voice仍0。
