@@ -1,0 +1,55 @@
+{
+  "decodedReportSha256": "071bd974c2f1d26bd4fd7c801f4ed773a8576ea0a859d9c50a6c34cd67166dc6",
+  "decodedSha256": "a67d03fe06739cb2e4a06d1064aa842a3d19818c2999fb95a01e48df6b8051da",
+  "decoder": {
+    "codeSha256": "5d504570fb915779c49f6ce46123893055ad5f5b3cb37c299572728fdee7dad5",
+    "compressedBytes": 341171,
+    "decodedBytes": 511349,
+    "inputOffset": 288,
+    "originalFunction": "4711c0",
+    "originalInputConsumed": 341171,
+    "outputGuards": true,
+    "sourceAndDictionaryReadOnly": true
+  },
+  "interpreter": "498a90 ->4976a0/4988e0",
+  "ioCalls": [
+    {
+      "method": 1,
+      "returnAddress": "0x497e7e",
+      "value": 1
+    },
+    {
+      "method": 3,
+      "returnAddress": "0x497e89",
+      "value": 511349
+    },
+    {
+      "method": 4,
+      "returnAddress": "0x497eac",
+      "value": 1
+    },
+    {
+      "method": 2,
+      "returnAddress": "0x497eb7",
+      "value": 1
+    }
+  ],
+  "limits": [
+    "Resource discovery/active priority has not been executed",
+    "Message selectors must be joined by source identity, never project ID arithmetic",
+    "Gaiji/format bytes retained; unknown glyphs have no invented Unicode value",
+    "This report does not establish that every numbered message is a valid officer biography"
+  ],
+  "messages": 775,
+  "messagesWithUnknownControls": 0,
+  "messagesWithUnknownGlyphs": 687,
+  "outputCanary": true,
+  "packedSha256": "df59adc7519fa577dfce34323e67daa4ce423334db3358c602f25aba2f195e90",
+  "resourceLoad": "497e50 memory-file IO; original allocator/constructor/497d60 registry;497da8 bound-registry initialization",
+  "resourcePath": "Media/msg/S11MSG02.s11",
+  "resourceReadOnly": true,
+  "resourceSha256": "7095a926830052372e74c6dfeb85e5e608c9f685f718fc9befd70895e9cb8cc3",
+  "rngUnchanged": true,
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb"
+}

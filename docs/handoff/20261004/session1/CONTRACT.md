@@ -23,3 +23,13 @@ Session 1 负责身份与文字/数值真值，Session 2 负责头像像素、�
 验证工具新增 `tools/content/verify_pc_officer_ui.py`，复用现有正常 widget runner，另封存/恢复所有原外部文件与库；新增文本取证工具 `tools/content/inspect_pc_message_resources.py`，只在独立 VM 执行原 LS11 解压函数，输出隔离文本二进制及取证摘要，不修改任何媒体文件。
 
 补充确切测试文件：tools/content/OfficerUiOpeningWriter.java、ArtOfficerFixtureCanonicalizer.java、canonicalize_pc_officer_fixture.py、android/OfficerInfoInstrumentation.java、build_officer_info_ui_probe.py。仅独立测试 APK/host 夹具，生产规则类全部引用本次实装 APK；不替换或改写现有共享测试 runner。详情截图和每次失败/成功的原日志在 out/session1/，本目录保存摘要及 SHA。
+
+## Batch 03 来源字段闭合
+
+先拥有 `tools/content/inspect_pc_officer_fields.py`、`tools/content/test_pc_officer_fields.py` 与本目录对应 source-fields-native.json.gz/summary/差异说明。执行原73ca80属性名初始化、4c8720读取器及真实人物构造/serializer，逐源记录字段名称、ID、返回值与具体来源字节；经验/当前缓存等无剧本输入字段仍区分初始化/开局未闭合。新增文本getter、字形核查工具及持久化接入前再追加确切文件与SHA，不修改共同人物manifest或媒体文件。
+
+本批追加确切所有权：tools/content/inspect_pc_biography_messages.py、build_pc_officer_text_catalog.py、test_pc_officer_fields.py；core/src/main/java/game/sanguo/core/PcOfficerInfo.java、PcOfficerSources.java；core/src/main/resources/pc-officers/source-text.bin.gz、index.txt；game-api OfficerSnapshot、game-runtime query/OfficerQuery 与 PcOfficerInfoTest、game-runtime/build.gradle；app MainActivity 的新局参数及文字详情、ScenarioFactionPicker 的可选文字资料来源控件。修改前 SHA 在 source-text-before.json。
+
+新局可显式选择本地 PC 文件的文字资料（字与原消息传记）；未选择保持原流程。此选项不称官方剧本还原、不写能力/身份/归属，不决定头像或音频。资料固定写入现有长度分隔 SaveExtensions 独立命名空间，无来源资料的旧档保持 unknown，不升级 v31–37 策略、不从新目录追填。字形缺口按原字节明确标注。实际开局事件和官方/MOD 生效性尚未闭合。
+
+已实装的稳定连接：OfficerSnapshot.Officer.source可为空，非空SourceInfo含nativeId/sourceVariant/sourcePath/sourceSha/recordSha/courtesy/biography及缺口；外层id就是经过身份校验的officerId。PcOfficerInfo.saved(World)也可读取保存中的只读连接。媒体可以消费已提交DTO/独立metadata清单，不能从source为空的旧档猜测来源，也不能用nativeId未经身份连接当项目ID。肖像像素/变体/年龄选择仍由媒体所有者实现，本批未修改头像调用或AndroidGameBridge线格式。

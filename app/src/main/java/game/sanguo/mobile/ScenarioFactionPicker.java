@@ -21,6 +21,8 @@ final class ScenarioFactionPicker {
     private IntFunction<String> confirmation;
     private Runnable back;
     private AlertDialog confirmationDialog;
+    private String officerTextSource;
+    private String officerTextLabel="沿用工程资料";
     private WindowSurfaceRecovery windowSurfaceRecovery;
     ScenarioFactionPicker(MainActivity a,World w,IntConsumer choose){
         this.a=a;this.w=w;this.choose=choose;overview=new RealmOverview(w);dialog=new Dialog(a);
@@ -51,6 +53,12 @@ final class ScenarioFactionPicker {
         HorizontalScrollView scroll=new HorizontalScrollView(a);scroll.setHorizontalScrollBarEnabled(false);LinearLayout factions=new LinearLayout(a);scroll.addView(factions);root.addView(scroll,new LinearLayout.LayoutParams(-1,a.dp(48)));
         for(int i=0;i<w.factions.length;i++){final int side=i;Button b=a.button(w.governance.label(i),v->select(side));b.setContentDescription("选择势力 · "+w.faction(i));b.setEnabled(w.alive(i));chips.add(b);factions.addView(b,new LinearLayout.LayoutParams(a.dp(88),a.dp(48)));}
         root.addView(a.button("自定义武将 · 启用 / 投放 / 校验预览",v->new CustomOfficerPlacementUi(a,w).show()),new LinearLayout.LayoutParams(-1,a.dp(48)));
+        Button textSource=a.button("人物文字资料："+officerTextLabel,null);
+        textSource.setContentDescription("选择本局人物文字资料来源");
+        textSource.setOnClickListener(v->a.chooseOfficerTextSource(source->{
+            officerTextSource=source==null?null:source.id;officerTextLabel=source==null?"沿用工程资料":source.label();
+            textSource.setText("人物文字资料："+officerTextLabel);
+        }));root.addView(textSource,new LinearLayout.LayoutParams(-1,a.dp(48)));
         start=a.button("",v->accept(selected));start.setSelected(true);root.addView(start,new LinearLayout.LayoutParams(-1,a.dp(50)));
         dialog.setContentView(root);dialog.setOnCancelListener(d->{if(back!=null)back.run();});dialog.setOnDismissListener(d->{if(confirmationDialog!=null)confirmationDialog.dismiss();if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}map.criticalFrame(null,0);map.release();});
         selected=w.player;for(int i=0;!w.alive(selected)&&i<w.factions.length;i++)selected=i;select(selected);
@@ -58,6 +66,8 @@ final class ScenarioFactionPicker {
     private boolean pcOpening(){return NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty();}
     ScenarioFactionPicker confirmWith(IntFunction<String> message){confirmation=message;return this;}
     ScenarioFactionPicker onBack(Runnable action){back=action;return this;}
+    String officerTextSource(){return officerTextSource;}
+    String officerTextLabel(){return officerTextLabel;}
     void dismiss(){dialog.dismiss();}
     private void goBack(){dialog.dismiss();if(back!=null)back.run();}
     private void accept(int side){

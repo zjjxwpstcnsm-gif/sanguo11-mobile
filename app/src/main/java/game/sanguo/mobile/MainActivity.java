@@ -1089,7 +1089,18 @@ public final class MainActivity extends Activity {
         stats+="\n适性：枪"+War.rankLabel(facts.aptitudes.get(0))+" 戟"+War.rankLabel(facts.aptitudes.get(1))+" 弩"+War.rankLabel(facts.aptitudes.get(2))+" 骑"+War.rankLabel(facts.aptitudes.get(3))+" 器"+War.rankLabel(facts.aptitudes.get(4))+" 水"+War.rankLabel(facts.aptitudes.get(5));
         stats+="\n"+facts.lifeDescription+"\n\n"+facts.loyaltyDescription;
         stats+="\n特技："+facts.skillName+"\n"+facts.skillDescription+"\n\n"+facts.relationsDescription+"\n\n宝物：\n"+facts.treasuresDescription;
-        stats+="\n字 / 原传记：尚未核实";
+        if(facts.source==null){
+            stats+="\n字 / 原传记：此局未记录来源资料";
+            if(facts.unknown.contains("sourceMetadataUnreadable"))stats+="\n来源资料无法读取，原保存字节保留";
+            if(facts.unknown.contains("sourceIdentityChanged"))stats+="\n人物身份已变更，原来源资料未连接";
+        }
+        else{
+            stats+="\n字："+(facts.source.courtesy.isEmpty()?(facts.source.courtesyRaw.isEmpty()?"原资源未记":"未解码（"+facts.source.courtesyRaw+"）"):facts.source.courtesy);
+            stats+="\n原传记：\n"+(facts.source.biography.isEmpty()?"来源传记绑定尚未核实":facts.source.biography);
+            stats+="\n资料来源："+facts.source.sourcePath+" · 原编号 "+facts.source.nativeId;
+            if(facts.source.unknown.contains("activeResourcePriority"))stats+="\n资源生效优先级尚未核实";
+            if(facts.source.unknown.contains("biographyIdentityDisagreement"))stats+="\n此来源的原传记索引与人物身份不一致，正文暂未连接";
+        }
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(dp(20),dp(8),dp(20),dp(16));content.addView(visualHeader(o,facts.name,facts.role+" · 忠诚 "+facts.loyalty,88));
         TextView description=text(stats+"\n身份："+facts.role+" · 忠诚 "+facts.loyalty+"\n\n所在地："+facts.location+"\n状态："+facts.status,15,paper);content.addView(description);
         ScrollView scroll=new ScrollView(this);scroll.addView(content);
@@ -1237,9 +1248,9 @@ public final class MainActivity extends Activity {
             World expected=world;long revision=expected==null?0:expected.commandRevision();
             factionPicker=new ScenarioFactionPicker(this,template,side->{
                 if(!currentWorld(expected)||(expected!=null&&expected.commandRevision()!=revision)){message("未开始新局","当前局面已变化，请重新选择剧本。");return;}
-                startScenario(template.scenarioId,side,pinned);
+                startScenario(template.scenarioId,side,pinned,factionPicker.officerTextSource());
             })
-                .confirmWith(side->openingInfo(template,side)+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。")
+                .confirmWith(side->openingInfo(template,side)+"\n人物文字资料："+factionPicker.officerTextLabel()+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。")
                 .onBack(this::scenarioPicker);
             factionPicker.show();
         },
@@ -1254,10 +1265,24 @@ public final class MainActivity extends Activity {
     }
     private void startScenario(String id,int player){startScenario(id,player,null);}
     private void startScenario(String id,int player,MapPatch pinned){
+        startScenario(id,player,pinned,null);
+    }
+    void chooseOfficerTextSource(java.util.function.Consumer<PcOfficerSources.Source> choose){
+        uiReads.run("正在读取本地PC人物资料…",PcOfficerSources::all,sources->{
+            String[] labels=new String[sources.size()+1];labels[0]="沿用工程资料（不增加PC文字来源）";
+            for(int i=0;i<sources.size();i++)labels[i+1]=sources.get(i).label();
+            new AlertDialog.Builder(this).setTitle("选择本局字与原传记来源")
+                .setItems(labels,(d,n)->choose.accept(n==0?null:sources.get(n-1)))
+                .setNegativeButton("取消",null).show();
+        },error->showError("人物资料读取失败："+error.getMessage()));
+    }
+    private void startScenario(String id,int player,MapPatch pinned,String officerTextSource){
         World expected=world;
         uiReads.run("正在建立新局…",()->{
             World resolved=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());
-            return CustomOfficerSetup.apply(this,resolved);
+            World next=CustomOfficerSetup.apply(this,resolved);
+            if(officerTextSource!=null)PcOfficerSources.attachOpening(next,officerTextSource);
+            return next;
         },next->{
             if(!currentWorld(expected))return;
             if(!activateWorld(next))return;selectAndFocus(world.home().hex);map.switchMode(nextScenario3D);closePanel();save("auto",false);

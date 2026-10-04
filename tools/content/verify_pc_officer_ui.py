@@ -77,7 +77,7 @@ def run(args):
             flow(SimpleNamespace(serial=args.serial,apk=args.apk,test_apk=args.test_apk,output=output,
                 runner='OfficerInfoInstrumentation' if args.info_only else 'UiUxInstrumentation',
                 test_package='game.sanguo.mobile.officerinfoprobe' if args.info_only else PACKAGE+'.test',
-                argument=['suite='+suite,'run=officer-session1-'+args.output.name+'-'+suite,'reuseSlotSha='+campaign_sha],
+                argument=['suite='+suite,'run=officer-session1-'+args.output.name+'-'+suite,'reuseSlotSha='+campaign_sha]+(['sourceOpening=1'] if args.source_opening else [])+(['sourceResume=1'] if args.source_resume else []),
                 pass_marker='OFFICER INFO PASS' if args.info_only else 'UIUX PASS',timeout=1200,reuse_installed=index>0,campaign_save=args.campaign_save,campaign_sha256=campaign_sha))
             report['suites'].append(json.loads((output/'results.json').read_text()));save()
         report['passed']=True
@@ -114,4 +114,6 @@ if __name__=='__main__':
     parser.add_argument('--external-backup',type=Path)
     parser.add_argument('--campaign-save',type=Path,required=True)
     parser.add_argument('--info-only',action='store_true')
+    parser.add_argument('--source-opening',action='store_true')
+    parser.add_argument('--source-resume',action='store_true')
     run(parser.parse_args())

@@ -9,6 +9,8 @@ public final class OfficerQuery {
     private OfficerQuery(){}
     public static OfficerSnapshot capture(World w,StateToken state){
         List<OfficerSnapshot.Officer> result=new ArrayList<>();
+        Map<Integer,PcOfficerInfo.Person> sourcePeople;boolean invalidSource=false;
+        try{sourcePeople=PcOfficerInfo.saved(w);}catch(java.io.IOException e){sourcePeople=Collections.emptyMap();invalidSource=true;}
         for(World.Officer o:w.officers){
             List<Integer> base=new ArrayList<>(),growth=new ArrayList<>(),xp=new ArrayList<>();
             if(w.officerAbilities.enabled())for(int i=0;i<5;i++){
@@ -16,6 +18,13 @@ public final class OfficerQuery {
                 xp.add(w.officerAbilities.experience(o.id,i));
             }
             List<String> unknown=new ArrayList<>(Arrays.asList("sourceVariant","nativeId","courtesyName","biography"));
+            OfficerSnapshot.SourceInfo source=null;PcOfficerInfo.Person original=sourcePeople.get(o.id);
+            if(original!=null&&original.worldName.equals(o.name)){
+                unknown.clear();unknown.addAll(original.unknown);
+                source=new OfficerSnapshot.SourceInfo(original.nativeId,original.sourceVariant,original.sourcePath,original.sourceSha,original.recordSha,
+                    original.courtesy,original.courtesyRaw,original.biography,original.biographyResourceSha,original.biographyRenderedSha,original.unknown);
+            }else if(original!=null)unknown.add("sourceIdentityChanged");
+            if(invalidSource)unknown.add("sourceMetadataUnreadable");
             if(base.isEmpty())unknown.addAll(Arrays.asList("base","growth","experience"));
             else for(int i=0;i<5;i++)if(growth.get(i)<0)unknown.add("growth:"+i);
             if(o.sex==World.Sex.UNKNOWN)unknown.add("sex");
@@ -28,7 +37,7 @@ public final class OfficerQuery {
                 location(w,o),status(w,o),w.governance.office(o),o.skillId,Skill.label(o.skillId),Skill.description(o.skillId),
                 w.life.describe(o.id),w.loyalty.describe(o),w.relations.describe(o.id),w.treasures.describe(o.id),
                 Arrays.asList(o.leadership,o.war,o.intelligence,o.politics,o.charm),base,growth,xp,
-                Arrays.asList(o.aptitude[0],o.aptitude[1],o.aptitude[2],o.aptitude[3],o.aptitude[4],o.aptitude[5]),unknown));
+                Arrays.asList(o.aptitude[0],o.aptitude[1],o.aptitude[2],o.aptitude[3],o.aptitude[4],o.aptitude[5]),unknown,source));
         }
         return new OfficerSnapshot(state,result);
     }
