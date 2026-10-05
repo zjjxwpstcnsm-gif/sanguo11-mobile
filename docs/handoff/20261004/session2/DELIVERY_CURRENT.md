@@ -22,6 +22,8 @@
 
 完整源码冻结目标 `out/media/delivery-30`；精确截点和逐文件回读以该目录 manifest.json/source-files.json 为准，归档期间不改源码。增量守卫见 DELTA_GUARDS_30.json。
 
+完整源码已回读验证：截点 `e278ccd5ec9399d21e66af612ae9e8ab9d1c8ab1`，10095 文件、515983339 字节，SHA `10a77b958878074492f4520fadab4007552ec27d3019dc1dbd0b4f608a277b58`。全部 tracked、4299 初始继承路径及四份 ignored JNI 均包含且逐份字节一致。此后仅更新本指针及 SOURCE_ARCHIVE_30.json 两份索引，应用/测试/媒体代码未变。
+
 # 当前截点29：九种原命中战法音及命中门纠正，目标active
 
 当前可安装应用 `out/media/infantry-sound-build-29/frozen/app-debug.apk`，实现f6e0b8a6d3ee4cb4839bf2d2fb975f06f7c445b7，308016492字节，SHA `0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a`。测试实现6bba993885ea66c5ed3cf2844d332fda6d0e2825，2080347字节，SHA `9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7`，路径out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk。实际安装并逐轮核对两包完整SHA；后继只有媒体工具/证据变化。
