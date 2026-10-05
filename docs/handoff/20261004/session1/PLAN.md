@@ -1,5 +1,7 @@
 # Session 1 计划与文件所有权
 
+Batch27新增精确所有权：tools/content/inspect_pc_internal_parent_references.py、build_pc_internal_parent_references.py、inspect_pc_governor_order.py、inspect_pc_governor_rosters.py；隔离PcNativeParentPolicy/PcGovernorOrder、两个core原对照测试、pc-native-parents资源，以及PcNativeDebatePolicy/PcDebateOutcome/SaveCodec增量。19条候选路径和当前/候选SHA见batch27-candidate-delta.json，尚未应用或实装。父亲38390、排序1416、更新后正常胜局21/cold9通过；完整太守候选/任命与原触发费用仍未闭合。媒体/桥/共享台账不改，完整单挑仍属目标。
+
 Batch26基点76c7a949，完整checkpoint25 4896文件/418091619字节/4JNI，manifest2875c6df00d247c4fb7e653796707dc4fe0d41649acc4fe11938c4f1a606c74c。确切文件：PcOfficerIdentities.java（固定已核实四身份及证据SHA连接，保存读取不依赖当前目录）；PcScenarioOpening.java（新局势力标题使用同一君主核实名）；build_pc_gaiji_identities.py及pc-officer-identities资源（中文显式缺口，旧文本原字节保留）；PcGaijiIdentityTest.java/正常设备opening probe（损坏连接拒绝、同一势力名、16正常操作与冷续行、旧已核实/未核实双存档策略）。不改媒体、Bridge、共享台账或旧保存头。新包证据独立，旧包结果不移用。下一步仍完整舌战登用/外交/原raw忠诚与临时怨恨/单挑集成。
 
 Batch25 gaiji identity ownership: tools/content/inspect_pc_gaiji_identities.py, build_pc_gaiji_identities.py; core/PcOfficerIdentities.java and pc-officer-identities resources; PcScenarioOpening/Catalog; OfficerSnapshot.SourceInfo and OfficerQuery; SaveCodec saved-reference validation; PcGaijiIdentityTest. Preserve existing runtime IDs156234/844857/598828/850922 and join validated canonical identities by original font/name/birth/sex. No old-save backfill, portrait/media/Bridge changes. High-cache input evidence does not expand production input: current verified ability formula clamps100.

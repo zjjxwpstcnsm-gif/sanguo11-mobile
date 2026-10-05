@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "baselineCommit": "443c47826d637f3718d044ad94cbb9bddd88c072",
+  "candidateArchiveSha256": "635bb2f3cd3ddcdea62aad5a72981710817cc953d9f8b3b35fc06d2e3c0312d1",
+  "proofs": [
+    {
+      "path": "internal-parents-native.json.gz",
+      "sha256": "4a457201caa09a755ca152f854d07f6751a00e8b571e4712601435c02d46f7a6",
+      "bytes": 915097
+    },
+    {
+      "path": "governor-order-native.json.gz",
+      "sha256": "95e20e50948f8cd5ad4112f2b43c101547a3526f10572b2c646db35cac4022b8",
+      "bytes": 10596
+    },
+    {
+      "path": "governor-rosters-source0-native.json.gz",
+      "sha256": "371e38159f103e4ba6e15a15e292dc748ca16a0b3e911db18e88712b5f415c7b",
+      "bytes": 9971
+    },
+    {
+      "path": "debate-campaign-explicit-growth-native.json.gz",
+      "sha256": "a7a303de9bd1035e0414bc8606e0c791fe652dd414fa2380f8313da9479a83e0",
+      "bytes": 272614
+    }
+  ],
+  "hostChecks": {
+    "nativeParentPolicy": 38390,
+    "nativeGovernorOrder": 1416,
+    "actualTypedLossAndContinuation": 10879,
+    "actualLossIndependentJvm": 8,
+    "actualTypedWinAndContinuation": 21,
+    "actualWinIndependentJvm": 9
+  },
+  "productionApplied": false,
+  "deviceTouched": false,
+  "newApk": false,
+  "completeGoal": false,
+  "openItems": [
+    "Original governor residency/district and election integration",
+    "Original start cost/merit admission",
+    "Effective gear and caller initiative",
+    "Diplomatic settlement",
+    "Complete native duel model/human controls/save/DTO/APK",
+    "Complete scenario opening events and activation authority"
+  ]
+}

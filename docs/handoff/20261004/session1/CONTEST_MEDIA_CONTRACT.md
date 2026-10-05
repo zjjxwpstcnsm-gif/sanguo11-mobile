@@ -1,5 +1,7 @@
 # 对局核心与媒体会话契约（待完整规则接入）
 
+最新身份基线为Batch26：四字形人物已由原字体/姓名/生卒/性别核实，runtime officerId156234/844857/598828/850922仍保持，canonicalId10184/10229/10249/10616仅显式身份连接。下文早期“source-only”描述已被该证据更新；像素/年龄/变体/加载仍归媒体会话。Batch27内部父亲引用仅核心/保存使用，不新增头像接口或共写媒体manifest。完整单挑、舌战外交/结算和实际APK验收仍属本会话未完成目标，不要求媒体凭规则猜填事件。
+
 身份主键保持officerId，原定位附nativeId/sourceVariant/recordSHA；四个字形来源人物仍为source-only，不升级为已核实标准人物。沿用既有头像只读调用，不新增/修改共享人物媒体manifest。
 
 本会话拥有规则状态、命令、保存、随机数和文字/数值真值。媒体会话拥有头像像素/变体/年龄选择、加载及全部音频；对局UI文字/按钮由本会话维护，不并改PortraitCatalog、OfficerPortrait、SoundEffects、播放器、AndroidGameBridge、Unity或3D。
