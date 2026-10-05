@@ -1,0 +1,12 @@
+{
+  "mainBefore": "0b0f5e2de32c2a7504ecf2e4500b3292a97f0efc",
+  "ourSource": "d7bbc3fc31a061db47c735a0e89b435fadd77e83",
+  "mergeBase": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "mergedImplementation": "6666a34101810135d279e62b09fc84d9b1deeab4",
+  "sharedChangedPaths": [
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java"
+  ],
+  "independentMediaPaths": 5776,
+  "unexpectedReplacements": [],
+  "verification": "Exact git blob IDs for every independent completed-media path"
+}

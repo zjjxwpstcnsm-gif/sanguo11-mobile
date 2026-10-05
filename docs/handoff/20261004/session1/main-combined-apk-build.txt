@@ -1,0 +1,107 @@
+Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 8.13!
+
+Here are the highlights of this release:
+ - Daemon JVM auto-provisioning
+ - Enhancements for Scala plugin and JUnit testing
+ - Improvements for build authors and plugin developers
+
+For more details see https://docs.gradle.org/8.13/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :core:compileJava
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :game-api:compileJava
+> Task :game-runtime:compileJava
+> Task :game-runtime:processResources NO-SOURCE
+> Task :game-runtime:classes
+> Task :game-runtime:jar
+> Task :core:processResources
+> Task :core:classes
+> Task :core:jar
+> Task :game-api:processResources NO-SOURCE
+> Task :game-api:classes
+> Task :game-api:jar
+> Task :app:verifyCandidateSource SKIPPED
+
+> Task :app:verifyMapRelease
+PASS: 168 pinned map/art resources in source
+
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:mergeDebugJniLibFolders
+> Task :app:checkDebugDuplicateClasses
+> Task :app:generateDebugBuildConfig
+> Task :app:javaPreCompileDebug
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:mergeDebugNativeLibs
+> Task :app:packageDebugResources
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libfilament-jni.so. Run with --info option to learn more.
+
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:extractDebugNativeSymbolTables
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:mergeDebugArtProfile
+> Task :app:extractProguardFiles
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :app:mergeDebugStartupProfile
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugJavaResource
+> Task :app:mergeDebugAssets
+> Task :app:extractDebugVersionControlInfo
+> Task :app:collectDebugDependencies
+> Task :app:sdkDebugDependencyData
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:processDebugManifestForPackage
+> Task :app:processDebugResources
+> Task :app:compressDebugAssets
+
+> Task :app:compileDebugJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :app:expandDebugArtProfileWildcards
+> Task :app:mergeDebugGeneratedProguardFiles
+> Task :app:generateDebugLintVitalReportModel
+> Task :app:optimizeDebugResources
+> Task :app:minifyDebugWithR8
+> Task :app:lintVitalAnalyzeDebug
+> Task :app:lintVitalReportDebug
+> Task :app:lintVitalDebug
+> Task :app:compileDebugArtProfile
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+
+[Incubating] Problems report is available at: file:///Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 4m 40s
+53 actionable tasks: 53 executed
