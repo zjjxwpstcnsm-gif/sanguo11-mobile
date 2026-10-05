@@ -15,7 +15,7 @@
   "actualCaptureProven": false,
   "draftFiles": {
     "out/media/android-mix-capture-32/draft/game/sanguo/mobile/AndroidMixCaptureActivity.java": "530eff8751a62a7ec06c57976a0a6d0672b8ffd874586edc3448f9750ca2f499",
-    "out/media/android-mix-capture-32/draft/game/sanguo/mobile/AndroidMixCaptureService.java": "3e8605b2c80ea62dedd60c36d2ffd2ec3e438c8c0a546607cc41ef4cf0b71e67"
+    "out/media/android-mix-capture-32/draft/game/sanguo/mobile/AndroidMixCaptureService.java": "ad788f612a7938c6321ad1c1f507b20bba84f9a1ab44441910bbc88f96e9c720"
   },
   "manifestGuard": {
     "beforeSha256": "54963c940283c0993006dc42c593d862432472d25f336388c2b2b3d6955586b8",

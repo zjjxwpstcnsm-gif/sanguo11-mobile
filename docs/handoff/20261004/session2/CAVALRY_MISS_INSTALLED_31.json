@@ -1,0 +1,56 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "sourceTactic=CHARGE",
+    "tacticMiss=1",
+    "sourceTacticSound=-1",
+    "run=cavalry-miss-installed-31"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/cavalry-build-31/frozen/app-debug.apk": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/cavalry-build-31/frozen/app-debug-androidTest.apk": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269"
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": true,
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "installed_test_sha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+  "installed_sha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+  "exit_code": 0,
+  "seconds": 18.79,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "actualMissPcm": {
+    "status": "PASS_NO_COMPLETE_ORIGINAL_SUCCESS_WAVE",
+    "scope": "Installed miss reference/zero source heads plus no full49/78 match at unchanged.999 gate; residual mobile cues remain, native58 unbound",
+    "apkSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+    "captureSha256": "c8b768cb91122d0d0b3be36c2afdee148829d1eff00dc6ff85bb0234407af540",
+    "sourceHeadsZero": 6,
+    "rows": [
+      {
+        "nativeSoundId": 49,
+        "maximumCompleteWaveCorrelation": 0.11214114928815909,
+        "unchangedPositiveIdentityThreshold": 0.999,
+        "sourceWavSha256": "1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705"
+      },
+      {
+        "nativeSoundId": 78,
+        "maximumCompleteWaveCorrelation": 0.0825692845018137,
+        "unchangedPositiveIdentityThreshold": 0.999,
+        "sourceWavSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638"
+      }
+    ]
+  },
+  "native58Bound": false,
+  "goalComplete": false
+}
