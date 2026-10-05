@@ -20,6 +20,7 @@ def inspect(installation,output,source_index):
     if sha(exe)!=EXE_SHA or sha(raw)!=source['sourceSha256']:raise ValueError('Original provenance differs')
     shared=(installation/'Media/scenario/Scenario.s11').read_bytes();w=NativeDebateFlow(installation,exe).world;load_original_data(w.u)
     w.load(shared,True);loaded=w.load(raw);w.call(0x73c500)
+    w.call(0x73c2b0)
     for f,v in zip([0x4826e0,0x482700,0x482720],source['date']):w.call(f,v,receiver=w.root)
     fixed=struct.unpack('<i',w.u.mem_read(w.root+0x18,4))[0];w.call(0x4827b0,1 if fixed else 0,receiver=w.root)
     if fixed:w.call(0x493f70,1,receiver=w.root);w.call(0x4827f0,3,receiver=w.root)
@@ -30,8 +31,18 @@ def inspect(installation,output,source_index):
         if w.call(0x4883c0,receiver=p)!=i:raise ValueError('Original pointer identity differs')
         pointers[p]=i;b=bytes(w.u.mem_read(p,0x190));table=struct.unpack_from('<I',b)[0]
         getter=struct.unpack('<I',w.u.mem_read(table+0x44,4))[0];army=w.call(getter,receiver=p)&0xffffffff
+        owner_getter=struct.unpack('<I',w.u.mem_read(table+0x40,4))[0];owner=w.call(owner_getter,receiver=p)&0xffffffff
         people.append(dict(nativeId=i,allowed=bool(w.call(0x47a630,p)),location=struct.unpack_from('<i',b,0x98)[0],status=struct.unpack_from('<i',b,0xa0)[0],army=army if army<0x80000000 else army-0x100000000,
+            owner=owner if owner<0x80000000 else owner-0x100000000,
+            homeNativeId=struct.unpack_from('<i',b,0x98)[0],currentLocationNativeId=struct.unpack_from('<i',b,0x9c)[0],
+            districtNativeId=struct.unpack_from('<i',b,0x94)[0],rosterMask15Allowed=bool(w.call(0x489fe0,15,receiver=p)),
             resident=bool(w.call(0x489730,receiver=p)),commandCapacity=w.call(0x48a4f0,receiver=p)&65535,leadership=b[0x170],war=b[0x171],merit=struct.unpack_from('<H',b,0xae)[0]))
+    districts=[]
+    for i in range(47):
+        p=w.root+0xb20c+i*0x50;b=bytes(w.u.mem_read(p,0x50))
+        values={str(f):w.call(0x4c2960,p,f)&0xffffffff for f in range(3,10)}
+        districts.append(dict(nativeId=i,allowed=bool(w.call(0x47a630,p)),actorHex=b.hex(),actionPoints=b[0x2c],
+            properties={k:v if v<0x80000000 else v-0x100000000 for k,v in values.items()}))
     baseline=bytes(w.u.mem_read(0x7200000,0x300000));seed=bytes(w.u.mem_read(0x8a5d44,4));calls=[];sites=[]
     def appoint(u,address,size,user):
         _,building,person=struct.unpack('<3I',u.mem_read(u.reg_read(UC_X86_REG_ESP),12))
@@ -45,14 +56,16 @@ def inspect(installation,output,source_index):
             def props():
                 result={str(f):w.call(0x4c69a0,p,f)&0xffffffff for f in [3,4,13,14]}
                 return {k:v if v<0x80000000 else v-0x100000000 for k,v in result.items()}
-            before=props();calls.clear();w.call(0x4bca30,p,1,receiver=0x799895c,count=10000000);after=props()
+            before=props();table=struct.unpack('<I',w.u.mem_read(p,4))[0]
+            army_getter=struct.unpack('<I',w.u.mem_read(table+0x44,4))[0];army=w.call(army_getter,receiver=p)&0xffffffff;army=army if army<0x80000000 else army-0x100000000
+            calls.clear();w.call(0x4bca30,p,1,receiver=0x799895c,count=10000000);after=props()
             changed=bytes(w.u.mem_read(0x7200000,0x300000))
             if seed!=bytes(w.u.mem_read(0x8a5d44,4)):raise ValueError('Original governor election consumes RNG')
-            sites.append(dict(nativeId=i,before=before,after=after,appointments=list(calls),
+            sites.append(dict(nativeId=i,districtNativeId=army,before=before,after=after,appointments=list(calls),
                 changedBytes=[dict(offset=j,before=a,after=b)for j,(a,b)in enumerate(zip(baseline,changed))if a!=b]))
             print(json.dumps(dict(site=i,before=before['14'],after=after['14'],appointments=calls)),flush=True)
     finally:w.u.hook_del(hook)
-    report=dict(schema=1,sourceExecutableSha256=EXE_SHA,sourceManifestSha256=sha(manifest_raw),sharedSha256=sha(shared),source=source,people=people,sites=sites,
+    report=dict(schema=2,sourceExecutableSha256=EXE_SHA,sourceManifestSha256=sha(manifest_raw),sharedSha256=sha(shared),source=source,people=people,districts=districts,sites=sites,
         originalFunction=dict(start='0x4bca30',guardEndExclusive='0x4bccc4',sha256=sha(exe[0xbca30:0xbccc4])),
         selectedAbilityChange=0,effectiveGrowthDisabled=1 if fixed else 0,
         limits=['Each original site election starts from independent493400 baseline, not a full player command/event sequence',
