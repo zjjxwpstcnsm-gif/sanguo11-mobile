@@ -313,7 +313,10 @@ public class UiUxInstrumentation extends Instrumentation {
     }
     private void audioFlow()throws Exception{
         SoundEffects sounds=((GameApplication)activity.getApplication()).sounds();long deadline=SystemClock.uptimeMillis()+10000;boolean[] ready={false};while(!ready[0]&&SystemClock.uptimeMillis()<deadline){ui(()->ready[0]=sounds.loaded());SystemClock.sleep(50);}check(ready[0],"nine inherited mobile cues, original HUD33 and negative-close sample ready on installed Android");byte[] before=capture();
-        ui(()->{sounds.muted(false);sounds.volume(75);});mapTool("音效与音量");int count=sounds.playedCount();text("试听音效");check(sounds.playedCount()>count,"actual UI audition sends a nonzero SoundPool stream");shot("audio-settings");
+        PcTacticLifecycleChecks.Owner tacticOwner=new PcTacticLifecycleChecks.Owner(){public void ui(Runnable work){UiUxInstrumentation.this.ui(work);}public void check(boolean ok,String message){UiUxInstrumentation.this.check(ok,message);}};
+        ui(()->{sounds.muted(false);sounds.volume(75);});
+        List<android.media.AudioTrack> tacticTracks="1".equals(arguments.getString("sourceTacticLifecycle"))?PcTacticLifecycleChecks.run(sounds,tacticOwner):null;
+        mapTool("音效与音量");int count=sounds.playedCount();text("试听音效");check(sounds.playedCount()>count,"actual UI audition sends a nonzero SoundPool stream");shot("audio-settings");
         text("静音");check(sounds.muted(),"actual mute control updates preference");count=sounds.playedCount();text("试听音效");check(sounds.playedCount()==count,"muted audition creates no stream");text("静音");
         text("完成");
         mapTool("音效与音量");AlertDialog cancelDialog=(AlertDialog)field(activity,"confirmationDialog");check(cancelDialog.isShowing(),"normal audio settings dialog established before real Back cancellation");int cancelledBefore=sounds.cancelledDialogCount();long cancelledAt=SystemClock.elapsedRealtime();sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);settle();
@@ -330,6 +333,7 @@ public class UiUxInstrumentation extends Instrumentation {
         MapHost host=(MapHost)field(activity,"map");backgroundMap(host);check(!sounds.active(),"actual Home stops foreground audio");count=sounds.playedCount();ui(()->sounds.event("background-event",SoundEffects.Cue.TACTIC));check(sounds.playedCount()==count,"background cannot create deferred battle streams");foregroundMap(host);check(sounds.active(),"foreground resumes audio ownership");
         ui(()->sounds.event("background-event",SoundEffects.Cue.TACTIC));check(sounds.playedCount()==count,"resume does not replay a consumed background phase");
         check(Arrays.equals(before,capture()),"audition, volume, mute, focus and background preserve complete state and RNG");shot("audio-resumed");ui(()->activity.finish());deadline=SystemClock.uptimeMillis()+10000;while(!activity.isDestroyed()&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(50);ui(()->{});check(activity.isDestroyed()&&field(sounds,"pool")==null&&field(sounds,"pcEffects")==null,"normal exit releases mobile SoundPool, original PCM voices and audio focus");
+        if(tacticTracks!=null)PcTacticLifecycleChecks.released(sounds,tacticTracks,tacticOwner);
     }
     private void mapEdges()throws Exception{
         byte[] before=capture();nav("地图");MapHost host=(MapHost)field(activity,"map");mapMode(true);waitNative(host);
