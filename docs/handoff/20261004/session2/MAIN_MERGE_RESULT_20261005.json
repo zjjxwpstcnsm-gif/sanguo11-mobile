@@ -1,0 +1,57 @@
+{
+  "mainMergeCommit": "3bec93bafe1fe33ea96608edef1cfc2f9242dc1d",
+  "mainBranch": "main",
+  "mainBefore": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "closeoutSource": "6b474baa8910dbdb09548a3809727f0d06c2b757",
+  "validatedCheckpoint": "17d96dc5435bafb90bd4773766caecd5f513d240",
+  "applicationSource": "f0244c40a90792fb7b6fad2ba53229dab7b8b5f8",
+  "appSourceTreeEqualToValidatedApplication": true,
+  "coreApiRuntimeByteEqualToCompleted9e": true,
+  "originalPreservation": {
+    "filesGuarded": 4301,
+    "allOriginalFilesByteEqual": true,
+    "changedPaths": [],
+    "headUnchanged": true,
+    "branchUnchanged": true,
+    "dirtyStatusByteEqual": true
+  },
+  "ignoredMainJni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "destination": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile/out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "created": true,
+      "byteEqual": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "destination": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile/out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "created": true,
+      "byteEqual": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "destination": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile/out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "created": true,
+      "byteEqual": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "destination": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile/out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "created": true,
+      "byteEqual": true
+    }
+  ],
+  "failedExperimentNotMerged": true,
+  "originMain": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "remotePushPerformed": false,
+  "currentMainWorktree": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile",
+  "userRequestedGoalPauseAfterMerge": true
+}
