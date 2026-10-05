@@ -18,8 +18,8 @@ import java.util.function.Predicate;
 public final class PcScenarioOpeningInstrumentation extends Instrumentation {
     private MainActivity activity;private int checks;private File output;
     private final StringBuilder log=new StringBuilder();
-    private boolean sourceOpening,sourceResume;private int sourceIndex;private String evidenceId="";
-    @Override public void onCreate(Bundle args){super.onCreate(args);sourceIndex=args==null?0:Integer.parseInt(args.getString("sourceIndex","0"));sourceOpening=args!=null&&"1".equals(args.getString("sourceOpening"));sourceResume=args!=null&&"1".equals(args.getString("sourceResume"));evidenceId=args==null?"":args.getString("evidenceId","");if(!evidenceId.matches("[A-Za-z0-9_.-]*"))throw new IllegalArgumentException("Invalid evidence directory");start();}
+    private boolean sourceOpening,sourceResume,gaijiIdentity;private int sourceIndex;private String evidenceId="";
+    @Override public void onCreate(Bundle args){super.onCreate(args);gaijiIdentity=args!=null&&"1".equals(args.getString("gaijiIdentity"));sourceIndex=args==null?0:Integer.parseInt(args.getString("sourceIndex","0"));sourceOpening=args!=null&&"1".equals(args.getString("sourceOpening"));sourceResume=args!=null&&"1".equals(args.getString("sourceResume"));evidenceId=args==null?"":args.getString("evidenceId","");if(!evidenceId.matches("[A-Za-z0-9_.-]*"))throw new IllegalArgumentException("Invalid evidence directory");start();}
     private void settle(){runOnMainSync(()->{});SystemClock.sleep(200);}
     private void check(boolean ok,String text)throws Exception{
         if(!ok)throw new AssertionError(text);checks++;log.append("PASS ").append(text).append('\n');
@@ -107,11 +107,18 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 if(original!=null)check(row.source!=null&&row.source.initialRawLoyalty!=null&&row.source.initialRawLoyalty==original.initialRawLoyalty&&row.source.nativeId==original.nativeId&&row.source.recordSha.equals(original.recordSha),"installed saved raw loyalty identity and DTO "+row.id);
                 else if(row.source!=null)check(row.source.initialRawLoyalty==null,"old save does not acquire raw loyalty "+row.id);
             }
+            if(PcScenarioIdentity.saved(control)!=null&&control.extensions.get(PcOfficerIdentities.NAMESPACE)==null){
+                check(PcOfficerIdentities.saved(control).isEmpty(),"old source does not acquire font identity namespace");
+                for(int id:new int[]{156234,844857,598828,850922}){
+                    OfficerSnapshot.Officer row=snapshot.officer(id);
+                    check(row!=null&&row.source!=null&&row.source.canonicalOfficerId==null&&row.source.identityStatus.equals("source-only-gaiji"),"old saved identity remains unknown "+id);
+                }
+                check(Arrays.equals(before,capture()),"old identity query preserves full saved bytes and RNG");
+            }
             LinkedHashMap<Integer,OfficerSnapshot.Officer> owners=new LinkedHashMap<>();
             for(OfficerSnapshot.Officer row:snapshot.officers)if(row.owner>=0&&row.present)owners.putIfAbsent(row.owner,row);
-            check(owners.size()>=2,"three actual factions available");int count=0;
-            for(OfficerSnapshot.Officer row:owners.values()){
-                if(count==Math.min(3,owners.size()))break;
+            check(owners.size()>=2,"three actual factions available");int count=0;List<OfficerSnapshot.Officer> inspected=new ArrayList<>();for(OfficerSnapshot.Officer row:owners.values()){if(inspected.size()==3)break;inspected.add(row);}if(gaijiIdentity)for(int id:new int[]{156234,844857,598828,850922}){OfficerSnapshot.Officer row=snapshot.officer(id);check(row!=null&&row.source!=null&&row.source.canonicalOfficerId!=null&&row.source.identityStatus.equals("canonical-identity-verified"),"actual installed font identity "+id);inspected.add(row);}
+            for(OfficerSnapshot.Officer row:inspected){
                 if(!PcContestProfiles.saved(control).isEmpty())check(row.source.originalInformation.contains("原性格：")&&row.source.originalInformation.contains("原话术标记："),"normal saved officer DTO exposes original contest facts "+row.id);
                 String query=row.source!=null&&!row.source.courtesy.isEmpty()?row.source.courtesy:row.name;
                 Bundle input=new Bundle();input.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,query);
@@ -135,7 +142,11 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 else{
                     PcOfficerInfo.Person p=PcOfficerInfo.saved(control).get(row.id);
                     check(text.contains("字："+p.courtesy)&&text.contains(p.biography)&&text.contains("原编号 "+p.nativeId),"normal details show exact saved original courtesy/biography/source ID");
-                    check(text.contains("未解码字形"),"gaiji gaps remain visible instead of invented original text");
+                    for(String gap:p.unknown)if(gap.startsWith("biographyGaiji:")){
+                        String raw=gap.substring("biographyGaiji:".length());
+                        String marker=p.biography.contains("〔未解码字形 "+raw+"〕")?"〔未解码字形 "+raw+"〕":"[undecoded original glyph "+raw+"]";
+                        check(p.biography.contains(marker)&&text.contains(marker),"saved original glyph gap remains explicit "+row.id+" "+raw);
+                    }
                 }
                 screenshot("detail-"+row.id);
                 if(row.source!=null){
@@ -147,7 +158,7 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 tap(await(v->v.getId()==android.R.id.button2&&v instanceof Button));
                 check(Arrays.equals(before,capture()),"search/details preserve every saved byte and RNG "+row.id);count++;
             }
-            check(count==Math.min(3,owners.size()),"three factions inspected through real rows and dialogs");
+            check(count==inspected.size(),"selected factions and font identities inspected through real rows and dialogs");
             if(sourceOpening){
                 nav("地图");description("定位己方据点 "+control.home().name);text("内政");text("展开");panelText("巡察 ·");
                 DataTable<?> actors=(DataTable<?>)await(v->v instanceof DataTable);View[] actor={null};runOnMainSync(()->actor[0]=actors.list.getChildAt(0));

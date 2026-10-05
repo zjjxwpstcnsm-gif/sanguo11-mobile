@@ -1,0 +1,105 @@
+{
+  "previousCommit": "b95a669f7b270b89f73ec8e2637151fe1c99e67b",
+  "sourceRoot": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile",
+  "apkSha256": "c362e15337dfb588c15f9412f60acd2e49b548f6107f40cce6766f5c3b3c8c35",
+  "frozenApkInputs": 1048,
+  "frozenProductionInputsUnchanged": true,
+  "files": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "beforeSha256": "553e7baec13480fac2c884e95bb269554f442377500517fa2aa2e7d70d8fb343",
+      "afterSha256": "553e7baec13480fac2c884e95bb269554f442377500517fa2aa2e7d70d8fb343"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateRules.java",
+      "beforeSha256": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31",
+      "afterSha256": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "beforeSha256": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62",
+      "afterSha256": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerIdentities.java",
+      "beforeSha256": null,
+      "afterSha256": "ad9605090ada735d3ce27f10b6b6858363741106153a66104727a51063e92e14"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+      "beforeSha256": "4e6a0d3d4a5ce058741c834578c3bf5fc710cad13356515da1760661877932f6",
+      "afterSha256": "d9653cf73abb6d970c3a9cdd1bac243fe6c8e1ae94af99832d57c57ca741dfd1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "f181862bbff55c02e0b25e87f6b6ead36ae0779df7c4b43709775e79269e9ff4",
+      "afterSha256": "f8182077caf30012d5a8aebe6e965427b307c86df37f4e78f8a4f958e5239887"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "71078cc620ddff5237e17e8ae37294545b61eda350b87970cc77d685ebaddecd",
+      "afterSha256": "88268375e4beb2e4ebcdc1891cb222eea76c4e55091ad82e6077d6fd53f81e03"
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/identities.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "32999aefc96a620e0319e7da573bdf8ddc54420813ff292104db715e65747fa2"
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/index.txt",
+      "beforeSha256": null,
+      "afterSha256": "1b6894db65e0f2f87e28b47c769b17f37cde4c16771321331b12df9dbd651116"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "a1bf83f1fe76685075f0d255f188b5b9543a6061874e9ddb7be3e19139d8be2b",
+      "afterSha256": "af63dc61d917fe5c50483047d47e3af3100f8d89878c517056a076cd8e0de253"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "beforeSha256": "afa5d6436e6e648ee12d40fef44347c2ed69396d7a3022a86835413ad7fda2d5",
+      "afterSha256": "a34f1f26dfd335cd4e44fc3c5a103b364ee83df18dd1b2ae8760b691f9aff621"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "beforeSha256": "47406939e681912c48cff4b19dde3e13daa9b314172bd6b29c4ca4321f180b86",
+      "afterSha256": "2616554e048c3d3590e53eaae0e9169afa5a32a7727300684be30cd9bfe3fabe"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcGaijiIdentityTest.java",
+      "beforeSha256": null,
+      "afterSha256": "edf1c04930a63d227516e5e63169feb382681d4a86afe3fe523fbfb82968f38d"
+    },
+    {
+      "path": "tools/content/android/PcScenarioOpeningInstrumentation.java",
+      "beforeSha256": "39e4e37c7bec5d3b8e2e868912baf866d5cb62070813572b7b11388fa01309c0",
+      "afterSha256": "1713fa020058099f2fe6003d6eaf7a19cc5cf12632a8a5d010f2a73596a977a7"
+    },
+    {
+      "path": "tools/content/build_pc_gaiji_identities.py",
+      "beforeSha256": null,
+      "afterSha256": "ded01ea8997e31a9c6995890650f420e43ad42ecc44c02f4e63c62f3743a0881"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_flow.py",
+      "beforeSha256": "2ef200d66412e2deee2f240cacebf5edf88dfb4b87e50f60fd266b5a28d70385",
+      "afterSha256": "396273c3b5f497ce516e76c08188d3b6bca15fd0a7b4007412a461389408dd8d"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_high_abilities.py",
+      "beforeSha256": null,
+      "afterSha256": "1ca79552a14462f9fba47f6cb7370743765b2b434fc10a7943fe8332a2025ff2"
+    },
+    {
+      "path": "tools/content/inspect_pc_gaiji_identities.py",
+      "beforeSha256": null,
+      "afterSha256": "62cd181ab98506ec6fed62638fe9a546211c05f24ceaac05489ca4863bf25ede"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "beforeSha256": null,
+      "afterSha256": "6a03b507884922d0fcf353e4170ed328b995badd74f5ed425f7e5aeb35535c7e"
+    }
+  ],
+  "completeGoal": false
+}

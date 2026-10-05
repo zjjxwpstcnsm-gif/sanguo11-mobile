@@ -15,6 +15,7 @@ public final class OfficerQuery {
         try{for(PcScenarioPeople.Person p:PcScenarioPeople.saved(w)){byNative.put(p.nativeId,p);if(p.officerId>=0)nativePeople.put(p.officerId,p);}}catch(java.io.IOException e){invalidSource=true;}
         Map<Integer,PcContestProfiles.Fact> contestFacts;try{contestFacts=PcContestProfiles.saved(w);}catch(java.io.IOException e){contestFacts=Collections.emptyMap();invalidSource=true;}
         Map<Integer,PcOfficerCampaignFacts.Fact> campaignFacts;try{campaignFacts=PcOfficerCampaignFacts.saved(w);}catch(java.io.IOException e){campaignFacts=Collections.emptyMap();invalidSource=true;}
+        Map<Integer,PcOfficerIdentities.Fact> fontIdentities;try{fontIdentities=PcOfficerIdentities.saved(w);}catch(java.io.IOException e){fontIdentities=Collections.emptyMap();invalidSource=true;}
         for(World.Officer o:w.officers){
             List<Integer> base=new ArrayList<>(),growth=new ArrayList<>(),xp=new ArrayList<>();
             if(w.officerAbilities.enabled())for(int i=0;i<5;i++){
@@ -35,15 +36,17 @@ public final class OfficerQuery {
                 unknown.addAll(nativePerson.unknown);
                 try{
                     PcScenarioIdentity.Source scenario=PcScenarioIdentity.saved(w);
-                    String identity=nativePerson.strictIdentity?"canonical-identity-verified":"source-only-gaiji";
-                    String facts=originalInformation(nativePerson,byNative);
+                    PcOfficerIdentities.Fact fontIdentity=fontIdentities.get(o.id);Integer canonicalId=fontIdentity!=null?Integer.valueOf(fontIdentity.canonicalOfficerId):nativePerson.strictIdentity?Integer.valueOf(o.id):null;
+                    if(fontIdentity!=null)unknown.remove("canonicalIdentityUnmapped");
+                    String identity=(nativePerson.strictIdentity||fontIdentity!=null)?"canonical-identity-verified":"source-only-gaiji";
+                    String facts=originalInformation(nativePerson,byNative,fontIdentities);
                     PcOfficerCampaignFacts.Fact campaign=campaignFacts.get(o.id);Integer rawLoyalty=null;
                     if(campaign!=null&&campaign.nativeId==nativePerson.nativeId&&campaign.recordSha.equals(nativePerson.recordSha)){rawLoyalty=campaign.initialRawLoyalty;facts+="\n原记录内部忠诚："+rawLoyalty;}
                     else unknown.add("originalHiddenLoyaltyMissingFromSave");
                     PcContestProfiles.Fact contest=contestFacts.get(o.id);
                     if(contest!=null&&contest.nativeId==nativePerson.nativeId&&contest.recordSha.equals(nativePerson.recordSha))facts+="\n原性格："+contest.personality()+"\n原话术标记："+contest.talks();
-                    if(source!=null)source=new OfficerSnapshot.SourceInfo(source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.courtesy,source.courtesyRaw,source.biography,source.biographyResourceSha,source.biographyRenderedSha,unknown,identity,facts,rawLoyalty);
-                    else if(scenario!=null)source=new OfficerSnapshot.SourceInfo(nativePerson.nativeId,scenario.sourceVariant,scenario.path,scenario.sha,nativePerson.recordSha,nativePerson.courtesy,nativePerson.courtesyRaw,"","","",unknown,identity,facts,rawLoyalty);
+                    if(source!=null)source=new OfficerSnapshot.SourceInfo(source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.courtesy,source.courtesyRaw,source.biography,source.biographyResourceSha,source.biographyRenderedSha,unknown,identity,facts,rawLoyalty,canonicalId);
+                    else if(scenario!=null)source=new OfficerSnapshot.SourceInfo(nativePerson.nativeId,scenario.sourceVariant,scenario.path,scenario.sha,nativePerson.recordSha,nativePerson.courtesy,nativePerson.courtesyRaw,"","","",unknown,identity,facts,rawLoyalty,canonicalId);
                 }catch(java.io.IOException e){unknown.add("sourceOpeningMetadataUnreadable");}
             }
             if(invalidSource)unknown.add("sourceMetadataUnreadable");
@@ -63,20 +66,21 @@ public final class OfficerQuery {
         }
         return new OfficerSnapshot(state,result);
     }
-    private static String originalInformation(PcScenarioPeople.Person p,Map<Integer,PcScenarioPeople.Person> byNative){
+    private static String originalInformation(PcScenarioPeople.Person p,Map<Integer,PcScenarioPeople.Person> byNative,Map<Integer,PcOfficerIdentities.Fact> fontIdentities){
+        PcOfficerIdentities.Fact font=fontIdentities.get(p.officerId);
         String[] statuses={"君主","都督","太守","一般","在野","俘虜","未登","未發","死亡"};
-        Integer status=p.fields.get(20);StringBuilder b=new StringBuilder("原文件人物记录（随本局保存）\n原姓名：").append(p.originalName);
+        Integer status=p.fields.get(20);StringBuilder b=new StringBuilder("原文件人物记录（随本局保存）\n原姓名：").append(font==null?p.originalName:font.name);
         b.append("\n原身份：").append(status!=null&&status>=0&&status<statuses.length?statuses[status]:"未核实");
         for(int field:new int[]{12,13,15,16}){
             Integer target=p.fields.get(field);if(target==null||target<0)continue;
             String label=field==12?"父亲":field==13?"母亲":field==15?"配偶":"义兄标识";
             PcScenarioPeople.Person referenced=byNative.get(target);
-            b.append("\n原").append(label).append("：").append(referenced==null||referenced.originalName.isEmpty()?"原编号"+target+"（人物资料未解码）":referenced.originalName);
+            b.append("\n原").append(label).append("：").append(referenced==null||referenced.originalName.isEmpty()?"原编号"+target+"（人物资料未解码）":(fontIdentities.containsKey(referenced.officerId)?fontIdentities.get(referenced.officerId).name:referenced.originalName));
         }
         int[] keys={11,14,17,22,43,44,45,46,47,48,49,50,51};
         String[] names={"血缘编号","世代","相性","登场预定君主编号","舌战得意话题编号","情义编号","野心编号","起用编号","性格编号","音声编号","汉室倾向编号","战略倾向编号","地元执编号"};
         for(int i=0;i<keys.length;i++){Integer value=p.fields.get(keys[i]);if(value!=null)b.append("\n").append(names[i]).append("：").append(value);}
-        if(!p.strictIdentity)b.append("\n姓名含未解原字形；来源身份独立保存，尚未映射到标准人物。");
+        if(!p.strictIdentity&&font==null)b.append("\n姓名含未解原字形；来源身份独立保存，尚未映射到标准人物。");
         return b.toString();
     }
     private static String location(World w,World.Officer o){

@@ -41,3 +41,10 @@ PcScenarioIdentity.Source 的 sourceVariant/path/SHA/SharedSHA/date/unknown 固�
 ## Batch07 来源世界及原字形身份
 
 新增正常PC来源新局候选：每份16独立源的一份才建立世界。SourceInfo新增identityStatus（canonical-identity-verified/source-only-gaiji）和originalInformation；既有officerId/nativeId/sourceVariant保持稳定。source-only四身份以原姓名字节/生年/性别SHA分配，不能当标准人物映射：156234/844857/598828/850922。逐人原记录与未绑定引用、NPC/模板/古代槽保存在PcScenarioPeople独立metadata；媒体可按此三元组读，不并改人物媒体manifest。本批未改头像调用/像素/年龄选择或桥序列化。
+
+
+## Batch25 原字体身份核实与只读连接
+
+原432190字形索引、安装字体4851/4852以及本地原版字体BMP像素全等证据，闭合FA40=伷、FA41=璝、FA45=儁。对应4人物跨16来源的64条独立姓名/生年/性别/能力及适性身份校验，见gaiji-font-identity-native.json.gz及batch25-identity-media-metadata.json。字体加载设置/外部覆盖生效仍未知；FA49/FA60传记缺口仍明确保留。
+
+新局保留officerId 156234/844857/598828/850922，分别新增canonicalOfficerId 10184/10229/10249/10616。nativeId/sourceVariant/sourceSHA不变，不能让canonicalOfficerId替换媒体连接主键或把人物native槽直接当项目ID。朱儁与既有目录朱雋的字形差别明确记为本地原文变体。旧存档无pc-officer-font-identity-v1仍source-only-gaiji，canonicalOfficerId为空，姓名与原保存保持。正常搜索/详情和保存共同读取同一DTO；不修改头像接口、像素、manifest或桥线格式。

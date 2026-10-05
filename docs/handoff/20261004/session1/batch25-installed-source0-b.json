@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "serial": "emulator-5554",
+  "abi": "x86_64",
+  "armEvidence": false,
+  "apks": {
+    "app-debug.apk": "c362e15337dfb588c15f9412f60acd2e49b548f6107f40cce6766f5c3b3c8c35",
+    "pc-opening.apk": "a8737c69f7e53828f3ccdae96653be6314c6a4f5d9377d34249c626f2e818fbd"
+  },
+  "seconds": 170.64,
+  "checks": "PC SOURCE OPENING PASS 2132 checks",
+  "externalOriginalFiles": 3215,
+  "externalOriginalFilesRestored": true,
+  "internalOriginalFiles": 7,
+  "internalOriginalFilesRestored": true,
+  "actualSourceFlowSave": {
+    "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch25-source0-b/actual-source-flow-final.sg11",
+    "sha256": "4ad6b7f159955aaf81740b4236fb7782ef0a1ecb1d9dd4c2208b2017c8c67dd0",
+    "bytes": 2212421
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch25-source0-b",
+  "completeGoal": false
+}

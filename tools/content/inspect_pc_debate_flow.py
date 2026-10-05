@@ -31,12 +31,14 @@ class NativeDebateFlow:
             self.original_pages.append(dict(address=hex(address),bytes=size,sourceFileOffset=off+address-start,sha256=sha(raw)))
         self.fixture=0xc100000;self.world.u.mem_map(self.fixture,0x10000)
         self.people=[self.world.root+0xc0bc+i*0x190 for i in range(2)]
-    def run(self,iqs,tempers,talk_masks,seed,frame_limit=2000):
+    def run(self,iqs,tempers,talk_masks,seed,frame_limit=2000,war_values=None,extended_fixture=False):
         w=self.world
-        for actor,iq,temper,mask in zip(self.people,iqs,tempers,talk_masks):
-            if not 0<=iq<=100 or not 0<=temper<4 or not 0<=mask<32:raise ValueError('Unexamined native input')
+        war_values=[0,0] if war_values is None else war_values
+        if len(war_values)!=2 or any(not 0<=v<=(255 if extended_fixture else 100) for v in war_values):raise ValueError("Original unsigned-byte war inputs required")
+        for actor,iq,temper,mask,war in zip(self.people,iqs,tempers,talk_masks,war_values):
+            if not 0<=iq<=(255 if extended_fixture else 100) or not 0<=temper<4 or not 0<=mask<32:raise ValueError('Unexamined native input')
             w.call(0x489f10,receiver=actor);w.u.mem_write(actor+0xa0,struct.pack('<I',0))
-            w.u.mem_write(actor+0x172,bytes([iq]));w.u.mem_write(actor+0xfc,struct.pack('<I',temper));w.u.mem_write(actor+0x124,struct.pack('<I',mask<<3))
+            w.u.mem_write(actor+0x171,bytes([war]));w.u.mem_write(actor+0x172,bytes([iq]));w.u.mem_write(actor+0xfc,struct.pack('<I',temper));w.u.mem_write(actor+0x124,struct.pack('<I',mask<<3))
             if w.call(0x47a600,actor)!=1:raise ValueError('Original fixture actor invalid')
         w.u.mem_write(self.fixture,bytes(0x1000));w.call(0x51fcf0,receiver=self.fixture)
         w.u.mem_write(0x8b5214+0x28,struct.pack('<I',1)) # Explicit original input initializer pending gate.

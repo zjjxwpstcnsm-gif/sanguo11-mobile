@@ -36,7 +36,7 @@ public final class PcScenarioCatalog {
         for(int i=0;i<n;i++){
             PcScenarioIdentity.Source identity=identity(in);int strict=bound(in,0,1100),forces=bound(in,0,42);String sha=text(in);
             if(!sha.matches("[0-9a-f]{64}")||!ids.add(identity.scenarioId))throw new IOException("PC剧本来源重复或指纹错误");
-            result.add(new Source(identity,List.of(),List.of(),List.of(),sha,strict,forces,Collections.emptyMap()));
+            result.add(new Source(identity,List.of(),List.of(),List.of(),sha,strict+PcOfficerIdentities.newSourceCount(identity.scenarioId),forces,Collections.emptyMap()));
         }
         if(in.available()!=0)throw new IOException("PC剧本目录未知尾部");return cached=List.copyOf(result);
     }

@@ -40,7 +40,7 @@ final class PcScenarioOpening {
             if(status<0||status>8)throw new IOException("原人物状态未支持："+original.nativeId);
             if(home<-1||home>=source.sites.size()||present&&(location<0||location>=source.sites.size()))throw new IOException("原人物位置不是已核实据点："+original.nativeId);
             int city=present?source.sites.get(location).id:-1;
-            World.Officer o=new World.Officer(original.officerId,original.originalName,present?owner:-1,city,original.field(25),original.field(26),original.field(27),original.field(28),original.field(29));
+            World.Officer o=new World.Officer(original.officerId,PcOfficerIdentities.openingName(source,original),present?owner:-1,city,original.field(25),original.field(26),original.field(27),original.field(28),original.field(29));
             o.sex=original.field(6)==0?World.Sex.MALE:original.field(6)==1?World.Sex.FEMALE:World.Sex.UNKNOWN;
             o.role=status==0?Strategy.Role.RULER:owner>=0&&present?Strategy.Role.OFFICER:Strategy.Role.UNAFFILIATED;
             o.loyalty=o.owner<0?0:original.field(23);o.acted=!present;
@@ -80,7 +80,7 @@ final class PcScenarioOpening {
         }
         w.officerAbilities.refresh();w.merchantMarket.initializeSource();w.pcProduction.initializeOpening();w.pcTechniquePoints.initializeOpening();
         w.abilities.initialize(seed);PcScenarioPeople.attach(w,source.people);PcScenarioPeople.attachOpening(w,source);PcOfficerSources.attachOpening(w,source.identity.scenarioId);
-        PcOfficerCampaignFacts.initializeOpening(w,source);
+        PcOfficerCampaignFacts.initializeOpening(w,source);PcOfficerIdentities.initializeOpening(w,source);
         NaturalStructures.seedOpening(w);w.invalidateSiteIndex();
         if(player<0){for(int side=0;side<42;side++)if(w.alive(side)){player=side;break;}}
         if(player<0||player>=42||!source.forces.get(player).valid||!w.alive(player))throw new IOException("原来源没有该可选势力");w.player=player;w.active=player;

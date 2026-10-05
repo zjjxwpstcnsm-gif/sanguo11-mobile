@@ -172,7 +172,7 @@ public final class SaveCodec {
         w.invalidateSiteIndex();SiteFootprint.validate(w);CustomMapSave.validate(w);
         w.aiOrders.validate();
         w.development.validate();w.recruitment.validate();w.envoys.validate();
-        PcScenarioIdentity.validate(w);if(PcNativeDebatePolicy.enabled(w))PcNativeDebatePolicy.seed(w);PcNativeHealthPolicy.validate(w);
+        PcScenarioIdentity.validate(w);PcOfficerIdentities.validate(w);if(PcNativeDebatePolicy.enabled(w))PcNativeDebatePolicy.seed(w);PcNativeHealthPolicy.validate(w);
         bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,PcScenarioIdentity.saved(w)==null?32:PcScenarioIdentity.MAX_FACTIONS);
         bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
         require(w.actionPoints.length==w.factions.length,"势力行动力缺失");

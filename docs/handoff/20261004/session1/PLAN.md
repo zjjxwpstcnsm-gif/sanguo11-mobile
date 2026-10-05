@@ -1,5 +1,9 @@
 # Session 1 计划与文件所有权
 
+Batch25 gaiji identity ownership: tools/content/inspect_pc_gaiji_identities.py, build_pc_gaiji_identities.py; core/PcOfficerIdentities.java and pc-officer-identities resources; PcScenarioOpening/Catalog; OfficerSnapshot.SourceInfo and OfficerQuery; SaveCodec saved-reference validation; PcGaijiIdentityTest. Preserve existing runtime IDs156234/844857/598828/850922 and join validated canonical identities by original font/name/birth/sex. No old-save backfill, portrait/media/Bridge changes. High-cache input evidence does not expand production input: current verified ability formula clamps100.
+
+Batch25前提交b95a669f，完整checkpoint24为4865文件/417578989字节/4JNI，manifest SHA2b9d2afce93d0dcaa82ef65068d0244285e0534e23440c402cbd794af9e8e7e8。先前“正常成长/经验/官职使当前能力超过100”的假设已被实际规则否定：当前原能力公式最终限制100。24条原完整模型101–255能力/武力实验只作为明确合成缓存夹具，不放宽PcDebateState/Rules/Campaign生产范围，不称正常新局证据。确切新增inspect_pc_debate_high_abilities.py，inspect_pc_debate_flow.py仅显式extended_fixture/war参数，默认行为保持。原完整招聘结算、动态忠诚/外交/临时怨恨与完整单挑继续推进。字形身份新资源与正常DTO接入见本批文件清单；旧存档不升级或追填。设备按独占与全部文件恢复规范验证，媒体/Bridge/公共台账不改。
+
 Batch24前提交62f9623f，完整checkpoint23为4848文件/417501810字节/4JNI，manifest SHAbe3e27f624094e11005a8cc805e2d5c6c22071c78bd49128b820bff19eacf04a。继续用户追加的完整单挑要求：先完整执行原构造/输入管理器/13阶段帧与AI/数值规则，不能以装备表替代对局。当前确切新增tools/content/inspect_pc_duel_flow.py，复用原NativeLayeredWorld/StartupPlatform与PC数据页。后续core/保存/同一DTO和正常按钮路径只在取得完整规则与旧档策略证据后登记；不改媒体、Bridge、Unity或公共台账。5554已释放，纯原程序研究本批不占设备。
 
 Batch23设备验收工具追加tools/content/android/PcHealthInstrumentation.java、build_pc_scenario_ui_probe.py增加独立健康runner、verify_pc_source_opening_ui.py仅选择该runner及独立证据目录。通过真实活动启动/普通地图下一旬/正常保存读取/武将详情，核对原健康/能力/完整保存与双RNG；测试输入明确为正常主机会话第5旬真实保存，不冒称原PC完整开局。每次安装前完整备份或核实同一完整备份与当前字节全等，最后读回原文件恢复。旧probe/包证据单独保留，不移用给新包。
@@ -153,3 +157,5 @@ Batch20追加确切工具tools/content/inspect_pc_debate_recruitment.py：完整
 ## Batch21：完整登用舌战回调及原忠诚
 
 前提交e885c3ac8d27996d3496493cfb008663da6e3ec8，checkpoint20保留4768文件/415819565字节/4JNI，manifest SHA2a0a056518f317fa0cf37c0dab08b1a38793c3eff72460585ef1d36d6354c893。确切新增tools/content/inspect_pc_debate_campaign_settlement.py、inspect_pc_officer_join_loyalty.py、build_pc_officer_join_fixtures.py；core/PcOfficerJoinRules.java及对应测试/pc-officer-join原夹具。完整原51dd10→5d3d40→5d3c90→5c4840执行；原数据页和49b490消息空上下文构造明确，原GUI/脚本续行仍独立。原忠诚4a75a0只在VM显式数值/关系夹具中改变输入，不改人物历史身份或PC资源。正式一次性结算的生产增量待原恢复/全部调用行为闭合后逐文件登记，不套旧固定忠诚或旧3旬伤病。
+
+Batch25 installed acceptance adds the four saved font identities to actual normal search/row/detail/biography controls, using PcScenarioOpeningInstrumentation.java and verify_pc_source_opening_ui.py --gaiji-identity. Preserve original3 faction checks, normal patrol/turn/save/load and all device data.
