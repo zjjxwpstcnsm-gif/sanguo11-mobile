@@ -1,0 +1,384 @@
+{
+  "baseCommit": "8e876ab3478c7ed4a2c4c67cbc60962301e619ac",
+  "guardedCommit": "f53740d28b81dfebbfa03aaacbc27172cd2a9388",
+  "applicationSource": "f6e0b8a6d3ee4cb4839bf2d2fb975f06f7c445b7",
+  "testOnlyCorrection": "6bba993885ea66c5ed3cf2844d332fda6d0e2825",
+  "coreApiRuntimeByteEqualTo": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "selfGuardExcluded": "docs/handoff/20261004/session2/DELTA_GUARDS_29.json",
+  "noCommonEntryOrGlobalConfigurationChanges": true,
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "1c893eeedece44e8a82f473bde4f2c359b5b686c926420d721e00211ef357eb8",
+      "afterSha256": "95ab26c7441fcff125d37e2830a5e58ed3b3a722844feb3d0367c4f140f514e1",
+      "bytes": 205475
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-event-bindings.json",
+      "beforeSha256": null,
+      "afterSha256": "841d669a561ae0e299d63a419f6243a8c2c8c5844417b415c62f22d82393d636",
+      "bytes": 4443
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationPlan.java",
+      "beforeSha256": "4bb030329482244a6838e0119ce14b2e02ede7571bb402508b8ddef9b1da082c",
+      "afterSha256": "a9c4f99a9d22283b589125a415d877f6e5545bf4ef4ecd01811668616e0890d5",
+      "bytes": 5751
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java",
+      "beforeSha256": "c0f3893e93bd2ec4a22a214a72273535e36ad15b67d36c7fb43aeb91e8d94270",
+      "afterSha256": "b35e55fd966ede24498046b65f1e12a788801c096acb920f5800e8ac9f94e458",
+      "bytes": 384
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcTacticSoundPolicyTest.java",
+      "beforeSha256": "c6f38c30c3332a18797ee6e829e62a3ab8333cfd3aff3cf59dbbb2a920ea9587",
+      "afterSha256": "d71ff36496b3d6e01392466289dc859c6ae96688312076ffbdd16db0c4c7d1a2",
+      "bytes": 1574
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ACTUAL_EVIDENCE_ARCHIVE_29.json",
+      "beforeSha256": null,
+      "afterSha256": "c4084035eb5f7e39818d9db0ef3e45d231bbc8c93609e7a020462dccde8f8bd5",
+      "bytes": 480
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_29.md",
+      "beforeSha256": null,
+      "afterSha256": "850fe67dba9461269588c6f4b00afc98f02821cc3ff7910d55c4a754f1d81fcf",
+      "bytes": 5702
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELIVERY_CURRENT.md",
+      "beforeSha256": "0799f4037daa59239ffe69c97901522ee6524df77966c12330de43ed8b398a3f",
+      "afterSha256": "980a08d46dae916ff22c76675955fa6865e8ecf115ac0406a528c4ec1467b914",
+      "bytes": 15534
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DYNAMIC_PORTRAIT_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "ff34b9da75e14a718c2b34651613c94ee13687eab8896147a20b1c672af49726",
+      "bytes": 8155
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INFANTRY_MISS_FIXTURE_FAILURE_29.json",
+      "beforeSha256": null,
+      "afterSha256": "9d695108ba41820910c0841e09d9051deb3f3b45a3f35c86d66b6cb49e5b2720",
+      "bytes": 1456
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INFANTRY_MISS_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "dfe5bf5109cb6ed8a29dc3f1b43c81bb39eb4fe9d3da2ad2f1cf0177d4f27b3b",
+      "bytes": 2581
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INFANTRY_SOUND_INSTALLED_MATRIX_29.json",
+      "beforeSha256": null,
+      "afterSha256": "24bcc9ae3b153573025009cb005bd6201b23d185584ed9c7ee95dab8cc2de29e",
+      "bytes": 9567
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INFANTRY_SOUND_SOURCE_29.json",
+      "beforeSha256": null,
+      "afterSha256": "69ead40f0c30c5a707bd8fcf2f8dbac09d7b153b9d1330d73ff2da0ff77259da",
+      "bytes": 426
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INSTALLED_CLOSEOUT_29.md",
+      "beforeSha256": null,
+      "afterSha256": "c3fdc6b740258b33479afe138a85fc614e1bc4a5871f37ba7b7798f332f21b09",
+      "bytes": 6373
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_BRIDGE_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "f3dbf419a71e97e1dd93f778cdc7624d2e678b95fb8ddf1705c21fa48b06c213",
+      "bytes": 1142
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_DEVICE_SHA_TRANSPORT_29.json",
+      "beforeSha256": null,
+      "afterSha256": "700c814457792ab3799f25eb9a21c99855330653599dc6f1a7149b8b191aa1c1",
+      "bytes": 797
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md",
+      "beforeSha256": "9bf896302bbc854f8243175271ce1d0486a3e59e887e5d7fb7c7f2c5b4ff32e5",
+      "afterSha256": "c7bd44e04cf0152ee1d9cd97f59813a7b690c5cf164510866c16aa1a53ddda17",
+      "bytes": 22376
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_MUSIC_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "d21af2db5025b16de203aa3739b2d6bc1c0dc176ee2379559b824c5146f00443",
+      "bytes": 2153
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_NORMAL_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "bac9bd63bf9c0149ad2d051f42fadde3587eb942787bc7eaca4092b1f36a73ac",
+      "bytes": 199712
+    },
+    {
+      "path": "docs/handoff/20261004/session2/SHARED_MEDIA_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "0c386be303a9acc518e27405b7c7831c68cd577489f38521f0d3988e1c8fce78",
+      "bytes": 12506
+    },
+    {
+      "path": "docs/handoff/20261004/session2/SIX_TURN_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "46cd3de11e489a41e246dc977f84d795739e03952328afa8137fd1279603c8dd",
+      "bytes": 8362
+    },
+    {
+      "path": "docs/handoff/20261004/session2/TACTIC_LIFECYCLE_INSTALLED_29.json",
+      "beforeSha256": null,
+      "afterSha256": "9aae77cdd54653116a63dc524fa6fafe381dde1ee5a075935c7c4192c8b4489e",
+      "bytes": 7904
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-double_thrust-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "14e3b35f46460ef3b21c823eeb87698e83ee4cc79a24e06480801476399a002b",
+      "bytes": 3814
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-double_thrust-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "41010a39ff58ce0d079f9e74c3bbd042db99141fbc5e9d72bd57b10a099059e5",
+      "bytes": 3812
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-fire_arrow-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "8819bb8920730323eba2924efa4854d07ecd85c90a1ed0f4b915eb69b859fbff",
+      "bytes": 3854
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-fire_arrow-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "ef49f08556b72bce039a41e3a663096729efcef136c48eb6cad509b54fb5e9be",
+      "bytes": 3856
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-hook-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "3cefa31780deac8a9d1879037100492a4f393694ec48b08686139807e4b173d5",
+      "bytes": 3775
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-hook-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "e6298112d8c2c710e44edb3d19c190a974c9a1d2641858a17233ce2c1899268c",
+      "bytes": 3773
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-pierce-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "921e9d487bb9a8f8ab22c7d446a3ef9b299f0b2f17ae24b79edc4902c37794a3",
+      "bytes": 3840
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-pierce-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "5ee60cfec4022298622b20c9dbfb809f2c290014e711fcb21ab416b14368faf3",
+      "bytes": 3837
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-spiral-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "27c93b967aff14574b20daf18e396f4567c213d3c55ace658ed2a5afbb2a7d7c",
+      "bytes": 3784
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-spiral-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "07e5a465bad47d9e87e9cfa9b572df27de641fc51de6132681e79b7e393b504e",
+      "bytes": 3784
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-sweep-49-installed-29-failure.json",
+      "beforeSha256": null,
+      "afterSha256": "a22cc2a1db865201c6bdf1f548b01308cfb5faeef801004494d7587471c84c91",
+      "bytes": 756
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-sweep-49-installed-29-r1-failure.json",
+      "beforeSha256": null,
+      "afterSha256": "671d7a266abe981c121b9140e72409e3563e1fcb4d292eaf654bd5948b46ba14",
+      "bytes": 922
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-sweep-49-installed-29-r2.json",
+      "beforeSha256": null,
+      "afterSha256": "4a56a755a070fb10b7eb223f42232b1e7372d706facdf654942fd63d4be694dc",
+      "bytes": 3841
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-sweep-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "88e5a951f110431bab6ebe2cd353bb70767d2361c1ca9a4c32266816541889b5",
+      "bytes": 3836
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-thrust-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "a9eec9518ed810d09f2567420238cea5fd65f0b86cfe7e2d7ae78ceaa3c251b9",
+      "bytes": 3783
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-thrust-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "6bedfac3cccae07e02e0d2d4d2abe76c877639d09bd609bbdd62637c9b44444e",
+      "bytes": 3784
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-volley-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "45ad142d7db018118cc7a403ec339d15b7134c132f89036deb086fedfc4c25af",
+      "bytes": 3841
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-volley-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "f641e3b7faed529e8130b66b0d9f9e59bc0274f9ba1f7ad2a0a3fbcfb3a843e0",
+      "bytes": 3840
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-whirlwind-49-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "547c5154d967d042569077277a6433a581be2433bf3b38ab7d78832b6a7e6b08",
+      "bytes": 3853
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-installed-29/infantry-whirlwind-78-installed-29.json",
+      "beforeSha256": null,
+      "afterSha256": "3e704bb5e27f256324767535af7b89896d89ec2fbde32e4b8b0e4d208e13bccd",
+      "bytes": 3852
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-sound-policy-host-29.json",
+      "beforeSha256": null,
+      "afterSha256": "5dec4e7f2aa7b23b6dbfe18f9af0324b2b29ea9275740794138bedfbb6ce8fec",
+      "bytes": 495
+    },
+    {
+      "path": "docs/handoff/20261004/session2/infantry-sound-source-native-29.json",
+      "beforeSha256": null,
+      "afterSha256": "3a9c4a04579ec405a13b02bb193fae2a721c06fc4b64af4cd1b5abf296f523ae",
+      "bytes": 335211
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-before.sg11",
+      "beforeSha256": null,
+      "afterSha256": "cd195dac33357dabb113198694ecc907d90278856d5c94c66cfa32053cd6d691",
+      "bytes": 939917
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-0.sg11",
+      "beforeSha256": null,
+      "afterSha256": "2e5ee18d96292bbf249555d5adf9ec4593ba99bc7b0f3e0a734e830a7c7a08e3",
+      "bytes": 954073
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-1.sg11",
+      "beforeSha256": null,
+      "afterSha256": "4efdabd89611060ab7a854780a3dba3fa49bb858f1da669cd7ca9f02d9bd2c06",
+      "bytes": 966267
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-2.sg11",
+      "beforeSha256": null,
+      "afterSha256": "6b9b767769aed676c5368ce5cae3cec3c1ca7fdb65cc25fdc52aad8cd20008a0",
+      "bytes": 979607
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-3.sg11",
+      "beforeSha256": null,
+      "afterSha256": "bb6ae40ad26c423039970b80a7b3ea1c0d4456db2bf05b22a9b2480de926b260",
+      "bytes": 991968
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-4.sg11",
+      "beforeSha256": null,
+      "afterSha256": "df5a396f66dd9be0c4d436ef16d0a908706464c979ce48d1c5a96ceeaae6de4e",
+      "bytes": 1002423
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-5.sg11",
+      "beforeSha256": null,
+      "afterSha256": "13faa5e6b25f7d65708947a0ab34c9b6eb48bb2d07b179a6671dd593476b92c7",
+      "bytes": 1013681
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority.csv",
+      "beforeSha256": null,
+      "afterSha256": "fd4ae4b4a4b874158595a6ef1cc9441aa41107bae436a0732927c0a30c2e6b2b",
+      "bytes": 1291
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/result.txt",
+      "beforeSha256": null,
+      "afterSha256": "532635685380457af28cc44bf961f201c8169c8c10736f2cdefd7bb7f226ec98",
+      "bytes": 5346
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/sustained.csv",
+      "beforeSha256": null,
+      "afterSha256": "a28775a78f6210a831dfccc6c45a90fe6ed974afeec06e0144d71729c200ec19",
+      "bytes": 271
+    },
+    {
+      "path": "tools/audio/check_pc_spear_tactic_mix.py",
+      "beforeSha256": "b43f4e43eac4467ef6172d3aabb13781b5be2d7c0f046bd72286b1aad354449b",
+      "afterSha256": "b4af0a62b51cda2863a1c089f93bf0b50f47630e95b9d17bd828c1fafe7c2c70",
+      "bytes": 6120
+    },
+    {
+      "path": "tools/audio/check_pc_tactic_miss_mix.py",
+      "beforeSha256": null,
+      "afterSha256": "369837624f3bffc94eee2f601d55e562e06c74e5b558857708af8e194cdb5db9",
+      "bytes": 3325
+    },
+    {
+      "path": "tools/audio/inspect_pc_infantry_sound_chain.py",
+      "beforeSha256": null,
+      "afterSha256": "5472fa8e2f215cc4c3b536d1852804d86f3b30b29215ff0af0d00557e5aa8186",
+      "bytes": 19353
+    },
+    {
+      "path": "tools/audio/verify_pc_tactic_sound_policy.py",
+      "beforeSha256": "bff304d86addd95e4e61f12a9bd4709f41739fb1a574abd7c5bd00b22b1ffe45",
+      "afterSha256": "63bfb9a9d2b6ffdccd88b6cfa6010fed48c6efbe6f705f0a3c46c4129a1ea86d",
+      "bytes": 2397
+    },
+    {
+      "path": "tools/media/archive_media_evidence.py",
+      "beforeSha256": "577bb9ae9d5e067a7ab9626c0cb7726ed0571b0d9ea856e11bef4b9bce7a45a2",
+      "afterSha256": "9428a9d5449124f185c6c5271848750719ca6e18fcfe4b21f32005b119ac3c23",
+      "bytes": 3051
+    },
+    {
+      "path": "tools/media/verify_infantry_audio_matrix.py",
+      "beforeSha256": null,
+      "afterSha256": "53650822c04b410b21d47657bbe1adc2cda3311e135ba271c540e9968f5b51f2",
+      "bytes": 3705
+    },
+    {
+      "path": "tools/media/verify_media_device_flow.py",
+      "beforeSha256": null,
+      "afterSha256": "7727f3ea1a9d8237e68e82d00d90af0edd028984bf1c88d8219497f0e5db59b9",
+      "bytes": 8558
+    },
+    {
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "f00001e40337456d43d450eb89d6dc7441726768f3cea47d004c181234b7ef73",
+      "afterSha256": "aea2d83808b6c3e0e436c112a22c2eb70f03bfea2b209d2b65110a0e3bbdd5f5",
+      "bytes": 5637
+    }
+  ],
+  "goalComplete": false
+}
