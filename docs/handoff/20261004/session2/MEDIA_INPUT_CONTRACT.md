@@ -140,3 +140,8 @@ MainActivity/MapHost 等入口已经在独立 integration 工作目录依守卫�
 现有PcVoiceDirective已取消“演员必然有效”的true常量。输入追加nullable `actorStatusRaw/actor17cRaw`；只有已提交原status在0..8，或已提交actor17c非零的任一原OR分支成立，才允许构造。两者都未知、status9且17c0等拒绝；若一个原分支已确证，另一字段保持null，不填默认值。该raw条件不能由姓名、已批准人物ID、工程idle/存活或初始原文件快照代替当前状态。声明测试适配器显式使用status0/17c0夹具，并非PATROL产生了这些原事实。Host原4020案例及nullable拒绝验证覆盖这个边界。
 
 只读核对会话一完成d4f0aef9/62f9623f：原文件内部属性快照与保存伤病恢复有新证据，但不是同StateToken的当前actor原status/17c、当前原能力缓存、原order/record字段和已提交随机choice投影。本批未集成它们或其PLAN.md WIP，不为声音复制核心或修改metadata。正常voice绑定仍0，需已有权威提供上述事实；若现有事实足够，再按确切来源映射消费，不新增规则随机计算。
+
+
+## 批28已闭合的有限战法音效输入
+
+原serializer名义、getter490c90、原5aff08已有成功/会心字段写入及批27renderer/callback完整链已把原native0突刺/1螺旋突刺/2二段突刺与项目明确THRUST/SPIRAL/DOUBLE_THRUST连接。只读媒体现可直接消费已经提交的TACTIC事件与匹配actorId/战法的CriticalHit事实，播放原49/78；不需要媒体另问技能、执行5ae610或取RNG。原sound49不是命中成功提示。普通攻击/其它兵种/计略仍无新增映射；voice仍需要上文已提交演员有效性、当前原能力和已产生选择事实，不能因49/78闭合就默认全部voice有效或按枚举猜。

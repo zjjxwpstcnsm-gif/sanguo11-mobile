@@ -1,0 +1,2 @@
+Exception in thread "main" java.lang.IllegalStateException: Save roundtrip/turn differs: out/media/six-turn-installed-28/ui-evidence/authority-before.sg11 turn=0 expected=0 rawBytes=939918 encodedBytes=939918 firstDiff=16 payloadDiff=185538
+	at MediaSaveEvidence.main(MediaSaveEvidence.java:20)

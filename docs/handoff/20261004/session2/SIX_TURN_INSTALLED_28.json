@@ -1,0 +1,243 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=longRun",
+    "rounds=6",
+    "run=six-turn-installed-28"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-sound-build-28/frozen/app-debug.apk": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-lifecycle-test-build-28/frozen/app-debug-androidTest.apk": "01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872"
+  },
+  "installed_sha256": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+  "installed_test_sha256": "01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872",
+  "passed": true,
+  "seconds": 128.37,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "temporary_campaign": {
+    "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-normal-all-28/device-evidence/source-campaign.sg11",
+    "sha256": "79523b9b5711da3e9cd2308c07714de7169da9c80230bd817cbb9320127733dd",
+    "bytes": 939918,
+    "slots": [
+      "files/auto.sg11",
+      "files/manual3.sg11"
+    ]
+  },
+  "files": [
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-before.sg11",
+      "bytes": 939918,
+      "sha256": "79523b9b5711da3e9cd2308c07714de7169da9c80230bd817cbb9320127733dd"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-round-0.sg11",
+      "bytes": 954074,
+      "sha256": "9fb94f50b044b04d38fcca581ec2fba5af7ad1113e3a84bcc7c10526fb1f3dd1"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-round-1.sg11",
+      "bytes": 966268,
+      "sha256": "7bdc95e070127d3ffe1efc2f1fb438393b0d92a639c594b5817e2bec77f72342"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-round-2.sg11",
+      "bytes": 979608,
+      "sha256": "02a9d613e2de26f53ddde06fad7c03611e66c10673839942ddf24e426d50c064"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-round-3.sg11",
+      "bytes": 991969,
+      "sha256": "030968b2b074e0aa9a3e7416e73861f7ce55696c0920c26da92f6958d14fe5e2"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-round-4.sg11",
+      "bytes": 1002424,
+      "sha256": "05e786bc4f3dce06d624efca44df00384650443ae8a456ee273eaa0194199846"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority-round-5.sg11",
+      "bytes": 1013682,
+      "sha256": "421db4948a58d37f945eae404e98c6424bb0ee0d6cf6afc55931544a35e8ac28"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/result.txt",
+      "bytes": 5346,
+      "sha256": "3bc0d42571cdfac82d6c4c6bf6cf9c5c4d0708ab3d844a354af17ff84775d7b7"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/sustained.csv",
+      "bytes": 271,
+      "sha256": "d2b89c819c158f2ad68aaebdc17f75550756972a444399fdd10d883edcbe1b53"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-28/authority.csv",
+      "bytes": 1291,
+      "sha256": "d49bec6f483ddb7ff739e0d6023b8d430cad74eb81dae6567459a505df595d82"
+    }
+  ],
+  "performance": [
+    {
+      "round": "0",
+      "wall_ms": "21075",
+      "turn": "1",
+      "java_used_bytes": "84599080",
+      "java_total_bytes": "84599080",
+      "pss_kb": "199381"
+    },
+    {
+      "round": "1",
+      "wall_ms": "43559",
+      "turn": "2",
+      "java_used_bytes": "88314256",
+      "java_total_bytes": "88314256",
+      "pss_kb": "205943"
+    },
+    {
+      "round": "2",
+      "wall_ms": "64270",
+      "turn": "3",
+      "java_used_bytes": "78867720",
+      "java_total_bytes": "84561608",
+      "pss_kb": "198225"
+    },
+    {
+      "round": "3",
+      "wall_ms": "85035",
+      "turn": "4",
+      "java_used_bytes": "89536592",
+      "java_total_bytes": "89536592",
+      "pss_kb": "209093"
+    },
+    {
+      "round": "4",
+      "wall_ms": "102229",
+      "turn": "5",
+      "java_used_bytes": "89766096",
+      "java_total_bytes": "90089016",
+      "pss_kb": "210105"
+    },
+    {
+      "round": "5",
+      "wall_ms": "119982",
+      "turn": "6",
+      "java_used_bytes": "89115744",
+      "java_total_bytes": "89169872",
+      "pss_kb": "210017"
+    }
+  ],
+  "scope": "Six actual Android turns with complete Save/RNG fixtures; not full PC rule equality or all audio bindings",
+  "hostSaveAudit": {
+    "rows": [
+      {
+        "file": "authority-before.sg11",
+        "bytes": "939918",
+        "sha256": "79523b9b5711da3e9cd2308c07714de7169da9c80230bd817cbb9320127733dd",
+        "turn": "0",
+        "strategyRandomSignedLong": "5213838646947719860",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "0",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "185538",
+        "reportGzipHeaderOnlyDifference": "true"
+      },
+      {
+        "file": "authority-round-0.sg11",
+        "bytes": "954074",
+        "sha256": "9fb94f50b044b04d38fcca581ec2fba5af7ad1113e3a84bcc7c10526fb1f3dd1",
+        "turn": "1",
+        "strategyRandomSignedLong": "-5551536110850311248",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "28",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "191312",
+        "reportGzipHeaderOnlyDifference": "true"
+      },
+      {
+        "file": "authority-round-1.sg11",
+        "bytes": "966268",
+        "sha256": "7bdc95e070127d3ffe1efc2f1fb438393b0d92a639c594b5817e2bec77f72342",
+        "turn": "2",
+        "strategyRandomSignedLong": "-4916196049325143871",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "46",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "193926",
+        "reportGzipHeaderOnlyDifference": "true"
+      },
+      {
+        "file": "authority-round-2.sg11",
+        "bytes": "979608",
+        "sha256": "02a9d613e2de26f53ddde06fad7c03611e66c10673839942ddf24e426d50c064",
+        "turn": "3",
+        "strategyRandomSignedLong": "-4430839431148814763",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "63",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "196342",
+        "reportGzipHeaderOnlyDifference": "true"
+      },
+      {
+        "file": "authority-round-3.sg11",
+        "bytes": "991969",
+        "sha256": "030968b2b074e0aa9a3e7416e73861f7ce55696c0920c26da92f6958d14fe5e2",
+        "turn": "4",
+        "strategyRandomSignedLong": "559186195313197968",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "68",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "197846",
+        "reportGzipHeaderOnlyDifference": "true"
+      },
+      {
+        "file": "authority-round-4.sg11",
+        "bytes": "1002424",
+        "sha256": "05e786bc4f3dce06d624efca44df00384650443ae8a456ee273eaa0194199846",
+        "turn": "5",
+        "strategyRandomSignedLong": "-6879504811510157986",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "71",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "198578",
+        "reportGzipHeaderOnlyDifference": "true"
+      },
+      {
+        "file": "authority-round-5.sg11",
+        "bytes": "1013682",
+        "sha256": "421db4948a58d37f945eae404e98c6424bb0ee0d6cf6afc55931544a35e8ac28",
+        "turn": "6",
+        "strategyRandomSignedLong": "259219308615521430",
+        "eventRandomSignedLong": "64978850446893",
+        "officers": "656",
+        "units": "66",
+        "cities": "87",
+        "fullRoundtripByteEqual": "false",
+        "payloadFirstDifference": "198296",
+        "reportGzipHeaderOnlyDifference": "true"
+      }
+    ],
+    "fullByteRoundtripPassed": false,
+    "scope": "Host JDK17 vs installed Android gzip header byte9 differs0/255; only one payload byte per Save; gzip-decompressed reports and both exact RNG longs equal; raw captured Saves unchanged; not a full host byte roundtrip PASS"
+  }
+}

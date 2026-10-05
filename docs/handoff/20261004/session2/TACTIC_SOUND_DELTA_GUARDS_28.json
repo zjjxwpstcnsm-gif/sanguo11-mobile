@@ -1,0 +1,147 @@
+{
+  "baseCommit": "95f40f8065f14a7fc515729384d6c9a798220052",
+  "commit": "69a4f7b4517b99abde7bfd323e9db00c3324b91e",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/PcTacticLifecycleChecks.java",
+      "beforeSha256": null,
+      "afterSha256": "5aba82941c156a26e6b3151ba15d9a9bbe5d7dfd89677b01180ff38b65512e53",
+      "bytes": 3904
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "54a38bea32aa74a64e78bcc72796491d8876596323ba149013bad2e774dd8dfd",
+      "afterSha256": "1c893eeedece44e8a82f473bde4f2c359b5b686c926420d721e00211ef357eb8",
+      "bytes": 204005
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-49-original-22050.wav",
+      "beforeSha256": null,
+      "afterSha256": "c2593295194b328368e09834eb4b0da12cd43353642fe4c00fb46905fd90bb43",
+      "bytes": 45394
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-49.wav",
+      "beforeSha256": null,
+      "afterSha256": "1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705",
+      "bytes": 90744
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-78-original-22050.wav",
+      "beforeSha256": null,
+      "afterSha256": "35bceaf732d76768cf4dd4ddabd7b3fee0e87be430d73c7687a19c67c52025f9",
+      "bytes": 45688
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-78.wav",
+      "beforeSha256": null,
+      "afterSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638",
+      "bytes": 91332
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-sound-manifest.json",
+      "beforeSha256": null,
+      "afterSha256": "85e8262f51e296dc8e21a361e20da8e02afa9993f13259471e393f5cbbd3d23e",
+      "bytes": 5469
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeSha256": "145c2eb5d3ed77e49d72c63d8a23ebf4323f52c1994fc4f1a451aa67805d79dc",
+      "afterSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+      "bytes": 34831
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationPlan.java",
+      "beforeSha256": "1435ee2207d25fce8f510e1d5aa026ec9cb5b5df4c11358b3466c02ea373f0d4",
+      "afterSha256": "4bb030329482244a6838e0119ce14b2e02ede7571bb402508b8ddef9b1da082c",
+      "bytes": 5277
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+      "beforeSha256": null,
+      "afterSha256": "216f6c9312687869e9c3b9a4e7724c4265f8cdc8540cab389571fefb2df8dd7e",
+      "bytes": 5450
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "c0f3893e93bd2ec4a22a214a72273535e36ad15b67d36c7fb43aeb91e8d94270",
+      "bytes": 334
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "16c422b3c0a8b01901397aa6f459272ba58f6f3895b9a9d4fbf8c56a7fce40ca",
+      "afterSha256": "50b3dd47be8f1809bcd0b6573d7cc62243ff32f69572c338bd836e3cc7b7f56f",
+      "bytes": 13982
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcTacticSoundPolicyTest.java",
+      "beforeSha256": null,
+      "afterSha256": "c6f38c30c3332a18797ee6e829e62a3ab8333cfd3aff3cf59dbbb2a920ea9587",
+      "bytes": 1288
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_28.md",
+      "beforeSha256": null,
+      "afterSha256": "edd45748b1de16a15dc8e61f8fd6a11ef17e75a5d61e3187b736b8134d1b4db6",
+      "bytes": 3469
+    },
+    {
+      "path": "docs/handoff/20261004/session2/TACTIC_SOUND_HOST_PATCH_28.json",
+      "beforeSha256": null,
+      "afterSha256": "8d695fcc498fd2ed7fc92e3a0547183b756c8842e8b84c3d7d01e09ce58f534f",
+      "bytes": 558
+    },
+    {
+      "path": "docs/handoff/20261004/session2/TACTIC_SOUND_HOST_PATCH_28.md",
+      "beforeSha256": null,
+      "afterSha256": "0ecfd0a87613518923a56a5ff699352dc8308d70c70434e73d75787f7b807f79",
+      "bytes": 1581
+    },
+    {
+      "path": "docs/handoff/20261004/session2/TACTIC_SOUND_REPRO_28.json",
+      "beforeSha256": null,
+      "afterSha256": "c3e6bb58681199907f8f49d0c1f11295677df79d51bd57ba31814888ea6b743b",
+      "bytes": 876
+    },
+    {
+      "path": "docs/handoff/20261004/session2/tactic-sound-policy-host-28.json",
+      "beforeSha256": null,
+      "afterSha256": "d31c01ae9a5b3b5602b700cebc4ec82f413d6a943ed5cba5f30234ad8e1173bc",
+      "bytes": 494
+    },
+    {
+      "path": "docs/handoff/20261004/session2/tactic-sound-semantics-native-28.json",
+      "beforeSha256": null,
+      "afterSha256": "8213957444b4a16b10b9ab840715215fa30aa468d06edf0787ee3390e21a61a8",
+      "bytes": 61285
+    },
+    {
+      "path": "tools/audio/check_pc_spear_tactic_mix.py",
+      "beforeSha256": null,
+      "afterSha256": "b43f4e43eac4467ef6172d3aabb13781b5be2d7c0f046bd72286b1aad354449b",
+      "bytes": 5934
+    },
+    {
+      "path": "tools/audio/inspect_pc_tactic_sound_semantics.py",
+      "beforeSha256": null,
+      "afterSha256": "bade63e0e6c4a680192cbc98bd08840e5ac45b6f1fa4915fa85524a61a6e6d85",
+      "bytes": 6934
+    },
+    {
+      "path": "tools/audio/stage_pc_tactic_sounds.py",
+      "beforeSha256": null,
+      "afterSha256": "fd41cdd69e02bcd671a0d251e00eefb3d0cf31e4b0efdc95f1eba60d400b7dcc",
+      "bytes": 4774
+    },
+    {
+      "path": "tools/audio/verify_pc_tactic_sound_policy.py",
+      "beforeSha256": null,
+      "afterSha256": "bff304d86addd95e4e61f12a9bd4709f41739fb1a574abd7c5bd00b22b1ffe45",
+      "bytes": 2154
+    }
+  ],
+  "coreApiRuntimeByteEqualTo": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "onlyCommonEntry": "MapHost exact TACTIC_SOUND_HOST_PATCH_28 guarded patch; MainActivity unchanged",
+  "goalComplete": false
+}
