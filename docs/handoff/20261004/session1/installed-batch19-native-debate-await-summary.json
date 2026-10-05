@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "externalRestoration": {
+    "allOriginalFilesByteEqual": true,
+    "mismatches": [],
+    "newEvidenceFiles": [
+      "files/session1-pc-contest-opening/FAIL.png",
+      "files/session1-pc-contest-opening/contest-final.sg11",
+      "files/session1-pc-contest-opening/contest-mid.sg11",
+      "files/session1-pc-contest-opening/normal-source-contest-result.png",
+      "files/session1-pc-contest-opening/normal-source-debate.png",
+      "files/session1-pc-contest-opening/progress.txt",
+      "files/session1-pc-contest-resume/contest-final.sg11",
+      "files/session1-pc-contest-resume/normal-source-contest-result.png",
+      "files/session1-pc-contest-resume/progress.txt",
+      "files/session1-pc-native-debate-opening/FAIL.png",
+      "files/session1-pc-native-debate-opening/contest-final.sg11",
+      "files/session1-pc-native-debate-opening/contest-mid.sg11",
+      "files/session1-pc-native-debate-opening/native-original-page.png",
+      "files/session1-pc-native-debate-opening/native-original-terminal.png",
+      "files/session1-pc-native-debate-opening/progress.txt",
+      "files/session1-pc-native-debate-opening/startup-actual.sg11",
+      "files/session1-pc-native-debate-opening/startup-art-canonical.sg11",
+      "files/session1-pc-native-debate-opening/startup-supplied.sg11"
+    ],
+    "originalFileCount": 3177,
+    "alreadyByteEqualVerifiedOnDevice": true
+  },
+  "suites": [
+    {
+      "passed": true,
+      "installedApkSha256": "c3c9bbf69537c38e59b5fda262044c16bd8ab975a9b9a0c1c337188f8308e16d",
+      "installedTestSha256": "2226881edbc5a5eb085de5822f298759813473854d1435a6b12a1f22041cfbce",
+      "seconds": 84.37,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    }
+  ]
+}

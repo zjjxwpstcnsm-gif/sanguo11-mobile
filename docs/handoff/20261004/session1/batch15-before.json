@@ -1,0 +1,17 @@
+{
+  "commit": "28c87906f558948722813ab9a43c11234452630c",
+  "files": [
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "843524c3970e2882b580529ae7668a56039dab11f03f8cfedc0ea24b32cb561e"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "2bdeef62e99f36324f1ef5b97325514f18b203b2283b04ffa3936e1a28ba78a5"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "sha256": "abd645279a69cb0aeb4ddd19e5fd625e0bac4a8d56d58e05ce17c1d4bcbf12f6"
+    }
+  ]
+}

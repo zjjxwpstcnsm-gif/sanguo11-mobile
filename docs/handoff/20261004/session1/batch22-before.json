@@ -1,0 +1,33 @@
+{
+  "base": "aee5d4ac10b0644e3d24792b8b1258bf9058640f",
+  "files": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "sha256": "3842716ee46904352d154eed147f47a504ede4c00105b638c6e93e6ce36043e2"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "sha256": "ad64e60ac4e0ca6231c751271215be9aca4a97186b6b232e1c757583861173c3"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "sha256": "ca8d048ecf21989655e8a129b36be9256411c7377176cbc00dbc1b13712481f2"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "2f1eeb3ac4756d874c486d95feaef4687d5cec058266270bcf29eb3860899575"
+    },
+    {
+      "path": "tools/content/android/PcScenarioOpeningInstrumentation.java",
+      "sha256": "2a34e4434aa053fd6976ad23a993a923933710be48237b2edd1b906e9300cd0e"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "sha256": "7c43d7397b63cbc665e3841e572869218441c9b5d8bad8fcfd1e04685f49f5da"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_21.md",
+      "sha256": "9e543f12851ac4c157c8c6c3bab6f08f4f13e446786eeed517bb8f5d0b040e99"
+    }
+  ]
+}

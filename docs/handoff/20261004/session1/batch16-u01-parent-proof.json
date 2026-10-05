@@ -1,0 +1,10 @@
+{
+  "parentCommit": "cf9b1ef6f754f168fd29414cbb1a0c7dcffd5117",
+  "currentU01Sha256": "875e4d0930543fbd154f43305257d136ff3036d704c4dc81766e01ab4c6894e3",
+  "parentU01Sha256": "875e4d0930543fbd154f43305257d136ff3036d704c4dc81766e01ab4c6894e3",
+  "checkedInUnityFixtureSha256": "6ac082148b5d110b019af188dd57506c6f1c8629d64bc92973dfa0a2517564fb",
+  "parentAndCurrentByteEqual": true,
+  "architectureWholeScriptPassed": false,
+  "sourceCheckpoint": "out/session1/checkpoint-batch15/source",
+  "cacheRoot": "out/session1/contest16"
+}

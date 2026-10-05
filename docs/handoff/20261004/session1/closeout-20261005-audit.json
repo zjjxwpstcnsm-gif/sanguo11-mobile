@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "implementationBase": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "branchBeforeCloseout": "6bab25fb6918f0d13a486781368c1b58f943bd47",
+  "mainBefore": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "candidate28Paths": 25,
+  "candidate28ArchiveSha256": "0bd4af09c4b39d8af4bc488c31c7263f42b5c5f0b1a3edfdb9811ddd9b1651be",
+  "originalAll16ArchiveSha256": "dd3f2c05f8b7f17aadf2bab73962b3770cf973190563efced773cf63a5c0f27c",
+  "sourceProofs": [
+    {
+      "index": 0,
+      "sourcePath": "Media/scenario/Scen000.s11",
+      "sha256": "7ddf704ae3eb0337d4ca001fd37a06570a39b87f01dc17483b793207133d1d49",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 1,
+      "sourcePath": "Media/scenario/SCEN001.S11",
+      "sha256": "ce62b9ff2657f156f17997d0d34ae0459c41664253932e408a217a48ecf819f3",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 2,
+      "sourcePath": "Media/scenario/SCEN002.S11",
+      "sha256": "2e18a75d6e3cba3d3c0765f5f78e153fa64cbe962d41b8f73599301f28943521",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 3,
+      "sourcePath": "Media/scenario/SCEN003.S11",
+      "sha256": "f1c2e7ac5255b6a323ee2c013790b4312f7d9fefd02f536dc23094bca2d03074",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 4,
+      "sourcePath": "Media/scenario/SCEN004.S11",
+      "sha256": "c70d82b3ada7ccfa87ab991013074f2bcf83472659ffb628d142d32cbcd784b4",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 5,
+      "sourcePath": "Media/scenario/SCEN005.S11",
+      "sha256": "50b9960db1793370b928222a2690be5e114063da2412201cce6d55112ecfc2c9",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 6,
+      "sourcePath": "Media/scenario/SCEN006.S11",
+      "sha256": "05fbc929c9f1ff6a5aa31cd1882d20d8e572367a6f84ff74558f86bccd3a49fe",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 7,
+      "sourcePath": "Media/scenario/SCEN007.S11",
+      "sha256": "1881814f283ec40c81a6e4f67aa0a4d6a4bbc73f83df8103b96eaf61560eed18",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 8,
+      "sourcePath": "Media/scenario/Scen008.s11",
+      "sha256": "0acd1106daf49054465d01a24b60d7f3101b4aca41cedd9f12aee2393d1cb913",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 9,
+      "sourcePath": "Media/scenario/Scen009.s11",
+      "sha256": "74633d26531dbd665beca74dc7eea769263dbc6b4ba80b00a5ede119481da82a",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 10,
+      "sourcePath": "Media/scenario/Scen010.s11",
+      "sha256": "847930bf3113058b2adb5c8b2503b81aecb24f45a884750a14ba3bafc51f0aac",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 11,
+      "sourcePath": "Media/scenario/Scen011.s11",
+      "sha256": "59625159b51bb9d7ecceef21582717fe185589e47b60530346a2df0bcb70d72a",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 12,
+      "sourcePath": "Media/scenario/Scen012.s11",
+      "sha256": "e060eb5803b652242c99df239f92e4aff8de7a42421b93b9dfc66d043d0aeb64",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 13,
+      "sourcePath": "Media/scenario/Scen013.s11",
+      "sha256": "ee2eae4c106d900d784bbe912504f33b0c291f148083fb22c40453fcfac76661",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 14,
+      "sourcePath": "Media/scenario/Scen014.S11",
+      "sha256": "49d671458afe7011e17e9f3974576ac74cbf50eb234519597a75fb4b57577afb",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    },
+    {
+      "index": 15,
+      "sourcePath": "Media/scenario/Scen015.s11",
+      "sha256": "74dc861389f168ca8a39270ecd3c501e8dd00f1a2c32960c031f744669b20dce",
+      "people": 1100,
+      "armies": 47,
+      "elections": 87
+    }
+  ],
+  "originalPeople": 17600,
+  "originalArmies": 752,
+  "originalElections": 1392,
+  "buildBinarySha256": "a9503f012ea3dbff7e4a7c033826994b3df15dd9283e3826ac678afb149a492b",
+  "buildTwiceByteEqual": true,
+  "productionApplied": false,
+  "productionBuildGuardCount": 1048,
+  "productionBuildGuardsUnchanged": true,
+  "ignoredJni": 4,
+  "currentApkSha256": "306830e30ce5a944fb356b0664de4beaae4adce4ff4de77f6a052a7bcbb1f0b6",
+  "candidateAcceptanceFailed": true,
+  "architectureGameSessionPassed": 1690,
+  "architectureBridgePassed": true,
+  "architectureFullPassed": false,
+  "architectureFailure": "Unity U01 golden mapRevision/terrain/site coordinates differ; not changed",
+  "mainMergeStatus": "pending",
+  "remotePush": false,
+  "completeGoal": false
+}

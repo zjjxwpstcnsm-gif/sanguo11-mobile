@@ -1,0 +1,66 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources UP-TO-DATE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :game-api:compileJava UP-TO-DATE
+> Task :game-api:processResources NO-SOURCE
+> Task :game-api:classes UP-TO-DATE
+> Task :game-api:jar UP-TO-DATE
+> Task :game-runtime:compileJava UP-TO-DATE
+> Task :game-runtime:processResources NO-SOURCE
+> Task :game-runtime:classes UP-TO-DATE
+> Task :game-runtime:compileTestJava UP-TO-DATE
+> Task :game-runtime:processTestResources UP-TO-DATE
+> Task :game-runtime:testClasses UP-TO-DATE
+
+> Task :game-runtime:verifyPcScenarioFrame
+PASS PC frame/session capacity 24 checks; fixture only, source opening/APK unverified
+
+> Task :game-runtime:verifyBasicCityPolicy
+PASS BasicCityPolicyTest 15 historical33/native37/full-save policy checks
+
+> Task :game-runtime:verifyOfficers
+PASS officer query scenario=huangjin-184
+PASS officer query scenario=coalition-190
+PASS officer query scenario=warlords-194
+PASS officer query scenario=guandu-200
+PASS officer query scenario=chibi-207
+PASS officer query scenario=heroes-250
+PASS officer query scenario=heroes-mobile-sandbox
+PASS officer query scenario=central-mobile-sandbox
+PASS officer query scenario=jingxiang-mobile-sandbox
+PASS OfficerQueryTest checks=515120 nine actual project scenarios, normal patrol, three turns/save/reopen/continuation, full-save/RNG, immutable and thread guards; PC opening fidelity still pending
+
+> Task :game-runtime:verifyOfficerLegacy
+PASS officer legacy fixture=save-v32-central-native.sg11
+PASS officer legacy fixture=pc-officer-legacy-am.sg11
+PASS officer legacy fixture=pre-base-construction-v33.sg11
+PASS officer legacy fixture=pre-merchant-r25-v34.sg11
+PASS officer legacy fixture=legacy-market-v35/host/coalition-190.sg11
+PASS officer legacy fixture=legacy-market-v35/art/coalition-190.sg11
+PASS officer legacy fixture=legacy-production-v36/coalition-190-host.sg11
+PASS officer legacy fixture=legacy-production-v36/coalition-190-art.sg11
+PASS OfficerQueryLegacy checks=33976 actual v32-v36 fixtures, unchanged query and full-turn continuation; v31 fixture unavailable
+
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources UP-TO-DATE
+> Task :core:testClasses UP-TO-DATE
+
+> Task :core:verifyCityCommandRewards
+PASS CityCommandRewardsTest checks=25669 actual fixed commands, native rewards, legacy, failure, duplicate and continuation
+
+> Task :core:verifyCityActionPlan
+PASS CityActionPlanTest checks=1899 searchOutcomes=[GOLD, OFFICER, NOTHING]
+
+[Incubating] Problems report is available at: file:///Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 43s
+16 actionable tasks: 6 executed, 10 up-to-date

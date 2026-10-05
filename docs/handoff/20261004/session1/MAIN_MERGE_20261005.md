@@ -1,0 +1,13 @@
+# 剧本/武将收尾与最新媒体main合并
+
+用户要求先记录已完成/缺口，再把代码合入main。收尾记录为CLOSEOUT_20261005.md；完整目标未完成，不改写验收结论。
+
+合并源d7bbc3fc31a061db47c735a0e89b435fadd77e83（codex/scenario-officer-restoration）；main在本轮审计开始为ac29b458，其后媒体会话已合入完成成果并更新到0b0f5e2de32c2a7504ecf2e4500b3292a97f0efc。本会话使用独立工作树/分支codex/scenario-main-closeout合并，公共main工作树保持原位；最后只有main干净、仍在预期提交时才快进到合并结果。
+
+共同祖先9e171f2a691cfd16c12e017cb7c386f82db94c00。两边共同改动仅MainActivity.java，Git自动合并后逐处复核：媒体头像绑定保留，正常剧本选择/来源新局和武将权威文字接入保留。剧本列表过时的“4原字形缺口”改为“670历史注册人物（含4个已核实原字形身份）”；不是全部有效NPC覆盖声明。没有修改PortraitCatalog、OfficerPortrait、音频播放器、AndroidGameBridge或Unity。
+
+四JNI从已经完成的媒体隔离目录复制并逐SHA读回，避免用较旧worker覆盖媒体实现；其他media独立路径逐文件与main父提交对照。第27/28批未完成候选仅以文档中的精确SHA差分包封存，没有启用到生产。原目录609项dirty及原branch/HEAD须复核不变。
+
+历史APK26和媒体31包各有独立实装证据，不能自动证明本次组合APK。合并后编译、主机检查和新包SHA分别记录在main-merge-verification.json。当前完整架构脚本存在Unity U01旧黄金地图差异，不调整黄金。不会宣称完整单挑/舌战战役结算、全开局事件、全有效人物或ARM设备已通过。
+
+本次仅合并本地main，远端推送没有包含在用户请求中。最终main提交与工作树路径见main-merge-verification.json；其提交不得用未提交原目录元数据代替。

@@ -15,7 +15,7 @@ public final class Strategy {
         public final String label;
         Role(String label) { this.label=label; }
     }
-    public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE, CAPTIVE, UNAPPEARED, DEAD }
+    public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE, CAPTIVE, UNAPPEARED, DEAD, UNDISCOVERED }
     public enum SearchOutcome { REJECTED, OFFICER, GOLD, NOTHING, TREASURE }
 
     /** Snapshot derived from the actual assignments, never a second mutable task registry. */
@@ -96,7 +96,7 @@ public final class Strategy {
         World.Officer o=w.officer(officerId);
         if(o==null)throw new IllegalArgumentException("武将不存在");
         Activity activity=Activity.IDLE; int remaining=0;
-        if(!w.life.present(o.id))activity=w.life.state(o.id)==Lifecycle.State.DEAD?Activity.DEAD:Activity.UNAPPEARED;
+        if(!w.life.present(o.id))activity=w.life.state(o.id)==Lifecycle.State.DEAD?Activity.DEAD:w.life.state(o.id)==Lifecycle.State.UNDISCOVERED?Activity.UNDISCOVERED:Activity.UNAPPEARED;
         else if(w.government.captive(o.id))activity=Activity.CAPTIVE;
         else if(o.unitId>=0)activity=Activity.DEPLOYED;
         else {
@@ -124,7 +124,8 @@ public final class Strategy {
         World.Officer o=w.officer(officerId);
         return o==null?0:w.skills.has(o,Skill.YANLI)?100:StrategyRules.searchChance(o.politics,o.intelligence);
     }
-    static int cityActionBaseCost(CityActionPlan.Operation op){
+    int cityActionBaseCost(CityActionPlan.Operation op){
+        if(!BasicCityPolicy.nativeRules(w))return 10;
         if(op==null)return 10;
         return switch(op){case PATROL->PcCityActionCosts.PATROL;case TRAIN->PcCityActionCosts.TRAIN;case RECRUIT->PcCityActionCosts.RECRUIT;default->10;};
     }
@@ -168,6 +169,7 @@ public final class Strategy {
         return switch(op){case PATROL->patrol(cityId,officerId);case TRAIN->trainArmy(cityId,officerId);case RECRUIT->recruitSoldiers(cityId,officerId);case SEARCH->search(cityId,officerId);case REWARD->rewardOfficers(cityId,officerId,targets);case APPOINT_GOVERNOR->appointGovernor(cityId,officerId,targets[0]);};
     }
     int patrolGain(World.City c,World.Officer o){
+        if(!BasicCityPolicy.nativeRules(w))return Math.min(100-c.order,BasicCityPolicy.legacyPatrol(o.politics,o.charm));
         boolean nearbyEnemy=false;
         // Original4843a0 visits rings1..3 around a city, excluding its center.
         // Use the existing authoritative treaty state; native relation-storage
@@ -190,7 +192,12 @@ public final class Strategy {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.SEARCH,cityId,officerId,new int[0]);
         if(failure!=null)return new SearchResult(w.fail(failure.detail),SearchOutcome.REJECTED,-1,0);
         List<Talent> candidates=discoverable(cityId);
+        List<World.Officer> originals=w.life.undiscovered(cityId);
         w.spend(c,o,SEARCH_COST);int roll=nextInt(100);
+        if(!originals.isEmpty()&&StrategyRules.succeeds(searchChance(o.id),roll)) {
+            World.Officer discovered=originals.get(nextInt(originals.size()));w.life.discover(discovered.id);
+            return new SearchResult(w.success(o.name+"在"+c.name+"发现了在野武将"+discovered.name),SearchOutcome.OFFICER,discovered.id,0);
+        }
         if(!candidates.isEmpty()&&StrategyRules.succeeds(searchChance(o.id),roll)) {
             Talent talent=candidates.get(nextInt(candidates.size()));
             talents.remove(talent);w.officers.add(talent.reveal());

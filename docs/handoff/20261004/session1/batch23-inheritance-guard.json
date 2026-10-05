@@ -1,0 +1,81 @@
+{
+  "previousManifestSha256": "c2d25c2c6111e03e0670c799cf03186d7fce59b5ae09e905a4da158f0d5da39c",
+  "inheritedFileCount": 4816,
+  "missing": [],
+  "changed": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "d03b8f02155b5d7094891032f9c5b63ba94406bbc36dcedf2b7d61c79f78ce26",
+      "afterSha256": "4534bd820d6da099133380142f56cc6137e937812a71f1e72e2e571f0c54aca4"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "beforeSha256": "bd692e7626246be7205479802c8ed420781c05b59b7f19c6c7172915f4b9da27",
+      "afterSha256": "ad6d781a8f1f4b1c8030aacca8d92e86020f11e50d691096ba0ca2a1c88f5933"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java",
+      "beforeSha256": "139ca589191078e9319e88f096ecafb64f95d7032096e23aa856717f34de03e7",
+      "afterSha256": "ea49e3ad26bfd41eb6ffb5be7ee989d36c317b59f7e6da97e6781f39c3028ee1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "05af6dcb623707d69c713e521cc4bdc56687b9d012c8f63a5bfa730e03c63b31",
+      "afterSha256": "71078cc620ddff5237e17e8ae37294545b61eda350b87970cc77d685ebaddecd"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "beforeSha256": "5dffcb89b214f37099daa4887f6abd5767946e6eb977d11798f41fa134ce7bdc",
+      "afterSha256": "84f48b17b0462b69a37e7c4086f859acdb1e7ac73ec74b3d57d770337f272418"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "422521b882065028867a59669069059f224fe2d55c995467d1d4c1e137cd48cf",
+      "afterSha256": "2b328cc93a967fb6c7826d378acf1bb0a28eff940adfb17c33a9c6d0c09b2133"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_ui_probe.py",
+      "beforeSha256": "07336b7d8afc5615eb94e5677230fad9567b6e6329b8403a6cd18a43e8d29231",
+      "afterSha256": "9b506bb5a1316c7fc0011712610c7aa6b10a9c3607637c6e100dc1c2dcafaa2f"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "beforeSha256": "cd59adc3b5b6570578791c296c8203d53ba17d116edc2685f2674141244e977c",
+      "afterSha256": "e500f6b467b263e7fd1cd5903cda26e7a75e8e337e4ff37ba71e77b70233bc2d"
+    }
+  ],
+  "allOtherInheritedPathsByteEqual": true,
+  "ignoredJniInputs": [
+    {
+      "bytes": 121016,
+      "kind": "file",
+      "mode": 420,
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "bytes": 7387104,
+      "kind": "file",
+      "mode": 420,
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "bytes": 108856,
+      "kind": "file",
+      "mode": 420,
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "bytes": 7320976,
+      "kind": "file",
+      "mode": 420,
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "mediaAndSharedLedgersUnchanged": true,
+  "originalCheckoutWritten": false,
+  "completeGoal": false
+}

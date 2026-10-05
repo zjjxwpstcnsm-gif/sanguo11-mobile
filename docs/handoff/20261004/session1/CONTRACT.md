@@ -33,3 +33,18 @@ Session 1 负责身份与文字/数值真值，Session 2 负责头像像素、�
 新局可显式选择本地 PC 文件的文字资料（字与原消息传记）；未选择保持原流程。此选项不称官方剧本还原、不写能力/身份/归属，不决定头像或音频。资料固定写入现有长度分隔 SaveExtensions 独立命名空间，无来源资料的旧档保持 unknown，不升级 v31–37 策略、不从新目录追填。字形缺口按原字节明确标注。实际开局事件和官方/MOD 生效性尚未闭合。
 
 已实装的稳定连接：OfficerSnapshot.Officer.source可为空，非空SourceInfo含nativeId/sourceVariant/sourcePath/sourceSha/recordSha/courtesy/biography及缺口；外层id就是经过身份校验的officerId。PcOfficerInfo.saved(World)也可读取保存中的只读连接。媒体可以消费已提交DTO/独立metadata清单，不能从source为空的旧档猜测来源，也不能用nativeId未经身份连接当项目ID。肖像像素/变体/年龄选择仍由媒体所有者实现，本批未修改头像调用或AndroidGameBridge线格式。
+
+## Batch 06 显式来源保存入口
+
+PcScenarioIdentity.Source 的 sourceVariant/path/SHA/SharedSHA/date/unknown 固定保存在新来源存档38；只有明确 PC 来源工厂与38头启用47势力容量。旧31–37同名opaque扩展不激活、不目录追填。普通新工程局仍原保存版本；媒体DTO读取原已存来源连接，头像接口与manifest不变。BasicCityPolicy仅记录新未管理作者局native20策略；旧31–33无标记按历史10AP/巡察规则续行，34–37保持原已存模型。此入口不是16来源开局完成。
+
+## Batch07 来源世界及原字形身份
+
+新增正常PC来源新局候选：每份16独立源的一份才建立世界。SourceInfo新增identityStatus（canonical-identity-verified/source-only-gaiji）和originalInformation；既有officerId/nativeId/sourceVariant保持稳定。source-only四身份以原姓名字节/生年/性别SHA分配，不能当标准人物映射：156234/844857/598828/850922。逐人原记录与未绑定引用、NPC/模板/古代槽保存在PcScenarioPeople独立metadata；媒体可按此三元组读，不并改人物媒体manifest。本批未改头像调用/像素/年龄选择或桥序列化。
+
+
+## Batch25 原字体身份核实与只读连接
+
+原432190字形索引、安装字体4851/4852以及本地原版字体BMP像素全等证据，闭合FA40=伷、FA41=璝、FA45=儁。对应4人物跨16来源的64条独立姓名/生年/性别/能力及适性身份校验，见gaiji-font-identity-native.json.gz及batch25-identity-media-metadata.json。字体加载设置/外部覆盖生效仍未知；FA49/FA60传记缺口仍明确保留。
+
+新局保留officerId 156234/844857/598828/850922，分别新增canonicalOfficerId 10184/10229/10249/10616。nativeId/sourceVariant/sourceSHA不变，不能让canonicalOfficerId替换媒体连接主键或把人物native槽直接当项目ID。朱儁与既有目录朱雋的字形差别明确记为本地原文变体。旧存档无pc-officer-font-identity-v1仍source-only-gaiji，canonicalOfficerId为空，姓名与原保存保持。正常搜索/详情和保存共同读取同一DTO；不修改头像接口、像素、manifest或桥线格式。

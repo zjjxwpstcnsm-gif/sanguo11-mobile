@@ -1,0 +1,173 @@
+{
+  "branch": "codex/scenario-officer-restoration",
+  "comparisonBasis": "Complete Batch04 checkpoint manifest",
+  "conflicts": [],
+  "parentCommit": "d3c6ab94eed0e4777d4933592145c4222a04822b",
+  "paths": [
+    {
+      "afterSha256": "5d11f69c4ac340c1ff87766b2032ee7d6029a754493f0da1b1188a8074cc2880",
+      "beforeSha256": null,
+      "bytes": 7656,
+      "path": "docs/handoff/20261004/session1/BATCH_05.md"
+    },
+    {
+      "afterSha256": "ccfaaf709e9b090b65c77fe17c655d863657460b88706b38e2064896c517a655",
+      "beforeSha256": null,
+      "bytes": 8903,
+      "path": "docs/handoff/20261004/session1/BATCH_05_VALIDATION.json"
+    },
+    {
+      "afterSha256": "4b1cff2f9749fe67fb249b72c2c494d714fcdcc2d5734c9bb181b4f5fbfca31d",
+      "beforeSha256": "2ff5ee8030dea9a710ca59c662331e5086cf67ce5c0ec4946390232286e48b4d",
+      "bytes": 5093,
+      "path": "docs/handoff/20261004/session1/PLAN.md"
+    },
+    {
+      "afterSha256": "ed6121390c876c0455e1b190692157f579eeac9831e806f5ab8022f20ccabc78",
+      "beforeSha256": null,
+      "bytes": 126,
+      "path": "docs/handoff/20261004/session1/batch05-architecture.txt"
+    },
+    {
+      "afterSha256": "a8e9186add25d463cd428cb9f064691814eda0cc7e5908e5f2ad54598f442c7c",
+      "beforeSha256": null,
+      "bytes": 107,
+      "path": "docs/handoff/20261004/session1/batch05-bytecode-a.txt"
+    },
+    {
+      "afterSha256": "a8e9186add25d463cd428cb9f064691814eda0cc7e5908e5f2ad54598f442c7c",
+      "beforeSha256": null,
+      "bytes": 107,
+      "path": "docs/handoff/20261004/session1/batch05-bytecode-b.txt"
+    },
+    {
+      "afterSha256": "23b236a75007dc4cfc7d9a507d9848e7c2e193f31881e48fcbe0e5076f381dc4",
+      "beforeSha256": null,
+      "bytes": 779,
+      "path": "docs/handoff/20261004/session1/batch05-initial-body-stack-failure.txt"
+    },
+    {
+      "afterSha256": "53829a145e98f0c52994cdaa471ad8fd4803646613c65fbf2a66e6598d66ef6c",
+      "beforeSha256": null,
+      "bytes": 2572,
+      "path": "docs/handoff/20261004/session1/batch05-initial-bss-failure.txt"
+    },
+    {
+      "afterSha256": "4eec793b03c4c64356d0ad5151c673d538c98d9a130163bda4d333ec461966fc",
+      "beforeSha256": null,
+      "bytes": 1134,
+      "path": "docs/handoff/20261004/session1/batch05-initial-cache-test-failure.txt"
+    },
+    {
+      "afterSha256": "f7ec1a3ffe67cecbe48f532b3018e554ae1f6b5d3d21df340a78fa3eec7d4d0d",
+      "beforeSha256": null,
+      "bytes": 1077,
+      "path": "docs/handoff/20261004/session1/batch05-initial-inactive-cache-failure.txt"
+    },
+    {
+      "afterSha256": "1862d7f89d61564570699c28fcbe60c5863060e751435e7fa27f818041aa559f",
+      "beforeSha256": null,
+      "bytes": 623,
+      "path": "docs/handoff/20261004/session1/batch05-old-guard-diagnostic.json"
+    },
+    {
+      "afterSha256": "26cdddc9e173310aeb73cb19f42461f42ac56dd85004e484400fee40e9c84a6e",
+      "beforeSha256": null,
+      "bytes": 161,
+      "path": "docs/handoff/20261004/session1/batch05-pc-installation-unchanged.json"
+    },
+    {
+      "afterSha256": "b95afbe0049d9ae1a5a30939e26e1f09ecc1741c45abffb2bb573609d38cce52",
+      "beforeSha256": null,
+      "bytes": 425,
+      "path": "docs/handoff/20261004/session1/batch05-runtime-unchanged.json"
+    },
+    {
+      "afterSha256": "cc0641e8b8c7e213e3baf7f2f3138687249070ce381560de3bcdb35c47622452",
+      "beforeSha256": null,
+      "bytes": 2192,
+      "path": "docs/handoff/20261004/session1/batch05-started-a.txt"
+    },
+    {
+      "afterSha256": "cc0641e8b8c7e213e3baf7f2f3138687249070ce381560de3bcdb35c47622452",
+      "beforeSha256": null,
+      "bytes": 2192,
+      "path": "docs/handoff/20261004/session1/batch05-started-b.txt"
+    },
+    {
+      "afterSha256": "fbd8a4161620f5d12ec4b9909fc99bc7110177bd9be88cc937cb225da742a115",
+      "beforeSha256": null,
+      "bytes": 101,
+      "path": "docs/handoff/20261004/session1/bytecode-test-pass.txt"
+    },
+    {
+      "afterSha256": "824a3a6f07ca51ba7a3290900accf5c6b37296f224ed6afa2a980026974d0037",
+      "beforeSha256": null,
+      "bytes": 1127985,
+      "path": "docs/handoff/20261004/session1/event-bytecode-native.json.gz"
+    },
+    {
+      "afterSha256": "a645141429d803bc4f196a97d683a22c94e616c7dc2e96076aa8138d5a8dca69",
+      "beforeSha256": null,
+      "bytes": 344,
+      "path": "docs/handoff/20261004/session1/event-bytecode-native.summary.json"
+    },
+    {
+      "afterSha256": "a935d74bf7e9ece17449d9c82d75db261603f62eb61db891581e3d8bb68a3ec3",
+      "beforeSha256": null,
+      "bytes": 280757,
+      "path": "docs/handoff/20261004/session1/started-person-field-coverage.json.gz"
+    },
+    {
+      "afterSha256": "a387d385c25c5cb28bb616d138166ebf5e23d0b4ed11016a5d2bf48f383b64f6",
+      "beforeSha256": null,
+      "bytes": 2481970,
+      "path": "docs/handoff/20261004/session1/started-scenario-native.json.gz"
+    },
+    {
+      "afterSha256": "4490a5fe483e5c16e3dda2ffcbd179ea705b7f2933368c0c48d34afa201d0d3f",
+      "beforeSha256": null,
+      "bytes": 1019,
+      "path": "docs/handoff/20261004/session1/started-scenario-native.summary.json"
+    },
+    {
+      "afterSha256": "abec522562dd8a86ac85a363769a7f6f6cf0f41f6975dcb1b3d10e05e7f4f181",
+      "beforeSha256": null,
+      "bytes": 107,
+      "path": "docs/handoff/20261004/session1/started-test-pass.txt"
+    },
+    {
+      "afterSha256": "ae5bd195ff76ff620a098d81fb3e89b9763f3852b0a6d573f24c90dc6ca2dc54",
+      "beforeSha256": null,
+      "bytes": 8345,
+      "path": "tools/content/inspect_pc_event_bytecode.py"
+    },
+    {
+      "afterSha256": "93d846d615ea0a653a9c650662be826277471f9944efa0519e91f27c5ca35308",
+      "beforeSha256": null,
+      "bytes": 16039,
+      "path": "tools/content/inspect_pc_started_scenario.py"
+    },
+    {
+      "afterSha256": "e93ba223aa669f25ce8580c773217add584d713e0d7c6e13c84f2eecad61948a",
+      "beforeSha256": null,
+      "bytes": 12734,
+      "path": "tools/content/pc_startup_platform.py"
+    },
+    {
+      "afterSha256": "7ada3c349c356cb3875d9cd85eff22d40f30f52a23b231cc9eb3b248f90d9acf",
+      "beforeSha256": null,
+      "bytes": 3035,
+      "path": "tools/content/test_pc_event_bytecode.py"
+    },
+    {
+      "afterSha256": "286a075407cbe65dce8a610507089ca62762ee7d1c498866f66f377c476094b0",
+      "beforeSha256": null,
+      "bytes": 6487,
+      "path": "tools/content/test_pc_started_scenario.py"
+    }
+  ],
+  "schema": 1,
+  "selfHashExcluded": true,
+  "sharedLedgersAndMediaUntouched": true
+}

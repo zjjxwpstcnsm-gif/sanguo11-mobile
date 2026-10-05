@@ -1,0 +1,1 @@
+PASS PcDebateStateTest 16 native initial model/deck/hand/RNG cases, 4593 original legality/immediate effect outputs, 96 original bounded counter queue/hand/RNG cases, 19680 bounded native selected-card effect/topic/RNG sequences, 3072 model-only fury, 6144 current war fury and 4404 psychological stage cases; complete UI/fury/AI/campaign integration pending

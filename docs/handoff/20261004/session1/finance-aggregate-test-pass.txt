@@ -1,0 +1,6 @@
+test_original_finance_aggregates_complete_without_source_claim (__main__.LayeredScenarioTest) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 14.658s
+
+OK

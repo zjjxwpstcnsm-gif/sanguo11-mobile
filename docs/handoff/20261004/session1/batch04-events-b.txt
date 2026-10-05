@@ -1,0 +1,1 @@
+{"candidates": 2, "packedSha256": "edd9814022cd028f484ed8eb713359ea26519c802b642744f1ed91cf9c879394"}

@@ -1,0 +1,4 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Original native and bridge full-save baseline: 7 states (includes serialized RNG).
+Old-source baseline PASS: seven complete save states, RNG included, unchanged native and bridge rule paths

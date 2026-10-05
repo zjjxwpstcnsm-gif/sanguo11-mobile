@@ -1,0 +1,20 @@
+{
+  "parentCommit": "471e970645b7073b32b6d18399f54dcb207d73f3",
+  "files": {
+    "core/src/main/java/game/sanguo/core/World.java": "8e3fce152df3c6635e10410972cf3e7e4ae067282945d4b19a24328e2fe2f736",
+    "core/src/main/java/game/sanguo/core/SaveCodec.java": "65cd9ddb7d78dddbcb9cfdde4f156d0dea9ce8f6dcc349a4d5b122f6d40d8cfd",
+    "core/src/main/java/game/sanguo/core/BattleReports.java": "fd728f2d244f93273ee3ce56c40d767ebb0da8f6569c6c1a214066f666862cba",
+    "core/src/main/java/game/sanguo/core/ScenarioCatalog.java": "fc7a00c0ca40fe22bba09d7b3c8dad824a87660bbd6d8ea6c6f1d634a0ec3290",
+    "core/src/main/java/game/sanguo/core/OfficerAbilities.java": "07aa434421ed185b4bece42a55701c5fe4c010c76ce773e350e5e63427265de7",
+    "core/src/main/java/game/sanguo/core/Lifecycle.java": "c6287ab9db4c92604cdc2098d5cd29462ef59b7a5480814d7a8238b2b8db4732",
+    "core/src/main/java/game/sanguo/core/Strategy.java": "8b146919a3b8f509378d55c1a21ac1d8288dc77a379b786cc812b1ea34026552",
+    "core/src/main/java/game/sanguo/core/StrategySave.java": "160b10e27e87cc455258e03a1a17b5f9a5e0f78db23d400f33a0b02399ac54ab",
+    "core/src/main/java/game/sanguo/core/Government.java": "c3acda34be7ab74f8edee7ebddc261f590ad4e2411324b9450e2fb20f0057d67",
+    "core/src/main/java/game/sanguo/core/MerchantMarket.java": "d67380f0675abc48def74d8502d995d47119b983bbd20b785c2746e40dc48d1d",
+    "game-runtime/build.gradle": "a7e43af79cb5d10d29335fb07388876d0e42dcff783f7ba32ccd329e6c151fe7",
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "691665ef48b7b21decf4267d668105d12d7edc01d32cf7532289d4148169c1df",
+    "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902",
+    "core/src/main/java/game/sanguo/core/CityActionPlan.java": "c7b36dfc7104c5792e4efa7679db42a00f4caa0317628e1c81570900c7070a61",
+    "scripts/test-unity-u01.sh": "b801c7e7da608fb4bcdeac6ce6186e4927ca659127ea635bb33d2ea052b67fd8"
+  }
+}

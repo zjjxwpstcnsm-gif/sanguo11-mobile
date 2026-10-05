@@ -1,0 +1,103 @@
+{
+  "allInheritedPathsPreserved": true,
+  "base": "e885c3ac8d27996d3496493cfb008663da6e3ec8",
+  "files": [
+    {
+      "bytes": 11825,
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "314c83095bc72f9804c42471648795bd44d6e2f78865ff7220ebcfc17538660d"
+    },
+    {
+      "bytes": 25617,
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "2f1eeb3ac4756d874c486d95feaef4687d5cec058266270bcf29eb3860899575"
+    },
+    {
+      "bytes": 1333,
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerJoinRules.java",
+      "sha256": "b7702df5087e54b12425b8f4966f6db538ad9b4c12e4115d0cfe17697c93d857"
+    },
+    {
+      "bytes": 1189,
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerJoinRulesTest.java",
+      "sha256": "c07b13dbf1eef89c0fc5dd094bcf937ef5f027232f379afedffed9b0ff9aa912"
+    },
+    {
+      "bytes": 80827,
+      "path": "core/src/test/resources/pc-officer-join/loyalty-original.tsv",
+      "sha256": "65322f919e079e3848efbd3204665c4cb865257e8c839d2ff7e947e90c134827"
+    },
+    {
+      "bytes": 1052,
+      "path": "core/src/test/resources/pc-officer-join/provenance.json",
+      "sha256": "4c2866983dc17a60179c32f9ce5e6c541e25100d580b488f81939112a291ce31"
+    },
+    {
+      "bytes": 4121,
+      "path": "docs/handoff/20261004/session1/BATCH_21.md",
+      "sha256": "9e543f12851ac4c157c8c6c3bab6f08f4f13e446786eeed517bb8f5d0b040e99"
+    },
+    {
+      "bytes": 170,
+      "path": "docs/handoff/20261004/session1/batch21-callback-rng-trace.json",
+      "sha256": "3307588fde460e0052e4f105855aaa56ebbb6744a46e8cdb0073b9d7d09052cc"
+    },
+    {
+      "bytes": 51825,
+      "path": "docs/handoff/20261004/session1/batch21-campaign-summary.json",
+      "sha256": "fb17bf8392aa1348d98f34d8d31d1817a78c2771199f587f20ba98dd280cdec5"
+    },
+    {
+      "bytes": 717,
+      "path": "docs/handoff/20261004/session1/batch21-first-receiver-failure.txt",
+      "sha256": "4d6b603de1bd2feae83b9ab4c6a80f49f290748e7680cc47606e34037d614776"
+    },
+    {
+      "bytes": 120,
+      "path": "docs/handoff/20261004/session1/batch21-loyalty-tests.txt",
+      "sha256": "b37790cfcebf9a2b9a3f2c8d459e5be481f8c5deac12d004fa25776abf71e8bc"
+    },
+    {
+      "bytes": 877,
+      "path": "docs/handoff/20261004/session1/batch21-raw-loyalty-source-map.json",
+      "sha256": "7cf67fd1ce9fe79bbfc32d3edaf6d131c85551977b1c773a6c9b7a2ecc6ca578"
+    },
+    {
+      "bytes": 379,
+      "path": "docs/handoff/20261004/session1/batch21-settlement-tests.txt",
+      "sha256": "69b5c3f2dba45b8928fa34666527473da15f6df172783fe329117c03d827e8b7"
+    },
+    {
+      "bytes": 1506,
+      "path": "docs/handoff/20261004/session1/batch21-source-manifest.json",
+      "sha256": "25f58aaab10c25e0704f9f215144cb81b6d26c311498384f01139a2e2fb139fd"
+    },
+    {
+      "bytes": 65097,
+      "path": "docs/handoff/20261004/session1/debate-campaign-settlement-native.json.gz",
+      "sha256": "7b78cd2eaee54fc2713e484921dd5672bf0278b5f2217f01198c8db419001597"
+    },
+    {
+      "bytes": 14284,
+      "path": "docs/handoff/20261004/session1/officer-join-loyalty-native.json.gz",
+      "sha256": "410158ec4f55ec8de89c977cdda145f808f5a1c4afae95187d7ee1aecc2a6cb8"
+    },
+    {
+      "bytes": 1602,
+      "path": "tools/content/build_pc_officer_join_fixtures.py",
+      "sha256": "17f80ae2caa5cc55dbf5c54806cfe5f9ae07354f3519fb7835f05f67b5b2d838"
+    },
+    {
+      "bytes": 5920,
+      "path": "tools/content/inspect_pc_debate_campaign_settlement.py",
+      "sha256": "a1596f99535ac7706796089ac7191b3fb73a40d157345a4a181106821671ac75"
+    },
+    {
+      "bytes": 5291,
+      "path": "tools/content/inspect_pc_officer_join_loyalty.py",
+      "sha256": "47d74aa2f0eaf0082c683124c8ed50175eec1224fe0fd288bd7d69ca2c782e24"
+    }
+  ],
+  "inheritedFiles": 4768,
+  "mediaChanged": false
+}

@@ -1,0 +1,1 @@
+PASS PcDebateHeadedTest 6672 original bounded frame fields/callback order/UI stages/full RNG/live-control saves, 16 prior batch model-v1 byte-exact controls, 540 v2 corruption/truncation rejects; GUI/campaign/production pending

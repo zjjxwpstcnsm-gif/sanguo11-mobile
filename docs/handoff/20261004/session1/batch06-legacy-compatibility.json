@@ -1,0 +1,20 @@
+{
+  "cases": 32,
+  "allInitialReencodedBytesUnchanged": true,
+  "unchanged34To37Cases": 26,
+  "changedUnmarked32To33Cases": [
+    "grid129/pre-gate-plank.sg11",
+    "pc-officer-legacy-am-art.sg11",
+    "pc-officer-legacy-am.sg11",
+    "pre-atomic-ship-cargo-v33.sg11",
+    "pre-base-construction-v33.sg11",
+    "save-v32-central-native.sg11"
+  ],
+  "newPoliciesNotAppliedToExisting34To37": true,
+  "genuine9548SevenStateGolden": "GameSessionTest1690 PASS; golden unmodified",
+  "legacyPolicy": "unmarked/unmanaged31-33 retain10AP and old patrol formula; fresh unmanaged gets explicit native marker; managed34-37 unchanged",
+  "parentSha256": "c3825f9a4913f2e38d05dd662e44fb32ad02ced68de1433502b916393b5db28f",
+  "currentSha256": "b59d99ee457e2b87867c36f14eb004573f59ef3f6147d6719ae471d0b78ea75d",
+  "source31FixtureAvailable": false,
+  "scope": "backend full saves/RNG/eligible patrol/three actual nextTurn-save-decode steps; no APK inference"
+}

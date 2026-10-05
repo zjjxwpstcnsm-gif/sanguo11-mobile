@@ -1,0 +1,2 @@
+PASS real source traits and normal source debate Media/scenario/Scen000.s11 actor=10116 target=10222 special=true; numeric engine still legacy until original model integration
+PASS PcContestProfilesTest 43030 actual source facts, normal formal debate commands and complete source save/RNG checks; full original contest engine/APK remain separate

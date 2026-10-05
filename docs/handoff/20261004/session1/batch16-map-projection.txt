@@ -1,0 +1,1 @@
+MapProjectionTest PASS: 119600 exact old-query comparisons; detached values and unchanged complete save

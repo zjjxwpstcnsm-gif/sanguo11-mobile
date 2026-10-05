@@ -1,0 +1,64 @@
+{"source": "Media/scenario/Scen000.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen000.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen000.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen000.s11", "doneSources": 1}
+{"source": "Media/scenario/SCEN001.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN001.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN001.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN001.S11", "doneSources": 2}
+{"source": "Media/scenario/SCEN002.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN002.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN002.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN002.S11", "doneSources": 3}
+{"source": "Media/scenario/SCEN003.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN003.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN003.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN003.S11", "doneSources": 4}
+{"source": "Media/scenario/SCEN004.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN004.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN004.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN004.S11", "doneSources": 5}
+{"source": "Media/scenario/SCEN005.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN005.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN005.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN005.S11", "doneSources": 6}
+{"source": "Media/scenario/SCEN006.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN006.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN006.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN006.S11", "doneSources": 7}
+{"source": "Media/scenario/SCEN007.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/SCEN007.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/SCEN007.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/SCEN007.S11", "doneSources": 8}
+{"source": "Media/scenario/Scen008.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen008.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen008.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen008.s11", "doneSources": 9}
+{"source": "Media/scenario/Scen009.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen009.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen009.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen009.s11", "doneSources": 10}
+{"source": "Media/scenario/Scen010.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen010.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen010.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen010.s11", "doneSources": 11}
+{"source": "Media/scenario/Scen011.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen011.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen011.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen011.s11", "doneSources": 12}
+{"source": "Media/scenario/Scen012.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen012.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen012.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen012.s11", "doneSources": 13}
+{"source": "Media/scenario/Scen013.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen013.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen013.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen013.s11", "doneSources": 14}
+{"source": "Media/scenario/Scen014.S11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen014.S11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen014.S11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen014.S11", "doneSources": 15}
+{"source": "Media/scenario/Scen015.s11", "domain": "city", "actors": 42}
+{"source": "Media/scenario/Scen015.s11", "domain": "district", "actors": 47}
+{"source": "Media/scenario/Scen015.s11", "domain": "force", "actors": 47}
+{"source": "Media/scenario/Scen015.s11", "doneSources": 16}

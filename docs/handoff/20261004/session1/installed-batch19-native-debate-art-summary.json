@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "externalRestoration": {
+    "allOriginalFilesByteEqual": true,
+    "mismatches": [],
+    "newEvidenceFiles": [
+      "files/session1-pc-contest-opening/FAIL.png",
+      "files/session1-pc-contest-opening/contest-final.sg11",
+      "files/session1-pc-contest-opening/contest-mid.sg11",
+      "files/session1-pc-contest-opening/normal-source-contest-result.png",
+      "files/session1-pc-contest-opening/normal-source-debate.png",
+      "files/session1-pc-contest-opening/progress.txt",
+      "files/session1-pc-contest-resume/contest-final.sg11",
+      "files/session1-pc-contest-resume/normal-source-contest-result.png",
+      "files/session1-pc-contest-resume/progress.txt",
+      "files/session1-pc-native-debate-opening/FAIL.png",
+      "files/session1-pc-native-debate-opening/contest-mid.sg11",
+      "files/session1-pc-native-debate-opening/native-original-page.png",
+      "files/session1-pc-native-debate-opening/progress.txt",
+      "files/session1-pc-native-debate-opening/startup-actual.sg11",
+      "files/session1-pc-native-debate-opening/startup-art-canonical.sg11",
+      "files/session1-pc-native-debate-opening/startup-supplied.sg11"
+    ],
+    "originalFileCount": 3177,
+    "alreadyByteEqualVerifiedOnDevice": true
+  },
+  "suites": []
+}

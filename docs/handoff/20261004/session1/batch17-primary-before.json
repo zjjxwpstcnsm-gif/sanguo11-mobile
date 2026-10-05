@@ -1,0 +1,18 @@
+{
+  "commit": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "changes": [
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "beforeSha256": "1b41eda9670749bcdafcdcd529057e44cff53be596d5ac2f91bb7b54c1f32d2d",
+      "sha256": "5f6259761dd702a9608f23e3c085c8eef6f26820eef787a0145e5bf255b7bd34"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "007341192b1aca6e69dc1d5ca6163d46b7756bf5bd7729c8c1fb78efbd4b8a83",
+      "sha256": "6f19d68198cc8352d1d939cc02210228fe0026e49138c6985371fe64aee1bb84"
+    }
+  ],
+  "productionIntegrationDeferred": true,
+  "frozenInputsUnchanged": 1024,
+  "completeGoal": false
+}

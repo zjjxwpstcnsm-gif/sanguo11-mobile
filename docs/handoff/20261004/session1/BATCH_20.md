@@ -1,0 +1,17 @@
+# Batch20 原指导与登用结果函数增量
+
+前提交73ebdb182bccb2120e99e24ecaeedcfd1607bfeb；工作分支codex/scenario-officer-restoration，完整checkpoint19 manifest SHA76d1b757cb7cc79b7a647ea1e5e8ce15c08a465a84235e3889fec4421e69fc97，4753文件/415656335字节，4份忽略JNI及全部继承资源保留。
+
+新增inspect_pc_debate_guidance，真实Shared/Scen000人物与原技能/活动状态保持不变，部队和所在地是明确VM夹具。192组完整原51dd10/4a70d0/4a54a0执行：另一成员指导可在主将或两副将位置生效；自己拥有指导不加倍，非活动指导同伴/非部队所在地/非指导同伴不生效，双方各有指导的情况也覆盖。120参与者原getter返回指导true。原报告SHA bc9ef980da60b9852d0b35f1b579361f45fa5468966c61a52298770214afa384；转换两次字节一致，fixture SHA33f799c29bb2cb78218a484bf9a32d4bc21aa78c884c008c2c2fca3ccf06cc9d。
+
+PcDebateSettlementTest现在严格校验原384组及新192组，共576组完整经验/功绩/伤病/47势力输出；原384fixture不改。源部队夹具不能叫完整原开局，未增加正式指导效果绑定或伤病恢复。
+
+原51f770末段调用51dd10；原5d3d40读取51dca0/65b7c0/51dc30后调用5d3c90；后者调用完整5c4840登用结果函数。inspect_pc_debate_recruitment对实际Shared+16源人物116/222执行输赢分支共32次，记录完整World变更、原属性、原RNG和逐来源原数据页SHA。第一次小VM有6个成功分支因原9771594数据页未映射而中断，bounded报告保留，不能用其局部结果算成功。随后复用既有pc_original_pe_data，仅补载原PE.data实际文件字节/PE指定零填充，32次均完整返回；没有替换原归属、忠诚、关系或随机函数。
+
+完整报告SHA a22fcea7894523e53b58cdefb64fcbc9d6eb94b1595a64ba0b084062d73851ee。Scen000 native222原身份4→2、忠诚0→88；其他可变化来源有原忠诚87/88/95和官职解除，不能使用旧工程固定忠诚70。一些来源本来不满足原有效条件，函数完整返回但未变更；调用完整不等于正式登用入场已核实。全部32组原RNG23保持23。sourceVariant保持各源独立，不合并差异。
+
+边界：Shared/剧本读取边界，不是完整开局；原玩家GUI/controller、原5d3c90剩余奖励/通知及脚本续行没有完成验证。外交结果另有脚本，不能由此声称闭合。新原舌战的正式一次性结算/伤病恢复、有效书籍/关系/先手/能力>100、真正新局默认策略仍待接入；单挑完整模型/规则/触发/奖励/保存和实际流程未完成。完整剧本事件和人物其他缺口继续保留。
+
+本批不改生产规则或API/app文件，不新构建APK，不复用旧包验证冒称本批新包通过。最近实际安装APK仍为out/session1/apks-batch19-compatible/app-debug.apk，SHA c3c9bbf69537c38e59b5fda262044c16bd8ab975a9b9a0c1c337188f8308e16d；实际x86_64正常舌战/存取/冷续行已在Batch19记录，ARM未实机验证。5554本批未使用，所有原数据此前已恢复，再次使用前重新核实设备与锁。
+
+全部改动和前SHA见batch20-before/source-manifest/delta；不改媒体或共享progress/STATE/PC_PARITY_STATUS。目标持续active，未完成。

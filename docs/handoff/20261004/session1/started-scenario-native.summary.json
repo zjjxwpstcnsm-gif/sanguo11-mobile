@@ -1,0 +1,41 @@
+{
+  "completeStartup": false,
+  "decodedSha256": "e6fdefe819e28162698877677b93ba1362b3d4b420dd4bdbec573e11416a64f9",
+  "eventRecordCount": 326,
+  "eventSectionCounts": [
+    0,
+    0,
+    0,
+    0,
+    31,
+    116,
+    20,
+    9,
+    19,
+    0,
+    1,
+    28,
+    80,
+    0,
+    0,
+    2,
+    4,
+    1,
+    13,
+    2
+  ],
+  "lazyBodiesRead": 326,
+  "limits": [
+    "Shared original Chinese NLS sorting not executed",
+    "Windows user Documents/configuration/Expansion contents unknown",
+    "Menu settings and active resource priority not proven",
+    "Event metadata and lazy bodies loaded; conditions/effects not executed",
+    "Native postload called directly, not complete normal game start",
+    "No source values imported into Android worlds or old saves"
+  ],
+  "packedSha256": "a387d385c25c5cb28bb616d138166ebf5e23d0b4ed11016a5d2bf48f383b64f6",
+  "queriedOfficerSlots": 13600,
+  "schema": 1,
+  "sourceCount": 16,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb"
+}

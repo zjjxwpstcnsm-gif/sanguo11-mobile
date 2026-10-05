@@ -48,7 +48,7 @@ public final class CityActionPlan {
  }
  CityActionPlan(World w,Operation op,World.City c,World.Officer o,int[] targets,RuleFailure failure){
   this.failure=failure;goldAvailable=c==null?0:c.gold;goldCost=w.cityActionCost(o)==0?0:Strategy.cityActionGold(op,targets);
-  actionPointsAvailable=w.active>=0&&w.active<w.actionPoints.length?w.actionPoints[w.active]:0;actionPointsCost=w.cityActionCost(o,Strategy.cityActionBaseCost(op));goldRemaining=goldAvailable-goldCost;actionPointsRemaining=(long)actionPointsAvailable-actionPointsCost;
+  actionPointsAvailable=w.active>=0&&w.active<w.actionPoints.length?w.actionPoints[w.active]:0;actionPointsCost=w.cityActionCost(o,w.strategy.cityActionBaseCost(op));goldRemaining=goldAvailable-goldCost;actionPointsRemaining=(long)actionPointsAvailable-actionPointsCost;
   effects=failure==null?new Effects(w,op,c,o,targets):null;search=failure==null&&op==Operation.SEARCH?new Search(w,c,o,goldRemaining):null;
  }
  public boolean allowed(){return failure==null;}

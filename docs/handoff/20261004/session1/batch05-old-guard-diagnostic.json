@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "baselineCommit": "d3c6ab94eed0e4777d4933592145c4222a04822b",
+  "guardFileSha256": "d44e9550ae305bef6faa0346c95676c20a5ee7e5b324091ab1de556b42b149cb",
+  "files": 1468,
+  "mismatches": [
+    "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+    "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java"
+  ],
+  "apkSourceTreeUnchanged": false,
+  "publicLedgersUnchanged": true,
+  "publicLedgerMismatches": [],
+  "newApkValidationClaim": false
+}

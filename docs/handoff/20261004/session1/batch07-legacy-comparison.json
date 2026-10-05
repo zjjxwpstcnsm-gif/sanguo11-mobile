@@ -1,0 +1,9 @@
+{
+  "parentCommit": "0a64643e74171eb55e63798c6e7d9f2e32898045",
+  "allCasesFullSaveAndRngByteEqual": true,
+  "cases": 32,
+  "parentResultSha256": "b59d99ee457e2b87867c36f14eb004573f59ef3f6147d6719ae471d0b78ea75d",
+  "currentResultSha256": "b59d99ee457e2b87867c36f14eb004573f59ef3f6147d6719ae471d0b78ea75d",
+  "genuine31FixtureAvailable": false,
+  "scope": "normal eligible patrol and three full nextTurn-save-decode steps, backend only"
+}

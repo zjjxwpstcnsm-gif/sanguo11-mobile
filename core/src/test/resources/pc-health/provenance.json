@@ -1,0 +1,40 @@
+{
+  "admissionCases": 432,
+  "fixtureSha256": "fdf9ca225b150af1ea2fc7668ff1571ed75bda3968015f8bdf04af715f530907",
+  "functions": [
+    {
+      "endExclusive": "0x581090",
+      "sha256": "1617e1b9ac2804349e53472cc50135a6156fce0db4bdabd367d9b290adf0e4d1",
+      "start": "0x580e70"
+    },
+    {
+      "endExclusive": "0x4826bc",
+      "sha256": "dca0a063043fcca58a39d17b900ad3de4a7a974cdfa2736047b72ec08226a9ac",
+      "start": "0x482680"
+    },
+    {
+      "endExclusive": "0x489d02",
+      "sha256": "9bd8d066727eb6e7846dda07de53de9dc674e592880e6b4b89644e26f4110842",
+      "start": "0x489ce0"
+    },
+    {
+      "endExclusive": "0x489ff7",
+      "sha256": "483e8c16439460cbab48ff32e0edd027dcb886d18fc66523c0427edac69ee35e",
+      "start": "0x489fe0"
+    },
+    {
+      "endExclusive": "0x48a8fe",
+      "sha256": "ff3e93d63ae24ddfe89c17670575dc370200f9498c633ce28b4447ab9889acc0",
+      "start": "0x48a8e0"
+    }
+  ],
+  "limits": [
+    "Explicit lifetime mode3, year184/month1..12/day1 and selected injury/status memory fixtures",
+    "Complete original580e70 executes, not only a setter or selected recovery branch",
+    "Original590c30 caller month-start/lifecycle gate inspected; complete GUI/month dispatcher separate",
+    "Healthy-age illness and other lifetime settings are not claimed by this mode3 report"
+  ],
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceReportSha256": "30e9a98022f5b0c623ef5c956c4cc1665afb4548801ba078261bca3f82b96eb9",
+  "trajectoryFrames": 384
+}

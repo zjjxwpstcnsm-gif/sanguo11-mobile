@@ -1,0 +1,1131 @@
+{
+  "characterDescriptors": [
+    {
+      "flags": 1,
+      "id": 43,
+      "kind": 8,
+      "labelPointer": "0x7ec9e0",
+      "name": "舌戰得意話題",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 47,
+      "kind": 4,
+      "labelPointer": "0x7eb588",
+      "name": "性格",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 58,
+      "kind": 12,
+      "labelPointer": "0x7ec978",
+      "name": "仕官禁止君主",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 59,
+      "kind": 12,
+      "labelPointer": "0x7ec968",
+      "name": "仕官禁止期間",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 60,
+      "kind": 8,
+      "labelPointer": "0x7ec960",
+      "name": "舊勢力",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 61,
+      "kind": 16,
+      "labelPointer": "0x7ec950",
+      "name": "俘虜月數Counter",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 62,
+      "kind": 8,
+      "labelPointer": "0x7ec944",
+      "name": "年初功績",
+      "subtype": 1
+    }
+  ],
+  "completeDebateRestoration": false,
+  "completeDuelRestoration": false,
+  "labels": [
+    {
+      "address": "0x7e9f64",
+      "fileOffset": 4104036,
+      "label": "單挑",
+      "rawHex": "b3e6ac4400",
+      "references": [
+        {
+          "address": "0x8ad680",
+          "contextAddress": "0x8ad670",
+          "contextHex": "849f7e007c9f7e00749f7e006c9f7e00649f7e005c9f7e00549f7e004c9f7e00449f7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8ad818",
+          "contextAddress": "0x8ad808",
+          "contextHex": "5ca47e0030a17e0004bb7e00fcba7e00649f7e00649f7e00749f7e0068a17e003c9f7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8ad81c",
+          "contextAddress": "0x8ad80c",
+          "contextHex": "30a17e0004bb7e00fcba7e00649f7e00649f7e00749f7e0068a17e003c9f7e00f4ba7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adf0c",
+          "contextAddress": "0x8adefc",
+          "contextHex": "64af7e008caf7e0000b47e009cb97e00649f7e0084b77e00849f7e005caf7e009caf7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adfa0",
+          "contextAddress": "0x8adf90",
+          "contextHex": "b0af7e0094af7e00a4b37e00a4af7e00649f7e0054af7e0038af7e0030af7e0024af7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af418",
+          "contextAddress": "0x8af408",
+          "contextHex": "30cc7e0028cc7e0020cc7e00d0ce7e00649f7e0044b57e00e4b07e0018cc7e00a4ca7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7eee8c",
+      "fileOffset": 4124300,
+      "label": "單挑",
+      "rawHex": "b3e6ac4400",
+      "references": []
+    },
+    {
+      "address": "0x7efbc0",
+      "fileOffset": 4127680,
+      "label": "單挑",
+      "rawHex": "b3e6ac4400",
+      "references": [
+        {
+          "address": "0x8b269c",
+          "contextAddress": "0x8b268c",
+          "contextHex": "80808080ffffffffffffffffb3150000c0fb7e00b5150000c8fb7e00b7150000d0fb7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8b86e8",
+          "contextAddress": "0x8b86d8",
+          "contextHex": "9cfb7e00a8fb7e00b0fb7e00b8fb7e00c0fb7e00c8fb7e00d0fb7e00dcfb7e00e8fb7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7e9648",
+      "fileOffset": 4101704,
+      "label": "舌戰",
+      "rawHex": "a6debed400",
+      "references": []
+    },
+    {
+      "address": "0x7eb544",
+      "fileOffset": 4109636,
+      "label": "舌戰",
+      "rawHex": "a6debed400",
+      "references": [
+        {
+          "address": "0x8adb30",
+          "contextAddress": "0x8adb20",
+          "contextHex": "6cb57e0064b57e0058b57e004cb57e0044b57e00549f7e0038b57e0028b57e006c9f7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af41c",
+          "contextAddress": "0x8af40c",
+          "contextHex": "28cc7e0020cc7e00d0ce7e00649f7e0044b57e00e4b07e0018cc7e00a4ca7e00b8cb7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7eee98",
+      "fileOffset": 4124312,
+      "label": "舌戰",
+      "rawHex": "a6debed400",
+      "references": []
+    },
+    {
+      "address": "0x7efbc8",
+      "fileOffset": 4127688,
+      "label": "舌戰",
+      "rawHex": "a6debed400",
+      "references": [
+        {
+          "address": "0x8b26a4",
+          "contextAddress": "0x8b2694",
+          "contextHex": "ffffffffb3150000c0fb7e00b5150000c8fb7e00b7150000d0fb7e00b9150000dcfb7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8b86ec",
+          "contextAddress": "0x8b86dc",
+          "contextHex": "a8fb7e00b0fb7e00b8fb7e00c0fb7e00c8fb7e00d0fb7e00dcfb7e00e8fb7e00f4fb7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea178",
+      "fileOffset": 4104568,
+      "label": "鬥志",
+      "rawHex": "b0aba7d300",
+      "references": []
+    },
+    {
+      "address": "0x7ea160",
+      "fileOffset": 4104544,
+      "label": "必殺技",
+      "rawHex": "a5b2b1fea7de00",
+      "references": [
+        {
+          "address": "0x8ad57c",
+          "contextAddress": "0x8ad56c",
+          "contextHex": "8ca17e0080a17e0074a17e0068a17e0060a17e0058a17e0050a17e0048a17e0040a17e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adce0",
+          "contextAddress": "0x8adcd0",
+          "contextHex": "6cb27e0064b27e005cb27e0054b27e0060a17e0044b27e003cb27e0034b27e00889e7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea158",
+      "fileOffset": 4104536,
+      "label": "集氣",
+      "rawHex": "b6b0aef000",
+      "references": [
+        {
+          "address": "0x8ad580",
+          "contextAddress": "0x8ad570",
+          "contextHex": "80a17e0074a17e0068a17e0060a17e0058a17e0050a17e0048a17e0040a17e0038a17e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8ad8c4",
+          "contextAddress": "0x8ad8b4",
+          "contextHex": "f0b97e00e8b97e00e0b97e005ca47e0058a17e00d8b97e00d0b97e00a0a17e00c8b97e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea150",
+      "fileOffset": 4104528,
+      "label": "堅守",
+      "rawHex": "b0eda67500",
+      "references": [
+        {
+          "address": "0x8ad584",
+          "contextAddress": "0x8ad574",
+          "contextHex": "74a17e0068a17e0060a17e0058a17e0050a17e0048a17e0040a17e0038a17e0030a17e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8ad9b4",
+          "contextAddress": "0x8ad9a4",
+          "contextHex": "64b87e005cb87e0054b87e0050b87e0050a17e0048b87e005ca47e0040b87e0038b87e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea138",
+      "fileOffset": 4104504,
+      "label": "無雙",
+      "rawHex": "b54cc2f900",
+      "references": [
+        {
+          "address": "0x8ad590",
+          "contextAddress": "0x8ad580",
+          "contextHex": "58a17e0050a17e0048a17e0040a17e0038a17e0030a17e0028a17e0020a17e0014a17e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8add8c",
+          "contextAddress": "0x8add7c",
+          "contextHex": "44b17e003cb17e0034b17e009ca07e0038a17e002cb17e0024b17e00e09e7e0018b17e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7eb064",
+      "fileOffset": 4108388,
+      "label": "冷靜",
+      "rawHex": "a74ec05200",
+      "references": [
+        {
+          "address": "0x8addf0",
+          "contextAddress": "0x8adde0",
+          "contextHex": "88b07e0080b07e0078b07e006cb07e0064b07e005cb07e0054b07e004cb07e00d49f7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af0ac",
+          "contextAddress": "0x8af09c",
+          "contextHex": "a4ca7e00a8b47e0020b87e00e4b67e0064b07e0008b87e0080b47e00b4ce7e00acce7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6a4",
+          "contextAddress": "0x8af694",
+          "contextHex": "9ca07e00f0ad7e003cce7e00e4b67e0064b07e0008b87e0080b47e00e4b67e0064b07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6b4",
+          "contextAddress": "0x8af6a4",
+          "contextHex": "64b07e0008b87e0080b47e00e4b67e0064b07e0008b87e0080b47e0064b07e0088d47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6c0",
+          "contextAddress": "0x8af6b0",
+          "contextHex": "e4b67e0064b07e0008b87e0080b47e0064b07e0088d47e00b4ce7e00acce7e007cd47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7f029c",
+      "fileOffset": 4129436,
+      "label": "冷靜",
+      "rawHex": "a74ec05200",
+      "references": [
+        {
+          "address": "0x73e334",
+          "contextAddress": "0x73e324",
+          "contextHex": "c705b8b51b0944070000c705bcb51b099c027f00c705c0b51b0945070000c705c4b51b09",
+          "executable": true,
+          "instructionsFromUnprovenBoundary": [
+            {
+              "address": "0x73e324",
+              "hex": "c705b8b51b0944070000",
+              "instruction": "mov dword ptr [0x91bb5b8], 0x744"
+            },
+            {
+              "address": "0x73e32e",
+              "hex": "c705bcb51b099c027f00",
+              "instruction": "mov dword ptr [0x91bb5bc], 0x7f029c"
+            },
+            {
+              "address": "0x73e338",
+              "hex": "c705c0b51b0945070000",
+              "instruction": "mov dword ptr [0x91bb5c0], 0x745"
+            }
+          ],
+          "provesRuleSemantics": false,
+          "section": ".text"
+        },
+        {
+          "address": "0x83e9b4",
+          "contextAddress": "0x83e9a4",
+          "contextHex": "8c027f0090027f003c017f0094027f009c027f00a4027f00ac027f0038057f0040057f00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".rdata"
+        },
+        {
+          "address": "0x8b5e6c",
+          "contextAddress": "0x8b5e5c",
+          "contextHex": "4c0200004d0200004e02000094027f009c027f00a4027f00ac027f004f02000050020000",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7eb808",
+      "fileOffset": 4110344,
+      "label": "剛膽",
+      "rawHex": "ade8c17800",
+      "references": [
+        {
+          "address": "0x8ad9e4",
+          "contextAddress": "0x8ad9d4",
+          "contextHex": "28b87e0020b87e0018b87e0010b87e0008b87e0000b87e00f4b77e00e8b77e00e0b77e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af0b0",
+          "contextAddress": "0x8af0a0",
+          "contextHex": "a8b47e0020b87e00e4b67e0064b07e0008b87e0080b47e00b4ce7e00acce7e00a4ce7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6a8",
+          "contextAddress": "0x8af698",
+          "contextHex": "f0ad7e003cce7e00e4b67e0064b07e0008b87e0080b47e00e4b67e0064b07e0008b87e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6b8",
+          "contextAddress": "0x8af6a8",
+          "contextHex": "08b87e0080b47e00e4b67e0064b07e0008b87e0080b47e0064b07e0088d47e00b4ce7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7f02a4",
+      "fileOffset": 4129444,
+      "label": "剛膽",
+      "rawHex": "ade8c17800",
+      "references": [
+        {
+          "address": "0x73e348",
+          "contextAddress": "0x73e338",
+          "contextHex": "c705c0b51b0945070000c705c4b51b09a4027f00c705c8b51b0946070000c705ccb51b09",
+          "executable": true,
+          "instructionsFromUnprovenBoundary": [
+            {
+              "address": "0x73e338",
+              "hex": "c705c0b51b0945070000",
+              "instruction": "mov dword ptr [0x91bb5c0], 0x745"
+            },
+            {
+              "address": "0x73e342",
+              "hex": "c705c4b51b09a4027f00",
+              "instruction": "mov dword ptr [0x91bb5c4], 0x7f02a4"
+            },
+            {
+              "address": "0x73e34c",
+              "hex": "c705c8b51b0946070000",
+              "instruction": "mov dword ptr [0x91bb5c8], 0x746"
+            }
+          ],
+          "provesRuleSemantics": false,
+          "section": ".text"
+        },
+        {
+          "address": "0x83e9b8",
+          "contextAddress": "0x83e9a8",
+          "contextHex": "90027f003c017f0094027f009c027f00a4027f00ac027f0038057f0040057f0048057f00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".rdata"
+        },
+        {
+          "address": "0x8b5e70",
+          "contextAddress": "0x8b5e60",
+          "contextHex": "4d0200004e02000094027f009c027f00a4027f00ac027f004f0200005002000051020000",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7eb480",
+      "fileOffset": 4109440,
+      "label": "莽撞",
+      "rawHex": "b2f5bcb200",
+      "references": [
+        {
+          "address": "0x8adbc4",
+          "contextAddress": "0x8adbb4",
+          "contextHex": "a0b47e0098b47e0090b47e0088b47e0080b47e0078b47e0094a07e0070b47e005ca47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af0b4",
+          "contextAddress": "0x8af0a4",
+          "contextHex": "20b87e00e4b67e0064b07e0008b87e0080b47e00b4ce7e00acce7e00a4ce7e00f0ad7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6ac",
+          "contextAddress": "0x8af69c",
+          "contextHex": "3cce7e00e4b67e0064b07e0008b87e0080b47e00e4b67e0064b07e0008b87e0080b47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af6bc",
+          "contextAddress": "0x8af6ac",
+          "contextHex": "80b47e00e4b67e0064b07e0008b87e0080b47e0064b07e0088d47e00b4ce7e00acce7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ed48c",
+      "fileOffset": 4117644,
+      "label": "莽撞",
+      "rawHex": "b2f5bcb200",
+      "references": []
+    },
+    {
+      "address": "0x7f02ac",
+      "fileOffset": 4129452,
+      "label": "莽撞",
+      "rawHex": "b2f5bcb200",
+      "references": [
+        {
+          "address": "0x73e35c",
+          "contextAddress": "0x73e34c",
+          "contextHex": "c705c8b51b0946070000c705ccb51b09ac027f00c3cccccccccccccccccccccccccccccc",
+          "executable": true,
+          "instructionsFromUnprovenBoundary": [
+            {
+              "address": "0x73e34c",
+              "hex": "c705c8b51b0946070000",
+              "instruction": "mov dword ptr [0x91bb5c8], 0x746"
+            },
+            {
+              "address": "0x73e356",
+              "hex": "c705ccb51b09ac027f00",
+              "instruction": "mov dword ptr [0x91bb5cc], 0x7f02ac"
+            },
+            {
+              "address": "0x73e360",
+              "hex": "c3",
+              "instruction": "ret "
+            },
+            {
+              "address": "0x73e361",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e362",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e363",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e364",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e365",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e366",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e367",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e368",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e369",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e36a",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e36b",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e36c",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e36d",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e36e",
+              "hex": "cc",
+              "instruction": "int3 "
+            },
+            {
+              "address": "0x73e36f",
+              "hex": "cc",
+              "instruction": "int3 "
+            }
+          ],
+          "provesRuleSemantics": false,
+          "section": ".text"
+        },
+        {
+          "address": "0x83e9bc",
+          "contextAddress": "0x83e9ac",
+          "contextHex": "3c017f0094027f009c027f00a4027f00ac027f0038057f0040057f0048057f0050057f00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".rdata"
+        },
+        {
+          "address": "0x8b5e74",
+          "contextAddress": "0x8b5e64",
+          "contextHex": "4e02000094027f009c027f00a4027f00ac027f004f020000500200005102000052020000",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea0ac",
+      "fileOffset": 4104364,
+      "label": "大喝",
+      "rawHex": "a46ab3dc00",
+      "references": [
+        {
+          "address": "0x8ad5c4",
+          "contextAddress": "0x8ad5b4",
+          "contextHex": "d8a07e00cca07e00c0a07e00b4a07e00aca07e00a4a07e009ca07e0094a07e008ca07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adb7c",
+          "contextAddress": "0x8adb6c",
+          "contextHex": "409e7e00e4b47e005ca47e005ca47e00aca07e00849f7e0048a17e00789e7e00dcb47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af134",
+          "contextAddress": "0x8af124",
+          "contextHex": "1c9f7e00189f7e00149f7e006ca07e00aca07e00a4a07e0094a07e008ca07e00bcac7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af630",
+          "contextAddress": "0x8af620",
+          "contextHex": "7cce7e0084ce7e00a4ce7e00f0ad7e00aca07e00a4a07e009ca07e0094a07e008ca07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea0a4",
+      "fileOffset": 4104356,
+      "label": "詭辯",
+      "rawHex": "b8dec54700",
+      "references": [
+        {
+          "address": "0x8ad5c8",
+          "contextAddress": "0x8ad5b8",
+          "contextHex": "cca07e00c0a07e00b4a07e00aca07e00a4a07e009ca07e0094a07e008ca07e0020a17e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8ad8f8",
+          "contextAddress": "0x8ad8e8",
+          "contextHex": "9cb97e0094b97e008cb97e0080b97e00a4a07e0078b97e0070b97e0068b97e008ca07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af138",
+          "contextAddress": "0x8af128",
+          "contextHex": "189f7e00149f7e006ca07e00aca07e00a4a07e0094a07e008ca07e00bcac7e0030cb7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af634",
+          "contextAddress": "0x8af624",
+          "contextHex": "84ce7e00a4ce7e00f0ad7e00aca07e00a4a07e009ca07e0094a07e008ca07e007bbe7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7e9650",
+      "fileOffset": 4101712,
+      "label": "無視",
+      "rawHex": "b54cb5f800",
+      "references": [
+        {
+          "address": "0x8b9c5c",
+          "contextAddress": "0x8b9c4c",
+          "contextHex": "10967e0020967e002c967e0044967e0050967e0040445d00f0185d0050495d00401a5d00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea09c",
+      "fileOffset": 4104348,
+      "label": "無視",
+      "rawHex": "b54cb5f800",
+      "references": [
+        {
+          "address": "0x8ad5cc",
+          "contextAddress": "0x8ad5bc",
+          "contextHex": "c0a07e00b4a07e00aca07e00a4a07e009ca07e0094a07e008ca07e0020a17e0084a07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8add88",
+          "contextAddress": "0x8add78",
+          "contextHex": "4cb17e0044b17e003cb17e0034b17e009ca07e0038a17e002cb17e0024b17e00e09e7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af0fc",
+          "contextAddress": "0x8af0ec",
+          "contextHex": "58ce7e0050ce7e0048ce7e0044ce7e009ca07e003cce7e00ccb17e00b89e7e00b09e7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af638",
+          "contextAddress": "0x8af628",
+          "contextHex": "a4ce7e00f0ad7e00aca07e00a4a07e009ca07e0094a07e008ca07e007bbe7e007bbe7e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af694",
+          "contextAddress": "0x8af684",
+          "contextHex": "9cd47e0024b17e0044a77e0094d47e009ca07e00f0ad7e003cce7e00e4b67e0064b07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7f0304",
+      "fileOffset": 4129540,
+      "label": "無視",
+      "rawHex": "b54cb5f800",
+      "references": [
+        {
+          "address": "0x8b5ee4",
+          "contextAddress": "0x8b5ed4",
+          "contextHex": "fc027f005d0200005e0200005f02000004037f0074037f000c037f006002000061020000",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    },
+    {
+      "address": "0x7ea094",
+      "fileOffset": 4104340,
+      "label": "鎮靜",
+      "rawHex": "c2edc05200",
+      "references": [
+        {
+          "address": "0x8ad5d0",
+          "contextAddress": "0x8ad5c0",
+          "contextHex": "b4a07e00aca07e00a4a07e009ca07e0094a07e008ca07e0020a17e0084a07e0084a07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adbcc",
+          "contextAddress": "0x8adbbc",
+          "contextHex": "90b47e0088b47e0080b47e0078b47e0094a07e0070b47e005ca47e00249f7e0068b47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adef4",
+          "contextAddress": "0x8adee4",
+          "contextHex": "84af7e007caf7e00e09e7e0074af7e0094a07e006caf7e0064af7e008caf7e0000b47e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8adf60",
+          "contextAddress": "0x8adf50",
+          "contextHex": "84af7e007caf7e00e09e7e0074af7e0094a07e006caf7e0064af7e0000b47e009cb97e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8aecc4",
+          "contextAddress": "0x8aecb4",
+          "contextHex": "44ba7e00f4b67e0070b97e0054ba7e0094a07e0010b27e0000b47e00d4b07e00acb07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af13c",
+          "contextAddress": "0x8af12c",
+          "contextHex": "149f7e006ca07e00aca07e00a4a07e0094a07e008ca07e00bcac7e0030cb7e009cb37e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        },
+        {
+          "address": "0x8af63c",
+          "contextAddress": "0x8af62c",
+          "contextHex": "f0ad7e00aca07e00a4a07e009ca07e0094a07e008ca07e007bbe7e007bbe7e0084a07e00",
+          "executable": false,
+          "instructionsFromUnprovenBoundary": [],
+          "provesRuleSemantics": false,
+          "section": ".data"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Literal/direct-pointer references only; instruction start boundaries not proven",
+    "No label ordinal or personality mapping inferred",
+    "No damage/cards/anger/initiative/capture/reward/RNG rules executed",
+    "PC installation read only; no Wine; no Android/media change"
+  ],
+  "originalDescriptorInitializer": "73ca80",
+  "ruleExecution": false,
+  "schema": 1,
+  "sections": [
+    {
+      "address": 4198400,
+      "bytes": 3460889,
+      "executable": true,
+      "name": ".text",
+      "offset": 4096
+    },
+    {
+      "address": 7659520,
+      "bytes": 1368365,
+      "executable": false,
+      "name": ".rdata",
+      "offset": 3465216
+    },
+    {
+      "address": 9031680,
+      "bytes": 154945504,
+      "executable": false,
+      "name": ".data",
+      "offset": 4837376
+    },
+    {
+      "address": 163979264,
+      "bytes": 106190,
+      "executable": false,
+      "name": ".rsrc",
+      "offset": 159784960
+    },
+    {
+      "address": 164085760,
+      "bytes": 8335,
+      "executable": true,
+      "name": "stxt774",
+      "offset": 159891456
+    },
+    {
+      "address": 164098048,
+      "bytes": 13696,
+      "executable": true,
+      "name": "stxt371",
+      "offset": 159903744
+    }
+  ],
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "textTables": [
+    {
+      "address": "0x83e9b0",
+      "meaning": "original text table only; effect and availability rules unproven",
+      "name": "personality",
+      "pointerBytesHex": "94027f009c027f00a4027f00ac027f00",
+      "sha256": "a25f13bd3b0e03dbc00b6ee299134312920439450d07d140bfe8137527b483a0",
+      "values": [
+        {
+          "label": "膽小",
+          "ordinal": 0,
+          "pointer": "0x7f0294",
+          "rawHex": "c178a470"
+        },
+        {
+          "label": "冷靜",
+          "ordinal": 1,
+          "pointer": "0x7f029c",
+          "rawHex": "a74ec052"
+        },
+        {
+          "label": "剛膽",
+          "ordinal": 2,
+          "pointer": "0x7f02a4",
+          "rawHex": "ade8c178"
+        },
+        {
+          "label": "莽撞",
+          "ordinal": 3,
+          "pointer": "0x7f02ac",
+          "rawHex": "b2f5bcb2"
+        }
+      ]
+    },
+    {
+      "address": "0x8ad57c",
+      "meaning": "original text table only; effect and availability rules unproven",
+      "name": "duel_special_menu",
+      "pointerBytesHex": "60a17e0058a17e0050a17e0048a17e0040a17e0038a17e00",
+      "sha256": "a3a44384be3e1b1e74f004532bcedcbe59a345971cd93d45db8f9676082750b6",
+      "values": [
+        {
+          "label": "必殺技",
+          "ordinal": 0,
+          "pointer": "0x7ea160",
+          "rawHex": "a5b2b1fea7de"
+        },
+        {
+          "label": "集氣",
+          "ordinal": 1,
+          "pointer": "0x7ea158",
+          "rawHex": "b6b0aef0"
+        },
+        {
+          "label": "堅守",
+          "ordinal": 2,
+          "pointer": "0x7ea150",
+          "rawHex": "b0eda675"
+        },
+        {
+          "label": "退卻",
+          "ordinal": 3,
+          "pointer": "0x7ea148",
+          "rawHex": "b068ab6f"
+        },
+        {
+          "label": "要害",
+          "ordinal": 4,
+          "pointer": "0x7ea140",
+          "rawHex": "ad6eae60"
+        },
+        {
+          "label": "無雙",
+          "ordinal": 5,
+          "pointer": "0x7ea138",
+          "rawHex": "b54cc2f9"
+        }
+      ]
+    },
+    {
+      "address": "0x8ad5c4",
+      "meaning": "original text table only; effect and availability rules unproven",
+      "name": "debate_talk_menu",
+      "pointerBytesHex": "aca07e00a4a07e009ca07e0094a07e008ca07e00",
+      "sha256": "f059bbf1a7532ce3b01da4c2aee3c4fd19e90616abd6acb44b0bb17452870285",
+      "values": [
+        {
+          "label": "大喝",
+          "ordinal": 0,
+          "pointer": "0x7ea0ac",
+          "rawHex": "a46ab3dc"
+        },
+        {
+          "label": "詭辯",
+          "ordinal": 1,
+          "pointer": "0x7ea0a4",
+          "rawHex": "b8dec547"
+        },
+        {
+          "label": "無視",
+          "ordinal": 2,
+          "pointer": "0x7ea09c",
+          "rawHex": "b54cb5f8"
+        },
+        {
+          "label": "鎮靜",
+          "ordinal": 3,
+          "pointer": "0x7ea094",
+          "rawHex": "c2edc052"
+        },
+        {
+          "label": "憤怒",
+          "ordinal": 4,
+          "pointer": "0x7ea08c",
+          "rawHex": "bcababe3"
+        }
+      ]
+    }
+  ]
+}

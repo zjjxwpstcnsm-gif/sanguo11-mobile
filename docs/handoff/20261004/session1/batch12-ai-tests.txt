@@ -1,0 +1,1 @@
+PASS PcDebateAiTest 15120 original priority-table choices and exact original RNG; full contest integration pending

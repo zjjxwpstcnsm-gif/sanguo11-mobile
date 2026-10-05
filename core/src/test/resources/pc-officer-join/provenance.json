@@ -1,0 +1,28 @@
+{
+  "cases": 2366,
+  "fixtureSha256": "65322f919e079e3848efbd3204665c4cb865257e8c839d2ff7e947e90c134827",
+  "functions": [
+    {
+      "endExclusive": "0x4a77b0",
+      "sha256": "1e28bd8f845c54d24f2fed18f7b2b4a97b519713b09ca6a0ca13ef92816bd1f7",
+      "start": "0x4a75a0"
+    },
+    {
+      "endExclusive": "0x489fda",
+      "sha256": "a913e9f967123b90eed7123f64be22269007a22e8d67dd6a20653b781b1c3c22",
+      "start": "0x489f80"
+    },
+    {
+      "endExclusive": "0x48bbc5",
+      "sha256": "452197ad6e3d3b5afd799dba1f919cfe09d95cc8d4d9fcd734bd89ff1cc4f588",
+      "start": "0x48bb70"
+    }
+  ],
+  "limits": [
+    "Explicit numeric and relationship VM fixtures; not historical edited records",
+    "Original raw loyalty0..255; displayed loyalty getter remains separate",
+    "Only loyalty rule; complete allegiance/command admission/recovery are separate"
+  ],
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceReportSha256": "410158ec4f55ec8de89c977cdda145f808f5a1c4afae95187d7ee1aecc2a6cb8"
+}

@@ -1,0 +1,24 @@
+{
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "nativeFlowCases": 16,
+  "allOriginalModelsReachedTerminal": true,
+  "frameRange": [
+    251,
+    552
+  ],
+  "nativeWorld3MiBUnchangedInEveryCase": true,
+  "nativeFlowPackedSha256": "193ca13a6bb92a3c1d389934166249611536150a50733ba4fd183fe786a5fca7",
+  "repeatedNativeFlowBytesEqual": true,
+  "rulesPackedSha256": "bf60b64a209a2c147b11ab2711760ebddea0a6d167ec3999e451518f2d6450e8",
+  "pureCapacityInputs": 101,
+  "comparisonInputs": 675,
+  "furyComparisonInputs": 288,
+  "originalRngDamageInputs": 4032,
+  "talkMaskInputs": 32,
+  "nativeTests": 5,
+  "originalDerivedConstructor": "51fcf0",
+  "frameEntry": "51e300",
+  "normalPCStartProven": false,
+  "androidContestRulesIntegrated": false,
+  "completeGoal": false
+}

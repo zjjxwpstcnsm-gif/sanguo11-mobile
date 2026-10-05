@@ -39,9 +39,11 @@ public final class ScenarioCatalog {
         List<World> worlds=new ArrayList<>();for(String id:entries().keySet())worlds.add(load(id,0));return worlds;
     }
     public static World load(String id,int player,long abilitySeed)throws IOException {
+        if(id.startsWith("pc-scen"))return PcScenarioCatalog.load(id,player,abilitySeed);
         World w=load(id,player);w.abilities.initialize(abilitySeed);return w;
     }
     public static World load(String id,int player)throws IOException {
+        if(id.startsWith("pc-scen"))return PcScenarioCatalog.load(id,player,0);
         String expected=entries().get(id);if(expected==null)throw new IOException("剧本不存在");
         try(InputStream in=ScenarioCatalog.class.getResourceAsStream("/scenarios/"+id+".properties")) {
             World world=ScenarioData.read(in,player);

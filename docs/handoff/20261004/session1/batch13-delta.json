@@ -1,0 +1,88 @@
+{
+  "parentCommit": "75b6abbdd6d2968f5fabd67db4c770d99d7c32d6",
+  "changes": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModel.java",
+      "beforeSha256": null,
+      "afterSha256": "143bc88aa1ce104ab98b09cb49c859532a887ce21fe8b93f83e7d5a2a9ef7e51"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateModelTest.java",
+      "beforeSha256": null,
+      "afterSha256": "4cec4bbc28579594df7a4601f1db54773652a09d219fa261ee288d1fd943e92a"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/model-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "bf4eeaa01c471911fc96c14bbf9553dc40de8bca834c838cebe2951dbe1779b4"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-model.tsv",
+      "beforeSha256": null,
+      "afterSha256": "ca4070540e3bb41f7aad25716056f04f9d297b9de382d045e1af3674e43da98a"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_13.md",
+      "beforeSha256": null,
+      "afterSha256": "0a843e3faafb8b47ac2aac4f9fde6dfb69fedc1454a67f1f2c9751cc80fbb0ad"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch13-before.json",
+      "beforeSha256": null,
+      "afterSha256": "ffbf6554d72cd7eaf32379420ac25306c381ae29433427b0717f894e595a2301"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch13-model-first-failure.txt",
+      "beforeSha256": null,
+      "afterSha256": "405348c1ea5b65f00ba194793683b079f6fb290888acac048799fa6d2afa2b67"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch13-model-second-failure.txt",
+      "beforeSha256": null,
+      "afterSha256": "0d41ceb6c934e66612be476005d0c41ccb0e4a718c8d3efb1f02a533506c8dce"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch13-model-tests.txt",
+      "beforeSha256": null,
+      "afterSha256": "16c9a1f053f47134c41d1a16d8d6cc4d0a110109d9c50fd9dfad731bb8115d96"
+    },
+    {
+      "path": "tools/content/build_pc_debate_model_fixtures.py",
+      "beforeSha256": null,
+      "afterSha256": "2593ac924019ff5b98dc50cf9782a860a39359a7a9e5d7983fea1bae0a98781e"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "beforeSha256": "25a13561d82c1c677f903533670543510c7032b6717f7d2c45a52e02592d9782",
+      "afterSha256": "3bb31749d51be314fb4693be80cdfe2188af869bdeba1b7a291ce7c9c5b6a193"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "beforeSha256": "dade9bcb4446bf1f6afa00293e95639f9c0da2e92c3006d1aef0dd053f358c71",
+      "afterSha256": "21359a42b33e459857ee22b373d8cb458ee0e4f6ba59193069ba9c745225b477"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "1fc972d5a40f68b3c1e973529c057806b3542e00ffc02b7fe9e870ee850ef558",
+      "afterSha256": "30113a011e8f97aad87dbe6aa9b827ea563818201b3eb63c4eedafbb2d88dabf"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "beforeSha256": "d0995f8a9738efffb0f4f2f1a3b5e1669fba02c7781ba8e6bf71cccd3f2718ef",
+      "afterSha256": "9b9b61ab7e4dff5f5d159620e7eb351b5f7d0f0917b3d83d06e145a82b680cb5"
+    }
+  ],
+  "priorCheckpointFileCount": 4624,
+  "inheritedMissing": [],
+  "inheritedChanged": [
+    "core/src/main/java/game/sanguo/core/PcDebateState.java",
+    "docs/handoff/20261004/session1/NEXT.md",
+    "docs/handoff/20261004/session1/PLAN.md",
+    "tools/content/test_pc_debate_port.py"
+  ],
+  "frozenApkInputs": 1024,
+  "frozenApkChanged": [],
+  "ignoredJniInputs": 4,
+  "productionOriginalContestIntegrated": false,
+  "completeGoal": false
+}

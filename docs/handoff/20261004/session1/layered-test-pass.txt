@@ -1,0 +1,10 @@
+test_city_troops_source_perturbation (__main__.LayeredScenarioTest) ... ok
+test_complete_layered_read_and_shared_name (__main__.LayeredScenarioTest) ... ok
+test_force_identity_and_diplomacy_source_perturbations (__main__.LayeredScenarioTest) ... ok
+test_inactive_force_does_not_claim_zero_truth (__main__.LayeredScenarioTest) ... ok
+test_platform_import_guards_and_mutation_refusal (__main__.LayeredScenarioTest) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 157.544s
+
+OK

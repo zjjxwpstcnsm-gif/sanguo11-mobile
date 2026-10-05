@@ -1,0 +1,26 @@
+{
+  "sourceGlyphProofSha256": "e04ea5467127a7e02c9af920cbee5d9aefc457cf9acbbd1d00a4c4a19abbedd0",
+  "binarySha256": "ac6713d8296ffc7348383d633dea9949e03c7db5b87e5a3b84c5a419f4579632",
+  "sourceRows": 64,
+  "canonicalOfficerIds": [
+    10184,
+    10229,
+    10249,
+    10616
+  ],
+  "stableOfficerIds": [
+    156234,
+    598828,
+    844857,
+    850922
+  ],
+  "actualGlyphReading": {
+    "FA40": "U+4F37",
+    "FA41": "U+749D",
+    "FA45": "U+5101"
+  },
+  "sourceNamesPreserved": true,
+  "oldSavesBackfilled": false,
+  "scope": "name identity only; total field/appearance/scenario-start acceptance incomplete",
+  "completeGoal": false
+}

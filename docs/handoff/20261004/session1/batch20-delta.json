@@ -1,0 +1,98 @@
+{
+  "allInheritedPathsPreserved": true,
+  "base": "73ebdb182bccb2120e99e24ecaeedcfd1607bfeb",
+  "files": [
+    {
+      "bytes": 2026,
+      "path": "core/src/test/java/game/sanguo/core/PcDebateSettlementTest.java",
+      "sha256": "8a0e1537f910cd34895ab4211e85cab9ab84a9a5044acdeea5f1459fa07d425d"
+    },
+    {
+      "bytes": 11115,
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "a30c58da70bb93973593ace08081fc7e75fede7b314c0868542944787159c55b"
+    },
+    {
+      "bytes": 24794,
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "591d9ad43b8bf0cf49cef800ace5f0fb18a71b2789a71952ef8ea08fdc2d64a1"
+    },
+    {
+      "bytes": 2169,
+      "path": "tools/content/build_pc_debate_settlement_fixtures.py",
+      "sha256": "3b9d01b06f612423f13fcda0ef777cbd2b628ad89b0febbea219a5a03d882860"
+    },
+    {
+      "bytes": 49912,
+      "path": "core/src/test/resources/pc-debate/settlement-guidance-original.tsv",
+      "sha256": "33f799c29bb2cb78218a484bf9a32d4bc21aa78c884c008c2c2fca3ccf06cc9d"
+    },
+    {
+      "bytes": 1189,
+      "path": "core/src/test/resources/pc-debate/settlement-guidance-provenance.json",
+      "sha256": "65f58275da7e98dae3d7b4ccd3fb5307d013ae8731dd3fec85ef5636417e5863"
+    },
+    {
+      "bytes": 3266,
+      "path": "docs/handoff/20261004/session1/BATCH_20.md",
+      "sha256": "209fbaaa6736e45acbaaa420634b6afc3ad0b527de0ccfd7249caaa218e6ec67"
+    },
+    {
+      "bytes": 635,
+      "path": "docs/handoff/20261004/session1/batch20-before.json",
+      "sha256": "3bdaa3382d10019bd23a5a6cb153b41eb0c0f12275a9e962a99051384e4808b5"
+    },
+    {
+      "bytes": 2246,
+      "path": "docs/handoff/20261004/session1/batch20-recruitment-bounded.txt",
+      "sha256": "c93ea192c0812b382b593c9290a35cf59c62ff58d18437d1928c43073d3bd2de"
+    },
+    {
+      "bytes": 956,
+      "path": "docs/handoff/20261004/session1/batch20-recruitment-native.txt",
+      "sha256": "e20d5111510294613448757fc7f9c46be6b2656ca51b9f3e4e6dc5686e874049"
+    },
+    {
+      "bytes": 21256,
+      "path": "docs/handoff/20261004/session1/batch20-recruitment-summary.json",
+      "sha256": "de9699b391870663569cc5a1d285fbd50e4cb412e7cdb5d2406a47c43f2f7303"
+    },
+    {
+      "bytes": 379,
+      "path": "docs/handoff/20261004/session1/batch20-settlement-tests.txt",
+      "sha256": "69b5c3f2dba45b8928fa34666527473da15f6df172783fe329117c03d827e8b7"
+    },
+    {
+      "bytes": 1308,
+      "path": "docs/handoff/20261004/session1/batch20-source-manifest.json",
+      "sha256": "9c7bad1a3776190b902f176ad74b889db06cb89cb763d3fb5781713bf6768790"
+    },
+    {
+      "bytes": 30030,
+      "path": "docs/handoff/20261004/session1/debate-guidance-native.json.gz",
+      "sha256": "bc9ef980da60b9852d0b35f1b579361f45fa5468966c61a52298770214afa384"
+    },
+    {
+      "bytes": 16776,
+      "path": "docs/handoff/20261004/session1/debate-recruitment-bounded.json.gz",
+      "sha256": "ac6c6f941d9d0f0a866ef15e5dfbcea5c2afecb247e510d7efa035d1d2f93580"
+    },
+    {
+      "bytes": 17211,
+      "path": "docs/handoff/20261004/session1/debate-recruitment-native.json.gz",
+      "sha256": "a22fcea7894523e53b58cdefb64fcbc9d6eb94b1595a64ba0b084062d73851ee"
+    },
+    {
+      "bytes": 6342,
+      "path": "tools/content/inspect_pc_debate_guidance.py",
+      "sha256": "4276d3445c63d8f341b67a69b2d00adfe57569ddf41091b1d55d4182fd3e1e9f"
+    },
+    {
+      "bytes": 5433,
+      "path": "tools/content/inspect_pc_debate_recruitment.py",
+      "sha256": "d26704223b32de1d1e14e003de6f3f3d3e2e02230b64e7372cdf2e2ef383e4c8"
+    }
+  ],
+  "inheritedFiles": 4753,
+  "mediaChanged": false
+}

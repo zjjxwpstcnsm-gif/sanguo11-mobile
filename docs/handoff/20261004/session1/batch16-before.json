@@ -1,0 +1,29 @@
+{
+  "commit": "cf9b1ef6f754f168fd29414cbb1a0c7dcffd5117",
+  "files": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "sha256": "ccc84ad19ce054c2b8ca2b0985597382b66e63da3b771e2f188a35ef9ce3cd7f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModel.java",
+      "sha256": "143bc88aa1ce104ab98b09cb49c859532a887ce21fe8b93f83e7d5a2a9ef7e51"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModelSave.java",
+      "sha256": "a106e504de134bcaccdeb62fdb0ee52f18e88be51943373e3b4ce00a13518a51"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "sha256": "bb0042986e3a2040096d978436f3128919524910bbcaa4ff3b868908234f22ba"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "c13b2f02e90381aa5bdac42a5ba394256410ca0c8d49a64247ece0ac2829c021"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "d7344ec0d5e8c3d0a2be7fad2cc69edf85237a0a28aa1ca8428bb5f0d344c5cd"
+    }
+  ]
+}

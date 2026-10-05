@@ -1,0 +1,44 @@
+PC SOURCE OPENING PASS health 42 checks
+PASS actual ART complete policy restore
+PASS actual saved fifth-turn original injury
+PASS normal officer search accepts authoritative saved name
+PASS actual injured officer row
+PASS actual searched injured officer row visible
+PASS normal detail uses original recovery calendar
+PASS normal detail uses refreshed injured current ability
+PASS health detail leaves all World/RNG bytes unchanged
+PASS normal save persists all health/source/dual RNG
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 6
+PASS original month/native-ID recovery · 6
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 7
+PASS original month/native-ID recovery · 7
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 8
+PASS original month/native-ID recovery · 8
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 9
+PASS original month/native-ID recovery · 9
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 10
+PASS original month/native-ID recovery · 10
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 11
+PASS original month/native-ID recovery · 11
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 12
+PASS original month/native-ID recovery · 12
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 13
+PASS original month/native-ID recovery · 13
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 14
+PASS original month/native-ID recovery · 14
+PASS independent complete campaign control
+PASS real normal turn full World and both RNGs · 15
+PASS original month/native-ID recovery · 15
+PASS fully recovered by original month6
+PASS normal read restores full health/source/World/RNG
+PASS normal load rolls health back exactly
+

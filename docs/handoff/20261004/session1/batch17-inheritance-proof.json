@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "sourceManifestSha256": "d360492be888ef1a53fd0d2c87ccc183a92dcd035a8474baf1f61e142729badf",
+  "files": 4685,
+  "bytes": 412828996,
+  "ignoredJni": 4,
+  "completeInheritedPaths": true,
+  "sourcePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/checkpoint-batch16/source",
+  "verificationSourcePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/integration17/source",
+  "frozenProductionInputsModified": false,
+  "completeGoal": false
+}

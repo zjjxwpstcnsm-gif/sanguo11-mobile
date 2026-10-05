@@ -1,0 +1,320 @@
+--- a/core/src/main/java/game/sanguo/core/Contests.java
++++ b/core/src/main/java/game/sanguo/core/Contests.java
+@@ -21,11 +21,12 @@
+     public static final class Session {
+         final int id,owner,turn,leftRef,rightRef,city;
+         int revision;
+-        Duel duel;Debate debate;
++        Duel duel;Debate debate;PcDebateCampaign nativeDebate;
+         Campaign.TreatyKind treaty;int foreign=-1,duration;
+         Session(int id,int owner,int turn,int left,int right,int city){this.id=id;this.owner=owner;this.turn=turn;leftRef=left;rightRef=right;this.city=city;}
+         public int id(){return id;} public int revision(){return revision;}
+         public Duel duel(){return duel;} public Debate debate(){return debate;}
++        public PcDebateCampaign.Facts nativeDebate(){return nativeDebate==null?null:nativeDebate.facts();}
+         public boolean isDuel(){return duel!=null;}
+         public boolean diplomatic(){return treaty!=null;}
+         public String purpose(){return treaty==null?"登用":"外交 · "+treaty.label+" "+duration+"旬";}
+@@ -136,8 +137,10 @@
+     }
+     public World.Result persuade(int city,int actor,int target){w.reports.prepare();
+         String error=debateError(city,actor,target);if(error!=null)return w.fail(error);
++        if(PcNativeDebatePolicy.enabled(w)){String nativeError=PcDebateCampaign.inputError(w,actor,target);if(nativeError!=null)return w.fail(nativeError);}
+         w.spend(w.city(city),w.officer(actor),100);w.officer(target).acted=true;
+-        session=new Session(nextId++,w.active,w.turn,actor,target,city);session.debate=new Debate(w,actor,target);
++        session=new Session(nextId++,w.active,w.turn,actor,target,city);
++        if(PcNativeDebatePolicy.enabled(w)){try{session.nativeDebate=new PcDebateCampaign(w,actor,target);}catch(java.io.IOException e){throw new IllegalStateException(e);}}else session.debate=new Debate(w,actor,target);
+         return w.success(w.officer(actor).name+"以舌战说服"+w.officer(target).name+"；金100、行动力10已消耗");
+     }
+     World.Officer foreignSpeaker(int side){
+@@ -166,12 +169,14 @@
+     }
+     public World.Result debateCard(int id,int revision,int index){w.reports.prepare();
+         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
++        if(session.nativeDebate!=null){error=session.nativeDebate.cardError(index);if(error!=null)return w.fail(error);session.nativeDebate.card(w,index);session.revision++;return w.success("Native debate input accepted");}
+         error=session.debate.error(index);if(error!=null)return w.fail(error);
+         session.debate.play(w,index);session.revision++;
+         return w.success(session.debate.report);
+     }
+     public World.Result rethink(int id,int revision){w.reports.prepare();
+         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
++        if(session.nativeDebate!=null)return debateCard(id,revision,0);
+         Debate d=session.debate;if(d.winner!=-2||!d.left.canRethink())return w.fail("目前不能再考，心理台阶下降后恢复一次机会");
+         // Even a calm fury gets only one rethink per exchange. Reset is keyed to rounds, not clicks.
+         if(d.left.fury>0&&d.left.temper==Debate.Temper.CALM&&!d.left.rethink)return w.fail("本合已经再考");
+@@ -179,6 +184,7 @@
+     }
+     public World.Result finishDebate(int id,int revision,boolean mercy){w.reports.prepare();
+         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
++        if(session.nativeDebate!=null){if(session.nativeDebate.waitingMercy()){session.nativeDebate.mercy(w,mercy);session.revision++;return w.success("Original terminal choice recorded; campaign settlement pending verification");}return w.fail("Original campaign settlement not yet verified");}
+         Debate d=session.debate;if(d.winner==-2)return w.fail("请先完成舌战");
+         World.Officer actor=w.officer(session.leftRef),target=w.officer(session.rightRef);
+         String text;
+@@ -205,6 +211,7 @@
+             // A voluntary surrender loses the current combatant; retreat remains a separate 100-spirit move.
+             session.duel.winner=1;session.duel.active(0).hp=0;session.revision++;return finishDuel();
+         }
++        if(session.nativeDebate!=null)return w.fail("Original concession/campaign settlement pending verification");
+         if(session.debate.winner!=-2)return w.fail("舌战已结束，请结算结果");
+         session.debate.winner=1;session.debate.left.hp=0;session.revision++;
+         return finishDebate(session.id,session.revision,false);
+--- a/core/src/main/java/game/sanguo/core/ContestSave.java
++++ b/core/src/main/java/game/sanguo/core/ContestSave.java
+@@ -13,7 +13,8 @@
+         }
+         d.writeInt(c.injuries.size());for(Map.Entry<Integer,Contests.Injury> e:c.injuries.entrySet()){d.writeInt(e.getKey());d.writeByte(e.getValue().severity);d.writeInt(e.getValue().until);}
+         Contests.Session s=c.session;d.writeBoolean(s!=null);if(s==null)return;
+-        d.writeInt(s.id);d.writeInt(s.owner);d.writeInt(s.turn);d.writeInt(s.leftRef);d.writeInt(s.rightRef);d.writeInt(s.city);d.writeInt(s.revision);d.writeBoolean(s.isDuel());
++        d.writeInt(s.id);d.writeInt(s.owner);d.writeInt(s.turn);d.writeInt(s.leftRef);d.writeInt(s.rightRef);d.writeInt(s.city);d.writeInt(s.revision);d.writeByte(s.nativeDebate!=null?2:s.isDuel()?1:0);
++        if(s.nativeDebate!=null){s.nativeDebate.write(d);return;}
+         if(s.isDuel()){
+             Duel duel=s.duel;d.writeInt(duel.round);d.writeInt(duel.winner);d.writeInt(duel.escaped);d.writeInt(duel.leftIndex);d.writeInt(duel.rightIndex);d.writeUTF(duel.report);
+             for(int side=0;side<2;side++){d.writeInt(duel.team(side).size());for(Duel.Fighter f:duel.team(side)){
+@@ -24,7 +25,8 @@
+             for(int side=0;side<2;side++){Debate.Speaker p=b.speaker(side);d.writeInt(p.officer);d.writeByte(p.temper.ordinal());d.writeInt(p.hp);d.writeInt(p.anger);d.writeInt(p.fury);d.writeInt(p.stage);d.writeBoolean(p.rethink);d.writeInt(p.hand.size());for(Debate.Card card:p.hand){d.writeByte(card.topic==null?-1:card.topic.ordinal());d.writeByte(card.size);d.writeByte(card.talk==null?-1:card.talk.ordinal());}}
+         }
+     }
+-    static void read(World w,DataInputStream d)throws IOException{
++    static void read(World w,DataInputStream d)throws IOException{read(w,d,false);}
++    static void read(World w,DataInputStream d,boolean nativeFormat)throws IOException{
+         require(d.readInt()==MARKER,"对局扩展标记错误");Contests c=w.contests;c.nextId=d.readInt();c.lastResult=d.readUTF();
+         int n=range(d.readInt(),0,w.officers.size());for(int i=0;i<n;i++){
+             int id=d.readInt();Contests.Profile p=new Contests.Profile(Debate.Temper.values()[range(d.readUnsignedByte(),0,3)],range(d.readUnsignedByte(),0,31),range(d.readUnsignedByte(),0,63));
+@@ -33,7 +35,8 @@
+         n=range(d.readInt(),0,w.officers.size());for(int i=0;i<n;i++){int id=d.readInt();Contests.Injury injury=new Contests.Injury(d.readUnsignedByte(),d.readInt());require(c.injuries.put(id,injury)==null,"伤病记录重复");}
+         if(!d.readBoolean())return;
+         Contests.Session s=new Contests.Session(d.readInt(),d.readInt(),d.readInt(),d.readInt(),d.readInt(),d.readInt());s.revision=d.readInt();c.session=s;
+-        if(d.readBoolean()){
++        int kind=d.readUnsignedByte();if(kind==2){require(nativeFormat,"Native contest requires explicit new format");s.nativeDebate=PcDebateCampaign.read(d);return;}require(kind==0||kind==1,"Contest engine kind invalid");
++        if(kind==1){
+             Duel duel=new Duel();s.duel=duel;duel.round=d.readInt();duel.winner=d.readInt();duel.escaped=d.readInt();duel.leftIndex=d.readInt();duel.rightIndex=d.readInt();duel.report=d.readUTF();
+             for(int side=0;side<2;side++){n=range(d.readInt(),1,3);for(int i=0;i<n;i++){
+                 Duel.Fighter f=new Duel.Fighter(d.readInt(),d.readInt());f.spirit=d.readInt();f.attackBuff=d.readInt();f.guardBuff=d.readInt();f.invulnerable=d.readInt();f.streak=d.readInt();f.wounds=d.readInt();f.stance=Duel.Stance.values()[range(d.readUnsignedByte(),0,3)];f.joined=d.readBoolean();f.hiddenUsed=d.readBoolean();f.feignUsed=d.readBoolean();duel.team(side).add(f);
+@@ -52,7 +55,8 @@
+         for(Map.Entry<Integer,Contests.Profile> e:c.profiles.entrySet())require(w.officer(e.getKey())!=null&&e.getValue()!=null,"对局配置引用无效");
+         for(Map.Entry<Integer,Contests.Injury> e:c.injuries.entrySet()){require(w.officer(e.getKey())!=null,"伤病武将不存在");range(e.getValue().severity,1,3);require(e.getValue().until>w.turn&&e.getValue().until<=w.turn+3,"伤病恢复时间无效");}
+         Contests.Session s=c.session;if(s==null)return;
+-        range(s.id,1,c.nextId-1);range(s.revision,0,250);require(s.owner==w.player&&s.owner==w.active&&s.turn==w.turn&&!w.gameOver(),"对局势力或时序无效");
++        range(s.id,1,c.nextId-1);range(s.revision,0,s.nativeDebate==null?250:10000);require(s.owner==w.player&&s.owner==w.active&&s.turn==w.turn&&!w.gameOver(),"对局势力或时序无效");
++        if(s.nativeDebate!=null){require(s.duel==null&&s.debate==null&&!s.diplomatic(),"Native engine mixing invalid");s.nativeDebate.validate(w,s);return;}
+         require((s.duel==null)!=(s.debate==null),"对局类型无效");
+         if(s.isDuel()){
+             Duel b=s.duel;range(b.round,0,49);require(b.winner==-2&&b.escaped==-1&&s.city==-1&&s.revision==b.round,"单挑阶段无效");text(b.report,2000,false);
+--- a/core/src/main/java/game/sanguo/core/SaveCodec.java
++++ b/core/src/main/java/game/sanguo/core/SaveCodec.java
+@@ -6,7 +6,7 @@
+ 
+ /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
+ public final class SaveCodec {
+-    private static final int MAGIC=0x53473131, VERSION=38, MAX_BYTES=32*1024*1024;
++    private static final int MAGIC=0x53473131, VERSION=39, MAX_BYTES=32*1024*1024;
+     private SaveCodec() {}
+     /** Shared bounded import path for app-private slots and Android document providers. */
+     public static World read(InputStream input)throws IOException {
+@@ -72,7 +72,7 @@
+         CRC32 crc=new CRC32();crc.update(payload);
+         bytes=new ByteArrayOutputStream();d=new DataOutputStream(bytes);
+         int legacyVersion=w.pcTechniquePoints.enabled()?37:w.pcProduction.enabled()?36:w.merchantMarket.enabled()?35:w.officerAbilities.enabled()?34:33;
+-        d.writeInt(MAGIC);d.writeInt(PcScenarioIdentity.saved(w)==null?legacyVersion:PcScenarioIdentity.SAVE_VERSION);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
++        d.writeInt(MAGIC);d.writeInt(PcNativeDebatePolicy.enabled(w)?39:PcScenarioIdentity.saved(w)==null?legacyVersion:PcScenarioIdentity.SAVE_VERSION);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
+         return bytes.toByteArray();
+     }
+     public static World decode(byte[] data) throws IOException {
+@@ -122,7 +122,7 @@
+         if(version>=6)ArmySave.read(w,d);
+         if(version>=7)RulesSave.read(w,d);
+         if(version>=8)GovernmentSave.read(w,d,version);
+-        if(version>=9)ContestSave.read(w,d);
++        if(version>=9)ContestSave.read(w,d,version>=39);
+         if(version>=10)AbilitySave.read(w,d);else w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
+         if(version>=11)FieldworksSave.read(w,d);else FieldworksSave.migrate(w);
+         if(version>=12)EstatesSave.read(w,d);
+@@ -155,6 +155,7 @@
+         if(version>=36)w.pcProduction.read(d);
+         if(version>=37)w.pcTechniquePoints.read(d);
+         w.extensions.read(d);
++        if((version==39)!=PcNativeDebatePolicy.enabled(w))throw new IOException("Native debate save policy/version mismatch");
+         if(version>=38&&PcScenarioIdentity.saved(w)==null)throw new IOException("存档38仅适用于明确PC来源的新局；来源段缺失");
+         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
+         w.districts.migrateLegacySites();
+@@ -171,7 +172,7 @@
+         w.invalidateSiteIndex();SiteFootprint.validate(w);CustomMapSave.validate(w);
+         w.aiOrders.validate();
+         w.development.validate();w.recruitment.validate();w.envoys.validate();
+-        PcScenarioIdentity.validate(w);
++        PcScenarioIdentity.validate(w);if(PcNativeDebatePolicy.enabled(w))PcNativeDebatePolicy.seed(w);
+         bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,PcScenarioIdentity.saved(w)==null?32:PcScenarioIdentity.MAX_FACTIONS);
+         bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
+         require(w.actionPoints.length==w.factions.length,"势力行动力缺失");
+--- /dev/null
++++ b/core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java
+@@ -0,0 +1,18 @@
++package game.sanguo.core;
++import java.io.*;
++
++/** Explicit opt-in verification policy. No restore-time or catalog backfill. */
++final class PcNativeDebatePolicy {
++    static final String NAMESPACE="pc-native-debate-effects-v1";
++    static final int SAVE_VERSION=39,MAGIC=0x504e4431;
++    static boolean enabled(World w){return w.extensions.get(NAMESPACE)!=null;}
++    static void initializeOpening(World w)throws IOException{
++        if(!w.pcSourceFrame||w.turn!=0||w.commandRevision()!=0||w.contests.busy()||enabled(w)||PcContestProfiles.saved(w).isEmpty())throw new IOException("Only explicit fresh source game may initialize native debate policy");
++        // Explicit deterministic verification seed, not certified original
++        // PC global startup RNG. Persisted separately from existing SplitMix64.
++        setSeed(w,(int)w.strategy.getRandomState());
++    }
++    static void setSeed(World w,int seed){try{ByteArrayOutputStream b=new ByteArrayOutputStream();DataOutputStream d=new DataOutputStream(b);d.writeInt(MAGIC);d.writeInt(seed);w.extensions.put(NAMESPACE,b.toByteArray());}catch(IOException impossible){throw new IllegalStateException(impossible);}}
++    static int seed(World w)throws IOException{byte[] b=w.extensions.get(NAMESPACE);if(b==null||b.length!=8)throw new IOException("Native debate policy missing");DataInputStream d=new DataInputStream(new ByteArrayInputStream(b));if(d.readInt()!=MAGIC||PcScenarioIdentity.saved(w)==null)throw new IOException("Native policy source invalid");return d.readInt();}
++    private PcNativeDebatePolicy(){}
++}
+--- /dev/null
++++ b/core/src/main/java/game/sanguo/core/PcDebateCampaign.java
+@@ -0,0 +1,68 @@
++package game.sanguo.core;
++import java.io.*;
++import java.util.*;
++
++/** Native model inside an actual campaign contest. Prototype is explicit opt-in;
++ * campaign outcome rewards/settlement are intentionally pending native proof. */
++public final class PcDebateCampaign {
++    final int leftOfficer,rightOfficer;
++    final String sourceId,sourceSha,sourceVariant,leftRecordSha,rightRecordSha;
++    final int leftNative,rightNative;
++    PcDebateModel model;
++    int inputs,frames;
++    final List<Recorded> actionEvents=new ArrayList<>();
++    static final class Recorded {final int frame;final PcDebateUiEffects.Event event;Recorded(int frame,PcDebateUiEffects.Event event){this.frame=frame;this.event=event;}}
++    PcDebateCampaign(World w,int actor,int target)throws IOException{
++        String error=inputError(w,actor,target);if(error!=null)throw new IOException(error);
++        PcScenarioIdentity.Source source=PcScenarioIdentity.saved(w);Map<Integer,PcContestProfiles.Fact> facts=PcContestProfiles.saved(w);
++        PcContestProfiles.Fact a=facts.get(actor),b=facts.get(target);leftOfficer=actor;rightOfficer=target;leftNative=a.nativeId;rightNative=b.nativeId;
++        sourceId=source.scenarioId;sourceSha=source.sha;sourceVariant=source.sourceVariant;leftRecordSha=a.recordSha;rightRecordSha=b.recordSha;
++        World.Officer left=w.officer(actor),right=w.officer(target);
++        model=new PcDebateModel(new PcDebateState(left.intelligence,right.intelligence,a.nativePersonality,b.nativePersonality,a.nativeTalkMask,b.nativeTalkMask,PcNativeDebatePolicy.seed(w),left.war,right.war),0);
++        model.state.ui=new PcDebateUiEffects();model.human[0]=true;
++        // Source relationship, effective book ownership and PC caller initiative
++        // are still pending; prototype records those boundaries explicitly.
++        advance(w);
++    }
++    private PcDebateCampaign(int actor,int target,int aNative,int bNative,String source,String sha,String variant,String aSha,String bSha){leftOfficer=actor;rightOfficer=target;leftNative=aNative;rightNative=bNative;sourceId=source;sourceSha=sha;sourceVariant=variant;leftRecordSha=aSha;rightRecordSha=bSha;}
++    static String inputError(World w,int actor,int target){
++        if(!PcNativeDebatePolicy.enabled(w))return "Native policy not enabled";
++        try{Map<Integer,PcContestProfiles.Fact> f=PcContestProfiles.saved(w);if(!f.containsKey(actor)||!f.containsKey(target))return "Original identity not bound";}catch(IOException e){return e.getMessage();}
++        for(int id:new int[]{actor,target}){World.Officer o=w.officer(id);if(o==null||o.intelligence<0||o.intelligence>100||o.war<0||o.war>100)return "Current abilities outside verified native input range";}
++        return null;
++    }
++    boolean waitingCard(){int side=model.sub==0?model.state.leader:model.sub==5?1-model.state.leader:-1;return model.phase==4&&side==0&&model.selected[0]<0;}
++    boolean waitingMercy(){return model.phase==8&&model.sub==0&&model.state.terminalWinner==0;}
++    void advance(World w){
++        actionEvents.clear();int limit=2000;while(!waitingCard()&&!waitingMercy()&&model.phase!=9){if(--limit<0)throw new IllegalStateException("Original protocol did not reach next input");model.frame();frames++;for(PcDebateUiEffects.Event e:model.state.ui.events)actionEvents.add(new Recorded(frames,e));}
++        PcNativeDebatePolicy.setSeed(w,model.state.random.state);
++    }
++    String cardError(int slot){if(!waitingCard())return "Native debate is not waiting for a card";PcDebateState s=model.state;if(slot<0||slot>=s.left.slots||!s.legal(0,s.left.hand[slot]))return "Original card unavailable";return null;}
++    void card(World w,int slot){if(!model.selectHuman(0,slot))throw new IllegalArgumentException("Original input rejected");inputs++;advance(w);}
++    void mercy(World w,boolean mercy){if(!waitingMercy())throw new IllegalStateException("Original terminal choice unavailable");model.terminalChoicePreference=mercy?0:1;model.frame();frames++;inputs++;advance(w);}
++    public static final class Facts {
++        public final int actorId,targetId,actorNativeId,targetNativeId,phase,sub,topic,leader,winner,inputs,frames;
++        public final List<Integer> health,anger,fury,hand;
++        public final boolean waitingCard,waitingMercy;
++        public final String sourceId,sourceSha,sourceVariant;
++        public final List<EventFact> events;
++        Facts(PcDebateCampaign c){PcDebateState s=c.model.state;actorId=c.leftOfficer;targetId=c.rightOfficer;actorNativeId=c.leftNative;targetNativeId=c.rightNative;sourceId=c.sourceId;sourceSha=c.sourceSha;sourceVariant=c.sourceVariant;phase=c.model.phase;sub=c.model.sub;topic=s.topic;leader=s.leader;winner=s.terminalWinner;inputs=c.inputs;frames=c.frames;health=List.of(s.left.health,s.right.health);anger=List.of(s.left.anger,s.right.anger);fury=List.of(s.left.fury,s.right.fury);hand=Arrays.stream(s.left.hand).boxed().toList();waitingCard=c.waitingCard();waitingMercy=c.waitingMercy();events=c.actionEvents.stream().map(EventFact::new).toList();}
++    }
++    public static final class EventFact {
++        public final int frame,nativeFunction,side,card,counter;public final boolean reflected;public final List<List<Integer>> choices;
++        EventFact(Recorded r){PcDebateUiEffects.Event e=r.event;frame=r.frame;nativeFunction=e.nativeFunction;side=e.side;card=e.card;counter=e.counter;reflected=e.reflected;choices=e.choices.stream().map(c->List.of(c.side,c.action)).toList();}
++    }
++    public Facts facts(){return new Facts(this);}
++    void write(DataOutputStream d)throws IOException{d.writeInt(leftOfficer);d.writeInt(rightOfficer);d.writeInt(leftNative);d.writeInt(rightNative);d.writeUTF(sourceId);d.writeUTF(sourceSha);d.writeUTF(sourceVariant);d.writeUTF(leftRecordSha);d.writeUTF(rightRecordSha);d.writeInt(inputs);d.writeInt(frames);byte[] b=PcDebateModelSave.write(model);d.writeInt(b.length);d.write(b);d.writeInt(actionEvents.size());for(Recorded r:actionEvents){PcDebateUiEffects.Event e=r.event;d.writeInt(r.frame);d.writeInt(e.nativeFunction);d.writeInt(e.side);d.writeInt(e.card);d.writeInt(e.counter);d.writeBoolean(e.reflected);d.writeInt(e.choices.size());for(PcDebateUiRandom.Choice choice:e.choices){d.writeInt(choice.side);d.writeInt(choice.action);}}}
++    static PcDebateCampaign read(DataInputStream d)throws IOException{PcDebateCampaign c=new PcDebateCampaign(d.readInt(),d.readInt(),d.readInt(),d.readInt(),d.readUTF(),d.readUTF(),d.readUTF(),d.readUTF(),d.readUTF());c.inputs=d.readInt();c.frames=d.readInt();int n=d.readInt();if(n<64||n>4096)throw new IOException("Native model length invalid");byte[] b=new byte[n];d.readFully(b);c.model=PcDebateModelSave.read(b);n=d.readInt();if(n<0||n>4000)throw new IOException("Native event record count invalid");for(int i=0;i<n;i++){int frame=d.readInt(),function=d.readInt(),side=d.readInt(),card=d.readInt(),counter=d.readInt(),flag=d.readUnsignedByte();if(flag>1)throw new IOException("Native event boolean invalid");boolean reflected=flag==1;int count=d.readInt();if(count<0||count>2)throw new IOException("Native choice count invalid");List<PcDebateUiRandom.Choice> choices=new ArrayList<>();for(int j=0;j<count;j++)choices.add(new PcDebateUiRandom.Choice(d.readInt(),d.readInt()));c.actionEvents.add(new Recorded(frame,new PcDebateUiEffects.Event(function,side,card,reflected,counter,choices)));}return c;}
++    void validate(World w,Contests.Session session)throws IOException{
++        PcScenarioIdentity.Source source=PcScenarioIdentity.saved(w);Map<Integer,PcContestProfiles.Fact> facts=PcContestProfiles.saved(w);PcContestProfiles.Fact a=facts.get(leftOfficer),b=facts.get(rightOfficer);
++        if(source==null||!sourceId.equals(source.scenarioId)||!sourceSha.equals(source.sha)||!sourceVariant.equals(source.sourceVariant)||a==null||b==null||a.nativeId!=leftNative||b.nativeId!=rightNative||!a.recordSha.equals(leftRecordSha)||!b.recordSha.equals(rightRecordSha)||session.leftRef!=leftOfficer||session.rightRef!=rightOfficer)throw new IOException("Native contest source identity differs");
++        if(model.state.ui==null||!model.human[0]||model.human[1]||inputs<0||inputs>10000||inputs!=session.revision||frames<0||frames>100000||model.state.random.state!=PcNativeDebatePolicy.seed(w))throw new IOException("Native contest policy/sequence invalid");
++        if(model.state.left.temper!=a.nativePersonality||model.state.right.temper!=b.nativePersonality||model.state.left.talkMask!=a.nativeTalkMask||model.state.right.talkMask!=b.nativeTalkMask)throw new IOException("Native person attributes rebound");
++        World.Officer left=w.officer(leftOfficer),right=w.officer(rightOfficer);World.City city=w.city(session.city);
++        if(city==null||city.owner!=session.owner||left.owner!=session.owner||left.cityId!=city.id||right.owner==session.owner||left.unitId!=-1||right.unitId!=-1||!left.acted||!right.acted)throw new IOException("Native campaign participants invalid");
++        if(!waitingCard()&&!waitingMercy()&&model.phase!=9)throw new IOException("Native saved model not at a stable input boundary");PcDebateModelSave.write(model);
++        if(actionEvents.size()>4000)throw new IOException("Native action event count invalid");int prior=0;for(Recorded r:actionEvents){PcDebateUiEffects.Event e=r.event;if(r.frame<prior||r.frame>frames||e.side<0||e.side>1||e.card<-1||e.card>14||(e.counter!=-1&&e.counter!=13&&e.counter!=14)||e.choices.size()>2||!Set.of(0x5184a0,0x519150,0x5193f0,0x5195c0,0x5198d0,0x5199e0,0x519b90,0x519e00,0x519fd0,0x51a4a0,0x51a730,0x51a870,0x51aa70).contains(e.nativeFunction))throw new IOException("Native action event invalid");for(PcDebateUiRandom.Choice choice:e.choices)if(choice.side<0||choice.side>1||choice.action<4||choice.action>10)throw new IOException("Native action choice invalid");prior=r.frame;}
++    }
++}
+--- /dev/null
++++ b/game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignTest.java
+@@ -0,0 +1,42 @@
++package game.sanguo.core;
++import java.util.*;
++import game.sanguo.api.*;
++import game.sanguo.runtime.*;
++
++/** Actual authority transactions and complete World/dual-RNG saves. */
++public final class PcDebateCampaignTest {
++    private static void require(boolean value,String message){if(!value)throw new AssertionError(message);}
++    public static void main(String[]args)throws Exception{
++        String source=PcScenarioCatalog.all().get(0).identity.scenarioId;World preview=PcScenarioCatalog.preview(source);int actor=10116,target=10222;
++        World w=PcScenarioCatalog.load(source,preview.officer(actor).owner,23);
++        int city=w.officer(actor).cityId;
++        System.out.println("Source actor/target "+w.officer(actor).name+"/"+w.officer(target).name+" city="+city+" targetCity="+w.officer(target).cityId+" owner="+w.officer(actor).owner+"/"+w.officer(target).owner);
++        byte[] old=SaveCodec.encode(w);require(old[7]==38,"old source header");World oldRestored=SaveCodec.decode(old);require(!PcNativeDebatePolicy.enabled(oldRestored)&&Arrays.equals(old,SaveCodec.encode(oldRestored)),"old source strategy not backfilled");
++        PcNativeDebatePolicy.initializeOpening(w);byte[] enabled=SaveCodec.encode(w);require(enabled[7]==39&&Arrays.equals(enabled,SaveCodec.encode(SaveCodec.decode(enabled))),"explicit new policy full-save round trip");
++        World control=SaveCodec.decode(enabled);require(control.contests.persuade(city,actor,target).ok,"actual direct trigger");
++        int inputs=0;
++        try(GameSession game=new GameSession(w)){
++            LegacyView start=game.legacyView();require(game.legacy(start.draft,()->start.draft.contests.persuade(city,actor,target)).ok,"actual authority trigger");
++            require(Arrays.equals(SaveCodec.encode(control),game.captureSave()),"start full World/RNG direct equality");
++            for(int step=0;step<100;step++){
++                byte[] before=game.captureSave();LegacyView view=game.legacyView();Contests.Session session=view.draft.contests.current();PcDebateCampaign.Facts facts=session.nativeDebate();
++                require(facts!=null&&Arrays.equals(before,game.captureSave()),"facts preserve complete World/RNG");
++                try{facts.hand.set(0,14);throw new AssertionError("mutable facts");}catch(UnsupportedOperationException expected){}
++                if(!facts.waitingCard)break;
++                int slot=-1;for(int i=1;i<facts.hand.size();i++)if(session.nativeDebate.cardError(i)==null){slot=i;break;}
++                if(slot<0)slot=0;
++                StateToken token=game.state();ContestCommand command=ContestCommand.card(token,session.id(),session.revision(),slot);
++                World.Result direct=control.contests.debateCard(session.id(),session.revision(),slot);require(direct.ok,"direct original input");
++                require(game.execute(command).ok(),"actual session original input");byte[] after=game.captureSave();require(Arrays.equals(after,SaveCodec.encode(control)),"complete authority/control World and both RNGs match");
++                require(!game.execute(command).ok()&&Arrays.equals(after,game.captureSave()),"duplicate/stale input preserves full save");
++                try(GameSession cold=new GameSession(SaveCodec.decode(after))){require(Arrays.equals(after,cold.captureSave()),"actual GameSession cold restore preserves full native model");}
++                World restored=SaveCodec.decode(after);require(restored.contests.current().nativeDebate()!=null,"normal contest model restored");inputs++;
++            }
++            require(inputs>2,"multiple actual player operations");LegacyView terminal=game.legacyView();require(!terminal.draft.contests.current().nativeDebate().waitingCard,"reached original stable terminal input");
++            byte[] before=game.captureSave();Contests.Session current=terminal.draft.contests.current();
++            if(current.nativeDebate().waitingMercy){require(game.execute(ContestCommand.finishDebate(game.state(),current.id(),current.revision(),true)).ok(),"actual original terminal choice");before=game.captureSave();current=game.legacyView().draft.contests.current();}
++            require(!game.execute(ContestCommand.finishDebate(game.state(),current.id(),current.revision(),true)).ok()&&Arrays.equals(before,game.captureSave()),"unverified original campaign settlement is not substituted");
++        }
++        System.out.println("PASS PcDebateCampaignTest actual source authority trigger, "+inputs+" typed player inputs/full World dual-RNG matches/stale rejects/cold Session restores; original settlement, effective books and installed APK pending");
++    }
++}
+--- /dev/null
++++ b/game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignColdTest.java
+@@ -0,0 +1,33 @@
++package game.sanguo.core;
++import java.nio.file.*;
++import java.util.*;
++import game.sanguo.api.*;
++import game.sanguo.runtime.*;
++
++/** Complete World files emitted and continued by separate actual JVMs. */
++public final class PcDebateCampaignColdTest {
++    static void progress(GameSession game){
++        LegacyView view=game.legacyView();Contests.Session s=view.draft.contests.current();PcDebateCampaign.Facts f=s.nativeDebate();if(!f.waitingCard)throw new AssertionError("Input boundary not reached");
++        int slot=0;for(int i=1;i<f.hand.size();i++)if(s.nativeDebate.cardError(i)==null){slot=i;break;}
++        if(!game.execute(ContestCommand.card(game.state(),s.id(),s.revision(),slot)).ok())throw new AssertionError("Actual command rejected");
++    }
++    public static void main(String[]args)throws Exception{
++        Path folder=Path.of(args[1]);
++        if(args[0].equals("emit")){
++            if(Files.exists(folder))throw new IllegalArgumentException("Preserve existing files");Files.createDirectories(folder);String id=PcScenarioCatalog.all().get(0).identity.scenarioId;
++            World p=PcScenarioCatalog.preview(id),w=PcScenarioCatalog.load(id,p.officer(10116).owner,23);PcNativeDebatePolicy.initializeOpening(w);
++            try(GameSession game=new GameSession(w)){
++                LegacyView view=game.legacyView();if(!game.legacy(view.draft,()->view.draft.contests.persuade(view.draft.officer(10116).cityId,10116,10222)).ok)throw new AssertionError("Actual trigger rejected");
++                for(int i=0;i<4;i++)progress(game);Files.write(folder.resolve("mid.sg11"),game.captureSave());
++                for(int i=0;i<5;i++)progress(game);Files.write(folder.resolve("control.sg11"),game.captureSave());
++            }
++            System.out.println("EMIT actual source World39 mid-debate file after four commands and full live-control file after five more; exit this JVM");
++        }else if(args[0].equals("continue")){
++            byte[] mid=Files.readAllBytes(folder.resolve("mid.sg11"));try(GameSession cold=new GameSession(SaveCodec.decode(mid))){
++                if(!Arrays.equals(mid,cold.captureSave()))throw new AssertionError("Cold World/RNG decode changed bytes");
++                for(int i=0;i<5;i++)progress(cold);if(!Arrays.equals(Files.readAllBytes(folder.resolve("control.sg11")),cold.captureSave()))throw new AssertionError("Cold actual source commands differ from live control");
++            }
++            System.out.println("PASS PcDebateCampaignColdTest independent JVM actual source World39/typed contest/full dual-RNG/events/identity byte-exact continuation; installed Android and original settlement pending");
++        }else throw new IllegalArgumentException("Unknown mode");
++    }
++}

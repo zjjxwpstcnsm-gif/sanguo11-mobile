@@ -1,0 +1,1 @@
+EMIT actual source World39 mid-debate file after four commands and full live-control file after five more; exit this JVM

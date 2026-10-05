@@ -22,7 +22,7 @@ public final class BattleReports {
         Entry(long id,int turn,int actor,long related,Kind kind,String title,String detail,Hex location){
             this.id=id;this.turn=turn;this.actor=actor;this.related=related;this.kind=kind;this.title=title;this.detail=detail;this.location=location;
         }
-        public boolean involves(int side){return side>=0&&side<32&&(related&(1L<<side))!=0;}
+        public boolean involves(int side){return side>=0&&side<PcScenarioIdentity.MAX_FACTIONS&&(related&(1L<<side))!=0;}
         public boolean matches(int side,Scope scope){
             switch(scope){case RELATED:return involves(side);case INITIATED:return actor==side;case RECEIVED:return actor!=side&&involves(side);default:return true;}
         }
@@ -60,7 +60,7 @@ public final class BattleReports {
         try{note(result);}finally{actionOwner=context.actor;actionRelated=context.related;actionLocation=context.location;actionKind=context.kind;actionName=context.name;pending.clear();pending.addAll(context.changes);}
     }
     private List<Change> takeChanges(){List<Change> result=new ArrayList<>(pending);pending.clear();result.addAll(changes());return result;}
-    private static long bit(int owner){return owner>=0&&owner<32?1L<<owner:0;}
+    private static long bit(int owner){return owner>=0&&owner<PcScenarioIdentity.MAX_FACTIONS?1L<<owner:0;}
     private int eventTurn(){return fixedTurn>=0?fixedTurn:w.turn;}
     /** Called at command entry, before any mutation. Repeated nested calls are free. */
     public synchronized void prepare(){if(!primed){previous.clear();snapshot(previous);primed=true;}}

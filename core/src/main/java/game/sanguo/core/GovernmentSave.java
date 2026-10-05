@@ -33,16 +33,21 @@ final class GovernmentSave {
     }
     static void validate(World w)throws IOException {
         Government g=w.government;
+        Map<Integer,PcScenarioPeople.Person> sourcePeople=new HashMap<>();for(PcScenarioPeople.Person p:PcScenarioPeople.saved(w))if(p.officerId>=0)sourcePeople.put(p.officerId,p);
+        Map<Integer,Map<Integer,Integer>> sourceForces=PcScenarioPeople.savedForces(w);
         require(g.merits.size()<=w.officers.size()&&g.ranks.size()<=w.officers.size()&&g.prisoners.size()<=w.officers.size(),"军政记录过多");
         for(Map.Entry<Integer,Integer> e:g.merits.entrySet())require(w.officer(e.getKey())!=null&&e.getValue()>0&&e.getValue()<=1000000,"功绩引用或数值无效");
-        Set<String> offices=new HashSet<>();
+        Map<String,Integer> offices=new HashMap<>();
         for(Map.Entry<Integer,String> e:g.ranks.entrySet()){
             World.Officer o=w.officer(e.getKey());Government.Rank r=Government.rank(e.getValue());
             require(o!=null&&o.owner>=0&&o.role!=Strategy.Role.RULER&&!g.captive(o.id)&&r!=null,"官职引用无效");
-            require(g.merit(o.id)>=r.merit&&offices.add(o.owner+":"+r.id),"官职功绩不足或同势力重复");
+            Integer previous=offices.putIfAbsent(o.owner+":"+r.id,o.id);
+            boolean initial=sourceRank(w,sourcePeople.get(o.id),o,r);
+            require(g.merit(o.id)>=r.merit||initial,"官职功绩不足");
+            require(previous==null||initial&&sourceRank(w,sourcePeople.get(previous),w.officer(previous),r),"同势力重复官职，且不是原保存的初始配置");
         }
         for(Map.Entry<Integer,Integer> e:g.advisors.entrySet()){
-            World.Officer o=w.officer(e.getValue());require(e.getKey()>=0&&e.getKey()<w.factions.length&&o!=null&&o.owner==e.getKey()&&o.intelligence>=70&&o.role!=Strategy.Role.RULER&&!g.captive(o.id),"军师引用无效");
+            World.Officer o=w.officer(e.getValue());require(e.getKey()>=0&&e.getKey()<w.factions.length&&o!=null&&o.owner==e.getKey()&&!g.captive(o.id)&&((o.intelligence>=70&&o.role!=Strategy.Role.RULER)||sourceAdvisor(w,sourcePeople.get(o.id),sourceForces.get(e.getKey()),o,e.getKey())),"军师引用无效");
         }
         for(Map.Entry<Integer,Government.Policy> e:g.policies.entrySet())require(w.city(e.getKey())!=null&&w.city(e.getKey()).owner>=0&&e.getValue()!=null&&e.getValue()!=Government.Policy.MANUAL,"委任城池或方针无效");
         for(Government.Prisoner p:g.prisoners.values()){
@@ -53,6 +58,16 @@ final class GovernmentSave {
             require(p.capturedTurn>=0&&p.capturedTurn<=w.turn&&p.lastAttempt>=-1&&p.lastAttempt<=w.turn,"俘虏日期无效");
         }
         for(Domestic.Mission m:w.domestic.missions)require(!m.sea||m.transport||m.returning,"人员调动不能使用运输方式扩展");
+    }
+    private static boolean sourceRank(World w,PcScenarioPeople.Person original,World.Officer officer,Government.Rank rank)throws IOException{
+        if(!w.pcSourceFrame||original==null||officer==null||rank==null)return false;
+        int nativeRank=original.field(21);
+        return nativeRank>=0&&nativeRank<80&&PcOfficerRanks.all().get(nativeRank).projectId.equals(rank.id)
+            &&officer.owner==original.field(75)&&w.government.merit(officer.id)>=original.field(24);
+    }
+    private static boolean sourceAdvisor(World w,PcScenarioPeople.Person original,Map<Integer,Integer> force,World.Officer officer,int side)throws IOException{
+        return w.pcSourceFrame&&original!=null&&force!=null&&Objects.equals(force.get(4),original.nativeId)
+            &&original.field(75)==side&&w.life.present(officer.id);
     }
     private static int count(DataInputStream d,int max)throws IOException {int n=d.readInt();require(n>=0&&n<=max,"军政记录数量无效");return n;}
     private static void require(boolean ok,String reason)throws IOException{if(!ok)throw new IOException(reason);}

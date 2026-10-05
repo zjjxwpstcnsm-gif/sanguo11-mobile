@@ -1,0 +1,17 @@
+{
+  "parentCommit": "0c9c55492f18bfca91f0850f32c9a9dfde3cd595",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "sha256": "8b0cd5d3976648bcc1dd6a8fdf8d588094d17e6ec90b67590bbb78e56339a143"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "sha256": "5ea9e5dd328ff7c93a2a74a54ff3d99e64d8db25b4135670a5fcb37e85cc2431"
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "sha256": "594245a1115860c1ed9376a96d3ea34570bb7d90c7b6ff5592aac5a9301a5044"
+    }
+  ]
+}

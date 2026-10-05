@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Explicit biographical data. Unknown years stay zero; no dates are inferred from names. */
 public final class Lifecycle {
-    public enum State { ACTIVE("已登场"), UNAPPEARED("未登场"), DEAD("已故");
+    public enum State { ACTIVE("已登场"), UNAPPEARED("未登场"), DEAD("已故"), UNDISCOVERED("未发现"), SOURCE_WAIT("未登场");
         public final String label;State(String label){this.label=label;}
     }
     public static final class Life {
@@ -26,6 +26,16 @@ public final class Lifecycle {
     public Life life(int officer){return people.get(officer);}
     public State state(int officer){Life p=life(officer);return p==null?State.ACTIVE:p.state;}
     public boolean present(int officer){return w.officer(officer)!=null&&state(officer)==State.ACTIVE;}
+    /** Original status7 participates in current ability/spouse computation but is not recruitable until searched. */
+    boolean abilityPresent(int officer){return present(officer)||w.pcSourceFrame&&state(officer)==State.UNDISCOVERED;}
+    List<World.Officer> undiscovered(int city){
+        List<World.Officer> result=new ArrayList<>();if(!w.pcSourceFrame)return result;
+        for(Life p:people.values())if(p.state==State.UNDISCOVERED&&p.home==city)result.add(w.officer(p.officer));
+        result.sort(Comparator.comparingInt(o->o.id));return result;
+    }
+    void discover(int officer){Life p=life(officer);if(!w.pcSourceFrame||p==null||p.state!=State.UNDISCOVERED)throw new IllegalStateException("来源人物不是未发现状态");
+        p.state=State.ACTIVE;World.Officer o=w.officer(officer);o.cityId=p.home;o.acted=true;w.officerAbilities.refresh(o);
+    }
     public int age(int officer){Life p=life(officer);return p==null||p.birth==0?-1:Math.max(0,year()-p.birth+1);}
     public boolean enabled(){return naturalDeaths;}
     public boolean pending(){return pendingRuler>=0;}
@@ -34,15 +44,15 @@ public final class Lifecycle {
     public List<String> history(){return Collections.unmodifiableList(history);}
     private void record(String text){String entry=w.date()+" · "+text;history.add(entry);while(history.size()>200)history.remove(0);w.note(text);}
     public String describe(int officer){Life p=life(officer);if(p==null)return "生卒与登场资料未配置";
-        return p.state.label+" · "+(age(officer)<0?"年龄未知":age(officer)+"岁")+"\n出生年："+(p.birth==0?"未知":p.birth)+" · 登场年："+(p.appearance==0?"未配置":p.appearance)+"\n预计没年："+(p.expectedDeath==0?"未知":p.expectedDeath)+(p.state==State.DEAD?"\n已在第"+p.diedTurn+"旬去世":"");}
+        return p.state.label+" · "+(age(officer)<0?"年龄未知":age(officer)+"岁")+"\n出生年："+(p.birth==0?"未知":p.birth)+" · 登场年："+(p.appearance==0?"未配置":p.appearance)+"\n预计没年："+(p.expectedDeath==0?"未知":p.expectedDeath)+(p.state==State.DEAD?(p.diedTurn<0?"\n来源开局已故":"\n已在第"+p.diedTurn+"旬去世"):p.state==State.SOURCE_WAIT?"\n原登场条件未闭合，保留原状态；不按年份猜测激活":"");}
     /** Setup/editor entry, with all validation before mutation. Cannot resurrect or retire active assignments. */
     public void configure(int officer,int birth,int appearance,int death,int home,State state){
         World.Officer o=w.officer(officer);Life old=life(officer);
-        if(o==null||state==null||state==State.DEAD||old!=null&&old.state==State.DEAD)throw new IllegalArgumentException("不能编辑已故武将或通过生卒表处死武将");
+        if(o==null||state==null||state==State.DEAD||state==State.UNDISCOVERED||state==State.SOURCE_WAIT||old!=null&&old.state==State.DEAD)throw new IllegalArgumentException("不能编辑已故武将或通过生卒表处死武将");
         if(birth<0||birth>9999||appearance<0||appearance>9999||death<0||death>9999||w.city(home)==null)throw new IllegalArgumentException("年份须为0（未知）或1—9999，登场据点须存在");
         if(birth>0&&(appearance>0&&appearance<birth||death>0&&death<birth)||appearance>0&&death>0&&death<appearance)throw new IllegalArgumentException("出生、登场、预计没年的顺序无效");
         if(state==State.UNAPPEARED&&(appearance<=year()||o.owner>=0||o.unitId>=0||w.domestic.busy(officer)||w.strategy.busy(officer)||!w.treasures.held(officer).isEmpty()))throw new IllegalArgumentException("未登场人物须无所属、编队、任务或宝物，且登场年晚于当前年");
-        if(state==State.ACTIVE&&old!=null&&old.state==State.UNAPPEARED)throw new IllegalArgumentException("未登场人物由年初登场结算，不能提前激活");
+        if(state==State.ACTIVE&&old!=null&&(old.state==State.UNAPPEARED||old.state==State.UNDISCOVERED||old.state==State.SOURCE_WAIT))throw new IllegalArgumentException("未登场人物由年初登场结算，不能提前激活");
         if(state==State.ACTIVE&&appearance>year())throw new IllegalArgumentException("已登场人物的登场年不能在未来");
         people.put(officer,new Life(officer,birth,appearance,death,home,state));w.officerAbilities.refresh();
         if(state==State.UNAPPEARED){o.cityId=-1;o.role=Strategy.Role.UNAFFILIATED;o.loyalty=0;o.acted=true;}
@@ -139,18 +149,19 @@ public final class Lifecycle {
     }
     void read(DataInputStream d)throws IOException{
         if(d.readInt()!=0x4c494631)throw new IOException("生卒存档段错误");naturalDeaths=d.readBoolean();randomState=d.readLong();pendingRuler=d.readInt();pendingOwner=d.readInt();int n=bound(d.readInt(),0,w.officers.size());
-        for(int i=0;i<n;i++){int id=d.readInt();Life p=new Life(id,d.readInt(),d.readInt(),d.readInt(),d.readInt(),State.values()[bound(d.readUnsignedByte(),0,2)]);p.diedTurn=d.readInt();if(people.put(id,p)!=null)throw new IOException("重复生卒人物");}
+        for(int i=0;i<n;i++){int id=d.readInt();Life p=new Life(id,d.readInt(),d.readInt(),d.readInt(),d.readInt(),State.values()[bound(d.readUnsignedByte(),0,w.pcSourceFrame?State.values().length-1:2)]);p.diedTurn=d.readInt();if(people.put(id,p)!=null)throw new IOException("重复生卒人物");}
         n=bound(d.readInt(),0,200);for(int i=0;i<n;i++)history.add(d.readUTF());
     }
     void validate()throws IOException{
         bound(people.size(),0,w.officers.size());
         for(Life p:people.values()){
-            World.Officer o=w.officer(p.officer);require(o!=null&&p.state!=null&&w.city(p.home)!=null,"生卒人物/据点缺失");
+            World.Officer o=w.officer(p.officer);require(o!=null&&p.state!=null&&(w.city(p.home)!=null||w.pcSourceFrame&&p.home==-1&&p.state!=State.ACTIVE&&p.state!=State.UNDISCOVERED),"生卒人物/据点缺失");
             bound(p.birth,0,9999);bound(p.appearance,0,9999);bound(p.expectedDeath,0,9999);bound(p.diedTurn,-1,w.turn);
             require(p.birth==0||(p.appearance==0||p.appearance>=p.birth)&&(p.expectedDeath==0||p.expectedDeath>=p.birth),"生卒日期顺序错误");require(p.appearance==0||p.expectedDeath==0||p.expectedDeath>=p.appearance,"登场晚于预计没年");
-            require((p.state==State.DEAD)==(p.diedTurn>=0),"死亡日期与状态矛盾");
+            require((p.state==State.DEAD)==(p.diedTurn>=0||w.pcSourceFrame&&p.state==State.DEAD),"死亡日期与状态矛盾");
             if(p.state!=State.ACTIVE)require(o.owner==-1&&o.cityId==-1&&o.unitId==-1&&o.role==Strategy.Role.UNAFFILIATED&&o.otherTaskTurns==0&&!w.domestic.busy(o.id)&&!w.government.captive(o.id)&&w.treasures.held(o.id).isEmpty(),"未登场/已故人物仍在参与战局");
             if(p.state==State.UNAPPEARED)require(p.appearance>year(),"逾期未登场人物");
+            if(p.state==State.UNDISCOVERED||p.state==State.SOURCE_WAIT)require(w.pcSourceFrame,"来源登场状态不能追填旧档");
         }
         bound(pendingOwner,-1,w.factions.length-1);require(pendingRuler>=-1&&(pendingOwner<0)==(pendingRuler<0),"继承引用不完整");
         if(pending())require(pendingOwner==w.player&&w.officer(pendingRuler)!=null&&(state(pendingRuler)==State.DEAD||w.officer(pendingRuler).owner!=pendingOwner)&&!successors().isEmpty()&&!w.contests.busy()&&w.officers.stream().noneMatch(o->o.owner==pendingOwner&&o.role==Strategy.Role.RULER),"继承事件无效");

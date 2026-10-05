@@ -1,0 +1,1 @@
+PASS PcDebateSettlementTest 384 full original source settlement XP/merit/injury/47 force outputs; party guidance/recovery/recruitment callback remain separate

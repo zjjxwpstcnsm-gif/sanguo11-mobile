@@ -1,0 +1,8 @@
+{
+  "baselineCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "guardFileSha256": "efe0faa6106d47d962c97c7c5fa4f8729165fda203ccc0228d198592d1f2c5bf",
+  "files": 1000,
+  "mismatches": [],
+  "apkSourceTreeUnchanged": true,
+  "newApkValidationClaim": false
+}

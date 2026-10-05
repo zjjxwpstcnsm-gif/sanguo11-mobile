@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_started_scenario.py", line 215, in <module>
+    inspect(args.installation, args.output, args.source)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_started_scenario.py", line 155, in inspect
+    events = assemble_events(world, platform, read_bodies=event_report is None)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_started_scenario.py", line 106, in assemble_events
+    raise ValueError('Original body reader differs from actual source span')
+ValueError: Original body reader differs from actual source span

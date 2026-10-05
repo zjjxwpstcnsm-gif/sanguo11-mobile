@@ -1,0 +1,31 @@
+# Batch17：实际来源会话和World39保存验证副本
+
+完整目标仍active，前提交08035edaa07437c3a7bc94122da824bc5a31bf8e。5554执行Batch09原新局冷续行，1024冻结APK输入不改。以完整checkpoint16的4685文件/412828996字节（manifest SHA d360492be888ef1a53fd0d2c87ccc183a92dcd035a8474baf1f61e142729badf）建立验证副本out/session1/integration17/source；所有继承资源/168固定输入和4 JNI逐SHA全等。
+
+## 可复现代码而非数据演示
+
+本批batch17-integration.patch包含7个确切源码路径及前/后SHA，实际代码已独立编译运行；生产工作区的冻结文件尚未应用。新增PcNativeDebatePolicy、PcDebateCampaign、两个实际runtime测试；修改Contests/ContestSave/SaveCodec只引入独立原模型会话和显式保存类型，旧工程Debate不改、未构造假legacy proxy。
+
+prepare_pc_debate_integration.py复制完整SHA校验的checkpoint；export_pc_debate_verification.py只导出这7个所有权文件，检查所有其余继承文件不变；apply_pc_debate_verification_patch.py仅允许session1验证副本，不允许直接覆盖生产。新的完整副本再次应用最终patch，7个后镜像逐字节全等。最终源码的确切变化及SHA见batch17-prototype-manifest.json。
+
+Contests真正的persuade入口创建原模型，既有GameSession ContestCommand路径仍执行token/ID/revision校验、完整隔离副本/成功安装。输入推动真实原帧到下一玩家选牌/原终局选择边界；熟虑作为原槽0。事实包含项目ID/nativeId/sourceVariant/记录SHA、完整原手牌/心理/怒气/憤激和阶段；不可变列表拒绝客户端修改。每次推进累积所有原回调及随机选择供媒体只读消费，保存后不会要求媒体重抽随机。
+
+## 保存和明确策略
+
+新增World39仅由显式验证新局初始化启用，已有31–38/34–37保存不添加namespace、不改变engine类型、不从目录补真值。原v9会话结构在旧类型0/1仍字节相同，类型2只允许39。完整原模型、严格来源/武将指纹、玩家标志、时序、原RNG状态、累计抽取、输入次数及逐次操作记录随World保存；加载校验来源和原模型，不重新初始化/发牌。
+
+验证原RNG明确以现有新局种子的低32位建立独立持久化策略，不声称原PC完整开局的全局RNG已经闭合；原SplitMix64保持原策略。双方原关系、有效书籍话术、实际PC先手/完整人控GUI与51dd10战役结算仍未核实，所以该prototype不默认启用来源新局，不以旧奖励/登用代码冒充原结算。原终局选择已可通过正常finishDebate命令记录，实际战役结算明确拒绝且完整保存不变。
+
+## 实际流程与证据
+
+真实来源0/原孫堅势力的韓當10116→本城笮融10222，正常persuade触发后完成15次typed玩家出牌。每次用独立直接控制与实际GameSession事务比较完整World/两套RNG，重复token/旧revision拒绝保持完整保存，中途加载新GameSession保持全部保存字节。最后到原稳定终局，未证实的战役结算拒绝保持原状态。没有用固定算术数值代替实际操作。
+
+另第一JVM实际触发、执行4次输入并写mid.sg11；活控制继续5次输入写control.sg11并退出。第二JVM读取完整World39存档、继续5次同一正常命令，最终与原活控制完整字节一致；包括原模型/两套RNG/来源身份/操作事件，不只模型小blob。记录及文件SHA见batch17-cold-*和batch17-world-cold-files.json。这是完整世界/真实会话的独立进程证据，尚非Android实际安装。
+
+原GameSessionTest1690检查通过，检查时共同旧路径和旧保存入口与最终prototype相同；最后只增加native会话的sourceVariant持久化和记录校验，原legacy共同路径未再修改。首次编译接口拼写/LegacyView归属错误留在out，最终实际编译和流程通过；未降低任何原断言。
+
+## 仍需完成
+
+立即继续game-api统一ContestSnapshot/GameSession纯查询和app正常对局页面，然后闭合有效宝物、人物关系/当前能力超过100、实际先手/原人控终局和原结算。冻结设备程序完成且原数据最终读回后，按SHA守卫应用完整7路径增量和后续API/UI，不覆盖媒体WIP；独立构建/安装新的APK、实际菜单触发/多次出牌/保存/退出续战/结算和全World/RNG核对。已有APK的成功不能算本World39引擎已安装。
+
+5554原批次仍运行，最终还须全部原数据读回恢复和释放独占锁；另一serial/媒体不动。单挑完整原状态机、完整剧本事件/有效加载身份以及其他人物字段仍在全目标内，不宣布完成，不更新共享台账。

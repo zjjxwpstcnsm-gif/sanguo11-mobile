@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.*;
 import game.sanguo.core.*;
 import game.sanguo.api.ContestCommand;
+import game.sanguo.api.ContestSnapshot;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -30,7 +31,9 @@ final class ContestUi {
         Contests.Session s=w.contests.current();ScrollView scroll=new ScrollView(a);scroll.setFillViewport(true);
         LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(10),dp(6),dp(10),dp(12));scroll.addView(panel);
         if(s==null)return scroll;
-        if(s.isDuel())duel(panel,s);else debate(panel,s);
+        ContestSnapshot facts=a.contestSnapshot();
+        if(facts.nativeRules&&facts.contestId==s.id()&&facts.revision==s.revision())nativeDebate(panel,facts);
+        else if(s.isDuel())duel(panel,s);else if(s.debate()!=null)debate(panel,s);
         label(panel,"每次操作后自动保存。可到菜单手动保存、导出，或读取另一局。",11,paper);
         return scroll;
     }
@@ -57,6 +60,24 @@ final class ContestUi {
         }
         button(panel,"认输并结束单挑",true,()->confirm("认输","当前上阵武将直接判负，按败北处置；这不是退却。",()->a.executeContest(w,state->ContestCommand.concede(state,id,revision))));
         button(panel,"单挑规则",true,()->info("单挑规则","重视攻击：伤害提高，防御与蓄气较弱。\n重视防御：降低伤害，可格挡和完全防御。\n重视斗志：更快蓄气，可额外获得100斗志。\n重视一击：偶尔重击。\n急所使对手负伤，无双清除强化；暗器与伪退需携物且每场一次，伪退需15合。\n支援者到场后可换将，体力与斗志分别保留。"));
+    }
+    private void nativeDebate(LinearLayout panel,ContestSnapshot facts){
+        label(panel,"舌战 · 第"+facts.round+"合",20,gold);label(panel,facts.purpose,14,gold);
+        for(int side=0;side<facts.speakers.size();side++){
+            ContestSnapshot.Speaker p=facts.speakers.get(side);
+            label(panel,(side==0?"我方 ":"对方 ")+p.name+" · "+p.personality,15,paper);
+            label(panel,"智力 "+p.intelligence+"    武力 "+p.war+"\n心理 "+p.health+" / "+p.maxHealth+"    怒气 "+p.anger+" / 100"+(p.fury>0?"\n憤激剩余 "+p.fury+"合":""),13,paper);
+        }
+        label(panel,"当前话题："+facts.topic+" · "+(facts.leader==0?"我方先手":"对方先手"),14,gold);label(panel,facts.status,13,paper);
+        if(facts.waitingCard)for(ContestSnapshot.Card card:facts.cards){
+            button(panel,(card.nativeCard==0?"再考 · ":"出牌 · ")+card.label,card.enabled(),()->a.executeContest(w,ignored->ContestCommand.card(facts.state,facts.contestId,facts.revision,card.slot)));
+            if(!card.error.isEmpty())label(panel,card.error,11,paper);
+        }
+        if(facts.waitingMercy){
+            button(panel,"选择智力经验奖励",true,()->a.executeContest(w,ignored->ContestCommand.finishDebate(facts.state,facts.contestId,facts.revision,true)));
+            button(panel,"选择势力技巧奖励",true,()->a.executeContest(w,ignored->ContestCommand.finishDebate(facts.state,facts.contestId,facts.revision,false)));
+        }
+        if(facts.phase==9)label(panel,facts.winner==0?"舌战获胜 · 结算待核实":"舌战落败 · 结算待核实",17,gold);
     }
     private void debate(LinearLayout panel,Contests.Session s){
         Debate d=s.debate();final int id=s.id(),revision=s.revision();

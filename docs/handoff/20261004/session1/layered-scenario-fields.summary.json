@@ -1,0 +1,89 @@
+{
+  "counts": {
+    "city_active": 672,
+    "city_actors": 672,
+    "district_active": 365,
+    "district_actors": 752,
+    "force_active": 324,
+    "force_actors": 752,
+    "getter_execution_unknown": 0,
+    "getter_gate_rejected": 74672,
+    "getter_values": 79184
+  },
+  "decodedSha256": "13bb4d7ab5aa752d98ee3ff67f355a15f7cfb5231d6a79c2cf1b9940130b9647",
+  "limits": [
+    "Every value is an original getter at the layered read boundary, not startup truth",
+    "Serialized-address reads alone do not prove value provenance: validity/reference gates remain explicit",
+    "Computed capacity, income, troops, action flags and zero XP cannot be silently imported",
+    "Native reference IDs are not Android entity IDs; source differences stay separate",
+    "PC install read only; no Wine; no gameplay or old save changed"
+  ],
+  "packedSha256": "8e4072609db83a2830f2480a6e8487370c2e06d64fd70ba05c94ac11bfeb2622",
+  "schema": 1,
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c"
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae"
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c"
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e"
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae"
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01"
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88"
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709"
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba"
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a"
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba"
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4"
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772"
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f"
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b"
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a"
+    }
+  ]
+}

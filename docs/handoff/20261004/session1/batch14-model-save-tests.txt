@@ -1,0 +1,1 @@
+PASS PcDebateModelSaveTest 5724 complete native-frame save/live-control continuations, 320 original bounded human input/duplicate/restore cases, 499 corruption/truncation rejects; World save and actual UI integration pending

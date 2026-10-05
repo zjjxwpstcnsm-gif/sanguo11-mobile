@@ -1,0 +1,4 @@
+Exception in thread "main" java.io.IOException: 原熟虑固定槽缺失
+	at game.sanguo.core.PcDebateModelSave.validate(PcDebateModelSave.java:41)
+	at game.sanguo.core.PcDebateModelSave.write(PcDebateModelSave.java:13)
+	at game.sanguo.core.PcDebateUiRandomTest.main(PcDebateUiRandomTest.java:20)

@@ -1,0 +1,10 @@
+{
+  "parentCommit": "471e970645b7073b32b6d18399f54dcb207d73f3",
+  "parentCurrentByteIdentical": true,
+  "generatedSha256": "875e4d0930543fbd154f43305257d136ff3036d704c4dc81766e01ab4c6894e3",
+  "storedUnityFixtureSha256": "6ac082148b5d110b019af188dd57506c6f1c8629d64bc92973dfa0a2517564fb",
+  "storedMapRevision": 63,
+  "parentAndCurrentMapRevision": 65,
+  "unityFilesModified": false,
+  "cmpPassed": false
+}

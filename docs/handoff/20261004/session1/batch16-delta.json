@@ -1,0 +1,144 @@
+{
+  "parent": "cf9b1ef6f754f168fd29414cbb1a0c7dcffd5117",
+  "inheritedFilesPreserved": 4663,
+  "frozenApkInputsUnchanged": 1024,
+  "ignoredJniPreserved": 4,
+  "completeGoal": false,
+  "changes": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModel.java",
+      "beforeSha256": "143bc88aa1ce104ab98b09cb49c859532a887ce21fe8b93f83e7d5a2a9ef7e51",
+      "sha256": "69f88152f22f771092f5330faf5d1a09cb3e860862442febff65645be609ebf3"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModelSave.java",
+      "beforeSha256": "a106e504de134bcaccdeb62fdb0ee52f18e88be51943373e3b4ce00a13518a51",
+      "sha256": "00baa79acf97f5f886af102fee06567970f7f531665d8fec14cf45f7cc628b45"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "beforeSha256": "ccc84ad19ce054c2b8ca2b0985597382b66e63da3b771e2f188a35ef9ce3cd7f",
+      "sha256": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "beforeSha256": "d7344ec0d5e8c3d0a2be7fad2cc69edf85237a0a28aa1ca8428bb5f0d344c5cd",
+      "sha256": "1b41eda9670749bcdafcdcd529057e44cff53be596d5ac2f91bb7b54c1f32d2d"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "c13b2f02e90381aa5bdac42a5ba394256410ca0c8d49a64247ece0ac2829c021",
+      "sha256": "007341192b1aca6e69dc1d5ca6163d46b7756bf5bd7729c8c1fb78efbd4b8a83"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "beforeSha256": "bb0042986e3a2040096d978436f3128919524910bbcaa4ff3b868908234f22ba",
+      "sha256": "c00dfb3447f423fdff2dec50a7b7fdcada43b51c6963e130cf4679a9c508c03a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateUiEffects.java",
+      "sha256": "f745a6d6f8c1332bdb023455eafaf51791660cdf4845095ba9f129fc4910a202",
+      "new": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateHeadedColdTest.java",
+      "sha256": "221dbdf1506529efd973a51f6c9784bf6209f006a89f5ae07e310102bf062ffe",
+      "new": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateHeadedTest.java",
+      "sha256": "9bc2ab6fd6432f5c5d2de47acb88138216a799069c6eb8ba729beed6d7c68ef1",
+      "new": true
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-original.tsv",
+      "sha256": "41c7e94520a2a389a487b5af3b68a956fc6062483d19b396975b781f4d4c7215",
+      "new": true
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-provenance.json",
+      "sha256": "c87c2c7b8c3686d199a83495cbf054576ffa2651f4d2fb38f0bff23c2b9231f5",
+      "new": true
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-v1-goldens.tsv",
+      "sha256": "b2b636746485f102eb39c3e580020dac62642e96618c51b0a741dd897597eec3",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_16.md",
+      "sha256": "361b0498e7094961e7a7373e81fd70c70daada723a13ae28cd69689a4bf29182",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-architecture-baseline.txt",
+      "sha256": "20545fa822959050c0eefa0e121f8c293f00011cf1191b0d234b65ec909351b1",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-architecture-check.txt",
+      "sha256": "0a691bbf29ca2650df979efd1ecd865146c11fe02a9a12ffdd810400ab3bf70a",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-before.json",
+      "sha256": "0db74361548cca84acb9ae6464b5a6eca3b866ae1edc6c99b12b15ad7b06e9b4",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-first-terminal-input-failure.txt",
+      "sha256": "4fddb9dad68c220dfa0da784d1a759de821698370ac10cc47d7bb70000e096d6",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-grid-layout.txt",
+      "sha256": "7b5d475bab2fb83c1abd2a6533293d14363f4bebe39db0a706fbfd18ef3ac01b",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-headed-cold-continue.txt",
+      "sha256": "01dd6595421edc428496c272cfcdad5d535696760c90591a0e589f6a67cbf209",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-headed-cold-emit.txt",
+      "sha256": "db76a37ab8d11eff8b077455c4aee4ebeb7d5dda22f93bb9619daddc556df5cb",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-headed-tests.txt",
+      "sha256": "7ddceb48e69a889446554d1431afa8d16af532686c8916a8cabe93dd7fe0dd63",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-map-projection.txt",
+      "sha256": "bfe3163bc9cf5c84f9f5a0fac215ac136b804cdabd5adbf3c2d167b3bbfc45f2",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-port-tests.json",
+      "sha256": "a663ec74fd01ac2cd10abd982b664dd0572db688508bc1f59cecf4f87eec4bbd",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch16-u01-parent-proof.json",
+      "sha256": "a04e1c3a2bf6976029cafe80ee17cef181255878b3ffb6c5d62fd3b98fefaeee",
+      "new": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/debate-headed-effects-native.json.gz",
+      "sha256": "673b0e1f74467f0d99adbe45499a26138dd8a7e55cc564dd30af98cf87624aab",
+      "new": true
+    },
+    {
+      "path": "tools/content/build_pc_debate_headed_fixtures.py",
+      "sha256": "d03813f92fd956fbe4d1ce161ceedc488d1ded001eddc852c59bdd35f9b19fae",
+      "new": true
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_headed_effects.py",
+      "sha256": "00525b42ff856590f99080edc53af741fd50034c6ca41014843f3453a4d3dcec",
+      "new": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_debate_settlement.py", line 69, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('installation',type=Path);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.installation,a.output)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_debate_settlement.py", line 45, in inspect
+    w.u.mem_write(0x8a5d44,struct.pack('<I',23));before=people();before_forces=forces()
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_debate_settlement.py", line 34, in forces
+    def forces():return[w.call(0x4c4260,16,receiver=w.root+0x7af8+i*0x12c)for i in range(47)]
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_debate_settlement.py", line 34, in <listcomp>
+    def forces():return[w.call(0x4c4260,16,receiver=w.root+0x7af8+i*0x12c)for i in range(47)]
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_layered_scenario.py", line 65, in call
+    u.emu_start(function,self.stop if stop is None else stop,count=count)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/toolchain/pc-emulate/unicorn/unicorn_py3/unicorn.py", line 766, in emu_start
+    raise UcError(status)
+unicorn.unicorn_py3.unicorn.UcError: Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)

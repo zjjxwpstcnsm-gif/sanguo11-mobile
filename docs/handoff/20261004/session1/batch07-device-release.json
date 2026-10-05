@@ -1,0 +1,11 @@
+{
+  "owner": {
+    "branch": "codex/scenario-officer-restoration",
+    "purpose": "batch07-original-source-newgame",
+    "workspace": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile",
+    "acquiredAt": "2026-10-04T17:06:04.728935"
+  },
+  "finalAllOriginalFilesByteEqual": true,
+  "exclusiveLockReleased": true,
+  "deviceForceStopped": true
+}

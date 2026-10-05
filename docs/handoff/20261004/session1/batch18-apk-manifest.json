@@ -1,0 +1,20 @@
+{
+  "apk": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/apks-batch18-final/app-debug.apk",
+  "bytes": 98142151,
+  "sha256": "7b267745ad7169f3836ac46eb4710ec84f061b4a51cfcfbc28395ce7096bb632",
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "sourceGuardInputs": 1037,
+  "sourceGuardSha256": "c9df552a0e2678c68afa18c3588a7975d2cada9ac12f141beecf8e57ec1fee42",
+  "baseCommit": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "sourcePatchSha256": "0840ed33c7d3b403f267391af81131f16af70e32f42330cee43c8227bbfdddda",
+  "built": true,
+  "installed": false,
+  "nativePolicyDefaultEnabled": false,
+  "armDeviceEvidence": false,
+  "completeGoal": false
+}

@@ -1,0 +1,32 @@
+PC SOURCE OPENING PASS 30 actual contest checks; original numeric state machine integration still pending
+PASS cold process startup preserves entire captured mid-contest/RNG byte sequence
+PASS actual normal source contest survives save/reopen
+PASS actual participant consumes sourced talk flags
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 道理·中
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 大喝
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 道理·中
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 时节·中
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 镇静
+PASS normal debate reaches bounded result
+PASS normal sourced debate has a legal card
+PASS independent ordinary source card control
+PASS normal card widget commits complete contest/source save and RNG · 时节·小
+PASS ordinary campaign result control
+PASS normal result widget commits once with complete save/RNG
+PASS normal manual save stores every contest/source/RNG byte
+

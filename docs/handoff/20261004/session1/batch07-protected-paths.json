@@ -1,0 +1,3308 @@
+{
+  "parentCommit": "0a64643e74171eb55e63798c6e7d9f2e32898045",
+  "guardedPaths": 660,
+  "allUnchanged": true,
+  "paths": [
+    {
+      "path": "app/src/main/assets/3d/field/atlas.etc2",
+      "sha256": "22f6fd2112be817a73a913af0fa421e2aad1815a5b0d5b4f74a4409cead90ea5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/atlas.png",
+      "sha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/clips.json",
+      "sha256": "25c7ff1f774271305d89e40baf3d391c58a001930de40d24d523709c863f5eb6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-1-lod0.glb",
+      "sha256": "075af2f19a01b22b008f6fd6dd7aedd4397618dd093cb2d55b9d33cb12a4ed32",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-1-lod1.glb",
+      "sha256": "937a6f95002954d8bd8e2f4068adf0b0c252c429aba0021d09c3ff85115fb1c1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-1-lod2.glb",
+      "sha256": "1d656ea153a1ce4099d5f1a12037f004f7c94a230450a837ddff754f65aaa879",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-2-lod0.glb",
+      "sha256": "e2e21cfbe7fc8734f098b6d2330ce5dbe98f28a85d41f38ca6cef46165b6c9f9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-2-lod1.glb",
+      "sha256": "11ef8bc9d734f36c279f902517896da57afe9fc687d175e6312a9aeef8025db8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-2-lod2.glb",
+      "sha256": "7564d933bdf31fa1e6890e56685a0600f48d46cad9da2a826c55f75e41ba194e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-3-lod0.glb",
+      "sha256": "94815ffc8a3fbd2cd7294b8a419d2d333eeda8c0b67f9ba6b23af8051255fe05",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-3-lod1.glb",
+      "sha256": "c0a24d34a1a477b87d9261be75fc77466442b5261f0d7f8cee1e2a89b1c078fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BARRACKS-3-lod2.glb",
+      "sha256": "917258131c45586f1f05041565e758fc10c0a351814b60eb406a5f76ae5f1730",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BLACK_MARKET-1-lod0.glb",
+      "sha256": "77f2556584df098445e64fd4ac837b4d19178bf821a9d6622f5861eb28beb98e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BLACK_MARKET-1-lod1.glb",
+      "sha256": "eb9be7715cd2b380e36eb578b87ce4a8fdcdaecb4828ef8d33ec564a71cf2d78",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BLACK_MARKET-1-lod2.glb",
+      "sha256": "dfa7d202757a890e96b34ac6209e80899fa48c5e20d01c5c623a617b58129e6f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BRONZE_TERRACE-1-lod0.glb",
+      "sha256": "d5cc2bcae453f0d4c08a80e0657cfaca8192d6ff15eca71ba1f14515300de83e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BRONZE_TERRACE-1-lod1.glb",
+      "sha256": "04d27612412a44b7dba5e1d15497bc71832c559a6bc414268754a60c0d60bdf4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-BRONZE_TERRACE-1-lod2.glb",
+      "sha256": "7fea5da3295e6adced36722ea77ca8b852c3c7146995db1324b439f6d5aeba76",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-1-lod0.glb",
+      "sha256": "89add7fec0306aebd5075dd7552fd86cc8d5437f329eba4f4be062c512f6f622",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-1-lod1.glb",
+      "sha256": "4bdc288411944bec615fd2a9944a0d4c1851fa6e95446bd80065ce204fb3e60c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-1-lod2.glb",
+      "sha256": "68d82981622c8c5a83bcae7d2190648719510d10e5ced9fb73105d7d37be5134",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-2-lod0.glb",
+      "sha256": "8df566e2262489d3dda9ffb8706658059f20a645c04bdfa7d1689ab538d37e69",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-2-lod1.glb",
+      "sha256": "10ed9a4c076f2b6e59f9f56123ed7e23a66998c9fe7f29873fcb6e7e80260b5b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-2-lod2.glb",
+      "sha256": "1e5015f4c956c36b2a4ae7fe635957596dab08e7dba9849e681c2523bf42eb7f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-3-lod0.glb",
+      "sha256": "e3daefa86f79cedb79ea11ff8ba225b677ccce6206d083d7e2e775c4ef99fabd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-3-lod1.glb",
+      "sha256": "819a2557468ff99102953142135dc4669f8963ecb2c29c44e68f65cb66ade0b2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-FARM-3-lod2.glb",
+      "sha256": "6deaa2836c7f48d8be111b1338eff644433efd080212701c818d980190fc61b4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-GRANARY-1-lod0.glb",
+      "sha256": "afa983a37fa54236f490b4ae875eb0550d1071040bedc4bdeaf3aec6844efac9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-GRANARY-1-lod1.glb",
+      "sha256": "afa983a37fa54236f490b4ae875eb0550d1071040bedc4bdeaf3aec6844efac9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-GRANARY-1-lod2.glb",
+      "sha256": "86b14ee6fd283666b44107413f4d727c9d328cfa449a95fc476cccbeeffb76a9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-1-lod0.glb",
+      "sha256": "e8833af27297db9cd98fd9bf25e5a3e89e783ea711a6ead9fe5d293e2516f6dc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-1-lod1.glb",
+      "sha256": "899bb16bb1988deaedc331421c54bb6313ac0ca11a641dbcde5996d76ad0b072",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-1-lod2.glb",
+      "sha256": "e3bbc117b59c0d91d19c28dbce645d3fcb9a4e3a724d16d0d5a9fed58ab011b0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-2-lod0.glb",
+      "sha256": "28024f59af3d0762c77c25480ea561ff58b5df6304e3527ea886692b97bc9f60",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-2-lod1.glb",
+      "sha256": "ffefe1683803bf8056d0361d993ddb137c39f4e9fce990555eb9dd7fb10fca00",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-2-lod2.glb",
+      "sha256": "0f43ffe3fc3b62198dd292353d8150f2af918438d2093c73435ae16ef3e172d1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-3-lod0.glb",
+      "sha256": "20020765b50c86ed0f89084f0ed3579dac4895f489d21344ed16ef7e51e7e3d3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-3-lod1.glb",
+      "sha256": "d5a6f4ad27b2eb02d827da35b4bb236f28f4a21bcbfdfc0c7a155b40e0848387",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MARKET-3-lod2.glb",
+      "sha256": "a34b18e09cd01298d277b2c30d78295107a34c732572cff2701da8a1d45b8ddf",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MINT-1-lod0.glb",
+      "sha256": "7b75a56ac8e1e51e76bdf8498475e45060dc61f1a90be7378c0b9d2cb233a130",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MINT-1-lod1.glb",
+      "sha256": "bd5e71cbb7209233f2023f312c0f1fbdbadd95a310382a6e6ddb49e44d83463f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-MINT-1-lod2.glb",
+      "sha256": "a103796c9122c840505db7866ca96782c743944f960ad44325fc2a25002c10d8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SHIPYARD-1-lod0.glb",
+      "sha256": "c3aae92b614d00ecf54b85532ca1d12598c077deece58e3d47aef0f7cb8978b6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SHIPYARD-1-lod1.glb",
+      "sha256": "4ea71681b4c985a7a939f1655d92f6f36e0a074b3fbde64d9ab83f5f16b18424",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SHIPYARD-1-lod2.glb",
+      "sha256": "b406fb9d8787e1a349cb87e8686f2c0e8584a877ea11dbdf90f3fa23575fe2d1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-1-lod0.glb",
+      "sha256": "683e94228f0c32f819628f8cd4a42f5ff311c92c87ba4efb3ea4e2fbeb7d9c27",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-1-lod1.glb",
+      "sha256": "37e12b81b0ebc6ab5330f07661831b572b3e4fe400ba95c9585cf72d396c4f5e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-1-lod2.glb",
+      "sha256": "6076520a40c94491d5988ac70ff51c01e1bce3ba53bcd4291d368c555fe79c7d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-2-lod0.glb",
+      "sha256": "3eab1ddcd9dd4bef35ac2946789a0b39e7f221ff5325b6cc21106f51130208e0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-2-lod1.glb",
+      "sha256": "1e86146aca62e1d6a9429ea7e08957b5630a2f54dadc94abf079de95fac1e9d4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-2-lod2.glb",
+      "sha256": "d49110f0b4353d8fe252c7bb835d771b28629e41d8b4e5cc74f3f2f275587f2e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-3-lod0.glb",
+      "sha256": "3953b01001289be80b9f0380db88ca7824de51ba79f91f8caf0e59a5afb4346a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-3-lod1.glb",
+      "sha256": "c1acfe08ca0018886deff4075be15c250a47bddb82f495a2232f155cc010705b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-SMITH-3-lod2.glb",
+      "sha256": "abc91166e53cf8caa9db9821222c1ee83d7a9fa201376cd1410cd544a6495af1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-1-lod0.glb",
+      "sha256": "3ad75f92c053a88898ec54def5d8bd322ff385c6a6cb775e906af5c94fafe49a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-1-lod1.glb",
+      "sha256": "a6e4405a93acf856258b0df3d61d2458267a11baf9206875bf6e386e4c4e1e60",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-1-lod2.glb",
+      "sha256": "5863a3fdcbb56f438da26f0994efaa8cda448fabace08e4339e4b56ed4b35ff6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-2-lod0.glb",
+      "sha256": "9808502fc25f347269c96e0ddbf4907446b5e8843f33aef97935f2634dcc11dc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-2-lod1.glb",
+      "sha256": "d3cee14a2809514b7fea23347daee91e05c22c84fa3b29411ff8275015b05c9b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-2-lod2.glb",
+      "sha256": "c9808ed95b88d9201cc984c8ddf96c6e00aec10f513f04d567750188a14de4f3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-3-lod0.glb",
+      "sha256": "3aae1e609eafc66fd7de1831f727a64c93580f49604b0e1595946a2be9263d42",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-3-lod1.glb",
+      "sha256": "2e62b714626cdb909d03f465260baf5ac30172ac2ce327713ef94d93e7e04767",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-STABLE-3-lod2.glb",
+      "sha256": "f5e1c65ceeb6ed185d02a887076837694a3e60f4a1eab1a3fb439f7f6587ac3c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-WORKSHOP-1-lod0.glb",
+      "sha256": "d4f1a92ec07676dcb1f9944ce13f3d6f6898ec517918ed5b0ddf0ea9d2d5da65",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-WORKSHOP-1-lod1.glb",
+      "sha256": "ef62ecd0a9366835f2b61b308289cc80b218ecd6882a9a7c7b89ce5e0cf5dc0f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/domestic-WORKSHOP-1-lod2.glb",
+      "sha256": "0b87c725fc885669652b3f115dbf4d4c463d3ed7e137518cdcf8183659fe9780",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/fire-v121.glb",
+      "sha256": "aec61b8d17c414e21930775ce67222eaaa0fccea604289c84507aea4f26ff224",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/fire.glb",
+      "sha256": "2c43bf96022cf5c1cf9a054c8d457b95ed54d99d98705c3c7c2bf4684e478c51",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-ARROW_TOWER-1-lod0.glb",
+      "sha256": "ed922a7650f20254e162c996b9c756655d367fc49141a524970e697d4f1dacd2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-ARROW_TOWER-1-lod1.glb",
+      "sha256": "ed922a7650f20254e162c996b9c756655d367fc49141a524970e697d4f1dacd2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-ARROW_TOWER-1-lod2.glb",
+      "sha256": "f36c329e8bf7216b76f0f3048becbfde0343ee3053712c89500c943a58643d26",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CAMP-1-lod0.glb",
+      "sha256": "c845ff50dd3bdd9d0115518db748be55e6cc5b20fd1f001d3cc88ebf4d6b3a87",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CAMP-1-lod1.glb",
+      "sha256": "5bc9f195dee03b1353fa8a7be6e59376f19ad615bbcb3d5c9ef6e82f09654a33",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CAMP-1-lod2.glb",
+      "sha256": "91175c91f5c7294e0f6f194d74842c2a2a200b05afa3ea50e0aa5450e2ca180f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CATAPULT_TOWER-1-lod0.glb",
+      "sha256": "796056dd6e225518897119af8a0dcde10f5bb94e2d064f9944688cf0f503893f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CATAPULT_TOWER-1-lod1.glb",
+      "sha256": "796056dd6e225518897119af8a0dcde10f5bb94e2d064f9944688cf0f503893f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CATAPULT_TOWER-1-lod2.glb",
+      "sha256": "498c2c531bf314cabe9a06a49f7cddfe6a89152072dc3658991f81f4930aa662",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CROSSBOW_TOWER-1-lod0.glb",
+      "sha256": "5688f0f49308dcb54170a709d04c2c650a55de8bf96a97cbb7c8970a18ea6ea6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CROSSBOW_TOWER-1-lod1.glb",
+      "sha256": "5688f0f49308dcb54170a709d04c2c650a55de8bf96a97cbb7c8970a18ea6ea6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-CROSSBOW_TOWER-1-lod2.glb",
+      "sha256": "d40224a6829e5d557e3a6f47e6620b65c40457c0e1062f956e0dc6f69746640c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-DAM-1-lod0.glb",
+      "sha256": "59624661697a47d3a3808506ebbaef99ef7c75dffe7c845dc366c677d6395403",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-DAM-1-lod1.glb",
+      "sha256": "59624661697a47d3a3808506ebbaef99ef7c75dffe7c845dc366c677d6395403",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-DAM-1-lod2.glb",
+      "sha256": "6498ffc130c152d1f39c05035d2ec74675bbe9589666dda35c3b39af601c2a8a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-DRUM-1-lod0.glb",
+      "sha256": "b58360f4afafada0fdb912573347a93f3a7fa7a1a23ce68c349222751f252f29",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-DRUM-1-lod1.glb",
+      "sha256": "b58360f4afafada0fdb912573347a93f3a7fa7a1a23ce68c349222751f252f29",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-DRUM-1-lod2.glb",
+      "sha256": "9dcf602447c999ec69e971d618f3612787e274ac573f7e45c9e1835a582f1613",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-EARTH_WALL-1-lod0.glb",
+      "sha256": "ba8e75aee87ea2ace97c87cbf05e12c38f65d35db2c78616b193c63649fc1596",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-EARTH_WALL-1-lod1.glb",
+      "sha256": "ba8e75aee87ea2ace97c87cbf05e12c38f65d35db2c78616b193c63649fc1596",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-EARTH_WALL-1-lod2.glb",
+      "sha256": "b0c2c2b00777807aed4b87e776361845cf355e9f97a031c3665117e6c9c21cf3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_BALL-1-lod0.glb",
+      "sha256": "05625f1e590422d7bbf8ce932c4a29f09ad5d13c55eeb133020a5af68765aa1d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_BALL-1-lod1.glb",
+      "sha256": "05625f1e590422d7bbf8ce932c4a29f09ad5d13c55eeb133020a5af68765aa1d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_BALL-1-lod2.glb",
+      "sha256": "6a9c2f69715644c2fd875b5b181fd52d7b4f8d39800c00edfc304c694368ef61",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_SEED-1-lod0.glb",
+      "sha256": "f9d9f7d43b154df09223d10182e7dbb787881b5cef9351d76e4ed137eb7dab90",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_SEED-1-lod1.glb",
+      "sha256": "f9d9f7d43b154df09223d10182e7dbb787881b5cef9351d76e4ed137eb7dab90",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_SEED-1-lod2.glb",
+      "sha256": "4999c6575404f60019c2daaac08e73e19907dbb968f65eb0aacf69ce2ff0a14a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_SHIP-1-lod0.glb",
+      "sha256": "e22c86352e6b3ca96bdd536b545253d9194eba8a3369c3202e80fb98e0975f15",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_SHIP-1-lod1.glb",
+      "sha256": "e22c86352e6b3ca96bdd536b545253d9194eba8a3369c3202e80fb98e0975f15",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FIRE_SHIP-1-lod2.glb",
+      "sha256": "e1a8eba392938b7f88fd1fc5f03c085157b7e9171075c0db259dae467ace612b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FLAME_BALL-1-lod0.glb",
+      "sha256": "be3bf8929df3973722e5f5edb27173950d24094651f726e8ab08409c9763f852",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FLAME_BALL-1-lod1.glb",
+      "sha256": "be3bf8929df3973722e5f5edb27173950d24094651f726e8ab08409c9763f852",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FLAME_BALL-1-lod2.glb",
+      "sha256": "3d654ee6e5891018dd255506b3d51f3049b82632fde857c25d8056c80e7c413b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FLAME_SEED-1-lod0.glb",
+      "sha256": "eea0e25eb292af0c61603b805794fcc6316acd7c99ccaaa056d583d570f0938d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FLAME_SEED-1-lod1.glb",
+      "sha256": "eea0e25eb292af0c61603b805794fcc6316acd7c99ccaaa056d583d570f0938d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FLAME_SEED-1-lod2.glb",
+      "sha256": "11f1b4e23006a2a5d80ff993679b01815faab17a6b89cfa2e2f2c77a8d24ab43",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FORT-1-lod0.glb",
+      "sha256": "069c2cd9efaec0c4b3379338c793d7cd8b277b9634458519e7a0e0694ef2b3a6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FORT-1-lod1.glb",
+      "sha256": "d4b489e8327244734b3e9adf1295c84bbe0f82dea6d63e04ab98c95d811fb948",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FORT-1-lod2.glb",
+      "sha256": "c65f68210a3653903f20537d921338d772f0b12bd6e41df509369232855d87ff",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FORTRESS-1-lod0.glb",
+      "sha256": "5c5fd084a7b602a206b7cc2871f36f6c2caddf17b04780fc61ea6b9d4cab20e8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FORTRESS-1-lod1.glb",
+      "sha256": "c20857bf9756bdf9fa1ffcd905f58f34b6fda85f23e8184197c2f9558d096ead",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-FORTRESS-1-lod2.glb",
+      "sha256": "c5ee4c7babae3fcb82479723070a3a4bd74a9108c5a5f14a928648bb7d89c7ca",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-INFERNO_BALL-1-lod0.glb",
+      "sha256": "edd3edb0da756c1e2257d3681aadbd586a95e7f9814d2a4b88cafd23752d42fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-INFERNO_BALL-1-lod1.glb",
+      "sha256": "edd3edb0da756c1e2257d3681aadbd586a95e7f9814d2a4b88cafd23752d42fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-INFERNO_BALL-1-lod2.glb",
+      "sha256": "6d69a46af3f98e7fec701b38bd7ef4f7efc119e685c7711377d876d18104f193",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-INFERNO_SEED-1-lod0.glb",
+      "sha256": "acea8e9c1e7e542f0d1565e998e676b9dc4ab5113b38c4e4d395cabc9ec8235a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-INFERNO_SEED-1-lod1.glb",
+      "sha256": "acea8e9c1e7e542f0d1565e998e676b9dc4ab5113b38c4e4d395cabc9ec8235a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-INFERNO_SEED-1-lod2.glb",
+      "sha256": "d880420bff8b3edaa1f69d1a6cfd3cabca3de087092ac5c4ec65ca09756bcd12",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-MUSIC-1-lod0.glb",
+      "sha256": "b93433820e2d5b264e1a5a8209cd685e6b383ae5ef1079f6ba20e44078b7b2ac",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-MUSIC-1-lod1.glb",
+      "sha256": "b93433820e2d5b264e1a5a8209cd685e6b383ae5ef1079f6ba20e44078b7b2ac",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-MUSIC-1-lod2.glb",
+      "sha256": "4a1c0f5caed1cfefe61eb822537fd41a7bd89e81ea420e43b38b0d7372b4d6f0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-STONE_MAZE-1-lod0.glb",
+      "sha256": "3b51242d2393eb514dce9dda8ade19145fed0a2641204170348ed87596680c0e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-STONE_MAZE-1-lod1.glb",
+      "sha256": "3b51242d2393eb514dce9dda8ade19145fed0a2641204170348ed87596680c0e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-STONE_MAZE-1-lod2.glb",
+      "sha256": "ada1a58d4d766ba85aee598da45bc77bc698800cd80e680183c6c12d491fe295",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-STONE_WALL-1-lod0.glb",
+      "sha256": "74b8bb437a7b275ab626b05a1bf163dd8c8f791d69ee15e4b4d74e34f725f837",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-STONE_WALL-1-lod1.glb",
+      "sha256": "74b8bb437a7b275ab626b05a1bf163dd8c8f791d69ee15e4b4d74e34f725f837",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/military-STONE_WALL-1-lod2.glb",
+      "sha256": "1ae8554083655c6af07ad5a53b7632a76ea49729f6c4fa98abdd51efeaf7c970",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rigs-v122.json",
+      "sha256": "2a4e12c00859d954ff56c76bb2b5f9e5d72b4c59b87668695691c2e9f3eca2e7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rigs-v123.json",
+      "sha256": "498e5c8a76d58a9469a8d19778a8d588570be66145576a7fde237babe48c1327",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rigs-v124.json",
+      "sha256": "e3dcaa01e7290df3c833e4d1d80d5cf6bfa63b158858828bac1bd19a871879de",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rigs.json",
+      "sha256": "2e0a3e95d31ba7dc2fe319762bf35d09b6d02e2d5568c42aa077e2aa4fad486b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rock-strata-lod0.glb",
+      "sha256": "613042f716a3ce430ecfcb32cefbaf86840fd22d0515e9ac2e65feb0bdd08910",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rock-strata-lod1.glb",
+      "sha256": "41d4b84fadc401e9fb6ede5bf536a423fd03cfb5788b6643a8220c20e690f589",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rock-strata-v121-lod0.glb",
+      "sha256": "257940b81b8dbf069551bca1776c3731ea727879469740356c1a7685c39cfa89",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rock-strata-v121-lod1.glb",
+      "sha256": "31171da19bdfac26e1c199a4008cead63e7f1fb0115508c1983405d2664966c8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/scaffold.glb",
+      "sha256": "87d5df1460b2921bdd04eb081b884d6412cc62c8114e5dbca4aaad87d0bd0e17",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/shrub-lod0.glb",
+      "sha256": "a24f00b37342e5297e727cc228afa674c627510d265070822aaf36a4064e75ee",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/shrub-lod1.glb",
+      "sha256": "624707ceec9e282700ec78f255b846af9ddcad77f52850fda96fea6cabd76cb1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/smoke-v121.glb",
+      "sha256": "b9108a58c21b911a8fa6665ece66b6630039b63614f2873e765f92047f0a1e39",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/tree-lod0.glb",
+      "sha256": "2ce052ae26a78547e9107548efa175fb6657dd79b70813b5622021b4bc7fe491",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/tree-lod1.glb",
+      "sha256": "c0c4d6f746fa9d77d7e7124b76be4241ee59e14726c04c574d50b89d5740548b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/tree-upland-lod0.glb",
+      "sha256": "0625516ee4883b15becc33ff9325763358d670de15e41364d71d4cb137e7be03",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/tree-upland-lod1.glb",
+      "sha256": "0920068eead8e0a1987a8bcc59079cd1ef75f4414572fc39b895e52f35d4843a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-BOAT-lod0.glb",
+      "sha256": "e5f7d16baf5246e51623e64f1121b87f85d07093176847696d9e3126854aa71e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-BOAT-lod1.glb",
+      "sha256": "9d50c148a087be2735e353ebe2fe91f686392401b2ca446366bc4099584fdf08",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-CATAPULT-lod0.glb",
+      "sha256": "05ed4b49e3ddc5c249b10327b28ffde31aa932236739170d9b043968a2dcb231",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-CATAPULT-lod1.glb",
+      "sha256": "05990f859b86fade540f447f9adc41389ee8be43422210a58acda0719b9d4e74",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-CAVALRY-lod0.glb",
+      "sha256": "31085c28d2719f380ebe4f9dbfb412712243954db838885537b83036e53b31cb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-CAVALRY-lod1.glb",
+      "sha256": "b4404f0028466f9247f05ea88bdbe4e9a90ba4c69b20e6ab84f4bda3fc6513a8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-CROSSBOW-lod0.glb",
+      "sha256": "aa0e603921f6be0a56b266976f1eb75970c2df6000ab4df3cb004cebc8dba7d9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-CROSSBOW-lod1.glb",
+      "sha256": "6b94b44f4b98ec5616409c03cb8579720d0728c855d506b43cdb65e5bcaa6985",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-HALBERD-lod0.glb",
+      "sha256": "0b674b24b0479b50c831c62685d0dffcf04cdc3c92dd6eae662dc97bcdac5bf6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-HALBERD-lod1.glb",
+      "sha256": "b9e593ac64ae0cda7a871df6435c3b0f95330f8bbed0edae643afe8c85800b97",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-RAM-lod0.glb",
+      "sha256": "5f9baefe0d699bbfc85d982ce133edb14e2024ac26977aaf26836be0d54c5a5e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-RAM-lod1.glb",
+      "sha256": "cecdd2e03766786c723a98734b6b89954b3e74181931724d12f6a2e6b0e58c7d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "5ff15134e9b6f93373f530fd66f35360bc3122d01dc041e8c43873699b0be9f0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "28b18fccaf0902b9d3b17399821af00b9efcd34897f2676ea546a600e3f830d1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-SPEAR-lod0.glb",
+      "sha256": "7747a0afcd4efed51d162db4ba2cf7d57257f06a3b6d83a0e813ebe7446b4684",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-SPEAR-lod1.glb",
+      "sha256": "881f89c95c98e804db1156b5358e77fd8f50ee6caefad91890ad11dcf59b8a05",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-SWORD-lod0.glb",
+      "sha256": "08afd3eb5870bc438584a0b846729cffc00e199eef0cd3012ccea380a1aa23cb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-SWORD-lod1.glb",
+      "sha256": "a32e91f82059e8b66a2368573b5986d5b3f4eaa9d85fa80c6736c08e07f73ef2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-TOWER_SHIP-lod0.glb",
+      "sha256": "b87e5d9de4c6e0e305d99a3751e7cebd592ac2c13b647b95f0a309dd8695e5c5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-TOWER_SHIP-lod1.glb",
+      "sha256": "6797a6b8fb236044939c22c72dcf4ff947fdb37af28a806832bd31b9806d638f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-WARSHIP-lod0.glb",
+      "sha256": "c4433699a5bc4fb20d4a16eba4b1a450cfa67e19da57cc5e09b58bf6eed681e9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-WARSHIP-lod1.glb",
+      "sha256": "85ec7f98bdd27768bc6b357f48dad659c5ec4793caebfa9f884b0688c8250568",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "c91bacc435d5ba1bc43b6f4f92df5452176e0f2995f796282fc7333520a9d8fb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "ce1d5898dd48b3d17b15e3508227b48aa5384de7ba43e5ce185d3d4e5896b9ab",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-atlas.etc2",
+      "sha256": "9b3a2908efe89a4a35c94a452c1511309021b6c7da85c48c903845a0f43ee5e6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-atlas.png",
+      "sha256": "a47a03a989dd8ea1a1d8337b7593421c07e32baaa10a5d2c8b25b1c28a5f7bb3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-transport-lod0.glb",
+      "sha256": "ddffa994ba6dbdf15753ddae441918018f09368294e8f6e83054946e8f23621f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit-transport-lod1.glb",
+      "sha256": "5c0dc656f86493b40f59cd7302d7c8b6c25a8daa0614acc8d5a6feb22c4c1b61",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/unit.filamat",
+      "sha256": "5e4330b35069f7e21a2bfad2c456d6af6b8dfced35440e7c56ccaf6bf497034a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-BOAT-lod0.glb",
+      "sha256": "00d9ae0b86127cca1d238ac1058ab5accb13b718e5c55635a65029cb6b7dfbb0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-BOAT-lod1.glb",
+      "sha256": "006150101a200dc7bd5801554d0e68abb9d77c7b03e9b47bf0647f596bf0aed3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-CATAPULT-lod0.glb",
+      "sha256": "037a6320b8832fb6eb7aa3e743294b03280da5c74cc209862e46462f58939c31",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-CATAPULT-lod1.glb",
+      "sha256": "403fc3ecda707971196df6181fc290429f9eb8c7f2fc428b4d130dd476fafc61",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-CAVALRY-lod0.glb",
+      "sha256": "6d93a7341b1df513786733685712f27cd0c7c4f433d230eadf3ec525c3e79365",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-CAVALRY-lod1.glb",
+      "sha256": "d33be904663d3a11b8804c4fd951fd87515741f049771024d571f58ab2b2cc6a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-CROSSBOW-lod0.glb",
+      "sha256": "dbe931633c03d8c9a01b91212c80817a7eb5acf2c23e623296f76776f8259953",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-CROSSBOW-lod1.glb",
+      "sha256": "6f804a88eab84efce86adfc2d51b58ac99ca649c859ebfbb11c4750cc998e3c1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-HALBERD-lod0.glb",
+      "sha256": "827462351378f1f22994a1168421565d0278ed1cecaec7eb0b7a74332faa6483",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-HALBERD-lod1.glb",
+      "sha256": "9b8c088ad85aee54ff7870a96db65802559306dd22accf2fd6988be391b10041",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-RAM-lod0.glb",
+      "sha256": "f13f1720247df4debb3cd2114ad6beb2fa30587871ee39a3eb3bd09fc9f465fd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-RAM-lod1.glb",
+      "sha256": "659e8060f587e1acdbc74b8e37985039e47f327220e7708c76df4fe6c007acbe",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "d64e37e50ccf09f26327ca8dc1020d451f75a1b6d0f59f072964276c9f903f04",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "9cd8ea9ef9fb802a38205eb0f64f4840174f12c307a74fc39f01d866e204472c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-SPEAR-lod0.glb",
+      "sha256": "c716c2ac9f78182457c2ee45c7067c24006b2bfd688af46f8c45c69d3f22e3fc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-SPEAR-lod1.glb",
+      "sha256": "490d6e34a354f6ee31181c77d602c92219506b2c7703f96b80e1c844fbea1206",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-SWORD-lod0.glb",
+      "sha256": "c34745516c080dc16a7fc43296788c2d535a5c4e597943f8fd2fa15deabe4277",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-SWORD-lod1.glb",
+      "sha256": "7a756bd88bd7486e14ced8f7191fe8017d1d9b668a0c05af83279e9f84861816",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-TOWER_SHIP-lod0.glb",
+      "sha256": "2657f019b88af35cbb8603535b037930c9dfc1290cf8535b8498ae4f10ab6640",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-TOWER_SHIP-lod1.glb",
+      "sha256": "7246a19512d8d181c21b46fad913ac81ab5fd42b2e7268879e4785cca79e66f0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-WARSHIP-lod0.glb",
+      "sha256": "fe963bc4bcbed99f46d41bcfa991ab9f0113a3bb8b17b03990087b42ec2b8bdd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-WARSHIP-lod1.glb",
+      "sha256": "11e8bae9acc6a9ce34e8404ea34f19b84cea604c1537a980b8f0b71ed19adbc7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "03018143d6d03be9b1fbd59ca8f81c91070918c87313b06191c008b91d25a1c6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "ca4940abcdab9840afe266733c26e9584a0775954e4e375cb420818e6d7210d8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-transport-lod0.glb",
+      "sha256": "102c456b142238a1eb1437884cb8d63b74ea91597a5392fcf5a2e41f83add7c5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v122/unit-transport-lod1.glb",
+      "sha256": "106e873d1b1476750b1746d147396e37f783b2b79a8faf65e51cec2d30bf7a41",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-BOAT-lod0.glb",
+      "sha256": "9f8f90c413a5b371ff430b368ee1874601ed3f3515d3c5f73fa55fe2fe11e246",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-BOAT-lod1.glb",
+      "sha256": "9a5f1f1ea0f5e17f77c020ea89dbff55ff0ef450e80b449cfa9325d2928f31c1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CATAPULT-lod0.glb",
+      "sha256": "65248380b6dc7ed436f7a3185ec52a4a653c02ffcad3139346955125e0160cdd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CATAPULT-lod1.glb",
+      "sha256": "ef873cf85d89e2ec08f2ccc79d3aa74bf89f9259980d41815a285c1e3a406d46",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CAVALRY-lod0.glb",
+      "sha256": "2a16079b3c6ba2c93e05fd72827e7f43b6e58da38723766265fce5b6680709df",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CAVALRY-lod1.glb",
+      "sha256": "a697d8853b82a08c39a883e38fb9bcfab648c17c2280cff960397652a73e32fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CROSSBOW-lod0.glb",
+      "sha256": "e0ca636e923d900af872b6108d62f2065659d70352bc15ac09441682230d9fe4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CROSSBOW-lod1.glb",
+      "sha256": "2e7bcc36904907f6b7f9a5eddcdc815f17bb592fecbc1f536515e233a3916e80",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-HALBERD-lod0.glb",
+      "sha256": "2ba6dd731db3c169c74ae6625ace83958a2f1bdf7bbf3f1358e32c0fbd43f1f2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-HALBERD-lod1.glb",
+      "sha256": "8f58793e01ce7e3c47a792363b08390cc76615935962f46d22872d72f21975de",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-RAM-lod0.glb",
+      "sha256": "691424b5b0290a9d86a83891cd38b8e831dd3b79cece7cfe339dc40b5b126102",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-RAM-lod1.glb",
+      "sha256": "cbd80db44d31eff18e804e0180db118f02b4a9b8603f973af45ed71dc9ea724c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "46143da155a7738521a687b130592730bd9a7782164d1aa5b0c8fae5d5e55bd5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "005a5e63628f442ef55944659d9be79fe3cb604a2bcfad95162b9a85560adc41",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SPEAR-lod0.glb",
+      "sha256": "f3c24583bad94e772b17012d80d1777682ee69d487e25c4817f543b8a811f0ea",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SPEAR-lod1.glb",
+      "sha256": "8e01c706d89f611c81d0a92386de95f81b8d609af0fd22adef36e73ca5ea612e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SWORD-lod0.glb",
+      "sha256": "5714544b731ea9e5ad3f01d27bd40422f600418be3ebdafb6ada38020fa7e4ad",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SWORD-lod1.glb",
+      "sha256": "3f3a2eb5b664e572b0e367ffaa7ec1c92fdcff077af8c0e0da24aae6b52b968b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-TOWER_SHIP-lod0.glb",
+      "sha256": "c8d459d8b719229b3eccbfba66c05596a409a066c9c09a61db408a9b67dd2edf",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-TOWER_SHIP-lod1.glb",
+      "sha256": "5ad3fc0d677d617e8865e1031751d96c248e2d9af7b62a40fe012f7f6cb6339f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WARSHIP-lod0.glb",
+      "sha256": "aceb2f72e37afcf7654856f09eb5757f2476702c3d378185858630154cb42dea",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WARSHIP-lod1.glb",
+      "sha256": "4bbaf5412d4ce1086ffe1c88d26fad4195f6f910c5dea2ddadfdee4063d39db8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "de4cd69fd7a6a72aaf084eee432dc20e733754ba7b72c27afa0a678b58869828",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "c91241d2695245a3f383961c49d22d7b50f2fc15ae0ce8c1e0d395a69b521ec4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-transport-lod0.glb",
+      "sha256": "308f290c52bde04db243f8b75cf92f30d7ed33235b2265b8f5f5e192d4b55f33",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-transport-lod1.glb",
+      "sha256": "4106a1ddbfa2a86d1b1e2643eb0c0611653fa21652d4bf53225c0de2e18f241e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/rock-strata-v121-lod0.glb",
+      "sha256": "595b91822a3d140a97c5dcb964d92df52f5f46cfb1d988b35cc0043978f44749",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/rock-strata-v121-lod1.glb",
+      "sha256": "68569a748d9bc974caa17dcd8eb5ac4ce4290b7e901988d385a2168021eafc9e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/shrub-lod0.glb",
+      "sha256": "efedf292c288b1569f67fe46e647c7c6a499dd33517e6f5fd3783d4483b94283",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/shrub-lod1.glb",
+      "sha256": "f09165149ed39284b1db039cc312c6eee597cb777cc79039b7a15f9b5a8eb919",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-lod0.glb",
+      "sha256": "d94d188edf3611fce2196d492e26de50fc6bf10772850920a3f7f9ac173486d2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-lod1.glb",
+      "sha256": "ca99168741a966e7ae2f266a7c923274caeece25bf70ee1e6839cfa4161c97ad",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-upland-lod0.glb",
+      "sha256": "a17002631ee066234e493d626efdb65ca39dfae704c4945c14f79846a0555c65",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-upland-lod1.glb",
+      "sha256": "c321fa24b330198667b85f6a4f7405064a0edbdd9511df091f54ba5fbbfc8599",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-BOAT-lod0.glb",
+      "sha256": "2144ec36c31a5dfdc144cbfffa61e4c3ccd1048dfb93cd74fb0f04d1f4d308e2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-BOAT-lod1.glb",
+      "sha256": "08a6fdea406d7c5c379211312f09c2647c523e5634f56f0ef94d161fd7c8c7ca",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CATAPULT-lod0.glb",
+      "sha256": "a49b470c81604d0f0150f4df8859b346f95d937f670e0c3fbc3d0a89f2cf2397",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CATAPULT-lod1.glb",
+      "sha256": "03d35b0ee5b481f15e203b35ca94fb65327721db7cab8a8f239362cd822d417c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CAVALRY-lod0.glb",
+      "sha256": "893cf895ec26ac6ce7fa94a9567bd0dbecfe538556aa0d0685e9358babb83867",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CAVALRY-lod1.glb",
+      "sha256": "0579bdbfe5a562272aa0022ec32888c456573975d5e01030b456abbeae13e9cd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CROSSBOW-lod0.glb",
+      "sha256": "52301cc9ff3f72806cb710a14d721f3c310696485b36006fe9df22a5bdf0f14c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CROSSBOW-lod1.glb",
+      "sha256": "282c9d0d2d612a1f32f3872dcdd1fe6cf6bb91d4b78c77b3be7d02a826cdf02f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-HALBERD-lod0.glb",
+      "sha256": "77f495feada00a7bfeb9f8cc02c3712fd2fd494da002b19a1534391d3a47691e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-HALBERD-lod1.glb",
+      "sha256": "2904fbf928954e2b7eac8c9b9c4864f744737e7e1981efa66eace5ac3fb11d44",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-RAM-lod0.glb",
+      "sha256": "bfb4a1a4f1378e5e75777261710f1dfffdbce803aa158d84141640ba176e459f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-RAM-lod1.glb",
+      "sha256": "435b34a75f0803ad4b04198e59e131d2e6a08069c7e6f27b593436456339e822",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "42f956e191deb3d72e324e4177bf4c00af4dcbaf28ff501074c4b70bb24222bd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "c04e7f57135285653e99af0afa1aee38a1dbb42cbc59209e1e964780ce73f657",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SPEAR-lod0.glb",
+      "sha256": "564b2080fe0186f980d0cd014ed437343d1c7fc18f2b0be43496e4163dca1498",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SPEAR-lod1.glb",
+      "sha256": "fc1fa43d0ecc1bed98fa9667019d9febbae8080ed32002c847aa6e24775ceb38",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SWORD-lod0.glb",
+      "sha256": "4158a56febd02a55c15357051e5b9d468c01f0542a17c09d712445e162d96291",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SWORD-lod1.glb",
+      "sha256": "5432747a0edc3e7d901e58b18c121677b621113ac259d6608cfbdc4c52a25da1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-TOWER_SHIP-lod0.glb",
+      "sha256": "18218cb9d6c46d4505443473d5773a9269228a74c83cc807eddccc44c66ce4c7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-TOWER_SHIP-lod1.glb",
+      "sha256": "36a10a50689e56b3b3f975703b0ac47a8cd369aeee10d88a5da4d71bd817dd79",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WARSHIP-lod0.glb",
+      "sha256": "50874412f2786227129e2c3ba676e55da2f493cb12b5cafffda86d3b3321eb5b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WARSHIP-lod1.glb",
+      "sha256": "b9ef8051c08bfeadee2ec76c5de667ec33614caf554f573e1cb5103c8c099c4a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "59a305180d9c9338778392dc6972b5d5e1abcee4830a86a3081e455941a7d2c3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "60756c268088a3b086495d95325d6906fb8e604c562a3a048b43a4434f873e2a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-transport-lod0.glb",
+      "sha256": "70b2f40cbea809c2f9f5188946afb40b50aeaac64a6d8790b80bafd3fa3c1d3b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-transport-lod1.glb",
+      "sha256": "cdcd21a1afd97297600c0d8960f5cc305a274ff118a350cdf72ccf69a8fc1f14",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod0.glb",
+      "sha256": "29bce6157a2093b51d79538fb6684d9feac563a8e0c5779c8627ef3c6f9d7526",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod1.glb",
+      "sha256": "6092b87fdcde38a1cf4bacf65c69f26bd84a3a78db06c6e266a96cecd4a7d3dd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod0.glb",
+      "sha256": "235f913b21673a931c556d6b9990c2dc1c900e2c29958f75b9bc81966b554902",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod1.glb",
+      "sha256": "a9d8461d60dc223e3a44c8fd6b9d6efe0c0e1cebb9b2f2c23a03817ad7f649c4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod0.glb",
+      "sha256": "f5b596cb9fce2c7edec2925b017f54ee7d8c41c4cc55179c36e1cefa7aae93a4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod1.glb",
+      "sha256": "edf8f61d996399f3509c5b3c008faf6e626d43d804981a9af1bafa7396d308fd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-talus-lod0.glb",
+      "sha256": "0710de02b02a6536d9960b7797ca638623d095fd2df44f105dd7067c55eba700",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-talus-lod1.glb",
+      "sha256": "21a890ada949975e1874b637cd69452f06d4f7d1d40231cddc66304c9a5f7891",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/scenery-atlas.etc2",
+      "sha256": "4e4e2d49daee7a35ab1a4e1afb827bf501c7194e684cccac6e1f349d419c0b2d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/scenery-atlas.png",
+      "sha256": "1f6f08e4103bacbb95cebc00b396b033025c9dc5a2eaea7f45a062f0dd89ae6a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/scenery.filamat",
+      "sha256": "3c04cfc1161d41878ead57c499d2df76a9b1eb0cd72b082b5eadd4f6eefc6ce1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/beacon-han-lod0.glb",
+      "sha256": "d2892c56464d43d58e906d475a54c53230a38189cb34f28908c215216da0bf60",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/beacon-han-lod1.glb",
+      "sha256": "5bddc0018b1e62f454c0df83bdf1800dd0e7d196442526196af1702b7253c675",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cascade-hukou-lod0.glb",
+      "sha256": "35ff9dd810ed4b9d8e9ca45660b1f9c529fa7bc2ba06214aaced77b4b9966c9e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cascade-hukou-lod1.glb",
+      "sha256": "83cafad474a327f48cec75548ed42cd7cf6cc43884b50991fd52393d4a45c52c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-granite-lod0.glb",
+      "sha256": "7d5bb3c670577d3e59633a88c5a5b266cdcf507d28644b6352e6cc9e45f5cb0b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-granite-lod1.glb",
+      "sha256": "07d9faa03323bec0f66ce044bd55a9465bdc114cb5ba048179b81147ad4dc0e9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-karst-lod0.glb",
+      "sha256": "e163c780bea898480eb9ec407694da2e9af4fc5e033ec838e76f92e3005f2aeb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-karst-lod1.glb",
+      "sha256": "6ade9b2e3dea3bd3604e2cf4cd902895dbaab43a8ddf5de6c3f4d1a70c38b287",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-sandstone-lod0.glb",
+      "sha256": "9c9a04fdde1077f7e070390c02242f403d8c72ff8bd7f9fc8500af924b252d6e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-sandstone-lod1.glb",
+      "sha256": "5bdc99acd2d8477585b31b2ea48c56e6e102bf12b7637a8edf0d35f22b840070",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery-atlas.etc2",
+      "sha256": "0c5f9b4ffd7435db263bae46ca55e5696226cb08465ee3f620d41205a699c730",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery-atlas.png",
+      "sha256": "7998aa0567a5286ba0d3e2d2f7a8501846d7bd1efbe0d2e14a7bb3916241ee7c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery.filamat",
+      "sha256": "ae89f2d8d75ade2603526208acdce2d64be38510c61099ed9363996c607b8ff0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/wall-earth-lod0.glb",
+      "sha256": "ad3a26f401a269dbc61686ea8cb2434b65d840739bb7ddd85996bf623c74ee86",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/wall-earth-lod1.glb",
+      "sha256": "40223c5694a7a71b700efb8105b2135beceb4a48c94fdc4d756d7dad3edf9955",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-hukou-lod0.glb",
+      "sha256": "c8ae0640eca46ad0720a89dffeba10bfdc26ba2d57278095c4ffe6f2cc3253c6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-hukou-lod1.glb",
+      "sha256": "4b5fd8727093e7f360ca4631cdc971b5cdc52f2784c704551216bccece55cd4e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-narrow-lod0.glb",
+      "sha256": "52b7e669b4cdfbeade23eb1f0dd464bf4414748473e841bffa778aac98054f8e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-narrow-lod1.glb",
+      "sha256": "1eec318d501b0a9c865ba65a0fc510309bbba4692468735c6c832c79d57e5347",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-wide-lod0.glb",
+      "sha256": "3364bdd8975b2fe229699790df29c0055684d1ae733a978b34fd7d3905c5e530",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-wide-lod1.glb",
+      "sha256": "ace41a260e58f66f5ce978255fc1a31fd54b693d154616c9497474124fd052fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/scenery-atlas.etc2",
+      "sha256": "ee7a1bc6cd45e4f2027e602f869b7572e6df02b55667f2d2aae4cf89f46b01e0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/scenery-atlas.png",
+      "sha256": "bd58d888e3d4d6da4c1340e405da3f94b4673f23106cb1c0d21732bfb3bc6eec",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/scenery.filamat",
+      "sha256": "e4dc2c510a2519379fc068d51821cba85fb45d6d2a338624f20dcc2e7d635caa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/beacon-han-lod0.glb",
+      "sha256": "ce4bd79615caaf524aaa22c2f100f519304467d0ff0dc0120035bd2377ca4a67",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/beacon-han-lod1.glb",
+      "sha256": "f9d8524975cb542ec79e05b73dd6b530647b1497c55dc5958f30fa2e1ca17bf1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-granite-lod0.glb",
+      "sha256": "0d13e64af9e62d9496e9aaa170f70ad3bf02e62f13d900b21654d0ade08044f0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-granite-lod1.glb",
+      "sha256": "fa0de88c55e36d8d724de0474c4388801380b648fc57b24f36064bbc718d12dd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-karst-lod0.glb",
+      "sha256": "23699359152cd66f831d2cef314cae51a6d23a42a70ad18c3d15a1e3d816519f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-karst-lod1.glb",
+      "sha256": "c83f310ed723fcabaca0605c41c8c77d21e48f2914ca591128665628543ecaf1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-sandstone-lod0.glb",
+      "sha256": "21990a8993c1be76f97acc3f1c3a421fe9f581603397ad41423bf26961f72087",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-sandstone-lod1.glb",
+      "sha256": "b75ead539206939acfcf2b4bf6a626189abadad273da11fc2aff7e0326814d63",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-hukou-lod0.glb",
+      "sha256": "c4fdc4228cdc6ef9cfe8282f4da98eb004a77c63a7bb0ddd233d7615a8bafd18",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-hukou-lod1.glb",
+      "sha256": "14548f1c75fd9b260577db90fcafe60eb30c100c6a058de8541f2f2b8933587e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-narrow-lod0.glb",
+      "sha256": "347d34fd9e1c517dcddca80ca94370c026a817e96ad7d0dfc2eb0937a9c83189",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-narrow-lod1.glb",
+      "sha256": "89bde5514b33b46e16c1bbce6fcc5def50db47803361f4765b89fb843e5e86c9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-wide-lod0.glb",
+      "sha256": "dcb51192f40baa665f7368c944046df2612731f6d081c1c229c4300316deb92f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-wide-lod1.glb",
+      "sha256": "0be4b478269c816e97a2ffe2716726670363e04f6883fade32f58717d9a194a0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/scenery-atlas.etc2",
+      "sha256": "66b92db95e7f683956245fe49333611aed4e426fbcf2dc847e56bb53a528a5cd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/scenery-atlas.png",
+      "sha256": "a48b7d34d9e98bfd7f8be88c9b2b84addfdc22b08f07f28b44cf696f9e34cf34",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/scenery.filamat",
+      "sha256": "ba63ac82fbe0d146af851bfbf355154146510ad66d6c0fafe6b7375fe8aac572",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-reeds-lod0.glb",
+      "sha256": "4c786c89ecc0c686d3730be594c211aa0e26fd1ea8e380ff837ace09321df6e5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-reeds-lod1.glb",
+      "sha256": "ad692dd1fa110bb20fadc4d0d1b7bc3ed5bc4d519d19aaddffad1940c6ae5f6f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-rock-lod0.glb",
+      "sha256": "8b8f9ea07446c0721660d801201c7d4fd7803ada0f08a878ab2a1bd8e7b7992b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-rock-lod1.glb",
+      "sha256": "e65e59d5cba85928dddd8c4781029f42c2142246f6b3328ee1c866b1abf3c918",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/wall-earth-lod0.glb",
+      "sha256": "fac9bc6fba705bbce18c3168323fa6b34185d82ef7ffceb36cda4b2a630edb3f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/wall-earth-lod1.glb",
+      "sha256": "00051195322c024a450af4ff34349feb1b7a1cd40755c0ee5d0bdf3b0dd09b64",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/beacon-han-lod0.glb",
+      "sha256": "330f4b7cc610c4d60bb8a19c9bff7c7e056c16ffeea8e35d3d5d6a7a3bfc4795",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/beacon-han-lod1.glb",
+      "sha256": "d9e62e668f84f3750361eb6708d836c50876a63c25a46274cc0a9ba577dc4cea",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-granite-lod0.glb",
+      "sha256": "9e19662a8c539be803a1e05b76211691d8ca9466f716d2837e29ee41eaf13e1d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-granite-lod1.glb",
+      "sha256": "b59d2bcd921d7a949283584f6f556f584e3c844fbe1573dc58ad069e30b780b4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-karst-lod0.glb",
+      "sha256": "f0e85082a9a28e94e5f3ddb7adb5079781300d160352758e56bffe212f39269a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-karst-lod1.glb",
+      "sha256": "f3b65b637198b2c2de41c393a26a97c8af2e4910dcf19b956d9249b9298b3470",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-sandstone-lod0.glb",
+      "sha256": "0c71b799b4a071076b1c961568f81553230fed4988cdb61239572ec913bbba93",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-sandstone-lod1.glb",
+      "sha256": "f86222722eb524e5ff4ef4447968be42cc3f12b490e4619c9034daea0eb8ee28",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-hukou-lod0.glb",
+      "sha256": "f54deeda01a0e057b11febfbb1fce443dfd6554d3802dc0133de7c8cd13b01fb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-hukou-lod1.glb",
+      "sha256": "c9063648b981314505aed3f550680698fc657aaf65a85a6f59321939aaae87d4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-narrow-lod0.glb",
+      "sha256": "f4e7513cbab2ff618df0570259db16f8b79d7b0783d36d86706941aa33e7b849",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-narrow-lod1.glb",
+      "sha256": "ef373d670e91a6abbbd23040c10ed799d6d99cba9cf6265846f05149dc1ee317",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-wide-lod0.glb",
+      "sha256": "86f52107fdfb373265200ba5e67155916b50768d26c2835302d4cb7179020449",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-wide-lod1.glb",
+      "sha256": "2d34fa37e4fb3a5549186b9e40992c5a033331fc17c697c13e945b718c5d2266",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/scenery-atlas.etc2",
+      "sha256": "66b92db95e7f683956245fe49333611aed4e426fbcf2dc847e56bb53a528a5cd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/scenery-atlas.png",
+      "sha256": "a48b7d34d9e98bfd7f8be88c9b2b84addfdc22b08f07f28b44cf696f9e34cf34",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-reeds-lod0.glb",
+      "sha256": "97369dc75d4998df8d287c7739e97286ea3402f9d245630761f22c44b1294dd9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-reeds-lod1.glb",
+      "sha256": "df7dd266ab708b90dca1fe3f2a575ea6ef6a25a4e1629cce27172e1717080239",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-rock-lod0.glb",
+      "sha256": "32f081836301f53e4429ff9140302bf8ee2e2c84a81342b1858ff7d0054d321d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-rock-lod1.glb",
+      "sha256": "07c3cc9229b2eeaa0b7879be81c33eb223f8b0cac797c67d61ae077a965d0d57",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/wall-earth-lod0.glb",
+      "sha256": "ce80e8f90d8b7d2738e080968160e3233b1b8601661d2889a1df6a80172ddb4a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/wall-earth-lod1.glb",
+      "sha256": "a700c04832893ceca587b923217c01304ea3ce7a2c7c72f10400021202f5dcd5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v130/fall-hukou-lod0.glb",
+      "sha256": "a25c6db3505882c0df838b4612e05b2b326e5400022cb2d2137be95874f91d77",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v130/fall-hukou-lod1.glb",
+      "sha256": "397a8da0034ecda6ac0cc4e63fe5b7fbd817c3c730feeccffe173e91c2120cac",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/filament-LICENSE.txt",
+      "sha256": "02d70b593dd8e9355dd8e1ca8d13c303bee5bcaf3065b66ff6e4f534e1e6a2c1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-00.png",
+      "sha256": "e4ddeccfa334d1898273f8be0746abfe2b1b270d8dfa2b83737bf4dc9083e9c6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-01.png",
+      "sha256": "b31dabb680238b8c38cd9fae6eab27c09fd43ec41007c0687ab916ac7f5af5a7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-02.png",
+      "sha256": "f18ebd7e0b05bb0c0e8e2196bd8db7e88558bb2c266af53f9831280f0777fd1d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-03.png",
+      "sha256": "2a4f9d7217e855b8972c062f190b1e4d60ffd1e7e543500866e6d9a32f5f4e4f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-04.png",
+      "sha256": "102923a0b6eb6690e00621003fc6189c47e269cec3c83e4eb9ce7c0929b6e973",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-05.png",
+      "sha256": "2381b1a52f6b25e8b4cc9dde168ea60c074183f1e2a1f7e32c3ebb392c9549fe",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-06.png",
+      "sha256": "2c254ca55a77d04f1b20d9b9ff6a54cec28ffa669d0c3b551b86433fc17d44f5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-07.png",
+      "sha256": "d55739654c206825166bbc491f02dffc45e8e369a835c13ea34b60bf7c00bb31",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-08.png",
+      "sha256": "7adf400ce43686d6c50ebff1b855324e6c5b34f44858867654b8636e1080a638",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-09.png",
+      "sha256": "98b92b7753d491d45b78a5221678a11e9254dd4450432ced2f604a34463422c6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-10.png",
+      "sha256": "26617388a54e2a35ff3ebab9c15a18dacc3d985aa6a23407130c145e7d89e4fe",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-11.png",
+      "sha256": "80dd396b3bef3d4b822bb9f4d7185040b5b353ff6c475c4eca37266c11878c04",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-12.png",
+      "sha256": "44d1eb8f1b787f202bf9934e97f30771ae7fada03f1264cfe9166e2322d7a190",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-13.png",
+      "sha256": "8bec92ae10cd3f40a7b866a308f2e3e0dc9d6f5dbfda7e0db50c00359ae8bb02",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-14.png",
+      "sha256": "4945db36282c314325a475ba389a8cf123c7869a56e58a72ef777f3daf407716",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-15.png",
+      "sha256": "4f2869f234ad805eb9581eeb3f2452be92bbb526ce26fddd47a9f1365b98be5e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-16.png",
+      "sha256": "6d945d1ec14a985409115fc1a57e2c9090f2095197796f6177b358c9993af8fe",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-17.png",
+      "sha256": "acaa06aa3d3468ce7f58b3f2ee6654da616196cf86c13ac9befcc542af82493b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-18.png",
+      "sha256": "e807f93111007441b2bf4ae4b9a8dba3acd76cae9b2b974bbac6335066da8ffe",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-19.png",
+      "sha256": "46b5bd47873bd5f27842f5ee4daa812e769c42327e1fa97534909b93bdc54d1c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-20.png",
+      "sha256": "9c4922b82949ed174c06b45fb4d009a7dba9cf5922e6501835409458a6fdf8e7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-21.png",
+      "sha256": "487e3c2d76e7afad3ad3508c58326ba69a6e5dec95bea2ac71e18139402c53e9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-22.png",
+      "sha256": "a89c6bcc641627846878c5c34cd83a7760e870c2fcbe41def471030b02fdc4e3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-23.png",
+      "sha256": "3ec5d8a755ed208331f54ceaf4fcd69cd81bd83d21967ea763a4e6640eb39671",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-24.png",
+      "sha256": "af138dde168bdb5fbbc9d0c3f54c04f01ce99aacab4d85f494f5a67275eada80",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-25.png",
+      "sha256": "753d715ba181310dcc821e128a2f1f7b6560f40e3bc18598d585f53dfb63405d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-26.png",
+      "sha256": "707579e1fcf352c1a757edcbf78bb981127cbd23656152dce944c168aa2e9d73",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-27.png",
+      "sha256": "46c3e54fe2aa3bf69cfc52d911b1d35a9e38a89a44c97797f66bbf5e639cb771",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-28.png",
+      "sha256": "5c0fb09b0b7faa9796f6336d5a97a19878f03fb899fe41dd058d14a6aaf29c37",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-29.png",
+      "sha256": "e0102fcb0600293d33f4f4fb89eaf0ce393c6b9e190177798c37c3e4a07a83f5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-30.png",
+      "sha256": "24931396a3f385ede5e6132093434aef0fcf0c8de77b8e110dcecd31c98f6371",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-31.png",
+      "sha256": "d556d433ee1007dc503afba4baa826cc035480977adce25d729a080f6ea09b0d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/image-32.png",
+      "sha256": "6d1897c35e8d43bad98e9c15ad9f48fdeee11272fd839d61fd9e4afe0ad101df",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/quad.filamat",
+      "sha256": "350ee8ad1ea3378ee237b6d194aff1c3253cc85a4f7421f3e2193d6027e8c5bf",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/source-kernel.bin",
+      "sha256": "2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/source-scene.bin",
+      "sha256": "98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-environment/environment.bin",
+      "sha256": "a051f95d998fc2796e30d6632146ea39b5f24529bec13719a3167195663ae42f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-environment/paint.png",
+      "sha256": "84894bdeca3b0f2b08f39a3544ca0689a0108b0d28175c6a8c53f13c4a490c5d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-environment/silhouette.png",
+      "sha256": "0b74a267e3d1e0600bc570438936d999582253a5066447dbc319cacd6fced5c5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/atlas.png",
+      "sha256": "acf4c254bbb63772690c3acad68757f6be1a4ab3eabaf761b437c2ec23503780",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/cliff-walls.pcz",
+      "sha256": "f9764a6d57fc5a341c16f21c7851a007e251489a01a984e88507c4aa11c64b81",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/dams.pcz",
+      "sha256": "a662a1da667cde433b611c336c14c3302389350766f08c352d002dba14e8d284",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/facilities.pcz",
+      "sha256": "32a9a868a6df5e2186c534f37aedba73fccc09bf761722ff43f89eedcdacf2c7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/rigs.pcz",
+      "sha256": "c005139c78e3625e7035f8403240ecc98706ffbed70f02a22a09c7f209b51999",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-0.png",
+      "sha256": "03140eadaa8e88bdc85e4787b3af8e2a672c72c1973858bb87f7ed427f739195",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-1.png",
+      "sha256": "c60491e0e657cd2b4bb14c41a58a728b772343b930ac8012b34dd88a27c70c47",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-2.png",
+      "sha256": "414dc0545cefa6aeb5c1dd97d757ad5b436e545e50040847b77032659c01260e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-3.png",
+      "sha256": "ae3377b7e1368a87f3a167464abfae19d5cff7a5f0f09f34ab3b296087f39aed",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/face-high.png",
+      "sha256": "b649df8eae9deb5ff54af5502453ebce3dbf737c8e8de8c00f2764ff3fff025e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/face-low.png",
+      "sha256": "5bdda85b8f3e9ebf9ebd89df7c7df84a5fabe593468ab5df0b458354fd662d02",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-grid.png",
+      "sha256": "ceb30f7b4720d648f1499a3f3b00fe7c22175d851ecf2c9df6acc5527ec4203b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-normal.png",
+      "sha256": "1faa47fb688adfc0edf1069e3ce28523b3628f948585adcdd5a6de44956255fc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-outline.filamat",
+      "sha256": "f90fb6009c3741338a9ed2d4d5b950f850f0f9787495bd1bf66029a5a4a60403",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-outline.png",
+      "sha256": "3c391f71fadc6eda90c769d25f924f69d663c536a39136c0e627b7d6be7ada81",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-paint-0.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-paint-1.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-paint-2.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground-paint-3.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/ground.filamat",
+      "sha256": "8c831a3d7053c13f271e542a18ba0ab8837b2f3c800db6d9b2f41a529656dc8b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-0.png",
+      "sha256": "f118d261f8f07a306197d2657a39cc7c16d01350970517fff3ef10ea9f087657",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-1.png",
+      "sha256": "b98426e88a681da22f44bcd589ea73e2907988c0c8c82e0e36156f374c18610a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-2.png",
+      "sha256": "a748bc7535d374ec9de7821bf2194b8c4214a372c62fc36834814467f89ff9e2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-3.png",
+      "sha256": "0dc64c478634e79244cf48bb35f2a22f14138459cc14b48ebfde72049cd734ad",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-sizes.png",
+      "sha256": "37c0986011abf7419d48f73d079766d478625237b18c8929be1b46cfe046a92f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/texture-indices.png",
+      "sha256": "277a725d117aeac603f991d864a53e06e32efb41887f5ec0ecb9bae722e3bf54",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/water-0.png",
+      "sha256": "91f64994facfb95054e57ef3f31ffd7b47fa982b8820e98bbe89640ba4381425",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/water-1.png",
+      "sha256": "3a25900c1cdf0177684a1997b72a778e1cd1e44e09037f114b91dd97cf1ecc38",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/water.filamat",
+      "sha256": "98e39a51a8f3fdb32dedccfc4c0177a5be584770df179c9319c9cda448577b2c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/add-encoded.filamat",
+      "sha256": "cf52313ca0a54d9bbdd9b2d854af2226a1981b6d864c2b37b168019ead82953a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/add.filamat",
+      "sha256": "b017e12af9075704304a2ef23767b1a96e92599db7ee64767fd2198f67cfb540",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/backdrop.filamat",
+      "sha256": "822ddf30722f0cdbb96414e5bb6d654eb458859d3448a3266f3f664f255e8be5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/over-encoded.filamat",
+      "sha256": "900d277b48345eb0a543f0d1f53150ec1e7d66e4d881b57d9387766186cbaef4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/over.filamat",
+      "sha256": "dd0c32816dca1a02644639561c29f8d9393fe33235facd104e86daccc7b2d87e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-126.png",
+      "sha256": "9cd7ff98a0a98660f398163bfe0e652095c928112be64e4fd7cfd686a7f588e9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-127.png",
+      "sha256": "10adfa15c4ed7200276d6f9fcd793ef64558b2b006694553b3f2fd03772af40d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-131.png",
+      "sha256": "fbc2b1cab494bdf9102fda04c78ec0cee1801c55733257164afc4e4ff5cf54e4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-132.png",
+      "sha256": "8bd7cfcfda345cd97f7a15e6913295f9b51ba9f977210556158275e7958e06c0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-133.png",
+      "sha256": "9df735339ef0696497ccd350946665c84b6cc877103495724058553cdf148e1d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-134.png",
+      "sha256": "1aa73cfa6ea6456af6cf339eb6ee6ac10abedb48c4083e10b10c19de8129739b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-136.png",
+      "sha256": "6312939cae34e23dd2808f1c3bb22c2f7692fe6f43172aa35675af5208bf3d2a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-143.png",
+      "sha256": "b868269206dfe37c93d442b0a88041445ec6685c69a988f84d77f9f79dfa2fee",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-151.png",
+      "sha256": "3d08b211f4ba8db2fbb95ebbe8918a31e4933bd479bdda370190983054876708",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-152.png",
+      "sha256": "2c97d4c458ce6fc08936ae5261d34b63d62cca9df45030a1d3aa863037c22ccd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-153.png",
+      "sha256": "5b1ffc0770879109248f5ca1afab2cd8dd56e65bf031e8a04e30c90a330991b1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-154.png",
+      "sha256": "f0b06e23d951966d48832ac268233fbc51ad194534a7483d94a2bf66abfc3876",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-156.png",
+      "sha256": "9e7a05c9059e22465e02463731c54391143239eae9c7fd45ec995b33dd675a45",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/selector-163.png",
+      "sha256": "ba19d1a83a68d2f37d6341e631292c8f51faa6a165f171bccc564bc28068fed7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/template-115.pcps",
+      "sha256": "aadc7f15a89b23649e58f5ef0bfa97509552ab640936b3c37180161cf268526a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/template-121.pcps",
+      "sha256": "5ce2a2cf8757ea56f83744f46009b5b8f8279e8c7ea946c0cadd76a41802d564",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-presentations/template-122.pcps",
+      "sha256": "f500fe03e055b0b2541f74c8dd8975e2911ca8e9fcfff603dd919ee8c22f1181",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-scenery/atlas.png",
+      "sha256": "eb6c4e13bc6fd8052900eb43919b5bb2653134c6485d03fed5aa995a4b0143b1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-scenery/scenery.filamat",
+      "sha256": "1e1a914990de53cdc485b742cfc92b35a36be7ffdc86dd21ca659902382dbfb3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-scenery/scenery.pcz",
+      "sha256": "b3ec85c3d39c54bac4ca65731c8d3349e914baaa5e8a189974def43b4594d415",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-sites/atlas.png",
+      "sha256": "e97fb09cee1dbcb3f9ac8f252c12e2e309149ab2c47bd397a6b984cbd152b57a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-sites/sites.pcz",
+      "sha256": "902cc5f7a46fe14165e42e7e3773d96f00f3f90a26f52a9b54a926e18de78899",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/atlas.png",
+      "sha256": "9c3b46e612315756fb1d363c946c467ef7fb2b4333e8ca6100032f6efd74de8e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-00.png",
+      "sha256": "d24e23785f8585e3d90dff707a064cc9529c51c5f5207f553d7b3cb36c56c44a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-01.png",
+      "sha256": "cb8660654fd1065565fe8493abf52859fa80437f33641e16569441268f9eaf32",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-02.png",
+      "sha256": "a5f2b95cc368e58d2bcd614cd811236a025a209052d4858553f6a9d9a691a922",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-03.png",
+      "sha256": "0227569db33f10a6481dc4daf30a0b834e627f81e8dd5621c0b137760140165a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-04.png",
+      "sha256": "9e0be9865efa4e41b9195d30f74f26c74dd751db65cddf13358931046d6ee800",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-05.png",
+      "sha256": "74f737f111223ca14b62cec2072d1068598e69190919296a39df30e3d4b6bbed",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-06.png",
+      "sha256": "37788f9e2e6b6a898e8a9a18068e72a94fef8c68ea7ebcb318b73b4eb7de68ed",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-07.png",
+      "sha256": "807c9d5c438ee44be253e30ffdf93abff38bbf564cf506c590989274daf4ea27",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-08.png",
+      "sha256": "5e97ade52fd31d657f0350725d70963b73a057171d629fb5b1698ba062008bb3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-09.png",
+      "sha256": "62c1b172423353cc18be73d57158761fad59aaae5acf3ecebcb11489ace595e2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-10.png",
+      "sha256": "2981b70ea3eed470aa25782a8b29c2a7cde6cb26a66683a980aaa8d9d8d75618",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-11.png",
+      "sha256": "c5a517ba070162cbc0f9e5e4aec45ffe73057f6aa5e7ebfaae5c60936d8ea142",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-12.png",
+      "sha256": "b37f44e54fdf13a58aef33f6a1138a899688a6b0d86692fa56551c17c80a4ad5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-13.png",
+      "sha256": "b8f02267b4d6ab1322bbfd17128444c32aab8a7a154b85d40ac08fd755b128b9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit-alpha.filamat",
+      "sha256": "5cd8f2bc8a346f23312be0f8735e204767e6a5eb9522288b5ba2d46af5b78074",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/unit.filamat",
+      "sha256": "f2d22306ef6e96a54ac28f0ef91c5b26b9b3f9cc78d51ef6efb7089ffcf9c558",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-units/units.pcz",
+      "sha256": "32304ade817de4efa7a9e78110c22fcaff1a9854f4b815730ccce612cdd1bffa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/atlas.etc2",
+      "sha256": "173717408681d2ca222482268f57281a8c09004c10e6346875858396f9a3a05a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/atlas.png",
+      "sha256": "5cbd94d992d58c7a5a9f305a17c6dcb789911b1547fb6223303d09c35e57dcd5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city0-lod0.glb",
+      "sha256": "81ea10fe72a59bb5befdcd1b20b66b583abb5d206bf86743d6ea03e1cf63cf17",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city0-lod1.glb",
+      "sha256": "acd4f0e3d388dacaa1fed8158eaea741ece38af9ac6330e42939ee730df018b6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city0-lod2.glb",
+      "sha256": "22c5202a0b1b6e653d9f5e0b76c7507e0cf103828d8a7443566cd75b7342413b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city1-lod0.glb",
+      "sha256": "1360f9f9532ed3cbcd9d31c1d44c34175a93191281af662da0783e20f16bd790",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city1-lod1.glb",
+      "sha256": "68bb5f23f561a89451135634623690fe33225426cebc27197461ce7a9214dbe9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city1-lod2.glb",
+      "sha256": "d62d661edf3cf0ce8a1e63573c98a34ba90682917cf4356746c74cb3ed856d66",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city2-lod0.glb",
+      "sha256": "1bed0f77971249673809b6c69349ab48f26f46a0f8e4302773e50bb10eee2f2b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city2-lod1.glb",
+      "sha256": "739018bcec5da746cdb8c9ce11b6ed456358d3fb460229a8f65539bfa33164e1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/city2-lod2.glb",
+      "sha256": "fbf6f8db38b640235c1b6251e07c6bb90fa48edb1a151291ad8e062cc101d2de",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-lod0.glb",
+      "sha256": "94e52b597e7227c288fa34943877cc6e4faa012b7f908572dd1280d6ec637843",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-lod1.glb",
+      "sha256": "350ee79f5cb661057a4f441c97235b6209edee89eb63b5808a0c03d147ad46ab",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-lod2.glb",
+      "sha256": "39078d14d2090b9772fcc9f4da82c97191a0f06e785802ed4f6864b520c45537",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-v121-lod0.glb",
+      "sha256": "dc02d425df3d1aade8d7bf3818ae03ac66b810bc425ed2866657d4bf92cc4380",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-v121-lod1.glb",
+      "sha256": "ffc752a1efeb1e6519d299153290e77df37c7cfab035e92a9c6af8e987da784c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-v121-lod2.glb",
+      "sha256": "5db2045bf8ade09e4583e01caa069c518920368e13bd3b89e00066fd83aceb38",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/port-lod0.glb",
+      "sha256": "752e4bf07aa7f231446228c96de4bd5478233786f47592b6f8b22916b337123f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/port-lod1.glb",
+      "sha256": "e3a0a04ec855fb0292c9f7b443e1ffc70a19b9bbba48f0ec130ce9348b892525",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/port-lod2.glb",
+      "sha256": "2ebe72411eec6d0bebf2e239cf61057a8b7e9c9cfaab1b6d7e22aeabb05623e0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/site.filamat",
+      "sha256": "b4489c980aa59f8094b951874dc6550345f98a263db9fd64c100aefb05977b11",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city0-lod0.glb",
+      "sha256": "dc9432c7e98c0f3eaffe51b9fb45276b5d3ef89807359adb70885f30d0d9ed4d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city0-lod1.glb",
+      "sha256": "f4571b777a7ed7f118c17c160d6aabd03b808952d912386f1d9eca3d00349850",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city0-lod2.glb",
+      "sha256": "d45e869873d13d0dd6480287b51d30665856551e99d89014f584220ea20039f3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city1-lod0.glb",
+      "sha256": "72d5d28d8df4db1696424fa7ce92185ea85af0c6e87295fb1469eea87afe068a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city1-lod1.glb",
+      "sha256": "35d0b579894c379c2687076c7dd825ea2a7af775f76a08ab359b3751f347ce82",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city1-lod2.glb",
+      "sha256": "b21173459d8a788803b2e2e21d60b80a135948cde09f6d1926dae5425fd16f35",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city2-lod0.glb",
+      "sha256": "ea5f00a53582ad679bfd48ca4a47421b2ac343fafed74bbccb0131da81566d75",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city2-lod1.glb",
+      "sha256": "fe3ccbb5f79ba259a2e7094e7339389d503cdbc77546788945f22942d3265be6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/city2-lod2.glb",
+      "sha256": "fa048d9999db3fe9b75a4ce436ded6003a061b0472e9417d65ad72df7bb3c4b2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/gate-lod0.glb",
+      "sha256": "8b680beccd204c3c467be13d2a92bd0eff9531b2cfc2670456a526d891c7e800",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/gate-lod1.glb",
+      "sha256": "1c6a6165e2320fb28efecc114a4eca1de6043732445124260bc05dbcf858dd57",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/gate-lod2.glb",
+      "sha256": "9665a01b1432e2943ce2f6f2c9307290a834b928d7b3bdf5d846e228351e83e7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/port-lod0.glb",
+      "sha256": "a4a8ef60cd43186dca36a0b280f1134a3b2c074c5b77f8626cca6c90976b68dd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/port-lod1.glb",
+      "sha256": "54b5e0da34669af3fd871de927131f62958e115d9e1665dcfddab3c40a740d9a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v122/port-lod2.glb",
+      "sha256": "867881bddf087854f9b09764595f67da0245ff71d45408290e699cc21484bf20",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city0-lod0.glb",
+      "sha256": "4615e9fb6b01b16fc71891beab2e234a102383db384192755b486c89ab28b2b8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city0-lod1.glb",
+      "sha256": "e5703ad895b3192c4e80503c8469631887ab5ec90a4a5568105d49eef29259ed",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city0-lod2.glb",
+      "sha256": "eb64f3a9894a35a960fd6baa63f3b319dc2fa1baa6947a64e37e9b42b4f53321",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city1-lod0.glb",
+      "sha256": "62a60c6e38b448baab14e96196b3969c0db4edefca201b598ebdd336ab4b931c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city1-lod1.glb",
+      "sha256": "f125551376cb0d06967d18040cd3a4280aefb273720a64c65811e6b99643cc5c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city1-lod2.glb",
+      "sha256": "abcbabb15327780de476836b02ea6b24e00d432ce1606064b68343edcce672f5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city2-lod0.glb",
+      "sha256": "39609af9ecb08a548b65e232828d0bda5a04db81e8ef4bf4b2b70a987f078502",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city2-lod1.glb",
+      "sha256": "0b1247d0bb61b72a76f00591930207dc012a584fc3c371537528e042e47a4831",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city2-lod2.glb",
+      "sha256": "fbb9fc1ddf8838fa4f0d116069feb75e0c08c6076366615ceffd1a5372ab7c8d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/gate-lod0.glb",
+      "sha256": "4e6e8c2abb02cbe6bc2733031bb4b2c541ce021e7f8439ae83e00b644749a808",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/gate-lod1.glb",
+      "sha256": "79495172931c8c6f4cd5485b7ef03b256ceb3b6b1055fd2d25252f5829f491b7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/gate-lod2.glb",
+      "sha256": "dab26968126ef093fba5bad746e4ed664415f0a6b53dfa9b1e863dfc55afec43",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/port-lod0.glb",
+      "sha256": "129836564e310c41a4bc7b6e299e40d26c81054c917ccc8f2f49613672771212",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/port-lod1.glb",
+      "sha256": "e21dfa575f1cbdcbcc928c00e7b643b5617dc18067410c5684aa9208798658dc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/port-lod2.glb",
+      "sha256": "f2fb26c2d217a8fccd2334ec3227425457db8fdc36683d14f1abc5734c38e97e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod0.glb",
+      "sha256": "aeb6e55b4ee7ad9ada1144396f323054e2dd77e5cd9cb994e3755da26f27f5b5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod1.glb",
+      "sha256": "55f34e95f75bb151bfae5267db069542a0a88503b450f1c17aa88e932b581ad3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod2.glb",
+      "sha256": "95cc400b6d9377d033a613f24f1d7ceb7509208b244879e344b13efb7a5765d3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod0.glb",
+      "sha256": "721200cae64841c7a3877c26ce0c462d946157a777309e7f57c3857b709a9fe5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod1.glb",
+      "sha256": "d0663b0f6cad6fa171efa3c8527464510b73aa62b540ccf7892eb35454d30db3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod2.glb",
+      "sha256": "984008692b9a6ea5ecdf6bdc0008783753eca1e132394f394ca3479ce8397ab0",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod0.glb",
+      "sha256": "63b1f3473c6802eda7747890efb4a581002cde8392e32de6a7665ed3fa912e63",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod1.glb",
+      "sha256": "9fd043078979c18ade2f57ea314e71bf7e2c83e5ca61f9cfb03661972fdfb085",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod2.glb",
+      "sha256": "641fbd671e4318d8a90c79ba643469db0628dabeb7c6c9ca985a5c4312ad4cbb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod0.glb",
+      "sha256": "7ed0498cd07c2909a1aebc3bccc0a428e9b6f70762298531908187212fdc5590",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod1.glb",
+      "sha256": "a11f77267c39617ac883fdcd0e8859bbd4ac3623b8d0429b4be4f81188cd6b9c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod2.glb",
+      "sha256": "0f9de1da4a320685d0a8bf0f55313a44abd4ff339be2b64349876d88cc841073",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod0.glb",
+      "sha256": "b0fbec7632143d3c1532af0763f8a33227f6b5b4503e16e652f1a13647cce6f9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod1.glb",
+      "sha256": "c0e765b1d36ad96a3eb5ae98b51d795966788a78880a291c3f799b5244865c3b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod2.glb",
+      "sha256": "0f1c00eb0f8f998d31dc517d68c591476e36320a9f11abf5b428c0da0defa3eb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain.filamat",
+      "sha256": "ec5a3a545265a4a9caf6c6de0ef378e6e98aaf64bae96de1746035f4087714d7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/grass_color.png",
+      "sha256": "9ff5ca4c401ece5e6f6e836dc837e3ec956a8f5300e0b35aa4da13dd831c2078",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/grass_normal_roughness.png",
+      "sha256": "2b0b3d793d810e709f02c1cca947203371d4342d4f6eae4d89f49a18a253f55a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/ground-overview.filamat",
+      "sha256": "6a1c2b3aa616aa30778e5397ef25f3e919e3937e408e623c633d843ba374eb5e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/ground.filamat",
+      "sha256": "f42aa786ea9fff5c9f8f43c7eb103671b11506ff5890fcd05aa3d52038c959bb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/rock_color.png",
+      "sha256": "6370f0ad4a132817f4d9a1cba560c508a3809a7d617244e66380f1c9397a4723",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/rock_normal_roughness.png",
+      "sha256": "2fd1c11fe23e816562243f55f51f39b4bfa24914a3105240d81b1adf8affa702",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/sand_color.png",
+      "sha256": "782501271c1c5ea4e5a81d63bae8b2b0bbe6ee88aee3db9a0e3f905330808691",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/sand_normal_roughness.png",
+      "sha256": "3d5f15af24a99783b897c2a01f91673215a5cfe2cf349519552b658e058a6a54",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/soil_color.png",
+      "sha256": "9c8b249d6c85b5823591d6fc4d0814a27a84fe6c0be6cb252010776ac7a0aefe",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/soil_normal_roughness.png",
+      "sha256": "cc0433722d76bcb8a2769c1c642efa3c0645e17f26784a4b0b6bdde59d374ef6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/v129/ground-overview.filamat",
+      "sha256": "6d25524f55f25f03ba5d0fc4869095f879efd7987042711a93f20240ac4bc875",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/v129/ground.filamat",
+      "sha256": "3f78685dc70edc4fc9233136547156d51a53079bf18d1a3c974358dc1ee14f45",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/water-overview.filamat",
+      "sha256": "d05bd27fe805db7adf13c1fe74ec9305f18773258a98530dcb5e25283e110d79",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/water.filamat",
+      "sha256": "f0c27cebf48137e12c7f50d6e26a4355ea533c64abde06d0a99f5d143b74c21c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/README.md",
+      "sha256": "39cf316c4907be5e5f07d0356c2cfd74955abed2545168539b250c0af161af76",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/attack.wav",
+      "sha256": "7c7135de467b4b5323dbc728909196442704c28bbbc6ba40fc35fe8a3eb60495",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/complete.wav",
+      "sha256": "ca6489873cdbe7d6eaaf185a6f724e5b3ae7d08739bcc61399dffc9027fce9ae",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/construction.wav",
+      "sha256": "3a6e4b74831b26000e0cccb9be73a86815fb71b13fca36f794d81d1ef0e12f31",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/critical.wav",
+      "sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/march.wav",
+      "sha256": "924fb9142d17f25d1a26f84a4394e370ffac5a026980983baff9e373e55c2d18",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/plot.wav",
+      "sha256": "b34b65f4f29c173f5942a5a00763c5bc29a42121569b7c8cdd88eeef4b9f0fc6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/tactic.wav",
+      "sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/technique_gain.wav",
+      "sha256": "1469c9f8115716be09a31328ab0164bbaa9f59531f8469df80fc205ed6fefc49",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/technique_loss.wav",
+      "sha256": "76708f828cdf211252c6d0ff2b564b70244ce66f7e04ca2c2a9316208e3a0291",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/turn.wav",
+      "sha256": "1efdf33d5612436ac8972e834f996f66934d49e05a3937f76a6d7c8efdf24b32",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/ui.wav",
+      "sha256": "0e76b1ad4dbade966707a014ac68235d060373b87e7ec391c5e3ae3b3c094000",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/buildings.png",
+      "sha256": "6dee326510e59cc5bc26153c0548e36432437e9dd0a4dc7ffd35461a705a4fd3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/catalog.json",
+      "sha256": "d5be1c6f72404694a84e43ee2a881e461b19ea9ce2b5b88fced64712d12db732",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/changan-far.webp",
+      "sha256": "574d1f8e95870f149d81266b879be7d1e724ef54efbbf06189cca7113c703ab6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/changan-mid.webp",
+      "sha256": "00ed6a0bd85c897e59f292b4646e2f65abbdbce9319f87fd2826884095dc0d76",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/changan-near.webp",
+      "sha256": "cf934022720a2a853208dd72b3b346da6d2c3bbb2ff8bad07264d56c63bd6a68",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-ew-far.webp",
+      "sha256": "c9c148303ddea616f0865ed5e36e5256a1afc13dd09ef13e1b0b567abe307697",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-ew-mid.webp",
+      "sha256": "d577adb925a006fae51a3265acc76d4a2ca9bb666228054437305bc6557b69ac",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-ew-near.webp",
+      "sha256": "de1715adf629e52661f6ad71083260e9af168fcd6dd266ff840e02d9c1ea73ab",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-nesw-far.webp",
+      "sha256": "c9d883ca59139517e8177e684ce1fd1a2816d03b5e860d8e24c7868038a569b4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-nesw-mid.webp",
+      "sha256": "ce03164ecf0f4c3aad99263a2508819949bc47e735ec3a584ddafcac20faeec7",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-nesw-near.webp",
+      "sha256": "a5452684660d552d25837fae89995653042ba8453f29b9f7c4ca004d6705ef79",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-ns-far.webp",
+      "sha256": "627907cf53ec466e40073ebcfcd17455cdb1363a8ccbe5303d488921d8cbce8b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-ns-mid.webp",
+      "sha256": "d738abd6c589ff7d7fa94429602f588cd7f84c54dcc13cc2dd106319cad72122",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-ns-near.webp",
+      "sha256": "b7124eeec3710c3ac1e4994c13ef741d5f4b583ae7774bfe3910b0b28c14af6f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-nwse-far.webp",
+      "sha256": "c5e58812154221350b0cf29cad0a550b72c1fdedc3603b4f92d357ebe0bb8299",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-nwse-mid.webp",
+      "sha256": "3b5d47a3ce3dc5c48f1abe2f94d2a6d28b3f38b024404db9e9f9bb8d52aff746",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/gate-nwse-near.webp",
+      "sha256": "41befac43683db809a84c53e9cedc86ec958232f3440665807e08d8d27e8555c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/large-far.webp",
+      "sha256": "7e81d9655e8d80833c76736c2f2432fda847bf67dbd8ee36baf8b19226c2aa3b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/large-mid.webp",
+      "sha256": "889a0c5816beba231f890a3326dd46c57e215771c6987c2dc7327c5f42d267fa",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/large-near.webp",
+      "sha256": "ba9b03b17c2c0ac18ae876120d420efa9ae4400387f8bda969fee55fb64dd6bf",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/luoyang-far.webp",
+      "sha256": "e099f51292ffa3a5919a864f0ba38e8219af9cc2a93d136f05e821f303960780",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/luoyang-mid.webp",
+      "sha256": "47229549c630cf041087fcd9a1531c6fd47e4b35f635926945d55de221beb6dc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/luoyang-near.webp",
+      "sha256": "58c22c03c2b08137c18cb954614772bf9f9c284fbc1a40d457fc20c25dc0513b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/mountain-far.webp",
+      "sha256": "8b7825b334a0466861bd68149d98e563371bb491995f1b3aca3c9d25028d8d11",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/mountain-mid.webp",
+      "sha256": "e4d0adc738a35d781d9bed48bfd50442bee51b98c8c0bce1d85f7c1a6f7f552e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/mountain-near.webp",
+      "sha256": "8b6dbae9d76f561b74bc072f96232c25ad8946bea8ba1a0440de901ee58528f1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-e-far.webp",
+      "sha256": "cdb31171dad4dbbccab27933135de24a9c921db94ee819ccf20a918c4ed34719",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-e-mid.webp",
+      "sha256": "03e9806dde9d74623882c509a0d82fd7be1b087f5c0062255740d82c4d6c0af5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-e-near.webp",
+      "sha256": "b68d6506264a84fbf0957fae14b8ea32918de969bf598234afc2e9068aa1a6cb",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-far.webp",
+      "sha256": "971e274c31e33a39c1c2ac9558ae096972c286f0b79bfb9e832faac1b1e1a3fd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-mid.webp",
+      "sha256": "17823b2891141c57c73343709a5e2c3138168f8b3414fc19d676cfd6a58e36b5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-n-far.webp",
+      "sha256": "6f92195f1e7ea76a72cbd8eab6e63cc9f98b8a2150694a046594ba4420bbe3c5",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-n-mid.webp",
+      "sha256": "1073fe43a5223db4074f8d27ebe3442cc0bca65a7fa9fbbb8246eae7eff1bf7e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-n-near.webp",
+      "sha256": "7e111a1663f6462903dd7bcc719d1052229bd05ff76aea8ebf526a6a01db0e07",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-ne-far.webp",
+      "sha256": "4f094c44566ff04f7b2429cf831076ea38b18e2dc6645f6d4ed76d14bd9ca41e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-ne-mid.webp",
+      "sha256": "153c28a14ab8c33ce95713d46644bab7d95d58dbba8f0ea2ad5a77610afbe6fd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-ne-near.webp",
+      "sha256": "c4615c6ed6fc1bc90e3e80861dbc4c16469a9f87515571e2e9951fec83422b3e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-near.webp",
+      "sha256": "97ff6d61a97d451212b789b54ce5ec312598c574def9b3fa520df707dce72a4f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-nw-far.webp",
+      "sha256": "e819bf38489ec5792ef708cd4a1ecde0635b46c3c4eb3ae93916517f23e5746d",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-nw-mid.webp",
+      "sha256": "7c4e66af8a64abdd10dad7ca9bcfb3ca852be8fe3afe3b8700cee55933270407",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-nw-near.webp",
+      "sha256": "1990223f7e6a554128cf1a399a9ed8e042a45f7289b30c908c7065e2a914d078",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-s-far.webp",
+      "sha256": "745bf92097f0e249d4770620b4bfc8cd76c1203c38d5e0ed7d2bdbf37b4a9783",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-s-mid.webp",
+      "sha256": "d5447868753373487ba6560bbb431b88a0eb24759168f9ba43baaf2694e23506",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-s-near.webp",
+      "sha256": "2ad516067b2870bbe0160babd4190f7dd4cbd80f8d5bb898072bb65f175e8814",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-se-far.webp",
+      "sha256": "b0323c62d5e66c5a4e8639cd9b83f880c961aea435be7c624c9c678b969716e4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-se-mid.webp",
+      "sha256": "7708a19eca33c2564ddcab0c0bee548b5ce05e06bfb139be2f1a41310993be19",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-se-near.webp",
+      "sha256": "94d56d12674221dd1cada25293179f27731c9c5cb01804cf6a2a5d58a46d81ef",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-sw-far.webp",
+      "sha256": "caa4cae1c130708c4ad89ca04c07cbd70819ad7e3d2cbb226c824668b0d0cf83",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-sw-mid.webp",
+      "sha256": "9b781ada52d576b94637236148d42f61394b07c2737936b3006acb97d8f84a72",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-sw-near.webp",
+      "sha256": "cb55853e6aa71ae595d8cc608ec3b1cb75bf741ff5c50f3277b5df7d87d18c26",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-w-far.webp",
+      "sha256": "9e8fba9dfb761773db20b5772cc32069ec2c5364ad41d2b28067d8ab0cb5bd44",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-w-mid.webp",
+      "sha256": "d30fb467b7a0bddff98025d9526629c35a2dcad5717e40efecaba4384b058013",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/port-w-near.webp",
+      "sha256": "3f2baebd7849172bd55717f1b33d0be31eb792e44587e1d51fc4a9171592b9cf",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/river-far.webp",
+      "sha256": "101800b7a9cb66fd29f055ef87004a290720223e92df53ab4c3e166f45253309",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/river-mid.webp",
+      "sha256": "1b816d0bec6565ec060c6ac7d26b74f5b697bea8dd612481d5b569e90ab4bfc4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/river-near.webp",
+      "sha256": "73e495d4dbd4b4e23148163cef5ffe0fb53ede3a17f867e8ca49a49df03ff50b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/southern-far.webp",
+      "sha256": "2959e81bd6a16cb1ba257c20ef250a25bdcadb4778247bce055a7459cb4f4b3e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/southern-mid.webp",
+      "sha256": "9d6187d483761d5ab597e3e1b29d9f5f93c05de0b36595517f0852b2100bee4f",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/southern-near.webp",
+      "sha256": "7e4190543825d160f618a2b7203415b16415e2bc46ba9d300c069fa9494a21be",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/standard-far.webp",
+      "sha256": "e42ad788e21aa2804c59fa3621040ff685f4b795ba63e054ad3cae0977e1018b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/standard-mid.webp",
+      "sha256": "b5f8278230202d0b19e449ea06aa57ae0d038cd8b00926d4e0d6ef00244bd4ff",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-a063/standard-near.webp",
+      "sha256": "ee92dd32e00624a8f60cea47c03639804ecee41f3d0ae2e6ba00fd6daaed78d1",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/capital-far.png",
+      "sha256": "17546d68fde45dcbc146c082d30005c72084f95288cd5d5f70fb394d16d289ef",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/capital-mid.png",
+      "sha256": "124fec12243c6695d03212218a1e63b452064c7e70cc791f981d3a87542b64ca",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/capital-near.png",
+      "sha256": "133b79448d7b0f8030f9b892ed48374ce073686b34f35ef3adde2f48e80017b8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/catalog.json",
+      "sha256": "eb1f988e4f034fb421da753633851b0493d86fe61366ee46f3a9fbe988888403",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/changan-far.png",
+      "sha256": "aaa0f58c319bede2f1b15fb1c7453851d8e52902469d5f6697bd918ce8528686",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/changan-mid.png",
+      "sha256": "df0d4d27f10e98d56d9fd025a5baa1aea635926a7bc7e20b020e8163f15900e3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/changan-near.png",
+      "sha256": "b06214a3e7ef9c9869491d8e989027867a93e35b9e4022e8d23cd72c7819b763",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/gate-far.png",
+      "sha256": "7a37aa6a283ab2af1516d4aad146f61d0fdf7bd5ff922b6b360fc9525f719f55",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/gate-mid.png",
+      "sha256": "0223ba25cecefc785c11627771a649a95c4bc084c02ba84b898b9e688cb58071",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/gate-near.png",
+      "sha256": "95cdce9fa2f8735218c7f40a0fc3787820c6a6b433fb701fa0e27642d2fd0491",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/large-far.png",
+      "sha256": "a362c7bf940cc14ba63c759b74ee791ef69dfd89dd5982e25ca59c717bdcf994",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/large-mid.png",
+      "sha256": "c87388fa9ac34bc91e28fb89f5cc721839c08c0a4b019d2453c1fb81fce5a871",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/large-near.png",
+      "sha256": "66923a80fe76b3c5a44f71c93350daf31f347ae2527e8907d7e74accdee49b4e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/luoyang-far.png",
+      "sha256": "dd2c37fff1a3355feefdcde761e8c356dcfdfb443bed5e01172b3afe379e3f4b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/luoyang-mid.png",
+      "sha256": "67e76c053bcbc4e93974d4cc7fbfab24ad6824fbb7315e89ab567d7470259a26",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/luoyang-near.png",
+      "sha256": "0cdfb8bb91a4db835b5bfc8fbdecdeb148615eb60e7cb4ed9c8adf9560aa7bdd",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/mountain-far.png",
+      "sha256": "75ba51679e3fb7a7a23cfb21b2c9fe8c33e93d26e755f61371f272d7615c10fc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/mountain-mid.png",
+      "sha256": "5720e7afb1d891377f3057c7e1174852c627a671bcd463d14654dfd00ef797c4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/mountain-near.png",
+      "sha256": "dc409d5869b72493f02580cf2540df643f16db263e622017f8e4a1f18edcdcc2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/port-far.png",
+      "sha256": "bc00293cefc935ed72264b36e97785e2224d76bffe4653bec8bee84c726d81b8",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/port-mid.png",
+      "sha256": "5558d5dad72f618498e70d18054f8283116bf37762613cbf8e3cf7196ef7816e",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/port-near.png",
+      "sha256": "6d6f08a56493654e0d118b91e2419a2779296fef9a563d187ab30e5352d802de",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/river-far.png",
+      "sha256": "b965079658ab64125dcacf7b273c8fb7ce434a305fa2c5e84129821fb02abbdc",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/river-mid.png",
+      "sha256": "ecfa89976096ba9eb22295c785926f395d14c4cdbeacd8d479af2c9ada9cb587",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/river-near.png",
+      "sha256": "396d51dec9072060058085a21aae72adf4bfac43e19b08a5a4b7c550ea53c8b3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/southern-far.png",
+      "sha256": "1178cba83054e8dfaf9852733f37f09a24854a770229826271fbd7447bc324c2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/southern-mid.png",
+      "sha256": "a0e65910b4f8dbe1604e5393af929bd8b6b50f1a2f4bca9e389143261e98503a",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/southern-near.png",
+      "sha256": "156ff7f41766c58ac68a664ed74ce3f175f8da166cce0a4edc1cf94e2b2ab7e9",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/standard-far.png",
+      "sha256": "bbaa21dd22ddc5444e608671a8679477aeb2e7094e2c44f1b3310d879545a71b",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/standard-mid.png",
+      "sha256": "45e1f16e4ffe67fca8be3e978464a5b9b87842050e921f6e69eacb7a1e5fe1d4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/cities-v056/standard-near.png",
+      "sha256": "004d887b3917d6620eac0a48e95be8401ec50e1dec5514772435b23bf9d16eda",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/items-facilities-v040.png",
+      "sha256": "1f2d3bf7f527f042a3b082d25110b63ebf3159a92b04eca18f9b55f231c27911",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/military-v040.png",
+      "sha256": "25f32897aab33513fc461adec7eb8d7a3281b5042716d1637571c050eb0985c6",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/terrain-a063/sand-fine.webp",
+      "sha256": "bff4a3dc31c604e3c59eff6ad0a9ebf0516ba68718eef0505e49c43114b43ace",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/terrain-a063/sand-grass.webp",
+      "sha256": "ae2b593a39c54abf2b4b873bb03c19e852977fa0e4b00b7664aa4bfe9ffd0538",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/terrain-a063/sand-gravel.webp",
+      "sha256": "09784e86891fb18fa9bf9f0ab24a86a28bf4e32d463d8e259b4160d63138de59",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/terrain-a063/sand-ripple.webp",
+      "sha256": "58b0bfa001479a456c18aad9175325ad58286d7a1da410bfe01687a32da570f2",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/terrain-v040.png",
+      "sha256": "6b9f16d4fc4f90e960b8f664ad73a5307a67b26d595aa186323987349496f459",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/units-v040.png",
+      "sha256": "c0021a6c1be28ca656737f7d65a818d6424fda1bd64f6a7dbf67276eed7bee6c",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/units-v043.png",
+      "sha256": "8706a2095243fac24832b8bb736505b8d45687c7dcd42b39d5a4e1caa8e3f043",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/portraits/officers-v040.png",
+      "sha256": "3d68c887d97e6ed50d390899f9e4b03f86c38c8e45ee2dd34f25567f885857a4",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/portraits/officers.png",
+      "sha256": "c39255112dce5d08ac5fb09d5653ca96328d140f5a3fdec92d79eca6f50c28ce",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "sha256": "f6770f677e25207525962773c86946e4eb97cb513fa3da1ac4c0dcff5ba34321",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitCatalog.java",
+      "sha256": "ed8a85b93a24da418d8f6157c5522fe8c8e8098eba002d3e456504ac85a7cbed",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "sha256": "39361646adceeb707afca3398cc20a77cf21c51113c812c385a325b2ab021ee3",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java",
+      "sha256": "0af7e7479aa930b1b93b4e48b197b2cf68a54473892910609de92332061a7a55",
+      "unchanged": true
+    },
+    {
+      "path": "docs/PC_PARITY_STATUS.md",
+      "sha256": "a5d15872f0086a8f46eba1ff1b92c30f2ed13994212085d85af7ca452d4ae0d3",
+      "unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261003/STATE.json",
+      "sha256": "170f956b050857d5dd39dc762d7a55dbd9de70c03fc2764dc441afacb6748125",
+      "unchanged": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "unchanged": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "unchanged": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "unchanged": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "unchanged": true
+    },
+    {
+      "path": "progress.md",
+      "sha256": "9badd7bae7a62fd49d4dc46c282b0570d92f2a553f186234e16df2f825a1f314",
+      "unchanged": true
+    }
+  ],
+  "completeGoal": false
+}

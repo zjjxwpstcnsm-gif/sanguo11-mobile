@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.AssertionError: Native headed field case=4 frame=475 field=9 expected=0 actual=1
+	at game.sanguo.core.PcDebateHeadedTest.require(PcDebateHeadedTest.java:11)
+	at game.sanguo.core.PcDebateHeadedTest.main(PcDebateHeadedTest.java:19)

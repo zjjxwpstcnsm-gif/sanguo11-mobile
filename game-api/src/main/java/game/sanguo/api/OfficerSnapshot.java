@@ -8,8 +8,26 @@ public final class OfficerSnapshot {
         public final int nativeId;
         public final String sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha;
         public final List<String> unknown;
+        public final String identityStatus,originalInformation;
+        /** Raw value from this game's original source record; absent on older saves. */
+        public final Integer initialRawLoyalty,canonicalOfficerId;
         public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
                           String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown){
+            this(nativeId,sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha,unknown,"canonical-identity-verified","");
+        }
+        public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
+                          String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown,String identityStatus,String originalInformation){
+            this(nativeId,sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha,unknown,identityStatus,originalInformation,null);
+        }
+        public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
+                          String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown,String identityStatus,String originalInformation,Integer initialRawLoyalty){
+            this(nativeId,sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha,unknown,identityStatus,originalInformation,initialRawLoyalty,null);
+        }
+        public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
+                          String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown,String identityStatus,String originalInformation,Integer initialRawLoyalty,Integer canonicalOfficerId){
+            this.canonicalOfficerId=canonicalOfficerId;
+            this.initialRawLoyalty=initialRawLoyalty;
+            this.identityStatus=identityStatus;this.originalInformation=originalInformation;
             this.nativeId=nativeId;this.sourceVariant=sourceVariant;this.sourcePath=sourcePath;this.sourceSha=sourceSha;this.recordSha=recordSha;
             this.courtesy=courtesy;this.courtesyRaw=courtesyRaw;this.biography=biography;this.biographyResourceSha=biographyResourceSha;
             this.biographyRenderedSha=biographyRenderedSha;this.unknown=List.copyOf(unknown);

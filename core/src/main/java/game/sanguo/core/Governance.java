@@ -13,7 +13,7 @@ public final class Governance {
     Governance(World w){this.w=w;}
     public int cityCount(int side){if(side<0||side>=w.factions.length)return 0;int n=0;for(World.City c:w.cities)if(c.owner==side&&c.kind==World.SiteKind.CITY)n++;return n;}
     private static int earned(int cities){return RulerTitles.forCities(cities).grade();}
-    public int grade(int side){return side<0||side>=w.factions.length?0:Math.max(grades.getOrDefault(side,0),earned(cityCount(side)));}
+    public int grade(int side){return side<0||side>=w.factions.length?0:w.pcSourceFrame?grades.getOrDefault(side,0):Math.max(grades.getOrDefault(side,0),earned(cityCount(side)));}
     public RulerTitles.Title currentTitle(int side){return RulerTitles.at(grade(side));}
     public String title(int side){return currentTitle(side).label;}
     public int rulerCommand(int side){return currentTitle(side).troops;}
@@ -46,7 +46,7 @@ public final class Governance {
     /** One O(officers + sites + mission crew) pass, called only at mutation boundaries. */
     void reconcile(boolean announce){
         int[] cities=new int[w.factions.length];for(World.City c:w.cities)if(c.owner>=0&&c.owner<cities.length&&c.kind==World.SiteKind.CITY)cities[c.owner]++;
-        for(int side=0;side<cities.length;side++){int previous=grades.getOrDefault(side,0),next=Math.max(previous,earned(cities[side]));
+        for(int side=0;side<cities.length;side++){int previous=grades.getOrDefault(side,0),next=w.pcSourceFrame?previous:Math.max(previous,earned(cities[side]));
             if(next>previous){grades.put(side,next);if(announce)w.note(label(side)+"领有"+cities[side]+"城，君主晋为"+RulerTitles.at(next).label+"；基础指挥"+RulerTitles.at(next).troops);}}
         Set<Integer> away=new HashSet<>();for(Domestic.Mission m:w.domestic.missions)for(int id:m.crew())away.add(id);
         Map<Integer,World.Officer> best=new HashMap<>();Set<Integer> residents=new HashSet<>();
@@ -86,7 +86,7 @@ public final class Governance {
             // Legacy title thresholds can leave a stored grade below earned:
             // otherwise a save/reload suppresses a promotion that direct play
             // still announces, changing the next turn's journal and save.
-            grades.put(side,Math.max(grade,earned(cityCount(side))));if(!name.isEmpty())nations.put(side,name);
+            grades.put(side,w.pcSourceFrame?grade:Math.max(grade,earned(cityCount(side))));if(!name.isEmpty())nations.put(side,name);
         }
         validate();
     }

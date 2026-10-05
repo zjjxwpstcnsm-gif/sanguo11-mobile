@@ -1,0 +1,173 @@
+{
+  "completeGoal": false,
+  "conflictPolicy": "Only apply after before-SHA guard; new own files must be absent or have identical after-SHA. Do not overwrite another session WIP.",
+  "deltaSelfExcluded": true,
+  "files": [
+    {
+      "afterSha256": "20286e8c3a8f9c13aef08fb4a3db676a05e70e69e851020ce42ab7a0a696b7ae",
+      "beforeSha256": null,
+      "bytes": 8102,
+      "path": "docs/handoff/20261004/session1/BATCH_04.md"
+    },
+    {
+      "afterSha256": "03baf17e205c6d0aabea8eb3bbecb4245da18ca28a90ea6c0f1930fcf1c71905",
+      "beforeSha256": null,
+      "bytes": 7923,
+      "path": "docs/handoff/20261004/session1/BATCH_04_VALIDATION.json"
+    },
+    {
+      "afterSha256": "2ff5ee8030dea9a710ca59c662331e5086cf67ce5c0ec4946390232286e48b4d",
+      "beforeSha256": "eb8d26f3d77138be518a0757d40302a99d9521a507f135186c052cd8a78129b1",
+      "bytes": 4171,
+      "path": "docs/handoff/20261004/session1/PLAN.md"
+    },
+    {
+      "afterSha256": "676a6767b6052060843cbf001d046493980165cddb403142d2d7888e9c78351f",
+      "beforeSha256": null,
+      "bytes": 927,
+      "path": "docs/handoff/20261004/session1/aggregate-budget-diagnostic.json"
+    },
+    {
+      "afterSha256": "bebc5b724986a8884c1ef8ac42cd4cfd0a0dd38cadecbca3f8a69827cac6aa1e",
+      "beforeSha256": null,
+      "bytes": 102,
+      "path": "docs/handoff/20261004/session1/batch04-events-a.txt"
+    },
+    {
+      "afterSha256": "bebc5b724986a8884c1ef8ac42cd4cfd0a0dd38cadecbca3f8a69827cac6aa1e",
+      "beforeSha256": null,
+      "bytes": 102,
+      "path": "docs/handoff/20261004/session1/batch04-events-b.txt"
+    },
+    {
+      "afterSha256": "50a21ece404248d6f6e2d2ae8672951f189ea112ba9803ed5c9aa046773ee034",
+      "beforeSha256": null,
+      "bytes": 4535,
+      "path": "docs/handoff/20261004/session1/batch04-fields-all-a-final.txt"
+    },
+    {
+      "afterSha256": "50a21ece404248d6f6e2d2ae8672951f189ea112ba9803ed5c9aa046773ee034",
+      "beforeSha256": null,
+      "bytes": 4535,
+      "path": "docs/handoff/20261004/session1/batch04-fields-all-a-v2.txt"
+    },
+    {
+      "afterSha256": "50a21ece404248d6f6e2d2ae8672951f189ea112ba9803ed5c9aa046773ee034",
+      "beforeSha256": null,
+      "bytes": 4535,
+      "path": "docs/handoff/20261004/session1/batch04-fields-all-b-final.txt"
+    },
+    {
+      "afterSha256": "50a21ece404248d6f6e2d2ae8672951f189ea112ba9803ed5c9aa046773ee034",
+      "beforeSha256": null,
+      "bytes": 4535,
+      "path": "docs/handoff/20261004/session1/batch04-fields-all-b-v2.txt"
+    },
+    {
+      "afterSha256": "6b740404829c18fe5ee79f9e047dabb323a40ef544bbfc6bc048062a804945ff",
+      "beforeSha256": null,
+      "bytes": 261,
+      "path": "docs/handoff/20261004/session1/batch04-runtime-unchanged.json"
+    },
+    {
+      "afterSha256": "edd9814022cd028f484ed8eb713359ea26519c802b642744f1ed91cf9c879394",
+      "beforeSha256": null,
+      "bytes": 24166,
+      "path": "docs/handoff/20261004/session1/event-resources-native.json.gz"
+    },
+    {
+      "afterSha256": "d905df11842cc00a1f3c30ae2570a1057ba127887c2dfec33205dd45658cee91",
+      "beforeSha256": null,
+      "bytes": 2592,
+      "path": "docs/handoff/20261004/session1/event-resources-native.summary.json"
+    },
+    {
+      "afterSha256": "4e46fb7dcf5f0e19ab35be7b826301990563ed94f3f16be64357e947bd6869cf",
+      "beforeSha256": null,
+      "bytes": 199,
+      "path": "docs/handoff/20261004/session1/finance-aggregate-test-pass.txt"
+    },
+    {
+      "afterSha256": "25099e2ef17d641ce31ecae88e65011cde6c5675fede6dc560d88cca43f14e27",
+      "beforeSha256": null,
+      "bytes": 124016,
+      "path": "docs/handoff/20261004/session1/layered-aggregate-budget-initial-unknown.json"
+    },
+    {
+      "afterSha256": "7e4d6159cb64e967bd6ce7847ac7259744d77e4f0882f02756be82bfc348bbe9",
+      "beforeSha256": null,
+      "bytes": 63,
+      "path": "docs/handoff/20261004/session1/layered-aggregate-budget-unknown.json"
+    },
+    {
+      "afterSha256": "24723366635a131012231dec6757b9dd9f309956dc788ef194db877317c0a812",
+      "beforeSha256": null,
+      "bytes": 2564566,
+      "path": "docs/handoff/20261004/session1/layered-scenario-fields-initial-bounded.json.gz"
+    },
+    {
+      "afterSha256": "8e4072609db83a2830f2480a6e8487370c2e06d64fd70ba05c94ac11bfeb2622",
+      "beforeSha256": null,
+      "bytes": 2557706,
+      "path": "docs/handoff/20261004/session1/layered-scenario-fields.json.gz"
+    },
+    {
+      "afterSha256": "3538bbee8fc58990c0fbe76a65a32fc835bfcf6e5be112a91e5bce570f6e1a86",
+      "beforeSha256": null,
+      "bytes": 3191,
+      "path": "docs/handoff/20261004/session1/layered-scenario-fields.summary.json"
+    },
+    {
+      "afterSha256": "61398ff302e4bae49845f0e085002e79251f24dbb5c52a785e81f1c637d69f8a",
+      "beforeSha256": null,
+      "bytes": 1036,
+      "path": "docs/handoff/20261004/session1/layered-test-initial-offset-failure.txt"
+    },
+    {
+      "afterSha256": "7c23c203116b430e84133b702038043f8bee1b96b7fd596ea9882e085014aa0a",
+      "beforeSha256": null,
+      "bytes": 520,
+      "path": "docs/handoff/20261004/session1/layered-test-pass.txt"
+    },
+    {
+      "afterSha256": "4e83b39755458c79c462045278c59971d5ae8ed01c754678f638e3b1a0a44807",
+      "beforeSha256": null,
+      "bytes": 2113,
+      "path": "docs/handoff/20261004/session1/shared-postload-context-failure.txt"
+    },
+    {
+      "afterSha256": "f98ee9ca5abe88a7fee09b5848bee2af02200e9442654ebd2fbc1aeee4eb9a83",
+      "beforeSha256": null,
+      "bytes": 5453,
+      "path": "tools/content/inspect_pc_event_resources.py"
+    },
+    {
+      "afterSha256": "209e13e00400bc514a5e3093a4bb10cc9214e2730d25d48c663ed6a47ba2fabc",
+      "beforeSha256": null,
+      "bytes": 7283,
+      "path": "tools/content/inspect_pc_layered_scenario.py"
+    },
+    {
+      "afterSha256": "bd95bf7e1d1ac89d22a3af1c27cbef36685bdc9698d07b5ce51a6709f1379104",
+      "beforeSha256": null,
+      "bytes": 13705,
+      "path": "tools/content/inspect_pc_scenario_fields.py"
+    },
+    {
+      "afterSha256": "4685ebafc5480b919f369de3611355268e99f14e332e57254aa0a2b07c13ceaf",
+      "beforeSha256": null,
+      "bytes": 13187,
+      "path": "tools/content/pc_readonly_platform.py"
+    },
+    {
+      "afterSha256": "9c420a6726bf8760ce0b853b99bc90172bc577479cbb0df8ad8eb93647ca7b8f",
+      "beforeSha256": null,
+      "bytes": 7135,
+      "path": "tools/content/test_pc_layered_scenario.py"
+    }
+  ],
+  "implementationBase": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "parentCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "protectedModuleChanges": [],
+  "schema": 1
+}

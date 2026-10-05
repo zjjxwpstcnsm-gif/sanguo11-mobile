@@ -1,0 +1,2 @@
+Exception in thread "main" java.lang.AssertionError: Original settlement differs source=3 winner=0 outcome=0 boundary=0
+	at game.sanguo.core.PcDebateSettlementTest.main(PcDebateSettlementTest.java:11)

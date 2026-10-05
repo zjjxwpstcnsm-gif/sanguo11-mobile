@@ -1,0 +1,39 @@
+{
+  "parentCommit": "0f1edbadccdd7ed1b8bfd8d6929cb3a42d310568",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/Duel.java",
+      "sha256": "3e07d95962c4f32a7773beb6afc2e3107726d36dda6384554edcfeb5f23966cf"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Debate.java",
+      "sha256": "30abaa613bb05ada11f3783ee166fcb7d1eada6b249c107efbe688748f49007a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "sha256": "3b96f8b6fbbec69ea08a1de353a274a0a546b4a6040fb9ab0469e2b51e553134"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "sha256": "6b9ef8e7b3e876bdc4ac8ddc0d6453a44ca4de80d98111d99d525f733375cda5"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "sha256": "60de58f864fecb7ddc0aaf5a214da1abfdb46a470269bc04d08c0fb5ea58291e"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "sha256": "25e86250575a739f56c129a5ef4a67f16d3ebea5187a14676a2caf440c289f0d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "sha256": "bb5498db5d864a2a349e033eb27259323c6ce9f1016440c01db899154a1ec121"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ContestTest.java",
+      "sha256": "b18b61fb625a74007a7514464f1104fb10a97a3ce8cd11a66737b4463e316ce1"
+    }
+  ],
+  "newRequirement": "original source duel and debate, actual normal flows, saves, APK",
+  "completeGoal": false
+}

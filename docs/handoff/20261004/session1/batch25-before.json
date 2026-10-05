@@ -1,0 +1,22 @@
+{
+  "previousCommit": "b95a669f7b270b89f73ec8e2637151fe1c99e67b",
+  "checkpointManifestSha256": "2b9d2afce93d0dcaa82ef65068d0244285e0534e23440c402cbd794af9e8e7e8",
+  "sourceGuards": {
+    "tools/content/inspect_pc_debate_flow.py": "2ef200d66412e2deee2f240cacebf5edf88dfb4b87e50f60fd266b5a28d70385",
+    "core/src/main/java/game/sanguo/core/PcDebateState.java": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62",
+    "core/src/main/java/game/sanguo/core/PcDebateRules.java": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31",
+    "core/src/main/java/game/sanguo/core/PcDebateCampaign.java": "553e7baec13480fac2c884e95bb269554f442377500517fa2aa2e7d70d8fb343",
+    "docs/handoff/20261004/session1/PLAN.md": "a1bf83f1fe76685075f0d255f188b5b9543a6061874e9ddb7be3e19139d8be2b",
+    "core/src/main/java/game/sanguo/core/PcScenarioOpening.java": "f181862bbff55c02e0b25e87f6b6ead36ae0779df7c4b43709775e79269e9ff4",
+    "core/src/main/java/game/sanguo/core/PcScenarioCatalog.java": "4e6a0d3d4a5ce058741c834578c3bf5fc710cad13356515da1760661877932f6",
+    "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java": "afa5d6436e6e648ee12d40fef44347c2ed69396d7a3022a86835413ad7fda2d5",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java": "47406939e681912c48cff4b19dde3e13daa9b314172bd6b29c4ca4321f180b86",
+    "core/src/main/java/game/sanguo/core/SaveCodec.java": "71078cc620ddff5237e17e8ae37294545b61eda350b87970cc77d685ebaddecd",
+    "tools/content/android/PcScenarioOpeningInstrumentation.java": "39e4e37c7bec5d3b8e2e868912baf866d5cb62070813572b7b11388fa01309c0"
+  },
+  "completeGoal": false,
+  "addedTools": [
+    "tools/content/android/PcScenarioOpeningInstrumentation.java",
+    "tools/content/verify_pc_source_opening_ui.py"
+  ]
+}

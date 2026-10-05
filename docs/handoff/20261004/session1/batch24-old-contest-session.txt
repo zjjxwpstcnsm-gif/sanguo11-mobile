@@ -1,0 +1,1 @@
+PASS CONTEST_SESSION125 checks=33 typed authority, forced UI settlement, state/contest tokens, save reload and normal-command guards

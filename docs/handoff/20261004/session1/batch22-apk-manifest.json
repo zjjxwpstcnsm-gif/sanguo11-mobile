@@ -1,0 +1,23 @@
+{
+  "sha256": "8dbeb77a3619015380758eb3c17656bae62d22a205b84e5499110e6aa290f967",
+  "bytes": 94695802,
+  "sourceInputs": 1043,
+  "jniLibraries": [
+    "lib/arm64-v8a/libfilament-jni.so",
+    "lib/arm64-v8a/libpc_effect_worker.so",
+    "lib/arm64-v8a/libunicorn.so",
+    "lib/armeabi-v7a/libfilament-jni.so",
+    "lib/x86/libfilament-jni.so",
+    "lib/x86_64/libfilament-jni.so",
+    "lib/x86_64/libpc_effect_worker.so",
+    "lib/x86_64/libunicorn.so"
+  ],
+  "actualDeviceEvidence": {
+    "serial": "emulator-5554",
+    "architecture": "x86_64",
+    "newSourceMenuPassed": true,
+    "actualArtColdPassed": true,
+    "preexisting38NoBackfillPassed": true,
+    "armDeviceProof": false
+  }
+}

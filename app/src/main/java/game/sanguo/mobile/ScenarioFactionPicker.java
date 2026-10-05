@@ -25,7 +25,7 @@ final class ScenarioFactionPicker {
     private String officerTextLabel="沿用工程资料";
     private WindowSurfaceRecovery windowSurfaceRecovery;
     ScenarioFactionPicker(MainActivity a,World w,IntConsumer choose){
-        this.a=a;this.w=w;this.choose=choose;overview=new RealmOverview(w);dialog=new Dialog(a);
+        this.a=a;this.w=w;this.choose=choose;if(sourceOpening())officerTextLabel="随所选原文件固定";overview=new RealmOverview(w);dialog=new Dialog(a);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LinearLayout root=new LinearLayout(a);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(a.ink);root.setPadding(a.dp(10),a.dp(8),a.dp(10),a.dp(8));
         LinearLayout heading=new LinearLayout(a);heading.setGravity(Gravity.CENTER_VERTICAL);root.addView(heading,new LinearLayout.LayoutParams(-1,a.dp(48)));
@@ -51,10 +51,10 @@ final class ScenarioFactionPicker {
             cardScroll.setLayoutParams(wide?new LinearLayout.LayoutParams(a.dp(260),-1):new LinearLayout.LayoutParams(-1,-2));
         });
         HorizontalScrollView scroll=new HorizontalScrollView(a);scroll.setHorizontalScrollBarEnabled(false);LinearLayout factions=new LinearLayout(a);scroll.addView(factions);root.addView(scroll,new LinearLayout.LayoutParams(-1,a.dp(48)));
-        for(int i=0;i<w.factions.length;i++){final int side=i;Button b=a.button(w.governance.label(i),v->select(side));b.setContentDescription("选择势力 · "+w.faction(i));b.setEnabled(w.alive(i));chips.add(b);factions.addView(b,new LinearLayout.LayoutParams(a.dp(88),a.dp(48)));}
+        for(int i=0;i<w.factions.length;i++){final int side=i;Button b=a.button(w.governance.label(i),v->select(side));b.setContentDescription("选择势力 · "+w.faction(i));b.setEnabled(selectable(i));chips.add(b);factions.addView(b,new LinearLayout.LayoutParams(a.dp(88),a.dp(48)));}
         root.addView(a.button("自定义武将 · 启用 / 投放 / 校验预览",v->new CustomOfficerPlacementUi(a,w).show()),new LinearLayout.LayoutParams(-1,a.dp(48)));
         Button textSource=a.button("人物文字资料："+officerTextLabel,null);
-        textSource.setContentDescription("选择本局人物文字资料来源");
+        textSource.setContentDescription("选择本局人物文字资料来源");textSource.setEnabled(!sourceOpening());
         textSource.setOnClickListener(v->a.chooseOfficerTextSource(source->{
             officerTextSource=source==null?null:source.id;officerTextLabel=source==null?"沿用工程资料":source.label();
             textSource.setText("人物文字资料："+officerTextLabel);
@@ -63,6 +63,8 @@ final class ScenarioFactionPicker {
         dialog.setContentView(root);dialog.setOnCancelListener(d->{if(back!=null)back.run();});dialog.setOnDismissListener(d->{if(confirmationDialog!=null)confirmationDialog.dismiss();if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}map.criticalFrame(null,0);map.release();});
         selected=w.player;for(int i=0;!w.alive(selected)&&i<w.factions.length;i++)selected=i;select(selected);
     }
+    private boolean sourceOpening(){return PcScenarioIdentity.DATA_SOURCE.equals(w.dataSource);}
+    private boolean selectable(int side){return w.alive(side)&&(!sourceOpening()||side<42);}
     private boolean pcOpening(){return NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty();}
     ScenarioFactionPicker confirmWith(IntFunction<String> message){confirmation=message;return this;}
     ScenarioFactionPicker onBack(Runnable action){back=action;return this;}
@@ -76,7 +78,7 @@ final class ScenarioFactionPicker {
         confirming=true;start.setEnabled(false);
         confirmationDialog=new AlertDialog.Builder(a).setTitle("开始新局").setMessage(confirmation.apply(side))
             .setPositiveButton("开始新局",(d,n)->commit(side)).setNegativeButton("返回选择",null).create();
-        confirmationDialog.setOnDismissListener(d->{confirming=false;if(!accepted)start.setEnabled(w.alive(selected));confirmationDialog=null;});
+        confirmationDialog.setOnDismissListener(d->{confirming=false;if(!accepted)start.setEnabled(selectable(selected));confirmationDialog=null;});
         confirmationDialog.show();a.trackDialog(confirmationDialog);
     }
     private void commit(int side){
@@ -86,7 +88,7 @@ final class ScenarioFactionPicker {
     private void mapFit(){map.post(map::fit);}
     private void tap(Hex h){
         World.City c=w.cityAt(h);if(c==null&&map.territory()!=null)c=w.city(map.territory().siteAt(h));
-        if(c!=null&&c.owner>=0&&w.alive(c.owner))select(c.owner);
+        if(c!=null&&c.owner>=0&&selectable(c.owner))select(c.owner);
         else Toast.makeText(a,"此处没有可选势力，请点选有颜色的领地或下方势力名",Toast.LENGTH_SHORT).show();
     }
     private void select(int side){
@@ -95,7 +97,7 @@ final class ScenarioFactionPicker {
         portrait.setImageDrawable(leader==null?null:new OfficerPortrait(a,w,leader));
         summary.setText(w.governance.label(side)+" · "+w.governance.title(side)+"\n军师 "+w.governance.advisor(side)+"\n"+f.cities+"城  "+f.ports+"港  "+f.gates+"关  ·  "+f.officers+"将\n兵力 "+f.troops+"  ·  金 "+f.gold+" / 粮 "+f.food);
         summary.setContentDescription("已选势力 · "+f.name+" · 城池"+f.cities+" · 武将"+f.officers);
-        start.setText("以「"+w.governance.label(side)+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);start.setEnabled(f.alive);
+        start.setText("以「"+w.governance.label(side)+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);start.setEnabled(selectable(side));
         for(int i=0;i<chips.size();i++)chips.get(i).setSelected(i==side);map.setPreviewFaction(side);
     }
     void show(){dialog.show();if(dialog.getWindow()!=null)windowSurfaceRecovery=new WindowSurfaceRecovery(dialog.getWindow());if(a.current3D())map.switchMode(true);if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.getWindow().setLayout(-1,-1);}mapFit();}

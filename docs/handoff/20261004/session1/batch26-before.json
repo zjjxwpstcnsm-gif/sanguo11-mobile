@@ -1,0 +1,14 @@
+{
+  "previousCommit": "76c7a9494a2d9a751e401bfedc8feaa1e55e4d80",
+  "checkpoint25Sha256": "2875c6df00d247c4fb7e653796707dc4fe0d41649acc4fe11938c4f1a606c74c",
+  "sourceGuards": {
+    "core/src/main/java/game/sanguo/core/PcOfficerIdentities.java": "ad9605090ada735d3ce27f10b6b6858363741106153a66104727a51063e92e14",
+    "core/src/main/java/game/sanguo/core/PcScenarioOpening.java": "f8182077caf30012d5a8aebe6e965427b307c86df37f4e78f8a4f958e5239887",
+    "core/src/main/resources/pc-officer-identities/identities.bin.gz": "32999aefc96a620e0319e7da573bdf8ddc54420813ff292104db715e65747fa2",
+    "core/src/main/resources/pc-officer-identities/index.txt": "1b6894db65e0f2f87e28b47c769b17f37cde4c16771321331b12df9dbd651116",
+    "tools/content/build_pc_gaiji_identities.py": "ded01ea8997e31a9c6995890650f420e43ad42ecc44c02f4e63c62f3743a0881",
+    "game-runtime/src/test/java/game/sanguo/core/PcGaijiIdentityTest.java": "edf1c04930a63d227516e5e63169feb382681d4a86afe3fe523fbfb82968f38d",
+    "tools/content/android/PcScenarioOpeningInstrumentation.java": "1713fa020058099f2fe6003d6eaf7a19cc5cf12632a8a5d010f2a73596a977a7"
+  },
+  "completeGoal": false
+}

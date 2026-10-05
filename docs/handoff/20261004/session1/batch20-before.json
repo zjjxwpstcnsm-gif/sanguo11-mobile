@@ -1,0 +1,20 @@
+{
+  "commit": "73ebdb182bccb2120e99e24ecaeedcfd1607bfeb",
+  "files": [
+    {
+      "bytes": 1847,
+      "path": "tools/content/build_pc_debate_settlement_fixtures.py",
+      "sha256": "eb17def383d9264aab700f734b15b41d78eb75d9d5510a8d2de819961ff1b6dd"
+    },
+    {
+      "bytes": 1639,
+      "path": "core/src/test/java/game/sanguo/core/PcDebateSettlementTest.java",
+      "sha256": "2059c50e9b7b9c5c7317419cdc068420375b405b0829816ffcfa13b82093143c"
+    },
+    {
+      "bytes": 23579,
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "0b51a51d13cab4cfeb3314e043b56f461d58c2211c959c0cb07c15656c149fae"
+    }
+  ]
+}

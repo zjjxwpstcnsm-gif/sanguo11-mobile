@@ -1,0 +1,42 @@
+# Batch27 原完整登用结算隔离接入，尚未交付
+
+最新状态（覆盖下文历史“正在执行”记录）：生产HEAD仍443c478；APK26全部32新局/冷续行已结束，5554最后7内部/3266外部读回且锁释放，未触碰5582。没有Batch27实装包。隔离候选19条精确delta封存于batch27-candidate-delta.json/tar.gz，archive SHA635bb2f3cd3ddcdea62aad5a72981710817cc953d9f8b3b35fc06d2e3c0312d1。只能逐路径SHA守卫复核，禁止复制整个core。
+
+父亲内部引用：16×1100原对象、43670次48bb70，全World/LCG只读；两次原报告4a457201caa09a755ca152f854d07f6751a00e8b571e4712601435c02d46f7a6全字节相同。850..1099是零消费序列化/构造对象，recordSHA为空字节SHAe3b0...b855，不能计为250个有效武将。两次导入binary SHAa3bf182f957f9b95200aed9e50d72355174a9c96bc3d6b14a24b7040ad50e8e8，1483168字节。PcNativeParentPolicy仅明确新策略保存独立namespace，续行不读取当前catalog；核对saved-person/source SHA连接，旧真实39无追填，参与者父亲编辑拒绝盲用原引用，其他人物编辑不影响该关系。38390原映射/全保存双RNG/旧策略/编辑检查PASS。新正常seed0获胜21PASS、独立JVM9PASS，完整太守仍未接入，不称完整登用。
+
+原太守4cf160排序：君主/都督身份优先，再统兵上限48a4f0、统率、武力、功绩、native编号。不是政治或直接官职编号；完整统兵派生、军团/驻地候选及任命副作用分开核实。1416原比较两次报告95e20e50948f8cd5ad4112f2b43c101547a3526f10572b2c646db35cac4022b8一致，独立Java1416PASS。原47a630放行的304对象包括status=-1的NPC，不能计为304有效武将。首Java范围误拒绝-1已修；完整87据点4bca30探针首失败来自原清空任命的合法null pointer，已按原4bcc61保留null，失败日志保留。
+
+能力cache差异已定位并核实：此前原构造global+28=1，与Android能力变动有效0不同。通过已核实原4827b0显式选0、sourceDate、493400后，Source0两人75/84/55/50/67及58/66/36/20/13与Android逐项一致，没有修改人物数值/经验。8结算报告d670691f062119245be436970b1e6f7300d5702fe03bfcb5f9c14a8cdbb4a2f9；胜后目标伤病1时46/52/28/16/13、raw94、MP1400/10、技巧12、太守365。全源明确设置版handle29228尚须核对终态。原实际用户偏好/外部覆盖仍未知。开战+100功绩/金100/AP10工程调用未核实；外交、有效装备/先手与完整单挑Java/存档/DTO/APK仍未完成。
+
+终态复核：所有本轮原执行/主机进程已结束。明确源日期/能力设置0的16×8完整原结算报告a7a303de9bd1035e0414bc8606e0c791fe652dd414fa2380f8313da9479a83e0；Source0完整87据点选举报告371e38159f103e4ba6e15a15e292dc748ca16a0b3e911db18e88712b5f415c7b，原每点从独立493400基线开始，LCG不变，16点有任命，8号为孙坚365。其余14来源未运行完整87点选举，不能把Source0结果套用所有来源。父亲接入后的失败/全16新策略/实际typed及普通三旬10879PASS，独立JVM8PASS；成功21/cold9亦已通过。设备本轮未占用，没有新增APK，主机证据不能代替实装。
+
+生产仍为冻结APK26。完整继承隔离目录out/session1/relations27/integration/source，在checkpoint25上叠加当前自有26源码，不复制旧AA核心，不触碰媒体/桥/Unity/共享台账。新PcNativeCampaignPolicy/PcDebateOutcome与实际Contests、GameSession query、ContestUi结算按钮相接。16新策略原初值、真实Source0本城触发/typed手牌/一次性终局/完整World双RNG/旧真实39不追填/结算后普通三旬10879检查通过；不是实际APK证据。完整太守/城市人员与军团上下文仍在核实，不能将此PASS称完整登用还原，不能应用未经闭合的太守规则。
+
+原16×850初值/47×47关系，两次原执行20ca65baaec63303c680b75a3d1e19abb0931d5a26400506c13ccdf1f5f1eeea一致；导入二进制SHAec5d3f35d4796699a4a988c9789b16c7e15bc86da1c37fc2265061aa55b41502，1686176字节。原字段58/59仕官禁止君主/月数，61俘虏月数，字节ac内部忠诚；源载入边界13600个ban=-1/0、captive=0，完整开局事件仍未知。原4b5f90交情84、完整58bb30关系144案例；Source0/1实际记录加明确数值/状态夹具，无原规则/RNG替换。早期误称月初忠诚分支已更正：它处理状态5俘虏字节169。
+
+原招聘调用4a75a0 weighted=0，先5c4840归属/忠诚/交情/技巧后5d3c90出使者政治/魅力经验，不能先给君主出使者魅力XP再算忠诚。原敌将转属野心0/1不掷随机，2..4各一次LCG，seed23→3031271500；报告在relations27/transfer-rng-probe.json。临时禁止不是永久厌恶。普通未核实忠诚动作使当前raw未知，初始快照仍保留，不推断丢失内部值。
+
+prototype中新政策只明确新局初始化，旧31–39不升级/追填，新namespace未知版本保留opaque；真实旧39由当前生产旧编译核心生成old-native-start.sg11。首测试编译误用不存在的ContestSnapshot.active()已改既有Kind.NONE，日志保留。原city具体对象与通用building proxy/getter不同，第一次太守取证用了错误对象和city-only property14，错误日志明确保留，正在用原490d00通用proxy/486890及493400已核实postload纠正。尚需完整原对照、军团/太守、旧完整续战、更新后的冷进程续行、正式SHA delta应用、新包菜单选择与实装、外交与完整单挑，目标仍active。
+
+
+最新Source0真实策略测试实际结局为韩当失败（typed先选首合法牌）。10879检查涵盖了失败结算/退出对局/三旬完整续行，并未覆盖成功转属；此前“recruitment writes known raw”只断言值非空，无法证明成功。必须补正常赢方流程与实际原奖励对照，不将失败流程当成功覆盖。初期错误城市具体getter的日志与postload receiver遗漏、指令预算不足的失败均保留；正确通用proxy490d00+486890得到未postload太守222，经493400后太守365，与Source工厂原参考已postload的孙坚太守上下文吻合。原构造默认日期/设置可能影响缓存，正在明确使用源manifest已核实日期调用原日期setter再493400，不能把默认构造当前值冒充完整新局真值。独立JVM失败结算后正常三旬续行8检查通过。
+
+
+正常成功对局已找到：Source0 seed0，人物数值未改，优先选择合法同话题大牌的输入策略14次，winner0/outcome1/nativeRNG2066121221。真实原模型终局保存out/session1/relations27/normal-source-win-terminal.sg11，由独立主机会话直接正常本城触发并正常合法牌操作生成；后续要typed成功结算/转属/奖励/当前忠诚/存取/重复拒绝与正常多旬，不能仅以已找到胜局宣称通过。FindNormalWin源码、日志和保存均保留。
+
+原Source0经493400完整后处理+通用proxy490d00/486890查询太守365，未后处理完整回调曾太守222。首次postload遗漏receiver，第二次预算10M不足（491214），提高至120M完成；现全源工具沿用已核实50M预算并记录界限。Source-date setter来自已核实原4826e0/482700/482720；Source0明确源日期之后，太守/原raw94保持，当前缓存仍有原设置/年龄上下文与Android不同，未强行改数值。需核对初始化73c840/完整军团、缓存设置及来源工厂军团/太守差异。prototype当前Source0实际太守10466，原probe显示365，不可直接称已匹配。16×8后处理回调handle67201（默认构造日期版本）、明确source-date+据点before/after的新版本handle4060正在执行；默认版本与日期版本证据分开，不能互相沿用。
+
+
+成功typed结算首次断言失败于功绩总值。原项目普通触发w.spend在开战前已经增加100功绩；本测试误按原记录1000当开战前值。结算测试改为对实际终局保存的功绩验证原51dd10+5d3c90增量400/10并保留失败，不能因此宣称开战费用/开战功绩100符合原PC。原完整正常触发支付/功绩环节须独立核实，旧策略绝不改；本隔离新策略当前仍继承工程触发支付，这是明确未闭合项。
+
+
+正常成功终局typed结算21检查通过（campaign-winning-b.txt）：转属force2、原raw/display94、原终局伤病1、经验30/3/5与输方1、功绩增量400/10、同一DTO可结算/清除对局/重复token拒绝、完整World与双RNG、正常三旬继续。winning-settled.sg11及winning-continued.sg11在relations27。仍缺赢方独立JVM续行、实际APK、敌将转属/禁止/交情的真实触发流程、原城市/军团/设置及开战奖励100真值、完整外交和单挑；没有正式SHA应用。
+
+
+赢方独立JVM9检查通过（campaign-winning-cold.txt），完整winning-settled保存/同一武将DTO/正常三旬→winning-continued全字节与双RNG相同。默认构造日期+493400的16×8原回调已结束：报告campaign-postload-a.json.gz SHA23afba9b93bacca7c22f5f8279994505b67a64223d8d997e616fbc991f144c78；它不是明确源日期的新局证据。正在执行带明确SourceDate+sitesBefore/After的版本handle4060。冻结Source26实际32流程handle88898仍运行，不能动生产或释放锁。
+
+
+关系映射还需验证：原48bb70直接比较双方内部父亲引用+54，并要求另一人物有效且非自己。未知父亲在部分原构造记录内部为自身native占位（Source0笮融222/孙坚365），而公开父亲getter/项目Relations可能返回未知-1。prototype现用公开Relations.parent作sameFather，可能丢失原内部自指占位与未映射NPC父亲的差别，必须用原实际引用/编码与明确人物身份连接闭合，不能拿全祖先或血缘替代，也不能盲从-1合成自指。Source0非亲属简单例未暴露此差异；完整关系结算仍待核实。48bb70原指令在relations27/same-father-helper.txt。
+
+
+太守差异定位：真实Source0存档显示原初据点8（项目20008下邳）字段14=-1，正常触发/牌操作后当前太守10466；原postload+SourceDate回调成功后为native365孙坚。World.success每次调用governance.reconcile(true)，继承工程治理会自动选太守，不能把此当前结果称原太守真值。须只在明确新策略中按完整原军团/太守选拔依据治理，保留旧Source38/39已有策略。当前prototype未修，阶段成功21/冷续行9不覆盖此原差异。SourceContextSummary.java与source-context-summary.txt为实际保存读回证据；不得归因为源manifest初始太守已是10466。

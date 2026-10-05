@@ -1,0 +1,13 @@
+{
+  "paths": 14,
+  "allPostImagesMatch": true,
+  "baseCommit": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "patchSha256": "bd8c91a479734d94897175a02be72eac12ad8bd9bf76308d9f04aba3e73c624e",
+  "sourceSweepComplete": true,
+  "deviceFinalOriginalReadbackPassed": true,
+  "mediaWipImported": false,
+  "sourceRoot": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile",
+  "nativePolicyDefaultEnabled": false,
+  "originalCampaignSettlementProductionEnabled": false,
+  "completeGoal": false
+}

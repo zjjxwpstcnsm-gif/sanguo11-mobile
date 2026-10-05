@@ -1,0 +1,53 @@
+{
+  "baseCommit": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "checkpointManifestSha256": "d360492be888ef1a53fd0d2c87ccc183a92dcd035a8474baf1f61e142729badf",
+  "inheritedFiles": 4685,
+  "patchSha256": "9bb0f2fa22d27176099bd0038ab85e172516404b992716a873900cc9ad03b3bb",
+  "changes": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "beforeSha256": "3b96f8b6fbbec69ea08a1de353a274a0a546b4a6040fb9ab0469e2b51e553134",
+      "sha256": "a1c00fa253086cbe9e7251a26104143e40e6dc8eb98555e04785d1ac5f08b962",
+      "new": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "beforeSha256": "6b9ef8e7b3e876bdc4ac8ddc0d6453a44ca4de80d98111d99d525f733375cda5",
+      "sha256": "8206afec3abe9302c86a3194b4b117941ceb35988fa0dbf9f92dfbafa0dbdbb6",
+      "new": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "d3cd6c0c5cc90ff33297d9d390ab1d5af57aaa6230227281745674bce103af61",
+      "sha256": "05af6dcb623707d69c713e521cc4bdc56687b9d012c8f63a5bfa730e03c63b31",
+      "new": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java",
+      "beforeSha256": null,
+      "sha256": "139ca589191078e9319e88f096ecafb64f95d7032096e23aa856717f34de03e7",
+      "new": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "beforeSha256": null,
+      "sha256": "ddbcef91d9167ea679fd73b0a566e8eca9a0e32f7c0fbfebe370d4e7a209dccb",
+      "new": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignTest.java",
+      "beforeSha256": null,
+      "sha256": "b26edb17a9ded779411173f1f15cf82a70de3f8082878b06c37f232e4973a5b8",
+      "new": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignColdTest.java",
+      "beforeSha256": null,
+      "sha256": "52e5830170256f6cba8a6418a6ca7c7fcd2d1d9dc947c9c31024e5b94c3fecce",
+      "new": true
+    }
+  ],
+  "prototypeOnly": true,
+  "appliedToBranchProduction": false,
+  "completeGoal": false
+}

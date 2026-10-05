@@ -1,0 +1,33 @@
+{
+  "serial": "emulator-5554",
+  "apks": {
+    "app-debug.apk": "1e42660894861a8b56666320d43a83c53dbe253225ca6cf58d111ef3753986e8",
+    "pc-opening.apk": "b153a8817597ee9b2f422f011a2b3e7740588bb79ca61f526766a56a7ad8f193"
+  },
+  "passed": true,
+  "externalRestoration": {
+    "allOriginalFilesByteEqual": true,
+    "mismatches": [],
+    "newEvidenceFiles": [
+      "files/session1-pc-health-installed-batch23-health-b/progress.txt",
+      "files/session1-pc-health-installed-batch23-health-c/actual-health-flow-final.sg11",
+      "files/session1-pc-health-installed-batch23-health-c/progress.txt",
+      "files/session1-pc-health-installed-batch23-health/progress.txt"
+    ],
+    "originalFileCount": 3209,
+    "alreadyByteEqualVerifiedOnDevice": true
+  },
+  "internalRestoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [],
+    "added_files": [],
+    "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+  },
+  "seconds": 261.73,
+  "actualArtSave": {
+    "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch23-health-c/actual-health-flow-final.sg11",
+    "sha256": "802cef812240ebfb96a461d6201d244dda7023b3955286c9058480a2a0cf9821",
+    "bytes": 2224979
+  }
+}

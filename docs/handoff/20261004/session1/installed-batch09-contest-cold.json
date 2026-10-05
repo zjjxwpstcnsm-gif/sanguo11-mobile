@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "serial": "emulator-5554",
+  "installedApkSha256": "62a913f8c8f96ada044f0dca7d92f451b6281c5571102a4d90a1100f7e899a15",
+  "testApkSha256": "40747bbda2896b599805fa598b7fac7560dddb894656ffed7d4b47e9b789fc63",
+  "seconds": 33.44,
+  "internalRestoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [],
+    "added_files": [],
+    "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+  },
+  "externalRestoration": {
+    "allOriginalFilesByteEqual": true,
+    "mismatches": [],
+    "newEvidenceFiles": [
+      "files/session1-pc-contest-opening/FAIL.png",
+      "files/session1-pc-contest-opening/contest-final.sg11",
+      "files/session1-pc-contest-opening/contest-mid.sg11",
+      "files/session1-pc-contest-opening/normal-source-contest-result.png",
+      "files/session1-pc-contest-opening/normal-source-debate.png",
+      "files/session1-pc-contest-opening/progress.txt",
+      "files/session1-pc-contest-resume/contest-final.sg11",
+      "files/session1-pc-contest-resume/normal-source-contest-result.png",
+      "files/session1-pc-contest-resume/progress.txt"
+    ],
+    "originalFileCount": 3177,
+    "alreadyByteEqualVerifiedOnDevice": true
+  },
+  "fullEvidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch09-contest-cold",
+  "fullEvidenceSha256": "4e36c8b15927b6890162f678c3e89ab6439a3f7b9ce6c5749c9000a434c1e611",
+  "originalNumericEngineIntegrated": false
+}

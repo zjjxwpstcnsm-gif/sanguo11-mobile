@@ -1,0 +1,76 @@
+{
+  "cases": 8960,
+  "fixtureSha256": "73f5dc5a9eae284231e9998a5fbcea40a07ce79651c5ec575305fece1e9996de",
+  "functions": [
+    {
+      "endExclusive": "0x5193ec",
+      "sha256": "ca9ac41f959a51f8cfafff534d9298b9a0f753d2fb37e81e29963ed5f34ba39f",
+      "start": "0x519150"
+    },
+    {
+      "endExclusive": "0x5195c0",
+      "sha256": "aa2da407707e9a9ba513520b1277d72fc2c7370f724583f717e28aeba8136903",
+      "start": "0x5193f0"
+    },
+    {
+      "endExclusive": "0x5198d0",
+      "sha256": "2508ad95f3387e10df1f57758a34fa8ce54eea4a0600c589cf66887fcac7615d",
+      "start": "0x5195c0"
+    },
+    {
+      "endExclusive": "0x5199e0",
+      "sha256": "6a54a7f1c7f21d72f9ce72bf23e3081612de344c19e07163b263b6ac190a8445",
+      "start": "0x5198d0"
+    },
+    {
+      "endExclusive": "0x519b90",
+      "sha256": "451f8ef620db97c5cb99cc0182230e2b4d329fa65102ca9a85c3d7d894a32844",
+      "start": "0x5199e0"
+    },
+    {
+      "endExclusive": "0x519e00",
+      "sha256": "eced264b9cc2a8c6109247f3c09aa3e255f7f29415c117515a8970bddd0d7122",
+      "start": "0x519b90"
+    },
+    {
+      "endExclusive": "0x519fd0",
+      "sha256": "ec4cfdecfa552bf9188be04e1e631538a8a5c9ad71bb966ac340fe032af5771f",
+      "start": "0x519e00"
+    },
+    {
+      "endExclusive": "0x51a4a0",
+      "sha256": "3e587afc28058aad6a7d587c99e973e8506cf88baac3c5a303ad8534a1ee9189",
+      "start": "0x519fd0"
+    },
+    {
+      "endExclusive": "0x51a730",
+      "sha256": "1fb87299d0bd7fb3fd535f7b131e63832142eac2bd204213b6a43c93965c4d84",
+      "start": "0x51a4a0"
+    },
+    {
+      "endExclusive": "0x51a870",
+      "sha256": "85f58cb9ab38d2f8f31b2fc9434b1528cffbb706287f3d97360141f4bf8a9012",
+      "start": "0x51a730"
+    },
+    {
+      "endExclusive": "0x51aa70",
+      "sha256": "d9c2576f878020df1358a8a9552710d10c8427928db6f0dd48053a00a1e0f989",
+      "start": "0x51a870"
+    },
+    {
+      "endExclusive": "0x51ae60",
+      "sha256": "285738e7406b57257aa127a52641b91694926bb4aee9ef663dc872b82d46969a",
+      "start": "0x51aa70"
+    }
+  ],
+  "limits": [
+    "Synthetic model actors/queue storage; original empty message context",
+    "Twelve original queue callbacks executed completely; RNG writes and percent call sites observed only",
+    "Only original queue type8 numeric hand removal executed before graphics/audio boundary",
+    "Other queue rendering/scheduling and complete headed GUI/campaign settlement excluded"
+  ],
+  "productionIntegrated": false,
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceReportSha256": "294a60f0f1f66c15f967eb14a9437dfa0ac8887d4f15c85ea940ff4fea817cf7"
+}

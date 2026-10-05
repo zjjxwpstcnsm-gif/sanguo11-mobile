@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.AssertionError: original effective command capacity:pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c	10058	58	13000	54	66
+	at game.sanguo.core.PcNativeGovernorPolicyTest.require(PcNativeGovernorPolicyTest.java:9)
+	at game.sanguo.core.PcNativeGovernorPolicyTest.main(PcNativeGovernorPolicyTest.java:17)

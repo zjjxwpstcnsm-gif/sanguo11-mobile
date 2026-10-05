@@ -1,0 +1,69 @@
+{
+  "parent": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "sourcePrototype": "out/session1/integration17/source",
+  "prototypePatch": "docs/handoff/20261004/session1/batch17-integration.patch",
+  "productionInputsModified": false,
+  "files": [
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "fc3664716fd9edfefaccf03e473f1795ea94f740d9ebaabec73332749d8f0a26"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "5f6259761dd702a9608f23e3c085c8eef6f26820eef787a0145e5bf255b7bd34"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_17.md",
+      "sha256": "238828ea0fb4867f97e475e782b9d0e95cb359a0fc76259dcf6ed22e3e7d2778"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-campaign-tests.txt",
+      "sha256": "f1cac9e0c8604b5bf01f18a5694b73cdbd7db525db0afc18da47a7fd0e4c6474"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-cold-continue.txt",
+      "sha256": "230a45106517a9a79514fc1ce5dd3eac25b0b6d8058ee5c39cf7a7940202f56d"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-cold-emit.txt",
+      "sha256": "addb344a063fed5dd9a35b00055b9891ee677a37b5a90716015688e60d6086f8"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-inheritance-proof.json",
+      "sha256": "f9d6e8793429e88a72365e37adc347e15c509b0321fe7061cfc6aea8b6715ca1"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-integration.patch",
+      "sha256": "9bb0f2fa22d27176099bd0038ab85e172516404b992716a873900cc9ad03b3bb"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-legacy-session.txt",
+      "sha256": "847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-primary-before.json",
+      "sha256": "dac67018fed5ac5b8c345c39400784d73117e73b50a299bb9169e8122d896fa3"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-prototype-manifest.json",
+      "sha256": "64feb67258b08f55223d905ecb3907ae07399328ae2679ff12bceeab910892cb"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch17-world-cold-files.json",
+      "sha256": "1b25025acab90e75eff3a1da4e589b333a18d956e9f0a2b84af218093602c174"
+    },
+    {
+      "path": "tools/content/apply_pc_debate_verification_patch.py",
+      "sha256": "42560c0f8f51554e22442d978cb8fa4414c84c2b28f51c3fe3062db049f6c8f7"
+    },
+    {
+      "path": "tools/content/export_pc_debate_verification.py",
+      "sha256": "1eb23402c2299c813a9cf78dc04363f1ada932e06ec1a46980fbe7a45626d72b"
+    },
+    {
+      "path": "tools/content/prepare_pc_debate_integration.py",
+      "sha256": "336779a261e3712e40c377631195094ca65fe54ee47ecf641a4d5e4edd5ee595"
+    }
+  ],
+  "completeGoal": false
+}

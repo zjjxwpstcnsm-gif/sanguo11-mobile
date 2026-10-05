@@ -1,0 +1,120 @@
+{
+  "parentCommit": "d3d82f05e93d9ae30ccde2a2a51021bfe57e2e8f",
+  "changes": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateRules.java",
+      "beforeSha256": null,
+      "afterSha256": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "beforeSha256": null,
+      "afterSha256": "cf604b864f6ad11aebb78e53f97636d97750425f4c2c601f06158feb1a8ff3f9"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateRulesTest.java",
+      "beforeSha256": null,
+      "afterSha256": "92d437aefdfef073f4ac33205fa2faa6b28c34281eae176f0811038852d9b454"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateStateTest.java",
+      "beforeSha256": null,
+      "afterSha256": "c32658a2a778b12d70d37e741b76bf8197102b4e147fdfaf572b598e15fec368"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-effects.tsv",
+      "beforeSha256": null,
+      "afterSha256": "c1240a73629fba7779a4c4d8d0566c82599fa97f4cd5ea1634ad6f90b50f6513"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-initial.tsv",
+      "beforeSha256": null,
+      "afterSha256": "e0e20a686ed43e95ec7ffe415ab6ead7c1b0d7112c72be0946fc65f9e8f3fd90"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-rules.tsv",
+      "beforeSha256": null,
+      "afterSha256": "ea8ddf41b6d4b53a8a1e3e29d863b5a2f7a304c95d295d0ee1fc5839b0a492b4"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-ui-counters.tsv",
+      "beforeSha256": null,
+      "afterSha256": "c8ec9e71f332368c0a01c582ba8965240a2bdb92475096b2ec3ec9b2b8786bb7"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "5ca045039cb88d1e828de58cd83bf10461be284cb76de7281bc2ed50bd6fbb19"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_10.md",
+      "beforeSha256": null,
+      "afterSha256": "3b8bfc029b46a080f6a8988c02e609e4a5afcb027712cd8eb0a7cc007001da81"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/CONTEST_MEDIA_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "a76dd764274b702374b9ab4ce0875da67b41100cdfd21a335fe61ec18f5d64fa"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch10-before.json",
+      "beforeSha256": null,
+      "afterSha256": "158bd641383976d595e9b5a022a79a105576678be08790c8cf5c8a3b5975c0c3"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch10-rules-tests.txt",
+      "beforeSha256": null,
+      "afterSha256": "e5ee21a1596863461afc1f0ef70d56fb683c5c7b325fb703923c40b912b721fe"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch10-state-tests.txt",
+      "beforeSha256": null,
+      "afterSha256": "3fb2d2656f567f36a72f44f0fc9742068b3695ce9ea6ef8ec9d0d13e2d425f6c"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/debate-effects-native.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "37922ad1c3529fcefe81ad34b5e49dd67dbb800d86d5e5a719582616fee96dbc"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/debate-ui-counters-native.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "bf1d77cfce20c2a857869e60177ab06384fc01e33d01653b1e5b2ef67da339b8"
+    },
+    {
+      "path": "tools/content/build_pc_debate_oracle_fixtures.py",
+      "beforeSha256": null,
+      "afterSha256": "ad9a93034af65daff2d12058f46b803ab447b413725c80e30b2adc8dfe9a024d"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_effects.py",
+      "beforeSha256": null,
+      "afterSha256": "fbf8e5b1cae26383f84d4be3de09abbc1b462e98e98684e9654479522455fbf9"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_ui_counters.py",
+      "beforeSha256": null,
+      "afterSha256": "d4039b0586f6ecb2acef6c02ec4c5db963a033c650339d65121acc33a9d5026e"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "beforeSha256": null,
+      "afterSha256": "599f072b24ab62c46615700c4ccdced68285e3e9e51df5bd1fa53c3190f14909"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "8ce4b717e7fbc11f0f9f630413fad9456b655f7570762d3017adf12b64ea977d",
+      "afterSha256": "066589fce0fdde457b9dc87b2a5b961c1bd68d36b7e67284675ec49648a7c090"
+    }
+  ],
+  "priorCheckpointFileCount": 4572,
+  "inheritedMissing": [],
+  "inheritedChanged": [
+    "docs/handoff/20261004/session1/PLAN.md"
+  ],
+  "frozenApkInputs": 1024,
+  "frozenApkChanged": [],
+  "ignoredJniInputs": 4,
+  "productionOriginalContestIntegrated": false,
+  "completeGoal": false
+}

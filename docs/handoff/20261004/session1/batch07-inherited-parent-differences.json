@@ -1,0 +1,27 @@
+[
+  {
+    "nativeRegionId": 45,
+    "nativeCity": 17,
+    "priorCity": 15
+  },
+  {
+    "nativeRegionId": 50,
+    "nativeCity": 39,
+    "priorCity": 37
+  },
+  {
+    "nativeRegionId": 55,
+    "nativeCity": 6,
+    "priorCity": 11
+  },
+  {
+    "nativeRegionId": 59,
+    "nativeCity": 8,
+    "priorCity": 10
+  },
+  {
+    "nativeRegionId": 61,
+    "nativeCity": 11,
+    "priorCity": 6
+  }
+]

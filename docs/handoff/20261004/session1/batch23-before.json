@@ -1,0 +1,29 @@
+{
+  "base": "d4f0aef9e700344c9ae35c822d5025f69db24d81",
+  "files": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "sha256": "bd692e7626246be7205479802c8ed420781c05b59b7f19c6c7172915f4b9da27"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java",
+      "sha256": "139ca589191078e9319e88f096ecafb64f95d7032096e23aa856717f34de03e7"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "sha256": "05af6dcb623707d69c713e521cc4bdc56687b9d012c8f63a5bfa730e03c63b31"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "d03b8f02155b5d7094891032f9c5b63ba94406bbc36dcedf2b7d61c79f78ce26"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_ui_probe.py",
+      "sha256": "07336b7d8afc5615eb94e5677230fad9567b6e6329b8403a6cd18a43e8d29231"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "sha256": "cd59adc3b5b6570578791c296c8203d53ba17d116edc2685f2674141244e977c"
+    }
+  ]
+}

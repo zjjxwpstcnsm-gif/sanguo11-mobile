@@ -1,0 +1,12 @@
+{
+  "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/apks-batch07/app-debug.apk",
+  "sha256": "8c250f8cee59cfe9e78c2d387359e112b4fe1bc07c3883032f92128ae4185652",
+  "bytes": 93292950,
+  "independentCache": "out/session1/gradle-home",
+  "actualInstalled": true,
+  "armEvidence": "packaged only",
+  "completeGoal": false,
+  "all16ActualSourceMenuFlows": true,
+  "all16ColdProcessReopened": true,
+  "serial": "emulator-5554"
+}

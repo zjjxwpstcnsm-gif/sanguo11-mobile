@@ -1,0 +1,29 @@
+{
+  "parentCommit": "61b03b6fbf5b607274f44236695cc53eb492eb10",
+  "changes": [
+    {
+      "path": "tools/content/inspect_pc_debate_rules.py",
+      "beforeSha256": null,
+      "afterSha256": "e748984ff112650109837b3928e00540bba8f37124d6b096d6405ec37ea7da6f"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_flow.py",
+      "beforeSha256": null,
+      "afterSha256": "2ef200d66412e2deee2f240cacebf5edf88dfb4b87e50f60fd266b5a28d70385"
+    },
+    {
+      "path": "tools/content/inspect_pc_contest_people.py",
+      "beforeSha256": null,
+      "afterSha256": "4ccfd0833579362ed129f5be26f79dfd1dd4d6aceb8b97af7726f9993d46c70f"
+    },
+    {
+      "path": "tools/content/test_pc_debate_rules.py",
+      "beforeSha256": null,
+      "afterSha256": "5af6b9c3bffc86e896e5581ecdfc2108d1591f1acbbb5798729c717e970e4587"
+    }
+  ],
+  "installedBatch07ProductionGuardPaths": 1021,
+  "installedBatch07SourcesUnchanged": true,
+  "androidContestRulesIntegrated": false,
+  "goalComplete": false
+}

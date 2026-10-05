@@ -1,0 +1,70 @@
+{
+  "parent": "32ec3922cbd7bf4fbd831a2c43960317fb24d314",
+  "prototype": "out/session1/integration17/source",
+  "productionInputsModified": false,
+  "files": [
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "8ee8be8c1eb87a290019ed34e02e1bfa208b49cd2cad6cbceac789b1b6f895ca"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "1b043fe4c5a347c7a4eb613267793c9541d988fcf444a06287722ca2b1b0a2c9"
+    },
+    {
+      "path": "tools/content/export_pc_debate_verification.py",
+      "sha256": "834fbe9a60b27e5addec0811c4979f5e4dfb5c4d5337e34a96488e6cacd39323"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/BATCH_18.md",
+      "sha256": "6e7991962774687d6f9eceea7519bd9879a8b0c379c88e283e57e42cfd3b4dd8"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-apk-build.txt",
+      "sha256": "2c70aef5d8ecca44823975bd5a95c9a8a3c6773f5d57b0b4f8a8aa70c33ae308"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-apk-manifest.json",
+      "sha256": "e5344e7170f4467880084ae455435c75aa5b79441d9f15af7388bed5638e32c7"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-architecture.txt",
+      "sha256": "ed6121390c876c0455e1b190692157f579eeac9831e806f5ab8022f20ccabc78"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-before.json",
+      "sha256": "6a646f98c6447374a9b988224a17e33056f7da161826ac0003f915d1a5bbfd5e"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-campaign-tests.txt",
+      "sha256": "f1cac9e0c8604b5bf01f18a5694b73cdbd7db525db0afc18da47a7fd0e4c6474"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-cold-continue.txt",
+      "sha256": "230a45106517a9a79514fc1ce5dd3eac25b0b6d8058ee5c39cf7a7940202f56d"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-integration.patch",
+      "sha256": "0840ed33c7d3b403f267391af81131f16af70e32f42330cee43c8227bbfdddda"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-original-settlement-first-probe.txt",
+      "sha256": "2ab6471e6e657971aa290747bf0a7099ff8674ea62061a27283a75344e6102ad"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-prototype-manifest.json",
+      "sha256": "21b9e2a38017dc0905c9bf5f4911e3ef44dcc472fd9751c6ee5f4d587f032166"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-query-tests.txt",
+      "sha256": "66178c509e91928c36bea4ca64bd82d2111338ca3ef409179c28679aad2f371c"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch18-source-proof.json",
+      "sha256": "295f3b061070475339e47c3ad64994728d5e6d4a7d003b1158e189c2b8eaea68"
+    }
+  ],
+  "apkSha256": "7b267745ad7169f3836ac46eb4710ec84f061b4a51cfcfbc28395ce7096bb632",
+  "installed": false,
+  "completeGoal": false
+}

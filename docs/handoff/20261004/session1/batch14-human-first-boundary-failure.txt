@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_debate_human.py", line 48, in <module>
+    a=p.parse_args();inspect(a.installation,a.output)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_debate_human.py", line 27, in inspect
+    w.call(0x51f350,1,receiver=model,stop=0x51f393);context=w.u.context_save();stack=bytes(w.u.mem_read(w.stack-0x200,0x400))
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_layered_scenario.py", line 67, in call
+    if u.reg_read(UC_X86_REG_EIP)!=expected:raise ValueError('Native call boundary mismatch '+hex(function)+' at '+hex(u.reg_read(UC_X86_REG_EIP)))
+ValueError: Native call boundary mismatch 0x51f350 at 0x30000000

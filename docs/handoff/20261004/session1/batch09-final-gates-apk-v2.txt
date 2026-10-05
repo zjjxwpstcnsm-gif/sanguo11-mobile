@@ -1,0 +1,120 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources UP-TO-DATE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :game-api:compileJava UP-TO-DATE
+> Task :game-api:processResources NO-SOURCE
+> Task :game-api:classes UP-TO-DATE
+> Task :game-api:jar UP-TO-DATE
+> Task :game-runtime:compileJava UP-TO-DATE
+> Task :game-runtime:processResources NO-SOURCE
+> Task :game-runtime:classes UP-TO-DATE
+> Task :game-runtime:compileTestJava UP-TO-DATE
+> Task :game-runtime:processTestResources UP-TO-DATE
+> Task :game-runtime:testClasses UP-TO-DATE
+
+> Task :game-runtime:verifyPcContestProfiles
+PASS real source traits and normal source debate Media/scenario/Scen000.s11 actor=10116 target=10222 special=true; numeric engine still legacy until original model integration
+PASS PcContestProfilesTest 42982 actual source facts, normal formal debate commands and complete source save/RNG checks; full original contest engine/APK remain separate
+
+> Task :game-runtime:verifyOfficerLegacy
+PASS officer legacy fixture=save-v32-central-native.sg11
+PASS officer legacy fixture=pc-officer-legacy-am.sg11
+PASS officer legacy fixture=pre-base-construction-v33.sg11
+PASS officer legacy fixture=pre-merchant-r25-v34.sg11
+PASS officer legacy fixture=legacy-market-v35/host/coalition-190.sg11
+PASS officer legacy fixture=legacy-market-v35/art/coalition-190.sg11
+PASS officer legacy fixture=legacy-production-v36/coalition-190-host.sg11
+PASS officer legacy fixture=legacy-production-v36/coalition-190-art.sg11
+PASS OfficerQueryLegacy checks=33976 actual v32-v36 fixtures, unchanged query and full-turn continuation; v31 fixture unavailable
+
+> Task :game-runtime:verifyPcScenarioOpening
+PASS source opening Media/scenario/Scen000.s11 player=2 alive=8 source records=670 strict=666 save=2137228; full events and activation still unknown
+PASS source opening Media/scenario/SCEN001.S11 player=0 alive=19 source records=670 strict=666 save=2152917; full events and activation still unknown
+PASS source opening Media/scenario/SCEN002.S11 player=0 alive=19 source records=670 strict=666 save=2153897; full events and activation still unknown
+PASS source opening Media/scenario/SCEN003.S11 player=0 alive=10 source records=670 strict=666 save=2143011; full events and activation still unknown
+PASS source opening Media/scenario/SCEN004.S11 player=0 alive=12 source records=670 strict=666 save=2145551; full events and activation still unknown
+PASS source opening Media/scenario/SCEN005.S11 player=0 alive=7 source records=670 strict=666 save=2138677; full events and activation still unknown
+PASS source opening Media/scenario/SCEN006.S11 player=0 alive=5 source records=670 strict=666 save=2136895; full events and activation still unknown
+PASS source opening Media/scenario/SCEN007.S11 player=0 alive=37 source records=670 strict=666 save=2177743; full events and activation still unknown
+PASS source opening Media/scenario/Scen008.s11 player=0 alive=14 source records=670 strict=666 save=2147990; full events and activation still unknown
+PASS source opening Media/scenario/Scen009.s11 player=0 alive=10 source records=670 strict=666 save=2142910; full events and activation still unknown
+PASS source opening Media/scenario/Scen010.s11 player=0 alive=5 source records=670 strict=666 save=2136199; full events and activation still unknown
+PASS source opening Media/scenario/Scen011.s11 player=0 alive=22 source records=670 strict=666 save=2156177; full events and activation still unknown
+PASS source opening Media/scenario/Scen012.s11 player=2 alive=15 source records=670 strict=666 save=2148474; full events and activation still unknown
+PASS source opening Media/scenario/Scen013.s11 player=0 alive=22 source records=670 strict=666 save=2155498; full events and activation still unknown
+PASS source opening Media/scenario/Scen014.S11 player=0 alive=37 source records=670 strict=666 save=2176515; full events and activation still unknown
+PASS source opening Media/scenario/Scen015.s11 player=2 alive=2 source records=670 strict=666 save=2128963; full events and activation still unknown
+PASS PcScenarioOpeningTest 171856 source record, formal patrol, three full turns and save/RNG/session reopening checks; actual APK flows remain separate
+
+> Task :game-runtime:jar UP-TO-DATE
+> Task :app:verifyCandidateSource SKIPPED
+
+> Task :app:verifyMapRelease
+PASS: 168 pinned map/art resources in source
+
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:extractDebugNativeSymbolTables UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:mergeDebugArtProfile UP-TO-DATE
+> Task :app:expandDebugArtProfileWildcards
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeDebugGeneratedProguardFiles UP-TO-DATE
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :app:mergeDebugStartupProfile UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:extractDebugVersionControlInfo UP-TO-DATE
+> Task :app:generateDebugLintVitalReportModel
+> Task :app:mergeDebugJavaResource
+> Task :app:optimizeDebugResources UP-TO-DATE
+> Task :app:collectDebugDependencies UP-TO-DATE
+> Task :app:sdkDebugDependencyData UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:lintVitalAnalyzeDebug
+> Task :app:lintVitalReportDebug UP-TO-DATE
+> Task :app:lintVitalDebug
+> Task :app:minifyDebugWithR8
+> Task :app:compileDebugArtProfile
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug
+
+[Incubating] Problems report is available at: file:///Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 26s
+58 actionable tasks: 12 executed, 46 up-to-date

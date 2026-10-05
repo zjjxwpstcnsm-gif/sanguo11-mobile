@@ -1,0 +1,39 @@
+{
+  "all493Resolved": false,
+  "diagnosticOnly": true,
+  "results": [
+    {
+      "budget": 2000000,
+      "completeOpening": false,
+      "nativeDistrictId": 0,
+      "originalLabel": "資金支出",
+      "propertyId": 14,
+      "rngUnchanged": true,
+      "source": "Media/scenario/Scen000.s11",
+      "value": 0,
+      "worldUnchanged": true
+    },
+    {
+      "budget": 2000000,
+      "completeOpening": false,
+      "nativeDistrictId": 0,
+      "originalLabel": "預想資金",
+      "propertyId": 16,
+      "rngUnchanged": true,
+      "source": "Media/scenario/Scen000.s11",
+      "value": 3600,
+      "worldUnchanged": true
+    },
+    {
+      "budget": 2000000,
+      "completeOpening": false,
+      "nativeDistrictId": 0,
+      "originalLabel": "資金充足",
+      "propertyId": 17,
+      "rngUnchanged": true,
+      "source": "Media/scenario/Scen000.s11",
+      "value": 1,
+      "worldUnchanged": true
+    }
+  ]
+}
