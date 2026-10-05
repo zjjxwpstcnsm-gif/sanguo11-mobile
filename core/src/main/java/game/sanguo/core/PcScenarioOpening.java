@@ -14,7 +14,8 @@ final class PcScenarioOpening {
         String[] factions=new String[47];
         for(PcScenarioCatalog.Force force:source.forces){
             PcScenarioPeople.Person ruler=force.valid?byNative.get(force.value(3)):null;
-            factions[force.nativeId]=ruler==null||ruler.originalName.isEmpty()?"未启用势力槽 "+force.nativeId:ruler.originalName;
+            factions[force.nativeId]=ruler==null||ruler.originalName.isEmpty()?"未启用势力槽 "+force.nativeId:
+                ruler.officerId>=0?PcOfficerIdentities.openingName(source,ruler):ruler.originalName;
         }
         World w=PcScenarioIdentity.create(Integer.parseInt(map.getProperty("width")),Integer.parseInt(map.getProperty("height")),factions,source.identity);
         w.sourceMapWidth=sourceColumns;w.sourceMapHeight=sourceRows;w.columnStaggered=true;geography.apply(w);

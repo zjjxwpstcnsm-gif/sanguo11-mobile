@@ -1,5 +1,7 @@
 # Session 1 计划与文件所有权
 
+Batch26基点76c7a949，完整checkpoint25 4896文件/418091619字节/4JNI，manifest2875c6df00d247c4fb7e653796707dc4fe0d41649acc4fe11938c4f1a606c74c。确切文件：PcOfficerIdentities.java（固定已核实四身份及证据SHA连接，保存读取不依赖当前目录）；PcScenarioOpening.java（新局势力标题使用同一君主核实名）；build_pc_gaiji_identities.py及pc-officer-identities资源（中文显式缺口，旧文本原字节保留）；PcGaijiIdentityTest.java/正常设备opening probe（损坏连接拒绝、同一势力名、16正常操作与冷续行、旧已核实/未核实双存档策略）。不改媒体、Bridge、共享台账或旧保存头。新包证据独立，旧包结果不移用。下一步仍完整舌战登用/外交/原raw忠诚与临时怨恨/单挑集成。
+
 Batch25 gaiji identity ownership: tools/content/inspect_pc_gaiji_identities.py, build_pc_gaiji_identities.py; core/PcOfficerIdentities.java and pc-officer-identities resources; PcScenarioOpening/Catalog; OfficerSnapshot.SourceInfo and OfficerQuery; SaveCodec saved-reference validation; PcGaijiIdentityTest. Preserve existing runtime IDs156234/844857/598828/850922 and join validated canonical identities by original font/name/birth/sex. No old-save backfill, portrait/media/Bridge changes. High-cache input evidence does not expand production input: current verified ability formula clamps100.
 
 Batch25前提交b95a669f，完整checkpoint24为4865文件/417578989字节/4JNI，manifest SHA2b9d2afce93d0dcaa82ef65068d0244285e0534e23440c402cbd794af9e8e7e8。先前“正常成长/经验/官职使当前能力超过100”的假设已被实际规则否定：当前原能力公式最终限制100。24条原完整模型101–255能力/武力实验只作为明确合成缓存夹具，不放宽PcDebateState/Rules/Campaign生产范围，不称正常新局证据。确切新增inspect_pc_debate_high_abilities.py，inspect_pc_debate_flow.py仅显式extended_fixture/war参数，默认行为保持。原完整招聘结算、动态忠诚/外交/临时怨恨与完整单挑继续推进。字形身份新资源与正常DTO接入见本批文件清单；旧存档不升级或追填。设备按独占与全部文件恢复规范验证，媒体/Bridge/公共台账不改。
@@ -159,3 +161,6 @@ Batch20追加确切工具tools/content/inspect_pc_debate_recruitment.py：完整
 前提交e885c3ac8d27996d3496493cfb008663da6e3ec8，checkpoint20保留4768文件/415819565字节/4JNI，manifest SHA2a0a056518f317fa0cf37c0dab08b1a38793c3eff72460585ef1d36d6354c893。确切新增tools/content/inspect_pc_debate_campaign_settlement.py、inspect_pc_officer_join_loyalty.py、build_pc_officer_join_fixtures.py；core/PcOfficerJoinRules.java及对应测试/pc-officer-join原夹具。完整原51dd10→5d3d40→5d3c90→5c4840执行；原数据页和49b490消息空上下文构造明确，原GUI/脚本续行仍独立。原忠诚4a75a0只在VM显式数值/关系夹具中改变输入，不改人物历史身份或PC资源。正式一次性结算的生产增量待原恢复/全部调用行为闭合后逐文件登记，不套旧固定忠诚或旧3旬伤病。
 
 Batch25 installed acceptance adds the four saved font identities to actual normal search/row/detail/biography controls, using PcScenarioOpeningInstrumentation.java and verify_pc_source_opening_ui.py --gaiji-identity. Preserve original3 faction checks, normal patrol/turn/save/load and all device data.
+
+
+Batch27原关系/完整结算预备研究与隔离接入（不修改当前冻结1048生产输入）：新增tools/content/inspect_pc_campaign_relations.py，执行原4b5f90双向交情及完整58bb30月初关系；字节169为俘虏月数Counter，不是忠诚字节ac。原关系受47a630有效状态及目标有效性约束，禁止只按project present臆测。隔离完整继承out/session1/relations27/integration/source用于PcNativeCampaignPolicy.java、PcNativeDebatePolicy、Contests完整招聘结算/SaveCodec保存策略等后续实现，完成原对照/真实GameSession和全World/RNG后再SHA守卫应用，不能以隔离通过结束目标。当前APK26实装结束及原数据恢复前不改生产。媒体/Bridge/Unity/共享台账均不变。

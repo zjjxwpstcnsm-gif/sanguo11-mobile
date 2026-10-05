@@ -41,7 +41,7 @@ def build(proof,expected_sha,output):
                     if span['kind']=='text':biography+=span['text']
                     elif span['kind']=='unknown_glyph':
                         try:biography+=decode_name(bytes.fromhex(span['rawHex']))
-                        except UnicodeDecodeError:biography+='[undecoded original glyph '+span['rawHex']+']';unknown.append('biographyGaiji:'+span['rawHex'])
+                        except UnicodeDecodeError:biography+='〔未解码字形 '+span['rawHex']+'〕';unknown.append('biographyGaiji:'+span['rawHex'])
                     elif span['kind']!='format':raise ValueError('Unexamined original biography control')
                 if msg['unknownControls']:unknown.append('biographyUnknownControls')
             unknown.append('activeResourcePriority')

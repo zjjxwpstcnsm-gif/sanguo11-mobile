@@ -46,3 +46,6 @@ Batch22主分支已实际接PcOfficerCampaignFacts原记录快照到正常新局
 
 
 Batch25主分支已接原字体4身份跨16源64条核实连接、原字/64传记和同一正常DTO，officerId稳定。1057正常命令/四旬与800独立JVM续行、既有Session1690均通过。新APK c362e15337dfb588c15f9412f60acd2e49b548f6107f40cce6766f5c3b3c8c35，1048冻结输入。Source0真实菜单7人物/巡察/三旬/保存载入2132检查170.64秒，实际ART保存4ad6b7f...dd0冷启动777检查51.45秒，旧源存档无字体身份追填723检查40.79秒。第一次传记测试假设和旧JVM/ART前置字节失败均保留；旧夹具仅临时目录原APK转换，5字节差异详见batch25-old-test-fixture-art.json。原输入/保存/资源不为测试改值。全部3215外部与7内部最后独立读回、force-stop和本锁释放以batch25-device-restoration.json及out/session1/gaiji25/final-readback.txt为准。后续先修势力原名称与人物同一连接（孔伷标题仍原字节名）、加强保存canonical/runtime/native/name校验，统一明确字形缺口中文；新包须独立构建/实装，不移用本包结果。舌战完整一次性奖励/登用/外交/当前raw忠诚/临时怨恨和完整单挑继续，正常能力最终100上限已核实；合成高缓存不放宽生产范围。字体/脚本/来源生效和外部Expansion覆盖仍未知。
+
+
+Batch26当前生产：原身份固定元组/证据SHA校验、新局势力名同一君主名、新传记缺口中文，旧源初/旧已核实身份文本完全不追填。新APK306830e30ce5a944fb356b0664de4beaae4adce4ff4de77f6a052a7bcbb1f0b6、1048输入，16来源32正常菜单/巡察/三旬/存取与实际冷启动全部通过，旧实际源不追填20.83s通过。最后独立3266外部/7内部读回与释放锁以batch26-device-restoration.json及out/session1/identity26/final-readback.txt为准。Source3安装前失败与复用SHA机制日志保留。完整任务继续，不以本包数据页/局部字段通过结束。Batch27全部源码仍隔离out/session1/relations27/integration/source，严禁复制整个旧/隔离core覆写当前；原结算33字段与治理/太守/军团/开战+100等缺口见BATCH_27_WIP.md，真实Host赢21/cold9及失败10879/cold8只属于候选，未实际新包应用。原源日期后处理报告8145c12c...679e1完成，下一步与候选全World完整上下文对照；原Duel完整215帧报告与NativeHealth仍沿batch24/23继续，不得用工程单挑假冒完成。

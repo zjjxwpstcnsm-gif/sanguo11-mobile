@@ -77,8 +77,8 @@ def run(args):
             flow(SimpleNamespace(serial=args.serial,apk=args.apk,test_apk=args.test_apk,output=output,
                 runner=('PcHealthInstrumentation' if getattr(args,'health_flow',False) else 'PcContestInstrumentation' if args.contest_flow else 'PcScenarioOpeningInstrumentation') if args.info_only else 'UiUxInstrumentation',
                 test_package='game.sanguo.mobile.pcopeningprobe' if args.info_only else PACKAGE+'.test',
-                argument=['suite='+suite,'run=officer-session1-'+args.output.name+'-'+suite,'reuseSlotSha='+campaign_sha]+(['evidenceId='+args.output.name] if getattr(args,'unique_evidence',False) else [])+(['sourceOpening=1','sourceIndex='+str(args.source_index)] if args.source_opening else [])+(['sourceResume=1'] if args.source_resume else [])+(['gaijiIdentity=1'] if getattr(args,'gaiji_identity',False) else [])+(['contestResume=1'] if args.contest_resume else []),
-                pass_marker='PC SOURCE OPENING PASS' if args.info_only else 'UIUX PASS',timeout=1200,reuse_installed=index>0,campaign_save=args.campaign_save,campaign_sha256=campaign_sha))
+                argument=['suite='+suite,'run=officer-session1-'+args.output.name+'-'+suite,'reuseSlotSha='+campaign_sha,'sourceIndex='+str(args.source_index)]+(['evidenceId='+args.output.name] if getattr(args,'unique_evidence',False) else [])+(['sourceOpening=1'] if args.source_opening else [])+(['sourceResume=1'] if args.source_resume else [])+(['gaijiIdentity=1'] if getattr(args,'gaiji_identity',False) else [])+(['contestResume=1'] if args.contest_resume else []),
+                pass_marker='PC SOURCE OPENING PASS' if args.info_only else 'UIUX PASS',timeout=1200,reuse_installed=index>0 or getattr(args,'reuse_installed',False),campaign_save=args.campaign_save,campaign_sha256=campaign_sha))
             report['suites'].append(json.loads((output/'results.json').read_text()));save()
         if args.source_opening:
             # Preserve the actual ART/new-menu result before restoring original
@@ -121,6 +121,7 @@ if __name__=='__main__':
     parser.add_argument('--external-backup',type=Path)
     parser.add_argument('--campaign-save',type=Path,required=True)
     parser.add_argument('--info-only',action='store_true')
+    parser.add_argument('--reuse-installed',action='store_true',help='Verify exact installed main/test APK SHA before skipping redundant reinstall')
     parser.add_argument('--source-opening',action='store_true')
     parser.add_argument('--source-index',type=int,default=0)
     parser.add_argument('--source-resume',action='store_true')

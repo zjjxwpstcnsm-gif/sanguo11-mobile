@@ -1,0 +1,176 @@
+{
+  "apk": {
+    "sha256": "306830e30ce5a944fb356b0664de4beaae4adce4ff4de77f6a052a7bcbb1f0b6",
+    "bytes": 94708220,
+    "sourceInputs": 1048,
+    "jniLibraries": [
+      "lib/arm64-v8a/libfilament-jni.so",
+      "lib/arm64-v8a/libpc_effect_worker.so",
+      "lib/arm64-v8a/libunicorn.so",
+      "lib/armeabi-v7a/libfilament-jni.so",
+      "lib/x86/libfilament-jni.so",
+      "lib/x86_64/libfilament-jni.so",
+      "lib/x86_64/libpc_effect_worker.so",
+      "lib/x86_64/libunicorn.so"
+    ],
+    "actualDeviceEvidence": "pending",
+    "completeGoal": false
+  },
+  "host": "1309 fresh source/800 cold/384 previous identity/1690 old session PASS",
+  "deviceProgress": [
+    {
+      "source": 0,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-0-opening"
+    },
+    {
+      "source": 0,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-0-cold"
+    },
+    {
+      "source": 1,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-1-opening"
+    },
+    {
+      "source": 1,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-1-cold"
+    },
+    {
+      "source": 2,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-2-opening"
+    },
+    {
+      "source": 2,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-2-cold"
+    },
+    {
+      "source": 3,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-opening"
+    },
+    {
+      "source": 3,
+      "mode": "cold",
+      "passed": false,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-cold"
+    },
+    {
+      "source": 3,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-cold-retry-1"
+    },
+    {
+      "source": 4,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-4-opening"
+    },
+    {
+      "source": 4,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-4-cold"
+    },
+    {
+      "source": 5,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-5-opening"
+    },
+    {
+      "source": 5,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-5-cold"
+    },
+    {
+      "source": 6,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-6-opening"
+    },
+    {
+      "source": 6,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-6-cold"
+    },
+    {
+      "source": 7,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-7-opening"
+    },
+    {
+      "source": 7,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-7-cold"
+    },
+    {
+      "source": 8,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-8-opening"
+    },
+    {
+      "source": 8,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-8-cold"
+    },
+    {
+      "source": 9,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-9-opening"
+    },
+    {
+      "source": 9,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-9-cold"
+    },
+    {
+      "source": 10,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-10-opening"
+    },
+    {
+      "source": 10,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-10-cold"
+    },
+    {
+      "source": 11,
+      "mode": "opening",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-11-opening"
+    },
+    {
+      "source": 11,
+      "mode": "cold",
+      "passed": true,
+      "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-11-cold"
+    }
+  ],
+  "lock": "/tmp/sanguo11-emulator-5554.lock",
+  "activeProcessSession": 88898,
+  "productionFrozen": true,
+  "completeGoal": false
+}

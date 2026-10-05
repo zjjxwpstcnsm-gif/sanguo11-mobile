@@ -1,0 +1,45 @@
+{
+  "previousCommit": "76c7a9494a2d9a751e401bfedc8feaa1e55e4d80",
+  "sourceRoot": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile",
+  "sourceInputs": 1048,
+  "frozenProductionInputsUnchanged": true,
+  "apkSha256": "306830e30ce5a944fb356b0664de4beaae4adce4ff4de77f6a052a7bcbb1f0b6",
+  "files": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerIdentities.java",
+      "beforeSha256": "ad9605090ada735d3ce27f10b6b6858363741106153a66104727a51063e92e14",
+      "afterSha256": "e0c56a8c252ae457f999e71361c4e3f576d6d32ed72621d8deedcdbb64101e2b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "f8182077caf30012d5a8aebe6e965427b307c86df37f4e78f8a4f958e5239887",
+      "afterSha256": "180290a2544e1da07861bb6bd73d78affecb9f8276acf339524e1e8b98f2cd9e"
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/identities.bin.gz",
+      "beforeSha256": "32999aefc96a620e0319e7da573bdf8ddc54420813ff292104db715e65747fa2",
+      "afterSha256": "be807419be8bea55e6de69e37be9d539e53e214d863dd916ace3fe282af9e3cd"
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/index.txt",
+      "beforeSha256": "1b6894db65e0f2f87e28b47c769b17f37cde4c16771321331b12df9dbd651116",
+      "afterSha256": "2fa9bf328fc0818ccae52359feb1d91daf9d66e2dcb7f273f8f46d7a3e450c68"
+    },
+    {
+      "path": "tools/content/build_pc_gaiji_identities.py",
+      "beforeSha256": "ded01ea8997e31a9c6995890650f420e43ad42ecc44c02f4e63c62f3743a0881",
+      "afterSha256": "c0a6453bfb808bd266dc6f3b34da29c0014a9a72a2380e363d54909790268149"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcGaijiIdentityTest.java",
+      "beforeSha256": "edf1c04930a63d227516e5e63169feb382681d4a86afe3fe523fbfb82968f38d",
+      "afterSha256": "8de5a5add86a98290764e8dc3ba9c94eb21651758fa7d702d83a737d7da20242"
+    },
+    {
+      "path": "tools/content/android/PcScenarioOpeningInstrumentation.java",
+      "beforeSha256": "1713fa020058099f2fe6003d6eaf7a19cc5cf12632a8a5d010f2a73596a977a7",
+      "afterSha256": "cbf49a9dac17179cf21d1f3130da367f693c633f25f8c0a8ee097441732e8326"
+    }
+  ],
+  "completeGoal": false
+}

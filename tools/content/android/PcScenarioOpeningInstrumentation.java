@@ -88,6 +88,7 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 check(!PcOfficerInfo.saved(fresh).isEmpty(),"normal new-game UI installs source world and saved PC text facts");
                 check(PcContestProfiles.saved(fresh).size()==670,"actual menu installs original historical/source-only contest facts");
                 check(PcOfficerCampaignFacts.saved(fresh).size()==670,"actual menu saves identity-checked original internal loyalty records");
+                for(World.Officer ruler:fresh.officers)if(ruler.role==Strategy.Role.RULER&&ruler.owner>=0)check(fresh.factions[ruler.owner].equals(ruler.name),"actual new-game faction label matches verified ruler "+ruler.id);
                 for(PcContestProfiles.Fact f:PcContestProfiles.saved(fresh).values()){Contests.Profile actual=fresh.contests.profile(f.officerId),expected=f.profile();check(actual.temper==expected.temper&&actual.talkMask==expected.talkMask,"actual menu binds per-source contest traits "+f.nativeId);}
                 for(PcOfficerInfo.Person p:PcOfficerInfo.saved(fresh).values())check(p.sourcePath.equals(source.identity.path),"selected source remains explicit in new authority");
                 screenshot("source-new-game");

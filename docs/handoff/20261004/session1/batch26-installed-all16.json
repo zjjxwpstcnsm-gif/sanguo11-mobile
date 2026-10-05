@@ -1,0 +1,470 @@
+{
+  "apkSha256": "306830e30ce5a944fb356b0664de4beaae4adce4ff4de77f6a052a7bcbb1f0b6",
+  "serial": "emulator-5554",
+  "abi": "x86_64",
+  "armEvidence": false,
+  "all32DistinctFlowsPassed": true,
+  "rows": [
+    {
+      "sourceIndex": 0,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 145.3,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-0-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-0-opening/actual-source-flow-final.sg11",
+        "sha256": "90074587ccba0d73b30ca4c12487e7f5f55d5fbe53c5d330bbf0ae340065f2a6",
+        "bytes": 2212345
+      }
+    },
+    {
+      "sourceIndex": 0,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 36.63,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-0-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 1,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 128.0,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-1-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-1-opening/actual-source-flow-final.sg11",
+        "sha256": "44267a2aab4618889798aad89efb7f761d0c66188230fb4601de7d4c1b0e5574",
+        "bytes": 2228803
+      }
+    },
+    {
+      "sourceIndex": 1,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 42.93,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-1-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 2,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 209.4,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-2-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-2-opening/actual-source-flow-final.sg11",
+        "sha256": "18a8f17b48182c61b052f459e60efa248cd053c07bc0be4f58d359d60010e0ca",
+        "bytes": 2229922
+      }
+    },
+    {
+      "sourceIndex": 2,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 55.04,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-2-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 3,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 190.51,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-opening/actual-source-flow-final.sg11",
+        "sha256": "bca5f9a27793018d27a8993ea77367324342919ebf71047d3cf655d43034eca1",
+        "bytes": 2219194
+      }
+    },
+    {
+      "sourceIndex": 3,
+      "mode": "cold",
+      "passed": false,
+      "seconds": null,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 3,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 41.21,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-3-cold-retry-1",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 4,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 148.36,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-4-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-4-opening/actual-source-flow-final.sg11",
+        "sha256": "4cf49da0dd51c9dff2994a0f81105fe3d8e2a4d8dca4f0e3c9e449d68d92ac9d",
+        "bytes": 2222142
+      }
+    },
+    {
+      "sourceIndex": 4,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 43.55,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-4-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 5,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 161.41,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-5-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-5-opening/actual-source-flow-final.sg11",
+        "sha256": "7f61bd7898ead424c209c384f454613a705dba06dc1858b5a64a2e76d020c563",
+        "bytes": 2215297
+      }
+    },
+    {
+      "sourceIndex": 5,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 54.95,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-5-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 6,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 155.26,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-6-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-6-opening/actual-source-flow-final.sg11",
+        "sha256": "df78167228c7f0e8080d17e988e950400d23f65b15d2fb8fa86aa8382fc8de4c",
+        "bytes": 2213542
+      }
+    },
+    {
+      "sourceIndex": 6,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 43.06,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-6-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 7,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 225.69,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-7-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-7-opening/actual-source-flow-final.sg11",
+        "sha256": "59e8b9a89883bc09a957f2804a20ec56adc54c0aa212536cb33e5fd7ec31f212",
+        "bytes": 2254351
+      }
+    },
+    {
+      "sourceIndex": 7,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 65.77,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-7-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 8,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 209.91,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-8-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-8-opening/actual-source-flow-final.sg11",
+        "sha256": "b853df681045ce9726d61f7f9520243a7392a74938e95aa3c98302316244ad01",
+        "bytes": 2224151
+      }
+    },
+    {
+      "sourceIndex": 8,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 47.2,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-8-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 9,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 215.46,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-9-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-9-opening/actual-source-flow-final.sg11",
+        "sha256": "28db80a92ead85a6b5a0e6a6ba234045c78181da3dc6ac97e64022d621c68b1d",
+        "bytes": 2219274
+      }
+    },
+    {
+      "sourceIndex": 9,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 51.2,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-9-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 10,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 163.19,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-10-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-10-opening/actual-source-flow-final.sg11",
+        "sha256": "f11ea7f5f3911325f0ee49d435730987b819d86bf70754dba957105ca8371505",
+        "bytes": 2212833
+      }
+    },
+    {
+      "sourceIndex": 10,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 51.11,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-10-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 11,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 185.57,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-11-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-11-opening/actual-source-flow-final.sg11",
+        "sha256": "590c5a7ff9eff0b20d747db101ae63cdb2decc7003a544d3e7fd6c49744af25a",
+        "bytes": 2231853
+      }
+    },
+    {
+      "sourceIndex": 11,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 46.9,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-11-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 12,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 184.85,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-12-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-12-opening/actual-source-flow-final.sg11",
+        "sha256": "a5b784c648022f29f027c6451c818da554153a70f47ae9b55e308e02aa2bd7f2",
+        "bytes": 2224444
+      }
+    },
+    {
+      "sourceIndex": 12,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 46.58,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-12-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 13,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 216.02,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-13-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-13-opening/actual-source-flow-final.sg11",
+        "sha256": "680593bb06fb24918c00f8f19a80127e93a7f061b136644c3adccc516d5416aa",
+        "bytes": 2231087
+      }
+    },
+    {
+      "sourceIndex": 13,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 38.43,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-13-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 14,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 258.54,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-14-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-14-opening/actual-source-flow-final.sg11",
+        "sha256": "6a74af8eeb7deeefde5d34ce136d4ef82598feec7087ffaaee7e64ac1d4dbc8e",
+        "bytes": 2253115
+      }
+    },
+    {
+      "sourceIndex": 14,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 49.32,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-14-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    },
+    {
+      "sourceIndex": 15,
+      "mode": "opening",
+      "passed": true,
+      "seconds": 179.4,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-15-opening",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": {
+        "path": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-15-opening/actual-source-flow-final.sg11",
+        "sha256": "5b7386bf08f4ffe0cb5c576bcca6a6dd3429db76239337e95bd2edbc0df21492",
+        "bytes": 2203611
+      }
+    },
+    {
+      "sourceIndex": 15,
+      "mode": "cold",
+      "passed": true,
+      "seconds": 45.09,
+      "evidencePath": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-15-cold",
+      "externalOriginalFiles": 3266,
+      "externalFilesRestored": true,
+      "internalFilesRestored": true,
+      "internalFiles": 7,
+      "actualSourceFlowSave": null
+    }
+  ],
+  "completeGoal": false
+}
