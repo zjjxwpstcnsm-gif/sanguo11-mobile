@@ -1,0 +1,241 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=longRun",
+    "rounds=6",
+    "run=six-turn-installed-29"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-build-29/frozen/app-debug.apk": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+  },
+  "installed_sha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "installed_test_sha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7",
+  "passed": true,
+  "seconds": 140.88,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "temporary_campaign": {
+    "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-normal-all-29/device-evidence/source-campaign.sg11",
+    "sha256": "cd195dac33357dabb113198694ecc907d90278856d5c94c66cfa32053cd6d691",
+    "bytes": 939917,
+    "slots": [
+      "files/auto.sg11",
+      "files/manual3.sg11"
+    ]
+  },
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "files": [
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-before.sg11",
+      "bytes": 939917,
+      "sha256": "cd195dac33357dabb113198694ecc907d90278856d5c94c66cfa32053cd6d691"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-0.sg11",
+      "bytes": 954073,
+      "sha256": "2e5ee18d96292bbf249555d5adf9ec4593ba99bc7b0f3e0a734e830a7c7a08e3"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-1.sg11",
+      "bytes": 966267,
+      "sha256": "4efdabd89611060ab7a854780a3dba3fa49bb858f1da669cd7ca9f02d9bd2c06"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-2.sg11",
+      "bytes": 979607,
+      "sha256": "6b9b767769aed676c5368ce5cae3cec3c1ca7fdb65cc25fdc52aad8cd20008a0"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-3.sg11",
+      "bytes": 991968,
+      "sha256": "bb6ae40ad26c423039970b80a7b3ea1c0d4456db2bf05b22a9b2480de926b260"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-4.sg11",
+      "bytes": 1002423,
+      "sha256": "df5a396f66dd9be0c4d436ef16d0a908706464c979ce48d1c5a96ceeaae6de4e"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority-round-5.sg11",
+      "bytes": 1013681,
+      "sha256": "13faa5e6b25f7d65708947a0ab34c9b6eb48bb2d07b179a6671dd593476b92c7"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/authority.csv",
+      "bytes": 1291,
+      "sha256": "fd4ae4b4a4b874158595a6ef1cc9441aa41107bae436a0732927c0a30c2e6b2b"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/result.txt",
+      "bytes": 5346,
+      "sha256": "532635685380457af28cc44bf961f201c8169c8c10736f2cdefd7bb7f226ec98"
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-29/sustained.csv",
+      "bytes": 271,
+      "sha256": "a28775a78f6210a831dfccc6c45a90fe6ed974afeec06e0144d71729c200ec19"
+    }
+  ],
+  "hostSaveReadOnlyAudit": [
+    {
+      "file": "authority-before.sg11",
+      "bytes": "939917",
+      "sha256": "cd195dac33357dabb113198694ecc907d90278856d5c94c66cfa32053cd6d691",
+      "turn": "0",
+      "strategyRandomSignedLong": "5213838646947719860",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "0",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "185537",
+      "reportGzipHeaderOnlyDifference": "true"
+    },
+    {
+      "file": "authority-round-0.sg11",
+      "bytes": "954073",
+      "sha256": "2e5ee18d96292bbf249555d5adf9ec4593ba99bc7b0f3e0a734e830a7c7a08e3",
+      "turn": "1",
+      "strategyRandomSignedLong": "-5551536110850311248",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "28",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "191311",
+      "reportGzipHeaderOnlyDifference": "true"
+    },
+    {
+      "file": "authority-round-1.sg11",
+      "bytes": "966267",
+      "sha256": "4efdabd89611060ab7a854780a3dba3fa49bb858f1da669cd7ca9f02d9bd2c06",
+      "turn": "2",
+      "strategyRandomSignedLong": "-4916196049325143871",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "46",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "193925",
+      "reportGzipHeaderOnlyDifference": "true"
+    },
+    {
+      "file": "authority-round-2.sg11",
+      "bytes": "979607",
+      "sha256": "6b9b767769aed676c5368ce5cae3cec3c1ca7fdb65cc25fdc52aad8cd20008a0",
+      "turn": "3",
+      "strategyRandomSignedLong": "-4430839431148814763",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "63",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "196341",
+      "reportGzipHeaderOnlyDifference": "true"
+    },
+    {
+      "file": "authority-round-3.sg11",
+      "bytes": "991968",
+      "sha256": "bb6ae40ad26c423039970b80a7b3ea1c0d4456db2bf05b22a9b2480de926b260",
+      "turn": "4",
+      "strategyRandomSignedLong": "559186195313197968",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "68",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "197845",
+      "reportGzipHeaderOnlyDifference": "true"
+    },
+    {
+      "file": "authority-round-4.sg11",
+      "bytes": "1002423",
+      "sha256": "df5a396f66dd9be0c4d436ef16d0a908706464c979ce48d1c5a96ceeaae6de4e",
+      "turn": "5",
+      "strategyRandomSignedLong": "-6879504811510157986",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "71",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "198577",
+      "reportGzipHeaderOnlyDifference": "true"
+    },
+    {
+      "file": "authority-round-5.sg11",
+      "bytes": "1013681",
+      "sha256": "13faa5e6b25f7d65708947a0ab34c9b6eb48bb2d07b179a6671dd593476b92c7",
+      "turn": "6",
+      "strategyRandomSignedLong": "259219308615521430",
+      "eventRandomSignedLong": "64978850446893",
+      "officers": "656",
+      "units": "66",
+      "cities": "87",
+      "fullRoundtripByteEqual": "false",
+      "payloadFirstDifference": "198295",
+      "reportGzipHeaderOnlyDifference": "true"
+    }
+  ],
+  "hostFullByteRoundtripPassed": false,
+  "hostAuditScope": "Same documented Android/JDK gzip header difference only; original Saved bytes untouched",
+  "performance": [
+    {
+      "round": "0",
+      "wall_ms": "19473",
+      "turn": "1",
+      "java_used_bytes": "78836824",
+      "java_total_bytes": "78836824",
+      "pss_kb": "202102"
+    },
+    {
+      "round": "1",
+      "wall_ms": "44320",
+      "turn": "2",
+      "java_used_bytes": "81997488",
+      "java_total_bytes": "87981632",
+      "pss_kb": "205235"
+    },
+    {
+      "round": "2",
+      "wall_ms": "67670",
+      "turn": "3",
+      "java_used_bytes": "83226520",
+      "java_total_bytes": "83864392",
+      "pss_kb": "210711"
+    },
+    {
+      "round": "3",
+      "wall_ms": "92022",
+      "turn": "4",
+      "java_used_bytes": "87972128",
+      "java_total_bytes": "88473560",
+      "pss_kb": "215450"
+    },
+    {
+      "round": "4",
+      "wall_ms": "112077",
+      "turn": "5",
+      "java_used_bytes": "94692032",
+      "java_total_bytes": "94692032",
+      "pss_kb": "222216"
+    },
+    {
+      "round": "5",
+      "wall_ms": "132259",
+      "turn": "6",
+      "java_used_bytes": "86684624",
+      "java_total_bytes": "87216968",
+      "pss_kb": "215850"
+    }
+  ]
+}

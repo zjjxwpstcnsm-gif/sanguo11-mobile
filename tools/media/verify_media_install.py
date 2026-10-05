@@ -16,7 +16,7 @@ import wave
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools/content'))
-import verify_pc_installed_flow as installed
+import verify_media_device_flow as installed
 
 
 if __name__=='__main__':
@@ -27,6 +27,7 @@ if __name__=='__main__':
     p.add_argument('--argument',action='append',default=[]);p.add_argument('--pass-marker',required=True);p.add_argument('--timeout',type=int,default=1200)
     p.add_argument('--campaign-save',type=Path);p.add_argument('--campaign-sha256')
     p.add_argument('--reuse-installed',action='store_true');p.add_argument('--wave',type=Path);p.add_argument('--cue',action='append',default=[])
+    p.add_argument('--device-sha-readback',action='store_true',help='Read full installed APK SHA256 on device; preserve full byte-level user restoration')
     p.add_argument('--capture-only',action='store_true',help='Retain raw PCM window without short-cue recognition; separate media waveform proof required')
     a=p.parse_args()
     markers={'MediaBridgeInstrumentation':'MEDIA_WIRE PASS','PortraitPixelsInstrumentation':'PORTRAIT_PIXELS PASS',

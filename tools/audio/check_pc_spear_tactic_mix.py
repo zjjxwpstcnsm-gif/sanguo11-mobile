@@ -57,7 +57,7 @@ def inspect(capture,flow_path,facts_path,output):
     loss,gains,matrix=fit(starts);model=matrix@gains
     def corr(a,b):return float(a@b)/np.sqrt(max(1e-20,float(a@a)*float(b@b)))
     joint=corr(model,target);independent=[corr(target-matrix[:,1-i]*gains[1-i],matrix[:,i]*gains[i]) for i in range(2)];normalized=matrix/np.linalg.norm(matrix,axis=0);condition=float(np.linalg.cond(normalized.T@normalized));rms=[float(np.sqrt(np.mean(t*t))*g) for t,g in zip(templates,gains)]
-    if joint<.999 or min(independent)<.999 or np.any(gains<=0) or min(rms)<8/32768 or condition>20:raise AssertionError(dict(joint=joint,independent=independent,gains=gains.tolist(),rms=rms,condition=condition))
+    if joint<.999 or min(independent)<.999 or np.any(gains<=0) or min(rms)<8/32768 or condition>20:raise AssertionError(dict(joint=joint,independent=independent,gains=gains.tolist(),rms=rms,condition=condition,seeds=seeds,starts=starts,intervalSamples=[lo,hi]))
     report=dict(status='PASS',scope='Actual two declared original converted spear49/78 and nativeHUD33 waveforms; current Android phase, not PC wall-clock/nativeWindows/ARM speaker or full audio restoration',apkSha256=flow['installed_sha256'],captureSha256=hashlib.sha256(capture.read_bytes()).hexdigest(),nativeSoundId=sound,jointCorrelation=joint,independentCorrelations=independent,gains=gains.tolist(),audibleRms=rms,normalizedCondition=condition,seeds=seeds,starts=starts,intervalSamples=[lo,hi],originalSpearPcmSha256=entry['original']['pcmS16leSha256'],playbackWavSha256=entry['wavSha256'],facts=facts['facts'])
     output.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:report[k] for k in ['status','nativeSoundId','jointCorrelation','independentCorrelations']}))
 

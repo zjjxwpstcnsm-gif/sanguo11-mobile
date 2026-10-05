@@ -1,3 +1,15 @@
+# 当前截点29：九种原命中战法音及命中门纠正，目标active
+
+当前可安装应用 `out/media/infantry-sound-build-29/frozen/app-debug.apk`，实现f6e0b8a6d3ee4cb4839bf2d2fb975f06f7c445b7，308016492字节，SHA `0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a`。测试实现6bba993885ea66c5ed3cf2844d332fda6d0e2825，2080347字节，SHA `9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7`，路径out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk。实际安装并逐轮核对两包完整SHA；后继只有媒体工具/证据变化。
+
+原枪兵0..2、戟兵3..5、弩兵6..8九种命中战法原49/78，18个实际UI/PCM组合通过，最低joint0.999999535、独立源0.999986560；取消/双确认及完整参考Save/RNG一致。撤回批28“未命中可原49”的错误扩大：原上游命中门另发58；当前49/78必须有同事件主物理Strike，未命中验收原轨道6头全0/消费0，明确58正常绑定仍待事实。正常656目录/656详情/652像素4未知、存读档/退出重开、90项生命周期、六回合7份完整Save/RNG、动态190、共享适配器及只读JSON桥接都在新包复验。详细来源、守卫、通过与失败见INSTALLED_CLOSEOUT_29.md、BATCH_29.md和各29.json。
+
+本包菜单生命周期通过但当前录音固定40秒窗口0.708876288未过0.999，完整曲0.378414404未过0.995；不能移用旧包四窗口通过。横扫首轮PCM0.967失败/起点及短诊断未通过，之后同冻结包完整复验0.999999548通过；首轮异常未归因，仍不称零glitch。首次miss fixture数值校验拒绝、整APK传输超时都保留，用户文件恢复字节一致。媒体专用设备SHA核对明确标方法，另一会话验证器未改。
+
+原始PCM/截图/实际测试证据归档 `out/media/actual-evidence-delivery-29/actual-media-evidence.tar.gz`，61678491字节，SHA `041e329e085ad830d03df2b18ccac535e497e2d334f300bfe38736a5de31b11c`，回读逐文件一致，不含私人用户备份tar。完整源码冻结目标 `out/media/delivery-29`，精确文件/SHA/四JNI/回读以该目录manifest.json及source-files.json为准。54及后续路径前后守卫在本批DELTA_GUARDS_29.json，以其guardedCommit为准。
+
+core/API/runtime仍为已完成9e171f2，MainActivity/MapHost/公共manifest/全局台账本批未改，原工程/PC/另一会话WIP/5554录音未操作。另一会话76c7a949四字形身份完成只读确认，尚未顺序集成。普通菜单BGM绑定1、普通地图BGM及正常人物voice0；原58、其它兵种/事件SFX、全部头像caller/MOD覆盖/四未知顺序集成、音频异常与长播放连续性、原完整时序/色彩、Unity Player/ARM真机仍未完成。后文为保留历史，不自动移用当前包。
+
 # 当前截点28：原枪兵战法音效已推进，完整目标active
 
 当前应用 `out/media/tactic-sound-build-28/frozen/app-debug.apk`，实现55572ae8847f18337c1f3402af1c3a7484284e35，308015016字节，SHA `fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48`。当前扩展测试包 `out/media/tactic-lifecycle-test-build-28/frozen/app-debug-androidTest.apk`，测试实现69a4f7b4517b99abde7bfd323e9db00c3324b91e，2079579字节，SHA `01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872`。两个组合均实际安装及读回应用SHA；后续只有测试/工具/证据变更，当前应用二进制保持。

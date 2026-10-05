@@ -15,7 +15,8 @@ def archive(inputs,output):
     for directory in inputs:
         directory=directory.resolve();directory.relative_to((ROOT/'out/media').resolve())
         report=json.loads((directory/'results.json').read_text())
-        if report.get('stage')!='finished' or not report.get('restoration',{}).get('all_original_files_byte_equal'):raise ValueError('Completed byte-restored device run required')
+        terminal=report.get('stage')=='finished' or bool(report.get('exception'))
+        if not terminal or not report.get('restoration',{}).get('all_original_files_byte_equal'):raise ValueError('Terminal byte-restored device run required; failed attempts retain their original status')
         for path in directory.rglob('*'):
             relative=path.relative_to(directory)
             if not path.is_file() or path.is_symlink():continue

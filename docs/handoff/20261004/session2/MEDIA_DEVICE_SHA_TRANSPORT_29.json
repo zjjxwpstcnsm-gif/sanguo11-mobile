@@ -1,0 +1,13 @@
+{
+  "sharedTransactionSource": "tools/content/verify_pc_installed_flow.py",
+  "sharedTransactionSourceSha256": "be19a456291d37bb473161e17fbc19fba37541424371f1b5b74506ba23cce701",
+  "ownedTransaction": "tools/media/verify_media_device_flow.py",
+  "ownedTransactionSha256": "7727f3ea1a9d8237e68e82d00d90af0edd028984bf1c88d8219497f0e5db59b9",
+  "defaultReadback": "complete APK bytes to host SHA256",
+  "explicitReadback": "both complete APK file SHA256 computed on device, strict pm-path/output and candidate comparison",
+  "allUserDataStillCompleteByteReadback": true,
+  "sharedSourceFileModified": false,
+  "deviceSerial": "emulator-5582",
+  "failedTransportDirectory": "out/media/infantry-sweep-49-installed-29-r1",
+  "verifiedNewMethodDirectory": "out/media/infantry-sweep-49-installed-29-r2"
+}
