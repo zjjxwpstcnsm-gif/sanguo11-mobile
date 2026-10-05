@@ -1,0 +1,26 @@
+{
+  "previousCommit": "62f9623f7dde658d910c91ed822f5a8145a14225",
+  "inheritedFileCount": 4848,
+  "changed": [
+    {
+      "path": "docs/handoff/20261004/session1/CONTEST_MEDIA_CONTRACT.md",
+      "beforeSha256": "a76dd764274b702374b9ab4ce0875da67b41100cdfd21a335fe61ec18f5d64fa",
+      "afterSha256": "7929666e810ede0e36ccde5ed890245baa8d03a63ef5d9f47cf75679bd940bb4"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "2b328cc93a967fb6c7826d378acf1bb0a28eff940adfb17c33a9c6d0c09b2133",
+      "afterSha256": "a1bf83f1fe76685075f0d255f188b5b9543a6061874e9ddb7be3e19139d8be2b"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "beforeSha256": "84f48b17b0462b69a37e7c4086f859acdb1e7ac73ec74b3d57d770337f272418",
+      "afterSha256": "4bcae73a416865c3271b4466fbcf6c751f46950cc8749bd0911df9aa2714a9cb"
+    }
+  ],
+  "allOtherInheritedPathsByteEqual": true,
+  "apkBuildInputsAllUnchanged": 1045,
+  "ignoredJniInputsPreserved": 4,
+  "mediaAndSharedLedgersUnchanged": true,
+  "completeGoal": false
+}

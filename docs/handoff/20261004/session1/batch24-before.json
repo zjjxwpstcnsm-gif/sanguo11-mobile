@@ -1,0 +1,12 @@
+{
+  "previousCommit": "62f9623f7dde658d910c91ed822f5a8145a14225",
+  "checkpointManifestSha256": "be3e27f624094e11005a8cc805e2d5c6c22071c78bd49128b820bff19eacf04a",
+  "sourceGuards": {
+    "docs/handoff/20261004/session1/PLAN.md": "2b328cc93a967fb6c7826d378acf1bb0a28eff940adfb17c33a9c6d0c09b2133",
+    "docs/handoff/20261004/session1/CONTEST_MEDIA_CONTRACT.md": "a76dd764274b702374b9ab4ce0875da67b41100cdfd21a335fe61ec18f5d64fa"
+  },
+  "ownedNewFiles": [
+    "tools/content/inspect_pc_duel_flow.py"
+  ],
+  "completeGoal": false
+}

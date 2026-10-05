@@ -1,5 +1,7 @@
 # Session 1 计划与文件所有权
 
+Batch24前提交62f9623f，完整checkpoint23为4848文件/417501810字节/4JNI，manifest SHAbe3e27f624094e11005a8cc805e2d5c6c22071c78bd49128b820bff19eacf04a。继续用户追加的完整单挑要求：先完整执行原构造/输入管理器/13阶段帧与AI/数值规则，不能以装备表替代对局。当前确切新增tools/content/inspect_pc_duel_flow.py，复用原NativeLayeredWorld/StartupPlatform与PC数据页。后续core/保存/同一DTO和正常按钮路径只在取得完整规则与旧档策略证据后登记；不改媒体、Bridge、Unity或公共台账。5554已释放，纯原程序研究本批不占设备。
+
 Batch23设备验收工具追加tools/content/android/PcHealthInstrumentation.java、build_pc_scenario_ui_probe.py增加独立健康runner、verify_pc_source_opening_ui.py仅选择该runner及独立证据目录。通过真实活动启动/普通地图下一旬/正常保存读取/武将详情，核对原健康/能力/完整保存与双RNG；测试输入明确为正常主机会话第5旬真实保存，不冒称原PC完整开局。每次安装前完整备份或核实同一完整备份与当前字节全等，最后读回原文件恢复。旧probe/包证据单独保留，不移用给新包。
 
 Batch23追加SaveCodec.java只验证显式新健康namespace；MainActivity.java仅武将文字信息伤病时间不足时的提示，不触及头像/音频/其它方法。既有正常source38/已有39不加入策略，不改变普通旧档三旬规则。单独弱引用解析缓存只存不进入保存的读取结果；命令修改独立副本、SaveCodec强制重新验证源身份和人物引用。
