@@ -1,3 +1,27 @@
+# 批30：原字形四人媒体目录准备与新包验收，完整目标active
+
+应用实现d42e6d201bcc4e664693d079a1740fd89e47a632，308021312字节，SHA `b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34`；测试2080295字节，SHA `14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45`。冻结两包实际安装在独占5582，两包完整文件SHA与候选一致。后继仅媒体工具/证据/索引，不替换应用二进制。
+
+只读取另一会话已完成443c4782的字形身份契约，新增孔伷156234/native184、司馬伷844857/native229、朱儁598828/native249、吳璝850922/native616的64条16来源媒体连接。运行时ID不被canonical ID替代，canonical只作证据；文件/recordSHA、生年/性别均与原数据一致。原serializer、普通及全屏lookup/年龄切片再次运行64条、33独立记录、12独立年龄检查，两次字节一致。原face57/606/267/544及共享全屏190/190/189/189、年龄阈值255保持，不制造老人头像。
+
+普通媒体manifest10720条，原10656条的序列化记录字节、2892个图像manifest及原PNG均不改。动态紧凑lookup570832字节SHAecb65c5a037505aec8b33e0f606bff5cd4b30ea4791f4a9064d311e9d2224e76；生产reader严格10656/10720与各自精确hash配对，源错/尾字节/非法count仍拒绝。新64加入不重解码/重绘原62图。两次stage四文件字节一致，生产全屏resolver160806检查通过。
+
+新包实装51558检查11.83秒通过：全部2892原PNG SHA、真实Android RGBA SHA及尺寸、10720条普通lookup/32160原年龄向量和错record拒绝；完整Save/RNG不变。像素工作缓冲/顺序Bitmap分配记录在PORTRAIT_GAIJI_PIXELS_INSTALLED_30.json。不是正常四人菜单或全caller形态证据。
+
+同新包普通完整新局/来源选择、656目录/656详情646114检查841.57秒通过；652批准SourceInfo与原像素/4来源未知、652解码、缓存16588800字节；保存读取/后台/退出重开保持全Save/RNG。原始新局Save939921字节SHA2f503bdcbab44325157243fcde28b5e0cb0038f4a151a634486726b47e928383。没有因为媒体新增64而给旧SourceInfo为空者追填身份，4未知仍如实计数。普通四人入口尚未从652提升到656，不扩大成670人/16来源/全部形态正常还原。
+
+同包已批准簡雍/native122原共享全屏190真实正常战法40.30秒通过；新的10720条紧凑lookup被实际表现路径消费、取消/双确认与完整参考Save/RNG一致、原帧可见、4张GPU缓存和renderer/退出释放通过。准备战斗夹具及控制暂停帧仍不是完整PC连续时序/色彩；不把共享190称为专属人物图。既有九种命中战法策略和原49/78资产完整继承，但旧包18个未暂停PCM结果不能移用为本包18组全通过；本轮没有新做该完整矩阵或菜单/正常voice还原声明。
+
+所有三轮用户保存/库/偏好逐字节恢复，原auto/manual3保持SHA02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69；无clear-data/reset/Wine，原PC/原工程/另一会话WIP/5554录音不操作。core/API/runtime仍完成9e171f2，MainActivity/MapHost/人物metadata/公共manifest/全局台账未改。
+
+普通四人入口的必要依赖：已完成443c4782相对9e171f2有118个app/core/API/runtime路径，包括新来源存档工厂；不能仅凭媒体目录替代。METADATA_SEQUENTIAL_INPUT_CONTRACT_30.json列每条旧/新/当前SHA。MainActivity与ScenarioFactionPicker冻结三方组合没有文本冲突，候选保留已集成菜单音乐/音量组件/头像只读入口，精确patch/hash在METADATA_COMMON_ENTRY_PROPOSAL_30.json及out/media/metadata-sequential-proposal-30。候选未应用、不触碰当前core。由于用户指定会话一拥有这些模块，已请求确认顺序集成责任；答复到达前只继续媒体授权范围。
+
+原始PNG/年龄及实际正常/动态证据归档9,317,376字节，SHAcdb6845aad532919f636daeb4ee327e8348d0fcbed4b6328c83dd35440414bd3，逐份回读一致，不含私人用户备份tar。完整源码冻结与SHA另列SOURCE_ARCHIVE_30.json/DELTA_GUARDS_30.json。
+
+目标active。四人normal SourceInfo工厂顺序集成、所有其他caller/MOD生效覆盖、地图BGM/正常人物voice/原未命中58、其余原事件音效、长曲及声音异常、完整原时序/色彩、Unity Player/ARM真机/手机扬声器仍未完成。批29菜单PCM失败及其它历史通过/失败均保留原对应包范围。
+
+完整源码冻结目标 `out/media/delivery-30`；精确截点和逐文件回读以该目录 manifest.json/source-files.json 为准，归档期间不改源码。增量守卫见 DELTA_GUARDS_30.json。
+
 # 当前截点29：九种原命中战法音及命中门纠正，目标active
 
 当前可安装应用 `out/media/infantry-sound-build-29/frozen/app-debug.apk`，实现f6e0b8a6d3ee4cb4839bf2d2fb975f06f7c445b7，308016492字节，SHA `0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a`。测试实现6bba993885ea66c5ed3cf2844d332fda6d0e2825，2080347字节，SHA `9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7`，路径out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk。实际安装并逐轮核对两包完整SHA；后继只有媒体工具/证据变化。
