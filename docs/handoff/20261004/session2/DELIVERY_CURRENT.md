@@ -8,6 +8,8 @@
 
 原始PCM/截图/实际测试证据归档 `out/media/actual-evidence-delivery-29/actual-media-evidence.tar.gz`，61678491字节，SHA `041e329e085ad830d03df2b18ccac535e497e2d334f300bfe38736a5de31b11c`，回读逐文件一致，不含私人用户备份tar。完整源码冻结目标 `out/media/delivery-29`，精确文件/SHA/四JNI/回读以该目录manifest.json及source-files.json为准。54及后续路径前后守卫在本批DELTA_GUARDS_29.json，以其guardedCommit为准。
 
+完整源码已验证：`out/media/delivery-29/sanguo11-portrait-audio-source.tar.gz`，截点536ae223234b7259bdd5eed06235ea4ba5794424，10079文件、515943531字节，SHA `9a7496c5f1a94ca9808db66d231a8adc49868ebf3a991411faad8b81228ce305`。全部tracked、4299初始继承路径及四ignored JNI逐份回读一致。此后仅更新本指针及SOURCE_ARCHIVE_29.json，两份索引位于归档截点之后，应用/测试/媒体代码未变。
+
 core/API/runtime仍为已完成9e171f2，MainActivity/MapHost/公共manifest/全局台账本批未改，原工程/PC/另一会话WIP/5554录音未操作。另一会话76c7a949四字形身份完成只读确认，尚未顺序集成。普通菜单BGM绑定1、普通地图BGM及正常人物voice0；原58、其它兵种/事件SFX、全部头像caller/MOD覆盖/四未知顺序集成、音频异常与长播放连续性、原完整时序/色彩、Unity Player/ARM真机仍未完成。后文为保留历史，不自动移用当前包。
 
 # 当前截点28：原枪兵战法音效已推进，完整目标active
