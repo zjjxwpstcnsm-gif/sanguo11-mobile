@@ -6,7 +6,7 @@
   "integrationBranch": "codex/scenario-main-closeout",
   "integrationWorktree": "/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile",
   "mainWorktree": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile",
-  "mainFastforwardComplete": false,
+  "mainFastforwardComplete": true,
   "mediaIndependentPathsPreserved": 5776,
   "sharedCodePath": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
   "automaticMergeConflicts": 0,
@@ -30,5 +30,7 @@
   "combinedApkBytes": 311399663,
   "combinedApkSha256": "7398ca4d8252de9a6fadbcb9684db563c1ae66b699779e1870a661f23fa7f23d",
   "failedDuplicateRemoved": true,
-  "newReproducibleBuildCacheRemovedForSpace": true
+  "newReproducibleBuildCacheRemovedForSpace": true,
+  "mainMergeStatus": "complete-local-main",
+  "mainMergedCommit": "e42e0c6c3f00239a0aaaef5c5ed9012e4a937239"
 }

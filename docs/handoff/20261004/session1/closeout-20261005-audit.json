@@ -151,7 +151,7 @@
   "architectureBridgePassed": true,
   "architectureFullPassed": false,
   "architectureFailure": "Unity U01 golden mapRevision/terrain/site coordinates differ; not changed",
-  "mainMergeStatus": "isolated-merge-committed-awaiting-main-fastforward",
+  "mainMergeStatus": "complete-local-main",
   "remotePush": false,
   "completeGoal": false,
   "mainChangedDuringCloseout": true,
@@ -161,5 +161,8 @@
   "mediaSharedChangedPaths": [
     "app/src/main/java/game/sanguo/mobile/MainActivity.java"
   ],
-  "mediaPreservationUnexpectedReplacements": []
+  "mediaPreservationUnexpectedReplacements": [],
+  "mainFastforwardComplete": true,
+  "mainMergedCommit": "e42e0c6c3f00239a0aaaef5c5ed9012e4a937239",
+  "remotePushed": false
 }
