@@ -6,6 +6,8 @@
 
 真实PCM证据归档 `out/media/actual-evidence-delivery-28/actual-media-evidence.tar.gz`，110文件、35505290字节、SHA `4000245ddc36ac4d0d00eb5ab8026bb9488d49a545642a38fd2eb835847afc8c`，逐文件回读一致；不含私人用户备份tar。完整源码冻结目标目录为 `out/media/delivery-28-final`，文件清单/四JNI/SHA/回读状态以其manifest.json及source-files.json为准。首次delivery-28在冻结过程中新增未跟踪索引导致干净树守卫拒绝，失败轮保留且不当作交付。
 
+完整源码归档已验证：`out/media/delivery-28-final/sanguo11-portrait-audio-source.tar.gz`，源码截点408c59657774ba6d7ce82731d43c11ac0d30778b，10025文件、513587517字节、SHA `5e13c167ba998e41566977b1172acbf26b2291c00e9c46ce30b55370b20e4146`。全部tracked、全部4299初始继承路径及四份ignored JNI包含，逐份回读字节一致。此后仅更新当前指针和SOURCE_ARCHIVE_28.json，应用/测试/媒体实现未变；这两份后继索引本身位于归档截点之后。
+
 当前普通菜单BGM绑定1、普通地图BGM及正常人物voice绑定0。原长曲四固定窗口通过但整首连续性0.435328170未过0.995；主机Save往返完整字节false，仅原战报gzip头差异，数据/双RNG相同且原文件未动。所有caller/MOD生效覆盖、其余原事件音效、完整时序/色彩、Unity Player及ARM真机/扬声器仍未完成。不能称全部头像/音频已还原。后文保留25–27及更早独立历史证据，不自动转移到当前包。
 
 # 当前可复核媒体检查点（完整目标未完成）
