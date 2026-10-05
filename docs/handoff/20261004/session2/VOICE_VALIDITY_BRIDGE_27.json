@@ -1,0 +1,22 @@
+{
+  "serial": "emulator-5582",
+  "runner": "MediaBridgeInstrumentation",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-validity-build-27/frozen/app-debug.apk": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-validity-build-27/frozen/app-debug-androidTest.apk": "7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b"
+  },
+  "installed_sha256": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+  "installed_test_sha256": "7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b",
+  "passed": true,
+  "seconds": 1.89,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/media-wire.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "scope": "Actual installed Android schema1 read-only bridge, not Unity Player"
+}

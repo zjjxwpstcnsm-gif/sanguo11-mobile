@@ -1,0 +1,17 @@
+# 批27新包真实安装与声音、正常流程证据（目标未完成）
+
+源实现b2c1bce55b1f033fbece8d94a83a8e5012aa1ca7，应用307736374字节SHA `cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4`，测试2076191字节SHA `7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b`。独占5582重新构建、安装、读回两个SHA；每轮全部用户保存/库/偏好精确恢复，auto SHA02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69。原目录、会话一、PC资源与5554录音未动。
+
+本批解除语音指令默认actorValid=true：必须从同提交的原status0..8或actor17c非零得到原有效性；未知/无效拒绝构造。已批准人物来源不代替当前演员事实，存档中原文件快照不代替当前状态，OR另一分支未知保持null。主机原4020全调用含静默/无效/音频不可用向量及nullable构造检查8080通过；原上游order/record/实际unit getter/renderer/profile/voice504组合两次字节一致，原world/grid/order及完整双RNG不变。源call和未执行的上游规则/动画/随机边界见BATCH_27.md及MEDIA_INPUT_CONTRACT.md；未把原raw4或raw0/1/2/17按工程ordinal直接接音。
+
+新包实际来源适配器46项21.51秒通过：未知/无效演员raw输入无voice job、全Save/RNG不变；明确status0/17c0夹具、实际PATROL父receipt、已批准人物voiceType和声明的原profile23/music24，实现去重/暂停恢复/优先级/跳过/mute/focus/noisy/后台/退出释放。不是PATROL的原语音绑定。真实原music2261及voice2616的混音匹配music0.999998559、joint0.999999444、voice0.999999368，实际duck0.349974385；不以play返回值通过。firstWrite537ms，最后drain观察underrun1，decoded/submitted PCM SHA同83a03513…de9e9b；不称零欠载或完整无缝/Windows PCM/手机扬声器通过。
+
+同新包全部656目录/656详情646114检查526.74秒通过，652批准原像素/4未知、decoded652、缓存16588800字节；实际新局来源选择/存读档/Home/退出重开，全状态和恢复通过。实际list-400稳定截图经检查。批准新局939920字节SHA0d4e55910de32e05137984c0ca5568e2b49b2cbc990fe04f222c1339d1a0a7f0。仅这次来源开局，未扩大成16版本全caller。
+
+同包6实际回合145.10秒通过：每回合暂停/跳过、自动保存精确等于当前完整状态、Home恢复不改变Save/RNG；7份初始及提交后完整Save和精确long项目RNG摘要保留。PSS201274..220402KiB，所有时长/帧/renderer原输出保留out/media/six-turn-installed-27；不是重演PC全六回合的规则等价证明。Android只读桥接18项通过，仍无Unity Player证据。
+
+同包原共享动态头像190的实际非六人战法路径20.42秒通过，取消无提交/双提交一次且伤害/RNG全参考字节一致；明确准备战斗夹具，来源身份未注入，原图和原效果层可见。控制暂停逐帧仍不是连续时长/色彩通过。4张GPU原动态纹理LRU及真正renderer替换/退出释放通过；额外缓存夹具不是五名正常人物绑定。另一次未暂停战法实际PC33联合混音joint0.999999760、扣除两种声明旧合成后PC33相关性0.999999544；当前真实fact.id/parent保留。旧合成音色不称原PC。
+
+同包实际正常菜单原music1/resource2238生命周期116.92秒通过；四个固定10/20/30/40秒2秒原曲窗口最小0.999994605且gain可听，真实发声确认。整首连续相关性0.673020726不达未变0.995门槛；失败WAV/日志保留，不重排/修补PCM，不声称长录音连续性完成。
+
+本批只新增两个媒体生产文件改动、媒体测试/工具与session2文档；核心/API/runtime与完成9e171f2字节一致，共同MainActivity/MapHost/manifest/全局台账未变。会话一新完成d4f0aef9/62f9623f只读检查，未集成WIP或改其文件。当前普通菜单音乐绑定1、普通地图BGM与人物voice绑定0；全部原SFX、所有人物caller/版本/MOD生效覆盖、长播放连续性、原完整时序/色彩、Unity Player及ARM真机/手机扬声器仍未完成。目标active。
