@@ -145,3 +145,10 @@ MainActivity/MapHost 等入口已经在独立 integration 工作目录依守卫�
 ## 批28已闭合的有限战法音效输入
 
 原serializer名义、getter490c90、原5aff08已有成功/会心字段写入及批27renderer/callback完整链已把原native0突刺/1螺旋突刺/2二段突刺与项目明确THRUST/SPIRAL/DOUBLE_THRUST连接。只读媒体现可直接消费已经提交的TACTIC事件与匹配actorId/战法的CriticalHit事实，播放原49/78；不需要媒体另问技能、执行5ae610或取RNG。原sound49不是命中成功提示。普通攻击/其它兵种/计略仍无新增映射；voice仍需要上文已提交演员有效性、当前原能力和已产生选择事实，不能因49/78闭合就默认全部voice有效或按枚举猜。
+
+
+## 批29命中门更正及原未命中58事实请求
+
+批28“已提交未命中也可原49”的推断撤回：原586230检验record54=0时不进已命中表现handler，而跳58651a effect59/sound58。原0..8枪/戟/弩命中表现均49/78，已确认的有序物理Strike（同已提交actor/owner/type/start/target、非naval）可作为进入物理命中处理的正事实，零伤害值不排除。当前媒体只使用存在的主Strike，不把absence当false，不解析message，不依赖原技能/概率重算。
+
+需要core/API所有者在同一提交输出只读TacticOutcome{id,parentId,presentationParentId,state,actorId,targetId,infantryTactic/equipmentTactic,sourceNaval,appliedSuccess:boolean,appliedCritical:boolean}，包含已提交未命中，并保留逐次facts/顺序/去重语义。app媒体只能序列化/消费已有事实，不能替core生成结果、取RNG、earn或写存档。此契约不是已接入接口，原未命中58仍unbound；骑兵等额外表现上下文仍需单独核验。正常voice选择契约和地图MusicSourceContext继续按上文等待已提交投影。

@@ -18,7 +18,7 @@ def read(path):
 def inspect(capture,flow_path,facts_path,output):
     if output.exists():raise ValueError('Fresh actual evidence required')
     flow=json.load(open(flow_path));facts=json.load(open(facts_path));sound=facts['originalTacticSoundId']
-    if sound not in [49,78] or not flow['passed'] or not flow['restoration']['all_original_files_byte_equal'] or not facts['productionHostOnly'] or facts['originalTacticEvents']!=1 or facts['syntheticCriticalEvents']!=0 or facts['sourceTacticEnum']!='SPIRAL' or facts['alreadyAppliedCritical']!=(sound==78) or not facts['facts']:raise ValueError('Actual committed original spear path required')
+    if sound not in [49,78] or not flow['passed'] or not flow['restoration']['all_original_files_byte_equal'] or not facts['productionHostOnly'] or facts['originalTacticEvents']!=1 or facts['syntheticCriticalEvents']!=0 or facts['sourceTacticEnum'] not in ['THRUST','SPIRAL','DOUBLE_THRUST','HOOK','SWEEP','WHIRLWIND','FIRE_ARROW','PIERCE','VOLLEY'] or not facts.get('primaryHitRecorded',False) or facts['alreadyAppliedCritical']!=(sound==78) or not facts['facts']:raise ValueError('Actual committed original spear path required')
     paths=[ROOT/f'app/src/main/assets/audio/pc/tactic-{sound}.wav',ROOT/'app/src/main/assets/audio/pc/technique-33.wav']
     manifest=json.load(open(ROOT/'app/src/main/assets/audio/pc/tactic-sound-manifest.json'));entry=next(r for r in manifest['entries'] if r['nativeSoundId']==sound)
     if hashlib.sha256(paths[0].read_bytes()).hexdigest()!=entry['wavSha256']:raise ValueError('Original converted source changed')
