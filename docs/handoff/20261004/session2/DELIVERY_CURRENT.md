@@ -18,7 +18,7 @@ core/API/runtime仍完成9e171f2；MainActivity/MapHost/人物metadata/公共man
 
 普通地图BGM及正常人物voice仍0；原58、其它事件SFX、全部头像caller/MOD生效覆盖、4人SourceInfo顺序集成、长曲连续性、完整原时序/色彩、Unity Player及ARM/手机扬声器仍未完成。本批未复验旧9战法18组、动态全屏、菜单PCM、完整多回合及桥接组合；历史结果保留对应原包范围。目标active。
 
-完整源码冻结目标 out/media/delivery-31，期间保持源码不变；全文件及四JNI守卫/回读以该目录manifest和source-files为准。
+完整源码已回读验证：out/media/delivery-31/sanguo11-portrait-audio-source.tar.gz，截点af9c34e4d8516a02ce2650a4a1b01ed9e3d48462，10125文件、516034462字节，SHA9892bf6e2daa47531f3299a7323fb00934a752480c387484e7b9ede70405358b。全部tracked、4299继承路径及四JNI包含且逐份字节一致；33条增量SHA守卫见DELTA_GUARDS_31.json。此后只更新本指针及SOURCE_ARCHIVE_31/DELTA_GUARDS_31三份索引，应用/测试/媒体实现不变。
 
 # 批30：原字形四人媒体目录准备与新包验收，完整目标active
 

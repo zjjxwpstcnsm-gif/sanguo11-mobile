@@ -1,0 +1,212 @@
+{
+  "baseCommit": "97a9ff7e005fe9dc887e91f8aad506b9e8298f8a",
+  "guardedCommit": "af9c34e4d8516a02ce2650a4a1b01ed9e3d48462",
+  "applicationSource": "f0244c40a90792fb7b6fad2ba53229dab7b8b5f8",
+  "coreApiRuntimeByteEqualTo": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "noCommonEntryOrGlobalBuildConfigurationChanges": true,
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "95ab26c7441fcff125d37e2830a5e58ed3b3a722844feb3d0367c4f140f514e1",
+      "afterSha256": "95510bc0e14681498c4707fdb40c565dce65d8cd5957be851ac8e81e043f70dd",
+      "bytes": 205572
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-event-bindings.json",
+      "beforeSha256": "841d669a561ae0e299d63a419f6243a8c2c8c5844417b415c62f22d82393d636",
+      "afterSha256": "411f91f266ba2e5a6965743cc5f2dd104185e6b44375ea1297e842a21fa15df1",
+      "bytes": 6603
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationPlan.java",
+      "beforeSha256": "a9c4f99a9d22283b589125a415d877f6e5545bf4ef4ecd01811668616e0890d5",
+      "afterSha256": "34177edbff4cf6fb0746f92637bdc9e40775149df50af6b94927303e7f40e81c",
+      "bytes": 5802
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java",
+      "beforeSha256": "b35e55fd966ede24498046b65f1e12a788801c096acb920f5800e8ac9f94e458",
+      "afterSha256": "d8ab86259adce7d2b735ecc0a78d63621e15788d9f7ab4970220af2709eabf0b",
+      "bytes": 393
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcTacticSoundPolicyTest.java",
+      "beforeSha256": "d71ff36496b3d6e01392466289dc859c6ae96688312076ffbdd16db0c4c7d1a2",
+      "afterSha256": "104f60f1ceeb56bac1723d0a19a252e9a6865e1b69e03338a9716eea7e89c7b6",
+      "bytes": 1585
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ACTUAL_EVIDENCE_ARCHIVE_31.json",
+      "beforeSha256": null,
+      "afterSha256": "0aa1967e8b14b8fb5a85b531f5c4106d98a4516447899da3a29127752b524515",
+      "bytes": 464
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ANDROID_MIX_CAPTURE_DRAFT_32.json",
+      "beforeSha256": null,
+      "afterSha256": "5abbadf45cda168b229f686eeef5ecec5324043f7b2e76c951b8789d1c934678",
+      "bytes": 2158
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_31.md",
+      "beforeSha256": null,
+      "afterSha256": "3c94ba6ac3b8ae393bcfb8ccaa27ac07856ee721f6a42600b56f2545bb14a679",
+      "bytes": 2144
+    },
+    {
+      "path": "docs/handoff/20261004/session2/CAVALRY_BUILD_31.json",
+      "beforeSha256": null,
+      "afterSha256": "6072926333d0b961c9703238f7b800c6a827c5e4cfd71723c210a57f863393b3",
+      "bytes": 669
+    },
+    {
+      "path": "docs/handoff/20261004/session2/CAVALRY_MISS_INSTALLED_31.json",
+      "beforeSha256": null,
+      "afterSha256": "3f42e697ec2db17f9ee3f1b10ffd6445570dc82d3b235fecf97994461883bf9c",
+      "bytes": 2333
+    },
+    {
+      "path": "docs/handoff/20261004/session2/CAVALRY_SOUND_INSTALLED_MATRIX_31.json",
+      "beforeSha256": null,
+      "afterSha256": "ae27a403ef1ce4e0cd18003aa56e3da58915e3562f4cf326027c2a62977fbaa1",
+      "bytes": 3662
+    },
+    {
+      "path": "docs/handoff/20261004/session2/CAVALRY_SOUND_POLICY_HOST_31.json",
+      "beforeSha256": null,
+      "afterSha256": "34f61f9fa12957bd56f2f73cbdb3d9072aed82627507c3869f41266da91c1240",
+      "bytes": 495
+    },
+    {
+      "path": "docs/handoff/20261004/session2/CAVALRY_SOUND_SOURCE_31.json",
+      "beforeSha256": null,
+      "afterSha256": "8dafb750f9b44c2002c028836e9002b3e28e57111db3456576f33be618aef55e",
+      "bytes": 565
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELIVERY_CURRENT.md",
+      "beforeSha256": "8d695e7af2c7b56a0564a33efd85036e702b03f4e3666bf9f3ee1947ba9d3333",
+      "afterSha256": "87e94ec9f2700585d17a0aced023eb75f8648bbefa38021d460d9c6f822fc49c",
+      "bytes": 26065
+    },
+    {
+      "path": "docs/handoff/20261004/session2/IMPLEMENTATION_GUARDS_31.json",
+      "beforeSha256": null,
+      "afterSha256": "5ff5f74b5f3e68216cf32c1b02273d70c3fc5f4642979bfc90c25954ede494f6",
+      "bytes": 2308
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INSTALLED_CLOSEOUT_31.md",
+      "beforeSha256": null,
+      "afterSha256": "94d663c1b281001827a172f7cde023fe6c658d05bbdb2620d7c23bed6a3311c4",
+      "bytes": 3732
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_NORMAL_INSTALLED_31.json",
+      "beforeSha256": null,
+      "afterSha256": "7d9fd9a54a277e410f5fec6ccbd9de7dc6e25620e771d2d84af41bd4fa5dbf8c",
+      "bytes": 199576
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_PIXELS_INSTALLED_31.json",
+      "beforeSha256": null,
+      "afterSha256": "0ef679926b58329f64be979c2fd0bde14a273feba0474cd7e355e346d1cc9ce0",
+      "bytes": 1501
+    },
+    {
+      "path": "docs/handoff/20261004/session2/cavalry-sound-source-native-31.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "4e6b8a49607eb5eb462d1ccc15a10f11ccaa1b063f48ef9019e87b9a74d12f9d",
+      "bytes": 6851
+    },
+    {
+      "path": "docs/handoff/20261004/session2/cavalry-source-31-first.log",
+      "beforeSha256": null,
+      "afterSha256": "fa149ad766a85a51888c1c8b344e2b95cd0becf3a3b2979bdb9bbee5caeb2126",
+      "bytes": 522
+    },
+    {
+      "path": "docs/handoff/20261004/session2/cavalry-source-31-second.log",
+      "beforeSha256": null,
+      "afterSha256": "dddd899022b32caf704c468ba81bb93e9ed57b6d0e9f50b21ebc42213bf75890",
+      "bytes": 74
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/AndroidManifest.candidate.patch",
+      "beforeSha256": null,
+      "afterSha256": "1ccf249c4a22eab42ad61363d177ebce437736a19cc461362c4f6c7a51a9b675",
+      "bytes": 955
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/AndroidManifest.candidate.xml",
+      "beforeSha256": null,
+      "afterSha256": "ada5ea06ac82c9773208473846c1907824c8c311785ee446899d41a3b544ed45",
+      "bytes": 13258
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/AndroidMixCaptureActivity.java",
+      "beforeSha256": null,
+      "afterSha256": "530eff8751a62a7ec06c57976a0a6d0672b8ffd874586edc3448f9750ca2f499",
+      "bytes": 1887
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/AndroidMixCaptureService.java",
+      "beforeSha256": null,
+      "afterSha256": "ad788f612a7938c6321ad1c1f507b20bba84f9a1ab44441910bbc88f96e9c720",
+      "bytes": 9164
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/compile-final.log",
+      "beforeSha256": null,
+      "afterSha256": "9bc5c230f5a669238124c2725b1629f55636b6f0cc3d182b6d29192f4002cb06",
+      "bytes": 271
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/compile.log",
+      "beforeSha256": null,
+      "afterSha256": "9bc5c230f5a669238124c2725b1629f55636b6f0cc3d182b6d29192f4002cb06",
+      "bytes": 271
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/contract.json",
+      "beforeSha256": null,
+      "afterSha256": "49e1b07cf49fa990e3081c5acd8fa2bccb48446b2c491a795d1d6eb1ae2349ba",
+      "bytes": 1091
+    },
+    {
+      "path": "docs/handoff/20261004/session2/proposals/android-mix-32/manifest-guard.json",
+      "beforeSha256": null,
+      "afterSha256": "32a245814291bf8d3a9a9621d8f9166f0a836158443a78031aa8e925fc95997e",
+      "bytes": 259
+    },
+    {
+      "path": "tools/audio/check_pc_spear_tactic_mix.py",
+      "beforeSha256": "b4af0a62b51cda2863a1c089f93bf0b50f47630e95b9d17bd828c1fafe7c2c70",
+      "afterSha256": "1e1c2166295207b90b911789aa4886e811f9984066c58e17995c1f26ef4f1509",
+      "bytes": 6160
+    },
+    {
+      "path": "tools/audio/inspect_pc_infantry_sound_chain.py",
+      "beforeSha256": "5472fa8e2f215cc4c3b536d1852804d86f3b30b29215ff0af0d00557e5aa8186",
+      "afterSha256": "41b74df47a33f25c2f81dba9adeda441832b1b147ddf46e53e34326e530d74fd",
+      "bytes": 22473
+    },
+    {
+      "path": "tools/audio/verify_pc_tactic_sound_policy.py",
+      "beforeSha256": "63bfb9a9d2b6ffdccd88b6cfa6010fed48c6efbe6f705f0a3c46c4129a1ea86d",
+      "afterSha256": "fbcb23705b4254bc0fd350904a247ac7fb72f0349b4b87c77458003a08961ea5",
+      "bytes": 2506
+    },
+    {
+      "path": "tools/media/verify_infantry_audio_matrix.py",
+      "beforeSha256": "53650822c04b410b21d47657bbe1adc2cda3311e135ba271c540e9968f5b51f2",
+      "afterSha256": "c47e7cd27b9790bb0ff4b5970242713202cdcb20c6cf06e178019d36fe6585ff",
+      "bytes": 4061
+    }
+  ],
+  "afterArchiveOnly": [
+    "SOURCE_ARCHIVE_31.json",
+    "DELTA_GUARDS_31.json",
+    "DELIVERY_CURRENT.md"
+  ]
+}
