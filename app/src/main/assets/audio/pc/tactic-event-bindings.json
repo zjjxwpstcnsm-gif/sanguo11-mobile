@@ -102,6 +102,45 @@
       "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
       "noncriticalSoundId": 49,
       "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "CHARGE",
+      "nativeTacticId": 9,
+      "nativeTacticName": "突擊",
+      "rendererActionRaw": 17,
+      "presentationRoute": "0x570aa0",
+      "nativeHandler": "0x595b70",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78,
+      "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+      "sourceScope": "Executed argument/record/primary-route/initializer/callback prefixes; handler pre-route movement context statically linked, not executed; secondary target audio unbound"
+    },
+    {
+      "projectTacticEnum": "BREAKTHROUGH",
+      "nativeTacticId": 10,
+      "nativeTacticName": "突破",
+      "rendererActionRaw": 16,
+      "presentationRoute": "0x570a00",
+      "nativeHandler": "0x595bb0",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78,
+      "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+      "sourceScope": "Executed argument/record/primary-route/initializer/callback prefixes; handler pre-route movement context statically linked, not executed; secondary target audio unbound"
+    },
+    {
+      "projectTacticEnum": "ADVANCE",
+      "nativeTacticId": 11,
+      "nativeTacticName": "突進",
+      "rendererActionRaw": 17,
+      "presentationRoute": "0x570aa0",
+      "nativeHandler": "0x595b90",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78,
+      "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+      "sourceScope": "Executed argument/record/primary-route/initializer/callback prefixes; handler pre-route movement context statically linked, not executed; secondary target audio unbound"
     }
   ],
   "miss": {
@@ -114,5 +153,6 @@
     "Only ordinary paid infantry tactic hit sound branch; current Android phase is not PC timing.",
     "PIERCE project label贯射 joins original貫箭; media keeps original source name separately and does not rename metadata.",
     "Cavalry/siege/naval contextual dispatch, voice random choice and remaining source SFX are unbound."
-  ]
+  ],
+  "cavalrySourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f"
 }

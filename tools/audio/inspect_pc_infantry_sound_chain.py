@@ -26,7 +26,7 @@ INITIALIZERS = {0: (0x562f70, 0x562fdf, 6), 1: (0x563040, 0x5630b2, 7),
                 7: (0x563550, 0x5635e3, 13), 8: (0x563650, 0x5636e3, 14), 17: (0x563e60, 0x563ecf, 27)}
 
 
-def inspect(installation, output):
+def inspect(installation, output, include_cavalry=False):
     if output.exists() or installation.resolve() in output.resolve().parents:
         raise ValueError('Fresh output outside readonly PC source required')
     raw = (installation / 'san11pk.exe').read_bytes()
@@ -36,6 +36,11 @@ def inspect(installation, output):
     d = NativeTailDecoder(raw)
     tables = d.decode_tail(shared, True)
     u = d.u
+    initializers = dict(INITIALIZERS)
+    if include_cavalry:
+        initializers.update({9: (0x5638f0, 0x56396e, 17),
+                             10: (0x563820, 0x56389e, 16),
+                             11: (0x5638f0, 0x56396e, 17)})
     u.mem_map(0x6fb0000, 0x100000)
     u.mem_map(0x9500000, 0x2000000)
     u.mem_map(0x9119000, 0x6000)
@@ -69,11 +74,17 @@ def inspect(installation, output):
 
     def forbidden(machine, address, size, user):
         raise ValueError('Forbidden rule/RNG entry ' + hex(address))
-    for address in [0x472150, 0x4721d0, 0x444150, 0x4442a0, 0x5ae610, 0x593c40, 0x594300]:
+    for address in [0x472150, 0x4721d0, 0x444150, 0x4442a0, 0x5ae610, 0x593c40, 0x594300, 0x5b1870]:
         u.hook_add(UC_HOOK_CODE, forbidden, begin=address, end=address)
 
     def boundary(machine, address, size, user):
         sp = machine.reg_read(UC_X86_REG_ESP)
+        if address == 0x595630:
+            if phase != 'cavalry-wrapper':
+                raise ValueError('Unreviewed full cavalry handler attempted')
+            captured.append(list(struct.unpack('<3I', machine.mem_read(sp + 4, 12))))
+            machine.emu_stop()
+            return
         if address in [0x5a66e0, 0x5afc70]:
             if (phase, address) not in [('order', 0x5a66e0), ('packet', 0x5afc70)]:
                 raise ValueError('Unreviewed full constructor attempted')
@@ -81,14 +92,14 @@ def inspect(installation, output):
             captured.append(list(struct.unpack('<' + 'I' * count, machine.mem_read(sp + 4, 4 * count))))
             machine.emu_stop()
             return
-        if phase == 'initializer' and address in [row[1] for row in INITIALIZERS.values()]:
+        if phase == 'initializer' and address in [row[1] for row in initializers.values()]:
             machine.emu_stop()
             return
         ret = struct.unpack('<I', machine.mem_read(sp, 4))[0]
         consumed, result = 0, 1
         if address == 0x56f0c0:
             consumed = 4
-        elif address in [row[0] for row in INITIALIZERS.values()]:
+        elif address in [row[0] for row in initializers.values()]:
             if machine.reg_read(UC_X86_REG_ECX) != renderer:
                 raise ValueError('Original grid selected a different renderer')
             if phase == 'initializer':
@@ -98,7 +109,7 @@ def inspect(installation, output):
             if struct.unpack('<I', machine.mem_read(sp + 4, 4))[0] != record:
                 raise ValueError('Original initializer record differs')
             routes.append(address)
-            consumed = 4
+            consumed = 12 if address in (0x563820, 0x5638f0) else 4
         elif address == 0x402310:
             if phase != 'voice' or struct.unpack('<I', machine.mem_read(sp + 4, 4))[0] != 2:
                 raise ValueError('Unreviewed random choice boundary')
@@ -119,9 +130,26 @@ def inspect(installation, output):
         machine.reg_write(UC_X86_REG_ESP, sp + 4 + consumed)
         machine.reg_write(UC_X86_REG_EIP, ret)
 
-    for address in [0x5a66e0, 0x5afc70, 0x56fd60, 0x56f0c0, 0x402310, 0x4d1000,
-                    0x6e96a0, 0x414670, 0x564bb0] + [x for row in INITIALIZERS.values() for x in row[:2]]:
+    for address in sorted(set([0x5a66e0, 0x5afc70, 0x56fd60, 0x56f0c0, 0x402310, 0x4d1000,
+                    0x6e96a0, 0x414670, 0x564bb0] + [x for row in initializers.values() for x in row[:2]])):
         u.hook_add(UC_HOOK_CODE, boundary, begin=address, end=address)
+    wrappers = []
+    if include_cavalry:
+        u.hook_add(UC_HOOK_CODE, boundary, begin=0x595630, end=0x595630)
+        for address, expected_mode in [(0x595b70, 1), (0x595b90, 2)]:
+            phase = 'cavalry-wrapper'; captured.clear()
+            u.reg_write(UC_X86_REG_ECX, 0x95499b0); u.reg_write(UC_X86_REG_ESP, d.stack)
+            u.mem_write(d.stack, struct.pack('<3I', d.stop, record, 0x11223344))
+            u.emu_start(address, d.stop, count=100)
+            if captured != [[record, expected_mode, 0x11223344]]:
+                raise ValueError('Original cavalry wrapper record/mode differs')
+            wrappers.append(dict(wrapper=hex(address), stopBeforeHandler='0x595630',
+                                 recordPointer=record, modeRaw=expected_mode,
+                                 alreadyProducedArgumentRaw=0x11223344))
+        for address, callee in [(0x595869, 0x570aa0), (0x595cac, 0x570a00)]:
+            instruction = next(Cs(CS_ARCH_X86, CS_MODE_32).disasm(bytes(u.mem_read(address, 5)), address))
+            if instruction.mnemonic != 'call' or int(instruction.op_str, 16) != callee:
+                raise ValueError('Original primary cavalry presentation route differs')
 
     def profile_observer(machine, address, size, user):
         sp = machine.reg_read(UC_X86_REG_ESP)
@@ -219,12 +247,13 @@ def inspect(installation, output):
         phase = 'route'; routes.clear()
         u.reg_write(UC_X86_REG_ECX, 0x95499b0); u.reg_write(UC_X86_REG_ESP, d.stack)
         u.mem_write(d.stack, struct.pack('<4I', d.stop, record, 0, 0))
-        route = {3:0x5711a0,4:0x5706b0,5:0x570770,6:0x570830,7:0x570830,8:0x570830}.get(action,0x570490) if order_type==4 else 0x570490
-        route_stop = {0x570490:0x57050c,0x5711a0:0x5711f3,0x5706b0:0x570701,0x570770:0x5707c1,0x570830:0x570906}[route]
+        cavalry_routes = {9:0x570aa0,10:0x570a00,11:0x570aa0} if include_cavalry else {}
+        route = {3:0x5711a0,4:0x5706b0,5:0x570770,6:0x570830,7:0x570830,8:0x570830,**cavalry_routes}.get(action,0x570490) if order_type==4 else 0x570490
+        route_stop = {0x570490:0x57050c,0x5711a0:0x5711f3,0x5706b0:0x570701,0x570770:0x5707c1,0x570830:0x570906,0x570aa0:0x570af7,0x570a00:0x570a57}[route]
         u.emu_start(route, route_stop, count=10000)
-        initializer = INITIALIZERS.get(action) if order_type == 4 else None
+        initializer = initializers.get(action) if order_type == 4 else None
         if routes != ([] if initializer is None else [initializer[0]]):
-            raise ValueError('Original generated record routes differ')
+            raise ValueError('Original generated record routes differ: '+str((order_type,action,routes,initializer)))
         if initializer:
             phase = 'initializer'
             u.reg_write(UC_X86_REG_ECX, renderer); u.reg_write(UC_X86_REG_ESP, d.stack)
@@ -255,9 +284,13 @@ def inspect(installation, output):
                          alreadyProducedChoiceRaw=choice, speakerNativeId=5, profiles=profiles.copy(),
                          voiceIds=voices.copy(), effectIds=effects.copy(), soundIds=sounds.copy()))
     ranges = [(0x5a696a, 0x5a6992), (0x5a67ce, 0x5a67e9), (0x5b060c, 0x5b0632),
-              (0x496030, 0x496034),(0x586230,0x5863ff),(0x58651a,0x586554),(0x587118,0x587164),(0x4d58c0,0x4d58c7),(0x496410,0x496481), (0x570490, 0x57050c), (0x564cb0, 0x564e30)] + [(a, b) for a, b, _ in INITIALIZERS.values()]
+              (0x496030, 0x496034),(0x586230,0x5863ff),(0x58651a,0x586554),(0x587118,0x587164),(0x4d58c0,0x4d58c7),(0x496410,0x496481), (0x570490, 0x57050c), (0x564cb0, 0x564e30)] + [(a, b) for a, b, _ in initializers.values()]
+    if include_cavalry:
+        ranges += [(0x595b70,0x595b82),(0x595b90,0x595ba2),(0x595630,0x595b5f),
+                   (0x595bb0,0x595d1a),(0x570a00,0x570a57),(0x570aa0,0x570af7)]
     report = dict(sourceExecutableSha256=EXE_SHA, sourceSharedSha256=hashlib.sha256(shared).hexdigest(),
-                  checks=len(rows)+len(dispatch_rows), rows=rows, appliedSuccessDispatch=dispatch_rows,
+                  checks=len(rows)+len(dispatch_rows)+len(wrappers), rows=rows, appliedSuccessDispatch=dispatch_rows,
+                  cavalryWrapperPrefixes=wrappers, cavalryIncluded=include_cavalry,
                   codeSha256={hex(a): hashlib.sha256(bytes(u.mem_read(a, b - a))).hexdigest() for a, b in ranges},
                   established=['Original586230 tests record+54 before dispatch; zero selects58651a, a separate miss effect59/sound58 path. Noncritical is not proof of hit. Only established applied primary physical Strike permits Android49/78.',
                                'The bounded original final record path writes actual unit virtual3c coordinates to+58 and supplied destination to+5c.',
@@ -269,6 +302,10 @@ def inspect(installation, output):
                               '402310(2) supplied already-produced choice0/1; all underlying RNG entries forbidden.'],
                   limits=['Native3..8 exact Shared names and route prefixes established; project enum joins must be explicit and ordinary installed triggers separately verified.',
                           'No normal Android voice binding, installed voice, Windows native PCM, ARM speaker or full restored battle claim.'])
+    if include_cavalry:
+        report['boundaries'].append('Cavalry9/11 wrappers execute to595630 argument boundary; its570aa0 primary route and native10 handler570a00 link are static exact-call checks. Earlier movement preflight and target/secondary renderer are not executed.')
+        report['boundaries'][2] = 'Explicit non6 weapon and terrain0; infantry0..8 and primary cavalry9..11 prefixes verified. Siege/naval remain unbound.'
+        report['limits'][0] = 'Source Shared names0..11 and primary route prefixes established; Android enum joins and actual committed-trigger playback require separate verification.'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(dict(status='PASS_BOUNDED_SOURCE_CHAIN', checks=report['checks'], voicedRows=sum(bool(r['voiceIds']) for r in rows))))
@@ -278,5 +315,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('installation', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--include-cavalry', action='store_true',
+                        help='Also execute primary cavalry route prefixes; pre-route movement context stays static')
     args = parser.parse_args()
-    inspect(args.installation, args.output)
+    inspect(args.installation, args.output, args.include_cavalry)

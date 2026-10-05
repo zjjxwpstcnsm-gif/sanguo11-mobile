@@ -6,9 +6,9 @@ from pathlib import Path
 def verify(source,output,java_home):
     if output.exists():raise ValueError('Fresh evidence directory required')
     raw=source.read_bytes();proof=json.loads(raw)
-    if proof['sourceExecutableSha256']!='30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb' or proof['checks']!=548:raise ValueError('Complete source chain required')
+    if proof['sourceExecutableSha256']!='30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb' or proof['checks']!=550 or not proof.get('cavalryIncluded') or len(proof.get('cavalryWrapperPrefixes',[]))!=2:raise ValueError('Complete source chain including cavalry required')
     rows=[r for r in proof['rows'] if r['orderTypeRaw']==4 and r['alreadyProducedChoiceRaw']==0 and r['record0Raw'] in [0,1] and r['soundIds']]
-    if len(rows)!=20:raise ValueError('Original ten source callback actions missing')
+    if len(rows)!=26:raise ValueError('Original thirteen source callback actions missing')
     if len(proof.get('appliedSuccessDispatch',[]))!=44 or any(r['stopAddress']!='0x58651a' or r['calls'] for r in proof['appliedSuccessDispatch'] if r['alreadyAppliedSuccessRaw']==0):raise ValueError('Original no-success gate missing')
     output.mkdir(parents=True);vectors=output/'source.tsv';vectors.write_text('\n'.join('\t'.join(map(str,[r['record50Raw'],r['record0Raw'],r['soundIds'][0]])) for r in rows)+'\n')
     root=Path(__file__).resolve().parents[2];files=[root/'app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java',root/'app/src/test/java/game/sanguo/mobile/PcTacticSoundPolicyTest.java'];classes=output/'classes';classes.mkdir()

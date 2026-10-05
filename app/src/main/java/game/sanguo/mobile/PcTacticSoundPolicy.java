@@ -1,9 +1,9 @@
 package game.sanguo.mobile;
 
-/** Source-labelled infantry actions; explicit committed primary hit is required. */
+/** Source-labelled infantry/cavalry actions; explicit committed primary hit is required. */
 final class PcTacticSoundPolicy {
     static int choose(int nativeTacticId,boolean appliedPrimaryHit,boolean appliedCritical){
-        return appliedPrimaryHit&&nativeTacticId>=0&&nativeTacticId<=8?(appliedCritical?78:49):-1;
+        return appliedPrimaryHit&&nativeTacticId>=0&&nativeTacticId<=11?(appliedCritical?78:49):-1;
     }
     private PcTacticSoundPolicy(){}
 }

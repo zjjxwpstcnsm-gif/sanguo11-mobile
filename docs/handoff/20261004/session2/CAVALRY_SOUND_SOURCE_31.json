@@ -1,0 +1,14 @@
+{
+  "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+  "twoRunsByteEqual": true,
+  "checks": 550,
+  "unchangedInfantryEntries": 9,
+  "sourceScope": "Primary cavalry9..11 only; earlier movement preflight static, secondary target/siege/naval/voice unknown",
+  "outputPaths": [
+    "out/media/cavalry-sound-source-31/native-final.json",
+    "out/media/cavalry-sound-source-31/native-repro.json"
+  ],
+  "firstFailureLog": "out/media/cavalry-source-31-first.log",
+  "ruleRngForbidden": true,
+  "normalInstalledEvidence": false
+}

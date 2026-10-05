@@ -61,13 +61,13 @@ final class PcPresentationPlan {
             else if(result.plot==War.Plot.LIGHTNING)out.add(LIGHTNING);
         }
     }
-    /** Named original table84858 infantry actions0..8 -> source callback49/78.
+    /** Named original table84858 infantry/cavalry actions0..11 -> source callback49/78.
      * Ordered applied primary Strike proves resolution entry, including zero damage.
      * No absence-to-failure, probability, skill query or damage inference.
      * Caller additionally requires the established source3D map. */
     static int tacticSound(TurnJournal.Event event){
         if(event==null||event.kind!=TurnJournal.Kind.TACTIC||event.sourceNaval||event.equipmentTactic!=null||event.infantryTactic==null)return -1;
-        int nativeId=switch(event.infantryTactic){case THRUST->0;case SPIRAL->1;case DOUBLE_THRUST->2;case HOOK->3;case SWEEP->4;case WHIRLWIND->5;case FIRE_ARROW->6;case PIERCE->7;case VOLLEY->8;default->-1;};
+        int nativeId=switch(event.infantryTactic){case THRUST->0;case SPIRAL->1;case DOUBLE_THRUST->2;case HOOK->3;case SWEEP->4;case WHIRLWIND->5;case FIRE_ARROW->6;case PIERCE->7;case VOLLEY->8;case CHARGE->9;case BREAKTHROUGH->10;case ADVANCE->11;};
         if(event.critical!=null&&(event.critical.unitId!=event.actorId||!event.infantryTactic.label.equals(event.critical.tactic)))return -1;
         boolean primaryHit=false;
         for(TurnJournal.Strike strike:event.strikes)if(strike.actorId==event.actorId&&strike.owner==event.owner&&!strike.naval&&event.sourceType.equals(strike.type)&&strike.start.equals(event.start)&&strike.target.equals(event.target)){primaryHit=true;break;}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+  "sourceCallbackVectors": 26,
+  "normalEventBindingOrAndroidPlaybackProven": false,
+  "paths": {
+    "app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java": "d8ab86259adce7d2b735ecc0a78d63621e15788d9f7ab4970220af2709eabf0b",
+    "app/src/test/java/game/sanguo/mobile/PcTacticSoundPolicyTest.java": "104f60f1ceeb56bac1723d0a19a252e9a6865e1b69e03338a9716eea7e89c7b6"
+  }
+}
