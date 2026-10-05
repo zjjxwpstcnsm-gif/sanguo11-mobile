@@ -1,0 +1,37 @@
+{
+  "sourceCommit": "2746decaf58116ba95589905c704ecad41d96996",
+  "archive": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/delivery-30-final/sanguo11-portrait-audio-source.tar.gz",
+  "archiveSha256": "c1678efc8de15091b5edfe5758d017b518dcb225dbab63d881a6f8fde503de4d",
+  "archiveBytes": 515986414,
+  "sourceFiles": 10100,
+  "sourceEntriesByteEqual": true,
+  "allTrackedFilesIncluded": true,
+  "allFourIgnoredJniIncluded": true,
+  "ignoredFixedInputs": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "mainApkSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+  "goalComplete": false,
+  "all4299InheritedPathsIncluded": true,
+  "completeFileList": "out/media/delivery-30-final/source-files.json",
+  "pointerOnlyAfterArchive": true
+}

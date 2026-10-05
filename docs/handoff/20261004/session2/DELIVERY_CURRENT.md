@@ -22,7 +22,7 @@
 
 同包真实SPIRAL未命中17.92秒通过：六原声轨head0、原事件消费0，完整参考Save/RNG一致；原未改PCM对49/78最高完整相关性0.110407755/0.082619260，无完整成功原声误播，不称绝对静音或原58已恢复。91项短声生命周期42.39秒通过，六轨缓冲实测545964字节、有界叠加、暂停/恢复、静音/音量0、实际焦点争抢/Home/退出释放；真实普通设置Back原1录音相关性0.9999996760440769，普通完成不误播。明确生命周期主动probe不是正常战法绑定。首次波形检查参数误指ui-close-normal.json未找到，随后用实际source-ui-close.json验证同一未修改PCM；无设备重跑或样本修补。
 
-最终完整源码冻结目标 out/media/delivery-30-final，归档期间保持源码不变。先前e278ccd5归档保留；最终归档加入这20轮新声音证据索引。
+最终完整源码已回读验证：`out/media/delivery-30-final/sanguo11-portrait-audio-source.tar.gz`，截点 `2746decaf58116ba95589905c704ecad41d96996`，10100 文件、515986414 字节、SHA `c1678efc8de15091b5edfe5758d017b518dcb225dbab63d881a6f8fde503de4d`。全部 tracked、4299 继承路径及四 JNI 包含且逐份一致。先前 e278ccd5 归档保留；最终归档加入20轮新声音证据索引。此后只有本指针、SOURCE_ARCHIVE_30_FINAL.json、DELTA_GUARDS_30_FINAL.json 三份索引更新，应用/测试/媒体实现不变。
 
 # 当前截点29：九种原命中战法音及命中门纠正，目标active
 
