@@ -1,6 +1,6 @@
 {
   "baseCommit": "95f40f8065f14a7fc515729384d6c9a798220052",
-  "guardedCommit": "6afcc1cd16d4c0405ab90245083d5f9fc0d35868",
+  "guardedCommit": "caf3c70ffb7a816f5f3ac4aa1ad9c043066bc9c9",
   "paths": [
     {
       "path": "app/src/androidTest/java/game/sanguo/mobile/PcTacticLifecycleChecks.java",
@@ -81,10 +81,22 @@
       "bytes": 1288
     },
     {
+      "path": "docs/handoff/20261004/session2/ACTUAL_EVIDENCE_ARCHIVE_28.json",
+      "beforeSha256": null,
+      "afterSha256": "3bdfb78a47018d7013af2de0cebec15c01f0e8fb39ace64c1e010e80101ab3a8",
+      "bytes": 480
+    },
+    {
       "path": "docs/handoff/20261004/session2/BATCH_28.md",
       "beforeSha256": null,
       "afterSha256": "edd45748b1de16a15dc8e61f8fd6a11ef17e75a5d61e3187b736b8134d1b4db6",
       "bytes": 3469
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELIVERY_CURRENT.md",
+      "beforeSha256": "6fc0b35c9710d1e66202adc8b86f90feda334dc4df1cd0b3c9d73cfdd7b84f57",
+      "afterSha256": "4e02f8b8a6190a8e81b9027306cb2c990f19fe88014b03e0e90f59443014f98c",
+      "bytes": 12224
     },
     {
       "path": "docs/handoff/20261004/session2/DYNAMIC_PORTRAIT_INSTALLED_28.json",
