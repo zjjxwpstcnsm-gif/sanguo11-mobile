@@ -1,3 +1,13 @@
+# 当前截点28：原枪兵战法音效已推进，完整目标active
+
+当前应用 `out/media/tactic-sound-build-28/frozen/app-debug.apk`，实现55572ae8847f18337c1f3402af1c3a7484284e35，308015016字节，SHA `fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48`。当前扩展测试包 `out/media/tactic-lifecycle-test-build-28/frozen/app-debug-androidTest.apk`，测试实现69a4f7b4517b99abde7bfd323e9db00c3324b91e，2079579字节，SHA `01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872`。两个组合均实际安装及读回应用SHA；后续只有测试/工具/证据变更，当前应用二进制保持。
+
+新增确定性原49/78样本、六轨短PCM及明确的三种枪兵战法只读触发；原33奖励与原1正常取消回调也在同包录音检出。正常战法取消/重复、656目录及656详情/652像素与4未知、存读档/退出重开、动态190、六实际回合、90项短声生命周期、正常菜单音乐、共享音乐语音夹具47项及Android桥接18项在同一应用SHA复验。全部用户保存/库/偏好逐字节恢复。规则/API/runtime与9e171f2一致，共用入口只有既有确切SHA契约MapHost媒体补丁，未集成另一会话WIP。来源、完整Save/RNG、性能、失败及范围见INSTALLED_CLOSEOUT_28.md和TACTIC_SOUND_INSTALLED_28.md。
+
+真实PCM证据归档 `out/media/actual-evidence-delivery-28/actual-media-evidence.tar.gz`，110文件、35505290字节、SHA `4000245ddc36ac4d0d00eb5ab8026bb9488d49a545642a38fd2eb835847afc8c`，逐文件回读一致；不含私人用户备份tar。完整源码冻结目标目录为 `out/media/delivery-28-final`，文件清单/四JNI/SHA/回读状态以其manifest.json及source-files.json为准。首次delivery-28在冻结过程中新增未跟踪索引导致干净树守卫拒绝，失败轮保留且不当作交付。
+
+当前普通菜单BGM绑定1、普通地图BGM及正常人物voice绑定0。原长曲四固定窗口通过但整首连续性0.435328170未过0.995；主机Save往返完整字节false，仅原战报gzip头差异，数据/双RNG相同且原文件未动。所有caller/MOD生效覆盖、其余原事件音效、完整时序/色彩、Unity Player及ARM真机/扬声器仍未完成。不能称全部头像/音频已还原。后文保留25–27及更早独立历史证据，不自动转移到当前包。
+
 # 当前可复核媒体检查点（完整目标未完成）
 
 最新APK27：`out/media/voice-validity-build-27/frozen/app-debug.apk`，源b2c1bce55b1f033fbece8d94a83a8e5012aa1ca7，307736374字节SHA `cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4`。本批语音入口取消演员必然有效常量，要求已提交原raw有效性，未知/无效拒绝；原order→record→unit getter→renderer→voice504组合两次字节一致，规则/RNG未进入。实际重新安装和读回：来源适配器46/真实原音乐+语音PCM/duck、全656目录详情646114/新局存读档退出、六回合和7全Save、桥接18、原动态头像190与原PC33真实战法PCM通过。用户保存/库/偏好每轮字节恢复一致。来源适配器明确profile/track/status夹具，不当普通voice绑定；正常地图BGM和voice仍0。菜单原曲四固定PCM窗口通过，但整曲0.673020726仍失败。完整范围、性能和未完成项见INSTALLED_CLOSEOUT_27.md；APK26及更早记录属于历史对应包。
