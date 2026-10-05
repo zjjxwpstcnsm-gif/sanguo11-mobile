@@ -2,7 +2,7 @@
   "schema": 1,
   "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
   "sourceArchiveSha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
-  "approvedPortraitManifestSha256": "a59ea18087a0e4c53bde84b4a8db73208d82c321a9a0828b68019b7c050bec97",
+  "approvedPortraitManifestSha256": "c9571f25150eedbf70105a616b00324764de91ddcc330bb69c66e6c404dc0aa8",
   "commonTextureResource": 124,
   "commonTextureSourceSha256": "6c35af3b02e30370d07842967ad1409ab6c0af9891c723afd7270761ece964cb",
   "selectors": [
@@ -1373,12 +1373,12 @@
   ],
   "compactLookup": {
     "asset": "portraits/pc/dynamic-lookup.pcd",
-    "sha256": "d39442ce2b53d00eea2be9f32e5b02fb4a11d7107edd394daefb8ba5d54fc141",
-    "bytes": 567440,
-    "identityCount": 10656,
+    "sha256": "ecb65c5a037505aec8b33e0f606bff5cd4b30ea4791f4a9064d311e9d2224e76",
+    "bytes": 570832,
+    "identityCount": 10720,
     "sourceVariantCount": 16,
     "recordEndian": "BIG_ENDIAN",
-    "sourceRows": "All10656 approved rows plus unchanged native age selectors"
+    "sourceRows": "10656 original approved rows plus64 committed font identities; original native age selectors"
   },
   "limits": [
     "Original atlas replacement pixels; no normal Android fullscreen integration/playback claim.",

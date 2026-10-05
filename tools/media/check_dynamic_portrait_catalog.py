@@ -19,7 +19,7 @@ public final class DynamicPortraitProbe {
     if(c.selector(unknown,year)!=-1)throw new AssertionError("Unknown source borrowed pixels");checks++;
    }
   }
-  if(c.size()!=10656||selectors.size()!=62||c.selector(null,184)!=-1)throw new AssertionError("Coverage or unknown lookup");checks+=3;
+  if(c.size()!=Integer.parseInt(args[2])||selectors.size()!=62||c.selector(null,184)!=-1)throw new AssertionError("Coverage or unknown lookup");checks+=3;
   byte[] raw=Files.readAllBytes(Path.of(args[0]));
   for(byte[] broken:List.of(Arrays.copyOf(raw,raw.length-1),Arrays.copyOf(raw,raw.length+1),new byte[16])){
    try{PcDynamicPortraitCatalog.read(new ByteArrayInputStream(broken));throw new AssertionError("Corrupt catalog accepted");}catch(IOException expected){checks++;}
@@ -41,6 +41,6 @@ if __name__=='__main__':
     vectors=a.output/'native-age-vectors.tsv';vectors.write_text('\n'.join(rows)+'\n');harness=a.output/'DynamicPortraitProbe.java';harness.write_text(HARNESS);classes=a.output/'classes';classes.mkdir()
     production=root/'app/src/main/java/game/sanguo/mobile';files=[production/(name+'.java') for name in ['MediaHashes','PortraitMediaIdentity','PcDynamicPortraitCatalog']]
     subprocess.run([str(a.jdk/'bin/javac'),'-d',str(classes),*map(str,files),str(harness)],check=True)
-    result=subprocess.check_output([str(a.jdk/'bin/java'),'-cp',str(classes),'game.sanguo.mobile.DynamicPortraitProbe',str(lookup),str(vectors)],text=True)
+    result=subprocess.check_output([str(a.jdk/'bin/java'),'-cp',str(classes),'game.sanguo.mobile.DynamicPortraitProbe',str(lookup),str(vectors),str(m['identityJoins'])],text=True)
     report=dict(result=result.strip(),nativeAgeVectors=len(rows),sourceLookupSha256=digest(lookup),productionSources={str(f.relative_to(root)):digest(f) for f in files},normalAndroidIntegration=False,limits=['Production Java resolver only; no installed normal fullscreen rendering or memory claim.','Native age vectors inherited from independently executed original source lookup; unknown variants and changed source records reject.'])
     (a.output/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(result,end='')

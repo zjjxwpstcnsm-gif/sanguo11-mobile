@@ -26,7 +26,7 @@ public final class PortraitPixelsInstrumentation extends Instrumentation {
             runOnMainSync(()->{try{game.set(new GameSession(ScenarioCatalog.load("coalition-190",0,20260923L)));before[0]=game.get().captureSave();}catch(Exception error){throw new IllegalStateException(error);}});
             PcPortraitCatalog catalog=new PcPortraitCatalog(getTargetContext());JSONObject manifest;
             try(var input=getTargetContext().getAssets().open("portraits/pc/media-manifest.json")){ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] b=new byte[8192];for(int n;(n=input.read(b))!=-1;)bytes.write(b,0,n);manifest=new JSONObject(new String(bytes.toByteArray(),java.nio.charset.StandardCharsets.UTF_8));}
-            check(catalog.imageCount()==2892&&catalog.identityCount()==10656,"complete corrected source images and approved joins");
+            check(catalog.imageCount()==2892&&catalog.identityCount()==10720,"complete corrected source images and committed font-identity joins");
             JSONArray images=manifest.getJSONArray("images");long totalBytes=0;int[] rgba=new int[240*240];byte[] pixels=new byte[240*240*4];
             for(int index=0;index<images.length();index++){
                 JSONObject image=images.getJSONObject(index);byte[] png;try(var input=getTargetContext().getAssets().open(image.getString("asset"))){ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] buffer=new byte[8192];for(int n;(n=input.read(buffer))!=-1;)bytes.write(buffer,0,n);png=bytes.toByteArray();}

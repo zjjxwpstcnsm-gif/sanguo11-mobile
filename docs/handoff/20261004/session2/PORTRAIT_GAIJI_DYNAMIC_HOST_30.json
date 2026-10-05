@@ -1,0 +1,15 @@
+{
+  "result": "DYNAMIC_PORTRAITS PASS checks=160806 identities=10720 selectors=62",
+  "nativeAgeVectors": 32160,
+  "sourceLookupSha256": "ecb65c5a037505aec8b33e0f606bff5cd4b30ea4791f4a9064d311e9d2224e76",
+  "productionSources": {
+    "app/src/main/java/game/sanguo/mobile/MediaHashes.java": "b3287d010a7e83226c2c5d8644b30a3da84e2d1ec34b05884a4b73c33e846a0e",
+    "app/src/main/java/game/sanguo/mobile/PortraitMediaIdentity.java": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126",
+    "app/src/main/java/game/sanguo/mobile/PcDynamicPortraitCatalog.java": "0efa15a539ca70ea37d50696bef48aa3c6ff130c0d743dc71337b502706a2029"
+  },
+  "normalAndroidIntegration": false,
+  "limits": [
+    "Production Java resolver only; no installed normal fullscreen rendering or memory claim.",
+    "Native age vectors inherited from independently executed original source lookup; unknown variants and changed source records reject."
+  ]
+}

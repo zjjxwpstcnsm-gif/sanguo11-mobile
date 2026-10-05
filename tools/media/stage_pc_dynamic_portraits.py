@@ -28,7 +28,7 @@ def stage(installation,portrait_manifest,output):
     archive_path=installation/'Media/san11pkres.bin'
     if file_sha(archive_path)!=ARCHIVE_SHA:raise ValueError('Original resource archive changed')
     source=portrait_manifest.read_bytes();m=json.loads(source)
-    if m['schema']!=1 or m['identityJoins']!=10656:raise ValueError('Complete approved portrait source required')
+    if m['schema']!=1 or m['identityJoins'] not in [10656,10720]:raise ValueError('Complete approved portrait source required')
     identities=m['identities'];selectors=sorted({r['dynamicSelector'] for r in identities}|{b['dynamicSelector'] for r in identities for b in r['ageBoundaries']})
     if selectors!=list(range(131,193)):raise ValueError('Original dynamic selector coverage changed')
     variants=sorted({(r['sourceVariant'],r['sourcePath'],r['sourceSha256']) for r in identities});index={row:i for i,row in enumerate(variants)}
@@ -53,7 +53,7 @@ def stage(installation,portrait_manifest,output):
             rows.append(dict(selector=selector,template=115,resourceId=369+selector,sourceSha256=sha(raw),sourceDimensions=list(image.size),destination=[0,top,image.width,top+image.height],sourceRgbaSha256=sha(image.tobytes()),asset='3d/pc-presentations/'+p.name,pngSha256=sha(p.read_bytes()),rgbaSha256=sha(atlas.tobytes()),width=512,height=512))
     finally:archive.close()
     manifest=dict(schema=1,sourceExecutableSha256=EXE_SHA,sourceArchiveSha256=ARCHIVE_SHA,approvedPortraitManifestSha256=sha(source),commonTextureResource=124,commonTextureSourceSha256=sha(common_raw),selectors=rows,
-        compactLookup=dict(asset='portraits/pc/dynamic-lookup.pcd',sha256=sha(lookup),bytes=len(lookup),identityCount=len(identities),sourceVariantCount=len(variants),recordEndian='BIG_ENDIAN',sourceRows='All10656 approved rows plus unchanged native age selectors'),
+        compactLookup=dict(asset='portraits/pc/dynamic-lookup.pcd',sha256=sha(lookup),bytes=len(lookup),identityCount=len(identities),sourceVariantCount=len(variants),recordEndian='BIG_ENDIAN',sourceRows='All approved identity rows plus unchanged native age selectors'),
         limits=['Original atlas replacement pixels; no normal Android fullscreen integration/playback claim.','Exact source identity/record SHA required; no name/roster-ID inference or replacement of custom portraits.','Only supplied primary source; external active MOD precedence remains unknown.'])
     (output/'dynamic-media-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps({'selectors':len(rows),'identities':len(identities),'lookupBytes':len(lookup),'lookupSha256':sha(lookup)}))
 

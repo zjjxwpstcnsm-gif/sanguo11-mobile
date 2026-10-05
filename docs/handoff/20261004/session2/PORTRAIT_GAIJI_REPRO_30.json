@@ -1,0 +1,25 @@
+{
+  "twoRunsByteEqual": true,
+  "files": [
+    {
+      "name": "supplement-report.json",
+      "bytes": 502,
+      "sha256": "f2bd4f0d1100f32e39fd1bc720f57ccd19b050f24113783d93ef30b925b98ace"
+    },
+    {
+      "name": "media-manifest.json",
+      "bytes": 9924551,
+      "sha256": "c9571f25150eedbf70105a616b00324764de91ddcc330bb69c66e6c404dc0aa8"
+    },
+    {
+      "name": "dynamic-media-manifest.json",
+      "bytes": 43259,
+      "sha256": "86f5ff15aff63241014fb5f7424a9ef467e81748f62c3a384130cfbfdc49313a"
+    },
+    {
+      "name": "dynamic-lookup.pcd",
+      "bytes": 570832,
+      "sha256": "ecb65c5a037505aec8b33e0f606bff5cd4b30ea4791f4a9064d311e9d2224e76"
+    }
+  ]
+}
