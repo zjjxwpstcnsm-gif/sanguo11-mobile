@@ -1,0 +1,9 @@
+# MapHost原枪兵战法音效入口28：顺序集成契约
+
+基点95f40f8065f14a7fc515729384d6c9a798220052，仅自有integration工作目录。确切前/后MapHost SHA及patch SHA见同名JSON；完整candidate和host.patch在out/media/tactic-sound-host-28。本契约先提交，再核对前镜像顺序应用，不编辑原目录或另一会话。
+
+eventSound在既有已提交/replay/resumed/renderGate门之后，以PcPresentationPlan读取不可变TACTIC、明确THRUST/SPIRAL/DOUBLE_THRUST和匹配CriticalHit；原表0/1/2经原getter字段namespace证明。只有已建立source3D map才替换为sound49/78。原记录0已产生会心结果及失败清零、原callback字段和样本/格式证据分别留存；不查技能、不算命中、不消耗规则RNG，不从按钮/文字/伤害变化猜成功。
+
+同一journal event的tactic-source ID贯穿原fullscreen前奏和后续动作阶段，避免旧合成critical加tactic、或同一原样本两次叠播；reduced motion同样只使用此线路。其它未知战法/普通攻击/计略/设施/舰船仍在原有明确的移动端合成边界，不宣称全部原声音恢复。
+
+时点仍挂现有Android表现阶段：有原全屏前奏时在真实GPU提交后，普通动作在既有0.35进度。原callback564cb0的完整状态进入和PC壁钟尚未验收，不能把此阶段当PC时序已还原。原样本22.05kHz及hash完整保留，播放器使用可复现44.1kHz格式转换，不做响度归一化、裁切/补帧或生成替代。所有正常菜单/命令/保存API、World和来源metadata不改。
