@@ -1,0 +1,11 @@
+{
+  "sourceNativeChecks": 504,
+  "byteIdenticalTwoRuns": true,
+  "nativeSha256": "a77b36612b42fb972ab17c1fabb0fc4288e8bb1a26220bac495f1f09072c529e",
+  "preservedFirstFailures": [
+    "out/media/order-voice-chain-27.log",
+    "out/media/order-voice-chain-27-r1.log"
+  ],
+  "sourceFileActorValidityIsNotCurrentState": true,
+  "normalVoiceBindingCount": 0
+}

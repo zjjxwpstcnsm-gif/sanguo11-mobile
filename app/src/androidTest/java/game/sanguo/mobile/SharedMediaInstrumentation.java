@@ -24,7 +24,7 @@ public final class SharedMediaInstrumentation extends SceneInstrumentation {
     private PcVoiceStreamPlayer.Status voiceStatus(){PcVoiceStreamPlayer.Status[] s={null};runOnMainSync(()->s[0]=media.voiceStatus());return s[0];}
     private PcMusicStreamPlayer.Status musicStatus(){PcMusicStreamPlayer.Status[] s={null};runOnMainSync(()->s[0]=media.musicStatus());return s[0];}
     private void await(java.util.function.BooleanSupplier condition,long timeout,String label){long end=SystemClock.elapsedRealtime()+timeout;while(SystemClock.elapsedRealtime()<end){if(condition.getAsBoolean()){check(true,label);return;}SystemClock.sleep(25);}throw new AssertionError(label+" timed out");}
-    private PcVoiceDirective plan(String id,int priority){return new PcVoiceDirective(parent.state,parent.id+":source-probe:"+id,parent.id,parent.id+":declared-probe-phase",speaker,voiceType,profile,0,false,priority);}
+    private PcVoiceDirective plan(String id,int priority){return new PcVoiceDirective(parent.state,parent.id+":source-probe:"+id,parent.id,parent.id+":declared-probe-phase",speaker,voiceType,profile,0,false,priority,0,0);}
     private boolean admit(PcVoiceDirective d){boolean[] result={false};runOnMainSync(()->result[0]=media.sourceVoice(d));return result[0];}
     private void observe(String label)throws Exception {
         var v=voiceStatus();var m=musicStatus();int[] starts={0};runOnMainSync(()->starts[0]=media.voiceStarts());
@@ -49,6 +49,11 @@ public final class SharedMediaInstrumentation extends SceneInstrumentation {
             var session=((GameApplication)activity.getApplication()).host().session();command[0]=session.execute(new GameCommand(GameCommand.Operation.PATROL,session.state(),c,o));});
         check(command[0].ok()&&command[0].event!=null,"actual session emitted committed parent before source test adapter");parent=command[0].event;
         check(reference.patrol(c,o).ok&&Arrays.equals(SaveCodec.encode(reference),capture()),"only actual patrol changes rules; complete reference Save/RNG matches");byte[] committed=capture();
+        for(Integer[] invalid:new Integer[][]{{null,null},{null,0},{9,null},{9,0},{-1,0}}){
+            boolean rejected=false;try{new PcVoiceDirective(parent.state,parent.id+":invalid-source",parent.id,parent.id+":declared-probe-phase",speaker,voiceType,profile,0,false,1,invalid[0],invalid[1]);}catch(IllegalArgumentException expected){rejected=true;}
+            check(rejected,"unknown/invalid original actor facts reject before any playback");
+        }
+        check(voiceStatus()==null&&Arrays.equals(committed,capture()),"invalid source facts create no voice job and preserve full authority/RNG");
         await(()->{boolean[] prepared={false};runOnMainSync(()->prepared[0]=media.voicePrepared());return prepared[0];},10000,"original voice catalog prewarmed off UI thread");
         runOnMainSync(()->media.sourceMusic("probe-established3d:source2261",24,true,0));await(()->musicStatus()!=null&&musicStatus().playedFrames>44100,10000,"shared owner original music advances");observe("music-alone");SystemClock.sleep(1200);
         check((Integer)field(sounds,"focusKind")==AudioManager.AUDIOFOCUS_GAIN,"one persistent shared music focus request");

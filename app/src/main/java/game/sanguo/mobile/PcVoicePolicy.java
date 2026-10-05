@@ -10,6 +10,11 @@ final class PcVoicePolicy {
     private static final int[] FEEDBACK_A = {6,7,4,5,2,3,0,1,10,11,10,11,8,9,8,9};
     private static final int[] FEEDBACK_B = {6,7,4,5,2,3,0,1,10,11,10,11,8,9,8,9};
     private PcVoicePolicy() {}
+    /** Original47a600/4883f0. Nullable facts stay unknown; either proven OR branch suffices. */
+    static boolean actorValidFromRaw(Integer statusRaw, Integer actor17cRaw) {
+        return statusRaw != null && statusRaw >= 0 && statusRaw <= 8
+            || actor17cRaw != null && actor17cRaw != 0;
+    }
     private static boolean valid(int profile, int voiceTypeRaw, boolean actorValid) {
         return actorValid && profile >= 0 && profile < BASES.length && voiceTypeRaw >= 0 && voiceTypeRaw < 8;
     }

@@ -130,3 +130,13 @@ VoicePresentationFact {
 原4dd8c0的flags8且flags2未设时发sound1、关闭返回值−2；63b270的child1237同样sound1/−2，而child1236发sound0/10000。69项完整原音效dispatch执行及原PCM已证明。Android的真实取消回调适配原负向关闭声音；这是明确的平台UI适配，不推导规则结果。原OS事件路由/完整子控件布局尚未执行，通用按钮仍保留移动端合成，不能宣称全部原UI矩阵已闭合。该补丁先记录并提交，再在自有integration工作目录按before/after SHA顺序应用；不触碰会话一MainActivity或原目录WIP。
 
 MainActivity/MapHost 等入口已经在独立 integration 工作目录依守卫顺序接入头像、逐次技巧事实及原 CriticalHit.year。对应 `.patch`、基点及每路径前/后 SHA 保留在本目录；人物 metadata 仍精确继承已完成9e171f2，未拷其后来WIP。任何新的 BGM/voice 公共入口仍先提供确切补丁，由顺序集成处理。批九只有媒体选择器/工具/证据，没有再修改这些公共入口，也没有增加任何正常语音触发。
+
+## 批27：原order到record和演员有效性收紧
+
+`inspect_pc_order_voice_chain.py`在原5a696a参数传递中证明：此路径order.typeRaw=4时将order+0xc转交，测试type3/5则交−1；随后原5a67ce构造参数和5b060c结尾字段写入将该值放record+50，原unit virtual3c=496030读取单位+3c的坐标进入record+58，显式传入目的坐标进入record+5c。只有这些已核实路径，不称所有caller坐标角色相同。原完整构造/规则/随机计算未执行，原order类型4与工程War枚举的名字/ordinal对应继续未知。
+
+四个原initializer前缀进一步证明renderer+240接收record+0，renderer+25c才接收record+70。原callback按record0为零/非零选择effect46/78和sound49/78；profile仍按已产生的402310(2)结果选两路。不能把record70错当分支，也不能因为字段非零就命名为critical/success。需要原已提交记录的`record0Raw`及其实际生产来源，不能由媒体调用5ae610或任何RNG补值。
+
+现有PcVoiceDirective已取消“演员必然有效”的true常量。输入追加nullable `actorStatusRaw/actor17cRaw`；只有已提交原status在0..8，或已提交actor17c非零的任一原OR分支成立，才允许构造。两者都未知、status9且17c0等拒绝；若一个原分支已确证，另一字段保持null，不填默认值。该raw条件不能由姓名、已批准人物ID、工程idle/存活或初始原文件快照代替当前状态。声明测试适配器显式使用status0/17c0夹具，并非PATROL产生了这些原事实。Host原4020案例及nullable拒绝验证覆盖这个边界。
+
+只读核对会话一完成d4f0aef9/62f9623f：原文件内部属性快照与保存伤病恢复有新证据，但不是同StateToken的当前actor原status/17c、当前原能力缓存、原order/record字段和已提交随机choice投影。本批未集成它们或其PLAN.md WIP，不为声音复制核心或修改metadata。正常voice绑定仍0，需已有权威提供上述事实；若现有事实足够，再按确切来源映射消费，不新增规则随机计算。
