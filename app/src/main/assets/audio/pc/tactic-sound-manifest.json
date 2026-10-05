@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceArchiveSha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+  "sourceChainSha256": "a77b36612b42fb972ab17c1fabb0fc4288e8bb1a26220bac495f1f09072c529e",
+  "sourceSemanticsSha256": "8213957444b4a16b10b9ab840715215fa30aa468d06edf0787ee3390e21a61a8",
+  "converter": {
+    "pyav": "16.1.0",
+    "libraries": {
+      "libavutil": [
+        60,
+        8,
+        100
+      ],
+      "libavcodec": [
+        62,
+        11,
+        100
+      ],
+      "libavformat": [
+        62,
+        3,
+        100
+      ],
+      "libavdevice": [
+        62,
+        1,
+        100
+      ],
+      "libavfilter": [
+        11,
+        4,
+        100
+      ],
+      "libswscale": [
+        9,
+        1,
+        100
+      ],
+      "libswresample": [
+        6,
+        1,
+        100
+      ]
+    }
+  },
+  "entries": [
+    {
+      "nativeSoundId": 49,
+      "original": {
+        "bank": 4,
+        "slot": 15,
+        "headerResource": 2284,
+        "waveResource": 2283,
+        "soundIds": [
+          49
+        ],
+        "eventRole": "UNVERIFIED",
+        "status": "ORIGINAL_PCM_BYTES_AND_NATIVE_FORMAT_VERIFIED_PLAYBACK_PENDING",
+        "descriptorOffset": 940,
+        "descriptorHex": "0000320122560048020001000000000093580000d853120026b10000000000000000000000100000",
+        "descriptorSha256": "957a61c92f8cfaede0ddb04891b73e6dd55b8d0c2426616bf8c4f64553fd3b04",
+        "rawSampleOffset": 1201112,
+        "rawSampleBytes": 45350,
+        "pcmS16leSha256": "e68a1cec82533aeb76f42efbf9479c79a4aeec28cd981c2391a079f5e301cc50",
+        "sampleRate": 22050,
+        "channels": 1,
+        "samples": 22675,
+        "durationSeconds": 1.028344671201814,
+        "asset": "wav/bank-04-slot-015.wav",
+        "wavSha256": "c2593295194b328368e09834eb4b0da12cd43353642fe4c00fb46905fd90bb43",
+        "peakS16": 31863,
+        "rmsDbfs": -10.404422650091693,
+        "sampleFlagsRaw": 0,
+        "loopFlagRaw": 0,
+        "loopStartRaw": 0,
+        "loopStartSample": null,
+        "loopEndSample": null,
+        "loopStatus": "ORIGINAL_LOOP_FIELDS_RETAINED_COMPLETE_PLAY_POLICY_PENDING",
+        "gainPitchRawHex": "000000000000000000100000",
+        "nativeFormatHex": "010001002256000044ac0000020010000000"
+      },
+      "originalAsset": "audio/pc/tactic-49-original-22050.wav",
+      "asset": "audio/pc/tactic-49.wav",
+      "sampleRate": 44100,
+      "channels": 1,
+      "samples": 45350,
+      "wavBytes": 90744,
+      "wavSha256": "1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705",
+      "pcmSha256": "1591e8b784d678e9749666a024ae071db87d923191a31bc3997a09d61377f7c6",
+      "conversion": "libswresample s16 mono22050->44100; complete flush, exact doubled timeline, no gain/trim/pad"
+    },
+    {
+      "nativeSoundId": 78,
+      "original": {
+        "bank": 4,
+        "slot": 53,
+        "headerResource": 2284,
+        "waveResource": 2283,
+        "soundIds": [
+          78
+        ],
+        "eventRole": "UNVERIFIED",
+        "status": "ORIGINAL_PCM_BYTES_AND_NATIVE_FORMAT_VERIFIED_PLAYBACK_PENDING",
+        "descriptorOffset": 2100,
+        "descriptorHex": "0000320122560048020001000000000026590000b8662a004cb20000000000000000000000100000",
+        "descriptorSha256": "1ba08592fb4cbced92459d7c86dac903a336444cf6a996b3f395b757c0a14e36",
+        "rawSampleOffset": 2778808,
+        "rawSampleBytes": 45644,
+        "pcmS16leSha256": "196ece74a882a6fc54379a9eb4cf16cc8d4b4710279878036e5ae52f26596f09",
+        "sampleRate": 22050,
+        "channels": 1,
+        "samples": 22822,
+        "durationSeconds": 1.0350113378684807,
+        "asset": "wav/bank-04-slot-053.wav",
+        "wavSha256": "35bceaf732d76768cf4dd4ddabd7b3fee0e87be430d73c7687a19c67c52025f9",
+        "peakS16": 32289,
+        "rmsDbfs": -11.138796133592177,
+        "sampleFlagsRaw": 0,
+        "loopFlagRaw": 0,
+        "loopStartRaw": 0,
+        "loopStartSample": null,
+        "loopEndSample": null,
+        "loopStatus": "ORIGINAL_LOOP_FIELDS_RETAINED_COMPLETE_PLAY_POLICY_PENDING",
+        "gainPitchRawHex": "000000000000000000100000",
+        "nativeFormatHex": "010001002256000044ac0000020010000000"
+      },
+      "originalAsset": "audio/pc/tactic-78-original-22050.wav",
+      "asset": "audio/pc/tactic-78.wav",
+      "sampleRate": 44100,
+      "channels": 1,
+      "samples": 45644,
+      "wavBytes": 91332,
+      "wavSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638",
+      "pcmSha256": "6fb5de12076513257e439e94150e5b069a30b48d051a1efec8abbcae83a6f291",
+      "conversion": "libswresample s16 mono22050->44100; complete flush, exact doubled timeline, no gain/trim/pad"
+    }
+  ],
+  "nativeBinding": "Original order4 action0/1/2 -> renderer6/7/8, applied record0 critical -> callback564cb0 sound49/78",
+  "androidBinding": "Immutable committed named spear tactic/critical facts, source map only; current Android presentation phase, original wall-clock pending",
+  "limits": [
+    "Only three named spear tactics; not other attacks/plots/equipment/naval or full sound matrix.",
+    "Converted playback44.1kHz samples retain their original22.05kHz WAV/PCM/descriptor and exact native duration.",
+    "Source critical probability/damage formulas unchanged and not re-evaluated by media.",
+    "Installed playback pending; Windows native PCM, original callback timing and ARM speaker not proven."
+  ]
+}

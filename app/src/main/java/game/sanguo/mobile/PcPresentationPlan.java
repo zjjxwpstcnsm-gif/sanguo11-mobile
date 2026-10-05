@@ -61,6 +61,15 @@ final class PcPresentationPlan {
             else if(result.plot==War.Plot.LIGHTNING)out.add(LIGHTNING);
         }
     }
+    /** Named original table84858 actions0/1/2 -> renderer6/7/8 -> sound49/78.
+     * Applied critical evidence only; no probability, skill query or damage inference.
+     * Caller additionally requires the established source3D map. */
+    static int tacticSound(TurnJournal.Event event){
+        if(event==null||event.kind!=TurnJournal.Kind.TACTIC||event.sourceNaval||event.equipmentTactic!=null||event.infantryTactic==null)return -1;
+        int nativeId=switch(event.infantryTactic){case THRUST->0;case SPIRAL->1;case DOUBLE_THRUST->2;default->-1;};
+        if(event.critical!=null&&(event.critical.unitId!=event.actorId||!event.infantryTactic.label.equals(event.critical.tactic)))return -1;
+        return PcTacticSoundPolicy.choose(nativeId,event.critical!=null);
+    }
     static int duration(TurnJournal.Event event){return cues(event).size()*CUE_MILLIS;}
     private PcPresentationPlan(){}
 }

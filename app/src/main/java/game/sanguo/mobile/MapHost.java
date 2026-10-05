@@ -97,13 +97,15 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private void eventSound(TurnJournal.Event event,float fraction,boolean visualProgress){
         SoundEffects sounds=sounds();if(sounds==null||event==null||!resumed||!replayCommitted||(visualProgress&&!renderGate.active()))return;
         String id="journal:"+event.id;
+        int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;
         boolean critical=event.critical!=null;
         if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}
-        if(fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+":critical",SoundEffects.Cue.CRITICAL);
+        if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+":critical",SoundEffects.Cue.CRITICAL);
         completionSound(event);
         SoundEffects.Cue cue=switch(event.kind){case MOVE,ENTER,DEPLOY->SoundEffects.Cue.MARCH;case ATTACK,FACILITY_ATTACK,FACILITY_COUNTER->SoundEffects.Cue.ATTACK;case TACTIC->SoundEffects.Cue.TACTIC;case PLOT->SoundEffects.Cue.PLOT;case RECOVER->SoundEffects.Cue.COMPLETE;default->null;};
         float trigger=cue==SoundEffects.Cue.ATTACK||cue==SoundEffects.Cue.TACTIC?.35f:0;
-        if(cue!=null&&fraction>=trigger)sounds.event(id+":action",cue);
+        if(pcSound>=0){if(fraction>=.35f)sounds.originalTacticEvent(id+":tactic-source",pcSound);}
+        else if(cue!=null&&fraction>=trigger)sounds.event(id+":action",cue);
     }
     void pauseEffects(boolean paused){if(techniquePause!=null)techniquePause.accept(paused);if(spatial!=null)spatial.pauseEffects(paused);if(sounds()!=null)sounds().pauseEffects(paused);}
     void finishReplay(TurnJournal.Event event){techniqueFinished(event);completionSound(event);combatLedger().finish(event);}
@@ -114,7 +116,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
             for(var event:events){
                 // Reduced motion commits the presentation directly to its final phase.
                 // It does not also mute the already committed action.
-                if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null)sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);}
+                if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null&&(!sourceVisuals()||PcPresentationPlan.tacticSound(event)<0))sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);}
                 finishReplay(event);
             }
             techniqueCommandEvents=Collections.emptyList();
@@ -140,7 +142,11 @@ final class MapHost extends FrameLayout implements MapPresentation {
     boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}
     void criticalEvent(TurnJournal.Event event,float fraction){
         if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}
-        if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null)sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);
+        if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null){
+            int pcSound=PcPresentationPlan.tacticSound(event);
+            if(pcSound>=0)sounds().originalTacticEvent("journal:"+event.id+":tactic-source",pcSound);
+            else sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);
+        }
         List<PcPresentationPlan.Cue> cues=originalCriticalCues(event);
         if(cues.isEmpty()||fraction>=1){spatial.presentation(null,0);return;}
         float scaled=Math.max(0,fraction)*cues.size();int index=Math.min(cues.size()-1,(int)scaled);
