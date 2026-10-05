@@ -1,0 +1,955 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPLIED",
+  "sourceBase": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "completedMetadataTarget": "443c47826d637f3718d044ad94cbb9bddd88c072",
+  "currentMediaBase": "841e63cb11b2e1f2da31f96d8027345fae926884",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "sourceBaseSha256": "bb5498db5d864a2a349e033eb27259323c6ce9f1016440c01db899154a1ec121",
+      "completedSourceSha256": "5616f8a05196903174029dd84d514f80280be57745bc25a99f4da87af8d436da",
+      "currentIntegrationSha256": "bb5498db5d864a2a349e033eb27259323c6ce9f1016440c01db899154a1ec121",
+      "completedBytes": 10283,
+      "commonEntry": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sourceBaseSha256": "691665ef48b7b21decf4267d668105d12d7edc01d32cf7532289d4148169c1df",
+      "completedSourceSha256": "4534bd820d6da099133380142f56cc6137e937812a71f1e72e2e571f0c54aca4",
+      "currentIntegrationSha256": "89a3c972c2709f75fef9751907162ccacace16356b8325f549d5f001d90eb7dc",
+      "completedBytes": 149652,
+      "commonEntry": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "sourceBaseSha256": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902",
+      "completedSourceSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12",
+      "currentIntegrationSha256": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902",
+      "completedBytes": 9604,
+      "commonEntry": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/BasicCityPolicy.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "1e94c3383a8a6660705b8a305bb8ac7b836e1e38ad31779689b189a4a7fcf366",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1228,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/BattleReports.java",
+      "sourceBaseSha256": "fd728f2d244f93273ee3ce56c40d767ebb0da8f6569c6c1a214066f666862cba",
+      "completedSourceSha256": "2cb70145765e6fde83859fef2a517a88bbf1322df91558eebf21f087165f7023",
+      "currentIntegrationSha256": "fd728f2d244f93273ee3ce56c40d767ebb0da8f6569c6c1a214066f666862cba",
+      "completedBytes": 17313,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "sourceBaseSha256": "c7b36dfc7104c5792e4efa7679db42a00f4caa0317628e1c81570900c7070a61",
+      "completedSourceSha256": "159a4adb4597ea04383c143355c3facbb801d38a48fe9f758c14200f2c42cb73",
+      "currentIntegrationSha256": "c7b36dfc7104c5792e4efa7679db42a00f4caa0317628e1c81570900c7070a61",
+      "completedBytes": 4887,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "sourceBaseSha256": "6b9ef8e7b3e876bdc4ac8ddc0d6453a44ca4de80d98111d99d525f733375cda5",
+      "completedSourceSha256": "8206afec3abe9302c86a3194b4b117941ceb35988fa0dbf9f92dfbafa0dbdbb6",
+      "currentIntegrationSha256": "6b9ef8e7b3e876bdc4ac8ddc0d6453a44ca4de80d98111d99d525f733375cda5",
+      "completedBytes": 11593,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "sourceBaseSha256": "3b96f8b6fbbec69ea08a1de353a274a0a546b4a6040fb9ab0469e2b51e553134",
+      "completedSourceSha256": "ad6d781a8f1f4b1c8030aacca8d92e86020f11e50d691096ba0ca2a1c88f5933",
+      "currentIntegrationSha256": "3b96f8b6fbbec69ea08a1de353a274a0a546b4a6040fb9ab0469e2b51e553134",
+      "completedBytes": 17791,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Governance.java",
+      "sourceBaseSha256": "571431b4f86ba2091938ed97937eb326da73ad4036187cdb12e75eaf2a4a0532",
+      "completedSourceSha256": "0852b0d3b255584c39dbbf5b880c4fd87b1489bfdbff2cd3b267aef34e64e5b0",
+      "currentIntegrationSha256": "571431b4f86ba2091938ed97937eb326da73ad4036187cdb12e75eaf2a4a0532",
+      "completedBytes": 8691,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/GovernmentSave.java",
+      "sourceBaseSha256": "b6c21ebb079fd9ffe4bd16f132922d79c7d93bdabd86aca31b61025602535023",
+      "completedSourceSha256": "fa59e9bd7106493129862c2ea1006c3e3d43d309b341660333efefbe852d5118",
+      "currentIntegrationSha256": "b6c21ebb079fd9ffe4bd16f132922d79c7d93bdabd86aca31b61025602535023",
+      "completedBytes": 6839,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "sourceBaseSha256": "c6287ab9db4c92604cdc2098d5cd29462ef59b7a5480814d7a8238b2b8db4732",
+      "completedSourceSha256": "3fc1ffac8df3e6ec28c3982977760114b9b29f78f324db393b9e49934ae0d2b9",
+      "currentIntegrationSha256": "c6287ab9db4c92604cdc2098d5cd29462ef59b7a5480814d7a8238b2b8db4732",
+      "completedBytes": 16803,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MerchantMarket.java",
+      "sourceBaseSha256": "d67380f0675abc48def74d8502d995d47119b983bbd20b785c2746e40dc48d1d",
+      "completedSourceSha256": "49ec34601f36cbc9be6d782b9ab3eb6b3615fc51c7a3968e294c7a38aee9defc",
+      "currentIntegrationSha256": "d67380f0675abc48def74d8502d995d47119b983bbd20b785c2746e40dc48d1d",
+      "completedBytes": 4621,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerAbilities.java",
+      "sourceBaseSha256": "07aa434421ed185b4bece42a55701c5fe4c010c76ce773e350e5e63427265de7",
+      "completedSourceSha256": "d0fa8fe819be907ea5a20f88657e5d6fa8f7ecf5c20343bacdc822744e1aed4b",
+      "currentIntegrationSha256": "07aa434421ed185b4bece42a55701c5fe4c010c76ce773e350e5e63427265de7",
+      "completedBytes": 7897,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcContestProfiles.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "51c75ef83f9e828ad7cc32628629d3f31f09251d52ef08d5123e906a701ca903",
+      "currentIntegrationSha256": null,
+      "completedBytes": 8289,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateAi.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "2b247c6b6c3799c5e73d1adfeb2c23206994cd2f71c88f76c7619ca0ebe19ba7",
+      "currentIntegrationSha256": null,
+      "completedBytes": 8526,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "553e7baec13480fac2c884e95bb269554f442377500517fa2aa2e7d70d8fb343",
+      "currentIntegrationSha256": null,
+      "completedBytes": 10778,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModel.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "69f88152f22f771092f5330faf5d1a09cb3e860862442febff65645be609ebf3",
+      "currentIntegrationSha256": null,
+      "completedBytes": 6122,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModelSave.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "00baa79acf97f5f886af102fee06567970f7f531665d8fec14cf45f7cc628b45",
+      "currentIntegrationSha256": null,
+      "completedBytes": 7942,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateRules.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3098,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateSettlement.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "631ff1d0b2d394a41f356a809bc29e737d05ec9ecc3dc2e651499fa135cce867",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2066,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62",
+      "currentIntegrationSha256": null,
+      "completedBytes": 13768,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateUiEffects.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "f745a6d6f8c1332bdb023455eafaf51791660cdf4845095ba9f129fc4910a202",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2292,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateUiRandom.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "bb2b535d7b43064f94562f35a004a0a125164385be6f1b32da40808c9d8bcd5f",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3167,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcHealthRules.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "ae5b475beb275a7edc5cabc30a81978f40e22b93311b6408a6b894477b46ac01",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1097,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "ea49e3ad26bfd41eb6ffb5be7ee989d36c317b59f7e6da97e6781f39c3028ee1",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1613,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeHealthPolicy.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c9e3172e0297ad9ef7bbd4200fb07ae8ae2c78931631cb5de03d32b10e47f3cb",
+      "currentIntegrationSha256": null,
+      "completedBytes": 5931,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerCampaignFacts.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "2659965f8f620a31c81318706905e48b85be8b1aa6550dbbbe261856ad0a2c17",
+      "currentIntegrationSha256": null,
+      "completedBytes": 7223,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerIdentities.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "e0c56a8c252ae457f999e71361c4e3f576d6d32ed72621d8deedcdbb64101e2b",
+      "currentIntegrationSha256": null,
+      "completedBytes": 10148,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerJoinRules.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b7702df5087e54b12425b8f4966f6db538ad9b4c12e4115d0cfe17697c93d857",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1333,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d9653cf73abb6d970c3a9cdd1bac243fe6c8e1ae94af99832d57c57ca741dfd1",
+      "currentIntegrationSha256": null,
+      "completedBytes": 8071,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioIdentity.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b55e8465a9d08f5a17527cc484f7d199902c995d7589802c5e43522be2eaa5fb",
+      "currentIntegrationSha256": null,
+      "completedBytes": 6316,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "180290a2544e1da07861bb6bd73d78affecb9f8276acf339524e1e8b98f2cd9e",
+      "currentIntegrationSha256": null,
+      "completedBytes": 9025,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "e97e891a3df2de2758abe6c847968af9428e10ef26025cfe658af331d494718f",
+      "currentIntegrationSha256": null,
+      "completedBytes": 7377,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "sourceBaseSha256": "65cd9ddb7d78dddbcb9cfdde4f156d0dea9ce8f6dcc349a4d5b122f6d40d8cfd",
+      "completedSourceSha256": "88268375e4beb2e4ebcdc1891cb222eea76c4e55091ad82e6077d6fd53f81e03",
+      "currentIntegrationSha256": "65cd9ddb7d78dddbcb9cfdde4f156d0dea9ce8f6dcc349a4d5b122f6d40d8cfd",
+      "completedBytes": 17774,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioCatalog.java",
+      "sourceBaseSha256": "fc7a00c0ca40fe22bba09d7b3c8dad824a87660bbd6d8ea6c6f1d634a0ec3290",
+      "completedSourceSha256": "495d05c25c8d874ba26ca7ea88145592e01687b436e3d571cdeb6acf5efcd443",
+      "currentIntegrationSha256": "fc7a00c0ca40fe22bba09d7b3c8dad824a87660bbd6d8ea6c6f1d634a0ec3290",
+      "completedBytes": 3448,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "sourceBaseSha256": "8b146919a3b8f509378d55c1a21ac1d8288dc77a379b786cc812b1ea34026552",
+      "completedSourceSha256": "305d99807a3ba7c50663edbc8ce19be90e90c7a71345d0f5502fc77b369f9237",
+      "currentIntegrationSha256": "8b146919a3b8f509378d55c1a21ac1d8288dc77a379b786cc812b1ea34026552",
+      "completedBytes": 25913,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "sourceBaseSha256": "8e3fce152df3c6635e10410972cf3e7e4ae067282945d4b19a24328e2fe2f736",
+      "completedSourceSha256": "cf4738ed3239b509cbd56e06068db874453d38ef20836ed6f1d9588c3b14417d",
+      "currentIntegrationSha256": "8e3fce152df3c6635e10410972cf3e7e4ae067282945d4b19a24328e2fe2f736",
+      "completedBytes": 43250,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-contest-profiles/index.txt",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "146900a8a1d15a57b5927bb8964e7998d44d3f7adff93d0c1c200e505839dad8",
+      "currentIntegrationSha256": null,
+      "completedBytes": 65,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-contest-profiles/profiles.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "5bdeef55518d85c1ddde019f13cc709c076437a36ed2ff0b8cd824e6d5220f24",
+      "currentIntegrationSha256": null,
+      "completedBytes": 694501,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-campaign/build-report.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d17dfab75f712ab01b3dbe994718eb810ad35a74d9f5ec933c48ea6946e2d7ea",
+      "currentIntegrationSha256": null,
+      "completedBytes": 8504,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-campaign/facts.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "0f07a9c0c9775a69b010ba533b3895594b8da209f979dc42eda3600320648f5e",
+      "currentIntegrationSha256": null,
+      "completedBytes": 678768,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-campaign/index.txt",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "66d790025b2eacf3cfb8a7889ac4cbc99c2ca73b14ee585613df8eb70c6d9a7c",
+      "currentIntegrationSha256": null,
+      "completedBytes": 65,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/identities.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "be807419be8bea55e6de69e37be9d539e53e214d863dd916ace3fe282af9e3cd",
+      "currentIntegrationSha256": null,
+      "completedBytes": 5033,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/index.txt",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "2fa9bf328fc0818ccae52359feb1d91daf9d66e2dcb7f273f8f46d7a3e450c68",
+      "currentIntegrationSha256": null,
+      "completedBytes": 65,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/catalog.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "134f2553ab3e61e5eb8239db2633ad7721c7284acf08380a0af1706c3fa768a3",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2730,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/index.txt",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "fa609060dd110d8698d544aa74726976fbd0255795bf026917eb7a6b6122428e",
+      "currentIntegrationSha256": null,
+      "completedBytes": 65,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "2061f17815ab0e94cad877b4444e25af9176a0a38559fc6e768c62a61c067af9",
+      "currentIntegrationSha256": null,
+      "completedBytes": 120983,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen001-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d78f238579270fdf8f90600f9914b43d88626752c0b9b5bd42001ff86ec06a79",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123038,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen002-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "751e24e5c5dcf68c00dc497fa639bfa9f8987cabace3b81b163e5796f7f78c96",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123287,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen003-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "892c8b799d3a61bc215091e8d34d7e3ceadeed1729d84e58a923ffea250bf05f",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123258,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen004-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "3132b668aa087a21e20f4280ca0dac20825b3b3e7e58b2fc16794499d75529cc",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123548,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen005-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "4237748b36bdad0ba6132d58ef9a3b131aada36293d2bfa2d4b25e02c85e3a5e",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123230,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen006-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "1da9cb0170541423dfce72fb86688384911031d5a1d5d7499fe1a4b1ae5910a2",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123451,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen007-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "8c9f65c1a0279b7de70c5ca63f557e8511b6f0518f86e1088cd8e70cd831115c",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123542,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen008-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "78fb767d93fd335ece58f0d582a25f241f37d1c0196ac92ddf2569c736a97d6b",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123354,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen009-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d052bb3f02257c29b731ff87557741404f45613aa16a6b0730a1b70cdaa1aef7",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123366,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen010-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d4d1b4f4f787986fb399b99622ae8cf7ca46e9d015687329dcba271e0c1af286",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123445,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen011-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "2c94e7635cbf69c60d6580e236251f502b4d5da39bf0bddc48e01054e71368cc",
+      "currentIntegrationSha256": null,
+      "completedBytes": 122470,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen012-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "1a85f32eb502443c5b8cc8f835c20e9e5a8a334a1fa6ca9dc812fabb241a132a",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123027,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen013-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "22f4fa650d19c08aebb427b7c0ed4b0bdf76ea22bd6d876364878a51e1f718c2",
+      "currentIntegrationSha256": null,
+      "completedBytes": 121088,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "5ba781df3319db4d61a471d8557dd9f544360ebf97fb692d80625c5c19b3c7c7",
+      "currentIntegrationSha256": null,
+      "completedBytes": 123874,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen015-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a.bin.gz",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "915a58f24633ec601ba370bd35e53ff30a825734b4290e46626b98f1e2930606",
+      "currentIntegrationSha256": null,
+      "completedBytes": 119836,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateAiTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "fd7c5215f6ff0cddd6e1eaed208966ef487dcde35539fbe9eefb8a72e465cb7f",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2091,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateHeadedColdTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "221dbdf1506529efd973a51f6c9784bf6209f006a89f5ae07e310102bf062ffe",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2644,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateHeadedTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "9bc2ab6fd6432f5c5d2de47acb88138216a799069c6eb8ba729beed6d7c68ef1",
+      "currentIntegrationSha256": null,
+      "completedBytes": 4496,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateModelColdTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "6564bf216b2a60c171eb28e18e3e97bac0e626f5071ddc38ad38e37e13456d28",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1858,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateModelSaveTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d794deda027dfe0287dc749284d0129ac8f179e607c0bcde9b265a5b414c3a2b",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3799,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateModelTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "4cec4bbc28579594df7a4601f1db54773652a09d219fa261ee288d1fd943e92a",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2080,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateProgressTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "4bf34ee5bbf7fcf907a071f4e70ccb986ad7e8e516d7b082b1464765bb315250",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3460,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateRulesTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "92d437aefdfef073f4ac33205fa2faa6b28c34281eae176f0811038852d9b454",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1581,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateSettlementTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "8a0e1537f910cd34895ab4211e85cab9ab84a9a5044acdeea5f1459fa07d425d",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2026,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateStateTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "09586b147d112df48eca089d1933e8bc3e50619ef83e33ca172d42d01b36a10f",
+      "currentIntegrationSha256": null,
+      "completedBytes": 8362,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateUiRandomTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b8d611023b98c82a09666bb91c7dc75ad6694d4f64d79818b46c07bd5d8285ea",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3242,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcHealthRulesTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "a97e79382e2ad4cc9b5a1d136d4aa691e439740b2049e41652514fc522efdbfd",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1119,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerJoinRulesTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c07b13dbf1eef89c0fc5dd094bcf937ef5f027232f379afedffed9b0ff9aa912",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1189,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-original.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "41c7e94520a2a389a487b5af3b68a956fc6062483d19b396975b781f4d4c7215",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1734997,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c87c2c7b8c3686d199a83495cbf054576ffa2651f4d2fb38f0bff23c2b9231f5",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1468,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-v1-goldens.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b2b636746485f102eb39c3e580020dac62642e96618c51b0a741dd897597eec3",
+      "currentIntegrationSha256": null,
+      "completedBytes": 31686,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/human-provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "102f47e5bb7379fab5a34c38ad16fd2cdec5b696f127a35bc6bd827920975a7d",
+      "currentIntegrationSha256": null,
+      "completedBytes": 332,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/model-provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "bf4eeaa01c471911fc96c14bbf9553dc40de8bca834c838cebe2951dbe1779b4",
+      "currentIntegrationSha256": null,
+      "completedBytes": 942,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-ai.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "cadfc84cffa1da3696eee3fb554ca5d6efab0b98a9b2e1c80d7b360378662d77",
+      "currentIntegrationSha256": null,
+      "completedBytes": 433900,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-effects.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c1240a73629fba7779a4c4d8d0566c82599fa97f4cd5ea1634ad6f90b50f6513",
+      "currentIntegrationSha256": null,
+      "completedBytes": 158995,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-fury-model.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "2691aedd4b9f011ef25a35d69904e56c7a1a0f72e63d321d26d6d1596baba71e",
+      "currentIntegrationSha256": null,
+      "completedBytes": 696444,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-human-input.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b942cb5dcc03fa4fb77a080730da717579fd809ac4a6ef98c955dd217279d2b6",
+      "currentIntegrationSha256": null,
+      "completedBytes": 10040,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-initial.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "e0e20a686ed43e95ec7ffe415ab6ead7c1b0d7112c72be0946fc65f9e8f3fd90",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3344,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-model.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "ca4070540e3bb41f7aad25716056f04f9d297b9de382d045e1af3674e43da98a",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1395597,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-progress.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "1ea02c57e7c51cd890a6a7a7a6895ee15ae1f2f96bf40725d5bb20afe8720b91",
+      "currentIntegrationSha256": null,
+      "completedBytes": 151498,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-rules.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "ea8ddf41b6d4b53a8a1e3e29d863b5a2f7a304c95d295d0ee1fc5839b0a492b4",
+      "currentIntegrationSha256": null,
+      "completedBytes": 180067,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-selected-effects.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "0ce10f814c867d2aba5052f9587cfc34ea935dedc2a19e39a7dea471fc4e8194",
+      "currentIntegrationSha256": null,
+      "completedBytes": 988566,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/original-ui-counters.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c8ec9e71f332368c0a01c582ba8965240a2bdb92475096b2ec3ec9b2b8786bb7",
+      "currentIntegrationSha256": null,
+      "completedBytes": 6008,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "937a46fa2b52d372b07675e0b4a01aa9596d4910579265df7643d95d3860cbab",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1957,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/settlement-guidance-original.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "33f799c29bb2cb78218a484bf9a32d4bc21aa78c884c008c2c2fca3ccf06cc9d",
+      "currentIntegrationSha256": null,
+      "completedBytes": 49912,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/settlement-guidance-provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "65f58275da7e98dae3d7b4ccd3fb5307d013ae8731dd3fec85ef5636417e5863",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1189,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/settlement-original.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d9ca9cb05bddf36facf45d637f174e280dc0ba6163e496f44dff4f3b4dc6df06",
+      "currentIntegrationSha256": null,
+      "completedBytes": 99972,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/settlement-provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "4e4eac189eef0f2eb950501a316879a061e0dc48b813756cf7cc24e271ce1be9",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1601,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/ui-callback-original.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "73f5dc5a9eae284231e9998a5fbcea40a07ce79651c5ec575305fece1e9996de",
+      "currentIntegrationSha256": null,
+      "completedBytes": 517568,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/ui-callback-provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "9c80ca0d95b176bacc57add050703265f1f7059ef5b08417ef0e829d0650ceb4",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2637,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-health/provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "8eb53813170403d38a3345f49459a05a3c3c477ac929d297a8ce655692d0b126",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1538,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-health/recovery-original.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "fdf9ca225b150af1ea2fc7668ff1571ed75bda3968015f8bdf04af715f530907",
+      "currentIntegrationSha256": null,
+      "completedBytes": 23592,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-officer-join/loyalty-original.tsv",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "65322f919e079e3848efbd3204665c4cb865257e8c839d2ff7e947e90c134827",
+      "currentIntegrationSha256": null,
+      "completedBytes": 80827,
+      "commonEntry": false
+    },
+    {
+      "path": "core/src/test/resources/pc-officer-join/provenance.json",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "4c2866983dc17a60179c32f9ce5e6c541e25100d580b488f81939112a291ce31",
+      "currentIntegrationSha256": null,
+      "completedBytes": 1052,
+      "commonEntry": false
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b5097c4fedef71f3948c395cd9d483b736c7568fd8fff4a6a903138781cdb4ee",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3263,
+      "commonEntry": false
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "sourceBaseSha256": "b3b09de5e36dbce68c61a621125a0fc3702bf5630643fd57b4c74c68f66a2267",
+      "completedSourceSha256": "cd53aa6168acd1ec0e492e4cdb70cc75d624650173bad103ad15c93da8195808",
+      "currentIntegrationSha256": "b3b09de5e36dbce68c61a621125a0fc3702bf5630643fd57b4c74c68f66a2267",
+      "completedBytes": 1371,
+      "commonEntry": false
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "sourceBaseSha256": "d4f738870a853687c342c4b98293c4d14dbc993f89a5f30a951fb887328c2458",
+      "completedSourceSha256": "a34f1f26dfd335cd4e44fc3c5a103b364ee83df18dd1b2ae8760b691f9aff621",
+      "currentIntegrationSha256": "d4f738870a853687c342c4b98293c4d14dbc993f89a5f30a951fb887328c2458",
+      "completedBytes": 6216,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "sourceBaseSha256": "a7e43af79cb5d10d29335fb07388876d0e42dcff783f7ba32ccd329e6c151fe7",
+      "completedSourceSha256": "3737ef450b675d80fd6ccb56dee16e20343312b7b1ceb666e4d38f756552e04b",
+      "currentIntegrationSha256": "a7e43af79cb5d10d29335fb07388876d0e42dcff783f7ba32ccd329e6c151fe7",
+      "completedBytes": 8161,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "sourceBaseSha256": "25e86250575a739f56c129a5ef4a67f16d3ebea5187a14676a2caf440c289f0d",
+      "completedSourceSha256": "4ba5ad5cdabef347c9632a2d9a5fb50978d383e20f55e61c3267d4063862fb22",
+      "currentIntegrationSha256": "25e86250575a739f56c129a5ef4a67f16d3ebea5187a14676a2caf440c289f0d",
+      "completedBytes": 28344,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c41f55d0816bb196f76af60b37a4b0b748e5329bbdcf5ac7b85f817b8bf94f2f",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3822,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "sourceBaseSha256": "0e32a4337491a4f96129a584d8c84bda5932d0fbc6c841cc9a947c1e2737acb7",
+      "completedSourceSha256": "2616554e048c3d3590e53eaae0e9169afa5a32a7727300684be30cd9bfe3fabe",
+      "currentIntegrationSha256": "0e32a4337491a4f96129a584d8c84bda5932d0fbc6c841cc9a947c1e2737acb7",
+      "completedBytes": 10287,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/BasicCityPolicyTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "a913d9310ff8d12e27ed94e1f647254af79d457b1ea4d0a88271410deaf7b282",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3719,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcContestProfilesTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "8cbf65f89d987864c7f91ce0c1f8d04bbf3e69fc3a735176f4d8675def02bcb2",
+      "currentIntegrationSha256": null,
+      "completedBytes": 7020,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignColdTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "52e5830170256f6cba8a6418a6ca7c7fcd2d1d9dc947c9c31024e5b94c3fecce",
+      "currentIntegrationSha256": null,
+      "completedBytes": 2721,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "b26edb17a9ded779411173f1f15cf82a70de3f8082878b06c37f232e4973a5b8",
+      "currentIntegrationSha256": null,
+      "completedBytes": 4620,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateQueryTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "c185b8b3c7cb94e2187ca6e5f5c42571431f5462b3ff8865c32c9f5f4130713a",
+      "currentIntegrationSha256": null,
+      "completedBytes": 3752,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcGaijiIdentityTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "8de5a5add86a98290764e8dc3ba9c94eb21651758fa7d702d83a737d7da20242",
+      "currentIntegrationSha256": null,
+      "completedBytes": 6945,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcNativeHealthPolicyTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "1753a1f1ff88bee54a9c436add7973656117d10f7e01105648acf3420e2eefd2",
+      "currentIntegrationSha256": null,
+      "completedBytes": 5141,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcOfficerCampaignFactsTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "414f7be0cde989f02327e0f0c627829109beb5aa4fdcde379f18d451c6444538",
+      "currentIntegrationSha256": null,
+      "completedBytes": 6636,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcScenarioFrameTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "323ce9690b664db06771e265c037c021e8511aae1a4c39f674087a7362982753",
+      "currentIntegrationSha256": null,
+      "completedBytes": 6165,
+      "commonEntry": false
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcScenarioOpeningTest.java",
+      "sourceBaseSha256": null,
+      "completedSourceSha256": "d52a8cdf306503d13ff29be33ef584be29d389c7b265dee3bb9422cf1ba1b326",
+      "currentIntegrationSha256": null,
+      "completedBytes": 4484,
+      "commonEntry": false
+    }
+  ],
+  "ownerWipNotRead": true,
+  "scope": "Completed metadata/scenario factory/API dependencies; authoring or replacing these files remains session1 ownership. Three-way common entry composition and normal all16 source validation required before integration",
+  "currentCoreUnchanged": true
+}

@@ -1,0 +1,31 @@
+{
+  "serial": "emulator-5582",
+  "runner": "PortraitPixelsInstrumentation",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/gaiji-portrait-build-30/frozen/app-debug.apk": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/gaiji-portrait-build-30/frozen/app-debug-androidTest.apk": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45"
+  },
+  "installed_sha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+  "installed_test_sha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+  "passed": true,
+  "seconds": 11.83,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/portrait-pixels.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "pixelsResult": {
+    "images": 2892,
+    "identityJoins": 10720,
+    "ageChecks": 32160,
+    "totalSequentialBitmapBytes": 261591040,
+    "maxPixelWorkBufferBytes": 460800,
+    "result": "PORTRAIT_PIXELS PASS checks=51558; all original source pixel/age guards; not normal caller/runtime coverage acceptance"
+  },
+  "normalCallerOrFourPersonMenuClaim": false
+}
