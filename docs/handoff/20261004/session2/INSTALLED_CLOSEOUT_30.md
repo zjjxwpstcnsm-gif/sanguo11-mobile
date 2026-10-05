@@ -10,12 +10,14 @@
 
 同新包普通完整新局/来源选择、656目录/656详情646114检查841.57秒通过；652批准SourceInfo与原像素/4来源未知、652解码、缓存16588800字节；保存读取/后台/退出重开保持全Save/RNG。原始新局Save939921字节SHA2f503bdcbab44325157243fcde28b5e0cb0038f4a151a634486726b47e928383。没有因为媒体新增64而给旧SourceInfo为空者追填身份，4未知仍如实计数。普通四人入口尚未从652提升到656，不扩大成670人/16来源/全部形态正常还原。
 
-同包已批准簡雍/native122原共享全屏190真实正常战法40.30秒通过；新的10720条紧凑lookup被实际表现路径消费、取消/双确认与完整参考Save/RNG一致、原帧可见、4张GPU缓存和renderer/退出释放通过。准备战斗夹具及控制暂停帧仍不是完整PC连续时序/色彩；不把共享190称为专属人物图。既有九种命中战法策略和原49/78资产完整继承，但旧包18个未暂停PCM结果不能移用为本包18组全通过；本轮没有新做该完整矩阵或菜单/正常voice还原声明。
+同包已批准簡雍/native122原共享全屏190真实正常战法40.30秒通过；新的10720条紧凑lookup被实际表现路径消费、取消/双确认与完整参考Save/RNG一致、原帧可见、4张GPU缓存和renderer/退出释放通过。准备战斗夹具及控制暂停帧仍不是完整PC连续时序/色彩；不把共享190称为专属人物图。既有九种命中战法策略和原49/78资产完整继承，但旧包18个未暂停PCM结果不能移用为本包18组全通过；后续同一冻结两包已新做18组完整正常命令/原49与78 PCM矩阵，最低joint0.9999995482921983、独立原样本0.9999869103047662，18组首轮全通过、不重试。每组取消/重复与完整参考Save/RNG、恢复字节一致；耗时15.00–54.26秒，不称低延迟达标。详见INFANTRY_SOUND_INSTALLED_MATRIX_30.json。菜单/正常voice仍无本批还原声明。
 
 所有三轮用户保存/库/偏好逐字节恢复，原auto/manual3保持SHA02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69；无clear-data/reset/Wine，原PC/原工程/另一会话WIP/5554录音不操作。core/API/runtime仍完成9e171f2，MainActivity/MapHost/人物metadata/公共manifest/全局台账未改。
 
 普通四人入口的必要依赖：已完成443c4782相对9e171f2有118个app/core/API/runtime路径，包括新来源存档工厂；不能仅凭媒体目录替代。METADATA_SEQUENTIAL_INPUT_CONTRACT_30.json列每条旧/新/当前SHA。MainActivity与ScenarioFactionPicker冻结三方组合没有文本冲突，候选保留已集成菜单音乐/音量组件/头像只读入口，精确patch/hash在METADATA_COMMON_ENTRY_PROPOSAL_30.json及out/media/metadata-sequential-proposal-30。候选未应用、不触碰当前core。由于用户指定会话一拥有这些模块，已请求确认顺序集成责任；答复到达前只继续媒体授权范围。
 
-原始PNG/年龄及实际正常/动态证据归档9,317,376字节，SHAcdb6845aad532919f636daeb4ee327e8348d0fcbed4b6328c83dd35440414bd3，逐份回读一致，不含私人用户备份tar。完整源码冻结与SHA另列SOURCE_ARCHIVE_30.json/DELTA_GUARDS_30.json。
+最初三轮PNG/年龄/正常/动态证据归档9,317,376字节SHA cdb6845aad532919f636daeb4ee327e8348d0fcbed4b6328c83dd35440414bd3继续保留。最终23轮含18组声音/真实miss/生命周期证据归档38,765,651字节SHA 155c41c163c832de42a629c48969b8e109904739b21c503e55d1872eb361b549，逐份回读一致，不含私人用户备份tar。完整源码冻结与SHA另列SOURCE_ARCHIVE_30.json/DELTA_GUARDS_30.json。
 
 目标active。四人normal SourceInfo工厂顺序集成、所有其他caller/MOD生效覆盖、地图BGM/正常人物voice/原未命中58、其余原事件音效、长曲及声音异常、完整原时序/色彩、Unity Player/ARM真机/手机扬声器仍未完成。批29菜单PCM失败及其它历史通过/失败均保留原对应包范围。
+
+同包真实SPIRAL未命中17.92秒通过：六原声轨head0、原事件消费0，完整参考Save/RNG一致；原未改PCM对49/78最高完整相关性0.110407755/0.082619260，无完整成功原声误播，不称绝对静音或原58已恢复。91项短声生命周期42.39秒通过，六轨缓冲实测545964字节、有界叠加、暂停/恢复、静音/音量0、实际焦点争抢/Home/退出释放；真实普通设置Back原1录音相关性0.9999996760440769，普通完成不误播。明确生命周期主动probe不是正常战法绑定。首次波形检查参数误指ui-close-normal.json未找到，随后用实际source-ui-close.json验证同一未修改PCM；无设备重跑或样本修补。
