@@ -1,0 +1,16 @@
+{
+  "applicationSource": "f0244c40a90792fb7b6fad2ba53229dab7b8b5f8",
+  "buildLog": "out/media/cavalry-build-31.log",
+  "entries": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/cavalry-build-31/frozen/app-debug.apk",
+      "bytes": 308021664,
+      "sha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/cavalry-build-31/frozen/app-debug-androidTest.apk",
+      "bytes": 2080311,
+      "sha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269"
+    }
+  ]
+}

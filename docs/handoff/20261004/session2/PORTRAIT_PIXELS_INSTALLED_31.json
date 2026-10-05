@@ -1,0 +1,35 @@
+{
+  "serial": "emulator-5582",
+  "runner": "PortraitPixelsInstrumentation",
+  "arguments": [],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/cavalry-build-31/frozen/app-debug.apk": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/cavalry-build-31/frozen/app-debug-androidTest.apk": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269"
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": false,
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "installed_test_sha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+  "installed_sha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+  "exit_code": 0,
+  "seconds": 15.53,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/portrait-pixels.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "pixelEvidence": {
+    "images": 2892,
+    "identityJoins": 10720,
+    "ageChecks": 32160,
+    "totalSequentialBitmapBytes": 261591040,
+    "maxPixelWorkBufferBytes": 460800,
+    "result": "PORTRAIT_PIXELS PASS checks=51558; all original source pixel/age guards; not normal caller/runtime coverage acceptance"
+  },
+  "normalCallerCoverageProven": false
+}

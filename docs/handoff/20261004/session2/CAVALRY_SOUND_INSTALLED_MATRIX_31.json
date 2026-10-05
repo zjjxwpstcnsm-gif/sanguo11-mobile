@@ -1,0 +1,105 @@
+{
+  "rows": [
+    {
+      "run": "cavalry31-charge-49",
+      "tactic": "CHARGE",
+      "nativeTacticId": 9,
+      "nativeSoundId": 49,
+      "seconds": 23.93,
+      "installedSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+      "installedTestSha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047662,
+        0.9999995315147966
+      ]
+    },
+    {
+      "run": "cavalry31-charge-78",
+      "tactic": "CHARGE",
+      "nativeTacticId": 9,
+      "nativeSoundId": 78,
+      "seconds": 24.49,
+      "installedSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+      "installedTestSha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ]
+    },
+    {
+      "run": "cavalry31-breakthrough-49",
+      "tactic": "BREAKTHROUGH",
+      "nativeTacticId": 10,
+      "nativeSoundId": 49,
+      "seconds": 27.76,
+      "installedSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+      "installedTestSha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047662,
+        0.9999995315147966
+      ]
+    },
+    {
+      "run": "cavalry31-breakthrough-78",
+      "tactic": "BREAKTHROUGH",
+      "nativeTacticId": 10,
+      "nativeSoundId": 78,
+      "seconds": 34.39,
+      "installedSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+      "installedTestSha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ]
+    },
+    {
+      "run": "cavalry31-advance-49",
+      "tactic": "ADVANCE",
+      "nativeTacticId": 11,
+      "nativeSoundId": 49,
+      "seconds": 40.18,
+      "installedSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+      "installedTestSha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995274606595,
+      "independentCorrelations": [
+        0.999986330998694,
+        0.9999995107264965
+      ]
+    },
+    {
+      "run": "cavalry31-advance-78",
+      "tactic": "ADVANCE",
+      "nativeTacticId": 11,
+      "nativeSoundId": 78,
+      "seconds": 23.36,
+      "installedSha256": "a40fe68728e90d3579eb680b14916726fbb9e93b5722d9e06f4ae344e90e7883",
+      "installedTestSha256": "6c146fb013662df8c29d08b9811e96ae29961afffb116e70c0c7611fb7ea4269",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997214978901,
+      "independentCorrelations": [
+        0.999999340320686,
+        0.9999995257451634
+      ]
+    }
+  ],
+  "expectedCases": 6,
+  "complete": true,
+  "scope": "Explicit prepared combat fixture, visible normal command, native hit branches only; not PC timing, native58, normal voice or full audio restoration",
+  "applicationSource": "f0244c40",
+  "minimumJointCorrelation": 0.9999995274606595,
+  "minimumIndependentCorrelation": 0.999986330998694,
+  "allPassedFirstAttempt": true,
+  "allSaveRngReferenceEqual": true,
+  "armEvidence": false,
+  "normalVoiceBinding": false,
+  "fullGoalComplete": false
+}
