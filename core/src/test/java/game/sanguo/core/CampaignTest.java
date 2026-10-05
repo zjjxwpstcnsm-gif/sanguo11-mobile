@@ -11,9 +11,10 @@ public final class CampaignTest {
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     private interface Command {World.Result run();}
     private static void rejected(World w,Command command)throws Exception{byte[] before=bytes(w);check(!command.run().ok,"invalid command rejected");check(Arrays.equals(before,bytes(w)),"invalid command has no resource, RNG, action or state effects");}
-    private static World fixture(){
-        World w=new World(20,14,"甲军","乙军","丙军");
-        w.cities.add(new World.City(10,"甲城",new Hex(2,2),0));w.cities.add(new World.City(20,"乙城",new Hex(16,2),1));w.cities.add(new World.City(30,"丙城",new Hex(8,11),2));
+    private static World fixture(){return fixture(3);}
+    private static World fixture(int sides){
+        World w=new World(20,14,Arrays.copyOf(new String[]{"甲军","乙军","丙军"},sides));
+        w.cities.add(new World.City(10,"甲城",new Hex(2,2),0));w.cities.add(new World.City(20,"乙城",new Hex(16,2),1));if(sides==3)w.cities.add(new World.City(30,"丙城",new Hex(8,11),2));
         for(World.City c:w.cities){c.gold=50000;c.food=100000;for(int i=0;i<6;i++)w.officers.add(new World.Officer(c.owner*10+i,"将"+(c.owner*10+i),c.owner,c.id,80,85,90,80,80));}
         w.strategy.initializeOffices();return w;
     }
@@ -34,10 +35,12 @@ public final class CampaignTest {
         int buy=w.campaign.foodPrice(10,true),sell=w.campaign.foodPrice(10,false);check(buy>sell,"ask exceeds bid");
         ok(w.campaign.trade(10,0,true,5000));check(w.city(10).gold==gold-buy*5&&w.city(10).food==food+5000,"buy conserves quoted gold and food");
         rejected(w,()->w.campaign.trade(10,0,true,1000));
-        ok(w.campaign.trade(10,1,false,5000));check(w.city(10).food==food&&w.city(10).gold<gold,"round-trip cannot print gold");
+        rejected(w,()->w.campaign.trade(10,1,false,5000));
         rejected(w,()->w.campaign.trade(10,2,true,Integer.MAX_VALUE));rejected(w,()->w.campaign.trade(10,2,false,-1000));
-        ok(w.campaign.trade(10,2,true,10000));rejected(w,()->w.campaign.trade(10,3,true,1000));
-        World restored=SaveCodec.decode(bytes(w));check(restored.campaign.traded(10)==20000,"volume guard persists");tick(restored);check(restored.campaign.traded(10)==0,"next turn reopens market");
+        rejected(w,()->w.campaign.trade(10,2,true,10000));rejected(w,()->w.campaign.trade(10,3,true,1000));
+        World restored=SaveCodec.decode(bytes(w));check(restored.campaign.traded(10)==5000,"city use and original volume persist");tick(restored);check(restored.campaign.traded(10)==0,"next turn reopens market");
+        int beforeGold=restored.city(10).gold,beforeFood=restored.city(10).food,nextSell=restored.campaign.foodPrice(10,false);
+        ok(restored.campaign.trade(10,1,false,5000));check(restored.city(10).food==beforeFood-5000&&restored.city(10).gold==beforeGold+nextSell*5,"next-turn sell conserves quoted stocks");
         w.city(10).food=1000000;reset(w);w.campaign.traded.clear();rejected(w,()->w.campaign.trade(10,3,true,1000));caseDone();
     }
     private static void diplomacy()throws Exception{
@@ -85,13 +88,16 @@ public final class CampaignTest {
     }
     private static Domestic.Facility facility(World w,Domestic.Kind kind,int q,int r){Domestic.Facility f=new Domestic.Facility(w.domestic.nextFacilityId++,10,kind,new Hex(q,r),-1,0);w.domestic.facilities.add(f);return f;}
     private static void merge()throws Exception{
-        World w=fixture();Domestic.Facility target=facility(w,Domestic.Kind.MARKET,3,2),material=facility(w,Domestic.Kind.MARKET,4,2);
+        // (3,2) is now part of the city's authoritative seven-hex footprint.
+        // Keep the same adjacent-market behavior on actual development parcels.
+        World w=fixture();Domestic.Facility target=facility(w,Domestic.Kind.MARKET,4,1),material=facility(w,Domestic.Kind.MARKET,4,2);
+        SaveCodec.validate(w);check(target.hex.neighbors().contains(material.hex),"valid adjacent merge fixture");
         ok(w.domestic.merge(target.id,material.id,0));check(w.domestic.facility(material.id)==null&&target.level==1&&target.upgradeTo==2,"merge consumes adjacent level-one material");
         check(w.domestic.monthlyGold(10)==w.strategy.cityIncome(10,1200),"old level continues producing during merge");
         rejected(w,()->w.domestic.merge(target.id,target.id,1));rejected(w,()->w.campaign.study(10,0,Campaign.Study.WAR));
         World restored=SaveCodec.decode(bytes(w));tick(w);tick(restored);tick(w);tick(restored);
         check(target.level==2&&target.upgradeTo==0&&w.domestic.monthlyGold(10)==w.strategy.cityIncome(10,1280),"merge level changes actual income after two ticks");
-        check(Arrays.equals(bytes(w),bytes(restored)),"in-flight merge resumes exactly");facility(w,Domestic.Kind.MINT,3,3);
+        check(Arrays.equals(bytes(w),bytes(restored)),"in-flight merge resumes exactly");facility(w,Domestic.Kind.MINT,5,1);SaveCodec.validate(w);
         check(w.domestic.monthlyGold(10)==w.strategy.cityIncome(10,1520),"mint boosts adjacent level-two market");
         material=facility(w,Domestic.Kind.MARKET,4,2);ok(w.domestic.merge(target.id,material.id,0));ok(w.domestic.cancelBuild(target.id));check(target.level==2&&target.remaining==0&&w.domestic.facility(target.id)!=null,"cancel preserves upgraded target but not consumed material");
         tick(w);material=facility(w,Domestic.Kind.MARKET,4,2);ok(w.domestic.merge(target.id,material.id,0));tick(w);tick(w);check(target.level==3,"second merge reaches level three");
@@ -207,7 +213,9 @@ public final class CampaignTest {
                 copy=SaveCodec.decode(bytes(copy));
             }caseDone();
         }
-        World peace=fixture();World.Unit a=unit(peace,0,World.Weapon.SPEAR,6,5),b=unit(peace,10,World.Weapon.SPEAR,7,5);
+        // Isolate allied attacks: the old third hostile city's automatic fire
+        // legitimately damaged the AI unit after movement, unrelated to this pact.
+        World peace=fixture(2);World.Unit a=unit(peace,0,World.Weapon.SPEAR,6,5),b=unit(peace,10,World.Weapon.SPEAR,7,5);
         peace.campaign.treaties.add(new Campaign.Treaty(0,1,Campaign.TreatyKind.ALLIANCE,6));int troops=a.troops;ok(peace.nextTurn());
         check(a.troops==troops&&b.troops==5000,"full AI turn honors pact for adjacent enemies");caseDone();
     }

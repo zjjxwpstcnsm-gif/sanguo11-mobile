@@ -1,0 +1,212 @@
+{
+  "goal_complete": false,
+  "apks": {
+    "apks": [
+      {
+        "path": "out/parity/officer-state-20261003/apks/app-debug.apk",
+        "bytes": 87030287,
+        "sha256": "d47da9b4ec8d7394a609681bccaa513387da44c5c4d888844ed0637be3e192f1"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/apks/app-debug-androidTest.apk",
+        "bytes": 737034,
+        "sha256": "4b5ff8c3437e0f134cded374ced36e218038ea0ca5fd325c84a898dd66da00ef"
+      }
+    ],
+    "pinned_resources": 168,
+    "native_inputs": 4,
+    "rank_resource_exact": true,
+    "all_exact": true
+  },
+  "ui": [
+    {
+      "suite": "opening",
+      "checks": 62,
+      "seconds": 69.85,
+      "results": "out/parity/officer-state-20261003/installed-opening/results.json",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "artifacts": [
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/01-menu.png",
+          "bytes": 199607,
+          "sha256": "d10bce08ebfd460f28032facdcdb157ce19093bcc115071b66420f204857501e"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/02-overwrite-confirm.png",
+          "bytes": 225091,
+          "sha256": "438c98877b466590a19e0b3a5e4409dfdac3d6a331e20507e6bc5ebefad39007"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/03-settings.png",
+          "bytes": 175728,
+          "sha256": "b92321ac78d26a8e0ce3ce4d11e2388294158425f97514658060ec6c970faab6"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/04-scenarios.png",
+          "bytes": 184084,
+          "sha256": "0a1fad0aa4266f68ea3554e7f488683a72e5e2b2b95380c1715afa32c85c77ac"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/05-factions-portrait.png",
+          "bytes": 940245,
+          "sha256": "afa9ebfd40805df641074da8534127b233c7d787714dde8538635843e8777473"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/06-factions-landscape.png",
+          "bytes": 647571,
+          "sha256": "9a6fb4ca99a3100234743d7c4b2810db037a83862c7075de7ebdca4405fffd61"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/07-new-confirm.png",
+          "bytes": 431998,
+          "sha256": "bc27fcc439f6136d42bc1fc76b9492e7dde9a8be155d44673b1dbbfddfd3c037"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/08-new-map.png",
+          "bytes": 1672324,
+          "sha256": "743105c3a5dbdbc4bad9a6d3b80a6d5a5a4ba7b66583e51371f6ffb2eab73b24"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/08b-native-preview.png",
+          "bytes": 798754,
+          "sha256": "1769db2c1f06cf01e18541875774fc05e92d442a876484daaf04039208736dc9"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/09-loaded-map.png",
+          "bytes": 1110723,
+          "sha256": "243664e4d559f3c8d44460f53c5a4cb0fb22f9b33e65ee357b0ff69ddbc85034"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/progress.txt",
+          "bytes": 4352,
+          "sha256": "64678aa69b77add02f6db215a378e7643b4a4889a699af55a316a5b49e6a2396"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-opening/evidence/result.txt",
+          "bytes": 4372,
+          "sha256": "0df88b7642f7b8fb88579739fbb279b3bcbb5a05d72341358092b1b2fea11830"
+        }
+      ]
+    },
+    {
+      "suite": "deploy",
+      "checks": 65,
+      "seconds": 44.64,
+      "results": "out/parity/officer-state-20261003/installed-deploy/results.json",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "artifacts": [
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/01-crew.png",
+          "bytes": 371092,
+          "sha256": "8fdb122dbf14a0a6ac86317ef6b9d05cd43f46b54858e951d4a7de5c4b1fcfa1"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/02-crew-empty-keyboard.png",
+          "bytes": 200146,
+          "sha256": "e3825527362c6dea060b24e757fe3bf0796ef6a7b0430e67af224e33d08cc94b"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/02b-stock-error.png",
+          "bytes": 342137,
+          "sha256": "7ce10f7aa599a3528877b4030da452f06e9565477a7b7b6a610998bf027d143e"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/03-quantity-error-keyboard.png",
+          "bytes": 198382,
+          "sha256": "c2c49073ce27e217d7e6c15408cafae65fd4023e44bff4bc221a285353429d7e"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/04-details.png",
+          "bytes": 339088,
+          "sha256": "758b29287f138def0f7c59fce6b9f6cfd8851352f7b8b761fbbaa28c1960fc8e"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/05-crew-landscape.png",
+          "bytes": 410428,
+          "sha256": "7787e4121ee40ac81b1fbf073e7ea42022f978c1a4e0f99dac659a76a0cfe0fa"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/05b-deploy-landscape-keyboard.png",
+          "bytes": 164035,
+          "sha256": "2cecf4ac41d8f7b6f8582b40ba561d82a5eda83ab46faca7696c24f38b85e291"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/06-deployed-map.png",
+          "bytes": 1137283,
+          "sha256": "8f8d7dca39670a061de9b7f5a4f68266491f7ca920202dc7ccb10a8bc34bd3ab"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/07-restored.png",
+          "bytes": 1285440,
+          "sha256": "24e5cf6e9e4b76178fa7d69db02143eb67a09c2bb318ce4c3597d30e1b8ecf5f"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/progress.txt",
+          "bytes": 4006,
+          "sha256": "3d004b4c1e0bb5221a04448c70c8758fead8c159fe84884777ca567390debf32"
+        },
+        {
+          "path": "out/parity/officer-state-20261003/installed-deploy/evidence/result.txt",
+          "bytes": 4026,
+          "sha256": "2e238fd1d4d4cfa4b30bfde30d9982f7a664bcd183aaece760b9ed7c07620956"
+        }
+      ]
+    }
+  ],
+  "ui_total_checks": 127,
+  "android_art": {
+    "passed": true,
+    "serial": "emulator-5554",
+    "apk_sha256": "d47da9b4ec8d7394a609681bccaa513387da44c5c4d888844ed0637be3e192f1",
+    "class_sources": {
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest$1.class": "0b88e888325319f46279de98a46eb835408bf5779fb330dced084123745a3222",
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest.class": "deee925a1709c219aa4409350f8f529525923656613d9e8878aff4d1824798bf",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantArithmeticTest.class": "13a0b023491ef8f469d15becb8609d920ed3781c6746a5b1c327a1c3b44a96ba",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantMeritTest.class": "db632dfc4abd562cdfef1af3f6a46aaf52790790a8772418d35c8fece7d2c4e2",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerAbilityArithmeticTest.class": "e4597942eee481bfc859c8647e1f733e03ecccebf29f42eb91c6efaaad0d7f73",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerRankTest.class": "e10eeff7c9058d13383f0722e28d3a96aefc8169b938b248658235a721e93863",
+      "core/build/classes/java/test/game/sanguo/core/TradePlanTest.class": "42a5eb2ddcb91ea4f50e5c261440b1e7d1ff86e62cda6e2c9ff49bcc276b9ad1"
+    },
+    "scope": "Installed APK production classes in ART; ordinary commands and generated worlds, not UI taps",
+    "results": [
+      {
+        "suite": "PcMerchantMeritTest",
+        "seconds": 1.81,
+        "output": "PASS PcMerchantMeritTest checks=421\n"
+      },
+      {
+        "suite": "PcMerchantArithmeticTest",
+        "seconds": 0.39,
+        "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+      },
+      {
+        "suite": "PcOfficerAbilityArithmeticTest",
+        "seconds": 0.4,
+        "output": "PASS PcOfficerAbilityArithmeticTest rows=4813 (arithmetic only; officer persistence/integration pending)\n"
+      },
+      {
+        "suite": "PcOfficerRankTest",
+        "seconds": 4.49,
+        "output": "PASS PcOfficerRankTest checks=2244 native=81 legacy=80 (title gate/unassigned payroll parity pending)\n"
+      }
+    ],
+    "probe_sha256": "090eb5c39eab91e369b607421f0fecf11b56d5070e6a9b8d605c224e8a723910",
+    "rules_passed": true,
+    "user_files_unchanged": true,
+    "post_apk_readback_bytes": 87030287,
+    "post_apk_readback_sha256": "d47da9b4ec8d7394a609681bccaa513387da44c5c4d888844ed0637be3e192f1",
+    "installed_apk_unchanged": true
+  },
+  "scope": "API29 x86_64 emulator; separate restored UI campaigns and test-world normal commands; no ARM physical device or complete parity claim",
+  "ui_delta_base": "13ff5b9bfc44015e5f45a4a2cefa84fee4b1e4c4"
+}

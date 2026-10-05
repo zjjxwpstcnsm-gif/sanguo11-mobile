@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "nativeReportSha256": "b00d9bc06cd442b475046bdb54f6febbacb10dead95f531f1a8d4a0f79cb0ede",
+  "nativeCallerChecks": 4020,
+  "productionComparisons": 3990,
+  "paths": {
+    "app/src/main/java/game/sanguo/mobile/PcVoicePolicy.java": "569ebccfd683181f44df416d0ca353b7ef7cf444d8f6be31fda280f71f89cbdf",
+    "app/src/test/java/game/sanguo/mobile/PcUnitVoicePolicyTest.java": "8e6125bbe01a8c923105f23ea0ee2018523a89d5937c309598f54ab2b35c1b37"
+  },
+  "limits": [
+    "No normal event/action-to-profile or installed voice playback claim.",
+    "Silent/invalid source cases are covered by native caller, not manufactured as valid host playback."
+  ],
+  "committedReportSha256": "00836f2843a659e42c423388f5e360ac5e3acfd8dceb3e531ccc626fe22f64e3"
+}

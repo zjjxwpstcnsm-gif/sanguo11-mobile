@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "Installed measured PC camera; normal source map effects, lifecycle and real pixel contribution pass; full restoration incomplete",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v153/app-debug-measured-camera.apk",
+      "bytes": 83436782,
+      "sha256": "b62b98de302217bc2292cbe991bde77c23d2052bfd6e240620e157f729e6ffc3"
+    },
+    {
+      "path": "out/pc-visual/v153/androidTest-measured-camera.apk",
+      "bytes": 614259,
+      "sha256": "58dbdbc1c39055f484e1858ee0551732d1fbd4d64024027e14e8d4317689c5a6"
+    }
+  ],
+  "checks": [
+    {
+      "name": "real-PC-camera",
+      "status": "pass2580",
+      "evidence": "app/src/test/fixtures/native-v153/camera-manifest.json",
+      "max_pixel_error": 0.002170427176110934,
+      "max_projection_error": 1.862645149230957e-09
+    },
+    {
+      "name": "camera-boundaries",
+      "status": "pass20160"
+    },
+    {
+      "name": "perspective-picking-and-anchors",
+      "status": "pass1152"
+    },
+    {
+      "name": "production-frame-admission",
+      "status": "pass-fake-driver-not-GPU"
+    },
+    {
+      "name": "offline-build",
+      "status": "pass",
+      "evidence": "out/pc-visual/v153/build.txt"
+    },
+    {
+      "name": "apk137assets4nativepins",
+      "status": "pass",
+      "evidence": "out/pc-visual/v153/apk-pins.json"
+    },
+    {
+      "name": "cold-boot-healthy-activity",
+      "status": "pass",
+      "evidence": "out/pc-visual/v153/boot-service-ready.txt"
+    },
+    {
+      "name": "installed-normal-source-map-effects",
+      "status": "pass165",
+      "evidence": "out/pc-visual/v153/map-effects-final-report.txt",
+      "source_pixel_changed": 14556,
+      "source_restore_drift": 0,
+      "source_entities": 63
+    },
+    {
+      "name": "user-save-restoration",
+      "status": "pass-exact-v152-baseline-after-v153-map",
+      "evidence": "out/pc-visual/v153/map-save-restoration.json",
+      "before_retrieval_failed": true
+    },
+    {
+      "name": "installed-normal-WARSHIP-move-attack-water",
+      "status": "pass2988",
+      "evidence": "out/pc-visual/v153/warship-final-report.txt",
+      "save_evidence": "out/pc-visual/v153/warship-save-restoration.json",
+      "video": "out/pc-visual/v153/warship-early.mp4",
+      "PC_timing_flags_reference_accepted": false
+    },
+    {
+      "name": "normal207-autumn-source-camera-first-capture",
+      "status": "pass49",
+      "evidence": "out/pc-visual/v153/reference-first-report.txt",
+      "actual_surface": [
+        1650,
+        1166
+      ],
+      "source_surface": [
+        1650,
+        1050
+      ],
+      "pixel_parity": false
+    },
+    {
+      "name": "normal207-autumn-matched-canvas",
+      "status": "pass41",
+      "evidence": "out/pc-visual/v153/reference-matched-report.txt",
+      "canvas": [
+        1650,
+        1050
+      ],
+      "pixel_parity": false,
+      "observed_differences": [
+        "vegetation footprint/material",
+        "terrain sharpness and lighting",
+        "shoreline and mountains",
+        "source flags and developed fields absent"
+      ],
+      "user_save_exact": true
+    }
+  ],
+  "limits": [
+    "PC camera measured only at207 autumn Xinye with normal wheel zoom; other target heights/orientations need references",
+    "Actual PC source movie29samples/15.382sec; not complete animation timing or Android pixel parity",
+    "Normal installed map passed165; warship regression passed2988; actual touch, complete PC matched artwork and source effect semantic acceptance still pending",
+    "Original battle and fullscreen cutins not fully integrated",
+    "No ARM device performance evidence",
+    "v148 national far pending81 and sparse-window-backing losses retained"
+  ]
+}

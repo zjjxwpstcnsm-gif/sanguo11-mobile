@@ -1,0 +1,639 @@
+{
+  "schema": 1,
+  "source_path": "Media/scenario/Scenario.s11",
+  "source_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "prior_sha256": "3da18ee79888d66171955e6d9db55968bae29c5e772000732631d4903a5cbe32",
+  "bridge_sha256": "f55389294dfe5e011364d873ef01d73d296dea7f00a2355e64e2f5a199d36920",
+  "output_sha256": "78ce6ffb93c7164d81858df7d5ca5387ffe830f2fabb821ece3b3fb8122f1288",
+  "rows": 81,
+  "legacy_ids": 80,
+  "properties": {
+    "3": "指揮",
+    "4": "上昇能力",
+    "5": "上昇值",
+    "6": "俸祿",
+    "7": "格",
+    "8": "功績"
+  },
+  "source_field_offsets": {
+    "command": [
+      40,
+      41
+    ],
+    "ability_stat": [
+      42
+    ],
+    "ability_bonus": [
+      43
+    ],
+    "salary": [
+      44
+    ],
+    "grade": [
+      45
+    ]
+  },
+  "functions": [
+    {
+      "address": "0x48e2e0",
+      "end_exclusive": "0x48e35c",
+      "sha256": "fb40babc1792dd66fe93244a690f2cbec3eb13c601f8adb35ab18214aa4da6d5"
+    },
+    {
+      "address": "0x73cfa0",
+      "end_exclusive": "0x73d04f",
+      "sha256": "2ac3f758591c43b6425abebcec0496881f4220f62eea02b7ba0964ca27f27c47"
+    },
+    {
+      "address": "0x4cb550",
+      "end_exclusive": "0x4cb726",
+      "sha256": "d801713860e86d80bb7df863573ea92505a059977b4a76998f7519be309850c8"
+    },
+    {
+      "address": "0x48e1c0",
+      "end_exclusive": "0x48e1d5",
+      "sha256": "2802593c1eeab36b4aac98d9017fa90cfde7d8927c51e845cc08911a065e355a"
+    }
+  ],
+  "getter_calls": 891,
+  "non_stack_writes": 0,
+  "registry_and_rng_unchanged": true,
+  "candidate_rank_payloads": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "rank_payload_bytes": 0
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "rank_payload_bytes": 0
+    }
+  ],
+  "records": [
+    {
+      "native_id": 0,
+      "native_name": "丞相",
+      "source_offset": 17410,
+      "record_sha256": "b63340cf9f6ecdebf4c122bf6f546ee10c9da943c1747d2e8260f0d55e6d945a"
+    },
+    {
+      "native_id": 1,
+      "native_name": "司空",
+      "source_offset": 17456,
+      "record_sha256": "e2ad0cbbdeffade730339032d182f910ebd551803f146a7ca961c62b3b4d201a"
+    },
+    {
+      "native_id": 2,
+      "native_name": "太尉",
+      "source_offset": 17502,
+      "record_sha256": "7684c7cd45c6ba6217811a650b4d8a6cd21944539f7ce39260da381a6b1105f4"
+    },
+    {
+      "native_id": 3,
+      "native_name": "司徒",
+      "source_offset": 17548,
+      "record_sha256": "4ff8ddbf2cf7c3bca7373cd84639d8282e446fb12f8f2c9ca79c73dd776a019c"
+    },
+    {
+      "native_id": 4,
+      "native_name": "大都督",
+      "source_offset": 17594,
+      "record_sha256": "b83df1505aa8697a040e5a2fd2cbd5d96c8cd916a7f522b0ef1edec30a3fc434"
+    },
+    {
+      "native_id": 5,
+      "native_name": "衛將軍",
+      "source_offset": 17640,
+      "record_sha256": "3e6206a61331ef6e0c77b634fbd7dc0de781f3cca66f826f29f765db158f4bde"
+    },
+    {
+      "native_id": 6,
+      "native_name": "驃騎將軍",
+      "source_offset": 17686,
+      "record_sha256": "04e139c194e47acd9ea435f31cea5dd72b4f98d5d7886ef691da418b008be4b0"
+    },
+    {
+      "native_id": 7,
+      "native_name": "車騎將軍",
+      "source_offset": 17732,
+      "record_sha256": "0cb48526380b9c0c52eea38034e793e35d39b2ee7a8a6cb05daaa293f7724198"
+    },
+    {
+      "native_id": 8,
+      "native_name": "光祿勳",
+      "source_offset": 17778,
+      "record_sha256": "74f28cc57bcb8161fbd66d4dff000fec07f54f475476de88c0721b1d083c521e"
+    },
+    {
+      "native_id": 9,
+      "native_name": "大司農",
+      "source_offset": 17824,
+      "record_sha256": "1940e7fadbef23e711537d3b734554cb2501a796ce168a56dbc50fcf176b9fd9"
+    },
+    {
+      "native_id": 10,
+      "native_name": "廷尉",
+      "source_offset": 17870,
+      "record_sha256": "82aea663771d08c0b679e44500bbf6d19c02ca98c36cbffdd412eac28038e7c9"
+    },
+    {
+      "native_id": 11,
+      "native_name": "衛尉",
+      "source_offset": 17916,
+      "record_sha256": "8fc99006e833166eab9b765ef04117aab27ff0ab4fa62429b02883969da4e7dd"
+    },
+    {
+      "native_id": 12,
+      "native_name": "征東將軍",
+      "source_offset": 17962,
+      "record_sha256": "6fbedd30ed5d36cdef417ed2961262c30a836e8eae80bf58e9f22de76a4b6061"
+    },
+    {
+      "native_id": 13,
+      "native_name": "征南將軍",
+      "source_offset": 18008,
+      "record_sha256": "d410313e03c30f1def93e761024239028f52730c07d1b1ab4cc88bc19613cf4c"
+    },
+    {
+      "native_id": 14,
+      "native_name": "征西將軍",
+      "source_offset": 18054,
+      "record_sha256": "64a627f0898f445ece758aa1ac017cd777aa061494c5ac9dee477bd2dce038ac"
+    },
+    {
+      "native_id": 15,
+      "native_name": "征北將軍",
+      "source_offset": 18100,
+      "record_sha256": "b4bc4f0ccc3b4e5c94c1f4ecc306cb0e67250b04db3337a065457aa1f89f19de"
+    },
+    {
+      "native_id": 16,
+      "native_name": "尚書令",
+      "source_offset": 18146,
+      "record_sha256": "1a8fc23409fd3718168aa89de07ee8862684e5bd5af2e7c39d459a0e94070cb6"
+    },
+    {
+      "native_id": 17,
+      "native_name": "太僕",
+      "source_offset": 18192,
+      "record_sha256": "f5cb123351a6bab190717dcb193f0b70ebace93741ed5cb5f755b7a74f38e3be"
+    },
+    {
+      "native_id": 18,
+      "native_name": "太常",
+      "source_offset": 18238,
+      "record_sha256": "31c82aba23f2c655fcbdeeab5fcb7351e7e2d297d60b46d87c6c9c9ac83bb579"
+    },
+    {
+      "native_id": 19,
+      "native_name": "大鴻臚",
+      "source_offset": 18284,
+      "record_sha256": "32a2a992f9022dbbfea2fb66e22cddb60b56ad45c90c1a435ecffd3ef78e6a00"
+    },
+    {
+      "native_id": 20,
+      "native_name": "鎮東將軍",
+      "source_offset": 18330,
+      "record_sha256": "dfbedaa515caf19c907954a0ca1137b15cb6bfa1ef309ad1574919de4c3bef3c"
+    },
+    {
+      "native_id": 21,
+      "native_name": "鎮南將軍",
+      "source_offset": 18376,
+      "record_sha256": "26caa2ff9d1e41f5f7f338834db4975e24fb566ba50896927050761214db54a0"
+    },
+    {
+      "native_id": 22,
+      "native_name": "鎮西將軍",
+      "source_offset": 18422,
+      "record_sha256": "9d75341ef31c4b7e384d8c331a3f13de46041ff7f787164dd721de02d75d63c3"
+    },
+    {
+      "native_id": 23,
+      "native_name": "鎮北將軍",
+      "source_offset": 18468,
+      "record_sha256": "4f4458fd9cfe570010f5a481cf0fd22fb17ef41510e19e9515c24a110c651ffa"
+    },
+    {
+      "native_id": 24,
+      "native_name": "中書令",
+      "source_offset": 18514,
+      "record_sha256": "71cbf835e08379018832944947d57295f09c16abf1e304817ae10546ef53457c"
+    },
+    {
+      "native_id": 25,
+      "native_name": "御史中丞",
+      "source_offset": 18560,
+      "record_sha256": "869750e878ee356b7b7014c0474966f81f658e93a733aaa459439de76bb5ebf3"
+    },
+    {
+      "native_id": 26,
+      "native_name": "執金吾",
+      "source_offset": 18606,
+      "record_sha256": "0b8b64d62a5feaca87de5a814dfc11f501adf0d39406108dd7b3f55e18f51222"
+    },
+    {
+      "native_id": 27,
+      "native_name": "少府",
+      "source_offset": 18652,
+      "record_sha256": "da13878093ec11e4d113a4938873b8bcf9c5f7f2098889dc7b09083704622bbf"
+    },
+    {
+      "native_id": 28,
+      "native_name": "安東將軍",
+      "source_offset": 18698,
+      "record_sha256": "6a6c94a206391151b9c0976bc1c9d7b7d9b7dd8d7e4707cc75a3d7ad81160bf2"
+    },
+    {
+      "native_id": 29,
+      "native_name": "安南將軍",
+      "source_offset": 18744,
+      "record_sha256": "adb149d9a7fa2506ff0240245228d93f364b9b01ad7fc90c4bca7e264af35b07"
+    },
+    {
+      "native_id": 30,
+      "native_name": "安西將軍",
+      "source_offset": 18790,
+      "record_sha256": "87d897c00e8d4ae566c9cce9bb0c03fda373e865af995925c72ae1b0450842e7"
+    },
+    {
+      "native_id": 31,
+      "native_name": "安北將軍",
+      "source_offset": 18836,
+      "record_sha256": "0537888ff5df15055207e35f1803e86e747ecd4a4f1fdb29a16b45a30bb6a47b"
+    },
+    {
+      "native_id": 32,
+      "native_name": "秘書令",
+      "source_offset": 18882,
+      "record_sha256": "522671043f63549186cb1ce17279e37b126866f5db70f3dd0307b3aed634fbf4"
+    },
+    {
+      "native_id": 33,
+      "native_name": "侍中",
+      "source_offset": 18928,
+      "record_sha256": "e10cd2a86ad2e146a3d51d5a9df4fed0b7431d76a94b0082d85bd6dbc62034dd"
+    },
+    {
+      "native_id": 34,
+      "native_name": "留府長史",
+      "source_offset": 18974,
+      "record_sha256": "ce722191e078a36067ab2dba4ce6800b7743be3e1ad2d566c4a3612eac7a63f1"
+    },
+    {
+      "native_id": 35,
+      "native_name": "太學博士",
+      "source_offset": 19020,
+      "record_sha256": "9169fddf434c0cf8354d3ad41937aab08683986b51c474e1a8532cf431dd03d4"
+    },
+    {
+      "native_id": 36,
+      "native_name": "左將軍",
+      "source_offset": 19066,
+      "record_sha256": "e683234ba304517323b22496dbd0a790b8ec01450843ad178cd764276f07cd71"
+    },
+    {
+      "native_id": 37,
+      "native_name": "右將軍",
+      "source_offset": 19112,
+      "record_sha256": "3f7e426ed13b492cf3552c80668076479ac3dce7e37cacb7b4df99bc90ec9c89"
+    },
+    {
+      "native_id": 38,
+      "native_name": "前將軍",
+      "source_offset": 19158,
+      "record_sha256": "e0c36fab653a7723980109ec8cefca9be1e6f8fa053fb157801c9e02e52a9538"
+    },
+    {
+      "native_id": 39,
+      "native_name": "後將軍",
+      "source_offset": 19204,
+      "record_sha256": "30bcaa215a95b98d6aff00264f8a622a739cc0ae1daba0b4f1bc6524936dea8f"
+    },
+    {
+      "native_id": 40,
+      "native_name": "謁者僕射",
+      "source_offset": 19250,
+      "record_sha256": "e511123deab97f634c3d87efccb4a3ca4018c58676512137ec921f6a92b19c73"
+    },
+    {
+      "native_id": 41,
+      "native_name": "都尉",
+      "source_offset": 19296,
+      "record_sha256": "d3cd658dcb4dfe9b231b9b1b73b6e8039fb8ffa7898fe36c08f9d69841d0055c"
+    },
+    {
+      "native_id": 42,
+      "native_name": "黃門侍郎",
+      "source_offset": 19342,
+      "record_sha256": "22c65b14716340bb16ebcf0e5afd05ad42be6aa7f3e12ef4fe8bb4d80ea7421e"
+    },
+    {
+      "native_id": 43,
+      "native_name": "太史令",
+      "source_offset": 19388,
+      "record_sha256": "4a7f2c8888b89f3dc988a42dbf4449391de09bc1c97a3e0e51964dd7a9945482"
+    },
+    {
+      "native_id": 44,
+      "native_name": "軍師將軍",
+      "source_offset": 19434,
+      "record_sha256": "34b12644ca5608bf58767b882431bc9b6515c1b0c87dacfffd12254678540859"
+    },
+    {
+      "native_id": 45,
+      "native_name": "安國將軍",
+      "source_offset": 19480,
+      "record_sha256": "e029d1f1057bc5f469852266c70e85620ad30f96002e5bd3670f3b8e46da9b0c"
+    },
+    {
+      "native_id": 46,
+      "native_name": "破虜將軍",
+      "source_offset": 19526,
+      "record_sha256": "e48b1ff5cd9145b515941db51fdbefa3fdbfa618162f678b457ded3205125398"
+    },
+    {
+      "native_id": 47,
+      "native_name": "討逆將軍",
+      "source_offset": 19572,
+      "record_sha256": "1b6174e824e7b7fad17a27a51c08a320fb63b50dd6ea080e3c7b1d1653bbc01e"
+    },
+    {
+      "native_id": 48,
+      "native_name": "郎中",
+      "source_offset": 19618,
+      "record_sha256": "e297497107fa55182df623708bfd1ea32708e1900e6c19a7d983c748c8015a47"
+    },
+    {
+      "native_id": 49,
+      "native_name": "從事中郎",
+      "source_offset": 19664,
+      "record_sha256": "185177de20cbddb31bcc9c8804a254493f69989f7ade468ac243fe6cfa266c59"
+    },
+    {
+      "native_id": 50,
+      "native_name": "長史",
+      "source_offset": 19710,
+      "record_sha256": "54562ef7448eb6bbb01f1c07f5ed4c637bff539ebc1b09f2c30624d805a6dc52"
+    },
+    {
+      "native_id": 51,
+      "native_name": "司馬",
+      "source_offset": 19756,
+      "record_sha256": "9a043844ea99ce8c2b744e014123629d983e6d83e970d5db798d91b34d129564"
+    },
+    {
+      "native_id": 52,
+      "native_name": "平東將軍",
+      "source_offset": 19802,
+      "record_sha256": "6a7bfc471c1684aafe66b51c2453b035d3eca09ceb0b52f96c238da40d21a54e"
+    },
+    {
+      "native_id": 53,
+      "native_name": "平南將軍",
+      "source_offset": 19848,
+      "record_sha256": "952aa2b5ee9bd985f5c7c64a62859d9a43a00d4c7e25a77dc5ca6ff055760d0b"
+    },
+    {
+      "native_id": 54,
+      "native_name": "平西將軍",
+      "source_offset": 19894,
+      "record_sha256": "fadb23ba70278c86bec4e70939c67faf973b7dc1b51ebc25c8dd0987eafa4bfd"
+    },
+    {
+      "native_id": 55,
+      "native_name": "平北將軍",
+      "source_offset": 19940,
+      "record_sha256": "c3b53ae55364e8acfc7cb31f0566ece7d11b52db66a9490980244badcf571e74"
+    },
+    {
+      "native_id": 56,
+      "native_name": "太樂令",
+      "source_offset": 19986,
+      "record_sha256": "3b9f8f8059d269d8bdb5c4a81e57328c0ca5148d2ff47e97e069182275e681ef"
+    },
+    {
+      "native_id": 57,
+      "native_name": "大倉令",
+      "source_offset": 20032,
+      "record_sha256": "51272ab412fefd20eb9463c42a8ee97ed03ca57d8f915d8d7270689cbb747ad5"
+    },
+    {
+      "native_id": 58,
+      "native_name": "武庫令",
+      "source_offset": 20078,
+      "record_sha256": "e44edeec0301b9d5305b8a5410fa4df6ea14e1f2a99326a5750190ff935a87db"
+    },
+    {
+      "native_id": 59,
+      "native_name": "衛士令",
+      "source_offset": 20124,
+      "record_sha256": "7edf4982cf4ed63a0058a11b06e948feb7499173aac80ab27637d6a3d72da8b9"
+    },
+    {
+      "native_id": 60,
+      "native_name": "牙門將軍",
+      "source_offset": 20170,
+      "record_sha256": "77998d825d09713584d990baec545a71a21c0faa6844f2dae4e8d1c46ed29f84"
+    },
+    {
+      "native_id": 61,
+      "native_name": "護軍",
+      "source_offset": 20216,
+      "record_sha256": "1ba43a9f973beaa886976a0a588fae6693bcbfa5486490a15484e4f7a6926858"
+    },
+    {
+      "native_id": 62,
+      "native_name": "偏將軍",
+      "source_offset": 20262,
+      "record_sha256": "09f82fe65e239e73116ee218ad4572182655bd2a3dd24f74b3a2e74b8c798489"
+    },
+    {
+      "native_id": 63,
+      "native_name": "裨將軍",
+      "source_offset": 20308,
+      "record_sha256": "03056a02feac82dffd974705441736e063cfc8b285b680c8c2cdd04a1ab1b435"
+    },
+    {
+      "native_id": 64,
+      "native_name": "主簿",
+      "source_offset": 20354,
+      "record_sha256": "e841be3497a51dfff9e77441c95d4adc232fc98b4880c93dae06f7525e8e4f32"
+    },
+    {
+      "native_id": 65,
+      "native_name": "諫議大夫",
+      "source_offset": 20400,
+      "record_sha256": "2725842a6b73c9389d8c4f7d5d40047b4b13b9a20469ed5f3ae24765f4a9aef5"
+    },
+    {
+      "native_id": 66,
+      "native_name": "侍郎",
+      "source_offset": 20446,
+      "record_sha256": "a49f9b5637af52eb3b9f7e1b47759c0a5a49998e8ed3c92c18f76085f732436e"
+    },
+    {
+      "native_id": 67,
+      "native_name": "中郎",
+      "source_offset": 20492,
+      "record_sha256": "53d70208b31e5c0bb0e36397260c09d3ec17fa6373f4d0e0e05237a5b89ebdf0"
+    },
+    {
+      "native_id": 68,
+      "native_name": "忠義校尉",
+      "source_offset": 20538,
+      "record_sha256": "6f657721bb945d9672d40f6f065e8e399ce96d0a3709078b3b6bac09e1d25230"
+    },
+    {
+      "native_id": 69,
+      "native_name": "昭信校尉",
+      "source_offset": 20584,
+      "record_sha256": "80b61640986717ca650a2917c6c3f5fa33e01d0bdebb13b0fc98b78dc42243f1"
+    },
+    {
+      "native_id": 70,
+      "native_name": "儒林校尉",
+      "source_offset": 20630,
+      "record_sha256": "7ab1f1e08f6a485dab0b2bfafc557427029c8ba0d424b72c1d223487b270b540"
+    },
+    {
+      "native_id": 71,
+      "native_name": "建議校尉",
+      "source_offset": 20676,
+      "record_sha256": "ea40582005be8b73cf8af17fb987a4d11079860e0e145936f8f7a6bc069bb0fe"
+    },
+    {
+      "native_id": 72,
+      "native_name": "左僕射",
+      "source_offset": 20722,
+      "record_sha256": "ef7a6b34c86aa7f4b2d29d257b79fc78a4b05b4f49b59e6225510eac0b82d005"
+    },
+    {
+      "native_id": 73,
+      "native_name": "右僕射",
+      "source_offset": 20768,
+      "record_sha256": "f10d066f1df8a1ccd2019901ad6e90e4447436c5cd29407903555012b8dcf223"
+    },
+    {
+      "native_id": 74,
+      "native_name": "典農校尉",
+      "source_offset": 20814,
+      "record_sha256": "ece8f875f99ec455045b17120a563ab704ab4c7251e13ec3aa2b8b65ae1e68dc"
+    },
+    {
+      "native_id": 75,
+      "native_name": "議郎",
+      "source_offset": 20860,
+      "record_sha256": "d3f09584c17d2c9a79049019f351524c72cabf4ee61ac55e86fadd5ce44bdb23"
+    },
+    {
+      "native_id": 76,
+      "native_name": "奮威校尉",
+      "source_offset": 20906,
+      "record_sha256": "261b94c61816bcfd5c7551eb208dd8791b01f7476421bb3b5569a2529309e381"
+    },
+    {
+      "native_id": 77,
+      "native_name": "長水校尉",
+      "source_offset": 20952,
+      "record_sha256": "ad2faa5a0930bd278ae8b9315708b7fe886056a44d603ddde9d885b12998037a"
+    },
+    {
+      "native_id": 78,
+      "native_name": "破賊校尉",
+      "source_offset": 20998,
+      "record_sha256": "1e2c2543a992eb9f3f90df528885ada457912d0ff071e38be7a463002a6de7a5"
+    },
+    {
+      "native_id": 79,
+      "native_name": "武衛校尉",
+      "source_offset": 21044,
+      "record_sha256": "43c85c6d6ad5b5617c532e09b76997b81e7771c49d8f35f370485f0549449761"
+    },
+    {
+      "native_id": 80,
+      "native_name": "無",
+      "source_offset": 21090,
+      "record_sha256": "ce5fadc3ff76517ea876d1afa1004f2e744c34d76955461bf82653c44a64d990"
+    }
+  ],
+  "limits": [
+    "Shared24 branch serializes ranks; all16 audited22 branches consume no rank bytes",
+    "Installed candidate/MOD activation still unresolved; presence is not activation",
+    "Legacy labels/order/civilian grouping retained by explicit bridge",
+    "Required ruler title, appointment admission and actual salary settlement order remain separate rule evidence",
+    "Rank80 unassigned has native salary5; existing project unassigned payroll policy is not changed by this import"
+  ]
+}

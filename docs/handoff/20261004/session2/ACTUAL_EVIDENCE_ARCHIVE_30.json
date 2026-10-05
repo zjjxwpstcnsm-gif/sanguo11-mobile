@@ -1,0 +1,10 @@
+{
+  "archive": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/actual-evidence-delivery-30/actual-media-evidence.tar.gz",
+  "archiveBytes": 9317376,
+  "archiveSha256": "cdb6845aad532919f636daeb4ee327e8348d0fcbed4b6328c83dd35440414bd3",
+  "allReadbackByteEqual": true,
+  "privateUserBackupTarsExcluded": true,
+  "goalComplete": false,
+  "filesCount": 34,
+  "completeManifest": "out/media/actual-evidence-delivery-30/evidence-manifest.json"
+}

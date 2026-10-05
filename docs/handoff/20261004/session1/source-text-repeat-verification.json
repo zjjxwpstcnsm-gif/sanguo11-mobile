@@ -1,0 +1,17 @@
+[
+  {
+    "file": "source-text.bin.gz",
+    "sha256": "77d42c74cc3c44e094354d624d5dff0e2f990c371be9c3f28e5f532d5d0f79d9",
+    "equal": true
+  },
+  {
+    "file": "index.txt",
+    "sha256": "8fd6167908a6802673af27e0c58fc6ebb5166d1d7614e351ed2f65875b8f07f1",
+    "equal": true
+  },
+  {
+    "file": "build-report.json",
+    "sha256": "84f2a8e1235e1f57941e73bf780987f7b98a98c3c918b54ed55feeeefddf6bef",
+    "equal": true
+  }
+]

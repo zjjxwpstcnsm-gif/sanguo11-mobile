@@ -1,0 +1,4 @@
+HUKOU130 lod=0 triangles=2606 width=0.91322327 highest=0.67363405 bank=0.61363405 lip=0.67363405 foot=0.23533122
+Exception in thread "main" java.lang.AssertionError: full broad shoulder face clears unchanged canonical terrain: lod=1 tri=378 clearance=0.027632669 at=65.57335,57.102997
+	at game.sanguo.mobile.Hukou130Test.check(Hukou130Test.java:9)
+	at game.sanguo.mobile.Hukou130Test.main(Hukou130Test.java:41)

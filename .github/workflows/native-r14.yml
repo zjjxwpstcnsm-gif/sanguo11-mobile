@@ -1,0 +1,125 @@
+name: Native R14 seasonal environment and exact APK
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r14.yml', 'app/src/**', 'tools/3d/*mat*', 'scripts/*r14*', 'version.properties']
+permissions:
+  contents: write
+concurrency:
+  group: native-r14-delivery
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Exact identity and protected rules
+        run: |
+          set -euo pipefail
+          mkdir -p out/r14
+          git rev-parse HEAD > out/r14/SOURCE_COMMIT
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          git diff --exit-code 83699a4864fb63364d187824ff65b28074d14cc8 HEAD -- core/src/main game-api game-runtime data > out/r14/protected-rules.log
+          curl -fSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+          echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
+      - name: Seasonal save and affected regression
+        run: |
+          set -euo pipefail
+          for suite in test-native-r14 test-native-r13 test-native-r12 test-architecture test-3d-environment; do
+            bash scripts/$suite.sh 2>&1 | tee out/r14/$suite.log
+          done
+          python3 scripts/verify-environment-assets.py
+      - name: Retain inherited full core failure
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          bash scripts/test-core.sh 2>&1 | tee out/r14/core-regression.log
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build source-matched APK, tests and lint
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true 2>&1 | tee out/r14/build.log
+          cp app/build/outputs/apk/debug/app-debug.apk out/r14/sanguo11-native-r14.apk
+          sha256sum out/r14/*.apk > out/r14/APK_SHA256
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r14/sanguo11-native-r14.apk > out/r14/apk-metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r14/sanguo11-native-r14.apk > out/r14/signature.txt
+          unzip -l out/r14/sanguo11-native-r14.apk > out/r14/apk-contents.txt
+          split -b 24M -d out/r14/sanguo11-native-r14.apk out/r14-apk-part-
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-apk-part-00
+          path: out/r14-apk-part-00
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-apk-part-01
+          path: out/r14-apk-part-01
+          retention-days: 14
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r14.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r14-evidence
+          path: out/r14/
+          retention-days: 14
+      - name: Publish exact candidate and review evidence
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test -f out/r14/sanguo11-native-r14.apk || exit 0
+          python3 -m pip install --user Pillow
+          python3 - <<'PY'
+          import os,zipfile,json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('out/r14'); review=Path('out/r14-review');review.mkdir(exist_ok=True)
+          (root/'manifest.json').write_text(json.dumps({'stage':'R14','source':os.environ['GITHUB_SHA'],'run':os.environ['GITHUB_RUN_ID'],'backend':'Filament1.56/OpenGL','physical':'NOT_RUN','visual':'PARTIAL','runtime_log':'interaction.txt'},indent=2))
+          for p in root.rglob('*.png'):
+              im=Image.open(p).convert('RGB');im.thumbnail((960,960));im.save(review/(p.stem+'.jpg'),quality=88)
+          for p in root.rglob('*.txt'):
+              (review/p.name).write_bytes(p.read_bytes())
+          for p in root.glob('*.log'):
+              (review/p.name).write_bytes(p.read_bytes())
+          with zipfile.ZipFile('out/r14-evidence.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file() and p.suffix!='.apk':z.write(p,p.relative_to(root))
+          PY
+          tag="native-r14-${GITHUB_SHA:0:12}"
+          printf 'R14 source %s. PARTIAL candidate; actual installed outcome in interaction.txt. ARM64/PC art unaccepted. No main merge.\n' "$GITHUB_SHA" > out/r14-release.txt
+          gh release create "$tag" --target "$GITHUB_SHA" --prerelease --title "Native R14 ${GITHUB_SHA:0:12}" --notes-file out/r14-release.txt out/r14/sanguo11-native-r14.apk out/r14-evidence.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r14-review
+          path: out/r14-review/
+          retention-days: 14

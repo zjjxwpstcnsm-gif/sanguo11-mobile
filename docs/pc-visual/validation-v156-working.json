@@ -1,0 +1,244 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "Original native ground image dimensions/UV integrated; installed same-camera and all4-season checks pass; full visual goal incomplete",
+  "artifacts": {
+    "artifacts": [
+      {
+        "path": "out/pc-visual/v156/app-debug-ground-source-uv.apk",
+        "bytes": 78629098,
+        "sha256": "96639234422bfb597166bf177d6a850ef6aca3a417dd4256edc6a982d7b700dc"
+      },
+      {
+        "path": "out/pc-visual/v156/androidTest-ground-source-uv.apk",
+        "bytes": 617183,
+        "sha256": "dfab5c09bff2ac6f972a29d785dfe8bdd1e2d20270259bb497d0bd59ca1fe947"
+      },
+      {
+        "path": "out/pc-visual/v156/user-auto-before.sg11",
+        "bytes": 168846,
+        "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      {
+        "path": "out/pc-visual/v156/user-auto-after-reference.sg11",
+        "bytes": 168846,
+        "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    ],
+    "reference_save_restoration": "PASS_EXACT_BYTES"
+  },
+  "checks": [
+    {
+      "name": "original41dcb0/41dc00 UV oracle",
+      "status": "PASS2160_CASES_1_LIVE_OPAQUE_QUAD",
+      "evidence": "out/pc-visual/v155/ground-UV-original-check.json"
+    },
+    {
+      "name": "144 original ground image pixels and wrap gutters",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v156/palette-source-check.json"
+    },
+    {
+      "name": "original ground normal prefixes",
+      "status": "PASS24_DRAWS_504_VERTICES_SOURCE_ONLY",
+      "evidence": "out/pc-visual/v156/ground-normal-source-check.json"
+    },
+    {
+      "name": "map-picking-save host regression",
+      "status": "PASS553985",
+      "evidence": "out/pc-visual/v156/map-cpu.txt"
+    },
+    {
+      "name": "frame admission host regression",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v156/frame-admission.txt"
+    },
+    {
+      "name": "installed1650x1050 PC-camera normal207Sep scene",
+      "status": "PASS47",
+      "evidence": "out/pc-visual/v156/reference-report.txt"
+    },
+    {
+      "name": "installed3regions12seasonviews/far/pause/resource-release",
+      "status": "PASS919",
+      "evidence": "out/pc-visual/v156/scenery-report.txt"
+    },
+    {
+      "name": "normal3sieges with source UV ground",
+      "status": "PASS223",
+      "evidence": "out/pc-visual/v156/sieges-report.txt"
+    },
+    {
+      "name": "user-auto-after-scenery.sg11",
+      "status": "PASS_EXACT_USER_SAVE_BYTES",
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+      "bytes": 168846
+    },
+    {
+      "name": "user-auto-after-sieges.sg11",
+      "status": "PASS_EXACT_USER_SAVE_BYTES",
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+      "bytes": 168846
+    },
+    {
+      "name": "repeat original144 palette conversion",
+      "status": "PASS_BYTE_IDENTICAL",
+      "evidence": "out/pc-visual/v156/palette-repro-check.json"
+    },
+    {
+      "name": "actual original24ground pass RGBA/render state",
+      "status": "PASS_SOURCE_ONLY",
+      "evidence": "out/pc-visual/v156/ground-passes-source-check.json"
+    },
+    {
+      "name": "Original PC installation1805files unchanged",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v156/source-install-integrity.json"
+    },
+    {
+      "name": "same managed-texture-capture source quantized normals",
+      "status": "PASS25_DRAWS_525_VERTICES_SOURCE_ONLY",
+      "evidence": "out/pc-visual/v156/ground-normal-texture-capture-check.json"
+    },
+    {
+      "name": "staged7originalgroundpass textures",
+      "status": "PASS_SOURCE_ONLY_NOT_INSTALLED",
+      "normal_vertices": 1050625,
+      "rgba_images": 6,
+      "evidence": "out/pc-visual/v156/ground-staging-pixel-check.json"
+    },
+    {
+      "name": "actualPCwinter24groundpassRGBA/states",
+      "status": "PASS_SOURCE_ONLY",
+      "evidence": "out/pc-visual/v156/ground-passes-winter-source-check.json"
+    },
+    {
+      "name": "originalrenderthread x87/MXCSR read-only",
+      "status": "OBSERVED0x007f_24BIT",
+      "evidence": "out/pc-visual/v156/source-fpu-observation.json"
+    },
+    {
+      "name": "source24originalSENV/live autumn/winter",
+      "status": "PASS74_INCLUDING2_ACTUAL_CAMERA_FIELDS",
+      "evidence": "out/pc-visual/v156/source24-live-environment-check.json"
+    },
+    {
+      "name": "historical72SENV regression unchanged default mode",
+      "status": "PASS72",
+      "evidence": "out/pc-visual/v156/historical72-environment-check.json"
+    },
+    {
+      "name": "repeat7groundpass PNG conversion",
+      "status": "PASS_BYTE_IDENTICAL_NOT_INSTALLED",
+      "evidence": "out/pc-visual/v156/ground-pass-staging-repro.json"
+    }
+  ],
+  "failures_retained": [
+    {
+      "name": "ARM matc on x86 host",
+      "evidence": "out/pc-visual/v156/material-build.txt",
+      "resolution": "Correct local x86 matc56 compiler; material rebuilt before installedAPK"
+    },
+    {
+      "name": "MP4 pulled before recording finalization",
+      "evidence": "out/pc-visual/v156/reference-video-check.txt",
+      "resolution": "Recorder completion awaited; repulled completed file passes metadata and decoded-frame checks. Initial incomplete pulled copy retained."
+    },
+    {
+      "name": "RGB-only candidate WFTX parser rejects4804",
+      "evidence": "out/pc-visual/v156/source-textures-inspect.txt",
+      "resolution": "Strict existing WFTX palette/mip/alpha decoder: all30 textures decoded,24ground sourceRGBA/state passes verified; old failure retained"
+    },
+    {
+      "name": "LivePC fog expected with default extended precision",
+      "evidence": "out/pc-visual/v156/source-live-season-fog-check.txt",
+      "resolution": "Observed actual render thread x87 control0x007f; original VM executes same24bit mode, all2live fields exact"
+    },
+    {
+      "name": "Source24 check retained old density-product arithmetic",
+      "evidence": "out/pc-visual/v156/source24-live-environment-check.txt",
+      "resolution": "Use source24 multiplication rounding before truncation; assertions remain exact, corrected74pass and historical72pass"
+    },
+    {
+      "name": "PC video checked before encoder completion",
+      "evidence": "out/pc-visual/v156/pc-endturn-video-check.txt",
+      "resolution": "Awaited encoder completion; finalized container31samples passes"
+    }
+  ],
+  "limits": [
+    "Original terrain normals verified from PC but Android still generated/PBR: source painting/fog/outline pipeline not restored",
+    "Visible PC comparison still differs in lighting, fog, shoreline, city flags and authored scenario objects",
+    "Ground fragment sample diagnostic is legacy count and does not describe source ground shader",
+    "Complete combat/stratagem/critical/fullscreen source effects still incomplete",
+    "Only x86 emulator, no ARM physical-device performance evidence"
+  ],
+  "video": {
+    "metadata": "out/pc-visual/v156/reference-video-metadata.json",
+    "decoded": "out/pc-visual/v156/reference-video-decoded/decoded-frames.json",
+    "recorded_size": [
+      1080,
+      1920
+    ],
+    "map_capture_size": [
+      1650,
+      1050
+    ],
+    "PC_match_accepted": false
+  },
+  "sieges_video": {
+    "metadata": "out/pc-visual/v156/sieges-video-metadata.json",
+    "screenshots": "out/pc-visual/v156/siege-evidence/manifest.json",
+    "PC_match_accepted": false,
+    "decoded_frames": "out/pc-visual/v156/sieges-video-decoded/decoded-frames.json",
+    "duration_seconds": 120.35926666666667,
+    "samples": 1315,
+    "limits": [
+      "Actual70second decoded frame shows normal gate attacker/壶关; full command timing has not yet been indexed against PC",
+      "Original damage geometry transitions pass independently; complete source battle effects not restored"
+    ]
+  },
+  "source_snapshot": "out/pc-visual/v156/source-snapshot-manifest.json",
+  "source_texture_capture": {
+    "draw_capture": "out/pc-visual/v156/pc-reference/source-xinye-texture-state-draw.bin",
+    "draws": 222,
+    "textures_capture": "out/pc-visual/v156/pc-reference/source-xinye-managed-textures.bin",
+    "textures": 30,
+    "pixels_readable": 30,
+    "manifest": "out/pc-visual/v156/source-managed-textures/manifest.json",
+    "ground_paint": "source4800..4803 image35 fullRGBA5..189 alpha",
+    "outline": "source4807 image0 fullRGBA alpha165",
+    "grid": "source4804 image1 fullRGBA alpha0..153",
+    "source_camera_sha256": "a7d71f6c5d188daf5f247291a3ff6b4153c87effd59f4c827635fac445a2c36e",
+    "limits": [
+      "Actual normal207Sep source reload; PC camera unchanged; Android ground passes not yet replaced"
+    ]
+  },
+  "pc_normal_endturn": {
+    "request": "out/pc-visual/v156/pc-reference/source-v156-normal-endturn-request-2ad7593b41e5.png",
+    "normal_command_result": "Three normal PC end-strategy confirmations: September1 ->11 ->21 ->October1 winter; original geometry camera bytes unchanged, trailing SENV fog fields change",
+    "followup_frames": 31,
+    "followup_video": "out/pc-visual/v156/pc-reference/source-endturn-followup.mp4",
+    "metadata": "out/pc-visual/v156/pc-endturn-video-metadata.json",
+    "limits": [
+      "Sampled10second follow-up after first command; no full command movie or native timing/FPS acceptance"
+    ]
+  },
+  "next_ground_pass_staging": "out/pc-visual/v157/ground-staging/ground-passes-source.json",
+  "winter_reference": {
+    "image": "out/pc-visual/v156/pc-reference/source-v156-october-first-check-8c8ff21cd08a.png",
+    "date": "207-10-01",
+    "original_UI_season": "winter",
+    "camera_compare": "out/pc-visual/v156/pc-season-camera-512-diff.json",
+    "geometry_matrices_unchanged": true,
+    "changed_fields": [
+      "0x1d0 fog start",
+      "0x1d8 fog density/color",
+      "0x1dc color/renderer byte"
+    ],
+    "source_draws": 220,
+    "source_textures": 33,
+    "all_textures_readable": true,
+    "source_RGBA_state_check": "out/pc-visual/v156/ground-passes-winter-source-check.json",
+    "android_samewinter_camera_check": "pending"
+  }
+}

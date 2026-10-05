@@ -1,0 +1,282 @@
+[
+  {
+    "path": "baseline-fixture/clear.txt",
+    "bytes": 8,
+    "sha256": "7fc0023a6402c7bd7abd98bb3e580968de4833eed07d88d1cc8d70819d69c7a0"
+  },
+  {
+    "path": "baseline-fixture/feedback121.mp4",
+    "bytes": 6470430,
+    "sha256": "e86308683e8d295e07e13d6bd920423c40c1b8c133e46ae36ee26ebfd1cc9472"
+  },
+  {
+    "path": "baseline-fixture/gfxinfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "baseline-fixture/images/baseline-fixture-gridfalse-owner-frames.csv",
+    "bytes": 2810,
+    "sha256": "b8a4b341d74e92e74f7de270dd249d139dac9e96bf75e64768bbe584cd3c5648"
+  },
+  {
+    "path": "baseline-fixture/images/baseline-fixture-gridtrue-owner-frames.csv",
+    "bytes": 2085,
+    "sha256": "eae0eb023229ff5f1238ea49add0416ab54e2304bd8ddc0fc9c04b422ca3b360"
+  },
+  {
+    "path": "baseline-fixture/images/baseline-fixture-span6-yaw0-gridfalse-surface.png",
+    "bytes": 1064957,
+    "sha256": "0ab22fe519f34caac691ed409637d21c1c31506c494f3f33d0e6fa2e7c0ef3fa"
+  },
+  {
+    "path": "baseline-fixture/images/baseline-fixture-span6-yaw0-gridfalse-ui.png",
+    "bytes": 695483,
+    "sha256": "d709669298ee300c4f8a278ac4707c5cac1ddede57203045b027ea5422843794"
+  },
+  {
+    "path": "baseline-fixture/images/baseline-fixture-span6-yaw0-gridtrue-surface.png",
+    "bytes": 1065312,
+    "sha256": "d5575777a9ce84f7880ea4733c2f5ae74b6b89f5ba7514e3d170d39ba9fe55be"
+  },
+  {
+    "path": "baseline-fixture/images/baseline-fixture-span6-yaw0-gridtrue-ui.png",
+    "bytes": 718654,
+    "sha256": "b34bf532fb3fe1620f8573cace4f6631957c3f86b3164dfdc4878144df38b13c"
+  },
+  {
+    "path": "baseline-fixture/images/expected.sg11",
+    "bytes": 2541,
+    "sha256": "ef65ee2383b367142a2f03ac8a0afe30d596859a5a5b806d52f0d60bfc88213f"
+  },
+  {
+    "path": "baseline-fixture/images/feedback121.txt",
+    "bytes": 10424,
+    "sha256": "49d43c0bde1eacfcca437ceb690fbec601066397c2791706781f6aaf7a11f895"
+  },
+  {
+    "path": "baseline-fixture/images/observed.sg11",
+    "bytes": 2541,
+    "sha256": "ef65ee2383b367142a2f03ac8a0afe30d596859a5a5b806d52f0d60bfc88213f"
+  },
+  {
+    "path": "baseline-fixture/images/surface.png",
+    "bytes": 1065312,
+    "sha256": "d5575777a9ce84f7880ea4733c2f5ae74b6b89f5ba7514e3d170d39ba9fe55be"
+  },
+  {
+    "path": "baseline-fixture/instrumentation.txt",
+    "bytes": 46,
+    "sha256": "aac7e2663f2f5724cd578503473deb02887d4fb22eeb4741963486925500b0eb"
+  },
+  {
+    "path": "baseline-fixture/logcat.txt",
+    "bytes": 431005,
+    "sha256": "beeede23ae833b0b0391a249097eace9481286dd6a678061dbc7590d9719b64c"
+  },
+  {
+    "path": "baseline-fixture/meminfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "baseline-fixture/process.exit",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  {
+    "path": "baseline-fixture/record.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "baseline-install.txt",
+    "bytes": 72,
+    "sha256": "50daa2ba76a5c9784728abf9461823bc72d3c4835986fc7ba7cdd96abebea397"
+  },
+  {
+    "path": "baseline-installed.apk",
+    "bytes": 37403422,
+    "sha256": "172a482f76d4dc7300403d692a9085c0545b82784076ae8ca17f479d6a78b30c"
+  },
+  {
+    "path": "baseline-installed.sha256",
+    "bytes": 113,
+    "sha256": "b48061330d4d703df67b745a935863f71b4e46fdb163cf1e7bb46b223f02b0b8"
+  },
+  {
+    "path": "baseline-national/clear.txt",
+    "bytes": 8,
+    "sha256": "7fc0023a6402c7bd7abd98bb3e580968de4833eed07d88d1cc8d70819d69c7a0"
+  },
+  {
+    "path": "baseline-national/feedback121.mp4",
+    "bytes": 10754709,
+    "sha256": "2b8d52e8804090e95b853fb48765746bb2542b25da56cea7c37277616ba0acd4"
+  },
+  {
+    "path": "baseline-national/gfxinfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "baseline-national/images/baseline-national-failed.png",
+    "bytes": 691192,
+    "sha256": "cd85867d39197adaa31ff5e31de745a77aa0fde886ec5b36ce7a7915ea94e960"
+  },
+  {
+    "path": "baseline-national/images/feedback121.txt",
+    "bytes": 5298,
+    "sha256": "55e0e027bf69b2a024b01dfa0dc3072b65fdd03aa40dcca226f619c59046b6cd"
+  },
+  {
+    "path": "baseline-national/instrumentation.txt",
+    "bytes": 2819,
+    "sha256": "67ef1160d8a80afcfa770a2404779d8873719b1ee32302eafa8988cbc675bf8c"
+  },
+  {
+    "path": "baseline-national/logcat.txt",
+    "bytes": 227825,
+    "sha256": "cbc1e59f720e4f98c6443256dd3a393147e271ad7ba53c223b00af7d3ad39c34"
+  },
+  {
+    "path": "baseline-national/meminfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "baseline-national/process.exit",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  {
+    "path": "baseline-national/record.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "candidate-fixture/clear.txt",
+    "bytes": 8,
+    "sha256": "7fc0023a6402c7bd7abd98bb3e580968de4833eed07d88d1cc8d70819d69c7a0"
+  },
+  {
+    "path": "candidate-fixture/feedback121.mp4",
+    "bytes": 7694032,
+    "sha256": "d09b1681974b3684aeff0772262f54de99a5be6533bf06d259c1cd6ac3d6b8d8"
+  },
+  {
+    "path": "candidate-fixture/gfxinfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "candidate-fixture/images/candidate-fixture-failed.png",
+    "bytes": 568124,
+    "sha256": "0293f332511d33054d7d5902d998c0830d357652df0760e86eafadd29bbfe93f"
+  },
+  {
+    "path": "candidate-fixture/images/feedback121.txt",
+    "bytes": 5412,
+    "sha256": "c66958c1c9c6cb6c8fb7b324be8ecd372ed06a9ab200b9b7e38134d2ffd7fafe"
+  },
+  {
+    "path": "candidate-fixture/instrumentation.txt",
+    "bytes": 2876,
+    "sha256": "649634dc62173f5547e92e10c6fa5160d579309d30198f1dd9e1ac7d769e292f"
+  },
+  {
+    "path": "candidate-fixture/logcat.txt",
+    "bytes": 249267,
+    "sha256": "991d562cb373c64643f428dd665d7e561c02ff448608d9c02228548668b63a66"
+  },
+  {
+    "path": "candidate-fixture/meminfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "candidate-fixture/process.exit",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  {
+    "path": "candidate-fixture/record.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "candidate-install.txt",
+    "bytes": 72,
+    "sha256": "50daa2ba76a5c9784728abf9461823bc72d3c4835986fc7ba7cdd96abebea397"
+  },
+  {
+    "path": "candidate-installed.apk",
+    "bytes": 37551483,
+    "sha256": "06ebe774afffb7f3022ec9ae6a6d2f191fdb6dbff814935e2e001aa5fbbaf4d1"
+  },
+  {
+    "path": "candidate-installed.sha256",
+    "bytes": 114,
+    "sha256": "c4c482cd9c72fbeb02ddc264eaa721090433336599be99c9946515f6972c7e7d"
+  },
+  {
+    "path": "candidate-national/clear.txt",
+    "bytes": 8,
+    "sha256": "7fc0023a6402c7bd7abd98bb3e580968de4833eed07d88d1cc8d70819d69c7a0"
+  },
+  {
+    "path": "candidate-national/feedback121.mp4",
+    "bytes": 10232917,
+    "sha256": "0d3d49b40159237423019bf9c98ad5e42861861794d58593649752dd69d3cecf"
+  },
+  {
+    "path": "candidate-national/gfxinfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "candidate-national/images/candidate-national-failed.png",
+    "bytes": 688343,
+    "sha256": "0dbd8b5c723b174ceece3cc4d35303fce17538f9be72b371dafab0223c118611"
+  },
+  {
+    "path": "candidate-national/images/feedback121.txt",
+    "bytes": 5418,
+    "sha256": "cb0c684f5f96ae1eb5a4b54bcb68f42b3e59d585e2a6d959dd13b50965503a81"
+  },
+  {
+    "path": "candidate-national/instrumentation.txt",
+    "bytes": 2879,
+    "sha256": "ec0622c7805d7fd1fcf54b2b00110d7054dd1fc64121689e31493af238b8ae07"
+  },
+  {
+    "path": "candidate-national/logcat.txt",
+    "bytes": 240353,
+    "sha256": "9b3382e8971ded014a32116d1efd85cad3e86eda04b727671964ff16e7c918ef"
+  },
+  {
+    "path": "candidate-national/meminfo.txt",
+    "bytes": 45,
+    "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+  },
+  {
+    "path": "candidate-national/process.exit",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  {
+    "path": "candidate-national/record.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "device.txt",
+    "bytes": 12031,
+    "sha256": "e706c01aa9e41c9e94e298f7ea90e4d7f99a9e0f43e4ca51ed02292c5a00250d"
+  },
+  {
+    "path": "driver.txt",
+    "bytes": 38944,
+    "sha256": "bec45581a96eaf9be2b77785ab88662a5314323ffe9bc4519a8dceb9d090f263"
+  }
+]

@@ -65,7 +65,7 @@ public final class WorldEvents {
     public World.Result attack(int unit,int camp){w.reports.prepare();
         String error=attackError(unit,camp);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Camp c=camp(camp);u.acted=true;
         int hit=Math.min(c.troops,300+w.army.war(u)*6+u.troops/12);c.troops-=hit;
-        w.battleImpact(c.hex,c.troops==0);int counter=0;if(c.troops==0){camps.remove(c);u.gold=Math.min(10000,u.gold+500);w.campaign.earn(u.owner,50);w.government.earn(u.officerId,200);}
+        w.battleImpact(c.hex,c.troops==0);int counter=0;if(c.troops==0){camps.remove(c);u.gold=Math.min(10000,u.gold+500);w.campaign.earn(u.owner,50,TechniquePointsJournal.Cause.BANDIT_DEFEAT,-1,u.officerId);w.government.earn(u.officerId,200);}
         else if(u.hex.distance(c.hex)==1){counter=Math.min(u.troops,100+c.troops/15);w.combatEffects.hit(null,u,counter,false,false);}
         return w.success("讨伐"+c.tribe.label+"：敌损"+hit+"，反击损失"+counter+(c.troops==0?"，营寨已毁，获得500金（受携金上限限制）":""));
     }
@@ -77,7 +77,7 @@ public final class WorldEvents {
             World.City c=w.city(h.city);if(c.owner<0){hazards.remove(c.id);continue;}
             c.order=Math.max(0,c.order-3);
             if(h.kind==Disaster.LOCUST){c.food-=c.food/10;if(nextInt(100)<20)destroyFacility(c.id,Domestic.Kind.FARM);}
-            else {c.troops-=c.troops/10;List<World.Officer> people=new ArrayList<>();for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!w.government.captive(o.id)&&!w.skills.has(o,Skill.QIANGYUN))people.add(o);if(!people.isEmpty()&&nextInt(100)<20){World.Officer o=people.get(nextInt(people.size()));w.contests.injuries.put(o.id,new Contests.Injury(Math.min(3,w.contests.injury(o.id)+1),w.turn+3));}}
+            else {c.troops-=c.troops/10;List<World.Officer> people=new ArrayList<>();for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!w.government.captive(o.id)&&!w.skills.has(o,Skill.QIANGYUN))people.add(o);if(!people.isEmpty()&&nextInt(100)<20){World.Officer o=people.get(nextInt(people.size()));w.contests.injuries.put(o.id,new Contests.Injury(Math.min(3,w.contests.injury(o.id)+1),w.turn+3));w.officerAbilities.refresh(o);}}
         }
         for(Camp camp:new ArrayList<>(camps)){
             World.City c=w.city(camp.city);if(c.owner<0)continue;
@@ -94,7 +94,7 @@ public final class WorldEvents {
             if((month-1)%3==0){
                 if(nextInt(100)<4)beginDisaster(c.id,Disaster.PLAGUE);
                 if(month!=10&&nextInt(100)<4)beginDisaster(c.id,Disaster.LOCUST);
-                if(month==7&&nextInt(100)<harvestChance(c.id)){int food=w.domestic.foodIncome(c.id,w.turn);c.food=Math.min(w.campaign.foodCap(c),c.food+food);w.note(c.name+"丰收，增加"+food+"粮（受容量限制）");}
+                if(month==7&&nextInt(100)<harvestChance(c.id)){int food=w.domestic.foodIncome(c.id,w.turn);c.food=Math.min(w.campaign.foodCap(c),c.food+food);w.merchantMarket.harvest(c);w.note(c.name+"丰收，增加"+food+"粮（受容量限制）");}
             }
         }
     }

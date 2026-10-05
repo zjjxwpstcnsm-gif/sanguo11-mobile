@@ -1,0 +1,140 @@
+{
+  "goal_complete": false,
+  "apks": {
+    "apks": [
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/apks/app-debug.apk",
+        "bytes": 87030395,
+        "sha256": "d0187e6330cebc4d16eadc3264338f01cc0b907588192b7c9bdfd294fa692dd3"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/apks/app-debug-androidTest.apk",
+        "bytes": 740592,
+        "sha256": "ac804a8ae85027c302dd3333d1d1ba108c7020a370e7b7414e61bcef7f7e0f08"
+      }
+    ],
+    "pinned_resources": 168,
+    "native_inputs": 4,
+    "rank_resource_exact": true,
+    "all_exact": true
+  },
+  "ui": {
+    "suite": "opening",
+    "checks": 62,
+    "seconds": 87.99,
+    "results": "out/parity/officer-state-20261003/growth-settings/installed-opening/results.json",
+    "restoration": {
+      "all_original_files_byte_equal": true,
+      "mismatches": [],
+      "added_files": [],
+      "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    "artifacts": [
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/01-menu.png",
+        "bytes": 199446,
+        "sha256": "8888382be4ae2acc1efc1715771a6f533f60dad2be5102fa2aced1068d9b9528"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/02-overwrite-confirm.png",
+        "bytes": 224638,
+        "sha256": "7263503fb9ec1e83fcc87cadd4bac72a468ae310924c27748788338ced5220a4"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/03-settings.png",
+        "bytes": 175557,
+        "sha256": "fef0a6e0acce586760d085abdf9c7b7ad38aaa579abd94a6854a059aede50758"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/04-scenarios.png",
+        "bytes": 183931,
+        "sha256": "d1446a46a0e796502c7ff7bcbf509ae41222fbf530a57d21f53300fdcf8f5cdb"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/05-factions-portrait.png",
+        "bytes": 940096,
+        "sha256": "7e507804c10a874875c77902393d3833f5cd7e45a556beb04e7464431f777ea6"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/06-factions-landscape.png",
+        "bytes": 647497,
+        "sha256": "8c371e8781b11b37bf260c18ecf4e6d676f654f4844647b3441cf5513b74b02d"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/07-new-confirm.png",
+        "bytes": 431876,
+        "sha256": "511c232b2b41e1fcfa9253a2b18f3fce78b15391f7868003803c7d37c3bd59a0"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/08-new-map.png",
+        "bytes": 1702535,
+        "sha256": "1fd986f1352d20daacc73fb765c63a6fbf6aac214e8ce337213eabf0f2f33311"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/08b-native-preview.png",
+        "bytes": 797207,
+        "sha256": "24f6c0ab0b709e27cd102bbb28d0eabef61bf8c41d56fa178d94f44e415b38d4"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/09-loaded-map.png",
+        "bytes": 1149589,
+        "sha256": "80b89a46410657c3f5bd432d7833bac3a5677d9d755a900a2dfb95e818dd8ba5"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/progress.txt",
+        "bytes": 4352,
+        "sha256": "1c7402f9a63d80553ef6908e404ae312a865ff226bbc2b950f9c95e1129ef7c0"
+      },
+      {
+        "path": "out/parity/officer-state-20261003/growth-settings/installed-opening/evidence/result.txt",
+        "bytes": 4372,
+        "sha256": "11215e02c90c4a743e5eecaa51077094b2161c85bef15bc96de236acb7a12d28"
+      }
+    ]
+  },
+  "android_art": {
+    "passed": true,
+    "serial": "emulator-5554",
+    "apk_sha256": "d0187e6330cebc4d16eadc3264338f01cc0b907588192b7c9bdfd294fa692dd3",
+    "class_sources": {
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest$1.class": "0b88e888325319f46279de98a46eb835408bf5779fb330dced084123745a3222",
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest.class": "deee925a1709c219aa4409350f8f529525923656613d9e8878aff4d1824798bf",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantArithmeticTest.class": "13a0b023491ef8f469d15becb8609d920ed3781c6746a5b1c327a1c3b44a96ba",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantMeritTest.class": "db632dfc4abd562cdfef1af3f6a46aaf52790790a8772418d35c8fece7d2c4e2",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerAbilityArithmeticTest.class": "1532585abec9d609d16ca4fb7fe227676dfe86839edcd356e191d37afd3e1efd",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerRankTest.class": "e10eeff7c9058d13383f0722e28d3a96aefc8169b938b248658235a721e93863",
+      "core/build/classes/java/test/game/sanguo/core/TradePlanTest.class": "42a5eb2ddcb91ea4f50e5c261440b1e7d1ff86e62cda6e2c9ff49bcc276b9ad1"
+    },
+    "scope": "Installed APK production classes in ART; ordinary commands and generated worlds, not UI taps",
+    "results": [
+      {
+        "suite": "PcMerchantMeritTest",
+        "seconds": 1.66,
+        "output": "PASS PcMerchantMeritTest checks=421\n"
+      },
+      {
+        "suite": "PcMerchantArithmeticTest",
+        "seconds": 0.28,
+        "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+      },
+      {
+        "suite": "PcOfficerAbilityArithmeticTest",
+        "seconds": 0.28,
+        "output": "PASS PcOfficerAbilityArithmeticTest rows=4813 date_rows=1040 date_checks=3120 (arithmetic only; officer persistence/integration pending)\n"
+      },
+      {
+        "suite": "PcOfficerRankTest",
+        "seconds": 3.5,
+        "output": "PASS PcOfficerRankTest checks=2244 native=81 legacy=80 (title gate/unassigned payroll parity pending)\n"
+      }
+    ],
+    "probe_sha256": "c73b74bfd223a1be937fa6204d8feae22d16418015a4492672a6e44e49387306",
+    "rules_passed": true,
+    "user_files_unchanged": true,
+    "post_apk_readback_bytes": 87030395,
+    "post_apk_readback_sha256": "d0187e6330cebc4d16eadc3264338f01cc0b907588192b7c9bdfd294fa692dd3",
+    "installed_apk_unchanged": true
+  },
+  "scope": "API29 x86_64 emulator; date/ability arithmetic is not officer gameplay persistence; no ARM physical-device or complete parity claim",
+  "ui_delta_base": "13ff5b9bfc44015e5f45a4a2cefa84fee4b1e4c4"
+}

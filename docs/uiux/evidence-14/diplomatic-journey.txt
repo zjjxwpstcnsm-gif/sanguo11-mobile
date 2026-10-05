@@ -1,0 +1,193 @@
+UIUX PASS 189 checks
+PASS normal launch restores existing save
+PASS diplomatic journey starts from preserved campaign
+PASS normal campaign offers short goodwill route from authority preview: 1 turns
+PASS GOODWILL is allowed by current authoritative preview
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 外交 at Rect(813, 830 - 965, 956)
+PASS touch visible 外交 / 协定 at Rect(53, 1283 - 1027, 1409)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS actual paste enters Chinese search
+PASS touch visible 董卓军 · 交战 · 关系 0 at Rect(74, 733 - 1005, 901)
+PASS touch visible 亲善 at Rect(42, 420 - 1037, 546)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS actual actor search locates intended envoy
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS GOODWILL review does not change RNG or authority
+PASS touch visible 返回修改 at Rect(627, 1238 - 837, 1364)
+PASS GOODWILL returns to retained actor
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible 执行 at Rect(837, 1238 - 1005, 1364)
+PASS GOODWILL commits once at exact preview cost
+PASS GOODWILL dispatches actual envoy to intended faction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn progresses goodwill journey exactly once
+PASS actual goodwill arrival raises relation enough for alliance
+PASS goodwill mission reaches interaction stage through real next turns
+PASS ALLIANCE is allowed by current authoritative preview
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 965 - 901, 1091)
+PASS touch visible 外交 at Rect(813, 817 - 965, 943)
+PASS touch visible 外交 / 协定 at Rect(53, 1270 - 1027, 1396)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS actual paste enters Chinese search
+PASS touch visible 董卓军 · 交战 · 关系 24 at Rect(74, 733 - 1005, 901)
+PASS touch visible 同盟 at Rect(42, 672 - 1037, 798)
+PASS touch visible 6旬 at Rect(373, 840 - 705, 987)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS actual actor search locates intended envoy
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS ALLIANCE review does not change RNG or authority
+PASS touch visible 返回修改 at Rect(627, 1299 - 837, 1425)
+PASS ALLIANCE returns to retained actor
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible 执行 at Rect(837, 1299 - 1005, 1425)
+PASS ALLIANCE commits once at exact preview cost
+PASS ALLIANCE dispatches actual envoy to intended faction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn progresses alliance journey exactly once
+PASS alliance envoy reaches actual arrival and receives authoritative outcome
+PASS ALLIANCE is allowed by current authoritative preview
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 965 - 901, 1091)
+PASS touch visible 外交 at Rect(813, 817 - 965, 943)
+PASS touch visible 外交 / 协定 at Rect(53, 1270 - 1027, 1396)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS actual paste enters Chinese search
+PASS touch visible 董卓军 · 交战 · 关系 24 at Rect(74, 733 - 1005, 901)
+PASS touch visible 同盟 at Rect(42, 672 - 1037, 798)
+PASS touch visible 6旬 at Rect(373, 840 - 705, 987)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS actual actor search locates intended envoy
+PASS touch visible LinearLayout at Rect(42, 861 - 1037, 998)
+PASS ALLIANCE review does not change RNG or authority
+PASS touch visible 返回修改 at Rect(627, 1299 - 837, 1425)
+PASS ALLIANCE returns to retained actor
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible 执行 at Rect(837, 1299 - 1005, 1425)
+PASS ALLIANCE commits once at exact preview cost
+PASS ALLIANCE dispatches actual envoy to intended faction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn progresses alliance journey exactly once
+PASS alliance envoy reaches actual arrival and receives authoritative outcome
+PASS ALLIANCE is allowed by current authoritative preview
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 965 - 901, 1091)
+PASS touch visible 外交 at Rect(813, 817 - 965, 943)
+PASS touch visible 外交 / 协定 at Rect(53, 1270 - 1027, 1396)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS actual paste enters Chinese search
+PASS touch visible 董卓军 · 交战 · 关系 24 at Rect(74, 733 - 1005, 901)
+PASS touch visible 同盟 at Rect(42, 672 - 1037, 798)
+PASS touch visible 6旬 at Rect(373, 840 - 705, 987)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS actual actor search locates intended envoy
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS ALLIANCE review does not change RNG or authority
+PASS touch visible 返回修改 at Rect(627, 1299 - 837, 1425)
+PASS ALLIANCE returns to retained actor
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible 执行 at Rect(837, 1299 - 1005, 1425)
+PASS ALLIANCE commits once at exact preview cost
+PASS ALLIANCE dispatches actual envoy to intended faction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn progresses alliance journey exactly once
+PASS alliance envoy reaches actual arrival and receives authoritative outcome
+PASS a real alliance was accepted before exercising treaty removal
+PASS BREAK_TREATY is allowed by current authoritative preview
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 965 - 901, 1091)
+PASS touch visible 外交 at Rect(813, 817 - 965, 943)
+PASS touch visible 外交 / 协定 at Rect(53, 1270 - 1027, 1396)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS actual paste enters Chinese search
+PASS touch visible 董卓军 · 同盟 · 剩6旬 · 关系 34 at Rect(74, 733 - 1005, 901)
+PASS touch visible 解除协定 at Rect(42, 798 - 1037, 924)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS actual actor search locates intended envoy
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS BREAK_TREATY review does not change RNG or authority
+PASS touch visible 返回修改 at Rect(627, 1177 - 837, 1303)
+PASS BREAK_TREATY returns to retained actor
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible 执行 at Rect(837, 1177 - 1005, 1303)
+PASS BREAK_TREATY commits once at exact preview cost
+PASS immediate treaty removal matches authority relationship forecast
+PASS real break-treaty command removes the accepted agreement
+PASS CEASEFIRE is allowed by current authoritative preview
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 888 - 901, 1014)
+PASS touch visible 外交 at Rect(813, 790 - 965, 916)
+PASS touch visible 外交 / 协定 at Rect(53, 1243 - 1027, 1320)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS actual paste enters Chinese search
+PASS touch visible 董卓军 · 交战 · 关系 -16 at Rect(74, 733 - 1005, 901)
+PASS touch visible 停战 at Rect(42, 546 - 1037, 672)
+PASS touch visible 3旬 at Rect(42, 840 - 373, 987)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS actual actor search locates intended envoy
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS CEASEFIRE review does not change RNG or authority
+PASS touch visible 返回修改 at Rect(627, 1299 - 837, 1425)
+PASS CEASEFIRE returns to retained actor
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible 执行 at Rect(837, 1299 - 1005, 1425)
+PASS CEASEFIRE commits once at exact preview cost
+PASS CEASEFIRE dispatches actual envoy to intended faction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn progresses ceasefire journey exactly once
+PASS ceasefire envoy reaches authoritative arrival outcome
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 795 - 1027, 921)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores campaign between city command paths
+PASS diplomatic journey restores original resources treaties tasks and RNG
+

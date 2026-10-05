@@ -1,0 +1,22 @@
+{
+  "api29/baseline": {
+    "exit": 0,
+    "result": "{\n    \"format\": {\n        \"duration\": \"177.165600\",\n        \"size\": \"8948597\"\n    }\n}\n",
+    "error": ""
+  },
+  "api29/candidate": {
+    "exit": 0,
+    "result": "{\n    \"format\": {\n        \"duration\": \"145.774122\",\n        \"size\": \"8747809\"\n    }\n}\n",
+    "error": ""
+  },
+  "api35/baseline": {
+    "exit": 0,
+    "result": "{\n    \"format\": {\n        \"duration\": \"130.979789\",\n        \"size\": \"2729870\"\n    }\n}\n",
+    "error": ""
+  },
+  "api35/candidate": {
+    "exit": 0,
+    "result": "{\n    \"format\": {\n        \"duration\": \"131.058500\",\n        \"size\": \"2729016\"\n    }\n}\n",
+    "error": ""
+  }
+}

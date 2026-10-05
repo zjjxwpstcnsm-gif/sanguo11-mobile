@@ -1,0 +1,12 @@
+{
+  "sourceReportSha256": "3a9c4a04579ec405a13b02bb193fae2a721c06fc4b64af4cd1b5abf296f523ae",
+  "twoRunsByteEqual": true,
+  "checks": 548,
+  "outputPaths": [
+    "out/media/infantry-sound-source-29/native-final.json",
+    "out/media/infantry-sound-source-29/native-repro.json"
+  ],
+  "firstFailureLog": "out/media/infantry-sound-source-29-first.log",
+  "ruleAndRngEntryForbidden": true,
+  "normalAndroidOrVoiceClaim": false
+}

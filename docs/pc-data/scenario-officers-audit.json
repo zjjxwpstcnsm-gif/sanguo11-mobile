@@ -1,0 +1,1930 @@
+{
+  "schema": 1,
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "catalog_sha256": "eaa1a7a6f456ac0d0351e3f69f86b5a72b7bdd11848b85f1ada30c9eab03ce17",
+  "scope": "850 native actor slots x 16 installed scenarios; not full scenario import",
+  "serializer": {
+    "start": "48b775",
+    "stop": "48bb28",
+    "source_type": 22,
+    "bytes": 152,
+    "sha256": "7b5876e6592c1ff95bac43b3dd14ed597b2f285b258a76204d7fb0e859e7ff7c",
+    "io_reads": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        16,
+        1
+      ],
+      [
+        17,
+        1
+      ],
+      [
+        18,
+        1
+      ],
+      [
+        19,
+        1
+      ],
+      [
+        20,
+        1
+      ],
+      [
+        21,
+        1
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        24,
+        1
+      ],
+      [
+        25,
+        1
+      ],
+      [
+        26,
+        1
+      ],
+      [
+        27,
+        1
+      ],
+      [
+        28,
+        1
+      ],
+      [
+        29,
+        1
+      ],
+      [
+        30,
+        1
+      ],
+      [
+        31,
+        1
+      ],
+      [
+        32,
+        1
+      ],
+      [
+        33,
+        1
+      ],
+      [
+        34,
+        1
+      ],
+      [
+        35,
+        1
+      ],
+      [
+        36,
+        1
+      ],
+      [
+        37,
+        1
+      ],
+      [
+        38,
+        1
+      ],
+      [
+        39,
+        1
+      ],
+      [
+        40,
+        1
+      ],
+      [
+        41,
+        1
+      ],
+      [
+        42,
+        1
+      ],
+      [
+        43,
+        1
+      ],
+      [
+        44,
+        1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        47,
+        1
+      ],
+      [
+        48,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        50,
+        1
+      ],
+      [
+        51,
+        1
+      ],
+      [
+        52,
+        1
+      ],
+      [
+        53,
+        2
+      ],
+      [
+        55,
+        1
+      ],
+      [
+        56,
+        2
+      ],
+      [
+        58,
+        2
+      ],
+      [
+        60,
+        2
+      ],
+      [
+        62,
+        1
+      ],
+      [
+        63,
+        2
+      ],
+      [
+        65,
+        2
+      ],
+      [
+        67,
+        2
+      ],
+      [
+        69,
+        1
+      ],
+      [
+        70,
+        2
+      ],
+      [
+        72,
+        2
+      ],
+      [
+        74,
+        1
+      ],
+      [
+        75,
+        2
+      ],
+      [
+        77,
+        2
+      ],
+      [
+        79,
+        2
+      ],
+      [
+        81,
+        2
+      ],
+      [
+        83,
+        2
+      ],
+      [
+        85,
+        2
+      ],
+      [
+        87,
+        2
+      ],
+      [
+        89,
+        2
+      ],
+      [
+        91,
+        2
+      ],
+      [
+        93,
+        2
+      ],
+      [
+        95,
+        1
+      ],
+      [
+        96,
+        2
+      ],
+      [
+        98,
+        2
+      ],
+      [
+        100,
+        1
+      ],
+      [
+        101,
+        1
+      ],
+      [
+        102,
+        2
+      ],
+      [
+        104,
+        1
+      ],
+      [
+        105,
+        2
+      ],
+      [
+        107,
+        1
+      ],
+      [
+        108,
+        1
+      ],
+      [
+        109,
+        1
+      ],
+      [
+        110,
+        1
+      ],
+      [
+        111,
+        1
+      ],
+      [
+        112,
+        1
+      ],
+      [
+        113,
+        1
+      ],
+      [
+        114,
+        1
+      ],
+      [
+        115,
+        1
+      ],
+      [
+        116,
+        1
+      ],
+      [
+        117,
+        1
+      ],
+      [
+        118,
+        1
+      ],
+      [
+        119,
+        1
+      ],
+      [
+        120,
+        1
+      ],
+      [
+        121,
+        1
+      ],
+      [
+        122,
+        1
+      ],
+      [
+        123,
+        1
+      ],
+      [
+        124,
+        1
+      ],
+      [
+        125,
+        1
+      ],
+      [
+        126,
+        1
+      ],
+      [
+        127,
+        1
+      ],
+      [
+        128,
+        1
+      ],
+      [
+        129,
+        1
+      ],
+      [
+        130,
+        1
+      ],
+      [
+        131,
+        1
+      ],
+      [
+        132,
+        1
+      ],
+      [
+        133,
+        1
+      ],
+      [
+        134,
+        1
+      ],
+      [
+        135,
+        1
+      ],
+      [
+        136,
+        1
+      ],
+      [
+        137,
+        1
+      ],
+      [
+        138,
+        1
+      ],
+      [
+        139,
+        1
+      ],
+      [
+        140,
+        1
+      ],
+      [
+        141,
+        1
+      ],
+      [
+        142,
+        1
+      ],
+      [
+        143,
+        1
+      ],
+      [
+        144,
+        1
+      ],
+      [
+        145,
+        1
+      ],
+      [
+        146,
+        1
+      ],
+      [
+        147,
+        1
+      ],
+      [
+        148,
+        4
+      ]
+    ],
+    "count": 850,
+    "count_evidence": "48b787 compares original registry index with0x352; slots>=850 are skipped",
+    "identity_hook": "4883c0 supplies array index only; native type/count dispatch unchanged"
+  },
+  "header_evidence": "43b330: file24/28 map to stream58/5c; preserved per source",
+  "field_evidence": {
+    "stats": "48b93e..48b947 -> actor c8, five byte values; catalog vector cross-check",
+    "aptitude_codes": "48b923..48b93c -> actor b0, six signed byte-to-int values; C/B/A/S=0/1/2/3 catalog cross-check",
+    "skill_native_id": "48b973..48b981 -> actor e8; raw enum only, no assumed project skill mapping"
+  },
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "bytes": 170010,
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "bytes": 170010,
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "bytes": 170010,
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "bytes": 170010,
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "bytes": 170010,
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "bytes": 170010,
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "bytes": 170010,
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "bytes": 170010,
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "bytes": 170010,
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "bytes": 170010,
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "bytes": 170010,
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "bytes": 170010,
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "bytes": 170010,
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "bytes": 170010,
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "bytes": 170010,
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "bytes": 170010,
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "versions": [
+        1,
+        2
+      ],
+      "activation": "installed Media/scenario candidate; MOD overrides unresolved"
+    }
+  ],
+  "differences": [
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 6,
+      "project_id": 10006,
+      "field": "stats",
+      "project": [
+        84,
+        78,
+        70,
+        57,
+        53
+      ],
+      "native": [
+        87,
+        78,
+        70,
+        57,
+        53
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 6,
+      "project_id": 10006,
+      "field": "aptitude_codes",
+      "project": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "native": [
+        2,
+        3,
+        0,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 18,
+      "project_id": 10018,
+      "field": "stats",
+      "project": [
+        81,
+        69,
+        70,
+        73,
+        90
+      ],
+      "native": [
+        92,
+        69,
+        70,
+        73,
+        90
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 18,
+      "project_id": 10018,
+      "field": "aptitude_codes",
+      "project": [
+        2,
+        0,
+        2,
+        0,
+        3,
+        0
+      ],
+      "native": [
+        2,
+        0,
+        3,
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 91,
+      "project_id": 10091,
+      "field": "stats",
+      "project": [
+        39,
+        40,
+        6,
+        41,
+        68
+      ],
+      "native": [
+        67,
+        72,
+        6,
+        41,
+        68
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 91,
+      "project_id": 10091,
+      "field": "aptitude_codes",
+      "project": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 125,
+      "project_id": 10125,
+      "field": "stats",
+      "project": [
+        82,
+        78,
+        51,
+        18,
+        37
+      ],
+      "native": [
+        86,
+        87,
+        51,
+        18,
+        37
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 146,
+      "project_id": 10146,
+      "field": "aptitude_codes",
+      "project": [
+        2,
+        2,
+        0,
+        2,
+        0,
+        0
+      ],
+      "native": [
+        2,
+        3,
+        0,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 189,
+      "project_id": 10189,
+      "field": "stats",
+      "project": [
+        87,
+        61,
+        73,
+        51,
+        72
+      ],
+      "native": [
+        92,
+        61,
+        73,
+        51,
+        72
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 219,
+      "project_id": 10219,
+      "field": "stats",
+      "project": [
+        77,
+        70,
+        77,
+        72,
+        62
+      ],
+      "native": [
+        80,
+        70,
+        77,
+        72,
+        62
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 263,
+      "project_id": 10263,
+      "field": "aptitude_codes",
+      "project": [
+        1,
+        1,
+        2,
+        0,
+        2,
+        0
+      ],
+      "native": [
+        1,
+        1,
+        3,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 333,
+      "project_id": 10279,
+      "field": "stats",
+      "project": [
+        80,
+        76,
+        57,
+        43,
+        42
+      ],
+      "native": [
+        87,
+        76,
+        57,
+        43,
+        42
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 415,
+      "project_id": 10415,
+      "field": "stats",
+      "project": [
+        80,
+        73,
+        60,
+        45,
+        59
+      ],
+      "native": [
+        80,
+        91,
+        60,
+        45,
+        59
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 415,
+      "project_id": 10415,
+      "field": "aptitude_codes",
+      "project": [
+        0,
+        0,
+        1,
+        3,
+        1,
+        0
+      ],
+      "native": [
+        3,
+        0,
+        1,
+        3,
+        1,
+        0
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 446,
+      "project_id": 10446,
+      "field": "stats",
+      "project": [
+        78,
+        55,
+        89,
+        83,
+        68
+      ],
+      "native": [
+        84,
+        65,
+        89,
+        83,
+        68
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "native_index": 136,
+      "project_id": 10136,
+      "field": "stats",
+      "project": [
+        90,
+        89,
+        90,
+        67,
+        80
+      ],
+      "native": [
+        90,
+        89,
+        89,
+        67,
+        80
+      ]
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "native_index": 481,
+      "project_id": 10481,
+      "field": "stats",
+      "project": [
+        94,
+        87,
+        89,
+        81,
+        70
+      ],
+      "native": [
+        94,
+        87,
+        90,
+        81,
+        70
+      ]
+    }
+  ],
+  "limits": [
+    "Native record-table base inherited from verified six-person evidence; all850 serialized slots included",
+    "Additional native actors may be event/ancient/reserved; existence does not establish playable or appearing status",
+    "Ability and aptitude field order is corroborated against catalog vectors; PC gameplay consumers not yet traced",
+    "Other field meanings and native skill-to-project mapping remain unknown; raw bytes retained",
+    "Identity match does not prove abilities, relations, scenario membership or activation order",
+    "No gameplay resources changed; no attachment or Backup treated as active; no Wine"
+  ],
+  "records": 13600,
+  "identity_verified": 10656,
+  "outside_project_catalog": 2880,
+  "relocations": [
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 279,
+      "candidate_project_id": 10279,
+      "project_id": 10333,
+      "identity": "relocated_identity_verified",
+      "mismatches": {
+        "name": {
+          "project": "徐榮",
+          "native": "宋憲"
+        },
+        "birth": {
+          "project": 147,
+          "native": 157
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 333,
+      "candidate_project_id": 10333,
+      "project_id": 10279,
+      "identity": "relocated_identity_verified",
+      "mismatches": {
+        "name": {
+          "project": "宋憲",
+          "native": "徐榮"
+        },
+        "birth": {
+          "project": 157,
+          "native": 147
+        }
+      }
+    }
+  ],
+  "quarantined": [
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen000.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN001.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN002.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN003.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN004.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN005.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN006.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/SCEN007.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen008.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen009.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen010.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen011.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen012.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen013.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen014.S11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "native_index": 184,
+      "candidate_project_id": 10184,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "孔伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "native_index": 229,
+      "candidate_project_id": 10229,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "司馬伷",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "native_index": 249,
+      "candidate_project_id": 10249,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "朱雋",
+          "native": null
+        }
+      }
+    },
+    {
+      "source": "Media/scenario/Scen015.s11",
+      "native_index": 616,
+      "candidate_project_id": 10616,
+      "project_id": null,
+      "identity": "quarantined",
+      "mismatches": {
+        "name": {
+          "project": "劉璝",
+          "native": null
+        }
+      }
+    }
+  ],
+  "full_report": {
+    "path": "scenario-officers-native.json.gz",
+    "sha256": "6187bc46f59e2b20e1bbdb45cd394151a145be8d13060629f0120d2323e71ca4",
+    "decoded_sha256": "27d3e5305b7b784ba2d83d63f3eda90f0ba29575240e377eeba973c45300ca93"
+  }
+}

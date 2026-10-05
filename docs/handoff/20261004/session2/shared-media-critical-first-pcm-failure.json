@@ -1,0 +1,11 @@
+{
+  "result": "FAIL_PCM_VERIFIER",
+  "jointCorrelation": 0.9876768059307061,
+  "pc33AfterNuisanceCorrelation": 0.9772210884274626,
+  "threshold": 0.999,
+  "declaredUiNuisanceExplorationDidNotResolve": true,
+  "samplesWereNotChanged": true,
+  "originalWindow": "out/media/shared-media-critical-02/captured-window.wav",
+  "ruleFactAndRestorePassed": true,
+  "cause": "UNKNOWN_PENDING_REPEAT_OR_ALIGNMENT_DIAGNOSIS"
+}

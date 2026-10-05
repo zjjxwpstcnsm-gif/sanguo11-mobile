@@ -1,0 +1,21 @@
+# R40：桥接提交技巧事实的Java边界
+
+2026-10-04，目标active。实际新增game-api／game-runtime实现，未修改app、Unity、规则公式或SaveCodec。
+
+BridgeMessage增加完整StateToken与不可变techniquePointsFacts，保留原构造签名；旧构造没有已知generation时明确为0，运行时新消息使用真实快照token。构造拒绝session／revision或事实token不匹配。原schema1传输常量未改，此为Java DTO的加法扩展，尚不代表AndroidGameBridge JSON已发送字段。
+
+BridgeSession提交订阅实际接收GameEvent，不再丢弃逐次事实。普通delta附提交事实；地图修订变化触发的snapshot同样附此次事实。主动snapshot／resync恢复／重复命令receipt／失败均为空，不重放瞬时反馈。事实保留原id／parentId／presentationParentId／sequence／cause／phase／owner／before／after／delta／cityId／officerId及完整token，不制造或重算数值，不消耗规则RNG。成功命令仍发原event文案与receipt，它们不重复携带事实。
+
+队列字节预算纳入事实及字符串长度，long计算避免溢出。超限保留原QUEUE_OVERFLOW／resync行为：丢弃已排队反馈，客户端明确请求完整状态；不重构已丢失提示，不回滚已提交规则。
+
+注册BridgeSessionTest新增真实零净额Editor两次提交链、完整Save／RNG独立控制、事实顺序／完整token／父ID／去重、不可变、失败／重复不发事实、主动快照不重播、真实地图版本与点数同次提交时snapshot带事实、3000次真实Editor变动导致字节溢出及恢复不重播。原restored UUID／generation和旧receipt拒绝断言保留。TechniquePointsOrderedFacts原59项保持。
+
+app-owned AndroidGameBridge.poll JSON及Unity Contracts/声音／HUD消费未修改。下一步按共享契约加法序列化state和techniquePointsFacts；当前wire仍schema1原字段，不能称完整客户端接入。新的APK需要重建与实装验证；旧d318通过不移用于本实现。
+
+初轮真实大场景3000次Editor链完整通过；为ART减少夹具大小时误用Governance包内reconcile导致编译失败，原日志bridge-final.log保留。未公开规则方法，改用现有DisplacementFixture小世界，3000次真实命令和原溢出断言不减。新包已构建SHA74574d7f393da0987fccd17debb1c84e3cc7038aa7a850149ccaca984e644af1（test86da8dc7…4f1f1）；当前5554音效实装运行中，未预记通过。宿主墙钟跳变，构建日志耗时不作性能结论。
+
+新74574d7f实装音效51／33.60秒PASS，主包与test安装后readback固定SHA一致，原7文件finally精确恢复，无新增；新音效prefs先保留证据后仅移除本次生成文件。完整矩阵待续，不移用旧d318。小夹具第二次引用不在runtime测试classpath的DisplacementFixture被编译拒绝；改用test-only core包BridgeFactsFixture，不变模块依赖、不公开规则方法，保留两次失败日志。
+
+最终注册verifyBridge JVM完整PASS／46秒，包含新generation mismatch拒绝、实际旧pending清除、3000真实Editor小夹具溢出；原大场景同断言通过保留，夹具缩小未减少测试次数。架构检查PASS，当前新包bridge-only ART正在实际安装类上执行，未预记通过。
+
+ART实际注册BridgeSessionTest已正常返回，原log为“BridgeSessionTest passed; …”。通用driver仅认大写PASS，故原driver失败；未重跑或修改实际测试输出，保留失败report并新增terminal-marker-audit.json核验原日志精确marker、原用户文件和实装APK均不变。工具以后对该suite匹配原精确marker，其余套件保持PASS断言。新包wire／完整UI矩阵仍未验。

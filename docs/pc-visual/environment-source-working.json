@@ -1,0 +1,690 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "source_archive": "Media/san11pkres.bin",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_policy": "read-only",
+  "resources": [
+    {
+      "id": 4799,
+      "format": "SENV0002",
+      "bytes": 968,
+      "sha256": "a051f95d998fc2796e30d6632146ea39b5f24529bec13719a3167195663ae42f",
+      "android_output": "app/src/main/assets/3d/pc-environment/environment.bin",
+      "runtime_binding": "PcEnvironment base light + ground ambient/c26 fog/c27 fade; weather transitions and other object fog unbound"
+    },
+    {
+      "id": 4806,
+      "format": "WFTX0010",
+      "source_file": "media/stage/paint.wft",
+      "potential_overrides": [],
+      "selection": "supplied archive bytes; original loader also supports loose alias; PC active branch unproven",
+      "bytes": 49176,
+      "sha256": "620a47c99703b539aeafea3a0dd0d34b935fbdc4c917045b0be3ab3a0a4b3552",
+      "width": 128,
+      "height": 128,
+      "pixel_sha256": "f5d4f8543d011e7e21ab288bc5559f9dfed3f904d7508f9f6e0053890cfdd489",
+      "android_output": "app/src/main/assets/3d/pc-environment/paint.png",
+      "runtime_binding": "FilamentMapView static original painting sampler1",
+      "validation": "source decoded; installed and PC visual acceptance separate"
+    },
+    {
+      "id": 4807,
+      "format": "WFTX0010",
+      "source_file": "media/stage/silhouette.wft",
+      "potential_overrides": [],
+      "selection": "supplied archive bytes; original loader also supports loose alias; PC active branch unproven",
+      "bytes": 16408,
+      "sha256": "1d26c1570feeda19bccf5bc32e19fc9c8ff8f0c74294d2946a257a37de34a63c",
+      "width": 64,
+      "height": 64,
+      "pixel_sha256": "80a609487d109f5d8a754f8ec309ecbe40d83b6f57eefb4d147915577cf91a79",
+      "android_output": "app/src/main/assets/3d/pc-environment/silhouette.png",
+      "runtime_binding": null,
+      "validation": "source decoded; installed and PC visual acceptance separate"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "app/src/main/assets/3d/pc-environment/environment.bin",
+      "bytes": 968,
+      "sha256": "a051f95d998fc2796e30d6632146ea39b5f24529bec13719a3167195663ae42f"
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-environment/paint.png",
+      "bytes": 490,
+      "sha256": "84894bdeca3b0f2b08f39a3544ca0689a0108b0d28175c6a8c53f13c4a490c5d"
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-environment/silhouette.png",
+      "bytes": 181,
+      "sha256": "0b74a267e3d1e0600bc570438936d999582253a5066447dbc319cacd6fced5c5"
+    }
+  ],
+  "season_order": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+  ],
+  "season_binding": "4825a0 month quarters -> 4d4010 -> 5a2ec0 stores SENV season; 5a2f04 uses 4788/4789/4787/4790",
+  "source_shader_va": "0x77ae68",
+  "source_shader": "vs.1.1 static model: color*c4, UV0, UV1.x=max(dot(world normal,c18),0), UV1.y=c2.y",
+  "draw_state": "41b420: stage0/stage1 COLOROP MODULATE2X, stage1 UV index1; sampler1 address clamp; alpha test GREATER 0 plus SRCALPHA/INVSRCALPHA blending and depth writes",
+  "shader_constants": "44c7d4 uploads 794884=(.5,.5,.5,.5) to c2; 41b624 uploads 794894=(1,1,1,1) to c4; 44cb44 uploads light first column to c18",
+  "fog_contract": "5a2530: near+(far-near)*percent*float32(.01); density=min(255,trunc(percent*float32(2.55))); 4419f0 BGRA bytes",
+  "default_variant": "4d43d4 -> 5a2e70(0); other variants and 1500ms interrupted transitions not yet bound",
+  "limits": [
+    "No PC rendered reference accepted",
+    "Source outline pass not yet ported",
+    "Static material only; unit/terrain shader variants remain separate",
+    "v145 source uniformXYZ scale restored; PC framing/pixel calibration remains pending",
+    "Original sampler filter/color-space/mip behavior and transparent blend target still require PC comparison",
+    "Original culling and intra/inter-model sorting not yet accepted",
+    "Original ground base-season fog/ambient bound; static/unit fog, weather variants and transitions unbound",
+    "Actual original autumn/winter24bit fog and c18 shader captures exist; full raster acceptance still pending"
+  ],
+  "states": [
+    {
+      "season": 0,
+      "variant": 0,
+      "offset": 8,
+      "direction": [
+        0.5773502588272095,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ],
+      "ambient": [
+        0.11999999731779099,
+        0.10000000149011612,
+        0.05999999865889549
+      ],
+      "fog_bgra": "0xff9ba8a8",
+      "fog_start_percent": 59,
+      "fog_end_percent": 100,
+      "fog_density_percent": 40,
+      "renderer_byte_1dd": 85,
+      "tail_colors_raw": [
+        "0xffb7cfd9",
+        "0xffb9b9b4"
+      ],
+      "sha256": "40d55528ad122d2c1995ec5b2e3f007f18b83ddb758510b234801da3b9b338d9"
+    },
+    {
+      "season": 0,
+      "variant": 1,
+      "offset": 48,
+      "direction": [
+        0.5773502588272095,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 50,
+      "fog_end_percent": 100,
+      "fog_density_percent": 80,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "4a8c6c1ad73e8b779fdae6f8dce6aa278153301221d6bbb95b3f5ddc56c5f87d"
+    },
+    {
+      "season": 0,
+      "variant": 2,
+      "offset": 88,
+      "direction": [
+        0.5773502588272095,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ],
+      "ambient": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "fog_bgra": "0xff408080",
+      "fog_start_percent": 50,
+      "fog_end_percent": 100,
+      "fog_density_percent": 80,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "27ce7d3e846d460b9db1021ec71ddaf6506b3be43ece260fd2d74820a84b548b"
+    },
+    {
+      "season": 0,
+      "variant": 3,
+      "offset": 128,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 0,
+      "variant": 4,
+      "offset": 168,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 0,
+      "variant": 5,
+      "offset": 208,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 1,
+      "variant": 0,
+      "offset": 248,
+      "direction": [
+        0.5773502588272095,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ],
+      "ambient": [
+        0.15000000596046448,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "fog_bgra": "0xff99aaa4",
+      "fog_start_percent": 70,
+      "fog_end_percent": 100,
+      "fog_density_percent": 25,
+      "renderer_byte_1dd": 90,
+      "tail_colors_raw": [
+        "0xffa4b7d1",
+        "0xffb4b4b4"
+      ],
+      "sha256": "04ec4362fdd210741dbc125e09292445ba9641a4381e75e8affff59a6d568610"
+    },
+    {
+      "season": 1,
+      "variant": 1,
+      "offset": 288,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 1,
+      "variant": 2,
+      "offset": 328,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 1,
+      "variant": 3,
+      "offset": 368,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 1,
+      "variant": 4,
+      "offset": 408,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 1,
+      "variant": 5,
+      "offset": 448,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 2,
+      "variant": 0,
+      "offset": 488,
+      "direction": [
+        0.5773502588272095,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ],
+      "ambient": [
+        0.11999999731779099,
+        0.07999999821186066,
+        0.029999999329447746
+      ],
+      "fog_bgra": "0xffa39a89",
+      "fog_start_percent": 59,
+      "fog_end_percent": 100,
+      "fog_density_percent": 47,
+      "renderer_byte_1dd": 90,
+      "tail_colors_raw": [
+        "0xffb5bfc1",
+        "0xffb4afa0"
+      ],
+      "sha256": "822cab17fd6f701da3e86ab4a025778b917c7c3769cd437c016bee99ea3b3a19"
+    },
+    {
+      "season": 2,
+      "variant": 1,
+      "offset": 528,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 2,
+      "variant": 2,
+      "offset": 568,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 2,
+      "variant": 3,
+      "offset": 608,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 2,
+      "variant": 4,
+      "offset": 648,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 2,
+      "variant": 5,
+      "offset": 688,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 3,
+      "variant": 0,
+      "offset": 728,
+      "direction": [
+        0.5773502588272095,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ],
+      "ambient": [
+        0.07999999821186066,
+        0.07999999821186066,
+        0.07999999821186066
+      ],
+      "fog_bgra": "0xff959595",
+      "fog_start_percent": 50,
+      "fog_end_percent": 100,
+      "fog_density_percent": 49,
+      "renderer_byte_1dd": 85,
+      "tail_colors_raw": [
+        "0xffbec1c2",
+        "0xffb4b4b4"
+      ],
+      "sha256": "015b1eb3802012e02acc49a047294c02c5b14f0e8ab627d628c79463f6f06fdc"
+    },
+    {
+      "season": 3,
+      "variant": 1,
+      "offset": 768,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 3,
+      "variant": 2,
+      "offset": 808,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 3,
+      "variant": 3,
+      "offset": 848,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 3,
+      "variant": 4,
+      "offset": 888,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    },
+    {
+      "season": 3,
+      "variant": 5,
+      "offset": 928,
+      "direction": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "ambient": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "fog_bgra": "0xffffffff",
+      "fog_start_percent": 80,
+      "fog_end_percent": 100,
+      "fog_density_percent": 50,
+      "renderer_byte_1dd": 95,
+      "tail_colors_raw": [
+        "0xffe8e2d9",
+        "0xffe8e2d9"
+      ],
+      "sha256": "63aa8d8017f3083238ed939c25693ac927a2853bf3a8b7022ea734b5bcdb9e2f"
+    }
+  ],
+  "android_ground_binding": "v157 PcEnvironment baseAmbient/baseFogColor/groundFog, original441d30+c26 math; actual autumn/winter c18+c26+c27 crosschecked"
+}

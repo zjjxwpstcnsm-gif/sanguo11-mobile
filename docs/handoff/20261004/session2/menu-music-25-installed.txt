@@ -1,0 +1,62 @@
+UIUX PASS 60 checks
+PASS normal launch restores existing save
+PASS touch visible 功能 at Rect(16, 1794 - 205, 1920)
+PASS touch visible 菜单 at Rect(60, 1470 - 1020, 1596)
+PASS actual established normal menu starts original resource2238 without test playback directive
+PASS actual menu music submits PCM
+PASS same established menu refresh continues its original stream
+PASS touch visible 视图 at Rect(799, 210 - 1059, 336)
+PASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)
+PASS actual independent music and voice sliders visible
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual music slider changes only music preference; music=65 effect=75
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual media slider drag accepted
+PASS actual voice slider retains music and effect gain; voice=30 music=65 effect=75
+PASS touch visible 完成 at Rect(852, 1317 - 1020, 1443)
+PASS normal menu reaches original whole-track repeat boundary
+PASS normal original repeat retains same player job
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 515ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS real Home removes foreground sound owner
+PASS real Home pauses menu music head
+PASS normal foreground resumes original menu position
+PASS Home/resume does not restart original music
+PASS touch visible 视图 at Rect(799, 210 - 1059, 336)
+PASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)
+PASS touch visible 静音 at Rect(75, 667 - 1005, 751)
+PASS normal mute applies to menu music and existing effect behavior
+PASS muted original menu releases focus and pauses
+PASS touch visible 静音 at Rect(75, 667 - 1005, 751)
+PASS normal unmute continues established menu stream
+PASS touch visible 完成 at Rect(852, 1317 - 1020, 1443)
+PASS actual system noisy event pauses original menu
+PASS touch visible 视图 at Rect(799, 210 - 1059, 336)
+PASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)
+PASS touch visible 继续播放音乐 at Rect(75, 1033 - 1005, 1159)
+PASS actual resume-current-music control continues source stream after noisy event
+PASS touch visible 完成 at Rect(852, 1317 - 1020, 1443)
+PASS touch visible 功能 at Rect(16, 1794 - 205, 1920)
+PASS touch visible 地图 at Rect(60, 336 - 1020, 462)
+PASS leaving established menu stops original track instead of guessing unbound map music
+PASS unbound normal map has no carried menu soundtrack
+PASS menu loop/gain/mute/noisy/Home/map lifecycle preserves complete Save and RNG
+PASS touch visible 功能 at Rect(16, 1794 - 205, 1920)
+PASS touch visible 菜单 at Rect(60, 1470 - 1020, 1596)
+PASS normal menu reentry starts original menu resource once
+PASS menu reentry retains verified native resource
+PASS actual Activity destroy barrier releases owned music/voice players; destroyed=true closed=true owners=0
+PASS actual exit preserves complete authority
+

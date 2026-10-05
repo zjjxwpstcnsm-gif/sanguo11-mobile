@@ -1,0 +1,23 @@
+# 批二十：原负向关闭声音与实际取消入口
+
+基点4994350dd1f0ad661c97379f33997f8fca904e58。inspect_pc_ui_close_audio.py执行4dd860/4dd8c0/63b270原分支，并执行完整4d0570到6e98b0，捕获原bank0 slot1。平台音频可用性/critical-section、窗口关闭callback/fallback及child-ID lookup是显式fixture边界；不是原OS事件路由或完整子控件布局证明，无Wine、规则命令、存档或RNG调用。
+
+69项通过。4dd8c0在flags8且flags2未设时sound1/关闭结果−2；flags2优先为sound1/INT_MIN。63b270的child1237同为sound1/−2，child1236为sound0/10000，未知child不发这两种声音。保留原指令SHA、实际dispatch、关闭结果和fixture边界于ui-close-native.json.gz。不能把sound0/1混为所有按钮的同一点击音，也不把负向UI关闭当战斗失败。
+
+原sound1取header2282/wave2281、bank0 slot1，44100Hz单声道3042帧/0.06898秒，WAV SHA a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6，PCM SHA 0781cc395a7e0f0f777508e4e8b0da95691e83d1ca33a40c98c2dab6ecca12c3。stage_pc_ui_close_sound.py从两次独立原bank转换结果重建，WAV/manifest逐字节相同；asset独立ui-close-manifest保留来源/条件/范围，不改人物metadata或公共数据manifest。
+
+SoundEffects只新增PC_DIALOG_CANCEL及cancelledDialog入口，经过既有静音/音量/焦点/前后台/释放线路。普通九种移动端合成提示声未标成PC还原。公共MainActivity唯一必要补丁已先列MEDIA_INPUT_CONTRACT，并保存ui-close-host-20的确切patch和前后SHA；待自有integration顺序应用真实AlertDialog.OnCancel，普通dismiss/确认不触发。Android取消是平台适配原负向关闭声音，原OS路由尚未证明，不扩大成全UI还原。
+
+来源阶段未操作设备；后续顺序集成、新组合包实装和真实PCM见下节，没有借用批十九音频结果。core/game-api/game-runtime仍保持已完成9e171f2，原目录和会话一WIP未改。普通BGM/人物voice自动绑定仍0，完整目标active。
+
+## 顺序集成与新包实证
+
+来源、媒体实现及公共补丁契约先提交c13d8b8b；之后在自有integration工作目录按guards的before/after SHA应用唯一trackDialog OnCancel补丁，integration.json记录。实现/验收入口提交5de47b15f9ce444e04a774077be72467acd5f20c。独立缓存离线构建主/测试包通过（87秒），主APK 283163807字节、SHA 7cc4e77c487f9dac2f6093cb4654953c11235c09bdce4cb0678f67c5a1122e6a；测试APK SHA bc26278844cf5030ba58fb3b5f368b26bd0f5806d624de6cf68232d010793c84，冻结于out/media/ui-close-build-20/frozen。
+
+独占5582实际安装/读回新SHA。正常声音设置页真实BACK取消0→1次原sound1，确认关闭仍1、不误播；66项/52.1秒通过，含静音/音量、逐ID去重、原PCM暂停续播、实际world replacement、焦点、前后台和退出释放，以及完整Save/RNG对照。全部原用户保存/库/偏好逐字节恢复；没有清数据、操作5554或修改录音器。ui-close-normal-20.json、安装结果、原PCM捕获WAV、截图及SHA守卫保留。
+
+正常取消的原3042帧PCM匹配相关性0.9999996760440769，位于样本414537..417579；严格>.999且正可闻幅度。独立原HUD33 cue-loop锚点在1051373之后，确认识别的是正常BACK取消，不能把稍后的直接play探针替代正常入口。移除正常声音区间、保留后续叠加探针的测试负例被拒绝，原录音未改。check_pc_ui_close_mix.py可复核。
+
+初版检查器误要求两次“独立”sound1全模板匹配，但显式cue探针与前一个1.025秒HUD33尾音按继承950ms间隔叠加。保留ui-close-verifier-correction.json：最终只接受有原锚点佐证的正常取消；后续重叠探针未标为独立音色通过。全采样率>.999验收阈值未放宽，HUD33粗采样只提名候选再进行完整原采样率验证。本批没有证明全部声音矩阵、原OS事件路由或ARM/手机扬声器。
+
+本批闭合正常取消UI线路上的原样本1；其它通用按钮仍为移动端合成，负按钮默认dismiss等其余原UI条件仍待绑定。普通BGM/人物voice仍0，全部人物来源/动态形态、其余原音效和全流程验收继续保留未完成，完整目标未缩减。

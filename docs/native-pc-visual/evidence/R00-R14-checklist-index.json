@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "source": "badd7e56308b4f6a47d60353d49023be8fc492a2",
+  "input_zip_sha256": "74e794192d71311b84fed6dfbfd8f25c54a1aa334fbd8234d9e36d145640d03c",
+  "requirement_count": 213,
+  "legend": {"I":"must implement","V":"must verify","G":"acceptance gate","D":"delivery","P":"PASS in stated scope only","F":"FAIL","N":"NOT_RUN or complete compound verification not established"},
+  "scope": "Do not compute stage completion from these masks. All stages PARTIAL. Expanded exact prompt text, line, source and evidence are in the downloadable audit evidence. Existing original phase delivery is not retrospectively certified by this audit.",
+  "stages": [
+    {"stage":"R00","overall":"PARTIAL","I":"PNPPPPPN","V":"NNPNN","G":"N","D":"N"},
+    {"stage":"R01","overall":"PARTIAL","I":"PPFPPPP","V":"NNPNN","G":"N","D":"N"},
+    {"stage":"R02","overall":"PARTIAL","I":"PPPPPNP","V":"PPNNN","G":"N","D":"N"},
+    {"stage":"R03","overall":"PARTIAL","I":"PPPPPPPN","V":"PPPNN","G":"N","D":"N"},
+    {"stage":"R04","overall":"PARTIAL","I":"PPPPPNF","V":"PNNPN","G":"F","D":"N"},
+    {"stage":"R05","overall":"PARTIAL","I":"PPFPNPP","V":"PPNNN","G":"F","D":"N"},
+    {"stage":"R06","overall":"PARTIAL","I":"PPPPFPP","V":"NPNNN","G":"N","D":"N"},
+    {"stage":"R07","overall":"PARTIAL","I":"PFNNPPPF","V":"PNNNN","G":"F","D":"N"},
+    {"stage":"R08","overall":"PARTIAL","I":"PPNPNPP","V":"PPNNN","G":"F","D":"N"},
+    {"stage":"R09","overall":"PARTIAL","I":"PNFPNPF","V":"PPNPN","G":"F","D":"N"},
+    {"stage":"R10","overall":"PARTIAL","I":"PNNNPPP","V":"PPNNN","G":"N","D":"N"},
+    {"stage":"R11","overall":"PARTIAL","I":"PNPPPPP","V":"NPNPN","G":"N","D":"N"},
+    {"stage":"R12","overall":"PARTIAL","I":"FPNPFFP","V":"NPNFN","G":"F","D":"N"},
+    {"stage":"R13","overall":"PARTIAL","I":"NPPPPNP","V":"NPNPN","G":"N","D":"N"},
+    {"stage":"R14","overall":"PARTIAL","I":"PNPNPPN","V":"PNNFP","G":"N","D":"N"}
+  ],
+  "expanded_files": [
+    {"file":"checklist/R00-R14-checklist.csv","bytes":146783,"sha256":"25083ee02bc12b8a25460e73287f3a74671cae3c085339e9e310e25a72176e06"},
+    {"file":"checklist/R00-R14-checklist.json","bytes":206137,"sha256":"da41a8075a439ee7dd10729e7b97c33c4d57d67617c3dc630fdb109f5342eda4"},
+    {"file":"checklist/R00-R14-checklist.md","bytes":74077,"sha256":"ab0cdfe19aacbb46813abbfcbb9e3d0bbd3149acdac2c9fc90f68888ad668f1e"}
+  ]
+}

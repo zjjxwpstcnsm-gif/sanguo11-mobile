@@ -1,0 +1,120 @@
+--- a/app/src/main/java/game/sanguo/mobile/MainActivity.java
++++ b/app/src/main/java/game/sanguo/mobile/MainActivity.java
+@@ -48,6 +48,7 @@
+         PortraitMediaSources.bind(world,legacyView.state,current.officers());
+     }
+     private void sessionChanged(GameEvent event){
++        if(techniqueHud!=null)techniqueHud.committedFacts(event,world.player);
+         SoundEffects.Cue cue=switch(event.kind){case DEPLOYED,TRANSPORT_DISPATCHED->SoundEffects.Cue.MARCH;case CONSTRUCTION_STARTED->SoundEffects.Cue.CONSTRUCTION;case PRODUCTION_COMMITTED,CITY_ACTION_COMMITTED,RECRUITED,PATROLLED,TRADE_COMMITTED->SoundEffects.Cue.COMPLETE;case TURN_COMMITTED->SoundEffects.Cue.TURN;default->null;};
+         if(cue!=null&&sounds!=null)sounds.event("receipt:"+event.state.sessionId+":"+event.state.generation+":"+event.state.revision+":"+event.kind,cue);
+ 
+@@ -729,9 +730,10 @@
+         dateBanner.setContentDescription("当前日期 "+world.date());
+         WindowSurfaceRecovery.changed(dateBanner);
+         mapRevisionNotice.setText(NationalMap.compatibilityNotice(world));mapRevisionNotice.setVisibility(mapRevisionNotice.getText().length()==0?View.GONE:View.VISIBLE);
+-        techniqueHud.update(legacyView.state,world.player,world.campaign.points(world.player),techniqueDeferred);
++        if(techniqueHud.mediaNeedsResync())techniqueHud.resynchronizeFacts(legacyView.state,world.player,world.campaign.points(world.player));
++        else techniqueHud.syncFactsBaseline(legacyView.state,world.player,world.campaign.points(world.player));
+         actionPointsBadge.setContentDescription("本势力技巧点 "+world.campaign.points(world.player)+" 点");
+-        map.setTechniqueFeedback(techniqueHud::releasePending);
++        map.setTechniqueFeedback(techniqueHud::releasePresentation,techniqueHud::skipPresentation,techniqueHud::discardPending,techniqueHud::pauseFacts);
+         UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
+         nextTurn.setEnabled(playback!=null||mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(playback!=null?"演示控制":aiRunning?"结算中…":"下一旬  →");
+         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
+--- a/app/src/main/java/game/sanguo/mobile/MapHost.java
++++ b/app/src/main/java/game/sanguo/mobile/MapHost.java
+@@ -59,8 +59,21 @@
+     private MarchOrders.Plan route;
+     private Consumer<MarchOrders.Plan> unitDrop;
+     private Runnable criticalSkip;
+-    private Runnable techniqueFeedback;
+-    void setTechniqueFeedback(Runnable feedback){techniqueFeedback=feedback;}
++    private Consumer<String> techniqueFeedback,techniqueSkip;
++    private Runnable techniqueDiscard;
++    private Consumer<Boolean> techniquePause;
++    private List<TurnJournal.Event> techniqueCommandEvents=Collections.emptyList();
++    void setTechniqueFeedback(Consumer<String> feedback,Consumer<String> skip,Runnable discard,Consumer<Boolean> pause){techniqueFeedback=feedback;techniqueSkip=skip;techniqueDiscard=discard;techniquePause=pause;}
++    private void techniquePhase(TurnJournal.Event event){
++        if(event==null)return;
++        if(resumed&&replayCommitted&&renderGate.active()&&techniqueFeedback!=null)techniqueFeedback.accept(event.id);
++    }
++    private void techniqueFinished(TurnJournal.Event event){
++        if(event==null)return;
++        if(resumed&&replayCommitted&&renderGate.active())techniquePhase(event);
++        else if(techniqueSkip!=null)techniqueSkip.accept(event.id);
++    }
++    void discardTechniqueMedia(){if(techniqueDiscard!=null)techniqueDiscard.run();}
+     private CombatSequence commandEffects;
+     private MapSceneSnapshot publishedSnapshot,commandFinalSnapshot;
+     MapSceneSnapshot captureCombatSnapshot(){return spatial==null?null:publishedSnapshot;}
+@@ -92,10 +105,11 @@
+         float trigger=cue==SoundEffects.Cue.ATTACK||cue==SoundEffects.Cue.TACTIC?.35f:0;
+         if(cue!=null&&fraction>=trigger)sounds.event(id+":action",cue);
+     }
+-    void pauseEffects(boolean paused){if(spatial!=null)spatial.pauseEffects(paused);if(sounds()!=null)sounds().pauseEffects(paused);}
+-    void finishReplay(TurnJournal.Event event){completionSound(event);combatLedger().finish(event);}
++    void pauseEffects(boolean paused){if(techniquePause!=null)techniquePause.accept(paused);if(spatial!=null)spatial.pauseEffects(paused);if(sounds()!=null)sounds().pauseEffects(paused);}
++    void finishReplay(TurnJournal.Event event){techniqueFinished(event);completionSound(event);combatLedger().finish(event);}
+     void playCommandEffects(List<TurnJournal.Event> events,MapSceneSnapshot before){
+-        cancelCommandEffects();replayCommitted=true;for(var event:events)constructionSound(event);
++        cancelCommandEffects();replayCommitted=true;techniqueCommandEvents=new ArrayList<>(events);for(var event:events)constructionSound(event);
++        if(events.size()>CombatSequence.CAPACITY){for(var event:events){if(techniqueSkip!=null)techniqueSkip.accept(event.id);combatLedger().finish(event);}techniqueCommandEvents=Collections.emptyList();return;}
+         if(!resumed||!UiMotion.enabled()){
+             for(var event:events){
+                 // Reduced motion commits the presentation directly to its final phase.
+@@ -103,7 +117,7 @@
+                 if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null)sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);}
+                 finishReplay(event);
+             }
+-            if(techniqueFeedback!=null)techniqueFeedback.run();
++            techniqueCommandEvents=Collections.emptyList();
+             return;
+         }
+         commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?PcPresentationPlan.duration(e):0),e->sourceVisuals()?PcPresentationPlan.duration(e):0);
+@@ -130,7 +144,8 @@
+         spatial.presentation(cues.get(index),scaled-index);
+     }
+     void cancelCommandEffects(){
+-        if(commandEffects!=null&&techniqueFeedback!=null)techniqueFeedback.run();
++        if(commandEffects!=null){for(var event:techniqueCommandEvents)if(techniqueSkip!=null)techniqueSkip.accept(event.id);}
++        techniqueCommandEvents=Collections.emptyList();
+         removeCallbacks(commandEffectTick);
+         commandPreparedEvent=null;
+         if(commandEffects!=null){commandEffects.skip();commandEffects=null;replayFrame(null,0);criticalEvent(null,0);setCriticalSkip(null);}
+@@ -167,6 +182,7 @@
+             wallElapsed=PcPresentationClock.elapsedMillis(wallElapsed,commandEffects.speed(),true);
+         }
+         commandEffects.advance(wallElapsed,this::replayVisible);commandEffectTime=now;
++        if(!commandEffects.paused())for(var event:techniqueCommandEvents)if(combatLedger().completed(event))techniqueFinished(event);
+         if(commandEffects.done()){cancelCommandEffects();return;}
+         TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?PcPresentationPlan.duration(event):0,action=presentationDuration(event);
+         float elapsed=commandEffects.fraction()*(prelude+action);
+@@ -377,6 +393,6 @@
+     void setUnitBarsShown(boolean value){unitBarsShown=value;getContext().getSharedPreferences("map-display",0).edit().putBoolean("unitBars",value).apply();if(spatial!=null)spatial.labels(commandersShown,value);}
+     void setCriticalSkip(Runnable skip){criticalSkip=skip;if(spatial!=null)spatial.criticalSkip(skip);}
+     void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}spatial.critical(hit,phase,projectedPortrait);}}
+-    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f&&replayCommitted&&resumed&&techniqueFeedback!=null)techniqueFeedback.run();if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}
++    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f)techniquePhase(e);if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}
+     boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}
+ }
+--- a/app/src/main/java/game/sanguo/mobile/TurnPlayback.java
++++ b/app/src/main/java/game/sanguo/mobile/TurnPlayback.java
+@@ -14,15 +14,16 @@
+     private TurnJournal.Event current;
+     TurnPlayback(MapHost map,TurnWork work,Runnable changed,Runnable finished){this.map=map;this.work=work;this.changed=changed;this.finished=finished;}
+     void start(){map.replayCommitted(work.done&&work.error==null);map.setCriticalSkip(()->{work.criticalElapsed=map.criticalDuration(current);map.criticalEvent(null,0);});last=SystemClock.uptimeMillis();map.invalidateScene();map.setWorld(work.visual,null,-1);map.postOnAnimation(tick);}
+-    void detach(){detached=true;map.replayCommitted(true);map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);map.replayFrame(null,0);map.pauseEffects(false);}
++    void detach(){map.discardTechniqueMedia();detached=true;map.replayCommitted(true);map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);map.replayFrame(null,0);map.pauseEffects(false);}
+     void pause(boolean paused){work.pause(paused);map.pauseEffects(paused);last=SystemClock.uptimeMillis();}
+-    void skip(){work.skipAnimations=true;work.pause(false);map.pauseEffects(false);map.replayFrame(null,0);map.criticalFrame(null,0);map.removeCallbacks(tick);step();}
++    void skip(){map.discardTechniqueMedia();work.skipAnimations=true;work.pause(false);map.pauseEffects(false);map.replayFrame(null,0);map.criticalFrame(null,0);map.removeCallbacks(tick);step();}
+     private final Runnable tick=this::step;
+     private void step(){
+         if(detached||finishedOnce)return;map.replayCommitted(work.done&&work.error==null);
+         long now=SystemClock.uptimeMillis(),elapsed=Math.max(0,now-last);last=now;
+         if(work.paused){map.postDelayed(tick,60);return;}
+         if(work.fastForward()){
++            map.discardTechniqueMedia();
+             map.criticalFrame(null,0);map.replayFrame(null,0);
+             // Completed authoritative state replaces presentation directly, never replaying commands.
+             if(work.done){work.clearPresentation();finish();return;}

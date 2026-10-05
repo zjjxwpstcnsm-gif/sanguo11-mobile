@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shared_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "output_sha256": "da507a1b8a31b923a9af814607a40800e865f78b392ecfba4060b953fa746b9d",
+  "rows": 4813,
+  "counts": {
+    "curve": 1143,
+    "ability": 3670
+  },
+  "input_columns": [
+    "native_index",
+    "base",
+    "curve",
+    "age",
+    "experience",
+    "stat",
+    "injury",
+    "rank_stat",
+    "rank_bonus",
+    "own_skill",
+    "spouse_present",
+    "spouse_skill",
+    "curve_bypass"
+  ],
+  "curves": [
+    "0x488df0",
+    "0x488e10",
+    "0x488e50",
+    "0x488e90",
+    "0x488ec0",
+    "0x488f00",
+    "0x488f40",
+    "0x488f60",
+    "0x488f80"
+  ],
+  "current_ability": "48a110",
+  "mutation_check": "Every emulated non-stack write forbidden; RNG42 unchanged",
+  "limits": [
+    "Controlled age/date-source flags; original UI settings and date policy not mapped",
+    "Explicit rank/skill/spouse fixtures, not inferred project officer state",
+    "Special native indices700..799 are source identities, never project IDs",
+    "No gameplay persistence or content import is performed"
+  ]
+}

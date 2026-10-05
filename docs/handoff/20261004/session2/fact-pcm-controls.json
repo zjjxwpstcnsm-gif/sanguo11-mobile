@@ -1,0 +1,46 @@
+{
+  "scope": "Generated algorithm controls, not device acceptance",
+  "checks": 3,
+  "rows": [
+    {
+      "name": "overlap",
+      "expected": true,
+      "accepted": true,
+      "detail": {
+        "status": "PASS",
+        "scope": "Distinct original HUD33 waveforms in actual emulator PCM; no ARM speaker evidence",
+        "captureSha256": "66eae3c2a627cee61e66a941c69bd3565147a91ebfcb8594405eb99924d7b385",
+        "sourceSha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+        "uniqueOriginalSamples": 1,
+        "occurrences": 2,
+        "sampleRate": 44100,
+        "explainedEnergy": 0.9999999781098948,
+        "unionCorrelation": 0.9999999890549474,
+        "starts": [
+          {
+            "seconds": 0.5,
+            "gain": 0.29993100094303277,
+            "candidateCorrelation": 0.9723964868383653
+          },
+          {
+            "seconds": 1.05,
+            "gain": 0.29992732159650465,
+            "candidateCorrelation": 0.8720204357426786
+          }
+        ]
+      }
+    },
+    {
+      "name": "single-alias-rejection",
+      "expected": false,
+      "accepted": false,
+      "detail": "('No distinct waveform candidate', 0.21832616005599983, 1)"
+    },
+    {
+      "name": "silence-rejection",
+      "expected": false,
+      "accepted": false,
+      "detail": "('No distinct waveform candidate', 0.0, 0)"
+    }
+  ]
+}

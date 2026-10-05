@@ -1,0 +1,11 @@
+{
+  "FINAL_LOOKUP.stderr": "gh: Not Found (HTTP 404)\n",
+  "CREATE.stderr": "HTTP 403: Resource not accessible by integration (https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/releases)\n",
+  "LOOKUP.stderr": "gh: Not Found (HTTP 404)\n",
+  "FINAL_LOOKUP.exit": "1\n",
+  "FINAL_LOOKUP.json": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+  "LOOKUP.exit": "1\n",
+  "LOOKUP.json": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+  "CREATE.exit": "1\n",
+  "CREATE.stdout": ""
+}

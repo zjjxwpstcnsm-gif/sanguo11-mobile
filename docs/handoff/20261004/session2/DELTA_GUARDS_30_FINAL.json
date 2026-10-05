@@ -1,0 +1,182 @@
+{
+  "baseCommit": "841e63cb11b2e1f2da31f96d8027345fae926884",
+  "guardedCommit": "2746decaf58116ba95589905c704ecad41d96996",
+  "applicationSource": "d42e6d201bcc4e664693d079a1740fd89e47a632",
+  "coreApiRuntimeByteEqualTo": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "noCommonEntryOrGlobalConfigurationChanges": true,
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/PortraitPixelsInstrumentation.java",
+      "beforeSha256": "52695317b6f45b84b7fb85a1d219590b1a50c391a90fe651a15eb0a1cd5da4a7",
+      "afterSha256": "e94368efe24e3e629598c7fb966799956c0f110d34a83fc78d041d805bf97ec0",
+      "bytes": 6237
+    },
+    {
+      "path": "app/src/main/assets/portraits/pc/dynamic-lookup.pcd",
+      "beforeSha256": "d39442ce2b53d00eea2be9f32e5b02fb4a11d7107edd394daefb8ba5d54fc141",
+      "afterSha256": "ecb65c5a037505aec8b33e0f606bff5cd4b30ea4791f4a9064d311e9d2224e76",
+      "bytes": 570832
+    },
+    {
+      "path": "app/src/main/assets/portraits/pc/dynamic-media-manifest.json",
+      "beforeSha256": "41a2c7c483723a45c9f82c69ebefd209b5cf9859491b88ba2355a9db12d86953",
+      "afterSha256": "86f5ff15aff63241014fb5f7424a9ef467e81748f62c3a384130cfbfdc49313a",
+      "bytes": 43259
+    },
+    {
+      "path": "app/src/main/assets/portraits/pc/media-manifest.json",
+      "beforeSha256": "a59ea18087a0e4c53bde84b4a8db73208d82c321a9a0828b68019b7c050bec97",
+      "afterSha256": "c9571f25150eedbf70105a616b00324764de91ddcc330bb69c66e6c404dc0aa8",
+      "bytes": 9924551
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcDynamicPortraitCatalog.java",
+      "beforeSha256": "fa1a6160250ce73728bf4fb9b10ee89ad051679caec6600ed8803ccd2384a6d6",
+      "afterSha256": "0efa15a539ca70ea37d50696bef48aa3c6ff130c0d743dc71337b502706a2029",
+      "bytes": 4256
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ACTUAL_EVIDENCE_ARCHIVE_30.json",
+      "beforeSha256": null,
+      "afterSha256": "f2b171ee7a2ac3977671e76d6445f5fa1df98000b3022b31235f1f408966ca27",
+      "bytes": 478
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ACTUAL_EVIDENCE_ARCHIVE_30_FINAL.json",
+      "beforeSha256": null,
+      "afterSha256": "23ede58a8bde79dc57436a39b37ddf19b7f7e0ae2a0c3e409ac2109a3cb4a4d9",
+      "bytes": 477
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_30.md",
+      "beforeSha256": null,
+      "afterSha256": "7e0cfa887330404e59599411338623606b61e2c59f01d0b827e2b876e7b7b22a",
+      "bytes": 2696
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELIVERY_CURRENT.md",
+      "beforeSha256": "d514f0adf519fb61f5c1afd6aa43b41f964a55c314ab5d74d254482a3d327be9",
+      "afterSha256": "24fbf8dd786ba47864c82a43e780133684672fa9bbf8c6215f21f5504a77b064",
+      "bytes": 21802
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELTA_GUARDS_30.json",
+      "beforeSha256": null,
+      "afterSha256": "4442733a3aed65025292d1cf2d2f1aaee104b3ba1d8fd5892dc23f78ff5fb677",
+      "bytes": 5636
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DYNAMIC_PORTRAIT_INSTALLED_30.json",
+      "beforeSha256": null,
+      "afterSha256": "e51cfd14c90f6a47886d738ac9efafe80e830e716122c0fa6f12d81f43184766",
+      "bytes": 8160
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INFANTRY_MISS_INSTALLED_30.json",
+      "beforeSha256": null,
+      "afterSha256": "b73f1a01349f73428df74973fa379ae1b1cd5fac4af20d8d6af33217ac03c402",
+      "bytes": 2491
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INFANTRY_SOUND_INSTALLED_MATRIX_30.json",
+      "beforeSha256": null,
+      "afterSha256": "624a8243634752a4e9a62fbc93c01eeebb769fc714798cc172ad18e3b1154843",
+      "bytes": 9939
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INSTALLED_CLOSEOUT_30.md",
+      "beforeSha256": null,
+      "afterSha256": "36ff3b1bafba7b815c5342d07600f6fddbfed28fd4969beecd215730b6ab3834",
+      "bytes": 5646
+    },
+    {
+      "path": "docs/handoff/20261004/session2/METADATA_COMMON_ENTRY_PROPOSAL_30.json",
+      "beforeSha256": null,
+      "afterSha256": "d255d7dfd24a725c234fa3d7e144c9e0d7d2b06a4b68944d3d04770ce99e4228",
+      "bytes": 1703
+    },
+    {
+      "path": "docs/handoff/20261004/session2/METADATA_SEQUENTIAL_INPUT_CONTRACT_30.json",
+      "beforeSha256": null,
+      "afterSha256": "8eaf3a0d7c57bcc69df995af5c844291fbd066d2b2e87055d494b36ae9896471",
+      "bytes": 41576
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_GAIJI_DYNAMIC_HOST_30.json",
+      "beforeSha256": null,
+      "afterSha256": "cc017cb069b89df7caf4be1e56dfb71c65e022949fe3723ded18baa499bb6370",
+      "bytes": 936
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_GAIJI_PIXELS_INSTALLED_30.json",
+      "beforeSha256": null,
+      "afterSha256": "08d19e2f74bc1e421f4158dff0773b3fd8ccac6e224ac630b00c411e34dba775",
+      "bytes": 1432
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_GAIJI_REPRO_30.json",
+      "beforeSha256": null,
+      "afterSha256": "3f6c3b7d63ceb08534ddc3f5ecf1e66361c9fcb61645622a87c5bd4ef35281a7",
+      "bytes": 679
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_NORMAL_INSTALLED_30.json",
+      "beforeSha256": null,
+      "afterSha256": "487522c7cc3e3131d077a420067e34e0e3b86765fe32f6ab44322d919d152ca2",
+      "bytes": 199315
+    },
+    {
+      "path": "docs/handoff/20261004/session2/SOURCE_ARCHIVE_30.json",
+      "beforeSha256": null,
+      "afterSha256": "cd072fe86499b73b354df104e44a0bde454a045ca5b155379508975065cae361",
+      "bytes": 1518
+    },
+    {
+      "path": "docs/handoff/20261004/session2/TACTIC_LIFECYCLE_INSTALLED_30.json",
+      "beforeSha256": null,
+      "afterSha256": "3472ef2b26700679deb76a7ffd2e9ec2703d07e8b6cf6afcbaf9849ea1961c5d",
+      "bytes": 3199
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-gaiji-authority-30.json",
+      "beforeSha256": null,
+      "afterSha256": "c27674acd55a3da3223a04ac7046ed2d2bbd1d0485b47393132d7ecf8a9f7b59",
+      "bytes": 43783
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-gaiji-native-30.json.gz",
+      "beforeSha256": null,
+      "afterSha256": "77aa84fe3c442fb162c6a8b8b47801ed7002175ce99de5fd076607001331475c",
+      "bytes": 7431
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-gaiji-requests-30.json",
+      "beforeSha256": null,
+      "afterSha256": "a795267e122ccbf0e3e2ad1d1f17dfa27259cd754247358fce1ce2a8cc7f1cee",
+      "bytes": 34056
+    },
+    {
+      "path": "tools/media/check_dynamic_portrait_catalog.py",
+      "beforeSha256": "e63beb99eeaf0a7b386e18199fe718aec75cc8f81ebbd08d8485b9c5960a4afe",
+      "afterSha256": "01d0d952123548104797482f46d2b2c2099b33cca96567c53a2e853b6fe816ab",
+      "bytes": 4344
+    },
+    {
+      "path": "tools/media/extend_gaiji_portrait_catalog.py",
+      "beforeSha256": null,
+      "afterSha256": "5d43d9a75384ff484af7d326701378af515ff8cc58c9c9ef2374d7d6859a1c1e",
+      "bytes": 4792
+    },
+    {
+      "path": "tools/media/stage_pc_dynamic_portraits.py",
+      "beforeSha256": "3ddf7f98535def2f7e1bf6a6009a87ccf9a1b6c05b22b1985d1ed0d04d2c0bfb",
+      "afterSha256": "7b6d8401ce97bb239b8a0cb99b776f1b24965845207e415f74a0a3817148c911",
+      "bytes": 5186
+    }
+  ],
+  "postArchiveIndexOnly": [
+    "SOURCE_ARCHIVE_30_FINAL.json",
+    "DELTA_GUARDS_30_FINAL.json",
+    "DELIVERY_CURRENT.md"
+  ]
+}

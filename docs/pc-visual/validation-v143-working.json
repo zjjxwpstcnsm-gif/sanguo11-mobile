@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v143 installed: far-only PASS, all12 suite final far FAIL",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v143/app-debug-scenery-stream.apk",
+      "bytes": 80956879,
+      "sha256": "9bce5576a197a7b026556abfed278d637094d6067e91d7dc4ec47ec771956da7"
+    },
+    {
+      "path": "out/pc-visual/v143/androidTest-scenery-stream.apk",
+      "bytes": 596597,
+      "sha256": "617c4315f45d855f6ceb8c061222639cbd641e83a9a6d0f4e44ba9707c66702c"
+    }
+  ],
+  "changes": [
+    "Original scenery/cliff walls delivered before CPU terrain on PC map",
+    "Legacy vegetation remains ground-first",
+    "v142 staged terrain and delayed GPU replacement retained; no geometry/material reduction"
+  ],
+  "checks": [
+    {
+      "name": "production-source-delivery-host",
+      "status": "pass",
+      "log": "out/pc-visual/v143-source-delivery-host.txt"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "log": "out/pc-visual/v143-scenery-stream-build.txt"
+    },
+    {
+      "name": "APK-resource-pins",
+      "status": "pass",
+      "pins": 97,
+      "log": "out/pc-visual/v143/apk-pins.txt"
+    },
+    {
+      "name": "bounded-work-queue",
+      "status": "pass",
+      "log": "out/pc-visual/v143-work-queue-host.txt"
+    },
+    {
+      "name": "native-ground-stream-suite",
+      "status": "fail",
+      "log": "out/pc-visual/v143-ground-stream-host.txt",
+      "failure": "Prerequisite NativeR03Test all levels preserve exact surface anchor:0.11!=0.08; remaining suite not reached",
+      "baseline": "out/pc-visual/v143-r03-v139-baseline.txt",
+      "baseline_result": "Exact same assertion/location/value in immutable v139 source snapshot; PC land under source water differs from max(land,water) picking surface; assertion unchanged"
+    },
+    {
+      "name": "existing-phased-mailbox-subset",
+      "status": "pass",
+      "log": "out/pc-visual/v143-existing-phased-mailbox-host.txt",
+      "scope": "Existing NativeGroundStreamTest.mailbox only; national v105-byte section not run"
+    },
+    {
+      "name": "installed-scenery-far-diagnostic",
+      "status": "pass",
+      "checks": 231,
+      "log": "out/pc-visual/v143-scenery-far-diagnostic-installed.txt",
+      "evidence": "out/pc-visual/v143/evidence-far/manifest.json",
+      "limits": "One Jingzhou winter near/far; all12 seasonal suite pending; no PC image or ARM validation"
+    },
+    {
+      "name": "installed-scenery-all12",
+      "status": "fail",
+      "log": "out/pc-visual/v143-scenery-all12-installed.txt",
+      "evidence": "out/pc-visual/v143/evidence-all12-failed/manifest.json",
+      "seasonal_near_captures": 12,
+      "pending_at120s": 12,
+      "visible_ground": 125,
+      "resident_ground": 125,
+      "limits": "Far-only passed separately; full suite remains FAIL; no weakened deadline; original effects/PC/ARM not accepted"
+    }
+  ],
+  "install": {
+    "status": "pass",
+    "main_log": "out/pc-visual/v143-install-main.txt",
+    "test_log": "out/pc-visual/v143-install-test.txt",
+    "byte_check": "out/pc-visual/v143-installed-apk-byte-check.json",
+    "before_user_save_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "after_all12_user_save_byte_exact": true
+  },
+  "inherited": "docs/pc-visual/validation-v142-working.json",
+  "hardware": {
+    "PC_reference": "NOT_AVAILABLE",
+    "ARM": "NOT_RUN",
+    "emulator": "API29 x86_64 host OpenGL"
+  },
+  "remaining": [
+    "Installed far/complete source scenery validation",
+    "Installed cities/facilities/rig/unit validation",
+    "Original effects/fullscreen/flags/fog/outline and PC comparison",
+    "Uniform source coordinate conversion"
+  ],
+  "observations": [
+    {
+      "kind": "framework-warning",
+      "log": "out/pc-visual/v143-far-terminal-logcat.txt",
+      "detail": "Activity pause timeout logged at final exit; 10s destruction barrier nevertheless completed. Far diagnostic passed but lifecycle latency/stress remains to investigate"
+    },
+    {
+      "kind": "remaining-visual-difference",
+      "detail": "Far screenshot reviewed: source geometry visible; flattened height, angular coastline and terrain UV/material matching remain unresolved; no PC visual comparison"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/inspect_pc_infantry_sound_chain.py", line 314, in <module>
+    inspect(args.installation, args.output, args.include_cavalry)
+  File "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/inspect_pc_infantry_sound_chain.py", line 253, in inspect
+    raise ValueError('Original generated record routes differ')
+ValueError: Original generated record routes differ

@@ -1,0 +1,22 @@
+UIUX PASS 18 checks
+PASS normal launch restores existing save
+PASS naval starts with intact recovery campaign
+PASS touch visible 战法 at Rect(440, 1268 - 639, 1394)
+PASS naval stone choice displays authority-provided contextual cost
+PASS compact landscape permits scrolling to last tactic and reaching cancel
+PASS touch visible 投石 · 气力15 at Rect(42, 987 - 1037, 1134)
+PASS map touch 6,6 at [671.25, 887.71875]
+PASS map target preview uses same naval cost as choice
+PASS naval list rotation and preview preserve complete authority and RNG
+PASS touch visible 执行 at Rect(540, 1520 - 1038, 1646)
+PASS naval stone double confirmation executes once at contextual cost
+PASS naval command transition ignores repeat tap into changed layout
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores original campaign and RNG after naval fixture
+

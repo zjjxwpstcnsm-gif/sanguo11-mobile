@@ -1,0 +1,14 @@
+{
+  "status": "DRAFT_NOT_INSTALLED",
+  "purpose": "Independent Android mixed-PCM measurement before emulator WAV backend; never acceptance without full waveform",
+  "device": "emulator-5582 exclusively after current PortraitFlow ends",
+  "productionPackage": "game.sanguo.mobile.dev",
+  "helperPackage": "game.sanguo.mobile.dev.test",
+  "captureFilter": "exact installed production UID and USAGE_GAME only",
+  "productionManifestChanges": false,
+  "sourceSamplesOrRecorderChanges": false,
+  "permissions": "Test package only RECORD_AUDIO, FOREGROUND_SERVICE, FOREGROUND_SERVICE_MEDIA_PROJECTION; acquire real system MediaProjection token and restore temporary test permission state",
+  "rollback": "Stop/release AudioRecord and projection, stop own service, retain raw WAV and timestamp report; existing install wrapper restores all production user files byte-for-byte",
+  "limits": "AudioPlaybackCapture is Android-mix evidence, not speaker/ARM/Windows proof; external QEMU failures remain separate and unchanged",
+  "reference": "https://developer.android.com/media/platform/av-capture"
+}

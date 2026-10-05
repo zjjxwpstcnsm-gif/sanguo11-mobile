@@ -1,0 +1,57 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "sourceTactic=SPIRAL",
+    "tacticMiss=1",
+    "sourceTacticSound=-1",
+    "run=infantry-miss-installed-30"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/gaiji-portrait-build-30/frozen/app-debug.apk": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/gaiji-portrait-build-30/frozen/app-debug-androidTest.apk": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45"
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": true,
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "installed_test_sha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+  "installed_sha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+  "exit_code": 0,
+  "seconds": 17.92,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "actualMissPcm": {
+    "status": "PASS_NO_COMPLETE_ORIGINAL_SUCCESS_WAVE",
+    "scope": "Installed miss reference/zero source heads plus no full49/78 match at unchanged.999 gate; residual mobile cues remain, native58 unbound",
+    "apkSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+    "captureSha256": "568fb02e0c4b6ed3462d26e02ec0a0ce3f637440eb803b2018675d7765958e98",
+    "sourceHeadsZero": 6,
+    "rows": [
+      {
+        "nativeSoundId": 49,
+        "maximumCompleteWaveCorrelation": 0.11040775514605257,
+        "unchangedPositiveIdentityThreshold": 0.999,
+        "sourceWavSha256": "1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705"
+      },
+      {
+        "nativeSoundId": 78,
+        "maximumCompleteWaveCorrelation": 0.08261926048715597,
+        "unchangedPositiveIdentityThreshold": 0.999,
+        "sourceWavSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638"
+      }
+    ]
+  },
+  "evidenceDirectory": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-miss-installed-30",
+  "normalVoiceBinding": false,
+  "goalComplete": false
+}

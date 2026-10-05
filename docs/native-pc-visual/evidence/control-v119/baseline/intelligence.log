@@ -1,0 +1,5 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+CONFUSE phase=baseline118 leader40/deputy80 both sides: preview=45% actual=4527/10000 45.27%
+MISLEAD phase=baseline118 leader40/deputy80 both sides: preview=65% actual=6563/10000 65.63%
+PASS CONTROL_INTELLIGENCE checks=40106

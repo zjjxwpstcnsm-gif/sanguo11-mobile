@@ -8,13 +8,13 @@ import java.util.function.*;
 
 /** Native foreign affairs forms, with read-only previews and explicit final confirmation. */
 final class DiplomacyUi {
-    private final Activity a;private final World w;private final LegacyCommandSink apply;
-    DiplomacyUi(Activity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
+    private final MainActivity a;private final World w;private final LegacyCommandSink apply;
+    DiplomacyUi(MainActivity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private void confirm(String title,String error,String text,Runnable action){
         if(error!=null){info(title,error);return;}
-        new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,i)->action.run()).setNegativeButton("取消",null).show();
+        a.commandDialog(title,text,"执行",w,action);
     }
     void surrender(World.City c,World.Officer o,int side){
         confirm("劝降 · "+w.faction(side),w.diplomacy.surrenderError(c.id,o.id,side),

@@ -1,0 +1,32 @@
+{
+  "baseCommit": "a2bce320eefeec919976defff38fb7a0f9ee1537",
+  "unchangedAuthorityCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "nativeReportSha256": "7fb095cc89ed5a40805e9ce3d4c1d5fed1dfd6da887f2e6c4688b38c9903469b",
+  "paths": {
+    "tools/audio/inspect_pc_music_composed_selector.py": {
+      "beforeSha256": null,
+      "afterSha256": "2cda01e51c39233b8b4d9f8bc46afecde11896e7c6559eb4aac253efba8e4d2a"
+    },
+    "tools/audio/verify_pc_music_policy.py": {
+      "beforeSha256": null,
+      "afterSha256": "ba3566f5b75063055e4c306b430accd39086f961b89e244958577ae3b29cdcc2"
+    },
+    "app/src/main/java/game/sanguo/mobile/PcMusicPolicy.java": {
+      "beforeSha256": null,
+      "afterSha256": "b1ee85696276974f7c2e613648613c9309fcb003de3c298c35b0fd495527ef54"
+    },
+    "app/src/main/java/game/sanguo/mobile/PcMapMusicDirective.java": {
+      "beforeSha256": null,
+      "afterSha256": "cfa1ecb6cf55522964b891e5d422e1342eb9ffa8ab78674e9aa6bbf5ac66728f"
+    },
+    "app/src/main/java/game/sanguo/mobile/PcMediaPlayback.java": {
+      "beforeSha256": "edb19a81f7e99d7d081d78f0c52b450babe0f8c496b3670ed8e622930ef1a0e8",
+      "afterSha256": "deb54d0c13e343e96a543461e4c29b83e7a4c5a895039e8e626d055772cf4a5e"
+    },
+    "app/src/test/java/game/sanguo/mobile/PcMusicPolicyTest.java": {
+      "beforeSha256": null,
+      "afterSha256": "cdf5dd50113d652cc86791a2327d897fc938c2dd99ed76687ee5d6c9abf6bcae"
+    }
+  }
+}

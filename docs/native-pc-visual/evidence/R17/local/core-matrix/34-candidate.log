@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: source death and reload preserve fire power and continuation
+	at game.sanguo.core.ArchitectureRulesTest.check(ArchitectureRulesTest.java:8)
+	at game.sanguo.core.ArchitectureRulesTest.fireReplay(ArchitectureRulesTest.java:62)
+	at game.sanguo.core.ArchitectureRulesTest.main(ArchitectureRulesTest.java:11)

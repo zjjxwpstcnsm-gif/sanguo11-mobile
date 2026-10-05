@@ -1,0 +1,56 @@
+{
+  "baseCommit": "3df0154",
+  "protectedAllExact": true,
+  "protectedFiles": 529,
+  "changes": [
+    {
+      "commit": "730cbccbcdf84fc9627082bcbad953b3fcad3e75",
+      "parentCommit": "3df0154803939d8dee306a52b2fe952253c5c4b2",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/MusicPlaybackInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "af737f4bbee5eb2455e896648993d35d77a493dd583cdd6884a220c7ab6b9412"
+    },
+    {
+      "commit": "730cbccbcdf84fc9627082bcbad953b3fcad3e75",
+      "parentCommit": "3df0154803939d8dee306a52b2fe952253c5c4b2",
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "beforeSha256": null,
+      "afterSha256": "151722f2603244fe66ff3a9ecb955c2701ac8671d33977cdfef9ac7a901e0a2b"
+    },
+    {
+      "commit": "730cbccbcdf84fc9627082bcbad953b3fcad3e75",
+      "parentCommit": "3df0154803939d8dee306a52b2fe952253c5c4b2",
+      "path": "app/src/main/java/game/sanguo/mobile/PcVorbisDecoder.java",
+      "beforeSha256": "7cf59b15b8976908041d10aea7f601598368540f5316d24f1078fcc4be5c4042",
+      "afterSha256": "8c758c90b0579918ca3c5a42b8d8b64fa27bcdbb6aff7bbce6772c24f7da4650"
+    },
+    {
+      "commit": "53e023b1983e82bdbdf208c02913f9bf2389aeca",
+      "parentCommit": "730cbccbcdf84fc9627082bcbad953b3fcad3e75",
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "5f595d2768dcf622437a308338a2807dd0850681906fdc936b6c8b5652ac9376",
+      "afterSha256": "25edcecd7b014465ba4715814d11f1fe96624238293135ce7a43dd0d1b2e811d"
+    },
+    {
+      "commit": "23fa59d9a90ff8f8dabeacdf3e4951c1f3169702",
+      "parentCommit": "53e023b1983e82bdbdf208c02913f9bf2389aeca",
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "8a89594e75b99f035e21a3dec736b93d21ca12b367362bd3ad457cb6114d436c",
+      "afterSha256": "4d9eafa716eff5dd1fb1850d63d42d3c8d71edfa83f945db860d415065866e7e"
+    },
+    {
+      "commit": "2afd704b951881e3589404c2a0efef4d8b8c1560",
+      "parentCommit": "23fa59d9a90ff8f8dabeacdf3e4951c1f3169702",
+      "path": "tools/audio/check_pc_music_mix.py",
+      "beforeSha256": null,
+      "afterSha256": "3c104640c6487beae7dc054a814d563cd6253336eb8252dd963bbfa1d8a52134"
+    },
+    {
+      "commit": "2afd704b951881e3589404c2a0efef4d8b8c1560",
+      "parentCommit": "23fa59d9a90ff8f8dabeacdf3e4951c1f3169702",
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "4d9eafa716eff5dd1fb1850d63d42d3c8d71edfa83f945db860d415065866e7e",
+      "afterSha256": "14051c42250ea30e5a4c92452cd430ba15582fdd7bbe2c0cbb3a834a2aacbdff"
+    }
+  ]
+}

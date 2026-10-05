@@ -18,9 +18,6 @@ public final class StrategyRules {
     public static int rewardGain(int targetPolitics, int targetCharm) {
         return 6 + (100 - stat(targetPolitics)) / 25 + (100 - stat(targetCharm)) / 25;
     }
-    public static int patrolGain(int politics, int charm) {
-        return 5 + (stat(politics) + stat(charm)) / 20;
-    }
     public static int trainingGain(int leadership, int war) {
         return 5 + stat(leadership) / 10 + stat(war) / 40;
     }

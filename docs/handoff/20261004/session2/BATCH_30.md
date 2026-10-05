@@ -1,0 +1,13 @@
+# 批30：四原字形人物的64条媒体来源补充
+
+基点841e63cb11b2e1f2da31f96d8027345fae926884。只消费会话一已完成443c4782中的batch25-identity-media-metadata.json，不读取或复制其未提交WIP，不改core/API/runtime、人物姓名/能力/生卒/所属、MainActivity/MapHost或公共manifest/全局台账。
+
+具体人物：孔伷officerId156234/native184、司馬伷844857/native229、朱儁598828/native249、吳璝850922/native616。会话一分别确认canonical10184/10229/10249/10616，但媒体连接始终保留运行时ID，canonical只作为证据。64条跨16来源的来源文件SHA、人物recordSHA、生年和性别全部与先前独立原serializer记录对应；身份来源由已提交字形契约确定，不用native槽算项目ID，不生成或修改人脸像素。
+
+再次执行原48b7b7人物serializer、48a450普通lookup、48a5b0全屏lookup及4a66ea年龄切换切片；64条、33独立原记录、12个独立年龄边界检查，两次输出字节一致SHAe371b1457539b7acac22b3dc813fce0ff48f30b8d7eb89487098e7a3fe6a39f9。原face57/606/267/544，原当前全屏190/190/189/189，年龄阈值255保持，不人为补年龄变体。三原形态的尺寸/alpha/PNG/RGBA SHA继承原FCE解码证据；没有增加像素文件。
+
+媒体普通manifest追加64条已批准连接，10656→10720；原10656记录、2892图像manifest和原像素保持。紧凑全屏lookup567440→570832字节，新SHAecb65c5a037505aec8b33e0f606bff5cd4b30ea4791f4a9064d311e9d2224e76。生产Java仅按10656/10720的精确count/hash组合接受，旧hash仍受保护，不放宽任意目录。两个stage四文件字节一致。全10720×3年龄输出及来源拒绝160806主机检查通过，62原全屏图/115模板未变。
+
+运行时边界：本整合核心仍是已完成9e171f2，旧文本新局的这四人没有SourceInfo；SourceInfo为空仍保持未知，不从当前catalog/姓名追填旧档，不假造DTO、不写源namespace。媒体目录已准备接受会话一真实sourceVariant/nativeId/officerId/sourceSHA/recordSHA连接，但普通列表652→656还未实证，完整16新来源开局及四字形名字由顺序集成已完成metadata工厂后验收。必要顺序集成必须审计冻结提交和共同入口，不复制其dirty工作树或旧核心。
+
+本批实际新APK的2892原PNG/Android RGBA及10720条普通年龄lookup、媒体加载、规则/存档不变和旧普通流程复验另列。此批不把解析器或解码覆盖扩大成全部normal/dialogue/duel调用形态还原。地图BGM/正常voice/原未命中58、其余事件音效、长曲及声音异常、MOD生效覆盖、Unity Player/ARM仍未完成。目标active。

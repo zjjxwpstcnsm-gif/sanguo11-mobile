@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "source": "v147 built production FilamentMapView.java",
+  "source_sha256": "f1a07e8129ef90e339ace7f0b418dc7acef8c1202c7544701c6ddf29b988f17c",
+  "method_sha256": "831b2030e6ecd451496ac656c8ba1aac449007daa7eb9c62f9c035a602e634e4",
+  "purpose": "Exact prior occlusion behavior; independent cache result/invalidation regression"
+}

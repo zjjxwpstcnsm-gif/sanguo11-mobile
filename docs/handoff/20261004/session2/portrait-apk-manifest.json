@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "b238c361b0cc71a52612cbc4514f5e6f6d1fff06",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug.apk",
+      "bytes": 253929583,
+      "sha256": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug-androidTest.apk",
+      "bytes": 2038707,
+      "sha256": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512"
+    }
+  ],
+  "exactOriginalPortraitAssets": 2892,
+  "manifestSha256": "a59ea18087a0e4c53bde84b4a8db73208d82c321a9a0828b68019b7c050bec97"
+}

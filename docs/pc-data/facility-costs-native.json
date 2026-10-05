@@ -1,0 +1,518 @@
+{
+  "schema": 2,
+  "action_points": {
+    "value": 20,
+    "instruction_address": "0x5bc4b7",
+    "instruction_hex": "6a14",
+    "debit_chain": [
+      "5b9340",
+      "4a1820",
+      "47e3e0"
+    ],
+    "destination": "district+0x2c"
+  },
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_path": "Media/scenario/Scenario.s11",
+  "source_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "report_sha256": "1fedd777f36f28877a3ab6bd84a0fe7358a8d75307bb9333cb77d20070b8804e",
+  "menu": {
+    "address": "0x8ba670",
+    "stride": 20,
+    "native_ids": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      30,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "sha256": "d446c36d4da7c41f449bec41e12069bad5feade170c0f3d8489b41c8e309d536"
+  },
+  "project_ids": {
+    "MARKET": 31,
+    "FARM": 32,
+    "BARRACKS": 33,
+    "SMITH": 34,
+    "MINT": 38,
+    "GRANARY": 39,
+    "STABLE": 35,
+    "BLACK_MARKET": 48,
+    "WORKSHOP": 36,
+    "SHIPYARD": 37,
+    "BRONZE_TERRACE": 30
+  },
+  "records": [
+    {
+      "native_index": 0,
+      "native_name": "都市",
+      "cost": 65535,
+      "source_offset": 3125,
+      "record_sha256": "9991f97b02238e9d0cffa16944352e3d748d4837b822c366f68910a51735d269"
+    },
+    {
+      "native_index": 1,
+      "native_name": "關所",
+      "cost": 65535,
+      "source_offset": 3316,
+      "record_sha256": "e68fe540fa7c3f5ef972b0ea4f0db1ea441ebb8afc4ea6d3ebd9d4c31c2283f7"
+    },
+    {
+      "native_index": 2,
+      "native_name": "港",
+      "cost": 65535,
+      "source_offset": 3507,
+      "record_sha256": "4039015497944d14177252d1254dbe195c6cc3c64685458eceabdd561ae23f6e"
+    },
+    {
+      "native_index": 3,
+      "native_name": "陣",
+      "cost": 500,
+      "source_offset": 3698,
+      "record_sha256": "845d2849338882ff525d9e747cdb5c73df6e0c0f5772333e13d4678e6f4e7481"
+    },
+    {
+      "native_index": 4,
+      "native_name": "砦",
+      "cost": 500,
+      "source_offset": 3889,
+      "record_sha256": "91b5a414b7fca488c77d33ffb14fd29297acd7b7ad8d4e16d5b81c8dcde94238"
+    },
+    {
+      "native_index": 5,
+      "native_name": "城塞",
+      "cost": 500,
+      "source_offset": 4080,
+      "record_sha256": "7459a24ba3fe19ff7870db8005dbbed72d9cc49488d5fceb7669ed8044ae5ef6"
+    },
+    {
+      "native_index": 6,
+      "native_name": "箭樓",
+      "cost": 600,
+      "source_offset": 4271,
+      "record_sha256": "08726f60d6540c624959d3457da22909aef6e430fa1fcc0e3d9768e83da7c20e"
+    },
+    {
+      "native_index": 7,
+      "native_name": "連弩樓",
+      "cost": 600,
+      "source_offset": 4462,
+      "record_sha256": "5bb8e9a80444b070debb3dc1197a798d2eba9c63692f19f14b1d55d53f0eb6d8"
+    },
+    {
+      "native_index": 8,
+      "native_name": "土壘",
+      "cost": 300,
+      "source_offset": 4653,
+      "record_sha256": "ad86d109c977fc5d8575f7ebf242f5908190a7436cbc5eb8203ac0aad4849256"
+    },
+    {
+      "native_index": 9,
+      "native_name": "石牆",
+      "cost": 300,
+      "source_offset": 4844,
+      "record_sha256": "1e96ccd3cc31cbfaeec495abf7d5e7a36895be4eaeef98bdb0df23a3028a184c"
+    },
+    {
+      "native_index": 10,
+      "native_name": "投石台",
+      "cost": 800,
+      "source_offset": 5035,
+      "record_sha256": "478de98c4ffff614c17337ebb41d435cf2482dece3edb89d993593974094fba0"
+    },
+    {
+      "native_index": 11,
+      "native_name": "太鼓台",
+      "cost": 500,
+      "source_offset": 5226,
+      "record_sha256": "2210033e2e69d1c20b6f077ee1ae6fb647cfe78e6f3eba53171fb8ad6201d6a9"
+    },
+    {
+      "native_index": 12,
+      "native_name": "軍樂台",
+      "cost": 800,
+      "source_offset": 5417,
+      "record_sha256": "d1232d28a0bc9ba0ee40f0c8a5ff5acdacc7b88a21a4bf61cfc31a7ad929b397"
+    },
+    {
+      "native_index": 13,
+      "native_name": "石兵八陣",
+      "cost": 1200,
+      "source_offset": 5608,
+      "record_sha256": "d812248f0eede57f0510022cad9d548edf393fa53eef814899ef1c9e8d38a9be"
+    },
+    {
+      "native_index": 14,
+      "native_name": "根據地",
+      "cost": 65535,
+      "source_offset": 5799,
+      "record_sha256": "65cf2db8d1afaa2c3b8bc7b8e58d48fa469cdb4807339015abf76876e0496ed2"
+    },
+    {
+      "native_index": 15,
+      "native_name": "根據地",
+      "cost": 65535,
+      "source_offset": 5990,
+      "record_sha256": "40900a99e1dde07d1c3cc73646356c9521c3b21122c33263dbc65f8c3125dac4"
+    },
+    {
+      "native_index": 16,
+      "native_name": "火種",
+      "cost": 200,
+      "source_offset": 6181,
+      "record_sha256": "7cad77223b94c34406c4a0b9b68a510ab5b5aff73172bebbc69ce60acdc4f72b"
+    },
+    {
+      "native_index": 17,
+      "native_name": "火焰種",
+      "cost": 200,
+      "source_offset": 6372,
+      "record_sha256": "a5d0855886955f9d8354f9464f2dbb5174955224a9686bfeab4dd827ed1b31d8"
+    },
+    {
+      "native_index": 18,
+      "native_name": "火球",
+      "cost": 200,
+      "source_offset": 6563,
+      "record_sha256": "d8548cb22b82abaee795d862e06e67b45d234b57383cc6bea9a785b38f144a17"
+    },
+    {
+      "native_index": 19,
+      "native_name": "火焰球",
+      "cost": 200,
+      "source_offset": 6754,
+      "record_sha256": "77f4f9288fae11a0211345346a0b1a2f6b96a403506825bfd4679689a9f4f8dd"
+    },
+    {
+      "native_index": 20,
+      "native_name": "火船",
+      "cost": 200,
+      "source_offset": 6945,
+      "record_sha256": "8a5716d808d4552f19909819673bcffc1a0c9f7f67046420bb6843a2508dd5c0"
+    },
+    {
+      "native_index": 21,
+      "native_name": "業火球",
+      "cost": 200,
+      "source_offset": 7136,
+      "record_sha256": "ca9b275328ac6081baabf50eb50f1c7eb0324e2837a7465882bf1f074e778c5d"
+    },
+    {
+      "native_index": 22,
+      "native_name": "業火種",
+      "cost": 200,
+      "source_offset": 7327,
+      "record_sha256": "d95cee9d9c35be8e502d6cc30d78201abd36de252eeb434b82b065ee0e5f5f90"
+    },
+    {
+      "native_index": 23,
+      "native_name": "落石",
+      "cost": 65535,
+      "source_offset": 7518,
+      "record_sha256": "c1cf91585a03fa7c48e070184d0ac4e3418095313521907949e4ae409b10ddbf"
+    },
+    {
+      "native_index": 24,
+      "native_name": "堤防",
+      "cost": 65535,
+      "source_offset": 7709,
+      "record_sha256": "fdbe3124f9b4c44baf4b0ca7a942dcea552189515742829df35460cc4f172d75"
+    },
+    {
+      "native_index": 25,
+      "native_name": "淺灘",
+      "cost": 65535,
+      "source_offset": 7900,
+      "record_sha256": "8262e8eef2ff6594ec337ab14422b4d6d891ed2ec8abc10f5ed92761cb81e896"
+    },
+    {
+      "native_index": 26,
+      "native_name": "山岳",
+      "cost": 65535,
+      "source_offset": 8091,
+      "record_sha256": "eb83dcd7f4f8b8b5ce859f11e4940cf5cd3f0b1a681595e2b2634a30c661ab3a"
+    },
+    {
+      "native_index": 27,
+      "native_name": "長城",
+      "cost": 65535,
+      "source_offset": 8282,
+      "record_sha256": "252baf5f06913a6514b3533b57632e17f712a96e37d6239ced834e3108fb9a00"
+    },
+    {
+      "native_index": 28,
+      "native_name": "遺跡",
+      "cost": 65535,
+      "source_offset": 8473,
+      "record_sha256": "85a4295e209f4b0929b1fc12766068cd7c623b7608a82751402ddbccbc191951"
+    },
+    {
+      "native_index": 29,
+      "native_name": "廟",
+      "cost": 65535,
+      "source_offset": 8664,
+      "record_sha256": "7ccaa9e2755a4f46fb25f29eeb79ac237e6705f81405022842d9e84454577b26"
+    },
+    {
+      "native_index": 30,
+      "native_name": "銅雀台",
+      "cost": 1500,
+      "source_offset": 8855,
+      "record_sha256": "21cb93b076b55fbf80365e6d70877e3d83410362d910a7e7e3cdbdb35fe28ff3"
+    },
+    {
+      "native_index": 31,
+      "native_name": "市場 Lv1",
+      "cost": 200,
+      "source_offset": 9046,
+      "record_sha256": "3368291057deb4c0dc0efa98479baba174b9d571b6096bf6bdd68f68e4e2045a"
+    },
+    {
+      "native_index": 32,
+      "native_name": "農場 Lv1",
+      "cost": 200,
+      "source_offset": 9237,
+      "record_sha256": "ab1258808e78d8d2e96a8f67e8def885a11f43bf4f94e624274527cf0816c9ad"
+    },
+    {
+      "native_index": 33,
+      "native_name": "兵舍 Lv1",
+      "cost": 300,
+      "source_offset": 9428,
+      "record_sha256": "7739bc4a8cdf55cb4ae9683f7af8eecb304c07dc5447317c809a8a37c14bbb6d"
+    },
+    {
+      "native_index": 34,
+      "native_name": "鍛冶廠 Lv1",
+      "cost": 300,
+      "source_offset": 9619,
+      "record_sha256": "b2278c359437a71ae6c943936c26c9cae686fd1eb7cb578ee6b674e90d8cce4a"
+    },
+    {
+      "native_index": 35,
+      "native_name": "廄舍 Lv1",
+      "cost": 300,
+      "source_offset": 9810,
+      "record_sha256": "46bf3010943e40247657f598ca3124b8c70726db7607677b59cb8a7a133b76b9"
+    },
+    {
+      "native_index": 36,
+      "native_name": "工房",
+      "cost": 300,
+      "source_offset": 10001,
+      "record_sha256": "5ae580830fdd9100b913ad8c0c0d87d0dc2a8598d32eeee0001568ab54d7d871"
+    },
+    {
+      "native_index": 37,
+      "native_name": "造船廠",
+      "cost": 300,
+      "source_offset": 10192,
+      "record_sha256": "c4feaa596a7900c808f2f4c4c03dfb63e036333b1a894ed1189479d882404ed5"
+    },
+    {
+      "native_index": 38,
+      "native_name": "造幣廠",
+      "cost": 400,
+      "source_offset": 10383,
+      "record_sha256": "024ab24cdce10d69ab439a53c4768b69ff0ebf610f2a3bfdc10028f78056535d"
+    },
+    {
+      "native_index": 39,
+      "native_name": "穀倉",
+      "cost": 400,
+      "source_offset": 10574,
+      "record_sha256": "1017aaa51306c581277c09dff7b04ca4b443ee334b1a347a4c4de817679fde05"
+    },
+    {
+      "native_index": 40,
+      "native_name": "符節台",
+      "cost": 200,
+      "source_offset": 10765,
+      "record_sha256": "deb97decac775e5649fa701fc6f4a9d151c334b169a3a282745ff7e5f4768540"
+    },
+    {
+      "native_index": 41,
+      "native_name": "軍事府",
+      "cost": 200,
+      "source_offset": 10956,
+      "record_sha256": "d2c49dad8acb27e8db40c39a7cf477d411b659d1b5a2093b51fb909257e1bbaf"
+    },
+    {
+      "native_index": 42,
+      "native_name": "人材府",
+      "cost": 200,
+      "source_offset": 11147,
+      "record_sha256": "c91d7b7f0f610d913c639db76365824e974eaa143fea0c9258d77b2589ec335f"
+    },
+    {
+      "native_index": 43,
+      "native_name": "外交府",
+      "cost": 200,
+      "source_offset": 11338,
+      "record_sha256": "ad7e95e6ca530dcce546b57fb908671f9895886bbb4054b9a1effdd7c9891be8"
+    },
+    {
+      "native_index": 44,
+      "native_name": "計略府",
+      "cost": 200,
+      "source_offset": 11529,
+      "record_sha256": "b387843cb4e725439b0c094b3d77f6a78df6d096501be0b92b4e6400e66afbff"
+    },
+    {
+      "native_index": 45,
+      "native_name": "鍊兵所",
+      "cost": 200,
+      "source_offset": 11720,
+      "record_sha256": "53a6ec559d0c99db1846edb91a566e9f65a2ec8451f296928fd1cae0c2235718"
+    },
+    {
+      "native_index": 46,
+      "native_name": "大市場",
+      "cost": 400,
+      "source_offset": 11911,
+      "record_sha256": "abe40fdeb535dbb3e8182846f8dfad8057cd28eb8cc300bfbe97623b9dca18f9"
+    },
+    {
+      "native_index": 47,
+      "native_name": "魚市",
+      "cost": 400,
+      "source_offset": 12102,
+      "record_sha256": "260fd314a8d865dde1ca9e0e5db33cd81f426d1ba6a15a0910e01fa8c3b68229"
+    },
+    {
+      "native_index": 48,
+      "native_name": "黑市",
+      "cost": 50,
+      "source_offset": 12293,
+      "record_sha256": "886d753d87ff9489502033962c332890a828a32e2c78f48d958bc718cbe1321c"
+    },
+    {
+      "native_index": 49,
+      "native_name": "軍屯農",
+      "cost": 400,
+      "source_offset": 12484,
+      "record_sha256": "f27ed95b6debd9f7eda87e35d12e788a645c874067d8fc3ecb1f512a752b3ca3"
+    },
+    {
+      "native_index": 50,
+      "native_name": "市場 Lv2",
+      "cost": 100,
+      "source_offset": 12675,
+      "record_sha256": "2d207f7ca22f573d39b4090d116b44de51f3afee71ff4d1d35971f7ab1b69e96"
+    },
+    {
+      "native_index": 51,
+      "native_name": "市場 Lv3",
+      "cost": 100,
+      "source_offset": 12866,
+      "record_sha256": "fc6922ceb5f32fb6a040207bb9ab0af5566c2472a0b241c1c5e0ce1249302e9e"
+    },
+    {
+      "native_index": 52,
+      "native_name": "農場 Lv2",
+      "cost": 100,
+      "source_offset": 13057,
+      "record_sha256": "75ab31d3b19ddaac2b5a034e2b39649d01536eee1323dc2a9791367fa2de0ae2"
+    },
+    {
+      "native_index": 53,
+      "native_name": "農場 Lv3",
+      "cost": 100,
+      "source_offset": 13248,
+      "record_sha256": "fabc7a442a57fc96f1ea8d47a827699ca2ffb899e290402d2e822f6c241df3b3"
+    },
+    {
+      "native_index": 54,
+      "native_name": "兵舍 Lv2",
+      "cost": 100,
+      "source_offset": 13439,
+      "record_sha256": "5febd25b560609206fa47e28d5e68e134a222f19ea3117838b046ffcfd78392e"
+    },
+    {
+      "native_index": 55,
+      "native_name": "兵舍 Lv3",
+      "cost": 100,
+      "source_offset": 13630,
+      "record_sha256": "473d2abf673e70214776ea67df3d715896e1b37deb01e110dca1ebbaead6734a"
+    },
+    {
+      "native_index": 56,
+      "native_name": "鍛冶廠 Lv2",
+      "cost": 100,
+      "source_offset": 13821,
+      "record_sha256": "725faf30f89207d4b2da978a836f925210286c06ee3876213b4bb5534539eafe"
+    },
+    {
+      "native_index": 57,
+      "native_name": "鍛冶廠 Lv3",
+      "cost": 100,
+      "source_offset": 14012,
+      "record_sha256": "79e6a48a8ca41b7117803fb57f4ad0614c99e037206cbd015ac7ac329ba27330"
+    },
+    {
+      "native_index": 58,
+      "native_name": "廄舍 Lv2",
+      "cost": 100,
+      "source_offset": 14203,
+      "record_sha256": "4f0f2001f8ee53f259fb8e0c14ea5191d4897487a04c36de78fcc8c0458614a7"
+    },
+    {
+      "native_index": 59,
+      "native_name": "廄舍 Lv3",
+      "cost": 100,
+      "source_offset": 14394,
+      "record_sha256": "35d35ff6da3a584130a84a82f260c761360bd5012ceaae725bf4af75691e2d41"
+    },
+    {
+      "native_index": 60,
+      "native_name": "－－－－",
+      "cost": 100,
+      "source_offset": 14585,
+      "record_sha256": "c35a47387d1e8af999a7c824faf2cadf3c9aadebba7e2512e2bba9ef1da9fbe4"
+    },
+    {
+      "native_index": 61,
+      "native_name": "－－－－",
+      "cost": 100,
+      "source_offset": 14776,
+      "record_sha256": "1218ded9407ecdd756fd470b007f0467aa62701297ad1a132a00e6c0d9a63846"
+    },
+    {
+      "native_index": 62,
+      "native_name": "－－－－",
+      "cost": 100,
+      "source_offset": 14967,
+      "record_sha256": "2689f5bdeb89db10df3ce02aeb440dfda86ad22d9060e232267068017e032cb0"
+    },
+    {
+      "native_index": 63,
+      "native_name": "－－－－",
+      "cost": 100,
+      "source_offset": 15158,
+      "record_sha256": "dd449d9f31a47e4bfbe99926e4f2e8b778b49039942d24fb4a9ddcdbe097d926"
+    }
+  ],
+  "evidence": [
+    "Original construction5bc4b5 passes20 to district debit5b9340; original4a1820 updates district+2c",
+    "Original getter5bb2b0 reads facility+c4",
+    "Original construction5bc462..5bc49b debits the city resource through native virtual methods",
+    "Original menu600e15..600e37 selects base facilities; Lv2/Lv3 are not menu entries"
+  ],
+  "limits": [
+    "No complete construction simulation: progress, durability, district AP ownership, three workers, merging and yield remain separate audit items",
+    "Optional external runtime patches are not proven active"
+  ]
+}

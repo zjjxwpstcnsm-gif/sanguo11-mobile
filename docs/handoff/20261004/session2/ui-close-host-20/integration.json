@@ -1,0 +1,8 @@
+{
+  "sourceContractCommit": "c13d8b8b91ec13a3cd9dc0c9dc9945ee09f59f1d",
+  "applied": true,
+  "file": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+  "beforeSha256": "6fc0b84b0cb82a76b7d5c2ce7a2bb069a8e10bd8a66d0739e90e21940e943705",
+  "afterSha256": "d6c9b54d85d966df32459ab93e862cc6ad7cbc3a4c877e24fba8496650c2bf63",
+  "scope": "Actual platform OnCancel only; no generic dismissal, button text, rules, metadata or commands"
+}

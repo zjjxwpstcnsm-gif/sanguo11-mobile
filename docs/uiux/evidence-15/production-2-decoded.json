@@ -1,0 +1,28 @@
+{
+  "decoder" : "AVAssetReader sequential actual samples \/ nearest PTS",
+  "frames" : [
+    {
+      "actual_seconds" : 10.106822222222222,
+      "height" : 1920,
+      "path" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-15\/p15-06\/decoded-2\/video-frame-10.png",
+      "requested_seconds" : 10,
+      "width" : 1080
+    },
+    {
+      "actual_seconds" : 90.030600000000007,
+      "height" : 1920,
+      "path" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-15\/p15-06\/decoded-2\/video-frame-90.png",
+      "requested_seconds" : 90,
+      "width" : 1080
+    },
+    {
+      "actual_seconds" : 170.01316666666668,
+      "height" : 1920,
+      "path" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-15\/p15-06\/decoded-2\/video-frame-170.png",
+      "requested_seconds" : 170,
+      "width" : 1080
+    }
+  ],
+  "PC_match_accepted" : false,
+  "video" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-15\/p15-06\/interaction-part02.mp4"
+}

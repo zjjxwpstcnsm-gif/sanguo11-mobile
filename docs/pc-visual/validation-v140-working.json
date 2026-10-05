@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v140 installed source/compatibility policy; original effects unrecovered",
+  "apk": "out/pc-visual/sanguo11-mobile-v140-pc-source-policy.apk",
+  "apk_sha256": "4bc7418c35bce147ebb7edf215e5413e26d284f5527a6a3691ad8440d78e3fde",
+  "test_apk": "out/pc-visual/v140/app-debug-androidTest-source-policy-restore-barrier.apk",
+  "inherited_validation": "docs/pc-visual/validation-v139.json",
+  "checks": [
+    {
+      "name": "source-SWORD-normal-move-attack",
+      "status": "pass",
+      "checks": 2986,
+      "log": "out/pc-visual/v140-source-policy-sword-installed.txt"
+    },
+    {
+      "name": "source-platform-normal-damaged-default240s",
+      "status": "pass",
+      "checks": 785,
+      "log": "out/pc-visual/v140-source-policy-platform-installed.txt"
+    },
+    {
+      "name": "custom-map-normal-arrow-critical-lifecycle",
+      "status": "pass",
+      "checks": 48,
+      "log": "out/pc-visual/v140-source-policy-compat-lifecycle-installed.txt"
+    },
+    {
+      "name": "source-all29-unit-normal-commands",
+      "status": "pass",
+      "log": "out/pc-visual/v140-source-policy-all29-restore-barrier-installed.txt",
+      "limits": "Installed normal-command integration; PC timing/flags/full effects remain pending",
+      "checks": 44823,
+      "normal_commands": 29,
+      "report": "out/pc-visual/v140-all29-final-report.txt"
+    }
+  ],
+  "source_effect_policy": "Source national3D: no compatibility flags, fire/scaffold, particles, generic critical overlay, unresolved object proxies; real source body/pose and rules remain",
+  "source_effects_restored": false,
+  "compatibility_policy": "Old/custom maps retain old explicit path; installed custom arrow/critical commands passed",
+  "restore": {
+    "before": "out/pc-visual/v140-autosave-before-install.sg11",
+    "after": "out/pc-visual/v140-autosave-after-all29.sg11",
+    "bytes": 168846,
+    "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "byte_exact": true,
+    "historical_failed_capture": "out/pc-visual/v140-autosave-after-compat.sg11",
+    "cause": "Test finish queued MainActivity.onPause autosave after backup restoration; fixed by waiting for Activity destruction; original externally restored and rerun passed"
+  },
+  "videos": [
+    {
+      "path": "out/pc-visual/v140-normal-source-platform.mp4",
+      "review": "Decoded1s rest/tail; no complete firing acceptance",
+      "PC_match": false
+    },
+    {
+      "path": "out/pc-visual/v140-damaged-source-platform.mp4",
+      "review": "PyAV actual1s rest,10s raised rig,25s desktop; partial source pose coverage only; no projectile/PC cadence acceptance",
+      "PC_match": false
+    },
+    {
+      "path": "out/pc-visual/v140-mounted-archery-command-tail.mp4",
+      "metadata": "out/pc-visual/v140-mounted-tail-video.json",
+      "review": "26 sparse decoded frames; first/last viewed mounted-archery MOVE body/formation displacement; no attack or source timing acceptance",
+      "PC_match": false
+    }
+  ],
+  "evidence": "out/pc-visual/v140/evidence/manifest.json",
+  "source_effect_investigation": {
+    "common33": "docs/pc-visual/effect-bindings-source.json",
+    "motion_scalar_programs": 20934,
+    "motion_unresolved_nonscalar": 444,
+    "controller_records": 8956,
+    "controller_parsed": 8909,
+    "controller_unresolved": 47,
+    "controllers": "docs/pc-visual/effect-controllers-working.json",
+    "runtime_effects_added": 0,
+    "common_sprite_resource": 124,
+    "distant_unit_sprite_resource": 2195,
+    "WFTX4804": "terrain debug labels/arrows/icons; no water assertion",
+    "uv_programs": 2008,
+    "uv_machine_samples": 48192,
+    "uv_programs_report": "docs/pc-visual/effect-uv-working.json",
+    "uv_machine_oracle": "out/pc-visual/v140-effect-uv-machine-check.json",
+    "dynamic_atlas_binding": "347 dynamic sheets -> common resource124/image32; source destination y from second table word confirmed"
+  },
+  "hardware": {
+    "device": "API29 x86_64 emulator, host OpenGL",
+    "ARM": "NOT_RUN",
+    "PC_reference": "NOT_AVAILABLE"
+  },
+  "remaining": [
+    "Original sprite/material/emission/controller context evaluation and normal event binding",
+    "Original fullscreen brush text, portrait layers, camera and timing;680ms legacy presentation clock remains pending",
+    "Original flags/projectiles/fire/environment/flood and collapse",
+    "Source tree darkness/flattening, model ratio, terrain UV/light/water and distant calibration",
+    "Long pressure, transparency sorting, effect overlaps and physical ARM performance",
+    "All177scope entries PC matched visual/dynamic evidence pending"
+  ],
+  "evidence_all29": "out/pc-visual/v140/evidence-all29/manifest.json",
+  "evidence_all29_captures": 168,
+  "evidence_all29_files": 336
+}

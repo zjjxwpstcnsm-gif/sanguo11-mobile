@@ -1,0 +1,6 @@
+{
+  "source": "b6222f81d1922011eec019701021de2966523710",
+  "input": "5cc511faa6d2fea837f0fecc29f5e2c28c933f8f",
+  "baseline_War_matches_git": true,
+  "baseline_director_fixtures": "Only new test fixture/test copied into separate exact-source baseline; production files from git archive"
+}

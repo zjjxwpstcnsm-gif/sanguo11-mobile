@@ -7,11 +7,11 @@ import java.util.*;
 public final class Domestic {
     public static final int CITY_SLOTS=6, TRAVEL_SPEED=4;
     public enum Kind {
-        MARKET("市场",1000,"每月金 +400"), FARM("农场",800,"每季粮 +2500"),
-        BARRACKS("兵舍",1200,"每座每旬可征兵1次；每次征兵 +500"), SMITH("锻冶所",1200,"每座每旬可生产枪/戟/弩共1次；每次产量 +500"),
-        MINT("造币",1500,"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",1500,"相邻农场产粮 +50%，不重复叠加"),
-        STABLE("厩舍",1200,"每座每旬可生产战马1次；每次产量 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并"),
-        WORKSHOP("工房",1500,"每座每旬可开工1次攻城器械；跨旬完成"), SHIPYARD("造船厂",1500,"临水建造；每座每旬可开工1次舰船；跨旬完成"), BRONZE_TERRACE("铜雀台",1500,"需要铜雀；每月技巧点+100，不可合并");
+        MARKET("市场",PcFacilityCosts.at(31),"每月金 +400"), FARM("农场",PcFacilityCosts.at(32),"每季粮 +2500"),
+        BARRACKS("兵舍",PcFacilityCosts.at(33),"每座每旬可征兵1次；每次征兵 +500"), SMITH("锻冶所",PcFacilityCosts.at(34),"每座每旬可生产枪/戟/弩共1次；每次产量 +500"),
+        MINT("造币",PcFacilityCosts.at(38),"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",PcFacilityCosts.at(39),"相邻农场产粮 +50%，不重复叠加"),
+        STABLE("厩舍",PcFacilityCosts.at(35),"每座每旬可生产战马1次；每次产量 +500"), BLACK_MARKET("黑市",PcFacilityCosts.at(48),"每月金 +200，不可合并"),
+        WORKSHOP("工房",PcFacilityCosts.at(36),"每座每旬可开工1次攻城器械；跨旬完成"), SHIPYARD("造船厂",PcFacilityCosts.at(37),"临水建造；每座每旬可开工1次舰船；跨旬完成"), BRONZE_TERRACE("铜雀台",PcFacilityCosts.at(30),"需要铜雀；每月技巧点+100，不可合并");
         public final String label,effect;public final int cost;
         Kind(String label,int cost,String effect){this.label=label;this.cost=cost;this.effect=effect;}
     }
@@ -84,7 +84,8 @@ public final class Domestic {
     public int count(int city){int n=0;for(Facility f:facilities)if(f.cityId==city)n++;return n;}
     /** Each completed facility supplies one order per turn, shared by all products of its kind. */
     public int capacity(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f))n++;return n;}
-    public int remainingUses(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&f.lastUseTurn!=w.turn)n++;return n;}
+    public int remainingUses(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&unused(f)&&!w.army.reserved(f.id))n++;return n;}
+    private boolean unused(Facility f){return w.pcProduction.enabled()&&(f.kind==Kind.WORKSHOP||f.kind==Kind.SHIPYARD)||f.lastUseTurn!=w.turn;}
     private boolean operational(Facility f){return f.hp>0&&(f.remaining==0||f.upgradeTo>0);}
     public String operationError(int city,Kind kind){
         World.City c=w.city(city);if(c==null||c.kind!=World.SiteKind.CITY)return "只有城市可以征兵和生产军备";
@@ -94,7 +95,7 @@ public final class Domestic {
     }
     public String usage(int city,Kind kind){return kind.label+" · 本旬剩余 "+remainingUses(city,kind)+" / "+capacity(city,kind)+" 次";}
     void use(int city,Kind kind){
-        for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&f.lastUseTurn!=w.turn){f.lastUseTurn=w.turn;return;}
+        for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&unused(f)&&!w.army.reserved(f.id)){f.lastUseTurn=w.turn;return;}
         throw new IllegalStateException("Facility order must be validated before spending");
     }
     public static Kind productionFacility(World.Weapon weapon){
@@ -130,18 +131,21 @@ public final class Domestic {
     public int produceAmount(int city){return 2000+this.yield(city,Kind.SMITH,500);}
     public int produceAmount(int city,World.Weapon weapon){return 2000+this.yield(city,weapon==World.Weapon.CAVALRY?Kind.STABLE:Kind.SMITH,500);}
     public static boolean mergeable(Kind kind){return kind==Kind.MARKET||kind==Kind.FARM||kind==Kind.BARRACKS||kind==Kind.SMITH||kind==Kind.STABLE;}
-    /** Mobile shortcut: upgradeable facilities are built at their highest level. */
-    public static int buildLevel(Kind kind){return mergeable(kind)?3:1;}
+    /** The original ordinary construction menu selects base facilities, never Lv2/Lv3. */
+    public static int buildLevel(Kind kind){return 1;}
     public static String buildEffect(Kind kind){
-        switch(kind){
-            case MARKET:return "每月金 +600";
-            case FARM:return "每季粮 +3750";
-            case BARRACKS:return "每座每旬可征兵1次；每次征兵 +750";
-            case SMITH:return "每座每旬可生产枪/戟/弩共1次；每次产量 +750";
-            case STABLE:return "每座每旬可生产战马1次；每次产量 +750";
-            case WORKSHOP:return "每座每旬可开工1次攻城器械；跨旬完成";
-            case SHIPYARD:return "临水建造；每座每旬可开工1次舰船；跨旬完成";
-            default:return kind.effect;
+        return kind.effect;
+    }
+    /** Existing facilities retain their saved level; do not describe them with new-build facts. */
+    public static String facilityEffect(Facility f){
+        int scale=f.level==3?150:f.level==2?120:100;
+        switch(f.kind){
+            case MARKET:return "每月金 +"+(400*scale/100);
+            case FARM:return "每季粮 +"+(2500*scale/100);
+            case BARRACKS:return "每座每旬可征兵1次；每次征兵 +"+(500*scale/100);
+            case SMITH:return "每座每旬可生产枪/戟/弩共1次；每次产量 +"+(500*scale/100);
+            case STABLE:return "每座每旬可生产战马1次；每次产量 +"+(500*scale/100);
+            default:return f.kind.effect;
         }
     }
     public List<Facility> mergeCandidates(int target){
@@ -175,17 +179,26 @@ public final class Domestic {
         result.sort(Comparator.comparingInt((Hex h)->h.distance(c.hex)).thenComparingInt(h->h.q).thenComparingInt(h->h.r));
         return result;
     }
+    static int constructionTurns(World.Officer o){return o.politics>=80?2:3;}
+    private RuleFailure buildFailure(int cityId,int officerId,Kind kind,Hex h){
+        if(kind==null)return new RuleFailure("FACILITY_KIND_INVALID","kind","设施类型无效");
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=w.cityFailure(c,o,kind.cost,PcFacilityCosts.BUILD_ACTION_POINTS);
+        if(failure!=null)return failure;
+        if(c.kind!=World.SiteKind.CITY)return new RuleFailure("CITY_TYPE","city","港关不能开发内政设施");
+        if(count(cityId)>=w.development.capacity(cityId))return new RuleFailure("FACILITY_CAPACITY","city","本城最多"+w.development.capacity(cityId)+"处设施（含建设中）");
+        if(kind==Kind.BRONZE_TERRACE&&(!w.treasures.factionHas(c.owner,Treasures.Kind.BRONZE)||facilities.stream().anyMatch(f->f.cityId==cityId&&f.kind==kind)))return new RuleFailure("BRONZE_REQUIREMENT","kind","需要持有铜雀，且本城至多一座铜雀台");
+        if(kind==Kind.SHIPYARD&&(h==null||h.neighbors().stream().noneMatch(w.army::water)))return new RuleFailure("WATER_REQUIRED","target","造船厂必须建在临水的开发地");
+        if(!site(c,h))return new RuleFailure("BUILD_SITE_INVALID","target","请选择本城空闲开发地，且不能封死城池出口");
+        if(nextFacilityId>=10000000)return new RuleFailure("FACILITY_ID_LIMIT","global","设施编号已达上限");
+        return null;
+    }
+    public ConstructionPlan previewBuild(int cityId,int officerId,Kind kind,Hex h){
+        return new ConstructionPlan(w,w.city(cityId),w.officer(officerId),kind,buildFailure(cityId,officerId,kind,h));
+    }
     public World.Result build(int cityId,int officerId,Kind kind,Hex h){w.reports.prepare();
-        if(kind==null)return w.fail("设施类型无效");
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,kind.cost);
-        if(error!=null)return w.fail(error);
-        if(c.kind!=World.SiteKind.CITY)return w.fail("港关不能开发内政设施");
-        if(count(cityId)>=w.development.capacity(cityId))return w.fail("本城最多"+w.development.capacity(cityId)+"处设施（含建设中）");
-        if(kind==Kind.BRONZE_TERRACE&&(!w.treasures.factionHas(c.owner,Treasures.Kind.BRONZE)||facilities.stream().anyMatch(f->f.cityId==cityId&&f.kind==kind)))return w.fail("需要持有铜雀，且本城至多一座铜雀台");
-        if(kind==Kind.SHIPYARD&&(h==null||h.neighbors().stream().noneMatch(w.army::water)))return w.fail("造船厂必须建在临水的开发地");
-        if(!site(c,h))return w.fail("请选择本城空闲开发地，且不能封死城池出口");
-        if(nextFacilityId>=10000000)return w.fail("设施编号已达上限");
-        int turns=o.politics>=80?2:3;w.spend(c,o,kind.cost);
+        RuleFailure failure=buildFailure(cityId,officerId,kind,h);if(failure!=null)return w.fail(failure.detail);
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
+        int turns=constructionTurns(o);w.spend(c,o,kind.cost,PcFacilityCosts.BUILD_ACTION_POINTS);
         Facility facility=new Facility(nextFacilityId++,c.id,kind,h,o.id,turns);
         facility.level=buildLevel(kind);facilities.add(facility);
         return w.success(o.name+"开始建设"+kind.label+" Lv"+facility.level+"，需要"+turns+"旬");
@@ -232,33 +245,50 @@ public final class Domestic {
     public String shipCargoError(int source,int[] ships){World.City c=w.city(source);if(c==null||ships==null||ships.length!=2)return "舰船货物无效";for(int i=0;i<2;i++)if(ships[i]<0||ships[i]>100||ships[i]>c.ships[i])return "舰船货物超过库存或100上限";return null;}
     public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returning,int[] ships){w.reports.prepare();
         String error=shipCargoError(source,ships);if(error!=null)return w.fail(error);
-        World.Result result=transport(source,target,officer,deputies,gold,food,troops,equipment,sea,returning);if(!result.ok)return result;
-        Mission m=missions.get(missions.size()-1);for(int i=0;i<2;i++){m.cargoShips[i]=ships[i];w.city(source).ships[i]-=ships[i];}return result;
+        return dispatch(source,target,officer,deputies,true,gold,food,troops,equipment,sea,returning,ships);
     }
     public String transportError(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea){
         return dispatchError(source,target,officer,deputies,true,gold,food,troops,equipment,sea);
     }
     private String dispatchError(int source,int target,int officer,int[] deputies,boolean cargo,int gold,int food,int troops,int[] equipment,boolean sea){
+        RuleFailure failure=dispatchFailure(source,target,officer,deputies,cargo,gold,food,troops,equipment,sea);return failure==null?null:failure.detail;
+    }
+    private RuleFailure dispatchFailure(int source,int target,int officer,int[] deputies,boolean cargo,int gold,int food,int troops,int[] equipment,boolean sea){
         World.City c=w.city(source),d=w.city(target);World.Officer o=w.officer(officer);
-        String error=w.cityError(c,o,0);if(error!=null)return error;
-        if(w.districts.dispatchError(source,target,cargo)!=null)return w.districts.dispatchError(source,target,cargo);
-        if(d==null||d.owner!=w.active||d.id==c.id)return "请选择另一座己方城池";
-        if(!payload(gold,food,troops,equipment))return "运输数量越界";
-        if(deputies==null||deputies.length>2)return "运输编队最多三名武将";
+        RuleFailure common=w.cityFailure(c,o,0);if(common!=null)return common;
+        String error=w.districts.dispatchError(source,target,cargo);if(error!=null)return new RuleFailure("DISTRICT_DISPATCH","target",error);
+        if(d==null||d.owner!=w.active||d.id==c.id)return new RuleFailure("TRANSPORT_TARGET","target","请选择另一座己方城池");
+        if(!payload(gold,food,troops,equipment))return new RuleFailure("CARGO_RANGE","cargo","运输数量越界");
+        if(deputies==null||deputies.length>2)return new RuleFailure("CREW_SIZE","deputies","运输编队最多三名武将");
         Set<Integer> crew=new HashSet<>();crew.add(officer);
-        for(int id:deputies){if(!crew.add(id))return "运输武将不能重复";error=w.cityError(c,w.officer(id),0);if(error!=null)return error;}
-        if(cargo&&gold+food+troops+Arrays.stream(equipment).sum()==0)return "至少携带一种资源";
-        if(c.gold<gold||c.food<food||c.troops<troops)return "金、粮或兵力库存不足";
-        if(cargo&&w.districts.reserveError(c,gold,food,troops)!=null)return w.districts.reserveError(c,gold,food,troops);
-        for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return "兵装库存不足";
+        for(int id:deputies){if(!crew.add(id))return new RuleFailure("CREW_DUPLICATE","deputies","运输武将不能重复");common=w.cityFailure(c,w.officer(id),0);if(common!=null)return new RuleFailure(common.code,"deputies",common.detail);}
+        if(cargo&&gold+food+troops+Arrays.stream(equipment).sum()==0)return new RuleFailure("CARGO_EMPTY","cargo","至少携带一种资源");
+        if(c.gold<gold||c.food<food||c.troops<troops)return new RuleFailure("CARGO_STOCK","cargo","金、粮或兵力库存不足");
+        if(cargo&&(error=w.districts.reserveError(c,gold,food,troops))!=null)return new RuleFailure("DISTRICT_RESERVE","cargo",error);
+        for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return new RuleFailure("EQUIPMENT_STOCK","equipment","兵装库存不足");
 
         if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;probe.deputies=deputies.clone();
-            SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,probe);if(!departure.valid())return departure.error;
-            departure.apply(probe);MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(w.personnel.turns(source,target)<0)return "没有可用人员路线";
-        if(nextMissionId>=10000000)return "任务编号已达上限";
+            SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,probe);if(!departure.valid())return new RuleFailure("DEPARTURE_BLOCKED","route",departure.error);
+            departure.apply(probe);MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return new RuleFailure("ROUTE_UNAVAILABLE","route",plan.error);}else if(w.personnel.turns(source,target)<0)return new RuleFailure("ROUTE_UNAVAILABLE","route","没有可用人员路线");
+        if(nextMissionId>=10000000)return new RuleFailure("MISSION_ID_LIMIT","global","任务编号已达上限");
         return null;
     }
+    /** Pure draft facts. Ship validation keeps the same priority as the full ordinary command. */
+    public TransportPlan previewTransport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returning,int[] ships){
+        String shipError=shipCargoError(source,ships);
+        RuleFailure failure=shipError==null?dispatchFailure(source,target,officer,deputies,true,gold,food,troops,equipment,sea):new RuleFailure("SHIP_CARGO","ships",shipError);
+        World.City c=w.city(source),d=w.city(target);Mission probe=null;SiteFootprint.Deployment departure=null;
+        if(failure==null){
+            probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);
+            probe.sea=sea;probe.deputies=deputies.clone();probe.returnOfficers=returning;System.arraycopy(ships,0,probe.cargoShips,0,2);
+            departure=SiteFootprint.deployment(w,c,probe);departure.apply(probe);
+        }
+        return new TransportPlan(w,c,d,w.officer(officer),failure,probe,departure,probe==null?-1:eta(probe),probe!=null&&fits(probe,d));
+    }
     private World.Result dispatch(int source,int target,int officer,int[] deputies,boolean cargo,int gold,int food,int troops,int[] equipment,boolean sea,boolean returnOfficers){
+        return dispatch(source,target,officer,deputies,cargo,gold,food,troops,equipment,sea,returnOfficers,null);
+    }
+    private World.Result dispatch(int source,int target,int officer,int[] deputies,boolean cargo,int gold,int food,int troops,int[] equipment,boolean sea,boolean returnOfficers,int[] ships){
         String error=dispatchError(source,target,officer,deputies,cargo,gold,food,troops,equipment,sea);if(error!=null)return w.fail(error);
         World.City c=w.city(source),d=w.city(target);World.Officer o=w.officer(officer);
         Mission mission=new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment);
@@ -268,6 +298,10 @@ public final class Domestic {
             departure.apply(mission);mission.movementTurn=w.turn;
         }
         w.spend(c,o,0);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<equipment.length;i++)c.equipment[i]-=equipment[i];
+        // Cargo must be part of the same committed command/report baseline.
+        // Debiting after success() leaked this change into the next command's
+        // report only when continuing in memory, diverging from save/load.
+        if(ships!=null)for(int i=0;i<2;i++){mission.cargoShips[i]=ships[i];c.ships[i]-=ships[i];}
         for(int id:mission.crew()){World.Officer member=w.officer(id);w.strategy.releaseGovernor(id);member.cityId=-1;member.acted=true;}
         missions.add(mission);
         return w.success(o.name+(cargo?"运送资源":"调动")+"前往"+d.name+(returnOfficers?"；卸货后人员返程":""));
@@ -288,9 +322,10 @@ public final class Domestic {
             (fits(probe,d)?"当前容量可接收":"目的地容量不足，抵达后等待；不会丢弃货物")+"\n"+
             (returnOfficers?"卸货后仅武将返程，兵粮入库；返程沿真实路线。":"抵达后武将留驻。")+(error==null?"":"\n不能执行："+error);
     }
+    static int equipmentCargoLimit(int i){return i==World.Weapon.SWORD.ordinal()?0:i>4?100:20000;}
     private static boolean payload(int gold,int food,int troops,int[] equipment){
         if(gold<0||gold>100000||food<0||food>200000||troops<0||troops>20000||equipment==null||(equipment.length!=4&&equipment.length!=World.Weapon.values().length))return false;
-        for(int i=0;i<equipment.length;i++)if(equipment[i]<0||equipment[i]>(i==World.Weapon.SWORD.ordinal()?0:i>4?100:20000))return false;return true;
+        for(int i=0;i<equipment.length;i++)if(equipment[i]<0||equipment[i]>equipmentCargoLimit(i))return false;return true;
     }
     public World.Result redirect(int id,int target){w.reports.prepare();
         Mission m=mission(id);World.City c=w.city(target);
@@ -367,7 +402,7 @@ public final class Domestic {
     }
     private boolean fits(Mission m,World.City c){
         for(int i=0;i<2;i++)if(c.ships[i]>100-m.cargoShips[i])return false;
-        if(c.gold>w.campaign.goldCap(c)-m.gold||c.food>w.campaign.foodCap(c)-m.food||c.troops>w.campaign.troopCap(c)-m.troops-m.wounded)return false;
+        if(!w.campaign.fitsGold(c,m.gold)||c.food>w.campaign.foodCap(c)-m.food||c.troops>w.campaign.troopCap(c)-m.troops-m.wounded)return false;
         for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>w.campaign.equipmentCap(c,World.Weapon.values()[i])-m.equipment[i])return false;return true;
     }
     void tick(){

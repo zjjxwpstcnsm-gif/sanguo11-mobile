@@ -1,0 +1,62 @@
+UIUX PASS 57 checks
+PASS normal launch restores existing save
+PASS military governance starts from preserved campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 设施开发 at Rect(706, 1128 - 1038, 1254)
+PASS normal campaign has a visible legal development parcel
+PASS touch visible 兵舍 · Lv3 · 金1200
+每座每旬可征兵1次；每次征兵 +750 at Rect(74, 1043 - 1005, 1211)
+PASS touch visible 曹操 · 政治94 · 2旬 at Rect(74, 764 - 1005, 932)
+PASS touch visible 开工 at Rect(837, 1055 - 1005, 1181)
+PASS real build command starts the required barracks
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn advances construction exactly once
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn advances construction exactly once
+PASS barracks becomes operational through real turn progression
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 965 - 901, 1091)
+PASS touch visible 军事 at Rect(509, 817 - 661, 943)
+PASS touch visible 征兵 · 兵舍 · 本旬剩余 1 / 1 次 at Rect(53, 1401 - 1027, 1455)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS 征兵 preview is pure including RNG
+PASS touch visible 返回修改 at Rect(627, 1262 - 837, 1388)
+PASS 征兵 returns to same actor table
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 执行 at Rect(837, 1262 - 1005, 1388)
+PASS 征兵 commits once and spends one actor action
+PASS recruit consumes actual reserve for gained soldiers at authoritative cost
+PASS touch visible 陳留 · 26k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 888 - 901, 1014)
+PASS touch visible 军事 at Rect(509, 790 - 661, 916)
+PASS touch visible 训练 · 金100 at Rect(53, 1250 - 1027, 1320)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS 训练 preview is pure including RNG
+PASS touch visible 返回修改 at Rect(627, 1110 - 837, 1236)
+PASS 训练 returns to same actor table
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 执行 at Rect(837, 1110 - 1005, 1236)
+PASS 训练 commits once and spends one actor action
+PASS training increases actual morale at authoritative cost
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 781 - 1027, 907)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores campaign between city command paths
+PASS real load restores campaign after construction recruitment and training
+

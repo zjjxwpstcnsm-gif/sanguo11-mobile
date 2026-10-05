@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "release_accepted": true,
+  "phase": "original six-bone platform actual firing integration",
+  "source_catalog": "facility-rigs-source.json",
+  "checks": [
+    {
+      "name": "independent-source-rig-and-normal-next-turn",
+      "status": "pass",
+      "checks": 131952,
+      "raw_reference": "out/pc-visual/v139-platform-source-reference.bin",
+      "log": "out/pc-visual/v139-platform-final-shared-water-cpu.txt",
+      "max_display_float_error": 5.9604645e-08
+    },
+    {
+      "name": "installed-normal-and-damaged-platform-firing",
+      "status": "pass",
+      "log": "out/pc-visual/v139-platform-default-shared-water-installed.txt",
+      "detail": "Normal/damaged actual production next-turn; original240s window unchanged; all paused source GPU phases,4x,full save/RNG and release verified. Measured normal73879ms/damaged188928ms; no stable-performance or PC-fidelity acceptance.",
+      "checks": 128,
+      "report": "out/pc-visual/v139-platform-default-shared-water-installed-report.txt"
+    },
+    {
+      "name": "source-conversion-scratch-reproducibility",
+      "status": "pass",
+      "log": "out/pc-visual/v139-platform-converter-repro-fixed.txt",
+      "sha256": "c005139c78e3625e7035f8403240ecc98706ffbed70f02a22a09c7f209b51999"
+    },
+    {
+      "name": "extracted-frame-admission-includes-source-rig",
+      "status": "pass",
+      "log": "out/pc-visual/v139-platform-frame-admission-fixed.txt",
+      "limits": "host fake driver contract only; no actual GPU performance claim"
+    },
+    {
+      "name": "camera-window-contract",
+      "status": "pass",
+      "log": "out/pc-visual/v139-platform-camera-window.txt"
+    },
+    {
+      "name": "legacy-command-and-timeline-regressions",
+      "status": "pass",
+      "checks": 99443,
+      "companion_combat_checks": 25470,
+      "log": "out/pc-visual/v139-platform-timeline-r11-reviewed-boundary.txt"
+    },
+    {
+      "name": "exact-reviewed-PC-source-visual-architecture-fence",
+      "status": "pass",
+      "log": "out/pc-visual/v139-platform-architecture-reviewed.txt",
+      "detail": "Individual paths reviewed; exact pure core value/event imports and new no-authority guard; original no-World/owner/JNI/meta gates retained"
+    },
+    {
+      "name": "v138-versus-v139-seven-complete-session-states",
+      "status": "pass",
+      "states": 7,
+      "log": "out/pc-visual/v139-platform-session-seven-current.txt",
+      "sha256": "5df4d1475c61195afcbfb662bda54e07d72518a1a900622c08a9f67996c68a6c",
+      "limits": "Original historic golden remains failing; comparison is exact preserved v138 cohort, not replacement golden"
+    },
+    {
+      "name": "shared-water-cache-five-exact-full-GPU-inputs",
+      "status": "pass",
+      "log": "out/pc-visual/v139-ground-shared-water-lossless.json",
+      "limits": "Five full GPU inputs bit exact to preserved v138; emulator run passed default checks but large timing variance remains."
+    },
+    {
+      "name": "dam0-damage-far-original120s-shared-water",
+      "status": "pass",
+      "checks": 313,
+      "log": "out/pc-visual/v139-dam0-shared-water-installed.txt",
+      "detail": "Original far120s assertion unchanged; exact user auto restore; x86_64 emulator only"
+    }
+  ],
+  "failures": [
+    {
+      "name": "invalid-fixture-statusTurns3",
+      "log": "out/pc-visual/v139-platform-source-cpu-invalid-fixture.txt",
+      "repair": "valid core confused duration2; save bound unchanged"
+    },
+    {
+      "name": "frame-admission-source-harness-new-rig-step",
+      "log": "out/pc-visual/v139-platform-frame-admission.txt",
+      "repair": "Added new GPU step to harness so rejected frames must also omit rig updates; same assertions retained"
+    },
+    {
+      "name": "relative-scratch-output-provenance",
+      "log": "out/pc-visual/v139-platform-converter-repro.txt",
+      "repair": "Resolve requested project paths before provenance relative_to; output bytes remain identical"
+    },
+    {
+      "name": "architecture-old-scenario-save-golden",
+      "status": "reproduced-with-v138-core",
+      "log": "out/pc-visual/v139-platform-architecture-reviewed.txt",
+      "detail": "Same initial golden assertion fails with preserved v138 core classes. All seven old-sequence full-save/RNG SHA lines are identical v138 versus current; old golden/initial assertion preserved. This proves no v139 drift for those seven states, not architecture full-suite pass.",
+      "baseline_log": "out/pc-visual/v139-platform-architecture-v138-core-baseline.txt",
+      "seven_state_comparison": "out/pc-visual/v139-platform-session-seven-current.txt / v139-platform-session-seven-v138.txt"
+    },
+    {
+      "name": "installed-default240s-no-firing-phase",
+      "status": "failed",
+      "log": "out/pc-visual/v139-platform-failed-logcat.txt",
+      "report": "out/pc-visual/v139-platform-failed-report.txt",
+      "video": "out/pc-visual/v139-platform-production-next-turn.mp4",
+      "detail": "Recording contains pre-facility national turn, not accepted firing animation evidence. Original timeout preserved."
+    },
+    {
+      "name": "video-decoder-request150-after144s",
+      "status": "corrected",
+      "log": "out/pc-visual/v139-platform-resource-video-decoding.txt",
+      "repair": "Actual metadata duration144.136s; valid last sample135s, original failed log retained"
+    }
+  ],
+  "limits": [
+    "No PC screenshot/video comparison; source clock inferred from EXE only",
+    "Original source projectiles/FX and flags pending",
+    "Display scale, seasonal/climate sampling and transparent order still pending",
+    "x86 emulator only; no ARM evidence"
+  ],
+  "video": {
+    "path": "out/pc-visual/v139-platform-resource-production.mp4",
+    "sha256": "d740bdfe4802afe91762a5a256ca22227ff9f4b5a80c1849432bc09d30108c06",
+    "metadata": "out/pc-visual/v139-platform-resource-video.json",
+    "decoded_frames": "out/pc-visual/v139-platform-resource-video-frames/decoded-frames.json",
+    "limits": "Decoded1s normal turn result,20s damaged rest,60s damaged AI progress,90/120s launcher. No sampled firing frame yet; continuous firing coverage is pending. GPU paused phase PNGs are not a substitute for firing video. No PC match."
+  },
+  "release_scope": "installable partial source rig checkpoint; PC fidelity not accepted",
+  "videos": [
+    {
+      "path": "out/pc-visual/v139-platform-default-production-0.mp4",
+      "metadata": "out/pc-visual/v139-platform-default-video-0.json",
+      "acceptance": "Decoded75s rest,80s raised source arm,85s rest/legacy damage overlay; actual normal firing coverage only, no PC match."
+    },
+    {
+      "path": "out/pc-visual/v139-platform-default-production-1.mp4",
+      "metadata": "out/pc-visual/v139-platform-default-video-1.json",
+      "acceptance": "Decoded0/115..150s damaged rest;170/175s tilted source arm and legacy projectile; actual damaged source-pose coverage, sparse encoding, no complete cadence/PC match."
+    }
+  ]
+}

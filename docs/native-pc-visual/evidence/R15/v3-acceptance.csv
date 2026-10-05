@@ -1,0 +1,11 @@
+criterion,status,evidence_or_limit
+terrain,FAIL,inherited V2: shallow ridges / stepped silhouette; no new art closure
+material,PENDING,ROAD plain palette verified on host; same-region rendered comparison absent
+shore,FAIL,inherited stepped rectangle shore; no shoreline replacement
+buildings,FAIL,inherited crude/repeated architecture; 161 files mapped is not art acceptance
+gates_ports,PENDING,all host anchors/LOD refs pass; GPU visual contacts unreviewed
+vegetation,FAIL,inherited forest edge / path integration gaps
+units,PENDING,13 fixture mappings checked; full action/LOD visuals not exercised
+lighting_style,PENDING,no new comparable PC region/season camera reference
+readability,FAIL,first emulator 3D remained loading; layout touch fix passed separately
+temporal_stability,PENDING,no completed camera tour; no frame/timing claims

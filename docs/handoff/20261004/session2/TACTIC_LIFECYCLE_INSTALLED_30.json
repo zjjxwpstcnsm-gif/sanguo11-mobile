@@ -1,0 +1,76 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=audio",
+    "sourceTacticLifecycle=1",
+    "run=tactic-lifecycle-installed-30"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/gaiji-portrait-build-30/frozen/app-debug.apk": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/gaiji-portrait-build-30/frozen/app-debug-androidTest.apk": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45"
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": true,
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "installed_test_sha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+  "installed_sha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+  "exit_code": 0,
+  "seconds": 42.39,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "explicitLifecycleFixtureNotNormalTrigger": true,
+  "actualUiCancelPcm": {
+    "status": "PASS",
+    "scope": "First actual normal settings Back cancellation; later overlapping cue probe/source OS routing/all UI matrix/ARM unverified",
+    "serial": "emulator-5582",
+    "apkSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+    "sourceWavSha256": "a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6",
+    "mixedWavSha256": "4a32f9a7a04827967facafc59095786db43035a3dec4872e82f629fbbd7f449e",
+    "normalUiEvent": {
+      "scope": "Actual normal settings dialog Back cancellation, not source OS dispatch or all UI matrix",
+      "nativeSoundId": 1,
+      "cancelAtElapsedMillis": 70866859,
+      "cancelledBefore": 0,
+      "cancelledAfter": 1,
+      "ordinaryDismissAfter": 1,
+      "fullSaveRngByteEqual": true
+    },
+    "occurrences": [
+      {
+        "startSample": 453608,
+        "endSample": 456650,
+        "correlation": 0.9999996760440769,
+        "gain": 0.017731636850582586,
+        "audibleRms": 0.00312125733072973
+      }
+    ],
+    "normalCancellationOccurrence": 0,
+    "explicitCueLoopHud33Anchors": [
+      {
+        "startSample": 1065620,
+        "correlation": 0.9999996407824108
+      },
+      {
+        "startSample": 1108916,
+        "correlation": 0.9999518305772931
+      }
+    ],
+    "laterProbeLimit": "Inherited950ms gap after1.025s HUD33 overlaps source1; no isolated second-source acceptance claim",
+    "method": "Declared source1 full3042frame fit before independently measured HUD33 cue-loop anchor; same fixed65-tap FIR; >.999 positive audible normal source"
+  },
+  "checks": 91,
+  "evidenceDirectory": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-lifecycle-installed-30",
+  "normalVoiceBinding": false,
+  "goalComplete": false
+}

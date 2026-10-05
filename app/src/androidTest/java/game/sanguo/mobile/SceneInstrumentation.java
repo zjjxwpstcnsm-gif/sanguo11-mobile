@@ -15,6 +15,15 @@ public class SceneInstrumentation extends Instrumentation {
     @Override public void onCreate(Bundle b){super.onCreate(b);start();}
     static Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
     void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    /** onPause saves synchronously, but finish() queues that lifecycle. Tests
+     * must wait before restoring a user's autosave and preferences. */
+    void finishActivityForRestore(){
+        if(activity==null)return;
+        runOnMainSync(()->activity.finish());
+        long end=SystemClock.uptimeMillis()+10000;
+        while(!activity.isDestroyed()&&SystemClock.uptimeMillis()<end){runOnMainSync(()->{});SystemClock.sleep(15);}
+        check(activity.isDestroyed(),"Activity lifecycle finished before user save restoration");
+    }
     void invoke(String name,Class<?>[] types,Object... args){try{Method m=MainActivity.class.getDeclaredMethod(name,types);m.setAccessible(true);m.invoke(activity,args);}catch(Exception e){throw new RuntimeException(e);}}
     void commandFlow()throws Exception{
         World reference=SaveCodec.decode(SaveCodec.encode(world));int cityId=-1,officerId=-1;
@@ -34,7 +43,16 @@ public class SceneInstrumentation extends Instrumentation {
         runOnMainSync(()->invoke("advanceTurn",new Class<?>[0]));
         check(reference.nextTurn().ok,"reference next turn");long deadline=SystemClock.uptimeMillis()+120000;
         while((Boolean)field(activity,"aiRunning")&&SystemClock.uptimeMillis()<deadline)settle();
-        check(!(Boolean)field(activity,"aiRunning"),"installed next turn finished");world=(World)field(activity,"world");check(host.is3D(),"next turn remains in 3D");
+        check(!(Boolean)field(activity,"aiRunning"),"installed next turn finished");
+        // completeTurnPlayback clears aiRunning before bindSession on the same main-thread callback.
+        // A background reflective read in that interval can observe the old draft. Keep the
+        // full equality assertion, but capture after the owner has completed that callback.
+        runOnMainSync(()->world=SessionProbe.view(activity));check(host.is3D(),"next turn remains in 3D");
+        if(!Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference))){
+            File evidence=getTargetContext().getExternalFilesDir("s01");
+            try(OutputStream out=new FileOutputStream(new File(evidence,"turn-observed.sg11"))){out.write(SaveCodec.encode(world));}
+            try(OutputStream out=new FileOutputStream(new File(evidence,"turn-expected.sg11"))){out.write(SaveCodec.encode(reference));}
+        }
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference)),"3D full playback and headless next-turn state equivalent");
         World loaded;try(InputStream in=getTargetContext().openFileInput("auto.sg11")){loaded=SaveCodec.read(in);}
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(loaded)),"actual autosave reload equal");
@@ -43,30 +61,55 @@ public class SceneInstrumentation extends Instrumentation {
     }
     // Continuous 3D animation need not make the Looper globally idle. Queue a UI barrier.
     void settle(){runOnMainSync(()->{});SystemClock.sleep(500);}
+    void observeLoading(FilamentMapView view)throws Exception {}
+    String sceneReport(){String[] value={null};runOnMainSync(()->value[0]=host.report());return value[0];}
     void ready()throws Exception{
         long deadline=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<deadline){
             check(host.is3D(),"renderer has not fallen back while loading");
             FilamentMapView view=(FilamentMapView)field(host,"spatial");
-            if(!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0){
+            observeLoading(view);
+            boolean[] presented={false};
+            runOnMainSync(()->{try{
+                presented[0]=!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0
+                    &&(Integer)field(view,"visibleChunks")>0&&(Long)field(view,"surfaceFrames")>0;
+            }catch(Exception e){throw new RuntimeException(e);}});
+            // CPU acceptance sets pending=0 before the following frame uploads visible GPU
+            // chunks. Preserve all original assertions; wait for their actual prerequisite.
+            if(presented[0]){
                 runOnMainSync(()->{try{((com.google.android.filament.Engine)field(view,"engine")).flushAndWait();}catch(Exception e){throw new RuntimeException(e);}});
                 settle();return;
             }
             settle();
         }
-        throw new AssertionError("scene readiness timeout: "+host.report());
+        throw new AssertionError("scene readiness timeout: "+sceneReport());
     }
     void surfaceCapture()throws Exception{
         ready();
         FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
         android.view.SurfaceView surface=(android.view.SurfaceView)field(spatial,"surface");
         android.graphics.Bitmap b=android.graphics.Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
-        java.util.concurrent.CountDownLatch ready=new java.util.concurrent.CountDownLatch(1);int[] status={-1};
-        runOnMainSync(()->android.view.PixelCopy.request(surface,b,r->{status[0]=r;ready.countDown();},new Handler(Looper.getMainLooper())));
-        check(ready.await(20,java.util.concurrent.TimeUnit.SECONDS)&&status[0]==android.view.PixelCopy.SUCCESS,"read actual rendered Surface");
+        int[] status={-1};boolean completed=false;
+        for(int attempt=1;attempt<=3;attempt++){
+            java.util.concurrent.CountDownLatch copied=new java.util.concurrent.CountDownLatch(1);status[0]=-1;
+            runOnMainSync(()->android.view.PixelCopy.request(surface,b,r->{status[0]=r;copied.countDown();},new Handler(Looper.getMainLooper())));
+            completed=copied.await(20,java.util.concurrent.TimeUnit.SECONDS);
+            android.util.Log.i("SceneAcceptance","PixelCopy attempt="+attempt+" completed="+completed+" status="+status[0]);
+            if(!completed||status[0]==android.view.PixelCopy.SUCCESS)break;
+            // A submitted frame can still be in flight on the software emulator after a resize.
+            // Retry only explicit transient copy states, with the same surface/size/quality.
+            if(status[0]!=android.view.PixelCopy.ERROR_TIMEOUT&&status[0]!=android.view.PixelCopy.ERROR_SOURCE_NO_DATA)break;
+            settle();
+        }
+        if(!completed||status[0]!=android.view.PixelCopy.SUCCESS){
+            // A timed-out callback may still own the destination; do not recycle it early.
+            if(completed)b.recycle();
+            check(false,"read actual rendered Surface completed="+completed+" PixelCopy status="+status[0]);
+        }
+        check(completed&&status[0]==android.view.PixelCopy.SUCCESS,"read actual rendered Surface");
         File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();try(OutputStream out=new FileOutputStream(new File(dir,"surface.png"))){b.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}
         int bright=0,total=0;for(int y=0;y<b.getHeight();y+=8)for(int x=0;x<b.getWidth();x+=8){int color=b.getPixel(x,y);total++;if(((color>>8)&255)>65)bright++;}
-        android.util.Log.i("SceneAcceptance",host.report()+" surface bright="+bright+"/"+total);
+        android.util.Log.i("SceneAcceptance",sceneReport()+" surface bright="+bright+"/"+total);
         b.recycle();check(bright>total/50,"Surface contains actual terrain pixels, not a black/clear-only frame");
     }
     void capture(String name)throws Exception{android.graphics.Bitmap b=getUiAutomation().takeScreenshot();if(b==null)throw new AssertionError("screenshot unavailable");File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();try(OutputStream out=new FileOutputStream(new File(dir,name+".png"))){b.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}b.recycle();}
@@ -91,15 +134,15 @@ public class SceneInstrumentation extends Instrumentation {
         World w=ScenarioCatalog.all().get(0);try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
         host=(MapHost)field(activity,"map");world=(World)field(activity,"world");byte[] initial=SaveCodec.encode(world);
-        World.City city=world.cities.get(0);runOnMainSync(()->activity.selectAndFocus(city.hex));settle();capture("01-baseline-2d");
+        World.City city=world.cities.get(0);runOnMainSync(()->activity.selectAndFocus(city.hex));settle();capture("01-baseline-3d");
         for(int i=0;i<10;i++){
             runOnMainSync(()->host.switchMode(true));settle();check(host.is3D(),"Filament active, no fallback cycle "+i);
             FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
             check(field(spatial,"swap")!=null,"native swapchain exists");check((Long)field(spatial,"lastFrame")>0,"native frame loop running");
             if(i==0){SystemClock.sleep(2000);runOnMainSync(()->host.focus(city.hex));settle();SystemClock.sleep(5000);capture("02-3d-city");surfaceCapture();siteModels();}
-            runOnMainSync(()->host.switchMode(false));settle();check(!host.is3D(),"returned to 2D");check((Boolean)field(spatial,"released"),"old engine released");
+            runOnMainSync(()->host.quality(host.quality()==SceneQuality.MEDIUM?SceneQuality.HIGH:SceneQuality.MEDIUM));settle();check(host.is3D(),"reload preserves pure3D");check((Boolean)field(spatial,"released"),"old engine released");
         }
-        check(Arrays.equals(initial,SaveCodec.encode(world)),"ten switches leave authoritative state identical");
+        check(Arrays.equals(initial,SaveCodec.encode(world)),"ten 3D reloads leave authoritative state identical");
         runOnMainSync(()->host.switchMode(true));settle();
         for(int i=0;i<10;i++){
             try(InputStream shell=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("input keyevent KEYCODE_HOME"))){while(shell.read()!=-1){}}settle();check(!(Boolean)field(field(host,"spatial"),"queued"),"background removes frame callback");
@@ -108,12 +151,12 @@ public class SceneInstrumentation extends Instrumentation {
         // Exact real Surface tap is routed through the same MainActivity onTile command entry.
         for(Hex cell:SiteFootprint.cells(city))if(world.inside(cell)){
             runOnMainSync(()->{
-                try{FilamentMapView spatial=(FilamentMapView)field(host,"spatial");host.focus(cell);MapSceneSnapshot snap=(MapSceneSnapshot)field(spatial,"snapshot");float x=spatial.camera.screenX(snap.ground.grid.x(cell)),y=spatial.camera.screenY(snap.ground.grid.z(cell),0);long t=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(t,t,0,x,y,0),up=MotionEvent.obtain(t,t+50,1,x,y,0);spatial.onTouchEvent(down);spatial.onTouchEvent(up);down.recycle();up.recycle();}catch(Exception e){throw new RuntimeException(e);}
+                try{FilamentMapView spatial=(FilamentMapView)field(host,"spatial");host.focus(cell);MapSceneSnapshot snap=(MapSceneSnapshot)field(spatial,"snapshot");float wx=snap.ground.grid.x(cell),wz=snap.ground.grid.z(cell),wy=snap.ground.surface.at(cell);float x=spatial.camera.screenX(wx,wz,wy),y=spatial.camera.screenY(wx,wz,wy);check(cell.equals(spatial.pick(x,y,false)),"real 3D ray identifies city cell before touch");long t=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(t,t,0,x,y,0),up=MotionEvent.obtain(t,t+50,1,x,y,0);spatial.onTouchEvent(down);spatial.onTouchEvent(up);down.recycle();up.recycle();}catch(Exception e){throw new RuntimeException(e);}
             });settle();check(world.cityAt((Hex)field(activity,"selected"))==city,"seven-cell tap selects same city");
         }
         runOnMainSync(()->{host.fit();host.toggleDiagnostics();});settle();long terrainDeadline=SystemClock.uptimeMillis()+30000;while((Integer)field(field(host,"spatial"),"pending")>0&&SystemClock.uptimeMillis()<terrainDeadline)settle();check((Integer)field(field(host,"spatial"),"pending")==0,"national terrain chunks uploaded");SystemClock.sleep(1500);capture("03-3d-national");
         commandFlow();
-        try(OutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir("s01"),"report.txt"))){out.write(("PASS "+checks+" installed scene/lifecycle assertions\n"+host.report()+"\nLifecycle uses HOME and task foreground ten times on emulator; not physical-device or process-death performance. Deployment/movement use actual command APIs and MainActivity.apply; next turn runs actual TurnWork/TurnPlayback; deployment wizard touches remain manual acceptance.\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));}
+        try(OutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir("s01"),"report.txt"))){out.write(("PASS "+checks+" installed scene/lifecycle assertions\n"+sceneReport()+"\nLifecycle uses HOME and task foreground ten times on emulator; not physical-device or process-death performance. Deployment/movement use actual command APIs and MainActivity.apply; next turn runs actual TurnWork/TurnPlayback; deployment wizard touches remain manual acceptance.\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));}
         runOnMainSync(()->host.switchMode(false));result.putString("stream","PASS S01 "+checks+" installed checks\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){result.putString("stream","FAIL S01 "+e+"\n"+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
 }

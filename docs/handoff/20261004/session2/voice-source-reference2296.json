@@ -1,0 +1,37 @@
+{
+  "resourceId": 2296,
+  "status": "MEASURED_ONLY",
+  "scope": "Unmodified actual Android bytes vs original-bitstream PyAV reference; no native PCM or speaker assertion",
+  "sourceEndGranuleFrames": 20507,
+  "actualFrames": 20507,
+  "referenceFrames": 20379,
+  "actualSha256": "1904ee8f9539d100dfcaf588d6bf0c5101645b7983059427120f15f893b120db",
+  "referenceSha256": "6aa7a2ac69754db5dc9d973c21b84b8e8b97767c983681aaccb317e1f5358717",
+  "unmatchedTailFrames": 128,
+  "unmatchedTailNonzeroSamples": 128,
+  "unmatchedTailPeakS16": 30,
+  "diagnostics": [
+    {
+      "androidOffsetFrames": 0,
+      "referenceOffsetFrames": 0,
+      "overlapFrames": 20379,
+      "correlation": 0.9999999816160069,
+      "maxAbsolutePcmDifference": 1,
+      "differenceHistogram": {
+        "-1": 10228,
+        "0": 10144,
+        "1": 7
+      }
+    },
+    {
+      "androidOffsetFrames": 128,
+      "referenceOffsetFrames": 0,
+      "overlapFrames": 20379,
+      "correlation": 0.26172144647427925,
+      "maxAbsolutePcmDifference": 26344,
+      "differenceHistogram": {
+        "distinctDifferences": 9966
+      }
+    }
+  ]
+}

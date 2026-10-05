@@ -1,0 +1,21 @@
+{
+  "source_apk_sha256": "575baa33b2b71cdaecfd86172475358a09203bed62b3a12b2fa08776c5d4d0aa",
+  "source_commit": "677f7b88aef37abf412661959c119f3298dd94f1",
+  "fixture_sha256": "99603668968cfb2d60b283e1245bb36f803a2cf68c5a1582635a4ee8a261aad3",
+  "fixture_bytes": 238756,
+  "schema": 36,
+  "scope": "Genuine frozen API29 ART v36 opening, not downgraded from v37; official scenario identity unverified",
+  "host_source_composite_commit": "0eef104ff99fc541995c26374bd733115a403aab",
+  "host_inputs": [
+    {
+      "file": "coalition-190-art-reencoded-by-host-v36.sg11",
+      "sha256": "4178c8b1e67b834f1eb1cdea3f5f1b233746046f0c849b5365a8b0ac3bed8dc9",
+      "bytes": 238756
+    },
+    {
+      "file": "coalition-190-host.sg11",
+      "sha256": "4178c8b1e67b834f1eb1cdea3f5f1b233746046f0c849b5365a8b0ac3bed8dc9",
+      "bytes": 238756
+    }
+  ]
+}

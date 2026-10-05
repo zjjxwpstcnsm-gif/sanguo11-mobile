@@ -1,0 +1,14 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+coast map=custom cells=1296 movedVertices=692 maxAxisShift=0.1875 area=1296.0
+coast map=custom cells=1296 movedVertices=692 maxAxisShift=0.1875 area=1296.0
+coast map=san11-national cells=38949 movedVertices=19405 maxAxisShift=0.1875 area=38949.0
+corner turn: before=90 after=46.39718102729637 degrees
+PASS GRID_COAST 2158535 checks; host geometry is not device/art acceptance
+PASS S02: 902230 assertions; triangles near=934776, far=311592; water=6746; ray picks=400; patched chunks reused=173/177; max height=2.490028
+PASS S10: 4978894 material/LOD/seam/cache assertions; reused=174/177
+NATIONAL_GOLDEN valid=38949 hash=15475946728566902866
+PASS R02 399124 checks; matrix samples=1548 front occlusions=12
+PASS R05 55818 oracle/refinement/winding/port checks
+national terrain SHA256=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506 water components=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 17, 19, 20, 20, 20, 21, 21, 21, 25, 31, 33, 35, 59, 5824] ports=35
+PASS S11: 803860 topology, coverage, flow, LOD, override and edit assertions

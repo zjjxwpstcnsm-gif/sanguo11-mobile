@@ -1,0 +1,7 @@
+{
+  "status": "PASS_NUMERICAL_REPRODUCTION",
+  "exactWindowLocations": true,
+  "maxFloatingDifference": 2.220446049250313e-16,
+  "byteIdenticalJson": false,
+  "scope": "NumPy BLAS reduction last bits differ; offset locations exact, no PCM byte change"
+}

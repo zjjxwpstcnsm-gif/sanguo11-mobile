@@ -1,0 +1,2332 @@
+{
+  "limits": [
+    "Original code executed only through format admission, no host filesystem or Wine",
+    "sprintf output is descriptive formatting of captured original arguments",
+    "Actual menu enumeration, startup overrides, external patches and events unresolved"
+  ],
+  "originalCodeSha256": "5d8a6dbd98c4c9e16d7399b3175614a54868c0767f167281477967cc21bf3821",
+  "originalFunction": "43aa50",
+  "readOnlyExecutableAndStaticBytes": true,
+  "rows": [
+    {
+      "admitted": false,
+      "slot": -128,
+      "stop": "0x707b1a"
+    },
+    {
+      "admitted": false,
+      "slot": -1,
+      "stop": "0x707b1a"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 0,
+      "path": "media\\scenario\\Scen000.s11",
+      "slot": 0,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 1,
+      "path": "media\\scenario\\Scen001.s11",
+      "slot": 1,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 2,
+      "path": "media\\scenario\\Scen002.s11",
+      "slot": 2,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 3,
+      "path": "media\\scenario\\Scen003.s11",
+      "slot": 3,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 4,
+      "path": "media\\scenario\\Scen004.s11",
+      "slot": 4,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 5,
+      "path": "media\\scenario\\Scen005.s11",
+      "slot": 5,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 6,
+      "path": "media\\scenario\\Scen006.s11",
+      "slot": 6,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 7,
+      "path": "media\\scenario\\Scen007.s11",
+      "slot": 7,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 8,
+      "path": "media\\scenario\\Scen008.s11",
+      "slot": 8,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 9,
+      "path": "media\\scenario\\Scen009.s11",
+      "slot": 9,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 10,
+      "path": "media\\scenario\\Scen010.s11",
+      "slot": 10,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 11,
+      "path": "media\\scenario\\Scen011.s11",
+      "slot": 11,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 12,
+      "path": "media\\scenario\\Scen012.s11",
+      "slot": 12,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 13,
+      "path": "media\\scenario\\Scen013.s11",
+      "slot": 13,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 14,
+      "path": "media\\scenario\\Scen014.s11",
+      "slot": 14,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 15,
+      "path": "media\\scenario\\Scen015.s11",
+      "slot": 15,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 16,
+      "path": "media\\scenario\\Scen016.s11",
+      "slot": 16,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 17,
+      "path": "media\\scenario\\Scen017.s11",
+      "slot": 17,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 18,
+      "path": "media\\scenario\\Scen018.s11",
+      "slot": 18,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 19,
+      "path": "media\\scenario\\Scen019.s11",
+      "slot": 19,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 20,
+      "path": "media\\scenario\\Scen020.s11",
+      "slot": 20,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 21,
+      "path": "media\\scenario\\Scen021.s11",
+      "slot": 21,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 22,
+      "path": "media\\scenario\\Scen022.s11",
+      "slot": 22,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 23,
+      "path": "media\\scenario\\Scen023.s11",
+      "slot": 23,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 24,
+      "path": "media\\scenario\\Scen024.s11",
+      "slot": 24,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 25,
+      "path": "media\\scenario\\Scen025.s11",
+      "slot": 25,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 26,
+      "path": "media\\scenario\\Scen026.s11",
+      "slot": 26,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 27,
+      "path": "media\\scenario\\Scen027.s11",
+      "slot": 27,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 28,
+      "path": "media\\scenario\\Scen028.s11",
+      "slot": 28,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 29,
+      "path": "media\\scenario\\Scen029.s11",
+      "slot": 29,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 30,
+      "path": "media\\scenario\\Scen030.s11",
+      "slot": 30,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 31,
+      "path": "media\\scenario\\Scen031.s11",
+      "slot": 31,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 32,
+      "path": "media\\scenario\\Scen032.s11",
+      "slot": 32,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 33,
+      "path": "media\\scenario\\Scen033.s11",
+      "slot": 33,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 34,
+      "path": "media\\scenario\\Scen034.s11",
+      "slot": 34,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 35,
+      "path": "media\\scenario\\Scen035.s11",
+      "slot": 35,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 36,
+      "path": "media\\scenario\\Scen036.s11",
+      "slot": 36,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 37,
+      "path": "media\\scenario\\Scen037.s11",
+      "slot": 37,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 38,
+      "path": "media\\scenario\\Scen038.s11",
+      "slot": 38,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 39,
+      "path": "media\\scenario\\Scen039.s11",
+      "slot": 39,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 40,
+      "path": "media\\scenario\\Scen040.s11",
+      "slot": 40,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 41,
+      "path": "media\\scenario\\Scen041.s11",
+      "slot": 41,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 42,
+      "path": "media\\scenario\\Scen042.s11",
+      "slot": 42,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 43,
+      "path": "media\\scenario\\Scen043.s11",
+      "slot": 43,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 44,
+      "path": "media\\scenario\\Scen044.s11",
+      "slot": 44,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 45,
+      "path": "media\\scenario\\Scen045.s11",
+      "slot": 45,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 46,
+      "path": "media\\scenario\\Scen046.s11",
+      "slot": 46,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 47,
+      "path": "media\\scenario\\Scen047.s11",
+      "slot": 47,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 48,
+      "path": "media\\scenario\\Scen048.s11",
+      "slot": 48,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 49,
+      "path": "media\\scenario\\Scen049.s11",
+      "slot": 49,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 50,
+      "path": "media\\scenario\\Scen050.s11",
+      "slot": 50,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 51,
+      "path": "media\\scenario\\Scen051.s11",
+      "slot": 51,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 52,
+      "path": "media\\scenario\\Scen052.s11",
+      "slot": 52,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 53,
+      "path": "media\\scenario\\Scen053.s11",
+      "slot": 53,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 54,
+      "path": "media\\scenario\\Scen054.s11",
+      "slot": 54,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 55,
+      "path": "media\\scenario\\Scen055.s11",
+      "slot": 55,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 56,
+      "path": "media\\scenario\\Scen056.s11",
+      "slot": 56,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 57,
+      "path": "media\\scenario\\Scen057.s11",
+      "slot": 57,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 58,
+      "path": "media\\scenario\\Scen058.s11",
+      "slot": 58,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 59,
+      "path": "media\\scenario\\Scen059.s11",
+      "slot": 59,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 60,
+      "path": "media\\scenario\\Scen060.s11",
+      "slot": 60,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 61,
+      "path": "media\\scenario\\Scen061.s11",
+      "slot": 61,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 62,
+      "path": "media\\scenario\\Scen062.s11",
+      "slot": 62,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 63,
+      "path": "media\\scenario\\Scen063.s11",
+      "slot": 63,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 64,
+      "path": "media\\scenario\\Scen064.s11",
+      "slot": 64,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 65,
+      "path": "media\\scenario\\Scen065.s11",
+      "slot": 65,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 66,
+      "path": "media\\scenario\\Scen066.s11",
+      "slot": 66,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 67,
+      "path": "media\\scenario\\Scen067.s11",
+      "slot": 67,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 68,
+      "path": "media\\scenario\\Scen068.s11",
+      "slot": 68,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 69,
+      "path": "media\\scenario\\Scen069.s11",
+      "slot": 69,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 70,
+      "path": "media\\scenario\\Scen070.s11",
+      "slot": 70,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 71,
+      "path": "media\\scenario\\Scen071.s11",
+      "slot": 71,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 72,
+      "path": "media\\scenario\\Scen072.s11",
+      "slot": 72,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 73,
+      "path": "media\\scenario\\Scen073.s11",
+      "slot": 73,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 74,
+      "path": "media\\scenario\\Scen074.s11",
+      "slot": 74,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 75,
+      "path": "media\\scenario\\Scen075.s11",
+      "slot": 75,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 76,
+      "path": "media\\scenario\\Scen076.s11",
+      "slot": 76,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 77,
+      "path": "media\\scenario\\Scen077.s11",
+      "slot": 77,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 78,
+      "path": "media\\scenario\\Scen078.s11",
+      "slot": 78,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 79,
+      "path": "media\\scenario\\Scen079.s11",
+      "slot": 79,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 80,
+      "path": "media\\scenario\\Scen080.s11",
+      "slot": 80,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 81,
+      "path": "media\\scenario\\Scen081.s11",
+      "slot": 81,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 82,
+      "path": "media\\scenario\\Scen082.s11",
+      "slot": 82,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 83,
+      "path": "media\\scenario\\Scen083.s11",
+      "slot": 83,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 84,
+      "path": "media\\scenario\\Scen084.s11",
+      "slot": 84,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 85,
+      "path": "media\\scenario\\Scen085.s11",
+      "slot": 85,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 86,
+      "path": "media\\scenario\\Scen086.s11",
+      "slot": 86,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 87,
+      "path": "media\\scenario\\Scen087.s11",
+      "slot": 87,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 88,
+      "path": "media\\scenario\\Scen088.s11",
+      "slot": 88,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 89,
+      "path": "media\\scenario\\Scen089.s11",
+      "slot": 89,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 90,
+      "path": "media\\scenario\\Scen090.s11",
+      "slot": 90,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 91,
+      "path": "media\\scenario\\Scen091.s11",
+      "slot": 91,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 92,
+      "path": "media\\scenario\\Scen092.s11",
+      "slot": 92,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 93,
+      "path": "media\\scenario\\Scen093.s11",
+      "slot": 93,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 94,
+      "path": "media\\scenario\\Scen094.s11",
+      "slot": 94,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 95,
+      "path": "media\\scenario\\Scen095.s11",
+      "slot": 95,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 96,
+      "path": "media\\scenario\\Scen096.s11",
+      "slot": 96,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 97,
+      "path": "media\\scenario\\Scen097.s11",
+      "slot": 97,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 98,
+      "path": "media\\scenario\\Scen098.s11",
+      "slot": 98,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 99,
+      "path": "media\\scenario\\Scen099.s11",
+      "slot": 99,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 100,
+      "path": "media\\scenario\\Scen100.s11",
+      "slot": 100,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 101,
+      "path": "media\\scenario\\Scen101.s11",
+      "slot": 101,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 102,
+      "path": "media\\scenario\\Scen102.s11",
+      "slot": 102,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 103,
+      "path": "media\\scenario\\Scen103.s11",
+      "slot": 103,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 104,
+      "path": "media\\scenario\\Scen104.s11",
+      "slot": 104,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 105,
+      "path": "media\\scenario\\Scen105.s11",
+      "slot": 105,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 106,
+      "path": "media\\scenario\\Scen106.s11",
+      "slot": 106,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 107,
+      "path": "media\\scenario\\Scen107.s11",
+      "slot": 107,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 108,
+      "path": "media\\scenario\\Scen108.s11",
+      "slot": 108,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 109,
+      "path": "media\\scenario\\Scen109.s11",
+      "slot": 109,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 110,
+      "path": "media\\scenario\\Scen110.s11",
+      "slot": 110,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 111,
+      "path": "media\\scenario\\Scen111.s11",
+      "slot": 111,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 112,
+      "path": "media\\scenario\\Scen112.s11",
+      "slot": 112,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 113,
+      "path": "media\\scenario\\Scen113.s11",
+      "slot": 113,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 114,
+      "path": "media\\scenario\\Scen114.s11",
+      "slot": 114,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 115,
+      "path": "media\\scenario\\Scen115.s11",
+      "slot": 115,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 116,
+      "path": "media\\scenario\\Scen116.s11",
+      "slot": 116,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 117,
+      "path": "media\\scenario\\Scen117.s11",
+      "slot": 117,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 118,
+      "path": "media\\scenario\\Scen118.s11",
+      "slot": 118,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 119,
+      "path": "media\\scenario\\Scen119.s11",
+      "slot": 119,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 120,
+      "path": "media\\scenario\\Scen120.s11",
+      "slot": 120,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 121,
+      "path": "media\\scenario\\Scen121.s11",
+      "slot": 121,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 122,
+      "path": "media\\scenario\\Scen122.s11",
+      "slot": 122,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 123,
+      "path": "media\\scenario\\Scen123.s11",
+      "slot": 123,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 124,
+      "path": "media\\scenario\\Scen124.s11",
+      "slot": 124,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 125,
+      "path": "media\\scenario\\Scen125.s11",
+      "slot": 125,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 126,
+      "path": "media\\scenario\\Scen126.s11",
+      "slot": 126,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 127,
+      "path": "media\\scenario\\Scen127.s11",
+      "slot": 127,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 128,
+      "path": "media\\scenario\\Scen128.s11",
+      "slot": 128,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 129,
+      "path": "media\\scenario\\Scen129.s11",
+      "slot": 129,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 130,
+      "path": "media\\scenario\\Scen130.s11",
+      "slot": 130,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 131,
+      "path": "media\\scenario\\Scen131.s11",
+      "slot": 131,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 132,
+      "path": "media\\scenario\\Scen132.s11",
+      "slot": 132,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 133,
+      "path": "media\\scenario\\Scen133.s11",
+      "slot": 133,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 134,
+      "path": "media\\scenario\\Scen134.s11",
+      "slot": 134,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 135,
+      "path": "media\\scenario\\Scen135.s11",
+      "slot": 135,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 136,
+      "path": "media\\scenario\\Scen136.s11",
+      "slot": 136,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 137,
+      "path": "media\\scenario\\Scen137.s11",
+      "slot": 137,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 138,
+      "path": "media\\scenario\\Scen138.s11",
+      "slot": 138,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 139,
+      "path": "media\\scenario\\Scen139.s11",
+      "slot": 139,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 140,
+      "path": "media\\scenario\\Scen140.s11",
+      "slot": 140,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 141,
+      "path": "media\\scenario\\Scen141.s11",
+      "slot": 141,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 142,
+      "path": "media\\scenario\\Scen142.s11",
+      "slot": 142,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 143,
+      "path": "media\\scenario\\Scen143.s11",
+      "slot": 143,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 144,
+      "path": "media\\scenario\\Scen144.s11",
+      "slot": 144,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 145,
+      "path": "media\\scenario\\Scen145.s11",
+      "slot": 145,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 146,
+      "path": "media\\scenario\\Scen146.s11",
+      "slot": 146,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 147,
+      "path": "media\\scenario\\Scen147.s11",
+      "slot": 147,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 148,
+      "path": "media\\scenario\\Scen148.s11",
+      "slot": 148,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 149,
+      "path": "media\\scenario\\Scen149.s11",
+      "slot": 149,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 150,
+      "path": "media\\scenario\\Scen150.s11",
+      "slot": 150,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 151,
+      "path": "media\\scenario\\Scen151.s11",
+      "slot": 151,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 152,
+      "path": "media\\scenario\\Scen152.s11",
+      "slot": 152,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 153,
+      "path": "media\\scenario\\Scen153.s11",
+      "slot": 153,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 154,
+      "path": "media\\scenario\\Scen154.s11",
+      "slot": 154,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 155,
+      "path": "media\\scenario\\Scen155.s11",
+      "slot": 155,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 156,
+      "path": "media\\scenario\\Scen156.s11",
+      "slot": 156,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 157,
+      "path": "media\\scenario\\Scen157.s11",
+      "slot": 157,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 158,
+      "path": "media\\scenario\\Scen158.s11",
+      "slot": 158,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 159,
+      "path": "media\\scenario\\Scen159.s11",
+      "slot": 159,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 160,
+      "path": "media\\scenario\\Scen160.s11",
+      "slot": 160,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 161,
+      "path": "media\\scenario\\Scen161.s11",
+      "slot": 161,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 162,
+      "path": "media\\scenario\\Scen162.s11",
+      "slot": 162,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 163,
+      "path": "media\\scenario\\Scen163.s11",
+      "slot": 163,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 164,
+      "path": "media\\scenario\\Scen164.s11",
+      "slot": 164,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 165,
+      "path": "media\\scenario\\Scen165.s11",
+      "slot": 165,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 166,
+      "path": "media\\scenario\\Scen166.s11",
+      "slot": 166,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 167,
+      "path": "media\\scenario\\Scen167.s11",
+      "slot": 167,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 168,
+      "path": "media\\scenario\\Scen168.s11",
+      "slot": 168,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 169,
+      "path": "media\\scenario\\Scen169.s11",
+      "slot": 169,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 170,
+      "path": "media\\scenario\\Scen170.s11",
+      "slot": 170,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 171,
+      "path": "media\\scenario\\Scen171.s11",
+      "slot": 171,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 172,
+      "path": "media\\scenario\\Scen172.s11",
+      "slot": 172,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 173,
+      "path": "media\\scenario\\Scen173.s11",
+      "slot": 173,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 174,
+      "path": "media\\scenario\\Scen174.s11",
+      "slot": 174,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 175,
+      "path": "media\\scenario\\Scen175.s11",
+      "slot": 175,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 176,
+      "path": "media\\scenario\\Scen176.s11",
+      "slot": 176,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 177,
+      "path": "media\\scenario\\Scen177.s11",
+      "slot": 177,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 178,
+      "path": "media\\scenario\\Scen178.s11",
+      "slot": 178,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 179,
+      "path": "media\\scenario\\Scen179.s11",
+      "slot": 179,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 180,
+      "path": "media\\scenario\\Scen180.s11",
+      "slot": 180,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 181,
+      "path": "media\\scenario\\Scen181.s11",
+      "slot": 181,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 182,
+      "path": "media\\scenario\\Scen182.s11",
+      "slot": 182,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 183,
+      "path": "media\\scenario\\Scen183.s11",
+      "slot": 183,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 184,
+      "path": "media\\scenario\\Scen184.s11",
+      "slot": 184,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 185,
+      "path": "media\\scenario\\Scen185.s11",
+      "slot": 185,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 186,
+      "path": "media\\scenario\\Scen186.s11",
+      "slot": 186,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 187,
+      "path": "media\\scenario\\Scen187.s11",
+      "slot": 187,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 188,
+      "path": "media\\scenario\\Scen188.s11",
+      "slot": 188,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 189,
+      "path": "media\\scenario\\Scen189.s11",
+      "slot": 189,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 190,
+      "path": "media\\scenario\\Scen190.s11",
+      "slot": 190,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 191,
+      "path": "media\\scenario\\Scen191.s11",
+      "slot": 191,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 192,
+      "path": "media\\scenario\\Scen192.s11",
+      "slot": 192,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 193,
+      "path": "media\\scenario\\Scen193.s11",
+      "slot": 193,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 194,
+      "path": "media\\scenario\\Scen194.s11",
+      "slot": 194,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 195,
+      "path": "media\\scenario\\Scen195.s11",
+      "slot": 195,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 196,
+      "path": "media\\scenario\\Scen196.s11",
+      "slot": 196,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 197,
+      "path": "media\\scenario\\Scen197.s11",
+      "slot": 197,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 198,
+      "path": "media\\scenario\\Scen198.s11",
+      "slot": 198,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 199,
+      "path": "media\\scenario\\Scen199.s11",
+      "slot": 199,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 200,
+      "path": "media\\scenario\\Scen200.s11",
+      "slot": 200,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 201,
+      "path": "media\\scenario\\Scen201.s11",
+      "slot": 201,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 202,
+      "path": "media\\scenario\\Scen202.s11",
+      "slot": 202,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 203,
+      "path": "media\\scenario\\Scen203.s11",
+      "slot": 203,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 204,
+      "path": "media\\scenario\\Scen204.s11",
+      "slot": 204,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 205,
+      "path": "media\\scenario\\Scen205.s11",
+      "slot": 205,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 206,
+      "path": "media\\scenario\\Scen206.s11",
+      "slot": 206,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 207,
+      "path": "media\\scenario\\Scen207.s11",
+      "slot": 207,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 208,
+      "path": "media\\scenario\\Scen208.s11",
+      "slot": 208,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 209,
+      "path": "media\\scenario\\Scen209.s11",
+      "slot": 209,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 210,
+      "path": "media\\scenario\\Scen210.s11",
+      "slot": 210,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 211,
+      "path": "media\\scenario\\Scen211.s11",
+      "slot": 211,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 212,
+      "path": "media\\scenario\\Scen212.s11",
+      "slot": 212,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 213,
+      "path": "media\\scenario\\Scen213.s11",
+      "slot": 213,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 214,
+      "path": "media\\scenario\\Scen214.s11",
+      "slot": 214,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 215,
+      "path": "media\\scenario\\Scen215.s11",
+      "slot": 215,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 216,
+      "path": "media\\scenario\\Scen216.s11",
+      "slot": 216,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 217,
+      "path": "media\\scenario\\Scen217.s11",
+      "slot": 217,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 218,
+      "path": "media\\scenario\\Scen218.s11",
+      "slot": 218,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 219,
+      "path": "media\\scenario\\Scen219.s11",
+      "slot": 219,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 220,
+      "path": "media\\scenario\\Scen220.s11",
+      "slot": 220,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 221,
+      "path": "media\\scenario\\Scen221.s11",
+      "slot": 221,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 222,
+      "path": "media\\scenario\\Scen222.s11",
+      "slot": 222,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 223,
+      "path": "media\\scenario\\Scen223.s11",
+      "slot": 223,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 224,
+      "path": "media\\scenario\\Scen224.s11",
+      "slot": 224,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 225,
+      "path": "media\\scenario\\Scen225.s11",
+      "slot": 225,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 226,
+      "path": "media\\scenario\\Scen226.s11",
+      "slot": 226,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 227,
+      "path": "media\\scenario\\Scen227.s11",
+      "slot": 227,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 228,
+      "path": "media\\scenario\\Scen228.s11",
+      "slot": 228,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 229,
+      "path": "media\\scenario\\Scen229.s11",
+      "slot": 229,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 230,
+      "path": "media\\scenario\\Scen230.s11",
+      "slot": 230,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 231,
+      "path": "media\\scenario\\Scen231.s11",
+      "slot": 231,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 232,
+      "path": "media\\scenario\\Scen232.s11",
+      "slot": 232,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 233,
+      "path": "media\\scenario\\Scen233.s11",
+      "slot": 233,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 234,
+      "path": "media\\scenario\\Scen234.s11",
+      "slot": 234,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 235,
+      "path": "media\\scenario\\Scen235.s11",
+      "slot": 235,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 236,
+      "path": "media\\scenario\\Scen236.s11",
+      "slot": 236,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 237,
+      "path": "media\\scenario\\Scen237.s11",
+      "slot": 237,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 238,
+      "path": "media\\scenario\\Scen238.s11",
+      "slot": 238,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 239,
+      "path": "media\\scenario\\Scen239.s11",
+      "slot": 239,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 240,
+      "path": "media\\scenario\\Scen240.s11",
+      "slot": 240,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 241,
+      "path": "media\\scenario\\Scen241.s11",
+      "slot": 241,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 242,
+      "path": "media\\scenario\\Scen242.s11",
+      "slot": 242,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 243,
+      "path": "media\\scenario\\Scen243.s11",
+      "slot": 243,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 244,
+      "path": "media\\scenario\\Scen244.s11",
+      "slot": 244,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 245,
+      "path": "media\\scenario\\Scen245.s11",
+      "slot": 245,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 246,
+      "path": "media\\scenario\\Scen246.s11",
+      "slot": 246,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 247,
+      "path": "media\\scenario\\Scen247.s11",
+      "slot": 247,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 248,
+      "path": "media\\scenario\\Scen248.s11",
+      "slot": 248,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 249,
+      "path": "media\\scenario\\Scen249.s11",
+      "slot": 249,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 250,
+      "path": "media\\scenario\\Scen250.s11",
+      "slot": 250,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 251,
+      "path": "media\\scenario\\Scen251.s11",
+      "slot": 251,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 252,
+      "path": "media\\scenario\\Scen252.s11",
+      "slot": 252,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 253,
+      "path": "media\\scenario\\Scen253.s11",
+      "slot": 253,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": true,
+      "format": "media\\scenario\\Scen%03d.s11",
+      "formatPointer": "0x7924f8",
+      "indexArgument": 254,
+      "path": "media\\scenario\\Scen254.s11",
+      "slot": 254,
+      "stop": "0x708ba2"
+    },
+    {
+      "admitted": false,
+      "slot": 255,
+      "stop": "0x707b1a"
+    },
+    {
+      "admitted": false,
+      "slot": 999,
+      "stop": "0x707b1a"
+    }
+  ],
+  "schema": 1,
+  "sharedPathTable": "8a57fc ->792514;43b8a0 original shared loader ->4937b0",
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourcePathTable": "8a5800 ->7924f8",
+  "sourceScenarioRecords": "43b9b5 ctor480830/480d50 ->4937b0"
+}

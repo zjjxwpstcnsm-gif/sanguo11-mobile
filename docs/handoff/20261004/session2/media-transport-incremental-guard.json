@@ -1,0 +1,23 @@
+{
+  "base": "3663ebaa44b2539c2378894a3f2cb711ad3fc0a6",
+  "sourceCommit": "38fa01172c5a94179f8e2816d75f025425f4ca5c",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "46714bd0a87840d1c8645a81abe12b89d73efa24cb377340ec58f5a04587848e",
+      "afterSha256": "95ae56cd406f30d3844114dc4b4fd14ec5fbce37179183344af645f516b3d890"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceStreamPlayer.java",
+      "beforeSha256": "a531d6d0fdecca948799a78ff0cf32e545a6f4bcad4cad7a121dbc026dc08f75",
+      "afterSha256": "fff98e8818a46925a40b5eb84ce5a64b64a0594c298e064e9b2ea616fd57b692"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SharedMediaInstrumentation.java",
+      "beforeSha256": "39e067151b852ecb0b31301d89ec80deb0795d096905419508f4a62a6059842c",
+      "afterSha256": "6f91a824fcf6750cffc779216f02e046691204d7556a0e71dc7bfc7b2d57b85a"
+    }
+  ],
+  "coreApiRuntimeDiffAgainst": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "coreApiRuntimeUnchanged": true
+}

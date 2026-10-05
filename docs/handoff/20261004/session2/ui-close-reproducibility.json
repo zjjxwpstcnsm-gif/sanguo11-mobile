@@ -1,0 +1,11 @@
+{
+  "sourcePasses": [
+    "banks-native-pass1",
+    "banks-native-pass2"
+  ],
+  "allBytesEqual": true,
+  "files": {
+    "ui-close-1.wav": "a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6",
+    "ui-close-manifest.json": "d93c4975a1cf71c73310d5706211f99d4c988f7b9d8827c8634faf3eb476ffe5"
+  }
+}

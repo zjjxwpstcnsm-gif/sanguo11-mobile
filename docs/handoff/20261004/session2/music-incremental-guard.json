@@ -1,0 +1,308 @@
+{
+  "baseCommit": "a215806",
+  "protectedAllExact": true,
+  "protectedFiles": 529,
+  "changes": [
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/MusicSourceInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "b3e99a1aec967162fb91fee4e73e85eed0b8f332924b728922aaccd5b89bf3fa"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music-manifest.json",
+      "beforeSha256": null,
+      "afterSha256": "4310b63e4809a335e87f1f2fb13dadab76f109c5f6e83b8e2af10bfec6201bdb"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2237.ogg",
+      "beforeSha256": null,
+      "afterSha256": "c80f3e53cbb4a30f89c014ecc5cccd57962e7cc555240c3b514151050615db55"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2238.ogg",
+      "beforeSha256": null,
+      "afterSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2239.ogg",
+      "beforeSha256": null,
+      "afterSha256": "0a0055af5aadde0eb2d132ffe64a8b2500d8a95e4d87af3335ac5e84de1f3f1d"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2240.ogg",
+      "beforeSha256": null,
+      "afterSha256": "0ab5c364f7a8598662ecacfdf9fe6ac8a50c6efe115f40ada08f2f961c9d4474"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2241.ogg",
+      "beforeSha256": null,
+      "afterSha256": "32a8627f6687b8b4ffc487a4a57fe8b1e9cef4459ed232379deb5defe32d0016"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2242.ogg",
+      "beforeSha256": null,
+      "afterSha256": "07098059eb7c1ca1e08c496c57e66442f26b8413e5055097925d9200b6c48e8a"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2243.ogg",
+      "beforeSha256": null,
+      "afterSha256": "ca2b5d86dfd9cfa48820a729881886161d170b356f2be1a8dbd803cd4507b7ef"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2244.ogg",
+      "beforeSha256": null,
+      "afterSha256": "70ff46c7f56e5f22e5a47dc7f068bfa645180453f598c0ec335107c1d13f4b81"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2245.ogg",
+      "beforeSha256": null,
+      "afterSha256": "36a7c57c747e66dc0b8840993ebe82846b0ed6706fc4d60e797997b971890705"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2246.ogg",
+      "beforeSha256": null,
+      "afterSha256": "98935982412c53df42b61e0bbb45bbf283d33f520d3d6c003924fac627ee6113"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2247.ogg",
+      "beforeSha256": null,
+      "afterSha256": "09d55654b713a5c3f4df3e07c535d8f6d82c66952bb5cc414d0550f10575f3d3"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2248.ogg",
+      "beforeSha256": null,
+      "afterSha256": "1eb170407b4a38c172e3590918f567906961584bb9fd8abc7f81d851132ab929"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2249.ogg",
+      "beforeSha256": null,
+      "afterSha256": "9cb219f3b5322f7d51903201b1b5dc974764188a68fcc6082c6acdc9cfadceb4"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2250.ogg",
+      "beforeSha256": null,
+      "afterSha256": "37e90f811cf3c8356293da815f9ed4cdadde6587089d72949f66c826620a4499"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2251.ogg",
+      "beforeSha256": null,
+      "afterSha256": "a35d51b6d09a9903ff92ee00b5b3a8ef78071b6bdc55b57ec2bc796cf909f2b9"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2252.ogg",
+      "beforeSha256": null,
+      "afterSha256": "0f7b09de1e8b27935e427d8ca51d9af4cebe35f170289c613467209f14a299f1"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2253.ogg",
+      "beforeSha256": null,
+      "afterSha256": "ef42eee4cc578675c9d4774dc209a68960b0e3796ab55b22c61a4bd861db2d17"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2254.ogg",
+      "beforeSha256": null,
+      "afterSha256": "fa908af6731f2214ef8834f559754aefe01ac01f4e978e89e0bb622a012d9f95"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2255.ogg",
+      "beforeSha256": null,
+      "afterSha256": "d149dcd67cc798d6de35563c53d34d7245d8f8918c355a63a524e65ec32cb277"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2256.ogg",
+      "beforeSha256": null,
+      "afterSha256": "a7c64b36eeffdb74931a072634b1fb736949bcedce5bb6b9ffa6134c0ae487bd"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2257.ogg",
+      "beforeSha256": null,
+      "afterSha256": "5218d5fd1752c11d47e096ea1a58a6504ce60e7ea3786ba4694c45cb811bf6fe"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2258.ogg",
+      "beforeSha256": null,
+      "afterSha256": "8b93eb17f12dac22e4dbd5929904f1f7743b9346343362e0369f837c2b94182e"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2259.ogg",
+      "beforeSha256": null,
+      "afterSha256": "0bfcb1e9ef742c7d1b5df2da9c2838396f16680d09654d8a9d9423da9c449a10"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2260.ogg",
+      "beforeSha256": null,
+      "afterSha256": "6605839967a7f7489c983e28bc070251f5a6ae325fd1f2939c2080326509fc66"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2261.ogg",
+      "beforeSha256": null,
+      "afterSha256": "b52628bf46a1eae05dc3f652a34e42c1b6b6400be6d3ea07623c055ec8df6e52"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2262.ogg",
+      "beforeSha256": null,
+      "afterSha256": "93dfc66c5ec139e066da057e05d1d97f2f43a0d1eedc5ee34da02ab0c8dfc6c7"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2263.ogg",
+      "beforeSha256": null,
+      "afterSha256": "4610db4458e87b649832cc06846842f9bcbf900aacc7ce1ec67fb74faf812f77"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2264.ogg",
+      "beforeSha256": null,
+      "afterSha256": "a349850bee3aa4a77b0277cd9df909ea1ca1d4e381b9212488f7fdfe67acfd0e"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2265.ogg",
+      "beforeSha256": null,
+      "afterSha256": "7df842cc6f24e2eaca5361b6eb594cb4387f64e343ec1b98716c109a466dc3a9"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/assets/audio/pc/music/2266.ogg",
+      "beforeSha256": null,
+      "afterSha256": "b9e9ccb36575865c6c164349812d5523e2a8f8bf9ab50db96b6fbf4e99a53bc4"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicCatalog.java",
+      "beforeSha256": null,
+      "afterSha256": "b7b2b11cd9207aaec08ae281a5c78b8b5dfb578a99506d0d3d4070e48f56282d"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicFrameStream.java",
+      "beforeSha256": null,
+      "afterSha256": "cb42a514e29d71e6c2bee93c3e9a24bb87bbdf5356a40668a9ae37d8ca6e03e2"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "app/src/main/java/game/sanguo/mobile/PcVorbisDecoder.java",
+      "beforeSha256": null,
+      "afterSha256": "7cf59b15b8976908041d10aea7f601598368540f5316d24f1078fcc4be5c4042"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "tools/audio/inspect_pc_music_policy.py",
+      "beforeSha256": null,
+      "afterSha256": "24a10d70765e5a4dc251638c929810b3fc14d80e7523ba855f7b9bb58613d188"
+    },
+    {
+      "commit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "parentCommit": "a2158068111f8425f3d17e25cb58977cb687ba37",
+      "path": "tools/audio/stage_pc_music.py",
+      "beforeSha256": null,
+      "afterSha256": "03ebd2c410fbece9f88a5165c1212a0358b56afa56817434a58f547e6855a3e8"
+    },
+    {
+      "commit": "e9579a12b739d74cb7674e6e13298ac1912ba1bf",
+      "parentCommit": "a9ebbf013e6ff698440c8613c8d2a9876e25a405",
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "a45c451fdb150a16683f091c364b752f39f9df35375b6839d57e39937313eb14",
+      "afterSha256": "5f595d2768dcf622437a308338a2807dd0850681906fdc936b6c8b5652ac9376"
+    },
+    {
+      "commit": "7aa459b3a83c34473ce0eda3b936ddfc86e77f03",
+      "parentCommit": "e9579a12b739d74cb7674e6e13298ac1912ba1bf",
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "b0d92cc8c4741dfbe1134c7c0f501c9a9545361fe5df179fd2e6547333b91a25",
+      "afterSha256": "8a89594e75b99f035e21a3dec736b93d21ca12b367362bd3ad457cb6114d436c"
+    },
+    {
+      "commit": "ef0cc1ca31dcb4f85c59e3829f164f576b033a95",
+      "parentCommit": "7aa459b3a83c34473ce0eda3b936ddfc86e77f03",
+      "path": "app/src/androidTest/java/game/sanguo/mobile/MusicSourceInstrumentation.java",
+      "beforeSha256": "b3e99a1aec967162fb91fee4e73e85eed0b8f332924b728922aaccd5b89bf3fa",
+      "afterSha256": "470155037cb9d2c4bd50dd25e64c902a0c7b4fad98547a281a8893e042f23357"
+    },
+    {
+      "commit": "890bb77ac906645f88469a047d79971838205c04",
+      "parentCommit": "ef0cc1ca31dcb4f85c59e3829f164f576b033a95",
+      "path": "app/src/test/java/game/sanguo/mobile/PcMusicFrameStreamTest.java",
+      "beforeSha256": null,
+      "afterSha256": "b2ed0901cca47ef31177c656f7e6d634b60ed7e98dd6e5f7d22e68e59be54515"
+    },
+    {
+      "commit": "890bb77ac906645f88469a047d79971838205c04",
+      "parentCommit": "ef0cc1ca31dcb4f85c59e3829f164f576b033a95",
+      "path": "tools/audio/compare_android_music_pcm.py",
+      "beforeSha256": null,
+      "afterSha256": "45410b4b54187ccb213e17507850b6f76762514c04ed5844ef14f200bbc05e92"
+    },
+    {
+      "commit": "890bb77ac906645f88469a047d79971838205c04",
+      "parentCommit": "ef0cc1ca31dcb4f85c59e3829f164f576b033a95",
+      "path": "tools/audio/inspect_pc_music_policy.py",
+      "beforeSha256": "24a10d70765e5a4dc251638c929810b3fc14d80e7523ba855f7b9bb58613d188",
+      "afterSha256": "f30ee02a548fc5e3a12e592cdbcf405d3d34813c61241ff4b7c5db8627f98563"
+    }
+  ]
+}

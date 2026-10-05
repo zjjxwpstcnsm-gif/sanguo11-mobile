@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v132 scenery and terrain active-layer fix",
+  "apk": "out/pc-visual/sanguo11-mobile-v132-pc-scenery.apk",
+  "apk_sha256": "7347570eb0d5005107b1b639423da04f051f99b506f8a939ccd2bd7edf1aee26",
+  "checks": [
+    {
+      "name": "source-scenery",
+      "status": "pass",
+      "log": "out/pc-visual/scenery-test.log",
+      "result": [
+        "PASS PC scenery 7151625 checks; source placements=943"
+      ]
+    },
+    {
+      "name": "map-mesh-picking-save",
+      "status": "pass",
+      "log": "out/pc-visual/map-test.log",
+      "result": [
+        "PASS PC map restoration 635299 source/mesh/picking/save checks; chunks=16"
+      ]
+    },
+    {
+      "name": "interaction-and-custom-map",
+      "status": "pass",
+      "log": "out/pc-visual/interaction-test.log",
+      "result": [
+        "PASS S07 interaction/editor: 32 checks",
+        "PASS 131 custom-map production integration assertions"
+      ]
+    },
+    {
+      "name": "native-r04",
+      "status": "pass",
+      "log": "out/pc-visual/r04-test.log",
+      "result": [
+        "PASS R04 87689 material identity/normalization/constraints checks"
+      ]
+    },
+    {
+      "name": "installed-scenery",
+      "status": "pass",
+      "log": "out/pc-visual/installed-test.log",
+      "result": [
+        "PASS PC SCENERY installed checks=779; emulator renderer evidence only"
+      ]
+    },
+    {
+      "name": "apk-integrity",
+      "status": "pass",
+      "log": "out/pc-visual/integrity-test.log",
+      "result": [
+        "PASS: 68 pinned map/art resources in out/pc-visual/sanguo11-mobile-v132-pc-scenery.apk"
+      ]
+    }
+  ],
+  "source_corner_crosscheck": {
+    "mixed_faces": 241362,
+    "matching_corners": 4194304,
+    "total_corners": 4194304,
+    "note": "All face corners match source vertex IDs exactly after ignoring inactive layers."
+  },
+  "source_readonly_check": {
+    "source_files": 1805,
+    "all_file_hashes_unchanged": true,
+    "source_policy": "read-only",
+    "baseline": "docs/pc-visual/inventory.json",
+    "audit": "out/pc-visual/source-audit/inventory.json"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "api": 29,
+    "abi": "x86_64",
+    "kind": "Android emulator",
+    "launch_gpu": "host",
+    "arm_device_validated": false
+  },
+  "installed_probes": [
+    "3 locations x 4 seasons; real production Surface screenshots",
+    "source mesh/alpha atlas residency; no missing asset fallback",
+    "source near/far LODs; 35 degree far view",
+    "activity pause/resume",
+    "exit to 2D destroys source materials/textures",
+    "complete authority/RNG capture byte-identical; autosave/preferences restored"
+  ],
+  "evidence_manifest": "out/pc-visual/evidence/manifest.json",
+  "renderer_report": "out/pc-visual/evidence/pc-scenery-report.txt",
+  "video_status": "Android renderer inspection only; no PC or restored battle-event videos",
+  "pc_runtime": {
+    "available": false,
+    "reason": "No Wine/CrossOver/Whisky found on host; source installation not executed",
+    "screenshots": [],
+    "videos": []
+  },
+  "visual_acceptance": {
+    "complete": false,
+    "terrain_seams": "inactive-layer block seams fixed and inspected on actual emulator image",
+    "pending": [
+      "some source trees look dark",
+      "vertical aspect and original UV scale",
+      "source PC lighting/normals/water/far view",
+      "native cities/facilities/units/animations",
+      "native environmental/combat effects and normal-command videos",
+      "fullscreen strategy/critical original text and timing",
+      "long-duration pressure/memory-growth checks",
+      "ARM device performance"
+    ]
+  },
+  "historical_core": "See docs/pc-map/README.md for reproduced baseline failures; assertions not weakened",
+  "reproducibility": {
+    "same_toolchain_bit_reproducible": true,
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "Pillow": "12.3.0",
+    "Filament_matc_version": 56,
+    "platform": "x86_64",
+    "asset_hashes": {
+      "app/src/main/assets/3d/pc-scenery/scenery.pcz": "e0a11cb4cbba38772c651ae24f4c19f2e678e4a3f2f76fc6ff3fc42707b1d3bf",
+      "app/src/main/assets/3d/pc-scenery/atlas.png": "a0ee1b0d8fec07119b56a1e7dc91763fba47c1a6f85d01d67c9fe33d4fc2ffdd",
+      "app/src/main/assets/3d/pc-scenery/scenery.filamat": "3ac074275770a0d87fe76cb3e4a971ba4c8540dbaefdb7475536a64be9564b0d"
+    }
+  },
+  "source_reference_limits": "Scenery source positions are clipped to playable bounds and current permanent footprints; native site footprint restoration remains pending"
+}

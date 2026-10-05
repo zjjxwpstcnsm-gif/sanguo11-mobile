@@ -1,0 +1,17 @@
+{
+  "applied": true,
+  "purpose": "Only use immutable already-applied CriticalHit.year for portrait age; no rule command or event generation",
+  "patchSha256": "f970ab7f4d995c7469261b53288d950e2e5acee0de0ed4a711d94edc1872113e",
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeSha256": "200da413a2f4bb31fa7b5ca1e16804ba1433f65690b312012e6fe0cfe8119b7c",
+      "afterSha256": "6f6404e7a6f91361237b1030b0d217a1a169b3d16cc1614a06d44d5b03e48722"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CriticalScene.java",
+      "beforeSha256": "21fadfc12aaf9c2e25758b8f69e3fc882a1f9460c13d305b61cc564cd0c531c4",
+      "afterSha256": "302dbb03e07b811cd9bbe1216210c5cfb282bf2a4c3d5657fdb29b300aa21b05"
+    }
+  ]
+}

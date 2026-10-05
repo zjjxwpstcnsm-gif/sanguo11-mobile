@@ -1,0 +1,48 @@
+{
+  "baseCommit": "97a9ff7e005fe9dc887e91f8aad506b9e8298f8a",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "95ab26c7441fcff125d37e2830a5e58ed3b3a722844feb3d0367c4f140f514e1",
+      "afterSha256": "95510bc0e14681498c4707fdb40c565dce65d8cd5957be851ac8e81e043f70dd"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-event-bindings.json",
+      "beforeSha256": "841d669a561ae0e299d63a419f6243a8c2c8c5844417b415c62f22d82393d636",
+      "afterSha256": "411f91f266ba2e5a6965743cc5f2dd104185e6b44375ea1297e842a21fa15df1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationPlan.java",
+      "beforeSha256": "a9c4f99a9d22283b589125a415d877f6e5545bf4ef4ecd01811668616e0890d5",
+      "afterSha256": "34177edbff4cf6fb0746f92637bdc9e40775149df50af6b94927303e7f40e81c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java",
+      "beforeSha256": "b35e55fd966ede24498046b65f1e12a788801c096acb920f5800e8ac9f94e458",
+      "afterSha256": "d8ab86259adce7d2b735ecc0a78d63621e15788d9f7ab4970220af2709eabf0b"
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcTacticSoundPolicyTest.java",
+      "beforeSha256": "d71ff36496b3d6e01392466289dc859c6ae96688312076ffbdd16db0c4c7d1a2",
+      "afterSha256": "104f60f1ceeb56bac1723d0a19a252e9a6865e1b69e03338a9716eea7e89c7b6"
+    },
+    {
+      "path": "tools/audio/inspect_pc_infantry_sound_chain.py",
+      "beforeSha256": "5472fa8e2f215cc4c3b536d1852804d86f3b30b29215ff0af0d00557e5aa8186",
+      "afterSha256": "41b74df47a33f25c2f81dba9adeda441832b1b147ddf46e53e34326e530d74fd"
+    },
+    {
+      "path": "tools/audio/verify_pc_tactic_sound_policy.py",
+      "beforeSha256": "63bfb9a9d2b6ffdccd88b6cfa6010fed48c6efbe6f705f0a3c46c4129a1ea86d",
+      "afterSha256": "fbcb23705b4254bc0fd350904a247ac7fb72f0349b4b87c77458003a08961ea5"
+    },
+    {
+      "path": "tools/media/verify_infantry_audio_matrix.py",
+      "beforeSha256": "53650822c04b410b21d47657bbe1adc2cda3311e135ba271c540e9968f5b51f2",
+      "afterSha256": "c47e7cd27b9790bb0ff4b5970242713202cdcb20c6cf06e178019d36fe6585ff"
+    }
+  ],
+  "coreApiRuntimeUnchanged": true,
+  "commonEntriesUnchanged": true,
+  "globalBuildConfigurationUnchanged": true
+}

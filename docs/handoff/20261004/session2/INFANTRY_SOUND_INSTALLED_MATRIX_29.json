@@ -1,0 +1,268 @@
+{
+  "applicationSource": "f6e0b8a6d3ee4cb4839bf2d2fb975f06f7c445b7",
+  "applicationSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "testSource": "6bba993885ea66c5ed3cf2844d332fda6d0e2825",
+  "testSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7",
+  "positiveCases": 18,
+  "completeNativeHitBranchMatrix": true,
+  "accepted": [
+    {
+      "run": "infantry-thrust-49-installed-29",
+      "tactic": "THRUST",
+      "nativeSoundId": 49,
+      "seconds": 24.09,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047663,
+        0.9999995315147966
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-thrust-78-installed-29",
+      "tactic": "THRUST",
+      "nativeSoundId": 78,
+      "seconds": 29.36,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-spiral-49-installed-29",
+      "tactic": "SPIRAL",
+      "nativeSoundId": 49,
+      "seconds": 26.18,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995350866989,
+      "independentCorrelations": [
+        0.9999865596955723,
+        0.9999995188855235
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-spiral-78-installed-29",
+      "tactic": "SPIRAL",
+      "nativeSoundId": 78,
+      "seconds": 28.39,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997214978898,
+      "independentCorrelations": [
+        0.9999993403206858,
+        0.9999995257451634
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-double_thrust-49-installed-29",
+      "tactic": "DOUBLE_THRUST",
+      "nativeSoundId": 49,
+      "seconds": 30.91,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995496383558,
+      "independentCorrelations": [
+        0.9999869716679078,
+        0.9999995337033061
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-double_thrust-78-installed-29",
+      "tactic": "DOUBLE_THRUST",
+      "nativeSoundId": 78,
+      "seconds": 24.11,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-hook-49-installed-29",
+      "tactic": "HOOK",
+      "nativeSoundId": 49,
+      "seconds": 22.51,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047663,
+        0.9999995315147966
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-hook-78-installed-29",
+      "tactic": "HOOK",
+      "nativeSoundId": 78,
+      "seconds": 22.08,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997318891273,
+      "independentCorrelations": [
+        0.9999993436782684,
+        0.9999995281052065
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-sweep-49-installed-29-r2",
+      "tactic": "SWEEP",
+      "nativeSoundId": 49,
+      "seconds": 33.21,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047663,
+        0.9999995315147966
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-sweep-78-installed-29",
+      "tactic": "SWEEP",
+      "nativeSoundId": 78,
+      "seconds": 19.21,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-whirlwind-49-installed-29",
+      "tactic": "WHIRLWIND",
+      "nativeSoundId": 49,
+      "seconds": 21.03,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-whirlwind-78-installed-29",
+      "tactic": "WHIRLWIND",
+      "nativeSoundId": 78,
+      "seconds": 22.12,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-fire_arrow-49-installed-29",
+      "tactic": "FIRE_ARROW",
+      "nativeSoundId": 49,
+      "seconds": 20.2,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047662,
+        0.9999995315147966
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-fire_arrow-78-installed-29",
+      "tactic": "FIRE_ARROW",
+      "nativeSoundId": 78,
+      "seconds": 21.39,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-pierce-49-installed-29",
+      "tactic": "PIERCE",
+      "nativeSoundId": 49,
+      "seconds": 22.6,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-pierce-78-installed-29",
+      "tactic": "PIERCE",
+      "nativeSoundId": 78,
+      "seconds": 30.2,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997257466406,
+      "independentCorrelations": [
+        0.9999993693113843,
+        0.9999995465393435
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-volley-49-installed-29",
+      "tactic": "VOLLEY",
+      "nativeSoundId": 49,
+      "seconds": 23.84,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    },
+    {
+      "run": "infantry-volley-78-installed-29",
+      "tactic": "VOLLEY",
+      "nativeSoundId": 78,
+      "seconds": 28.72,
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ],
+      "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+      "testApkSha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+    }
+  ],
+  "failedAttempts": [
+    "infantry-sweep-49-installed-29: actual full-waveform fail retained",
+    "infantry-sweep-49-installed-29-r1: APK transport timeout before instrumentation; exact restored"
+  ],
+  "noGlitchClaim": false,
+  "fullGameRestorationClaim": false
+}

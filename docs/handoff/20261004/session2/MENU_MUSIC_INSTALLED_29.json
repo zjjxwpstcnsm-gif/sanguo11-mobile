@@ -1,0 +1,59 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=audio",
+    "menuMusic=1",
+    "run=menu-music-installed-29"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-build-29/frozen/app-debug.apk": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+  },
+  "installed_sha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "installed_test_sha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7",
+  "passed": true,
+  "seconds": 117.45,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "directory": "out/media/menu-music-installed-29",
+  "menu-music.json": {
+    "normalMenuOnly": true,
+    "noTestPlaybackDirective": true,
+    "resourceId": 2238,
+    "musicId": 1,
+    "identity": "3fd9562d-8140-4a97-befc-bb04053d55ee:0:pc-menu-559220",
+    "firstWriteMillis": 253,
+    "loopWaitMillis": 102372,
+    "loops": 1,
+    "originalFirstLoopUnderruns": 0,
+    "bufferFrames": 16384,
+    "musicGain": 65,
+    "beforeSaveSha256Base64": "At2z1E2Y++vnY6glUbXLXraNpucLYIdWjApzlDveXWk=",
+    "allSaveRngEqual": true,
+    "mapBgmBound": false,
+    "armEvidence": false
+  },
+  "fixedFourWindowPcm": {
+    "passed": false,
+    "failedReferenceSeconds": 40,
+    "correlation": 0.7088762881618288,
+    "unchangedThreshold": 0.999
+  },
+  "fullTrackPcm": {
+    "passed": false,
+    "correlation": 0.37841440428196105,
+    "unchangedThreshold": 0.995,
+    "rawRecordingUnmodified": true
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "twoConversionsByteEqual": true,
+  "twoNativeRunsByteEqual": true,
+  "files": [
+    {
+      "path": "tactic-49-original-22050.wav",
+      "bytes": 45394,
+      "sha256": "c2593295194b328368e09834eb4b0da12cd43353642fe4c00fb46905fd90bb43"
+    },
+    {
+      "path": "tactic-49.wav",
+      "bytes": 90744,
+      "sha256": "1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705"
+    },
+    {
+      "path": "tactic-78-original-22050.wav",
+      "bytes": 45688,
+      "sha256": "35bceaf732d76768cf4dd4ddabd7b3fee0e87be430d73c7687a19c67c52025f9"
+    },
+    {
+      "path": "tactic-78.wav",
+      "bytes": 91332,
+      "sha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638"
+    },
+    {
+      "path": "tactic-sound-manifest.json",
+      "bytes": 5469,
+      "sha256": "85e8262f51e296dc8e21a361e20da8e02afa9993f13259471e393f5cbbd3d23e"
+    }
+  ]
+}

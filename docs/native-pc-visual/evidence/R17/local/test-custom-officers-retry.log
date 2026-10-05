@@ -1,0 +1,5 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+CUSTOM OFFICERS PASS: 461 assertions; domestic, formation, battle, skill, recruitment, AI, relations, historical isolation, dynamic sites, dates, IDs and self-contained saves.
+OFFICER PACK ARCHIVE PASS: 188 checks; truncation, directory integrity, paths, CRC and bounded decoding
+SKILL MANIFEST PASS: all enabled IDs have audited production rule references

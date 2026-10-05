@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "scope": "Actual declared normal tactic mix: original PC33 plus two inherited mobile nuisance cues. Not full PC battle audio restoration, microphone or ARM speaker evidence.",
+  "serial": "emulator-5582",
+  "apkSha256": "0eb4662a22c8e649cb603b06a64b9cb7ada8de2303b7fa8ae0127359bc67c14f",
+  "waveSha256": "472d6954ff1b47d63cc5a985505ce28689e9d66ea41adc1ef642cf45e259e510",
+  "sampleRate": 44100,
+  "intervalSamples": [
+    527888,
+    584774
+  ],
+  "jointCorrelation": 0.999999708715357,
+  "pc33NuisanceRemovedCorrelation": 0.9999994558607507,
+  "gramCondition": 4.334626097445772,
+  "residualMseWithPc33": 6.836708931186045e-12,
+  "residualMseWithoutPc33": 6.2819436248248515e-06,
+  "facts": [
+    {
+      "id": "2aba0a52-2fee-4770-9da2-c5d395713683:1:1:LEGACY_COMMITTED:technique:1",
+      "parentId": "2aba0a52-2fee-4770-9da2-c5d395713683:1:1:LEGACY_COMMITTED",
+      "presentationParentId": "2:1",
+      "sequence": 1,
+      "owner": 0,
+      "before": 0,
+      "after": 40,
+      "delta": 40,
+      "cause": "TACTIC",
+      "phase": "COMMAND",
+      "state": {
+        "sessionId": "2aba0a52-2fee-4770-9da2-c5d395713683",
+        "generation": 1,
+        "revision": 1
+      }
+    }
+  ],
+  "cues": [
+    {
+      "name": "critical",
+      "label": "INHERITED_MOBILE_COMPOSITION",
+      "path": "audio/critical.wav",
+      "sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa",
+      "startSample": 527923,
+      "seconds": 11.971043083900227,
+      "gain": 0.01773234514717582,
+      "audibleRms": 0.0026950846197954857,
+      "candidateCorrelation": 0.6575091512862478
+    },
+    {
+      "name": "tactic",
+      "label": "INHERITED_MOBILE_COMPOSITION",
+      "path": "audio/tactic.wav",
+      "sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264",
+      "startSample": 533211,
+      "seconds": 12.09095238095238,
+      "gain": 0.017733154658644584,
+      "audibleRms": 0.0017651427864005945,
+      "candidateCorrelation": 0.4654583140028501
+    },
+    {
+      "name": "pc33",
+      "label": "ORIGINAL_PC_HUD33",
+      "path": "audio/pc/technique-33.wav",
+      "sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "startSample": 539539,
+      "seconds": 12.234444444444444,
+      "gain": 0.017733970060128668,
+      "audibleRms": 0.0028117222148951507,
+      "candidateCorrelation": 0.927983183092965
+    }
+  ],
+  "pc33TailSeedCorrelation": 0.9999990681355257,
+  "pc33CoarseCandidateSample": 539776,
+  "pc33TailSeedSample": 539539,
+  "filters": "Same fixed65-tap cutoff FIR; declared isolated HUD33 tail seeds harmonic phase; full original-rate reconstruction and unchanged acceptance thresholds"
+}

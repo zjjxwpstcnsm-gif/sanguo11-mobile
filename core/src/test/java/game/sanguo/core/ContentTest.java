@@ -20,7 +20,12 @@ public final class ContentTest {
         try{c.officers().clear();throw new AssertionError("mutable catalog");}catch(UnsupportedOperationException expected){checks++;}
         for(int side=0;side<3;side++){
             World old=TestScenarios.load("regional-sandbox",side),w=TestScenarios.load("officer-reference-drill",side);
-            for(World.Officer o:w.officers){ContentCatalog.Officer input=c.officer(o.id);int[] actual={o.leadership,o.war,o.intelligence,o.politics,o.charm};for(int i=0;i<5;i++)check(actual[i]==input.stat(i),"actual stat "+o.id+":"+i);for(int i=0;i<6;i++)check(o.aptitude[i]==input.aptitude(i),"actual aptitude "+o.id+":"+i);check(o.owner==old.officer(o.id).owner&&o.cityId==old.officer(o.id).cityId,"explicit engineering ownership unchanged");}
+            for(World.Officer o:w.officers){ContentCatalog.Officer input=c.officer(o.id);int[] actual={o.leadership,o.war,o.intelligence,o.politics,o.charm};for(int i=0;i<5;i++){
+                check(w.officerAbilities.base(o.id,i)==input.stat(i),"exact authored source base "+o.id+":"+i);
+                PcOfficerGrowth.Definition growth=PcOfficerGrowth.get(o.id);int curve=growth==null?-1:growth.curves[i];
+                int expected=PcOfficerAbilityRules.current(input.stat(i),curve,w.startYear-input.birth+1,0,i,0,-1,0,false,growth!=null&&growth.special,false);
+                check(actual[i]==expected,"actual current ability uses verified age curve "+o.id+":"+i);
+            }for(int i=0;i<6;i++)check(o.aptitude[i]==input.aptitude(i),"actual aptitude "+o.id+":"+i);check(o.owner==old.officer(o.id).owner&&o.cityId==old.officer(o.id).cityId,"explicit engineering ownership unchanged");}
             for(World.City city:w.cities){World.City original=old.city(city.id);check(city.hex.equals(original.hex)&&city.gold==original.gold&&city.food==original.food&&Arrays.equals(city.equipment,original.equipment)&&Arrays.equals(city.ships,original.ships),"real resource and position match fixture");}
             for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)check(w.terrain[q][r]==old.terrain[q][r],"engineering terrain not renamed national");
             World.City home=w.home();check(w.deploy(home.id,w.idle(home).get(0).id,World.Weapon.SPEAR,3000).ok,"new pack deploy side "+side);

@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "source_file": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shared_file": "Media/scenario/Scenario.s11",
+  "shared_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "calls": [
+    {
+      "name": "recruit",
+      "command_id": 1,
+      "command_label": "徵兵",
+      "start": "0x5c3b36",
+      "end_exclusive": "0x5c3b47",
+      "native_stat": 4,
+      "experience_property_id": 34,
+      "experience_property_label": "魅力經驗",
+      "amount": 2,
+      "refresh_current": true,
+      "bytes_hex": "6a016a026a0456b95c899907e88935eeff",
+      "sha256": "efcfd8d480b36729b9b7d7a4eafd4a13779dee83ddfaa977a11da9286dc6ba2f"
+    },
+    {
+      "name": "production",
+      "command_id": 2,
+      "command_label": "生產",
+      "start": "0x5c66aa",
+      "end_exclusive": "0x5c66bb",
+      "native_stat": 2,
+      "experience_property_id": 32,
+      "experience_property_label": "智力經驗",
+      "amount": 2,
+      "refresh_current": true,
+      "bytes_hex": "6a016a026a0256b95c899907e8150aeeff",
+      "sha256": "4b0ba920807e7eea206bceb487f3606a46801fb2548b7b34d465cdc81cb8b9a9"
+    },
+    {
+      "name": "training",
+      "command_id": 6,
+      "command_label": "訓練",
+      "start": "0x5c4365",
+      "end_exclusive": "0x5c4376",
+      "native_stat": 1,
+      "experience_property_id": 31,
+      "experience_property_label": "武力經驗",
+      "amount": 2,
+      "refresh_current": true,
+      "bytes_hex": "6a016a026a0156b95c899907e85a2deeff",
+      "sha256": "71b7474922267e029893b59e283b369d41c5efb14d8b4c19573ec7c52a2d8dbc"
+    },
+    {
+      "name": "patrol",
+      "command_id": 3,
+      "command_label": "巡察",
+      "start": "0x5cbee7",
+      "end_exclusive": "0x5cbef8",
+      "native_stat": 0,
+      "experience_property_id": 30,
+      "experience_property_label": "統率經驗",
+      "amount": 2,
+      "refresh_current": true,
+      "bytes_hex": "6a016a026a0056b95c899907e8d8b1edff",
+      "sha256": "01950c266f503059327f00dec67d322318da525b73fcdc88f8f72b7ed2d4e543"
+    }
+  ],
+  "merit_calls": [
+    {
+      "name": "recruit",
+      "start": "0x5c3b47",
+      "end_exclusive": "0x5c3b54",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "090115d4c779d2cffe890e8e1d5e822739e9196eaee2b3544696303eafde6d3e",
+      "bytes_hex": "6a3256b95c899907e8fc31eeff"
+    },
+    {
+      "name": "production",
+      "start": "0x5c66bb",
+      "end_exclusive": "0x5c66c8",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "b223b365ee6a7a06d25cdab2a1a0c4c18de232f44106f8c8e547d8707676be45",
+      "bytes_hex": "6a3256b95c899907e88806eeff"
+    },
+    {
+      "name": "training",
+      "start": "0x5c4376",
+      "end_exclusive": "0x5c4383",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "e101f6b7cde3ba25f29cb46506436d385efbf9f130469068fcb77006d4a2060d",
+      "bytes_hex": "6a3256b95c899907e8cd29eeff"
+    },
+    {
+      "name": "patrol",
+      "start": "0x5cbf25",
+      "end_exclusive": "0x5cbf32",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "23db01283a18fe88d4de8883bb2f7b7ba6ebdb9e55f5cc7b62c94dc2d4d4d2bb",
+      "bytes_hex": "6a3256b95c899907e81eaeedff"
+    }
+  ],
+  "functions": [
+    {
+      "name": "award_experience",
+      "start": "0x4a70d0",
+      "end_exclusive": "0x4a7277",
+      "sha256": "38570c77a84f2523978299a7cf91be5e55c344c42021a339b47d6f0bb7db789c",
+      "bytes_hex": "81ec68040000a1ac0b8e00568bb42470040000575689842470040000e83f35fdff83c40485c00f84620100008bbc247804000085ff0f8c5301000083ff040f8f4a01000053558bcee8b331feff578bcee85b20feff0fb7d8578bce895c2418e8fc1efeff8bac24840400000fb6c0568944241403dde856e3ffff83c40485c0740203dd81fbb80b00007e05bbb80b000053578bcee8a736feff8b84248804000085c074078bcee85531feff578bcee8ad1efeff0fb6d8395c24100f8da40000008b168bceff524885c00f84950000006a7f8d8424f8030000508d8c24f0030000e8fba7fcff8d8c24e80300005751e8ad78feff83c4086a006a0068000080bf6a006a0ab910981109e8939302008b4c24106a016a006a008d942400040000528beb2be9555356685e1700008d4c2438e8bce0ffff50e866e2040083c4106aff6a01568d84240004000050555356685f1700008d4c2438e895e0ffff50e8afe3040083c410578bcee8441ffeff8b4c24145d5b0fb7c05f2bc15e8b8c2464040000e8c508260081c468040000c210008b8c246c0400005f33c05ee8ac08260081c468040000c21000"
+    },
+    {
+      "name": "unit_companion_multiplier",
+      "start": "0x4a54a0",
+      "end_exclusive": "0x4a553a",
+      "sha256": "13d288529236d2417709ea98f41a47c895d495130abfa0cb70dca099a8dd5883",
+      "bytes_hex": "53558b6c240c565755e88251fdff83c40485c074748b859c00000083f8577c0c3d3e0400007f0583c0a9eb0383c8ff50b958192007e896b9feff8bd853e84e51fdff83c40485c0744033ffeb038d4900578bcbe898fdfeff50b958192007e8fdb5feff8bf056e82551fdff83c40485c074113bf5740d6a548bcee8d13bfeff85c0750d4783ff037cc75f5e5d33c05bc35f5e5db8010000005bc3"
+    }
+  ],
+  "verified": {
+    "original_world_observations": 700,
+    "original_named_command_getter": "48f1a0..48f1b0",
+    "original_named_property_getter": "73ca80 then4c86eb..4c86f6",
+    "memory_bytes": 3145728,
+    "full_world_rng_compared": true,
+    "base_values": [
+      1,
+      50,
+      80,
+      99,
+      100
+    ],
+    "experience_values": [
+      0,
+      98,
+      99,
+      100,
+      2998,
+      2999,
+      3000
+    ],
+    "injury_values": [
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "nonunit_9c_fixture_values": [
+      -1,
+      0,
+      41,
+      86
+    ],
+    "award_cap": 3000,
+    "original_xp_then_merit_world_observations": 20
+  },
+  "limits": [
+    "Android normal fixed rewards were integrated in R27; source evidence and installed flow checks remain separate",
+    "Full command admission, three-actor city formulas and production item/timing coverage remain unresolved",
+    "The original multiplier searches a valid unit and its other officers for native skill84; nonunit fixture returns0. Unit/skill identity integration is not claimed",
+    "Cultivation rewards are separate and not verified by these fixed city-call blocks",
+    "No rule RNG or UI changes in this source-evidence increment"
+  ]
+}

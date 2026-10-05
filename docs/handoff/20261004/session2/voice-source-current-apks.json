@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "7bec08f87d728b15987708606100067cbfe0dc61",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-source-build-02/frozen/app-debug.apk",
+      "bytes": 283144775,
+      "sha256": "e0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-source-build-02/frozen/app-debug-androidTest.apk",
+      "bytes": 2056623,
+      "sha256": "4ff1f88f5e85243201a42310a8e2e022d0ef970ae162e332aa1af49737f2cde8"
+    }
+  ],
+  "allOriginalAudioAssetBytesExact": true,
+  "strictVoiceEos": true,
+  "normalVoicePlaybackAccepted": false
+}

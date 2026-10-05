@@ -1,0 +1,4 @@
+terrainGeometryAndSurface=2c0db7e3290deede25c1e764baa1119ab192fa764144ec55cd4620c292cba8c4 paletteVersion=4
+Exception in thread "main" java.lang.AssertionError: every position/index/UV/normal/shore/flow/macro byte matches input baseline
+	at game.sanguo.mobile.NativePreviewWorkTest.check(NativePreviewWorkTest.java:12)
+	at game.sanguo.mobile.NativePreviewWorkTest.main(NativePreviewWorkTest.java:41)

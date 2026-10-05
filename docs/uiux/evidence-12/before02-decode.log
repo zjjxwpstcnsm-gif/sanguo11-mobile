@@ -1,0 +1,38 @@
+tools/content/decode_video_frames.swift:15:23: warning: 'tracks(withMediaType:)' was deprecated in macOS 13.0: Use loadTracks(withMediaType:) instead [#DeprecatedDeclaration]
+13 | guard !seconds.isEmpty, seconds.allSatisfy({$0.isFinite && $0 >= 0}) else {fatalError("Invalid requested times")}
+14 | let asset=AVURLAsset(url:file)
+15 | guard let track=asset.tracks(withMediaType:.video).first else {fatalError("No video track")}
+   |                       `- warning: 'tracks(withMediaType:)' was deprecated in macOS 13.0: Use loadTracks(withMediaType:) instead [#DeprecatedDeclaration]
+16 | let reader=try AVAssetReader(asset:asset)
+17 | let decoded=AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA])
+
+tools/content/decode_video_frames.swift:39:68: warning: 'preferredTransform' was deprecated in macOS 13.0: Use load(.preferredTransform) instead [#DeprecatedDeclaration]
+37 |     let pts=CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sample))
+38 |     guard let pixels=CMSampleBufferGetImageBuffer(sample) else {fatalError("Missing sample pixels")}
+39 |     let current=CIImage(cvPixelBuffer:pixels).transformed(by:track.preferredTransform)
+   |                                                                    `- warning: 'preferredTransform' was deprecated in macOS 13.0: Use load(.preferredTransform) instead [#DeprecatedDeclaration]
+40 |     while index < seconds.count && pts >= seconds[index] {
+41 |         let request=seconds[index]
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+{
+  "decoder" : "AVAssetReader sequential actual samples \/ nearest PTS",
+  "frames" : [
+    {
+      "actual_seconds" : 4.8819222222222223,
+      "height" : 1920,
+      "path" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-12\/before02\/frames\/video-frame-5.png",
+      "requested_seconds" : 5,
+      "width" : 1080
+    },
+    {
+      "actual_seconds" : 10.118444444444444,
+      "height" : 1920,
+      "path" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-12\/before02\/frames\/video-frame-10.png",
+      "requested_seconds" : 10,
+      "width" : 1080
+    }
+  ],
+  "PC_match_accepted" : false,
+  "video" : "\/Users\/paopao\/workspace\/sanguo11-mobile-uiux\/out\/uiux\/iteration-12\/before02\/interaction.mp4"
+}

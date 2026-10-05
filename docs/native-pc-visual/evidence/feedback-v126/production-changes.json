@@ -1,0 +1,191 @@
+{
+  "input_source": "58d7eb1cba2a45365d7fbee1beef61cc53ce8fc0",
+  "apk_source": "25e6c121cba1ae36947c520dfccc48e13e0e2171",
+  "files": [
+    {
+      "path": ".github/workflows/native-landmarks126.yml",
+      "sha256": "7fb4c93b8eea54ca7ec0a8d68654d6274bee1691069a404fc35496e6fbebbf51",
+      "bytes": 7097
+    },
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "sha256": "3f006794bdc778c4834ad8324b7c9baead3f8d501d4ce518d190d27dadc7bb48",
+      "bytes": 7593
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/NativeLandmarks126Instrumentation.java",
+      "sha256": "068ccf9777e778df00eba71a06fcebd8f2b5cde38872a8a8813a0990447fa47f",
+      "bytes": 4380
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/beacon-han-lod0.glb",
+      "sha256": "d2892c56464d43d58e906d475a54c53230a38189cb34f28908c215216da0bf60",
+      "bytes": 55048
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/beacon-han-lod1.glb",
+      "sha256": "5bddc0018b1e62f454c0df83bdf1800dd0e7d196442526196af1702b7253c675",
+      "bytes": 41944
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cascade-hukou-lod0.glb",
+      "sha256": "35ff9dd810ed4b9d8e9ca45660b1f9c529fa7bc2ba06214aaced77b4b9966c9e",
+      "bytes": 99972
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cascade-hukou-lod1.glb",
+      "sha256": "83cafad474a327f48cec75548ed42cd7cf6cc43884b50991fd52393d4a45c52c",
+      "bytes": 43800
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-granite-lod0.glb",
+      "sha256": "7d5bb3c670577d3e59633a88c5a5b266cdcf507d28644b6352e6cc9e45f5cb0b",
+      "bytes": 53172
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-granite-lod1.glb",
+      "sha256": "07d9faa03323bec0f66ce044bd55a9465bdc114cb5ba048179b81147ad4dc0e9",
+      "bytes": 33512
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-karst-lod0.glb",
+      "sha256": "e163c780bea898480eb9ec407694da2e9af4fc5e033ec838e76f92e3005f2aeb",
+      "bytes": 53176
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-karst-lod1.glb",
+      "sha256": "6ade9b2e3dea3bd3604e2cf4cd902895dbaab43a8ddf5de6c3f4d1a70c38b287",
+      "bytes": 33512
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-sandstone-lod0.glb",
+      "sha256": "9c9a04fdde1077f7e070390c02242f403d8c72ff8bd7f9fc8500af924b252d6e",
+      "bytes": 53172
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-sandstone-lod1.glb",
+      "sha256": "5bdc99acd2d8477585b31b2ea48c56e6e102bf12b7637a8edf0d35f22b840070",
+      "bytes": 33512
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery-atlas.etc2",
+      "sha256": "0c5f9b4ffd7435db263bae46ca55e5696226cb08465ee3f620d41205a699c730",
+      "bytes": 21952
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery-atlas.png",
+      "sha256": "7998aa0567a5286ba0d3e2d2f7a8501846d7bd1efbe0d2e14a7bb3916241ee7c",
+      "bytes": 23777
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery.filamat",
+      "sha256": "ae89f2d8d75ade2603526208acdce2d64be38510c61099ed9363996c607b8ff0",
+      "bytes": 482628
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/wall-earth-lod0.glb",
+      "sha256": "ad3a26f401a269dbc61686ea8cb2434b65d840739bb7ddd85996bf623c74ee86",
+      "bytes": 91216
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/wall-earth-lod1.glb",
+      "sha256": "40223c5694a7a71b700efb8105b2135beceb4a48c94fdc4d756d7dad3edf9955",
+      "bytes": 42220
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldAssets.java",
+      "sha256": "8ae24ed7b955c20a643f4333d71db6a499623a146d31cdf119e7d69b74a26eaa",
+      "bytes": 12732
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "9a25fb7cfb8f4d721b1d4677f896de61d82f34eb6381bd496c2cf4c1cf242589",
+      "bytes": 121172
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
+      "sha256": "a0d552b562b9065c6cfc44b7eb456d4860a1af2981e49c40fb533ffd701dccb9",
+      "bytes": 29321
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VerifiedMaterial.java",
+      "sha256": "041613ff05979884c36aebd366c6bde5249c7e5cf945467dedf46fd59d1b71fa",
+      "bytes": 2535
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/NativeLandmarks126Test.java",
+      "sha256": "17b671364b761bbec7b7e7d8102009fc2f023c60e25c3ce4ba2cffe1bb5454c7",
+      "bytes": 4789
+    },
+    {
+      "path": "docs/native-pc-visual/DEFECTS.md",
+      "sha256": "9768da22ef33cd4b37cf7dbff091609bec85cd0d983f9b0fbeb1df445501b704",
+      "bytes": 8836
+    },
+    {
+      "path": "docs/native-pc-visual/PROGRESS.md",
+      "sha256": "9768da22ef33cd4b37cf7dbff091609bec85cd0d983f9b0fbeb1df445501b704",
+      "bytes": 8836
+    },
+    {
+      "path": "docs/native-pc-visual/evidence/feedback-v126/manifest.json",
+      "sha256": "e77747bb3967421d4443df3493394abdc2cde169c19ad5f277a1f6333055cdcc",
+      "bytes": 332
+    },
+    {
+      "path": "docs/native-pc-visual/feedback-v126-asset-manifest.json",
+      "sha256": "51877a19cdcf3b0af9fd3474c00ec96d138ab09344115f0ead7491fec33b537e",
+      "bytes": 11691
+    },
+    {
+      "path": "docs/native-pc-visual/feedback-v126-blender-assets.json",
+      "sha256": "e64a6e44593cc02079b2e8155b8bd1d1b7cf8ac044766d3ae84b0a87d68c4884",
+      "bytes": 9962
+    },
+    {
+      "path": "docs/native-pc-visual/feedback-v126-texture-compression.json",
+      "sha256": "f016a33d4b710e855ca1a6622f42872df5c41483e85a9df2ce4aac0c366f77c7",
+      "bytes": 563
+    },
+    {
+      "path": "docs/native-pc-visual/handoffs/feedback-v126.md",
+      "sha256": "e760d86a2e4c0bd774842e5286564388742834451f8aa3cf3fcbf55bfe432992",
+      "bytes": 376
+    },
+    {
+      "path": "docs/native-pc-visual/reports/feedback-v126.md",
+      "sha256": "82a1c5b97abbd11d8f6000825dc92eabaab33e2b902b2a3aaf49b2ee05e06968",
+      "bytes": 3519
+    },
+    {
+      "path": "scripts/test-landmarks126-installed.sh",
+      "sha256": "9abad251c5352dd8e9f444fa6b7505cec4b24d582217e5780be0527358ba1624",
+      "bytes": 1541
+    },
+    {
+      "path": "scripts/test-landmarks126.sh",
+      "sha256": "2d5362e14246d3d28df3a041202da04b93085971e9fb842b3e044a8426dce529",
+      "bytes": 595
+    },
+    {
+      "path": "tools/3d/compress_scenery126.py",
+      "sha256": "51ec4f0c886cff753855645d9a9610acc92d9767eb2135a88ea461f6548a7050",
+      "bytes": 508
+    },
+    {
+      "path": "tools/3d/refine_blender126.py",
+      "sha256": "2764317a8fc3be4c0bcb4d7dca2aabf377bdd5a39150b1f4367989385208d0c4",
+      "bytes": 6987
+    },
+    {
+      "path": "tools/3d/scenery126.mat",
+      "sha256": "8d43b0e397e936b0f7a17ce67f92d0a5f25ca237a4a2aaf60db2328c6f0f1f66",
+      "bytes": 1464
+    },
+    {
+      "path": "version.properties",
+      "sha256": "8c3d05e1d900758bef1e9c46655b5ab1e36aa55802b35639db2c77f0881c2f8b",
+      "bytes": 53
+    }
+  ]
+}

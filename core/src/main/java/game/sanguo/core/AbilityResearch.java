@@ -192,13 +192,13 @@ public final class AbilityResearch {
         for(Training t:new ArrayList<>(training))if(w.officer(t.officerId).otherTaskTurns==1){
             Node n=node(t.nodeId);World.Officer o=w.officer(t.officerId);
             if(n.category==Category.SKILL&&!o.skillId.equals(t.previousSkill)||n.category!=Category.SKILL&&value(o.id,n)!=t.startValue){release(t);w.note("培养目标发生变化，任务中止并保留次数");continue;}
-            if(n.category==Category.SKILL)o.skillId=n.skill.id;
+            if(n.category==Category.SKILL){o.skillId=n.skill.id;w.officerAbilities.refresh();}
             else if(n.category==Category.APTITUDE)o.aptitude[n.index]=n.cap;
             else {int after=Math.min(n.cap,t.startValue+5);setStat(o,n.index,after);gains.computeIfAbsent(o.id,k->new int[5])[n.index]+=after-t.startValue;}
             State state=states[t.owner];state.used.put(n.id,state.used.getOrDefault(n.id,0)+1);release(t);w.note(o.name+"完成"+t.label());
         }
     }
-    static void setStat(World.Officer o,int index,int value){switch(index){case 0:o.leadership=value;break;case 1:o.war=value;break;case 2:o.intelligence=value;break;case 3:o.politics=value;break;case 4:o.charm=value;break;default:throw new IllegalArgumentException();}}
+    static void setStat(World.Officer o,int index,int value){OfficerAbilities.setBase(o,index,value);}
     void runAi(){
         if(w.officers.stream().noneMatch(o->o.owner==w.active&&!w.government.captive(o.id)))return;
         for(World.City c:w.cities)if(c.owner==w.active&&c.gold>=2000){

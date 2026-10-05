@@ -1,0 +1,75 @@
+UIUX PASS 62 checks
+PASS normal launch restores existing save
+PASS existing slot 3 exactly matches explicitly supplied test-owned SHA and current state
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 保存局面（3个槽位） at Rect(53, 675 - 1027, 801)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 12:39 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 覆盖存档 at Rect(795, 1134 - 1005, 1260)
+PASS real save UI writes complete authoritative slot 3
+PASS touch visible 保存局面（3个槽位） at Rect(53, 675 - 1027, 801)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 取消 at Rect(627, 1134 - 795, 1260)
+PASS cancel overwrite preserves bytes
+PASS touch visible 读取存档 at Rect(53, 801 - 1027, 927)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 取消 at Rect(627, 1079 - 795, 1205)
+PASS cancel load preserves authority and RNG
+PASS touch visible 设置 at Rect(53, 927 - 1027, 1053)
+PASS touch visible 战斗震动 · 开启 at Rect(28, 798 - 1052, 924)
+PASS touch visible 关闭 at Rect(28, 924 - 1052, 1050)
+PASS haptics off setting persists
+PASS touch visible 设置 at Rect(53, 927 - 1027, 1053)
+PASS touch visible 战斗震动 · 关闭 at Rect(28, 798 - 1052, 924)
+PASS touch visible 开启（遵循系统触感设置） at Rect(28, 798 - 1052, 924)
+PASS haptics on setting persists
+PASS touch visible 设置 at Rect(53, 927 - 1027, 1053)
+PASS touch visible 演示默认速度 · 2× at Rect(28, 924 - 1052, 1050)
+PASS touch visible 2× 加速 at Rect(28, 861 - 1052, 987)
+PASS playback speed setting persists
+PASS touch visible 设置 at Rect(53, 927 - 1027, 1053)
+PASS touch visible 演示默认速度 · 2× at Rect(28, 924 - 1052, 1050)
+PASS touch visible 1× 正常速度 at Rect(28, 735 - 1052, 861)
+PASS touch visible 新游戏 / 选择势力 at Rect(53, 1053 - 1027, 1179)
+PASS touch visible 190 讨伐董卓 · 重建
+87 据点 · 656 武将 · 18 势力 at Rect(49, 651 - 1031, 819)
+PASS landscape faction start has full touch target
+PASS touch visible 以「刘备」开始新局  → at Rect(26, 1642 - 1054, 1773)
+PASS touch visible 返回选择 at Rect(585, 1171 - 795, 1297)
+PASS cancel new game retains selected faction and re-enables start
+PASS scenario preview and cancellation preserve current authority
+PASS touch visible 返回 at Rect(26, 84 - 189, 210)
+PASS touch visible 取消 at Rect(852, 1365 - 1020, 1491)
+PASS back through scenario list retains current campaign
+PASS touch visible 新游戏 / 选择势力 at Rect(53, 1053 - 1027, 1179)
+PASS touch visible 190 讨伐董卓 · 重建
+87 据点 · 656 武将 · 18 势力 at Rect(49, 651 - 1031, 819)
+PASS touch visible 以「刘备」开始新局  → at Rect(26, 1642 - 1054, 1773)
+PASS touch visible 开始新局 at Rect(795, 1171 - 1005, 1297)
+PASS confirmed new game installs a fresh authoritative session
+PASS new game preserves manual save
+PASS new game owns one native map host
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 新游戏 / 选择势力 at Rect(53, 1053 - 1027, 1179)
+PASS touch visible 190 讨伐董卓 · 重建
+87 据点 · 656 武将 · 18 势力 at Rect(49, 651 - 1031, 819)
+PASS touch visible 以「刘备」开始新局  → at Rect(26, 1642 - 1054, 1773)
+PASS touch visible 返回选择 at Rect(585, 1171 - 795, 1297)
+PASS native faction preview has its own scoped renderer
+PASS touch visible 取消 at Rect(852, 1365 - 1020, 1491)
+PASS system back releases preview renderer and preserves active campaign
+PASS touch visible 读取存档 at Rect(53, 801 - 1027, 927)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS real load restores full saved authority and RNG
+PASS load keeps manual save byte-identical
+

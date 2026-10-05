@@ -1,0 +1,37 @@
+{
+  "status": "PARTIAL",
+  "sourceCommit": "a8a4eca79164a03f9e58ef379991c839be44968a",
+  "originalAssetsPreserved": 307,
+  "changedOriginalAssets": [],
+  "protectedTreeChanges": [],
+  "newModelCount": 41,
+  "blenderVersion": "4.2.3 LTS",
+  "assetDetails": "feedback-v122-blender-assets.json",
+  "rig": "app/src/main/assets/3d/field/rigs-v122.json",
+  "normalRuntimeConsumers": [
+    "FilamentMapView.shape",
+    "FieldAssets.mesh",
+    "FieldAssets.pose"
+  ],
+  "ruleAndAnimationClipsChanged": false,
+  "lodPolicyChanged": false,
+  "modelBytes": 8591748,
+  "totalModelTriangles": 53014,
+  "maximumModelTriangles": 5940,
+  "artAcceptance": "PARTIAL: API29 fixture Surface reviewed; nationwide sites and all model families not accepted",
+  "arm64Performance": "NOT_RUN",
+  "original3dAssetsPreserved": 202,
+  "khronos": {
+    "allModels": 219,
+    "errors": 0,
+    "warnings": 0
+  },
+  "blenderReproduction": "PASS; 36590994234; no byte differences",
+  "offlineReview": "PARTIAL; 18 LOD0 previews reviewed, low-poly/stylized, not APK or final art approval",
+  "apkPackageIncreaseBytes": 1176227,
+  "gpuEvidence": {
+    "city0lod0Triangles": 5736,
+    "gateIncludingMountainWallsTriangles": 1949,
+    "source": "API29 normal MainActivity fixture; actual resident shapes"
+  }
+}

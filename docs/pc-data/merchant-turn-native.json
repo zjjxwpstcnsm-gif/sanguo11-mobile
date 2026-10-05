@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "records": [
+    {
+      "label": "ordinary turn date advance",
+      "address": "0x58051e",
+      "target": "0x4a1180",
+      "instruction_hex": "e85d0cf2ff"
+    },
+    {
+      "label": "ordinary turn global settlement",
+      "address": "0x5805d0",
+      "target": "0x59c330",
+      "instruction_hex": "e85bbd0100"
+    },
+    {
+      "label": "settlement action reset",
+      "address": "0x59c423",
+      "target": "0x598630",
+      "instruction_hex": "e808c2ffff"
+    },
+    {
+      "label": "87-site reset dispatcher",
+      "address": "0x598650",
+      "target": "0x487860",
+      "instruction_hex": "e80bf2eeff"
+    },
+    {
+      "label": "city reset tail jump",
+      "address": "0x487911",
+      "target": "0x47b730",
+      "instruction_hex": "e91a3effff"
+    },
+    {
+      "label": "port reset tail jump",
+      "address": "0x4878af",
+      "target": "0x48da10",
+      "instruction_hex": "e95c610000"
+    },
+    {
+      "label": "gate reset tail jump",
+      "address": "0x4878e3",
+      "target": "0x48da10",
+      "instruction_hex": "e928610000"
+    },
+    {
+      "label": "city flags clear dword+a4",
+      "address": "0x47b730",
+      "instruction_hex": "c781a400000000000000c3"
+    },
+    {
+      "label": "gate/port flags clear dword+68",
+      "address": "0x48da10",
+      "instruction_hex": "c7416800000000c3"
+    }
+  ],
+  "merchant": {
+    "flag_offset": "city+a4",
+    "bit": 1,
+    "admission": "5caaf0 -> 481310",
+    "commit": "5cacd5 -> 47b6f0",
+    "reset": "598630 loop 87 sites, cities through 487860 -> 47b730"
+  },
+  "verification": [
+    "test_pc_merchant_quote:256 flag admissions and75 commit resource cases",
+    "test_pc_merchant_turn:180 date advances/540 year-month-day results,4 flag patterns across87 sites,3MiB mutations and original RNG unchanged"
+  ],
+  "compatibility": [
+    "Existing positive saved traded volume means used; retain all balances and volume",
+    "Normal project global turn clears map; no save schema change"
+  ],
+  "limits": [
+    "Bounded original functions and statically connected normal turn calls, not full PC gameplay execution",
+    "Does not verify quantity bounds, current politics modifiers, price initialization/update, merchant actor merit or enabled MODs",
+    "Project building-kind eligibility remains a separate parity question"
+  ]
+}

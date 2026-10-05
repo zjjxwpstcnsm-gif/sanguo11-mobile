@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "baseline_apk_sha256": "d0187e6330cebc4d16eadc3264338f01cc0b907588192b7c9bdfd294fa692dd3",
+  "baseline_jar_sha256": "a4a9d20e51c066ef94c47937ba02fb9e401ca88afe5b1db10cf5bd42e7e9fc09",
+  "installed_sha256": "238b50470780da6e2302908334688ea3244a9c0f4268bdcdb20daf9d03ae1f7c",
+  "scope": "Independent frozen AM writers on JVM and ART; tests compare exact same-runtime fixture, with no byte normalization",
+  "generated": true,
+  "fixture_sha256": "9a2bc71cc36c0b520af6c79fc111e9bb38ffb059e6c60654f89bd6527ef0a9e6",
+  "fixture_bytes": 1657,
+  "probe_sha256": "fa298db838c54ad0b104384daec5ce9c74cd0277cf1742fe21de05f23ccc08c3",
+  "writer_source_sha256": "e8d47fc5f8abfe4f1739f5ee93a969f42c39342f0e0e8e67b4b14c5ade8bb84c",
+  "fixture_source_sha256": "905b707f2f5c9b13b30b0c6202f03bd35216378e6fd38c6155be73ec41fe5830",
+  "user_files_unchanged": true,
+  "installed_apk_unchanged": true,
+  "fixture": "core/src/test/resources/pc-officer-legacy-am-art.sg11",
+  "jvm_art_differing_offsets": [
+    16,
+    17,
+    18,
+    19,
+    1596
+  ]
+}

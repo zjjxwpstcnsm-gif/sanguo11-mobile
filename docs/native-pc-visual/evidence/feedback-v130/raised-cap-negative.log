@@ -1,0 +1,4 @@
+HUKOU130 lod=0 triangles=2606 width=0.91322327 highest=1.063634 bank=0.61363405 lip=1.063634 foot=0.23533122
+Exception in thread "main" java.lang.AssertionError: Hukou follows the actual bank instead of raised alpine cap
+	at game.sanguo.mobile.Hukou130Test.check(Hukou130Test.java:9)
+	at game.sanguo.mobile.Hukou130Test.main(Hukou130Test.java:45)

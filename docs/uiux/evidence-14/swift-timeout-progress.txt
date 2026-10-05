@@ -1,0 +1,32 @@
+PASS normal launch restores existing save
+PASS diplomacy starts from preserved campaign
+PASS real campaign includes searchable foreign list and invalid alliance relation
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 外交 at Rect(813, 830 - 965, 956)
+PASS touch visible 外交 / 协定 at Rect(53, 1283 - 1027, 1409)
+PASS touch visible  at Rect(74, 393 - 879, 519)
+PASS foreign search and empty result remain visible above keyboard
+PASS touch visible 清空 at Rect(879, 239 - 1005, 363)
+PASS touch visible  at Rect(74, 237 - 879, 363)
+PASS actual paste enters Chinese search
+PASS foreign picker has a whole landscape row
+PASS touch visible 董卓军 · 交战 · 关系 0 at Rect(74, 519 - 1005, 687)
+PASS touch visible 同盟 at Rect(42, 672 - 1037, 798)
+PASS touch visible 3旬 at Rect(42, 840 - 373, 987)
+PASS touch visible 上一步 at Rect(832, 1436 - 1005, 1562)
+PASS touch visible 上一步 at Rect(74, 998 - 247, 1124)
+PASS touch visible 同盟 at Rect(42, 672 - 1037, 798)
+PASS touch visible 3旬 at Rect(42, 840 - 373, 987)
+PASS command officer picker presents ability columns immediately
+PASS diplomacy offers real idle officers after back through faction and treaty
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS envoy chooser adapts search and empty result to keyboard
+PASS touch visible × at Rect(906, 249 - 1032, 375)
+PASS touch visible  at Rect(47, 620 - 906, 746)
+PASS actual paste enters Chinese search
+PASS touch visible LinearLayout at Rect(42, 512 - 1037, 649)
+PASS authority alliance rejection disables submit before spending resources
+PASS rejected diplomacy preview preserves full state and RNG

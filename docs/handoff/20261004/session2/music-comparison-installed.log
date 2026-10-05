@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: musicSource=MUSIC_SOURCE PASS checks=11; actual Android decoder and sample-loop reads; no scene/audio playback claim
+INSTRUMENTATION_CODE: -1

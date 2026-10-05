@@ -1,0 +1,155 @@
+name: R00-R14 repeat acceptance evidence and docs
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-repeat-acceptance-publish.yml]
+permissions: {contents: write, actions: read}
+concurrency:
+  group: native-repeat-acceptance-publish
+  cancel-in-progress: false
+jobs:
+  evidence-docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - name: Guard exact source and protected production
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/agent/native-pc-visual
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse origin/main)" = ac29b458325b52d6e302ca44270d16552de4ed7f
+          git merge-base --is-ancestor origin/main HEAD
+          mkdir -p out/raw out/apk
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main core game-api game-runtime data unity tools/3d version.properties app/build.gradle > out/raw/PRODUCTION.diff
+          git diff --name-status 702feccf5ba83d49ae9b6e95ef531f7df3df4f77 HEAD > out/raw/AUDIT_CHANGES.txt
+          git rev-parse HEAD origin/main > out/raw/INPUT_REFS.txt
+      - name: Collect complete final attempts, logs and original immutable artifacts
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          python3 - <<'PY'
+          import datetime,hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('out/raw'); repo=os.environ['GH_REPO']; records=[]; artifact_meta={}
+          def fetch(endpoint,path):
+              p=root/path;p.parent.mkdir(parents=True,exist_ok=True)
+              with p.open('wb') as out:q=subprocess.run(['gh','api','repos/'+repo+'/'+endpoint],stdout=out,stderr=subprocess.PIPE,timeout=240)
+              p.with_suffix(p.suffix+'.stderr').write_bytes(q.stderr)
+              r={'endpoint':endpoint,'path':str(p.relative_to(root)),'exit':q.returncode,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'utc':datetime.datetime.now(datetime.timezone.utc).isoformat()};records.append(r)
+              if q.returncode:return None
+              if p.suffix=='.zip':
+                  with zipfile.ZipFile(p) as z:r['entries']=len(z.infolist());r['crc_error']=z.testzip();assert r['crc_error'] is None
+                  return p
+              return json.loads(p.read_text())
+          for run in [36213760665,36222182595,36222424271]:
+              meta=fetch(f'actions/runs/{run}',f'ci/{run}/run.json');assert meta and meta['status']=='completed',meta
+              for a in range(1,meta['run_attempt']+1):
+                  fetch(f'actions/runs/{run}/attempts/{a}',f'ci/{run}/attempt-{a}/run.json')
+                  page=1
+                  while True:
+                      data=fetch(f'actions/runs/{run}/attempts/{a}/jobs?per_page=100&page={page}',f'ci/{run}/attempt-{a}/jobs-{page}.json');assert data
+                      if len(data['jobs'])<100:break
+                      page+=1
+                  # Complete raw log ZIP avoids the CLI's individual ANSI-log display filter.
+                  assert fetch(f'actions/runs/{run}/attempts/{a}/logs',f'ci/{run}/attempt-{a}/logs.zip')
+              page=1
+              while True:
+                  data=fetch(f'actions/runs/{run}/artifacts?per_page=100&page={page}',f'ci/{run}/artifacts-{page}.json');assert data
+                  for item in data['artifacts']:artifact_meta[item['id']]=item
+                  if len(data['artifacts'])<100:break
+                  page+=1
+          ids=[10896507757,10902830047,10902695822,10901554856,10902399818,10901933906,10902656301,10903021642,10902602820,10903645682,10901639309]
+          # Preserve the freshly failed original API29 parity harness too; compatible rerun is separate.
+          ids.extend(a['id'] for a in artifact_meta.values() if a['name']=='acceptance-v112-api29-parity-raw' and a['created_at']>='2026-09-26T08:00:00Z')
+          for aid in sorted(set(ids)):
+              item=artifact_meta.get(aid) or fetch(f'actions/artifacts/{aid}',f'artifacts/{aid}.json');assert item and not item['expired']
+              p=fetch(f'actions/artifacts/{aid}/zip',f'artifacts/{aid}.zip');assert p
+              if item.get('digest'):assert item['digest']=='sha256:'+hashlib.sha256(p.read_bytes()).hexdigest()
+              assert p.stat().st_size==item['size_in_bytes']
+              (root/'artifacts'/f'{aid}.metadata.json').write_text(json.dumps(item,indent=2))
+          with zipfile.ZipFile(root/'artifacts/10896507757.zip') as z:
+              names=[n for n in z.namelist() if n.endswith('sanguo11-mobile-v112.apk')];assert len(names)==1
+              apk=z.read(names[0]);assert hashlib.sha256(apk).hexdigest()=='6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058'
+              pathlib.Path('out/apk/sanguo11-mobile-v112.apk').write_bytes(apk)
+          pairs=[]
+          for aid in [10902602820,10903645682]:
+              with zipfile.ZipFile(root/f'artifacts/{aid}.zip') as z:
+                  names=[n for n in z.namelist() if n.endswith('-expected.sg11')];assert len(names)==50
+                  for n in names:
+                      observed=n.replace('-expected.sg11','-observed.sg11');a=z.read(n);b=z.read(observed)
+                      pairs.append({'artifact':aid,'expected':n,'observed':observed,'bytes':len(a),'sha256':hashlib.sha256(a).hexdigest(),'equal':a==b});assert a==b
+          (root/'AUTHORITY_COMPLETE_BYTES.json').write_text(json.dumps(pairs,indent=2))
+          fetch('pulls/67','remote/pr-before.json');fetch('branches/main','remote/main-before.json')
+          (root/'FETCH_MANIFEST.json').write_text(json.dumps(records,indent=2))
+          PY
+      - name: Actual authorized Release publication check, never clobber an existing asset
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          mkdir -p out/raw/release
+          set +e
+          gh api "repos/$GH_REPO/releases/tags/native-p0-v112-5f8997ebfef1" > out/raw/release/LOOKUP.json 2> out/raw/release/LOOKUP.stderr
+          lookup=$?
+          echo "$lookup" > out/raw/release/LOOKUP.exit
+          if [ "$lookup" -eq 0 ]; then
+            echo EXISTING_RELEASE_NOT_OVERWRITTEN > out/raw/release/CREATE.scope
+          else
+            gh release create native-p0-v112-5f8997ebfef1 out/apk/sanguo11-mobile-v112.apk --target 5f8997ebfef15f4680931d40532411a336506d0d --prerelease --title 'v112 P0 first asset LOD candidate (PARTIAL)' --notes 'Exact original v112 bytes. Repeat R00-R14 acceptance remains NOT complete. Publishing is not runtime, visual or physical-device acceptance; see PR67 and current repeat report.' > out/raw/release/CREATE.stdout 2> out/raw/release/CREATE.stderr
+            echo $? > out/raw/release/CREATE.exit
+          fi
+          gh api "repos/$GH_REPO/releases/tags/native-p0-v112-5f8997ebfef1" > out/raw/release/FINAL_LOOKUP.json 2> out/raw/release/FINAL_LOOKUP.stderr
+          echo $? > out/raw/release/FINAL_LOOKUP.exit
+          exit 0
+      - name: Generate and validate conservative matrix and protected assets
+        run: |
+          set -euo pipefail
+          python3 scripts/native-repeat-acceptance.py > out/raw/MATRIX_GENERATION.log
+          python3 scripts/check-native-protected-assets.py > out/raw/PROTECTED_ASSETS.log
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          base=pathlib.Path('docs/native-pc-visual/evidence/repeat-20260926');raw=pathlib.Path('out/raw')
+          (base/'CI_COLLECTION.json').write_text((raw/'FETCH_MANIFEST.json').read_text())
+          release={p.name:p.read_text() for p in (raw/'release').iterdir() if p.suffix not in ['.zip']}
+          (base/'RELEASE_RESULT.json').write_text(json.dumps(release,ensure_ascii=False,indent=2)+'\n')
+          m=json.loads((base/'matrix.json').read_text());assert len(m['requirements'])==463 and not m['all_requirements_satisfied']
+          manifest=json.loads((base/'manifest.json').read_text());manifest['release_result']='RELEASE_RESULT.json';manifest['ci_collection']='CI_COLLECTION.json';manifest['full_byte_pairs_verified_in_collection_job']=100
+          manifest['documentation_files']=[{'path':str(p.relative_to(base)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(base.rglob('*')) if p.is_file() and p.name!='manifest.json']
+          (base/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          for r in m['requirements']:
+              for k in ['id','stage','requirement','source','formal_implementation','normal_entry_call_chain','apk_source_sha','apk_sha256','validation','evidence_paths','current_status','current_gap']:assert k in r,(r['id'],k)
+          print('463-row schema, immutable original213 text/locations and 100 complete authority byte-pairs verified; overall acceptance remains NO')
+          PY
+      - name: Commit and normal fast-forward push only audit documentation
+        run: |
+          set -euo pipefail
+          git fetch origin agent/native-pc-visual main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/agent/native-pc-visual)"
+          test "$(git rev-parse origin/main)" = ac29b458325b52d6e302ca44270d16552de4ed7f
+          git add docs/native-pc-visual
+          git diff --cached --name-only > out/raw/STAGED_PATHS.txt
+          python3 - <<'PY'
+          import pathlib
+          names=pathlib.Path('out/raw/STAGED_PATHS.txt').read_text().splitlines();assert names and all(n.startswith('docs/native-pc-visual/') for n in names)
+          PY
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'docs(audit): independent 463-row repeat acceptance remains incomplete'
+          git push origin HEAD:agent/native-pc-visual > out/raw/PUSH.stdout 2> out/raw/PUSH.stderr
+          git rev-parse HEAD > out/raw/FINAL_HEAD.txt
+          git ls-remote origin refs/heads/agent/native-pc-visual refs/heads/main > out/raw/REMOTE_REFS_AFTER_PUSH.txt
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main core game-api game-runtime data unity tools/3d version.properties app/build.gradle > out/raw/FINAL_PRODUCTION.diff
+          git bundle create out/source.bundle HEAD
+          mkdir -p out/docs
+          cp -a docs/native-pc-visual out/docs/
+      - name: Reread PR and remote after push
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          gh api "repos/$GH_REPO/pulls/67" > out/raw/remote/PR_AFTER_PUSH.json
+          gh api "repos/$GH_REPO/branches/agent%2Fnative-pc-visual" > out/raw/remote/BRANCH_AFTER_PUSH.json
+          gh api "repos/$GH_REPO/branches/main" > out/raw/remote/MAIN_AFTER_PUSH.json
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('out/raw');head=(p/'FINAL_HEAD.txt').read_text().strip();pr=json.loads((p/'remote/PR_AFTER_PUSH.json').read_text())
+          assert pr['head']['sha']==head and pr['state']=='open' and not pr['merged'] and pr['base']['ref']=='main'
+          assert json.loads((p/'remote/MAIN_AFTER_PUSH.json').read_text())['commit']['sha']=='ac29b458325b52d6e302ca44270d16552de4ed7f'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-repeat-acceptance-final, path: out/, if-no-files-found: error, retention-days: 14}

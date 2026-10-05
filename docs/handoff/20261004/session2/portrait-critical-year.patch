@@ -1,0 +1,22 @@
+--- a/app/src/main/java/game/sanguo/mobile/MapHost.java
++++ b/app/src/main/java/game/sanguo/mobile/MapHost.java
+@@ -392,7 +392,7 @@
+     void setCommandersShown(boolean value){commandersShown=value;getContext().getSharedPreferences("map-display",0).edit().putBoolean("commanders",value).apply();if(spatial!=null)spatial.labels(value,unitBarsShown);}
+     void setUnitBarsShown(boolean value){unitBarsShown=value;getContext().getSharedPreferences("map-display",0).edit().putBoolean("unitBars",value).apply();if(spatial!=null)spatial.labels(commandersShown,value);}
+     void setCriticalSkip(Runnable skip){criticalSkip=skip;if(spatial!=null)spatial.criticalSkip(skip);}
+-    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}spatial.critical(hit,phase,projectedPortrait);}}
++    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}
+     void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f)techniquePhase(e);if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}
+     boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}
+ }
+--- a/app/src/main/java/game/sanguo/mobile/CriticalScene.java
++++ b/app/src/main/java/game/sanguo/mobile/CriticalScene.java
+@@ -14,7 +14,7 @@
+     private CriticalHit hit;
+     private Drawable portrait;
+     CriticalScene(Context context){this.context=context;}
+-    void set(World w,CriticalHit value){if(hit==value)return;hit=value;portrait=value==null?null:new OfficerPortrait(context,w,value.officerCopy());}
++    void set(World w,CriticalHit value){if(hit==value)return;hit=value;portrait=value==null?null:new OfficerPortrait(context,w,value.officerCopy(),value.year);}
+     void draw(Canvas canvas,int width,int height,float phase){
+         if(hit==null||width<=0||height<=0)return;
+         float d=context.getResources().getDisplayMetrics().density;

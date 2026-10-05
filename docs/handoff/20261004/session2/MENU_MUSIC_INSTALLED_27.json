@@ -1,0 +1,95 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=audio",
+    "menuMusic=1",
+    "run=menu-music-installed-27"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-validity-build-27/frozen/app-debug.apk": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-validity-build-27/frozen/app-debug-androidTest.apk": "7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b"
+  },
+  "installed_sha256": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+  "installed_test_sha256": "7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b",
+  "passed": true,
+  "seconds": 116.92,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "scene": {
+    "normalMenuOnly": true,
+    "noTestPlaybackDirective": true,
+    "resourceId": 2238,
+    "musicId": 1,
+    "identity": "fe3256eb-c09c-478d-83c1-75a01038bb51:0:pc-menu-559220",
+    "firstWriteMillis": 189,
+    "loopWaitMillis": 102317,
+    "loops": 1,
+    "originalFirstLoopUnderruns": 0,
+    "bufferFrames": 16384,
+    "musicGain": 65,
+    "beforeSaveSha256Base64": "At2z1E2Y++vnY6glUbXLXraNpucLYIdWjApzlDveXWk=",
+    "allSaveRngEqual": true,
+    "mapBgmBound": false,
+    "armEvidence": false
+  },
+  "audibleSegments": {
+    "status": "PASS",
+    "scope": "Actual normal menu original2238 audible sample identity at four predeclared windows; not whole-track continuity, Windows exact PCM or ARM speaker proof",
+    "captureSha256": "0a7f412ca1b2c5d6fda7942157f914983c0df242d673efa8250359448b96ec63",
+    "referenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+    "originalOggSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462",
+    "rows": [
+      {
+        "referenceSeconds": 10,
+        "frames": 88200,
+        "captureSample": 493832,
+        "offsetSamples": 52832,
+        "correlation": 0.999994605016396,
+        "gain": 0.015368823878641592,
+        "audibleRms": 0.0005619936413337885
+      },
+      {
+        "referenceSeconds": 20,
+        "frames": 88200,
+        "captureSample": 934832,
+        "offsetSamples": 52832,
+        "correlation": 0.9999978978047259,
+        "gain": 0.015369079802236696,
+        "audibleRms": 0.0009058396950299517
+      },
+      {
+        "referenceSeconds": 30,
+        "frames": 88200,
+        "captureSample": 1375832,
+        "offsetSamples": 52832,
+        "correlation": 0.9999963059275797,
+        "gain": 0.015369022788478333,
+        "audibleRms": 0.0006705864182255421
+      },
+      {
+        "referenceSeconds": 40,
+        "frames": 88200,
+        "captureSample": 1816832,
+        "offsetSamples": 52832,
+        "correlation": 0.9999989354294987,
+        "gain": 0.015369111342157992,
+        "audibleRms": 0.0012834343056627245
+      }
+    ],
+    "flowSha256": "4d61c999d33e6af1e332741a2ce5f62e068e9ffb7731c25ebaba26859a346f47",
+    "sceneSha256": "37475df73356ca9c9df0bcacbd480018152e054388fe0489ce5b869d43f18c16",
+    "continuousFullTrackPassed": false
+  },
+  "continuousFullTrackPassed": false,
+  "fullTrackCorrelation": 0.67302072631715
+}

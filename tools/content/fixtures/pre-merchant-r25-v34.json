@@ -1,0 +1,17 @@
+{
+  "source_commit": "155c35b668972f83e65b29a285ece522fbfbcfa3",
+  "writer_jar_sha256": "ee068f1f6aaaad02fcdd5340db469e2994104a8ee6f9898532cf347efab4f597",
+  "fixtures": [
+    {
+      "path": "core/src/test/resources/pre-merchant-r25-v34.sg11",
+      "bytes": 236968,
+      "sha256": "6301ee3eeddb9112e54451a18c078c888651f0d188e6f1168465c7086cbb968c"
+    },
+    {
+      "path": "core/src/test/resources/pre-merchant-r25-v34-art.sg11",
+      "bytes": 236968,
+      "sha256": "636854cc2b5878cbd70bf05b71993c0fe2dcdee77405b4db7862c9ed206eaaed"
+    }
+  ],
+  "scope": "Frozen R25 ordinary ScenarioCatalog coalition-190 player1 abilitySeed23; original JVM and ART codec bytes retained separately; not user saves"
+}

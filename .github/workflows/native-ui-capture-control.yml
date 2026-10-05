@@ -1,0 +1,60 @@
+name: Native exact v105 UI capture control without screenrecord
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-ui-capture-control.yml']
+permissions:
+  actions: read
+  contents: write
+jobs:
+  record:
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [29]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: ''}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build instrumentation only; preserve exact published production APK
+        run: |
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
+          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v105-apk
+          gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/v105-apk
+          gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/v105-apk
+          cat /tmp/v105-apk/remediation-apk-part-00 /tmp/v105-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
+          echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-ui-no-record.sh
+      - name: Preserve independent original PNG and logs
+        if: always()
+        run: |
+          cd out/remediation
+          zip -qr ../v105-p0-baseline.zip .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: "exact-v105-no-record-api${{ matrix.api }}", path: out/v105-p0-baseline.zip, retention-days: 14}

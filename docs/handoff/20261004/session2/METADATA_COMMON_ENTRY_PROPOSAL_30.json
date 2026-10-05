@@ -1,0 +1,33 @@
+{
+  "status": "REVIEWABLE_FROZEN_COMMON_ENTRY_PROPOSAL_ONLY",
+  "metadataBase": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "completedTarget": "443c4782",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "currentSha256": "89a3c972c2709f75fef9751907162ccacace16356b8325f549d5f001d90eb7dc",
+      "baseSha256": "691665ef48b7b21decf4267d668105d12d7edc01d32cf7532289d4148169c1df",
+      "completedSourceSha256": "4534bd820d6da099133380142f56cc6137e937812a71f1e72e2e571f0c54aca4",
+      "candidateSha256": "daa5a4c2ea0e971ff922b713fdcd9a13ad2e110383fb3ba1730aaab293122823",
+      "mergeExitCode": 0,
+      "cleanComposition": true,
+      "candidate": "out/media/metadata-sequential-proposal-30/MainActivity.java/candidate.java",
+      "patchSha256": "bfeab243acb77303b5d8a0b007b520400dbc25d78df25a2e85f72d585e9c3cc7",
+      "notApplied": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "currentSha256": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902",
+      "baseSha256": "48a2e861d05cc9697f25ab5f59674d65a114f6feb1d5347160d60b4c57913902",
+      "completedSourceSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12",
+      "candidateSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12",
+      "mergeExitCode": 0,
+      "cleanComposition": true,
+      "candidate": "out/media/metadata-sequential-proposal-30/ScenarioFactionPicker.java/candidate.java",
+      "patchSha256": "0b2a633a80a9d364a3096e72c7e36375bade6a9d41d890f6774e2988fd55a396",
+      "notApplied": true
+    }
+  ],
+  "currentFilesUntouched": true,
+  "approvalPending": true
+}

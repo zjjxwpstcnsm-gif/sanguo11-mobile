@@ -1,0 +1,365 @@
+{
+  "blender": "4.2.3 LTS",
+  "generator": "tools/3d/refine_blender126.py",
+  "license": "CC0-1.0 original geometry and silt texture; existing project atlas",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v126/wall-earth-lod0.glb",
+      "sha256": "ad3a26f401a269dbc61686ea8cb2434b65d840739bb7ddd85996bf623c74ee86",
+      "bytes": 91216,
+      "triangles": 424,
+      "vertices": 1272,
+      "primitives": 1,
+      "bounds": [
+        -0.06075354665517807,
+        0.0,
+        0.0,
+        0.06650000065565109,
+        0.2236139327287674,
+        1.0
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/wall-earth-lod1.glb",
+      "sha256": "40223c5694a7a71b700efb8105b2135beceb4a48c94fdc4d756d7dad3edf9955",
+      "bytes": 42220,
+      "triangles": 110,
+      "vertices": 330,
+      "primitives": 1,
+      "bounds": [
+        -0.06046207994222641,
+        0.0,
+        0.0,
+        0.06093942001461983,
+        0.2236139327287674,
+        1.0
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/beacon-han-lod0.glb",
+      "sha256": "d2892c56464d43d58e906d475a54c53230a38189cb34f28908c215216da0bf60",
+      "bytes": 55048,
+      "triangles": 192,
+      "vertices": 576,
+      "primitives": 1,
+      "bounds": [
+        -0.11500000208616257,
+        0.0,
+        -0.11500000208616257,
+        0.11500000208616257,
+        0.4000000059604645,
+        0.11500000208616257
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/beacon-han-lod1.glb",
+      "sha256": "5bddc0018b1e62f454c0df83bdf1800dd0e7d196442526196af1702b7253c675",
+      "bytes": 41944,
+      "triangles": 108,
+      "vertices": 324,
+      "primitives": 1,
+      "bounds": [
+        -0.11500000208616257,
+        0.0,
+        -0.11500000208616257,
+        0.11500000208616257,
+        0.4000000059604645,
+        0.11500000208616257
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-sandstone-lod0.glb",
+      "sha256": "9c9a04fdde1077f7e070390c02242f403d8c72ff8bd7f9fc8500af924b252d6e",
+      "bytes": 53172,
+      "triangles": 180,
+      "vertices": 540,
+      "primitives": 1,
+      "bounds": [
+        -0.2759999930858612,
+        0.0,
+        -0.18835607171058655,
+        0.2759999930858612,
+        0.3100000023841858,
+        0.18835607171058655
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-sandstone-lod1.glb",
+      "sha256": "5bdc99acd2d8477585b31b2ea48c56e6e102bf12b7637a8edf0d35f22b840070",
+      "bytes": 33512,
+      "triangles": 54,
+      "vertices": 162,
+      "primitives": 1,
+      "bounds": [
+        -0.2759999930858612,
+        0.0,
+        -0.1932000070810318,
+        0.2759999930858612,
+        0.3100000023841858,
+        0.1932000070810318
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-granite-lod0.glb",
+      "sha256": "7d5bb3c670577d3e59633a88c5a5b266cdcf507d28644b6352e6cc9e45f5cb0b",
+      "bytes": 53172,
+      "triangles": 180,
+      "vertices": 540,
+      "primitives": 1,
+      "bounds": [
+        -0.25795719027519226,
+        0.0,
+        -0.1794804036617279,
+        0.26630711555480957,
+        0.3799999952316284,
+        0.1879146546125412
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-granite-lod1.glb",
+      "sha256": "07d9faa03323bec0f66ce044bd55a9465bdc114cb5ba048179b81147ad4dc0e9",
+      "bytes": 33512,
+      "triangles": 54,
+      "vertices": 162,
+      "primitives": 1,
+      "bounds": [
+        -0.2646867036819458,
+        0.0,
+        -0.20041760802268982,
+        0.257999986410141,
+        0.3799999952316284,
+        0.15973249077796936
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-karst-lod0.glb",
+      "sha256": "e163c780bea898480eb9ec407694da2e9af4fc5e033ec838e76f92e3005f2aeb",
+      "bytes": 53176,
+      "triangles": 180,
+      "vertices": 540,
+      "primitives": 1,
+      "bounds": [
+        -0.272978276014328,
+        0.0,
+        -0.17718389630317688,
+        0.30300000309944153,
+        0.49000000953674316,
+        0.20677931606769562
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cliff-karst-lod1.glb",
+      "sha256": "6ade9b2e3dea3bd3604e2cf4cd902895dbaab43a8ddf5de6c3f4d1a70c38b287",
+      "bytes": 33512,
+      "triangles": 54,
+      "vertices": 162,
+      "primitives": 1,
+      "bounds": [
+        -0.2574213445186615,
+        0.0,
+        -0.21208812296390533,
+        0.30300000309944153,
+        0.49000000953674316,
+        0.1808045208454132
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cascade-hukou-lod0.glb",
+      "sha256": "35ff9dd810ed4b9d8e9ca45660b1f9c529fa7bc2ba06214aaced77b4b9966c9e",
+      "bytes": 99972,
+      "triangles": 480,
+      "vertices": 1440,
+      "primitives": 1,
+      "bounds": [
+        -0.17749999463558197,
+        -0.006942451931536198,
+        0.0,
+        0.17749999463558197,
+        1.0069994926452637,
+        1.0
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/cascade-hukou-lod1.glb",
+      "sha256": "83cafad474a327f48cec75548ed42cd7cf6cc43884b50991fd52393d4a45c52c",
+      "bytes": 43800,
+      "triangles": 120,
+      "vertices": 360,
+      "primitives": 1,
+      "bounds": [
+        -0.17749999463558197,
+        0.0010491404682397842,
+        0.0,
+        0.17749999463558197,
+        1.0069994926452637,
+        1.0
+      ],
+      "source": "original layered cliff / rammed-earth wall / Han beacon / convergent silt waterfall; geographic interpretation, PC reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v126/scenery-atlas.png",
+    "sha256": "7998aa0567a5286ba0d3e2d2f7a8501846d7bd1efbe0d2e14a7bb3916241ee7c",
+    "bytes": 23777
+  },
+  "status": "PARTIAL",
+  "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow / shared chunk GPU resources",
+  "backend": "Filament 1.56.0 OPENGL",
+  "reference_status": "REFERENCE_MISSING for exact PC cells and matching camera",
+  "anchors": [
+    {
+      "id": "hukou",
+      "source": [
+        66,
+        58
+      ],
+      "type": "existing NON_NAVIGABLE_WATER beside mountain, short visual drop",
+      "certainty": "project-selected geographic interpretation; not verified PC placement"
+    },
+    {
+      "id": "northern-wall",
+      "source_range": [
+        [
+          86,
+          15
+        ],
+        [
+          99,
+          15
+        ]
+      ],
+      "type": "existing MOUNTAIN only, no collision or gameplay structure",
+      "certainty": "northern ridge interpretation; exact historical/PC route unverified"
+    }
+  ],
+  "texture": "512x64 sRGB opaque, unchanged seven panels, animated water panels 3/5; existing ETC2 mip pipeline",
+  "extra_resources": [
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery-atlas.png",
+      "sha256": "7998aa0567a5286ba0d3e2d2f7a8501846d7bd1efbe0d2e14a7bb3916241ee7c",
+      "bytes": 23777
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery-atlas.etc2",
+      "sha256": "0c5f9b4ffd7435db263bae46ca55e5696226cb08465ee3f620d41205a699c730",
+      "bytes": 21952
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v126/scenery.filamat",
+      "sha256": "ae89f2d8d75ade2603526208acdce2d64be38510c61099ed9363996c607b8ff0",
+      "bytes": 482628
+    },
+    {
+      "path": "tools/3d/scenery126.mat",
+      "sha256": "8d43b0e397e936b0f7a17ce67f92d0a5f25ca237a4a2aaf60db2328c6f0f1f66",
+      "bytes": 1464
+    }
+  ]
+}

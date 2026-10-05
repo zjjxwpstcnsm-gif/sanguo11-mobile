@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+"""Media-owned frozen APK/full-SHA verification and exact user restoration.
+
+Forked transaction from verify_pc_installed_flow; no metadata-owner file changes.
+Only explicit device_sha_readback changes APK transport; user data is still byte-read back.
+
+Explicit rooted emulator serial; no clear-data, no source APK mutation, no other devices.
+Use only after any other task on this serial has finished. Output must be a fresh directory.
+"""
+import argparse
+import json
+import re
+import subprocess
+import time
+from pathlib import Path
+from verify_pc_age_install import ROOT, PACKAGE, sha, members
+
+
+def run(args):
+    test_package=getattr(args,'test_package',PACKAGE+'.test')
+    if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_.]*',test_package):raise ValueError('Invalid instrumentation package')
+    # Reject missing candidates before touching any device or creating a backup.
+    apks = {str(p.resolve()):sha(p.read_bytes()) for p in (args.apk,args.test_apk)}
+    campaign=None
+    if bool(args.campaign_save)!=bool(args.campaign_sha256):
+        raise ValueError('A temporary campaign requires both its source file and pinned SHA256')
+    if args.campaign_save:
+        campaign=args.campaign_save.read_bytes()
+        if sha(campaign)!=args.campaign_sha256:
+            raise ValueError('Temporary campaign differs from pinned source; device untouched')
+    output = args.output.resolve()
+    output.mkdir(parents=True, exist_ok=False)
+    adb = [str(ROOT / 'out/toolchain/android-sdk/platform-tools/adb'), '-s', args.serial]
+    def command(*parts, timeout=60):
+        return subprocess.run(adb + list(parts), check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout).stdout
+    def apk_digest(path):
+        if not getattr(args,'device_sha_readback',False):
+            return sha(command('exec-out','cat',path,timeout=180))
+        if not re.fullmatch(r'/data/app/[A-Za-z0-9_./=~+-]+/base\.apk',path):
+            raise ValueError('Unexamined installed APK path')
+        line=command('shell','sha256sum',path,timeout=180).decode('ascii').strip()
+        match=re.fullmatch(r'([0-9a-f]{64})[ \t]+'+re.escape(path),line)
+        if not match:raise ValueError('Incomplete device whole-file SHA output')
+        return match.group(1)
+    if command('shell', 'id', '-u').strip() != b'0':
+        raise ValueError('Root required for external restore; no installation attempted')
+    command('shell', 'am', 'force-stop', PACKAGE)
+    before = command('exec-out', 'tar', '-C', '/data/data/' + PACKAGE, '-cf', '-', 'files', 'shared_prefs')
+    (output / 'user-before.tar').write_bytes(before)
+    original = members(before)
+    remote = '/data/local/tmp/pc-flow-backup-' + str(time.time_ns()) + '.tar'
+    command('push', str(output / 'user-before.tar'), remote)
+    report = dict(serial=args.serial, runner=args.runner, arguments=args.argument,
+                  device=command('shell', 'getprop').decode(),
+                  apks=apks,
+                  backup={k:dict(bytes=len(v),sha256=sha(v)) for k,v in original.items()}, passed=False)
+    def save():
+        (output / 'results.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    save()
+    try:
+        report['stage']='installation'
+        save()
+        # Cold-boot dex optimization can exceed the ordinary ADB query timeout.
+        # Preserve each completed install log even if the following operation fails.
+        if not args.reuse_installed:
+            with (output / 'installation.txt').open('wb') as log:
+                for apk in (args.apk,args.test_apk):
+                    log.write(command('install','-r',str(apk.resolve()),timeout=180))
+                    log.flush()
+        report['reused_installed'] = args.reuse_installed
+        test_path = command('shell','pm','path',test_package).decode().strip().removeprefix('package:')
+        report['apk_readback_method']='whole-file-sha256-on-device' if getattr(args,'device_sha_readback',False) else 'complete-bytes-to-host-sha256'
+        report['installed_test_sha256'] = apk_digest(test_path)
+        if report['installed_test_sha256'] != sha(args.test_apk.read_bytes()):
+            raise ValueError('Installed test APK differs from frozen candidate')
+        report['stage']='installed_readback'
+        installed_path = command('shell','pm','path',PACKAGE).decode().strip().removeprefix('package:')
+        report['installed_sha256'] = apk_digest(installed_path)
+        if report['installed_sha256'] != sha(args.apk.read_bytes()):
+            raise ValueError('Installed APK differs from frozen candidate')
+        if campaign is not None:
+            # Reuse existing inodes: preserve app ownership/mode. Only these two
+            # externally backed-up slots change, never libraries or app data reset.
+            slots=('files/auto.sg11','files/manual3.sg11')
+            if any(name not in original for name in slots):
+                raise ValueError('Campaign override requires both existing backed-up slots')
+            remote_campaign=remote+'.campaign'
+            command('push',str(args.campaign_save.resolve()),remote_campaign)
+            for name in slots:
+                target='/data/data/'+PACKAGE+'/'+name
+                command('shell','cat',remote_campaign,'>',target)
+                if sha(command('exec-out','cat',target))!=args.campaign_sha256:
+                    raise ValueError('Temporary campaign readback differs')
+            report['temporary_campaign']=dict(path=str(args.campaign_save.resolve()),
+                                              sha256=args.campaign_sha256,bytes=len(campaign),slots=slots)
+        save()
+        values=[]
+        for value in args.argument:
+            key,sep,text=value.partition('=')
+            if not sep or not re.fullmatch(r'[A-Za-z0-9_]+',key) or not re.fullmatch(r'[A-Za-z0-9_.-]+',text):
+                raise ValueError('Only simple instrumentation key=value arguments supported')
+            values += ['-e',key,text]
+        started=time.monotonic()
+        report['stage']='instrumentation'
+        save()
+        try:
+            with (output / 'instrumentation.txt').open('wb') as log:
+                process=subprocess.run(adb+['shell','am','instrument','-w']+values+[test_package+'/game.sanguo.mobile.'+args.runner],stdout=log,stderr=subprocess.STDOUT,timeout=args.timeout)
+            text=(output / 'instrumentation.txt').read_text()
+            report.update(exit_code=process.returncode,passed=process.returncode==0 and args.pass_marker in text and 'FAIL' not in text)
+        except subprocess.TimeoutExpired:
+            report['timeout']=True
+        finally:
+            report['seconds']=round(time.monotonic()-started,2)
+        report['stage']='finished'
+    except Exception as error:
+        report['exception']=dict(type=type(error).__name__,message=str(error))
+        raise
+    finally:
+        command('shell','am','force-stop',PACKAGE)
+        command('shell','tar','-C','/data/data/'+PACKAGE,'-xf',remote)
+        current_tar=command('exec-out','tar','-C','/data/data/'+PACKAGE,'-cf','-','files','shared_prefs')
+        (output / 'user-before-generated-file-removal.tar').write_bytes(current_tar)
+        current=members(current_tar)
+        generated=sorted(current.keys()-original.keys())
+        for name in generated:
+            # This serial is exclusive: remove only files created by this run,
+            # after preserving their bytes in the evidence archive.
+            if not name.startswith(('files/','shared_prefs/')) or '..' in Path(name).parts:
+                raise ValueError('Unexpected restore path '+name)
+            command('shell','rm','--','/data/data/'+PACKAGE+'/'+name)
+        restored=command('exec-out','tar','-C','/data/data/'+PACKAGE,'-cf','-','files','shared_prefs')
+        (output / 'user-restored.tar').write_bytes(restored)
+        files=members(restored)
+        mismatches=[key for key,value in original.items() if files.get(key)!=value]
+        report['restoration']=dict(all_original_files_byte_equal=not mismatches,mismatches=mismatches,
+            test_generated_files_removed=generated,
+            added_files=sorted(files.keys()-original.keys()),auto_sha256=sha(files['files/auto.sg11']) if 'files/auto.sg11' in files else None)
+        save()
+        if mismatches:
+            raise ValueError('User file restore mismatch: '+repr(mismatches))
+    print(json.dumps({k:v for k,v in report.items() if k not in ('device','backup')},ensure_ascii=False))
+    if not report['passed']:
+        raise SystemExit(1)

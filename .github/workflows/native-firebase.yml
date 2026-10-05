@@ -1,0 +1,617 @@
+name: Native Firebase cold start
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths:
+      - .github/workflows/native-firebase.yml
+      - scripts/run-firebase-cold.sh
+      - scripts/firebase-evidence-preflight.py
+      - scripts/run-firebase-acceptance.sh
+      - app/src/androidTest/java/game/sanguo/mobile/FirebaseAcceptanceInstrumentation.java
+      - app/src/androidTest/java/game/sanguo/mobile/FirebaseColdStartInstrumentation.java
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Build only, list devices, or consume Test Lab quota
+        type: choice
+        options: [build, catalog, test]
+        default: build
+      model:
+        description: Physical model ID from the current catalog (required for test)
+        type: string
+      api:
+        description: Original target API
+        type: choice
+        options: ['29', '35']
+        default: '29'
+      repeats:
+        description: Independent installations; each consumes one device execution
+        type: choice
+        options: ['1', '2', '3']
+        default: '1'
+permissions: {contents: read}
+concurrency: {group: native-firebase, cancel-in-progress: false}
+jobs:
+  build:
+    if: >-
+      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928' && github.event.head_commit.message != 'ci(firebase): audit cold api29 once 20260928' && !startsWith(github.event.head_commit.message, 'ci(firebase): acceptance ') && github.event.head_commit.message != 'ci(firebase): recover audit evidence 20260928'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build matched app and cloud probe
+        run: |
+          set -euo pipefail
+          mkdir -p out/firebase-build
+          git rev-parse HEAD > out/firebase-build/SOURCE_COMMIT
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/firebase-build/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/firebase-build/
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/firebase-build/
+          sha256sum out/firebase-build/*.apk > out/firebase-build/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree out/firebase-build/app-debug-androidTest.apk AndroidManifest.xml > out/firebase-build/TEST_METADATA.txt
+          grep -q game.sanguo.mobile.FirebaseColdStartInstrumentation out/firebase-build/TEST_METADATA.txt
+          echo 'Cloud harness preparation only; no rendering fix or device acceptance claimed.' > out/firebase-build/SCOPE.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: firebase-apks, path: out/firebase-build/, if-no-files-found: error, retention-days: 14}
+  cloud:
+    needs: build
+    # Connector-only bootstrap: exact messages select catalog or the authorized single shiba/API35 trial.
+    # All other pushes remain build-only; no wildcard or automatic device retries.
+    if: >-
+      always() && ((github.event_name == 'push' && (github.event.head_commit.message == 'ci(firebase): verify catalog only' || (github.event.head_commit.message == 'ci(firebase): first cold start shiba API35' && needs.build.result == 'success'))) || (github.event_name == 'workflow_dispatch' && (inputs.mode == 'catalog' || (inputs.mode == 'test' && needs.build.result == 'success'))))
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      FIREBASE_WIF_PROVIDER: ${{ vars.FIREBASE_WIF_PROVIDER }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require first-time project authorization
+        run: |
+          : "${FIREBASE_PROJECT_ID:?Set repository variable FIREBASE_PROJECT_ID}"
+          : "${FIREBASE_WIF_PROVIDER:?Set repository variable FIREBASE_WIF_PROVIDER}"
+          : "${FIREBASE_SERVICE_ACCOUNT:?Set repository variable FIREBASE_SERVICE_ACCOUNT}"
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Save current device catalog
+        run: |
+          mkdir -p out/firebase-results
+          gcloud firebase test android models list --project="$FIREBASE_PROJECT_ID" --format=json > out/firebase-results/models.json
+      - uses: actions/download-artifact@v4
+        if: >-
+          inputs.mode == 'test' || (github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): first cold start shiba API35')
+        with: {name: firebase-apks, path: out/firebase-build}
+      - name: Run original cold-start scope on physical hardware
+        if: >-
+          inputs.mode == 'test' || (github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): first cold start shiba API35')
+        env:
+          MODEL: ${{ inputs.model || 'shiba' }}
+          API: ${{ inputs.api || '35' }}
+          REPEATS: ${{ inputs.repeats || '1' }}
+        run: bash scripts/run-firebase-cold.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: firebase-results, path: out/firebase-results/, if-no-files-found: warn, retention-days: 14}
+  recover:
+    if: >-
+      github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): recover first matrix and quota 20260928'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Recover existing evidence and read quota; zero test submissions
+        run: python3 scripts/firebase-evidence-preflight.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-recovered-first-and-preflight
+          path: |
+            out/firebase-preflight/
+            !out/firebase-preflight/**/*.apk
+          if-no-files-found: error
+          retention-days: 30
+
+  audit_cold29:
+    if: >-
+      github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): audit cold api29 once 20260928'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions: {contents: read, actions: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      MODEL: starlte
+      API: '29'
+      REPEATS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - name: Require unbilled project, conservative quota and current physical model
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('out/firebase-preflight')
+          billing=json.load(open(p/'billing.json'));monitor=json.load(open(p/'usage-allocation-usage.json'))
+          assert billing.get('billingEnabled') is False or 'requires billing to be enabled' in monitor.get('error',{}).get('message',''), 'No proof project remains unbilled'
+          usage=json.load(open(p/'execution-usage.json'))
+          assert usage['complete'] and usage['rolling24hDeviceExecutions'] < 5, 'Free quota cannot be established'
+          models=json.load(open(p/'models.json'));m=next(m for m in models if m['id']=='starlte')
+          assert m['form']=='PHYSICAL' and '29' in m['supportedVersionIds']
+          print('FREE_ONLY preflight:',usage)
+          PY
+          mkdir -p out/firebase-results
+          cp out/firebase-preflight/models.json out/firebase-results/
+      - uses: actions/download-artifact@v4
+        with:
+          name: firebase-apks
+          run-id: 36362991199
+          github-token: ${{ github.token }}
+          path: out/firebase-build
+      - name: Exact historical APK pair; one fresh matrix, no retries
+        run: |
+          test "$GITHUB_RUN_ATTEMPT" = 1 || { echo 'BLOCKED: a workflow rerun would spend another physical execution'; exit 3; }
+          test "$(cat out/firebase-build/SOURCE_COMMIT)" = 17bd3376508499f2681d3e296939452383506a1e
+          echo '98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4  out/firebase-build/app-debug.apk' | sha256sum --check
+          echo '3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0  out/firebase-build/app-debug-androidTest.apk' | sha256sum --check
+          bash scripts/run-firebase-cold.sh
+      - name: Collect raw evidence even on test failure
+        if: always()
+        run: |
+          mkdir -p out/firebase-results/raw
+          gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-cold/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/api29-1/" out/firebase-results/raw > out/firebase-results/collection.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-api29-once
+          path: |
+            out/firebase-results/
+            out/firebase-preflight/
+            !out/**/*.apk
+            !out/**/video.mp4
+          retention-days: 30
+
+  audit_acceptance:
+    if: >-
+      github.event_name == 'push' && (github.event.head_commit.message == 'ci(firebase): acceptance api35 second 20260928' || github.event.head_commit.message == 'ci(firebase): acceptance api29 second 20260928' || github.event.head_commit.message == 'ci(firebase): acceptance api35 third 20260928')
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    permissions: {contents: read, actions: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      AUDIT_MESSAGE: ${{ github.event.head_commit.message }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build expanded test APK only; production APK stays byte-identical
+        run: |
+          mkdir -p out/firebase-audit/test-build
+          git rev-parse HEAD > out/firebase-audit/test-build/TEST_SOURCE_COMMIT
+          git diff --exit-code 17bd3376508499f2681d3e296939452383506a1e -- app/src/main core game-api game-runtime app/build.gradle version.properties
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/firebase-audit/test-build/build.log 2>&1
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/firebase-audit/test-build/
+      - uses: actions/download-artifact@v4
+        with:
+          name: firebase-apks
+          run-id: 36362991199
+          github-token: ${{ github.token }}
+          path: out/firebase-original
+      - name: Pin original app and explicit new probe provenance
+        run: |
+          echo '98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4  out/firebase-original/app-debug.apk' | sha256sum --check
+          printf '%s\n' 'appSource=17bd3376508499f2681d3e296939452383506a1e' "testSource=$GITHUB_SHA" 'test BuildConfig source strings denote test compilation; app hash below is authoritative' > out/firebase-audit/PAIR.txt
+          sha256sum out/firebase-original/app-debug.apk out/firebase-audit/test-build/*.apk >> out/firebase-audit/PAIR.txt
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - name: Free-only guard and one independent physical installation
+        run: bash scripts/run-firebase-acceptance.sh
+      - name: Recover raw evidence even on failure; no resubmission
+        if: always()
+        run: |
+          mkdir -p out/firebase-audit/raw
+          gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-audit/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" out/firebase-audit/raw > out/firebase-audit/collection.log 2>&1
+      - name: Package evidence in bounded lossless archive parts
+        if: always()
+        run: |
+          mkdir -p out/audit-summary out/audit-parts
+          python3 - <<'PY'
+          import pathlib,shutil,json,hashlib
+          rows=[]
+          for p in pathlib.Path('out/firebase-audit').rglob('*'):
+              if not p.is_file():continue
+              rows.append({'path':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+              if p.name in ['PAIR.txt','acceptance-runtime.txt','cold-runtime.txt','instrumentation.results','gcloud.log','GCLOUD_EXIT','build.log'] or p.suffix=='.xml':
+                  d=pathlib.Path('out/audit-summary')/p.relative_to('out/firebase-audit');d.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,d)
+          pathlib.Path('out/audit-summary/RAW_FILES.json').write_text(json.dumps(rows,indent=2))
+          PY
+          # Full continuous video is included. Per-case clips are duplicate segments;
+          # their original GCS paths and byte hashes remain in RAW_FILES.json.
+          tar -czf out/audit-evidence.tar.gz --exclude='*.apk' --exclude='*/test_cases/*.mp4' out/firebase-audit out/firebase-preflight
+          sha256sum out/audit-evidence.tar.gz > out/audit-summary/ARCHIVE_SHA256.txt
+          split -b 20M -d -a 2 out/audit-evidence.tar.gz out/audit-parts/evidence.part
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-acceptance-summary
+          path: out/audit-summary/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-acceptance-probe
+          path: out/firebase-audit/test-build/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part00
+          path: out/audit-parts/evidence.part00
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part01
+          path: out/audit-parts/evidence.part01
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part02
+          path: out/audit-parts/evidence.part02
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part03
+          path: out/audit-parts/evidence.part03
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part04
+          path: out/audit-parts/evidence.part04
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part05
+          path: out/audit-parts/evidence.part05
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part06
+          path: out/audit-parts/evidence.part06
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part07
+          path: out/audit-parts/evidence.part07
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part08
+          path: out/audit-parts/evidence.part08
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part09
+          path: out/audit-parts/evidence.part09
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part10
+          path: out/audit-parts/evidence.part10
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part11
+          path: out/audit-parts/evidence.part11
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part12
+          path: out/audit-parts/evidence.part12
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part13
+          path: out/audit-parts/evidence.part13
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part14
+          path: out/audit-parts/evidence.part14
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part15
+          path: out/audit-parts/evidence.part15
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part16
+          path: out/audit-parts/evidence.part16
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part17
+          path: out/audit-parts/evidence.part17
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part18
+          path: out/audit-parts/evidence.part18
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part19
+          path: out/audit-parts/evidence.part19
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part20
+          path: out/audit-parts/evidence.part20
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part21
+          path: out/audit-parts/evidence.part21
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part22
+          path: out/audit-parts/evidence.part22
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part23
+          path: out/audit-parts/evidence.part23
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part24
+          path: out/audit-parts/evidence.part24
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part25
+          path: out/audit-parts/evidence.part25
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part26
+          path: out/audit-parts/evidence.part26
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part27
+          path: out/audit-parts/evidence.part27
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part28
+          path: out/audit-parts/evidence.part28
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part29
+          path: out/audit-parts/evidence.part29
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part30
+          path: out/audit-parts/evidence.part30
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part31
+          path: out/audit-parts/evidence.part31
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+
+  recover_audit:
+    if: >-
+      github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): recover audit evidence 20260928'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions: {contents: read, actions: read}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: firebase-acceptance-raw
+          run-id: 36365917134
+          github-token: ${{ github.token }}
+          path: recovered
+      - name: Lossless bounded archive and small test summary
+        run: |
+          mkdir -p small parts
+          python3 - <<'PY'
+          import pathlib,shutil
+          for p in pathlib.Path('recovered').rglob('*'):
+              if p.is_file() and (p.suffix=='.xml' or p.name in ['acceptance-runtime.txt','cold-runtime.txt','instrumentation.results','PAIR.txt','gcloud.log']):
+                  dest=pathlib.Path('small')/p.relative_to('recovered');dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dest)
+                  if p.suffix=='.xml':print(p.read_text())
+          PY
+          tar -czf recovered.tar.gz recovered
+          sha256sum recovered.tar.gz > small/ARCHIVE_SHA256.txt
+          split -b 20M -d -a 2 recovered.tar.gz parts/recovered.part
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-summary
+          path: small/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part00
+          path: parts/recovered.part00
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part01
+          path: parts/recovered.part01
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part02
+          path: parts/recovered.part02
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part03
+          path: parts/recovered.part03
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part04
+          path: parts/recovered.part04
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part05
+          path: parts/recovered.part05
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part06
+          path: parts/recovered.part06
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-archive-part07
+          path: parts/recovered.part07
+          if-no-files-found: ignore
+          retention-days: 30

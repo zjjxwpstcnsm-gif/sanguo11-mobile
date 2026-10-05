@@ -31,11 +31,14 @@ final class ArmySave {
             require(u.ship!=null&&u.deputies!=null&&u.deputies.length<=2&&assigned.add(u.officerId),"编队主将或舰船错误");bound(u.burning,0,2);bound(u.burningOwner,-1,w.factions.length-1);require(u.burning==0?u.burningOwner==-1:u.burningOwner>=0,"部队火源错误");
             for(int id:u.deputies){World.Officer o=w.officer(id);require(o!=null&&assigned.add(id)&&o.owner==u.owner&&o.unitId==u.id&&o.cityId==-1&&!w.domestic.busy(id)&&o.otherTaskTurns==0,"副将重复、位置或任务冲突");}
         }
-        Set<Integer> workers=new HashSet<>();bound(w.army.productions.size(),0,10000);
+        Set<Integer> workers=new HashSet<>(),reserved=new HashSet<>();bound(w.army.productions.size(),0,10000);
         for(Army.Production p:w.army.productions){
             World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);require((p.weapon==null)!=(p.ship==null),"制造类型冲突");
             require(p.weapon==null?p.ship!=Army.Ship.BOAT:Army.siegeWeapon(p.weapon),"制造物品错误");
-            require(c!=null&&o!=null&&workers.add(o.id)&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&o.unitId==-1&&o.otherTaskTurns>0&&o.otherTaskTurns<=3&&o.otherTask.equals(p.label())&&!w.domestic.busy(o.id),"制造人员位置或任务错误");
+            require(c!=null&&o!=null&&c.owner==p.owner,"制造城池或人员无效");
+            int[] crew=p.officers();require(crew.length>=1&&crew.length<=3&&crew[0]==p.officerId&&(!p.nativePolicy||w.pcProduction.enabled()),"制造策略或编制无效");
+            if(p.nativePolicy){Domestic.Facility f=w.domestic.facility(p.facilityId);require(f!=null&&f.cityId==p.cityId&&f.kind==(p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD)&&f.remaining==0&&f.hp>0&&reserved.add(p.facilityId),"制造占用设施无效或重复");}
+            for(int worker:crew){World.Officer actor=w.officer(worker);require(actor!=null&&workers.add(worker)&&actor.owner==p.owner&&actor.cityId==c.id&&actor.unitId==-1&&actor.otherTaskTurns>0&&actor.otherTaskTurns<=(p.nativePolicy?9:3)&&(!p.nativePolicy||actor.otherTaskTurns==o.otherTaskTurns)&&actor.otherTask.equals(p.label())&&!w.domestic.busy(worker),"制造人员位置或任务错误");require(w.campaign.projects.stream().noneMatch(x->x.officerId==worker),"制造与研究任务冲突");}
             require(w.campaign.projects.stream().noneMatch(x->x.officerId==o.id),"制造与研究任务冲突");
             require(w.domestic.facilities.stream().anyMatch(f->f.cityId==c.id&&f.kind==(p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD)&&f.remaining==0),"制造工场不存在");
         }

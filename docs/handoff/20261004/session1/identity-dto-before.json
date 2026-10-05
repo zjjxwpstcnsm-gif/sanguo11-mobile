@@ -1,0 +1,8 @@
+{
+  "game-api/src/main/java/game/sanguo/api/GameApi.java": "341a92bc8e602ca3fe7c2c54cfcc6f1694b1358b829764b086c83ea1fcc6311f",
+  "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java": "f698c9dbf7ce4e2dc3e791527d9c447b22a10b7f6d634f6ea44a882b6c3e26f2",
+  "app/src/main/java/game/sanguo/mobile/MainActivity.java": "1234de8b93d11b21634a98635be267cb8f693d2c4fae77694b54219b660b58f1",
+  "app/src/main/java/game/sanguo/mobile/OverviewUi.java": "28cea7611125713a0d4035c38ebc1cdace974039ce6cce96b7d4f807b13a85df",
+  "app/src/main/java/game/sanguo/mobile/DataTable.java": "30183dbe1421dae7327326169f5c8676c1594a91cb2bd473619c3fe2832cb60c",
+  "game-runtime/build.gradle": "6144c639690373ef42cdfa3f12ee3e0e9b88240ba3227f7030ad832c433cd75f"
+}

@@ -1,0 +1,27 @@
+{
+  "applied": true,
+  "completedMetadata": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "before": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "691665ef48b7b21decf4267d668105d12d7edc01d32cf7532289d4148169c1df",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "24f58599ba40f252adac111a91871f3167c2a2b48f5af19bca066ffe1a16cd4c",
+    "app/src/main/java/game/sanguo/mobile/TurnPlayback.java": "69fa366c62c5df4fef569f2a149789038ac062cd603fda1fded6b9e887472935"
+  },
+  "patches": {
+    "portrait-host.patch": "a381c766b1d345bfca17ae0c4528b131ee69e8d8c76e477b5a10cc5479a7b38b",
+    "fact-host.patch": "f0aa1998712d3b8ad64f472d33bbf962751aa8c493be2675433de24234ad3a10"
+  },
+  "portraitApplied": true,
+  "factApplied": true,
+  "rebasedFactBefore": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "9318aa87e1a5baff2b55cb7943dd56af22e43239f2a59c5cf8986f152ce7410d",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "24f58599ba40f252adac111a91871f3167c2a2b48f5af19bca066ffe1a16cd4c",
+    "app/src/main/java/game/sanguo/mobile/TurnPlayback.java": "69fa366c62c5df4fef569f2a149789038ac062cd603fda1fded6b9e887472935"
+  },
+  "rebasedFactPatchSha256": "333b8a2207ab18ffa5f226ebc93f170449471d41f1bc8649e05d7c4835143f1d",
+  "after": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "1227e3d7b17a480b5a55aed5ecf35ce9f1ba2eda108d7d3ecc58524ec2bb327b",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "200da413a2f4bb31fa7b5ca1e16804ba1433f65690b312012e6fe0cfe8119b7c",
+    "app/src/main/java/game/sanguo/mobile/TurnPlayback.java": "9d13abadd7c3a57e489f2f1b0184b81a20ce1684a880075ef8dc1206ae7522fd"
+  },
+  "initialContextFailure": "Original HUD hunk overlapped inserted portrait bind; regenerated exact Main hunk preserving portrait line; Map/Turn original guarded patch unchanged."
+}

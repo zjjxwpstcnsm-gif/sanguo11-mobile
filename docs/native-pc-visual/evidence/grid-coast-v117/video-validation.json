@@ -1,0 +1,130 @@
+[
+  {
+    "file": "api29/candidate/grid-coast.mp4",
+    "exit": 0,
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "113.178133",
+        "size": "7558304"
+      }
+    },
+    "error": ""
+  },
+  {
+    "file": "api29/baseline/grid-coast.mp4",
+    "exit": 0,
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "112.610378",
+        "size": "6476738"
+      }
+    },
+    "error": ""
+  },
+  {
+    "file": "api35/candidate/grid-coast.mp4",
+    "exit": 0,
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "130.538256",
+        "size": "2403773"
+      }
+    },
+    "error": ""
+  },
+  {
+    "file": "api35/baseline/grid-coast.mp4",
+    "exit": 0,
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "180.537356",
+        "size": "2850763"
+      }
+    },
+    "error": ""
+  },
+  {
+    "file": "national-r05/r05-operation-1.mp4",
+    "exit": 1,
+    "probe": {},
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x56490a682580] moov atom not found\n../evidence/national-r05/r05-operation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "file": "api35-retry/candidate/grid-coast.mp4",
+    "exit": 0,
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "175.735211",
+        "size": "3328771"
+      }
+    },
+    "error": ""
+  },
+  {
+    "file": "api35-retry/baseline/grid-coast.mp4",
+    "exit": 0,
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "130.929733",
+        "size": "2057848"
+      }
+    },
+    "error": ""
+  }
+]

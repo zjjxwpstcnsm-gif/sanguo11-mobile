@@ -1,0 +1,25 @@
+// Original operation ADD, SRCALPHA/INVSRCALPHA. Final source BGRA and UV
+// remain unchanged; fullscreen geometry must not be occluded by map depth.
+material {
+    name : PcSourcePresentationOver,
+    flipUV : false,
+    shadingModel : unlit,
+    blending : transparent,
+    depthWrite : false,
+    depthCulling : false,
+    doubleSided : true,
+    requires : [color, uv0],
+    parameters : [{type : sampler2d, name : image}]
+}
+fragment {
+    float3 encodedToLinear(float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        float4 original=texture(materialParams_image,getUV0());
+        float alpha=original.a*getColor().a;
+        if(alpha<=1.0/255.0)discard;
+        material.baseColor=float4(encodedToLinear(original.rgb*getColor().rgb)*alpha,alpha);
+    }
+}

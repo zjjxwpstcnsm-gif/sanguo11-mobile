@@ -1,0 +1,9 @@
+after source line 84 offset=185354
+component 0 offset=185741
+component 1 offset=185861
+component 2 offset=185881
+component 3 offset=236947
+component 4 offset=237742
+component 5 offset=238738
+component 6 offset=238808
+component 7 offset=939898

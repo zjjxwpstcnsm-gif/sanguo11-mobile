@@ -1,0 +1,74 @@
+[
+  {
+    "first_attempt_status": "PASS",
+    "api": 29,
+    "mode": "battle",
+    "installed_identity": "PASS",
+    "status": "PASS",
+    "first_result": "PASS FEEDBACK125 battle checks=76",
+    "battle_2d": "PASS",
+    "forced_contest": "PASS",
+    "raw_directory": "current-runtime/native-feedback125-api29-battle",
+    "pngs": 9
+  },
+  {
+    "first_attempt_status": "FAIL",
+    "api": 29,
+    "mode": "taishan",
+    "installed_identity": "PASS",
+    "status": "FAIL",
+    "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=632 backingCopies=1 confirmedLosses=1 relayouts=1 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+    "battle_2d": "NOT_APPLICABLE",
+    "forced_contest": "NOT_APPLICABLE",
+    "raw_directory": "current-runtime/native-feedback125-api29-taishan",
+    "pngs": 1
+  },
+  {
+    "first_attempt_status": "FAIL",
+    "api": 29,
+    "mode": "southwest",
+    "installed_identity": "PASS",
+    "status": "FAIL",
+    "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=639 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+    "battle_2d": "NOT_APPLICABLE",
+    "forced_contest": "NOT_APPLICABLE",
+    "raw_directory": "current-runtime/native-feedback125-api29-southwest",
+    "pngs": 1
+  },
+  {
+    "first_attempt_status": "FAIL",
+    "api": 35,
+    "mode": "battle",
+    "installed_identity": "PASS",
+    "status": "PASS",
+    "first_result": "PASS FEEDBACK125 battle checks=113",
+    "battle_2d": "PASS",
+    "forced_contest": "PASS",
+    "raw_directory": "current-runtime/native-feedback125-api35-battle",
+    "pngs": 9
+  },
+  {
+    "first_attempt_status": "FAIL",
+    "api": 35,
+    "mode": "taishan",
+    "installed_identity": "PASS",
+    "status": "FAIL",
+    "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=617 backingCopies=2 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+    "battle_2d": "NOT_APPLICABLE",
+    "forced_contest": "NOT_APPLICABLE",
+    "raw_directory": "current-runtime/native-feedback125-api35-taishan",
+    "pngs": 1
+  },
+  {
+    "first_attempt_status": "FAIL",
+    "api": 35,
+    "mode": "southwest",
+    "installed_identity": "PASS",
+    "status": "FAIL",
+    "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=542 backingCopies=3 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+    "battle_2d": "NOT_APPLICABLE",
+    "forced_contest": "NOT_APPLICABLE",
+    "raw_directory": "current-runtime/native-feedback125-api35-southwest",
+    "pngs": 1
+  }
+]

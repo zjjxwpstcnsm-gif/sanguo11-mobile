@@ -1,0 +1,22 @@
+# 批29：九种步兵战法原声音候选与命中门修正
+
+基点8e876ab3478c7ed4a2c4c67cbc60962301e619ac。仅媒体所有权：PcPresentationPlan/PcTacticSoundPolicy、独立tactic-event-bindings.json、来源工具/政策测试/实际UI测试及session2文档。不改core/API/runtime、人物metadata、公共manifest、MainActivity/MapHost或全局台账，不集成另一会话WIP。既有MapHost媒体入口消费此政策，无新共同入口补丁。
+
+原Shared table84858命名的0突刺/1螺旋突刺/2二段突刺、3熊手/4橫掃/5旋風、6火矢/7貫箭/8亂射，分别经原表现处理器到renderer6..14；实际原callback564cb0使用同一原0/非0已施展会心字段，发原sound49/78。戟兵和弩兵实际原处理器、unit坐标getter、非6装备getter与非水地形分支执行原代码，不由项目enum ordinal推出资源编号。PIERCE项目既有标签贯射与原貫箭分别记录，媒体显式join已有穿透箭战法，保留源字而不改人物/数值/页面标签。骑兵、兵器、舰船其它上下文路径保持未绑定，不把六种新增声音范围叫全部兵种还原。
+
+本次追入原上游586230发现必须撤回批28的“已提交但未命中的原动作仍可发49”声明。原record54=0在586239跳到58651a，另发effect59/sound58；批28只执行了下游已有renderer callback及字段清零，缺少这道上游门。批28两个实装PCM夹具都是已产生物理命中的正常战法，真实录音和Save/RNG证据有效，但不能扩大为未命中绑定。旧记录保留，当前政策纠正。
+
+源工具548项含44个原上游命中/未命中/范围边界分发：在first-call指令前停止，不进入规则handler；同一已经产生的order→record参数继续经已提交success=1的原分发、各表现route、initializer字段写入、原主将/profile/voice选择和49/78 callback。两个源RNG引擎都禁止执行，choice只是明确的已经产生夹具输入；原world3MiB/grid1MiB/order和完整MT状态检查保持一致。原未知/失败/default路径不偷送到枪兵处理器。两次报告字节一致，原PE/Shared及各code SHA记录完整。早期新增initializer停止地址落在指令中间，被随机边界守卫拒绝；修正为真实first-call地址，失败日志保留，未放宽RNG守卫。
+
+生产端现在只消费同一immutable TACTIC事件中同actor/owner/type/start/target且非naval的有序主物理Strike。这是既有明确“已施加物理命中”的事实，不用before/after数值推成功；零伤害Strike同样是明确已进入命中处理。缺少主Strike时无原49/78，CriticalHit本身也须与actor及战法匹配。非critical不等于success，缺少Strike不被反推为miss；所以原58正常绑定仍待具体TacticOutcome事实，不从文字、按钮或HP差推造。媒体不调用规则命令、概率、earn、Save写入或RNG。
+
+主机策略60项/18绑定源向量通过，包括无主命中事实和所有未绑定native动作的拒绝。既有49/78原PCM和播放池未变，新绑定manifest与人物metadata分文件。实际正常UI验收增加sourceTactic参数，分别准备九个真实战法的独立规则参考、取消/双确认、逐次奖励和完整Save/RNG；新增未命中夹具seed6第一实际规则投掷96，仅测试自己的新世界，不触碰用户/PC RNG，六条原PCM播放头必须全0。不以夹具直接播放或play返回当正常事件/混音证据。新组合包构建/安装与真实PCM另行验收。
+
+目标active。普通地图BGM/正常人物voice、原58结果事实、骑兵/舰船/兵器其它音效、全部头像caller/MOD覆盖、长曲连续性、原完整时序/色彩、Unity Player/ARM真机仍未完成。
+
+
+实际应用f6e0b8a6d3ee4cb4839bf2d2fb975f06f7c445b7，308016492字节SHA0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a；当前测试实现6bba993885ea66c5ed3cf2844d332fda6d0e2825，2080347字节SHA9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7。原miss测试错误直接改managed war被Save校验拒绝；仅修测试去掉两处数值改动，最高95%命中率下seed6第一投掷96足够，原能力/数值保持，失败轮保留且用户文件字节恢复。新测试真实miss25.11秒通过，原49/78消费0、六轨head0、完整参考Save/RNG一致；未改实际录音中全49/78最大相关性0.112507411/0.082756714，远低于未变0.999身份门槛。这不是原58还原或绝对静音声明。
+
+九种各49/78共18个实际UI/PCM组合已通过，最低joint0.9999995350866989、最低独立源0.9999865596955723。每轮取消不提交、双确认一次、实际有序主Strike和匹配CriticalHit、逐次事实id/parent和全参考Save/RNG一致；用户保存/库/偏好每轮逐字节恢复。Scope是已准备的真实正常命令战斗夹具，不是全PC规则/时序/完整音效通过。INFANTRY_SOUND_INSTALLED_MATRIX_29.json及infantry-installed-29逐项保存实际SHA/事实/混音。
+
+横扫49首轮完整混音joint0.967241386不达0.999，未接受；双路起点及五个100ms短诊断也不替代完整验收。复验一次遇308MB APK完整ADB读回180秒超时，游戏没有执行且恢复字节一致。媒体专用verify_media_device_flow从既有事务复用保护逻辑，另一会话工具不改；显式device-sha-readback在设备对两个完整APK算SHA，与冻结候选比较，pm路径/完整64hex输出校验严格，用户文件仍全部字节读回。原默认完整字节读回保留。相同冻结包下一次实际横扫完整PCMjoint0.999999548、独立原490.999986910通过；第一轮音频异常仍未归因，不称零glitch/连续性完美，不隐去失败。

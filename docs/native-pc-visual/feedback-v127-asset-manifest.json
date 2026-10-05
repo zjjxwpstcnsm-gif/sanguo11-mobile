@@ -1,0 +1,218 @@
+{
+  "blender": "4.2.3 LTS",
+  "generator": "tools/3d/refine_blender127.py",
+  "license": "CC0-1.0 original waterfalls and water/rock texture; retained project atlas panels",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-narrow-lod0.glb",
+      "sha256": "52b7e669b4cdfbeade23eb1f0dd464bf4414748473e841bffa778aac98054f8e",
+      "bytes": 89840,
+      "triangles": 362,
+      "vertices": 1086,
+      "primitives": 1,
+      "bounds": [
+        -0.22519268095493317,
+        0.0,
+        -0.02500000037252903,
+        0.23119999468326569,
+        1.003999948501587,
+        1.0860120058059692
+      ],
+      "source": "original steep spillway with supported rock shelf and annular impact foam; PC exact reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-narrow-lod1.glb",
+      "sha256": "1eec318d501b0a9c865ba65a0fc510309bbba4692468735c6c832c79d57e5347",
+      "bytes": 53012,
+      "triangles": 126,
+      "vertices": 378,
+      "primitives": 1,
+      "bounds": [
+        -0.21872641146183014,
+        0.0,
+        -0.02500000037252903,
+        0.23119999468326569,
+        1.003999948501587,
+        1.0802429914474487
+      ],
+      "source": "original steep spillway with supported rock shelf and annular impact foam; PC exact reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-wide-lod0.glb",
+      "sha256": "3364bdd8975b2fe229699790df29c0055684d1ae733a978b34fd7d3905c5e530",
+      "bytes": 89836,
+      "triangles": 362,
+      "vertices": 1086,
+      "primitives": 1,
+      "bounds": [
+        -0.3046724498271942,
+        0.0,
+        -0.02500000037252903,
+        0.31279999017715454,
+        1.003999948501587,
+        1.0860120058059692
+      ],
+      "source": "original steep spillway with supported rock shelf and annular impact foam; PC exact reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-wide-lod1.glb",
+      "sha256": "ace41a260e58f66f5ce978255fc1a31fd54b693d154616c9497474124fd052fa",
+      "bytes": 53012,
+      "triangles": 126,
+      "vertices": 378,
+      "primitives": 1,
+      "bounds": [
+        -0.29592397809028625,
+        0.0,
+        -0.02500000037252903,
+        0.31279999017715454,
+        1.003999948501587,
+        1.0802429914474487
+      ],
+      "source": "original steep spillway with supported rock shelf and annular impact foam; PC exact reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-hukou-lod0.glb",
+      "sha256": "c8ae0640eca46ad0720a89dffeba10bfdc26ba2d57278095c4ffe6f2cc3253c6",
+      "bytes": 89836,
+      "triangles": 362,
+      "vertices": 1086,
+      "primitives": 1,
+      "bounds": [
+        -0.3046724498271942,
+        0.0,
+        -0.02500000037252903,
+        0.31279999017715454,
+        1.003999948501587,
+        1.0860120058059692
+      ],
+      "source": "original steep spillway with supported rock shelf and annular impact foam; PC exact reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-hukou-lod1.glb",
+      "sha256": "4b5fd8727093e7f360ca4631cdc971b5cdc52f2784c704551216bccece55cd4e",
+      "bytes": 53012,
+      "triangles": 126,
+      "vertices": 378,
+      "primitives": 1,
+      "bounds": [
+        -0.29592397809028625,
+        0.0,
+        -0.02500000037252903,
+        0.31279999017715454,
+        1.003999948501587,
+        1.0802429914474487
+      ],
+      "source": "original steep spillway with supported rock shelf and annular impact foam; PC exact reference missing",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v127/scenery-atlas.png",
+    "sha256": "bd58d888e3d4d6da4c1340e405da3f94b4673f23106cb1c0d21732bfb3bc6eec",
+    "bytes": 32042
+  },
+  "retained_panels": [
+    0,
+    1,
+    2,
+    6,
+    7
+  ],
+  "runtime": "FieldAssets -> Vegetation.buildWindow -> FilamentMapView existing scenery merged renderables",
+  "preserved_old_assets": 467,
+  "new_files": [
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-hukou-lod0.glb",
+      "sha256": "c8ae0640eca46ad0720a89dffeba10bfdc26ba2d57278095c4ffe6f2cc3253c6",
+      "bytes": 89836
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-hukou-lod1.glb",
+      "sha256": "4b5fd8727093e7f360ca4631cdc971b5cdc52f2784c704551216bccece55cd4e",
+      "bytes": 53012
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-narrow-lod0.glb",
+      "sha256": "52b7e669b4cdfbeade23eb1f0dd464bf4414748473e841bffa778aac98054f8e",
+      "bytes": 89840
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-narrow-lod1.glb",
+      "sha256": "1eec318d501b0a9c865ba65a0fc510309bbba4692468735c6c832c79d57e5347",
+      "bytes": 53012
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-wide-lod0.glb",
+      "sha256": "3364bdd8975b2fe229699790df29c0055684d1ae733a978b34fd7d3905c5e530",
+      "bytes": 89836
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/fall-wide-lod1.glb",
+      "sha256": "ace41a260e58f66f5ce978255fc1a31fd54b693d154616c9497474124fd052fa",
+      "bytes": 53012
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/scenery-atlas.etc2",
+      "sha256": "ee7a1bc6cd45e4f2027e602f869b7572e6df02b55667f2d2aae4cf89f46b01e0",
+      "bytes": 21952
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/scenery-atlas.png",
+      "sha256": "bd58d888e3d4d6da4c1340e405da3f94b4673f23106cb1c0d21732bfb3bc6eec",
+      "bytes": 32042
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v127/scenery.filamat",
+      "sha256": "e4dc2c510a2519379fc068d51821cba85fb45d6d2a338624f20dcc2e7d635caa",
+      "bytes": 489821
+    }
+  ]
+}

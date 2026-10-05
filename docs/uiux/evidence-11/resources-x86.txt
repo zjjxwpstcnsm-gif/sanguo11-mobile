@@ -1,0 +1,1 @@
+PASS: 168 pinned map/art resources in out/uiux/iteration-11/app-uiux-run02.apk

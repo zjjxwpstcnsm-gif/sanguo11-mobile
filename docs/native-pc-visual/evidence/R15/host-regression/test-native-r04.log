@@ -1,0 +1,5 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Exception in thread "main" java.lang.AssertionError: ordinary road retains prior continuous biome identity
+	at game.sanguo.mobile.NativeR04Test.check(NativeR04Test.java:8)
+	at game.sanguo.mobile.NativeR04Test.main(NativeR04Test.java:31)

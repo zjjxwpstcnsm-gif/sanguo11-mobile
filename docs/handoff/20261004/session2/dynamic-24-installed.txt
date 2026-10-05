@@ -1,0 +1,132 @@
+UIUX PASS 130 checks
+PASS normal launch restores existing save
+PASS real source-map plain battlefield exists
+PASS 3D real output ready
+PASS critical fallback is tested on actual PC 3D terrain
+PASS independent source campaign tactic succeeds: 簡雍施展螺旋突刺，命中1队，主伤害389，消耗气力20，本旬行动结束
+PASS actual rule critical belongs outside legacy six-person fullscreen lookup
+PASS normal saved campaign contains approved metadata source
+PASS production host binds non-six actor source without test source injection
+PASS touch visible 战法 at Rect(440, 1394 - 639, 1520)
+PASS touch visible 螺旋突刺 · 气力20 · A级 at Rect(42, 903 - 1037, 1050)
+PASS visible exact 3D ground ray before map touch 86,125 at [540.0, 1137.9006]
+PASS touch visible 取消 at Rect(42, 1646 - 540, 1772)
+PASS real critical preview cancellation emits no battle phase and no rule change
+PASS canceled normal tactic emits no committed media facts
+PASS visible exact 3D ground ray before map touch 86,125 at [540.0, 1137.9006]
+PASS touch visible 执行 at Rect(540, 1646 - 1038, 1772)
+PASS normal committed source command starts actual visual sequence
+PASS source command has actual system animations enabled
+PASS actual MapHost view retains exact source identity after commit
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS source sequence remains active until inspected frame
+PASS normal non-six cue uses exact source identity
+PASS real non-six committed event enters source GPU stage
+PASS native source dynamic selector resolved
+PASS matching original dynamic atlas uploaded
+PASS original dynamic atlases load on demand within bounded first-use GPU budget
+PASS actual source stage surface pixels copied
+PASS mid-animation actual source pixels visibly change captured map; changed=38 max=158
+PASS pause preserves recorded source pose
+PASS GPU preparation/pause/screenshot preserve complete Save and RNG
+PASS real committed critical presentation finishes
+PASS critical sound and double submit preserve exact reference damage and RNG
+PASS source-map critical without a portrait cue is heard exactly once
+PASS normal host receives actual tactic point facts once without test HUD subscription
+PASS actual tactic fact retains owner and journal phase
+PASS normal shared host sounds exact fact.id ec9b3aae-a0af-4a6f-80ce-a37a3adc1845:1:1:LEGACY_COMMITTED:technique:1
+PASS resource-only cache fixture admits original selector 131
+PASS dynamic GPU cache remains bounded across distinct source selectors
+PASS resource-only cache fixture admits original selector 132
+PASS dynamic GPU cache remains bounded across distinct source selectors
+PASS resource-only cache fixture admits original selector 133
+PASS dynamic GPU cache remains bounded across distinct source selectors
+PASS resource-only cache fixture admits original selector 134
+PASS dynamic GPU cache remains bounded across distinct source selectors
+PASS resource-only cache fixture admits original selector 135
+PASS dynamic GPU cache remains bounded across distinct source selectors
+PASS least recently used original textures retire after reference rebinding
+PASS actual renderer replacement releases source owner
+PASS actual exit releases source textures/materials/bitmaps/pending requests
+PASS resource-only eviction/release fixtures preserve complete Save and RNG
+

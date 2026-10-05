@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v134 original facility bodies/construction/damage; camera-window replacement",
+  "apk": "out/pc-visual/sanguo11-mobile-v134-pc-facilities.apk",
+  "apk_sha256": "478f240a8ec645c279b6dfa168fe7e8b23e64c2ad6df0b48b641e1628bbb8e7e",
+  "checks": [
+    {
+      "name": "facility-source-state-normal-commands",
+      "status": "pass",
+      "log": "out/pc-visual/v134-facilities-cpu.txt",
+      "result": [
+        "NORMAL_FACILITY domestic-build 刘备开始建设农场 Lv3，需要3旬",
+        "NORMAL_FACILITY military-build 设置阵 · 施工306/1100，后续自动补修",
+        "NORMAL_FACILITY domestic-damage 攻击农场，耐久减少346，剩余164/1000",
+        "NORMAL_FACILITY military-damage 攻击阵，耐久减少346",
+        "NORMAL_FACILITY domestic-destroy 攻击农场，耐久减少1，剩余0/1000",
+        "NORMAL_FACILITY military-destroy 攻击阵，耐久减少1",
+        "PASS PC facilities 4755020 checks; core types=30"
+      ]
+    },
+    {
+      "name": "site-regression",
+      "status": "pass",
+      "log": "out/pc-visual/v134-sites-cpu.txt",
+      "result": [
+        "NORMAL_SIEGE kind=0 defense=924 刘备攻城，城防−86，守军−86，据点反击−44",
+        "NORMAL_SIEGE kind=2 defense=433 刘备攻城，城防−77，守军−86，据点反击−22",
+        "NORMAL_SIEGE kind=1 defense=356 刘备攻城，城防−154，守军−86，据点反击−25",
+        "PASS PC sites 2882104 checks; matched=87"
+      ]
+    },
+    {
+      "name": "interaction-custom-map",
+      "status": "pass",
+      "log": "out/pc-visual/v134-interaction.txt",
+      "result": [
+        "PASS S07 interaction/editor: 32 checks",
+        "PASS 131 custom-map production integration assertions"
+      ]
+    },
+    {
+      "name": "material-r04",
+      "status": "pass",
+      "log": "out/pc-visual/v134-r04.txt",
+      "result": [
+        "PASS R04 87689 material identity/normalization/constraints checks"
+      ]
+    },
+    {
+      "name": "production-camera-cancellation",
+      "status": "pass",
+      "log": "out/pc-visual/v134-camera-window.txt",
+      "result": [
+        "PASS production camera request: active cancellation, latest focus, bounded queue, backdrop ownership and no covered-window churn"
+      ]
+    },
+    {
+      "name": "production-frame-admission",
+      "status": "pass",
+      "log": "out/pc-visual/v134-frame-admission.txt",
+      "result": [
+        "PASS: extracted production doFrame admission, 43 fake-driver rejections, changed-camera CPU window demand, mailbox/UI progress, zero-size, pacing, thermal, pause, release, Surface absence, exception closure (HOST ONLY; fake worker tests call ordering, not real queue/driver throughput)",
+        "PASS: extracted focus methods: latest target before layout, null preservation and normal loaded focus (HOST ONLY)",
+        "PASS: extracted requestCameraWindow and production TerrainWindow coverage: initial focus, in-flight bound, immutable capture, changed camera, LOD replacement, covered reuse, absent/released snapshot (HOST ONLY)",
+        "PASS: initial-focus source contracts: real-layout deferral, one-shot clear, grid projection/span before first request, release, deferred snapshot drain and normal menu/host ordering (SOURCE CONTRACT ONLY)"
+      ]
+    },
+    {
+      "name": "installed-facility-normal-commands-lifecycle",
+      "status": "pass",
+      "log": "out/pc-visual/v134-facilities-installed.txt",
+      "result": [
+        "PASS PC FACILITIES installed checks=437; six normal commands; emulator evidence only"
+      ]
+    },
+    {
+      "name": "apk-integrity",
+      "status": "pass",
+      "log": "out/pc-visual/v134-apk-integrity.txt",
+      "result": [
+        "PASS: 72 pinned map/art resources in out/pc-visual/sanguo11-mobile-v134-pc-facilities.apk"
+      ]
+    },
+    {
+      "name": "installed-site-normal-command-regression",
+      "status": "failed-before-commands",
+      "log": "out/pc-visual/v134-sites-commands-installed.txt",
+      "result": [
+        "Full national far-view source uploads still pending at the unchanged 120s readiness deadline; commands not reached."
+      ]
+    }
+  ],
+  "previous_phase": "validation-v133.json",
+  "device": {
+    "id": "emulator-5554",
+    "api": 29,
+    "abi": "x86_64",
+    "kind": "Android emulator",
+    "launch_gpu": "host",
+    "arm_device_validated": false
+  },
+  "source_readonly_check": {
+    "checked_files": 1805,
+    "changed_files": [],
+    "source_policy": "read-only"
+  },
+  "reproducibility": {
+    "passed": true,
+    "outputs": {
+      "app/src/main/assets/3d/pc-facilities/facilities.pcz": "16ab355e4f7c253179f7545e87409d3901d1ac8e1ac51daa95e4fb60c071fb37",
+      "app/src/main/assets/3d/pc-facilities/atlas.png": "acf4c254bbb63772690c3acad68757f6be1a4ab3eabaf761b437c2ec23503780"
+    }
+  },
+  "evidence_manifest": "out/pc-visual/v134/evidence/manifest.json",
+  "renderer_report": "out/pc-visual/v134/evidence/pc-facilities-report.txt",
+  "installed_probes": [
+    "six normal domestic/camp construction, damage and destruction transactions",
+    "original source GPU geometry transitions after normal gameplay playback",
+    "exact authority/RNG/save comparison with independent normal-command reference",
+    "far view, pause/resume and exit releases facility library plus all tracked source textures"
+  ],
+  "coverage_limits": [
+    "30 current core facility types checked on CPU; installed normal command evidence covers Farm and Camp",
+    "54 drawable source facility families converted; unsupported source definitions not silently spawned",
+    "regional winter selection defaults explicitly to climate0",
+    "source opaque/alpha passes cataloged but source material still uses masked blending"
+  ],
+  "pc_runtime": {
+    "available": "portable Wine initializes and creates source-copy game window",
+    "valid_captures": false,
+    "screenshots": [],
+    "videos": [],
+    "investigation": "docs/pc-visual/PC_RUNTIME.md"
+  },
+  "video_status": "Two Android normal-command recordings; selected frames decoded and viewed; capture has gaps and low host frame rate. All six normal commands are proven by installed checks, not continuous video acceptance. PC effect/timing match pending.",
+  "visual_acceptance": {
+    "complete": false,
+    "observed": [
+      "dark cross-plane tree silhouettes",
+      "stair-stepped shoreline and polygon water patches",
+      "temporary uncovered terrain while CPU/GPU window finishes loading",
+      "legacy units, ownership flags and combat particles remain visible and unaccepted"
+    ]
+  },
+  "initial_failed_probes": [
+    {
+      "log": "out/pc-visual/v134-facilities-installed-host-gpu-stall.txt",
+      "cause": "Host GPU stalled while Wine was concurrently running; stopped Wine and retried in isolation; PC evidence remains unavailable"
+    },
+    {
+      "log": "out/pc-visual/v134-facilities-installed-stale-window.txt",
+      "cause": "Active obsolete national camera window blocked subsequent normal focus. Production epoch/cancellation replacement and backdrop ownership fixed; original installed assertions retained."
+    }
+  ],
+  "remaining": [
+    "native cliff-wall placements and source dams with proper gameplay/save boundary",
+    "source units/rigs/all animations",
+    "native environment/combat effects and fullscreen tactic/critical original typography/timing",
+    "PC runtime corresponding image/video acceptance and ARM performance",
+    "source lighting/normals/alpha, vertical/UV scale, water/far-view calibration",
+    "all facility types installed visual evidence; long-duration movement/memory growth",
+    "native flags, burning/collapse/flood; normal-command continuous dynamic videos"
+  ],
+  "autosave_restoration": {
+    "instrumentation_finally_writes_original_backup": true,
+    "external_byte_comparison": "not-verified: attempted pre-run backup captured run-as rejection text; no false byte-equality claim"
+  }
+}

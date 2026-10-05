@@ -1,0 +1,770 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "INCOMPLETE fullscope; currentAPK firstwarmviewportrepair installedPASS129/fullfirstGPU0 andnormalall3continuousPASS81; realoriginalsourcepixels/firstflashabsence reviewed; remainingcamera/MOD/otherbindings/performance/ARM",
+  "source": {
+    "exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+    "archive_sha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+    "read_only": true,
+    "wine_launched": false,
+    "parent_update": "Both125-frame original45a530 parent updates byte-identical after original244-slot reservation; out/pc-visual/v159/source-parent-update-repro.json"
+  },
+  "bindings": [
+    "Canonical GuanYu1001 tactic critical152/115, original portrait521; face variant provisional",
+    "Successful critical SORCERY126/121, original quote495; source plot7 dispatcher/name/caller confirmed",
+    "Successful critical LIGHTNING127/122, original quote496; source plot8 dispatcher/name/caller confirmed"
+  ],
+  "duration": {
+    "target_millis": 750,
+    "basis": "User explicitly accepts 0.5–1 second; default0.75 second; no measured PC timing claim",
+    "first_continuous": "FAIL estimated3685ms; only2 rendered source frames",
+    "prewarm_continuous": "FAIL skipped entrance; estimate2599ms/3 source frames; lifecycle barrier also failed",
+    "current": "750ms default within user500–1000ms range. NormalGuanYu15sourceframes/~733ms; targetedSORCERY21sourceframes/~746ms andLIGHTNING21/~751ms PASS23 each. Combinedthree-case run stillFAIL; not sustained sequence acceptance.",
+    "clock_overlay_continuous": "FAIL: timingestimate570ms near500 target, but onlyone nonemptyGPUcueframe. Strict GPUadvance assertion retained.",
+    "driver_fence_continuous": "FAIL sourceGPUadvance; rawbeginadmissiontrace retained. PublicEngine Fence is commandstreamprocessing only, not GPUcompletion; primaryFilament source verified.",
+    "batched_continuous": "FAIL only1 sampled nonemptyframe;13.95s/13samplevideo endedinpreparation; assets genuine, geometry unchanged",
+    "background_hold_continuous": "FAIL UIphase.036.. .94 near500ms, actualsubmittedGPUphase.068.. .132, missedpeakandexit. MainownerCPU~1ms; repeatedbeginFrame backpressure. Traceandmovie retained.",
+    "real_draw_warmup_continuous": "FAIL zero nonempty sourceframes; source clock missedentirecue underlong ownerframe. Genuine zero-area prewarm draws do notjustify GPUcompletion claim. Emulator sample retained.",
+    "accepted_range_millis": [
+      500,
+      1000
+    ]
+  },
+  "host": {
+    "plot_facts": "PASS150 nine realplots/ordinary/immune/magicreflection/chain/immutablefacts/fullsave/RNG; magic-750ms-build.txt",
+    "normal_commands_source_clock": "PASS72161 originalnormal3bindings/batches/clock/exactsaveRNG afterviewportfix; viewport-recapture-host-source-test.txt",
+    "ui": "PASS :app:verifyPresentation; journal-ui-check.txt",
+    "combat": "PASS R11 99443 afterviewportfix; viewport-recapture-r11-test.txt; previousS06 25470",
+    "architecture": "PASS final viewport-feedback-final-architecture.txt",
+    "asset_pins": "PASS157 viewport-recapture installed APK; viewport-recapture-apk-pins.txt",
+    "rules_parity": "FAIL current and independently compiled original prechange War/TurnJournal both actions:54 current faction selection; baseline log retained",
+    "source_batches": "115:2580quads/297draws/peak90/6batches;121:5373/873/80/13;122:2295/705/54/13. Originalgeometry/UV/BGRA/matrix/index/order retained.",
+    "named_source_plot_bindings": "PASS9 originalBig5 names8aecb4 ->5933a0 switch ->592050/592ed0 selectors126/127; source-named-plot-bindings.txt",
+    "face_descriptors": "PASS6604 original480320/48a5b0/49d730 lookups from suppliedSan11Face00.fce 2200 descriptors; source-face-descriptors-offline.txt. Actualscenario officer/age/MOD binding pending; communitysourceId is not established PC officer or face ID.",
+    "battle_feedback": "PASS209 afterlegalfixture(completecityfootprint/titlehistory/facilityID/parcel), explicitMOVEpreview matchesproductiondrag. Originalfullsave/outcomeassertions retained. Foundmissinglocalizedterrainname afterprecriticalsameFAIL; production nowusesexistingTerrainPresentation names, no rule/save/RNG change. battle-feedback-terrain-name-regression.txt",
+    "government": "FAIL legacyv7migration conflictswithunchangedSaveCodec version<31 rejection; independentlycompiled precritical samefailure. government-migration-pre-critical-test.txt; no assertionweakening orpolicychange",
+    "marches": "FAIL water route crossesriver oncurrent andindependentlycompiled originalMarchOrders/precritical baseline; march-water-pre-critical-test.txt. No assertionweakening. Thelocalizedterrainfeedback change doesnotchange movementcosts.",
+    "source_camera_contract": "PASS originalcamera provider/draw/fivecallers/temporary512Bcopyandrestore; source-presentation-cameras-offline.txt; presentation-cameras-source-working.json. Actualcue/lensbinding remains pending; noWine.",
+    "battle_feedback_final": "PASS209/Plot150 BUILD SUCCESSFUL5s; viewport-feedback-final-core-regression.txt",
+    "battle_feedback_precritical": "PASS209 withindependentlycompiled originalWar/TurnJournal/AdvancedBattle + samelegalfixtures +localizedterrainname fix; battle-feedback-final-pre-critical-terrain-name-test.txt. Withoutterrainnamefix originalsame mountainassertionFAIL retained.",
+    "source_submission_clock": "PASS72330 real3command/sourcecohort andadmission/stall/speed/skip/fullsaveRNG; source-submission-clock-host-test.txt",
+    "source_submission_depth": "PASS72378 source-depth-loading-overlay-host-test.txt; no original geometry discarded",
+    "source_submission_architecture": "PASS numeric-onlyclock/lens withoutgameplay/Androidowner; source-submission-depth-architecture.txt",
+    "frame_admission": "PASS extractedproductionbody with updatedstrictnative-owner fakes: mapwarmup cannotacknowledge screenpose; late rejection cannotwriteGPU/advancepose; pendingdriverfence gatesqueue; HOST ONLY; source-depth-composition-pulse-admission.txt. Initialharness compilefailed50 missingpresentationfakes, fixedwithout removingproductionbody/assertions.",
+    "first_raster_viewport_architecture": "PASS first-raster-viewport-architecture.txt",
+    "first_raster_viewport_asset_pins": "PASS157 first-raster-viewport-apk-pins.txt",
+    "source_depth_limited_scope": "600quads outside specifiedfiniteCPUmapfarplane is a nominalCPUprojection diagnostic, not proof of600nativeGPUclippedquads. Filament1.56Camera.getProjectionMatrix docs state renderprojectionfar is infinite; culling/render matrices differ. Actualcamera near/cullingfar andprojectionXY checkedinstalled, PCactivefullscreenlens remainsunknown."
+  },
+  "installed": {
+    "device": "Android29 x86_64 emulator / hostGPU; no ARM physical acceptance",
+    "paused": "PASS376 two real normal sourcecriticalcommands, original GPU renderables/atlas/PixelCopy;pause/resume/4x/skip/scene exit/authority/RNG/save",
+    "videos": [
+      "out/pc-visual/v159/pc-critical-first-normal-commands.mp4",
+      "out/pc-visual/v159/pc-critical-plot-paused.mp4"
+    ],
+    "video_limits": "Continuous movies retained29.55s/155 samples and29.88s/485 samples; actual originalportrait/brush/rays and originalquote/purplelayers visually inspected at1.392/1.377s; sourcecue is500ms and dominantportrait shorterinsidecue. PC/color/lens/MOD/ARM stillnotaccepted. Earlier pausedmovies remainpartialcoverage.",
+    "continuous_latest_evidence": [
+      "out/pc-visual/v159/background-hold-continuous-tactic.csv",
+      "out/pc-visual/v159/background-hold-owner-frames.csv",
+      "out/pc-visual/v159/critical-tactic-background-hold-video.json"
+    ],
+    "continuous": "PASS43 installed normalnationalcommands; sourceGPU phases .06.. .93/.064.. .938, peak90/77 originalquads; fullauthority/RNG/save. Emulatoronly.",
+    "continuous_videos": [
+      "out/pc-visual/v159/critical-tactic-captured-stage.mp4",
+      "out/pc-visual/v159/critical-plot-captured-stage.mp4"
+    ],
+    "cache_color": "Latest viewport-recapture all3 strictPASS284/max0/total0. Historicalmax11 failures remain inlogs; finalnativePCcolor/lens/MOD notaccepted.",
+    "paused_latest": "ULTRA candidate PASScachecolor/first90quadpose butlater75ms sleep-basedinspection missedsourcecue duehostdelay. Controlled paused inspection nowticksactualproductionhost clock; separate continuousnormal timing retained.",
+    "cliptransform": "FAILmax11/total175 atsame192channels despiteUltraLUT. Primaryclip-spacehypothesis candidate withdrawn; exactAPIbehavior here validatedfromactualSurface, not inferredfromgenericdoc. Sourcecandidate logs/materialshashes retained.",
+    "stage_visible_barrier": "FAIL max12 afterthreeadmitted stageframes; not stale-readinessalone. Original3-levelcolorassertion retained. Fullcaptureinput/phasezerooutput imagesdiagnostic added, notnormal runtimeI/O.",
+    "full_cache_images": "Two complete785x756RGB images retained; meanchannel1.21/max149,9%pixelsover3. Bestwhole-pixelshift(0,0); repeatedsourcecolors showoutputrangesupto92, so notuniformgamma orjustintegeroffset. ActualindependentstagePostProcess resampling eliminatedinnextcandidate.",
+    "encoded_stage": "FAIL strictphasezero cachecolor max11/total140; postprocessingremoved didnotfix difference. Strictmax<=3 assertion retained.",
+    "previous_binding_correction": "PreviousPASS43/376 and plot-confuse movies establish GPU container/lifecycle observations only. Selector126 was wrong forCONFUSE; originalsource7妖術 confirmed and oldCONFUSE binding withdrawn. Do not treat previousplot movie as accepted source mapping.",
+    "magic_750ms_continuous": "FAIL sourceGPUentrance/main/exit check onSORCERY. GuanYu15sourceframes,.0747.. .9587,peak90,estimate733ms. Sorcery3sourceframes,.232.. .564,peak63,UIestimate1745ms. Lightningnotreached; sourcecueclock default750ms doesnotprove renderedcadence.",
+    "magic_lifecycle": "PASS247 all3 normal sourcecritical commands; actualsubmitted GPU layers, pause/Activitypause/resume/4x/skip/exit/releases/fullauthorityRNGsave. Scope excludes strictcachecolor, which remains requiredFAIL11. critical-installed-magic-lifecycle-submitted.txt",
+    "magic_targeted_continuous": {
+      "sorcery": {
+        "status": "PASS23",
+        "source_frames": 21,
+        "gpu_phase": [
+          0.044,
+          0.94533366
+        ],
+        "peak_quads": 77,
+        "estimated_cue_millis": 745.8618144884989,
+        "log": "out/pc-visual/v159/critical-installed-sorcery-750ms-continuous.txt",
+        "video": "out/pc-visual/v159/critical-sorcery-750ms-targeted-continuous.mp4",
+        "actual_decoded_frames": "out/pc-visual/v159/sorcery-750ms-targeted-frames/decoded-frames.json"
+      },
+      "lightning": {
+        "status": "PASS23",
+        "source_frames": 21,
+        "gpu_phase": [
+          0.021333333,
+          0.95333374
+        ],
+        "peak_quads": 54,
+        "estimated_cue_millis": 751.02294,
+        "log": "out/pc-visual/v159/critical-installed-lightning-750ms-continuous.txt",
+        "video": "out/pc-visual/v159/critical-lightning-750ms-continuous.mp4",
+        "actual_decoded_frames": "out/pc-visual/v159/lightning-750ms-frames/decoded-frames.json"
+      },
+      "limits": [
+        "Singlefixture runs with unchanged strictcoverage assertions; combinedthreefixture run stillfailed",
+        "Originalquote/lightning/purplelayers visually inspected from actual recordings; textlarge/partiallyclipped; nativefullscreen camera/PCcolor/MOD stillunaccepted",
+        "OnlyAndroid29x86_64hostGPU; noARMperformanceacceptance"
+      ]
+    },
+    "viewport_recap_strict": {
+      "status": "PASS284",
+      "log": "out/pc-visual/v159/critical-installed-viewport-strict-all.txt",
+      "report": "out/pc-visual/v159/viewport-strict-all-report.txt",
+      "cases": [
+        "tactic-guanyu",
+        "plot-sorcery",
+        "plot-lightning"
+      ],
+      "cache_max_rgb": [
+        0,
+        0,
+        0
+      ],
+      "cache_total_error": [
+        0,
+        0,
+        0
+      ],
+      "assertion": "Original max<=3 retained; actual submitted GPU quads/viewport/pause/resume/4x/skip/exit/exactsaveRNG verified; emulator only",
+      "root_cause": "Real stage buffer changed756x785->756x691 afterbattle-loglayout whilemapcache retained785height. surfaceChanged invalidatescache/captureepoch andactualvisualclock waitsfornewviewport. Exacttexel shader alone failedmax11; previouscandidate evidence retained.",
+      "single_case_prior": "PASS76 tactic-guanyu strictcache0; critical-installed-viewport-recapture-strict.txt",
+      "gpu_readback": "Optional test diagnostic only; defaultoff. Nativebuffers exposedactualsizechange; rawroworientation requires explicitflip andnotPCpairacceptance."
+    },
+    "viewport_continuous": "FAIL onGuanYu only1effectiveGPU sourceframe/.0787phase; source didnotadvance despiteactual750msclock. SourceCSV/deviceSurfaceFlingerdriverstalls/failed23sample29.5svideo retained. Ownedsan11-pc-map emulatordata retainedandrestarted; retestpending.",
+    "viewport_feedback_build": "BUILD SUCCESSFUL28s; installed currentviewportfeedback app/test APK; PASS157packagepins; BattleFeedback209/Plot150finalBUILD SUCCESSFUL5s",
+    "viewport_feedback_fresh_continuous": {
+      "status": "FAIL",
+      "log": "out/pc-visual/v159/critical-installed-viewport-feedback-fresh-continuous-all.txt",
+      "report": "out/pc-visual/v159/viewport-feedback-fresh-continuous-report.txt",
+      "case": "tactic-guanyu",
+      "source_frames": 2,
+      "gpu_phase": [
+        0.074666664,
+        0.26400003
+      ],
+      "peak_quads": 1,
+      "estimated_cue_millis": 762.0240511909536,
+      "assertion": "Source GPU covers entrance/main original layers/exit; retainedunchanged. Rebootingownedsan11-pc-map withuserdata didnotresolvecontinuouscoverage. NoSORCERY/LIGHTNING reachinthisrun.",
+      "video": "out/pc-visual/v159/critical-viewport-feedback-fresh-guanyu-continuous-failed.mp4",
+      "source_csv": "out/pc-visual/v159/viewport-feedback-fresh-guanyu-continuous.csv",
+      "owner_csv": "out/pc-visual/v159/viewport-feedback-fresh-guanyu-owner-frames.csv",
+      "limits": "Clockestimate withinuser500–1000 tolerance doesnotprove renderedsourcecoverage; geometry/cache/lifecyclePASS284 doesnotreplacecontinuousvalidation.",
+      "actual_decoded_frames": "out/pc-visual/v159/viewport-feedback-fresh-guanyu-failed-frames/decoded-frames.json",
+      "video_samples": 11
+    },
+    "submission_clock_continuous": {
+      "status": "FAIL overall /sourceGPUentrance-main-exit assertions passed",
+      "log": "out/pc-visual/v159/critical-installed-submission-clock-guanyu-continuous.txt",
+      "report": "out/pc-visual/v159/submission-clock-guanyu-continuous-report.txt",
+      "source_frames": 14,
+      "gpu_phase": [
+        0.064,
+        0.87600017
+      ],
+      "peak_quads": 90,
+      "estimate_millis": 1876.706935795629,
+      "limits": "Only clock gate inthisAPK, depthfix absent; actual submittedquads do not prove allpixelsvisible. Timing assertion400..1200 remains unchanged; nofullauthorityassertion reachedaftertimingfailure. Userautosaverestoration root matchesoriginalSHA.",
+      "video": "out/pc-visual/v159/critical-submission-clock-guanyu-continuous.mp4",
+      "video_metadata": "out/pc-visual/v159/submission-clock-guanyu-video.json"
+    },
+    "submission_depth_strict": {
+      "status": "FAIL before command/GPU assertions",
+      "log": "out/pc-visual/v159/critical-installed-submission-depth-guanyu-strict.txt",
+      "reason": "PcPresentationLens rejected orthographic map projection during host PC camera transition. Native loading fell back to2D. New loading-aware camera candidate built/installed; verification pending."
+    },
+    "depth_loading_overlay_strict": {
+      "status": "PASS136",
+      "log": "out/pc-visual/v159/critical-installed-depth-loading-overlay-guanyu-strict.txt",
+      "report": "out/pc-visual/v159/depth-loading-overlay-guanyu-strict-report.txt",
+      "case": "tactic-guanyu",
+      "scope": "Actual independentnativecamera near.05/far50, preservedprojectionXY, GPUlayers, strictcachecolor0, pausedposes/4x/exit/releases/fullsaveRNG; emulatoronly"
+    },
+    "depth_loading_overlay_continuous": {
+      "status": "PASS76 source-submission/clock/authority; sequentialvideo evaluationcorrects randomseek claim; PC/MOD/ARM stillunaccepted",
+      "log": "out/pc-visual/v159/critical-installed-depth-loading-overlay-continuous-all.txt",
+      "report": "out/pc-visual/v159/depth-loading-overlay-continuous-all-report.txt",
+      "cases": [
+        {
+          "case": "tactic-guanyu",
+          "source_frames": 22,
+          "gpu_phase": [
+            0.028,
+            0.93333334
+          ],
+          "peak_quads": 90,
+          "estimated_cue_ms": 773.1417039702527
+        },
+        {
+          "case": "plot-sorcery",
+          "source_frames": 22,
+          "gpu_phase": [
+            0.02,
+            0.92000026
+          ],
+          "peak_quads": 80,
+          "estimated_cue_ms": 754.3793460828502
+        },
+        {
+          "case": "plot-lightning",
+          "source_frames": 22,
+          "gpu_phase": [
+            0.024,
+            0.94000006
+          ],
+          "peak_quads": 54,
+          "estimated_cue_ms": 789.5832529343332
+        }
+      ],
+      "limits": "RandomAVAssetImageGenerator seekpixels were unreliable; previous missingcriticalpixel inference withdrawn. Allactualsamples nowsequentiallydecoded. OriginalGuanYu portrait/brush/light visible inWindowpulse recording1.425..1.627. Firstviewportuniformbeigeframe/sparsemovies remainrealvisualissues; currentcandidategapsnotproofentireeffectabsent."
+    },
+    "depth_composition_pulse_continuous": {
+      "status": "FAIL overallLIGHTNING3324.64ms; GuanYu/SORCERY submission passed; missingGuanYupixelsclaimwithdrawn bysequentialdecoding",
+      "log": "out/pc-visual/v159/critical-installed-depth-composition-pulse-continuous-all.txt",
+      "report": "out/pc-visual/v159/depth-composition-pulse-continuous-all-report.txt",
+      "guanyu_source_frames": 21,
+      "sorcery_source_frames": 20,
+      "guanyu_estimate_ms": 777.8970609791381,
+      "sorcery_estimate_ms": 777.976998038755,
+      "lightning_estimate_ms": 3324.6434799446083,
+      "limits": "OriginalGuanYuportrait/brush/light actuallyvisible1.425..1.627; AVAssetImageGenerator randomseekselectedstale map pixels despite matchingreportedPTS. NativeWindowpulse isolatedperformancebenefit notestablished; originalWindowrefresh restored. Realfirstviewportuniformbeigeframe retained. OpenGL completedcallback unsupported perlocalFilament1.56code."
+    },
+    "depth_window_live_continuous": {
+      "status": "PASS35 tactic-guanyu source-submission/clock/fullauthority/RNG",
+      "log": "out/pc-visual/v159/critical-installed-depth-window-live-guanyu-continuous.txt",
+      "source_frames": 20,
+      "gpu_phase": [
+        0.06666667,
+        0.9346667
+      ],
+      "peak_quads": 90,
+      "estimated_cue_ms": 820.3811644181537,
+      "video": "out/pc-visual/v159/critical-depth-window-live-guanyu-continuous.mp4",
+      "sequential_samples": "out/pc-visual/v159/depth-window-live-guanyu-all-early-samples/decoded-samples.json",
+      "limits": "First4s has30actualsamples; originalportrait/light actuallyvisible2.571..2.789s. Firstviewportuniformbeigeframe2.271s remainspending; notPC/MOD/ARM visualacceptance."
+    },
+    "depth_window_live_strict_all": {
+      "status": "PASS482",
+      "log": "out/pc-visual/v159/critical-installed-depth-window-live-strict-all.txt",
+      "report": "out/pc-visual/v159/depth-window-live-strict-all-final-report.txt",
+      "cases": [
+        "tactic-guanyu",
+        "plot-sorcery",
+        "plot-lightning"
+      ],
+      "cache_max_rgb": [
+        0,
+        0,
+        0
+      ],
+      "scope": "Native independentcamera.05..50/source layers/preservedprojectionXY, backgroundmax<=3unchanged (actual0), exactpausedpose/admission/Activitypause/resume/4x/skip/sceneexit/textureCPUrelease/fullauthorityRNG/save; actualAndroid29x86_64only",
+      "limitations": "Doesnotacceptfirstframeflash/PCcamera/MOD/allotherbindings/ARM/fullscope"
+    },
+    "depth_first_stage_diagnostic": {
+      "status": "PASS127 oldstrict/lifecycle; firstflash NOTcoveredbyoldassertions",
+      "log": "out/pc-visual/v159/critical-installed-depth-first-stage-diagnostic-guanyu-strict.txt",
+      "first_gpu_colors": 4,
+      "first_color_counts": [
+        520950,
+        755,
+        690,
+        1
+      ],
+      "later_gpu_colors": 76141,
+      "first_gpu_size": [
+        756,
+        691
+      ],
+      "evidence": "out/pc-visual/v159/first-stage-viewport-before-repair.json",
+      "finding": "Nativefirststage is near-uniform capturededgecolor, despitecorrectlaterphasezero. Materialviewport remains1x1fromwarmup atfirstframe; correctedwarmup toactualcapturedwidth/height. Newfullpixel first-vs-later max<=3 assertion added onlyraster diagnostic, freshfilesdeletedbeforecommand; validationpending."
+    },
+    "first_raster_viewport_strict": {
+      "status": "PASS129",
+      "log": "out/pc-visual/v159/critical-installed-first-raster-viewport-guanyu-strict.txt",
+      "report": "out/pc-visual/v159/first-raster-viewport-guanyu-strict-report.txt",
+      "diagnostic": "out/pc-visual/v159/first-stage-viewport-after-repair.json",
+      "first_vs_later_pixels": 522396,
+      "first_vs_later_max_rgb": 0,
+      "first_vs_later_total_rgb": 0,
+      "first_and_later_png_sha256": "dd32c833cdeaac969c6c00a57ea5eec7ffefca40cc42eb1b2dc51fe5b210bbd5",
+      "first_gpu_unique_colors": 76180,
+      "old_first_gpu_unique_colors": 4,
+      "repair": "Warm1x1render target keepsactualcapturedwidth/height inmaterialviewport. Filament1.56Engine::prepare commitsmaterialUBOs atbeginFrame(details/Renderer.cpp369,Engine.cpp579), so settingviewportafterbeginFrame cannotrepair firstdraw. Old4colors exactly520950/755/690/1 edgeclampingpattern. Sourcepixelsunchanged.",
+      "scope": "ActualAndroid29x86_64 srgbSwap=false; explicitrasterdiagnostic defaultoff; normalcamera/lifecycle/save checks also passed; notPC/MOD/ARM/fullscope"
+    },
+    "first_raster_viewport_continuous": {
+      "status": "PASS81 realall3commands, sourceentrance/main/exit/fullauthority/RNG/save; emulator sampling tolerance",
+      "log": "out/pc-visual/v159/critical-installed-first-raster-viewport-continuous-all.txt",
+      "report": "out/pc-visual/v159/first-raster-viewport-continuous-all-report.txt",
+      "cases": [
+        {
+          "case": "guanyu",
+          "source_frames": 21,
+          "gpu_phase": [
+            0.024,
+            0.9213333
+          ],
+          "peak_quads": 90,
+          "estimated_cue_ms": 774.6429033151722,
+          "video": "out/pc-visual/v159/critical-first-raster-viewport-guanyu-continuous.mp4",
+          "video_sha256": "22212be121e67c27b12a6899ed70a10e64590e7be537d78720f264c09a59c5f7",
+          "sequential_samples": "out/pc-visual/v159/first-raster-viewport-guanyu-all-early-samples/decoded-samples.json",
+          "decoded_samples_reviewed": 68,
+          "actual_original_pixels_visually_reviewed": true
+        },
+        {
+          "case": "sorcery",
+          "source_frames": 16,
+          "gpu_phase": [
+            0.06666667,
+            0.9279999
+          ],
+          "peak_quads": 80,
+          "estimated_cue_ms": 1140.5326214104705,
+          "video": "out/pc-visual/v159/critical-first-raster-viewport-sorcery-continuous.mp4",
+          "video_sha256": "e7393ad3fd26f25b187689f5ac6e64674db3b2d159d6f3d772aa69327b84eb8f",
+          "sequential_samples": "out/pc-visual/v159/first-raster-viewport-sorcery-all-early-samples/decoded-samples.json",
+          "decoded_samples_reviewed": 34,
+          "actual_original_pixels_visually_reviewed": true
+        },
+        {
+          "case": "lightning",
+          "source_frames": 20,
+          "gpu_phase": [
+            0.026666667,
+            0.9266667
+          ],
+          "peak_quads": 54,
+          "estimated_cue_ms": 819.3455466879175,
+          "video": "out/pc-visual/v159/critical-first-raster-viewport-lightning-continuous.mp4",
+          "video_sha256": "6da483e2fdab5f96a545d0c4cd8a84ff8b5345a6a4053d7a83830fb1bd697677",
+          "sequential_samples": "out/pc-visual/v159/first-raster-viewport-lightning-all-startup-samples/decoded-samples.json",
+          "decoded_samples_reviewed": 53,
+          "actual_original_pixels_visually_reviewed": true
+        }
+      ],
+      "video_scope": "Sequentialcontact sheets actualoriginalportrait/brush/light/SORCERYquote/LIGHTNINGquoteandbolts viewed. No near-uniformmapframe inobserved4s(GuanYu/SORCERY)or8s(LIGHTNING) knownfixtureviewport; firstuniformGPUflash fixed, proofalso full522396pixelsmax0. First-raster-viewport-movie-map-uniform-check.json. Not full PC/MOD/ARM parity.",
+      "limits": [
+        "Default750ms accepteduser500–1000; SORCERYestimate1140ms exceedsnominal1000 butpassesunchangedemulatorsampling400..1200 tolerance; frame-time jitter remains",
+        "LIGHTNINGevent GPU20frames but systemrecording sparse/delayed, fullsequence30s performance notaccepted",
+        "Three currentbindings only, otherofficers/plots/tactics/AIchain/reflection GPU/otherbattleeffects stillpending",
+        "sRGBswap startup path andactualPCfullscreenlens/wordscales needindependentvalidation"
+      ]
+    }
+  },
+  "save": {
+    "bytes": 168846,
+    "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "paused": "After376 checks exactexternal/rootreadbackmatch",
+    "failed_continuous": "Afterboth failedcontinuous runs restored and exactmatch; afterprewarm lifecyclebarrierfailure ownedappforcestoppedbeforeexternalbackuprestore,10146 ownership retained",
+    "clock_overlay_failure": "168846B rootreadback matchesoriginalsha256, lifecyclebarrier succeeded",
+    "batches_and_background_hold": "Both rootreadback SHA identicaloriginal82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "captured_stage": "RootreadbackafterPASS43 matchesoriginalSHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "encoded_stage": "Rootreadback afterfailed strictcolor matchesoriginal168846B/82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "magic_750ms_continuous": "Rootreadback afterfailed continuousSORCERY matchesoriginal168846B/82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "magic_targeted_continuous": "Both properrootreadbacks afterSORCERY/LIGHTNING matchoriginal168846B/SHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "magic_lifecycle_submitted": "Properrootreadback afterPASS247 matchesoriginal168846B/SHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "viewport_strict_all": "Properrootreadback 168846B exactSHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9; user-auto-after-viewport-strict-all.sg11",
+    "viewport_continuous_all": "Properrootreadback 168846B matchesoriginalSHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9 afterfailure",
+    "emulator_restart": "Initialread returned76B Permissiondenied becauseadbdroot reset on reboot; rejectedas saveevidence. Rootre-enabled andproperread matchesoriginal168846B/SHA; user-auto-after-emulator-restart-root.sg11",
+    "viewport_feedback_fresh_continuous": "Rootreadback 168846B exactoriginalSHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9 afterfreshfailure",
+    "submission_clock_continuous": "Rootreadbackmatchesoriginal168846B/SHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9 afterdurationFAIL",
+    "submission_depth_loading_failure": "Root readback168846B matchesoriginalSHA; user-auto-after-submission-depth-load-failed.sg11",
+    "depth_loading_overlay_strict_and_continuous": "Both rootreadback168846B matchoriginalSHA; user-auto-after-depth-loading-overlay-strict.sg11 anduser-auto-after-depth-loading-overlay-continuous.sg11",
+    "depth_composition_pulse_failure": "Rootreadback168846B exactoriginalSHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9; user-auto-after-depth-composition-pulse-continuous.sg11",
+    "depth_window_live_continuous": "Rootreadback168846B exactoriginalSHA82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9; aftercontinuous; strictallstillinprogress",
+    "depth_window_live_strict_all": "AfterfinishedPASS482, properrootreadback168846B/SHAexactoriginal82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9; user-auto-after-depth-window-live-strict-all-final.sg11. Earlierintermediate readwhiletestactive notusedasrestorationevidence.",
+    "first_raster_viewport_strict": "AfterfinishedPASS129 properroot168846B/SHAexactoriginal; user-auto-after-first-raster-viewport-strict.sg11",
+    "first_raster_viewport_continuous_all": "AfterfinishedPASS81 properroot168846B/SHAexactoriginal82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9; user-auto-after-first-raster-viewport-continuous-all.sg11"
+  },
+  "failures": [
+    "Initial.gz assetpackager expanded and renamed source containers; corrected.pcps, failedAPK retained",
+    "First manifestinstrumentation tag replaced by AGP default runner; moved toend and verifiedregistration",
+    "Parent VM update initially0 children; original45a2b0 reservation corrected; finaldecodedoutputs bothidentical",
+    "Initialroot-readbacks via run-as/nonroot failed permission; failedtext kept as.read-failed.txt, properrootreadsverified",
+    "R11 first shell lacked JSON_TEST_JAR; configuredrepeat passes",
+    "Inherited PcDams/SceneCamera constant refs absentallowlist; individuallyreviewed with exactguards",
+    "Captured-map new exactphasezero colorassertion failedmax11; not dismissed as emulatornoise, exactpairs retained.",
+    "Original namedplot dispatcher proves earlierCONFUSE126 mapping incorrect; withdrawn, corrected toSORCERY; oldmovies retainedasGPUdiagnostic only",
+    "Source-depth camera first candidate rejected transitional orthographic camera and fell back whileloading; retainedfailedAPK/log; fixed explicitwarmupcamera transition ratherthan weakening perspective projection assertion.",
+    "Windowpulse overallfailedLIGHTNING3325ms. Previousmissingcriticalpixel claimfromrandomImageGeneratorseekswithdrawn: sequentialdecoder provesactualportrait/light. Firstuniformviewportbeigeframe andsparsesampling retained; nativefirst-stageGPUdiagnostic added, defaultoff."
+  ],
+  "remaining": [
+    "All other originalcriticalportrait/plot/specialbindings",
+    "Fullscreen originallens/camera and faceage tablevariant",
+    "Encoded-color blending/background color vs externalreference; sourceimagepixels genuine",
+    "Sustained combined normalcritical commands GPU/video coverage: singleSORCERY/LIGHTNING passed, combined run failed",
+    "Continuous reflection/chainGPUsequence, AIplayback installed coverage",
+    "All remainingbattle/environmenteffects/flags/icons and MOD overrides",
+    "Nationalfar120s failures/portblackframe/stability/performance issues inherited v157/158",
+    "PC integrationreference: userforbidsWine, externalvideos onlineonly",
+    "ARMmemory/performance acceptance",
+    "Do not treat publicEngine Fence as GPUcompletion; actualowneradmission/phase/video required",
+    "PhysicalsRGBswapchain finalencodedcompositor branch requiresGPUverification; currentemulator reportsfalse",
+    "sRGBswap outputView viewport/compositiontexture startup also needs pre-beginFrame preparation/independentfirst-raster validation; currentdevice srgbSwap=false cannotacceptARM/sRGBpath."
+  ],
+  "source_snapshot": {
+    "manifest": "out/pc-visual/v159/source-snapshot-first-raster-viewport-manifest.json",
+    "directory": "out/pc-visual/v159/source-snapshot-first-raster-viewport",
+    "file_count": 3511,
+    "bytes": 199601868,
+    "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "includes_inherited_dirty_worktree": true,
+    "includes_pinned_ignored_build_inputs": true,
+    "excludes_toolchain_caches": true,
+    "scope": "Frozenproduction/java/assets/tools matchcurrentfirstwarmviewportAPK; validationdocs canadvance aftersnapshot; older snapshots retained"
+  },
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-source-first.apk",
+      "bytes": 81135535,
+      "sha256": "301260b7a31605077b6970eb4244488de022fa938350eb39b4dfddf583372d0e"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-critical.apk",
+      "bytes": 623691,
+      "sha256": "d719c4c0a93b91f2cf883194d4a37176bd5528d1355b837eec3707163145b8b7"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-source-packaged.apk",
+      "bytes": 81061377,
+      "sha256": "2293ad78c5e5f55d4452c144a3c7ad04e04478630e5e4ba055843dc03f7e5d0f"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-source-packaged.apk",
+      "bytes": 623995,
+      "sha256": "7bc4636ac38492f595009641c69bd4646749d7fbd9899f4311245aaa2b583da5"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-registration.apk",
+      "bytes": 623991,
+      "sha256": "541e01020db8b3e094c3fe3a65137d906a36fb867a9d899f57dd994c22c6a76c"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-continuous.apk",
+      "bytes": 625831,
+      "sha256": "98f1a4f24993505c75ccc8a441a83e22898c66e6b19b23008e4ed0a0814ae133"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-realtime.apk",
+      "bytes": 81062217,
+      "sha256": "99a831d77c97e6c899cba9cc19e2c5a94915bc78925a81e7d4b249358840197d"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-realtime.apk",
+      "bytes": 625831,
+      "sha256": "98f1a4f24993505c75ccc8a441a83e22898c66e6b19b23008e4ed0a0814ae133"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-prewarm.apk",
+      "bytes": 81062205,
+      "sha256": "8189492abe2c4909328e8b8728568de3d346b073e3392f44975fdfc49d90baac"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-prewarm.apk",
+      "bytes": 625831,
+      "sha256": "22258e131a60d02a0af65fa6d329683877d7c4068fee3b69f4dedf21d58f4eeb"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-clock-overlay.apk",
+      "bytes": 81062253,
+      "sha256": "4d0bda6abb03d9f57dee82820727442714188596dd6912f74222ee173610b074"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-owned-recording.apk",
+      "bytes": 626223,
+      "sha256": "2f0be1cbe6bc896fcc8a2a5e51b61675014706deb65e72a65195c408e86d5bf3"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-background-hold.apk",
+      "bytes": 626835,
+      "sha256": "c42f55a39ed8de946bfc87155aa2acc582ccbd0e21672bbc9e2b5a5dc5e18a45"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-batches.apk",
+      "bytes": 626799,
+      "sha256": "4ef5b1ba275822a983631fca43876b00edee2d22cbf85a885e439c67cb743dd4"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-captured-stage.apk",
+      "bytes": 626927,
+      "sha256": "53e1818c09761420a8973762674d3909804d82b66bd20678f88fa0a10c599e88"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-gpu-fence.apk",
+      "bytes": 626475,
+      "sha256": "5b9b499b7d0c5423eda2dc26b9128d446503f349f8323b4ac73f0fd9f2e9d811"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-real-draw-warmup.apk",
+      "bytes": 626835,
+      "sha256": "c42f55a39ed8de946bfc87155aa2acc582ccbd0e21672bbc9e2b5a5dc5e18a45"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-background-hold.apk",
+      "bytes": 81062781,
+      "sha256": "6e290dfb3f52ac6b219f5c99132a5a153e55828075b918d3e03f4a87654e01c6"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-batches.apk",
+      "bytes": 81062753,
+      "sha256": "54e607eaa3c464331adcf5b10042ec3128290c0f34d4924cf7dcd339a023ac85"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-captured-stage.apk",
+      "bytes": 81073578,
+      "sha256": "f24241df4ba9fc2e25227df71b9e3dfe1d11d2bff7ddee527a64de2d0e5a5cb1"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-gpu-fence.apk",
+      "bytes": 81062529,
+      "sha256": "7fbdcb1f6ef172d0a53360ff55de49626bab9d2db4ae50a4dda7368583b14017"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-real-draw-warmup.apk",
+      "bytes": 81063321,
+      "sha256": "0a66ec09b3ae330c34e0fd2e3af4a5615b632b23eb388e62ce528b6d231c4a87"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-cache-color-diagnostics.apk",
+      "bytes": 628327,
+      "sha256": "7353235a9306f3dbdb2f2111a0a610eaf170aded204759482e5b959454a23be1"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-captured-stage-colorcheck.apk",
+      "bytes": 628263,
+      "sha256": "c72a94831096ed23d53f9165594122502ab1d5a3c48a741db8ee110900323543"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-cache-cliptransform.apk",
+      "bytes": 81073798,
+      "sha256": "32df87746183620f485f159d94072767f8e8bfe1a289efd216cde5081dbcfe35"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-cache-color-ultra.apk",
+      "bytes": 81073634,
+      "sha256": "9683d9b00d2744dfb0187130bfff26e8c64f55877ebe0db08a0b83dad01c833f"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-captured-stage-colorcheck.apk",
+      "bytes": 81073634,
+      "sha256": "e08f1f5b7b62b5eb24d51e0feb74da23cca54ba4b31cd3f4e784f805ce2fbc50"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-cache-cliptransform.apk",
+      "bytes": 628655,
+      "sha256": "b1909f5646721b92427f8e01f0ca031940d27272e7f02781f911bde710daa156"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-final-color.apk",
+      "bytes": 81073634,
+      "sha256": "9683d9b00d2744dfb0187130bfff26e8c64f55877ebe0db08a0b83dad01c833f"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-cache-image-diagnostics.apk",
+      "bytes": 629287,
+      "sha256": "39f9ddaf7e2d74d4eb7734e73516f712cdbfaa95d2bf0103c92c3b1ac899212d"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-stage-visible-barrier.apk",
+      "bytes": 628719,
+      "sha256": "b2859038d4130a3bce1c4beb509725582208c0d40aa689206751bb172c796d3a"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-cache-image-diagnostics.apk",
+      "bytes": 81073670,
+      "sha256": "9c7b8671d75301221a4121d9cff862156aca6565d51f06e58b86dff018645dc4"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-stage-visible-barrier.apk",
+      "bytes": 81073650,
+      "sha256": "7ee93d66f3739b0bb9fd6fd1c5cf3899b03a09ffec9d65d940c9b761fd8687bd"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-encoded-stage.apk",
+      "bytes": 81087759,
+      "sha256": "18bf35228bf97bfd245922b7dfd0e6613bb9383348e706d2f3515888da1c2fac"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-encoded-stage.apk",
+      "bytes": 629287,
+      "sha256": "39f9ddaf7e2d74d4eb7734e73516f712cdbfaa95d2bf0103c92c3b1ac899212d"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-magic-750ms.apk",
+      "bytes": 81504014,
+      "sha256": "c5546968c61f25785663b5a9bede6175a0da1cb1648770ae6b56b38d436413e0"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-magic-750ms.apk",
+      "bytes": 629767,
+      "sha256": "08e9327be02c61ce3b7d4b3701ea0459982630dae29e22f1dd1cf10fc73e9a0c"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-magic-lifecycle.apk",
+      "bytes": 629911,
+      "sha256": "d7767ded15b4803653c9f0dd279842b7462923c2d1b8ecca8bccdf8c0aebbf6b"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-magic-lifecycle-submitted.apk",
+      "bytes": 630339,
+      "sha256": "2fa049e67978c1007dedc2dbf42d19196bfb701fea955fd95dcdd08fb9ea7d47"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-magic-targeted.apk",
+      "bytes": 630579,
+      "sha256": "bf138dc3a848464ca24ad5ee54ed9ad4d6f39fc14ec0aca4c9ff039f5d4517b0"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-viewport-recapture.apk",
+      "bytes": 81505526,
+      "sha256": "abc7db799cbd4567fd8cd7cf4cbfb3b39978ab8c5f03314371fcd9a5493dfce1",
+      "role": "Installed viewport-recapture strictall284 candidate; production GPU diagnostic disabled unless explicit test observer"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-viewport-no-readback.apk",
+      "bytes": 631267,
+      "sha256": "9e8efc18432a70c3e88125f094e77870767d4c98dbca4e5b9b1a3cd4b8c387c9",
+      "role": "Installed viewport-recapture strictall284 candidate; production GPU diagnostic disabled unless explicit test observer"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-viewport-feedback.apk",
+      "bytes": 81505514,
+      "sha256": "542bd058fb9080da879d5c06bbf85aedb694dd8ea75787e27ad72a5f2122e297",
+      "role": "Historicalcandidate: Current installed build: viewport-recapture plus localized impassable terrain feedback; fresh emulator continuous verification pending"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-viewport-feedback.apk",
+      "bytes": 631243,
+      "sha256": "39db69a12a8ecfbaf6c11af5879af66ce586bb5be75ea5f174d78d63371ffd66",
+      "role": "Historicalcandidate: Current installed build: viewport-recapture plus localized impassable terrain feedback; fresh emulator continuous verification pending"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-submission-clock.apk",
+      "bytes": 81506474,
+      "sha256": "be7b2b5297ff305dc99198bd339bc3ecea50ba980b4f30e8d72ae33eb7f1ac5d",
+      "role": "Historicalclockonly: continuous14effectiveframes/peak90, durationFAIL1877ms, actualportraitvideo inspected; noindependentdepthfix"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-submission-clock.apk",
+      "bytes": 631571,
+      "sha256": "e33c8b1961da9892c054eac2543b2a0ac7fcf65e580fec543ba70e57f934524b",
+      "role": "Source submission clock/depth candidate; exact role/test result invalidation; fullgoal incomplete"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-submission-depth.apk",
+      "bytes": 81507106,
+      "sha256": "1b14d0db8e3f578827977e3124c3cf184890a006ba06e6590ed766c6cd3940f5",
+      "role": "HistoricalFAILEDloadingtransition candidate; noGPUcameraacceptance"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-submission-depth.apk",
+      "bytes": 631571,
+      "sha256": "e33c8b1961da9892c054eac2543b2a0ac7fcf65e580fec543ba70e57f934524b",
+      "role": "Source submission clock/depth candidate; exact role/test result invalidation; fullgoal incomplete"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-submission-depth-camera.apk",
+      "bytes": 632143,
+      "sha256": "1998ea01e14461bf938f67588adabadfc7cf0a37beedcfc534402d4b855a037e",
+      "role": "Source submission clock/depth candidate; exact role/test result invalidation; fullgoal incomplete"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-depth-loading-overlay.apk",
+      "bytes": 81507398,
+      "sha256": "13201ebb72235a38c4702be0f5cdd66aeda27470efe04fc8b35366a04f0dda93",
+      "role": "InstalledPASS136/PASS76 native submission checks; continuousGuanYurecording missingcriticalpixels; notdynamicacceptance"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-depth-loading-overlay.apk",
+      "bytes": 632143,
+      "sha256": "1998ea01e14461bf938f67588adabadfc7cf0a37beedcfc534402d4b855a037e",
+      "role": "Same exactpair tests136/76; reports scopeexcludes PC/MOD/ARM"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-depth-composition-pulse.apk",
+      "bytes": 81507374,
+      "sha256": "6db60884f81c52e981ae50d1ce516f3a57ad7fe0269eec069d02bad495562b10",
+      "role": "Historicalcandidate: Current installed source-depth/loadingfix plus admittedWindowcomposition; verificationpending"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-depth-composition-pulse.apk",
+      "bytes": 632143,
+      "sha256": "1998ea01e14461bf938f67588adabadfc7cf0a37beedcfc534402d4b855a037e",
+      "role": "Historicalcandidate: Current installed source-depth camera/assertions plus realcommandcontinuoussuite"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-depth-window-live.apk",
+      "bytes": 81507390,
+      "sha256": "7ca4adee1518c031b80d5b96f529efbb68abea7d5f942ec3f37b984a14f4b183",
+      "role": "Historicalcandidate: Currentinstalled source-depth/loadingguard plus restored originalWindowrefresh; trialpending; fullscopeunaccepted"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-depth-window-live.apk",
+      "bytes": 632143,
+      "sha256": "1998ea01e14461bf938f67588adabadfc7cf0a37beedcfc534402d4b855a037e",
+      "role": "Historicalcandidate: Samecurrent installedrealcommand/camera/authority testpair"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-depth-first-stage-diagnostic.apk",
+      "bytes": 81507382,
+      "sha256": "befd95174692e1b7d0135131df921b5d559431293ddcb2c797443ac03ca845e6",
+      "role": "Historicaldiagnosticbeforefirstflash repair: PASS127existingassertions, firstGPU4colorclamp confirmed"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-depth-first-stage-diagnostic.apk",
+      "bytes": 632143,
+      "sha256": "1998ea01e14461bf938f67588adabadfc7cf0a37beedcfc534402d4b855a037e",
+      "role": "Historicaldiagnosticbeforefirstflash repair: PASS127existingassertions, firstGPU4colorclamp confirmed"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-critical-first-raster-viewport.apk",
+      "bytes": 81507418,
+      "sha256": "a00194f6cd678e986e761962b37fe11a57bccc75b2244784d7ad8b2920c3668c",
+      "role": "CurrentinstalledstageAPK: PASS129firstGPUfullpixel0 + PASS81all3normalcontinuousauthority/RNG; actualsourcevideosreviewed; fullscopePC/MOD/ARM/performanceunaccepted"
+    },
+    {
+      "path": "out/pc-visual/v159/app-debug-androidTest-first-raster-viewport.apk",
+      "bytes": 633011,
+      "sha256": "a7c4bf671195698222e95b06ad2c403e242157c51187c7a07e0d7fc963fd6cbd",
+      "role": "Currenttestpair: strictfirstGPU/pause/lifecycle andall3continuousnormalcommands; results129/81; freshdiagnosticfiles required"
+    }
+  ],
+  "evidence_correction": {
+    "tools": [
+      "tools/content/scan_video_frames.swift",
+      "tools/content/decode_video_frames.swift"
+    ],
+    "finding": "AVAssetImageGenerator randomseeks at1.6s returnedmap-onlypixels, butAVAssetReader sequential actualsamplePTS1.5925 containsGuanYuportrait. PrioractualPCdynamicconclusionsbasedonlyonrandomseek need re-evaluation. Rawvideos/logs retained; decoder nowsequentiallyselects nearest actualPTS; freshdirectories only. NoAI/modificationofsourcepixels.",
+    "verified": "Windowpulse 70actualsamples/first3s contact-sheet viewed; restoredWindow30samples/first4s viewed. Selectedsequentialpixels checkedagainstfullsampledecode.",
+    "pixel_proof": {
+      "pts_seconds": 1.5925,
+      "sequential_selected_png_sha256": "030b78297e3d6fdb5c8b15d754120ca7c707a2cd675607e5c38509e4252cf523",
+      "all_sample_png_sha256": "030b78297e3d6fdb5c8b15d754120ca7c707a2cd675607e5c38509e4252cf523",
+      "old_random_seek_png_sha256": "a6787e411ec216ed30cfb81c5c4e7da0ed8ae0673c426ed2682cbb26ebb2f444",
+      "portrait_verified": true,
+      "note": "SameactualPTS/binarydifferentpixels; fullsequentialandnewselectedexactmatch. Originalvideo unchanged."
+    }
+  },
+  "historical_source_snapshots": [
+    {
+      "manifest": "out/pc-visual/v159/source-snapshot-viewport-feedback-manifest.json",
+      "directory": "out/pc-visual/v159/source-snapshot-viewport-feedback",
+      "file_count": 3508,
+      "bytes": 199548600,
+      "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+      "includes_inherited_dirty_worktree": true,
+      "includes_pinned_ignored_build_inputs": true,
+      "excludes_toolchain_caches": true,
+      "scope": "Production/java/assets/tools atinstalledviewportfeedbackcandidate; validationdocs canadvance aftersnapshot. Oldstage3495file snapshot preserved separately."
+    }
+  ]
+}

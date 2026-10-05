@@ -1,0 +1,284 @@
+{
+  "rows": [
+    {
+      "run": "infantry30-thrust-49",
+      "tactic": "THRUST",
+      "nativeTacticId": 0,
+      "nativeSoundId": 49,
+      "seconds": 15.0,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ]
+    },
+    {
+      "run": "infantry30-thrust-78",
+      "tactic": "THRUST",
+      "nativeTacticId": 0,
+      "nativeSoundId": 78,
+      "seconds": 16.26,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ]
+    },
+    {
+      "run": "infantry30-spiral-49",
+      "tactic": "SPIRAL",
+      "nativeTacticId": 1,
+      "nativeSoundId": 49,
+      "seconds": 18.15,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047663,
+        0.9999995315147966
+      ]
+    },
+    {
+      "run": "infantry30-spiral-78",
+      "tactic": "SPIRAL",
+      "nativeTacticId": 1,
+      "nativeSoundId": 78,
+      "seconds": 17.35,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ]
+    },
+    {
+      "run": "infantry30-double_thrust-49",
+      "tactic": "DOUBLE_THRUST",
+      "nativeTacticId": 2,
+      "nativeSoundId": 49,
+      "seconds": 19.15,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995904185194,
+      "independentCorrelations": [
+        0.9999881383893392,
+        0.9999995755027702
+      ]
+    },
+    {
+      "run": "infantry30-double_thrust-78",
+      "tactic": "DOUBLE_THRUST",
+      "nativeTacticId": 2,
+      "nativeSoundId": 78,
+      "seconds": 19.11,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997257466406,
+      "independentCorrelations": [
+        0.9999993693113846,
+        0.9999995465393436
+      ]
+    },
+    {
+      "run": "infantry30-hook-49",
+      "tactic": "HOOK",
+      "nativeTacticId": 3,
+      "nativeSoundId": 49,
+      "seconds": 18.43,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ]
+    },
+    {
+      "run": "infantry30-hook-78",
+      "tactic": "HOOK",
+      "nativeTacticId": 3,
+      "nativeSoundId": 78,
+      "seconds": 16.24,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ]
+    },
+    {
+      "run": "infantry30-sweep-49",
+      "tactic": "SWEEP",
+      "nativeTacticId": 4,
+      "nativeSoundId": 49,
+      "seconds": 19.77,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ]
+    },
+    {
+      "run": "infantry30-sweep-78",
+      "tactic": "SWEEP",
+      "nativeTacticId": 4,
+      "nativeSoundId": 78,
+      "seconds": 18.23,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997560408419,
+      "independentCorrelations": [
+        0.9999993924470091,
+        0.999999563131116
+      ]
+    },
+    {
+      "run": "infantry30-whirlwind-49",
+      "tactic": "WHIRLWIND",
+      "nativeTacticId": 5,
+      "nativeSoundId": 49,
+      "seconds": 15.12,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ]
+    },
+    {
+      "run": "infantry30-whirlwind-78",
+      "tactic": "WHIRLWIND",
+      "nativeTacticId": 5,
+      "nativeSoundId": 78,
+      "seconds": 17.75,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997257466406,
+      "independentCorrelations": [
+        0.9999993693113846,
+        0.9999995465393436
+      ]
+    },
+    {
+      "run": "infantry30-fire_arrow-49",
+      "tactic": "FIRE_ARROW",
+      "nativeTacticId": 6,
+      "nativeSoundId": 49,
+      "seconds": 15.2,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995515494575,
+      "independentCorrelations": [
+        0.9999870246978995,
+        0.9999995355002016
+      ]
+    },
+    {
+      "run": "infantry30-fire_arrow-78",
+      "tactic": "FIRE_ARROW",
+      "nativeTacticId": 6,
+      "nativeSoundId": 78,
+      "seconds": 17.59,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997257466406,
+      "independentCorrelations": [
+        0.9999993693113843,
+        0.9999995465393435
+      ]
+    },
+    {
+      "run": "infantry30-pierce-49",
+      "tactic": "PIERCE",
+      "nativeTacticId": 7,
+      "nativeSoundId": 49,
+      "seconds": 17.89,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047662,
+        0.9999995315147966
+      ]
+    },
+    {
+      "run": "infantry30-pierce-78",
+      "tactic": "PIERCE",
+      "nativeTacticId": 7,
+      "nativeSoundId": 78,
+      "seconds": 47.44,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997214978898,
+      "independentCorrelations": [
+        0.9999993403206858,
+        0.9999995257451634
+      ]
+    },
+    {
+      "run": "infantry30-volley-49",
+      "tactic": "VOLLEY",
+      "nativeTacticId": 8,
+      "nativeSoundId": 49,
+      "seconds": 54.26,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999995482921983,
+      "independentCorrelations": [
+        0.9999869103047662,
+        0.9999995315147966
+      ]
+    },
+    {
+      "run": "infantry30-volley-78",
+      "tactic": "VOLLEY",
+      "nativeTacticId": 8,
+      "nativeSoundId": 78,
+      "seconds": 51.64,
+      "installedSha256": "b99bb498560204b172147fee9e4ef703a585f0eec8dc2d8d79b13765d0105b34",
+      "installedTestSha256": "14a0562259ca576448ffc24d92adab0c3b9668016e508aed0b4b82412eea4a45",
+      "restoredByteEqual": true,
+      "jointCorrelation": 0.9999997318891273,
+      "independentCorrelations": [
+        0.9999993436782684,
+        0.9999995281052065
+      ]
+    }
+  ],
+  "complete": true,
+  "scope": "Explicit prepared combat fixture, visible normal command, native hit branches only; not PC timing, native58, normal voice or full audio restoration",
+  "applicationSource": "d42e6d201bcc4e664693d079a1740fd89e47a632",
+  "positiveCases": 18,
+  "minimumJointCorrelation": 0.9999995482921983,
+  "minimumIndependentCorrelation": 0.9999869103047662,
+  "allOriginalFilesByteEqual": true,
+  "noRetriesThisMatrix": true,
+  "armEvidence": false,
+  "fullRestorationComplete": false
+}

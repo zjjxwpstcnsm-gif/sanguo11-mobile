@@ -1,0 +1,85 @@
+{
+  "status": "CLOSED_UNACCEPTED_EXPERIMENT",
+  "failedRuns": [
+    {
+      "serial": "emulator-5582",
+      "runner": "UiUxInstrumentation",
+      "arguments": [
+        "suite=audio",
+        "menuMusic=1",
+        "run=menu-android-mix-installed-32"
+      ],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug.apk": "bd9d1fe96a01fab1404cfc67140192680d7e2768efac25eb38eef71cf2b5d7b2",
+        "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug-androidTest.apk": "96d6fc53c255619e5b2414743d0c05e3e902f501e494f4360aa29208221d657a"
+      },
+      "passed": false,
+      "stage": "installed_readback",
+      "reused_installed": false,
+      "apk_readback_method": "whole-file-sha256-on-device",
+      "installed_test_sha256": "96d6fc53c255619e5b2414743d0c05e3e902f501e494f4360aa29208221d657a",
+      "installed_sha256": "bd9d1fe96a01fab1404cfc67140192680d7e2768efac25eb38eef71cf2b5d7b2",
+      "exception": {
+        "type": "ValueError",
+        "message": "Unexamined test recording permission state"
+      },
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      },
+      "failedExperimentalBranch": "codex/portrait-audio-restoration-integration",
+      "experimentHead": "28fb10fd524afeadeb2ea78ee90b9caf5e50c4b8",
+      "mainImplementationExcluded": true
+    },
+    {
+      "serial": "emulator-5582",
+      "runner": "UiUxInstrumentation",
+      "arguments": [
+        "suite=audio",
+        "menuMusic=1",
+        "run=menu-android-mix-installed-32-r1"
+      ],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug.apk": "bd9d1fe96a01fab1404cfc67140192680d7e2768efac25eb38eef71cf2b5d7b2",
+        "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug-androidTest.apk": "96d6fc53c255619e5b2414743d0c05e3e902f501e494f4360aa29208221d657a"
+      },
+      "passed": false,
+      "stage": "installed_readback",
+      "reused_installed": true,
+      "apk_readback_method": "whole-file-sha256-on-device",
+      "installed_test_sha256": "96d6fc53c255619e5b2414743d0c05e3e902f501e494f4360aa29208221d657a",
+      "installed_sha256": "bd9d1fe96a01fab1404cfc67140192680d7e2768efac25eb38eef71cf2b5d7b2",
+      "exception": {
+        "type": "JSONDecodeError",
+        "message": "Expecting value: line 1 column 1 (char 0)"
+      },
+      "androidCaptureException": "Command '['/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb', '-s', 'emulator-5582', 'shell', 'am', 'stopservice', '-n', 'game.sanguo.mobile.dev.test/game.sanguo.mobile.AndroidMixCaptureService']' returned non-zero exit status 255.",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      },
+      "failedExperimentalBranch": "codex/portrait-audio-restoration-integration",
+      "experimentHead": "28fb10fd524afeadeb2ea78ee90b9caf5e50c4b8",
+      "mainImplementationExcluded": true
+    }
+  ],
+  "nativeLogs": {
+    "android-capture-startup-32-r1-logcat.txt": "--------- beginning of main\n--------- beginning of system\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: Measurement failed\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: java.lang.IllegalStateException: Record not initialized\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: \tat game.sanguo.mobile.AndroidMixCaptureService.measure(AndroidMixCaptureService.java:93)\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: \tat game.sanguo.mobile.AndroidMixCaptureService.lambda$onStartCommand$0(AndroidMixCaptureService.java:59)\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: \tat game.sanguo.mobile.AndroidMixCaptureService.$r8$lambda$WEdZsP9lz2X6uzLoGfNCmYXgvhM(AndroidMixCaptureService.java:0)\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: \tat game.sanguo.mobile.AndroidMixCaptureService$$ExternalSyntheticLambda6.run(R8$$SyntheticClass:0)\n10-05 20:45:30.875 17818 17889 E AndroidMixCapture: \tat java.lang.Thread.run(Thread.java:919)\n",
+    "android-capture-native-32-r1-logcat.txt": "--------- beginning of main\n--------- beginning of system\n10-05 20:45:30.868  1722  2637 E AudioFlinger: createRecord() getInputForAttr return error -22\n10-05 20:45:30.868 17818 17889 E AudioRecord: createRecord_l(0): AudioFlinger could not create record track, status: -22\n10-05 20:45:30.871 17818 17889 E AudioRecord-JNI: Error creating AudioRecord instance: initialization check failed with status -22.\n"
+  },
+  "manualRollback": {
+    "projectionAfter": "null",
+    "recordPermissionGranted": false,
+    "recordPermissionRequestedBeforeRestoring31": true,
+    "appOpModeAfter": "default",
+    "productionUserFilesByteEqual": true
+  },
+  "scope": "Both attempts stopped before normal music instrumentation; no captured normal mix/whole music pass; native -22 cause not established",
+  "furtherRestorationStoppedAtUserRequest": true
+}

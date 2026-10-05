@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "nativeReportSha256": "00836f2843a659e42c423388f5e360ac5e3acfd8dceb3e531ccc626fe22f64e3",
+  "vectors": 4020,
+  "paths": {
+    "game-api/src/main/java/game/sanguo/api/StateToken.java": "028cab35b04551f93c4d94f2c51069c1a680db8072d1687da582e1cfe376a590",
+    "app/src/main/java/game/sanguo/mobile/MediaHashes.java": "b3287d010a7e83226c2c5d8644b30a3da84e2d1ec34b05884a4b73c33e846a0e",
+    "app/src/main/java/game/sanguo/mobile/PortraitMediaIdentity.java": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126",
+    "app/src/main/java/game/sanguo/mobile/PcVoicePolicy.java": "0f36915ee7c20cab7ee7d961d35a4938d2f006761efee9a0f30af48860a9b002",
+    "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java": "7a7d876c06f05f91b553838c70ad3a059b1c168e9bebe822551faf0d19bb6aa1",
+    "app/src/test/java/game/sanguo/mobile/PcCommittedVoiceValidityTest.java": "b70b7b66cf6543a4133534ef6cdfd443145dea68c34ce7fd9092531547e86b67"
+  },
+  "scope": "Host actual production actor-validity/directive admission, no normal voice or Android playback assertion"
+}

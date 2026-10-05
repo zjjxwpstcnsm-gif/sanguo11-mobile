@@ -1,0 +1,132 @@
+{
+  "base": "2445fe79cf3ee91a4c9a3ddf94c1f33586e524c8",
+  "sourceCommit": "d7d94c308cffe234a2af83f96e294bf55d8e01ae",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "8597f11e27262d7e8db48a820ba9e2de51434e53c1f302a2345cc36e9b01e67a",
+      "afterSha256": "93b18bf816dbf16d26d1c0f9c3073ea3e772dc35471298347e999cf5a749b802",
+      "bytes": 202400
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "d6c9b54d85d966df32459ab93e862cc6ad7cbc3a4c877e24fba8496650c2bf63",
+      "afterSha256": "89a3c972c2709f75fef9751907162ccacace16356b8325f549d5f001d90eb7dc",
+      "bytes": 148912
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaVolumeControls.java",
+      "beforeSha256": null,
+      "afterSha256": "f9140b003fc0abca34df542bf56b71f26f986362ac861a09c114e89b97cc6831",
+      "bytes": 1654
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMediaPlayback.java",
+      "beforeSha256": "deb54d0c13e343e96a543461e4c29b83e7a4c5a895039e8e626d055772cf4a5e",
+      "afterSha256": "6d1cf1c861b37f4350751d0e4676a652684ad21b12a01fc6ccc743a764b54729",
+      "bytes": 9268
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "beforeSha256": "dfd5853241809eb38c91d3c80bd57224f66bd2bfc0a4e8dc0bc5b4b856f494a7",
+      "afterSha256": "3e444226f65224f48fe285881b528fdd606937adc7d5d7fb344d9b7fcc52e97b",
+      "bytes": 9463
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "1bbf6e7459e27e21aaf64158527bcddc18aee75e2af6c6f09f35ad87cd927198",
+      "afterSha256": "16c422b3c0a8b01901397aa6f459272ba58f6f3895b9a9d4fbf8c56a7fce40ca",
+      "bytes": 12918
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_VOLUME_HOST_PATCH_25.md",
+      "beforeSha256": null,
+      "afterSha256": "682e0da204a49787a763abd0b70f6198c3b8012289c88c3b897e32ac2274c658",
+      "bytes": 850
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_MUSIC_HOST_PATCH_25.md",
+      "beforeSha256": null,
+      "afterSha256": "91fb201132627ff8eda6ce6b54c10432e94fe682d95a8977ab40339f9348fadb",
+      "bytes": 1201
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_MUSIC_INSTALLED_25.json",
+      "beforeSha256": null,
+      "afterSha256": "35074de9f9e6c146f8f27941717a498efa4678e3d6021fb177147910773c34d4",
+      "bytes": 24434
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_MUSIC_INSTALLED_25.md",
+      "beforeSha256": null,
+      "afterSha256": "4e78d4be3dc37d84f43da87a61e1cf28eef7ba6d465b3a07b7871acbbd23e6c7",
+      "bytes": 3027
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-audible-segments.json",
+      "beforeSha256": null,
+      "afterSha256": "05cf20bcf734998c8d32efd5b88fd77e1d1366c1250b1e1dc53c5136d83b89e6",
+      "bytes": 1665
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-installed.txt",
+      "beforeSha256": null,
+      "afterSha256": "530d54ce436a9b1f7a1d3471245c68ba18bbd76e73adece0523ac838b8b85018",
+      "bytes": 3351
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-mix.wav",
+      "beforeSha256": null,
+      "afterSha256": "6c456529f78417f8116a536b878faa084985c0695cafe3e5564e4ee9f62a3c8c",
+      "bytes": 19447852
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "efc23ef2d1240665be32c6598c0de24319f7577ac19080473545629755e84d0e",
+      "bytes": 419
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-playing.png",
+      "beforeSha256": null,
+      "afterSha256": "dcd92ea9eea1090b80fb0d32ad69a31fff4ede9648539d65e8de13bc1482ef76",
+      "bytes": 407542
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-scene.json",
+      "beforeSha256": null,
+      "afterSha256": "38a869459a5318b402f13cefdb6f7a6b999dfaae0d7a34fc13a8a4e8a026541a",
+      "bytes": 470
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-whole-waveform-failure.txt",
+      "beforeSha256": null,
+      "afterSha256": "501101fba2fd90bb0174e6ad3da483556a7c0a42042f3ec3b22a74b9ebd08368",
+      "bytes": 920
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-native-25.json",
+      "beforeSha256": null,
+      "afterSha256": "f5cc5a0334b8046424d5eac591486ed049b8c70588cbeb8e884ebc3159574e2a",
+      "bytes": 8414
+    },
+    {
+      "path": "tools/audio/check_pc_menu_music_segments.py",
+      "beforeSha256": null,
+      "afterSha256": "6fa027e31fb12f085ddba8a600e07bfdb7a70f76995230700f9c889c3f7090c2",
+      "bytes": 3705
+    },
+    {
+      "path": "tools/audio/inspect_pc_menu_music.py",
+      "beforeSha256": null,
+      "afterSha256": "b7b7309894063ca84fda8a23f695efdc1b852f23243ddf7ff4ec34e14bfafafa",
+      "bytes": 6073
+    }
+  ],
+  "ruleApiRuntimeMetadataUnchanged": true,
+  "sharedEntryContracts": [
+    "MENU_MUSIC_HOST_PATCH_25.md",
+    "MEDIA_VOLUME_HOST_PATCH_25.md"
+  ],
+  "goalComplete": false
+}

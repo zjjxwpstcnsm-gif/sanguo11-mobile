@@ -13,7 +13,10 @@ public final class GovernmentTest {
         byte[] before=bytes(w);check(!command.get().ok,"command rejected");check(Arrays.equals(before,bytes(w)),"rejection preserves complete state and RNG");
     }
     static World world(){
-        World w=new World(18,12,"甲","乙","丙");
+        // The city at17,6 owns seven cells, including column18. Keep its
+        // complete footprint inside this fixture without changing battle
+        // positions, officers, resources or any outcome/save assertion.
+        World w=new World(20,12,"甲","乙","丙");
         w.cities.add(new World.City(0,"甲城",new Hex(1,1),0));w.cities.add(new World.City(1,"后方",new Hex(2,9),0));
         w.cities.add(new World.City(2,"乙城",new Hex(14,1),1));w.cities.add(new World.City(3,"乙后方",new Hex(14,9),1));
         w.cities.add(new World.City(4,"丙城",new Hex(17,6),2));
@@ -101,7 +104,7 @@ public final class GovernmentTest {
         refresh(w);ok(w.government.summon(1,2));check(w.domestic.busy(2)&&w.officer(2).cityId==-1,"summon is a real travel mission");
         rejected(w,()->w.government.summon(1,2));
         refresh(w);ok(w.government.delegate(0,0,Government.Policy.ECONOMY));int gold=w.city(0).gold,ap=w.actionPoints[0];w.government.runDelegated();
-        check(w.domestic.facilities.size()==1&&w.city(0).gold<gold&&w.actionPoints[0]==ap-10,"delegation spends real resources and AP");
+        check(w.domestic.facilities.size()==1&&w.city(0).gold==gold-200&&w.actionPoints[0]==ap-20&&w.domestic.facilities.get(0).level==1,"delegation spends real resources and AP");
         World c=copy(w);check(c.government.policy(0)==Government.Policy.ECONOMY&&c.government.advisor(0).id==1,"administration persists");
         w.government.allegianceChanged(1);check(w.government.advisor(0)==null,"office cleared on allegiance change");
     }

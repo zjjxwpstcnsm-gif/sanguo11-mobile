@@ -1,0 +1,162 @@
+{
+  "status": "MEASURED_DIAGNOSTIC",
+  "sampleRate": 44100,
+  "scope": "Independent fixed windows in unchanged PCM; no continuity pass or responsible component attribution",
+  "captureSha256": "9050149d7eb0b64c0a4f0d556fdd0edf5b352a51596b98fa4a2d668c5582490e",
+  "referenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+  "rows": [
+    {
+      "referenceSeconds": 5,
+      "frames": 88200,
+      "captureSample": 296674,
+      "offsetSamples": 76174,
+      "correlation": 0.9978676997589986,
+      "gain": 0.01621973225276205,
+      "reliableOffset": false
+    },
+    {
+      "referenceSeconds": 10,
+      "frames": 88200,
+      "captureSample": 517174,
+      "offsetSamples": 76174,
+      "correlation": 0.9999946050163961,
+      "gain": 0.015368823878641594,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 15,
+      "frames": 88200,
+      "captureSample": 737674,
+      "offsetSamples": 76174,
+      "correlation": 0.9999926994988505,
+      "gain": 0.015368999331784306,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 20,
+      "frames": 88200,
+      "captureSample": 958174,
+      "offsetSamples": 76174,
+      "correlation": 0.9999978978047259,
+      "gain": 0.015369079802236696,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 25,
+      "frames": 88200,
+      "captureSample": 1178674,
+      "offsetSamples": 76174,
+      "correlation": 0.9999988020938331,
+      "gain": 0.015369051584025356,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 30,
+      "frames": 88200,
+      "captureSample": 1398509,
+      "offsetSamples": 75509,
+      "correlation": 0.7070467120678906,
+      "gain": 0.010897126722916178,
+      "reliableOffset": false
+    },
+    {
+      "referenceSeconds": 35,
+      "frames": 88200,
+      "captureSample": 1619013,
+      "offsetSamples": 75513,
+      "correlation": 0.9999989660239358,
+      "gain": 0.01536915965514588,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 40,
+      "frames": 88200,
+      "captureSample": 1839513,
+      "offsetSamples": 75513,
+      "correlation": 0.9999989354294985,
+      "gain": 0.015369111342157987,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 45,
+      "frames": 88200,
+      "captureSample": 2059352,
+      "offsetSamples": 74852,
+      "correlation": 0.9999992030976035,
+      "gain": 0.015368937200389744,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 50,
+      "frames": 88200,
+      "captureSample": 2279852,
+      "offsetSamples": 74852,
+      "correlation": 0.9999930973937508,
+      "gain": 0.015369137294112276,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 55,
+      "frames": 88200,
+      "captureSample": 2500352,
+      "offsetSamples": 74852,
+      "correlation": 0.9789903509519423,
+      "gain": 0.014965329942905448,
+      "reliableOffset": false
+    },
+    {
+      "referenceSeconds": 60,
+      "frames": 88200,
+      "captureSample": 2716284,
+      "offsetSamples": 70284,
+      "correlation": 0.9999982325609283,
+      "gain": 0.01536900818722668,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 65,
+      "frames": 88200,
+      "captureSample": 2937523,
+      "offsetSamples": 71023,
+      "correlation": 0.9999920558886349,
+      "gain": 0.015368456340410995,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 70,
+      "frames": 88200,
+      "captureSample": 3156915,
+      "offsetSamples": 69915,
+      "correlation": 0.3872600949034129,
+      "gain": 0.005940304683463365,
+      "reliableOffset": false
+    },
+    {
+      "referenceSeconds": 75,
+      "frames": 88200,
+      "captureSample": 3376003,
+      "offsetSamples": 68503,
+      "correlation": 0.7055600818454836,
+      "gain": 0.010850478703730399,
+      "reliableOffset": false
+    },
+    {
+      "referenceSeconds": 80,
+      "frames": 88200,
+      "captureSample": 3596516,
+      "offsetSamples": 68516,
+      "correlation": 0.9999954153409313,
+      "gain": 0.015368823725122483,
+      "reliableOffset": true
+    },
+    {
+      "referenceSeconds": 85,
+      "frames": 88200,
+      "captureSample": 3817142,
+      "offsetSamples": 68642,
+      "correlation": 0.8707317772267129,
+      "gain": 0.013395833161718076,
+      "reliableOffset": false
+    }
+  ]
+}

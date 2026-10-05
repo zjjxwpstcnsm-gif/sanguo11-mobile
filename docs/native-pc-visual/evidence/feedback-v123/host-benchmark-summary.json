@@ -1,0 +1,27 @@
+{
+  "baseline": {
+    "site_decode": {
+      "allocated_bytes": 7611904,
+      "thread_cpu_ns": 3151843,
+      "wall_ns": 3256151
+    },
+    "cavalry_pose": {
+      "allocated_bytes": 351592,
+      "thread_cpu_ns": 207998,
+      "wall_ns": 208081
+    }
+  },
+  "candidate": {
+    "site_decode": {
+      "allocated_bytes": 4187896,
+      "thread_cpu_ns": 3000315,
+      "wall_ns": 3184445
+    },
+    "cavalry_pose": {
+      "allocated_bytes": 183800,
+      "thread_cpu_ns": 486570,
+      "wall_ns": 497874
+    }
+  },
+  "limitation": "Same Linux host/JDK17; 500 warmups, five samples of 500 calls, sequential runs. CPU timing is variable; candidate pose median slower. Allocation reduction is supported; frame-rate gain is NOT proven."
+}

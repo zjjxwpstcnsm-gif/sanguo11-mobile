@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "source": "san11pk.exe",
+  "sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "table_offset": 4913368,
+  "table_sha256": "e58c165b0d77fdb1bd133f535b53bb201c61b2a8afcace24a9d87a06805a7b98",
+  "entries": [
+    {
+      "id": 0,
+      "label": "草地",
+      "pointer_va": "0x7ed1d8",
+      "label_bytes_sha256": "0b32e41d0e9cfa80fc6da70680a7fcf870b15f62ad209f425e47bced0c8d4f43",
+      "mobile_code": "P"
+    },
+    {
+      "id": 1,
+      "label": "土",
+      "pointer_va": "0x7ed1d4",
+      "label_bytes_sha256": "9aaa47be42ee43f6c324ff5f71945f45808c217257584ee01bce7ec389bd897d",
+      "mobile_code": "P"
+    },
+    {
+      "id": 2,
+      "label": "砂地",
+      "pointer_va": "0x7ed1cc",
+      "label_bytes_sha256": "83bc9083bf711789f80b22495ed35e84f26946cdec4a808cf0114c49f061f42d",
+      "mobile_code": "A"
+    },
+    {
+      "id": 3,
+      "label": "濕地",
+      "pointer_va": "0x7ed1c4",
+      "label_bytes_sha256": "37f10f8b6d27f89086524403ae8d8bb960313499124d11b052a7e140c7dd14fd",
+      "mobile_code": "Z"
+    },
+    {
+      "id": 4,
+      "label": "毒泉",
+      "pointer_va": "0x7ed1bc",
+      "label_bytes_sha256": "296a7eb407682950eae396355836cc8eb4b7b53a006d8f06f2aaed5e7ea85bd6",
+      "mobile_code": "X"
+    },
+    {
+      "id": 5,
+      "label": "森",
+      "pointer_va": "0x7ed1b8",
+      "label_bytes_sha256": "e504ed7fb721000a605bf2ca4cb5c9b8c8af89d505e6960606b650af4dcf2f4a",
+      "mobile_code": "F"
+    },
+    {
+      "id": 6,
+      "label": "川",
+      "pointer_va": "0x7ed1b4",
+      "label_bytes_sha256": "6565fa07fd46cd152d1da88f961232a208dfbc7a12aefd66a685f03b207dc39b",
+      "mobile_code": "Q"
+    },
+    {
+      "id": 7,
+      "label": "河",
+      "pointer_va": "0x7ed1b0",
+      "label_bytes_sha256": "97f3147c1b30cbc25d556db723021c008895cf3c2ad7a697a7df2f41ef939ca4",
+      "mobile_code": "W"
+    },
+    {
+      "id": 8,
+      "label": "海",
+      "pointer_va": "0x7ed1ac",
+      "label_bytes_sha256": "0f4fdc6db10ccf3f46f1ed033106125cec33166dabee80cdfe0daf259516b4ff",
+      "mobile_code": "O"
+    },
+    {
+      "id": 9,
+      "label": "荒地",
+      "pointer_va": "0x7ed1a4",
+      "label_bytes_sha256": "c894380420d7edd508cbf05bccb1bf098584ae457e52c8fab5b2e64c1b5e05b8",
+      "mobile_code": "P"
+    },
+    {
+      "id": 10,
+      "label": "主徑",
+      "pointer_va": "0x7ed19c",
+      "label_bytes_sha256": "042f4c8c1dd8eefa440288e94a949e1361b587887ada26ccd79a79c64d82c197",
+      "mobile_code": "R"
+    },
+    {
+      "id": 11,
+      "label": "棧道",
+      "pointer_va": "0x7ed194",
+      "label_bytes_sha256": "f38f8f7129efa538747623bac2ab059fe696f8f0f2319de2351bc968cae8978a",
+      "mobile_code": "B"
+    },
+    {
+      "id": 12,
+      "label": "渡所",
+      "pointer_va": "0x7ed18c",
+      "label_bytes_sha256": "74e0a87f19e6ab15fb87d7bcf38c279402074555156c2fd202b45adfd186db98",
+      "mobile_code": "P"
+    },
+    {
+      "id": 13,
+      "label": "淺瀨",
+      "pointer_va": "0x7ed184",
+      "label_bytes_sha256": "5a22a4503cdf8a3204bc30b52dd7d9cde5a2a1d73998c931d093461f50cc5dde",
+      "mobile_code": "S"
+    },
+    {
+      "id": 14,
+      "label": "岸",
+      "pointer_va": "0x7ed180",
+      "label_bytes_sha256": "131e9544f5ab3e18fc10eea4efeea6c67ffdaa267f9582c570045962c52bc77d",
+      "mobile_code": "M"
+    },
+    {
+      "id": 15,
+      "label": "崖",
+      "pointer_va": "0x7ed17c",
+      "label_bytes_sha256": "9543d23f10c07502b3dadcb42c3f1a0b7fb415cc928f6ea33885582ecdec8e5b",
+      "mobile_code": "M"
+    },
+    {
+      "id": 16,
+      "label": "都市",
+      "pointer_va": "0x7eb38c",
+      "label_bytes_sha256": "86cc9101ffebe9466664ea2c755ab6c400f5f3acca7eb9cf106c1c0bd157e844",
+      "mobile_code": "P"
+    },
+    {
+      "id": 17,
+      "label": "港",
+      "pointer_va": "0x7eb14c",
+      "label_bytes_sha256": "03e7880173e2f7e68bb9794d1ce6395392ab9d55062a3a365ee6e54e6af0f0f7",
+      "mobile_code": "P"
+    },
+    {
+      "id": 18,
+      "label": "關所",
+      "pointer_va": "0x7eb564",
+      "label_bytes_sha256": "734d6ce88583b5b9a6166815460769797b7f2d44c759098278a672485f60b262",
+      "mobile_code": "R"
+    },
+    {
+      "id": 19,
+      "label": "小徑",
+      "pointer_va": "0x7ed174",
+      "label_bytes_sha256": "0049eb2b7dcd7b2e3062d52910db6beba8d18b3073edbb7aaa0630a23f15b6c9",
+      "mobile_code": "D"
+    }
+  ],
+  "limits": [
+    "Names confirm raw class IDs, not full original movement/combat cost parity",
+    "Mobile keeps merges of grass/dirt/wasteland and blocked banks/cliffs; source raw IDs retained",
+    "Map model14 positions are all source class15 cliff; distinguish from constructible stone-wall type"
+  ]
+}

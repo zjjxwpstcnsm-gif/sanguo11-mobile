@@ -1,0 +1,32 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 9862760 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+narrow-pass staggered=false adjacentMountain=0.69363636 path=0.08
+grid chunks=4 triangles=800 CPU_bytes=54400 (not GPU allocation)
+narrow-pass staggered=true adjacentMountain=0.69363636 path=0.08
+grid chunks=4 triangles=800 CPU_bytes=54400 (not GPU allocation)
+national mountain count=9331 meanHeight=0.8524757565415668
+asset=field/fire-v121.glb triangles=1362
+asset=field/smoke-v121.glb triangles=320
+asset=field/rock-strata-v121-lod0.glb triangles=178
+asset=field/rock-strata-v121-lod1.glb triangles=70
+asset=sites/gate-v121-lod0.glb triangles=907
+asset=sites/gate-v121-lod1.glb triangles=262
+asset=sites/gate-v121-lod2.glb triangles=178
+gate=壺關 hex=110,92 addedWingTriangles=38
+gate=虎牢關 hex=131,90 addedWingTriangles=76
+gate=潼關 hex=146,61 addedWingTriangles=76
+gate=函谷關 hex=143,68 addedWingTriangles=76
+gate=武關 hex=151,68 addedWingTriangles=0
+gate=陽平關 hex=170,26 addedWingTriangles=38
+gate=劍閣 hex=189,14 addedWingTriangles=0
+gate=葭萌關 hex=190,23 addedWingTriangles=0
+gate=涪水關 hex=213,11 addedWingTriangles=38
+gate=綿竹關 hex=220,8 addedWingTriangles=0
+PASS FEEDBACK121 checks=72731 baseline=false gates=10 connected=6
+narrow-pass staggered=false adjacentMountain=0.16916323 path=0.08
+narrow-pass staggered=true adjacentMountain=0.16916323 path=0.08
+national mountain count=9331 meanHeight=0.40149771259817557
+PASS FEEDBACK121 checks=5 baseline=true gates=0 connected=0

@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "functions": [
+    {
+      "name": "ordered_trade_segment",
+      "address": "0x5cacb7",
+      "end_exclusive": "0x5cad20",
+      "sha256": "b4633c6d3a9969e4a0a525c0c29f7d7b393d33182e31ba599221adce22b9b676"
+    },
+    {
+      "name": "experience_award",
+      "address": "0x4a70d0",
+      "end_exclusive": "0x4a7277",
+      "sha256": "38570c77a84f2523978299a7cf91be5e55c344c42021a339b47d6f0bb7db789c"
+    },
+    {
+      "name": "experience_get",
+      "address": "0x489180",
+      "end_exclusive": "0x48919e",
+      "sha256": "13984c6c3e44a853a23dd606d2c4c7d8046ed1c7f8915eb0f6cbec1d13d343ff"
+    },
+    {
+      "name": "experience_set",
+      "address": "0x48a810",
+      "end_exclusive": "0x48a853",
+      "sha256": "4b7d3043c82cce5110c5a24ae9908d18a06874e5ca696171a7f8cf29aaf0bcaa"
+    },
+    {
+      "name": "current_abilities_refresh",
+      "address": "0x48a2d0",
+      "end_exclusive": "0x48a38d",
+      "sha256": "ccfb533e0f1fda8dc8e01f3dad48fcffc5fdad59a123fd92df0d6d96c929f52d"
+    },
+    {
+      "name": "current_ability",
+      "address": "0x48a110",
+      "end_exclusive": "0x48a2c3",
+      "sha256": "403a14e62109097563f4a00d8923edfe06b5c0b9387c07218ce1aa91a8d43b43"
+    },
+    {
+      "name": "growth_curve",
+      "address": "0x48a030",
+      "end_exclusive": "0x48a10e",
+      "sha256": "1f9d9123c9e73898b0d4fe9aae3c2bf0d6836e1c8374953e24f6e6690d3fa3ad"
+    },
+    {
+      "name": "injury_set",
+      "address": "0x48a8e0",
+      "end_exclusive": "0x48a900",
+      "sha256": "96c6fd7cfa592517476dd3a08eb5cb9235e936de15f57af7e5c90b4e2a15be1f"
+    },
+    {
+      "name": "injury_percentage",
+      "address": "0x488fb0",
+      "end_exclusive": "0x489016",
+      "sha256": "ccb00fc69dec3eb777bd97098b01feb6ebdfecb01a0435e345c27133f6e4fffd"
+    }
+  ],
+  "political_property": {
+    "id": 28,
+    "label": "政治",
+    "descriptor": "8ab758 +28*16 =8ab918",
+    "native_stat_index": 3,
+    "base_field": "officer+cb",
+    "experience_field": "officer+130 uint16",
+    "current_field": "officer+173 uint8",
+    "alternate_cached_field": "officer+178 uint8, refresh passes condition selector-1"
+  },
+  "order": [
+    "5cacb7: award5 experience to stat3 and refresh abilities",
+    "5cacc8: award50 merit",
+    "5cacd5: mark city merchant used",
+    "5cace6: call5ca620 using refreshed current politics",
+    "5cacf9/5cad0a: commit gold/food",
+    "5cad1b: debit20 AP"
+  ],
+  "proven": {
+    "experience_cap": 3000,
+    "normal_city_award": 5,
+    "flat_growth_unmodified_ability": "clamp(base + experience/100,1,100)",
+    "cases": 160,
+    "quotes_changed_from_before_award": 32,
+    "method": "Original ordered segment, original experience/ability/quote/resource functions; complete3MiB and RNG comparison"
+  },
+  "named_properties": [
+    {
+      "id": 15,
+      "name": "配偶",
+      "set_branch": "4a3c13 ->48a4b0 ->officer+60"
+    },
+    {
+      "id": 21,
+      "name": "官職",
+      "set_branch": "4a3c69 ->48a750 ->officer+a4"
+    },
+    {
+      "id": 33,
+      "name": "政治經驗",
+      "set_branch": "4a3d45 ->48a810(stat3) ->officer+130"
+    },
+    {
+      "id": 57,
+      "name": "傷病",
+      "set_branch": "4a3d6b ->48a8e0 ->officer+15c"
+    }
+  ],
+  "injury": {
+    "valid_selectors": [
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "percentages": [
+      100,
+      100,
+      80,
+      50,
+      30
+    ],
+    "affected_stats": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "charm_unchanged": true,
+    "operation": "After base/experience cap, multiply by percentage and truncate, minimum1; alternate cache175..179 excludes injury",
+    "cases": 100,
+    "invalid_selector_cases": 4,
+    "method": "Original named property setter and ability refresh; exact3MiB/RNG checks",
+    "scope": "Other rank/spouse/age modifiers absent in this fixture"
+  },
+  "boundaries": [
+    "Segment begins after action marking and ends before presentation; full command admission not rerun",
+    "Isolated valid city officer: curve/rank-reference/spouse-reference fields set-1, condition selector0, no unit mentoring; full current-ability model not yet reproduced",
+    "Injury selector named via original property57; age-curve and rank/spouse skill modifiers still require full joint verification",
+    "Project currently has no equivalent saved merchant political experience; static quotes alone cannot reproduce this ordering",
+    "No gameplay implementation change in this evidence increment"
+  ]
+}

@@ -1,0 +1,70 @@
+name: Native v123 corrected scope exact APK verification
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-feedback123-verification.yml']
+permissions: {contents: read, actions: read}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Same production code; corrected test applicability, retain original failed evidence
+        run: |
+          set -euo pipefail
+          mkdir -p out/feedback123
+          git diff --exit-code 56ddddfa680f13807989855be0532a1259574c1b HEAD -- app/src/main core game-api game-runtime data unity version.properties > out/feedback123/production-unchanged.log
+          python3 scripts/verify-candidate-source.py "$GITHUB_SHA" > out/feedback123/source-check.txt
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/feedback123/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/feedback123/sanguo11-mobile-v123.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/feedback123/test.apk
+          git rev-parse HEAD > out/feedback123/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/feedback123/sanguo11-mobile-v123.apk > out/feedback123/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/feedback123/sanguo11-mobile-v123.apk > out/feedback123/signature.txt
+          python3 scripts/audit-3d-apk.py out/feedback123/sanguo11-mobile-v123.apk --require-16k > out/feedback123/apk-audit.txt
+          python3 scripts/verify-r18-apk.py out/feedback123/sanguo11-mobile-v123.apk "$GITHUB_SHA" > out/feedback123/apk-identity.json
+          sha256sum out/feedback123/*.apk > out/feedback123/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback123-final-build, path: out/feedback123/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35], mode: [fixture, national, port]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-feedback123-final-build, path: out/feedback123/}
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            sed 's/for phase in baseline candidate; do/for phase in candidate; do/; s/for mode in fixture national port; do/for mode in ${{ matrix.mode }}; do/' scripts/verify-feedback123.sh > /tmp/verify-feedback123-mode.sh
+            FEEDBACK123_FOCUSED=true bash /tmp/verify-feedback123-mode.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-feedback123-final-api${{ matrix.api }}-${{ matrix.mode }}
+          path: |
+            out/feedback123/runtime/
+            !out/feedback123/runtime/*-installed.apk
+          retention-days: 30

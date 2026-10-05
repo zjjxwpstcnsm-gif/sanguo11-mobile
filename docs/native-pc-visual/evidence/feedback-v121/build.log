@@ -1,0 +1,161 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :core:compileJava
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :game-api:compileJava
+> Task :game-runtime:compileJava
+> Task :game-runtime:processResources NO-SOURCE
+> Task :game-runtime:classes
+> Task :game-runtime:jar
+> Task :core:processResources
+> Task :core:classes
+> Task :core:jar
+> Task :game-api:processResources NO-SOURCE
+> Task :game-api:classes
+> Task :game-api:jar
+
+> Task :app:verifyCandidateSource
+PASS clean candidateSource=db50c897fdbc698778c5c034a5616068fb22a3fb
+
+> Task :app:verifyMapRelease
+PASS: 51 pinned map/art resources in source
+
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:mergeDebugJniLibFolders
+> Task :app:generateDebugBuildConfig
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugNativeLibs
+> Task :app:javaPreCompileDebug
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libfilament-jni.so. Run with --info option to learn more.
+
+> Task :app:extractDebugNativeSymbolTables
+> Task :app:packageDebugResources
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:mergeDebugArtProfile
+> Task :app:processDebugManifestForPackage
+> Task :app:extractProguardFiles
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :app:mergeDebugStartupProfile
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:processDebugResources
+> Task :app:mergeDebugJavaResource
+> Task :app:mergeDebugAssets
+
+> Task :app:compileDebugJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :app:expandDebugArtProfileWildcards
+> Task :app:mergeDebugGeneratedProguardFiles
+> Task :app:extractDebugVersionControlInfo
+> Task :app:generateDebugLintVitalReportModel
+> Task :app:compressDebugAssets
+> Task :app:collectDebugDependencies
+> Task :app:sdkDebugDependencyData
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:optimizeDebugResources
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:processDebugAndroidTestManifest
+> Task :app:generateDebugAndroidTestBuildConfig
+> Task :app:javaPreCompileDebugAndroidTest
+> Task :app:checkDebugAndroidTestAarMetadata
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:mapDebugAndroidTestSourceSetPaths
+> Task :app:generateDebugAndroidTestResources
+> Task :app:mergeDebugAndroidTestResources
+> Task :app:mergeDebugAndroidTestShaders
+> Task :app:compileDebugAndroidTestShaders NO-SOURCE
+> Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :app:mergeDebugAndroidTestAssets
+> Task :app:compressDebugAndroidTestAssets
+> Task :app:checkDebugAndroidTestDuplicateClasses
+> Task :app:processDebugAndroidTestJavaRes
+> Task :app:mergeDebugAndroidTestJavaResource
+> Task :app:mergeDebugAndroidTestJniLibFolders
+> Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebugAndroidTest
+> Task :app:writeDebugAndroidTestSigningConfigVersions
+> Task :app:processDebugAndroidTestResources
+> Task :app:generateDebugAndroidTestLintModel
+
+> Task :app:compileDebugAndroidTestJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :app:generateDebugLintReportModel
+> Task :app:preDebugUnitTestBuild
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:lintVitalAnalyzeDebug
+> Task :app:lintVitalReportDebug SKIPPED
+> Task :app:lintVitalDebug SKIPPED
+> Task :app:minifyDebugWithR8
+> Task :app:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebugAndroidTest
+
+> Task :app:verifyPresentation
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS: 49018 UI projection/camera assertions.
+PASS: 451 terrain connection contracts.
+PASS: 1136811 rectangular six-neighbor geometry assertions.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+LegacyMapCoordinateCheckpointTest PASS: 1168801 assertions; 40000 source slots; odd-r six-direction topology. Terrain/map revision NOT certified.
+MapCoordinateTest PASS cumulative=898305
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS: 11371 siege geometry/economy/recruitment/defense/settlement contracts
+PASS: 14 siege overlay contracts
+
+> Task :app:compileDebugArtProfile
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:lintAnalyzeDebugUnitTest
+
+> Task :app:lintReportDebug
+Wrote HTML report to file:///home/runner/work/sanguo11-mobile/sanguo11-mobile/app/build/reports/lint-results-debug.html
+
+> Task :app:lintDebug
+> Task :app:minifyDebugAndroidTestWithR8
+> Task :app:packageDebugAndroidTest
+> Task :app:createDebugAndroidTestApkListingFileRedirect
+> Task :app:assembleDebugAndroidTest
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_5-1790683429062.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/sanguo11-mobile/sanguo11-mobile/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 48s
+84 actionable tasks: 84 executed

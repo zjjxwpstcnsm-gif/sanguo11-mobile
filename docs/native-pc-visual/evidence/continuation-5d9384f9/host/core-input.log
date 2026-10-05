@@ -1,0 +1,8 @@
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Exception in thread "main" java.lang.AssertionError: AI uses deployment commands
+	at game.sanguo.core.CoreTest.check(CoreTest.java:9)
+	at game.sanguo.core.CoreTest.logistics(CoreTest.java:75)
+	at game.sanguo.core.CoreTest.main(CoreTest.java:15)

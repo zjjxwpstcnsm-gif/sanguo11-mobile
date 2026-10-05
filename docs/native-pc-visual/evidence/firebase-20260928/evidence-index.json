@@ -1,0 +1,2637 @@
+{
+  "generated_at_utc": "2026-09-28T02:50:53.386353+00:00",
+  "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+  "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+  "all_R00_R14_satisfied": false,
+  "archives": [
+    {
+      "filename": "firebase-evidence-first-four.zip",
+      "bytes": 146490947,
+      "sha256": "2c356f1b73c5064604b01c4947fded0a84932a7c8f7dee4b6be76353354eba18",
+      "extract_under": "."
+    },
+    {
+      "filename": "firebase-evidence-api35-third.tar.gz",
+      "bytes": 2552137,
+      "sha256": "931960f9fc129618ebc6d4f92d0d138037debf4a52802d3a5c56865f31bd0f66",
+      "extract_under": "evidence/api35-third"
+    },
+    {
+      "filename": "sanguo11-native-v112-17bd3376.apk",
+      "bytes": 37387038,
+      "sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "role": "exact original production app, not rebuilt at report HEAD"
+    }
+  ],
+  "runs": [
+    {
+      "id": "api35-1",
+      "matrix_id": "matrix-2qh8xls7v829b",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36362991199",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/7265490786724774232",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "test_apk_sha256": "3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0",
+      "raw_prefix": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape",
+      "overall_matrix_status": "PASS"
+    },
+    {
+      "id": "api29-1",
+      "matrix_id": "matrix-xof82udfz39ha",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36365234180",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/5938681273172008030",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "test_apk_sha256": "3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0",
+      "raw_prefix": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape",
+      "overall_matrix_status": "PASS"
+    },
+    {
+      "id": "api35-2",
+      "matrix_id": "matrix-30ogbk6397ncu",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36365917134",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/5574154775262444996",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "a1ee687b256b0fc22a03f1b950346db0273d4996",
+      "test_apk_sha256": "eb5926874b9ba8f38acd5028cab574e346ba9c15d00d5daff7f15762d55f125e",
+      "raw_prefix": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape",
+      "overall_matrix_status": "FAIL"
+    },
+    {
+      "id": "api29-2",
+      "matrix_id": "matrix-3qstawfpulggu",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36366893750",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/5945563873882345202",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "5f04b79d4576b88112652cda92fb53e66d3f4d0e",
+      "test_apk_sha256": "4940f007880cf89b9b4dd08fe5b8ce900ffa341167b0184e569426e479c03db8",
+      "raw_prefix": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape",
+      "overall_matrix_status": "FAIL"
+    },
+    {
+      "id": "api35-3",
+      "matrix_id": "matrix-3q2x556thgk7g",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36367763861",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/9035989326237500151",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "ed2a70bbb751301aeeb2ea5df734e0d77aece80f",
+      "test_apk_sha256": "ec1354ff442001129ce544f36c9ecffaa180630c464f9e54a4bd0a764590918f",
+      "raw_prefix": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape",
+      "overall_matrix_status": "FAIL"
+    }
+  ],
+  "raw_first_four": [
+    {
+      "path": "evidence/first/first-firebase-results/models.json",
+      "bytes": 156465,
+      "sha256": "6fed56f8f3ea4e1a08d0f1e0049b54986a70ab4a0ec952b2ecea162751a5fd10"
+    },
+    {
+      "path": "evidence/first/first-firebase-apks/SCOPE.txt",
+      "bytes": 79,
+      "sha256": "ebfebada769feb6b944308be2a412dd897252c1359685639f16ab47f3958d165"
+    },
+    {
+      "path": "evidence/first/first-firebase-apks/TEST_METADATA.txt",
+      "bytes": 11306,
+      "sha256": "ad50f5d47e7447ac4fd58321e5c48376e3b7b91aeed747b3a8161a9d98e83ab3"
+    },
+    {
+      "path": "evidence/first/first-firebase-apks/SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "863b67233b76867abbf21af15c03591292736655a50297ed5b7a233d4dad16cc"
+    },
+    {
+      "path": "evidence/first/first-firebase-apks/app-debug-androidTest.apk",
+      "bytes": 430442,
+      "sha256": "3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0"
+    },
+    {
+      "path": "evidence/first/first-firebase-apks/build.log",
+      "bytes": 6788,
+      "sha256": "1faa48e1ed64589308b8f7bd72ad771a14f74b50f7c3249b500196e9b273c5fa"
+    },
+    {
+      "path": "evidence/first/first-firebase-apks/APK_SHA256.txt",
+      "bytes": 210,
+      "sha256": "7def02a0a84fcccd8c908d2aa070dcf6b2f5fb06e3a80d88f95ddfd991924be0"
+    },
+    {
+      "path": "evidence/first/first-firebase-results/cold-1/GCLOUD_EXIT",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/first/first-firebase-results/cold-1/gcloud.log",
+      "bytes": 2018,
+      "sha256": "2c077649764c1c43a8f096369a7d2000bba53eeb20dc90bd39e3a3f042c7549e"
+    },
+    {
+      "path": "evidence/first-raw/quota.json",
+      "bytes": 6043,
+      "sha256": "281b2ae7732e76d34c325bee294ef2ba0cc96ee386e42eeb08c9adfd52a1f16e"
+    },
+    {
+      "path": "evidence/first-raw/project.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/first-raw/usage-allocation-usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/first-raw/first-gcs-copy.txt.stderr",
+      "bytes": 4530,
+      "sha256": "cb98643e7be946652ad860f59343a4d5ff2a506bbdcd2328e389d89684db0530"
+    },
+    {
+      "path": "evidence/first-raw/project.json",
+      "bytes": 239,
+      "sha256": "5d70b29c2a12206b51a12738b690fc267e68eaabf63a38d7b30ca2e304d5e23b"
+    },
+    {
+      "path": "evidence/first-raw/first-matrix.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/first-raw/usage-rate-net_usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/first-raw/SCOPE.txt",
+      "bytes": 121,
+      "sha256": "c403885dd826b81e1040d04971ceb5f32e2339f3ffd515ed66d88e413cec1c33"
+    },
+    {
+      "path": "evidence/first-raw/queried-at.txt",
+      "bytes": 33,
+      "sha256": "6fa64da2225538b52f045b8bd5f7cc901a6f86d2f34d8e355f0950948e4f2d0c"
+    },
+    {
+      "path": "evidence/first-raw/models.json",
+      "bytes": 156408,
+      "sha256": "c817d99565b716de13ee8515a5dfb0965a688cbb812124c734af45fe34dd65be"
+    },
+    {
+      "path": "evidence/first-raw/first-gcs-copy.txt.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/first-raw/capacities.json",
+      "bytes": 24345,
+      "sha256": "e575171bac249fe97130fdea260c21fc203589f7783677c07c1247d53d6eac6d"
+    },
+    {
+      "path": "evidence/first-raw/video-contact.png",
+      "bytes": 427486,
+      "sha256": "907ce0b2943155387c0432cb115a6d793a40870ac8da091302bb8ef5745ac0e8"
+    },
+    {
+      "path": "evidence/first-raw/usage-rate-net_usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/first-raw/histories-0.json",
+      "bytes": 193,
+      "sha256": "b1c5343e6d889ce4a7746d550fdb45cc19da606781167c44c2d8818df083ffb3"
+    },
+    {
+      "path": "evidence/first-raw/first-gcs-list.txt",
+      "bytes": 3540,
+      "sha256": "69562659732aad36ae839525160fba6d60de237c17702c93f027cae3d9f96612"
+    },
+    {
+      "path": "evidence/first-raw/first-gcs-list.txt.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/first-raw/first-gcs-list.txt.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/first-raw/first-matrix.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/first-raw/video-decode.log",
+      "bytes": 27894,
+      "sha256": "63238a9142898a33c6e1618edd50f794b795c0025ad1757602f5aecf64ad0d5b"
+    },
+    {
+      "path": "evidence/first-raw/first-gcs-copy.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/first-raw/models.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/first-raw/models.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/first-raw/executions-bh.d4f7b6bca8c37254-0.json",
+      "bytes": 1064,
+      "sha256": "a58eed8c88a126275745f089ed4c41d6c976b196c0f1f4e737321bda3e44fe22"
+    },
+    {
+      "path": "evidence/first-raw/usage-allocation-usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/first-raw/billing.json",
+      "bytes": 1740,
+      "sha256": "dba4431ead31d92254f9c2ef07d7cd5b58af2318469eadb3086178ab9eca6a40"
+    },
+    {
+      "path": "evidence/first-raw/quota.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/first-raw/capacities.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/first-raw/capacities.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/first-raw/billing.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/first-raw/histories-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/first-raw/executions-bh.d4f7b6bca8c37254-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/video.mp4",
+      "bytes": 2975543,
+      "sha256": "e54276c945446f7b428e29afe959bdf4fd31ebe6967615ccc4cce60fdb63b024"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/logcat",
+      "bytes": 4259055,
+      "sha256": "dffcecf884d511858eca7c078d21c70902b3aca438b45138c2583556d3ce931a"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/instrumentation.results",
+      "bytes": 762,
+      "sha256": "f8458428c3eaa1b70840454062cba6350bc27eff34af2a4582cc8cb823ce1194"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/test_result_1.xml",
+      "bytes": 365,
+      "sha256": "b752ef11ec3dabcf05b5de2ec698ac491dc348219ee1033e14afcb3f57bcfb63"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+      "bytes": 1059639,
+      "sha256": "a3cffb24e3106374f72ea7e2278880f8196ccd027d03bf50cd0a99a53085d50d"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+      "bytes": 418784,
+      "sha256": "b04159a31bf42ae0180c7420a1035f4f8e0de5245ed83e85ac9c02b9b2c6b8ef"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+      "bytes": 1059639,
+      "sha256": "a3cffb24e3106374f72ea7e2278880f8196ccd027d03bf50cd0a99a53085d50d"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+      "bytes": 418784,
+      "sha256": "b04159a31bf42ae0180c7420a1035f4f8e0de5245ed83e85ac9c02b9b2c6b8ef"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+      "bytes": 7549,
+      "sha256": "19e5ce3d714aaa9e14638e40950664b658e94412d3fe72bbf6754926a04b2251"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+      "bytes": 1121822,
+      "sha256": "5868ae02110b1b0dcaeddf9a0e750a4adba72ba49f767cf303b080563c89fea4"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+      "bytes": 193485,
+      "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+      "bytes": 99131,
+      "sha256": "17bb50edb2aad8b39f221e85509f946c220f220249ae94ef3c383c41b0936d70"
+    },
+    {
+      "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+      "bytes": 193485,
+      "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+    },
+    {
+      "path": "evidence/api29-first/video-decode.json",
+      "bytes": 8140,
+      "sha256": "b0f1230a5923239d0dd0934c25fc3c4b3412c1677ac93f9c0999740c1ada1ee1"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/models.json",
+      "bytes": 156408,
+      "sha256": "c817d99565b716de13ee8515a5dfb0965a688cbb812124c734af45fe34dd65be"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/collection.log",
+      "bytes": 4462,
+      "sha256": "f2ea4195af9a98b23c86273ffc1ca1b1ba2c902713b4fe18d83e390e360d1018"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/quota.json",
+      "bytes": 6043,
+      "sha256": "281b2ae7732e76d34c325bee294ef2ba0cc96ee386e42eeb08c9adfd52a1f16e"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/project.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/usage-allocation-usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/project.json",
+      "bytes": 239,
+      "sha256": "5d70b29c2a12206b51a12738b690fc267e68eaabf63a38d7b30ca2e304d5e23b"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/first-matrix.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/usage-rate-net_usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/queried-at.txt",
+      "bytes": 33,
+      "sha256": "1952669756f0189d9da4311b95243ddb495029fe37290920ee1dae1db304358e"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/models.json",
+      "bytes": 156408,
+      "sha256": "c817d99565b716de13ee8515a5dfb0965a688cbb812124c734af45fe34dd65be"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/capacities.json",
+      "bytes": 24345,
+      "sha256": "e575171bac249fe97130fdea260c21fc203589f7783677c07c1247d53d6eac6d"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/usage-rate-net_usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/histories-0.json",
+      "bytes": 193,
+      "sha256": "b1c5343e6d889ce4a7746d550fdb45cc19da606781167c44c2d8818df083ffb3"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/first-matrix.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/models.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/execution-usage.json",
+      "bytes": 151,
+      "sha256": "856187a32127ac54ada77758971a00fa8d98324cfea0d718f54fad6c825709a4"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/models.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.json",
+      "bytes": 1064,
+      "sha256": "a58eed8c88a126275745f089ed4c41d6c976b196c0f1f4e737321bda3e44fe22"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/usage-allocation-usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/billing.json",
+      "bytes": 1740,
+      "sha256": "28be49870697f7473f3f0ba4212183920ba5a4cd6f9f567fafe7c6accf8d5e0d"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/quota.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/capacities.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/capacities.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/billing.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/histories-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/cold-1/GCLOUD_EXIT",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/cold-1/gcloud.log",
+      "bytes": 2020,
+      "sha256": "7275370d27f6f20527239bf70d7408821b260cd0ce475a5ec23f96e427115e94"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/video.mp4",
+      "bytes": 952892,
+      "sha256": "4cc496b63356b6f613aeaf041fae0b50b07a37f5ee424e23f44df4a0e801345c"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/logcat",
+      "bytes": 4150348,
+      "sha256": "ad981284ea049411d834b48e6a6cbad55b38ebca84f1c5270621779f0b0fc2e8"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/instrumentation.results",
+      "bytes": 762,
+      "sha256": "da6d4b5fe618fb9b5816a4288c8ef61df285b3ab177cec408e46800a489ad839"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/test_result_1.xml",
+      "bytes": 365,
+      "sha256": "195b8795686390e4d640e9f4950f1112c20a59f7f5e418614ecf750391d8593c"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+      "bytes": 992337,
+      "sha256": "1ea8ce0907c65d8c4edfa53c3bda6dc6a3bd157e6368898d146181dc86c9091e"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+      "bytes": 398361,
+      "sha256": "26cc243f3abc51ce3304f4f744caf3606540d639ee8c8ac11733f64946f8ab87"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+      "bytes": 992337,
+      "sha256": "1ea8ce0907c65d8c4edfa53c3bda6dc6a3bd157e6368898d146181dc86c9091e"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+      "bytes": 398361,
+      "sha256": "26cc243f3abc51ce3304f4f744caf3606540d639ee8c8ac11733f64946f8ab87"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+      "bytes": 7626,
+      "sha256": "237da16be4936a8bc3b4ecaa745450d9f35f3ab155ec1275d29d62c572e0d465"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+      "bytes": 1073693,
+      "sha256": "2cee4111f31ec3177ef052c5cd3d83291ef827df6727a0b7a838f2c06ed5500f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+      "bytes": 178124,
+      "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+      "bytes": 93527,
+      "sha256": "7d6487bc8c64c8ec6957f37624fb33fc9e811f391030516cedccbf39e4028956"
+    },
+    {
+      "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+      "bytes": 178124,
+      "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+    },
+    {
+      "path": "evidence/api35-second/video-decode.json",
+      "bytes": 214175,
+      "sha256": "059f31bd4a5e8e75a586e75ddcd0607924a300a02515b3d49b659391976b9a07"
+    },
+    {
+      "path": "evidence/api35-second/date-pixel-contact.png",
+      "bytes": 105275,
+      "sha256": "b456a62ea6982ab874d2f85438c470cdc6ace31bfbd12d9fcea99443e3f90f7e"
+    },
+    {
+      "path": "evidence/api35-second/probe/TEST_SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "10fb096755daca6de72e7032c52af3ba6c286dbfe221271b2a157cc4193f3931"
+    },
+    {
+      "path": "evidence/api35-second/probe/app-debug-androidTest.apk",
+      "bytes": 437650,
+      "sha256": "eb5926874b9ba8f38acd5028cab574e346ba9c15d00d5daff7f15762d55f125e"
+    },
+    {
+      "path": "evidence/api35-second/probe/build.log",
+      "bytes": 4555,
+      "sha256": "b72a0567ebea0dc530b1cf244a69449b4a07a31207d6f28091989c2e67f773bf"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/quota.json",
+      "bytes": 6043,
+      "sha256": "281b2ae7732e76d34c325bee294ef2ba0cc96ee386e42eeb08c9adfd52a1f16e"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/project.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-allocation-usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-matrix-matrix-xof82udfz39ha.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/project.json",
+      "bytes": 239,
+      "sha256": "5d70b29c2a12206b51a12738b690fc267e68eaabf63a38d7b30ca2e304d5e23b"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/first-matrix.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-rate-net_usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-matrix-matrix-xof82udfz39ha.json",
+      "bytes": 3947,
+      "sha256": "21bf7cd52486330407a6fd7d06d98ab0450666a1154557cd5b0d498f47fd7c4a"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/queried-at.txt",
+      "bytes": 33,
+      "sha256": "aa347c35bc8ef883e8f3201422fd9166802746c39e49f0095fc6d26c3511cdcd"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/models.json",
+      "bytes": 156408,
+      "sha256": "c817d99565b716de13ee8515a5dfb0965a688cbb812124c734af45fe34dd65be"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/capacities.json",
+      "bytes": 24345,
+      "sha256": "e575171bac249fe97130fdea260c21fc203589f7783677c07c1247d53d6eac6d"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-rate-net_usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/histories-0.json",
+      "bytes": 193,
+      "sha256": "b1c5343e6d889ce4a7746d550fdb45cc19da606781167c44c2d8818df083ffb3"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/first-matrix.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/models.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/execution-usage.json",
+      "bytes": 151,
+      "sha256": "1687b6d79d8173717c4638e9571f83a45499ca8e736802a06847de54d03ef121"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/models.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.json",
+      "bytes": 2103,
+      "sha256": "b43289b53a8db2b221f6f0b47f9cc16304b576fb6b9eaf16b8b05ea28a2b24e8"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/usage-allocation-usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/billing.json",
+      "bytes": 1740,
+      "sha256": "c57046f90f6a6e0e9e4caa393dba5ab7cd3d27a1d5a8ad71efb1a1f94d80944a"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/quota.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/capacities.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/capacities.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/billing.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/histories-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/GCLOUD_EXIT",
+      "bytes": 3,
+      "sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/PAIR.txt",
+      "bytes": 416,
+      "sha256": "2a8f5294bbab4d982015f7dedf855275f0ed97e1f861729c358fe2fd0c9a2c03"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/gcloud.log",
+      "bytes": 2158,
+      "sha256": "6a4dc237e64d205b331b3d6ab684728e16317d3cc85eb01db5f52d7960454408"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/collection.log",
+      "bytes": 11603,
+      "sha256": "7cda5537bba9fbb2f53fc42d1dfb15b5a080529c22f9408086bf8d0d3ae97196"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/test-build/TEST_SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "10fb096755daca6de72e7032c52af3ba6c286dbfe221271b2a157cc4193f3931"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/test-build/build.log",
+      "bytes": 4555,
+      "sha256": "b72a0567ebea0dc530b1cf244a69449b4a07a31207d6f28091989c2e67f773bf"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/video.mp4",
+      "bytes": 28795091,
+      "sha256": "b85830566824d0f5519146d642ae809346a05d0ad7b0d710c397b9e59ea37663"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/logcat",
+      "bytes": 5801771,
+      "sha256": "16ee27ee7999fa58474b19d85d1aa082a6ab2b2d8f220b66c2ea83c4861c9b4c"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/instrumentation.results",
+      "bytes": 4006,
+      "sha256": "ba0809287c6948cae8cec96e591964275488650bd51289adc7861250e0684e79"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/test_result_1.xml",
+      "bytes": 2050,
+      "sha256": "454f60da6c8916ca68c3ccce38a22e24cd4c298cc92551a1694fc057e163881e"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/test_cases/0002.mp4",
+      "bytes": 7015806,
+      "sha256": "63f561877cbf5bbc943eb69258759478aa54a77a4f9447fe7ea81b4a3e7df773"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/test_cases/0001.mp4",
+      "bytes": 3080745,
+      "sha256": "d3ad092f1ffb3004c7f3efe7ac03a9390ce128a164b729bb5d926068c951bfd5"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/test_cases/0000.mp4",
+      "bytes": 3784404,
+      "sha256": "1c829e846140369e72d246d9159b509bfa066158c39f625def1dd722b2e84d44"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/test_cases/0003.mp4",
+      "bytes": 21548760,
+      "sha256": "bfd86a86afff77d51decc0419674c956e059791c8ab163f2c8bd69a22faa138e"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-screen.png",
+      "bytes": 1026148,
+      "sha256": "4cbd2a3df2030c6ceff11035860a1b7e5d74d4bf41a3d801f485a08b6c686f54"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-surface.png",
+      "bytes": 945541,
+      "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+      "bytes": 1059639,
+      "sha256": "a3cffb24e3106374f72ea7e2278880f8196ccd027d03bf50cd0a99a53085d50d"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+      "bytes": 418100,
+      "sha256": "7d73f6a5b9b21c6614805eb87658288b0eda48b4ebdf5e29dc5499a936724867"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+      "bytes": 1416581,
+      "sha256": "8c77b72a490c77f909f8f9a9c66d3485c843c0832d6a243e2aba4dc4cffe8b40"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-surface.png",
+      "bytes": 945541,
+      "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+      "bytes": 418100,
+      "sha256": "7d73f6a5b9b21c6614805eb87658288b0eda48b4ebdf5e29dc5499a936724867"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-surface.png",
+      "bytes": 945541,
+      "sha256": "33069e6025337d59931cd7d1b12ee66466710943499f4362166470a7bed7422d"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+      "bytes": 7555,
+      "sha256": "d3d22b7fdf81cb1ab2f6d4e489e6e2e81e4bdbde73a2d0c210b6a8a04201249a"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+      "bytes": 1121430,
+      "sha256": "910f6fc46108affd4ddeb32803c7e4052ebec88a9dc0d497c521762a4d0aa9cf"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-failure-1.png",
+      "bytes": 338936,
+      "sha256": "ae30e5d17ef60971b192697e6739738ca066684964e1d812f2a3c30ba090c7eb"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-screen.png",
+      "bytes": 1457114,
+      "sha256": "4db9cc446a8b8fe1eb3814c41146a8964608b91e5f0fe40a6a2295a58fc4149c"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-surface.png",
+      "bytes": 1074513,
+      "sha256": "34013c2064b414ce62280312f2aafd0b850111c359d8b6e35517a49d4923f59a"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-screen.png",
+      "bytes": 1125289,
+      "sha256": "e14ddd39f5fd3b5c2201bb602acffbdc313c99f7cc95728753d45b2fe7c3eff8"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-surface.png",
+      "bytes": 1416581,
+      "sha256": "8c77b72a490c77f909f8f9a9c66d3485c843c0832d6a243e2aba4dc4cffe8b40"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+      "bytes": 193485,
+      "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-runtime.txt",
+      "bytes": 122800,
+      "sha256": "0f08bf10102e5717900a1c8d424e59fc4acf00f899689070fa47be99cccaf635"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+      "bytes": 97701,
+      "sha256": "8f25f49dcee23da7ecb165b2415f5d504db33c22e88d2f8e85135c71cb44e6fa"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-screen.png",
+      "bytes": 1026033,
+      "sha256": "82cd8f26bd98a82a88f40e772e50a705109f36a10dc9bf0a2869745d63adc06d"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-screen.png",
+      "bytes": 1025947,
+      "sha256": "52883c0dcd025f20b672715a8e6291745e5f940ce41d0c1d988165105514f6a4"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-surface.png",
+      "bytes": 1416581,
+      "sha256": "8c77b72a490c77f909f8f9a9c66d3485c843c0832d6a243e2aba4dc4cffe8b40"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-screen.png",
+      "bytes": 1025336,
+      "sha256": "b3c1cdbb1b9b3df1264ae8803ee44d556c519070715f2c2cb94607c754fcce32"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+      "bytes": 193485,
+      "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-surface.png",
+      "bytes": 945541,
+      "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-screen.png",
+      "bytes": 1025947,
+      "sha256": "080b35729a58bee13ac524686cf88170065b16e115fddd39251dcc409c760971"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-surface.png",
+      "bytes": 945541,
+      "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+    },
+    {
+      "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-screen.png",
+      "bytes": 1458293,
+      "sha256": "22ac42ec1fc7ac752b23945f014f023678be0fe1da41af511b5376bce3bad0ef"
+    },
+    {
+      "path": "evidence/api29-second/video-decode.json",
+      "bytes": 277665,
+      "sha256": "2a3348677db9645dc9516dfb8656863a18b8511d19de8201c8fead08aa14b388"
+    },
+    {
+      "path": "evidence/api29-second/probe/TEST_SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "5d03028c3072936f1c351deb2d00300728acbc58b0154bc53b244714741234ec"
+    },
+    {
+      "path": "evidence/api29-second/probe/app-debug-androidTest.apk",
+      "bytes": 440034,
+      "sha256": "4940f007880cf89b9b4dd08fe5b8ce900ffa341167b0184e569426e479c03db8"
+    },
+    {
+      "path": "evidence/api29-second/probe/build.log",
+      "bytes": 4557,
+      "sha256": "a26503bf6eb0f4bcc20bdb2d27f9bc5da4541c418f4adc0622adf4bf86e0465e"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/quota.json",
+      "bytes": 6043,
+      "sha256": "281b2ae7732e76d34c325bee294ef2ba0cc96ee386e42eeb08c9adfd52a1f16e"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/project.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-allocation-usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-matrix-matrix-xof82udfz39ha.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-matrix-matrix-30ogbk6397ncu.json",
+      "bytes": 4015,
+      "sha256": "350d8b4e78b9e2be57602e79d35b17ea2e32137de5cc0a03883b3f7915e8755a"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/project.json",
+      "bytes": 239,
+      "sha256": "5d70b29c2a12206b51a12738b690fc267e68eaabf63a38d7b30ca2e304d5e23b"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/first-matrix.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-rate-net_usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-matrix-matrix-xof82udfz39ha.json",
+      "bytes": 3947,
+      "sha256": "21bf7cd52486330407a6fd7d06d98ab0450666a1154557cd5b0d498f47fd7c4a"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/queried-at.txt",
+      "bytes": 33,
+      "sha256": "ed83e05328afdae17b72082624937e81d234c26eabdf63fc9a8207ff2e29c696"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/models.json",
+      "bytes": 156407,
+      "sha256": "c7575834d981916a22bdb41c7d9e52b9d5765bc4d0e5a9c0a0a506b7fa43c607"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/capacities.json",
+      "bytes": 24345,
+      "sha256": "e575171bac249fe97130fdea260c21fc203589f7783677c07c1247d53d6eac6d"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-rate-net_usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/histories-0.json",
+      "bytes": 193,
+      "sha256": "b1c5343e6d889ce4a7746d550fdb45cc19da606781167c44c2d8818df083ffb3"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/first-matrix.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-matrix-matrix-30ogbk6397ncu.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/models.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/execution-usage.json",
+      "bytes": 151,
+      "sha256": "7c4a745fe3af66a372f1f55c70209991edd0e8ffdcb51459d8a44fd1fe250c75"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/models.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.json",
+      "bytes": 3143,
+      "sha256": "9d0e150803ff434b151290f68cb47810a98d35d6b5e34fc5ca4a0e24bc92c81b"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/usage-allocation-usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/billing.json",
+      "bytes": 1740,
+      "sha256": "37b50528c5ca789358c6784f9783f57e8cea7bf63fa3fae1028428b4efed6fd9"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/quota.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/capacities.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/capacities.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/billing.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/histories-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/GCLOUD_EXIT",
+      "bytes": 3,
+      "sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/PAIR.txt",
+      "bytes": 416,
+      "sha256": "5368fb5057948a090486ddf08df221f51e8ec0c3a2cb2012b8f29bf730e78d93"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/gcloud.log",
+      "bytes": 2179,
+      "sha256": "1a926d3955811e2476163f4caa526600a49775fcce9164e78d1d6f25f075bbb9"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/collection.log",
+      "bytes": 13735,
+      "sha256": "1bee86a9d00984c83d893e69a156f37df142823b2587b490d8f6dba7ff474d60"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/test-build/TEST_SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "5d03028c3072936f1c351deb2d00300728acbc58b0154bc53b244714741234ec"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/test-build/build.log",
+      "bytes": 4557,
+      "sha256": "a26503bf6eb0f4bcc20bdb2d27f9bc5da4541c418f4adc0622adf4bf86e0465e"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/video.mp4",
+      "bytes": 30296189,
+      "sha256": "1976973753a1285900aadd4ef4fc2e8ee5ccd224c21570252685c27d3a993460"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/logcat",
+      "bytes": 11519272,
+      "sha256": "c628523b496dcb741345dcd2312bb4a258dd091e2772311bee72f615088907ec"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/instrumentation.results",
+      "bytes": 5834,
+      "sha256": "8677f0c8e269ed48d884b1102a67f52e4b5b336e8764a7a3170914fddd003653"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/test_result_1.xml",
+      "bytes": 3379,
+      "sha256": "04ec57a678fe114fe2045a4764907be2df43ca94f681d64b02e70ec4c4142bb6"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-screen.png",
+      "bytes": 761153,
+      "sha256": "a0ae07cadfa5f9a41bd6b1040a2fd91a6b78de0c42bb3e3ce577f351fdee7e78"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-surface.png",
+      "bytes": 687149,
+      "sha256": "f72855b4915ef41068157a72ddc073bd865c8a278d5948344938393cf59b9770"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-deployed-screen.png",
+      "bytes": 1007861,
+      "sha256": "8f5d55d69adfda99394fae1a9191c0acb4ff6b8d943827e63230a0f3fbd218e9"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+      "bytes": 992337,
+      "sha256": "1ea8ce0907c65d8c4edfa53c3bda6dc6a3bd157e6368898d146181dc86c9091e"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+      "bytes": 398463,
+      "sha256": "195f6e2be0a7425905c1c6295be757ac82c9402cc7450bcdbc54795f71f6ee89"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+      "bytes": 687151,
+      "sha256": "6e1c7e0900f2e853acb7cbf904ef6c0f580b1567b925da6d4ad75ef01b0b084a"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-surface.png",
+      "bytes": 687153,
+      "sha256": "2a60ef698dfc81f12569ada61ea6cebf9a09b555814e031d8c6c5e0fec8cd5bd"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+      "bytes": 398463,
+      "sha256": "195f6e2be0a7425905c1c6295be757ac82c9402cc7450bcdbc54795f71f6ee89"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-surface.png",
+      "bytes": 688144,
+      "sha256": "f9ab953d1ad6ab7be97efde2d113fdc6f8bc13dbb9908013b3cdf80ec29479a3"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+      "bytes": 7625,
+      "sha256": "9f13cb9f4b71d0c0e90b19cfbcad3fca6d86ec79a042a7e20245d630d8f5c6d9"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+      "bytes": 1073760,
+      "sha256": "6fd90b74db7dd23eaf4e550f3e9f74d0135314a824a591fe44553add0145d867"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-failure-1.png",
+      "bytes": 210975,
+      "sha256": "ff88c8143981523699a5ea998d222a4c4b38b5cab8f7f6c6e29ef93f9f54d4ed"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-screen.png",
+      "bytes": 761604,
+      "sha256": "fd17c5a5d6a796476cd5b5d24bef77297019716b1bb17aaac761dd6879a89648"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-surface.png",
+      "bytes": 681307,
+      "sha256": "4e49f688d942caf81ad7e23c6ba5f702d1fcaa5b801b0b2bb4224c4eb04ca5f5"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-screen.png",
+      "bytes": 770027,
+      "sha256": "207da6e02c3cc0cd02e345638f0608d2a858b32ce60efcd65a6a2f957d7a79ed"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-surface.png",
+      "bytes": 687151,
+      "sha256": "6e1c7e0900f2e853acb7cbf904ef6c0f580b1567b925da6d4ad75ef01b0b084a"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+      "bytes": 178124,
+      "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-runtime.txt",
+      "bytes": 137513,
+      "sha256": "abcffdd0a49e3556174874950b9b76312f2324a127b95d7d5ea8075a6833145d"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-move-0-screen.png",
+      "bytes": 997228,
+      "sha256": "93a9f2c5d501a753acffa99b60fe3764ed2e98ad1a9691110d8ccfd3cd12fdd6"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+      "bytes": 94533,
+      "sha256": "c056e3fd4583b0135c1a648617b6d50969338f1a6f769cad50b992b33f91a178"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-screen.png",
+      "bytes": 768387,
+      "sha256": "9ab5790c530cefcd1265c4693941892e700f4a5ea1ef04669157d9497ba1faaa"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-screen.png",
+      "bytes": 761643,
+      "sha256": "e6bcc668707d5f16ee31a0a58fbaedae1a4e9c46563e40ba1a7661e98b3a32ac"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-surface.png",
+      "bytes": 687137,
+      "sha256": "240fb2205d38b3431c414f2c9e917ede189379247d8a886ee94511c3917af09d"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-screen.png",
+      "bytes": 765876,
+      "sha256": "ed7b022c3878ace6b433933c06a99243900fd8ff66a9d95ff1b6ee2cb642d081"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+      "bytes": 178124,
+      "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-surface.png",
+      "bytes": 681300,
+      "sha256": "a1182734f013a48c2b004126acbf175a31b15239549cbb7084158ba9ba72e9f6"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-deployed-surface.png",
+      "bytes": 1072352,
+      "sha256": "d646ac43bd1671c066b7bad1ed101ac77843c07955db7e9addfea74b3fa2f7db"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-screen.png",
+      "bytes": 761642,
+      "sha256": "c863203d12c5434b2d7929ab7d28bfa60023acb97c8fc764793e0c45c6040788"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-surface.png",
+      "bytes": 687148,
+      "sha256": "42bc3ccb72ea3f5a347d2d6977337a2d66ca3039bb82de6ddd722e21da8c343f"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-move-0-surface.png",
+      "bytes": 1072303,
+      "sha256": "4b3da49a876989d81c69b1b8babf5ad95544586ecafb04122a96708d8cbf67d9"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-screen.png",
+      "bytes": 761117,
+      "sha256": "801b28cfdcbbb75b6f6f3e75a701dd227b602cf01c067e3ef0b485a0cdabe082"
+    },
+    {
+      "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-failure-2.png",
+      "bytes": 770032,
+      "sha256": "f22f703d7e7e1969fd87229c06679f83673937afb23c25508e0401d9ec63dc62"
+    },
+    {
+      "path": "evidence/host/results.json",
+      "bytes": 2101,
+      "sha256": "f45ed35440e9228b13720d629f8e058f060699bc3a3ffec0ae8835604dcae573"
+    },
+    {
+      "path": "evidence/host/jdk17-results.json",
+      "bytes": 625,
+      "sha256": "49027919ed3286f2e36db86c92525b0bf2ca5ad8149a664ed799885abf4a63f9"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r00-r14-audit.log",
+      "bytes": 71,
+      "sha256": "7e24e279159f462b1d27be6d2ddce75ae089eed393e0b68ee5398935ae323263"
+    },
+    {
+      "path": "evidence/host/logs/test-native-window-surface.log",
+      "bytes": 894,
+      "sha256": "cae809f3f80f141806caf2f3b716e311c5648901e1da17dfb268e8afd9f23a64"
+    },
+    {
+      "path": "evidence/host/logs/test-native-ground-stream.log",
+      "bytes": 897,
+      "sha256": "9b845615a99017db11239ab86f5f48132233b8425f7e2a0a0c0d6f49b2126b5f"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r04.log",
+      "bytes": 176,
+      "sha256": "7a075e990042db1c24e93ccd95be23708035be825c66010a8934961a56535fc6"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r01.log",
+      "bytes": 232,
+      "sha256": "0fc1bf0ecf24e1c9dcdc585105a68f17d3599eb1df9bdd67af773b2106201fb6"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r09.log",
+      "bytes": 1277,
+      "sha256": "d7ec982d29b9e9cba4419a817727b75c160d7e8fff9290c3550da1ec43b77e86"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r00-r14-audit-jdk17.log",
+      "bytes": 233,
+      "sha256": "17d6055b57c491011ccb73d0bccd34436abcbfabf98aaa65abeb70c42108c551"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r06.log",
+      "bytes": 538,
+      "sha256": "ad6a65ee09bc5837bae4effe7e13c0bc753ee2043fb3d8087391e889d9093f90"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r11.log",
+      "bytes": 4278,
+      "sha256": "fc96ff1aed567abf432d7133fec8faf603ce8ce3e995400e11a3fa56462d4c84"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r02.log",
+      "bytes": 227,
+      "sha256": "56aec86250cbfbdc89a44a74e8af4852110feaff3942368004c7c9b182223e59"
+    },
+    {
+      "path": "evidence/host/logs/check-native-protected-assets.log",
+      "bytes": 735,
+      "sha256": "88d5dd02096f4d193983a8c8e6ff579fcee43d451a655127ba2f69b1cb04b513"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r07.log",
+      "bytes": 658,
+      "sha256": "017a10836d37441721aa8ebe51bd7cb434c998b046e32940d58e5bcead6783f4"
+    },
+    {
+      "path": "evidence/host/logs/test-native-overview-material-jdk17.log",
+      "bytes": 353,
+      "sha256": "e62d40d165b5fc3f9be91ff16a0c03e1dfebbec5307ad401ed689743521ce0b7"
+    },
+    {
+      "path": "evidence/host/logs/test-native-overview-material.log",
+      "bytes": 972,
+      "sha256": "eaf69243638baf052bad0a25d0e7d2d9e5fe11cfd1451df50ed32170b36f84c0"
+    },
+    {
+      "path": "evidence/host/logs/check-native-protected-assets-fetched.log",
+      "bytes": 107,
+      "sha256": "33f16c0e19db82f735c8c6d9209fd82c45c829db3f91b32a2206ff7b3105b1b3"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r10.log",
+      "bytes": 687,
+      "sha256": "2ab18cd570192c455731ad28776493d33b8abe7ecd87b0a86edad05b337c644f"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r14.log",
+      "bytes": 376,
+      "sha256": "c95571cd34b0b555604b388e0e5c67405910de73eb0aa3699589c2648b2cf08d"
+    },
+    {
+      "path": "evidence/host/logs/test-architecture.log",
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r08.log",
+      "bytes": 1031,
+      "sha256": "c681e4869b37934128eae348e1173bce60ea1ed507977862c8ce7e64fcda8ab0"
+    },
+    {
+      "path": "evidence/host/logs/test-native-frame-admission.log",
+      "bytes": 168,
+      "sha256": "3e3f5a5ffa70e62d3d6a44c1073b1cb5761362a122393a70e3dcafd38f779fde"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r03.log",
+      "bytes": 588,
+      "sha256": "f5582f4204c376cab35d6aa403a2402023ca120a20f2ce55b89e5181cfcee2f3"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r13.log",
+      "bytes": 264,
+      "sha256": "c1a8fd4e4baf330c9ba05686619161eb62620370379f743ef5064277f051cfd7"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r13-jdk17.log",
+      "bytes": 1384,
+      "sha256": "284ef00642d140ab8e5160be9899dd1aa2af0296f8e94e6bbe4d0e0546a56f1f"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r05.log",
+      "bytes": 930,
+      "sha256": "928bf6a52314e6738ccd49b939d2c6af1a4decb4c7c2a5047ab21ed0087713ea"
+    },
+    {
+      "path": "evidence/host/logs/test-native-window-surface-jdk17.log",
+      "bytes": 110,
+      "sha256": "acab5265377c5a5a9a4fb5318dad9993ec9206c9bb3dcd3f2976e9f8f5be2c06"
+    },
+    {
+      "path": "evidence/host/logs/test-native-r12.log",
+      "bytes": 431,
+      "sha256": "4f5a9ab57636d3556dbdc0a59a65b8ebcb3236a95ae5025d1c3233084fc9bebb"
+    },
+    {
+      "path": "evidence/core-candidate/028.command",
+      "bytes": 122,
+      "sha256": "710d6804c873ac5d95aa764a83dfb7e5a1e1544ae2489649689a4ae1d949626b"
+    },
+    {
+      "path": "evidence/core-candidate/aggregate.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "evidence/core-candidate/032.command",
+      "bytes": 121,
+      "sha256": "1601471f7e2ffc226d6b0de6696b3dbbb3cd2de14298481edadc3d04dae9b940"
+    },
+    {
+      "path": "evidence/core-candidate/007.log",
+      "bytes": 558,
+      "sha256": "9dec7a49979be72b2f734b94b8e7e00972dc88208db2f470c43390ae93a37d4f"
+    },
+    {
+      "path": "evidence/core-candidate/019.log",
+      "bytes": 339,
+      "sha256": "d1255d883e00ffa6ac3d1d4b5f38b93302f9f629673a4322eb69f850af4cc3ee"
+    },
+    {
+      "path": "evidence/core-candidate/004.command",
+      "bytes": 117,
+      "sha256": "4b0bbabc220b2e53a45bef23d2d3d9193191d45c27d4c4998f91a64b6ba61267"
+    },
+    {
+      "path": "evidence/core-candidate/024.log",
+      "bytes": 550,
+      "sha256": "ef4e48c6b0d042cab4c0ac573365fcb5f03063362c7ad3ed440d4ff94f7e646c"
+    },
+    {
+      "path": "evidence/core-candidate/026.log",
+      "bytes": 182,
+      "sha256": "45f5cc53ec35e6928a743baf50c07499b9e2e02941b64f4285c8ebb07db39d53"
+    },
+    {
+      "path": "evidence/core-candidate/024.command",
+      "bytes": 110,
+      "sha256": "0e2d11d9015dfc329d6ce382da5f12a36c3d75c59bb003f772adf063b153f55e"
+    },
+    {
+      "path": "evidence/core-candidate/032.log",
+      "bytes": 22,
+      "sha256": "75fc31a6b5be1d62df2c44cc327bf1a4763edc8680ff0c0fee45faa07f938d66"
+    },
+    {
+      "path": "evidence/core-candidate/016.log",
+      "bytes": 292,
+      "sha256": "6c39260cc253b727d1678a1716416f9f3e4b540afe0580b5ba0169f09bb4ac11"
+    },
+    {
+      "path": "evidence/core-candidate/011.log",
+      "bytes": 581,
+      "sha256": "b3269ac28a3bb345e8477e4a53d17bf719cebb4935f7b352dc0c19248dddea8b"
+    },
+    {
+      "path": "evidence/core-candidate/031.log",
+      "bytes": 21,
+      "sha256": "62b153dfa085e0469d45a09364018589c4ab73620f541fe7ccbfc77e49a2d8dc"
+    },
+    {
+      "path": "evidence/core-candidate/005.command",
+      "bytes": 120,
+      "sha256": "4ac3948572d3a3225c32d48289278dff5aa03ebb71a53e9aef9e7b64ddc376a2"
+    },
+    {
+      "path": "evidence/core-candidate/010.log",
+      "bytes": 594,
+      "sha256": "96b7540091d2cdc8fc4b9ed50c8c87aaf15197a197b987e52fa617c3b7cbd261"
+    },
+    {
+      "path": "evidence/core-candidate/035.log",
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    {
+      "path": "evidence/core-candidate/036.command",
+      "bytes": 105,
+      "sha256": "089bc8ea2bf9d6b167b3cd00440bbf909536bd8263954b6ad602efa334abbc90"
+    },
+    {
+      "path": "evidence/core-candidate/036.log",
+      "bytes": 300,
+      "sha256": "893f28baf0d16e69966ecdb59ae5417e973a2bb841bc6591851650f6e2c39b2e"
+    },
+    {
+      "path": "evidence/core-candidate/017.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/core-candidate/018.command",
+      "bytes": 106,
+      "sha256": "ce3973be0e353204dac65cdcb00dbd8fd9e2300f38b43387501c391e9ffa1df7"
+    },
+    {
+      "path": "evidence/core-candidate/011.command",
+      "bytes": 102,
+      "sha256": "8226f9c67b56eacc1c5cc1ef9727c6288b3f86b26db5afcd01613a6be6490cb5"
+    },
+    {
+      "path": "evidence/core-candidate/022.command",
+      "bytes": 110,
+      "sha256": "5bdc87599984a64ee850ed03c078d62a89a85205160581a854ccd5e6b65f1e42"
+    },
+    {
+      "path": "evidence/core-candidate/022.log",
+      "bytes": 560,
+      "sha256": "5ee1e8abbabfba297c3bf995363252812d32b43ada223212fed9f3d983689b14"
+    },
+    {
+      "path": "evidence/core-candidate/028.log",
+      "bytes": 12,
+      "sha256": "3db6c8cdb87df9e1d5b0fff4e4f09c27886d7c8c8a7364f3bac1e7d917103558"
+    },
+    {
+      "path": "evidence/core-candidate/016.command",
+      "bytes": 108,
+      "sha256": "db3b123fb75afc18995023b37a6b13856a6f8a1da822def0f52f808c3c59825d"
+    },
+    {
+      "path": "evidence/core-candidate/038.command",
+      "bytes": 113,
+      "sha256": "6863e3e6697c4c376fa45d43dfb969bc3f075150fdb69bb34183fba19ea8fa56"
+    },
+    {
+      "path": "evidence/core-candidate/015.log",
+      "bytes": 331,
+      "sha256": "e3b88eb5803bf51878e1d88645d7743a1ddeb35fe9e34d8c1fa400c8dbab35d2"
+    },
+    {
+      "path": "evidence/core-candidate/013.command",
+      "bytes": 111,
+      "sha256": "2e77771985520b833f8ccf353f45b9a6acdf67200b05d78924021fac50c5eea8"
+    },
+    {
+      "path": "evidence/core-candidate/038.log",
+      "bytes": 357,
+      "sha256": "b115f5e1d4629cb8058146e9cc4d98806081309e734577c7b0bc9c872d448f01"
+    },
+    {
+      "path": "evidence/core-candidate/042.command",
+      "bytes": 111,
+      "sha256": "b6ecc0c400bea553b29c74b584b73c3dbdf9bab9dd885a3bfd2b7be33c597d61"
+    },
+    {
+      "path": "evidence/core-candidate/021.command",
+      "bytes": 110,
+      "sha256": "3edf793504496c3df8040d3042dec24393df1366cadbbaabe84a873b1ea47f19"
+    },
+    {
+      "path": "evidence/core-candidate/030.command",
+      "bytes": 113,
+      "sha256": "0bd77a5dc1fcf07f2c36127dea1a5e598cae5180df1b9d58e47727a9d5dc5f50"
+    },
+    {
+      "path": "evidence/core-candidate/002.log",
+      "bytes": 50,
+      "sha256": "689bdccc61433203bc74e693db98778de3ad31c293e5c0f3151aa56d3b90f4a0"
+    },
+    {
+      "path": "evidence/core-candidate/013.log",
+      "bytes": 488,
+      "sha256": "b291bcbbdff3411f60b7c7cca363e0d63b84156fbc9a993a6e679bc6f522093f"
+    },
+    {
+      "path": "evidence/core-candidate/033.command",
+      "bytes": 125,
+      "sha256": "200c4178ec71d0a3acca7af9125362387d1c097d51d7cefa1de3fa7fe24174fe"
+    },
+    {
+      "path": "evidence/core-candidate/041.log",
+      "bytes": 40,
+      "sha256": "9145ca59ca814b8d6df0338b276e29e202adbda9d9653731b0d385ea80c332e8"
+    },
+    {
+      "path": "evidence/core-candidate/040.log",
+      "bytes": 284,
+      "sha256": "295696d2e3413b7b4f16c286fe2e3c1dfc6d89d60f371ceedcce7c603f94cb28"
+    },
+    {
+      "path": "evidence/core-candidate/035.command",
+      "bytes": 108,
+      "sha256": "4d04a739af7708ab8ce75410cad24b125567c8e81affc9d815dd074af1c21c5d"
+    },
+    {
+      "path": "evidence/core-candidate/006.log",
+      "bytes": 357,
+      "sha256": "2bb795f176192306f6b02cb9256926450857d3d9661e437463e109e4d674df59"
+    },
+    {
+      "path": "evidence/core-candidate/009.command",
+      "bytes": 107,
+      "sha256": "0f0f54435e8fe7cd73a824aefc400c518e65f35a6c2dd15f4836f04498f4088f"
+    },
+    {
+      "path": "evidence/core-candidate/015.command",
+      "bytes": 103,
+      "sha256": "69f9edaa495a24bce58b1b22baaa50dca520cd14e20f3d786293b540460f22df"
+    },
+    {
+      "path": "evidence/core-candidate/020.command",
+      "bytes": 111,
+      "sha256": "13e699a650da5ab4a8df5a94df38a35b163fad1b4848f5c4fa8d04986d2045da"
+    },
+    {
+      "path": "evidence/core-candidate/010.command",
+      "bytes": 106,
+      "sha256": "c3319d725ae9999caeb865ac9d2cda833fa4897cf2f51d3045b45dfa19622018"
+    },
+    {
+      "path": "evidence/core-candidate/030.log",
+      "bytes": 371,
+      "sha256": "615d77fad96b4d2038c1a8cb718330ca031d675f88625fa5e91ab2c8560951fe"
+    },
+    {
+      "path": "evidence/core-candidate/001.command",
+      "bytes": 100,
+      "sha256": "9f43932b1c6a8f64a2d2fe8cb12e9a821cbc5c8a2787e19d40624341231e8492"
+    },
+    {
+      "path": "evidence/core-candidate/037.command",
+      "bytes": 113,
+      "sha256": "1b890334d8f924a5613c6b519b76c78eea36318cc9411a7b41111bedf9a745ba"
+    },
+    {
+      "path": "evidence/core-candidate/003.log",
+      "bytes": 274,
+      "sha256": "f95d529afc5071e767d237efa05adc9d6264a57a7d42f75e67067ec750360279"
+    },
+    {
+      "path": "evidence/core-candidate/008.command",
+      "bytes": 100,
+      "sha256": "f0a62b1f5e6f7bfae37359af1edefcc19e97277e7a09cef1809cca034179b8a5"
+    },
+    {
+      "path": "evidence/core-candidate/005.log",
+      "bytes": 144,
+      "sha256": "4fc9c96fc85a2839ef1ff0acd6e60f5ce1033c668fa5cd335ccf87ff869875dc"
+    },
+    {
+      "path": "evidence/core-candidate/042.log",
+      "bytes": 339,
+      "sha256": "7dc3166b3a988034b7a19b5e5d3eab9638250a36603e09bb9e22088787689cd7"
+    },
+    {
+      "path": "evidence/core-candidate/027.log",
+      "bytes": 379,
+      "sha256": "21a0f67ae4868b78f5cf3acb4dba92a9150afa8e945c4239d91d9f8ed21e512c"
+    },
+    {
+      "path": "evidence/core-candidate/014.log",
+      "bytes": 383,
+      "sha256": "37332774ff95686abc464218a939acbe58d15c4427cf955252c115ebfa8af8f3"
+    },
+    {
+      "path": "evidence/core-candidate/020.log",
+      "bytes": 129,
+      "sha256": "4c1c22243cf64dfd3ee885a6e56939854df1c1bd9afc1b5801b16e5c74394a63"
+    },
+    {
+      "path": "evidence/core-candidate/003.command",
+      "bytes": 104,
+      "sha256": "a4b0cb034305e3f4d9ec9910b7bff69cc26c88052174bd994bc2195621a16b7f"
+    },
+    {
+      "path": "evidence/core-candidate/002.command",
+      "bytes": 104,
+      "sha256": "ad1570673b8162949b78eca3d6612b9e5134a9ea15ab51d3d653e8f527a24302"
+    },
+    {
+      "path": "evidence/core-candidate/008.log",
+      "bytes": 328,
+      "sha256": "43acd66e1b9d34ce384a71e2e8bec4bc88006e615f6f4d628e39258abf814d4b"
+    },
+    {
+      "path": "evidence/core-candidate/034.log",
+      "bytes": 356,
+      "sha256": "2f4b7bda61294a225f4a66418261b57f6ff8716084f652e61796d2472540b46c"
+    },
+    {
+      "path": "evidence/core-candidate/006.command",
+      "bytes": 104,
+      "sha256": "4ca0b829fc7ef3e886f4e0322369a480ee2c3dcb5185351c31a2bab484287808"
+    },
+    {
+      "path": "evidence/core-candidate/025.log",
+      "bytes": 173,
+      "sha256": "cf3e3ac68acaf11207e30a7843b0aa77c586cc2b6aa59dbe8372e2df537235c4"
+    },
+    {
+      "path": "evidence/core-candidate/012.command",
+      "bytes": 103,
+      "sha256": "dc40f3d10752d384a3dd3946fa7b0337b29e0256121af74249d42daaaf1acec8"
+    },
+    {
+      "path": "evidence/core-candidate/034.command",
+      "bytes": 113,
+      "sha256": "0e9829ddf8c976d7d7c71a3f16144ef3023ebc538adaccf3cf75d596c08eeb80"
+    },
+    {
+      "path": "evidence/core-candidate/026.command",
+      "bytes": 107,
+      "sha256": "f00af72374727be1e0cf01ef8e1c02d574d7a43b422f6713616ed1efb2c8c74d"
+    },
+    {
+      "path": "evidence/core-candidate/EXIT_CODES.tsv",
+      "bytes": 4912,
+      "sha256": "f2aee3adf1dab2d5321ed8bec1dae7ba679ac7ffd1373760217cdfcfcaf32853"
+    },
+    {
+      "path": "evidence/core-candidate/023.command",
+      "bytes": 105,
+      "sha256": "f8d9e9ffdc8586d981c57c6845a4781629928f35d6f0155aab337a8adc230bc2"
+    },
+    {
+      "path": "evidence/core-candidate/007.command",
+      "bytes": 104,
+      "sha256": "f914e8a686194d581322a8b7172a346e31ed63627ac204e7b95a65ec6de34de2"
+    },
+    {
+      "path": "evidence/core-candidate/018.log",
+      "bytes": 308,
+      "sha256": "597871ddb4d15d81cf3ad5ce4e43f721146ef1f2357cc75bea9d286e71213520"
+    },
+    {
+      "path": "evidence/core-candidate/039.log",
+      "bytes": 120,
+      "sha256": "f33c62d1da4763dbd2b31d9ddc39e5fb578c286e66db8dd1f20afc74bbcc691e"
+    },
+    {
+      "path": "evidence/core-candidate/012.log",
+      "bytes": 341,
+      "sha256": "5d258cb37a7b9f32eb22b8b48b067180f4e9b65b63b1dc14cf01c735e01b2d6c"
+    },
+    {
+      "path": "evidence/core-candidate/027.command",
+      "bytes": 115,
+      "sha256": "7a6b4e49070bac395579b0cfa9fe5a8b54e2d399bd18ff4db53aaf8de838e470"
+    },
+    {
+      "path": "evidence/core-candidate/001.log",
+      "bytes": 245,
+      "sha256": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71"
+    },
+    {
+      "path": "evidence/core-candidate/029.command",
+      "bytes": 126,
+      "sha256": "94c16841d48b578c337d429aa1867d7f3b2990236d4099a90e950c7f8283ce80"
+    },
+    {
+      "path": "evidence/core-candidate/004.log",
+      "bytes": 146,
+      "sha256": "2d514f082ebdfd6788b4ae191fc3947f8fe3d14e103839bd4e9773b946730caa"
+    },
+    {
+      "path": "evidence/core-candidate/041.command",
+      "bytes": 114,
+      "sha256": "c7babdacc59ff2787dd7ee962688f89488dc24206a866198b5bf56945167a8fa"
+    },
+    {
+      "path": "evidence/core-candidate/021.log",
+      "bytes": 565,
+      "sha256": "49a8ee328e5c96226dcfe4a8768fba9319f8c7eb398057213db7bff86a93143a"
+    },
+    {
+      "path": "evidence/core-candidate/017.command",
+      "bytes": 107,
+      "sha256": "c17f61e47b0c6d5ee92e53d21d2b6575da2f70dadf5cd60d5c40f69c59521f2b"
+    },
+    {
+      "path": "evidence/core-candidate/009.log",
+      "bytes": 354,
+      "sha256": "9433559f78dd728f198ef64cba955932af7c57c45742b5d80a996ee96be5490a"
+    },
+    {
+      "path": "evidence/core-candidate/029.log",
+      "bytes": 16,
+      "sha256": "82d6bd1ce3447dd7ea7623862f58da83ceb7221413c1e36808a4701fbacd4813"
+    },
+    {
+      "path": "evidence/core-candidate/040.command",
+      "bytes": 105,
+      "sha256": "119977716c9e85e036c843be7feb077e7949e7a3fa970bf097d06a2d9ad452c2"
+    },
+    {
+      "path": "evidence/core-candidate/039.command",
+      "bytes": 103,
+      "sha256": "89c7ebb77cf2eba2f36da15fdd9046776f20c11f68c17d0a2e0466d889399569"
+    },
+    {
+      "path": "evidence/core-candidate/023.log",
+      "bytes": 629,
+      "sha256": "7bf88be32333620bf9a256542c5ecc3148d7900e1f25d03a30dca30027425db0"
+    },
+    {
+      "path": "evidence/core-candidate/019.command",
+      "bytes": 105,
+      "sha256": "914e4bc808173e0e51de2607774f60b4490c2e17f3607c5e03af194891fe335a"
+    },
+    {
+      "path": "evidence/core-candidate/031.command",
+      "bytes": 120,
+      "sha256": "87bc36d3fd937de5383cf56e84b052af55c48a2e14fe759058317d6e7b27a27e"
+    },
+    {
+      "path": "evidence/core-candidate/014.command",
+      "bytes": 116,
+      "sha256": "ccaf507153fea161203d7a12036658590c5e00a51104ac4c792246945dd17fab"
+    },
+    {
+      "path": "evidence/core-candidate/033.log",
+      "bytes": 26,
+      "sha256": "fb05dfe8f73ce63a2d78eec2d54998c418718e6bf516803600239c4774882256"
+    },
+    {
+      "path": "evidence/core-candidate/037.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/core-candidate/025.command",
+      "bytes": 111,
+      "sha256": "424d8ee9015c74735ba0f8613cc945f6e217670960298d3d00dd1d3d3f36f8e2"
+    },
+    {
+      "path": "evidence/core-baseline/028.command",
+      "bytes": 122,
+      "sha256": "710d6804c873ac5d95aa764a83dfb7e5a1e1544ae2489649689a4ae1d949626b"
+    },
+    {
+      "path": "evidence/core-baseline/aggregate.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "evidence/core-baseline/032.command",
+      "bytes": 121,
+      "sha256": "1601471f7e2ffc226d6b0de6696b3dbbb3cd2de14298481edadc3d04dae9b940"
+    },
+    {
+      "path": "evidence/core-baseline/007.log",
+      "bytes": 558,
+      "sha256": "9dec7a49979be72b2f734b94b8e7e00972dc88208db2f470c43390ae93a37d4f"
+    },
+    {
+      "path": "evidence/core-baseline/019.log",
+      "bytes": 339,
+      "sha256": "d1255d883e00ffa6ac3d1d4b5f38b93302f9f629673a4322eb69f850af4cc3ee"
+    },
+    {
+      "path": "evidence/core-baseline/004.command",
+      "bytes": 117,
+      "sha256": "4b0bbabc220b2e53a45bef23d2d3d9193191d45c27d4c4998f91a64b6ba61267"
+    },
+    {
+      "path": "evidence/core-baseline/024.log",
+      "bytes": 550,
+      "sha256": "ef4e48c6b0d042cab4c0ac573365fcb5f03063362c7ad3ed440d4ff94f7e646c"
+    },
+    {
+      "path": "evidence/core-baseline/026.log",
+      "bytes": 182,
+      "sha256": "a7aaa210ca7ad2f7415bdbd32d45a00b95a10d2745d195f1361eb0252dc8f91f"
+    },
+    {
+      "path": "evidence/core-baseline/024.command",
+      "bytes": 110,
+      "sha256": "0e2d11d9015dfc329d6ce382da5f12a36c3d75c59bb003f772adf063b153f55e"
+    },
+    {
+      "path": "evidence/core-baseline/032.log",
+      "bytes": 22,
+      "sha256": "75fc31a6b5be1d62df2c44cc327bf1a4763edc8680ff0c0fee45faa07f938d66"
+    },
+    {
+      "path": "evidence/core-baseline/016.log",
+      "bytes": 292,
+      "sha256": "6c39260cc253b727d1678a1716416f9f3e4b540afe0580b5ba0169f09bb4ac11"
+    },
+    {
+      "path": "evidence/core-baseline/011.log",
+      "bytes": 581,
+      "sha256": "b3269ac28a3bb345e8477e4a53d17bf719cebb4935f7b352dc0c19248dddea8b"
+    },
+    {
+      "path": "evidence/core-baseline/031.log",
+      "bytes": 21,
+      "sha256": "62b153dfa085e0469d45a09364018589c4ab73620f541fe7ccbfc77e49a2d8dc"
+    },
+    {
+      "path": "evidence/core-baseline/005.command",
+      "bytes": 120,
+      "sha256": "4ac3948572d3a3225c32d48289278dff5aa03ebb71a53e9aef9e7b64ddc376a2"
+    },
+    {
+      "path": "evidence/core-baseline/010.log",
+      "bytes": 594,
+      "sha256": "96b7540091d2cdc8fc4b9ed50c8c87aaf15197a197b987e52fa617c3b7cbd261"
+    },
+    {
+      "path": "evidence/core-baseline/035.log",
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    {
+      "path": "evidence/core-baseline/036.command",
+      "bytes": 105,
+      "sha256": "089bc8ea2bf9d6b167b3cd00440bbf909536bd8263954b6ad602efa334abbc90"
+    },
+    {
+      "path": "evidence/core-baseline/036.log",
+      "bytes": 300,
+      "sha256": "893f28baf0d16e69966ecdb59ae5417e973a2bb841bc6591851650f6e2c39b2e"
+    },
+    {
+      "path": "evidence/core-baseline/017.log",
+      "bytes": 283,
+      "sha256": "6f51f43a3eda86c010fcf6dd8826c53226c2ff72dbd01fc521326f397df3d2f3"
+    },
+    {
+      "path": "evidence/core-baseline/018.command",
+      "bytes": 106,
+      "sha256": "ce3973be0e353204dac65cdcb00dbd8fd9e2300f38b43387501c391e9ffa1df7"
+    },
+    {
+      "path": "evidence/core-baseline/011.command",
+      "bytes": 102,
+      "sha256": "8226f9c67b56eacc1c5cc1ef9727c6288b3f86b26db5afcd01613a6be6490cb5"
+    },
+    {
+      "path": "evidence/core-baseline/022.command",
+      "bytes": 110,
+      "sha256": "5bdc87599984a64ee850ed03c078d62a89a85205160581a854ccd5e6b65f1e42"
+    },
+    {
+      "path": "evidence/core-baseline/022.log",
+      "bytes": 560,
+      "sha256": "5ee1e8abbabfba297c3bf995363252812d32b43ada223212fed9f3d983689b14"
+    },
+    {
+      "path": "evidence/core-baseline/028.log",
+      "bytes": 12,
+      "sha256": "3db6c8cdb87df9e1d5b0fff4e4f09c27886d7c8c8a7364f3bac1e7d917103558"
+    },
+    {
+      "path": "evidence/core-baseline/016.command",
+      "bytes": 108,
+      "sha256": "db3b123fb75afc18995023b37a6b13856a6f8a1da822def0f52f808c3c59825d"
+    },
+    {
+      "path": "evidence/core-baseline/038.command",
+      "bytes": 113,
+      "sha256": "6863e3e6697c4c376fa45d43dfb969bc3f075150fdb69bb34183fba19ea8fa56"
+    },
+    {
+      "path": "evidence/core-baseline/015.log",
+      "bytes": 331,
+      "sha256": "e3b88eb5803bf51878e1d88645d7743a1ddeb35fe9e34d8c1fa400c8dbab35d2"
+    },
+    {
+      "path": "evidence/core-baseline/013.command",
+      "bytes": 111,
+      "sha256": "2e77771985520b833f8ccf353f45b9a6acdf67200b05d78924021fac50c5eea8"
+    },
+    {
+      "path": "evidence/core-baseline/038.log",
+      "bytes": 357,
+      "sha256": "b115f5e1d4629cb8058146e9cc4d98806081309e734577c7b0bc9c872d448f01"
+    },
+    {
+      "path": "evidence/core-baseline/042.command",
+      "bytes": 111,
+      "sha256": "b6ecc0c400bea553b29c74b584b73c3dbdf9bab9dd885a3bfd2b7be33c597d61"
+    },
+    {
+      "path": "evidence/core-baseline/021.command",
+      "bytes": 110,
+      "sha256": "3edf793504496c3df8040d3042dec24393df1366cadbbaabe84a873b1ea47f19"
+    },
+    {
+      "path": "evidence/core-baseline/030.command",
+      "bytes": 113,
+      "sha256": "0bd77a5dc1fcf07f2c36127dea1a5e598cae5180df1b9d58e47727a9d5dc5f50"
+    },
+    {
+      "path": "evidence/core-baseline/002.log",
+      "bytes": 301,
+      "sha256": "163d1b7729e1eb2eeae6da3a38f8f13c90533be520d726c2e26aba77232d288c"
+    },
+    {
+      "path": "evidence/core-baseline/013.log",
+      "bytes": 488,
+      "sha256": "b291bcbbdff3411f60b7c7cca363e0d63b84156fbc9a993a6e679bc6f522093f"
+    },
+    {
+      "path": "evidence/core-baseline/033.command",
+      "bytes": 125,
+      "sha256": "200c4178ec71d0a3acca7af9125362387d1c097d51d7cefa1de3fa7fe24174fe"
+    },
+    {
+      "path": "evidence/core-baseline/041.log",
+      "bytes": 40,
+      "sha256": "9145ca59ca814b8d6df0338b276e29e202adbda9d9653731b0d385ea80c332e8"
+    },
+    {
+      "path": "evidence/core-baseline/040.log",
+      "bytes": 284,
+      "sha256": "295696d2e3413b7b4f16c286fe2e3c1dfc6d89d60f371ceedcce7c603f94cb28"
+    },
+    {
+      "path": "evidence/core-baseline/035.command",
+      "bytes": 108,
+      "sha256": "4d04a739af7708ab8ce75410cad24b125567c8e81affc9d815dd074af1c21c5d"
+    },
+    {
+      "path": "evidence/core-baseline/006.log",
+      "bytes": 357,
+      "sha256": "2bb795f176192306f6b02cb9256926450857d3d9661e437463e109e4d674df59"
+    },
+    {
+      "path": "evidence/core-baseline/009.command",
+      "bytes": 107,
+      "sha256": "0f0f54435e8fe7cd73a824aefc400c518e65f35a6c2dd15f4836f04498f4088f"
+    },
+    {
+      "path": "evidence/core-baseline/015.command",
+      "bytes": 103,
+      "sha256": "69f9edaa495a24bce58b1b22baaa50dca520cd14e20f3d786293b540460f22df"
+    },
+    {
+      "path": "evidence/core-baseline/020.command",
+      "bytes": 111,
+      "sha256": "13e699a650da5ab4a8df5a94df38a35b163fad1b4848f5c4fa8d04986d2045da"
+    },
+    {
+      "path": "evidence/core-baseline/010.command",
+      "bytes": 106,
+      "sha256": "c3319d725ae9999caeb865ac9d2cda833fa4897cf2f51d3045b45dfa19622018"
+    },
+    {
+      "path": "evidence/core-baseline/030.log",
+      "bytes": 371,
+      "sha256": "615d77fad96b4d2038c1a8cb718330ca031d675f88625fa5e91ab2c8560951fe"
+    },
+    {
+      "path": "evidence/core-baseline/001.command",
+      "bytes": 100,
+      "sha256": "9f43932b1c6a8f64a2d2fe8cb12e9a821cbc5c8a2787e19d40624341231e8492"
+    },
+    {
+      "path": "evidence/core-baseline/037.command",
+      "bytes": 113,
+      "sha256": "1b890334d8f924a5613c6b519b76c78eea36318cc9411a7b41111bedf9a745ba"
+    },
+    {
+      "path": "evidence/core-baseline/003.log",
+      "bytes": 274,
+      "sha256": "f95d529afc5071e767d237efa05adc9d6264a57a7d42f75e67067ec750360279"
+    },
+    {
+      "path": "evidence/core-baseline/008.command",
+      "bytes": 100,
+      "sha256": "f0a62b1f5e6f7bfae37359af1edefcc19e97277e7a09cef1809cca034179b8a5"
+    },
+    {
+      "path": "evidence/core-baseline/005.log",
+      "bytes": 145,
+      "sha256": "f82c79b1ba640ee350d99aec633b1fb30506efd3ce951a4ca84936cbd991b6f5"
+    },
+    {
+      "path": "evidence/core-baseline/042.log",
+      "bytes": 339,
+      "sha256": "7dc3166b3a988034b7a19b5e5d3eab9638250a36603e09bb9e22088787689cd7"
+    },
+    {
+      "path": "evidence/core-baseline/027.log",
+      "bytes": 379,
+      "sha256": "21a0f67ae4868b78f5cf3acb4dba92a9150afa8e945c4239d91d9f8ed21e512c"
+    },
+    {
+      "path": "evidence/core-baseline/014.log",
+      "bytes": 383,
+      "sha256": "37332774ff95686abc464218a939acbe58d15c4427cf955252c115ebfa8af8f3"
+    },
+    {
+      "path": "evidence/core-baseline/020.log",
+      "bytes": 129,
+      "sha256": "4c1c22243cf64dfd3ee885a6e56939854df1c1bd9afc1b5801b16e5c74394a63"
+    },
+    {
+      "path": "evidence/core-baseline/003.command",
+      "bytes": 104,
+      "sha256": "a4b0cb034305e3f4d9ec9910b7bff69cc26c88052174bd994bc2195621a16b7f"
+    },
+    {
+      "path": "evidence/core-baseline/002.command",
+      "bytes": 104,
+      "sha256": "ad1570673b8162949b78eca3d6612b9e5134a9ea15ab51d3d653e8f527a24302"
+    },
+    {
+      "path": "evidence/core-baseline/008.log",
+      "bytes": 328,
+      "sha256": "43acd66e1b9d34ce384a71e2e8bec4bc88006e615f6f4d628e39258abf814d4b"
+    },
+    {
+      "path": "evidence/core-baseline/034.log",
+      "bytes": 356,
+      "sha256": "2f4b7bda61294a225f4a66418261b57f6ff8716084f652e61796d2472540b46c"
+    },
+    {
+      "path": "evidence/core-baseline/006.command",
+      "bytes": 104,
+      "sha256": "4ca0b829fc7ef3e886f4e0322369a480ee2c3dcb5185351c31a2bab484287808"
+    },
+    {
+      "path": "evidence/core-baseline/025.log",
+      "bytes": 173,
+      "sha256": "cf3e3ac68acaf11207e30a7843b0aa77c586cc2b6aa59dbe8372e2df537235c4"
+    },
+    {
+      "path": "evidence/core-baseline/012.command",
+      "bytes": 103,
+      "sha256": "dc40f3d10752d384a3dd3946fa7b0337b29e0256121af74249d42daaaf1acec8"
+    },
+    {
+      "path": "evidence/core-baseline/034.command",
+      "bytes": 113,
+      "sha256": "0e9829ddf8c976d7d7c71a3f16144ef3023ebc538adaccf3cf75d596c08eeb80"
+    },
+    {
+      "path": "evidence/core-baseline/026.command",
+      "bytes": 107,
+      "sha256": "f00af72374727be1e0cf01ef8e1c02d574d7a43b422f6713616ed1efb2c8c74d"
+    },
+    {
+      "path": "evidence/core-baseline/EXIT_CODES.tsv",
+      "bytes": 4912,
+      "sha256": "f2aee3adf1dab2d5321ed8bec1dae7ba679ac7ffd1373760217cdfcfcaf32853"
+    },
+    {
+      "path": "evidence/core-baseline/023.command",
+      "bytes": 105,
+      "sha256": "f8d9e9ffdc8586d981c57c6845a4781629928f35d6f0155aab337a8adc230bc2"
+    },
+    {
+      "path": "evidence/core-baseline/007.command",
+      "bytes": 104,
+      "sha256": "f914e8a686194d581322a8b7172a346e31ed63627ac204e7b95a65ec6de34de2"
+    },
+    {
+      "path": "evidence/core-baseline/018.log",
+      "bytes": 308,
+      "sha256": "597871ddb4d15d81cf3ad5ce4e43f721146ef1f2357cc75bea9d286e71213520"
+    },
+    {
+      "path": "evidence/core-baseline/039.log",
+      "bytes": 120,
+      "sha256": "f33c62d1da4763dbd2b31d9ddc39e5fb578c286e66db8dd1f20afc74bbcc691e"
+    },
+    {
+      "path": "evidence/core-baseline/012.log",
+      "bytes": 341,
+      "sha256": "5d258cb37a7b9f32eb22b8b48b067180f4e9b65b63b1dc14cf01c735e01b2d6c"
+    },
+    {
+      "path": "evidence/core-baseline/027.command",
+      "bytes": 115,
+      "sha256": "7a6b4e49070bac395579b0cfa9fe5a8b54e2d399bd18ff4db53aaf8de838e470"
+    },
+    {
+      "path": "evidence/core-baseline/001.log",
+      "bytes": 245,
+      "sha256": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71"
+    },
+    {
+      "path": "evidence/core-baseline/029.command",
+      "bytes": 126,
+      "sha256": "94c16841d48b578c337d429aa1867d7f3b2990236d4099a90e950c7f8283ce80"
+    },
+    {
+      "path": "evidence/core-baseline/004.log",
+      "bytes": 146,
+      "sha256": "2d514f082ebdfd6788b4ae191fc3947f8fe3d14e103839bd4e9773b946730caa"
+    },
+    {
+      "path": "evidence/core-baseline/041.command",
+      "bytes": 114,
+      "sha256": "c7babdacc59ff2787dd7ee962688f89488dc24206a866198b5bf56945167a8fa"
+    },
+    {
+      "path": "evidence/core-baseline/021.log",
+      "bytes": 565,
+      "sha256": "49a8ee328e5c96226dcfe4a8768fba9319f8c7eb398057213db7bff86a93143a"
+    },
+    {
+      "path": "evidence/core-baseline/017.command",
+      "bytes": 107,
+      "sha256": "c17f61e47b0c6d5ee92e53d21d2b6575da2f70dadf5cd60d5c40f69c59521f2b"
+    },
+    {
+      "path": "evidence/core-baseline/009.log",
+      "bytes": 354,
+      "sha256": "9433559f78dd728f198ef64cba955932af7c57c45742b5d80a996ee96be5490a"
+    },
+    {
+      "path": "evidence/core-baseline/029.log",
+      "bytes": 16,
+      "sha256": "82d6bd1ce3447dd7ea7623862f58da83ceb7221413c1e36808a4701fbacd4813"
+    },
+    {
+      "path": "evidence/core-baseline/040.command",
+      "bytes": 105,
+      "sha256": "119977716c9e85e036c843be7feb077e7949e7a3fa970bf097d06a2d9ad452c2"
+    },
+    {
+      "path": "evidence/core-baseline/039.command",
+      "bytes": 103,
+      "sha256": "89c7ebb77cf2eba2f36da15fdd9046776f20c11f68c17d0a2e0466d889399569"
+    },
+    {
+      "path": "evidence/core-baseline/023.log",
+      "bytes": 629,
+      "sha256": "7bf88be32333620bf9a256542c5ecc3148d7900e1f25d03a30dca30027425db0"
+    },
+    {
+      "path": "evidence/core-baseline/019.command",
+      "bytes": 105,
+      "sha256": "914e4bc808173e0e51de2607774f60b4490c2e17f3607c5e03af194891fe335a"
+    },
+    {
+      "path": "evidence/core-baseline/031.command",
+      "bytes": 120,
+      "sha256": "87bc36d3fd937de5383cf56e84b052af55c48a2e14fe759058317d6e7b27a27e"
+    },
+    {
+      "path": "evidence/core-baseline/014.command",
+      "bytes": 116,
+      "sha256": "ccaf507153fea161203d7a12036658590c5e00a51104ac4c792246945dd17fab"
+    },
+    {
+      "path": "evidence/core-baseline/033.log",
+      "bytes": 26,
+      "sha256": "fb05dfe8f73ce63a2d78eec2d54998c418718e6bf516803600239c4774882256"
+    },
+    {
+      "path": "evidence/core-baseline/037.log",
+      "bytes": 353,
+      "sha256": "2576d515f55eff9f9b0d0e419ef7d6b0a30bc6055e363f34ee96872ba5e7776a"
+    },
+    {
+      "path": "evidence/core-baseline/025.command",
+      "bytes": 111,
+      "sha256": "424d8ee9015c74735ba0f8613cc945f6e217670960298d3d00dd1d3d3f36f8e2"
+    },
+    {
+      "path": "evidence/core-log-recheck/results.json",
+      "bytes": 1466,
+      "sha256": "3ee4411728c92e470d47d229cc8df83c9e58f7c9ed1f176e44655f13bd3a5325"
+    },
+    {
+      "path": "evidence/core-log-recheck/baseline-core-NavigationDefenseTest.log",
+      "bytes": 353,
+      "sha256": "2576d515f55eff9f9b0d0e419ef7d6b0a30bc6055e363f34ee96872ba5e7776a"
+    },
+    {
+      "path": "evidence/core-log-recheck/baseline-core-ScenarioTest.log",
+      "bytes": 301,
+      "sha256": "163d1b7729e1eb2eeae6da3a38f8f13c90533be520d726c2e26aba77232d288c"
+    },
+    {
+      "path": "evidence/core-log-recheck/repo-CoreTest.log",
+      "bytes": 245,
+      "sha256": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71"
+    },
+    {
+      "path": "evidence/core-log-recheck/repo-NavigationDefenseTest.log",
+      "bytes": 353,
+      "sha256": "2576d515f55eff9f9b0d0e419ef7d6b0a30bc6055e363f34ee96872ba5e7776a"
+    },
+    {
+      "path": "evidence/core-log-recheck/repo-MarchOrdersTest.log",
+      "bytes": 283,
+      "sha256": "6f51f43a3eda86c010fcf6dd8826c53226c2ff72dbd01fc521326f397df3d2f3"
+    },
+    {
+      "path": "evidence/core-log-recheck/repo-ScenarioTest.log",
+      "bytes": 301,
+      "sha256": "163d1b7729e1eb2eeae6da3a38f8f13c90533be520d726c2e26aba77232d288c"
+    },
+    {
+      "path": "evidence/core-log-recheck/baseline-core-MarchOrdersTest.log",
+      "bytes": 283,
+      "sha256": "6f51f43a3eda86c010fcf6dd8826c53226c2ff72dbd01fc521326f397df3d2f3"
+    },
+    {
+      "path": "evidence/core-log-recheck/baseline-core-CoreTest.log",
+      "bytes": 245,
+      "sha256": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71"
+    },
+    {
+      "path": "evidence/ci/ci-apk-core-job.log",
+      "bytes": 23227,
+      "sha256": "7ff760cb7ea6844ad08d42fce794cc8ee7b94955004524386c0decb3a00b95e3"
+    },
+    {
+      "path": "evidence/ci/ci-r05-job.log",
+      "bytes": 216129,
+      "sha256": "33e4bf19127d2d40e8e71b49028c6e1b346cb42342b237da39f729d04999bbdc"
+    },
+    {
+      "path": "evidence/ci/ci-r06-job.log",
+      "bytes": 220633,
+      "sha256": "f71738edda5c02b4d565cb31c1000c212271bc2922db216dcc6e46984017d513"
+    },
+    {
+      "path": "evidence/ci/firebase-api35-second-job.log",
+      "bytes": 62825,
+      "sha256": "ca99067c1da56f7910322f3b0276bfb6c2695a07feea17f26672685bbb895ade"
+    },
+    {
+      "path": "evidence/ci/ci-r01-job.log",
+      "bytes": 206397,
+      "sha256": "4014af64f5e9c05233598af09a5119da5316e3c8977f2d70ea925a0f923a7799"
+    },
+    {
+      "path": "evidence/core-comparison.json",
+      "bytes": 18709,
+      "sha256": "225eee32da60185541877d0ffece31665a9353b67654b3c9d16e25d77dfbab4a"
+    },
+    {
+      "path": "evidence/requirement-provenance.json",
+      "bytes": 117609,
+      "sha256": "014cc66d396f05235f78d016b131f47b53482bf3bf754747e7c1653966174e1b"
+    },
+    {
+      "path": "requirements/sanguo11-native-pc-visual-agent-prompts.zip",
+      "bytes": 136443,
+      "sha256": "74e794192d71311b84fed6dfbfd8f25c54a1aa334fbd8234d9e36d145640d03c"
+    },
+    {
+      "path": "evidence/scenario-route-candidates.txt",
+      "bytes": 550,
+      "sha256": "a950c51282a3b60df80dc79ff3e22f9401e5cfd6aa01636a630fdb25852d5ee3"
+    }
+  ],
+  "raw_fifth": [
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/quota.json",
+      "bytes": 6043,
+      "sha256": "281b2ae7732e76d34c325bee294ef2ba0cc96ee386e42eeb08c9adfd52a1f16e"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/project.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-allocation-usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-xof82udfz39ha.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-3qstawfpulggu.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-30ogbk6397ncu.json",
+      "bytes": 4015,
+      "sha256": "350d8b4e78b9e2be57602e79d35b17ea2e32137de5cc0a03883b3f7915e8755a"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/project.json",
+      "bytes": 239,
+      "sha256": "5d70b29c2a12206b51a12738b690fc267e68eaabf63a38d7b30ca2e304d5e23b"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/first-matrix.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-rate-net_usage.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-xof82udfz39ha.json",
+      "bytes": 3947,
+      "sha256": "21bf7cd52486330407a6fd7d06d98ab0450666a1154557cd5b0d498f47fd7c4a"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/queried-at.txt",
+      "bytes": 33,
+      "sha256": "3344bc28defd58b33836174c681df70f72e62c546a19aea75b87d4eaee911a44"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/models.json",
+      "bytes": 156466,
+      "sha256": "b3edf858c3c25dc68f1a04dd5b9f8f3c43668eac17ca863db841b8a2e2529391"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/capacities.json",
+      "bytes": 24345,
+      "sha256": "e575171bac249fe97130fdea260c21fc203589f7783677c07c1247d53d6eac6d"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-rate-net_usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/histories-0.json",
+      "bytes": 193,
+      "sha256": "b1c5343e6d889ce4a7746d550fdb45cc19da606781167c44c2d8818df083ffb3"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/first-matrix.json",
+      "bytes": 3943,
+      "sha256": "70b59b44c3e7865588662089329aa83be763c18256d2ab08a9bd113429347043"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-30ogbk6397ncu.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-2qh8xls7v829b.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/models.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/execution-usage.json",
+      "bytes": 151,
+      "sha256": "b88b2418f27fcdfdda25faffb83ed965a31822d64811f8abf0e2aee4b345fe24"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/models.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.json",
+      "bytes": 4183,
+      "sha256": "15556eec74c28ce6bbd53d3f821c71a7707066aceb2df49892bbedf34ec45fea"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-allocation-usage.json",
+      "bytes": 406,
+      "sha256": "693f27fe2e0c2f162612f4e7f10bc00c6cd4e9f87c82b9aa1b377d709a1770e4"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/billing.json",
+      "bytes": 1740,
+      "sha256": "9e1566b3cdcff0621bf9099dc945d969d9776d3136ffc24e0ac5cdc7269d1ffa"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/usage-matrix-matrix-3qstawfpulggu.json",
+      "bytes": 4279,
+      "sha256": "90525b1a5a047151364ae25e1b272997b38703c99f8175867a8170a27e935a23"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/quota.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/capacities.json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/capacities.json.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/billing.http",
+      "bytes": 4,
+      "sha256": "97a58cc66d1cd6b51466af8ed52d6a38053b5572fee09a0ae8859c26b82bdf67"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/histories-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-preflight/executions-bh.d4f7b6bca8c37254-0.http",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/GCLOUD_EXIT",
+      "bytes": 3,
+      "sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/PAIR.txt",
+      "bytes": 416,
+      "sha256": "b8059e79b8b741c4dfc3d1dec43e89c919649723f60c3d670bc2af757b6ed275"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/gcloud.log",
+      "bytes": 1939,
+      "sha256": "ea31075d28277399f77f7a21d5f9b31319752280fe9b96c525a3223ae3de81a1"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/collection.log",
+      "bytes": 1333,
+      "sha256": "e843481a633f6d1f110fb47e785cc1ee0b431b0092c46afdc6991f00015a9665"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/test-build/TEST_SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "edd00f0e0d8742e71a8a6fa599beec2394d34803921d5450b96e07e0396d1b8d"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/test-build/build.log",
+      "bytes": 4558,
+      "sha256": "3bf4d77fd9c9cbc0bb163b39b932fa89f0a9dc4b118756549bd0bfe201ca4120"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/logcat",
+      "bytes": 28923413,
+      "sha256": "4c1bb47ff7f2985c6dc6167f3c48d03f43559ffd42b0fc7c12348af18213897b"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/instrumentation.results",
+      "bytes": 233,
+      "sha256": "165306bbdbfbce34375f246e637dac2634f1143f61038f974a7dc7d36fe1edd1"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/test_result_1.xml",
+      "bytes": 423,
+      "sha256": "7c94764a3574e6eb44f6d81a3b5023f99f4062025e48ebca571f9d47582e42b8"
+    },
+    {
+      "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-runtime.txt",
+      "bytes": 187,
+      "sha256": "183f21ff46e69c238b504343962a11736ee1304a405f149ccc632f6cead35f28"
+    }
+  ],
+  "notes": [
+    "First four archive contains original relative evidence paths. Extract fifth tar under evidence/api35-third to match this index.",
+    "The first four executions include full continuous videos. The fifth execution returned no video, screenshots or cold-runtime; its Activity launch was denied before rendering. Missing evidence is explicitly recorded, not reconstructed.",
+    "Supplemental fixture tests, emulator failures and current quota are separate evidence; not physical pure-touch PASS."
+  ]
+}

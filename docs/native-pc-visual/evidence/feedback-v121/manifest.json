@@ -1,0 +1,115 @@
+{
+  "status": "PARTIAL",
+  "source_sha": "b2352ed199fddada917ea224295773c4f9250506",
+  "input_sha": "afac21886f8b092ed3099aa1bf88eba966955285",
+  "main_sha": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "ci_run": 36568523262,
+  "checks": {
+    "field": "PASS",
+    "feedback121": "PASS 72734 candidate / 5 old relief control",
+    "grid-coast": "PASS all six suites including original 902230 surface assertions",
+    "r02": "PASS 399124; 1548 camera samples; 12 front occlusions",
+    "r05": "PASS 55818",
+    "water": "PASS 803860",
+    "r01": "PASS",
+    "r12": "PASS 395124",
+    "r06": "PASS 206",
+    "r10": "PASS 2221136",
+    "combat": "PASS; full real-command SaveCodec parity",
+    "core": "FAIL inherited CoreTest.logistics:75 on both independent trees",
+    "r09_geometry": "FAIL NEW intended visual change; original golden unchanged; baseline PASS, candidate FAIL; downstream R09 in wrapper NOT_REACHED",
+    "gltf": "PASS Khronos 178 assets, 0 errors, 0 warnings",
+    "android": "PARTIAL across attempts; final candidate readiness FAIL on both API29/35; initial fixture PASS not substituted",
+    "physical": "FAIL environment/auth: WIF attribute condition rejects; inventory NOT_REACHED; physical submissions=0",
+    "r09_direct": "PASS 1602; candidate same untouched NativeR09Test separately compiled/run after retained golden failure",
+    "height_paint": "PASS 2.4 explicit plain / protected road <=0.08 / water0; first regression retained",
+    "art": "PARTIAL: initial actual candidate mountain/gate/grid/fire visible; opaque fire/smoke, sharp rocks, final partial black gate/loading risk OPEN; full PC/all-model line NOT_ACCEPTED",
+    "performance": "NOT_ACCEPTED: software emulator, owner only; no complete GPU/presented times, no final candidate grid interval"
+  },
+  "scope": "Only user feedback; no next stage or merge",
+  "reference": "4Gamer publisher PC screenshots; exact camera unknown",
+  "no_adjacent_mountain": [
+    "武關",
+    "劍閣",
+    "葭萌關",
+    "綿竹關"
+  ],
+  "apk": {
+    "source_sha": "b2352ed199fddada917ea224295773c4f9250506",
+    "apk_sha256": "06ebe774afffb7f3022ec9ae6a6d2f191fdb6dbff814935e2e001aa5fbbaf4d1",
+    "bytes": 37551483,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 307,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "build_artifact_id": 11032963832,
+  "build_zip_sha256": "dbc8faeda7571404a57dc23d80a59d8c243146d6f7425928a2126fba4fda4e2c",
+  "build_job": 109406387912,
+  "build": "PASS assembleDebug/assembleDebugAndroidTest/lintDebug; 84 executed tasks",
+  "api35": {
+    "status": "FAIL",
+    "artifact": 11033447625,
+    "sha256": "d8e7d5ab2276a5088e06e72cdd1adef2ac2af18c1821e7f9761c452f0d6c90de",
+    "cases": "all four original120sReady FAIL; both versions/fixture/national",
+    "grid_and_fire_runtime_acceptance": "NOT_REACHED",
+    "installed_apk_matches": true
+  },
+  "first_attempt": {
+    "source_sha": "db50c897fdbc698778c5c034a5616068fb22a3fb",
+    "ci_run": 36565246134,
+    "apk": {
+      "source_sha": "db50c897fdbc698778c5c034a5616068fb22a3fb",
+      "apk_sha256": "f65f784ee8806d0ddf2caad4497ab575928eb4a3e916fa33e7d1808b0e3d96b8",
+      "bytes": 37551483,
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a",
+        "x86",
+        "x86_64"
+      ],
+      "matched_assets": 307,
+      "backend": "Filament 1.56.0 OPENGL",
+      "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+    },
+    "build_artifact_id": 11031966490,
+    "build_zip_sha256": "85acb8c2f441f016d92eef38bc520c0addec6c2b469e659a0b2d69c5d469adc5",
+    "build_job": 109395463859,
+    "api35": {
+      "status": "FAIL",
+      "artifact": 11032905487,
+      "sha256": "ca35d8ec044762f646f20d332cf530629cdffdee25fe8c65749c5779e733b5a9",
+      "cases": "both versions, fixture and national: original 120s readiness timeout",
+      "grid_measurements": "NOT_REACHED",
+      "physical": false
+    },
+    "api29": {
+      "status": "PARTIAL",
+      "artifact": 11033443166,
+      "sha256": "950cb086924463c35422aa2085f17f397935634587398114d7a82fce5677b4cb",
+      "baseline_fixture": "PASS171",
+      "candidate_fixture": "PASS151",
+      "baseline_national": "FAIL external900s timeout after 11 of12 camera/grid captures",
+      "candidate_national": "FAIL original120sReady; submitted12 pending11",
+      "cross_version_fixture_save_sha256": "ef65ee2383b367142a2f03ac8a0afe30d596859a5a5b806d52f0d60bfc88213f",
+      "grid_uploads_total": 6
+    }
+  },
+  "api29": {
+    "status": "FAIL",
+    "artifact": 11033747616,
+    "sha256": "811cd6265f84f1cb1e18e7b7f0b428ddfe01d3d51610c1b15831c2727890202e",
+    "baseline_fixture": "PASS106; focused single camera",
+    "baseline_national": "FAIL original120sReady",
+    "candidate_fixture": "FAIL original120sReady",
+    "candidate_national": "FAIL original120sReady",
+    "installed_apk_matches": true
+  },
+  "video_verification": "16/16 ffprobe and full decode exit0; null muxer DTS warnings retained, up to180s recordings not entire long tests",
+  "final_head": "See delivery FINAL_READBACK.json and PR67; following source commit changes are docs/native-pc-visual only"
+}

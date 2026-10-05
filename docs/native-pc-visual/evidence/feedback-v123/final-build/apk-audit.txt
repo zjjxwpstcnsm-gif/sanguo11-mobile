@@ -1,0 +1,94 @@
+{
+  "apk": "sanguo11-mobile-v123.apk",
+  "sha256": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+  "apk_bytes": 39852561,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "ledger": {
+    "other": {
+      "zip_bytes": 237091,
+      "unpacked_bytes": 861342,
+      "count": 45
+    },
+    "dex": {
+      "zip_bytes": 843242,
+      "unpacked_bytes": 1780808,
+      "count": 1
+    },
+    "native": {
+      "zip_bytes": 8961220,
+      "unpacked_bytes": 8961220,
+      "count": 4
+    },
+    "textures": {
+      "zip_bytes": 24537730,
+      "unpacked_bytes": 24561669,
+      "count": 116
+    },
+    "models": {
+      "zip_bytes": 4663033,
+      "unpacked_bytes": 22427824,
+      "count": 260
+    },
+    "materials": {
+      "zip_bytes": 495524,
+      "unpacked_bytes": 2173178,
+      "count": 7
+    }
+  },
+  "native": [
+    {
+      "path": "lib/arm64-v8a/libfilament-jni.so",
+      "load_alignment": [
+        16384,
+        16384,
+        16384
+      ],
+      "elf_16k": true,
+      "zip_16k": true,
+      "compressed": false
+    },
+    {
+      "path": "lib/armeabi-v7a/libfilament-jni.so",
+      "load_alignment": [
+        16384,
+        16384,
+        16384
+      ],
+      "elf_16k": true,
+      "zip_16k": true,
+      "compressed": false
+    },
+    {
+      "path": "lib/x86/libfilament-jni.so",
+      "load_alignment": [
+        16384,
+        16384,
+        16384
+      ],
+      "elf_16k": true,
+      "zip_16k": true,
+      "compressed": false
+    },
+    {
+      "path": "lib/x86_64/libfilament-jni.so",
+      "load_alignment": [
+        16384,
+        16384,
+        16384
+      ],
+      "elf_16k": true,
+      "zip_16k": true,
+      "compressed": false
+    }
+  ],
+  "target_bytes": 314572800,
+  "warning_bytes": 419430400,
+  "installed_bytes": null,
+  "cache_bytes": null,
+  "physical_device_16k_verified": false
+}

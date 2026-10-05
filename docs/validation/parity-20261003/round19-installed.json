@@ -1,0 +1,296 @@
+{
+  "goal_complete": false,
+  "candidate_opening_passed": false,
+  "art_recovered_passed": true,
+  "scope": "API29 x86_64 only; officer arithmetic not integrated into ordinary saved officer state",
+  "evidence": {
+    "apks/manifest.json": {
+      "sha256": "8e4663b6e8520e986c7e1ed6a8b4f0eee9415c69efc9c4cfa36a577aff9ac170",
+      "record": {
+        "apks": [
+          {
+            "path": "out/parity/officer-ability-20261003/apks/app-debug.apk",
+            "bytes": 87024457,
+            "sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449"
+          },
+          {
+            "path": "out/parity/officer-ability-20261003/apks/app-debug-androidTest.apk",
+            "bytes": 736038,
+            "sha256": "7d07866cc1626da28dd9560f4215cacf1bcde0c66c446104584ddf19469d6acc"
+          }
+        ],
+        "pinned_resources": 168,
+        "native_inputs": 4,
+        "all_exact": true,
+        "contains_officer_ability_rules": true
+      }
+    },
+    "installed-opening/results.json": {
+      "sha256": "361e32584739bee7f9b6c76afc2d005b5da68111dca0ff7827a0da04ad5cf7d8",
+      "record": {
+        "serial": "emulator-5554",
+        "runner": "UiUxInstrumentation",
+        "arguments": [
+          "suite=opening",
+          "run=aj19-opening-01",
+          "reuseSlotSha=82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        ],
+        "apks": {
+          "/Users/paopao/workspace/sanguo11-mobile/out/parity/officer-ability-20261003/apks/app-debug.apk": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449",
+          "/Users/paopao/workspace/sanguo11-mobile/out/parity/officer-ability-20261003/apks/app-debug-androidTest.apk": "7d07866cc1626da28dd9560f4215cacf1bcde0c66c446104584ddf19469d6acc"
+        },
+        "backup": {
+          "files/auto.sg11": {
+            "bytes": 168846,
+            "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+          },
+          "files/customOfficers/library.json": {
+            "bytes": 178,
+            "sha256": "503ae2c6ec6020256825226bd77231f41e5a00ea4e9a8f5792fcd98571f709d1"
+          },
+          "files/manual3.sg11": {
+            "bytes": 168846,
+            "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+          },
+          "shared_prefs/map-renderer.xml": {
+            "bytes": 479,
+            "sha256": "c276890757a1c659c070446d24e43822f025f9a67e387e42df3a12fb95809755"
+          },
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml": {
+            "bytes": 2196,
+            "sha256": "fe83181dc949a39792589351e1d7a8d1accac1f391fe2ef9580711f4aa0d4836"
+          },
+          "shared_prefs/MainActivity.xml": {
+            "bytes": 65,
+            "sha256": "3325d2a819fdd8062c2cdc48a09b995c9b012915bcdf88b1cf9742a7f057c793"
+          },
+          "shared_prefs/client.xml": {
+            "bytes": 65,
+            "sha256": "3325d2a819fdd8062c2cdc48a09b995c9b012915bcdf88b1cf9742a7f057c793"
+          }
+        },
+        "passed": false,
+        "stage": "finished",
+        "reused_installed": false,
+        "installed_test_sha256": "7d07866cc1626da28dd9560f4215cacf1bcde0c66c446104584ddf19469d6acc",
+        "installed_sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449",
+        "exit_code": 0,
+        "seconds": 243.63,
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      }
+    },
+    "baseline-opening-recovered/results.json": {
+      "sha256": "bc4782a73b019cc66b643c2a7c0e93ff82402ea06ce969c7751173396d78a02e",
+      "record": {
+        "serial": "emulator-5554",
+        "runner": "UiUxInstrumentation",
+        "arguments": [
+          "suite=opening",
+          "run=aj19-ah-baseline-01",
+          "reuseSlotSha=82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        ],
+        "apks": {
+          "/Users/paopao/workspace/sanguo11-mobile/out/parity/ui-integration-13ff5b9/apks/app-debug.apk": "9f3622838c95313cd3f38b5dc76f9254ec367cadd9c38632b4da515e5eea2085",
+          "/Users/paopao/workspace/sanguo11-mobile/out/parity/ui-integration-13ff5b9/apks/app-debug-androidTest.apk": "c38c6993bb0859c5c01c592921a84d0885db6cf22c16bb8bd4fb79af6911c7c0"
+        },
+        "backup": {
+          "files/auto.sg11": {
+            "bytes": 168846,
+            "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+          },
+          "files/customOfficers/library.json": {
+            "bytes": 178,
+            "sha256": "503ae2c6ec6020256825226bd77231f41e5a00ea4e9a8f5792fcd98571f709d1"
+          },
+          "files/manual3.sg11": {
+            "bytes": 168846,
+            "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+          },
+          "shared_prefs/map-renderer.xml": {
+            "bytes": 479,
+            "sha256": "c276890757a1c659c070446d24e43822f025f9a67e387e42df3a12fb95809755"
+          },
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml": {
+            "bytes": 2196,
+            "sha256": "fe83181dc949a39792589351e1d7a8d1accac1f391fe2ef9580711f4aa0d4836"
+          },
+          "shared_prefs/MainActivity.xml": {
+            "bytes": 65,
+            "sha256": "3325d2a819fdd8062c2cdc48a09b995c9b012915bcdf88b1cf9742a7f057c793"
+          },
+          "shared_prefs/client.xml": {
+            "bytes": 65,
+            "sha256": "3325d2a819fdd8062c2cdc48a09b995c9b012915bcdf88b1cf9742a7f057c793"
+          }
+        },
+        "passed": true,
+        "stage": "finished",
+        "reused_installed": false,
+        "installed_test_sha256": "c38c6993bb0859c5c01c592921a84d0885db6cf22c16bb8bd4fb79af6911c7c0",
+        "installed_sha256": "9f3622838c95313cd3f38b5dc76f9254ec367cadd9c38632b4da515e5eea2085",
+        "exit_code": 0,
+        "seconds": 176.17,
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      }
+    },
+    "installed-opening-recovered/results.json": {
+      "sha256": "701883de85c3885b4edee50a7496fc51a275eeca105a24905c4367a032449b89",
+      "record": {
+        "serial": "emulator-5554",
+        "runner": "UiUxInstrumentation",
+        "arguments": [
+          "suite=opening",
+          "run=aj19-opening-02",
+          "reuseSlotSha=82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        ],
+        "apks": {
+          "/Users/paopao/workspace/sanguo11-mobile/out/parity/officer-ability-20261003/apks/app-debug.apk": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449",
+          "/Users/paopao/workspace/sanguo11-mobile/out/parity/officer-ability-20261003/apks/app-debug-androidTest.apk": "7d07866cc1626da28dd9560f4215cacf1bcde0c66c446104584ddf19469d6acc"
+        },
+        "backup": {
+          "files/auto.sg11": {
+            "bytes": 168846,
+            "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+          },
+          "files/customOfficers/library.json": {
+            "bytes": 178,
+            "sha256": "503ae2c6ec6020256825226bd77231f41e5a00ea4e9a8f5792fcd98571f709d1"
+          },
+          "files/manual3.sg11": {
+            "bytes": 168846,
+            "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+          },
+          "shared_prefs/map-renderer.xml": {
+            "bytes": 479,
+            "sha256": "c276890757a1c659c070446d24e43822f025f9a67e387e42df3a12fb95809755"
+          },
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml": {
+            "bytes": 2196,
+            "sha256": "fe83181dc949a39792589351e1d7a8d1accac1f391fe2ef9580711f4aa0d4836"
+          },
+          "shared_prefs/MainActivity.xml": {
+            "bytes": 65,
+            "sha256": "3325d2a819fdd8062c2cdc48a09b995c9b012915bcdf88b1cf9742a7f057c793"
+          },
+          "shared_prefs/client.xml": {
+            "bytes": 65,
+            "sha256": "3325d2a819fdd8062c2cdc48a09b995c9b012915bcdf88b1cf9742a7f057c793"
+          }
+        },
+        "passed": false,
+        "stage": "finished",
+        "reused_installed": false,
+        "installed_test_sha256": "7d07866cc1626da28dd9560f4215cacf1bcde0c66c446104584ddf19469d6acc",
+        "installed_sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449",
+        "exit_code": 0,
+        "seconds": 117.46,
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      }
+    },
+    "android-core-probe/result-erratum.json": {
+      "sha256": "839aadc86b843ccb9cf6dc5b735f5d716e069290d3ca1f3c8947cbbc2b20e639",
+      "record": {
+        "original_result_sha256": "5cd33d139318852ab538757d8c727b3bdde9499f5d6efb72bd753a459f9f2760",
+        "overall_passed": false,
+        "rules_outputs": [
+          {
+            "suite": "PcMerchantMeritTest",
+            "seconds": 49.65,
+            "output": "PASS PcMerchantMeritTest checks=421\n"
+          },
+          {
+            "suite": "PcMerchantArithmeticTest",
+            "seconds": 2.74,
+            "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+          },
+          {
+            "suite": "PcOfficerAbilityArithmeticTest",
+            "seconds": 2.47,
+            "output": "PASS PcOfficerAbilityArithmeticTest rows=4813 (arithmetic only; officer persistence/integration pending)\n"
+          }
+        ],
+        "user_files_unchanged": true,
+        "post_apk_readback_verified": false,
+        "reason": "Original harness exit1: APK post-readback mismatch followed by confirmed emulator5554 offline. Original passed=true is a reporting bug, now fixed and covered by5 isolated harness outcomes. Preserve original evidence unchanged."
+      }
+    },
+    "android-core-probe-recovered/results.json": {
+      "sha256": "2e180e154835d3bef48c115fd2e790b4718cd9200572fb38ec5516be3d15cb9d",
+      "record": {
+        "passed": true,
+        "serial": "emulator-5554",
+        "apk_sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449",
+        "class_sources": {
+          "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest$1.class": "0b88e888325319f46279de98a46eb835408bf5779fb330dced084123745a3222",
+          "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest.class": "deee925a1709c219aa4409350f8f529525923656613d9e8878aff4d1824798bf",
+          "core/build/classes/java/test/game/sanguo/core/PcMerchantArithmeticTest.class": "13a0b023491ef8f469d15becb8609d920ed3781c6746a5b1c327a1c3b44a96ba",
+          "core/build/classes/java/test/game/sanguo/core/PcMerchantMeritTest.class": "db632dfc4abd562cdfef1af3f6a46aaf52790790a8772418d35c8fece7d2c4e2",
+          "core/build/classes/java/test/game/sanguo/core/PcOfficerAbilityArithmeticTest.class": "e4597942eee481bfc859c8647e1f733e03ecccebf29f42eb91c6efaaad0d7f73",
+          "core/build/classes/java/test/game/sanguo/core/TradePlanTest.class": "42a5eb2ddcb91ea4f50e5c261440b1e7d1ff86e62cda6e2c9ff49bcc276b9ad1"
+        },
+        "scope": "Installed APK production classes in ART; ordinary commands and generated worlds, not UI taps",
+        "results": [
+          {
+            "suite": "PcMerchantMeritTest",
+            "seconds": 2.53,
+            "output": "PASS PcMerchantMeritTest checks=421\n"
+          },
+          {
+            "suite": "PcMerchantArithmeticTest",
+            "seconds": 0.32,
+            "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+          },
+          {
+            "suite": "PcOfficerAbilityArithmeticTest",
+            "seconds": 0.37,
+            "output": "PASS PcOfficerAbilityArithmeticTest rows=4813 (arithmetic only; officer persistence/integration pending)\n"
+          }
+        ],
+        "probe_sha256": "ec32a3d7d69ec8a0921f99d984088e05f75b9cf1dcc9d96a6871cad09f4c5569",
+        "rules_passed": true,
+        "user_files_unchanged": true,
+        "post_apk_readback_bytes": 87024457,
+        "post_apk_readback_sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449",
+        "installed_apk_unchanged": true
+      }
+    },
+    "apk-disassembly/comparison.json": {
+      "sha256": "4bacdd83df36efcc8be789fda0c9ccb08a0708b7be01f925b942cd068df31653",
+      "record": {
+        "baseline_classes": 1099,
+        "candidate_classes": 1100,
+        "added": [
+          "game/sanguo/core/PcOfficerAbilityRules.smali"
+        ],
+        "removed": [],
+        "changed": []
+      }
+    },
+    "emulator-recovered-verification.json": {
+      "sha256": "7adb8157347cdc4ff9c83500cfdda2056e11e7a16754479ad0c60e1d3a7329c9",
+      "record": {
+        "user_files_equal": true,
+        "changed": [],
+        "added": [],
+        "device_sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449  /data/app/game.sanguo.mobile.dev-bkDOFo61IxKbInQqDoMx0Q==/base.apk\n",
+        "apk_readback_bytes": 87024457,
+        "apk_sha256": "8c403c8e4b17e40787c221ebfe51f84328b9a0b604dba981f903f229d42f8449"
+      }
+    }
+  }
+}

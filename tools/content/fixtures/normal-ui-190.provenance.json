@@ -1,0 +1,11 @@
+{
+  "source": "/Users/paopao/workspace/sanguo11-mobile-uiux/out/uiux/iteration-13/p13-07/before-auto.sg11",
+  "bytes": 185898,
+  "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69",
+  "evidence": "docs/uiux/VALIDATION-13.md: normal190 CaoCao UI opening, distinct from original user250 campaign",
+  "source_ui_commit": "8e1d5f750390429cf8bb251805ca4456bf6ad6d1",
+  "jvm_roundtrip_sha256": "0bc070e4f4962c05b481a376d517c269ae600e0f28dfc6362c2b11316c816c1c",
+  "roundtrip_difference": "Only CRC32 header bytes16..19 and embedded report GZIP OS byte at185557 differ: ART0 vs JVM255; decompressed report identical; original source untouched",
+  "scope": "Test-owned normal190 CaoCao save; never install over user save except protected explicit flow harness",
+  "art_probe": "core/src/test/java/game/sanguo/core/SaveCopyProbe.java"
+}

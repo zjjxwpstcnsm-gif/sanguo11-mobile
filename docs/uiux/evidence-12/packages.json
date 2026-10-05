@@ -1,0 +1,27 @@
+[
+  {
+    "file": "app-uiux-run07.apk",
+    "bytes": 82245764,
+    "sha256": "c8405d8056c29886695d08125779fe384a776842dde3064321c4430adc073f7f",
+    "abis": [
+      "x86_64"
+    ],
+    "exact_native_libraries": [
+      "x86_64/libpc_effect_worker.so",
+      "x86_64/libunicorn.so"
+    ],
+    "installed_readback_sha256": "c8405d8056c29886695d08125779fe384a776842dde3064321c4430adc073f7f"
+  },
+  {
+    "file": "app-uiux-arm64.apk",
+    "bytes": 82188605,
+    "sha256": "cfcb708a7444a2590246d25cc6af1d0cf26ca31d90d6dc58b9083e7666027494",
+    "abis": [
+      "arm64-v8a"
+    ],
+    "exact_native_libraries": [
+      "arm64-v8a/libpc_effect_worker.so",
+      "arm64-v8a/libunicorn.so"
+    ]
+  }
+]

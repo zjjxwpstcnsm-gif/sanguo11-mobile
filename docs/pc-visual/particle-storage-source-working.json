@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "status": "RAW_SOURCE_SLOTS_NOT_ANDROID_RENDER",
+  "goal_complete": false,
+  "resource_id": 148,
+  "source_evidence": {
+    "path": "out/pc-visual/v147-particle-slots-source.json",
+    "sha256": "b34c237ec6426f2fcc7f7de3a9db30ca9927c7fcf8a9fae31fd6e220145109ed"
+  },
+  "snapshots": [
+    {
+      "input_dt": 0.03333333333333333,
+      "source_allocations": 1,
+      "unique_slots": 1,
+      "allocator_active": 1,
+      "strides": [
+        368
+      ]
+    },
+    {
+      "input_dt": 0.1,
+      "source_allocations": 4,
+      "unique_slots": 4,
+      "allocator_active": 4,
+      "strides": [
+        144,
+        160,
+        368
+      ]
+    },
+    {
+      "input_dt": 0.5,
+      "source_allocations": 16,
+      "unique_slots": 12,
+      "allocator_active": 12,
+      "strides": [
+        144,
+        160,
+        368
+      ]
+    },
+    {
+      "input_dt": 1,
+      "source_allocations": 41,
+      "unique_slots": 22,
+      "allocator_active": 22,
+      "strides": [
+        144,
+        160,
+        368
+      ]
+    },
+    {
+      "input_dt": 2,
+      "source_allocations": 91,
+      "unique_slots": 26,
+      "allocator_active": 26,
+      "strides": [
+        144,
+        160,
+        368
+      ]
+    }
+  ],
+  "runtime_effects_added": 0,
+  "limits": [
+    "Allocation reuse/active membership and field semantics require source consumers",
+    "Diagnostic source time units are not accepted PC seconds or FPS",
+    "No original scene transform, GPU rasterization, Android event binding or visual acceptance"
+  ]
+}

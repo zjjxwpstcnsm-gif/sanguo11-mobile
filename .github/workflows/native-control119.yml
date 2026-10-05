@@ -1,0 +1,88 @@
+name: Control intelligence feedback v119
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-control119.yml', 'scripts/*control*', 'app/src/androidTest/**', 'core/src/**', 'version.properties']
+permissions: {contents: read, actions: read}
+concurrency: {group: native-control119, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact source and scoped rule checks
+        run: |
+          set -euo pipefail
+          mkdir -p out/control119
+          python3 scripts/verify-candidate-source.py "$GITHUB_SHA" > out/control119/source-check.txt
+          git diff --exit-code 5cc511faa6d2fea837f0fecc29f5e2c28c933f8f HEAD -- game-api game-runtime data unity app/src/main > out/control119/protected.log
+          bash scripts/test-control-intelligence.sh > out/control119/intelligence.log 2>&1
+          bash scripts/test-control-probability.sh > out/control119/control.log 2>&1
+          bash scripts/test-architecture.sh > out/control119/architecture.log 2>&1
+      - name: Retain inherited full core failure
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/control119/core.log 2>&1
+          code=$?
+          echo "$code" > out/control119/core.exit
+          exit "$code"
+      - name: Existing regressions (retain every exit and failure)
+        continue-on-error: true
+        run: |
+          set +e
+          failed=0
+          for suite in RulesParityTest MapSkillsTest CampaignTest CampaignAiTest WorldSystemsTest BalanceTest; do
+            java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.$suite > out/control119/$suite.log 2>&1
+            code=$?
+            echo "$code" > out/control119/$suite.exit
+            if [ "$code" != 0 ]; then failed=1; fi
+          done
+          exit "$failed"
+      - name: Build exact production APK and lint
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/control119/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/control119/sanguo11-mobile-v119.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/control119/test.apk
+          git rev-parse HEAD > out/control119/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/control119/sanguo11-mobile-v119.apk > out/control119/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/control119/sanguo11-mobile-v119.apk > out/control119/signature.txt
+          python3 scripts/verify-r18-apk.py out/control119/sanguo11-mobile-v119.apk "$GITHUB_SHA" > out/control119/apk-identity.json
+          python3 scripts/audit-3d-apk.py out/control119/sanguo11-mobile-v119.apk --require-16k > out/control119/apk-audit.json
+          sha256sum out/control119/*.apk > out/control119/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: control119-build, path: out/control119/, retention-days: 30}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: control119-build, path: out/control119/}
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-control119.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'control119-api${{ matrix.api }}', path: out/control119/runtime/, retention-days: 30}

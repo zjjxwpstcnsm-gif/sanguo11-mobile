@@ -1,0 +1,35 @@
+// Original WKMD skins are evaluated from FCVD by the bounded CPU pose cache.
+material {
+    name : PcSourceUnitFormation,
+    flipUV : false,
+    shadingModel : lit,
+    blending : masked,
+    maskThreshold : 0.5,
+    doubleSided : true,
+    instanced : true,
+    requires : [color,uv0],
+    parameters : [
+        { type : sampler2d, name : atlas },
+        { type : float, name : atlasEncoded },
+        { type : float4[76], name : members }
+    ]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        float4 member=materialParams.members[getInstanceIndex()];
+        material.worldPosition=getWorldFromModelMatrix()*float4(getPosition().xyz+member.xyz,1.0);
+    }
+}
+fragment {
+    float3 encodedToLinear(float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        material.baseColor=texture(materialParams_atlas,getUV0())*getColor();
+        if(materialParams.atlasEncoded>0.5)material.baseColor.rgb=encodedToLinear(texture(materialParams_atlas,getUV0()).rgb)*getColor().rgb;
+        material.roughness=.9;
+        material.metallic=0.0;
+        material.reflectance=.25;
+    }
+}

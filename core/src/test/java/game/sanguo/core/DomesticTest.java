@@ -34,7 +34,7 @@ public final class DomesticTest {
         for(World.Terrain terrain:new World.Terrain[]{World.Terrain.WATER,World.Terrain.MOUNTAIN,World.Terrain.FOREST}){
             w.terrain[site.q][site.r]=terrain;reject(w,()->w.domestic.build(10,0,Domestic.Kind.MARKET,site));
         }
-        w.terrain[site.q][site.r]=World.Terrain.PLAIN;w.city(10).gold=999;reject(w,()->w.domestic.build(10,0,Domestic.Kind.MARKET,site));w.city(10).gold=100000;
+        w.terrain[site.q][site.r]=World.Terrain.PLAIN;w.city(10).gold=Domestic.Kind.MARKET.cost-1;reject(w,()->w.domestic.build(10,0,Domestic.Kind.MARKET,site));w.city(10).gold=100000;
         w.actionPoints[0]=9;reject(w,()->w.domestic.build(10,0,Domestic.Kind.MARKET,site));w.actionPoints[0]=60;
         check(Arrays.equals(original,SaveCodec.encode(w)),"invalid build probes preserve original");
         Domestic.Facility f=build(w,Domestic.Kind.MARKET,0);check(f.remaining==2&&w.domestic.busy(0),"high politics occupies builder for two turns");
@@ -65,8 +65,8 @@ public final class DomesticTest {
         w.city(10).troops=99000;reject(w,()->w.recruit(10,3));w.city(10).equipment[0]=99000;reject(w,()->w.produce(10,3,World.Weapon.SPEAR));
         w.city(10).troops=0;int gold=w.city(10).gold,food=w.city(10).food;next(w);
         check(w.city(10).gold==gold+1330&&w.city(10).food==food,"month income uses completed facilities; food waits for the season");
-        w.city(10).gold=999999;w.city(10).food=999999;for(int i=0;i<6;i++)next(w);
-        check(w.city(10).gold==1000000&&w.city(10).food==1000000,"month and season caps prevent overflow");
+        w.city(10).gold=99999;w.city(10).food=999999;for(int i=0;i<6;i++)next(w);
+        check(w.city(10).gold==100000&&w.city(10).food==1000000,"native city gold and food caps prevent overflow");
     }
     private static void movement()throws Exception{
         World w=fixture();reject(w,()->w.domestic.transfer(10,10,0));reject(w,()->w.domestic.transfer(10,30,0));reject(w,()->w.domestic.transfer(10,999,0));

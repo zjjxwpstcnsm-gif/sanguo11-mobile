@@ -1,0 +1,91 @@
+UIUX PASS 90 checks
+PASS normal launch restores existing save
+PASS touch visible 功能 at Rect(16, 1794 - 205, 1920)
+PASS touch visible 地图 at Rect(60, 336 - 1020, 462)
+PASS 3D real output ready
+PASS sustained acceptance requires at least six complete turns
+PASS touch visible 下一旬  → at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 执行 at Rect(837, 1072 - 1005, 1198)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 暂停演示 at Rect(28, 605 - 1052, 731)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 跳过剩余演示 at Rect(28, 1109 - 1052, 1235)
+PASS normal UI commits exactly one full turn in sustained round 0
+PASS 3D real output ready
+PASS real autosave equals full current state in round 0
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 428ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS foreground window is focused and map rendering resumes in 4582ms
+PASS round 0 Home/resume preserves authority and 3D camera
+PASS touch visible 下一旬  → at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 执行 at Rect(837, 1072 - 1005, 1198)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 暂停演示 at Rect(28, 605 - 1052, 731)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 跳过剩余演示 at Rect(28, 1109 - 1052, 1235)
+PASS normal UI commits exactly one full turn in sustained round 1
+PASS 3D real output ready
+PASS real autosave equals full current state in round 1
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 621ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS foreground window is focused and map rendering resumes in 4403ms
+PASS round 1 Home/resume preserves authority and 3D camera
+PASS touch visible 下一旬  → at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 执行 at Rect(837, 1072 - 1005, 1198)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 暂停演示 at Rect(28, 605 - 1052, 731)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 跳过剩余演示 at Rect(28, 1109 - 1052, 1235)
+PASS normal UI commits exactly one full turn in sustained round 2
+PASS 3D real output ready
+PASS real autosave equals full current state in round 2
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 845ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS foreground window is focused and map rendering resumes in 4128ms
+PASS round 2 Home/resume preserves authority and 3D camera
+PASS touch visible 下一旬  → at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 执行 at Rect(837, 1072 - 1005, 1198)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 暂停演示 at Rect(28, 605 - 1052, 731)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 跳过剩余演示 at Rect(28, 1109 - 1052, 1235)
+PASS normal UI commits exactly one full turn in sustained round 3
+PASS 3D real output ready
+PASS real autosave equals full current state in round 3
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 699ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS foreground window is focused and map rendering resumes in 4121ms
+PASS round 3 Home/resume preserves authority and 3D camera
+PASS touch visible 下一旬  → at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 执行 at Rect(837, 1072 - 1005, 1198)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 暂停演示 at Rect(28, 605 - 1052, 731)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 跳过剩余演示 at Rect(28, 1109 - 1052, 1235)
+PASS normal UI commits exactly one full turn in sustained round 4
+PASS 3D real output ready
+PASS real autosave equals full current state in round 4
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 520ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS foreground window is focused and map rendering resumes in 4624ms
+PASS round 4 Home/resume preserves authority and 3D camera
+PASS touch visible 下一旬  → at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 执行 at Rect(837, 1072 - 1005, 1198)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 暂停演示 at Rect(28, 605 - 1052, 731)
+PASS touch visible 演示控制 at Rect(791, 1794 - 1064, 1920)
+PASS touch visible 跳过剩余演示 at Rect(28, 1109 - 1052, 1235)
+PASS normal UI commits exactly one full turn in sustained round 5
+PASS 3D real output ready
+PASS real autosave equals full current state in round 5
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 824ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS foreground window is focused and map rendering resumes in 4249ms
+PASS round 5 Home/resume preserves authority and 3D camera
+PASS 6 consecutive real turns complete without truncating rule work

@@ -91,23 +91,33 @@ public final class Envoys {
         }
     }
 
-    public World.Result dispatch(Kind kind, int source, int actor, int destination, int a, int b, int c, int fee, int gift, int ap) {w.reports.prepare();
+    /** Same pure departure checks for the ordinary command and its read-only preview. */
+    RuleFailure dispatchFailure(Kind kind, int source, int destination, int target) {
         World.City from = this.w.city(source);
         World.City to = this.w.city(destination);
         if (to == null) {
-            return this.w.fail("目标势力没有可出使的据点");
+            return new RuleFailure("DESTINATION_UNAVAILABLE", "targetSide", "目标势力没有可出使的据点");
         }
         for (Mission m : this.missions) {
             if (m.kind == kind && m.owner == from.owner) {
-                if (m.a == a && m.remaining > m.travel) {
-                    return this.w.fail("已有使者在前往同一目标，请等待抵达");
+                if (m.a == target && m.remaining > m.travel) {
+                    return new RuleFailure("ENVOY_PENDING", "targetSide", "已有使者在前往同一目标，请等待抵达");
                 }
             }
         }
-        int travel = Math.max(1, this.w.personnel.turns(source, destination));
-        if (travel > 50) {
-            return this.w.fail("出使路线过长");
+        if (travelTurns(source, destination) > 50) {
+            return new RuleFailure("TRAVEL_TOO_LONG", "targetSide", "出使路线过长");
         }
+        return null;
+    }
+
+    int travelTurns(int source, int destination) {return Math.max(1, this.w.personnel.turns(source, destination));}
+
+    public World.Result dispatch(Kind kind, int source, int actor, int destination, int a, int b, int c, int fee, int gift, int ap) {w.reports.prepare();
+        RuleFailure failure=dispatchFailure(kind,source,destination,a);
+        if(failure!=null)return w.fail(failure.detail);
+        World.City from=w.city(source),to=w.city(destination);
+        int travel=travelTurns(source,destination);
         World.Officer o = this.w.officer(actor);
         this.w.spend(from, o, fee + gift);
         int[] iArr = this.w.actionPoints;

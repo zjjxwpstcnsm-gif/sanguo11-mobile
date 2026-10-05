@@ -1,0 +1,67 @@
+[
+  {
+    "folder": "fact-installed-01",
+    "passed": false,
+    "apkSha256": "faf058fd18fa7f01f0b8d916f2638d55793c819e89eb1867bb83e14e080a0921",
+    "restoration": {
+      "all_original_files_byte_equal": true,
+      "mismatches": [],
+      "test_generated_files_removed": [
+        "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+        "shared_prefs/map-renderer.xml"
+      ],
+      "added_files": [],
+      "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "instrumentation": "FAIL TECHNIQUE FACTS java.lang.AssertionError: distinct animated fact starts require current enabled system motion; settings unchanged\n\tat game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)\n\tat game.sanguo.mobile.TechniqueFactsInstrumentation.onStart(TechniqueFactsInstrumentation.java:37)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n"
+  },
+  {
+    "folder": "fact-installed-04",
+    "passed": false,
+    "apkSha256": "9dfad75f45fb2a3bfd9b8556ea877da9464b1db198fce634a544aea89d60f517",
+    "restoration": {
+      "all_original_files_byte_equal": true,
+      "mismatches": [],
+      "test_generated_files_removed": [
+        "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+        "shared_prefs/map-renderer.xml"
+      ],
+      "added_files": [],
+      "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "instrumentation": "FAIL TECHNIQUE FACTS java.lang.AssertionError: original journal phase retained\n\tat game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)\n\tat game.sanguo.mobile.TechniqueFactsInstrumentation.onStart(TechniqueFactsInstrumentation.java:55)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n"
+  },
+  {
+    "folder": "fact-installed-05",
+    "passed": false,
+    "apkSha256": "ef758aca1a288d4a2d8bb7b076cc74921a6f16326be436396f0096d2d0509628",
+    "restoration": {
+      "all_original_files_byte_equal": true,
+      "mismatches": [],
+      "test_generated_files_removed": [
+        "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+        "shared_prefs/map-renderer.xml"
+      ],
+      "added_files": [],
+      "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "instrumentation": "FAIL TECHNIQUE FACTS java.lang.AssertionError: editor copy produces actual blank presentation parents; never fabricate a phase\n\tat game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)\n\tat game.sanguo.mobile.TechniqueFactsInstrumentation.onStart(TechniqueFactsInstrumentation.java:63)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n"
+  },
+  {
+    "folder": "fact-audio-lifecycle-06",
+    "passed": false,
+    "apkSha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+    "restoration": {
+      "all_original_files_byte_equal": true,
+      "mismatches": [],
+      "test_generated_files_removed": [
+        "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+        "shared_prefs/map-renderer.xml",
+        "shared_prefs/sound-effects.xml"
+      ],
+      "added_files": [],
+      "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "instrumentation": "UIUX PASS 51 checks\nPASS normal launch restores existing save\nPASS all nine real PCM samples decoded on installed Android\nPASS touch visible 视图 at Rect(799, 210 - 1059, 336)\nPASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)\nPASS touch visible 试听音效 at Rect(75, 1002 - 1005, 1128)\nPASS actual UI audition sends a nonzero SoundPool stream\nPASS touch visible 静音 at Rect(75, 824 - 1005, 908)\nPASS actual mute control updates preference\nPASS touch visible 试听音效 at Rect(75, 1002 - 1005, 1128)\nPASS muted audition creates no stream\nPASS touch visible 静音 at Rect(75, 824 - 1005, 908)\nPASS touch visible 完成 at Rect(852, 1160 - 1020, 1286)\nPASS device mixer accepts UI\nPASS duplicate phase never repeats UI\nPASS device mixer accepts MARCH\nPASS duplicate phase never repeats MARCH\nPASS device mixer accepts ATTACK\nPASS duplicate phase never repeats ATTACK\nPASS device mixer accepts TACTIC\nPASS duplicate phase never repeats TACTIC\nPASS device mixer accepts CRITICAL\nPASS duplicate phase never repeats CRITICAL\nPASS device mixer accepts PLOT\nPASS duplicate phase never repeats PLOT\nPASS device mixer accepts CONSTRUCTION\nPASS duplicate phase never repeats CONSTRUCTION\nPASS device mixer accepts COMPLETE\nPASS duplicate phase never repeats COMPLETE\nPASS device mixer accepts TURN\nPASS duplicate phase never repeats TURN\nPASS device mixer accepts TECHNIQUE_GAIN\nPASS duplicate phase never repeats TECHNIQUE_GAIN\nPASS device mixer accepts TECHNIQUE_LOSS\nPASS duplicate phase never repeats TECHNIQUE_LOSS\nPASS paused demonstration does not start a battle stream\nPASS UI sound remains available while demonstration is paused\nPASS volume zero suppresses committed audio\nPASS focus-loss test starts with actual granted game focus\nPASS competing transient focus actually granted\nPASS actual focus-loss callback observed before suppression check\nPASS transient focus loss suppresses battle audio\nPASS system global Home action accepted\nPASS system Home actually pauses map and removes focus in 207ms\nPASS UI recovery hints identify the exact durable authoritative autosave\nPASS actual Home stops foreground audio\nPASS background cannot create deferred battle streams\nPASS foreground window is focused and map rendering resumes in 4888ms\nPASS foreground resumes audio ownership\nPASS resume does not replay a consumed background phase\nPASS audition, volume, mute, focus and background preserve complete state and RNG\nPASS normal exit releases SoundPool and audio focus\n\n"
+  }
+]

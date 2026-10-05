@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v148 winter far247/WARSHIP2995 pass; full12 near checkpoints captured but national far120s fails pending81; native source effect investigation continues",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v148/app-debug-source-water.apk",
+      "bytes": 81184429,
+      "sha256": "b214f9b3f7779be354ac189e17d71325b4cf27c536778c377f323b86c9d04b1b"
+    },
+    {
+      "path": "out/pc-visual/v148/androidTest-source-water.apk",
+      "bytes": 598193,
+      "sha256": "2d0e2d2f154b6cb283e01fbef64afbfd0832238fe9e47d02c74a4375eb926742"
+    }
+  ],
+  "changes": [
+    "Exact immutable terrain/camera/position keyed occlusion reuse; prior result arithmetic unchanged",
+    "Count original coarse-water material in resource diagnostics"
+  ],
+  "checks": [
+    {
+      "name": "archived-v147-occlusion-exact-cache-boundaries",
+      "status": "pass",
+      "checks": 10441,
+      "evidence": "out/pc-visual/v148-label-visibility-host-reproducible.txt"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "evidence": "out/pc-visual/v148-build.txt"
+    },
+    {
+      "name": "APK-pins",
+      "status": "pass",
+      "pins": 101,
+      "evidence": "out/pc-visual/v148/apk-pins.txt"
+    },
+    {
+      "name": "installed-main-test-byte-exact",
+      "status": "pass",
+      "evidence": "out/pc-visual/v148/installed-apk-byte-check.json"
+    },
+    {
+      "name": "installed-winter-jingzhou-far-only",
+      "status": "pass",
+      "checks": 247,
+      "evidence": "out/pc-visual/v148/evidence-far/manifest.json",
+      "PC_art_acceptance": false
+    },
+    {
+      "name": "normal-WARSHIP-move-attack-water-lifecycle",
+      "status": "pass",
+      "evidence": "out/pc-visual/v148/evidence-warship-water/manifest.json",
+      "checks": 2995,
+      "autosave_byte_exact": true,
+      "PC_art_acceptance": false
+    },
+    {
+      "name": "actual-user-autosave-after-target-exit",
+      "status": "pass",
+      "evidence": "out/pc-visual/v148/autosave-byte-check.json"
+    },
+    {
+      "name": "current3event-videos-reviewed-sparse-subset",
+      "status": "evidence-only-retained-black-band",
+      "evidence": "out/pc-visual/v148/water-video-manifest.json"
+    },
+    {
+      "name": "three-regions-four-seasons-full12-plus-far-lifecycle",
+      "status": "fail",
+      "evidence": "out/pc-visual/v148/evidence-all12-failed/manifest.json",
+      "near_checkpoints_captured": 12,
+      "failure": "national far original120s readiness pending81",
+      "pause_resume_exit_checks_reached": false
+    },
+    {
+      "name": "source244-camera-bound-draw-diagnostic",
+      "status": "source-only",
+      "resources": 244,
+      "with_packets": 236,
+      "packets": 19092,
+      "evidence": "docs/pc-visual/effect-draw-source-working.json"
+    },
+    {
+      "name": "source6803-evaluated-quads-native-VB",
+      "status": "source-only-pass",
+      "samples": 13606,
+      "evidence": "out/pc-visual/v148-camera-bound-all-evaluated-quad-machine-check.json"
+    },
+    {
+      "name": "independent-C-vs-Python-complete-source-heap-and-visual-RNG",
+      "status": "host-source-only-pass",
+      "checks": 68,
+      "evidence": "out/pc-visual/v148-native-probe-checked/comparison.json"
+    },
+    {
+      "name": "full-EXE-vs-exact-code-pages-complete-state",
+      "status": "host-source-only-pass",
+      "evidence": "out/pc-visual/v148-native-probe-checked/fragment-comparison.json"
+    },
+    {
+      "name": "standalone-Android-source-source-state68",
+      "status": "standalone-source-only-pass",
+      "checks": 68,
+      "evidence": "out/pc-visual/v148-native-android-condition-watchdog-executed/comparison.json",
+      "PC_art_acceptance": false,
+      "APK_effect_integration": false
+    },
+    {
+      "name": "standalone-Android-source-camera-packets3002",
+      "status": "standalone-source-only-pass",
+      "checks": 3002,
+      "evidence": "out/pc-visual/v148-native-android-camera-condition-watchdog-executed/comparison.json",
+      "PC_art_acceptance": false,
+      "APK_effect_integration": false
+    },
+    {
+      "name": "standalone-Android-source-final-quads",
+      "status": "standalone-source-only-pass",
+      "checks": 3980,
+      "evidence": "out/pc-visual/v148-native-android-final-quads-executed/comparison.json",
+      "PC_art_acceptance": false,
+      "APK_effect_integration": false
+    }
+  ],
+  "retained_failure": "v147 winter far failed original120s readiness pending33; full12 historical failures retained; v148 full12 national far120s pending81, failure and26 current evidence files archived, actual autosave restored byte-exact",
+  "limits": [
+    "Current all12 near checkpoints captured; national far failed120s pending81, so complete sequence/pause/resume/exit assertions not passed",
+    "No PC matching visuals/video/MOD runtime confirmation or ARM performance",
+    "Original environment/combat/fullscreen effects and flags incomplete; source effect runtime0",
+    "Far247 is integration evidence, not universal performance acceptance",
+    "Current sparse video part1 contains transient black band at175.779s, later part2 recovered; retain display defect evidence, no continuous display acceptance"
+  ],
+  "video_working": {
+    "schema": 1,
+    "status": "REVIEWED_SPARSE_ANDROID_EVENT_SUBSET",
+    "goal_complete": false,
+    "videos": [
+      {
+        "path": "out/pc-visual/v148/water-events-part1.mp4",
+        "bytes": 3061923,
+        "sha256": "927617cfd895221aa8e71918382e61d04616d0eb1e61873044a86836af798c60",
+        "frames": 72,
+        "duration_seconds": 177.782,
+        "metadata": "out/pc-visual/v148/water-events-part1-metadata.json",
+        "decoded_samples": "out/pc-visual/v148/water-video-frames-part1/decoded-samples.json"
+      },
+      {
+        "path": "out/pc-visual/v148/water-events-part2.mp4",
+        "bytes": 2488832,
+        "sha256": "48ce93cfcfa2b640c895aabb506340b01293fa17377e736c51856b7eaa05398e",
+        "frames": 69,
+        "duration_seconds": 167.719,
+        "metadata": "out/pc-visual/v148/water-events-part2-metadata.json",
+        "decoded_samples": "out/pc-visual/v148/water-video-frames-part2/decoded-samples.json"
+      },
+      {
+        "path": "out/pc-visual/v148/water-events-part3.mp4",
+        "bytes": 2198534,
+        "sha256": "5f84f25fe56d6b3cf0671076806e1a448fb01f446df568613036a56dc7256dde",
+        "frames": 52,
+        "duration_seconds": 87.156,
+        "metadata": "out/pc-visual/v148/water-events-part3-metadata.json",
+        "decoded_samples": "out/pc-visual/v148/water-video-frames-part3/decoded-samples.json"
+      }
+    ],
+    "reviewed_pixels": [
+      "part1PTS150.981: original boat/4844 water visible",
+      "part1PTS175.779: transient black band in area later occupied by result panel; retained failure pixels",
+      "part2PTS12.298: actual MOVE result, shifted boat, water, green result panel; black band no longer visible",
+      "part2PTS151.909: next ATTACK fixture, two original boats and water",
+      "part3PTS35.650: actual ATTACK1020/enemy and0counter result, changed source boat pose and water"
+    ],
+    "PC_reference_match": false,
+    "source_art_acceptance": false,
+    "continuous_timing_acceptance": false,
+    "limits": [
+      "72/69/52 encoded frames across177.782/167.719/87.156 seconds; sparse scheduling/driver evidence, no FPS",
+      "Transient HWUI/result-panel black band retained; later recovery does not constitute defect-free acceptance",
+      "Original combat/environment KSEF/fullscreen/flags still unbound; no original battle effects acceptance",
+      "Water shape/shore/material/color/time require matching PC views"
+    ]
+  },
+  "native_probe_failures_retained": "Per-instruction21945s and block-accounting12545s diagnostic failures retained; unchanged45s deadline passes with condition-wait watchdog"
+}

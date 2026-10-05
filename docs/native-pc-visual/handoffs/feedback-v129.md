@@ -1,0 +1,3 @@
+# v129 handoff — PARTIAL
+
+Continue only this explicitly requested combined scope. First read reports/feedback-v129.md, feedback-v129-grid-tech.md, feedback-v129-blender-review.md and evidence/feedback-v129/manifest.json. Preserve the exact pre-existing source and failure logs. Run the committed native-landmarks129 workflow, record its source/APK hashes, inspect real Surface images at ordinary zoom and the grid before/after-research captures. Distinguish SwANGLE and lavapipe capabilities; a diagnostic backend result is not a production/physical-device pass. Keep draft PR67 unmerged. No further phase is authorized automatically.

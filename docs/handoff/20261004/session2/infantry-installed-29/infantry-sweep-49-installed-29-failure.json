@@ -1,0 +1,19 @@
+{
+  "stage": "finished",
+  "passed": true,
+  "seconds": 23.52,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "installed_sha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "installed_test_sha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7",
+  "failureScope": "Full mixed waveform .967241386; unchanged .999 gate fails; diagnostic windows are not acceptance.",
+  "originalDirectory": "out/media/infantry-sweep-49-installed-29"
+}

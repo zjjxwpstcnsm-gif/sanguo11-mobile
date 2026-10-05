@@ -1,0 +1,101 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "run=pc33-normal-installed-27"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-validity-build-27/frozen/app-debug.apk": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/voice-validity-build-27/frozen/app-debug-androidTest.apk": "7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b"
+  },
+  "installed_sha256": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+  "installed_test_sha256": "7cd671377bdd0e5761d16bb4f58e3b11b4dd62f47a4dc71d8c1a550d69b8132b",
+  "passed": true,
+  "seconds": 14.46,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "waveform": {
+    "status": "PASS",
+    "scope": "Actual declared normal tactic mix: original PC33 plus two inherited mobile nuisance cues. Not full PC battle audio restoration, microphone or ARM speaker evidence.",
+    "serial": "emulator-5582",
+    "apkSha256": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+    "waveSha256": "5e2fcd8207e8bb0f2970b06a617f902a81f8c1196ec5fceae3c7d852dfc87657",
+    "sampleRate": 44100,
+    "intervalSamples": [
+      191304,
+      239288
+    ],
+    "jointCorrelation": 0.999999759929905,
+    "pc33NuisanceRemovedCorrelation": 0.9999995436065005,
+    "gramCondition": 4.341113598102012,
+    "residualMseWithPc33": 6.797977067431584e-12,
+    "residualMseWithoutPc33": 7.440470589705572e-06,
+    "facts": [
+      {
+        "id": "9e49bd3a-0c0e-4eca-94aa-f992d3942d75:1:1:LEGACY_COMMITTED:technique:1",
+        "parentId": "9e49bd3a-0c0e-4eca-94aa-f992d3942d75:1:1:LEGACY_COMMITTED",
+        "presentationParentId": "2:1",
+        "sequence": 1,
+        "owner": 0,
+        "before": 0,
+        "after": 40,
+        "delta": 40,
+        "cause": "TACTIC",
+        "phase": "COMMAND",
+        "state": {
+          "sessionId": "9e49bd3a-0c0e-4eca-94aa-f992d3942d75",
+          "generation": 1,
+          "revision": 1
+        }
+      }
+    ],
+    "cues": [
+      {
+        "name": "critical",
+        "label": "INHERITED_MOBILE_COMPOSITION",
+        "path": "audio/critical.wav",
+        "sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa",
+        "startSample": 191339,
+        "seconds": 4.33875283446712,
+        "gain": 0.017732764293118465,
+        "audibleRms": 0.00269514832449862,
+        "candidateCorrelation": 0.6064648253865773
+      },
+      {
+        "name": "tactic",
+        "label": "INHERITED_MOBILE_COMPOSITION",
+        "path": "audio/tactic.wav",
+        "sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264",
+        "startSample": 191339,
+        "seconds": 4.33875283446712,
+        "gain": 0.017732163658185435,
+        "audibleRms": 0.0017650441430770878,
+        "candidateCorrelation": 0.38527742401341025
+      },
+      {
+        "name": "pc33",
+        "label": "ORIGINAL_PC_HUD33",
+        "path": "audio/pc/technique-33.wav",
+        "sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+        "startSample": 194053,
+        "seconds": 4.400294784580499,
+        "gain": 0.017733854029805474,
+        "audibleRms": 0.0028117038182791524,
+        "candidateCorrelation": 0.7957998128110477
+      }
+    ],
+    "pc33TailSeedCorrelation": 0.9999990681355233,
+    "pc33CoarseCandidateSample": 193816,
+    "pc33TailSeedSample": 194053,
+    "filters": "Same fixed65-tap cutoff FIR; declared isolated HUD33 tail seeds harmonic phase; full original-rate reconstruction and unchanged acceptance thresholds"
+  }
+}

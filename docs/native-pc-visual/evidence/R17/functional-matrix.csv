@@ -1,0 +1,37 @@
+feature,production_entry,status,scope_evidence
+新开官方剧本/选势力,MainActivity.scenarioPicker/startScenario,NOT_RUN,Installed ordinary190 startup/restore PASS; all official scenarios/touch selection not executed
+自定义剧本/新战局,MapLibrary/MapEditorActivity,NOT_RUN,Host MapEditorRuntimeTest PASS; installed custom opening untested
+城池出征/入城/七格入口,DeployWizard/ArmyUi,NOT_RUN,Complete touch six-direction matrix untested
+运输/补给/编队,ArmyUi/WarUi,NOT_RUN,Some original core fixtures fail identically; see core-matrix
+自动行军/上下船/港关通行,CampaignUi/MarchOrders,NOT_RUN,Original core navigation fixtures FAIL inherited
+攻击/战法/计略/攻陷,WarUi/StrategyUi,NOT_RUN,Installed parity12fixture cases perAPI PASS; does not cover all commands
+建造/升级/撤除/军事设施,FieldworkUi/EstatesUi,NOT_RUN,Host FacilityProduction original invocation PASS; full UI untested
+围城/反击/伤兵/兵源,SiegeOverlay/core SiegeRulesTest,NOT_RUN,Host test-siege PASS; device operations untested
+军团/托管/天下目标,WorldUi,NOT_RUN,No new installed evidence
+征兵/巡察/生产/内政,DomesticUi,NOT_RUN,GameSessionTest recruit/patrol scoped host PASS; UI matrix untested
+外交/俘虏/押送,DiplomacyUi,NOT_RUN,Original fixtures FAIL inherited
+爵位/技巧/势力列表,GovernmentUi/RealmUi/AbilityUi,NOT_RUN,Source inventory; no complete UI proof
+武将/城市/部队/设施/任务列表,OverviewUi/RealmUi/MainActivity,NOT_RUN,Source inventory; no complete UI proof
+生卒继承/单挑舌战现有入口,LifecycleUi/ContestUi,NOT_RUN,Original fixtures FAIL inherited; no new rules
+战报/下一旬,BattleReportUi/TurnWork/TurnPlayback,NOT_RUN,GameSession ticket/commit host PASS; installed parity12fixture cases perAPI PASS
+动画跳过/倍速/暂停恢复,TurnPlayback/CombatSequence,NOT_RUN,Installed normal/off/skip subset PASS; speed/pause NOT_RUN
+低画质/2D/3D权威对等,MapHost/NativeP0ParityInstrumentation,NOT_RUN,API26/35 each12 fixture combinations 2D/3D normal/off/skip and cross-year recreation PASS; each50 full byte pairs independently equal. Low quality/pause matrix NOT_RUN.
+过期命令/session换代,GameSession/LegacyCommandSink,PASS,Host architecture GameSessionTest 1673 assertions; not all UI commands
+普通自动/手动存档覆盖安装,AndroidSaveStore/MainActivity,PASS,"API26/35 v114->v115 adb install -r, no clear/uninstall; automatic/manual complete bytes/RNG and grid setting retained. Other save types excluded."
+v31/v32旧档兼容,SaveCodec,NOT_RUN,Reader supports >=31; actual old APK save upgrade untested
+自定义存档与导入头像覆盖安装,CustomOfficerLibrary/OfficerPortrait,NOT_RUN,Host self-contained saves PASS; device retention not tested
+地图编辑CRUD/撤销/重做,MapEditorActivity,NOT_RUN,Host geometry/revision/continuation/runtime PASS; SAF and touch untested
+武将编辑/历史覆盖/关系/投放,CustomOfficerActivity/CustomOfficerPlacementUi,NOT_RUN,Host CustomOfficerTest 461 checks PASS; complete UI untested
+存档导入/导出/损坏/取消,MainActivity SAF callbacks,NOT_RUN,No actual document-provider matrix
+剧本文件导入,MainActivity IMPORT_SCENARIO,NOT_RUN,No actual document-provider matrix
+地图patch导入/导出,MapEditorActivity/MapLibrary,NOT_RUN,Host validation PASS; actual external provider untested
+武将包/头像导入导出,CustomOfficerActivity/OfficerPackArchive,NOT_RUN,Host OfficerPackArchiveTest 188 checks PASS; device provider untested
+原生材质损坏/截断/超限,VerifiedMaterial/FilamentMapView,PASS,Host 43 cases; all 7 production assets exact; installed corrupt-byte rejection PASS scoped
+捕获渲染故障后重启保护,MapHost.nativeFailure,PASS,"API26/35 injected IOException, persistent flag, process-latch reset simulation and real Activity recreation retain 2D/authority. Native abort not executed."
+native abort/进程死亡/正常退出,MapHost.nativeSession/MainActivity saves,NOT_RUN,Native crash was not injected; health marker does not identify every exit cause
+Surface/Activity重建/低内存,FilamentMapView/MapHost,NOT_RUN,Installed cross-year recreation subset PASS; full20cycles/low-memory untested
+GLES能力不足/驱动门控,MapHost reqGlEsVersion/SceneQuality,NOT_RUN,"Existing GLES3 gate, MSAA ES3.1 gate retained; not tested on insufficient hardware"
+API26/35 ABI屏幕输入矩阵,AndroidManifest/build.gradle,NOT_RUN,API26 and35 x86_64 upgrade/failure/parity PASS scoped; all-screen/input/ABI combinations NOT_RUN.
+ARM64 Adreno/Mali长稳,Filament/OpenGL,NOT_RUN,No physical run submitted; prior WIF denial remains unresolved
+R8/JNI/资源/源码标识/对齐,proguard-rules.pro/build.gradle/audit-3d-apk.py,PASS,"Scoped build/static audit only: build/ logs, exact DEX revision, stable cert, all4 ABI ELF/ZIP alignment; actual installed result separate"
+全国3D加载与视觉,FilamentMapView,FAIL,"Same-source API29 local pending17/submitted5, national pending310/submitted15; original120s; raw artifact10958600112. Not fixed by hardening."

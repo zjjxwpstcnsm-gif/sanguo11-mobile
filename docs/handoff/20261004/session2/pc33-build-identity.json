@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "fc87a08ce7d52957b2bdb5d836f72806d6731187",
+  "buildLog": "out/media/pc33-build.log",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/pc33-frozen/app-debug.apk",
+      "bytes": 87633361,
+      "sha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/pc33-frozen/app-debug-androidTest.apk",
+      "bytes": 2021347,
+      "sha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4"
+    }
+  ],
+  "globalBuildConfigChanged": false,
+  "androidTestManifestRegistrationCommit": "fc87a08"
+}

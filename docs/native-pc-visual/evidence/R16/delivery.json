@@ -1,0 +1,321 @@
+{
+  "stage": "R16",
+  "status": "PARTIAL",
+  "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+  "input": "f355536d94d22f623fc44e33c91410f66938c7d0",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "branch": "agent/native-pc-visual",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "draft": true,
+  "merged": false,
+  "evidenceHead": "Recorded after documentation commit in delivered remote-confirmation.json and PR body; descendant of source with docs-only diff.",
+  "applicationId": "game.sanguo.mobile.dev",
+  "versionCode": 114,
+  "versionName": "0.114.0-native-r16-budgets",
+  "backend": "Filament 1.56.0 Engine.Backend.OPENGL (OpenGL ES); no Unity",
+  "artifacts": [
+    {
+      "id": 10951891698,
+      "name": "native-r16-build",
+      "size_in_bytes": 93034050,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10951891698",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10951891698/zip",
+      "expired": false,
+      "created_at": "2026-09-28T04:28:45Z",
+      "expires_at": "2026-10-28T04:28:41Z",
+      "updated_at": "2026-09-28T04:28:45Z",
+      "digest": "sha256:a4bc95b72c1cafdf1b7fc7eb25734dc289bf3931382553f72e169c8879e381e3",
+      "workflow_run": {
+        "id": 36376973379,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "2626153bbe54a44812280b52a00b18e8202076f8"
+      }
+    },
+    {
+      "id": 10951786750,
+      "name": "native-r16-baseline-runtime",
+      "size_in_bytes": 28713899,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10951786750",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10951786750/zip",
+      "expired": false,
+      "created_at": "2026-09-28T04:35:22Z",
+      "expires_at": "2026-10-28T04:35:19Z",
+      "updated_at": "2026-09-28T04:35:22Z",
+      "digest": "sha256:1d4049e6f89190f34ba24fc681823884199e4cbb4d731b03be21005fb3823a0c",
+      "workflow_run": {
+        "id": 36376973379,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "2626153bbe54a44812280b52a00b18e8202076f8"
+      }
+    },
+    {
+      "id": 10951637342,
+      "name": "native-r16-candidate-runtime",
+      "size_in_bytes": 48474029,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10951637342",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10951637342/zip",
+      "expired": false,
+      "created_at": "2026-09-28T04:37:29Z",
+      "expires_at": "2026-10-28T04:37:26Z",
+      "updated_at": "2026-09-28T04:37:29Z",
+      "digest": "sha256:eea4a533dadbc6458e48954780e7af301d2a109c14a76163df4856571e54a0f6",
+      "workflow_run": {
+        "id": 36376973379,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "2626153bbe54a44812280b52a00b18e8202076f8"
+      }
+    }
+  ],
+  "runs": {
+    "initialR16": 36376251432,
+    "finalR16": 36376973379,
+    "initialInheritedR15": 36376251302,
+    "finalInheritedR15": 36376973385
+  },
+  "matrix": [
+    {
+      "round": "initial",
+      "variant": "input",
+      "local": "PASS 168",
+      "national": "FAIL"
+    },
+    {
+      "round": "initial",
+      "variant": "candidate2a913",
+      "local": "FAIL",
+      "national": "FAIL"
+    },
+    {
+      "round": "final",
+      "variant": "input",
+      "local": "FAIL",
+      "national": "FAIL"
+    },
+    {
+      "round": "final",
+      "variant": "candidate2626153",
+      "local": "PASS 165",
+      "national": "FAIL"
+    }
+  ],
+  "regressionStatus": "NOT_CLOSED: both input and candidate show local readiness instability; no reproducible candidate-only defect established, no no-regression or speed claim",
+  "host": "PASS scoped index/camera/thermal/authority/architecture suites",
+  "core": "inherited FAIL logistics:75, independently reproduced input and candidate",
+  "physical": {
+    "status": "BLOCKED",
+    "jobs": [
+      108783034745,
+      108785463349
+    ],
+    "submissionCount": 0,
+    "reason": "WIF attribute condition rejected; no preflight/device submission",
+    "arm64Mixed30min": "NOT_RUN",
+    "Adreno": "NOT_RUN",
+    "Mali": "NOT_RUN"
+  },
+  "visual": {
+    "V2": "FAIL",
+    "V3": "NOT_ACCEPTED",
+    "artChange": "No art asset change; actual Surface shots show remaining rectilinear shores and simplified buildings/forest, not PC match"
+  },
+  "apkIdentities": [
+    {
+      "file": "app.apk",
+      "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+      "bytes": 37387030,
+      "sha256": "7cd2bb3da12f66f959f93c1338dadb88cf9e3013c7d2a6257fe023e8ca1df753",
+      "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a",
+        "x86",
+        "x86_64"
+      ],
+      "source_assets_exact": 300
+    },
+    {
+      "file": "arm64.apk",
+      "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+      "bytes": 30655539,
+      "sha256": "9c70017095fbab548fb9f9403327575e5fcf103a056c27375c42d06254dbe9ed",
+      "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+      "abis": [
+        "arm64-v8a"
+      ],
+      "source_assets_exact": 300
+    },
+    {
+      "file": "test.apk",
+      "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+      "bytes": 450946,
+      "sha256": "43dd030c3e85177272439dbe7d472189ef5645383ceb7decf7d034394ab22f7f",
+      "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+      "abis": []
+    }
+  ],
+  "finalRuntime": {
+    "baseline": [
+      {
+        "mode": "local",
+        "status": "FAIL",
+        "firstReadyElapsedMs": [],
+        "failureCounters": [
+          15,
+          21,
+          4,
+          680,
+          676
+        ],
+        "failureCounterOrder": [
+          "cpuChunks",
+          "pending",
+          "submitted",
+          "beginAttempts",
+          "beginSkipped"
+        ],
+        "pssSamples": 23,
+        "pssMiBMin": 152.330078125,
+        "pssMiBMax": 195.806640625,
+        "uniqueOwnerSamples": 0,
+        "admittedSamples": 0,
+        "ownerWallP95Ms": null,
+        "ownerCpuP95Ms": null,
+        "uploadOver2ms": 0,
+        "largestMeshUploadWallMs": null,
+        "measurement": "loading/route attempts incl rejected, NOT presented FPS/steady phone performance",
+        "presentIntervalP95Ms": null,
+        "gpuDurationMs": null,
+        "trace": {
+          "bytes": 33403703,
+          "sha256": "dd684f5d9239433d1ebee181622ca0d34a4282757ceeae747c000005f3bb39f4",
+          "ownerMarkerStringFound": false,
+          "mapProjectionMarkerStringFound": false,
+          "frameTimelineStringFound": false,
+          "scope": "raw scheduler/gfx trace; string scan not semantic analysis"
+        }
+      },
+      {
+        "mode": "national",
+        "status": "FAIL",
+        "firstReadyElapsedMs": [],
+        "failureCounters": [
+          177,
+          261,
+          20,
+          565,
+          545
+        ],
+        "failureCounterOrder": [
+          "cpuChunks",
+          "pending",
+          "submitted",
+          "beginAttempts",
+          "beginSkipped"
+        ],
+        "pssSamples": 23,
+        "pssMiBMin": 158.15625,
+        "pssMiBMax": 279.49609375,
+        "uniqueOwnerSamples": 0,
+        "admittedSamples": 0,
+        "ownerWallP95Ms": null,
+        "ownerCpuP95Ms": null,
+        "uploadOver2ms": 0,
+        "largestMeshUploadWallMs": null,
+        "measurement": "loading/route attempts incl rejected, NOT presented FPS/steady phone performance",
+        "presentIntervalP95Ms": null,
+        "gpuDurationMs": null,
+        "trace": {
+          "bytes": 33403935,
+          "sha256": "9c9fb5692003088aca1e5d78b2ab979735b183e8c7d2195f75463e38eb4c2534",
+          "ownerMarkerStringFound": false,
+          "mapProjectionMarkerStringFound": false,
+          "frameTimelineStringFound": false,
+          "scope": "raw scheduler/gfx trace; string scan not semantic analysis"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "mode": "local",
+        "status": "PASS_SCOPED",
+        "firstReadyElapsedMs": [
+          "109412"
+        ],
+        "failureCounters": null,
+        "failureCounterOrder": [
+          "cpuChunks",
+          "pending",
+          "submitted",
+          "beginAttempts",
+          "beginSkipped"
+        ],
+        "pssSamples": 42,
+        "pssMiBMin": 154.7099609375,
+        "pssMiBMax": 202.025390625,
+        "uniqueOwnerSamples": 1910,
+        "admittedSamples": 104,
+        "ownerWallP95Ms": 10.06372,
+        "ownerCpuP95Ms": 3.196075,
+        "uploadOver2ms": 17,
+        "largestMeshUploadWallMs": 94.76911,
+        "measurement": "loading/route attempts incl rejected, NOT presented FPS/steady phone performance",
+        "presentIntervalP95Ms": null,
+        "gpuDurationMs": null,
+        "trace": {
+          "bytes": 33399353,
+          "sha256": "8d2a40a87e8f79474df53add736625c1d69c107528939a63fbd7281862666655",
+          "ownerMarkerStringFound": false,
+          "mapProjectionMarkerStringFound": false,
+          "frameTimelineStringFound": false,
+          "scope": "raw scheduler/gfx trace; string scan not semantic analysis"
+        }
+      },
+      {
+        "mode": "national",
+        "status": "FAIL",
+        "firstReadyElapsedMs": [],
+        "failureCounters": [
+          177,
+          138,
+          39,
+          727,
+          688
+        ],
+        "failureCounterOrder": [
+          "cpuChunks",
+          "pending",
+          "submitted",
+          "beginAttempts",
+          "beginSkipped"
+        ],
+        "pssSamples": 23,
+        "pssMiBMin": 160.3017578125,
+        "pssMiBMax": 259.15625,
+        "uniqueOwnerSamples": 729,
+        "admittedSamples": 39,
+        "ownerWallP95Ms": 14.41498,
+        "ownerCpuP95Ms": 3.310342,
+        "uploadOver2ms": 28,
+        "largestMeshUploadWallMs": 132.99227,
+        "measurement": "loading/route attempts incl rejected, NOT presented FPS/steady phone performance",
+        "presentIntervalP95Ms": null,
+        "gpuDurationMs": null,
+        "trace": {
+          "bytes": 33405852,
+          "sha256": "b3c728814fb6728ee7a9cccae26170d6bf37aba02909bb7cde331193fd678c70",
+          "ownerMarkerStringFound": false,
+          "mapProjectionMarkerStringFound": false,
+          "frameTimelineStringFound": false,
+          "scope": "raw scheduler/gfx trace; string scan not semantic analysis"
+        }
+      }
+    ]
+  },
+  "nextStageStarted": false
+}

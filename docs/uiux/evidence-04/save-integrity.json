@@ -1,0 +1,14 @@
+[
+  {
+    "path": "auto.sg11",
+    "before": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69",
+    "after": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69",
+    "equal": true
+  },
+  {
+    "path": "customOfficers/library.json",
+    "before": "724081dc4bc2185542a7446fd16f2c32eaff4130033c2b411e50e634deb7f07e",
+    "after": "724081dc4bc2185542a7446fd16f2c32eaff4130033c2b411e50e634deb7f07e",
+    "equal": true
+  }
+]

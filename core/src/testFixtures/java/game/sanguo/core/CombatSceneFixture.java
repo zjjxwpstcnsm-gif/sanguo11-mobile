@@ -28,12 +28,18 @@ public final class CombatSceneFixture {
     }
     public static void action(World w,String kind){
         if(kind.equals("facilities")){Turn48Fixture.facilityCommands(w);return;}
+        World.Result r=command(w,kind);
+        if(!r.ok)throw new AssertionError(kind+": "+r.message);
+    }
+    /** Same actual result used by the normal MainActivity command transaction in R11 probes. */
+    public static World.Result command(World w,String kind){
+        if(kind.equals("facilities"))throw new IllegalArgumentException("facility ticks are journaled separately");
         World.Result r;
         if(kind.equals("stone"))r=w.army.tactic(1,w.unit(2).hex,Army.Tactic.STONE);
         else if(kind.equals("critical"))r=Realm52Fixture.criticalCommand(w);
         else if(kind.equals("critical-fire")||kind.equals("fire")||kind.equals("lightning")||kind.startsWith("trap"))r=w.war.plot(1,kind.startsWith("trap")?new Hex(9,8):w.unit(2).hex,kind.equals("lightning")?War.Plot.LIGHTNING:War.Plot.FIRE);
         else if(kind.equals("site"))r=w.siege(1,1);
         else r=kind.equals("enemy")?w.attack(2,1):w.attack(1,2);
-        if(!r.ok)throw new AssertionError(kind+": "+r.message);
+        return r;
     }
 }

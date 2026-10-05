@@ -1,0 +1,1074 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "ORIGINAL_PIXELS_CONVERTED_MAP_GPU_BOUND_PC_PENDING",
+  "source_archive": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/san11pkres.bin",
+  "source_resource": 124,
+  "source_sha256": "6c35af3b02e30370d07842967ad1409ab6c0af9891c723afd7270761ece964cb",
+  "source_offset": 89705744,
+  "source_bytes": 4129048,
+  "images": [
+    {
+      "image_index": 0,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 0,
+        "header_offset": 16,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 24,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "ca5188cc097a0f6d9f6298ac1d4f8479dbdcca989297963b0c72bd6f94d5da94"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "ca5188cc097a0f6d9f6298ac1d4f8479dbdcca989297963b0c72bd6f94d5da94",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-00.png",
+      "apk_path": "assets/3d/pc-effects/image-00.png",
+      "bytes": 5364,
+      "sha256": "e4ddeccfa334d1898273f8be0746abfe2b1b270d8dfa2b83737bf4dc9083e9c6",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 1,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 1,
+        "header_offset": 65560,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 65568,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "073963c04b0c960020e808dc0a90b6e3ae0b940b12732984628bcb551fe6f677"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "073963c04b0c960020e808dc0a90b6e3ae0b940b12732984628bcb551fe6f677",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-01.png",
+      "apk_path": "assets/3d/pc-effects/image-01.png",
+      "bytes": 6996,
+      "sha256": "b31dabb680238b8c38cd9fae6eab27c09fd43ec41007c0687ab916ac7f5af5a7",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 2,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 2,
+        "header_offset": 131104,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 131112,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "5b23c13c7d5a3b10a22e8fd44237f39e90683c79d094b0f0741a0eab659e74b6"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "5b23c13c7d5a3b10a22e8fd44237f39e90683c79d094b0f0741a0eab659e74b6",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-02.png",
+      "apk_path": "assets/3d/pc-effects/image-02.png",
+      "bytes": 8865,
+      "sha256": "f18ebd7e0b05bb0c0e8e2196bd8db7e88558bb2c266af53f9831280f0777fd1d",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 3,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 3,
+        "header_offset": 196648,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 196656,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "e7cf031d121f70bcc9e0beba0d2198cc1a1d492b1b04164c60a48da8aa367e08"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "e7cf031d121f70bcc9e0beba0d2198cc1a1d492b1b04164c60a48da8aa367e08",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-03.png",
+      "apk_path": "assets/3d/pc-effects/image-03.png",
+      "bytes": 9574,
+      "sha256": "2a4f9d7217e855b8972c062f190b1e4d60ffd1e7e543500866e6d9a32f5f4e4f",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 4,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 4,
+        "header_offset": 262192,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 262200,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "843eef83b11920893826dd826d4452d60b00f25575776fabc813946eb8df046b"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "843eef83b11920893826dd826d4452d60b00f25575776fabc813946eb8df046b",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-04.png",
+      "apk_path": "assets/3d/pc-effects/image-04.png",
+      "bytes": 10296,
+      "sha256": "102923a0b6eb6690e00621003fc6189c47e269cec3c83e4eb9ce7c0929b6e973",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 5,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 5,
+        "header_offset": 327736,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 327744,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "f9a6fbb9088fd73739048d69c09e5a72c23624ed1df3cfd78542f6f14a5afc58"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "f9a6fbb9088fd73739048d69c09e5a72c23624ed1df3cfd78542f6f14a5afc58",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-05.png",
+      "apk_path": "assets/3d/pc-effects/image-05.png",
+      "bytes": 8819,
+      "sha256": "2381b1a52f6b25e8b4cc9dde168ea60c074183f1e2a1f7e32c3ebb392c9549fe",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 6,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 6,
+        "header_offset": 393280,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 393288,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "afcd7f2ad392c4957c500a2c0f787b2fb7ddc0b6d9370e2043276439c51a2b1f"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "997b0feaedeab25c865a42d88884777a29082777d6de4ce39c5e79382d92da55",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-06.png",
+      "apk_path": "assets/3d/pc-effects/image-06.png",
+      "bytes": 5787,
+      "sha256": "2c254ca55a77d04f1b20d9b9ff6a54cec28ffa669d0c3b551b86433fc17d44f5",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 7,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 7,
+        "header_offset": 458824,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 458832,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "9df0894be71b21d27cd861697b4704ed69654518815d8d3d45c495b5523106d2"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "9df0894be71b21d27cd861697b4704ed69654518815d8d3d45c495b5523106d2",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-07.png",
+      "apk_path": "assets/3d/pc-effects/image-07.png",
+      "bytes": 9205,
+      "sha256": "d55739654c206825166bbc491f02dffc45e8e369a835c13ea34b60bf7c00bb31",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 8,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 8,
+        "header_offset": 524368,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 524376,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "ecd5b5b65c9c848ca863bc040ef46f5f3bcf5aa0af11ad26ce6f23cc4d9c832a"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "ecd5b5b65c9c848ca863bc040ef46f5f3bcf5aa0af11ad26ce6f23cc4d9c832a",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-08.png",
+      "apk_path": "assets/3d/pc-effects/image-08.png",
+      "bytes": 20789,
+      "sha256": "7adf400ce43686d6c50ebff1b855324e6c5b34f44858867654b8636e1080a638",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 9,
+      "width": 256,
+      "height": 256,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 9,
+        "header_offset": 589912,
+        "width": 256,
+        "height": 256,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 589920,
+            "bytes": 262144,
+            "pitch": 1024,
+            "sha256": "98e27df638928b8a909b72ec0221a01f9f51ad57787925f469244381a9beba15"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "ec997f591b48eecd6880682cee09957ea4695499a9a132421e62f64e33ee9dff",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-09.png",
+      "apk_path": "assets/3d/pc-effects/image-09.png",
+      "bytes": 122197,
+      "sha256": "98b92b7753d491d45b78a5221678a11e9254dd4450432ced2f604a34463422c6",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 10,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 10,
+        "header_offset": 852064,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 852072,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "c24f25ae87323221fff4d5aa4a3bab69589a12237a83c3704b2925442a210ac0"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "c24f25ae87323221fff4d5aa4a3bab69589a12237a83c3704b2925442a210ac0",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-10.png",
+      "apk_path": "assets/3d/pc-effects/image-10.png",
+      "bytes": 16194,
+      "sha256": "26617388a54e2a35ff3ebab9c15a18dacc3d985aa6a23407130c145e7d89e4fe",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 11,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 11,
+        "header_offset": 917608,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 917616,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "15d70250b2e85836c103ac57feae51c19f701d83fb12093914f8451964052296"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "affc4981427ddcbd57dedad3e31fd35af7dc8718822e928115296c8001f38879",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-11.png",
+      "apk_path": "assets/3d/pc-effects/image-11.png",
+      "bytes": 34988,
+      "sha256": "80dd396b3bef3d4b822bb9f4d7185040b5b353ff6c475c4eca37266c11878c04",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 12,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 12,
+        "header_offset": 983152,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 983160,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "c5da051c8acedabaf5016f117d7ac66b46bbdf1ccc435b9e994d228f5c12e79a"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "cc5c9f53e8cdb574ce6d50738aee964b04758ea76eafb0bdf6ca1a62c883c39e",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-12.png",
+      "apk_path": "assets/3d/pc-effects/image-12.png",
+      "bytes": 32937,
+      "sha256": "44d1eb8f1b787f202bf9934e97f30771ae7fada03f1264cfe9166e2322d7a190",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 13,
+      "width": 256,
+      "height": 256,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 13,
+        "header_offset": 1048696,
+        "width": 256,
+        "height": 256,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1048704,
+            "bytes": 262144,
+            "pitch": 1024,
+            "sha256": "15ec33958cd175d9fc94720cefd38e48c5a62dbc0c9d28e5334f6d26560854e6"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "bd5364cf06e342ddad61364fbd00e21e3bc9ccc8e01272c1ae591d9e48a8b92b",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-13.png",
+      "apk_path": "assets/3d/pc-effects/image-13.png",
+      "bytes": 94530,
+      "sha256": "8bec92ae10cd3f40a7b866a308f2e3e0dc9d6f5dbfda7e0db50c00359ae8bb02",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 14,
+      "width": 256,
+      "height": 256,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 14,
+        "header_offset": 1310848,
+        "width": 256,
+        "height": 256,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1310856,
+            "bytes": 262144,
+            "pitch": 1024,
+            "sha256": "80692521fa74287d316f4962612c651d1af689ab48483616a7eb0a78be986399"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "80692521fa74287d316f4962612c651d1af689ab48483616a7eb0a78be986399",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-14.png",
+      "apk_path": "assets/3d/pc-effects/image-14.png",
+      "bytes": 92614,
+      "sha256": "4945db36282c314325a475ba389a8cf123c7869a56e58a72ef777f3daf407716",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 15,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 15,
+        "header_offset": 1573000,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1573008,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "e2065c99ddaea640d4bc189677a3e78bb75e6765cd248a5863a3d298c74ddb49"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "270f9242da71072cbf72c3caa4af4eda023bb213632cc791a72ee8b154b97e08",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-15.png",
+      "apk_path": "assets/3d/pc-effects/image-15.png",
+      "bytes": 38542,
+      "sha256": "4f2869f234ad805eb9581eeb3f2452be92bbb526ce26fddd47a9f1365b98be5e",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 16,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 16,
+        "header_offset": 1638544,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1638552,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "b15f7d2546359a1946fc16ca82e96cdf4f7c7526006f2a3d58697e661291763b"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "b15f7d2546359a1946fc16ca82e96cdf4f7c7526006f2a3d58697e661291763b",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-16.png",
+      "apk_path": "assets/3d/pc-effects/image-16.png",
+      "bytes": 10493,
+      "sha256": "6d945d1ec14a985409115fc1a57e2c9090f2095197796f6177b358c9993af8fe",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 17,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 17,
+        "header_offset": 1704088,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1704096,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "c41ae012986024c193303098f3da440bda566c322ff27c40c21021523c1fe33d"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "c41ae012986024c193303098f3da440bda566c322ff27c40c21021523c1fe33d",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-17.png",
+      "apk_path": "assets/3d/pc-effects/image-17.png",
+      "bytes": 8126,
+      "sha256": "acaa06aa3d3468ce7f58b3f2ee6654da616196cf86c13ac9befcc542af82493b",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 18,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 18,
+        "header_offset": 1769632,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1769640,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "0efda3cc6e28a5c4b0cd5b391a2c6cb36995947bc7d3330fa9ffb4d50d231742"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "0efda3cc6e28a5c4b0cd5b391a2c6cb36995947bc7d3330fa9ffb4d50d231742",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-18.png",
+      "apk_path": "assets/3d/pc-effects/image-18.png",
+      "bytes": 10822,
+      "sha256": "e807f93111007441b2bf4ae4b9a8dba3acd76cae9b2b974bbac6335066da8ffe",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 19,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 19,
+        "header_offset": 1835176,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1835184,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "b88f49a7560bfd122460e88a39c8417c41c8ab691612fd96f69b86b2b7afc367"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "b88f49a7560bfd122460e88a39c8417c41c8ab691612fd96f69b86b2b7afc367",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-19.png",
+      "apk_path": "assets/3d/pc-effects/image-19.png",
+      "bytes": 19208,
+      "sha256": "46b5bd47873bd5f27842f5ee4daa812e769c42327e1fa97534909b93bdc54d1c",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 20,
+      "width": 256,
+      "height": 256,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 20,
+        "header_offset": 1900720,
+        "width": 256,
+        "height": 256,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 1900728,
+            "bytes": 262144,
+            "pitch": 1024,
+            "sha256": "92ab608d8cb24f7a0afa4b3708a970399ba3bdf1312ab3b109916837003e76f2"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "3a6214036c7178d1f471f5aa895b0025d74eb9a896ebbd8899045681b65f238d",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-20.png",
+      "apk_path": "assets/3d/pc-effects/image-20.png",
+      "bytes": 49406,
+      "sha256": "9c4922b82949ed174c06b45fb4d009a7dba9cf5922e6501835409458a6fdf8e7",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 21,
+      "width": 256,
+      "height": 256,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 21,
+        "header_offset": 2162872,
+        "width": 256,
+        "height": 256,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2162880,
+            "bytes": 262144,
+            "pitch": 1024,
+            "sha256": "7cb0723252374b30a6d63ad8aa004634fbc69c1e96e6d7ba6cf49c8c567f34ca"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "94d48d8ba72502ecd2aa09b7e8502ca44dd4c314147b2616300d6ce10fc63935",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-21.png",
+      "apk_path": "assets/3d/pc-effects/image-21.png",
+      "bytes": 37230,
+      "sha256": "487e3c2d76e7afad3ad3508c58326ba69a6e5dec95bea2ac71e18139402c53e9",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 22,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 22,
+        "header_offset": 2425024,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2425032,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "5415dddabce25d44892f88a248eeb2478c8b9886d4c01dbe766d874c16ed158f"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "5415dddabce25d44892f88a248eeb2478c8b9886d4c01dbe766d874c16ed158f",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-22.png",
+      "apk_path": "assets/3d/pc-effects/image-22.png",
+      "bytes": 16293,
+      "sha256": "a89c6bcc641627846878c5c34cd83a7760e870c2fcbe41def471030b02fdc4e3",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 23,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 23,
+        "header_offset": 2490568,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2490576,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "a2637b1eb3700df9d5ce91f4f22a0fd9e20e86f60944c964e4d27d5510ca5b17"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "a2637b1eb3700df9d5ce91f4f22a0fd9e20e86f60944c964e4d27d5510ca5b17",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-23.png",
+      "apk_path": "assets/3d/pc-effects/image-23.png",
+      "bytes": 9914,
+      "sha256": "3ec5d8a755ed208331f54ceaf4fcd69cd81bd83d21967ea763a4e6640eb39671",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 24,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 24,
+        "header_offset": 2556112,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2556120,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "7b2c944894e37eba92850f7e0f950e46be0a9d19cfc3fb8693efd6a266cbb699"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "589e3edf36df1d8c71550c0cc5871fd5251fa1548659e454d318d70c0a97e446",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-24.png",
+      "apk_path": "assets/3d/pc-effects/image-24.png",
+      "bytes": 16754,
+      "sha256": "af138dde168bdb5fbbc9d0c3f54c04f01ce99aacab4d85f494f5a67275eada80",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 25,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 25,
+        "header_offset": 2621656,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2621664,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "f9b802b82c8b67fb43b757932e45912ed6e930a9825cac5b377beed715ed21a3"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "f9b802b82c8b67fb43b757932e45912ed6e930a9825cac5b377beed715ed21a3",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-25.png",
+      "apk_path": "assets/3d/pc-effects/image-25.png",
+      "bytes": 4918,
+      "sha256": "753d715ba181310dcc821e128a2f1f7b6560f40e3bc18598d585f53dfb63405d",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 26,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 26,
+        "header_offset": 2687200,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2687208,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "2ed92ecf4bb4e7912d7961cd5f9a4dc032d6858c48dca16460f1088162707a5e"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "8f62d19724248e77c6d926d1e42cd53c0a998c3a0dee46a4e29747d6b02d6818",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-26.png",
+      "apk_path": "assets/3d/pc-effects/image-26.png",
+      "bytes": 24065,
+      "sha256": "707579e1fcf352c1a757edcbf78bb981127cbd23656152dce944c168aa2e9d73",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 27,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 27,
+        "header_offset": 2752744,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2752752,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "d7bf764e811c8ec85cbe6aaff3782c0871385d80f29f512e264f05723fe3a600"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "d7bf764e811c8ec85cbe6aaff3782c0871385d80f29f512e264f05723fe3a600",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-27.png",
+      "apk_path": "assets/3d/pc-effects/image-27.png",
+      "bytes": 17493,
+      "sha256": "46c3e54fe2aa3bf69cfc52d911b1d35a9e38a89a44c97797f66bbf5e639cb771",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 28,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 28,
+        "header_offset": 2818288,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2818296,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "bdaa0ede6899f9212d3f07f0569289eb1f036ac8c3ed709827bef97c6a755f5b"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "99b6986a1133f33a193ce23ae0cf6f311a11f2e281bc02c2afe06c522c87296b",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-28.png",
+      "apk_path": "assets/3d/pc-effects/image-28.png",
+      "bytes": 8001,
+      "sha256": "5c0fb09b0b7faa9796f6336d5a97a19878f03fb899fe41dd058d14a6aaf29c37",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 29,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 29,
+        "header_offset": 2883832,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2883840,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "13f0b92d80a4d8063a8617b967fbc779fcdc94f9637cfb2e5d7fdba2e826a793"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "644d2e2ad184c3c0e0fc87813fe74b796d7fc644e0ddbd4261b1694cd013898f",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-29.png",
+      "apk_path": "assets/3d/pc-effects/image-29.png",
+      "bytes": 25441,
+      "sha256": "e0102fcb0600293d33f4f4fb89eaf0ce393c6b9e190177798c37c3e4a07a83f5",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 30,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 30,
+        "header_offset": 2949376,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 2949384,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "a3510430e63477db8ba90dafe8b67ea484e9a18e49d5bf16c63649a37ecbcfe8"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "ffe18286ec53e40e213ce2830f1b6b309f8160e77ebdb1b5e52b1ec073412f09",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-30.png",
+      "apk_path": "assets/3d/pc-effects/image-30.png",
+      "bytes": 18269,
+      "sha256": "24931396a3f385ede5e6132093434aef0fcf0c8de77b8e110dcecd31c98f6371",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 31,
+      "width": 128,
+      "height": 128,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 31,
+        "header_offset": 3014920,
+        "width": 128,
+        "height": 128,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 3014928,
+            "bytes": 65536,
+            "pitch": 512,
+            "sha256": "38c845f9381a03b667064c2d098fcfc74881840781d5ab7664f439dc2618fc00"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "a0f403685c829714334ccadb40d531570bef015fb0e458776aa35ea4d7c862e1",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-31.png",
+      "apk_path": "assets/3d/pc-effects/image-31.png",
+      "bytes": 22192,
+      "sha256": "d556d433ee1007dc503afba4baa826cc035480977adce25d729a080f6ea09b0d",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    },
+    {
+      "image_index": 32,
+      "width": 512,
+      "height": 512,
+      "source_resource": 124,
+      "source_image_metadata": {
+        "image": 32,
+        "header_offset": 3080464,
+        "width": 512,
+        "height": 512,
+        "bits": 32,
+        "palette_raw": 0,
+        "extra_mips": 0,
+        "reserved_raw": 0,
+        "source_levels": [
+          {
+            "level": 0,
+            "offset": 3080472,
+            "bytes": 1048576,
+            "pitch": 2048,
+            "sha256": "32c5a75122de6a84e008e33dc1c272cb611c450b625e86a7e7c153231774ad74"
+          }
+        ],
+        "source_palette": null
+      },
+      "rgba_sha256": "8dce4d86e1dff00ad727d61ef1e3af5001fff2b04ffe4c7076af3eb6be26aff4",
+      "source_path": "app/src/main/assets/3d/pc-effects/image-32.png",
+      "apk_path": "assets/3d/pc-effects/image-32.png",
+      "bytes": 455861,
+      "sha256": "6d1897c35e8d43bad98e9c15ad9f48fdeee11272fd839d61fd9e4afe0ad101df",
+      "runtime_binding": "PcEffectProcess packet texture_index -> PcMapEffects.loadTexture original image; normal production map, PC acceptance pending"
+    }
+  ],
+  "conversion": "WFTX0010 source base RGBA -> lossless PNG; no resize or new mip levels",
+  "runtime_effects_added": 0,
+  "limits": [
+    "Actual PC/MOD active resource resolution unverified",
+    "Sampler addressing, original shader and matching PC images still pending"
+  ]
+}

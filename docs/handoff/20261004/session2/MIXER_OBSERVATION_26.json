@@ -1,0 +1,389 @@
+{
+  "scope": "Global system counters, not per-track attribution; read-only queries and test-only compile overlap recorded",
+  "rows": [
+    {
+      "file": "audio-flinger-00.txt",
+      "elapsedSeconds": 0.0004901549999999921,
+      "sourceWavByteCursor": 222236672,
+      "queryMillis": 114.22442100000002,
+      "sha256": "c7dc65ab4c212c1b98f491ec2810fd7449f177983a6bf00b7e4bc5fedf99aac5",
+      "fastMixerCounters": [
+        0,
+        123,
+        90
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-01.txt",
+      "elapsedSeconds": 5.122403169999999,
+      "sourceWavByteCursor": 222470144,
+      "queryMillis": 232.2294550000006,
+      "sha256": "aaba80b6400f15fccd1c0d7a026fbc4371121306bec11409657ebb49038b1e2b",
+      "fastMixerCounters": [
+        0,
+        123,
+        90
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-02.txt",
+      "elapsedSeconds": 10.364255543,
+      "sourceWavByteCursor": 223395840,
+      "queryMillis": 66.59915200000022,
+      "sha256": "4fd0c06eaa725a0fe6df94c65ed32a748921a523b0bb2dda1af6c250c55d444d",
+      "fastMixerCounters": [
+        0,
+        123,
+        90
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-03.txt",
+      "elapsedSeconds": 15.434202255,
+      "sourceWavByteCursor": 224288768,
+      "queryMillis": 71.14636799999907,
+      "sha256": "eb31a112ec279482b3f524f985e6a5fa4a80a0956dff3e63e98c12afeb86023c",
+      "fastMixerCounters": [
+        0,
+        123,
+        90
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-04.txt",
+      "elapsedSeconds": 20.515274763,
+      "sourceWavByteCursor": 225185792,
+      "queryMillis": 61.42613500000138,
+      "sha256": "39c62de44f8bc294e5dde7170414f919f7d303b8c605ff5a464af46a4605229c",
+      "fastMixerCounters": [
+        0,
+        123,
+        90
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-05.txt",
+      "elapsedSeconds": 25.586330904,
+      "sourceWavByteCursor": 226074624,
+      "queryMillis": 62.78211400000089,
+      "sha256": "594c656613116e80cc16db9213fadf7c8da96f850c4639673cd652d9f929b6b1",
+      "fastMixerCounters": [
+        0,
+        123,
+        91
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-06.txt",
+      "elapsedSeconds": 30.651473097,
+      "sourceWavByteCursor": 226967552,
+      "queryMillis": 85.32389200000168,
+      "sha256": "8da43bce59e731ca0d3d5494f1f0a76c1821269ca59c1317fbb16b8e6e23b716",
+      "fastMixerCounters": [
+        0,
+        123,
+        91
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-07.txt",
+      "elapsedSeconds": 35.73914336,
+      "sourceWavByteCursor": 227864576,
+      "queryMillis": 61.50042399999478,
+      "sha256": "6df2b2a37e6e5ac161f490c4ace820620998adb08ef57fcdaee30c8b08d8b4c3",
+      "fastMixerCounters": [
+        0,
+        123,
+        91
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-08.txt",
+      "elapsedSeconds": 40.810493171,
+      "sourceWavByteCursor": 228757504,
+      "queryMillis": 95.95213000000058,
+      "sha256": "c6eb8ac8a6d923ce5792ca8d1dd26b72bd2a44cc1cc23bd9c5c0eea20dfe6d41",
+      "fastMixerCounters": [
+        0,
+        123,
+        91
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-09.txt",
+      "elapsedSeconds": 45.909434635,
+      "sourceWavByteCursor": 229654528,
+      "queryMillis": 144.44084200000162,
+      "sha256": "be735fd6bd7010ad422699e2ec25ecbf6c2d7c7477915b342b0b05354e8c9aad",
+      "fastMixerCounters": [
+        0,
+        123,
+        91
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-10.txt",
+      "elapsedSeconds": 51.064464498999996,
+      "sourceWavByteCursor": 230563840,
+      "queryMillis": 124.7710450000028,
+      "sha256": "f78928f70d1a3e3782d6fa298eb1db55649e9db6788acb3329061c02f8b17841",
+      "fastMixerCounters": [
+        0,
+        123,
+        91
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-11.txt",
+      "elapsedSeconds": 56.19818931,
+      "sourceWavByteCursor": 231464960,
+      "queryMillis": 192.13262400000275,
+      "sha256": "87b31485922e527879c23cdc919990ef749dfe09e8677199b8a71282099afccf",
+      "fastMixerCounters": [
+        0,
+        129,
+        94
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-12.txt",
+      "elapsedSeconds": 61.400987828,
+      "sourceWavByteCursor": 232374272,
+      "queryMillis": 319.00673300000193,
+      "sha256": "bbdb171cfe7d438ab74b493651598e54bf52491a0a4d08554137f5a8bc9242c3",
+      "fastMixerCounters": [
+        0,
+        136,
+        98
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-13.txt",
+      "elapsedSeconds": 66.727946112,
+      "sourceWavByteCursor": 233254912,
+      "queryMillis": 643.4410170000007,
+      "sha256": "96ca168106bd17295e2b5891318541a9be335fb3f501e1f1ca32d5ccaec02a3b",
+      "fastMixerCounters": [
+        0,
+        149,
+        114
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-14.txt",
+      "elapsedSeconds": 72.37799834,
+      "sourceWavByteCursor": 234209280,
+      "queryMillis": 567.5481880000035,
+      "sha256": "da93cc1a00769002a964b6a4e3970828c346c080f72bbb581e84a13320373075",
+      "fastMixerCounters": [
+        0,
+        166,
+        129
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-15.txt",
+      "elapsedSeconds": 77.95161448900001,
+      "sourceWavByteCursor": 235094016,
+      "queryMillis": 160.1692159999999,
+      "sha256": "9f897f1a8831e99f5ca747744bdab55de37bc6dc62e063058c8392bf9cf8885b",
+      "fastMixerCounters": [
+        0,
+        192,
+        145
+      ],
+      "normalMixerCounters": [
+        211,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-16.txt",
+      "elapsedSeconds": 83.121136688,
+      "sourceWavByteCursor": 235933696,
+      "queryMillis": 175.66804199999808,
+      "sha256": "659bbc1bb3982c46c37eca344e949824fb2cce4c19cc2e56a4239ceccb8baec6",
+      "fastMixerCounters": [
+        0,
+        224,
+        169
+      ],
+      "normalMixerCounters": [
+        213,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-17.txt",
+      "elapsedSeconds": 88.301736958,
+      "sourceWavByteCursor": 236834816,
+      "queryMillis": 132.10223800000165,
+      "sha256": "94a998e8f93e002c4ddcc75c74383edb0ad13a87d5c126dd495302dea29833a9",
+      "fastMixerCounters": [
+        0,
+        236,
+        184
+      ],
+      "normalMixerCounters": [
+        213,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-18.txt",
+      "elapsedSeconds": 93.444291256,
+      "sourceWavByteCursor": 237686784,
+      "queryMillis": 458.74627500001,
+      "sha256": "ea19fe914f3ca39d6a79e30b09ceb01903143d82f413101f19f204e5b615991d",
+      "fastMixerCounters": [
+        0,
+        256,
+        195
+      ],
+      "normalMixerCounters": [
+        214,
+        87
+      ]
+    },
+    {
+      "file": "audio-flinger-19.txt",
+      "elapsedSeconds": 98.909723312,
+      "sourceWavByteCursor": 238620672,
+      "queryMillis": 99.53407300000094,
+      "sha256": "67cdc549eefa9324a000859085ef1c5505864cb0ecfd537921da3834978ccfc0",
+      "fastMixerCounters": [
+        0,
+        258,
+        199
+      ],
+      "normalMixerCounters": [
+        215,
+        88
+      ]
+    },
+    {
+      "file": "audio-flinger-20.txt",
+      "elapsedSeconds": 104.01532840600001,
+      "sourceWavByteCursor": 239271936,
+      "queryMillis": 182.14066400000206,
+      "sha256": "8666c6d677516a2324c78688ab383f389f4c39327ea726450c4677e6f8e533ef",
+      "fastMixerCounters": [
+        0,
+        263,
+        201
+      ],
+      "normalMixerCounters": [
+        215,
+        88
+      ]
+    },
+    {
+      "file": "audio-flinger-21.txt",
+      "elapsedSeconds": 109.20589854900001,
+      "sourceWavByteCursor": 240148480,
+      "queryMillis": 157.6156259999948,
+      "sha256": "bd9b82925bd0137116a834861456c9dbcc9c5af2b524ab9ead491f7c25e0e897",
+      "fastMixerCounters": [
+        0,
+        273,
+        211
+      ],
+      "normalMixerCounters": [
+        216,
+        88
+      ]
+    },
+    {
+      "file": "audio-flinger-22.txt",
+      "elapsedSeconds": 114.37113358500001,
+      "sourceWavByteCursor": 240766976,
+      "queryMillis": 358.12204999999153,
+      "sha256": "bb92ddf206dce633a4bc1422a3a8f5ae97f07879aaf0aa62036174e491468ce5",
+      "fastMixerCounters": [
+        0,
+        275,
+        214
+      ],
+      "normalMixerCounters": [
+        216,
+        88
+      ]
+    },
+    {
+      "file": "audio-flinger-23.txt",
+      "elapsedSeconds": 119.736466586,
+      "sourceWavByteCursor": 241709056,
+      "queryMillis": 148.02265800000214,
+      "sha256": "bd5bf55456c2c5c6f1b9dd1900a6a009d66f8e017adacd6e3aeeca4587cb80fd",
+      "fastMixerCounters": [
+        0,
+        275,
+        215
+      ],
+      "normalMixerCounters": [
+        217,
+        88
+      ]
+    }
+  ]
+}

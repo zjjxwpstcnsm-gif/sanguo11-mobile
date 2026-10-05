@@ -17,7 +17,7 @@ public final class MapEditorContinuationTest {
             MapPatch.Site site=new MapPatch.Site(id,"验收"+kind,x,y,kind,parent,WorldEvents.Tribe.BANDIT);Hex h=site.hex(w);
             if(avoid!=null&&avoid.distance(h)<8)continue;if(CustomMaps.placement(w,site,id)!=null)continue;
             if(kind==World.SiteKind.PORT){boolean main=false;for(Hex n:h.neighbors())main|=water.main(n);if(!main)continue;
-                World.City ghost=new World.City(id,site.name(),h,0);ghost.kind=kind;w.cities.add(ghost);String error=water.portError(ghost);w.cities.remove(ghost);if(error!=null)continue;}
+                World.City ghost=new World.City(id,site.name(),h,0);ghost.kind=kind;w.cities.add(ghost);w.invalidateSiteIndex();String error=water.portError(ghost);w.cities.remove(ghost);w.invalidateSiteIndex();if(error!=null)continue;}
             if(kind==World.SiteKind.GATE){int exits=0;for(Hex n:h.neighbors())if(w.inside(n)&&w.army.entryCost(new World.Unit(-1,0,-1,World.Weapon.SPEAR,h,1,1),h,n)>0)exits++;if(exits<2)continue;}
             return site;
         }
@@ -26,6 +26,18 @@ public final class MapEditorContinuationTest {
     public static MapPatch fixture()throws Exception {
         MapPatch p=CustomMaps.base().fresh();p.name="独立地图验收";World w=CustomMaps.preview(p,p.preview);int parent=w.home().id;
         MapPatch.Site city=placement(w,World.SiteKind.CITY,100006701,-1,null);p.putSite(null,city);w=CustomMaps.preview(p,p.preview);
+        // The PC coast uses impassable bank cells. Explicitly author one shore
+        // parcel in this editing fixture rather than expecting a fabricated dock.
+        if(NationalMap.pcRevision(w.mapRevision)){
+            outer:for(int x=4;x<196;x++)for(int y=4;y<196;y++){
+                Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(x,y));
+                if(w.terrain[h.q][h.r]!=World.Terrain.MOUNTAIN||h.distance(city.hex(w))<8||w.cityAt(h)!=null||w.development.cityAt(h)!=null)continue;
+                boolean sea=false,land=false;for(Hex n:h.neighbors()){
+                    sea|=w.army.water(n);land|=w.inside(n)&&w.cost(n,World.Weapon.SPEAR)>0&&!w.army.water(n)&&w.cityAt(n)==null;
+                }
+                if(sea&&land){MapPatch.Cell cell=new MapPatch.Cell(x,y,World.Terrain.MOUNTAIN,World.Terrain.PLAIN);p.terrain.put(cell.key(),cell);w=CustomMaps.preview(p,p.preview);break outer;}
+            }
+        }
         MapPatch.Site port=placement(w,World.SiteKind.PORT,100006702,parent,city.hex(w));p.putSite(null,port);w=CustomMaps.preview(p,p.preview);
         MapPatch.Site gate=placement(w,World.SiteKind.GATE,100006703,parent,city.hex(w));p.putSite(null,gate);
         p.scenarios.computeIfAbsent(p.preview,k->new TreeMap<>()).put(port.id(),new MapPatch.Initial(true,0,1000,10000,0,90,70,2000));return p;

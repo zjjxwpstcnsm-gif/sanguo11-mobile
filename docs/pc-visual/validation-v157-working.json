@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "Original ground raw normals/RGBA painting/ambient/fog/fade/outline installed; complete visual goal active",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v157/app-debug-ground-source-paint.apk",
+      "bytes": 80068294,
+      "sha256": "d4d2a8d30a78d7ca4344572ed4ae81fbd0c911f8c5dc782af7508d7d13cc3b8e"
+    },
+    {
+      "path": "out/pc-visual/v157/app-debug-androidTest.apk",
+      "bytes": 617947,
+      "sha256": "d9c9dd19d70a7f69e7f2d3e69b4cc2c973e5a4ec89a5b7880e3fec355417b42f"
+    }
+  ],
+  "installed": {
+    "reference": "PASS69 final APK; source camera 1650x1050; authored207September state",
+    "all12season_views": "Captured source normals/painting and seasonal shader owners; final wide far stage failed",
+    "wide_far": "FAIL157120s pending108; original156 same1650wide far also FAIL120s pending138. Same workload confirms baseline issue exists, does not prove unchanged performance.",
+    "normal_commands": "FAIL before any siege: commandsOnly still performs national far prerequisite,120s timeout then10s lifecycle barrier failure; no normal siege acceptance",
+    "device": "API29 x86_64 emulator only; no ARM performance acceptance",
+    "portrait_far": "FAIL157120s pending142; near winter captured, no far/pause/resume acceptance"
+  },
+  "source_checks": [
+    "ground-environment-check.json:16 original441d30 vs production Java cases; actual autumn/winter c18/c26/c27 and source outline draw24",
+    "source-sampler-check.json:220 actual source draws stage0/1 SRGBTEXTURE=0",
+    "ground-pass-staging-to-installed-check.json:7 source PNGs byte-identical to independently checked staging",
+    "map-host-check.txt:PASS553985",
+    "frame-admission-check.txt:PASS43 driver rejection paths; HOST only",
+    "146 APK source integrity entries matched",
+    "presentation33 calls confirmed; first inspector mistakenly used125+template, invalid report retained. Corrected158 inspector reads actual244-row resource table; no Android binding"
+  ],
+  "failures": "verification-setup-errors.json; scenery-wide-failed.txt/scenery-wide-failed-report.txt; all retained; baseline-v156-wide-far-installed.txt; scenery-portrait-far-installed.txt",
+  "save": {
+    "source": "Recovered preexisting verified168846B user save from156 after initial install race",
+    "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "verified_after": [
+      "reference",
+      "failed wide scenery",
+      "baseline-v156-wide-far",
+      "v157-portrait-far",
+      "normal-commands-failed-before-first-siege"
+    ],
+    "preference_limit": "Initial display quality before failed pre-unlock backup not captured; no exact initial preference preservation claim"
+  },
+  "visual_limits": [
+    "Genuine source assets and mathematically source-ground composition; PC complete raster parity NOT accepted",
+    "Hard terrain/fog/effect edges, source terrain LOD and palette atlas mip isolation need work",
+    "Shared geometry outline adds GPU draw work; existing geometry resource report omits extra outline triangles/primitives",
+    "Original static/unit fog/outline and unit shading remain incomplete",
+    "Original grid4804 source PNG packaged candidate only; runtime unbound",
+    "All battle/strategy/critical special effects and original full-screen glyph/cut-in playback not finished",
+    "Original source/MOD pixel matches in captured scopes; SIRE auxiliary activation remains unproven"
+  ],
+  "videos": [
+    "ground-final-video-check.json:171.268s/61samples1650x1622; actual30requested=>6.406,90=>86.654,150=>149.863; sparse recording is not native FPS or combat timing proof"
+  ],
+  "source_install_integrity": "out/pc-visual/v157/source-install-integrity.json PASS1805 original source files unchanged",
+  "source_snapshot": "out/pc-visual/v157/source-snapshot-manifest.json;3465 files196739599B preserves inherited dirty source"
+}

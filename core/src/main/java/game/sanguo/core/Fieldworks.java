@@ -148,13 +148,18 @@ public final class Fieldworks {
     public War.Structure byId(int id){for(War.Structure s:w.war.structures)if(s.id==id)return s;return null;}
     private void advance(War.Structure s,World.Unit u){
         s.hp=Math.min(s.kind.hp,s.hp+constructionRate(u));
-        if(s.hp==s.kind.hp){s.complete=true;s.builder=-1;w.campaign.earn(u.owner,30);w.note(s.kind.label+"完成补修");}
+        if(s.hp==s.kind.hp){s.complete=true;s.builder=-1;w.campaign.earn(u.owner,30,TechniquePointsJournal.Cause.FIELD_REPAIR,-1,u.officerId);w.note(s.kind.label+"完成补修");}
     }
     void cleanup(){for(War.Structure s:w.war.structures)if(s.builder>=0){World.Unit u=w.unit(s.builder);if(u==null||u.owner!=s.owner||u.hex.distance(s.hex)!=1)s.builder=-1;}}
     void continueOwner(int owner){cleanup();for(War.Structure s:new ArrayList<>(w.war.structures))if(s.owner==owner&&s.builder>=0){World.Unit u=w.unit(s.builder);if(u.status==War.Status.NORMAL&&!u.acted){u.acted=true;advance(s,u);}}}
+    /** Shared terrain family for authoritative movement and detached presentation.
+     * Skills such as 踏破 prevent hazards; they do not grant this force technology. */
+    public static boolean requiresDifficultMarch(World.Terrain terrain){
+        return terrain==World.Terrain.MOUNTAIN_PATH||terrain==World.Terrain.SHALLOWS||terrain==World.Terrain.PLANK_ROAD;
+    }
     public int landCost(Hex h,World.Weapon weapon,int owner){
         if(h==null||!w.inside(h)||w.events.at(h)!=null)return -1;World.Terrain t=w.terrain[h.q][h.r];
-        if((t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.SHALLOWS)&&!w.campaign.has(owner,Campaign.Tech.DIFFICULT_MARCH))return -1;
+        if(requiresDifficultMarch(t)&&!w.campaign.has(owner,Campaign.Tech.DIFFICULT_MARCH))return -1;
         return t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD?3:t==World.Terrain.SHALLOWS?2:w.cost(h,weapon);
     }
     void traveled(World.Unit u,List<Hex> path){

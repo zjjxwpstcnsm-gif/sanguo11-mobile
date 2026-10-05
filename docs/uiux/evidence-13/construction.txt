@@ -1,0 +1,57 @@
+UIUX PASS 50 checks
+PASS normal launch restores existing save
+PASS test save matches campaign before construction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 设施开发 at Rect(706, 1128 - 1038, 1254)
+PASS touch visible 取消选取 at Rect(786, 1520 - 1038, 1646)
+PASS cancel map targeting preserves authority
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 设施开发 at Rect(706, 1128 - 1038, 1254)
+PASS a highlighted development parcel is visible without camera test shortcuts
+PASS real map touch selects intended parcel
+PASS touch visible  at Rect(74, 535 - 879, 661)
+PASS empty result and construction search fully visible above keyboard
+PASS touch visible × at Rect(879, 473 - 1005, 597)
+PASS touch visible 市场 · Lv1 · 金200
+每月金 +400 at Rect(74, 824 - 1005, 992)
+PASS touch visible  at Rect(74, 598 - 879, 724)
+PASS real paste inserts Chinese officer search
+PASS touch visible 曹操 · 政治94 at Rect(74, 824 - 1005, 992)
+PASS touch visible 返回选择 at Rect(627, 1177 - 837, 1303)
+PASS return from confirmation preserves officer search and facility
+PASS touch visible 曹操 · 政治94 at Rect(74, 764 - 1005, 932)
+PASS system back from confirmation preserves draft without command
+PASS landscape executor row remains fully visible
+PASS touch visible 上一步 at Rect(74, 1405 - 247, 1531)
+PASS touch visible 市场 · Lv1 · 金200
+每月金 +400 at Rect(74, 701 - 1005, 869)
+PASS touch visible 曹操 · 政治94 at Rect(74, 764 - 1005, 932)
+PASS touch visible 开工 at Rect(837, 1177 - 1005, 1303)
+PASS rapid double confirm creates exactly one facility at selected parcel
+PASS one construction payment recorded by authoritative command
+PASS selected officer owns authoritative construction task
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores construction resources, officers, facilities and RNG
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 设施开发 at Rect(706, 1128 - 1038, 1254)
+PASS touch visible 下一页 at Rect(694, 1333 - 1005, 1457)
+PASS touch visible 铜雀台 · Lv1 · 金1500
+需要铜雀；每月技巧点+100，不可合并 at Rect(74, 872 - 1005, 1040)
+PASS touch visible 曹操 · 政治94 at Rect(74, 764 - 1005, 932)
+PASS authority construction rejection disables submission
+PASS authoritative rejection preserves all resources, officers and RNG
+PASS touch visible 返回选择 at Rect(627, 1110 - 837, 1236)
+PASS failed preview preserves editable construction draft
+PASS touch visible 取消 at Rect(837, 1405 - 1005, 1531)
+PASS explicit cancel clears construction draft
+

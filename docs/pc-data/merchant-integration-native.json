@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "source_file": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "blocks": [
+    {
+      "name": "ordered_experience_quote_credit",
+      "start": "0x5cacb7",
+      "end_exclusive": "0x5cad20",
+      "sha256": "b4633c6d3a9969e4a0a525c0c29f7d7b393d33182e31ba599221adce22b9b676",
+      "bytes_hex": "6a016a056a0357b95c899907e808c4edff6a3257b95c899907e87bc0edff6a018bcbe8120aebff8b4e088b16515752e835f9ffff83c40cf7d8508b0650b95c899907e8a235eeff8b4e088b165152b95c899907e8f135eeff8b066a146a0450b990157709e820e6feff"
+    },
+    {
+      "name": "global_monthly_day_guard",
+      "start": "0x590c67",
+      "end_exclusive": "0x590c79",
+      "sha256": "2518a2e798620ac5d77cb0700a716653417c9aa8bc615717639f3b5f694dd6fe",
+      "bytes_hex": "b958192007e80f1aefff85c00f8403020000"
+    },
+    {
+      "name": "weather_before_city_monthly",
+      "start": "0x590ca0",
+      "end_exclusive": "0x590cb7",
+      "sha256": "e4818db6d4ef5932abf46099c78d04beed93251d290d8528b8e7d5ed0dd7514e",
+      "bytes_hex": "8b44240485c075078bcfe831e8ffff568bcfe8d9f7ffff"
+    },
+    {
+      "name": "city_monthly_price_dispatch",
+      "start": "0x590648",
+      "end_exclusive": "0x590657",
+      "sha256": "3fa2d5e008a7081d3c9363971b56be979032fad46abdd0d56ab81788e3b8d0e2",
+      "bytes_hex": "b958192007e89e1eefffe879d0ffff"
+    },
+    {
+      "name": "harvest_august_guard_and_clear",
+      "start": "0x58f52b",
+      "end_exclusive": "0x58f555",
+      "sha256": "fa5d663c497f3b6c01332e560e36340691ee6e7971270ef12c93c30bc9ea180d",
+      "bytes_hex": "b958192007e8bb2fefff33ed83f808754833ff8bff57b958192007e8c514f0ff556a028bc8e8fbbfeeff"
+    }
+  ],
+  "verified": {
+    "maximum_before_xp_final_credit": 24,
+    "harvest_month_city_observations": 504,
+    "monthly_day_guard": 36,
+    "world_memory_bytes": 3145728,
+    "rule_rng_unchanged": true
+  },
+  "normal_commit_order": [
+    "UI quantity maximum uses pre-XP current politics",
+    "politics XP +5 capped3000 and ability refresh",
+    "quote uses post-XP current politics",
+    "signed food/gold transfer; gold credit clamps100000",
+    "merit/action/city-use and20AP"
+  ],
+  "monthly_order": [
+    "month controller only on current day1",
+    "ordinary weather controller before city/month dispatch",
+    "harvest bit2 cleared in August",
+    "price update before remaining per-city monthly loyalty work"
+  ],
+  "production": {
+    "save_version": 35,
+    "legacy_versions": "31-33 unchanged numeric/price mode and write33;34 keeps ability state and old price mode and writes34",
+    "quantity": "positive food delta1..1000000 within native pre-XP stock maximum; no thousand rounding",
+    "price_state": "per-city native byte rate plus saved harvest and processed-month clock",
+    "rng": "existing saved Strategy SplitMix64 adapter; previews use no randomness"
+  },
+  "limits": [
+    "Full native global RNG stream parity is unresolved; no new isolated merchant RNG is fabricated",
+    "Native whole weather/settings/loyalty/monthly controller is not emulated; bounded guard/clear/price/commit blocks only",
+    "Original facility notifications following harvest clear remain unexecuted",
+    "Project disaster/harvest generation and lifetimes remain uncalibrated; market consumes actual saved event state",
+    "Official/MOD active content and city/scenario mapping remain separate; no official-opening claim"
+  ]
+}

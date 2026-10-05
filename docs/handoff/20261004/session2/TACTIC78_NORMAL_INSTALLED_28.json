@@ -1,0 +1,119 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "sourceTacticSound=78",
+    "run=tactic78-normal-installed-28"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-sound-build-28/frozen/app-debug.apk": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-sound-build-28/frozen/app-debug-androidTest.apk": "40ed39036c88c4e1267a633ea7fa63bc144f5f425c322aaa0fcc372f6d6fdf06"
+  },
+  "installed_sha256": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+  "installed_test_sha256": "40ed39036c88c4e1267a633ea7fa63bc144f5f425c322aaa0fcc372f6d6fdf06",
+  "passed": true,
+  "seconds": 17.21,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "backup": {
+    "files/auto.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "files/manual3.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    }
+  },
+  "evidenceDirectory": "out/media/tactic78-normal-installed-28",
+  "facts": {
+    "productionHostOnly": true,
+    "facts": [
+      {
+        "id": "7739d41f-d4a2-48c8-ba18-4f161d658cd5:1:1:LEGACY_COMMITTED:technique:1",
+        "parentId": "7739d41f-d4a2-48c8-ba18-4f161d658cd5:1:1:LEGACY_COMMITTED",
+        "presentationParentId": "2:1",
+        "sequence": 1,
+        "owner": 0,
+        "before": 0,
+        "after": 40,
+        "delta": 40,
+        "cause": "TACTIC",
+        "phase": "COMMAND",
+        "state": {
+          "sessionId": "7739d41f-d4a2-48c8-ba18-4f161d658cd5",
+          "generation": 1,
+          "revision": 1
+        }
+      }
+    ],
+    "originalTacticSoundId": 78,
+    "originalTacticEvents": 1,
+    "syntheticCriticalEvents": 0,
+    "sourceTacticEnum": "SPIRAL",
+    "alreadyAppliedCritical": true
+  },
+  "actualPcm": {
+    "status": "PASS",
+    "scope": "Actual two declared original converted spear49/78 and nativeHUD33 waveforms; current Android phase, not PC wall-clock/nativeWindows/ARM speaker or full audio restoration",
+    "apkSha256": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+    "captureSha256": "43868a7ac2a2752c45a768044686fecb8c33d85bb931f6b1cb4e5b726d4e4b62",
+    "nativeSoundId": 78,
+    "jointCorrelation": 0.9999997257466406,
+    "independentCorrelations": [
+      0.9999993693113846,
+      0.9999995465393436
+    ],
+    "gains": [
+      0.017734540528305878,
+      0.01773443036463278
+    ],
+    "audibleRms": [
+      0.002372672071279135,
+      0.002811795196207031
+    ],
+    "normalizedCondition": 1.0804204502448165,
+    "seeds": [
+      192072,
+      192072
+    ],
+    "starts": [
+      192072,
+      192072
+    ],
+    "intervalSamples": [
+      191032,
+      238756
+    ],
+    "originalSpearPcmSha256": "196ece74a882a6fc54379a9eb4cf16cc8d4b4710279878036e5ae52f26596f09",
+    "playbackWavSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638",
+    "facts": [
+      {
+        "id": "7739d41f-d4a2-48c8-ba18-4f161d658cd5:1:1:LEGACY_COMMITTED:technique:1",
+        "parentId": "7739d41f-d4a2-48c8-ba18-4f161d658cd5:1:1:LEGACY_COMMITTED",
+        "presentationParentId": "2:1",
+        "sequence": 1,
+        "owner": 0,
+        "before": 0,
+        "after": 40,
+        "delta": 40,
+        "cause": "TACTIC",
+        "phase": "COMMAND",
+        "state": {
+          "sessionId": "7739d41f-d4a2-48c8-ba18-4f161d658cd5",
+          "generation": 1,
+          "revision": 1
+        }
+      }
+    ]
+  }
+}

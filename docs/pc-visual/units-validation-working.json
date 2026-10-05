@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "release_accepted": true,
+  "phase": "v139 original units and normal command matrix installed",
+  "source_catalog": "units-source.json",
+  "raw_reference": {
+    "path": "out/pc-visual/v139-unit-source-reference-v2.bin",
+    "cases": 462,
+    "sha256": "7598eb6439ad889b072771da4e7686402fb598889450befad827697426f4ae0a"
+  },
+  "checks": [
+    {
+      "name": "raw-PC-poses-UV-RGBA-topology-alpha-partitions",
+      "status": "pass",
+      "checks": 4050135,
+      "max_display_float_error": 1.1920929e-07,
+      "log": "out/pc-visual/v139-unit-source-cpu-event-boundary-valid-tech.txt"
+    },
+    {
+      "name": "source-national-map-unit-normal-command-and-save-preconditions",
+      "status": "pass",
+      "cases": 29,
+      "log": "out/pc-visual/v139-unit-source-cpu-event-boundary-valid-tech.txt"
+    },
+    {
+      "name": "interaction-custom-map-regressions",
+      "status": "pass",
+      "log": "out/pc-visual/v139-interaction-cpu.txt"
+    },
+    {
+      "name": "installed-unit-source-GPU-normal-commands",
+      "status": "partial-pass",
+      "log": "out/pc-visual/v139-unit-sword-installed-memo-api.txt",
+      "cases": "SWORD/move and SWORD/attack",
+      "checks": 220,
+      "remaining": "all other source units and strict expected-event GPU-pose readiness guard; PC reference pending"
+    },
+    {
+      "name": "exact-bounded-water-field-memo-GPU-inputs",
+      "status": "pass",
+      "log": "out/pc-visual/v139-ground-memo-lossless.json",
+      "views": 5,
+      "detail": "every complete serialized GPU buffer bit identical to v138; no geometry or shader reduction; Android performance yet to verify"
+    },
+    {
+      "name": "source-water-memo-R04-regressions",
+      "status": "pass",
+      "checks": 87689,
+      "log": "out/pc-visual/v139-water-memo-r04-cpu.txt"
+    },
+    {
+      "name": "actual-user-autosave-after-sword-pass",
+      "status": "pass",
+      "path": "out/pc-visual/v139-autosave-after-sword-pass.sg11",
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+      "detail": "byte-identical to pre-install user save after production command and lifecycle checks"
+    },
+    {
+      "name": "installed-WARSHIP-normal-source-event-GPU-geometry",
+      "status": "pass",
+      "checks": 206,
+      "log": "out/pc-visual/v139-unit-warship-installed-strict.txt",
+      "report": "out/pc-visual/v139/unit-warship-installed-strict-report.txt",
+      "limits": "Source pose is compared to current real event/clock; x86 emulator only, PC pixels/semantics not accepted"
+    },
+    {
+      "name": "actual-user-autosave-after-warship-pass",
+      "status": "pass",
+      "path": "out/pc-visual/v139-autosave-after-warship-pass.sg11",
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    {
+      "name": "shared-source-skin-evaluator-refactor",
+      "status": "pass",
+      "checks": 4050135,
+      "normal_command_cases": 29,
+      "log": "out/pc-visual/v139-unit-shared-skin-cpu.txt"
+    },
+    {
+      "name": "installed-all-round-through-nine-land-weapons",
+      "status": "partial-pass",
+      "normal_cases": 18,
+      "report": "out/pc-visual/v139/unit-all-installed-strict-before-transport-fix-report.txt",
+      "detail": "Every case reached post-command exact full state/RNG check; overall run failed at transport fixture Android29 Stream.toList API; remaining kinds not claimed"
+    },
+    {
+      "name": "installed-transport-normal-original-GPU",
+      "status": "pass",
+      "checks": 111,
+      "log": "out/pc-visual/v139-unit-transport-installed-compatible-api.txt",
+      "report": "out/pc-visual/v139/unit-transport-installed-compatible-api-report.txt",
+      "user_save": "out/pc-visual/v139-autosave-after-transport-pass.sg11 byte-identical to original"
+    }
+  ],
+  "failures": [
+    {
+      "name": "preliminary-unit-dam-smoke-far-120s",
+      "log": "out/pc-visual/v139-dam-unit-smoke-installed.txt",
+      "near_command_authority": "pass",
+      "overall": "fail",
+      "limits": "PCUNIT01 preliminary atlas/masked material; superseded but failure retained"
+    },
+    {
+      "name": "same-scene-v138-exact-APK-baseline",
+      "log": "out/pc-visual/v139-baseline/v138-dam-0-damage-installed.txt",
+      "result": "same120s far readiness assertion failed",
+      "limits": "Does not by itself prove identical cause or exclude additional unit load"
+    },
+    {
+      "name": "installed-test-record-ABI-collision",
+      "log": "out/pc-visual/v139-unit-sword-installed.txt",
+      "result": "NoSuchMethodError R8 RecordTag; new fixture changed to ordinary class, same assertions retained"
+    },
+    {
+      "name": "installed-source-GPU-check-API-missing",
+      "log": "out/pc-visual/v139-unit-sword-installed-fixture-abi.txt",
+      "detail": "Engine.getRenderableManager removed by R8; actual native scene loaded before check crashed",
+      "autosave_recovered": "out/pc-visual/v139-autosave-recovered-unit-probe.sg11; byte-identical to pre-install backup",
+      "repair": "keep exact Filament method ABI; propagate check errors to instrumentation thread to execute restoration"
+    },
+    {
+      "name": "transport-fixture-Java16-stream-API-on-Android29",
+      "log": "out/pc-visual/v139-unit-all-installed-strict.txt",
+      "repair": "Collectors.toList preserves all fixture assertions; Android rerun required",
+      "user_autosave": "out/pc-visual/v139-autosave-after-unit-all-partial.sg11 byte-identical to original"
+    }
+  ],
+  "limits": [
+    "No accepted PC run screenshots/videos",
+    "Source state names and event semantic mapping remain provisional",
+    "Map/unit vertical and horizontal scale still require joint PC calibration",
+    "Original flags and formation status/action layouts beyond0/7 not integrated",
+    "Original battle FX and fullscreen PC artwork not restored; existing approximations cannot count as source acceptance",
+    "Transparent source groups and original RGBA preserved; GPU order and all unit cases pending",
+    "Far loading deadline failed in v138 and preliminary v139; performance investigation open",
+    "x86_64 emulator only; no ARM performance evidence"
+  ],
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v139/app-debug-native-unit-fixture-abi.apk",
+      "sha256": "cb9d4c7b0f39462044c3a040730e0a6077f029114ba0549a34b26d61205ecd1c",
+      "status": "working APK; not final accepted release"
+    },
+    {
+      "path": "out/pc-visual/v139/app-debug-native-unit-memo-api.apk",
+      "sha256": "dcf8dcb7b4256e0d2ecc8343c7e6b8f3507c30de124edd3dc4105b01645e4356",
+      "status": "working original-unit and exact water-field memo APK; source GPU verification ongoing"
+    },
+    {
+      "path": "out/pc-visual/v139/app-debug-native-unit-strict-gpu.apk",
+      "sha256": "dcf8dcb7b4256e0d2ecc8343c7e6b8f3507c30de124edd3dc4105b01645e4356",
+      "status": "installed working APK; WARSHIP current-event GPU pass; full unit round ongoing"
+    }
+  ],
+  "videos": [
+    {
+      "path": "out/pc-visual/v139-unit-warship-production-controls.mp4",
+      "metadata": "out/pc-visual/v139-unit-warship-production-video.json",
+      "status": "decoded frames10s/45s show movement/result and attack/result; frame90s launcher; not uninterrupted original animation or PC-match acceptance",
+      "samples": 1062,
+      "duration_seconds": 163.225
+    }
+  ],
+  "latest_installed_supplement": [
+    {
+      "kind": "BOAT",
+      "checks": 195,
+      "status": "pass",
+      "log": "out/pc-visual/v139-unit-BOAT-shared-water-installed.txt"
+    },
+    {
+      "kind": "TOWER_SHIP",
+      "checks": 195,
+      "status": "pass",
+      "log": "out/pc-visual/v139-unit-TOWER_SHIP-shared-water-installed.txt"
+    },
+    {
+      "kind": "crossbow-melee",
+      "checks": 194,
+      "status": "pass",
+      "log": "out/pc-visual/v139-unit-crossbow-melee-shared-water-installed.txt"
+    },
+    {
+      "kind": "mounted-archery",
+      "checks": 196,
+      "status": "pass",
+      "log": "out/pc-visual/v139-unit-mounted-archery-shared-water-installed.txt"
+    }
+  ],
+  "latest_all_matrix": {
+    "status": "pass",
+    "checks": 2815,
+    "normal_commands": 29,
+    "log": "out/pc-visual/v139-unit-all-shared-water-installed.txt",
+    "report": "out/pc-visual/v139-unit-all-shared-water-installed-report.txt",
+    "apk": "out/pc-visual/v139/app-debug-shared-water-rig.apk",
+    "apk_sha256": "d1983e9f8e35b07c44f08e7ff164e087d1b75a08c41c0f5dd87913fb1845b72f",
+    "limits": "Exact actual current event CPU skin/GPU geometry/source UV/opaque-alpha passes; normal APIs, pause/4x/lifecycle/full save/RNG; simulator only. Original state semantics/PC pixels/scale/flags and effect visuals not accepted."
+  },
+  "release_scope": "installable partial original unit bodies/rig checkpoint; PC fidelity not accepted"
+}

@@ -50,8 +50,9 @@ public final class Skills {
         return has(source,JICHI)&&w.army.attackPower(source)>w.army.attackPower(target);
     }
     public int produceAmount(int city,int officer,World.Weapon weapon){
-        return w.domestic.produceAmount(city,weapon);
+        return w.pcProduction.enabled()&&!Army.siegeWeapon(weapon)&&weapon!=null&&weapon!=World.Weapon.SWORD?w.pcProduction.amount(city,List.of(w.officer(officer)),weapon,true):w.domestic.produceAmount(city,weapon);
     }
+    public int productionGold(int city,int officer,World.Weapon weapon){return w.pcProduction.enabled()&&weapon!=null?w.pcProduction.gold(city,PcProduction.nativeItem(weapon)):productionGold(officer,weapon);}
     public int productionGold(int officer,World.Weapon weapon){
         World.Officer o=w.officer(officer);int base=Army.productionGold(weapon);
         boolean discount=weapon==World.Weapon.CAVALRY&&has(o,FANZHI)||weapon!=null&&weapon.ordinal()<3&&has(o,NENGLI);
@@ -72,7 +73,7 @@ public final class Skills {
         if(has(victim,QIANGYUN))return;
         for(World.Officer guard:crew)if(guard.id!=victim.id&&has(guard,HUWEI))return;
         w.contests.injuries.put(victim.id,new Contests.Injury(Math.min(3,w.contests.injury(victim.id)+1),w.turn+3));
-        w.note(victim.name+"受到猛者战法影响而负伤");
+        w.officerAbilities.refresh(victim);w.note(victim.name+"受到猛者战法影响而负伤");
     }
 
 }

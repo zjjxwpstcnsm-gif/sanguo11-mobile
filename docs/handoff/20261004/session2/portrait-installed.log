@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: portraitPixels=PORTRAIT_PIXELS PASS checks=51302; all original source pixel/age guards; not normal caller/runtime coverage acceptance
+INSTRUMENTATION_CODE: -1

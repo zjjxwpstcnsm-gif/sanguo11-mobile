@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "scope": "Actual declared normal tactic mix: original PC33 plus two inherited mobile nuisance cues. Not full PC battle audio restoration, microphone or ARM speaker evidence.",
+  "serial": "emulator-5582",
+  "apkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
+  "waveSha256": "dda18ab310a02c913e9cf391750e864ae654384cb1007b8003077794c9b7c676",
+  "sampleRate": 44100,
+  "intervalSamples": [
+    188088,
+    234675
+  ],
+  "jointCorrelation": 0.9999997620093539,
+  "pc33NuisanceRemovedCorrelation": 0.9999995511763713,
+  "gramCondition": 4.3359897409466495,
+  "residualMseWithPc33": 6.884768869470334e-12,
+  "residualMseWithoutPc33": 7.66822003527135e-06,
+  "facts": [
+    {
+      "id": "2bcaa0ad-fd64-4ab8-a942-92e85a91d9e2:1:1:LEGACY_COMMITTED:technique:1",
+      "parentId": "2bcaa0ad-fd64-4ab8-a942-92e85a91d9e2:1:1:LEGACY_COMMITTED",
+      "presentationParentId": "2:1",
+      "sequence": 1,
+      "owner": 0,
+      "before": 0,
+      "after": 40,
+      "delta": 40,
+      "cause": "TACTIC",
+      "phase": "COMMAND",
+      "state": {
+        "sessionId": "2bcaa0ad-fd64-4ab8-a942-92e85a91d9e2",
+        "generation": 1,
+        "revision": 1
+      }
+    }
+  ],
+  "cues": [
+    {
+      "name": "critical",
+      "label": "INHERITED_MOBILE_COMPOSITION",
+      "path": "audio/critical.wav",
+      "sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa",
+      "startSample": 188119,
+      "seconds": 4.265736961451247,
+      "gain": 0.017732479926636537,
+      "audibleRms": 0.002695105104511333,
+      "candidateCorrelation": 0.608611499709729
+    },
+    {
+      "name": "tactic",
+      "label": "INHERITED_MOBILE_COMPOSITION",
+      "path": "audio/tactic.wav",
+      "sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264",
+      "startSample": 188119,
+      "seconds": 4.265736961451247,
+      "gain": 0.0177321931372582,
+      "audibleRms": 0.0017650470773983434,
+      "candidateCorrelation": 0.37740413491473007
+    },
+    {
+      "name": "pc33",
+      "label": "ORIGINAL_PC_HUD33",
+      "path": "audio/pc/technique-33.wav",
+      "sha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+      "startSample": 189441,
+      "seconds": 4.295714285714285,
+      "gain": 0.017732663947944375,
+      "audibleRms": 0.0028115151307153948,
+      "candidateCorrelation": 0.7723585024805325
+    }
+  ],
+  "filters": "Same fixed65-tap cutoff FIR as existing mixer check; original rate phase refinement; no acceptance threshold relaxation"
+}

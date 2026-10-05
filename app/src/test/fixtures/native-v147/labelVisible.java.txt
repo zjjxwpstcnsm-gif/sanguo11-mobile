@@ -1,0 +1,6 @@
+private boolean labelVisible(Proxy object){
+        float wx=object.motion.x,wz=object.motion.z,y=object.y+1;
+        float sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,y);
+        float foreground=snapshot.ground.surface.rayHeight(camera,sx,sy);
+        return !Float.isFinite(foreground)||foreground<=y+.001f;
+    }

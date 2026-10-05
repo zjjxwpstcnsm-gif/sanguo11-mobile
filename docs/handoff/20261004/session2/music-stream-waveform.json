@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "resourceId": 2261,
+  "scope": "Original complete music waveform in actual emulator mix; no original scene binding/ARM speaker claim",
+  "sampleRate": 44100,
+  "correlation": 0.9999978802621599,
+  "seconds": 6.559138321995465,
+  "captureSha256": "350f33d64b73ba0ac64aa3e97fc3fde71cad382515845319c9151e7d79c1c805",
+  "originalReferenceSha256": "da252dd916df62689ff1c93aab52843452ce183105b5088673f5baecc3cc4f3d",
+  "originalOggSha256": "b52628bf46a1eae05dc3f652a34e42c1b6b6400be6d3ea07623c055ec8df6e52"
+}

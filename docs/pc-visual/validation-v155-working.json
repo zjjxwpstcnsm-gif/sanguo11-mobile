@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "Original winter regional sites installed;20seasonviews and3 normal siege GPU transitions pass;full visual goal incomplete",
+  "artifacts": {
+    "artifacts": [
+      {
+        "path": "out/pc-visual/v155/app-debug-sites-climate.apk",
+        "bytes": 83528694,
+        "sha256": "6725b9c4f45beeb5b263a758932c271c900d5da65b8fc9b2d74774741432b95b"
+      },
+      {
+        "path": "out/pc-visual/v155/androidTest-sites-climate.apk",
+        "bytes": 616983,
+        "sha256": "3e1bc8e272736b327893139f0b9aa5674693f9b94e467034cc2d9c0327647b27"
+      }
+    ],
+    "changed_asset_bytes": [
+      "assets/3d/pc-sites/atlas.png",
+      "assets/3d/pc-sites/sites.pcz"
+    ],
+    "atlas_rgba_pixels_unchanged": true,
+    "atlas_rgba_sha256": "08c880fd278f9cdeaf96db72e398ef63edb1726669d55f7b79d348187531fb7f",
+    "initial_check": "Byte-only atlas identity assertion failed; independent RGBA equality checked explicitly",
+    "pc_scenery_repro_byte_identical_to_v154": true
+  },
+  "checks": [
+    {
+      "name": "original87siteclimates",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v155/source-sites-climate-checked.json",
+      "placements": 87,
+      "resolver_cases": 1056
+    },
+    {
+      "name": "source-sites-cpu",
+      "status": "PASS2884217",
+      "evidence": "out/pc-visual/v155/sites-cpu.txt"
+    },
+    {
+      "name": "348staticmodels",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v155/static-coordinate-source.json"
+    },
+    {
+      "name": "build-install-asset-pins",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v155/build-artifacts.json",
+      "installed_package": "out/pc-visual/v155/installed-package.txt"
+    },
+    {
+      "name": "10styles20seasonviews-and-normal-siege",
+      "status": "FAIL_FIRST_RUN_HOST_SLEEP_OBSERVED",
+      "evidence": "out/pc-visual/v155/sites-instrument.txt",
+      "failure_evidence": [
+        "out/pc-visual/v155/sites-failed-report.txt",
+        "out/pc-visual/v155/sites-failed-log.txt",
+        "out/pc-visual/v155/host-sleep-evidence.txt"
+      ],
+      "diagnosis": "Host clamshell sleep 11:07:17 to 12:00:56 (3219 seconds). Readiness deadline remains120000ms. At resumed failure6 visible chunks,6 GPU chunks,pending0 and1146 submissions; initial zero-visible interpretation corrected. Original effect child and media.codec failure observed on wake; no gameplay crash claim."
+    },
+    {
+      "name": "failed-run-save-restoration",
+      "status": "PASS_EXACT_BYTES",
+      "bytes": 168846,
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    {
+      "name": "same-APK-retest-10styles20seasonviews-and-normal-siege",
+      "status": "PASS2082",
+      "evidence": "out/pc-visual/v155/sites-retest-report.txt",
+      "screenshots": "out/pc-visual/v155/sites-evidence/manifest.json",
+      "deadline_ms": 120000,
+      "production_code_changed_since_first_run": false
+    },
+    {
+      "name": "retest-user-save-restoration",
+      "status": "PASS_EXACT_BYTES",
+      "bytes": 168846,
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    }
+  ],
+  "limits": [
+    "Original model/texture selection verified; source winter PC raster reference pending",
+    "Other source/MOD initialization requires confirmation",
+    "Ground normals, original passes, fog/LOD/shoreline/full combat/fullscreen effects incomplete",
+    "Emulator only, no ARM physical-device performance evidence"
+  ],
+  "video": {
+    "metadata": "out/pc-visual/v155/sites-retest-middle-video-metadata.json",
+    "decoded_frames": "out/pc-visual/v155/sites-video-frames/decoded-frames.json",
+    "duration_seconds": 145.7182222222,
+    "samples": 2197,
+    "limits": [
+      "Recorded middle of20seasonreview and3normal sieges; complete command playback still needs time-indexed inspection",
+      "Actual decoded100second frame contains normal gate attacker/壶关",
+      "No PC-native timing/FPS or ARM acceptance"
+    ]
+  }
+}

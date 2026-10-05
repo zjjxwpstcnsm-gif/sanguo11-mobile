@@ -1,0 +1,89 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "dynamicPortrait=1",
+    "run=dynamic-portrait-installed-26"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-build-26/frozen/app-debug.apk": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/six-turn-authority-test-build-26/frozen/app-debug-androidTest.apk": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69"
+  },
+  "installed_sha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+  "installed_test_sha256": "0a813bff64e1cb46244c27cac9f09dd2b88267319d45aff5be1376126b7d4c69",
+  "passed": true,
+  "seconds": 28.94,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "temporary_campaign": {
+    "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/integration-normal-02/cold-campaign.sg11",
+    "sha256": "83a444c35348515d6a75c444ff7864d8e22b0d586ba0d5faffd52e6c1572f8d3",
+    "bytes": 939921,
+    "slots": [
+      "files/auto.sg11",
+      "files/manual3.sg11"
+    ]
+  },
+  "scope": "Normal UI command on explicit disclosed prepared combat fixture, approved saved identity uninjected, controlled paused source frame; not continuous native timing/color/full voice",
+  "measurements": {
+    "dynamic-portrait.json": {
+      "officerId": 10122,
+      "selector": 190,
+      "sourceFramePhase": 0.4506666362285614,
+      "textureBytes": 4259840,
+      "prepareAndFirstFrameMillis": 5370,
+      "normalUiCommand": true,
+      "controlledPausedHostTicks": true,
+      "sourceIdentityInjectedByTest": false,
+      "allDynamicSelectorsRendered": false
+    },
+    "dynamic-portrait-pixels.json": {
+      "changedBackgroundSamples": 36,
+      "maxChannelDelta": 158,
+      "width": 918,
+      "height": 910,
+      "sourceIdentityColorParityProven": false
+    },
+    "dynamic-portrait-cache.json": {
+      "scope": "Additional resource-only original-selector fixtures; not five normal battle actor bindings",
+      "rows": [
+        {
+          "selector": 131,
+          "retainedDynamicAtlases": 2,
+          "textureBytes": 5308416
+        },
+        {
+          "selector": 132,
+          "retainedDynamicAtlases": 3,
+          "textureBytes": 6356992
+        },
+        {
+          "selector": 133,
+          "retainedDynamicAtlases": 4,
+          "textureBytes": 7405568
+        },
+        {
+          "selector": 134,
+          "retainedDynamicAtlases": 4,
+          "textureBytes": 7405568
+        },
+        {
+          "selector": 135,
+          "retainedDynamicAtlases": 4,
+          "textureBytes": 7405568
+        }
+      ],
+      "actualRendererRelease": true
+    }
+  },
+  "sourceEntrySha256": "83cea6d6a75ee5df469b5cd2556d178e0323dcbf9d7ecd88069489ec7b12b709"
+}

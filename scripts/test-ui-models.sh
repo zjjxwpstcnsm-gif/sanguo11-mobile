@@ -7,8 +7,8 @@ printf '%s\n' core/src/testFixtures/java/game/sanguo/core/TestScenarios.java app
 java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -d app/build/ui-check @app/build/ui-sources.txt
 java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -cp app/build/ui-check -d app/build/ui-check app/src/main/java/game/sanguo/mobile/TerrainConnections.java app/src/test/java/game/sanguo/mobile/TerrainConnectionsTest.java app/src/test/java/game/sanguo/mobile/TileGeometryTest.java
 java -cp app/build/ui-check:core/src/main/resources:core/src/test/resources game.sanguo.mobile.PresentationTest
-java -cp app/build/ui-check game.sanguo.mobile.TerrainConnectionsTest
-java -cp app/build/ui-check game.sanguo.mobile.TileGeometryTest
+java -cp app/build/ui-check:core/src/main/resources game.sanguo.mobile.TerrainConnectionsTest
+java -cp app/build/ui-check:core/src/main/resources game.sanguo.mobile.TileGeometryTest
 
 # Exhaustive typed source-grid contract used by the formal scenario loader.
 bash scripts/test-map56-coordinates.sh

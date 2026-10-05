@@ -1,0 +1,24 @@
+// Original442560/442c00: XYZ/DIFFUSE/TEX1, MODULATE color and alpha,
+// linear sampler, ADD/SRCALPHA/INVSRCALPHA, ZWRITE off, alpha GREATER1.
+material {
+    name : PcSourceMapEffectQuad,
+    flipUV : false,
+    shadingModel : unlit,
+    blending : transparent,
+    depthWrite : false,
+    doubleSided : true,
+    requires : [color, uv0],
+    parameters : [{type : sampler2d, name : image}]
+}
+fragment {
+    float3 encodedToLinear(float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        float4 original=texture(materialParams_image,getUV0());
+        float alpha=original.a*getColor().a;
+        if(alpha<=1.0/255.0)discard;
+        material.baseColor=float4(encodedToLinear(original.rgb*getColor().rgb)*alpha,alpha);
+    }
+}

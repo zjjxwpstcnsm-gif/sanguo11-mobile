@@ -1,0 +1,50 @@
+Applications Memory Usage (in Kilobytes):
+Uptime: 28823351 Realtime: 28823351
+
+** MEMINFO in pid 5203 [game.sanguo.mobile.dev] **
+                   Pss  Private  Private  SwapPss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap   171059   170996        0      253   191728   181523    10204
+  Dalvik Heap   115830   115792        0       69   124990   119022     5968
+ Dalvik Other     2798     2704        0       89                           
+        Stack       56       56        0        0                           
+       Ashmem     7174     7144        0        0                           
+    Other dev       12        0       12        0                           
+     .so mmap     9040      572     4076       26                           
+    .jar mmap     3087        0      736        0                           
+    .apk mmap     2064        0      212        0                           
+    .ttf mmap      544        0      472        0                           
+    .dex mmap     7104     3688     3408        0                           
+    .oat mmap     1717        0      212        0                           
+    .art mmap     2291     1688        0       92                           
+   Other mmap    12932      768    10488        0                           
+      Unknown     1435     1428        0        0                           
+        TOTAL   337672   304836    19616      529   316718   300545    16172
+ 
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:   117480
+         Native Heap:   170996
+                Code:    13376
+               Stack:       56
+            Graphics:        0
+       Private Other:    22544
+              System:    13220
+ 
+               TOTAL:   337672       TOTAL SWAP PSS:      529
+ 
+ Objects
+               Views:      340         ViewRootImpl:        3
+         AppContexts:        7           Activities:        1
+              Assets:       11        AssetManagers:        0
+       Local Binders:      511        Proxy Binders:       35
+       Parcel memory:       11         Parcel count:       46
+    Death Recipients:        0      OpenSSL Sockets:        0
+            WebViews:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+ 

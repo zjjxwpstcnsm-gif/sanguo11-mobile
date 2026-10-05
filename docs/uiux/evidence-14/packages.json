@@ -1,0 +1,25 @@
+[
+  {
+    "path": "out/uiux/iteration-14/app-uiux-run12.apk",
+    "bytes": 82261284,
+    "sha256": "7646c956676582b7819fc71282de5c5a514ec75d4bf58fac0adcaaa3ee2898ed",
+    "abis": [
+      "x86_64"
+    ],
+    "nativeLibrariesExact": true,
+    "pinnedResourcesExact": 168,
+    "runtimeValidated": true,
+    "installedReadbackExact": true
+  },
+  {
+    "path": "out/uiux/iteration-14/app-uiux-arm64-run12.apk",
+    "bytes": 82204125,
+    "sha256": "661f9bf3187c9127529cf0cfe8c27afe9ae9a601922d1a727c80091326d4a26d",
+    "abis": [
+      "arm64-v8a"
+    ],
+    "nativeLibrariesExact": true,
+    "pinnedResourcesExact": 168,
+    "runtimeValidated": false
+  }
+]

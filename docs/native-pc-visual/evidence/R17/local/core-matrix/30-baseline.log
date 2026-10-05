@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: raid command uses identical normal combat RNG and consequences
+	at game.sanguo.core.TacticalLogisticsTest.check(TacticalLogisticsTest.java:10)
+	at game.sanguo.core.TacticalLogisticsTest.combat(TacticalLogisticsTest.java:38)
+	at game.sanguo.core.TacticalLogisticsTest.main(TacticalLogisticsTest.java:17)

@@ -14,7 +14,7 @@ final class CriticalScene {
     private CriticalHit hit;
     private Drawable portrait;
     CriticalScene(Context context){this.context=context;}
-    void set(World w,CriticalHit value){if(hit==value)return;hit=value;portrait=value==null?null:new OfficerPortrait(context,w,value.officerCopy());}
+    void set(World w,CriticalHit value){if(hit==value)return;hit=value;portrait=value==null?null:new OfficerPortrait(context,w,value.officerCopy(),value.year);}
     void draw(Canvas canvas,int width,int height,float phase){
         if(hit==null||width<=0||height<=0)return;
         float d=context.getResources().getDisplayMetrics().density;

@@ -1,0 +1,9 @@
+PASS normal launch restores existing save
+FAIL java.lang.IllegalStateException: Serial effect owner required
+	at game.sanguo.mobile.PcPcmEffectPlayer.ui(Unknown Source:15)
+	at game.sanguo.mobile.PcPcmEffectPlayer.ready(Unknown Source:0)
+	at game.sanguo.mobile.SoundEffects.loaded(Unknown Source:33)
+	at game.sanguo.mobile.UiUxInstrumentation.audioFlow(UiUxInstrumentation.java:290)
+	at game.sanguo.mobile.UiUxInstrumentation.onStart(UiUxInstrumentation.java:44)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+

@@ -1,0 +1,23 @@
+# 保存与桥接只读投影性能修复（2026-10-04）
+
+## 实际故障证据
+
+完整v37＋完成UI组合APK f9c140ae2b7417ec96544f69411b118518135a7ab20ef19a259b0be9428ea6df 的正常冲车制造联合流程三次主线程10秒屏障超时，分别317.08／285.71／325.30秒；没有完成九旬制造。用户原7文件每次精确恢复，保留所有失败和截图。
+
+第三次独立探针保留正常命令、九旬、完整存档/RNG和可见HUD断言，只在屏障等待期间抓连续栈。`out/parity/v37-hud-combination-20261004/production-technique-ui-stack-sampling/main-queue-timeout-samples.txt` 中从剩余6995ms到-3ms的9个样本均涉及BattleReports.write及GZIP／CRC小字段写入。路径依次包含BridgeSession.changed中的快照、NativeGameHost自动保存、MainActivity完成旬保存和bindSession的旧视图复制。第二次单SIGQUIT采样碰到Renderer.nRender返回ART，单样本没有证明GPU堵塞；第三次连续样本改变了定位依据。
+
+原工程战报保存源文件来自06db767，SHA256 `5b716f3b41a155e1acd20d8833a79fc92810e1200c9c4108e30cc10d658f2884`。这里的“原压缩器”指冻结的项目保存代码，不是PC s11格式。PC安装目录保持只读，未启动Wine。
+
+## 保存改动
+
+BattleReports.write只在DataOutputStream和GZIPOutputStream之间增加8192字节BufferedOutputStream。字段顺序、UTF8长度前缀、GZIP默认参数、关闭顺序、CRC、16MiB压缩限额、64MiB解压限额、8MiB单文本限额和9旬历史窗口均不变。未删除战报、降低断言或改变保存版本／规则／RNG。必须在JVM和实际ART分别核对与冻结无缓冲压缩器的全部字节；不同平台GZIP头的既有区别不得当作迁移或统一掉。
+
+BattleReportCompressionTest保留冻结无缓冲写入器为对照。JVM75项覆盖9真实工程开局、6个正常完整旬、超64KiB的Unicode文本及1000个真实资源变动note；完整保存再编码与RNG、报告数量和独立gzip输出全部精确。性能仅打印观测值，不设易漂移的时间断言，也不代表ARM。PcTechniquePointsTest2717真实旧v36及正常生产保存兼容、当前会话1666和BridgeSessionTest通过。实际ART和新APK完整流程仍待验证。
+
+## 快照改动与只读边界
+
+GameSession.snapshot仍强制调用线程为构造规则线程，关闭会话明确拒绝。SnapshotQuery只读取idle／fieldUnits及原始标量，构造新BridgeEntity、GridLayout、地形String和GameSnapshot；所有字段均为不可变值，entities防御复制。没有保留World、Unit、City、Officer、列表／地形数组、Activity或回调。因此不再调用WorldCopies.copy(authority)去序列化全部战报；事务候选复制、正常命令、回合提交、旧视图与保存隔离仍保留原复制边界。
+
+SnapshotReadOnlyTest180项在9开局各执行一个正常完整回合，并与原legacyView／WorldCopies的完整编码复制路径逐格、逐实体、逐token和布局比较；特设未存盘terrainRevision42，验证其保留。覆盖busy中查询、旧快照在后续提交后不变、集合写入拒绝、异线程拒绝、关闭拒绝以及所有查询前后的完整保存/RNG一致。此接口没有声音、渲染或规则RNG入口。
+
+历史verifySession的AP10黄金与继承PC20冲突仍保留原失败门槛，不用当前1666或新增只读验证替代。完整当前安装包的纯3D／音频／战斗位移／多回合／保存重开仍须重新构建实装，不能沿用f9或R29/R30通过结果。

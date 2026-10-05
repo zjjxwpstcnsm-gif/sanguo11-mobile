@@ -1,0 +1,42 @@
+{
+  "serial": "emulator-5582",
+  "runner": "PortraitFlowInstrumentation",
+  "arguments": [
+    "run=portrait-normal-all-25-r7"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/menu-music-build-25-r7/frozen/app-debug.apk": "8afbe618066681f8408ed2d49613e18523994281d6ade20a434f0afbed19341c",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/menu-music-build-25-r7/frozen/app-debug-androidTest.apk": "aecdcb9cbec240813c16b16544b7ef1d598d1df00fbfc02e29217f145863caf9"
+  },
+  "installed_sha256": "8afbe618066681f8408ed2d49613e18523994281d6ade20a434f0afbed19341c",
+  "installed_test_sha256": "aecdcb9cbec240813c16b16544b7ef1d598d1df00fbfc02e29217f145863caf9",
+  "passed": true,
+  "seconds": 658.85,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/customOfficers/library.json",
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "evidence": {
+    "roster": 656,
+    "mapped": 652,
+    "sourceUnknown": 4,
+    "details": 656,
+    "decoded": 652,
+    "bitmapCacheBytes": 16588800,
+    "saveSha256": "7f9947c8f0db8cf9e7037341918df2462f20334edbce6a9ae8d368f7f7593648",
+    "saveBytes": 939920,
+    "normalAutomaticSourceBinding": true,
+    "allCallerFormsProven": false,
+    "armEvidence": false,
+    "result": "PORTRAIT_FLOW PASS checks=646114"
+  },
+  "visualScreenshotsAccepted": false,
+  "reason": "list-400 capture contains multiple UI transition layers; new settled screenshot test built as06ef4bfd/APK26"
+}

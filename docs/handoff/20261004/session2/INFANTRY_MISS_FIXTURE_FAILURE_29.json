@@ -1,0 +1,30 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "sourceTactic=SPIRAL",
+    "tacticMiss=1",
+    "sourceTacticSound=-1",
+    "run=infantry-miss-installed-29"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-build-29/frozen/app-debug.apk": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-build-29/frozen/app-debug-androidTest.apk": "4c992b9ddcf163bbc06cd3dd063addf9c4d8471a2cfd26fcfceca335b0fbd004"
+  },
+  "installed_sha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "installed_test_sha256": "4c992b9ddcf163bbc06cd3dd063addf9c4d8471a2cfd26fcfceca335b0fbd004",
+  "passed": false,
+  "seconds": 12.54,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "evidenceDirectory": "out/media/infantry-miss-installed-29",
+  "failure": "Explicit detached fixture modified managed officer.war outside its ability record; Save validation rejected before gameplay. Removed numeric changes; retained original abilities; no production policy change."
+}

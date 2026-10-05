@@ -1,0 +1,52 @@
+PASS normal launch restores existing save
+PASS governance starts from intact campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS city command groups are visible in the default compact panel
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 武将 at Rect(357, 830 - 509, 956)
+PASS touch visible 搜索人才 at Rect(53, 1066 - 1027, 1192)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS city actor empty search remains visible with keyboard
+PASS touch visible × at Rect(685, 238 - 811, 364)
+PASS touch visible 智 at Rect(517, 735 - 643, 861)
+PASS touch visible  at Rect(47, 412 - 685, 516)
+PASS actual paste enters Chinese search
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS search chance review leaves RNG and authority unchanged
+PASS touch visible 返回修改 at Rect(627, 1256 - 837, 1382)
+PASS return preserves exact actor table, query, sorting and selected row
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS system Back returns to retained actor picker
+PASS landscape retained roster keeps actor rows and cancel reachable
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS Home resume preserves city actor confirmation
+PASS touch visible 执行 at Rect(837, 1256 - 1005, 1382)
+PASS double search submits one command and spends one actor and action cost
+PASS search double tap cannot reopen underlying picker or result
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores campaign between city command paths
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 内政 at Rect(205, 830 - 357, 956)
+PASS touch visible 巡察 · 金100 at Rect(53, 1442 - 1027, 1521)
+FAIL java.lang.IllegalStateException: Serial logic thread required
+	at game.sanguo.runtime.GameSession.thread(Unknown Source:13)
+	at game.sanguo.runtime.GameSession.preview(SourceFile:16)
+	at game.sanguo.mobile.MainActivity.lambda$previewCityAction$78(Unknown Source:6)
+	at game.sanguo.mobile.MainActivity.$r8$lambda$N3LvW4sMQg8Y7tVscDiEVf-qq8U(Unknown Source:0)
+	at game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda143.get(Unknown Source:18)
+	at game.sanguo.mobile.MainActivity.profilePreview(Unknown Source:8)
+	at game.sanguo.mobile.MainActivity.previewCityAction(Unknown Source:8)
+	at game.sanguo.mobile.UiUxInstrumentation.cityCommand(UiUxInstrumentation.java:102)
+	at game.sanguo.mobile.UiUxInstrumentation.governance(UiUxInstrumentation.java:98)
+	at game.sanguo.mobile.UiUxInstrumentation.onStart(UiUxInstrumentation.java:38)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+

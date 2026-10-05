@@ -1,0 +1,54 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=audio",
+    "menuMusic=1",
+    "run=menu-observed-installed-26"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-build-26/frozen/app-debug.apk": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/portrait-settled-build-26/frozen/app-debug-androidTest.apk": "676d9f60be914dd81008181a15f8b5e9b5a43584be5b1aca21bcd666e0bc8282"
+  },
+  "installed_sha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+  "installed_test_sha256": "676d9f60be914dd81008181a15f8b5e9b5a43584be5b1aca21bcd666e0bc8282",
+  "passed": true,
+  "seconds": 120.82,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "scene": {
+    "normalMenuOnly": true,
+    "noTestPlaybackDirective": true,
+    "resourceId": 2238,
+    "musicId": 1,
+    "identity": "1422a52d-6009-48c6-80b4-f95bb8245a7f:0:pc-menu-559220",
+    "firstWriteMillis": 255,
+    "loopWaitMillis": 106675,
+    "loops": 1,
+    "originalFirstLoopUnderruns": 0,
+    "bufferFrames": 16384,
+    "musicGain": 65,
+    "beforeSaveSha256Base64": "At2z1E2Y++vnY6glUbXLXraNpucLYIdWjApzlDveXWk=",
+    "allSaveRngEqual": true,
+    "mapBgmBound": false,
+    "armEvidence": false
+  },
+  "pcmSha256": "9050149d7eb0b64c0a4f0d556fdd0edf5b352a51596b98fa4a2d668c5582490e",
+  "fixedAudibleSegmentsPassed": false,
+  "fullTrackContinuityPassed": false,
+  "fullTrackCorrelation": 0.3358852679200225,
+  "failedFixedWindow": {
+    "referenceSeconds": 30,
+    "correlation": 0.7070467120678906
+  },
+  "loadLimit": "24 read-only mixer queries up to643.44ms and test-only Gradle compile overlapped; no clean timing attribution"
+}

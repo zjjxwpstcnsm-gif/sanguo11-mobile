@@ -1,0 +1,269 @@
+{
+  "baseCommit": "370cfe055a679421f4501b4cf947ab9774ce87a6",
+  "commit": "978ffc9c98a2cdc497a30e3a55edf66fe7ea2e8e",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SharedMediaInstrumentation.java",
+      "beforeSha256": "6f91a824fcf6750cffc779216f02e046691204d7556a0e71dc7bfc7b2d57b85a",
+      "afterSha256": "0c5d31dd8f01c8087d9ab806ddf23c95fef38a7e9011a62cf6b0f27f747c5d54",
+      "bytes": 12650
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java",
+      "beforeSha256": "b8deb80dc6999ecb3e774d29cdfb58af6ea2e12aae7f59202e9c0991507f483a",
+      "afterSha256": "7a7d876c06f05f91b553838c70ad3a059b1c168e9bebe822551faf0d19bb6aa1",
+      "bytes": 2960
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoicePolicy.java",
+      "beforeSha256": "569ebccfd683181f44df416d0ca353b7ef7cf444d8f6be31fda280f71f89cbdf",
+      "afterSha256": "0f36915ee7c20cab7ee7d961d35a4938d2f006761efee9a0f30af48860a9b002",
+      "bytes": 3391
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcCommittedVoiceValidityTest.java",
+      "beforeSha256": null,
+      "afterSha256": "b70b7b66cf6543a4133534ef6cdfd443145dea68c34ce7fd9092531547e86b67",
+      "bytes": 2413
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_27.md",
+      "beforeSha256": null,
+      "afterSha256": "bb0e328050e9dd9d239e09ec5c224907cec88ca8ba54f7079ae4dc9fe1f0eae5",
+      "bytes": 2609
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELIVERY_CURRENT.md",
+      "beforeSha256": "18de9b21a1a287d46755d4747052e85d319b45f641c5853851e95866d426ee32",
+      "afterSha256": "1045edb2bf329f35b13d8bb2e721379753e47e0a0e0c727fff1a1e23e84088d7",
+      "bytes": 9414
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DYNAMIC_PORTRAIT_INSTALLED_27.json",
+      "beforeSha256": null,
+      "afterSha256": "f65c2e6495215f20042102455ab82a41672a2abb2fce0220e5c52ce40309a838",
+      "bytes": 2366
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INSTALLED_CLOSEOUT_27.md",
+      "beforeSha256": null,
+      "afterSha256": "df7f08a89765419e7704028b05fecda0f2597ba99fcac4e0caddf965d801cca0",
+      "bytes": 4116
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md",
+      "beforeSha256": "f40ea8372dc99166ec8b8c13817f8a3f9c3687dcad8aecdf78a65f368e0fd4bc",
+      "afterSha256": "9c4f800d3e1fbb2e27a3023c6de6452a695226ffddcd9fb90026b9a3fa816ab7",
+      "bytes": 20585
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_MUSIC_INSTALLED_27.json",
+      "beforeSha256": null,
+      "afterSha256": "95bfe447a984ebc193971f87709ec08ca9e460e09b61709499de78445cb9514a",
+      "bytes": 3578
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ORDER_VOICE_SOURCE_27.json",
+      "beforeSha256": null,
+      "afterSha256": "3c453ec7616c6474d3d203938af14f828332c2e7c67e600a0fc728a02f5f947f",
+      "bytes": 355
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PC33_NORMAL_INSTALLED_27.json",
+      "beforeSha256": null,
+      "afterSha256": "b6a501bbe7a0e5c516ddfb144378f1557e71ec4b8dbd258637609e6171f4c0c1",
+      "bytes": 3994
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_NORMAL_INSTALLED_27.json",
+      "beforeSha256": null,
+      "afterSha256": "6ba13984463c2f2d69c806dbe799c49fc3eaac40ceaa29bd6d884d5390b8432c",
+      "bytes": 199551
+    },
+    {
+      "path": "docs/handoff/20261004/session2/SIX_TURN_INSTALLED_27.json",
+      "beforeSha256": null,
+      "afterSha256": "258ca16b5c8bea821a1eae1090c75132aaa8bcff05c0bf647c576f3f00e60e43",
+      "bytes": 3579
+    },
+    {
+      "path": "docs/handoff/20261004/session2/VOICE_VALIDITY_BRIDGE_27.json",
+      "beforeSha256": null,
+      "afterSha256": "6c81827882960996b22dc76f01b4fa9d68ba483aa530cb9d3bd6f98fc3c8ab75",
+      "bytes": 1087
+    },
+    {
+      "path": "docs/handoff/20261004/session2/VOICE_VALIDITY_INSTALLED_27.json",
+      "beforeSha256": null,
+      "afterSha256": "0378ce0325c2e57c7653f4424d874091dfa22e3c031e9cb462c03f1907de1b12",
+      "bytes": 12800
+    },
+    {
+      "path": "docs/handoff/20261004/session2/committed-voice-validity-host-27.json",
+      "beforeSha256": null,
+      "afterSha256": "e534a616d30031bba062dc2d3be34f40b9a25e9595e5e6ea5994cc3c6674d81f",
+      "bytes": 1079
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-27-critical-facts.json",
+      "beforeSha256": null,
+      "afterSha256": "aef2ab0739ba89c1701f4ea74084108abbef0997cc3f832e1a88d123d3e83f54",
+      "bytes": 546
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-27-dynamic-portrait-entry.json",
+      "beforeSha256": null,
+      "afterSha256": "b5740053abf0f034bf11e9525b41e4be6104cd7a6cd18698fa177e1c57652887",
+      "bytes": 4332
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-27-dynamic-portrait-surface.png",
+      "beforeSha256": null,
+      "afterSha256": "8f9558c77b16498b692326c556a893784080829d809867cd4b27cc7ade0abbbf",
+      "bytes": 1350296
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-27-full-mix-FAIL.txt",
+      "beforeSha256": null,
+      "afterSha256": "05121e68946a3b8ae867188d896f8b6392db5e77ed65df2f11bbeb6be1bfbf85",
+      "bytes": 918
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-27-mix.wav",
+      "beforeSha256": null,
+      "afterSha256": "0a7f412ca1b2c5d6fda7942157f914983c0df242d673efa8250359448b96ec63",
+      "bytes": 19308588
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-27-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "096627d937c7c2a333d1a87b6d1ca1aa9eeb5d8cfd3b26ce37ce0ec964d1ece2",
+      "bytes": 419
+    },
+    {
+      "path": "docs/handoff/20261004/session2/order-voice-chain-native-27.json",
+      "beforeSha256": null,
+      "afterSha256": "a77b36612b42fb972ab17c1fabb0fc4288e8bb1a26220bac495f1f09072c529e",
+      "bytes": 235295
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-normal-27-mix.wav",
+      "beforeSha256": null,
+      "afterSha256": "5e2fcd8207e8bb0f2970b06a617f902a81f8c1196ec5fceae3c7d852dfc87657",
+      "bytes": 1212460
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-normal-27-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "3e9a2635c41bc77e0142dc8b26b231a016a16b64a5e259e9d09e7a2f121b9273",
+      "bytes": 419
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-normal-27-detail-10463.png",
+      "beforeSha256": null,
+      "afterSha256": "0b9e175d5f4a69fd8d6da4631a0ba786cb33c1d4e70236b3be2ac20acdb28a9f",
+      "bytes": 343358
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-normal-27-list-400.png",
+      "beforeSha256": null,
+      "afterSha256": "0c0ebb425bd547d2d503e761d6813c0242184edf3b7e89f47045d899ce7b292d",
+      "bytes": 510690
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-normal-27-reopen.png",
+      "beforeSha256": null,
+      "afterSha256": "c7c809ea6a258aaf2f51b567394bda0c0c5dc6019899d81072acdc3a888f7eb3",
+      "bytes": 467722
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-before.sg11",
+      "beforeSha256": null,
+      "afterSha256": "0d4e55910de32e05137984c0ca5568e2b49b2cbc990fe04f222c1339d1a0a7f0",
+      "bytes": 939920
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-round-0.sg11",
+      "beforeSha256": null,
+      "afterSha256": "f12751a8a92f318533b76a2f969a45e4002c183bb8ad1e419e9ac777a204403f",
+      "bytes": 954076
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-round-1.sg11",
+      "beforeSha256": null,
+      "afterSha256": "9f8111910bb3ec7cc35f4d4b7340f923384b259ae1a3fe3ed8f488a01d4acd2a",
+      "bytes": 966270
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-round-2.sg11",
+      "beforeSha256": null,
+      "afterSha256": "ade3e274d2e34dd0f64d34cce898a292e69b7c559c6d352b5fadd53e0a82efae",
+      "bytes": 979610
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-round-3.sg11",
+      "beforeSha256": null,
+      "afterSha256": "15545c399e2907e57d79635c429bb426010430233468f9bfc0e73bb63c6c6c71",
+      "bytes": 991971
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-round-4.sg11",
+      "beforeSha256": null,
+      "afterSha256": "a371f5f48f497130d4399f264ec7f2c4f99973d002f6e771798114e34307f6e6",
+      "bytes": 1002426
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority-round-5.sg11",
+      "beforeSha256": null,
+      "afterSha256": "ddebeba362db49f5a022833c0f9b196ae4302240b3c490df32fb201602f330ff",
+      "bytes": 1013684
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/authority.csv",
+      "beforeSha256": null,
+      "afterSha256": "14cbc8c4845d7966c7e69e1c6994641c8f1d2db2cb2c581b87fd5f9406849e19",
+      "bytes": 958
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/result.txt",
+      "beforeSha256": null,
+      "afterSha256": "77d40af9222b7f0aea165fe4de8d6cae57a5f9956539d76b8771a24ccce646ce",
+      "bytes": 5346
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-27/sustained.csv",
+      "beforeSha256": null,
+      "afterSha256": "e096459d64c264d5ba66a28d173018e0d49235ffff136f447783d3407949263b",
+      "bytes": 271
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-validity-27-mix.wav",
+      "beforeSha256": null,
+      "afterSha256": "daf32cb67af776c1b63f26c59783ff4e2996e81a7102091517e93bb581688182",
+      "bytes": 2252844
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-validity-27-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "839307731f17f5559782a4d1890336e96c0f88bd904b711dc39b919d8dbc7781",
+      "bytes": 419
+    },
+    {
+      "path": "tools/audio/inspect_pc_order_voice_chain.py",
+      "beforeSha256": null,
+      "afterSha256": "8c3039e5b0b738d660347cabdf2ecd74e853f62b2978daca075ddafa5017ec2f",
+      "bytes": 14647
+    },
+    {
+      "path": "tools/audio/verify_pc_committed_voice_validity.py",
+      "beforeSha256": null,
+      "afterSha256": "fb878fcebeab025aa0c47923780de68650f2b846d2bf5cbddf4bffd7824f51b6",
+      "bytes": 2519
+    }
+  ],
+  "coreApiRuntimeByteEqualTo": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "publicEntrypointsAndManifestsChanged": false,
+  "mainApkSource": "b2c1bce55b1f033fbece8d94a83a8e5012aa1ca7",
+  "mainApkSha256": "cd57691739b48f61e25d6c039fcece29d9f034cd75b3b2abc09614dbcae974f4",
+  "normalVoiceBindingCount": 0
+}

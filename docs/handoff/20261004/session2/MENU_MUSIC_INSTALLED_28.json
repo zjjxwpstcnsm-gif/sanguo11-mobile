@@ -1,0 +1,101 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=audio",
+    "menuMusic=1",
+    "run=menu-music-installed-28"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-sound-build-28/frozen/app-debug.apk": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/tactic-lifecycle-test-build-28/frozen/app-debug-androidTest.apk": "01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872"
+  },
+  "installed_sha256": "fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48",
+  "installed_test_sha256": "01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872",
+  "passed": true,
+  "seconds": 117.92,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "evidenceDirectory": "out/media/menu-music-installed-28",
+  "originalMusicFixedWindows": {
+    "status": "PASS",
+    "scope": "Actual normal menu original2238 audible sample identity at four predeclared windows; not whole-track continuity, Windows exact PCM or ARM speaker proof",
+    "captureSha256": "b936ffdd4c93aec4160e6b5dd6d50e5bb4c1f34bb5beb6bdfb9a91446fda0aa9",
+    "referenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+    "originalOggSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462",
+    "rows": [
+      {
+        "referenceSeconds": 10,
+        "frames": 88200,
+        "captureSample": 502597,
+        "offsetSamples": 61597,
+        "correlation": 0.9999946050163961,
+        "gain": 0.015368823878641592,
+        "audibleRms": 0.0005619936413337885
+      },
+      {
+        "referenceSeconds": 20,
+        "frames": 88200,
+        "captureSample": 943597,
+        "offsetSamples": 61597,
+        "correlation": 0.9999978978047259,
+        "gain": 0.015369079802236696,
+        "audibleRms": 0.0009058396950299517
+      },
+      {
+        "referenceSeconds": 30,
+        "frames": 88200,
+        "captureSample": 1384597,
+        "offsetSamples": 61597,
+        "correlation": 0.9999963059275797,
+        "gain": 0.015369022788478333,
+        "audibleRms": 0.0006705864182255421
+      },
+      {
+        "referenceSeconds": 40,
+        "frames": 88200,
+        "captureSample": 1824936,
+        "offsetSamples": 60936,
+        "correlation": 0.9999989354294987,
+        "gain": 0.015369111342157992,
+        "audibleRms": 0.0012834343056627245
+      }
+    ],
+    "flowSha256": "66e5f9b78d4eeeaa06bfd04e4c6e9f05c3abe6e22b964ce56fb48b40884bc2ff",
+    "sceneSha256": "9af8624dfb4f73d0e2d089156795b1b936140d141d6a95783c0301808d1cb1ba",
+    "continuousFullTrackPassed": false
+  },
+  "normalMenu": {
+    "normalMenuOnly": true,
+    "noTestPlaybackDirective": true,
+    "resourceId": 2238,
+    "musicId": 1,
+    "identity": "70849177-ba87-4072-bbaf-e9c6080f6e05:0:pc-menu-559220",
+    "firstWriteMillis": 384,
+    "loopWaitMillis": 102625,
+    "loops": 1,
+    "originalFirstLoopUnderruns": 0,
+    "bufferFrames": 16384,
+    "musicGain": 65,
+    "beforeSaveSha256Base64": "At2z1E2Y++vnY6glUbXLXraNpucLYIdWjApzlDveXWk=",
+    "allSaveRngEqual": true,
+    "mapBgmBound": false,
+    "armEvidence": false
+  },
+  "completeWaveform": {
+    "passed": false,
+    "correlation": 0.43532816956660303,
+    "unchangedThreshold": 0.995,
+    "failedLog": "out/media/menu-music-installed-28/full-continuity.log",
+    "rawCaptureRetained": true
+  }
+}

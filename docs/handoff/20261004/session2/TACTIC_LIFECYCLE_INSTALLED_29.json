@@ -1,0 +1,70 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=audio",
+    "sourceTacticLifecycle=1",
+    "run=tactic-lifecycle-installed-29"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-build-29/frozen/app-debug.apk": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+  },
+  "installed_sha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "installed_test_sha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7",
+  "passed": true,
+  "seconds": 43.22,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "apk_readback_method": "whole-file-sha256-on-device",
+  "explicitLifecycleFixtureNotNormalTrigger": true,
+  "actualUiCancelPcm": {
+    "status": "PASS",
+    "scope": "First actual normal settings Back cancellation; later overlapping cue probe/source OS routing/all UI matrix/ARM unverified",
+    "serial": "emulator-5582",
+    "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "sourceWavSha256": "a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6",
+    "mixedWavSha256": "eecad9daf1d22e4744e31607aeda8ea5dc741ddaaf9f3225c5339be20fb4b501",
+    "normalUiEvent": {
+      "scope": "Actual normal settings dialog Back cancellation, not source OS dispatch or all UI matrix",
+      "nativeSoundId": 1,
+      "cancelAtElapsedMillis": 66635394,
+      "cancelledBefore": 0,
+      "cancelledAfter": 1,
+      "ordinaryDismissAfter": 1,
+      "fullSaveRngByteEqual": true
+    },
+    "occurrences": [
+      {
+        "startSample": 428328,
+        "endSample": 431370,
+        "correlation": 0.9999996760440769,
+        "gain": 0.017731636850582586,
+        "audibleRms": 0.00312125733072973
+      }
+    ],
+    "normalCancellationOccurrence": 0,
+    "explicitCueLoopHud33Anchors": [
+      {
+        "startSample": 1038466,
+        "correlation": 0.9999996407824108
+      },
+      {
+        "startSample": 1080706,
+        "correlation": 0.9996366135933463
+      }
+    ],
+    "laterProbeLimit": "Inherited950ms gap after1.025s HUD33 overlaps source1; no isolated second-source acceptance claim",
+    "method": "Declared source1 full3042frame fit before independently measured HUD33 cue-loop anchor; same fixed65-tap FIR; >.999 positive audible normal source"
+  },
+  "checks": "UIUX PASS 90 checks\nPASS normal launch restores existing save\nPASS nine inherited mobile cues, original HUD33 and negative-close sample ready on installed Android\nPASS original tactic worker prepared six source tracks without error\nPASS original tactic PCM pool remains bounded to six tracks\nPASS original tactic pool measured PCM buffers below 600000 bytes: 545964\nPASS explicit original49 lifecycle fixture starts one track\nPASS duplicate original49 phase never restarts source\nPASS paused original tactic playback head is fixed\nPASS paused original tactic playback head is fixed\nPASS paused original tactic playback head is fixed\nPASS paused original tactic playback head is fixed\nPASS paused original tactic playback head is fixed\nPASS paused original tactic playback head is fixed\nPASS source49 actually advanced before pause\nPASS paused original78 phase consumes identity without playback\nPASS original tactic resumes existing PCM position\nPASS resume never replays consumed original78 phase\nPASS mute and unmute never defer a consumed source phase\nPASS zero gain never defers original49 playback\nPASS touch visible 视图 at Rect(799, 210 - 1059, 336)\nPASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)\nPASS touch visible 试听音效 at Rect(75, 1159 - 1005, 1285)\nPASS actual UI audition sends a nonzero SoundPool stream\nPASS touch visible 静音 at Rect(75, 667 - 1005, 751)\nPASS actual mute control updates preference\nPASS touch visible 试听音效 at Rect(75, 1159 - 1005, 1285)\nPASS muted audition creates no stream\nPASS touch visible 静音 at Rect(75, 667 - 1005, 751)\nPASS touch visible 完成 at Rect(852, 1317 - 1020, 1443)\nPASS touch visible 视图 at Rect(799, 210 - 1059, 336)\nPASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)\nPASS normal audio settings dialog established before real Back cancellation\nPASS actual system Back cancels tracked dialog and admits one original sound1\nPASS actual normal dialog cancellation leaves complete Save/RNG unchanged\nPASS touch visible 视图 at Rect(799, 210 - 1059, 336)\nPASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)\nPASS touch visible 完成 at Rect(852, 1317 - 1020, 1443)\nPASS ordinary confirmation dismissal never triggers original cancellation sample\nPASS device mixer accepts UI\nPASS duplicate phase never repeats UI\nPASS device mixer accepts MARCH\nPASS duplicate phase never repeats MARCH\nPASS device mixer accepts ATTACK\nPASS duplicate phase never repeats ATTACK\nPASS device mixer accepts TACTIC\nPASS duplicate phase never repeats TACTIC\nPASS device mixer accepts CRITICAL\nPASS duplicate phase never repeats CRITICAL\nPASS device mixer accepts PLOT\nPASS duplicate phase never repeats PLOT\nPASS device mixer accepts CONSTRUCTION\nPASS duplicate phase never repeats CONSTRUCTION\nPASS device mixer accepts COMPLETE\nPASS duplicate phase never repeats COMPLETE\nPASS device mixer accepts TURN\nPASS duplicate phase never repeats TURN\nPASS device mixer accepts TECHNIQUE_GAIN\nPASS duplicate phase never repeats TECHNIQUE_GAIN\nPASS device mixer accepts TECHNIQUE_LOSS\nPASS duplicate phase never repeats TECHNIQUE_LOSS\nPASS device mixer accepts PC_DIALOG_CANCEL\nPASS duplicate phase never repeats PC_DIALOG_CANCEL\nPASS original PCM pause holds exact playback head\nPASS original PCM resumes its existing source position\nPASS actual world replacement stops original PCM and preserves complete Save/RNG\nPASS world replacement never replays consumed PCM probe identity\nPASS paused demonstration does not start a battle stream\nPASS UI sound remains available while demonstration is paused\nPASS volume zero suppresses committed audio\nPASS focus-loss test starts with actual granted game focus\nPASS competing transient focus actually granted\nPASS actual focus-loss callback observed before suppression check\nPASS transient focus loss suppresses battle audio\nPASS system global Home action accepted\nPASS system Home actually pauses map and removes focus in 218ms\nPASS UI recovery hints identify the exact durable authoritative autosave\nPASS actual Home stops foreground audio\nPASS background cannot create deferred battle streams\nPASS foreground window is focused and map rendering resumes in 4972ms\nPASS foreground resumes audio ownership\nPASS resume does not replay a consumed background phase\nPASS audition, volume, mute, focus and background preserve complete state and RNG\nPASS normal exit releases mobile SoundPool, original PCM voices and audio focus\nPASS normal destroy clears original tactic owner\nPASS normal destroy releases each original tactic AudioTrack\nPASS normal destroy releases each original tactic AudioTrack\nPASS normal destroy releases each original tactic AudioTrack\nPASS normal destroy releases each original tactic AudioTrack\nPASS normal destroy releases each original tactic AudioTrack\nPASS normal destroy releases each original tactic AudioTrack\n"
+}

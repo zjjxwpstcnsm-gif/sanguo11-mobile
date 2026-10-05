@@ -38,7 +38,7 @@ public final class Editor {
     public boolean custom(int officer){return customOfficers.contains(officer);}
     public Template template(int officer){
         World.Officer o=w.officer(officer);if(o==null)throw new IllegalArgumentException("武将不存在");Contests.Profile p=w.contests.profile(officer);
-        return new Template(o.name,new int[]{o.leadership,o.war,o.intelligence,o.politics,o.charm},o.aptitude,o.sex,o.skillId,p.temper,p.talkMask);
+        return new Template(o.name,new int[]{OfficerAbilities.base(o,0),OfficerAbilities.base(o,1),OfficerAbilities.base(o,2),OfficerAbilities.base(o,3),OfficerAbilities.base(o,4)},o.aptitude,o.sex,o.skillId,p.temper,p.talkMask);
     }
     private static String diff(World a,World b){
         StringBuilder s=new StringBuilder();
@@ -62,7 +62,7 @@ public final class Editor {
         if(w.commandsBlocked()||w.active!=w.player)return new Draft(summary,"请先完成对局或等待本方行动",null,null);
         try{
             byte[] before=SaveCodec.encode(w);World copy=SaveCodec.decode(before);
-            change.accept(copy);if(Arrays.equals(before,SaveCodec.encode(copy)))throw new IllegalArgumentException("没有发生数值或配置变化");
+            change.accept(copy);copy.officerAbilities.refresh();if(Arrays.equals(before,SaveCodec.encode(copy)))throw new IllegalArgumentException("没有发生数值或配置变化");
             summary+=diff(w,copy);copy.editor.edited=true;copy.editor.revision=Math.addExact(copy.editor.revision,1);SaveCodec.validate(copy);
             return new Draft(summary,null,before,change);
         }catch(IOException|IllegalArgumentException|ArithmeticException e){return new Draft(summary,e.getMessage(),null,null);}
@@ -81,7 +81,7 @@ public final class Editor {
             v.government.merits.put(id,merit);Contests.Profile p=v.contests.profile(id);v.contests.configure(id,new Contests.Profile(temper,talkMask,v.contests.profiles.containsKey(id)?v.contests.profiles.get(id).gearMask:0));
         });
     }
-    private static void set(World.Officer o,Template t){o.leadership=t.stat(0);o.war=t.stat(1);o.intelligence=t.stat(2);o.politics=t.stat(3);o.charm=t.stat(4);for(int i=0;i<6;i++)o.aptitude[i]=t.aptitude(i);o.sex=t.sex;o.skillId=t.skill;}
+    private static void set(World.Officer o,Template t){for(int i=0;i<5;i++)OfficerAbilities.setBase(o,i,t.stat(i));for(int i=0;i<6;i++)o.aptitude[i]=t.aptitude(i);o.sex=t.sex;o.skillId=t.skill;}
     public Draft lifetime(int officer,int birth,int appearance,int death,int home,Lifecycle.State state){return preview("生卒资料 · 出生"+birth+" / 登场"+appearance+" / 预计没年"+death,v->v.life.configure(officer,birth,appearance,death,home,state));}
     public Draft city(int id,int gold,int food,int troops,int order,int morale,int defense,int reserve,int[] equipment,int[] ships){
         final int[] gear=equipment==null?new int[0]:equipment.clone(),fleet=ships==null?new int[0]:ships.clone();
@@ -95,7 +95,7 @@ public final class Editor {
         });
     }
     public Draft faction(int owner,int actionPoints,int techniquePoints){return preview("势力 · 行动力"+actionPoints+" / 技巧点"+techniquePoints,v->{
-        range(owner,0,v.factions.length-1);range(actionPoints,0,60);range(techniquePoints,0,100000);v.actionPoints[owner]=actionPoints;v.campaign.points.put(owner,techniquePoints);
+        range(owner,0,v.factions.length-1);range(actionPoints,0,60);range(techniquePoints,0,100000);v.actionPoints[owner]=actionPoints;v.campaign.setPoints(owner,techniquePoints,TechniquePointsJournal.Cause.EDITOR_SET,-1,-1);
     });}
     public Draft learnTechnology(int owner,Campaign.Tech tech){return preview("势力技巧 · "+(tech==null?"?":tech.label)+"（含前置）",v->{
         range(owner,0,v.factions.length-1);if(tech==null||tech.level==0)throw new IllegalArgumentException("请选择36项技巧之一");

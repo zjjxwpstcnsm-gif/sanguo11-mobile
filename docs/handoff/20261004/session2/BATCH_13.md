@@ -1,0 +1,19 @@
+# 批十三：原语音提交审计与解码/播放分离
+
+基点3663ebaa，提交de6d5c4d、9af6178c、38fa01172c5a94179f8e2816d75f025425f4ca5c。所有权仅SoundEffects、PcVoiceStreamPlayer、SharedMediaInstrumentation与本目录；media-transport-incremental-guard.json列三份实现前后SHA。不改公共入口、metadata或规则，core/API/runtime对9e171f2无差异，架构边界检查通过。
+
+PC33增减事件共用一个原SoundPool样本，loaded按全部逻辑cue是否有已加载样本判断。新样本没有代替原wav，但合并加载未解决PCM回归：当前包正常3D战法19项、事实父ID/去重及完整Save/RNG通过，联合PCM 0.988199、PC33去干扰0.977218仍失败。原失败波形保留。PC33继续未闭合，不能提升已验收交付。
+
+新增原语音解码SHA、实际接受写入SHA、underrun及firstPlayMillis。资源2616/voice329的解码和提交SHA均为83a0351336bc0f9f370e514dbd1e1908a08eafbabe9382300b3c41b540de9e9b，65856帧/131712字节，与批十完整Android解码一致。单纯2048帧预缓冲的9af6178c版本捕获暂停前21次underrun，真实PCM失败；字节正确不代表连续播放，此失败已保留。
+
+38fa0117在后台先完整解码短语音到本次私有PCM缓存，再从文件填充AudioTrack，预填充后播放；暂停/取消/优先级仍在原只读媒体线路。全1997候选最大PCM为1233036字节（原2289，6.99秒），仅当前job持有缓存，结束/取消释放。测试优先级改为等待实际firstPlay，而不是只等待一次write。
+
+最新APK out/media/media-transport-build-03/frozen/app-debug.apk，283154495字节，SHA 1ea0afaab989bd9bb6c032f66df06680b3356ab5626f8e728be06efeb7a3d78f，测试包SHA 599adcdfacd8aa3bd5bb15ba0889be8116bc2f5b1a6257ddc3f1ec913c3bda04。5582实际安装/读回，两轮共享41项及真实混音通过：联合0.9999994446/0.9999994051，语音0.9999993966/0.9999993672，ducking0.3500015/0.3499850。暂停前underrun均0，排空后计1；不把此计数当成全时段无underrun。首次播放800/688ms，优先级新job968/1215ms，延迟仍待改善，不能宣称所有原语音低于1秒。
+
+六轮均备份并恢复全部用户保存/库/偏好字节，未操作5554录音、不清数据、不启动Wine。media-transport-evidence.json保留每轮包/波形SHA和未放宽阈值的验收输出；逐轮事实、PCM provenance与观察数据已提交。共享场景仍为实际PATROL父receipt加显式原profile/track adapter，正常原BGM/voice绑定仍0；不是正常人物战法语音完成证据。最新包PC33失败，DELIVERY_CURRENT继续保留批十稳定检查点。
+
+同包补测正常656目录/3详情、保存读回/后台/退出重开324153项通过（137.16秒），完整Save/RNG及全部用户文件恢复字节相同。此轮resume=1，未重新跑新局与全部656详情，不能扩大范围。media-transport-normal-installed.json/log保留实际包身份和验收范围。
+
+完整源码/媒体工具归档out/media/delivery-13/sanguo11-portrait-audio-source.tar.gz：截点28cdb14d602049e2b842979e9c7ff5481baf903d，441172806字节，SHA 08897be0396881060406616debdc65555231c5e93d54e1b0b6c8437ef140fe7a。9658个文件、四份忽略JNI全部包含，每份内容与截点源码逐字节相同。后继正常补测和本交付指针不在该截点内，已单独提交；归档包含当前全部实现和语音证据。
+
+继续：解决PC33实际混音差异、语音延迟及所有原声音场景绑定；全头像动态lookup/战斗形态/MOD优先级、多回合组合及ARM/手机扬声器仍待闭合。完整目标active。

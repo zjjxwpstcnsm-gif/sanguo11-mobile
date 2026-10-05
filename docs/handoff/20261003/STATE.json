@@ -1,0 +1,910 @@
+{
+  "goal_status": "active_rules_data_final_integration",
+  "goal_complete": false,
+  "branch": "agent/native-pc-visual",
+  "all_worktree_changes_must_be_preserved": true,
+  "latest_ui_commit": "d9d495bc6dc6fb2150522c15a428a32e7e7162e1",
+  "full_ui_merge_audit": "out/uiux-merge-all-0ddedf6/audit.json",
+  "core_baseline": "out/parity/checkpoint-20261003-an/source",
+  "latest_pre_ui18_full_baseline": "out/parity/checkpoint-20261003-ao/source",
+  "handoff_snapshot": "out/parity/checkpoint-20261003-ap-handoff-final/source",
+  "apks": {
+    "source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+    "ui_completed_target": "d9d495b",
+    "authority_rules_unchanged": true,
+    "production_assets_native_inputs_exact_to_verified_r28": true,
+    "build_success": true,
+    "installed_validation_pending": true,
+    "artifacts": [
+      {
+        "path": "/Users/paopao/.codex/worktrees/f1b8/sanguo11-mobile/out/parity/ui-residency-integration-d9d495b/apks/app-debug.apk",
+        "bytes": 87453408,
+        "sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75"
+      },
+      {
+        "path": "/Users/paopao/.codex/worktrees/f1b8/sanguo11-mobile/out/parity/ui-residency-integration-d9d495b/apks/app-debug-androidTest.apk",
+        "bytes": 943478,
+        "sha256": "34e8fefe2030d57d49fc8bcba0f26ad8896dc12106606b1731f725a7e9014a3d"
+      }
+    ]
+  },
+  "latest_apk_ui_flows": [
+    {
+      "suite": "opening",
+      "checks": 64,
+      "seconds": 59.14
+    },
+    {
+      "suite": "city-ui",
+      "checks": 62,
+      "seconds": 106.03
+    },
+    {
+      "suite": "merchant-ui",
+      "checks": 62,
+      "seconds": 121.42
+    },
+    {
+      "suite": "rewards-ui",
+      "checks": 259,
+      "seconds": 590.66
+    },
+    {
+      "suite": "legacySave3D",
+      "checks": 32,
+      "seconds": 332.13
+    },
+    {
+      "suite": "exit3D",
+      "checks": 15,
+      "seconds": 44.71
+    },
+    {
+      "suite": "residentAssets",
+      "checks": 113,
+      "seconds": 319.38
+    },
+    {
+      "suite": "legacyNavigation",
+      "checks": 37,
+      "seconds": 232.74
+    },
+    {
+      "suite": "legacyRegions",
+      "checks": 679,
+      "seconds": 736.81
+    },
+    {
+      "suite": "reportLocate3D",
+      "checks": 14,
+      "seconds": 22.0
+    },
+    {
+      "suite": "terrain",
+      "checks": 51,
+      "seconds": 70.31
+    },
+    {
+      "suite": "march",
+      "checks": 74,
+      "seconds": 251.25
+    },
+    {
+      "suite": "criticalAudio",
+      "checks": 15,
+      "seconds": 39.88
+    },
+    {
+      "suite": "reducedMotion",
+      "checks": 75,
+      "seconds": 93.87
+    },
+    {
+      "suite": "mapEdges",
+      "checks": 34,
+      "seconds": 72.05
+    },
+    {
+      "suite": "mapNative",
+      "checks": 22,
+      "seconds": 35.63
+    },
+    {
+      "suite": "pure3dLifecycle",
+      "checks": 28,
+      "seconds": 46.52
+    },
+    {
+      "suite": "longRun",
+      "checks": 342,
+      "seconds": 702.64
+    },
+    {
+      "suite": "default3d-smoke",
+      "checks": 856,
+      "seconds": 779.19
+    },
+    {
+      "suite": "audio-window",
+      "checks": 47,
+      "seconds": 30.36
+    },
+    {
+      "suite": "coast",
+      "checks": 100,
+      "seconds": 62.15
+    },
+    {
+      "suite": "editor",
+      "checks": 61,
+      "seconds": 66.77
+    }
+  ],
+  "latest_apk_ui_checks": 3042,
+  "not_yet_run_on_latest_apk": [],
+  "previous_apk_validation": "docs/validation/parity-20261003/round24-installed.json",
+  "pending_user_requests": [
+    "P01-P10/D01-D03 full parity",
+    "official/MOD effective source and full openings",
+    "global PC RNG/weather",
+    "other XP/cultivation/delayed production",
+    "next UI6a00e8e/8e25cad integration",
+    "ARM physical/performance"
+  ],
+  "user_screenshot": {
+    "path": "docs/handoff/20261003/coast-city-rectangles.jpg",
+    "sha256": "7961d90e955b4af1cd6a4950828710dbac98d23f2d51cbbc00a409746e3abc50"
+  },
+  "evidence_scope": "Independent exactf174 APK on emulator5554 API29x86_64; ARM physical and full PC/MOD startup not proved",
+  "active_install_tests": false,
+  "user_files_restored": true,
+  "original_auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+  "notes": [
+    "Original AP stop snapshot preserved verbatim under previous_handoff_state; legacy visual goal remains paused",
+    "Current parity/final integration goal active andR29 exact APK3042verified independently",
+    "Original7user paths/bytes andeditor externalinput exact restored",
+    "No old APK results transferred, no old AP core copied",
+    "Source new-production evidence exists but R29 APK keeps existing production implementation",
+    "Independent v36 staging not shipped; multiplayer/techpoints/delayed/normalART UI still pending"
+  ],
+  "legacy_visual_goal_status": "paused_at_user_request",
+  "previous_handoff_state": {
+    "goal_status": "paused_at_user_request",
+    "goal_complete": false,
+    "branch": "agent/native-pc-visual",
+    "all_worktree_changes_must_be_preserved": true,
+    "latest_ui_commit": "0ddedf6fd379b3a87df206bc1d09f0e1662155ab",
+    "full_ui_merge_audit": "out/uiux-merge-all-0ddedf6/audit.json",
+    "core_baseline": "out/parity/checkpoint-20261003-an/source",
+    "latest_pre_ui18_full_baseline": "out/parity/checkpoint-20261003-ao/source",
+    "handoff_snapshot": "out/parity/checkpoint-20261003-ap-handoff-final/source",
+    "apks": {
+      "apks": [
+        {
+          "path": "out/parity/ui-integration-0ddedf6/apks/app-debug.apk",
+          "bytes": 87040546,
+          "sha256": "005c24e904c028a2bf8c328e1fb08eb907955b5010d33682e673eeb911779389"
+        },
+        {
+          "path": "out/parity/ui-integration-0ddedf6/apks/app-debug-androidTest.apk",
+          "bytes": 752283,
+          "sha256": "bd626f73b0338dca4b6e633b58c8f85355b0d5c415d40cc8fee262abee5c91ba"
+        }
+      ],
+      "pinned_resources": 168,
+      "native_inputs": 4,
+      "rank_resource_exact": true,
+      "growth_resource_exact": true,
+      "all_exact": true
+    },
+    "latest_apk_ui_flows": [
+      {
+        "name": "installed-native-march",
+        "checks": 77,
+        "seconds": 115.76,
+        "results": "out/parity/ui-integration-0ddedf6/installed-native-march/results.json",
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      },
+      {
+        "name": "installed-flat-march",
+        "checks": 73,
+        "seconds": 62.61,
+        "results": "out/parity/ui-integration-0ddedf6/installed-flat-march/results.json",
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      },
+      {
+        "name": "installed-opening",
+        "checks": 64,
+        "seconds": 58.31,
+        "results": "out/parity/ui-integration-0ddedf6/installed-opening/results.json",
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      }
+    ],
+    "latest_apk_ui_checks": 214,
+    "not_yet_run_on_latest_apk": [
+      "production ART rule probes",
+      "trade",
+      "governanceArmy",
+      "standalone mapEdges/mapNative gesture suites"
+    ],
+    "previous_apk_validation": "docs/validation/parity-20261003/round24-installed.json",
+    "pending_user_requests": [
+      "Coast/city square-shaped visual discontinuities",
+      "Inspect terrain under occupied unit cell",
+      "Cavalry forced displacement must not enter city seven-cell footprint",
+      "Implement sound effects",
+      "Remove playable 2D mode completely"
+    ],
+    "user_screenshot": {
+      "path": "docs/handoff/20261003/coast-city-rectangles.jpg",
+      "sha256": "7961d90e955b4af1cd6a4950828710dbac98d23f2d51cbbc00a409746e3abc50"
+    },
+    "evidence_scope": "Only API29 x86_64 emulator; user phone feedback is separate and APK/ABI identity is not verified",
+    "active_install_tests": false,
+    "user_files_restored": true,
+    "original_auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "notes": [
+      "R23 state29361 and original arithmetic passed on R23/R24 APKs; not copied as latest APK pass",
+      "Three historical baseline failures retained; whole test suite is not green",
+      "Original merchant price/quantity/monthly state and non-merchant XP remain pending",
+      "Official/MOD active resources and full scenario content not established",
+      "Old <31 map save migration remains unsupported",
+      "No feature fixes or new testing were started after user stop; only handoff documentation/read-only source archive"
+    ]
+  },
+  "current_source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+  "current_full_baseline": "out/parity/checkpoint-20261003-r29/source",
+  "current_integration_audit": "out/parity/rules-r29-integration/audit.json",
+  "current_installed_validation": {
+    "source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+    "apk_sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+    "test_sha256": "34e8fefe2030d57d49fc8bcba0f26ad8896dc12106606b1731f725a7e9014a3d",
+    "scope": "Independent exact R29 committed combo actualAPI29x86_64 flows; no other APK evidence transferred",
+    "installed_flow_checks": 3042,
+    "suites": [
+      {
+        "suite": "opening",
+        "checks": 64,
+        "seconds": 59.14
+      },
+      {
+        "suite": "city-ui",
+        "checks": 62,
+        "seconds": 106.03
+      },
+      {
+        "suite": "merchant-ui",
+        "checks": 62,
+        "seconds": 121.42
+      },
+      {
+        "suite": "rewards-ui",
+        "checks": 259,
+        "seconds": 590.66
+      },
+      {
+        "suite": "legacySave3D",
+        "checks": 32,
+        "seconds": 332.13
+      },
+      {
+        "suite": "exit3D",
+        "checks": 15,
+        "seconds": 44.71
+      },
+      {
+        "suite": "residentAssets",
+        "checks": 113,
+        "seconds": 319.38
+      },
+      {
+        "suite": "legacyNavigation",
+        "checks": 37,
+        "seconds": 232.74
+      },
+      {
+        "suite": "legacyRegions",
+        "checks": 679,
+        "seconds": 736.81
+      },
+      {
+        "suite": "reportLocate3D",
+        "checks": 14,
+        "seconds": 22.0
+      },
+      {
+        "suite": "terrain",
+        "checks": 51,
+        "seconds": 70.31
+      },
+      {
+        "suite": "march",
+        "checks": 74,
+        "seconds": 251.25
+      },
+      {
+        "suite": "criticalAudio",
+        "checks": 15,
+        "seconds": 39.88
+      },
+      {
+        "suite": "reducedMotion",
+        "checks": 75,
+        "seconds": 93.87
+      },
+      {
+        "suite": "mapEdges",
+        "checks": 34,
+        "seconds": 72.05
+      },
+      {
+        "suite": "mapNative",
+        "checks": 22,
+        "seconds": 35.63
+      },
+      {
+        "suite": "pure3dLifecycle",
+        "checks": 28,
+        "seconds": 46.52
+      },
+      {
+        "suite": "longRun",
+        "checks": 342,
+        "seconds": 702.64
+      },
+      {
+        "suite": "default3d-smoke",
+        "checks": 856,
+        "seconds": 779.19
+      },
+      {
+        "suite": "audio-window",
+        "checks": 47,
+        "seconds": 30.36
+      },
+      {
+        "suite": "coast",
+        "checks": 100,
+        "seconds": 62.15
+      },
+      {
+        "suite": "editor",
+        "checks": 61,
+        "seconds": 66.77
+      }
+    ],
+    "actual_mixed_cues": 9,
+    "min_waveform_correlation": 0.9611998612755281,
+    "all_original_user_files_and_paths_byte_equal": true,
+    "user_files": 7,
+    "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "installed_apk_readback_sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+    "goal_complete": false
+  },
+  "current_remaining": [
+    "P01-P10/D01-D03 full parity",
+    "official/MOD effective source and full openings",
+    "global PC RNG/weather",
+    "other XP/cultivation/delayed production",
+    "next UI6a00e8e/8e25cad integration",
+    "ARM physical/performance"
+  ],
+  "production_next_stage": "out/parity/production-next-implementation/source (not installed or integrated)",
+  "latest_ui_source_commits": [
+    "3a1ddd5",
+    "d9d495b"
+  ],
+  "r32_candidate_integration": {
+    "status": "integrated_candidate_not_full_acceptance",
+    "date": "2026-10-04",
+    "complete_integrated_source_commit": "f35fd0cc0230651349bbf2a2d8cd8f99a6e13e98",
+    "documentation_delta_commit": "3f7c6aa",
+    "completed_ui_commit": "09b36a5d48590c82277cc9db75ed1af6252d504b",
+    "ui_paths": 21,
+    "canonical_paths": 134,
+    "other_existing_paths_unchanged": 4109,
+    "canonical_branch_preserved": "agent/native-pc-visual",
+    "preflight": "out/parity/canonical-current-20261004-preflight/applied.json",
+    "canonical_candidate_snapshot": "out/parity/checkpoint-20261004-r32-canonical-candidate/source",
+    "snapshot_manifest": "out/parity/checkpoint-20261004-r32-canonical-candidate/manifest.json",
+    "snapshot_file_count": 4243,
+    "snapshot_bytes": 335944295,
+    "original_tracked_deletions_preserved": [
+      "app/src/main/java/game/sanguo/mobile/MapOverview.java",
+      "app/src/main/java/game/sanguo/mobile/MapView.java"
+    ],
+    "save_policy": "explicit new v37 native production technique policy; old31-36 not inferred or truncated",
+    "installed_candidate_apk_sha256": "f9c140ae2b7417ec96544f69411b118518135a7ab20ef19a259b0be9428ea6df",
+    "art_execution_checks": 13323,
+    "hud_checks": 27,
+    "city_displacement_art_checks": 6648,
+    "city_displacement_session_art_checks": 19,
+    "normal_production_full_flow_passed": false,
+    "normal_production_failures_seconds": [
+      317.08,
+      285.71
+    ],
+    "normal_production_failure": "10 second main queue barrier; actual SIGQUIT trace retained, cause not closed",
+    "all_completed_runs_original_files_exact": true,
+    "last_complete_combination_remains": "R29 f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+    "independent_canonical_build_pending": true,
+    "arm_device_verified": false,
+    "official_openings_verified": false
+  },
+  "r32_report_projection_candidate": {
+    "date": "2026-10-04",
+    "production_source_commit": "1fa9491",
+    "source_snapshot": "out/parity/checkpoint-20261004-r32-performance-1fa9491/source",
+    "source_file_count": 4247,
+    "source_bytes": 335967526,
+    "integration_paths": 9,
+    "other_paths_sha_unchanged": 4238,
+    "apk_sha256": "aeaf1263f903773d55889d88682c0935a4172f7b77f9526200c1b166cd96d98d",
+    "apk_bytes": 87536286,
+    "save_schema_unchanged": 37,
+    "rules_and_rng_unchanged": true,
+    "art_report_compression_checks": 75,
+    "art_snapshot_readonly_checks": 180,
+    "hud_checks": 27,
+    "all_completed_user_files_exact": true,
+    "normal_nine_turn_production_flow": "passed",
+    "last_complete_combination": "R29 f1741671",
+    "final_new_package_acceptance_complete": false,
+    "normal_production_ui_checks": 209,
+    "normal_production_ui_seconds": 400.41,
+    "normal_production_report": "out/parity/report-compression-20261004/production-ui/results.json",
+    "remaining_same_package_acceptance": [
+      "remaining presentation and normal merchant/reward flow matrix",
+      "independent canonical build and installation"
+    ],
+    "production_art_checks": 13323,
+    "city_displacement_art_checks": 6648,
+    "city_session_art_checks": 19,
+    "source_city_ui_checks": 62,
+    "source_city_ui_seconds": 126.11,
+    "source_city_fixture_schema": 35,
+    "blocked_damage_and_failure_pc_semantics_verified": false,
+    "market_art_checks": 13429,
+    "market_session_art_checks": 76,
+    "officer_state_art_checks": 57330,
+    "terrain_query_ui_checks": 51,
+    "terrain_query_initial_state": "original user legacy save, compatibility coverage",
+    "audio_ui_checks": 51,
+    "actual_mixed_cues": 11,
+    "actual_mix_min_correlation": 0.8887288125596825,
+    "native37_consecutive_turns_passed": 24,
+    "longrun_checks": 342,
+    "longrun_seconds": 553.01,
+    "post24_actual_menu_load_and_exit_reopen": "passed",
+    "post24_extension_checks": 373,
+    "post24_extension_seconds": 642.03,
+    "post24_final_and_reopened_save_byte_equal": true,
+    "post24_save_sha256": "dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f",
+    "post24_save_bytes": 368272,
+    "opening_ui_checks": 64,
+    "opening_ui_seconds": 62.11,
+    "editor_ui_checks": 61,
+    "editor_ui_seconds": 58.9,
+    "editor_original_external_files_exact": 13,
+    "default3d_smoke_checks": 856,
+    "default3d_smoke_seconds": 523.55,
+    "default3d_smoke_passed": true
+  },
+  "ability_research_native_source": {
+    "status": "parameters/admission/stat award block verified; full dispatch and policy not integrated",
+    "rows": 98,
+    "getter_calls": 490,
+    "stat_admission_cases": 1080,
+    "stat_completion_award_cases": 300,
+    "raw_counts_decoded": [
+      5,
+      5,
+      3
+    ],
+    "caps": [
+      70,
+      80,
+      95
+    ],
+    "admission": "XP<2000 and age-growth-plus-XP foundation<cap",
+    "stat_award": "XP+=100*min(5,cap-foundation), capped3000; base unchanged",
+    "user_inherited_cultivation_base_write_preserved": true,
+    "old_save_changed": false,
+    "full_native_completion_dispatch_verified": false,
+    "official_effective_source_verified": false,
+    "final_award_observation_sha256": "9e516fd8222e889d02cddbea092cd3d64a8d9bbbe608a016092217f373bc9fcf",
+    "controlled_original_stat_completion_cases": 480,
+    "controlled_stat_completion_rejected": 4,
+    "controlled_aptitude_admission_cases": 48,
+    "controlled_aptitude_completion_cases": 24,
+    "controlled_skill_admission_cases": 213,
+    "controlled_skill_completion_cases": 276,
+    "complete_nonhuman_functions_verified": true,
+    "final_complete_function_observation_sha256": "fdc8fc19d13fa8d424b57f32d1b30bbd5a9863bcaef95f4311139d3dedcdeb46",
+    "hidden_counter_slot0_explicitly_selected": true,
+    "hidden_selection_rng_verified": false,
+    "original1100_officer_countdown_observed": [
+      2,
+      1,
+      0
+    ],
+    "readiness_dispatch_probe_award_verified": true,
+    "readiness_dispatch_probe_status": "98 IDs,294 original countdown/gate/dispatcher cycles plus98 no-replay passed; full preceding global turn not executed",
+    "native_countdown_world_ticks": 294,
+    "native_no_replay_cases": 98,
+    "source_dispatch_table_tasks": [
+      41,
+      42,
+      43
+    ],
+    "officer_stride": 400,
+    "officer_native_district_field": "0x94",
+    "native_countdown_gzip_sha256": "bb5ddfe7ec7f72ef633bf93ae0c5d3c5fe6775c12a46cfcc2723df2f3e9e3a42",
+    "training_ap_debit_cases": 18,
+    "stat_ap_admission_cases": 7,
+    "training_ap_native_cost": 20,
+    "full_start_gold_and_registration_verified": false,
+    "ap_observation_sha256": "e0e3ea92a957f7068f273a73000b67ee1e2f5a068e5fa8470a439cf51a988969"
+  },
+  "r32_canonical_rebuild": {
+    "date": "2026-10-04",
+    "status": "normal required flows/art/audio/editor and strict presentations passed; residual UI matrix/data alignment continues",
+    "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
+    "full_source_files": 4255,
+    "full_source_bytes": 336018236,
+    "manifest_sha256": "ff1a83aa51066f96441b521a79e8908087477852c7794b322fafa2a65bc5de6a",
+    "integrated_own_commit": "a14364446bd8c159e8f18bc8f418b5fabcf97e52",
+    "canonical_head_preserved": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "complete_source_is_dirty_workspace_not_old_head": true,
+    "apk_sha256": "a31dac15fc04c8b6112d8b186f6f2b3846b8cb791ebbd2a87265f432061aa02f",
+    "apk_bytes": 87536370,
+    "test_apk_sha256": "e3b2badc36a7dafb84f5084377e69b501478641bbf141f756653d07b25ef40da",
+    "actual_installed_readback_equal": true,
+    "build_seconds": 78,
+    "build_actionable_tasks": 76,
+    "architecture_passed": true,
+    "compiled_app_classes": 265,
+    "app_class_differences_only_known_revision_string": true,
+    "apk_zip_entry_differences": [
+      "classes.dex",
+      "META-INF/version-control-info.textproto"
+    ],
+    "previous_apk_results_transferred": false,
+    "user_file_restoration_pending_current_live_run": false,
+    "arm_actual_device_verified": false,
+    "git_bundle_sha256": "73c4d22adaed1aa509aefb1cf872fc4f044a338e74577e4616d43e36dbd1608f",
+    "git_bundle_includes_ignored_native_inputs": false,
+    "default3d_checks": 856,
+    "default3d_seconds": 551.05,
+    "default3d_user_files_exact": true,
+    "source_city_ui_checks": 62,
+    "source_city_ui_seconds": 131.54,
+    "source_city_fixture_schema": 35,
+    "source_city_user_files_exact": true,
+    "normal_production_ui_checks": 209,
+    "normal_production_ui_seconds": 459.7,
+    "normal_production_original_files_exact": true,
+    "post24_extension_checks": 373,
+    "post24_extension_seconds": 625.08,
+    "post24_original_files_exact": true,
+    "post24_final_and_reopened_byte_equal": true,
+    "post24_save_sha256": "dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f",
+    "native37_merchant_ui_checks": 66,
+    "native37_merchant_ui_seconds": 54.88,
+    "native37_merchant_complete_save_comparison": true,
+    "native37_merchant_original_files_exact": true,
+    "production_art_execution_checks": 13323,
+    "production_art_suites": 10,
+    "production_art_original_files_exact": true,
+    "city_displacement_art_checks": 6648,
+    "city_session_art_checks": 19,
+    "officer_state_art_checks": 57330,
+    "officer_state_art_seconds": 8.63,
+    "rank_art_checks": 2244,
+    "merit_art_checks": 421,
+    "merchant_arithmetic_checks": 11595,
+    "officer_arithmetic_rows": 4813,
+    "date_arithmetic_checks": 3120,
+    "all_completed_original_files_exact": true,
+    "audio_ui_checks": 51,
+    "audio_ui_seconds": 32.91,
+    "actual_new_mixed_cues": 11,
+    "actual_new_mix_min_correlation": 0.9590349079561974,
+    "actual_new_mix_scope": "emulator digital mix; no microphone/ARM speaker/original PC tone claim",
+    "audio_original_files_exact": true,
+    "editor_ui_checks": 61,
+    "editor_ui_seconds": 66.89,
+    "editor_internal_original_files_exact": true,
+    "editor_external_original_files_exact": 13,
+    "market_art_checks": 13429,
+    "market_art_seconds": 40.14,
+    "market_session_art_checks": 76,
+    "market_session_art_seconds": 0.74,
+    "strict_presentations_checks": 1888,
+    "strict_presentations_seconds": 404.54,
+    "strict_presentations_original_files_exact": true,
+    "strict_presentations_scope": "controlled paused host ticks, strict cache color/GPU/lifecycle; complete original lens/MOD/blend still pending",
+    "terrain_ui_checks": 51,
+    "terrain_ui_seconds": 414.26,
+    "terrain_original_files_exact": true
+  },
+  "cavalry_special_building_source": {
+    "predicate": "0x487ab0",
+    "cases": 67,
+    "positive_ids": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      25
+    ],
+    "city_gate_port_predicate": false,
+    "source_json_sha256": "302f0f63d73cc73cdf6dea8b2973a0e6f6602f726280ee97a0b2f0c8297c6265",
+    "main_collision_damage_or_failed_tactic_verified": false
+  },
+  "r33_ordered_technique_facts": {
+    "status": "canonical independent exact package city UI62, normal nine-turn production UI209, production ART13382 and city/save ART all passed; remaining matrix/rules/data continues",
+    "ordered_facts_jvm_checks": 59,
+    "net_interface_preserved": true,
+    "save_schema_changed": false,
+    "reward_formulas_changed": false,
+    "rng_consumed_by_observation": false,
+    "app_owner_files_changed": false,
+    "bridge_and_per_fact_audio_consumption_verified": false,
+    "installed_package_still_r32_a31": false,
+    "candidate_source_commit": "ddae88989c55c90acb21efa6b3f51f083b73e4b6",
+    "candidate_apk_sha256": "7685556a675f867e51145c744624ba5054ffd9f9c4b025233e76cc8118317cbb",
+    "ordered_facts_art_checks": 59,
+    "production_art_total_checks": 13382,
+    "production_art_suites": 11,
+    "city_displacement_art_checks": 6648,
+    "city_session_art_checks": 19,
+    "real_hud_feedback_ui_checks": 25,
+    "all_original_files_exact": true,
+    "canonical_full_source_integrated": true,
+    "canonical_other_paths_unchanged": 4243,
+    "source_snapshot_files": 4269,
+    "source_snapshot_bytes": 336183864,
+    "official_opening_identity_verified": false,
+    "arm_actual_device_verified": false,
+    "canonical_apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "canonical_apk_bytes": 87540742,
+    "canonical_build_seconds": 81,
+    "canonical_build_tasks": 76,
+    "canonical_core_api_runtime_classes_byte_equal": true,
+    "canonical_app_class_differences_only_revision_metadata": true,
+    "canonical_source_city_ui_checks": 62,
+    "canonical_source_city_ui_seconds": 215.07,
+    "canonical_source_city_original_files_exact": true,
+    "candidate_art_evidence_transferred": false,
+    "latest_full_source_snapshot": "out/parity/checkpoint-20261004-r33-final-4b311b1/source",
+    "latest_full_source_files": 4271,
+    "latest_full_source_bytes": 336203434,
+    "canonical_art_execution_checks": 13382,
+    "canonical_art_suites": 11,
+    "canonical_ordered_facts_art_checks": 59,
+    "canonical_city_displacement_art_checks": 6648,
+    "canonical_city_session_art_checks": 19,
+    "canonical_report_compression_art_checks": 75,
+    "canonical_snapshot_readonly_art_checks": 180,
+    "canonical_art_original_files_exact": true,
+    "canonical_normal_production_ui_checks": 209,
+    "canonical_normal_production_ui_seconds": 427.87,
+    "canonical_normal_production_ui_original_files_exact": true,
+    "normal_production_complete_save_rng_comparison": true,
+    "current_live_device_job": false
+  },
+  "cavalry_bounded_landing_loop_source": {
+    "cases": 168,
+    "entry": "5956d6",
+    "stop_before": "5957e2",
+    "actual_geometry_and_backstep_executed": true,
+    "both_coordinate_parities_six_directions": true,
+    "json_sha256": "c67379eb89d3db76defa805517816987cfabe45d5cb1345a99afcbc8a201a2ff",
+    "packed_sha256": "259790951f56ea605567a7a4ed3952d47c6f5314b6a9843491d71454a5edd9cc",
+    "same_twice": true,
+    "explicit_visibility_local_input": 1,
+    "preceding_visibility_predicate_executed": false,
+    "building_registry_input_is_fixture": true,
+    "full_seven_cell_registration_verified": false,
+    "full_damage_authority_commit_verified": false
+  },
+  "latest_verified_combined_package": {
+    "apk": "out/parity/ordered-facts-canonical-ddae889/apks/app-debug.apk",
+    "sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "full_source_implementation_commit": "ddae88989c55c90acb21efa6b3f51f083b73e4b6",
+    "canonical_head_is_metadata_not_source_baseline": true,
+    "actual_serial": "emulator-5554",
+    "architecture": "x86_64",
+    "all_original_private_files_restored": true,
+    "full_matrix_complete": false,
+    "arm_actual_device_verified": false,
+    "goal_complete": false,
+    "default3d_checks": 856,
+    "opening_checks": 64,
+    "occupied_terrain_checks": 51,
+    "merchant_checks": 66,
+    "audio_ui_checks": 51,
+    "audio_mixed_cues": 11,
+    "strict_presentations_checks": 1914,
+    "native37_longrun_checks": 373,
+    "normal_save_load_exit_reopen_verified": true,
+    "editor_ui_checks": 61,
+    "editor_private_and_external_original_files_restored": true
+  },
+  "r34_continuation": {
+    "status": "exact d318 default3D856, normal opening64 and occupied terrain51 all passed; native start107 reproduced; real bridge restore regression passed",
+    "apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "default3d_checks": 856,
+    "default3d_seconds": 509.47,
+    "opening_checks": 64,
+    "opening_seconds": 66.42,
+    "all_completed_original_files_exact": true,
+    "opening_missing_sha_failure_preserved": true,
+    "ability_start_core_cases": 107,
+    "ability_start_admitted": 104,
+    "ability_start_ap_rejected": 3,
+    "ability_start_all_native_ids": 98,
+    "ability_start_json_sha256": "7086a48032e6c02cedf12f2dec886210bda30bc07d179df2ac90d908af7a06a0",
+    "ability_start_gzip_sha256": "afba09078ad87db4a9861848656d01c7b66bd7dbed54ee87fa1d47a990a7dc27",
+    "ability_start_full_function_return_verified": false,
+    "android_cultivation_base_policy_changed": false,
+    "bridge_restore_generation_issue_reproduced": false,
+    "current_live_device_job": false,
+    "arm_actual_device_verified": false,
+    "terrain_checks": 51,
+    "terrain_seconds": 178.35,
+    "terrain_original_files_exact": true,
+    "bridge_restore_rotates_uuid_verified_from_source": true,
+    "bridge_restore_initial_assumption_failure_preserved": true,
+    "bridge_restore_registered_regression_passed": true,
+    "bridge_restore_runtime_changed": false
+  },
+  "r35_continuation": {
+    "status": "same d318 merchant66/audio51/mixed11/presentations1914 and native37 longrun24 all passed",
+    "apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "merchant_checks": 66,
+    "merchant_seconds": 62.56,
+    "audio_ui_checks": 51,
+    "audio_ui_seconds": 34.74,
+    "mixed_cues": 11,
+    "mixed_min_correlation": 0.8887288125596823,
+    "wave_sha256": "55f629bd6ba106e03e72838777005340ec37f5c0ae1bf330ff02ffbe6df5ca47",
+    "completed_tests_original_files_exact": true,
+    "facility_match_cases": 4096,
+    "facility_count_cases": 602,
+    "facility_mixed_null_cases": 4,
+    "facility_query_world_rng_readonly": true,
+    "facility_field14_full_semantics_verified": false,
+    "android_facilities_added": false,
+    "current_live_device_job": false,
+    "arm_actual_device_verified": false,
+    "facility_query_same_twice": true,
+    "facility_json_sha256": "44760840c64fc4054a5fc2b60ceeff8fa3b56aee112e7fb6638e1ea86d776216",
+    "facility_gzip_sha256": "3ea334ecc6320b61ecf4b453cce8ceca58e89a5617f8c78d20e5270f23f1e3a7",
+    "facility_exact_presence_checks": 512,
+    "strict_presentations_checks": 1914,
+    "strict_presentations_seconds": 650.26,
+    "strict_presentations_original_files_exact": true,
+    "host_wall_clock_jump_observed": true,
+    "native37_longrun_checks": 373,
+    "native37_longrun_seconds": 554.9,
+    "native37_longrun_original_files_exact": true,
+    "final24_save_sha256": "dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f"
+  },
+  "r36_source_facilities": {
+    "status": "source plot2136/category64 and completion242/setter122 reproduced twice; no Android rule change",
+    "development_plot_cases": 2136,
+    "development_categories": 64,
+    "completion_boundary_cases": 242,
+    "completion_setter_cases": 122,
+    "full_world_grid_rng_guards": true,
+    "same_twice": true,
+    "sha256": {
+      "development-plot-native.json": "a235897b6258d33092486ce94ffdd775c32e1300a6b4f0951cb94b4fac06d4cd",
+      "development-plot-native.json.gz": "9993e4432cb0bf169a5f9026a3f64f505a30d9f16ca443ff0357b0538b3c2a35",
+      "facility-completion-native.json": "e5fa00b85e65ae15ba450645bfb5bfc38413799b8146d164973c3ac903bdbb0e",
+      "facility-completion-native.json.gz": "92d752e8b6d280c7f5340b4b468215a6968e84edc3ed95be4a5ba64fa428a6c7"
+    },
+    "full_construction_flow_verified": false,
+    "android_rule_changed": false,
+    "failed_unsigned_and_greater_equal_probe_assumptions_preserved": true,
+    "current_live_device_job": false
+  },
+  "r37_city_footprint_source": {
+    "centers": 6,
+    "registered_cells_per_center": 7,
+    "actual_registry_lookup_cases": 42,
+    "actual_cavalry_blocked_cases": 42,
+    "actual_cavalry_outside_positive_cases": 6,
+    "source_coordinate_conversion_executed": true,
+    "complete_shape_registration_function_returned": true,
+    "full_world_rng_unchanged": true,
+    "exact_grid_effects": true,
+    "same_twice": true,
+    "json_sha256": "7c03c6087f9cd658ded615619a459196fb8eae0154b1982ac3c4e8c8df107f8a",
+    "gzip_sha256": "6a45138546ce860ec49d04f3f7d1f1babb80b544675c6d5e349069330a7270c5",
+    "normal_frontend_allocator_executed": false,
+    "full_tactic_damage_authority_verified": false
+  },
+  "r38_cavalry_result_boundaries": {
+    "blocked_survival_cases": 38,
+    "unit_troop_apply_cases": 40,
+    "same_twice": true,
+    "damage_generation_verified": false,
+    "full_authority_commit_verified": false,
+    "android_rule_changed": false,
+    "survival_gzip_sha256": "829454f1b0c682df0a9bdc08e2d3d4640c58d8c81bda021f787ca7c4269f24cf",
+    "troop_apply_gzip_sha256": "7020720c77e9b4ce9064d1e4eee4b5978f6322dcfa489c424225fe2d6691aaee",
+    "full_world_grid_rng_guards": true
+  },
+  "r39_continuous_cavalry_plan": {
+    "cases": 336,
+    "entry": "5956d6",
+    "stop_before": "59588d",
+    "continuous_no_intermediate_reset": true,
+    "actual_planned_result_fields_written": [
+      116,
+      120
+    ],
+    "world_grid_rng_unchanged": true,
+    "request_only_planned_fields_changed": true,
+    "same_twice": true,
+    "json_sha256": "2dafb787e78a664036f51a125203280d4f41665049b8fea837bc218cf95e226e",
+    "gzip_sha256": "e51e01d1474ac87c8e02551eb18c2acc167b604ea38c34e1caa6b23c99a26537",
+    "visibility_local1_explicit": true,
+    "preceding_visibility_predicate_executed": false,
+    "full_damage_authority_commit_verified": false,
+    "android_rule_changed": false,
+    "current_live_device_job": false,
+    "editor_ui_checks": 61,
+    "editor_ui_seconds": 44.97,
+    "editor_private_original_files_exact": true,
+    "editor_external_original_files_exact": true,
+    "editor_external_original_files_count": 13
+  },
+  "r40_bridge_facts": {
+    "status": "Java API/runtime committed facts implemented; JVM and installed ART output passed; driver marker mismatch retained; new APK audio51 passed; wire/UI pending",
+    "java_api_runtime_implemented": true,
+    "wire_json_implemented": false,
+    "app_or_unity_modified": false,
+    "full_state_token": true,
+    "zero_net_ordered_facts": true,
+    "explicit_snapshot_replays_facts": false,
+    "byte_queue_accounts_facts": true,
+    "restore_discards_old_feedback": true,
+    "save_schema_changed": false,
+    "rules_rng_changed": false,
+    "new_apk_actual_install_verified": true,
+    "new_apk_sha256": "74574d7f393da0987fccd17debb1c84e3cc7038aa7a850149ccaca984e644af1",
+    "audio_ui_checks": 51,
+    "audio_ui_seconds": 33.6,
+    "audio_original_files_exact": true,
+    "new_package_full_matrix_complete": false,
+    "bridge_jvm_passed": true,
+    "bridge_art_terminal_output_passed": true,
+    "bridge_art_driver_marker_mismatch_preserved": true,
+    "bridge_art_user_files_unchanged": true,
+    "bridge_art_installed_apk_unchanged": true,
+    "current_live_device_job": false
+  }
+}

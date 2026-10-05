@@ -1,0 +1,1237 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "INSTALLED_SCENARIO_IDENTITY_NATIVE_SERIALIZER_AGE_AND_LOOKUP_VERIFIED",
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_face_sha256": "5e6a69ac3555910196465a40a7d02092cc7b8e7dc7de8e106eac1173b6e29519",
+  "scenario_sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c"
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae"
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c"
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e"
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae"
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01"
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88"
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709"
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba"
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a"
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba"
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4"
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772"
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f"
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b"
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a"
+    }
+  ],
+  "serializer": {
+    "start": "48b7b7",
+    "stop": "48bb28",
+    "source_type": 22,
+    "consumed_bytes": 152,
+    "face_serialized_offset": 53,
+    "actor_face_offset": 60,
+    "sex_serialized_offset": 55,
+    "actor_sex_offset": 64,
+    "sha256": "fe1d992c0fab0f4abe479df9c5b11b3777c3112f014792b1e1a6a1b6b78112b0",
+    "io_hook": "46ff20 copies original installed bytes only; original signed-width decoding unchanged"
+  },
+  "checks": 96,
+  "age_checks": 18,
+  "age_transition": {
+    "function": "4a66ea..4a672d / 4a6738",
+    "age_function": "488a20",
+    "age": "year-birth+1",
+    "threshold": "serialized actor byte120",
+    "face_change": "+1000",
+    "sha256": "72cea1cef7f96a0c8a7f2d2053d7d22e42ffe29b987463c53d61b1916d49adf4"
+  },
+  "bindings": [
+    {
+      "project_id": 1000,
+      "runtime_name": "刘备",
+      "native_index": 635,
+      "name": "劉備",
+      "face_id": 36,
+      "sex": 0,
+      "appearance": 184,
+      "birth": 161,
+      "death": 223,
+      "selector": 136,
+      "age_change": 48,
+      "template": 115,
+      "texture_resource": 505,
+      "scenario_records": [
+        {
+          "source": "Media/scenario/Scen000.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "91ba94e51aa4955cbf86587329f4146159dc855449a27c76d597c1b7b429639e",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/SCEN001.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "e8b47b1baabf03e57736f450154465913ede62f958df8178ddbaad33f20f3d56",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/SCEN002.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "61d2a7446d419eea779fd60210df90a22ace3ee44a6fefa2a89353052291af7c",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/SCEN003.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "c73c73ca3c6dd99b953e88344e083a006581f26e741666044f626d2cf8c7712d",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/SCEN004.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "bba79f5ffe799dce251d692f53fed23cd45792dc00d9be1b68eb73eeb558b6bc",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/SCEN005.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "517b7c57b14b805606c7dc8ebd335d19580030e38312a35e92715ce4a6796eed",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 1036,
+          "selector": 156
+        },
+        {
+          "source": "Media/scenario/SCEN006.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "c841489d4d20e60e77ac64678cd0df0afcde7f4ff7a6b37c411820e67c4d0292",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 1036,
+          "selector": 156
+        },
+        {
+          "source": "Media/scenario/SCEN007.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "7a5be7a648f5f4c0cdf8b69d3b89e6c43d3e6ed3ba31b0812be937ee2cd5db0a",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen008.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "734a05ff5853008616053f0562672e6eb7383f7e39de297b143fba9c7322b766",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen009.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "65c79563186689847dd8c338a77eb95255602c39f5a23fc9ea5976faca1f1388",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen010.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "3f3bc4779fd7f7a2da398bc3c71dda0229e761ed0eaf3f09a9edbd1faf184d66",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 1036,
+          "selector": 156
+        },
+        {
+          "source": "Media/scenario/Scen011.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "c88ba3ef954fa2799a6855f1756bb8d3cdded8d2d1ba9cddbd549c9c1e4ddf15",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen012.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "14219080f133c6750e686955a796e32205edadfab2abc77bea3bb6f54024342d",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen013.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "d7f99a520d5b206bb022253593e6b2cdad109549e5e82de0528827f69c5179e7",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen014.S11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "7a2a5c8706d821d120e74a36d301689726a08002e8319f5ba95318d31d5274f4",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 36,
+          "selector": 136
+        },
+        {
+          "source": "Media/scenario/Scen015.s11",
+          "offset": 114280,
+          "bytes": 152,
+          "sha256": "c841489d4d20e60e77ac64678cd0df0afcde7f4ff7a6b37c411820e67c4d0292",
+          "appearance": 184,
+          "death": 223,
+          "face_id": 1036,
+          "selector": 156
+        }
+      ],
+      "variants": {
+        "younger": {
+          "face_id": 36,
+          "selector": 136,
+          "texture_resource": 505
+        },
+        "older": {
+          "face_id": 1036,
+          "selector": 156,
+          "texture_resource": 525
+        }
+      }
+    },
+    {
+      "project_id": 1001,
+      "runtime_name": "关羽",
+      "native_index": 98,
+      "name": "關羽",
+      "face_id": 2,
+      "sex": 0,
+      "appearance": 184,
+      "birth": 162,
+      "death": 219,
+      "selector": 132,
+      "age_change": 47,
+      "template": 115,
+      "texture_resource": 501,
+      "scenario_records": [
+        {
+          "source": "Media/scenario/Scen000.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "eaf40032dfc00a29bb3891d22c9b9d679cc48579b198ebf5dc896d4806ed25d9",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/SCEN001.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "7209668a6a9c253ecfec0b617371ceeb155a9a173561dabf7d80404442bc067e",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/SCEN002.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "967e30219bc07becacceb2a52ff62849136dc05d7be06355f1bef996282225e5",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/SCEN003.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "d543d468f54e8be349739e4901682c669355a38f78d431b8dd0d46a059dc8598",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/SCEN004.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "c49c7e00bad82156f938c77826b58f6ea8fc5138935e968fa503dc3878dc066e",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/SCEN005.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "736eb8028ec4a99a3cfffe7acfd02b83847a8a45d2c5f852952bc4f2b7a3311a",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 1002,
+          "selector": 152
+        },
+        {
+          "source": "Media/scenario/SCEN006.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "7a6d9e14c2a4bc538106a5d11706c106a99af8a0c7c2ec38691cb70afbcbfd81",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 1002,
+          "selector": 152
+        },
+        {
+          "source": "Media/scenario/SCEN007.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "d6419d95ce91532c93ea43be37665a1443116c04825ce8d1c13eeb3457dc245d",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen008.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "de3fac496b5bbcbf7c367f49c0070a9aa3976d2dbfe990c3a351254251db23a3",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen009.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "5e6c2dc37654baccd0e8d92d48d5ee3e8af65874cd1441a43924d677c3365cf8",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen010.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "25a15311a04171773e35326810ea6b92959e5a9a30fc51041d2de3089588f812",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 1002,
+          "selector": 152
+        },
+        {
+          "source": "Media/scenario/Scen011.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "784cb5b7127274b428c6c987f7f78c8ef12c16a471472c12fd5a5f738a5d03b3",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen012.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "c2c2a135f22319b556b668df13187eb90fcf514c2165694b0f8429a24824c415",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen013.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "f7783571849e5f7fb5030adaa4c0f253edc8cc454d8481b458f2af98453a2f10",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen014.S11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "8749d2c31bbd62660b731147a6690bbcb5c1951b3e8d67bcb2f0b818e48b919c",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 2,
+          "selector": 132
+        },
+        {
+          "source": "Media/scenario/Scen015.s11",
+          "offset": 32656,
+          "bytes": 152,
+          "sha256": "7a6d9e14c2a4bc538106a5d11706c106a99af8a0c7c2ec38691cb70afbcbfd81",
+          "appearance": 184,
+          "death": 219,
+          "face_id": 1002,
+          "selector": 152
+        }
+      ],
+      "variants": {
+        "younger": {
+          "face_id": 2,
+          "selector": 132,
+          "texture_resource": 501
+        },
+        "older": {
+          "face_id": 1002,
+          "selector": 152,
+          "texture_resource": 521
+        }
+      }
+    },
+    {
+      "project_id": 1002,
+      "runtime_name": "张飞",
+      "native_index": 432,
+      "name": "張飛",
+      "face_id": 1,
+      "sex": 0,
+      "appearance": 184,
+      "birth": 167,
+      "death": 221,
+      "selector": 143,
+      "age_change": 42,
+      "template": 115,
+      "texture_resource": 512,
+      "scenario_records": [
+        {
+          "source": "Media/scenario/Scen000.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "a6e0c91312d0508c2d5ec11273e25a2ceb2c13364f5b559b281b0219d2bacec6",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/SCEN001.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "5a2f28b0d4f9c3c88077b09da53fe2f2b7389ef7420a5d6535fe9b9857a397cf",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/SCEN002.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "7085ce23cbaf033c9fde6c603e2cf94c9004bd18eb2e3ad9924be174f48b8d5d",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/SCEN003.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "29d8b39544e6797e8acec433f6f0cfb4feb0de5619fa251d212cadbf58f2fce5",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/SCEN004.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "6ae04006547ab43a12024fbe8b863ccf47fde803b0a285a836c450a1ac683566",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/SCEN005.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "1c22b447e4e2c2f477362b352e86a030dbd64101982f502486579709b02ba4d9",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1001,
+          "selector": 163
+        },
+        {
+          "source": "Media/scenario/SCEN006.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "88ac28ec9f77b54693aecdd22c0a971fff613bec7ecd9591abb88321fe60818c",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1001,
+          "selector": 163
+        },
+        {
+          "source": "Media/scenario/SCEN007.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "bfe9360821ffe58eb0e6ecbc9153caa1b837b2c62ede108e70a3334aa8d73f71",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen008.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "f4deb6a5da394e5ad45d484a32241422c2e7fd0a1e0fa191517e0502e05d7602",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen009.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "6441a3d7f11ad706bfe41128c7034dcdd6ce17e45dc0871908addb6d7c6cc5c1",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen010.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "df4a60656e08b5d2314b35158fd506bd58496fa9ec35e9efa7104053d7efccbd",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1001,
+          "selector": 163
+        },
+        {
+          "source": "Media/scenario/Scen011.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "da4263d16ca70daaed7330f49e4378fa593e3edae6e48dca157ba2a9fa948760",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen012.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "7bd9898baf69d53a2b290eb9022e4b274cd2217f666fe63ddbbfd66d8fa973d5",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen013.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "7c1566f36adf4fb81ffbc7e3b1492293d6b9e984ea23a10c787c20b106685fc6",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen014.S11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "776a31141b818d3dd925665955962e055717bca67565cf9ddecd7be16963e1ab",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1,
+          "selector": 143
+        },
+        {
+          "source": "Media/scenario/Scen015.s11",
+          "offset": 83424,
+          "bytes": 152,
+          "sha256": "88ac28ec9f77b54693aecdd22c0a971fff613bec7ecd9591abb88321fe60818c",
+          "appearance": 184,
+          "death": 221,
+          "face_id": 1001,
+          "selector": 163
+        }
+      ],
+      "variants": {
+        "younger": {
+          "face_id": 1,
+          "selector": 143,
+          "texture_resource": 512
+        },
+        "older": {
+          "face_id": 1001,
+          "selector": 163,
+          "texture_resource": 532
+        }
+      }
+    },
+    {
+      "project_id": 1003,
+      "runtime_name": "赵云",
+      "native_index": 395,
+      "name": "趙雲",
+      "face_id": 9,
+      "sex": 0,
+      "appearance": 187,
+      "birth": 168,
+      "death": 229,
+      "selector": 131,
+      "age_change": 58,
+      "template": 115,
+      "texture_resource": 500,
+      "scenario_records": [
+        {
+          "source": "Media/scenario/Scen000.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "d84d34631e20713314a297d906a0af4fd10ea2c0826313e54874e84ad54ff0f6",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/SCEN001.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "173a476d914e6281b0fe453955eea3512615fafeed3f5930070a89608c7c0b1f",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/SCEN002.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "f3787d350489bb51840856983a69b73c9fe68bbfeac996c106558309cd9aba10",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/SCEN003.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "5fdc795ef13a5658a2982e78c2589be581d17096c6d1a93ef6cae938318491e2",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/SCEN004.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "7ec7dce888816e5c034679fe8329f16678ee26a8ef566ea98b457d0bb355c8b4",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/SCEN005.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "4f1afb49f18b0d3653f31b5097dcb448c068151d39544d889c14e97e83ace1ae",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/SCEN006.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "b44f01dcc520e7c1beda9ce7fe04cf2d12b682f63f7a024057821b4381f005c5",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 1009,
+          "selector": 151
+        },
+        {
+          "source": "Media/scenario/SCEN007.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "70387e8005d737e861482682ee28df3dd308e474faad53b652f01ad57627f6ad",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen008.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "c20b6e9a5962a8272e9093514b2e1304a8bba495e1d88a8e034f16052f7bfccd",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen009.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "07644121bc357d98dd1a4cf141b8d3a10de6cf025e715795f65a443fe1f2efd5",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen010.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "fe55dbc41a251fa1bee1f99abc62e52295803763143a317d228f1657defe5b81",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen011.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "173a476d914e6281b0fe453955eea3512615fafeed3f5930070a89608c7c0b1f",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen012.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "63e42ba868cda24bf20dff59af60bf933cd52063ad58ccc1ca8e1430a1554a9c",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen013.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "07e6455cfced199dea23f8d8009c1ca50c36c020549bad1f79ca1100d0ab9a70",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen014.S11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "cc0d9f6d01565211c7c465e434bbcbd11697bf332a56d59518b8b36772abd373",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 9,
+          "selector": 131
+        },
+        {
+          "source": "Media/scenario/Scen015.s11",
+          "offset": 77800,
+          "bytes": 152,
+          "sha256": "1a29312e1a8dfce6854a1bd35119b9db6376347d2c73ea6eae90115f1c349d85",
+          "appearance": 187,
+          "death": 229,
+          "face_id": 1009,
+          "selector": 151
+        }
+      ],
+      "variants": {
+        "younger": {
+          "face_id": 9,
+          "selector": 131,
+          "texture_resource": 500
+        },
+        "older": {
+          "face_id": 1009,
+          "selector": 151,
+          "texture_resource": 520
+        }
+      }
+    },
+    {
+      "project_id": 1004,
+      "runtime_name": "诸葛亮",
+      "native_index": 289,
+      "name": "諸葛亮",
+      "face_id": 45,
+      "sex": 0,
+      "appearance": 208,
+      "birth": 181,
+      "death": 234,
+      "selector": 134,
+      "age_change": 43,
+      "template": 115,
+      "texture_resource": 503,
+      "scenario_records": [
+        {
+          "source": "Media/scenario/Scen000.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "6c3422698ca6effc504e16abb38c3900752e41973bd65b00376f0be64794b167",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/SCEN001.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "6c3422698ca6effc504e16abb38c3900752e41973bd65b00376f0be64794b167",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/SCEN002.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "8191c128c57e6c6c3e9d7a68aded850ea437ca9fc15db70cb0e50166acd7a7ec",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/SCEN003.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "200b413ec0667c754cfbe447c854644f9a5de59909427d78417564142942453e",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/SCEN004.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "10b8fd4a20f3f8678cd46afcf9a71ef42f758d36b2a998b104bf01feec79b523",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/SCEN005.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "80c216b22bb69c22989fc2871291530d5bbe73947eaab0a8ee6229c4b4fd449f",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/SCEN006.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "b24991bdda3ff32534fd6aadc9adc894d3dff0fad883f6ae129895253eba91e6",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 1045,
+          "selector": 154
+        },
+        {
+          "source": "Media/scenario/SCEN007.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "a4285d285d3bd0e67ca6b1e9ba5dcf5039fa72287bf6233d7e02f54f756d0667",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen008.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "200b413ec0667c754cfbe447c854644f9a5de59909427d78417564142942453e",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen009.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "200b413ec0667c754cfbe447c854644f9a5de59909427d78417564142942453e",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen010.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "85ffe7f93f64822ea855ecef69b3ef9028fb0c4f3ed3b3a354bead419ca10d8b",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen011.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "6c3422698ca6effc504e16abb38c3900752e41973bd65b00376f0be64794b167",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen012.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "6c3422698ca6effc504e16abb38c3900752e41973bd65b00376f0be64794b167",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen013.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "471fe78b7781a321364ee6e43ebf9fa209d73db9b2ba990e37d8515672b2dbcc",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen014.S11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "8ff5d8cd8bb45a384904fd560edb609c36fa1c63ef4c3a2dadb14f6ea907fe29",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 45,
+          "selector": 134
+        },
+        {
+          "source": "Media/scenario/Scen015.s11",
+          "offset": 61688,
+          "bytes": 152,
+          "sha256": "3148ef64e2a9fec7c9ecdfef0908447bd1132a348f94c8ae1ac05b6038aac0bf",
+          "appearance": 208,
+          "death": 234,
+          "face_id": 1045,
+          "selector": 154
+        }
+      ],
+      "variants": {
+        "younger": {
+          "face_id": 45,
+          "selector": 134,
+          "texture_resource": 503
+        },
+        "older": {
+          "face_id": 1045,
+          "selector": 154,
+          "texture_resource": 523
+        }
+      }
+    },
+    {
+      "project_id": 2000,
+      "runtime_name": "曹操",
+      "native_index": 343,
+      "name": "曹操",
+      "face_id": 60,
+      "sex": 0,
+      "appearance": 184,
+      "birth": 155,
+      "death": 220,
+      "selector": 133,
+      "age_change": 54,
+      "template": 115,
+      "texture_resource": 502,
+      "scenario_records": [
+        {
+          "source": "Media/scenario/Scen000.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "edac14dab5d32640f1221b10ec2f4bb475504f273d6d5a3609ff7397404dad06",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/SCEN001.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "ef4d9d9b4530831a0f66a82c5e98a21046d2c04fdc93f5cead40e873a6293636",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/SCEN002.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "d8005868fcadb1d132f865b318c176d6b5e419931cba5dfd6a2c1d7f9ef228c0",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/SCEN003.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "979dc79d4c10038904f351c0c81448f90da34a31ae7c66ba00fecb9a6cb4aebe",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/SCEN004.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "81acb141f0fd68fe6f0c007b0de87f335863dd6e54fd87acdc397cf3bded7004",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/SCEN005.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "cb49526bc3eea9d523fac5c3b738eb6b9abda20f8a704c016d846d30dfd450f2",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 1060,
+          "selector": 153
+        },
+        {
+          "source": "Media/scenario/SCEN006.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "93f3a493494fb9d73a1923e2dc91bdeb5be88b66ef7139ff8d6fa328c98d18f6",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 1060,
+          "selector": 153
+        },
+        {
+          "source": "Media/scenario/SCEN007.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "ba7ee0386e26b8b1eed0df35d0a250381ced358009cc75cc2a171225ed8647ae",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen008.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "b5b68223ff4384b8b41dab6e86f32a0fea457534ae55958a8f715c14c72ced2b",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen009.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "e993e0feec8e59fa8b575221292a292689d467a84e0fc433207bfdc615193f00",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen010.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "11ab4ef2117352d13f48eae291e2d8338ab34653652835352c7863cb48f7fceb",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 1060,
+          "selector": 153
+        },
+        {
+          "source": "Media/scenario/Scen011.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "60fddf9912fc8c615514a78e5fb0bc5dd076c5e371cc1e0e091305066bbf7299",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen012.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "01329537b8c51a1b96b7e699deabd5cbeadc460d2cabb94ffa6831e83ba724fa",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen013.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "f846abcc9c84db46fffe12f7a5d1ec86a15011b5b4f9ba483ff57d5952c809e9",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen014.S11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "ba7ee0386e26b8b1eed0df35d0a250381ced358009cc75cc2a171225ed8647ae",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 60,
+          "selector": 133
+        },
+        {
+          "source": "Media/scenario/Scen015.s11",
+          "offset": 69896,
+          "bytes": 152,
+          "sha256": "93f3a493494fb9d73a1923e2dc91bdeb5be88b66ef7139ff8d6fa328c98d18f6",
+          "appearance": 184,
+          "death": 220,
+          "face_id": 1060,
+          "selector": 153
+        }
+      ],
+      "variants": {
+        "younger": {
+          "face_id": 60,
+          "selector": 133,
+          "texture_resource": 502
+        },
+        "older": {
+          "face_id": 1060,
+          "selector": 153,
+          "texture_resource": 522
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Native age transition verified offline; MOD live override order and already-customized PC faces remain pending",
+    "Attachment SceCharData.s11 helped locate split names, but none of its fields are runtime inputs",
+    "Community sourceId checked against actual native name/birth/sex; never assumed equivalent",
+    "No Wine; no source installation writes; PC camera/timing and MOD live overrides remain unaccepted"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "serial": "emulator-5582",
+  "sourceAvd": "san11-pure3d",
+  "previousPid": 82554,
+  "otherSerialTouched": false,
+  "sourceAndBackupByteEqual": true,
+  "files": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/bootcompleted.ini",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/bootcompleted.ini",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/cache.img",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/cache.img",
+      "bytes": 69206016,
+      "sha256": "c39628d11159632d1d5b20a1bde5a0c96cc105ea2b4701dd80985fa6bc34d343"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/cache.img.qcow2",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/cache.img.qcow2",
+      "bytes": 196616,
+      "sha256": "653a5ddde6cc210b3492dc4690c696b758892d81d6a9b2d073ee85480637248f"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/config.ini",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/config.ini",
+      "bytes": 3671,
+      "sha256": "826a525500a4ca56bdf8224a6d5f5c02c98b21ec713e7dfd4e947427fcb08a88"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/emulator-user.ini",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/emulator-user.ini",
+      "bytes": 113,
+      "sha256": "1e5c7850cb48c62b9fb7732257b38fb6acde3495be7ba1444a31757a136e9606"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/encryptionkey.img",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/encryptionkey.img",
+      "bytes": 1048576,
+      "sha256": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/encryptionkey.img.qcow2",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/encryptionkey.img.qcow2",
+      "bytes": 196616,
+      "sha256": "5bc9e74fe0d721fe16524c80133a3ed64d1c4705c52685fc123dc2018721536c"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/hardware-qemu.ini",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/hardware-qemu.ini",
+      "bytes": 4596,
+      "sha256": "4601efc83b2aaf64c7521e44d4880126aea7928f0e249cfa66aaa1bee8653da7"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/userdata-qemu.img",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/userdata-qemu.img",
+      "bytes": 6442450944,
+      "sha256": "126117fd148b2e7915ecc303fc5f966b431a94574504264922b35ea1d1d962c9"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/userdata-qemu.img.qcow2",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/userdata-qemu.img.qcow2",
+      "bytes": 3978559488,
+      "sha256": "7b97168e29684f9d9e4fdd5ab27a04a14783298b4d75b6a825b53189ef15b586"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile/out/pure3d/android-home/avd/san11-pure3d.avd/userdata.img",
+      "backup": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/userdata.img",
+      "bytes": 1048576,
+      "sha256": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58"
+    }
+  ],
+  "wireInstrumentationStarted": false,
+  "wireUserBackup": "out/media/integration-wire-03/user-before.tar",
+  "action": "Backup all original AVD images before restarting the same exclusive AVD; preserve userdata and both old audio recordings."
+}

@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceSharedSha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "sourceReportSha256": "3a9c4a04579ec405a13b02bb193fae2a721c06fc4b64af4cd1b5abf296f523ae",
+  "entries": [
+    {
+      "projectTacticEnum": "THRUST",
+      "nativeTacticId": 0,
+      "nativeTacticName": "突刺",
+      "rendererActionRaw": 6,
+      "presentationRoute": "0x570490",
+      "nativeHandler": "0x596000",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "SPIRAL",
+      "nativeTacticId": 1,
+      "nativeTacticName": "螺旋突刺",
+      "rendererActionRaw": 7,
+      "presentationRoute": "0x570490",
+      "nativeHandler": "0x593c40",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "DOUBLE_THRUST",
+      "nativeTacticId": 2,
+      "nativeTacticName": "二段突刺",
+      "rendererActionRaw": 8,
+      "presentationRoute": "0x570490",
+      "nativeHandler": "0x596010",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "HOOK",
+      "nativeTacticId": 3,
+      "nativeTacticName": "熊手",
+      "rendererActionRaw": 9,
+      "presentationRoute": "0x5711a0",
+      "nativeHandler": "0x5946f0",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "SWEEP",
+      "nativeTacticId": 4,
+      "nativeTacticName": "橫掃",
+      "rendererActionRaw": 10,
+      "presentationRoute": "0x5706b0",
+      "nativeHandler": "0x594890",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "WHIRLWIND",
+      "nativeTacticId": 5,
+      "nativeTacticName": "旋風",
+      "rendererActionRaw": 11,
+      "presentationRoute": "0x570770",
+      "nativeHandler": "0x594af0",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "FIRE_ARROW",
+      "nativeTacticId": 6,
+      "nativeTacticName": "火矢",
+      "rendererActionRaw": 12,
+      "presentationRoute": "0x570830",
+      "nativeHandler": "0x594ce0",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "PIERCE",
+      "nativeTacticId": 7,
+      "nativeTacticName": "貫箭",
+      "rendererActionRaw": 13,
+      "presentationRoute": "0x570830",
+      "nativeHandler": "0x594ed0",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "VOLLEY",
+      "nativeTacticId": 8,
+      "nativeTacticName": "亂射",
+      "rendererActionRaw": 14,
+      "presentationRoute": "0x570830",
+      "nativeHandler": "0x595250",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78
+    },
+    {
+      "projectTacticEnum": "CHARGE",
+      "nativeTacticId": 9,
+      "nativeTacticName": "突擊",
+      "rendererActionRaw": 17,
+      "presentationRoute": "0x570aa0",
+      "nativeHandler": "0x595b70",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78,
+      "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+      "sourceScope": "Executed argument/record/primary-route/initializer/callback prefixes; handler pre-route movement context statically linked, not executed; secondary target audio unbound"
+    },
+    {
+      "projectTacticEnum": "BREAKTHROUGH",
+      "nativeTacticId": 10,
+      "nativeTacticName": "突破",
+      "rendererActionRaw": 16,
+      "presentationRoute": "0x570a00",
+      "nativeHandler": "0x595bb0",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78,
+      "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+      "sourceScope": "Executed argument/record/primary-route/initializer/callback prefixes; handler pre-route movement context statically linked, not executed; secondary target audio unbound"
+    },
+    {
+      "projectTacticEnum": "ADVANCE",
+      "nativeTacticId": 11,
+      "nativeTacticName": "突進",
+      "rendererActionRaw": 17,
+      "presentationRoute": "0x570aa0",
+      "nativeHandler": "0x595b90",
+      "requiredAppliedFact": "primary ordered physical Strike with same actor/owner/start/target/type and nonnaval",
+      "noncriticalSoundId": 49,
+      "criticalSoundId": 78,
+      "sourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f",
+      "sourceScope": "Executed argument/record/primary-route/initializer/callback prefixes; handler pre-route movement context statically linked, not executed; secondary target audio unbound"
+    }
+  ],
+  "miss": {
+    "status": "unbound-without-explicit-outcome-fact",
+    "sourceMissSoundId": 58,
+    "sourceGate": "586230 tests original record+54",
+    "absenceOfStrikeIsNotFailureFact": true
+  },
+  "limits": [
+    "Only ordinary paid infantry tactic hit sound branch; current Android phase is not PC timing.",
+    "PIERCE project label贯射 joins original貫箭; media keeps original source name separately and does not rename metadata.",
+    "Cavalry/siege/naval contextual dispatch, voice random choice and remaining source SFX are unbound."
+  ],
+  "cavalrySourceReportSha256": "edd1852bf6af16360c011ac3a348281a43f48fb693db0c1cca1d83b4422a669f"
+}

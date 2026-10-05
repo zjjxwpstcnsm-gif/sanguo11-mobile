@@ -1,0 +1,124 @@
+# 本批 UI 边界与继承
+
+## 20261004 最终集成方状态更新
+
+已将另一会话提交 09b36a5（含 507f163）按逐路径 SHA 合入独立规则分支，21 路径无 core/data 旧副本覆盖。规则侧新增 GameEvent.techniquePointsChanges 及稳定 id、TurnJournal checkpoint 只读前后值；原“无字段”描述是此前请求时的历史状态。当前接口仍为提交／checkpoint 净变化，每次实际增減及零净额序列、原因与演示阶段绑定尚待补齐，不能称逐事件全部完成。
+
+原生产技巧请求及 10000 上限已以显式新局 v37 候选接入，旧31–36不自动回填；2717规则／137会话及当前新局回归通过，实际新37组合包正在构建。失城扣点和其他奖励仍待权威规则闭合。原 HUD 静态原码的音效调用编号33已记录，具体声源／完整回调仍未核实，移动端合成音色标记保持。
+
+## 技巧点逐事件契约请求（20261003追加反馈）
+
+用户要求左上角本势力技巧点、短暂数字滚动和音效，覆盖击破部队/设施、生产兵装、城池失守等。
+现有GameEvent无技巧点字段，TurnJournal只复制地图实体，BattleReports技巧差分只有人读文本。
+本侧不解析报告文字、不按击破猜奖励、不自行补生产奖励或城破扣点，也不改Campaign.points。
+现阶段UI读取已提交StateToken对应的campaign.points(player)，本地战斗在已提交动作35%后释放提示；
+非战斗提交立即提示，回合以完整提交且演示完成后的权威合计提示。初始/读档/切势力/替换静态同步，
+预览、失败、取消、同revision刷新不提示；后台静态追齐不补播。净额为零的多事件不能伪造逐事件反馈。
+
+请规则/runtime所有者提供不可变TechniquePointDelta：factId、owner、before、after、cause、
+parentJournalEventId或阶段序号，并附完整StateToken。记录已实际应用的每次增减，包括封顶后的真实差值；
+生产收益及城破损失须按原版独立证据实现。候选未提交/失败不得发布，不能额外执行规则或消耗RNG，
+不能进入SaveCodec演出字段。UI消费事实序列并按演示阶段滚动，不改变权威。
+当前专用增减音色是原创移动端提示音；尚无原PC样本/事件编号绑定证据，不宣称PC音色完全还原。
+
+工作目录 /Users/paopao/.codex/worktrees/3005/sanguo11-mobile，分支 codex/pure3d-20261003。
+完整 AP 4078 文件和四份 native 输入逐 SHA 核验后提交 c19de29。
+原目录、旧 UI 副本和 core/game-api/game-runtime/data/unity 保持只读。
+旧 UI 会话 01a0fd3c-4290-74f1-a722-a895696b7424 于接管检查时 idle，最后完成全量合回。
+本批不修改共享 progress 或 PARITY_UI_CONTRACT 的同一段，不向其他会话发消息。
+
+地块查询消费既有 TerrainPresentation.detail(detached LegacyView.draft, Hex)，这是已有只读接口。
+输入真实轴坐标；输出权威 terrain、local/national/axial 与 infantryCost。界外抛 IllegalArgumentException。
+接口不提交、无随机数、无事件、不改变 StateToken。UI 保留当前部队 ID、命令草稿与镜头；全存档字节验收。
+若最终集成方增加平台无关 DTO，应保留以上语义与 state(sessionId,generation,revision)，由其实现 runtime。
+
+音效仅消费 GameEvent 已提交 receipt 的 StateToken 和 TurnJournal 不可变事件 id/阶段/状态差分。
+preview、失败、取消不触发命令声音；UI 点击与命令音效独立。音频使用固定素材，不使用规则 RNG。
+权威 TURN_COMMITTED 提示和 journal 播放进度分开；详情字符串不参与事件类型判断。
+音源为 tools/audio/generate_ui_sounds.py 的原创移动端合成，不声称 PC 音色/编号匹配。
+只读检查确认原 LINK 包含 2027 KOVS，参照 vgmstream 原生解码器并验证 Ogg 页边界，
+但 PC 事件绑定尚未核实，因此没有把未知语音编号冒充攻击/UI 声音。
+
+纯3D：原 MapView 移到 androidTest 历史夹具，不进入生产 APK。必要坐标计算已在 TileGeometry、
+GridWorldTransform、ScenePicking。地图失败只显示存档保留/重试，不创建可玩替代地图。
+旧 cameraX/Y 世界中心沿用，sceneEnabled=false 升为 true；nativeFailure 保留显式重试，
+普通进程终止的 nativeSession 标记不阻止下次加载3D。map-display 的导航/姓名/兵条偏好保留。
+
+设备 emulator-5582，独立 ANDROID_USER_HOME/AVD、Gradle 可写缓存和测试输出。
+5554/5580 未操作。独立设备使用正常 190 测试局作为种子，不复制/更改用户设备数据。
+每次安装备份本设备 files/shared_prefs，结束逐字节恢复并删除本次新增测试文件，不清数据。
+ARM 真机未验证；模拟器首帧/后台恢复和长期性能未通过前不宣称流畅。
+
+
+## 尚需规则会话提供的性能接口
+
+现存 captureSave/legacyView 必须在 serial logic owner 调用，UI 不将 World/RNG 交给后台读写。
+如需进一步减少保存、暂停与新局首次安装的主线程停顿，请由规则会话实现并冻结：
+输入 expected StateToken + 请求用途(auto/manual/UI read)；输出提交状态的不可变 save bytes /
+不可变显示 DTO 与实际 token；错误 STALE_SESSION/STALE_REVISION/HOST_BUSY/CLOSED/HOST_ERROR。
+读取不消费 RNG、不发命令、不推进回合。字节保持当前 SaveCodec，不改格式、不自动修复旧档。
+回调与销毁按 sessionId/generation 撤销，后台完成不覆盖更新的局面或用户存档。
+本批未越界实现此接口，也不把主线程数百毫秒/数秒停顿记作流畅通过。
+
+## 已观察的实装边界
+
+同一 AP 规则 + UI08 APK，城格/己方占格24触控检查；UI13 APK继续覆盖真实运输命令、
+AI产生的敌方单位与 CITY/GATE/PORT 邻接格，61.10秒流程通过，所有查询完整save/RNG字节不变。
+敌方部分是由真实 core nextTurn 生成、经正式 session install 的验收夹具，独立于普通触控行军。
+海岸UI08 12个地点/朝向/跨度组合、104检查通过；源Surface截图证明下邳大块补底/断面消失。
+音频UI08焦点等流程34.14秒通过；实际设备混音9音色最低相关0.9976，不用play返回值代替可听证据。
+这些是各自APK的证据，不能移用为后续APK的完整通过。
+
+历史 GameSmokeRunner/ReferenceXX 中直接创建/投影 MapView 的版本专属夹具保留在androidTest，
+不进入生产APK；当前 SceneInstrumentation、UiUxInstrumentation mapEdges/march 已迁3D。
+全部历史2D专属版本套件尚未逐项迁移，不声明所有Android测试全绿。
+
+
+声音提交/暂停补充：本地命令仅 result.ok 后消费 journal；TURN 播放仅 work.done 且 error=null 后
+允许音频（分势力候选画面在完整权威提交前保持静音），不为追赶声音重演命令或 RNG。
+演示暂停保留活跃 battle SoundPool stream 的位置，UI 点击仍可听；焦点丢失/后台停止全部stream。
+军事建设完成从已提交回合前后公开只读 Structure.complete 比较取得，键含完整 StateToken 身份，
+不是根据人读 message、HP 猜测，也不再运行建设规则。
+
+首批加载补充：普通游戏在没有保存镜头时直接朝选中地块/本城建立首批几何；
+恢复镜头在首个 setWorld 之前设置，不先为坐标0生成无用地图。
+编辑器初始局部3D，可从检查页全图浏览；不再先加载全国、随后立即丢弃全国任务。
+首帧提交只记一次，不能被 Surface 重建覆盖。resume_verified 仅是渲染器从门控开启到
+像素检查的时间，完整用户等待另看 UIUX foreground 样本，不据此宣称流畅。
+关闭系统动画时已提交命令直接进入最终演示阶段，仍播放动作声音；确认弹窗关闭期间
+不依赖GPU提交，不把已提交声音当作预览声音。实装 reducedMotion02 75检查全部通过，
+外层脚本该次误传了 PASS UIUX（实际标志 UIUX PASS），原始结果保留；最终包会按正确标志复跑。
+
+编辑器实装 installed-editor04：APK29，61检查，84.32秒；包含独立草稿、真实触摸画笔、
+第二指取消、七格城池选择、城市移动/撤销、AtomicFile backup恢复、库删除与固定版本旧档、
+90据点自定义新局。后续首批加载优化需要在最终包复验，不移用旧包完成状态。
+
+音效修正：PC地图中的真实暴击若没有专属全屏演出线索，不能被当成无声音事件。
+未知武将暴击/成功暴击计略在动作演示35%后播放 CRITICAL；有专属源画面者仍在实际提交画面后播放。
+实装 criticalAudio02：15检查，16.53秒，真实PC地图/原始能力/既有枪神特技，
+实际支付的螺旋突刺、取消纯读、双击一次、伤害和RNG与直接规则参考完整存档字节一致。
+只改Android测试夹具，不修改业务规则、原始能力档或数据文件。GameAudio确认非零CRITICAL流一次。
+
+长时诊断修正：e009581 24个真实回合及24次Home的逐轮authority/auto等值检查均完成，
+但最后一轮从测试线程遍历UI资源集合触发ConcurrentModificationException，整套保留FAIL，705.31秒。
+新的diagnostic/frames/音频去重集合采集使用runOnMainSync取不可变字符串/计数；内存CSV每轮持久化。
+没有删断言或把旧失败改成PASS，下一份同包会重新跑24回合。
+
+恢复A/B：原有后台应用startActivity路径仍保留约4-5秒真实墙钟。
+Android10源码的APP_SWITCH_DELAY_TIME=5*1000与此现象相符，推测其中包含系统的应用切换限制：
+https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android10-release/services/core/java/com/android/server/wm/ActivityTaskManagerService.java
+独立userResume01使用系统任务启动(am start -W)并把shell等待、主线程等待、新PixelCopy全部计入墙钟；
+六轮为1174/1203/1127/1131/1135/1181ms，完整authority/RNG不变。1000ms目标全部false，不能宣称流畅。
+该测试为root模拟器系统启动对照，不等同ARM真机用户点击或GPU性能。
+
+## 组合输入的历史起始状态基线失败（规则/运行时所有权）
+
+20261003已在未含格线改造的4a8bbdd2组合基线和b6f01621改造候选分别执行原始test-architecture.sh。
+静态边界均PASS，GameSessionTest均在exact old-scenario starting state原断言停止，未运行后续步骤。
+原始golden初态b27c526efeb53c443e921a24aedc34ab78b9f645c199154710d292ed0b08340b，
+当前同输入初态4c5605a31ffb42c4af3d5375946ed9c27fa208206de6507291cf22d58be01db5。
+原golden文件SHA687eacf3232cd11f89116716ec50af7dede6cecec40be40eb18f560a95204a37。
+这不是本侧UI数组改造造成的差异：core/API/runtime/data/unity输入和golden字节未改变，基线已复现。
+本侧只记录完整证据在out/pure3d/architecture-baseline-diagnostic、两组合architecture-full日志，
+不改规则、prepared夹具或golden，不把静态PASS标成整套架构/会话检查通过。
+需规则/运行时最终集成方判断已交接数据变化是否预期，并依原规范修复或重新独立取证；本侧无权限改其文件。

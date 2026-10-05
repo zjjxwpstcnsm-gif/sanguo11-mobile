@@ -1,0 +1,1 @@
+Command '['out/toolchain/android-sdk/platform-tools/adb', '-s', 'emulator-5580', 'shell', 'am', 'instrument', '-w', '-e', 'suite', 'diplomacy', '-e', 'run', 'diplomacy-p14-08', '-e', 'reuseSlotSha', '02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69', 'game.sanguo.mobile.dev.test/game.sanguo.mobile.UiUxInstrumentation']' timed out after 300 seconds

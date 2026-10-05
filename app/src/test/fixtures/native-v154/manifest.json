@@ -1,0 +1,13 @@
+{
+  "source_exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_climate_sha256": "950e1e6b49110b4293146467441d0c4ea0b91b9bdf677bbfdd34f283d210dfc1",
+  "oracle": "Original41bae0 executable, independent of Android resource formula",
+  "report": "out/pc-visual/v154/source-climate-checked.json",
+  "report_sha256": "f549ec16436a62660d5fca691881eeeb41c8d21adeb95c460f17c83c3818c248",
+  "fixture_sha256": "f7605b5d3b723ec5d93f8b8a3d06b3f1626c1f1f19f37792f7be73bd0be865b6",
+  "cases": 144,
+  "limits": [
+    "Actual source tree shape/state match, not complete pixel/material/LOD/timing acceptance",
+    "Other openings/MOD initialization not decoded"
+  ]
+}

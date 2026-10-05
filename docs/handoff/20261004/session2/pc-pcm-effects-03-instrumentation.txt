@@ -1,0 +1,57 @@
+UIUX PASS 55 checks
+PASS normal launch restores existing save
+PASS nine inherited mobile cues and two original HUD33 directions ready on installed Android
+PASS touch visible 视图 at Rect(799, 210 - 1059, 336)
+PASS touch visible 音效与音量 at Rect(28, 889 - 1052, 1015)
+PASS touch visible 试听音效 at Rect(75, 1002 - 1005, 1128)
+PASS actual UI audition sends a nonzero SoundPool stream
+PASS touch visible 静音 at Rect(75, 824 - 1005, 908)
+PASS actual mute control updates preference
+PASS touch visible 试听音效 at Rect(75, 1002 - 1005, 1128)
+PASS muted audition creates no stream
+PASS touch visible 静音 at Rect(75, 824 - 1005, 908)
+PASS touch visible 完成 at Rect(852, 1160 - 1020, 1286)
+PASS device mixer accepts UI
+PASS duplicate phase never repeats UI
+PASS device mixer accepts MARCH
+PASS duplicate phase never repeats MARCH
+PASS device mixer accepts ATTACK
+PASS duplicate phase never repeats ATTACK
+PASS device mixer accepts TACTIC
+PASS duplicate phase never repeats TACTIC
+PASS device mixer accepts CRITICAL
+PASS duplicate phase never repeats CRITICAL
+PASS device mixer accepts PLOT
+PASS duplicate phase never repeats PLOT
+PASS device mixer accepts CONSTRUCTION
+PASS duplicate phase never repeats CONSTRUCTION
+PASS device mixer accepts COMPLETE
+PASS duplicate phase never repeats COMPLETE
+PASS device mixer accepts TURN
+PASS duplicate phase never repeats TURN
+PASS device mixer accepts TECHNIQUE_GAIN
+PASS duplicate phase never repeats TECHNIQUE_GAIN
+PASS device mixer accepts TECHNIQUE_LOSS
+PASS duplicate phase never repeats TECHNIQUE_LOSS
+PASS original PCM pause holds exact playback head
+PASS original PCM resumes its existing source position
+PASS actual world replacement stops original PCM and preserves complete Save/RNG
+PASS world replacement never replays consumed PCM probe identity
+PASS paused demonstration does not start a battle stream
+PASS UI sound remains available while demonstration is paused
+PASS volume zero suppresses committed audio
+PASS focus-loss test starts with actual granted game focus
+PASS competing transient focus actually granted
+PASS actual focus-loss callback observed before suppression check
+PASS transient focus loss suppresses battle audio
+PASS system global Home action accepted
+PASS system Home actually pauses map and removes focus in 312ms
+PASS UI recovery hints identify the exact durable authoritative autosave
+PASS actual Home stops foreground audio
+PASS background cannot create deferred battle streams
+PASS foreground window is focused and map rendering resumes in 4794ms
+PASS foreground resumes audio ownership
+PASS resume does not replay a consumed background phase
+PASS audition, volume, mute, focus and background preserve complete state and RNG
+PASS normal exit releases mobile SoundPool, original PCM voices and audio focus
+

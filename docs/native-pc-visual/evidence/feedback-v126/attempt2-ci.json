@@ -1,0 +1,691 @@
+{
+  "jobs": [
+    {
+      "id": 109715029693,
+      "name": "installed (29, hukou)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715029867,
+      "name": "installed (35, hukou)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715029880,
+      "name": "installed (29, wall)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715029951,
+      "name": "installed (29, taishan)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715029965,
+      "name": "installed (35, wall)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715029970,
+      "name": "installed (29, southwest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715030387,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run gradle/actions/setup-gradle@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run sdkmanager 'platforms;android-35' 'build-tools;35.0.0'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Reproduce actual Blender resources",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Reproduce pinned material",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Host rules, authority and landscape safety",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Preserve inherited core and displacement failures independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Build and audit exact source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run gradle/actions/setup-gradle@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        }
+      ]
+    },
+    {
+      "id": 109715030778,
+      "name": "installed (35, southwest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 109715031190,
+      "name": "installed (35, taishan)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36659459089,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run sudo chmod 666 /dev/kvm",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11074635672,
+      "name": "native-landmarks126-api29-wall",
+      "size_in_bytes": 5075208,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11074635672",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11074635672/zip",
+      "expired": false,
+      "created_at": "2026-09-30T02:43:12Z",
+      "expires_at": "2026-10-30T02:43:11Z",
+      "updated_at": "2026-09-30T02:43:12Z",
+      "digest": "sha256:e78b929d852b1e002b445e49527c16ec6c6aa55bca4c2bf9eed137e153c38945",
+      "workflow_run": {
+        "id": 36659459089,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171"
+      }
+    },
+    {
+      "id": 11073912936,
+      "name": "native-landmarks126-api29-taishan",
+      "size_in_bytes": 3351642,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073912936",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073912936/zip",
+      "expired": false,
+      "created_at": "2026-09-30T02:43:11Z",
+      "expires_at": "2026-10-30T02:43:11Z",
+      "updated_at": "2026-09-30T02:43:11Z",
+      "digest": "sha256:8dde4cd7ddbf7ec25335568366b230ab5d6c5cfbee76c6f352d0c1769db7668f",
+      "workflow_run": {
+        "id": 36659459089,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171"
+      }
+    },
+    {
+      "id": 11073709966,
+      "name": "native-landmarks126-api35-hukou",
+      "size_in_bytes": 4612534,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073709966",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073709966/zip",
+      "expired": false,
+      "created_at": "2026-09-30T02:43:29Z",
+      "expires_at": "2026-10-30T02:43:27Z",
+      "updated_at": "2026-09-30T02:43:29Z",
+      "digest": "sha256:e1c6cd601104e1119619d9f46db3f11edd15c551f2ec6fcaa8e2c27e9ce0fe00",
+      "workflow_run": {
+        "id": 36659459089,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171"
+      }
+    },
+    {
+      "id": 11073663351,
+      "name": "native-landmarks126-api29-hukou",
+      "size_in_bytes": 6413391,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073663351",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073663351/zip",
+      "expired": false,
+      "created_at": "2026-09-30T02:43:16Z",
+      "expires_at": "2026-10-30T02:43:15Z",
+      "updated_at": "2026-09-30T02:43:16Z",
+      "digest": "sha256:8efbc01e922b4c1a0380aba64dcde80d3130b870bd972c728a335182e3fc0215",
+      "workflow_run": {
+        "id": 36659459089,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171"
+      }
+    },
+    {
+      "id": 11074765552,
+      "name": "native-landmarks126-api29-southwest",
+      "size_in_bytes": 38120631,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11074765552",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11074765552/zip",
+      "expired": false,
+      "created_at": "2026-09-30T02:45:43Z",
+      "expires_at": "2026-10-30T02:45:41Z",
+      "updated_at": "2026-09-30T02:45:43Z",
+      "digest": "sha256:8dbde7d07ef7361142ac08a3e9538f95f646de0dfe279d73619acc8342d86fc0",
+      "workflow_run": {
+        "id": 36659459089,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171"
+      }
+    },
+    {
+      "id": 11073953438,
+      "name": "native-landmarks126-api35-wall",
+      "size_in_bytes": 27755486,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073953438",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/11073953438/zip",
+      "expired": false,
+      "created_at": "2026-09-30T02:48:34Z",
+      "expires_at": "2026-10-30T02:48:33Z",
+      "updated_at": "2026-09-30T02:48:34Z",
+      "digest": "sha256:843f3ff2f1cd2b701c3999574a75b589d12c094929efdb0366bcba31065ea7e1",
+      "workflow_run": {
+        "id": 36659459089,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171"
+      }
+    }
+  ],
+  "rerun": "failed only; exactly once; successful job entries are inherited, not rerun"
+}

@@ -1,0 +1,611 @@
+{
+  "goalStatus": "active",
+  "goalComplete": false,
+  "baseCommit": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "branch": "codex/portrait-audio-restoration",
+  "pc33SourceCommit": "fc87a08",
+  "installed": {
+    "wire": {
+      "passed": true,
+      "seconds": 2.14,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/media-wire.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "technique": {
+      "passed": true,
+      "seconds": 14.41,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "audioLifecycle": {
+      "passed": true,
+      "seconds": 30.71,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml",
+          "shared_prefs/sound-effects.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "opening": {
+      "passed": true,
+      "seconds": 61.46,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/customOfficers/library.json",
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "exit": {
+      "passed": true,
+      "seconds": 15.03,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "techniqueFacts": {
+      "passed": true,
+      "seconds": 24.46,
+      "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+      "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/media-facts.json",
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "audioLifecycleCurrent": {
+      "passed": true,
+      "seconds": 32.91,
+      "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+      "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml",
+          "shared_prefs/sound-effects.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "wireCurrent": {
+      "passed": true,
+      "seconds": 1.93,
+      "installed_sha256": "c90f8f51c326248979dccbd3bc27f8af833a21e2504f39d0623184543766092b",
+      "installed_test_sha256": "d8310f25684b7f2c4748adfb28895a87592504a7d453886bda182d4f4a475b08",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/media-wire.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "musicSourceCurrent": {
+      "serial": "emulator-5582",
+      "runner": "MusicSourceInstrumentation",
+      "arguments": [],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-frozen-02/app-debug.apk": "00945eed35a061fb6f8f155b97e6d4acaf58f192ecfe693b8f4640f037464f6d",
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-frozen-02/app-debug-androidTest.apk": "9439160b978d11846ceb0aead2559370274aa8cc851af65c9098cf68c7699201"
+      },
+      "backup": {
+        "files/auto.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        },
+        "files/manual3.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        }
+      },
+      "passed": true,
+      "stage": "finished",
+      "reused_installed": true,
+      "installed_test_sha256": "9439160b978d11846ceb0aead2559370274aa8cc851af65c9098cf68c7699201",
+      "installed_sha256": "00945eed35a061fb6f8f155b97e6d4acaf58f192ecfe693b8f4640f037464f6d",
+      "exit_code": 0,
+      "seconds": 189.96,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/music-source.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "musicStreamCurrent": {
+      "serial": "emulator-5582",
+      "runner": "MusicPlaybackInstrumentation",
+      "arguments": [],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-stream-frozen-01/app-debug.apk": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-stream-frozen-01/app-debug-androidTest.apk": "37600cd6f027b7843c234a7ecbc36c2c611fc0df4e647bc77b3cfa508af3e79e"
+      },
+      "backup": {
+        "files/auto.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        },
+        "files/manual3.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        }
+      },
+      "passed": true,
+      "stage": "finished",
+      "reused_installed": false,
+      "installed_test_sha256": "37600cd6f027b7843c234a7ecbc36c2c611fc0df4e647bc77b3cfa508af3e79e",
+      "installed_sha256": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+      "exit_code": 0,
+      "seconds": 30.43,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/music-playback.json",
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    },
+    "portraitSourceCurrent": {
+      "serial": "emulator-5582",
+      "runner": "PortraitPixelsInstrumentation",
+      "arguments": [],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug.apk": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug-androidTest.apk": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512"
+      },
+      "backup": {
+        "files/auto.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        },
+        "files/manual3.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        }
+      },
+      "passed": true,
+      "stage": "finished",
+      "reused_installed": false,
+      "installed_test_sha256": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512",
+      "installed_sha256": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+      "exit_code": 0,
+      "seconds": 16.76,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/portrait-pixels.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
+    }
+  },
+  "checks": {
+    "installedAndroidWire": 18,
+    "installedTechnique": 27,
+    "installedAudioLifecycle": 51,
+    "installedOpening": 64,
+    "clientProtocol": 52,
+    "hostJavaWire": 13,
+    "originalAudioLookup": 3445,
+    "originalAgeBoundaries": 3468,
+    "sourcePortraitRequests": 13600,
+    "identityVerifiedRequests": 10656,
+    "decodedFacePixels": 2892,
+    "decodedKovs": 2027,
+    "decodedOriginalPcmBanks": 203,
+    "originalFaceRegistry": 6601,
+    "installedExit": 15,
+    "hostTechniqueFacts": 44,
+    "installedTechniqueFacts": 42,
+    "actualPc33Occurrences": 4,
+    "pcmAlgorithmControls": 3,
+    "installedCurrentAudioLifecycle": 51,
+    "installedCurrentAndroidWire": 18,
+    "clientCurrentInstalledWire": 52,
+    "originalMusicSelectorPolicy": 318,
+    "installedCurrentMusicSource": 185,
+    "musicFrameHost": 12,
+    "installedMusicStream": 19,
+    "installedOriginalPortraitPixels": 51302
+  },
+  "originalRestoredAudioSamples": 1,
+  "uniqueCurrentShortSamples": 10,
+  "inheritedSyntheticShortSamples": 9,
+  "fullOfficerRuntimePortraitCoverage": 0,
+  "normalFullMediaMatrixPassed": false,
+  "armPhysicalVerified": false,
+  "publicProtectedFiles": 529,
+  "publicProtectedFilesAllExact": true,
+  "latestPackageIsFullRestoration": false,
+  "nextRequired": [
+    "Consume completed metadata9e171f2 saved sourceInfo via readonly interface; stage/bound-cache exact portraits and prove caller form selection",
+    "Apply exact guarded committed-source host patch sequentially, then validate actual normal UI callback without probe adapter",
+    "Integrate source-proved normal menu/map scene directives and shared focus/volume/noisy lifecycle, then real-source music/voice/SFX coexistence",
+    "Actor/event/weapon/tactic/plot voice and original sound trigger proof + playback",
+    "Complete new combination normal3D battle/plot/multiturn/save/exit/performance acceptance",
+    "ARM hardware or explicit unavailable boundary"
+  ],
+  "evidenceFailuresRetained": [
+    "Android Files.writeString unsupported compile failure",
+    "C# installed JSON harness initially assumed a receipt not present in that suite",
+    "Unfrozen install caught by exact test APK readback guard; no UI suite executed",
+    "Opening suite missing required reuseSlotSha before correct rerun",
+    "Fact runner initially required enabled system motion; guard stopped and all user files restored",
+    "Fact probe incorrectly assumed equal parents and then blank editor parents; distinct original success checkpoints retained in corrected6 actual events",
+    "Audio lifecycle acceptance caller misspelled existing UIUX PASS marker; original false wrapper report retained; rerun separate",
+    "PCM checker initial fixed0.02 gain floor rejected quiet real mixer; replaced with8 PCM quantization steps and strict full waveform fit",
+    "Portrait gzip asset unpacked/renamed by Android asset merge; initial missing manifest test restored all user files; fixed explicit JSON path"
+  ],
+  "portraitIndexAccepted": true,
+  "rejectedPortraitMappingNote": "REJECTED_PORTRAIT_INDEX.md",
+  "correctedFaceSourceSummary": {
+    "facesWithAllThreeImages": 964,
+    "nonemptyImagesPerGroup": [
+      964,
+      964,
+      964
+    ],
+    "threeEmptyFaces": 1236
+  },
+  "portraitIndexAcceptanceScope": "Original file->registry->face/form index and pixel conversion only; runtime caller roles still unverified",
+  "currentPortraitPixelManifest": "portrait-pixels-current.json.gz",
+  "currentPortraitSourceJoin": "portrait-source-join-current.json.gz",
+  "currentPortraitRepeatGuard": "3cc5f5b842479352f7f6f35da767ffe4c5560c647b128219582ba1b88b3565b8",
+  "factSharedHostPatchApplied": true,
+  "factSharedHostPatchSourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
+  "factSharedHostPatchCompiled": true,
+  "latestIntermediateApkSha256": "1003574e73e0d980946320a3e24c7404824848960479d1f1b2c2d70eed43c82b",
+  "latestIntermediateSourceCommit": "b465f86bb2306c18c2f5e5cea1cf1553810ba311",
+  "latestMediaToolCommit": "f11735db275b2cd519bc59f137fa44d4defafc3b",
+  "stagedOriginalMusicTracks": 30,
+  "stagedOriginalMusicBytes": 42745612,
+  "activeOriginalMusicSceneBindings": 0,
+  "musicStreamPlayerImplemented": true,
+  "musicAndroidDecoderRepeatedTracks": 30,
+  "musicAndroidReferenceByteEqualTracks": 0,
+  "musicAndroidSourceTimelineExact": true,
+  "musicPcmDifferenceMeasuredTracks": [
+    2261
+  ],
+  "musicStreamNormalSceneIntegrated": false,
+  "musicSharedFocusIntegrated": false,
+  "musicStreamFirstWriteMillis": 138,
+  "musicStreamActualMixCorrelation": 0.9999978802621599,
+  "latestCommittedMetadataAvailable": "9e171f2",
+  "stagedOriginalPortraitImages": 2892,
+  "stagedOriginalPortraitBytes": 121901058,
+  "portraitBitmapCacheBytesLimit": 16777216,
+  "portraitDecoderWorkerQueueLimit": 32,
+  "portraitHostPatchSourceCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "portraitHostPatchCompiled": true,
+  "portraitHostPatchApplied": true,
+  "integrationBranch": "codex/portrait-audio-restoration-integration",
+  "integrationWorkspace": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile",
+  "publicPatchesAppliedScope": "isolated sequential integration only; original media and metadata worktrees not overwritten",
+  "actualNormalPortraitRoster": 656,
+  "actualNormalPortraitMapped": 652,
+  "actualNormalPortraitSourceUnknown": 4,
+  "actualNormalPortraitDetails": 656,
+  "actualNormalSourceVariants": 1,
+  "actualNormalPortraitChecks": 646113,
+  "actualColdPortraitChecks": 324153,
+  "actualCurrentAllSourcePortraitChecks": 51302,
+  "portraitCallerFormsProven": false,
+  "portraitBattleVisualCopiesBound": false,
+  "architectureFullPassed": false,
+  "architectureFailure": "inherited v33 AP golden20/10; rules/golden unchanged",
+  "newCombinationFullAudioAcceptance": false,
+  "deviceRecoveryInProgress": false,
+  "nextActions": [
+    "Finish independent5582 exact user-data recovery and current Android wire proof",
+    "Extend saved source connection to independent battle/presentation views without rule writes",
+    "Prove native portrait caller forms/MOD effective overrides and remaining15 runtime source variants",
+    "Prove original BGM scene predicates, actor/tactic/plot voice and all original sound events; integrate shared lifecycle",
+    "Run final new-combination normal battle/multiple-turn/save/exit/PCM and separate ARM speaker matrix"
+  ],
+  "deviceSerial": "emulator-5582",
+  "deviceAvd": "san11-media-integrated",
+  "deviceAvdHome": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/android-home/avd",
+  "deviceMixedWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/mixed-recovered.wav",
+  "currentWireChecks": 18,
+  "currentWireUserRestorationByteEqual": true,
+  "currentCombinationPortraitInstalled": true,
+  "currentActualWireClientChecks": 52,
+  "currentNormalTacticOriginalPc33MixedPcm": true,
+  "currentNormalTacticProductionFactConsumption": true,
+  "currentNormalTacticTemporaryHudAdapter": false,
+  "currentNormalTacticPc33Correlation": 0.9999995446479858,
+  "portraitSavedSourceProjectionChecks": 10594,
+  "portraitSavedSourceNamespacesCompared": 16,
+  "portraitSavedSourceProjectionRuntimeChecks": 1486,
+  "portraitDetachedViewConstructorsBindSavedProvenance": true,
+  "portraitHostReplacementAutomaticallyRetires": true,
+  "portraitAppliedCriticalYearConsumed": true,
+  "portraitAllNormalBattleCallerFormsProven": false,
+  "currentNormalSourceRegressionChecks": 324153,
+  "originalVoicePolicy": {
+    "batch": "BATCH_09.md",
+    "nativeSelectorChecks": 8248,
+    "nativeCallerChecks": 1850,
+    "javaOriginalVectors": 8240,
+    "twoRunsNativePolicyBytesEqual": true,
+    "twoRunsNativeCallerBytesEqual": true,
+    "twoRunsGeneratedJavaBytesEqual": true,
+    "tacticSideIsNotProvenSuccessFlag": true,
+    "speakerSideAndSlotNeeded": true,
+    "normalVoicePlaybackAccepted": false,
+    "newCombinedNormalPortraitFlowChecks": 324153,
+    "newCombinedPc33PcmCorrelation": 0.9999995511763713,
+    "newCombinedInstalledApkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
+    "newCombinedAllUserFilesRestored": true,
+    "notEquivalentToTacticOrdinal": true,
+    "originalRecordFieldChecks": 6
+  },
+  "latestInstalledApkSha256": "efcee0ad773263a9d1fca6f84290222e659fd2362657fbe5a12a5bd83f0a1f8b",
+  "latestInstalledSourceCommit": "ccd6d6bf11a4987189dd260dab7cf99a229fc0d2",
+  "originalVoiceSources": {
+    "result": "PASS_CODEC_SOURCE_EVIDENCE",
+    "sourceVoices": 1997,
+    "approvedIdentityJoins": 10656,
+    "voiceOggBytes": 24291347,
+    "actualAndroidAllSourceEosEqual": true,
+    "actualAndroidAllTwoPassPcmHashesEqual": true,
+    "pcmCompared": 1997,
+    "currentChecks": 27317,
+    "sourcePcmNativeParityAccepted": false,
+    "normalVoicePlaybackAccepted": false,
+    "decodeMillis": {
+      "median": 64,
+      "p95": 130,
+      "max": 441
+    },
+    "resources": [
+      {
+        "index": 0,
+        "pssKb": 172120,
+        "fdCount": 47,
+        "nativeThreadCount": 16,
+        "javaUsedBytes": 54384848
+      },
+      {
+        "index": 100,
+        "pssKb": 54401,
+        "fdCount": 47,
+        "nativeThreadCount": 16,
+        "javaUsedBytes": 14657128
+      },
+      {
+        "index": 200,
+        "pssKb": 53963,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 14846672
+      },
+      {
+        "index": 300,
+        "pssKb": 53995,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15455400
+      },
+      {
+        "index": 400,
+        "pssKb": 50369,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 11021456
+      },
+      {
+        "index": 500,
+        "pssKb": 51368,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12705920
+      },
+      {
+        "index": 600,
+        "pssKb": 50988,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15046328
+      },
+      {
+        "index": 700,
+        "pssKb": 51874,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15905096
+      },
+      {
+        "index": 800,
+        "pssKb": 48918,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 11268472
+      },
+      {
+        "index": 900,
+        "pssKb": 49542,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12144848
+      },
+      {
+        "index": 1000,
+        "pssKb": 50080,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12916792
+      },
+      {
+        "index": 1100,
+        "pssKb": 50690,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 13775048
+      },
+      {
+        "index": 1200,
+        "pssKb": 50949,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 14093976
+      },
+      {
+        "index": 1300,
+        "pssKb": 51109,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 14256072
+      },
+      {
+        "index": 1400,
+        "pssKb": 51874,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15443368
+      },
+      {
+        "index": 1500,
+        "pssKb": 52714,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16632992
+      },
+      {
+        "index": 1600,
+        "pssKb": 50282,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12814216
+      },
+      {
+        "index": 1700,
+        "pssKb": 51936,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15398328
+      },
+      {
+        "index": 1800,
+        "pssKb": 52776,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16540816
+      },
+      {
+        "index": 1900,
+        "pssKb": 52748,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16769856
+      },
+      {
+        "index": 1997,
+        "pssKb": 52660,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16305272
+      }
+    ],
+    "unresolvedPyavFrameDifferences": 172,
+    "noImplicitTrimOrPad": true,
+    "limitations": [
+      "Actual Android codec buffers, not actual mixer playback or normal event binding",
+      "PCM integer quantization vs PyAV differs; PC native decoder not measured",
+      "Stable47 FDs and16..17 native threads before exit; PSS samples include test catalog/JSON allocations"
+    ],
+    "sourceCommit": "7bec08f87d728b15987708606100067cbfe0dc61",
+    "apkSha256": "e0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3",
+    "normalPortraitSaveExitChecks": 324153,
+    "normalPc33PcmCorrelation": 0.9999995446479859,
+    "allUserFilesRestoredByteEqual": true
+  },
+  "sharedMediaPlayback": {
+    "sourceCommit": "ccd6d6bf11a4987189dd260dab7cf99a229fc0d2",
+    "installedApkSha256": "efcee0ad773263a9d1fca6f84290222e659fd2362657fbe5a12a5bd83f0a1f8b",
+    "actualInstalledChecks": 41,
+    "hostReceiptLedgerChecks": 16,
+    "firstVoicePcmMillis": 98,
+    "originalVoiceAfterMusicCorrelation": 0.9999993621265048,
+    "actualMusicDuckRatio": 0.35000580286151595,
+    "systemUidNoisyBroadcastPassed": true,
+    "hardwareHeadphoneOrArmAccepted": false,
+    "normalOriginalSceneOrActionBindingAccepted": false,
+    "actualMixIsExplicitProfileAndTrackTestAdapter": true,
+    "legacySoundEffectsRegressionPassed": true,
+    "userFilesRestoredByteEqual": true,
+    "normalPortraitSaveExitChecks": 324153,
+    "normalPc33PcmRegression": "FAILED_TWO_RUNS_UNRESOLVED",
+    "normalPc33PcmCorrelation": 0.9773284959337095,
+    "normalPc33PcmAccepted": false
+  }
+}

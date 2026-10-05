@@ -1,0 +1,58 @@
+{
+  "apk": "arm64.apk",
+  "sha256": "9c70017095fbab548fb9f9403327575e5fcf103a056c27375c42d06254dbe9ed",
+  "apk_bytes": 30655539,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "ledger": {
+    "other": {
+      "zip_bytes": 234384,
+      "unpacked_bytes": 830120,
+      "count": 43
+    },
+    "dex": {
+      "zip_bytes": 829819,
+      "unpacked_bytes": 1762080,
+      "count": 1
+    },
+    "native": {
+      "zip_bytes": 2266408,
+      "unpacked_bytes": 2266408,
+      "count": 1
+    },
+    "textures": {
+      "zip_bytes": 24537730,
+      "unpacked_bytes": 24561669,
+      "count": 116
+    },
+    "models": {
+      "zip_bytes": 2230600,
+      "unpacked_bytes": 5967996,
+      "count": 171
+    },
+    "materials": {
+      "zip_bytes": 495524,
+      "unpacked_bytes": 2173178,
+      "count": 7
+    }
+  },
+  "native": [
+    {
+      "path": "lib/arm64-v8a/libfilament-jni.so",
+      "load_alignment": [
+        16384,
+        16384,
+        16384
+      ],
+      "elf_16k": true,
+      "zip_16k": true,
+      "compressed": false
+    }
+  ],
+  "target_bytes": 314572800,
+  "warning_bytes": 419430400,
+  "installed_bytes": null,
+  "cache_bytes": null,
+  "physical_device_16k_verified": false
+}

@@ -59,7 +59,7 @@ public final class ContentProfiles {
         for(int i=0;i<6;i++)o.aptitude[i]=d.aptitude(i);
         o.sex=d.gender.equals("男")?World.Sex.MALE:World.Sex.FEMALE;
         o.skillId=d.skillId.equals("none")?"none":ContentRuntime.skill(d.skillId).id;
-        w.officers.add(o);biography(w,catalog,id,city,dated);
+        w.officers.add(o);biography(w,catalog,id,city,dated);w.officerAbilities.bindSource(o,catalog,dated);
         if(relations)relations(w,catalog,Collections.singleton(id));
     }
     public static String describe(ContentCatalog catalog,int id){

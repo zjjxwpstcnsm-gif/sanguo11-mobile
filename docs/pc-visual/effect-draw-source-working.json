@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "SOURCE244_CAMERA_BOUND_DRAW_DIAGNOSTIC",
+  "goal_complete": false,
+  "source_packets": 19092,
+  "primitive_counts": {
+    "0": 2559,
+    "2": 6803,
+    "3": 3004,
+    "1": 6720,
+    "6": 6
+  },
+  "resources_with_packets": 236,
+  "resources_without_packets_for_inputs": [
+    146,
+    277,
+    278,
+    279,
+    280,
+    281,
+    361,
+    364
+  ],
+  "runtime_effects_added": 0,
+  "evidence": "out/pc-visual/v148-effect-camera-bound-all-source.json",
+  "sha256": "6897e8c9f98255ffecc967b9b6ca4dbc66255b894290103f40933526890620f9",
+  "limits": [
+    "Explicit camera at origin, identity basis and diagnostic projection; no actual PC reference",
+    "No packet for these3 steps does not prove resource is inactive or unsupported",
+    "Native scene slot1 bound before original loader; prior no-context reports retained",
+    "No Android event/material/render binding"
+  ]
+}

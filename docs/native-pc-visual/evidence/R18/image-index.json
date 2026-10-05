@@ -1,0 +1,1862 @@
+{
+  "images": [
+    {
+      "path": "api29/parity/images/month4-2d-skip-after-ui.png",
+      "sha256": "64ff382b947b97f4f54beedd5a20c6a97220b7163f17b2511e15416289aa353d",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-off-before-ui.png",
+      "sha256": "c1f38d4779d1796eb73a02e42e194856c7cac660c5e9c5b5f1af15fd4ed21749",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-skip-after-ui.png",
+      "sha256": "73b3f36ef2ff81246683c416a23c8ee62dbee2c342e61ee9ebe20a03574064dc",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-off-after-surface.png",
+      "sha256": "3232c0a99544807c849ffb8b982106d211d3b0608c6f36e99892c9c1d9397623",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-normal-before-ui.png",
+      "sha256": "db0ee1ac91638e10883174bbffc46e00804d04b44e4704d37113a7340717a00c",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-normal-after-ui.png",
+      "sha256": "41c05202d0629b85b16adaaf751639831c6a60c7d1e9e47fd68431ecd6f546d9",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-off-after-ui.png",
+      "sha256": "4912a97d2362df8956643eee08f7967093cddee45858f578e9d29be5651e2877",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-before-ui.png",
+      "sha256": "30de0dd5cb8d2586181feb3193e0e3e0e27ecbc5a57f22236cac991102e25f76",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-off-after-screencap.png",
+      "sha256": "352e6eb31a8d7f151e7235ccfb84408a3d170dcafe082ef27d85fbdc89b1ecd6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-off-before-screencap.png",
+      "sha256": "09520f2e5277a6ff9c8f0a50d47743a2bf23c181745b6a2d876a5af4aad421f3",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-skip-after-screencap.png",
+      "sha256": "02cbab9b94710fc3b9cd1eaee2aa12adf7229f5b1d2489daba4ff12ccc377a4f",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-normal-after-screencap.png",
+      "sha256": "94027e34e21eef962a9a936ec5a87201a616c7c9d4a0a4585fda8cc2637e2d52",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-off-before-ui.png",
+      "sha256": "85d49987b3f8331da91eeea5ddee47dd746c1bc475d3490d99507657300f0a2e",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-recreated-screencap.png",
+      "sha256": "c610088d1254aaed9d761adde68cd4582e6a6d0fe689850368b3af03acdb788a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-recreated-surface.png",
+      "sha256": "2cd8c3654aacb6ba282efdab53f76fd53a1b626a3aa839ca97be4f22a3ba3682",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-after-screencap.png",
+      "sha256": "6f4b4f54a8917dce24a6acac7f2dd4dbbc89de0f933cfa71035020cac5bb39ec",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-normal-before-ui.png",
+      "sha256": "5adaa5909c5361c91aee4cddcab8ef399db577c9f64c632a16aec01ce4ee2981",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-normal-after-surface.png",
+      "sha256": "87e7548770b2ec163579a83cf653b6fcc40ec11825d0e775a2ebface7487a929",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-skip-after-ui.png",
+      "sha256": "84e2147079bb5b4a792b8998f95c9dca600dd07dbe523a3637a08d7e3137884e",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-before-screencap.png",
+      "sha256": "024d87646002d687076a3a0aa63c2c8429b4559e219539247a6624d3eaa52474",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-normal-after-ui.png",
+      "sha256": "ccc56b913dd34ce5e48b0d713c44cef721545a2ed05a359f461180d93846437b",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-normal-after-surface.png",
+      "sha256": "0a4c9cbbbcdb9afbde7ebb682b8051a96d2af8c3a4e7d0ca4c9d7285b10c0637",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-recreated-ui.png",
+      "sha256": "a25a76a3fa610b6bde1e2148df4cdfbf6ba368c86de6255d89acc7c6d5993e08",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-normal-after-screencap.png",
+      "sha256": "9f4239853c81d0366b7c76bccb946547a8e0e20f31feedceab9ece68b0bba18e",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-off-before-ui.png",
+      "sha256": "9390cc50f79f5fa7418c7cd9b8d4cf9e288076bf3e37834059a5246badd6eac2",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-normal-before-ui.png",
+      "sha256": "7ef1b2f37c6596d8c2568bbd75ef4019a69e05fc68599b81d9173f0a8f1fac89",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-off-after-screencap.png",
+      "sha256": "9fcd2070bc2a7b764a944658f8523cf44386f24dc93cb7c156897788d67691c3",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-skip-recreated-ui.png",
+      "sha256": "ee7e281ddd00f9c1725744f05a506bd78dbc260e191a75ba24939f5ef5eecb05",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-skip-before-surface.png",
+      "sha256": "ea872b41d962f9e9b31c800ec25caa0a36eafc3eb8cd1b0977163840e4cfd7d6",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-normal-before-screencap.png",
+      "sha256": "21e11b2729fd04bb3bb562086f8734e6c1569d9895f048c4e924041ebb00daef",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-normal-after-screencap.png",
+      "sha256": "ecf796f1131a51a204218e7b8d1ce278833ba8df88128fa038436c9192ce7720",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-skip-before-screencap.png",
+      "sha256": "8f783724041d4853c464b31a45019275156e151617c8d90e82e5ce6a5e3fc400",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-normal-before-surface.png",
+      "sha256": "582d7112be89fdf33a19fd748d90a419df26942c205c1087bcedcb37f11f2231",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-normal-after-ui.png",
+      "sha256": "77de567bc26e397f97eb2cf26abd39d29272d3103390f25ac0481a4aa53d2255",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-off-after-screencap.png",
+      "sha256": "2c98209c9467e6930a67927a8247e8f24c68b73b1d8e6b7c13034d07710a9dc5",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-skip-before-ui.png",
+      "sha256": "82f030a9075bcc3f39716b307222cac523a5dbc21ea84b87128ca66d97b042b6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-skip-before-ui.png",
+      "sha256": "90ff3ad570d86976973eed5c59369428cb72500d2333c36f93a0afc3d465ee34",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-off-before-surface.png",
+      "sha256": "062516cd079aea55a7cf2c122e18dcdf483f51560c6f3d2a521739d942b455a3",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-off-after-surface.png",
+      "sha256": "e6c6af75c3fcc5f8f3cbfb77cae50f7a3e596b18eca5408c3cd1b2d918aa90f9",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-after-ui.png",
+      "sha256": "163bf8a5599c99d037d680c45da667c3ed206c3430a8cdd5fe767d55a8cdff4f",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-skip-after-surface.png",
+      "sha256": "1fbfd5b596917b1f615c91d03cea22c2b1fb34cf771fd3b6a1b6a73d345bda73",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-normal-before-screencap.png",
+      "sha256": "ae266e1e2789897613706d83d58ed0dfec064dfc98de7e76c9da66fd19fea5ae",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/surface.png",
+      "sha256": "2cd8c3654aacb6ba282efdab53f76fd53a1b626a3aa839ca97be4f22a3ba3682",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-off-before-screencap.png",
+      "sha256": "8620d96e1fc4ed2e5cd759d4766ad4b4a245a781f4a60e71efce21f5ae6979aa",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-normal-after-ui.png",
+      "sha256": "0cc39108e59a0da63d6a4d2336013ece9439213a171d749926e8127c48308c28",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-skip-recreated-screencap.png",
+      "sha256": "ca29327b4596b1b72014c989c508a6136882b366c7964b45dd4e9f0cf453b60f",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-skip-after-screencap.png",
+      "sha256": "ad0f224cb13f222ffb92d4dbbbfe34e6fec5cedae46505901edc7c4a5ff715f3",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-skip-before-screencap.png",
+      "sha256": "09520f2e5277a6ff9c8f0a50d47743a2bf23c181745b6a2d876a5af4aad421f3",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-skip-after-screencap.png",
+      "sha256": "80856ee6d4c1b08585b9f97d0197eab1babf087fc4e7aa40acbcfd9253a7ca27",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-after-surface.png",
+      "sha256": "02fc98253e523fa3e90c64a7489ea95c1bfe506c9ae9253e97d873c0da066f39",
+      "dimensions": [
+        1080,
+        1056
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-skip-before-surface.png",
+      "sha256": "329bea5f816cffb3b4fca91d19a271b9f9081bbbbd89e4d8d874f8825976da18",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-off-after-screencap.png",
+      "sha256": "e4a8a2fe41baa7b85a555cdeecef864b5a3c85dd7b32196cf0ff8a0c5cec6dac",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-skip-before-ui.png",
+      "sha256": "c1f38d4779d1796eb73a02e42e194856c7cac660c5e9c5b5f1af15fd4ed21749",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-normal-before-ui.png",
+      "sha256": "998c30881a4a1a506ef67ae3cac5a712dfa194f50566600e31505afc2acab20c",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-off-before-screencap.png",
+      "sha256": "21e11b2729fd04bb3bb562086f8734e6c1569d9895f048c4e924041ebb00daef",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-off-before-surface.png",
+      "sha256": "3dcf95be6c8f6af4d600be95fe9ab4b8328c036a6a5b55f00fcceeedc9032723",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-off-after-ui.png",
+      "sha256": "647779d9751c842b0a2b29d4f1f47d1862443f10a1987d202b7de98f7b68812a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-2d-normal-before-screencap.png",
+      "sha256": "09520f2e5277a6ff9c8f0a50d47743a2bf23c181745b6a2d876a5af4aad421f3",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-normal-before-screencap.png",
+      "sha256": "3aecd9f0dd24d467dc861a981390058b55357dc56328566065dfeb6fba1fa947",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-skip-before-screencap.png",
+      "sha256": "21e11b2729fd04bb3bb562086f8734e6c1569d9895f048c4e924041ebb00daef",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-off-before-screencap.png",
+      "sha256": "95a6fb8de02c19b59a25e492e9d951de0ee724d1908d9ecd9e5f92ba4274e6b5",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month12-3d-off-after-ui.png",
+      "sha256": "c6ef4a63607e650a29a37151d3a4e40caff5501b748c95e1f887e8e7738a26c2",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-off-before-ui.png",
+      "sha256": "90ff3ad570d86976973eed5c59369428cb72500d2333c36f93a0afc3d465ee34",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-2d-normal-after-screencap.png",
+      "sha256": "e353a269140975375792f1ab505ea3262f3aea76989b63862864d281a18e55c7",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-normal-before-surface.png",
+      "sha256": "79f9097f5324a6d09741a77e97f462e8031950b57172131409ae5f2a241c74df",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/parity/images/month4-3d-off-after-ui.png",
+      "sha256": "407b16a3987d5ce538161f9a698197b1bd77e3f80e725788f3edb4787b8d3598",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/cold/images/cold-start-page.png",
+      "sha256": "1a10bb6da55a3506ad66a106701034d7aefab8d28f9139fbc29695d589209504",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/recovery/images/r18-recovered-ui.png",
+      "sha256": "bd09868c98437c324df4c9272bee78d799de399a2629e53470787aafd463a7c5",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/recovery/images/surface.png",
+      "sha256": "4f0cd38a6424ef0ee5bdb94793de12059f986d320303cf74fffde57fd3df4a74",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api29/recovery/images/r18-fallback-ui.png",
+      "sha256": "f1edeceb25c49587f3d1f54868b3cdab3c85b0f8b8d0122e6fe5b688aec53c61",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API29 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-skip-after-ui.png",
+      "sha256": "7f688423b00e9e97555b8eb6ec9fe0200a5c934468dba57e91092d56ff743f77",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-off-before-ui.png",
+      "sha256": "41fa6372bf6113803f58e7120ff1a80ad1488813368c3d04147b87b1af02c5c6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-skip-after-ui.png",
+      "sha256": "70d6dd8fa753b601a53eb7db75371061982621943b5caa92213ea6dfc476af55",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-off-after-surface.png",
+      "sha256": "1b6de0696cda280c514420c124dc9113833f828b21b6e4c7ccee212651305add",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-normal-before-ui.png",
+      "sha256": "32f628b8eb7a20c4008fec75895cb1620e2f8daadae39887f877e620dbad069b",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-normal-after-ui.png",
+      "sha256": "500017b905fa9d110abed002af2b8b26baff16e6adbe9b209ddcad15523e27a1",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-off-after-ui.png",
+      "sha256": "9bb1553790816b1b38b6670fa0dfee7c197e076899a31e5d7dc6c4b7e9f33bff",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-before-ui.png",
+      "sha256": "830d5102353e80e4b62dd17a311301b2483f22d46a5950668dab2abfbafd4ac8",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-off-after-screencap.png",
+      "sha256": "462dbab8c9f46be8a0a8790085238873de4cd7fd2b9492415c76e018f092ad07",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-off-before-screencap.png",
+      "sha256": "69e0a9c76dec44e34cf30b7b209a406f1550d28b3e9a4bbbb25a46b5a02e89a0",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-skip-after-screencap.png",
+      "sha256": "c7889c7b3851992ac5ecae8657b29900e9de30160cbd16e5acd7694e0c1f61d0",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-normal-after-screencap.png",
+      "sha256": "76347afe5e686790eb4f51a100d5368395f50f49c69ac09b467b1d70def0f2ae",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-off-before-ui.png",
+      "sha256": "8c3d6ddef2f2d1c6905f3d475f98cd705b2ffffae3e77043ae02aac76d35c391",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-recreated-screencap.png",
+      "sha256": "04519e9f6019af9d3b1369f144db123c61e7ff0f1132f00f03ed891cb4c7e45e",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-recreated-surface.png",
+      "sha256": "b1d28eb376ea6980d7bbf1f45a5c2374731d99ce7be19bf693ce746ffdb2a150",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-after-screencap.png",
+      "sha256": "5b13281f07173a3de21ca0986e38e2a5aa873d16b84a90b38592e5ca7089cc7a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-normal-before-ui.png",
+      "sha256": "e60a81db65d1005d054e4a7a600a5995c18d07f68a0cbdce5bd2d81b28fbe4b9",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-normal-after-surface.png",
+      "sha256": "372ba705070f7054b802be68154e2b0873ba1d5a2079642b9d800beae08fedba",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-skip-after-ui.png",
+      "sha256": "cfa36bdbe41914d98a7bd4301fcd990bd0ce9176f632db23438ae63537aaefcb",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-before-screencap.png",
+      "sha256": "61cf8c88a9136876085c1357a1f5e3fda699b40e3068e32768fe7692bc961d9a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-normal-after-ui.png",
+      "sha256": "69d3f2dc6c7a4ea894c652590a5121ab7a9db7a6fd680d53cafc4e359b6b0796",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-normal-after-surface.png",
+      "sha256": "3b96bab07f7f753fcdae9e0e1991c32c031fb0b25e2ea07ca1e7eb3eae72e3ae",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-recreated-ui.png",
+      "sha256": "af5bf8575e44842a93012f89a93e9ba0a587dad093e2f480ab81bd2ffd186ef6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-normal-after-screencap.png",
+      "sha256": "ec298b7fba144f17ee485dc9393b15d57b5ff92194b274f9394b16916e8951c8",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-off-before-ui.png",
+      "sha256": "ccff2b142061684cdb0652f77eaa9d7b5f34db1a8baf0fc12b2831885d29d18f",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-normal-before-ui.png",
+      "sha256": "ca5798fd837f4d682cb70c9f6c3c3aa01f4b00ce1c5ed9ed47653f306968fd4d",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-off-after-screencap.png",
+      "sha256": "aaea7203f050b325603774e3b1589f1a1314245f6a8db5b5cf9c1fc583d8e79c",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-skip-recreated-ui.png",
+      "sha256": "60e3053ce66926c9f6bca06258fc0972a8eb30bb7e4a0f58ffecea19ae8a9e4e",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-skip-before-surface.png",
+      "sha256": "4de4311058f55daf3f1aa9035d0494a4312b8f0d51b33fe9bdb87df1f58785b9",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-normal-before-screencap.png",
+      "sha256": "241d1bb73deae83ab5822d113c47c6d39cc9a1760edb08c329c6f3e774953207",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-normal-after-screencap.png",
+      "sha256": "c1052a5d88e785b7e79f3c2d798fcb9481b0d0574948b4e79d55a4e8958923ed",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-skip-before-screencap.png",
+      "sha256": "055f0f89d86733a10bfffffa5ee82ceff374d61f41f8046977bd230f946c2826",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-normal-before-surface.png",
+      "sha256": "52d3faa489e7f84b6ccdb2117888202e5be51e180c6edcd67a874d68a063ef95",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-normal-after-ui.png",
+      "sha256": "4517e261b6a1193d14680c82334d491dec590f2d6008d2a6c5ba027eb5703e5a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-off-after-screencap.png",
+      "sha256": "a73643c7b79d5165e2d4367dd49cc46b530afc0e4a9e84ebf5444d2c0543cc03",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-skip-before-ui.png",
+      "sha256": "e1e263fdb4e7d517e70ddf5d19eb5c7e117c451fb9892620db00270cad223883",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-skip-before-ui.png",
+      "sha256": "1e31bf598432331b113cfb15c67cc4ed016c09d0b396399717d257f02430b544",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-off-before-surface.png",
+      "sha256": "61feae22fc4f33ce84e76d15b4c9a9e209dc842a88a5ecb2f59ad23faa53f6b5",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-off-after-surface.png",
+      "sha256": "d6cfa2eb025970c037c6bed55d5a01677c89f69d7ed2523e76bfbefc9208929f",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-after-ui.png",
+      "sha256": "39cfb005bc6e5baaf5287c855830229e65cedf713990f91bf4e6f64b00de5144",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-skip-after-surface.png",
+      "sha256": "95c70a8bf9511c88989f659dd0640cae7904a2a93fcb2488ba8e37e54c40a75f",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-normal-before-screencap.png",
+      "sha256": "11bc6d56a805dff8866aabfe3a1d11c11e11dd112a978af3ca279e743908b49c",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/surface.png",
+      "sha256": "b1d28eb376ea6980d7bbf1f45a5c2374731d99ce7be19bf693ce746ffdb2a150",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-off-before-screencap.png",
+      "sha256": "e056ed02b5b5f53eeba431790fa718cb3bb26d2b5c5345d36652da481eb415aa",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-normal-after-ui.png",
+      "sha256": "4584de9ef50993d603af590dd8a7c4d4ab3f74452c696960dff69ab8aa4fe962",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-skip-recreated-screencap.png",
+      "sha256": "ee77c40339ec1f59debdfb8adaf2c57429d65365d6885defa6b542ee3be8f1f6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-skip-after-screencap.png",
+      "sha256": "98fa7561e0a285d7b6aea12c7d1044f3ef0261ff5c8ee1ef6bc757309dd482e4",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-skip-before-screencap.png",
+      "sha256": "69e0a9c76dec44e34cf30b7b209a406f1550d28b3e9a4bbbb25a46b5a02e89a0",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-skip-after-screencap.png",
+      "sha256": "721293cdb542d08ecec4ca18e7f6c70172ed772722a126683130ce392c0583b5",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-after-surface.png",
+      "sha256": "5cb117f42cd8f558a978abf15003a3f77c4578f8894ee4a0a94e06aab320a487",
+      "dimensions": [
+        1080,
+        1047
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-skip-before-surface.png",
+      "sha256": "5817ee995d69d771a08d7161c2581ff91ef53acbea0cbaf7f4bb4b8b90ff77ec",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-off-after-screencap.png",
+      "sha256": "b69a1cd57bb7467d482e10d60f020f634ba1b9de63d6d062da82c9eb551a4750",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-skip-before-ui.png",
+      "sha256": "41fa6372bf6113803f58e7120ff1a80ad1488813368c3d04147b87b1af02c5c6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-normal-before-ui.png",
+      "sha256": "c81b99a20e773d819c8311e26f464098731ca46c3ad28dce9212b0e8748887a8",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-off-before-screencap.png",
+      "sha256": "0938cd8b3f24aa997a93d3a64c15f1c0ee090672b455b86195f9f29ade80da0c",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-off-before-surface.png",
+      "sha256": "faceb3e703e06fd6ce2da0ad12b26942610b04c406c4d45bb0816a2da7e058cf",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-off-after-ui.png",
+      "sha256": "47bb95d9e9aba5d35ff734f82b2c1abc210197b8e090182ee414e7a3a353df41",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-2d-normal-before-screencap.png",
+      "sha256": "89563f9c18abcd5af4ef554220358e39e0a83025bd2c99894395b2659218fb84",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-normal-before-screencap.png",
+      "sha256": "34ce8110d7ca3bbb49a0da79ace60329a871bc1bf7342c8fd911c68bf9ac4d7d",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-skip-before-screencap.png",
+      "sha256": "0938cd8b3f24aa997a93d3a64c15f1c0ee090672b455b86195f9f29ade80da0c",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-off-before-screencap.png",
+      "sha256": "0ccf987a1090f161334d574ff46608165a198bfbf2f8bb043ca981972d32da0f",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month12-3d-off-after-ui.png",
+      "sha256": "77355704e637bdced91a5626f25dac41d2291d336b95964c22ec6addab632e62",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-off-before-ui.png",
+      "sha256": "c81b99a20e773d819c8311e26f464098731ca46c3ad28dce9212b0e8748887a8",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-2d-normal-after-screencap.png",
+      "sha256": "7e9bab6c8a331d30542476bfa6e19d15c376ce7ad9ea711b6a6b5e9992e371fa",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-normal-before-surface.png",
+      "sha256": "36d9a9700b6e753da22d5674563e8d205b8ee6f727c5464e02d81bdc60bed155",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/parity/images/month4-3d-off-after-ui.png",
+      "sha256": "fa07cf50b0d397c6f55e47ba594904e998510211de5692dd55492f757ab8ee6a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/cold/images/cold-start-page.png",
+      "sha256": "266ae1dd83d2265f7df4f2bc1835e673bde0ec51b32f7c795b8c75f05a3f86a2",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/recovery/images/r18-recovered-ui.png",
+      "sha256": "d51237e56a30655b26365f1eb41ab3e9ad3f2ef57b4559689e82403837e1a934",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/recovery/images/surface.png",
+      "sha256": "0a01a60e79b8bd1ac21df1fd0ed4e4edbd6e0d4aa83c0b55d0dc6c20a53fb082",
+      "dimensions": [
+        1080,
+        1122
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    },
+    {
+      "path": "api35/recovery/images/r18-fallback-ui.png",
+      "sha256": "c01a0c33e1eac0d374a051c9014c3fe8a12f585803894171e5dbb2c26bd86dc0",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+      "device": "API35 Pixel2 x86_64 swangle emulator",
+      "camera_and_quality": "See adjacent identity/runtime text; otherwise NOT_RECORDED, not inferred",
+      "PC_pair": "NOT_MATCHED",
+      "postprocessing": "none"
+    }
+  ],
+  "videos": [
+    {
+      "path": "api29/parity/r18.mp4",
+      "sha256": "628a9e2b1d8fddcab1bf920e3e083e49522078f76b2aa7a43cd8cc38af8c8915",
+      "seconds": "176.964044",
+      "scope": "first <=180s of each probe, not full parity recording"
+    },
+    {
+      "path": "api29/cold/r18.mp4",
+      "sha256": "84a53d0fffd3f2dcee6794f12e969cc70c1098512c69df46bec0b2ffbc3cee5e",
+      "seconds": "133.297789",
+      "scope": "first <=180s of each probe, not full parity recording"
+    },
+    {
+      "path": "api29/recovery/r18.mp4",
+      "sha256": "152d67b1b92ac4618052a208fcf59ccc07fecdf7dc8d02dcf2be99e8f4f3c170",
+      "seconds": "59.094200",
+      "scope": "first <=180s of each probe, not full parity recording"
+    },
+    {
+      "path": "api35/parity/r18.mp4",
+      "sha256": "39fab6911cabebdf3eb6231c90db82073f58a3d81883fbccee389ea0f7193f57",
+      "seconds": "170.870844",
+      "scope": "first <=180s of each probe, not full parity recording"
+    },
+    {
+      "path": "api35/cold/r18.mp4",
+      "sha256": "c0cf29f076b057e39f2ef04ea074c4ba90a7106408fc6a3499c0618fa08e5f3b",
+      "seconds": "135.877589",
+      "scope": "first <=180s of each probe, not full parity recording"
+    },
+    {
+      "path": "api35/recovery/r18.mp4",
+      "sha256": "63c8dcf3b75046c48f48898043312bad00e9c5c9f810fa5f13aaa3537d4e02e6",
+      "seconds": "118.273567",
+      "scope": "first <=180s of each probe, not full parity recording"
+    }
+  ]
+}

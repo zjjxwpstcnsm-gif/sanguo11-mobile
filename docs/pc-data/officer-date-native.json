@@ -1,0 +1,344 @@
+{
+  "schema": 1,
+  "exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shared_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "prior_metadata_sha256": "e1e1f57b5e1dbbc61b7565f2bdfc1c2fef80d551c7402af7223616d5f6a77089",
+  "setting": {
+    "label": "能力變動",
+    "control_id": "0x12b",
+    "label_address": "0x7efb50",
+    "options": [
+      {
+        "value": 0,
+        "label": "有效",
+        "control_id": "0x11d",
+        "label_address": "0x7efd00"
+      },
+      {
+        "value": 1,
+        "label": "無效",
+        "control_id": "0x11e",
+        "label_address": "0x7efd08"
+      }
+    ],
+    "config_byte_offset": 8,
+    "global_byte_offset": 40
+  },
+  "startup_cases": [
+    {
+      "fixed_age_flag": 0,
+      "selected": 0,
+      "effective_growth_disabled": 0
+    },
+    {
+      "fixed_age_flag": 0,
+      "selected": 1,
+      "effective_growth_disabled": 1
+    },
+    {
+      "fixed_age_flag": 1,
+      "selected": 0,
+      "effective_growth_disabled": 1
+    },
+    {
+      "fixed_age_flag": 1,
+      "selected": 1,
+      "effective_growth_disabled": 1
+    },
+    {
+      "fixed_age_flag": -1,
+      "selected": 0,
+      "effective_growth_disabled": 1
+    },
+    {
+      "fixed_age_flag": -1,
+      "selected": 1,
+      "effective_growth_disabled": 1
+    }
+  ],
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "native_name": "黃巾之亂",
+      "date": [
+        184,
+        1,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "855761bb94a97379fe374c31618b1203eb942ca280615bbae48ba4f15301f194"
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "native_name": "反董卓聯合軍",
+      "date": [
+        190,
+        1,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "adbc5e203fec49bc2402a90c96f5ea17d4e914cec6c1c8c9627b4a62a2221f13"
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "native_name": "群雄割據",
+      "date": [
+        194,
+        6,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "98a0760be9119232c8b37d997f94112a3b36bf4a08d65caa94a5f553ab1f363a"
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "native_name": "官渡之戰",
+      "date": [
+        200,
+        1,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "20c1b397bd8b34051d4b41de4e45db6e56957bc4e402ebac9a283dee1a27240f"
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "native_name": "三顧茅廬",
+      "date": [
+        207,
+        9,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "64b8af296c3737f0d1598e1f42d9fa576b6183643671fad4da2f1fbe25afcb10"
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "native_name": "劉備入蜀",
+      "date": [
+        211,
+        7,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "14bcc0b6b24470b81e87cec43994b779ca65a0cc3aa63d67d2b44273db4355df"
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "native_name": "南蠻征伐",
+      "date": [
+        225,
+        7,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "f1a240fbc70604777e9fb88f8e6147dc3598ab24509e8f53bc97af7a4b658e39"
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "native_name": "英雄集結",
+      "date": [
+        251,
+        1,
+        1
+      ],
+      "fixed_age_flag": 1,
+      "field_offset": 16190,
+      "field_bytes": "01000000",
+      "header_sha256": "06d72968a9120f60b98525899765c25e07dd5fd34ccc662a6f4f70bb251f2f2a"
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "native_name": "呂布討伐戰",
+      "date": [
+        198,
+        1,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "d3133e15c072f26e60068efdb54069d7c87bd772d8913e9b5efc2b7bfe03db03"
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "native_name": "袁家之戰",
+      "date": [
+        203,
+        1,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "f235e74d6f7405553b993cda6bdb40d2b4be08b5b40b9106fbff02fb4e89e166"
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "native_name": "漢中爭奪戰",
+      "date": [
+        217,
+        7,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "ec2d35b7e0f47a88d41df16f66f969c83c91e9f84ccc7de01727dd4d23e591e1"
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "native_name": "何進包圍網",
+      "date": [
+        187,
+        4,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "8a765683f4bd42b6c33177ec86317710bffeae6895a8aaa9fba00aa1583f1bf8"
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "native_name": "局勢掌控者",
+      "date": [
+        191,
+        7,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "f43b04377a3f867eb2f2e97fda30b613125924081d463ab6a5a6135e04733302"
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "native_name": "女流之戰",
+      "date": [
+        251,
+        1,
+        1
+      ],
+      "fixed_age_flag": 1,
+      "field_offset": 16190,
+      "field_bytes": "01000000",
+      "header_sha256": "94b40a88f33fa29a3cb9627df7bc112c12a2402b3cb07c38274506f232ab47d1"
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "native_name": "英雄集結PK新版",
+      "date": [
+        251,
+        1,
+        1
+      ],
+      "fixed_age_flag": 1,
+      "field_offset": 16190,
+      "field_bytes": "01000000",
+      "header_sha256": "b0432b0a846a811f3fcda3e556836d88767572ab631a70056ad087bed6432924"
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "native_name": "滾滾長江",
+      "date": [
+        279,
+        3,
+        1
+      ],
+      "fixed_age_flag": 0,
+      "field_offset": 16190,
+      "field_bytes": "00000000",
+      "header_sha256": "8d170b59e27af7002a8aa7f8f27262d15e8a981464d3b4a50f35aea39b7fadf1"
+    }
+  ],
+  "oracle": {
+    "rows": 1040,
+    "sha256": "7d4ba634b99db13c40aecb67dea28a1aefee2d2d49b1070e9a0c720e171b1514",
+    "actor": {
+      "base": 80,
+      "curve": 8,
+      "experience": 105,
+      "stat": 3,
+      "injury": 1,
+      "native_rank": 0,
+      "rank_stat": 3,
+      "rank_bonus": 5,
+      "spouse_skill": 99
+    }
+  },
+  "functions": [
+    {
+      "name": "age",
+      "start": "0x488a20",
+      "end": "0x488a50",
+      "sha256": "c119e9fab0ce8638f50b788e13f63333856d81bd51f09afc2dc5173cf91ede01"
+    },
+    {
+      "name": "date_year",
+      "start": "0x4824b0",
+      "end": "0x4824e4",
+      "sha256": "6e1ea255113ed20d28cb70c82afc2b0ab4940e63653ee05933b16215bc185135"
+    },
+    {
+      "name": "setting_dispatch",
+      "start": "0x545350",
+      "end": "0x545470",
+      "sha256": "ef6df735c9ed068c9bf9e66d642984687ec80bad431cc59eca0d5c023820e3c0"
+    },
+    {
+      "name": "setting_selected_display",
+      "start": "0x54632c",
+      "end": "0x546345",
+      "sha256": "2c1dc0389578e084fa3aae360b81ffb1f501b854020aee3ceb68215a5f0682e7"
+    },
+    {
+      "name": "startup_setting",
+      "start": "0x4a4373",
+      "end": "0x4a4381",
+      "sha256": "591f67599203ce988ed80ae99069c865cfa20f028ecf0e73b188c5f7c53e2ff6"
+    },
+    {
+      "name": "startup_override",
+      "start": "0x4a443b",
+      "end": "0x4a446b",
+      "sha256": "f1247110a2b086ded86670eccdb08284c04e0d37b820696f257c94519a442dd3"
+    }
+  ],
+  "limits": [
+    "Native selector portions stop before OS-facing presentation/settings persistence; no Windows UI automation",
+    "Setting defaults and saved user preference are not inferred",
+    "Fixed-age flag is proven by its actual arithmetic and16 source fields; no official/MOD activation claim",
+    "All oracle expected numbers are original x86 outputs; no gameplay or old save rewritten"
+  ]
+}

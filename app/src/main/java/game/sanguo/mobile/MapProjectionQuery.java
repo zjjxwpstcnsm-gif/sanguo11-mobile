@@ -9,7 +9,7 @@ import java.util.*;
 final class MapProjectionQuery {
     private Object ground;
     private String identity="";
-    private int[] colors;
+    private int[] colors,factionBorders,siteBorders;
     Set<Long> blocked(World w,boolean show){
         Set<Long> cells=new HashSet<>();
         if(show&&w!=null)for(int r=0;r<w.height;r++)for(int q=0;q<w.width;q++){
@@ -27,12 +27,13 @@ final class MapProjectionQuery {
         if(mode==0)return new MapLayerData(labels,owners,null);
         String next=key.toString();
         if(colors==null||ground!=currentGround||!next.equals(identity)){
-            Territory territory=new Territory(w);int[] computed=new int[w.width*w.height];
+            Territory territory=new Territory(w);int[] computed=new int[w.width*w.height];factionBorders=new int[computed.length];siteBorders=new int[computed.length];
             for(int r=0;r<w.height;r++)for(int q=0;q<w.width;q++){
+                factionBorders[r*w.width+q]=territory.boundary(q,r,false);siteBorders[r*w.width+q]=territory.boundary(q,r,true);
                 int owner=territory.ownerAt(q,r);if(owner>=0)computed[r*w.width+q]=FactionColors.color(w,owner);
             }
             colors=computed;ground=currentGround;identity=next;
         }
-        return new MapLayerData(labels,owners,colors);
+        return new MapLayerData(labels,owners,colors,mode==2?siteBorders:factionBorders);
     }
 }

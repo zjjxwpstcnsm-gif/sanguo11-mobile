@@ -1,0 +1,241 @@
+Build configuration: [sf HAS_CONTEXT_PRIORITY=0 DISABLE_TRIPLE_BUFFERING PRESENT_TIME_OFFSET=0 FORCE_HWC_FOR_RBG_TO_YUV=0 MAX_VIRT_DISPLAY_DIM=0 RUNNING_WITHOUT_SYNC_FRAMEWORK=0 NUM_FRAMEBUFFER_SURFACE_BUFFERS=3] [libui] [libgui]
+
+Wide-Color information:
+hasWideColorDisplay: 0
+Display 0 color modes:
+    Unknown color mode -22 (-22)
+    Current color mode: HAL_COLOR_MODE_NATIVE (0)
+
+Sync configuration: [using: EGL_ANDROID_native_fence_sync]
+DispSync configuration: app phase 1000000 ns, sf phase 1000000 ns, present offset 0 ns (refresh 16666666 ns)
+
+Static screen stats:
+  < 1 frames: 0.000 s (0.0%)
+  < 2 frames: 0.028 s (0.1%)
+  < 3 frames: 0.171 s (0.6%)
+  < 4 frames: 1.297 s (4.5%)
+  < 5 frames: 0.676 s (2.4%)
+  < 6 frames: 0.637 s (2.2%)
+  < 7 frames: 0.216 s (0.8%)
+  7+ frames: 25.521 s (89.4%)
+
+Buffering stats:
+  [Layer name] <Active time> <Two buffer> <Double buffered> <Triple buffered>
+  [com.android.launcher3/com.android.launcher3.Launcher#0] 0.64 0.000 0.536 0.464
+
+Visible layers (count = 4)
++ Layer 0x77a02eb31000 (com.android.systemui.ImageWallpaper#0)
+  Region transparentRegion (this=0x77a02eb31378, count=1)
+    [  0,   0,   0,   0]
+  Region visibleRegion (this=0x77a02eb31010, count=1)
+    [  0,   0, 1243, 1920]
+  Region surfaceDamageRegion (this=0x77a02eb31088, count=1)
+    [  0,   0,   0,   0]
+      layerStack=   0, z=    11000, pos=(0,0), size=(1243,1920), crop=(   0,   0,  -1,  -1), finalCrop=(   0,   0,  -1,  -1), isOpaque=1, invalidate=0, alpha=1.000, flags=0x00000002, tr=[1.00, 0.00][0.00, 1.00]
+      client=0x77a02ea34b00
+      format= 2, activeBuffer=[1243x1920:1243,  2], queued-frames=0, mRefreshPending=0
+            mTexName=11 mCurrentTexture=0
+            mCurrentCrop=[0,0,0,0] mCurrentTransform=0
+            mAbandoned=0
+            -BufferQueue mMaxAcquiredBufferCount=1, mMaxDequeuedBufferCount=2, mDequeueBufferCannotBlock=0 mAsyncMode=0, default-size=[1243x1920], default-format=2, transform-hint=00, FIFO(0)={}
+             [00:0x0] state=FREE    
+             [01:0x0] state=FREE    
+             [02:0x0] state=FREE    
++ Layer 0x77a02eb37000 (com.android.launcher3/com.android.launcher3.Launcher#0)
+  Region transparentRegion (this=0x77a02eb37378, count=1)
+    [  0,   0,   0,   0]
+  Region visibleRegion (this=0x77a02eb37010, count=1)
+    [  0,   0, 1080, 1920]
+  Region surfaceDamageRegion (this=0x77a02eb37088, count=1)
+    [  0,   0, 1080, 1920]
+      layerStack=   0, z=    21000, pos=(0,0), size=(1080,1920), crop=(   0,   0,1080,1920), finalCrop=(   0,   0,   0,   0), isOpaque=0, invalidate=0, alpha=1.000, flags=0x00000000, tr=[1.00, 0.00][0.00, 1.00]
+      client=0x77a02ea34ec0
+      format= 1, activeBuffer=[1080x1920:1080,  1], queued-frames=0, mRefreshPending=0
+            mTexName=19 mCurrentTexture=0
+            mCurrentCrop=[0,0,0,0] mCurrentTransform=0
+            mAbandoned=0
+            -BufferQueue mMaxAcquiredBufferCount=1, mMaxDequeuedBufferCount=2, mDequeueBufferCannotBlock=0 mAsyncMode=0, default-size=[1080x1920], default-format=1, transform-hint=00, FIFO(0)={}
+            >[00:0x77a02e628b60] state=ACQUIRED, 0x77a02e6300e0 [1080x1920:1080,  1]
+            >[01:0x77a02e628c40] state=ACQUIRED, 0x77a02e62f8c0 [1080x1920:1080,  1]
+             [02:0x77a02e628d20] state=DEQUEUED, 0x77a02e62fbe0 [1080x1920:1080,  1]
++ Layer 0x77a02eb22000 (StatusBar#0)
+  Region transparentRegion (this=0x77a02eb22378, count=1)
+    [  0,   0,   0,   0]
+  Region visibleRegion (this=0x77a02eb22010, count=1)
+    [  0,   0, 1080,  63]
+  Region surfaceDamageRegion (this=0x77a02eb22088, count=1)
+    [  0,   0, 1080,  63]
+      layerStack=   0, z=   181000, pos=(0,0), size=(1080,  63), crop=(   0,   0,1080,  63), finalCrop=(   0,   0,  -1,  -1), isOpaque=0, invalidate=0, alpha=1.000, flags=0x00000000, tr=[1.00, 0.00][0.00, 1.00]
+      client=0x77a02ea34b00
+      format= 1, activeBuffer=[1080x  63:1080,  1], queued-frames=1, mRefreshPending=0
+            mTexName=10 mCurrentTexture=1
+            mCurrentCrop=[0,0,0,0] mCurrentTransform=0
+            mAbandoned=0
+            -BufferQueue mMaxAcquiredBufferCount=1, mMaxDequeuedBufferCount=2, mDequeueBufferCannotBlock=0 mAsyncMode=0, default-size=[1080x63], default-format=1, transform-hint=00, FIFO(1)={00:0x77a02e6288c0 crop=[0,0,0,0], xform=0x00, time=0x735df6542, scale=FREEZE
+}
+             [00:0x77a02e6288c0] state=QUEUED  , 0x77a02e62fc80 [1080x  63:1080,  1]
+            >[01:0x77a02e6289a0] state=ACQUIRED, 0x77a02e62fd20 [1080x  63:1080,  1]
+             [02:0x77a02e628a80] state=DEQUEUED, 0x77a02e62fdc0 [1080x  63:1080,  1]
++ Layer 0x77a02eb34000 (NavigationBar#0)
+  Region transparentRegion (this=0x77a02eb34378, count=1)
+    [  0,   0,   0,   0]
+  Region visibleRegion (this=0x77a02eb34010, count=1)
+    [  0, 1794, 1080, 1920]
+  Region surfaceDamageRegion (this=0x77a02eb34088, count=1)
+    [  0,   0,   0,   0]
+      layerStack=   0, z=   231000, pos=(0,1794), size=(1080, 126), crop=(   0,   0,1080, 126), finalCrop=(   0,   0,  -1,  -1), isOpaque=0, invalidate=0, alpha=1.000, flags=0x00000000, tr=[1.00, 0.00][0.00, 1.00]
+      client=0x77a02ea34b00
+      format= 1, activeBuffer=[1080x 126:1080,  1], queued-frames=0, mRefreshPending=0
+            mTexName=9 mCurrentTexture=1
+            mCurrentCrop=[0,0,0,0] mCurrentTransform=0
+            mAbandoned=0
+            -BufferQueue mMaxAcquiredBufferCount=1, mMaxDequeuedBufferCount=2, mDequeueBufferCannotBlock=0 mAsyncMode=0, default-size=[1080x126], default-format=1, transform-hint=00, FIFO(0)={}
+             [00:0x77a02e6282a0] state=DEQUEUED, 0x77a02e62f640 [1080x 126:1080,  1]
+            >[01:0x77a02e628700] state=ACQUIRED, 0x77a02e62f6e0 [1080x 126:1080,  1]
+             [02:0x77a02e6287e0] state=FREE    , 0x77a02e62fa00 [1080x 126:1080,  1]
+Displays (1 entries)
++ DisplayDevice: Built-in Screen
+   type=0, hwcId=0, layerStack=0, (1080x1920), ANativeWindow=0x77a02ea1d010, orient= 0 (type=00000000), flips=55, isSecure=1, powerMode=2, activeConfig=0, numLayers=4
+   v:[0,0,1080,1920], f:[0,0,1080,1920], s:[0,0,1080,1920],transform:[[1.000,0.000,-0.000][0.000,1.000,-0.000][0.000,0.000,1.000]]
+mAbandoned=0
+-BufferQueue mMaxAcquiredBufferCount=2, mMaxDequeuedBufferCount=1, mDequeueBufferCannotBlock=0 mAsyncMode=0, default-size=[1080x1920], default-format=1, transform-hint=00, FIFO(0)={}
+>[00:0x77a02ea54540] state=ACQUIRED, 0x77a02ea47aa0 [1080x1920:1080,  1]
+ [01:0x77a02ea54620] state=DEQUEUED, 0x77a02ea47b40 [1080x1920:1080,  1]
+>[02:0x77a02ea547e0] state=ACQUIRED, 0x77a02ea47be0 [1080x1920:1080,  1]
+SurfaceFlinger global state:
+EGL implementation : 1.4
+EGL_ANDROID_image_native_buffer EGL_KHR_fence_sync EGL_KHR_image_base EGL_KHR_gl_texture_2d_image EGL_KHR_image EGL_KHR_image_base EGL_KHR_gl_texture_2D_image EGL_ANDROID_recordable EGL_KHR_create_context EGL_ANDROID_native_fence_sync 
+GLES: Google (Google Inc. (Google)), Android Emulator OpenGL ES Translator (ANGLE (Google, Vulkan 1.2.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)), OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))
+GL_EXT_debug_marker GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_OVR_multiview2 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 GL_EXT_draw_buffers_indexed GL_EXT_clip_cull_distance ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_sync_buffer_data ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_1 
+Wide-color: Off
+  Region undefinedRegion (this=0x77a02ea4c918, count=1)
+    [  0,   0,   0,   0]
+  orientation=0, isDisplayOn=1
+  last eglSwapBuffers() time: 700.710000 us
+  last transaction time     : 63.680000 us
+  transaction-flags         : 00000000
+  refresh-rate              : 60.000002 fps
+  x-dpi                     : 420.000000
+  y-dpi                     : 420.000000
+  gpu_to_cpu_unsupported    : 0
+  eglSwapBuffers time: 0.000000 us
+  transaction time: 0.000000 us
+VSYNC state: enabled
+  soft-vsync: disabled
+  numListeners=18,
+  events-delivered: 76
+    0x77a02e61a300: count=-1
+    0x77a02e61a360: count=-1
+    0x77a02e61a3c0: count=-1
+    0x77a02e61a480: count=-1
+    0x77a02e61a540: count=-1
+    0x77a02e61a9c0: count=-1
+    0x77a02e61aa20: count=-1
+    0x77a02e61aae0: count=-1
+    0x77a02e61ae40: count=0
+    0x77a02e61aea0: count=-1
+    0x77a02eb1f000: count=-1
+    0x77a02eb1f060: count=-1
+    0x77a02eb1f0c0: count=-1
+    0x77a02eb1f120: count=-1
+    0x77a02eb1f360: count=-1
+    0x77a02eb1f8a0: count=-1
+    0x77a02eb20ec0: count=-1
+    0x77a02eb20f20: count=-1
+
+Display 0 HWC layers:
+-------------------------------------------------------------------------------
+ Layer name
+           Z |  Comp Type |   Disp Frame (LTRB) |          Source Crop (LTRB)
+-------------------------------------------------------------------------------
+ com.android.systemui.ImageWallpaper#0
+       11000 |     Client |    0    0 1080 1920 |    0.0    0.0 1080.0 1920.0
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ com.android.launcher3/com.android.launcher3.Launcher#0
+       21000 |     Client |    0    0 1080 1920 |    0.0    0.0 1080.0 1920.0
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ StatusBar#0
+      181000 |     Client |    0    0 1080   63 |    0.0    0.0 1080.0   63.0
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ NavigationBar#0
+      231000 |     Client |    0 1794 1080 1920 |    0.0    0.0 1080.0  126.0
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+h/w composer state:
+  h/w composer enabled
+-- HWC2On1Adapter --
+Adapting to a HWC 1.1 device
+Capabilities:
+  PresentFenceIsNotReliable
+Displays:
+  Display 1: Physical  HWC1 ID: 0  Power mode: On  Vsync: Disable
+    Color modes [active]: -22
+    1 Config (* active)
+    * 1080 x 1920 @ 60.0 Hz, DPI: 420.0 x 420.0
+        HWC1 ID/Color transform: 0/-22
+    4 Layers
+      Device Layer  HWC2/1: 5/0  Z: 0  Buffer: 0x70cafa8475a0/12
+        Display frame [LTRB]: [0, 0, 1080, 1920]
+        Source crop: [0, 0, 1080, 1920]
+        Transform: None  Blend mode: None
+        Visible Region                  Surface Damage
+        [0, 0, 1080, 1920]              None
+      Device Layer  HWC2/1: 8/1  Z: 1  Buffer: 0x70cafa847a00/15
+        Display frame [LTRB]: [0, 0, 1080, 1920]
+        Source crop: [0, 0, 1080, 1920]
+        Transform: None  Blend mode: Premultiplied
+        Visible Region                  Surface Damage
+        [0, 0, 1080, 1920]              None
+      Device Layer  HWC2/1: 6/2  Z: 2  Buffer: 0x70cafa4163c0/18
+        Display frame [LTRB]: [0, 0, 1080, 63]
+        Source crop: [0, 0, 1080, 63]
+        Transform: None  Blend mode: Premultiplied
+        Visible Region                  Surface Damage
+        [0, 0, 1080, 63]                None
+      Device Layer  HWC2/1: 7/3  Z: 3  Buffer: 0x70cafa416460/19
+        Display frame [LTRB]: [0, 1794, 1080, 1920]
+        Source crop: [0, 0, 1080, 126]
+        Transform: None  Blend mode: Premultiplied
+        Visible Region                  Surface Damage
+        [0, 1794, 1080, 1920]           None
+    Client target: 0x70cafa4165a0
+    Last requested HWC1 state
+      Geometry changed: Y
+      5 Layers
+        Layer 0  Composition: Framebuffer  Buffer: 0x70cafa8475a0/23
+          Display frame: [0, 0, 1080, 1920]
+          Source crop: [0, 0, 1080, 1920]
+          Transform: None  Blend mode: None  Alpha: 0.000
+        Layer 1  Composition: Framebuffer  Buffer: 0x70cafa847a00/28
+          Display frame: [0, 0, 1080, 1920]
+          Source crop: [0, 0, 1080, 1920]
+          Transform: None  Blend mode: Premultiplied  Alpha: 0.000
+        Layer 2  Composition: Framebuffer  Buffer: 0x70cafa4163c0/29
+          Display frame: [0, 0, 1080, 63]
+          Source crop: [0, 0, 1080, 63]
+          Transform: None  Blend mode: Premultiplied  Alpha: 0.000
+        Layer 3  Composition: Framebuffer  Buffer: 0x70cafa416460/41
+          Display frame: [0, 1794, 1080, 1920]
+          Source crop: [0, 0, 1080, 126]
+          Transform: None  Blend mode: Premultiplied  Alpha: 0.000
+        Layer 4  Composition: FramebufferTarget  Buffer: 0x0/-1
+          Display frame: [0, 0, 1080, 1920]
+          Source crop: [0, 0, 1080, 1920]
+          Transform: None  Blend mode: Premultiplied
+
+HWC1 dump:
+Allocated buffers:
+0x77a02e62f640:  531.56 KiB | 1080 (1080) x  126 |    1 |        1 | 0x900 | 
+0x77a02e62f6e0:  531.56 KiB | 1080 (1080) x  126 |    1 |        1 | 0x900 | 
+0x77a02e62f8c0: 8100.00 KiB | 1080 (1080) x 1920 |    1 |        1 | 0x900 | 
+0x77a02e62fa00:  531.56 KiB | 1080 (1080) x  126 |    1 |        1 | 0x900 | 
+0x77a02e62fbe0: 8100.00 KiB | 1080 (1080) x 1920 |    1 |        1 | 0x900 | 
+0x77a02e62fc80:  265.78 KiB | 1080 (1080) x   63 |    1 |        1 | 0x900 | StatusBar#0
+0x77a02e62fd20:  265.78 KiB | 1080 (1080) x   63 |    1 |        1 | 0x900 | StatusBar#0
+0x77a02e62fdc0:  265.78 KiB | 1080 (1080) x   63 |    1 |        1 | 0x900 | StatusBar#0
+0x77a02e6300e0: 8100.00 KiB | 1080 (1080) x 1920 |    1 |        1 | 0x900 | 
+0x77a02e630400: 9322.50 KiB | 1243 (1243) x 1920 |    1 |        2 | 0x900 | com.android.systemui.ImageWallpaper#0
+0x77a02ea47aa0: 8100.00 KiB | 1080 (1080) x 1920 |    1 |        1 | 0x1a00 | FramebufferSurface
+0x77a02ea47b40: 8100.00 KiB | 1080 (1080) x 1920 |    1 |        1 | 0x1a00 | FramebufferSurface
+0x77a02ea47be0: 8100.00 KiB | 1080 (1080) x 1920 |    1 |        1 | 0x1a00 | FramebufferSurface
+Total allocated (estimate): 60314.53 KB

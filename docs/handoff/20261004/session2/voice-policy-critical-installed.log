@@ -1,0 +1,21 @@
+UIUX PASS 19 checks
+PASS normal launch restores existing save
+PASS real source-map plain battlefield exists
+PASS 3D real output ready
+PASS critical fallback is tested on actual PC 3D terrain
+PASS actual rule critical belongs to an officer without a fullscreen source cue
+PASS touch visible 战法 at Rect(440, 1394 - 639, 1520)
+PASS touch visible 螺旋突刺 · 气力20 · A级 at Rect(42, 903 - 1037, 1050)
+PASS visible exact 3D ground ray before map touch 223,7 at [540.0, 1024.832]
+PASS touch visible 取消 at Rect(42, 1646 - 540, 1772)
+PASS real critical preview cancellation emits no battle phase and no rule change
+PASS canceled normal tactic emits no committed media facts
+PASS visible exact 3D ground ray before map touch 223,7 at [540.0, 1024.832]
+PASS touch visible 执行 at Rect(540, 1646 - 1038, 1772)
+PASS real committed critical presentation finishes
+PASS critical sound and double submit preserve exact reference damage and RNG
+PASS source-map critical without a portrait cue is heard exactly once
+PASS normal host receives actual tactic point facts once without test HUD subscription
+PASS actual tactic fact retains owner and journal phase
+PASS normal shared host sounds exact fact.id 2bcaa0ad-fd64-4ab8-a942-92e85a91d9e2:1:1:LEGACY_COMMITTED:technique:1
+

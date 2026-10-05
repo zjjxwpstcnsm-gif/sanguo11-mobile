@@ -1,0 +1,9 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Exception in thread "main" java.io.IOException: 太守位置或所属势力无效
+	at game.sanguo.core.StrategySave.require(StrategySave.java:80)
+	at game.sanguo.core.StrategySave.validate(StrategySave.java:56)
+	at game.sanguo.core.Strategy.validate(Strategy.java:313)
+	at game.sanguo.core.SaveCodec.validate(SaveCodec.java:215)
+	at game.sanguo.core.SaveCodec.encode(SaveCodec.java:19)
+	at game.sanguo.core.ControlIntelligenceTest.main(ControlIntelligenceTest.java:21)

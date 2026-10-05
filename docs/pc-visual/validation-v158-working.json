@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "National source scenery larger batches, accurate outline draw accounting; complete visual goal active",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v158/app-debug-national-source-batches.apk",
+      "bytes": 80068358,
+      "sha256": "f4bb8568259be7d6015e056c97777df5e52520fa55ef676d10848dac03638e72"
+    },
+    {
+      "path": "out/pc-visual/v158/app-debug-androidTest.apk",
+      "bytes": 618183,
+      "sha256": "34651a862913a01ff29db76fda20b6b6c232097cc1f76ceb070b9684de3b7682"
+    },
+    {
+      "path": "out/pc-visual/v158/app-debug-androidTest-focused.apk",
+      "bytes": 618207,
+      "sha256": "93cfe5cf1d8fec6f523a2115c9d0ee7e7ddca4d00067f09ba9669e757af15434",
+      "role": "focused siege final probe; prior test APK retained"
+    }
+  ],
+  "changes": [
+    "far span>=36 source forest batches32 cells; same original far model/vertices/colors/UV/tangents/triangles",
+    "Original outline extra draw and triangles counted; shared buffers counted once",
+    "Separate siegesOnly integration probe excludes national far prerequisite; original full/commandsOnly assertions retained"
+  ],
+  "host": {
+    "source_scenery": "PASS7098040;113 existing16-cell ->39 national32-cell spring/winter, every vertex attribute and triangle exact",
+    "apk_pins": "146 source asset pins checked"
+  },
+  "installed": {
+    "far": "FAIL120s pending22;54 CPU scenery batches,175 terrain chunks. Compared157 portrait failure142 pending, positive progress but no readiness/performance acceptance",
+    "normal_sieges": "PASS213 dedicated focused siegesOnly;3 normal city/gate/port commands, originaldamagedGPU models, pause/resume and sceneexit/authority/RNG/save checks. National far excluded explicitly.",
+    "device": "API29 x86_64 emulator only",
+    "package_identity": "installed-package-check.json: actual installed80,068,358B baseAPK byte-identical to built158",
+    "software_backend": "FAIL original120s at NEAR prerequisite(span8 winter):pending27,2submissions/517attempts,515rejected. Swiftshader renderer verified. Nationalfar/pause/resume not reached; cannot isolate hostdriver as onlycause."
+  },
+  "presentation_investigation": {
+    "report": "docs/pc-visual/presentation-calls-source-working.json",
+    "status": "33 source instruction-boundary-confirmed calls;347 originalRGBA entries;queue18 payload contract confirmed",
+    "correction": "First157 inspector used125+template although effect table has permutations; invalid report retained under157. Corrected inspector reads actual244-entry EXE table. No runtime binding used the invalid report.",
+    "observer": "Read-only managed texture opt-in512bound added; default256retained. Built10240B SHA4c8fa4c006f62861b83aa0830efe3764cccf1981d8cb20cbce34823bef667b95. Actual live512capture pending."
+  },
+  "limits": [
+    "No CPU/GPU timing or raster acceptance inferred from geometry batching",
+    "All full-screen and battle source event presentation still incomplete",
+    "Current goal remains active; no ARM physical device validation",
+    "Viewed source nearcities show hardpolygon boundaries, incomplete shore/water and forest shading differences; no completePC raster parity claim"
+  ],
+  "save": {
+    "bytes": 168846,
+    "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "verified_after": [
+      "far failure",
+      "initial siege-camera failure",
+      "focused3normal-sieges-pass213",
+      "Swiftshader near-prerequisite failure"
+    ]
+  },
+  "videos": {
+    "part1": "177.854s103samples; decoded134.853/148.511/160.755, viewed160.755city siegeafter",
+    "part2": "78.386s222samples; viewed5gateAFTER;50blackmap withport battle report;65actual64.651desktop after sceneexit. Gateattack occurs recordinggap.",
+    "limits": [
+      "Two segments have recording gap; gateattack sequence not captured; gatepost-state only",
+      "Original PC battle/fullscreen effects absent; no animationtiming/FPS/ARM acceptance",
+      "Observed blackmap frame inpart2 despite later actual UI portcapture showingrenderedoriginalsource; driver/transition cause needsinvestigation"
+    ]
+  },
+  "diagnostic_evidence": {
+    "software_renderer": "out/pc-visual/v158/swiftshader-surfaceflinger.txt",
+    "software_result": "out/pc-visual/v158/scenery-swiftshader-far-installed.txt",
+    "software_log": "out/pc-visual/v158/swiftshader-logcat-final.txt",
+    "software_art_trace": "out/pc-visual/v158/swiftshader-art-trace.txt",
+    "software_original_save": "out/pc-visual/v158/user-auto-after-swiftshader.sg11",
+    "software_art_trace_meaning": "Captured while exit: main inside FilamentMapView.surfaceDestroyed→Engine.flushAndWait. Not a trace establishing cause of near readiness failure."
+  }
+}

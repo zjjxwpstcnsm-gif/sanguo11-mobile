@@ -1,0 +1,13 @@
+# 批27：原语音记录上游链与真实演员有效性入口
+
+基点370cfe055a679421f4501b4cf947ab9774ce87a6；只改媒体工具、PcVoicePolicy/PcVoiceDirective及各自测试/session2文档。没有修改规则/API/runtime/metadata、MainActivity/MapHost、公共manifest、原目录或另一会话。
+
+原EXE30d33b44固定，Shared经原serializer/registry构造载入。原order参数片段→原record packet→原尾部字段/getter→原grid renderer选择→四个原initializer字段→原完整主将/profile/voice只读调用的504组合两次字节一致，报告SHA `a77b36612b42fb972ab17c1fabb0fc4288e8bb1a26220bac495f1f09072c529e`。只有显式order.type4的raw0/1/2/17走此四个初始动作6/7/8/27；不凭名字/ordinal推导工程动作。原status/17c/current byte/unit/grid均为公开夹具；不是PC正常游戏或Android普通语音绑定。
+
+新证据消除两项混用：record50由原type4的order+c传递，其它测试type3/5为−1；record58来自实际unit virtual3c坐标、record5c来自传入目的坐标。renderer240原分支来自record0而非record70；后者进入renderer25c。记录0的语义仍raw，原规则5ae610和两类RNG禁止进入。主将/profile/voice实际selector继续执行，不以假声或只捕获返回值认原音色。effect46/78、sound49/78仅源调用映射，不代表已完成普通音效触发。
+
+生产入口原先PcVoiceDirective给所有selector传actorValid=true，批准人物身份不能证明当前有效性。现追加nullable原status/actor17c输入，按实际原0..8 OR17c非零判断，未知与无效拒绝；没有规则求值、RNG、存档字段或新公共API。Host实际生产代码对原4020全调用案例含无效/静默/可用性比较，8080断言通过；另验所有selector的nullable构造拒绝/原已确证OR分支，精确long state不变。Android测试将显式status0/17c0标为适配器夹具，追加未知/无效不创建voice job及全Save/RNG不变检查，真实新包验证另记录。
+
+早期工具失败保留：scratch扩展页未映射；独立initializer前缀被route-only捕获误拒绝。修正私有VM页和测试phase边界，原代码、原输入源与RNG保护未改。完整原构造、伤害/命令、动画state-entry/voice实际时点仍不执行；声音回调由测试明确进入。原世界3MiB、grid1MiB、order及两种RNG完整状态每例保持字节不变。
+
+地图音乐/人物正常voice/全原SFX/全部caller/ARM仍未完成，目标active。会话一已完成新人物快照不等于媒体当前演员事实，本批只读核对，未拷WIP或旧核心。

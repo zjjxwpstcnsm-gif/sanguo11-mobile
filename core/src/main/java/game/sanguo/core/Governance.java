@@ -82,7 +82,11 @@ public final class Governance {
             int grade=d.readInt();String name=d.readUTF();
             if(grade<0||grade>(magic==LEGACY_MAGIC?5:RulerTitles.Title.EMPEROR.grade())||!name.isEmpty()&&!validName(name))throw new IOException("爵位/国号字段错误");
             if(magic==LEGACY_MAGIC)grade=RulerTitles.fromLegacyGrade(grade).grade();
-            grades.put(side,grade);if(!name.isEmpty())nations.put(side,name);
+            // Loading must restore the same effective title that write() saves.
+            // Legacy title thresholds can leave a stored grade below earned:
+            // otherwise a save/reload suppresses a promotion that direct play
+            // still announces, changing the next turn's journal and save.
+            grades.put(side,Math.max(grade,earned(cityCount(side))));if(!name.isEmpty())nations.put(side,name);
         }
         validate();
     }

@@ -1,0 +1,106 @@
+name: Native drag forest and control feedback v118
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-feedback118.yml', 'scripts/*feedback118*', 'app/src/**', 'core/src/**', 'version.properties']
+permissions: {contents: read, actions: read}
+concurrency: {group: native-feedback118, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact source, protected trees and affected host checks
+        run: |
+          set -euo pipefail
+          mkdir -p out/feedback118
+          python3 scripts/verify-candidate-source.py "$GITHUB_SHA" > out/feedback118/source-check.txt
+          git diff --exit-code 856d18c17c5f9295b0e1e4f828fa7dd4cd65a635 HEAD -- game-api game-runtime data unity app/src/main/assets > out/feedback118/protected.log
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/feedback118-json.jar
+          export JSON_TEST_JAR=/tmp/feedback118-json.jar
+          for suite in test-control-probability test-native-r09 test-native-r01 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/feedback118/$suite.log 2>&1; done
+      - name: Original core failure retained
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/feedback118/core.log 2>&1
+          code=$?
+          echo "$code" > out/feedback118/core.exit
+          exit "$code"
+      - name: Build clean exact candidate
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/feedback118/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/feedback118/sanguo11-mobile-v118.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/feedback118/test.apk
+          git rev-parse HEAD > out/feedback118/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/feedback118/sanguo11-mobile-v118.apk > out/feedback118/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/feedback118/sanguo11-mobile-v118.apk > out/feedback118/signature.txt
+          python3 scripts/audit-3d-apk.py out/feedback118/sanguo11-mobile-v118.apk --require-16k > out/feedback118/apk-audit.txt
+          python3 scripts/verify-r18-apk.py out/feedback118/sanguo11-mobile-v118.apk "$GITHUB_SHA" > out/feedback118/apk-identity.json
+          sha256sum out/feedback118/*.apk > out/feedback118/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback118-build, path: out/feedback118/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-feedback118-build, path: out/feedback118/}
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          run-id: 36425723495
+          name: native-grid-coast-build
+          path: out/feedback118/baseline/
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-feedback118.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-feedback118-api${{ matrix.api }}', path: out/feedback118/runtime/, retention-days: 30}
+  physical_access:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: '${{ vars.FIREBASE_PROJECT_ID }}'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: '${{ vars.FIREBASE_PROJECT_ID }}'
+          workload_identity_provider: '${{ vars.FIREBASE_WIF_PROVIDER }}'
+          service_account: '${{ vars.FIREBASE_SERVICE_ACCOUNT }}'
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Read-only free device capacity; no submission or IAM changes
+        run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback118-physical-access, path: out/firebase-preflight/, retention-days: 30, if-no-files-found: warn}

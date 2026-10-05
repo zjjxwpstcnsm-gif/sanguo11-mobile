@@ -1,0 +1,217 @@
+{
+  "goal_complete": false,
+  "status": "STATIC_LOOKUP_AND_READONLY_HELPER_BUILT_LIVE_TABLE_PENDING",
+  "source_exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "functions": [
+    {
+      "va": "0x48a5b0",
+      "bytes": 61,
+      "sha256": "d56cdfec29b99a6c8f9a7a95d4232eaa0ac021edcbdb3af295b589a246c7f754",
+      "instructions": [
+        {
+          "va": "0x48a5b0",
+          "bytes": "8b413c",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ecx + 0x3c]"
+        },
+        {
+          "va": "0x48a5b3",
+          "bytes": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x48a5b5",
+          "bytes": "7c2a",
+          "mnemonic": "jl",
+          "operands": "0x48a5e1"
+        },
+        {
+          "va": "0x48a5b7",
+          "bytes": "3d5f090000",
+          "mnemonic": "cmp",
+          "operands": "eax, 0x95f"
+        },
+        {
+          "va": "0x48a5bc",
+          "bytes": "7f23",
+          "mnemonic": "jg",
+          "operands": "0x48a5e1"
+        },
+        {
+          "va": "0x48a5be",
+          "bytes": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x48a5c0",
+          "bytes": "7c11",
+          "mnemonic": "jl",
+          "operands": "0x48a5d3"
+        },
+        {
+          "va": "0x48a5c2",
+          "bytes": "3d5f090000",
+          "mnemonic": "cmp",
+          "operands": "eax, 0x95f"
+        },
+        {
+          "va": "0x48a5c7",
+          "bytes": "7f0a",
+          "mnemonic": "jg",
+          "operands": "0x48a5d3"
+        },
+        {
+          "va": "0x48a5c9",
+          "bytes": "f60485bbe8fa0602",
+          "mnemonic": "test",
+          "operands": "byte ptr [eax*4 + 0x6fae8bb], 2"
+        },
+        {
+          "va": "0x48a5d1",
+          "bytes": "750e",
+          "mnemonic": "jne",
+          "operands": "0x48a5e1"
+        },
+        {
+          "va": "0x48a5d3",
+          "bytes": "8b4140",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ecx + 0x40]"
+        },
+        {
+          "va": "0x48a5d6",
+          "bytes": "50",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "va": "0x48a5d7",
+          "bytes": "b9ccb38007",
+          "mnemonic": "mov",
+          "operands": "ecx, 0x780b3cc"
+        },
+        {
+          "va": "0x48a5dc",
+          "bytes": "e84f310100",
+          "mnemonic": "call",
+          "operands": "0x49d730"
+        },
+        {
+          "va": "0x48a5e1",
+          "bytes": "50",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "va": "0x48a5e2",
+          "bytes": "b9380efb06",
+          "mnemonic": "mov",
+          "operands": "ecx, 0x6fb0e38"
+        },
+        {
+          "va": "0x48a5e7",
+          "bytes": "e8345dffff",
+          "mnemonic": "call",
+          "operands": "0x480320"
+        },
+        {
+          "va": "0x48a5ec",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    {
+      "va": "0x480320",
+      "bytes": 44,
+      "sha256": "85be4d97527ac1c42a58e6e40f30d9f745ae80861310e88c1f80684957a66dc8",
+      "instructions": [
+        {
+          "va": "0x480320",
+          "bytes": "8b442404",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [esp + 4]"
+        },
+        {
+          "va": "0x480324",
+          "bytes": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x480326",
+          "bytes": "7c11",
+          "mnemonic": "jl",
+          "operands": "0x480339"
+        },
+        {
+          "va": "0x480328",
+          "bytes": "3d5f090000",
+          "mnemonic": "cmp",
+          "operands": "eax, 0x95f"
+        },
+        {
+          "va": "0x48032d",
+          "bytes": "7f0a",
+          "mnemonic": "jg",
+          "operands": "0x480339"
+        },
+        {
+          "va": "0x48032f",
+          "bytes": "f60485bbe8fa0602",
+          "mnemonic": "test",
+          "operands": "byte ptr [eax*4 + 0x6fae8bb], 2"
+        },
+        {
+          "va": "0x480337",
+          "bytes": "7508",
+          "mnemonic": "jne",
+          "operands": "0x480341"
+        },
+        {
+          "va": "0x480339",
+          "bytes": "b827000000",
+          "mnemonic": "mov",
+          "operands": "eax, 0x27"
+        },
+        {
+          "va": "0x48033e",
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operands": "4"
+        },
+        {
+          "va": "0x480341",
+          "bytes": "0fbe0485bae8fa06",
+          "mnemonic": "movsx",
+          "operands": "eax, byte ptr [eax*4 + 0x6fae8ba]"
+        },
+        {
+          "va": "0x480349",
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operands": "4"
+        }
+      ]
+    }
+  ],
+  "descriptor_table": {
+    "va": "0x6fae8b8",
+    "entries": 2400,
+    "stride": 4,
+    "slot_byte": 2,
+    "flags_byte": 3,
+    "has_portrait_bit": 2,
+    "fallback_slot": 39
+  },
+  "factory_caller": "584ed3 calls48a5b0,584ed8 adds131,584ee3 calls589780 with1500 wait argument",
+  "reader": "tools/pc-runtime/read_portraits.c",
+  "limits": [
+    "Source table is initialized at runtime; staticzero data or catalogsourceId is not a confirmed actual portrait mapping",
+    "Read-only helper requires livePC snapshot; currently built only",
+    "No Android event binding or PC presentation timing acceptance"
+  ]
+}

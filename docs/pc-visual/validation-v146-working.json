@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "installed WARSHIP and winter far-only integration passed; complete visual acceptance outstanding",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v146/app-debug-water-byte.apk",
+      "bytes": 80973611,
+      "sha256": "d27440c36b98c5527d809808d54415a4753525f6a815b76742ed395c2cb36071"
+    },
+    {
+      "path": "out/pc-visual/v146/androidTest-water-byte.apk",
+      "bytes": 596585,
+      "sha256": "64e1bebb8ec1ca3148b4c350249fe8f97e3413980145267725421ee7c3c9a623"
+    }
+  ],
+  "changes": [
+    "Native415bb0 complete8bit water + original.0025byte bias; versionedPCMAP002",
+    "Diagnostic lifecycle stage durations, original10s/120s assertions retained"
+  ],
+  "checks": [
+    {
+      "name": "source-water1020-machine-and1048576-converted",
+      "status": "pass",
+      "log": "out/pc-visual/v146-water-converted-check.txt",
+      "source_check": "out/pc-visual/v146-water-source-check.json"
+    },
+    {
+      "name": "map-mesh-picking-save-and1048576-water-faces",
+      "status": "pass",
+      "checks": 1687046,
+      "log": "out/pc-visual/v146-water-map-host.txt"
+    },
+    {
+      "name": "authority-terrain-SHEX-legacy-save-unchanged",
+      "status": "pass",
+      "evidence": "out/pc-visual/v146/map-authority-byte-check.json"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "log": "out/pc-visual/v146-water-build.txt"
+    },
+    {
+      "name": "APK-pins",
+      "status": "pass",
+      "pins": 97,
+      "log": "out/pc-visual/v146/apk-pins.txt"
+    },
+    {
+      "name": "installed-WARSHIP-normal-move-attack-lifecycle",
+      "status": "pass",
+      "checks": 3251,
+      "log": "out/pc-visual/v146-warship-normal-installed.txt",
+      "evidence": "out/pc-visual/v146/evidence-warship/manifest.json",
+      "autosave_restored_byte_exact": true,
+      "video": "NOT_CAPTURED",
+      "PC_art_acceptance": false
+    },
+    {
+      "name": "installed-winter-jingzhou-far-diagnostic",
+      "status": "pass",
+      "checks": 197,
+      "log": "out/pc-visual/v146-scenery-far-installed.txt",
+      "evidence": "out/pc-visual/v146/evidence-far/manifest.json",
+      "autosave_restored_byte_exact": true,
+      "limits": "full12 not run; historical failures not cleared"
+    }
+  ],
+  "install": {
+    "status": "pass",
+    "main_log": "out/pc-visual/v146-install-main.txt",
+    "test_log": "out/pc-visual/v146-install-test.txt",
+    "byte_validation": "out/pc-visual/v146-installed-apk-byte-check.json"
+  },
+  "inherited": "docs/pc-visual/validation-v145-working.json",
+  "hardware": {
+    "PC_reference": "NOT_AVAILABLE",
+    "ARM": "NOT_RUN",
+    "emulator": "API29 x86_64 host OpenGL"
+  },
+  "remaining": [
+    "Original water coarse4x4 topology/material/animation",
+    "Far120s readiness and Activityexit10s regressions",
+    "Source effects/fullscreen, PC matched evidence and ARM validation"
+  ]
+}

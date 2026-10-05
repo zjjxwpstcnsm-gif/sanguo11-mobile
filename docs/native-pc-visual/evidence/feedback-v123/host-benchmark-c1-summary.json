@@ -1,0 +1,28 @@
+{
+  "baseline": {
+    "site_decode": {
+      "allocated_bytes": 7615216,
+      "thread_cpu_ns": 6759044,
+      "wall_ns": 6887537
+    },
+    "cavalry_pose": {
+      "allocated_bytes": 351624,
+      "thread_cpu_ns": 245391,
+      "wall_ns": 247825
+    }
+  },
+  "candidate": {
+    "site_decode": {
+      "allocated_bytes": 4191208,
+      "thread_cpu_ns": 3934390,
+      "wall_ns": 4019729
+    },
+    "cavalry_pose": {
+      "allocated_bytes": 183832,
+      "thread_cpu_ns": 174499,
+      "wall_ns": 174507
+    }
+  },
+  "flags": "-Xmx1200m -XX:TieredStopAtLevel=1 -Xbatch; 500 warmups; five rounds x500 calls",
+  "limit": "Targeted diagnostic for default JVM timing variability; cannot replace default-JVM raw results, Android measurements or establish mobile FPS."
+}

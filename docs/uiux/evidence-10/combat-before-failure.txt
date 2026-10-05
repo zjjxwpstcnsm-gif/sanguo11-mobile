@@ -1,0 +1,46 @@
+PASS normal launch restores existing save
+PASS combat starts with intact recovery campaign
+PASS existing core plain fixture installed through real session host
+PASS touch visible 攻击 at Rect(241, 1268 - 440, 1394)
+PASS map touch 5,5 at [474.375, 607.75]
+PASS invalid attack target preserves authority and RNG
+PASS touch visible 返回 at Rect(852, 998 - 1020, 1124)
+PASS map touch 6,6 at [671.25, 739.0]
+PASS touch visible 取消 at Rect(669, 1177 - 837, 1303)
+PASS cancel attack confirmation preserves authority and RNG
+PASS system back exits attack targeting while retaining selection
+PASS touch visible 攻击 at Rect(241, 1268 - 440, 1394)
+PASS map touch 6,6 at [671.25, 739.0]
+PASS touch visible 执行 at Rect(837, 1177 - 1005, 1303)
+PASS double attack confirmation commits once and publishes actual damage
+PASS existing core mountain fixture installed through real session host
+PASS touch visible 战法 at Rect(440, 1268 - 639, 1394)
+PASS touch visible 突刺 · 气力15 · B级 at Rect(42, 840 - 373, 987)
+PASS map touch 5,5 at [474.375, 607.75]
+PASS invalid tactic target preserves authority and RNG
+PASS touch visible 返回 at Rect(852, 998 - 1020, 1124)
+PASS map touch 6,6 at [671.25, 739.0]
+PASS real map touch presents authoritative blocked displacement preview
+PASS tactic preview leaves complete state and RNG unchanged
+PASS landscape tactic confirmation retains fully visible actions
+PASS touch visible 取消 at Rect(42, 1268 - 540, 1394)
+PASS cancel preview returns to target selection without command
+PASS map touch 6,6 at [671.25, 739.0]
+PASS system back dismisses tactic preview without command
+PASS touch visible 取消选取 at Rect(786, 1268 - 1038, 1394)
+PASS visible cancel leaves tactic target mode
+PASS touch visible 战法 at Rect(440, 1268 - 639, 1394)
+PASS touch visible 突刺 · 气力15 · B级 at Rect(42, 840 - 373, 987)
+PASS map touch 6,6 at [671.25, 739.0]
+PASS touch visible 执行 at Rect(540, 1268 - 1038, 1394)
+PASS double tactic confirmation consumes authoritative cost once
+PASS mountain collision retains actual target position
+PASS committed tactic clears target and preview state
+PASS existing core plain fixture installed through real session host
+FAIL java.lang.AssertionError: visible control timeout
+	at game.sanguo.mobile.UiUxInstrumentation.await(UiUxInstrumentation.java:300)
+	at game.sanguo.mobile.UiUxInstrumentation.text(UiUxInstrumentation.java:313)
+	at game.sanguo.mobile.UiUxInstrumentation.combat(UiUxInstrumentation.java:87)
+	at game.sanguo.mobile.UiUxInstrumentation.onStart(UiUxInstrumentation.java:38)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+

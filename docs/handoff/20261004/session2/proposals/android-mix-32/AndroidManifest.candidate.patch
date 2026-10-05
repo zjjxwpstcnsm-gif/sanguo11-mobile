@@ -1,0 +1,14 @@
+--- app/src/androidTest/AndroidManifest.xml
++++ app/src/androidTest/AndroidManifest.xml
+@@ -1,4 +1,11 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android">
++    <uses-permission android:name="android.permission.RECORD_AUDIO" />
++    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
++    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
++    <application>
++        <activity android:name="game.sanguo.mobile.AndroidMixCaptureActivity" android:exported="true" />
++        <service android:name="game.sanguo.mobile.AndroidMixCaptureService" android:exported="false" android:foregroundServiceType="mediaProjection" />
++    </application>
+     <!-- AGP replaces the first runner with testInstrumentationRunner. Keep the
+          default entry first so the named editor runner remains discoverable. -->
+     <instrumentation android:name="game.sanguo.mobile.GameSmokeRunner"

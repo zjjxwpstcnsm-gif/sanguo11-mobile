@@ -1,0 +1,17 @@
+{
+  "normalMenuOnly": true,
+  "noTestPlaybackDirective": true,
+  "resourceId": 2238,
+  "musicId": 1,
+  "identity": "af0f4ce1-9df1-415b-a68d-9d6bec6fa7ea:0:pc-menu-559220",
+  "firstWriteMillis": 394,
+  "loopWaitMillis": 99151,
+  "loops": 1,
+  "originalFirstLoopUnderruns": 0,
+  "bufferFrames": 16384,
+  "musicGain": 65,
+  "beforeSaveSha256Base64": "At2z1E2Y++vnY6glUbXLXraNpucLYIdWjApzlDveXWk=",
+  "allSaveRngEqual": true,
+  "mapBgmBound": false,
+  "armEvidence": false
+}

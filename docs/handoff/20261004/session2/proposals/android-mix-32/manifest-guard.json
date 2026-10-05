@@ -1,0 +1,7 @@
+{
+  "beforeSha256": "54963c940283c0993006dc42c593d862432472d25f336388c2b2b3d6955586b8",
+  "candidateSha256": "ada5ea06ac82c9773208473846c1907824c8c311785ee446899d41a3b544ed45",
+  "testOnly": true,
+  "productionManifestUnchanged": true,
+  "notApplied": true
+}

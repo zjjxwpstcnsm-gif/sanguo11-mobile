@@ -1,0 +1,2652 @@
+{
+  "baseCommit": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "protectedFiles": 529,
+  "allExact": true,
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "bytes": 145828,
+      "sha256": "1234de8b93d11b21634a98635be267cb8f693d2c4fae77694b54219b660b58f1"
+    },
+    {
+      "path": "core/build.gradle",
+      "bytes": 17491,
+      "sha256": "e86c924f9272ff1f99a5566032ee5860062588beaf1975314aaa138e532c8f42"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AbilityResearch.java",
+      "bytes": 17754,
+      "sha256": "2f9a8cd87b71e1e0b6c0a415136a998eea2ab482fba397b242dc9a4abdd2ad9b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AbilitySave.java",
+      "bytes": 6126,
+      "sha256": "b89b0b9e2e837a2e591b492201eb56b40fe59f5074607974da77545bea36feab"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AdvancedBattle.java",
+      "bytes": 8819,
+      "sha256": "8a58d5aa22cbe6c7f687b747af5d3acbd46d5d3d4b102a3a6fad17af9a8f7837"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AiOrders.java",
+      "bytes": 3846,
+      "sha256": "b8004d7ff946232b53a700004a872369fea63991cd71b3dbfc69bab9d1be91cf"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Army.java",
+      "bytes": 33318,
+      "sha256": "552d3d7cbad55ac49728672004c02586186bb34a0329176dffdd323fa10dd446"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ArmySave.java",
+      "bytes": 6490,
+      "sha256": "a58aa18599d267072aafef2eddb673a80e335e7442f8a4a1a02377121a23fd17"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/BattleReports.java",
+      "bytes": 17255,
+      "sha256": "fd728f2d244f93273ee3ce56c40d767ebb0da8f6569c6c1a214066f666862cba"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Campaign.java",
+      "bytes": 27731,
+      "sha256": "de57a07dc766fca2c908bca2222758110efba8d7cdfbf9b8f55f1004df9f0af1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CampaignAi.java",
+      "bytes": 52496,
+      "sha256": "7f27026edf375f41a80a56153a125e69b0ec9a2bb2ab68f42cc29b1fbe1d079e"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CampaignSave.java",
+      "bytes": 9092,
+      "sha256": "575935e608ea1cdd6b2adec231479580f54c5aba28088d90106f1eb0149d96d8"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "bytes": 4885,
+      "sha256": "c7b36dfc7104c5792e4efa7679db42a00f4caa0317628e1c81570900c7070a61"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityArtCatalog.java",
+      "bytes": 3498,
+      "sha256": "cc36f48ff6f7dfeacb839b8ec1b4650809ff6a32b7658724c25e8572f6783aa8"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityDefense.java",
+      "bytes": 4661,
+      "sha256": "79c24933b5225907279c48a3d727435efcfc14c83115b271197e6015d56dec77"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityOverview.java",
+      "bytes": 3296,
+      "sha256": "afa8966508a3174e6b0d147ca038091095b8532b96a0e874883ebb323baff609"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CombatEffects.java",
+      "bytes": 2164,
+      "sha256": "24d8903812cc8cd43aa9e93805201aef3c037aa6192a89ecef406ab52ba59d16"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CombatRules.java",
+      "bytes": 14037,
+      "sha256": "db192b1f2db03abae9713f4350b23fcf2692fe9f0101df5bf14d85c7d1451102"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Conscription.java",
+      "bytes": 4307,
+      "sha256": "a8e19a57705d52aedadf815033d61940d91276ce261ae82119cedc7fb02f3d03"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ConstructionPlan.java",
+      "bytes": 1487,
+      "sha256": "52981b8b08233f75266c18433fc4fd0156d7c02d8f34aa7b1f5cb981f6ade645"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContentCatalog.java",
+      "bytes": 12165,
+      "sha256": "d63242d20f5e64eb969e7977efe536b946137d741e2df368611b5baaf384191b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContentProfiles.java",
+      "bytes": 4964,
+      "sha256": "c636abfa2374af8c9308ac4c757b89db2b2c583266ab0a62ea2015bca00c7510"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContentRuntime.java",
+      "bytes": 6718,
+      "sha256": "8414989de8d3159b1f2de90a9c7e65d9379b5fe66a62e6676165a9484241cfaf"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "bytes": 10999,
+      "sha256": "6b9ef8e7b3e876bdc4ac8ddc0d6453a44ca4de80d98111d99d525f733375cda5"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "bytes": 16458,
+      "sha256": "3b96f8b6fbbec69ea08a1de353a274a0a546b4a6040fb9ab0469e2b51e553134"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CriticalHit.java",
+      "bytes": 871,
+      "sha256": "d00162d30f66d895327149aca70f72f31fd763163eca08c8b0bd448e30e27a4a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CustomMapSave.java",
+      "bytes": 2097,
+      "sha256": "f38a9491f92771be0e24c2dbca9680987a793494e7a00143698635b17f0f0613"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CustomMaps.java",
+      "bytes": 21079,
+      "sha256": "ac5fa26b3913785e088ad6bb209b48e6e862e21f8dac036ad77da7ebfd6182ea"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CustomOfficers.java",
+      "bytes": 15846,
+      "sha256": "3e6dd8a445613a01aaff4fca1da670c043602288f2e2dc3c16e2319e5d72c1cb"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Debate.java",
+      "bytes": 10070,
+      "sha256": "30abaa613bb05ada11f3783ee166fcb7d1eada6b249c107efbe688748f49007a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DeploymentPlan.java",
+      "bytes": 5532,
+      "sha256": "9ed3c91a0acf64bc7fa99428fa558a41a019aed305435209cfc799ce8b7c8ee1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Development.java",
+      "bytes": 3370,
+      "sha256": "8e70107eed2b051ab7d55c4f27d4817218356905928c4ab0cf6da424332538f9"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Diplomacy.java",
+      "bytes": 20637,
+      "sha256": "203231f4130d444900881cf000a29ef81236149c591eb360506611fdbe260ff3"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DiplomacyPlan.java",
+      "bytes": 2862,
+      "sha256": "ac21995b7b182d3c2c442a66dbf482a5b727452831a866456c76ba15beea8de8"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Displacement.java",
+      "bytes": 10417,
+      "sha256": "112f711ad84d543629c021f7d203d526349e39489e413074cf271d9a2018ac04"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DistrictManagement.java",
+      "bytes": 11861,
+      "sha256": "03cad41300c8d4ea1a20efa108bc57dddba12aec2c90147287ea6117d6ac12c1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Districts.java",
+      "bytes": 22567,
+      "sha256": "c34d04310237dc4e24758f65251eaa40e212c8894c2108702bb817291049f595"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Domestic.java",
+      "bytes": 52460,
+      "sha256": "d0aff18d3f311f0a82dc2a5111de2f123c8aa5cfbe56a73800b85bb4df64d24a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Duel.java",
+      "bytes": 8782,
+      "sha256": "3e07d95962c4f32a7773beb6afc2e3107726d36dda6384554edcfeb5f23966cf"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Editor.java",
+      "bytes": 14849,
+      "sha256": "96e6189428a2d1689ab49e73ef4671d7d167e3685990dadc745000c6435ce19c"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/EnergyRules.java",
+      "bytes": 2825,
+      "sha256": "6391bf495ba57f8429485db1f28f3a5534fe30c21773a31406e85112caee065c"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Envoys.java",
+      "bytes": 11188,
+      "sha256": "3d4d59edc0a72d7801aa711b9507e35c83f2f6eaee272a0a68a155e4b89e6da2"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/EstatesSave.java",
+      "bytes": 2838,
+      "sha256": "abf762947c9a4fa23ab9d9671419036fe3f9aa5fc9337ecc692f31f33d305637"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/FactionCollapse.java",
+      "bytes": 4812,
+      "sha256": "cd26f04be8f5844635381aeb2cc409cab5140cf145d823aaf70bc189ddf1ab3b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Fieldworks.java",
+      "bytes": 24956,
+      "sha256": "f2015c85be753bda63564178615364675f248918e80249d554a2714fed76b49c"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/FieldworksSave.java",
+      "bytes": 5257,
+      "sha256": "7ce0c412b69ff190747994a241c534b7e9bd810a9098e2a008d242f5d2322811"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Governance.java",
+      "bytes": 8600,
+      "sha256": "571431b4f86ba2091938ed97937eb326da73ad4036187cdb12e75eaf2a4a0532"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Government.java",
+      "bytes": 23560,
+      "sha256": "c3acda34be7ab74f8edee7ebddc261f590ad4e2411324b9450e2fb20f0057d67"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/GovernmentSave.java",
+      "bytes": 5375,
+      "sha256": "b6c21ebb079fd9ffe4bd16f132922d79c7d93bdabd86aca31b61025602535023"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Hex.java",
+      "bytes": 844,
+      "sha256": "531fefbdc02489fe956f7c596f1b6e77d3078651b07f65244d78fe3ad5a56c83"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "bytes": 15326,
+      "sha256": "c6287ab9db4c92604cdc2098d5cd29462ef59b7a5480814d7a8238b2b8db4732"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Logistics.java",
+      "bytes": 1547,
+      "sha256": "7104b7fa8ec4c37699cc84c978e1d18b348c73bdc44bc0539c06baf9c0fd4b6f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Loyalty.java",
+      "bytes": 11706,
+      "sha256": "bb7ec4bcab6361c9592342237ed976614c8cd2e2266676bf8dd1988e10b53eb9"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapCoordinates.java",
+      "bytes": 4702,
+      "sha256": "a41bedb2220d1d8a4b16431836760af456def1e6732c8bb0ea95267bca5a5c96"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapEditSession.java",
+      "bytes": 10026,
+      "sha256": "f1286b46215af906e0bf12d005ea4f0a42906ad83179adb4f2295bffac9aad66"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapJson.java",
+      "bytes": 6999,
+      "sha256": "ebbb838ccf02dc14c3710f95fb32391801eccfe63c4ab0863014ebc42b27dcfb"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapPatch.java",
+      "bytes": 13002,
+      "sha256": "dd73b9b5d9588844e9b9049f6d4b1af3a6ebaf86cd6b045f08febd8459ba5c48"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapRevisionLedger.java",
+      "bytes": 4191,
+      "sha256": "4d7a35f837ecff57b6b828f319ac4637579ebf89bde296604cd085ef92da97bd"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapWater.java",
+      "bytes": 3871,
+      "sha256": "185fc7f5a4d527bb49d4b2685d95fb3ebdc5641a41e98a063130c108cd253450"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MarchOrders.java",
+      "bytes": 25143,
+      "sha256": "aa7422d4b4443528d18d307cf249cbeb884b6b88753ebaad8b3b473d0967303f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MerchantMarket.java",
+      "bytes": 4123,
+      "sha256": "d67380f0675abc48def74d8502d995d47119b983bbd20b785c2746e40dc48d1d"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NationalExterior.java",
+      "bytes": 4190,
+      "sha256": "5ddfddb1d14c099b6e8049d3ce515a9a06041969e81cf8923ac66cd8addc1cf5"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NationalMap.java",
+      "bytes": 9289,
+      "sha256": "efbcf1ec8af29cfb848a61cf11b3ca6de1e14b6b4b9ebd0e119a9a090272eaa7"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NaturalStructures.java",
+      "bytes": 2668,
+      "sha256": "2aec667151976bc7cb92c048d06f892f096f946c94f786f8b884c7b8ac2161a1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerAbilities.java",
+      "bytes": 7863,
+      "sha256": "07aa434421ed185b4bece42a55701c5fe4c010c76ce773e350e5e63427265de7"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerExperiencePlan.java",
+      "bytes": 1729,
+      "sha256": "23ecd910b870f6fe870ed0198597194660eef0cffa9f8c88e4035b6865a85c44"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerPackArchive.java",
+      "bytes": 5701,
+      "sha256": "aae5c64b432b9054bae2586f480ffe66786a790a6e614bb0b1f3a05f3ba3bf39"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerTemplateCodec.java",
+      "bytes": 1809,
+      "sha256": "ce4716c2e3cba8ab498f6d90c8e2cdf5c094ea155c6cc9e084d5e412c89a3143"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCityActionCosts.java",
+      "bytes": 452,
+      "sha256": "8097ee8cd444f56e56b739ccfc59fe3e1f1f007b3c1c0250a08766bde581eeff"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCityCapacities.java",
+      "bytes": 298,
+      "sha256": "de9d5098139da6b4558768f0d152d62f3e5684a43df62e46a4623362e1af83f5"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDamCatalog.java",
+      "bytes": 2487,
+      "sha256": "5b37ebacbb066cc83c3045c480885abf70901dc0cea904e8901553fe37b241ea"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcFacilityCosts.java",
+      "bytes": 756,
+      "sha256": "160bab071d47e950d3ce0f0d0f50c452f9db854ca3314570644b377401f3c04e"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMap.java",
+      "bytes": 5975,
+      "sha256": "05b6e208d334c4cbc2490c304c86fb4258fb7a49c889305827fb74634771049e"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMerchantRules.java",
+      "bytes": 3757,
+      "sha256": "62e7cdbae484481de713bda9454cfd6d93719b1168a92a1223dc4093c02be8cb"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerAbilityRules.java",
+      "bytes": 3140,
+      "sha256": "2a32d2828f1195a367ed84cfa70ab18a69592e09e5c8c42ee2d59066f3b04c22"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerGrowth.java",
+      "bytes": 2400,
+      "sha256": "187aa03147034e5cdc0263b7d16b5d6a498b57cf39d1c5a8b15ba57da50b9274"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerRanks.java",
+      "bytes": 3865,
+      "sha256": "deabad605b085fdb3aa22e704dab21bd87f2ce98b36a6932caef98aa2c623064"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcPatrolRules.java",
+      "bytes": 656,
+      "sha256": "a27de6d58b102f541bb54c9304f23fd63a9499d541c0c14115f81af5d8d646cb"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcProduction.java",
+      "bytes": 9048,
+      "sha256": "95f8bb74304e8a4fde736fc6e877b4cdf036bf7cc34826cc403a7c72011a9906"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcTacticCosts.java",
+      "bytes": 504,
+      "sha256": "3a6bf3b9e9ea61728ae9f28b58aee2ddf02e8eabb5f5b98114145c65a5b9660a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcTechniquePoints.java",
+      "bytes": 2564,
+      "sha256": "fe1655a78a9d1c1381eaaac4a506cf70a15f50ed5ca98ea75c830cc99e2eea38"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PersonnelTravel.java",
+      "bytes": 8814,
+      "sha256": "70dfd1d4249d775a7caff4e3ec571f2d6f2a6d663b29cd82cc1531febf04b8c8"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ProductionPlan.java",
+      "bytes": 5756,
+      "sha256": "cc3c56cac10fa609e2b16e0207bd7fe7d3cf0a37addbcf1190647c4be7cd4218"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RealmOverview.java",
+      "bytes": 5670,
+      "sha256": "a8cec0c6978a6bf6d541996e06b3076b8e97b629421ebc76c3293d18c245f7fe"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Recruitment.java",
+      "bytes": 11284,
+      "sha256": "75f1ed8b7f406bc98d9bfcd79633e80ab131b0154f281118a4aa424e92896dc9"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Relations.java",
+      "bytes": 10714,
+      "sha256": "656b6ac26bf4b50e905b33416737e2d631ec75014c2fe173e61b4fee913b1eb2"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RuleFailure.java",
+      "bytes": 307,
+      "sha256": "14201890d1a9b783b65443a283cfb938197e3663e4ab40fe5ffb759d0c5eb4af"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RulerTitles.java",
+      "bytes": 2261,
+      "sha256": "029bc1baa2494434c16ac9693fdb805812c006b57724444e3f62ef658a6f5d38"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RulesSave.java",
+      "bytes": 3138,
+      "sha256": "a165815b9c90925ec77ac4345db59252baa2e96cf5820dae83c74d013031533f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "bytes": 17015,
+      "sha256": "65cd9ddb7d78dddbcb9cfdde4f156d0dea9ce8f6dcc349a4d5b122f6d40d8cfd"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveExtensions.java",
+      "bytes": 2054,
+      "sha256": "2e808294f1f7b28bdec73d78dd90db62fcba084e2d8626e6edf337922e485eab"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioCatalog.java",
+      "bytes": 3278,
+      "sha256": "fc7a00c0ca40fe22bba09d7b3c8dad824a87660bbd6d8ea6c6f1d634a0ec3290"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioData.java",
+      "bytes": 18257,
+      "sha256": "fec58ac219be23d4d423c331896853266e5fef9b741ae013456a38d98f4ea179"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiegeRules.java",
+      "bytes": 5781,
+      "sha256": "c43673291a116995151e346796fbc13040690774dabab40ecf8dfe0cd864d3a1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiteAffiliation.java",
+      "bytes": 1528,
+      "sha256": "ee344a8339ee824af4bdf837ba6f4b65cee7adfbe21a5d21cff19dd4aaee3798"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiteFootprint.java",
+      "bytes": 10751,
+      "sha256": "a226009f5f1ef89ab82695f37ae769b25c8c98d113a6b097eb44b263b6bb87a7"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Skill.java",
+      "bytes": 12745,
+      "sha256": "e2a0bedebe623a949bfeea5cb32fd69f6938d970f52761196661b135a6cd21dd"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SkillSupport.java",
+      "bytes": 1324,
+      "sha256": "8863512da49bbf7fd9a12a7ab8ff6a8fe6006ef8bec9fe989296540c634b0879"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Skills.java",
+      "bytes": 5764,
+      "sha256": "68226fd8a6a384212cb41a68c5a41b11791bf77e67ee075f0d72ae2408f70984"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategicAi.java",
+      "bytes": 9027,
+      "sha256": "8ce98658c4e3582d80975a8e020880ba720e9b11005ea364b8cfca812372d2d4"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "bytes": 25241,
+      "sha256": "8b146919a3b8f509378d55c1a21ac1d8288dc77a379b786cc812b1ea34026552"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategySave.java",
+      "bytes": 5965,
+      "sha256": "160b10e27e87cc455258e03a1a17b5f9a5e0f78db23d400f33a0b02399ac54ab"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Supply.java",
+      "bytes": 4802,
+      "sha256": "cb16cdc700d8f6584b43a9f969ef978997222558d0a83480967fe1dd7401c6b7"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TechniquePointsJournal.java",
+      "bytes": 2306,
+      "sha256": "0133b62352984e99969ad16d2b9786c07e5bf969cf462c6df9847e03a66806f9"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TerrainPresentation.java",
+      "bytes": 3414,
+      "sha256": "9261713244af5a4ddb6549ffbce2d935e578043173124d64f09f486491c38aeb"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Territory.java",
+      "bytes": 3908,
+      "sha256": "6d7d643e72ab915a3666c6179aa9709f21de7af503aabadad259496dc25a850d"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TradePlan.java",
+      "bytes": 5425,
+      "sha256": "a0040b0e2ceaa1a7117c8308faa6688d3d30501b4d31209d72882b980bb644bf"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TransportPlan.java",
+      "bytes": 2989,
+      "sha256": "fb89aa0ca670f3512f8a69bebe327c76e5e0548605b9bdfd30bbfbfebb52ee1f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Treasures.java",
+      "bytes": 8344,
+      "sha256": "3ca6c137b5c4b0f774f235e1472bb69c9fad09b75745e63e8cdfd3db97b5bbb8"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TurnJournal.java",
+      "bytes": 24990,
+      "sha256": "4948c6818db1d46569f001b403f4fcf1694a75758a3d2014907a259e8b25ef5b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/UnitOrders.java",
+      "bytes": 8260,
+      "sha256": "6deb247c68b757cfca75829fabb0349907cb0b950a521bb85a99b42c4db879d7"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/War.java",
+      "bytes": 34658,
+      "sha256": "facbb1b51d4a3562751eeea78ab6086e3f9262174c568ad9c72f9fe0f5b6f764"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "bytes": 42445,
+      "sha256": "8e3fce152df3c6635e10410972cf3e7e4ae067282945d4b19a24328e2fe2f736"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/WorldEvents.java",
+      "bytes": 9100,
+      "sha256": "9014b481160e9bab46e2d9bb83bcff517f35c58d25e8f1f9aad382c216b6c488"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/WorldSystemsSave.java",
+      "bytes": 8031,
+      "sha256": "3365cb8cc5cab333cd91f1c64cece6cecfd312268d5e947bcf7863a67ad57441"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/army/MarchScale.java",
+      "bytes": 786,
+      "sha256": "239bc319ad916854ffa64f228b22778474c2f673507ab51f0fc177e1150def18"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/map/MapBrushGeometry.java",
+      "bytes": 2584,
+      "sha256": "7b27148a073e27f44fa8a612ba71555cf9f9258b515b80740587c254544f4c1c"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/map/SourceGridCoord.java",
+      "bytes": 1524,
+      "sha256": "d1f561da51f83b18c8ee989b7f92ec55ecaec8154e2fcce3afea8710dee90477"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/map/TerrainCode.java",
+      "bytes": 1553,
+      "sha256": "9f7fd9d2d9b2e4940d4e157fce87fb4fe8caf6bddd08402da317ab53e3274ac2"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/strategy/StrategyRules.java",
+      "bytes": 2366,
+      "sha256": "a364626ddcfa28e73908d732257b5cdbbc541c562aed9e8e743e35656abe6695"
+    },
+    {
+      "path": "core/src/main/resources/content/aliases.tsv",
+      "bytes": 237,
+      "sha256": "ef10ee62da34b5878267d4e4283b07ca37be0c9b0e6b0112434f93344c1f9dc6"
+    },
+    {
+      "path": "core/src/main/resources/content/index.txt",
+      "bytes": 820,
+      "sha256": "f6ffa40a07b8213eeaf9c046c36154684f5740daeae1a596965f17654c553d83"
+    },
+    {
+      "path": "core/src/main/resources/content/items.tsv",
+      "bytes": 2825,
+      "sha256": "6d9d51b2432eab02028d0ada66a0f4676c3bad8cc86a257d62727952e4f81bdb"
+    },
+    {
+      "path": "core/src/main/resources/content/manifest.tsv",
+      "bytes": 86,
+      "sha256": "7de25820433672ff9140152de6d5bda95ae1c911de4016b3d1b9dfea0931477a"
+    },
+    {
+      "path": "core/src/main/resources/content/officers.tsv",
+      "bytes": 85366,
+      "sha256": "eaa1a7a6f456ac0d0351e3f69f86b5a72b7bdd11848b85f1ada30c9eab03ce17"
+    },
+    {
+      "path": "core/src/main/resources/content/pc-officer-growth.tsv",
+      "bytes": 18190,
+      "sha256": "ba89f918e9852ce5144e94441e132f8fdb87accc243bbec3bb0596b7e2307721"
+    },
+    {
+      "path": "core/src/main/resources/content/pc-officer-ranks.tsv",
+      "bytes": 10262,
+      "sha256": "78ce6ffb93c7164d81858df7d5ca5387ffe830f2fabb821ece3b3fb8122f1288"
+    },
+    {
+      "path": "core/src/main/resources/content/profiles.tsv",
+      "bytes": 20198,
+      "sha256": "7369f593b90a4480b2b7bfd7357b7c546e0c23cd2f3ae18a3e83b8630f79a7f4"
+    },
+    {
+      "path": "core/src/main/resources/content/relations.tsv",
+      "bytes": 44212,
+      "sha256": "273841aa37d113ff491840d1a068829a0eb41532e4e6ea9aa6f4337b96372916"
+    },
+    {
+      "path": "core/src/main/resources/content/scenarios.tsv",
+      "bytes": 1040,
+      "sha256": "294fb60f477c1a719eaa2b3546383ca3541dd97ce961a3a5366af4aa0bac33eb"
+    },
+    {
+      "path": "core/src/main/resources/content/sites.tsv",
+      "bytes": 4641,
+      "sha256": "bbb2fdd599b016b482b1742649982eb09e6fec982c9adaef6a3a12844c52cf22"
+    },
+    {
+      "path": "core/src/main/resources/content/skills.tsv",
+      "bytes": 3115,
+      "sha256": "4c59b639787e7dc1a5c1e18ac532c1830b28a6613f3efb4c7751faf24d5bc0cb"
+    },
+    {
+      "path": "core/src/main/resources/content/sources.tsv",
+      "bytes": 808,
+      "sha256": "3d6cd9c05cd8eac8c7672841f01f9a8be1c177d9aefbac780d35d29f44246b15"
+    },
+    {
+      "path": "core/src/main/resources/maps/national-exterior-v061.properties",
+      "bytes": 20903,
+      "sha256": "451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f"
+    },
+    {
+      "path": "core/src/main/resources/maps/national-map-v056.properties",
+      "bytes": 48806,
+      "sha256": "800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d"
+    },
+    {
+      "path": "core/src/main/resources/maps/national-restrictions-v063.properties",
+      "bytes": 224,
+      "sha256": "be04aaf7361f13b64cac6bc51c12cbefc5aa4a7bc80e1aacdde9233bfb666a76"
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-dams-v065.properties",
+      "bytes": 241,
+      "sha256": "2c73957fcfb5873185fe72231e2f4b1b980f960e9962a063ecef4304b58f408a"
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-map.bin.gz",
+      "bytes": 597163,
+      "sha256": "c035549c3ccc0c31a96ad9d8f0fb5f774e5f00ab0eae1f050a0b58fcb2ee68f7"
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-water.bin.gz",
+      "bytes": 111378,
+      "sha256": "59e26262d70f93334c7c80d5141a1e695610b81be814f014c6abdda0622bf2d1"
+    },
+    {
+      "path": "core/src/main/resources/rules/pc-city-production-flags.tsv",
+      "bytes": 770,
+      "sha256": "469e0fe812bf20661c0427b3ff8d79c0be51e7080411a340fdaa4e6598d46ed1"
+    },
+    {
+      "path": "core/src/main/resources/rules/pc-production-prices.tsv",
+      "bytes": 89,
+      "sha256": "eb73f93c358be45bf40aebf286e930a80de0b9fd47429300cb9b78fc7a9c850f"
+    },
+    {
+      "path": "core/src/main/resources/rules/skill-support.tsv",
+      "bytes": 4427,
+      "sha256": "56b0e51647dbb0bbfa2658d83f63d69788b6a0a1ee997ebd94ab97d2d09f620c"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/central-mobile-sandbox.properties",
+      "bytes": 19126,
+      "sha256": "a6d50e6037c567aae6be7229e01ed0c21fca1814abbe3302bbd9bbbfae85492d"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/chibi-207.properties",
+      "bytes": 51883,
+      "sha256": "6e979682ca6e9dea1cf4721e8b7584ff8bbc7fbc2d22177896073cdbd7b4e1f1"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/coalition-190.properties",
+      "bytes": 67583,
+      "sha256": "84bbe2aa8daba3be0d47e2f7fc2f700cbdd2b53c748e6f42f568a7115b04d8c8"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/guandu-200.properties",
+      "bytes": 55384,
+      "sha256": "72df21e9b16bf3492e561ac81ee70dd89a0c64b4ddb0d7c35a88fe980369acd7"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/heroes-250.properties",
+      "bytes": 64335,
+      "sha256": "cef9f57976f059e5806154082a0250404ee14c350e66204594880e30d4df61cf"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/heroes-mobile-sandbox.properties",
+      "bytes": 63322,
+      "sha256": "feaaf673a9712fc04dfd37ab4865499be25e92eb2889332d742a5dbfa478a5a2"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/huangjin-184.properties",
+      "bytes": 63970,
+      "sha256": "cb50051c2c0f0f1dbf08fbdb2ea787ab31e61b36f7ea1d6c3c7065cbb6dd518a"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/index.txt",
+      "bytes": 770,
+      "sha256": "1b4c20f6916b9cfec12c927def966dc0d14368cee5aea89272562d36d060b108"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/jingxiang-mobile-sandbox.properties",
+      "bytes": 12787,
+      "sha256": "ba781ce741cc24762f01ad68517dc191ce970d5b3880c7f0ed74f9aaf5e91663"
+    },
+    {
+      "path": "core/src/main/resources/scenarios/warlords-194.properties",
+      "bytes": 60275,
+      "sha256": "2c8b2d466c199cca78bebf63ea66a0d17a4d15f52dfde08465fb0f5a6f154f8f"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/AbilityResearchTest.java",
+      "bytes": 15580,
+      "sha256": "06696f6366fa99f68331e24f908c791f43504b7b1ee83a005ecfdcec1deae842"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ArchitectureRulesTest.java",
+      "bytes": 10372,
+      "sha256": "5e975f5bcdac590a87aa432f768344811124684470ebca9c1f9d916daf5cd78d"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ArmyTest.java",
+      "bytes": 17127,
+      "sha256": "a38504d88ff4118aa88aa35b6563fb863a89adfd2e10ef1dc4a1fe6c5e984b1f"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/BalanceTest.java",
+      "bytes": 6751,
+      "sha256": "abeea481fb28378be12b02607bd4ca8942e55efbc5c8bb42ec625b0054bf80d7"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/BattleFeedbackTest.java",
+      "bytes": 9495,
+      "sha256": "7d8a0fd22350e854b4a4f1d1256d1a26083ee7248236d843fea02bd6d3ca7a37"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/BattleReportCompressionTest.java",
+      "bytes": 4068,
+      "sha256": "949e7f7c59f1c497153fc9332b64b35d684c1480f118d92b88bd02a7df468187"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CampaignAiTest.java",
+      "bytes": 15631,
+      "sha256": "48e411d1ae9f8c64e0a282ca27bdcca325e11bec6d6faffd98b30346d21e262a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CampaignTest.java",
+      "bytes": 26452,
+      "sha256": "6dc79cef964c291515c61a522d579cc752e7425c747d3dab01211c2979d46932"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Cavalry125Test.java",
+      "bytes": 4377,
+      "sha256": "f93589296f949e4c24a859a21abb3b4ccd08035ef62393c6c47023b2c69e0782"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityActionPlanTest.java",
+      "bytes": 7884,
+      "sha256": "29670b29cc0b31c781990bb17216345e7a58796bb0f332b802514cc8de125df1"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityArtCatalogTest.java",
+      "bytes": 559,
+      "sha256": "f8fed88cdb7d4f52fc25367281533fc174d2e825ae9d0a8cc6453bfa64c4c6dc"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityCommandRewardsTest.java",
+      "bytes": 6784,
+      "sha256": "573d97276d2540237ffe2fbcf8e4ea7abd11aead672fb39aec154a575889cb0f"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityDisplacementTest.java",
+      "bytes": 13203,
+      "sha256": "a56642d7f5804e6746f3b4c6a453ac46b5f03e42e11260b50891ab1f5c77b118"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityFootprint55Test.java",
+      "bytes": 19100,
+      "sha256": "84fe3a2ea96d3fdb7772f6f4b4ddc75c7ceb081a1ee81843a6078cbd778fd94b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityMovement63Test.java",
+      "bytes": 9571,
+      "sha256": "77895d2251dc27a3f84d2488bb351d080909d15c4218283bfde296861f27db5a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ContentIntegrationTest.java",
+      "bytes": 2993,
+      "sha256": "0252014c2e1a2a5f5b87211fbbd61f84311d34fa6f868684d587a87978e0b668"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ContentProfilesTest.java",
+      "bytes": 5724,
+      "sha256": "c2f2c5aa6120cedec91f77b509d19ce26aca513ecfb83c019cdb11412f56e710"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ContentTest.java",
+      "bytes": 7322,
+      "sha256": "7d89883a756aee705e3c54a26888ea24d647014b7dcbf4c50f9ab33b9b8b23ce"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ContestTest.java",
+      "bytes": 16172,
+      "sha256": "b18b61fb625a74007a7514464f1104fb10a97a3ce8cd11a66737b4463e316ce1"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ControlIntelligenceTest.java",
+      "bytes": 3940,
+      "sha256": "d66ace8c3721cfb3cfc05eb9be321de1a6b9d33a30f1d002c8f8e1ba7b5b80cd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ControlProbabilityTest.java",
+      "bytes": 3873,
+      "sha256": "f713d6f487f65bde0bac53d735224159501039f8a5e2319db38d7386bd7969d2"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CoreTest.java",
+      "bytes": 8142,
+      "sha256": "068e421a5be30e6425033e721bd48121922786807c9da33a5e820417ce790bdc"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CriticalYearTest.java",
+      "bytes": 2434,
+      "sha256": "5901c04f24dafff2aa3c65c7115cd56eaf8907f61bab117580df962d7f42bfc0"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CustomOfficerTest.java",
+      "bytes": 14001,
+      "sha256": "b06deafa219d7c0c3728f1645784ee86df259b1a3267f8ee5860ea6858e8132f"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DelegatedConstructionTest.java",
+      "bytes": 2383,
+      "sha256": "c4c08d4430ed1df691b5d81de83f9a7e42da285bfbc8ca0fe1e98011795868fd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DeploymentPlanTest.java",
+      "bytes": 6776,
+      "sha256": "0d4aece6949c69899939c9817f142e28c1ff9756e12d2ff361e14930195ac129"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DifficultMarch129Test.java",
+      "bytes": 10886,
+      "sha256": "62beb0de305ad9ded32669c31f48dea7f4a50acf95a70293d4bed0d1020e984b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DiplomacyPlanTest.java",
+      "bytes": 5342,
+      "sha256": "dc7025d64540f0640c91ebb1e2c96633a501ef684205d77988c1ca8b5d08e5fb"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DiplomacyTest.java",
+      "bytes": 12749,
+      "sha256": "ea33612130c50338e8e41bec80e37ab23e3e663007ff0d5fcc74bbe0342c7f6b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DisplacementTest.java",
+      "bytes": 11624,
+      "sha256": "51b84954759ea9d8b12b85f5a976865b8f969ce1f3d181fa8086b3d6ba8b324c"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/DomesticTest.java",
+      "bytes": 16864,
+      "sha256": "22fc06f09d69454f64db331ff33c69e8124959c0be392baf3a9549a5d776d95b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/EditorMergeIntegrationTest.java",
+      "bytes": 5012,
+      "sha256": "be1c93d66971dcb47d390d40781aef9d49ac8c784bd21397c9f5c5508e94e8d4"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/EstatesTest.java",
+      "bytes": 14661,
+      "sha256": "3572260e1b61f0c44dd243b0f4a326aaea61d6018e780f465266736ab6f3f2ac"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/FacilityCombatTest.java",
+      "bytes": 7331,
+      "sha256": "3b04e82ee952ffe2aaa6be906da46d6113697e50759c4f1c28cb71d823705248"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/FacilityProductionTest.java",
+      "bytes": 7043,
+      "sha256": "29ab80d3b76d88e8674e66a893b8ac10c40675e28361dee1ec72b6ab51151f68"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Geography63Test.java",
+      "bytes": 948,
+      "sha256": "ef4c8c0bb6454e37fc86fc8e9493a176f1a77c805c6abd187ac7aab3981b89c8"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Governance66Test.java",
+      "bytes": 15634,
+      "sha256": "b69ace7f09722ecd87a08291e7fa11d8e8a42e9bbf227ed465fb8b092b2d051c"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/GovernmentTest.java",
+      "bytes": 11522,
+      "sha256": "55b35af57c5f4ed1d3847c615961b8dae2c1a306a4f70f262b50f63191bb47dd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/LegacyGovernanceSaveTest.java",
+      "bytes": 1791,
+      "sha256": "86212dcbe4c12fab0b30ed9e4bd4835693d1f95c99a79fa61873652b608f2f75"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/LegacyMapCoordinateCheckpointTest.java",
+      "bytes": 3170,
+      "sha256": "483f4b6531a152b12521ef9fc52b8109647d7ca9cb3163e9f72dea59e1466c13"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/LifecycleTest.java",
+      "bytes": 11520,
+      "sha256": "8d62b073f47a3caccea8ff3b74800a0f5325616f4da00c38e68cdc1dd1dbf265"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/LogisticsCampaignTest.java",
+      "bytes": 22145,
+      "sha256": "e81e1a460014cc74afae20954476fb5c5fa9b3d28054e11e512177bcab4af0e8"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/LogisticsRegressionProbe.java",
+      "bytes": 1471,
+      "sha256": "8d6761186a9b30e9f5ded8567d37f76789082868c70f8c422e4807258358fb17"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapBoundsTest.java",
+      "bytes": 941,
+      "sha256": "a4968bc5ab2ef97696d9ebceae2468896ad566a918136666ab72bafd44397726"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapBrushGeometryTest.java",
+      "bytes": 2172,
+      "sha256": "ebf0e5388d12570f82ba49955b2f5c9468a99cabb075d2e95747fda862a62fdd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapCoordinateTest.java",
+      "bytes": 1203,
+      "sha256": "aec4fcf45e7d12695b5994b82c83c437d7d485cfa5a9fc400c91735524e262c4"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapEditorContinuationTest.java",
+      "bytes": 10482,
+      "sha256": "2542a0d05d1811439f76b40dfb0e7fe40372d542726fdac6f6c9214a16b2b574"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapEditorRuntimeTest.java",
+      "bytes": 2985,
+      "sha256": "2bb579eaa0d718cce422d1a0017f8c611acd471cb00b0b4c759502d0597504ad"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapFidelity50Test.java",
+      "bytes": 5636,
+      "sha256": "882decc11e4dc245aa74face46797c86da738f7c672d0ea0655c4369f3c60d2a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapFidelity51Test.java",
+      "bytes": 3738,
+      "sha256": "5269a2d7124aedaf32d262dbce327937340cd1a64379e176593bba1b0a511989"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapRevisionLedgerTest.java",
+      "bytes": 2393,
+      "sha256": "09061c3fd045219f7a6cde374e4390af345a2e76c6a582309dd9f3c038e76742"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapSkillsTest.java",
+      "bytes": 11258,
+      "sha256": "d79132ed480d7baad53293186d665d2a0926ef8af185811103e048b28335b375"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapTap57Test.java",
+      "bytes": 5437,
+      "sha256": "9d824ecbaad762116e390a3b022843a210db08453e4d6baf116bfdbefa6e3da2"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MarchOrdersTest.java",
+      "bytes": 9638,
+      "sha256": "801b43f2c51c6dea8ac9491148f8eeea07834ee66997310550f878e79e2a6103"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MarchScale56Benchmark.java",
+      "bytes": 1673,
+      "sha256": "8bd7d1fd1d1c76fe9d8c20d8188c843b7bc26ba24f45ec90ed3b24c4c3a89e17"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MobileShortcutsTest.java",
+      "bytes": 3875,
+      "sha256": "51cdafd14a6438a69008af4ddd4ee5d99336e53e5cecf2b9fb6af04b8ce1dba9"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NationalSiteCountTest.java",
+      "bytes": 447,
+      "sha256": "ff125daf1c912ecd90ed38068e6cb3188237c66c58b784ef7c0e8b358098ce84"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Native56Checks.java",
+      "bytes": 430,
+      "sha256": "e500b35f617a8666d5c4f1dd2a1d6a83ed445ecb999e3f20812b45075a5ec01b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NativeMap56Test.java",
+      "bytes": 517,
+      "sha256": "b6d932484a5fe7edf50403c07916426d7e28980bfc8f434260d84cc91c063ad6"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NavigationDefenseTest.java",
+      "bytes": 11504,
+      "sha256": "7346f1b253353d9779fac575aaeb2e9e4cc880f61c0e4f9b13fbde8e61eafbf0"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NoLegacyCityFallbackTest.java",
+      "bytes": 515,
+      "sha256": "68470e440983f51fe667990fcd97492324f673ca6d3912b957b7b0b5291f34af"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ObjectiveOrdersTest.java",
+      "bytes": 10485,
+      "sha256": "2b31e67534edf02ad2b8784481f6919ff441e95643f3d17863d3a2be63842ef7"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/OfficerPackArchiveTest.java",
+      "bytes": 3563,
+      "sha256": "26c53896886ffcffcb358a3bfcedcbc4d97c0f48a3e0f0edc3812c4ab27d9724"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcCityCapacityTest.java",
+      "bytes": 3427,
+      "sha256": "ac8e11522e73f60e2044ae0881cbe109cc3fbb229797dcc376277db0f1c38348"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcConstructionTest.java",
+      "bytes": 6265,
+      "sha256": "8cb73832b8d657e52b9c4c7ff5c2c0766342d58a9c18531e9173745728a7ca70"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDelayedCounterTest.java",
+      "bytes": 990,
+      "sha256": "4bd1490b62d4cd6909155a716ad4e858c549c3375bf63de3af3b4302000f3f01"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDelayedProductionFlowTest.java",
+      "bytes": 4581,
+      "sha256": "b5db61e419265d32725c341b5ccdd5f1f2c790131a613d82e40c3da9192469a2"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcEconomyCostTest.java",
+      "bytes": 2948,
+      "sha256": "30bb27d808f1eda9ff318270372746375dde40fd31250e957b2e551806671a91"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMerchantArithmeticTest.java",
+      "bytes": 2206,
+      "sha256": "a2f4a3330a9a81e24091cf1d8519f53b3570f75393a338dea4d57df21472b86e"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMerchantMarketTest.java",
+      "bytes": 10844,
+      "sha256": "6ee1ad70d5caa2ca7f2ae73b70a53a26c1df9f0228ee06ec60551a67f912152d"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMerchantMeritCompatibilityProbe.java",
+      "bytes": 2190,
+      "sha256": "bacb87f469a08a18a4fd5ee586af8eaa45134c77a05dedc67980d4ffa802c280"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMerchantMeritTest.java",
+      "bytes": 2706,
+      "sha256": "214ea8f1168ec13afd6d82d3bb7f5d70158b6c45094d1b6eff12dc3ae13621c2"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMerchantSiteCompatibilityProbe.java",
+      "bytes": 2308,
+      "sha256": "79e01da906bae28d054386b461ccecd53bd703bbffbeb1f910d70ad4566ec43e"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMerchantUseCompatibilityProbe.java",
+      "bytes": 2272,
+      "sha256": "a3b261a186b80f3cc82b5f7fd8f0bd3de46e758da576704d5886ae9e40c87e9f"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerAbilityArithmeticTest.java",
+      "bytes": 3515,
+      "sha256": "8db7a182d055022585190ac3825e2752054c13fa2c1bfdf2c278229ef5c82099"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerRankTest.java",
+      "bytes": 4615,
+      "sha256": "905b707f2f5c9b13b30b0c6202f03bd35216378e6fd38c6155be73ec41fe5830"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerStateTest.java",
+      "bytes": 14229,
+      "sha256": "1dec7f3e709d832dd983590fcd1c7e98bf99f1cbbf19bce4b96dbea648c2ee1a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcPatrolTest.java",
+      "bytes": 3949,
+      "sha256": "ae1224023bbc62c2420f7f3a3ffc5ee56cfd72ca03867248b6b66751ab8c3754"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcProductionCrewTest.java",
+      "bytes": 3512,
+      "sha256": "9ef64827ad58caa5b6cfff6d0090e28ace342703bb7c35798f1febeee3964907"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcProductionFlowTest.java",
+      "bytes": 2886,
+      "sha256": "b54cdc97ed99a8d6a37fb7c8e7be7375c8ef11d6296f2782a806314dba62a533"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcProductionSavePolicyTest.java",
+      "bytes": 2300,
+      "sha256": "9ff4b9cf6eb6370918dd1ebf061aeee4f99074ea7ff61d25ecd22125c92bcd2c"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcTacticCostTest.java",
+      "bytes": 4442,
+      "sha256": "418c4ec7866f19197f4c0b0700bc9b1a2fae8ad8a35f57626936a63180093128"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcTechniquePointsTest.java",
+      "bytes": 6870,
+      "sha256": "ea95d77bab11b49761989cad4d8c52d5836c4fb419905bd905efc7d9d2c8123a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Personnel49Test.java",
+      "bytes": 14255,
+      "sha256": "9ddbfe8c8e94d836463ab5a6b43be62c9161164182cceb6e2e2247cd31d6f987"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PlotJournalOutcomeTest.java",
+      "bytes": 8441,
+      "sha256": "826b7e84bafd8413298260467a0cb84b2b5b1703ac210fd251e9e047d2f5fd54"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PortReplayTest.java",
+      "bytes": 10114,
+      "sha256": "9abfa703df84f7264afed0cf430c2cbf9394aac27f671bbefdfef16a5ca5de4d"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PrisonerEscortTest.java",
+      "bytes": 6498,
+      "sha256": "867ad681adcbee986302ff28d9cc7db424dba4258cdaa0783181db6c19987bd4"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ProductionPlanTest.java",
+      "bytes": 4561,
+      "sha256": "1f90bd7eea093ce64450ee615de8b21227f0a5bd065e1cf95a68bdde29d56e1f"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Realm52Test.java",
+      "bytes": 12363,
+      "sha256": "900ecb058862d22a0bff81272e55488b464f90f4276d2b875fd5724ff6c382bd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Reference58Test.java",
+      "bytes": 9169,
+      "sha256": "6446565d807454ae33e1a3bb716297f0b936ab6a708ec3cff1c78a5ac20e3930"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Reference59Test.java",
+      "bytes": 9629,
+      "sha256": "0b94b9ba0faf068e42ae06a7a7ff475170e3aeae6feef75ad4b0c1c11dc830b0"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Reference60Test.java",
+      "bytes": 8348,
+      "sha256": "119b5a4c1d03304121b062916aa947434f95a4d85d7043ad970aaf9125147a2a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Reference61Test.java",
+      "bytes": 9141,
+      "sha256": "99dcbbbd0c335439092fa3f033f04be3dac0036335f12f6fe1c60ba4ac025d88"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Release42Test.java",
+      "bytes": 6170,
+      "sha256": "4c4d74945aa44a1cb2f6a4af0bc6721ec62e3003f988b5dbef07255b99fb5540"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Reports53NationalTest.java",
+      "bytes": 2711,
+      "sha256": "0fc9f25cc258f8e13c5bc0baec841e9179b396110c38b4f841828172dafb45fd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Reports53Test.java",
+      "bytes": 8281,
+      "sha256": "4609cca2df3dff33aba5a24e90f54658369e82c4c7440092047ce1e25ec9113e"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/RulerTitleTest.java",
+      "bytes": 13565,
+      "sha256": "e2c668c5bc6edbd98ec416551ff582597325b30dec5c3edf5be0f2039447979d"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/RulesParityTest.java",
+      "bytes": 19089,
+      "sha256": "2e8ebf9281a02a9be9a839ca84e6df05073f1607f3d5268b2847ed3ce2a665d9"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SandTerrainTest.java",
+      "bytes": 4897,
+      "sha256": "9d3845c219be25bd8885e6a0261618630fb263a379ed11e99edc56334ab0e6bc"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SaveCopyProbe.java",
+      "bytes": 2790,
+      "sha256": "f7156fc26463a24b97be81eb9df2bb141874a8959f12c4b6405b2fbc753dd3b5"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SaveMapRevisionTest.java",
+      "bytes": 918,
+      "sha256": "802968265deae05ab24f898bd1dd51819d89b3cfca21b682831f1994f35ccfd0"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ScenarioNationalMapTest.java",
+      "bytes": 1180,
+      "sha256": "88f0427e169db026ed57189a0caeab17fe4b95a4e54f0e78ddd6660610bfff45"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ScenarioTest.java",
+      "bytes": 12079,
+      "sha256": "070188e3abc1313217203237f963ae7148cc9a18bb1c93958288352ae9cae133"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SiegeRulesTest.java",
+      "bytes": 11938,
+      "sha256": "8c3eb5c2ab1170699b7820e797c886db752067c8d257193c4d031a8ad84c7a54"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SiteFootprintTest.java",
+      "bytes": 833,
+      "sha256": "67b67d9bb427641c6c44f6eb0dc0d75c90ff34e0c229903b003b6f5d814b68bc"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SiteOverlapTest.java",
+      "bytes": 623,
+      "sha256": "230f1ebb1c6f9368a15922b2e7332620d7b45437c4ff6277baa9d26593881dcc"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/StrategicManagementTest.java",
+      "bytes": 15660,
+      "sha256": "962f1fa529ba3059a9ac69335c349c5648d5e7a9233ac9fe05ce7533c0542b63"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/StrategicRegressionProbe.java",
+      "bytes": 1959,
+      "sha256": "be7fe0de4e3f917487310ebfbbb9417232d4426e65573646e27151b75350400b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/StrategyTest.java",
+      "bytes": 36083,
+      "sha256": "8c26b70aabb9df447c0834e6a5469882e2dfb351c2e0d7cb899fae9edd741868"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SupplyTest.java",
+      "bytes": 5250,
+      "sha256": "c7c62efcc3e990cb401542fdc293fc5e7324d59ed3ae61a50cdee393a7ba21cd"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/TacticalLogisticsTest.java",
+      "bytes": 19065,
+      "sha256": "b665f671aab7187048c9d518b87a0f3466385784c11d457f2577191152c184ab"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/TechnologyFieldworksTest.java",
+      "bytes": 16579,
+      "sha256": "1184df20d756d301793b74c8c7876d03bb82d9dba10be67b312fbf9171775605"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/TerritoryAiTest.java",
+      "bytes": 10085,
+      "sha256": "0edb24408197d479febeb4fe5d79969d2eb2a4e189eacfce56734c00f7d99379"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/TradePlanTest.java",
+      "bytes": 5648,
+      "sha256": "bf70e4e32c9ea5468cb9dc806723f21b6a2b7ce7a09ef5df6258f3e7bcccea21"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/TransportPlanTest.java",
+      "bytes": 4344,
+      "sha256": "e344016fbbee28c8ac129810ec779131afeb05eeb3dbdd3410e2d2d4ca496312"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/TravelChecks.java",
+      "bytes": 936,
+      "sha256": "90d8ca8f0ef16a78ea915e4c00d43e9b81840a9db9d2dd8bb874d2188d0a142b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Turn48Test.java",
+      "bytes": 6821,
+      "sha256": "57b72694371149ef319b983cf16b70df8bcbdce6a45c3edf8ee99f60fbf57ab5"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/UnitJournalStateTest.java",
+      "bytes": 1323,
+      "sha256": "74113f44646bddf25a5392ed68d14c1c612529cb6ba457c81187232e27491317"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Ux64Test.java",
+      "bytes": 12052,
+      "sha256": "55eda5e0c9b1e6de6755c361a93895ed42d44f705d8616daa200af9263ceaa93"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/WorldSystemsTest.java",
+      "bytes": 23722,
+      "sha256": "1984df467b44b3c726bc6f44933b2ee0c5cbf496ed09101601fd9a995301b892"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/battle/AiAdapterTest.java",
+      "bytes": 13465,
+      "sha256": "6da9b4193fab2b71500f7b91ba5275c291d6e42b57fdfbcaabe1a2bef8697846"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/battle/BattlePerformanceTest.java",
+      "bytes": 2835,
+      "sha256": "73902ff7b3df353e8c6c0c201399e669d5a6464a2ffddd0822cd00de0e3673da"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/battle/BattleTestSupport.java",
+      "bytes": 3674,
+      "sha256": "87756c9d2e6d7911f07c7349187245b7679e26fde7a99563c137a4d8af04f9d0"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/battle/CombatTurnTest.java",
+      "bytes": 26620,
+      "sha256": "a99dafe149bde63f1c8d0ce85c4c2fb1b0f9b761c56713f86f40919061873e06"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/battle/GeometryPathTest.java",
+      "bytes": 12863,
+      "sha256": "6ff50277ae1c81b2923278927f46b3408a65a50f56707b3760cf93157d81d629"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/battle/TacticalBattleTest.java",
+      "bytes": 571,
+      "sha256": "6efe1bb2abdfba078c7c09c6de73f1703a5349362b7eb634af2e0b679f4ea43a"
+    },
+    {
+      "path": "core/src/test/resources/grid129/README.md",
+      "bytes": 847,
+      "sha256": "4bbdc61aeeabfc3fb8e75f5fc2b9e67d60a39030e40f4b9d0a4aca8ea01da14b"
+    },
+    {
+      "path": "core/src/test/resources/grid129/pre-gate-plank.sg11",
+      "bytes": 2090,
+      "sha256": "023b2bb02bc7dce50c6d945e6503755345a964dbc9f82fb7752b44e6237cdd06"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/central-mobile-sandbox.sg11",
+      "bytes": 75788,
+      "sha256": "f44437f70e2b50fa92cdaef99674d9a68dfa1c4235fd5a953800e03dfd786323"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/chibi-207.sg11",
+      "bytes": 202666,
+      "sha256": "5f152862ab2d9beb1e4a169483b0dc2eec582160d8070d4528d080a782983895"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/coalition-190.sg11",
+      "bytes": 237765,
+      "sha256": "7893742be2e7ed1e983a96648226f5bb009ab51ddc1a660a45a64541c28a3098"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/guandu-200.sg11",
+      "bytes": 212984,
+      "sha256": "898f8ecca085a2d9dfccd05ed165140c4de0ead76adcfbebdbbe29cd6827d101"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/heroes-250.sg11",
+      "bytes": 221936,
+      "sha256": "7eb5b37a5f6bac8404b7e6026ada3769d3d5af7e5f2fe89ab5dc391c09be5dae"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/heroes-mobile-sandbox.sg11",
+      "bytes": 218630,
+      "sha256": "05bddb94fc848a1681f8c1c8821a7cf355dc2015115f1595361430bd17ae8d7b"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/huangjin-184.sg11",
+      "bytes": 236284,
+      "sha256": "dc090e049ba3c6b5725fb20d585314d6018084fd8749d29e982cef2ca794f75d"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/jingxiang-mobile-sandbox.sg11",
+      "bytes": 57909,
+      "sha256": "b22f0b6717950af202128ce01d070c259ab4c50a392e3e718f7d12b8048a6ea1"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/art/warlords-194.sg11",
+      "bytes": 226910,
+      "sha256": "55f1785e4beb32522c6ccd3d2391f2a02a803ffd0920b6a693e96b1b9a4b4cec"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/central-mobile-sandbox.sg11",
+      "bytes": 75788,
+      "sha256": "0926b2fe1b4783abdf229b8a3b9ae18ac7126acf65d41ee1699d4326f7ee3abc"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/chibi-207.sg11",
+      "bytes": 202666,
+      "sha256": "0e9fe8c2f50dcfcdce0d95a44f56a17841078897e2cf4aaa447ddc6edfcd5075"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/coalition-190.sg11",
+      "bytes": 237765,
+      "sha256": "11b5e28baac6a7c2e88c0a5455a31e2b28d918db693d60785e7e7f03d45d07dd"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/guandu-200.sg11",
+      "bytes": 212984,
+      "sha256": "4d5154bf03f940208beaa3c745e9a349b89d5174a006fba9c3c985c07afd2213"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/heroes-250.sg11",
+      "bytes": 221936,
+      "sha256": "a3e455f8d09312c423f0c76fbf74f8eb24f12a64c33fda3eadddc527fa6f43dc"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/heroes-mobile-sandbox.sg11",
+      "bytes": 218630,
+      "sha256": "220c921bf6742d2a0c4bebd20a2ef9d7a901a63527c141fe022696c3e1f04a13"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/huangjin-184.sg11",
+      "bytes": 236284,
+      "sha256": "40e219dc5f28b3287a340275f43dd1c9d0d6a2965c0f521edd6661f3e52259e4"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/jingxiang-mobile-sandbox.sg11",
+      "bytes": 57909,
+      "sha256": "b64f1d2ea052fdc461ab5fad5a71bde58402bb7d3942d28162b556ba1e540da0"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/host/warlords-194.sg11",
+      "bytes": 226910,
+      "sha256": "740afbdf98e59db9191f65966e401925d93a5c98a93bf3a5c53fa8b8fe9a0f1d"
+    },
+    {
+      "path": "core/src/test/resources/legacy-market-v35/manifest.tsv",
+      "bytes": 1548,
+      "sha256": "56990d2d6b8f31d477889ca273faef0ace7fd99e1c5d5e5ce9325ce0af1527c0"
+    },
+    {
+      "path": "core/src/test/resources/legacy-production-v36/coalition-190-art-reencoded-by-host-v36.sg11",
+      "bytes": 238756,
+      "sha256": "4178c8b1e67b834f1eb1cdea3f5f1b233746046f0c849b5365a8b0ac3bed8dc9"
+    },
+    {
+      "path": "core/src/test/resources/legacy-production-v36/coalition-190-art.sg11",
+      "bytes": 238756,
+      "sha256": "99603668968cfb2d60b283e1245bb36f803a2cf68c5a1582635a4ee8a261aad3"
+    },
+    {
+      "path": "core/src/test/resources/legacy-production-v36/coalition-190-host.sg11",
+      "bytes": 238756,
+      "sha256": "4178c8b1e67b834f1eb1cdea3f5f1b233746046f0c849b5365a8b0ac3bed8dc9"
+    },
+    {
+      "path": "core/src/test/resources/legacy-production-v36/provenance.json",
+      "bytes": 845,
+      "sha256": "2cbb23f3c3235694b47d836c0c113aaa394cfdbecbacc56be79d22758a5e829f"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v10.sg11.b64",
+      "bytes": 3661,
+      "sha256": "ae01d0f2261ddfb740f16df22ca8d235b64ee73e0ebe1dccc8619cb5b1240cb5"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v11.sg11.b64",
+      "bytes": 3621,
+      "sha256": "8b808f8d9ffd6c5c226bcdc26f491d3121531a4f96425ef37f7dcf6009e611e0"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v12.sg11.b64",
+      "bytes": 6473,
+      "sha256": "2d772d1ecacef008e542f0a4c8b453ba807b4d4e7821137d5c6de8aa184f9966"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v13-march.sg11.b64",
+      "bytes": 1958,
+      "sha256": "1acb9c0cc8bfc16f92278c08faf8766deb8f1af951ec02523695fcb88f9f9947"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v13-world.sg11.b64",
+      "bytes": 6918,
+      "sha256": "51ec9330a60a41f1bc92cd357b8838f59076938b06c6a4b9a78070504618638b"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v14.b64",
+      "bytes": 6597,
+      "sha256": "551836f3ac5637be501ef628f048a7bd850de48e4f18706d71b62752c39583d9"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v15.sg11.b64",
+      "bytes": 3684,
+      "sha256": "9da0f8fd2e674084adb3e11462fd866273d12bc9fc83f790e26524ab7d7f72ec"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v18-district.sg11.b64",
+      "bytes": 7656,
+      "sha256": "6c2c004664e2f8b24c7a12281d12419bf4ad5893c70e4be60e64e868e5205ebb"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v18.sg11.b64",
+      "bytes": 6668,
+      "sha256": "26874503655e0bfc05847b5f1aedaf76f6fd12673483cc393b59b9b6a6801adf"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v19-logistics.sg11.b64",
+      "bytes": 5853,
+      "sha256": "99ebd9ffdf6c23d2da76cf7386a9753aae8b92c12b2a5ebf2aee6c000778bd4d"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v20-logistics.sg11.b64",
+      "bytes": 5369,
+      "sha256": "917c82f6181565831b32275458acc8ab5f65ff4261e4857dde2aed81a631d00e"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v20-upgrade.sg11.b64",
+      "bytes": 6409,
+      "sha256": "9c598a235b72e06ad5bded77620847b0ee7872bf96128bb96714b1a69113623c"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v4.sg11.b64",
+      "bytes": 4185,
+      "sha256": "00132dd4b223a8d45ed5d9c327faeee1908f84d53e30ab8962d094dfa29c1bb5"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v5.sg11.b64",
+      "bytes": 4521,
+      "sha256": "cb290433274f9381242b3e3c7ab031a1694b16baa225c6c3efb000012e679ab8"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v6.sg11.b64",
+      "bytes": 2893,
+      "sha256": "8e85421dc93660648ef5f27eb2f7c034b84baac53da046c90b3266a1253a6093"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v7.sg11.b64",
+      "bytes": 3077,
+      "sha256": "93bbf8e0dcd23cc552c5eb300fb79f3a23debf86e9d30b59e155f309f6e7a469"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v8.sg11.b64",
+      "bytes": 3121,
+      "sha256": "92b1f944f895005d9b32568200ad4a22ad0c45cdb7c6a01b451c6170afcdc651"
+    },
+    {
+      "path": "core/src/test/resources/legacy-v9.sg11.b64",
+      "bytes": 5345,
+      "sha256": "6ff3e45dd91c20cb48490d8be6a8b8db2653b5698f10873ce40e7981c03f1dc8"
+    },
+    {
+      "path": "core/src/test/resources/m0-v1.sg11.b64",
+      "bytes": 1377,
+      "sha256": "3f0e98e80acf33c53bf68f8113caeb74d6fac932fd45185b8bbb63803d56af35"
+    },
+    {
+      "path": "core/src/test/resources/m1-v2.sg11.b64",
+      "bytes": 3789,
+      "sha256": "80b27d7377a2475ce7c27db63552583ecb77f52677629c2fabce65e6bd87e9a9"
+    },
+    {
+      "path": "core/src/test/resources/pc-delayed-counter-native.tsv",
+      "bytes": 7314,
+      "sha256": "60a24a5a713ce7b0ddb9c2b01e59256dd9f7960a58c96b3fbde552760a6671e0"
+    },
+    {
+      "path": "core/src/test/resources/pc-map-v063.sg11.gz",
+      "bytes": 48113,
+      "sha256": "ae54c383816d1ddfb3fc0161f98fdac1a2a52832fde895aca1db84aeabb01774"
+    },
+    {
+      "path": "core/src/test/resources/pc-merchant-native.tsv",
+      "bytes": 140736,
+      "sha256": "bfe9b289aeb4e1c9e691a1399dba0d1696d10fe4d4d74595a86c137a78a952e5"
+    },
+    {
+      "path": "core/src/test/resources/pc-officer-ability-native.tsv",
+      "bytes": 198215,
+      "sha256": "da507a1b8a31b923a9af814607a40800e865f78b392ecfba4060b953fa746b9d"
+    },
+    {
+      "path": "core/src/test/resources/pc-officer-date-native.tsv",
+      "bytes": 29093,
+      "sha256": "7d4ba634b99db13c40aecb67dea28a1aefee2d2d49b1070e9a0c720e171b1514"
+    },
+    {
+      "path": "core/src/test/resources/pc-officer-legacy-am-art.sg11",
+      "bytes": 1657,
+      "sha256": "9a2bc71cc36c0b520af6c79fc111e9bb38ffb059e6c60654f89bd6527ef0a9e6"
+    },
+    {
+      "path": "core/src/test/resources/pc-officer-legacy-am.sg11",
+      "bytes": 1657,
+      "sha256": "a5ae1bfb12543d533fcfe73a30966cf3333b7147dce811b474793e4f38c1812a"
+    },
+    {
+      "path": "core/src/test/resources/pc-production-native.tsv",
+      "bytes": 28596,
+      "sha256": "9d46feddb70ae267245174a5271ad6955e088095187acca684f1c742e87b4fd4"
+    },
+    {
+      "path": "core/src/test/resources/pc-rank-legacy-ak.tsv",
+      "bytes": 2849,
+      "sha256": "d2d81cab531750bb37db7e4b3af4c72953ab814ac86c2521073d038e0eca0956"
+    },
+    {
+      "path": "core/src/test/resources/pc-technique-gain-native.tsv",
+      "bytes": 1264,
+      "sha256": "9af28b1c45e2cb9d88215f944334d868aca06bbb0f31946fa4a350331d68c8f3"
+    },
+    {
+      "path": "core/src/test/resources/pre-atomic-ship-cargo-v33.provenance.json",
+      "bytes": 693,
+      "sha256": "e2e89a9f641c782142ed84e6988564b98f3248499b393ea6bc83d1d555f13a2b"
+    },
+    {
+      "path": "core/src/test/resources/pre-atomic-ship-cargo-v33.sg11",
+      "bytes": 4815,
+      "sha256": "c23d7aaf0be1dc0637b62ebfa39ed27562ff8d635d771bc032992ed5799e617b"
+    },
+    {
+      "path": "core/src/test/resources/pre-base-construction-v33.provenance.json",
+      "bytes": 581,
+      "sha256": "5228d9974bef3d5a0bfc52223f4ba6add7c6a40cadc7213194a9909c5e9db136"
+    },
+    {
+      "path": "core/src/test/resources/pre-base-construction-v33.sg11",
+      "bytes": 3726,
+      "sha256": "fc68e7c06c4952b21633b41240b3f76863f077f298925dca69318fd9a48af92f"
+    },
+    {
+      "path": "core/src/test/resources/pre-merchant-r25-v34-art.sg11",
+      "bytes": 236968,
+      "sha256": "636854cc2b5878cbd70bf05b71993c0fe2dcdee77405b4db7862c9ed206eaaed"
+    },
+    {
+      "path": "core/src/test/resources/pre-merchant-r25-v34.sg11",
+      "bytes": 236968,
+      "sha256": "6301ee3eeddb9112e54451a18c078c888651f0d188e6f1168465c7086cbb968c"
+    },
+    {
+      "path": "core/src/test/resources/reference58-corrections.tsv",
+      "bytes": 1009,
+      "sha256": "9741cf0d534b8aeda83a53b9e6c9a8f9bccead822869a66f9181a9d3b6e0c097"
+    },
+    {
+      "path": "core/src/test/resources/reference59-corrections.tsv",
+      "bytes": 1216,
+      "sha256": "2d795c8161234e802340cf3070291046c87ec3a25de0ef41063e60a272fdf9d9"
+    },
+    {
+      "path": "core/src/test/resources/reference60-corrections.tsv",
+      "bytes": 10973,
+      "sha256": "57d7a274b8f15acbf835a0567de5f785ac281f6935ab53bd2d8f09a223e873e9"
+    },
+    {
+      "path": "core/src/test/resources/reference61-corrections.tsv",
+      "bytes": 2134,
+      "sha256": "ce135d99ab34e320848ec3488cebf1b51f0e3dfc64e0a5f5434e4d9a2bfabd6c"
+    },
+    {
+      "path": "core/src/test/resources/reference61-unresolved.tsv",
+      "bytes": 84,
+      "sha256": "997b27edea255b2a73d98f7a422929d8d3d1be4ba41aa8c90968d1a7be668df3"
+    },
+    {
+      "path": "core/src/test/resources/save-v16-before-diplomacy.b64",
+      "bytes": 4109,
+      "sha256": "683521b15c2962d5ff5748dfcf4c5222eb24348d70801634465b80b4a91721ec"
+    },
+    {
+      "path": "core/src/test/resources/save-v17-facility.sg11",
+      "bytes": 2732,
+      "sha256": "518ed4cfb93d0d52ae20cf352f8fbf7296c903a743a8fac8f89e0d6706f462ef"
+    },
+    {
+      "path": "core/src/test/resources/save-v32-central-native.provenance.json",
+      "bytes": 484,
+      "sha256": "57f9022204071d3cbf379618f9edb77228a2eb17f6170da914663b6ba1996be2"
+    },
+    {
+      "path": "core/src/test/resources/save-v32-central-native.sg11",
+      "bytes": 61343,
+      "sha256": "1a325063d00e82947d9ab4e1771aa66ba8d10aa75b8f06856fbf3b37790d8202"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/contest-drill.properties",
+      "bytes": 1503,
+      "sha256": "a87a8ed307e7b5239d1bcc60a23483f39ef369deb287438f7ef18a2f270e0ecf"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/estates-drill.properties",
+      "bytes": 3510,
+      "sha256": "a7eec5bb1f005722cb9ab2689568881e8dfe0099df2b1987d482c17c8eaed46d"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/fieldworks-drill.properties",
+      "bytes": 1833,
+      "sha256": "33633c0236117261f43642f928607f057637bba57b2f6eaccc9805b58fb4b2a8"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/index.txt",
+      "bytes": 731,
+      "sha256": "ae4b486991bfbdbe0b723ff1224a806fbfabff60db0a67d4e1a88f8757027aac"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/lifecycle-drill.properties",
+      "bytes": 1704,
+      "sha256": "cd336aa92fef0ceb12f316a1df41859723d36fdc958ebafa360e1675b4414bfd"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/m0-skirmish.properties",
+      "bytes": 1206,
+      "sha256": "0673fc4ee62739a66d4579c3108e3216065e743351c9bc55253a23ec1f0b77d0"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/officer-reference-drill.properties",
+      "bytes": 3365,
+      "sha256": "dad75d71da5803b6d4fdedf5b5334e332097dfbeacad527495ad4158294424f1"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/regional-sandbox.properties",
+      "bytes": 2903,
+      "sha256": "34f636c3cae805a470b0edefce6f82665fda55d7c58abb0e1477f82e72a44edb"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/river-siege-sandbox.properties",
+      "bytes": 2020,
+      "sha256": "739b3a1127679c5a29a9873a2da4a2e07d9b08f7e6d92854a8fed02983e5b810"
+    },
+    {
+      "path": "core/src/test/resources/test-scenarios/world-drill.properties",
+      "bytes": 4014,
+      "sha256": "e13ce8c3bfd390013d1622dfeb9217f9ca5fc44ac339c78aa605a8f802202fa9"
+    },
+    {
+      "path": "core/src/test/resources/v03-strategy.sg11.b64",
+      "bytes": 3441,
+      "sha256": "627436cbf74c48167b57902bfea44de5a69f0c2dd49c9988d16fe87696ab69ba"
+    },
+    {
+      "path": "core/src/test/resources/v048-save27.sg11.b64",
+      "bytes": 3850,
+      "sha256": "eb59a32c5a8e7c2086b8f3901ad2de02569fa544c92a75973c1a63e90acb658e"
+    },
+    {
+      "path": "core/src/test/resources/v21-geography.b64",
+      "bytes": 124084,
+      "sha256": "fb6ffbb14abbd738d80eeadee0f3e2736ea4984e512a0c8b3a307db3e9cb47d2"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/ArchitectureFixture.java",
+      "bytes": 1043,
+      "sha256": "f42ded4595483453412816cd2f801db41b9a442d28801b41b755be57eb0dfded"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/CombatSceneFixture.java",
+      "bytes": 3148,
+      "sha256": "b2978da99f7be7107ce825ade3da24fe36d02409241ea016f0f82ecf2ad58a44"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/ControlIntelligenceFixture.java",
+      "bytes": 991,
+      "sha256": "15663888019d8faf8951e95ff01f657458354e05f0b764b71881ded9c2b91ac0"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/DemoScenario.java",
+      "bytes": 393,
+      "sha256": "640b1c83fbbe32917cb6a383cc6af28a7f41bba895ec4a3c064c214851586bd4"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/DisplacementFixture.java",
+      "bytes": 4090,
+      "sha256": "76b1f59232bea44b9e1d8eaf8a19d53df3f0a2817b6a2b57cb4441134c6b7e5c"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/FieldLifecycleFixture.java",
+      "bytes": 2221,
+      "sha256": "f6c674da9484cca6e8ad7953afed78a82aae36169c47eb1641bf5b7bc01a0950"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/FieldSceneFixture.java",
+      "bytes": 3407,
+      "sha256": "bbf587b9f33156bc53b735962792492e91b28d4e5f1bba0b4a6604597842b419"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/Geography63Checks.java",
+      "bytes": 16065,
+      "sha256": "4137c5263f8bb66acc317863202130e0219538440d94efba8d34a8781e855cc5"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/MapTap57Fixture.java",
+      "bytes": 1528,
+      "sha256": "5ef3b677401b67c11e468a46a608b9c259a8e8d30fd39f2f8abdfd45721c8a3b"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/NativeGrid129Fixture.java",
+      "bytes": 1461,
+      "sha256": "a50e8d0e1564f22fa99a888106c7fcbe60bb790596915ea91b21a2b20a343e5c"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/NativeR11Fixture.java",
+      "bytes": 1117,
+      "sha256": "b500e435dc9aa23a981a9f499bbd81681c39a803c5f38295fff4d3ef301fa107"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcCriticalsFixture.java",
+      "bytes": 5485,
+      "sha256": "6e4626ea3c5f820fd968239410c7809cf5f0773004817bad482070b4755a8a4e"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcDamsFixture.java",
+      "bytes": 3690,
+      "sha256": "211408d3123c8d092c5218adbe5d9280e318ed1f45fce546fa9356c569f33aec"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcFacilitiesFixture.java",
+      "bytes": 3295,
+      "sha256": "aa4101eb00d97ab0c9fd25691c0ab43a550ff2992d5d78d8e9a70f4f9efcadc6"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcFacilityRigsFixture.java",
+      "bytes": 2366,
+      "sha256": "2f0177b46f1a46f496de07a448e67aa828deaa1f62b6dc2b8de5264bdd2fc2da"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcSitesFixture.java",
+      "bytes": 1607,
+      "sha256": "6eca7bfc0d4b3fc6f6d33ac6e456a7f3e59a4b34f44d21c88896a251dcdf6241"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcUnitsFixture.java",
+      "bytes": 5691,
+      "sha256": "378293f7dad86289f891ffe014229c6c0021ac4c6392631709b3297ea24f3c3e"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/PcWallsFixture.java",
+      "bytes": 3388,
+      "sha256": "79da4f638ffbff5c88a1faa09ee164fa51a6ddb340d7ad6644a2e282cac35fac"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/Personnel49Fixture.java",
+      "bytes": 1616,
+      "sha256": "416003edf3aaeafbc8a1db847840518ffbf1f8c3b2c5d46cd4302d1a44603520"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/Realm52Fixture.java",
+      "bytes": 1338,
+      "sha256": "9d291f02a74a0fd3dcb2b87802d38b131663d795514702b43f5825b4ce0a7981"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/SceneFacilityFixture.java",
+      "bytes": 1149,
+      "sha256": "0834e831f6afbbfbd3ef2f61f2ecaea586c1d7200cdb10392d28ae39855ad30b"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/TestScenarios.java",
+      "bytes": 1622,
+      "sha256": "693e02b2ab36cba91dc07db31919a9c284aed73c879a147d2ab316376e33d9bc"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/Turn48Fixture.java",
+      "bytes": 2004,
+      "sha256": "3f7312af7ab1c98b2d19c44442a6647bbdf2c21a1142a4104de1f084a9cbf649"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/UnitMotionFixture.java",
+      "bytes": 587,
+      "sha256": "01c31310cc55dbc2044cabeb8128f14c90eb26cbdb87d6c654ed42fbe830af9b"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/UnitR10Fixture.java",
+      "bytes": 3756,
+      "sha256": "bdc1fae01e9f73eac4589d102310bb767d32efa1719f99d2b0c7e5ff056639ca"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/Ux64Fixture.java",
+      "bytes": 1155,
+      "sha256": "36cd80b88e3d11f17e01853af528b249e487aa53b535ac85468966bfb74ca170"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/BattleAi.java",
+      "bytes": 6976,
+      "sha256": "ba44c7ab0e36dc9601b4747cb265161279bf3df8b657a9a54a09763621a42b62"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/BattleEngine.java",
+      "bytes": 19932,
+      "sha256": "a6c14c6719bdecf975376414576b022653ffeb46f6207aa3f0cd82185ea42a91"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/BattleResult.java",
+      "bytes": 2219,
+      "sha256": "2dc5a5b56a6edea3ec9b7570325b41214082a876102f4385a2adcda3521519cd"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/BattleRules.java",
+      "bytes": 4934,
+      "sha256": "8dad30f873cc86f13eb242da34e3125712ff4b73d4d93fcd6a3852726a931545"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/BattleSimulation.java",
+      "bytes": 2115,
+      "sha256": "ffa567342cc8708f13590b8cb9a2b138b69b0bb7dcd8ffadb2ef7ebc4a4648c2"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/BattleUnit.java",
+      "bytes": 5598,
+      "sha256": "bee71b6c726e26642c8eb81048a7a120705d99def0ba1e89dd6c8dead3759298"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/Battlefield.java",
+      "bytes": 2590,
+      "sha256": "f4cb0e1532fb2e272a77d61109b2ff9782bd117299154bc8616a4a5952a096e7"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/CommandResult.java",
+      "bytes": 1533,
+      "sha256": "e1d2eb79c0f40c2aeaed2ca9acd80fea52281d6d57fc3bf167b1cde90d067591"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/DamageCalculator.java",
+      "bytes": 3018,
+      "sha256": "45f8bab770b83f6b9b6b1f7c0b2620cc6a0a5346a681daadd5f16a7dd0621c0c"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/HexPos.java",
+      "bytes": 3209,
+      "sha256": "846a35472bc698dc5abb296a2818788b54f4a443a48d4722fd232b1d5845119d"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/Pathfinder.java",
+      "bytes": 5732,
+      "sha256": "3dec3315ed9a9356dbde550da1f668f67b05eb690c2d5c7efb450b070d11134a"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/StatusEffect.java",
+      "bytes": 1151,
+      "sha256": "29f82162ad7c14533867af8f7371ff3b1ad257abd8d0bd87ecf9a10e4dedb850"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/Stronghold.java",
+      "bytes": 732,
+      "sha256": "7b07350f7b53fad5136c2dfd22391ecf5957e788b62652d698a97291d4f8a73f"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/Tactic.java",
+      "bytes": 2056,
+      "sha256": "c3b5c7f8c7d9b6cad5556df23d68cd83874b5628779af43ddf0d9f74169c2d47"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/Tactics.java",
+      "bytes": 3444,
+      "sha256": "b028fb243526f924dca3da50161d3cf570aa425523a920848e748b33872ce106"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/Terrain.java",
+      "bytes": 123,
+      "sha256": "7f52ad00c837bd699c305d9efa2d25e814ff891128ac9ee4e59e13c496dbf240"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/WeaponType.java",
+      "bytes": 266,
+      "sha256": "68bd2ac6e36f654bb22b4a4b44cfe46e678f3a08a4f3b25c9aa458cf7f058bc7"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/adapter/BattleAdapters.java",
+      "bytes": 2096,
+      "sha256": "c6da7587b0c490e13a752bf3587b84a079d8162130ae9004e6e1289025460dba"
+    },
+    {
+      "path": "core/src/testFixtures/java/game/sanguo/core/battle/adapter/LegacyWorldBattleAdapter.java",
+      "bytes": 1980,
+      "sha256": "84bf17da0757f8310e05c41e09797501b64bd7cbf6a2038243d167dd46e6e62f"
+    },
+    {
+      "path": "core/tactical-battle.gradle",
+      "bytes": 836,
+      "sha256": "7453c1a2c939a1cfca3fa6939eb0b5657955a5447315f8f90b28bbcddc412d4d"
+    },
+    {
+      "path": "data/art/generated-a063/first-sand.json",
+      "bytes": 1828,
+      "sha256": "88fd125bca26692403094f9ec17cc70ad8e386dfec371eec09476630a497f92d"
+    },
+    {
+      "path": "data/content/cross-checks.json",
+      "bytes": 1176,
+      "sha256": "846f5ca0d0c10597dc0c2f3a9ebc2f43ab5b919ebd0243297c9a5b739ce119a3"
+    },
+    {
+      "path": "data/content/items-source.json",
+      "bytes": 12960,
+      "sha256": "3b2ffdf73a5bae8303f8b7fb64fe1521f125c55c21a4f573a823a29fca660a17"
+    },
+    {
+      "path": "data/content/legacy-bridge.json",
+      "bytes": 1487,
+      "sha256": "b882a37dc620ccde2e1627bc5522d738c44cb63ee7bd5cf9aba9976da4c96cf9"
+    },
+    {
+      "path": "data/content/manifest.json",
+      "bytes": 1976,
+      "sha256": "8254efbc7682e97d5b4b456e46cc714cb6bfd0504609c2fcf4529ade752ddf44"
+    },
+    {
+      "path": "data/content/officers-source.json",
+      "bytes": 1614821,
+      "sha256": "304fbb01c20d56a107c930c1146ffa27f57fa665ee98953f0af00b1a0b2f9b15"
+    },
+    {
+      "path": "data/content/scenarios-source.json",
+      "bytes": 5658,
+      "sha256": "009003d57ee8b195afce912b8a0e245bb6ce9dea6569dffba89b6c4132ae31df"
+    },
+    {
+      "path": "data/content/sites-source.json",
+      "bytes": 27221,
+      "sha256": "a5438126a9dadb532ef1f6b2c0b115f97a210c2309cb82b75dd77dfa0afcc56b"
+    },
+    {
+      "path": "data/content/skills-source.json",
+      "bytes": 16403,
+      "sha256": "d81499effc7a42305e452730a4975f34b5f71c30bd2ed901202aca5e59d71ba5"
+    },
+    {
+      "path": "data/historical-openings.json",
+      "bytes": 16544,
+      "sha256": "5996f846de8115ab4288faa8b1a4b0f88cb6b160f1672b2630c677c01555b90d"
+    },
+    {
+      "path": "data/map/city-review-v051.json",
+      "bytes": 32615,
+      "sha256": "555ee1ebab1922cd663c56ed60001a076249e6fe27956218e47f21fb1707e19c"
+    },
+    {
+      "path": "data/map/reference-pc/national-map-v063.properties",
+      "bytes": 49135,
+      "sha256": "75bcd0e68187acc1832cf70f046879d6e5cdc5fb60a8ab2dab598fb18162d95d"
+    },
+    {
+      "path": "data/map/reference-v050.json",
+      "bytes": 89481,
+      "sha256": "f80f0d52db14b3ac4232c9de5d70cce0da122f6ef1e0e72cfe57454b6349d74c"
+    },
+    {
+      "path": "data/map/reference-v051.json",
+      "bytes": 26744,
+      "sha256": "b41ca2185f1b591bc12a8d69ad53b5ddac537ec91a681ae048d149c94e7fb72a"
+    },
+    {
+      "path": "data/map/reference-v056/art-audit.json",
+      "bytes": 13888,
+      "sha256": "963ab0ca4d511ece7e81ea5a84b8907935535f9b543c7af904f3f6bba8a7db69"
+    },
+    {
+      "path": "data/map/reference-v056/calibration.json",
+      "bytes": 9477,
+      "sha256": "e9c96aa7246c1269c0c22ac4f6796e532988cb05dd7d243dfd29a09fd1659217"
+    },
+    {
+      "path": "data/map/reference-v056/region-review.json",
+      "bytes": 3658,
+      "sha256": "0ce29ce5361ec4c7236c0a6f7deee5608ab6e474ca1a7bf085747f9530664a18"
+    },
+    {
+      "path": "data/map/reference-v056/scenario-migration.json",
+      "bytes": 1715,
+      "sha256": "e69e55916b72f29aa83b59e231e9f885022b2d2ea572b935f4e1a9a00fdd9787"
+    },
+    {
+      "path": "data/map/reference-v056/site-review.json",
+      "bytes": 40772,
+      "sha256": "4ff4aa53e7b521480021e076dae7c622a1b727a202754e23ddb19ff517c12830"
+    },
+    {
+      "path": "data/map/reference-v056/source-recovery.json",
+      "bytes": 7297,
+      "sha256": "5e11be3a75f4a5520f81d0a8398519023d4b27d21554b40da9c255a559b75b8a"
+    },
+    {
+      "path": "data/map/reference-v056/uncertain.json",
+      "bytes": 864,
+      "sha256": "3a63386344f42c9c25e6dffe15df30ee53d147b78713a6b4bc8172285f15c3ef"
+    },
+    {
+      "path": "data/map/reference-v057/terrain-corrections.json",
+      "bytes": 4195,
+      "sha256": "665d77ceace707c0ff7ca199aa0d9ba8320ea2dfd543309bb05a546b243d3426"
+    },
+    {
+      "path": "data/map/reference-v058/calibration-review.json",
+      "bytes": 17950,
+      "sha256": "dd9fbb434559f0c59f8244f227a78c69714aa6d487bf48b43ef5c0e20abc5b2c"
+    },
+    {
+      "path": "data/map/reference-v058/terrain-corrections.json",
+      "bytes": 81252,
+      "sha256": "f525d7c3f4555e65bd96521bddb872cc69ff24cc889468b5eae9a2f70fab06c9"
+    },
+    {
+      "path": "data/map/reference-v058/v057-re-review.json",
+      "bytes": 5093,
+      "sha256": "e3343e51ec78502c984cd5e39ddfbc79061cf0c57233ce0e54f58e2258cc6335"
+    },
+    {
+      "path": "data/map/reference-v059/calibration-review.json",
+      "bytes": 14049,
+      "sha256": "7773141ddd08437232300cb361f3f42d7226763fdf59942bd114647c826d7011"
+    },
+    {
+      "path": "data/map/reference-v059/prior-estimates-review.json",
+      "bytes": 13838,
+      "sha256": "88b0d0b5dcd22bad2ad997f459829ee303b1ca858ba74629331db65ccb9b5c63"
+    },
+    {
+      "path": "data/map/reference-v059/terrain-corrections.json",
+      "bytes": 123310,
+      "sha256": "c5ee73ac24ec13393d6788934dd834af2dc6b6b35cab6d63028ac083d164a444"
+    },
+    {
+      "path": "data/map/reference-v059/unresolved-local.json",
+      "bytes": 1558,
+      "sha256": "a62c6e1cce601f0910a46b0ce99b05aecfe4787a4cb89c137bb84d31be70516c"
+    },
+    {
+      "path": "data/map/reference-v060/calibration-review.json",
+      "bytes": 221750,
+      "sha256": "05075609bb211baf9cef4d0cf3e06094a323fab395e15d52e23904cc5fd5a92b"
+    },
+    {
+      "path": "data/map/reference-v060/inherited-unresolved-review.json",
+      "bytes": 2878,
+      "sha256": "eb01316db60babe1c394cd662ea374ed81e7d67b342960a351efe051b5ebd47b"
+    },
+    {
+      "path": "data/map/reference-v060/prior-estimates-review.json",
+      "bytes": 514,
+      "sha256": "2099b55500a93a7d25ae5cfcf57a6dbd6d92d279a91df465ad41adf71d8918c0"
+    },
+    {
+      "path": "data/map/reference-v060/remaining-void.json",
+      "bytes": 863230,
+      "sha256": "13c4a6679b20efaaa8ff22a39e76b51a57c61507e54137920516a3e9913491db"
+    },
+    {
+      "path": "data/map/reference-v060/terrain-corrections.json",
+      "bytes": 1645067,
+      "sha256": "d680be642f23ceb6d99d925656ba26020d828862b603cda8859068f8c8d9d4a6"
+    },
+    {
+      "path": "data/map/reference-v061/calibration-review.json",
+      "bytes": 98616,
+      "sha256": "9aef8a7e5d96b6492a5b60830ca710207f44ffbbaa6d47d26337793c07c1715b"
+    },
+    {
+      "path": "data/map/reference-v061/inherited-release60/map-release-manifest.json",
+      "bytes": 11676,
+      "sha256": "d49bc32c4be9128a22b182828d88aa1103957b20bff9ec135b03606c6092e4f5"
+    },
+    {
+      "path": "data/map/reference-v061/inherited-release60/version.properties",
+      "bytes": 34,
+      "sha256": "d531dffd14615f360bc1ae1be52ea5ed6468f4cc5a5f071efcc0ba942666210b"
+    },
+    {
+      "path": "data/map/reference-v061/remaining-void.json",
+      "bytes": 15546,
+      "sha256": "d241e1665dfe0dba7dd9801b6e33b4527122bbf31aac899ad0cf0f77ec037e37"
+    },
+    {
+      "path": "data/map/reference-v061/scenery-cells.json",
+      "bytes": 1082697,
+      "sha256": "8f91899019f9f52f1aba85c21a1aaa8f2acc08f4fa4bb69357148edac8dfe2ed"
+    },
+    {
+      "path": "data/map/reference-v061/terrain-corrections.json",
+      "bytes": 220733,
+      "sha256": "d873ec5c5af02c390ba6ff1bfdf5083c172531581df323d0c3fccedb0e7b2258"
+    },
+    {
+      "path": "data/map/review-v055.json",
+      "bytes": 277271,
+      "sha256": "846fbb572301a7920062cc59301d763101c9e0c68038f5f8f37627c82a8bc5e0"
+    },
+    {
+      "path": "docs/PC_PARITY_STATUS.md",
+      "bytes": 27912,
+      "sha256": "a5d15872f0086a8f46eba1ff1b92c30f2ed13994212085d85af7ca452d4ae0d3"
+    },
+    {
+      "path": "docs/architecture/MODULE_RULES.md",
+      "bytes": 10481,
+      "sha256": "a3810249ec19960c71a4737a82bfd5b3c1a7f2278ac02d71d7963c2e68cfafdb"
+    },
+    {
+      "path": "docs/architecture/PARITY_UI_CONTRACT.md",
+      "bytes": 55161,
+      "sha256": "e2d8eb04dee9d650279c652ff25b9139a6b10db70e064dfcd980cfa89b30a816"
+    },
+    {
+      "path": "docs/architecture/TECHNIQUE_POINTS_EVENT_CONTRACT.md",
+      "bytes": 9721,
+      "sha256": "c4ef7f0e14bbf3387b5f2a9e7cff0d339062d08406b3869adb79b9456e9f6f58"
+    },
+    {
+      "path": "docs/handoff/20261003/STATE.json",
+      "bytes": 34829,
+      "sha256": "170f956b050857d5dd39dc762d7a55dbd9de70c03fc2764dc441afacb6748125"
+    },
+    {
+      "path": "game-api/build.gradle",
+      "bytes": 203,
+      "sha256": "484ea7dfc87aeaad7c16ea4ff80b94f24851190a2529f0b2719fed9488f23407"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CityActionCommand.java",
+      "bytes": 698,
+      "sha256": "45fa6cf7ef44990bfb7553162a37f6108935e44d6a031a5538aac48acab7c111"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CityActionPreview.java",
+      "bytes": 4346,
+      "sha256": "2b8799daf124844e1e5191652cf0562d4dbcd400a5f1d374b07a05c21062288d"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CommandResult.java",
+      "bytes": 795,
+      "sha256": "9ce5d9e6d5b9ca9638399d3f0377e3196bedd84f885596db2246ad6f93a53f14"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ConstructionCommand.java",
+      "bytes": 501,
+      "sha256": "12249deba5d57d74ad68e46164630df4c32178c0f4a70ccd89c77fd8279555a9"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ConstructionPreview.java",
+      "bytes": 2136,
+      "sha256": "b2cffd466023fcd91adcc7d883bf98b5dad21f7b6cba8d6ea94fa3a0b9e3dba1"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "bytes": 1731,
+      "sha256": "60de58f864fecb7ddc0aaf5a214da1abfdb46a470269bc04d08c0fb5ea58291e"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DeploymentCommand.java",
+      "bytes": 778,
+      "sha256": "b71de1710ef0c74d14fd5187be9474f038603fd3a2d8fdf35ead5f597c620494"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DeploymentPreview.java",
+      "bytes": 5442,
+      "sha256": "af04c2c43065f2466ceb278df658799d3cb6f626e72c9972168cfda8a4df8049"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DiplomacyCommand.java",
+      "bytes": 539,
+      "sha256": "66823fe880539ae50cfd3762b3f5ea803ad2c5c4aec94585f257efaaba44ce06"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DiplomacyPreview.java",
+      "bytes": 3276,
+      "sha256": "a44254063ebe9b2eb15f8130a26e13ec06eba3721cee69fd82c42650a7c62c62"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "bytes": 1262,
+      "sha256": "341a92bc8e602ca3fe7c2c54cfcc6f1694b1358b829764b086c83ea1fcc6311f"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameCommand.java",
+      "bytes": 579,
+      "sha256": "867123143c660106ac41027d3aa5518bdc40b797e2e3b46b8e74b077e018e681"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameEvent.java",
+      "bytes": 2127,
+      "sha256": "5d379458f20e01857a5eb5243045369a161443797e62c4a7e1a80f22c4d19c5b"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameSnapshot.java",
+      "bytes": 906,
+      "sha256": "489ac116d8fae715ed8862c09b0842e4ce77256c5c88962d37aeec476d6efc06"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GridLayout.java",
+      "bytes": 956,
+      "sha256": "2290fe72b479d7b851faa4e911942164adf729965956a8a2cf77a2f765205b9a"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerExperienceChange.java",
+      "bytes": 772,
+      "sha256": "3fd20d71218f0822dc0080a7153059bff72cc4ef70ad83553be697ceac505a47"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ProductionCommand.java",
+      "bytes": 831,
+      "sha256": "dd3c05a8019019730845b5cf2d15aa4676a341c0ea8b03027d7c535ca2330cb1"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ProductionPreview.java",
+      "bytes": 4965,
+      "sha256": "b6a591ee90e5ba758382e6b137534551436e1708daa400548af79e25fbbf16bd"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/StateToken.java",
+      "bytes": 760,
+      "sha256": "028cab35b04551f93c4d94f2c51069c1a680db8072d1687da582e1cfe376a590"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TechniquePointsChange.java",
+      "bytes": 476,
+      "sha256": "f823d32253cd5149dbe9fc27443c0c998f02d7c23bdde1a157d14275affd960f"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TechniquePointsFact.java",
+      "bytes": 1599,
+      "sha256": "3a77a3bfe7a6364e12a4ffba5999a00c9b60e6d460e60a6868e1452d706c6ddc"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TradeCommand.java",
+      "bytes": 466,
+      "sha256": "b3ec1c98810f99a0db154270d96427e9a87b31ed9fcc3142d2b47053d281a820"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TradePreview.java",
+      "bytes": 4839,
+      "sha256": "407caca17f2bc2f8be539329f3a926004695c4869904da1f1bcc7f4cf58f2035"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TransportCommand.java",
+      "bytes": 1160,
+      "sha256": "d21f7fd8ddd30122c5d81b63724a64677002bbc629c7b379591d4994a1833c37"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TransportPreview.java",
+      "bytes": 2153,
+      "sha256": "b7a658366857406e9dc9bab9787fa2c083fa6d66c025b415edb78041e4fca62e"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/bridge/BridgeEntity.java",
+      "bytes": 1173,
+      "sha256": "647717f4e59c7f20d2a86e721c5befee8cfa699b592a4c892b20a5658f1801bf"
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/bridge/BridgeMessage.java",
+      "bytes": 2371,
+      "sha256": "cbb9340115b20fbf3af6ae4c2305347a59ca531b32db29f11cb9e9cb437f9f3b"
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "bytes": 6129,
+      "sha256": "6144c639690373ef42cdfa3f12ee3e0e9b88240ba3227f7030ad832c433cd75f"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "bytes": 27938,
+      "sha256": "f698c9dbf7ce4e2dc3e791527d9c447b22a10b7f6d634f6ea44a882b6c3e26f2"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/LegacyView.java",
+      "bytes": 562,
+      "sha256": "b9215fa85f8b71d50d865c8dd7452298dd54a454104774c94bfd1cfe0492a063"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/TurnTicket.java",
+      "bytes": 423,
+      "sha256": "9e4f0fb3f7048cd29958fa0495fcb300ff14b6198dc367cdfef1b4bf232b2430"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/WorldCopies.java",
+      "bytes": 1289,
+      "sha256": "cfc270640c4aed6b3cd3a896fb8fcfc6bbecfd78790d2731eec6742ec2a1ad74"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/bridge/BridgeSession.java",
+      "bytes": 7597,
+      "sha256": "bfdcd22e0c8d9acc711189e832bcba4f7919b3b9d7e0602fc0cf90c266b1e466"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/CityActionQuery.java",
+      "bytes": 1914,
+      "sha256": "028d4de8a5f18bac3e33313531cb825d2ce6898d4cabdf4975aa5197cb4f05da"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ConstructionQuery.java",
+      "bytes": 1063,
+      "sha256": "9fc5b77ffd752fa31fefdf00ae556e33d63d41bf5cba01662096ebc6e8b0a255"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/DeploymentQuery.java",
+      "bytes": 2623,
+      "sha256": "dcfc8d8e5d71bbe185875e228def76ed13fa9c34b043efea70533dc4f6176549"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/DiplomacyQuery.java",
+      "bytes": 1423,
+      "sha256": "d35e50eaddd4e85cd60639f70206b04b50838278f06207585c463a909e0eb556"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ProductionQuery.java",
+      "bytes": 2329,
+      "sha256": "ec32c5da2f8dfd37a8c7f1592c17e2f9be601d6af91e92c3500a1694986cd2a7"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SnapshotQuery.java",
+      "bytes": 1563,
+      "sha256": "a8eb7b5dd269519f5531abc6b388aee420b85b381cdcf9ac353717c9add8ba1b"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TerrainWireCode.java",
+      "bytes": 868,
+      "sha256": "b11410722a005c7def9bc32f84cade7496b06fd80a7d0b9692f138304b5c38ca"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TradeQuery.java",
+      "bytes": 1336,
+      "sha256": "23161fc4052b643b161e85a042019b2b8fb466c3ac8754c65f18cb51d941db24"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TransportQuery.java",
+      "bytes": 1177,
+      "sha256": "71002e9bd7e7b1fcb1c7cba712932a57efb8ac9e2e938c8a707b12b17e8eb2d1"
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/save/SessionSaves.java",
+      "bytes": 687,
+      "sha256": "796e7bf081098632c1634df39618a468ff9464e229c019cc8cc6b8dc885c69ea"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/BridgeFactsFixture.java",
+      "bytes": 467,
+      "sha256": "04754bc280bc8be8433512eb1942caf2bbf0da8bf6d0a1e10cdf430d39eafe79"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/CityActionSessionTest.java",
+      "bytes": 5807,
+      "sha256": "7e1430b99539086de345d62f248a9bab5d93e8b64e3a7b2707de76496450f4b5"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/CityCommandRewardsSessionTest.java",
+      "bytes": 5399,
+      "sha256": "c1b8b99dbd881248ce9266d9bab19a568d0104cd8d6f23462b6cc125f088e471"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/ConstructionSessionTest.java",
+      "bytes": 5474,
+      "sha256": "462bb5ed8519cf4cfc4d7a5568e4095939a51083dc5bc0bb1f1f229448387c1e"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/DiplomacySessionTest.java",
+      "bytes": 6138,
+      "sha256": "b97d25f5cc9f2f7422fae4708396f24b5d1ca0909b18725d634fb8638b81e99e"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/MerchantMarketSessionTest.java",
+      "bytes": 3472,
+      "sha256": "813d3bad70513aef0588160c9e473ccc838d4ceaa90e3e542b1e3e3a0de44776"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDelayedProductionSessionTest.java",
+      "bytes": 3192,
+      "sha256": "cca3c7c5e26d2867d3d65ca87b130c31bf27974fdb4c485332dbe14b31a2e5d2"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcProductionCrewSessionTest.java",
+      "bytes": 3903,
+      "sha256": "37036741f82fe70794311e32b091722a8cd271987b7340365a6f73c4ca084717"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcTechniquePointsSessionTest.java",
+      "bytes": 3274,
+      "sha256": "2b2951a1055dda0ee70375d789aa3211772b507ea2070638c5471211afc80481"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/ProductionSessionTest.java",
+      "bytes": 4387,
+      "sha256": "a78bae9194c1abc369757a41da45332959b496d1d6ae9960c9f6f8224e14f437"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/TechniquePointsFactsTest.java",
+      "bytes": 5308,
+      "sha256": "a8f65cfa017c78f08ce44e0f243f516ce5df5d140bc4a4bbb2e7d9b5a47b9031"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/TechniquePointsOrderedFactsTest.java",
+      "bytes": 10257,
+      "sha256": "63727006d3af0a8aa54d1b46882c7f631b45ac9ca0622a34bdc898df3b6d67f4"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/TradeSessionTest.java",
+      "bytes": 8317,
+      "sha256": "fdc0298a8017ad3b3199fc7d108b9514cb65b38edf41782fc579324ae07431eb"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/TransportSessionTest.java",
+      "bytes": 4100,
+      "sha256": "ded2623454b84107ac9c30adb94878fa46c09e1228eac8da77293fa31781da52"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/BaselineSequence.java",
+      "bytes": 2562,
+      "sha256": "649ef40805606a47390f35f6b4c9ed67957f0cd917bd1f81c6ffca08f3e330b3"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/CityDisplacementSessionTest.java",
+      "bytes": 5419,
+      "sha256": "544668331e583da7639a0e55442c1c69ed09a343d8fe550c8d698f1732f8c1d1"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/CurrentScenarioSessionTest.java",
+      "bytes": 258,
+      "sha256": "07238f72e9a73bde5512ec608345d40df8c8cf88a8b212e08ba8fff03ae745f6"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/DeploymentSessionTest.java",
+      "bytes": 5704,
+      "sha256": "504cfa189f47145f7a6e052f3c80132a4d2d19baa9c9375b562eef3f9c278d58"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/GameSessionTest.java",
+      "bytes": 13403,
+      "sha256": "9815079bd6fd7620c4817fc07b167a5d1f5c10a4dfc0ed45e27316beb77b16c0"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/GridLayoutTest.java",
+      "bytes": 1004,
+      "sha256": "b75ca1a3a953f61c339c05c5887b0549541e7b02c3ce78423cb63c6d5430867e"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SnapshotReadOnlyTest.java",
+      "bytes": 3246,
+      "sha256": "c30f962572f91869fd7b3d141ac47aa3fe110e411e2b42103a6a5f3f8da42930"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/bridge/BridgeFixtureRecorder.java",
+      "bytes": 2288,
+      "sha256": "a40ffc82f8efaa7aa695cab5a3a851bc05cb8ce22baf970367a81dc3c949ccb0"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/bridge/BridgeSessionTest.java",
+      "bytes": 11185,
+      "sha256": "219e0d179c046b5a6f0e87f97edd9ba5079b547e48fc883d9b8376cbe9b89cee"
+    },
+    {
+      "path": "game-runtime/src/test/resources/architecture/baseline-9548bb35.txt",
+      "bytes": 509,
+      "sha256": "687eacf3232cd11f89116716ec50af7dede6cecec40be40eb18f560a95204a37"
+    },
+    {
+      "path": "game-runtime/src/test/resources/architecture/grid-layout.csv",
+      "bytes": 243,
+      "sha256": "1b5a3df4e4a5a1630d28de983ba7d2fe1db479dbea418f8d19fb29f8c5688986"
+    },
+    {
+      "path": "game-runtime/src/test/resources/architecture/prepared-9548bb35-v33.provenance.json",
+      "bytes": 608,
+      "sha256": "1dcc99f3d2e3cc78062b43dd3c70f169e44196b90905039c30356cbff6c8a559"
+    },
+    {
+      "path": "game-runtime/src/test/resources/architecture/prepared-9548bb35-v33.sg11",
+      "bytes": 227372,
+      "sha256": "b27c526efeb53c443e921a24aedc34ab78b9f645c199154710d292ed0b08340b"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "path": "progress.md",
+      "bytes": 225674,
+      "sha256": "9badd7bae7a62fd49d4dc46c282b0570d92f2a553f186234e16df2f825a1f314"
+    }
+  ]
+}

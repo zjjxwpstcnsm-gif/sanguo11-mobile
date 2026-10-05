@@ -1,0 +1,20 @@
+{
+  "baseCommit": "7aed34ca9836a7f83655ad5d1ac7fb8c631f8921",
+  "productionAndroidUnchanged": true,
+  "authorityUnchangedCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "paths": {
+    "tools/audio/inspect_pc_voice_random_gate.py": "cbf17875f01b94e14695ec7e23e23851e5b16fc173a8ca652b292fbba5dd310c",
+    "tools/audio/inspect_pc_unit_voice_caller.py": "f1bc92403140bdc62595bc6332ed6196d8fac997c236e3eda419c4a5d915b8a3",
+    "tools/audio/verify_pc_unit_voice_policy.py": "5a6e77c3839319e3466a7c705168e79a9fad2fd606189c1ef40a2589274bb48f",
+    "app/src/test/java/game/sanguo/mobile/PcUnitVoicePolicyTest.java": "8e6125bbe01a8c923105f23ea0ee2018523a89d5937c309598f54ab2b35c1b37"
+  },
+  "proofs": {
+    "unit-voice-caller-native.json.gz": "00836f2843a659e42c423388f5e360ac5e3acfd8dceb3e531ccc626fe22f64e3",
+    "voice-random-gate-static.json.gz": "a3da613ce66750e67ca302fb636eaa34a9b10f12eba224b416c66ccb7613b785"
+  },
+  "modifiedContract": {
+    "path": "docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md",
+    "beforeSha256": "774518ac075235c785f09c9bb3934101fec57d0d5a7e968b8c8a4663dee783b0",
+    "afterSha256": "158bc334a4d39bc1d519cfaf345ea7f5f4f107c3535d0caa43bea41e30ef5e59"
+  }
+}

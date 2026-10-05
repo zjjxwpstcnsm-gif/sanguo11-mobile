@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "8b57a6e93dcfb88c398cd22918678f317c65dc04",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-build-03/frozen/app-debug.apk",
+      "bytes": 283153539,
+      "sha256": "cdd00847065358dd5f5567cee0e8eb5b2b50d0d66e94bf058086e66580800f12"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-build-03/frozen/app-debug-androidTest.apk",
+      "bytes": 2064375,
+      "sha256": "9558fa1bc71e2a3edba7b225e58784b5316293ecc524781f4666b7f3880a2794"
+    }
+  ],
+  "purpose": "original PCM immutable file path isolation diagnostic"
+}

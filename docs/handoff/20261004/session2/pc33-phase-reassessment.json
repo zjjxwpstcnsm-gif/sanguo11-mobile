@@ -1,0 +1,126 @@
+{
+  "verifierCommit": "76e45a016acc7c2c8f438f853c81314098b33e2c",
+  "scope": "Reassessment of unchanged originals under corrected harmonic phase; complete original thresholds retained",
+  "runs": [
+    {
+      "run": "shared-media-critical-02",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/shared-media-critical-02/captured-window.wav",
+      "sourceSha256": "82d8626a92ca04f676d76f947f9dcc818ade3947c314b1d48dc93e013afae478",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997674911382 pc33= 0.9999995726232501\n",
+      "phase": -236
+    },
+    {
+      "run": "shared-media-critical-03",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/shared-media-critical-03/captured-window.wav",
+      "sourceSha256": "9e4452bd29cb50cac5117a22301804d5b28cb50718547529ed6c7a77659004bc",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.999999758584035 pc33= 0.9999995446479858\n",
+      "phase": 236
+    },
+    {
+      "run": "pc33-ab-old-01",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-ab-old-01/captured-window.wav",
+      "sourceSha256": "df02636b3127f06072a3f1575dae3fbea7da03a9ec0e3e559498a0a155a9e059",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997563205687 pc33= 0.9999995560505991\n",
+      "phase": 0
+    },
+    {
+      "run": "pc33-ab-new-01",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-ab-new-01/captured-window.wav",
+      "sourceSha256": "6e4e4e7c88a86000495f3e393a1da870cdd010c59908e10f23ce5da78c8646c0",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.999999756508614 pc33= 0.999999551173701\n",
+      "phase": -237
+    },
+    {
+      "run": "pc33-diagnostic-installed-01",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-installed-01/captured-window.wav",
+      "sourceSha256": "70b8de66ce35c1dd4a36005e4432e5112bbb6362c07d693541c772bb557fa7dd",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997620093539 pc33= 0.9999995511763712\n",
+      "phase": -238
+    },
+    {
+      "run": "pc33-diagnostic-installed-02",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-installed-02/captured-window.wav",
+      "sourceSha256": "feac61496177eb7cbd5ec88e3c6173b6ea788df2e7ee415efd02c4004690bb91",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997585840349 pc33= 0.9999995446479859\n",
+      "phase": 237
+    },
+    {
+      "run": "pc33-diagnostic-installed-03",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-diagnostic-installed-03/captured-window.wav",
+      "sourceSha256": "bd322cde911e3c740c954fb748e52f752a329cac4c3bb61f3b077762aa52cdd7",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997585840349 pc33= 0.9999995446479862\n",
+      "phase": 1
+    },
+    {
+      "run": "pc33-source-installed-04",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc33-source-installed-04/captured-window.wav",
+      "sourceSha256": "329ef46e387ed700b2d84fd5ab7bb9c31b03cfe81e84c578f1a80601753bc41a",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997565542801 pc33= 0.9999995400099818\n",
+      "phase": -238
+    },
+    {
+      "run": "media-transport-critical-01",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-critical-01/captured-window.wav",
+      "sourceSha256": "a99b7f8f5a3ce311841932e143845597c8e00a2f81ecfec4a74ca0de0bbb4aa5",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997585840352 pc33= 0.9999995446479859\n",
+      "phase": -237
+    },
+    {
+      "run": "media-transport-critical-03",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/media-transport-critical-03/captured-window.wav",
+      "sourceSha256": "1a310a56523c95672d1584e842daf2debc114606fea228ee506338e7e3aec276",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997575804165 pc33= 0.999999534796453\n",
+      "phase": -238
+    },
+    {
+      "run": "pc-pcm-critical-01",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc-pcm-critical-01/captured-window.wav",
+      "sourceSha256": "472d6954ff1b47d63cc5a985505ce28689e9d66ea41adc1ef642cf45e259e510",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.999999708715357 pc33= 0.9999994558607507\n",
+      "phase": -237
+    },
+    {
+      "run": "pc-pcm-critical-02",
+      "sourceWave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/pc-pcm-critical-02/captured-window.wav",
+      "sourceSha256": "bfa789c2582d943413b366f6f3c1005e8ded6aa62e3c1ea55919f57d584d9cc6",
+      "sourceUnmodified": true,
+      "status": "PASS",
+      "output": "PASS normal authoritative fact PC33 mixed PCM; joint= 0.9999997534881379 pc33= 0.9999995483984756\n",
+      "phase": -238
+    },
+    {
+      "run": "silent",
+      "scope": "Artificial negative fixture only",
+      "status": "REJECTED_AS_REQUIRED",
+      "output": "Traceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 83, in <module>\n    p=argparse.ArgumentParser(description=__doc__);p.add_argument('wave',type=Path);p.add_argument('--flow',type=Path,required=True);p.add_argument('--facts',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.wave,a.flow,a.facts,a.output)\n                                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 51, in inspect\n    raise AssertionError('Original HUD33 isolated tail is not independently verified')\nAssertionError: Original HUD33 isolated tail is not independently verified\n"
+    },
+    {
+      "run": "wrong-rate",
+      "scope": "Artificial negative fixture only",
+      "status": "REJECTED_AS_REQUIRED",
+      "output": "Traceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 83, in <module>\n    p=argparse.ArgumentParser(description=__doc__);p.add_argument('wave',type=Path);p.add_argument('--flow',type=Path,required=True);p.add_argument('--facts',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.wave,a.flow,a.facts,a.output)\n                                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/tools/audio/check_pc33_tactic_mix.py\", line 34, in inspect\n    if sr!=rate:raise ValueError('Unexpected source/output rate')\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Unexpected source/output rate\n"
+    }
+  ]
+}

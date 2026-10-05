@@ -8,6 +8,18 @@ public final class NaturalStructures {
     private NaturalStructures() {}
     public static int seedOpening(World world) {
         int added = 0;
+        // Revision65 adds the four actual OBJS dams without repainting SHEX
+        // wetland cells. Revision64/older saves retain their existing entities.
+        if(NationalMap.ID.equals(world.mapId)&&world.mapRevision==65&&world.customMapId.isEmpty()){
+            for(SourceGridCoord cell:PcDamCatalog.cells()){
+                int x=cell.x-world.sourceOriginX,y=cell.y-world.sourceOriginY;
+                if(x<0||y<0||x>=world.sourceColumns()||y>=world.sourceRows())continue;
+                Hex h=MapCoordinates.fromNationalSource(world,cell);War.Structure existing=world.war.at(h);
+                if(existing!=null){if(existing.kind!=War.StructureKind.DAM||existing.owner!=-1)throw new IllegalArgumentException("PC源堤防与设施冲突："+h);continue;}
+                if(!world.inside(h)||world.cityAt(h)!=null||world.domestic.at(h)!=null||world.unitAt(h)!=null)throw new IllegalArgumentException("PC源堤防落点冲突："+h);
+                world.war.structures.add(new War.Structure(world.war.nextStructureId++,-1,War.StructureKind.DAM,h,War.StructureKind.DAM.hp));added++;
+            }
+        }
         for (int x=0;x<world.sourceColumns();x++) for (int y=0;y<world.sourceRows();y++) {
             Hex h=MapCoordinates.axial(world,new SourceGridCoord(x,y));
             if (!world.sourceInside(h) || world.terrain[h.q][h.r]!=World.Terrain.DAM) continue;

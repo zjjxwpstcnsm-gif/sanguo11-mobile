@@ -1,0 +1,7 @@
+{
+  "status": "PASS_NEGATIVE_REJECTED",
+  "fixture": "TEST_ONLY original normal source1 interval removed; later actual explicit overlap retained; original recording unchanged",
+  "reason": "{'expected': 'isolated first original source1 from actual normal Back', 'originalCloseOccurrences': []}",
+  "originalRecordingSha256": "e105bcce19143597e99b33cd4bf2ffe91f8d7e1983567bcf47c8483eaf53fda3",
+  "testFixtureSha256": "169daa08385032fe524c105aa6d5c1c6ea71b34f267334c1d6deba2ea31ec516"
+}

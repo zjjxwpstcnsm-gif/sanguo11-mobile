@@ -1,4 +1,90 @@
 plugins { id 'java-library' }
+tasks.register('verifyPcMerchantMarket', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcMerchantMarketTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcMerchantMarket' }
+tasks.named('test') { dependsOn 'verifyPcMerchantMarket' }
+tasks.register('verifyPcOfficerRanks', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcOfficerRankTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcOfficerRanks' }
+tasks.register('verifyPcMerchantMerit', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcMerchantMeritTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcMerchantMerit' }
+tasks.register('verifyPcMerchantArithmetic', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcMerchantArithmeticTest'
+}
+tasks.named('check') { dependsOn 'verifyPcMerchantArithmetic' }
+tasks.register('verifyPcCityCapacities', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcCityCapacityTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcCityCapacities' }
+tasks.register('verifyTradePlan', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TradePlanTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyTradePlan' }
+tasks.register('verifyProductionPlan', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.ProductionPlanTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyProductionPlan' }
+tasks.register('verifyPcEconomyCosts', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcEconomyCostTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcEconomyCosts' }
+tasks.register('verifyPcPatrol', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcPatrolTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcPatrol' }
+tasks.named('test') { dependsOn 'verifyPcPatrol' }
+tasks.register('verifyTransportPlan', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TransportPlanTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyTransportPlan' }
+tasks.named('test') { dependsOn 'verifyTransportPlan' }
+tasks.register('verifyPcConstruction', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcConstructionTest'
+}
+tasks.named('check') { dependsOn 'verifyPcConstruction' }
+tasks.named('test') { dependsOn 'verifyPcConstruction' }
+tasks.register('verifyDiplomacyPlan', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DiplomacyPlanTest'
+}
+tasks.named('check') { dependsOn 'verifyDiplomacyPlan' }
+tasks.named('test') { dependsOn 'verifyDiplomacyPlan' }
 java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 tasks.register('verifyCore', JavaExec) {
@@ -7,6 +93,27 @@ tasks.register('verifyCore', JavaExec) {
     mainClass = 'game.sanguo.core.CoreTest'
 }
 check.dependsOn verifyCore
+
+tasks.register('verifyPlotJournal', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PlotJournalOutcomeTest'
+}
+check.dependsOn verifyPlotJournal
+
+tasks.register('verifyCriticalYear', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CriticalYearTest'
+}
+check.dependsOn verifyCriticalYear
+
+tasks.register('verifyLegacyGovernanceSave', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.LegacyGovernanceSaveTest'
+}
+check.dependsOn verifyLegacyGovernanceSave
 
 tasks.register('verifyScenarios', JavaExec) {
     dependsOn testClasses
@@ -209,6 +316,14 @@ tasks.register('verifyDisplacement', JavaExec) {
 tasks.named('check') { dependsOn 'verifyDisplacement' }
 tasks.named('test') { dependsOn 'verifyDisplacement' }
 
+tasks.register('verifyCityDisplacement', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CityDisplacementTest'
+}
+tasks.named('check') { dependsOn 'verifyCityDisplacement' }
+tasks.named('test') { dependsOn 'verifyCityDisplacement' }
+
 tasks.register('verifyMapSkills', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
@@ -265,3 +380,97 @@ tasks.register('verifySiege', JavaExec) {
     mainClass = 'game.sanguo.core.SiegeRulesTest'
 }
 tasks.named('check') { dependsOn 'verifySiege' }
+
+tasks.register('verifyDeploymentPlan', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DeploymentPlanTest'
+}
+tasks.named('check') { dependsOn 'verifyDeploymentPlan' }
+
+tasks.register('verifyPcTacticCosts', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcTacticCostTest'
+}
+tasks.named('check') { dependsOn 'verifyPcTacticCosts' }
+tasks.named('test') { dependsOn 'verifyPcTacticCosts' }
+
+tasks.register('verifyCityActionPlan', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CityActionPlanTest'
+    maxHeapSize = '768m'
+}
+tasks.register('verifyCityCommandRewards', JavaExec) {
+    group = 'verification'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CityCommandRewardsTest'
+}
+tasks.named('check') { dependsOn 'verifyCityCommandRewards' }
+tasks.named('check') { dependsOn 'verifyCityActionPlan' }
+tasks.named('test') { dependsOn 'verifyCityActionPlan' }
+
+tasks.register('verifyDelegatedConstruction', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DelegatedConstructionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyDelegatedConstruction' }
+tasks.register('verifyPcOfficerAbilityArithmetic', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcOfficerAbilityArithmeticTest'
+}
+tasks.named('check') { dependsOn 'verifyPcOfficerAbilityArithmetic' }
+
+tasks.register('verifyPcOfficerState', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcOfficerStateTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcOfficerState' }
+
+// Source production rules and save policy run in the ordinary module checks.
+['PcProductionFlow', 'PcProductionCrew', 'PcDelayedCounter', 'PcDelayedProductionFlow', 'PcProductionSavePolicy'].each { suite ->
+    tasks.register("verify${suite}", JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = "game.sanguo.core.${suite}Test"
+        maxHeapSize = '768m'
+    }
+    tasks.named('check') { dependsOn "verify${suite}" }
+}
+
+tasks.register('verifyMapEditorRuntime', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.MapEditorRuntimeTest'
+    maxHeapSize = '768m'
+}
+tasks.register('verifyMapEditorContinuation', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.MapEditorContinuationTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyMapEditorRuntime', 'verifyMapEditorContinuation' }
+
+tasks.register('verifyPcTechniquePoints', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcTechniquePointsTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcTechniquePoints' }
+
+tasks.register('verifyBattleReportCompression', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.BattleReportCompressionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyBattleReportCompression' }

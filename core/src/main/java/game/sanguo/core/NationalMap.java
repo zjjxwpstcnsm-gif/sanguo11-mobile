@@ -10,8 +10,10 @@ import java.util.*;
  * officers, diplomacy and resources are never copied from another era. */
 public final class NationalMap {
     public static final String RESOURCE="national-map-v056", ID="san11-national", LAYOUT="native-200";
-    public static final int REVISION=63, COLUMNS=200, ROWS=200;
-    public static final String SHA256="75bcd0e68187acc1832cf70f046879d6e5cdc5fb60a8ab2dab598fb18162d95d";
+    public static final int REVISION=65, COLUMNS=200, ROWS=200;
+    /** Both revisions share exact PC terrain;65 adds opening-only source dams. */
+    public static boolean pcRevision(int revision){return revision==64||revision==65;}
+    public static final String SHA256="800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d";
     private static Properties cached;
     private NationalMap(){}
     private static synchronized Properties data()throws IOException {
@@ -35,8 +37,8 @@ public final class NationalMap {
             int x=Integer.parseInt(xy[1]),y=Integer.parseInt(xy[2]);String code=p.getProperty(key);
             if(x<0||x>=COLUMNS||y<0||y>=ROWS||code.length()!=1||p.getProperty("terrain."+y).charAt(x)!=code.charAt(0))throw new IOException("禁行格与正式地形冲突");restricted++;
         }
-        if(restricted!=14)throw new IOException("v063禁行格清单不完整");
-        for(int y=0;y<ROWS;y++)for(int x=0;x<COLUMNS;x++)if(NationalExterior.sourceSurface(x,y)!=null&&p.getProperty("terrain."+y).charAt(x)!='V')throw new IOException("继承外景覆盖有效地形");
+        if(restricted!=0)throw new IOException("PC地形禁止继承推测禁行格");
+        // PC SHEX supplies the entire 200x200 rectangle; v61 exterior belongs to legacy saves.
         cached=p;return p;
     }
     /** Revision-bound surface/block separation for fourteen reviewed cells only.
@@ -46,9 +48,18 @@ public final class NationalMap {
         SourceGridCoord source=MapCoordinates.nationalSource(w,h);
         // Fast reject keeps the native200 movement hot path allocation/cache independent elsewhere.
         if(source.x<18||source.x>38||source.y<14||source.y>24)return false;
-        try{String code=data().getProperty("blocked."+source.x+"."+source.y);
+        try{String code=LegacyRestricted.DATA.getProperty("blocked."+source.x+"."+source.y);
             return code!=null&&w.terrain[h.q][h.r]==TerrainCode.decode(code.charAt(0));
-        }catch(IOException e){throw new IllegalStateException("正式禁行数据不可读",e);}
+        }catch(ExceptionInInitializerError e){throw new IllegalStateException("旧版禁行数据不可读",e);}
+    }
+    private static final class LegacyRestricted {
+        static final Properties DATA=read();
+        static Properties read(){Properties p=new Properties();
+            try(InputStream in=NationalMap.class.getResourceAsStream("/maps/national-restrictions-v063.properties")){
+                if(in==null)throw new IOException("Missing v63 restrictions");p.load(in);
+                if(p.size()!=14)throw new IOException("Incomplete v63 restrictions");return p;
+            }catch(IOException e){throw new ExceptionInInitializerError(e);}
+        }
     }
     static final class Selection {
         final int x,y,width,height;
@@ -75,7 +86,7 @@ public final class NationalMap {
             String plots=map.getProperty("plots."+city[0],"");
             if(!plots.isEmpty())for(String item:plots.split(";")){
                 String[] xy=item.split(",");int px=Integer.parseInt(xy[0])-x,py=Integer.parseInt(xy[1])-y;
-                if(px<0||py<0||px>=width||py>=height)throw new IOException("开发区不在全国裁区："+city[1]);
+                if(px<0||py<0||px>=width||py>=height)continue; // A mobile crop includes only authored parcels inside its rectangle.
                 scenario.setProperty("development-plot."+plot++,city[0]+"|"+px+"|"+py);
             }
         }
@@ -85,11 +96,11 @@ public final class NationalMap {
     private static String required(Properties p,String key)throws IOException{String v=p.getProperty(key);if(v==null)throw new IOException("全国据点记录缺失："+key);return v;}
     /** Legacy saves keep their own terrain. Never transplant a revised map under armies. */
     public static String compatibilityNotice(World w){
-        return ID.equals(w.mapId)&&(w.mapRevision==56||w.mapRevision==57||w.mapRevision==58||w.mapRevision==59||w.mapRevision==60||w.mapRevision==61)?
-            "旧地图修订"+w.mapRevision+"：保留存档原地形、城市与部队，不自动迁移。本次六港坐标及14格地理修订仅对新开局生效；旧档保留自身实体、地形及既有外景，城市命令使用修复后的计费规则。请保留手动存档后重新开局体验修订"+REVISION+"。":"";
+        return ID.equals(w.mapId)&&(w.mapRevision==64||w.mapRevision==63||w.mapRevision==56||w.mapRevision==57||w.mapRevision==58||w.mapRevision==59||w.mapRevision==60||w.mapRevision==61)?
+            "旧地图修订"+w.mapRevision+"：保留存档原地形、城市、部队与设施，不自动迁移。源四处堤防仅对新开局生效；旧档保留自身实体和既有渲染路径，已摧毁设施不重新生成。请保留手动存档后重新开局体验修订"+REVISION+"。":"";
     }
     public static void validateIdentity(World w)throws IOException {
         if(!ID.equals(w.mapId))return;
-        if(!LAYOUT.equals(w.mapLayout)||(w.mapRevision!=REVISION&&w.mapRevision!=61&&w.mapRevision!=60&&w.mapRevision!=59&&w.mapRevision!=58&&w.mapRevision!=57&&w.mapRevision!=56)||!w.columnStaggered||w.sourceMapWidth<1||w.sourceMapHeight<1||w.sourceOriginX<0||w.sourceOriginY<0||w.sourceOriginX+w.sourceMapWidth>COLUMNS||w.sourceOriginY+w.sourceMapHeight>ROWS)throw new IOException("旧版本地图存档无法继续使用，请保留原档并重新开局");
+        if(!LAYOUT.equals(w.mapLayout)||(w.mapRevision!=REVISION&&w.mapRevision!=64&&w.mapRevision!=63&&w.mapRevision!=61&&w.mapRevision!=60&&w.mapRevision!=59&&w.mapRevision!=58&&w.mapRevision!=57&&w.mapRevision!=56)||!w.columnStaggered||w.sourceMapWidth<1||w.sourceMapHeight<1||w.sourceOriginX<0||w.sourceOriginY<0||w.sourceOriginX+w.sourceMapWidth>COLUMNS||w.sourceOriginY+w.sourceMapHeight>ROWS)throw new IOException("旧版本地图存档无法继续使用，请保留原档并重新开局");
     }
 }

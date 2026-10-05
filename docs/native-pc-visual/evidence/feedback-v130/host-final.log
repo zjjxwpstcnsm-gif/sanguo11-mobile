@@ -1,0 +1,37 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 7462388 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+LANDMARK source=[66, 58] waterTriangles=812 wallVertices=0 nearCPUBytes=5947812
+LANDMARK source=[92, 15] waterTriangles=0 wallVertices=130 nearCPUBytes=6552776
+LANDMARK source=[147, 59] waterTriangles=0 wallVertices=0 nearCPUBytes=5281100
+LANDMARK source=[31, 183] waterTriangles=0 wallVertices=0 nearCPUBytes=8290892
+PASS LANDMARK126 checks=787612 actual models, non-enterable footprints, LOD cache, full SaveCodec/RNG
+CASCADE source=[147, 59] near=418 far=80 chunks=49
+CASCADE source=[31, 183] near=418 far=80 chunks=48
+PASS LANDSCAPE125 checks=51930 national terrain, full save/RNG, exact cell safety and cache checks
+DROP127 泰山区域瀑布 span=6 lip=1.3438143 foot=0.67627454
+WATERFALL127 泰山区域瀑布 span=6 water=418 foam=245 drop=0.6675397
+DROP127 泰山区域瀑布 span=15 lip=1.3444393 foot=0.7161318
+WATERFALL127 泰山区域瀑布 span=15 water=80 foam=99 drop=0.62830746
+DROP127 西南山涧瀑布 span=6 lip=1.9180895 foot=0.7205985
+WATERFALL127 西南山涧瀑布 span=6 water=418 foam=245 drop=1.1974909
+DROP127 西南山涧瀑布 span=15 lip=1.9180818 foot=0.7329189
+WATERFALL127 西南山涧瀑布 span=15 water=80 foam=99 drop=1.1851628
+DROP127 庐山区域瀑布 span=6 lip=1.0411375 foot=0.14061859
+WATERFALL127 庐山区域瀑布 span=6 water=418 foam=245 drop=0.9005189
+DROP127 庐山区域瀑布 span=15 lip=1.0337666 foot=0.14061859
+WATERFALL127 庐山区域瀑布 span=15 water=80 foam=99 drop=0.89314806
+DROP127 黄河壶口瀑布 span=6 lip=0.67363405 foot=0.23533122
+WATERFALL127 黄河壶口瀑布 span=6 water=375 foam=342 drop=0.43830281
+DROP127 黄河壶口瀑布 span=15 lip=0.6733229 foot=0.23532888
+WATERFALL127 黄河壶口瀑布 span=15 water=88 foam=116 drop=0.43799403
+PASS WATERFALL127 checks=1209641 actual near/far drop, foam, faces, cache, full save and discovery target
+LANDMARK128 lake span=6 reeds=8337 stones=2910
+LANDMARK128 lake span=15 reeds=1974 stones=990
+PASS LANDMARK128 checks=44940 v128 asset routing, lake shore bounds/LOD/cache, atlas retention and complete authority
+PASS WATERFALL_SEAM128 duplicated-corner comparisons=4536 authority unchanged
+HUKOU130 lod=0 triangles=2606 width=0.91322327 highest=0.67363405 bank=0.61363405 lip=0.67363405 foot=0.23533122
+HUKOU130 lod=1 triangles=678 width=0.91322327 highest=0.68458915 bank=0.6133229 lip=0.6733229 foot=0.23532888
+PASS HUKOU130 453544 bank-relative silhouette, strict drop, grounded near/far and complete authority

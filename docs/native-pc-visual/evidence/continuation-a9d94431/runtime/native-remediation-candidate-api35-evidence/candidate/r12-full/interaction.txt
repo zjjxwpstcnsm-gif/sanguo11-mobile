@@ -1,0 +1,7 @@
+FAIL R12 java.lang.AssertionError: screenshot unavailable
+	at game.sanguo.mobile.SceneInstrumentation.capture(SceneInstrumentation.java:103)
+	at game.sanguo.mobile.NativeR12Instrumentation.shot(NativeR12Instrumentation.java:19)
+	at game.sanguo.mobile.NativeR12Instrumentation.combinations(NativeR12Instrumentation.java:30)
+	at game.sanguo.mobile.NativeR12Instrumentation.onStart(NativeR12Instrumentation.java:91)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+

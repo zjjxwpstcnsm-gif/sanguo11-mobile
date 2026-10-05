@@ -1,0 +1,43 @@
+material {
+    name : PcOriginalGroundSilhouette,
+    flipUV : false,
+    shadingModel : unlit,
+    blending : transparent,
+    depthWrite : true,
+    culling : front,
+    variantFilter : [ fog ],
+    requires : [ uv0 ],
+    variables : [ { name : pcFogFade, precision : high } ],
+    parameters : [
+        { type : sampler2d, name : pcNormal },
+        { type : sampler2d, name : pcOutline },
+        { type : float3, name : pcOrigin },
+        { type : float3, name : pcFog },
+        { type : float2, name : pcFade },
+        { type : float3, name : pcFogColor }
+    ]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        highp float2 fine=(float2(material.uv0.x,-material.uv0.y)+materialParams.pcOrigin.xy)*4.0+114.0;
+        highp float3 normal=textureLod(materialParams_pcNormal,(fine+0.5)/1025.0,0.0).rgb*2.0-1.0;
+        // Actual ground draw24 c3=(1.3,1.3,1.3,1), uniform sourceXYZ scale.05.
+        material.worldPosition.xyz+=normal*0.065;
+        highp float z=(getViewFromWorldMatrix()*getWorldPosition(material)).z/0.05;
+        material.pcFogFade=float4(max(z*materialParams.pcFog.x+materialParams.pcFog.y,materialParams.pcFog.z),clamp(z*materialParams.pcFade.x+materialParams.pcFade.y,0.0,1.0),0.0,0.0);
+    }
+}
+fragment {
+    highp float3 sourceDisplayLinear(highp float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        // Captured4807 image0 RGB is uniformly0 and alpha uniformly165.
+        // Original COLOROP SELECTARG2 selects black diffuse, not textureRGB.
+        highp float alpha=texture(materialParams_pcOutline,float2(0.5)).a*variable_pcFogFade.y;
+        if(alpha<=0.0019607843)discard;
+        highp float3 color=materialParams.pcFogColor*(1.0-clamp(variable_pcFogFade.x,0.0,1.0));
+        material.baseColor=float4(sourceDisplayLinear(color)*alpha,alpha);
+    }
+}

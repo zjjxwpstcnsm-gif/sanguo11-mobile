@@ -1,0 +1,2692 @@
+{
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceSharedSha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "checks": 160,
+  "skills": [
+    {
+      "nativeSkillId": 39,
+      "name": "勇將",
+      "description": "對武力比自己低的敵方部隊施展全戰法成功時會心一擊",
+      "recordSha256": "853e59cf3155d64ef5a3e5d7050c28bc96da912cdea73765fa3bb96e7f870796",
+      "sourceOffset": 24763,
+      "nameRawHex": "ab69b14e00",
+      "descriptionRawHex": "b9efaa5aa44fa4f1a6dba476a743aababcc4a4e8b3a1b6a4ac49ae69a5febed4aa6ba6a8a55caec9b77ca4dfa440c0bb0082cc8a6d97a682c596ba6aa74cbed4aa6bbb00"
+    },
+    {
+      "nativeSkillId": 41,
+      "name": "鬥神",
+      "description": "槍兵戰法與戟兵戰法施展成功時會心一擊",
+      "recordSha256": "f94f7613b7e265423dcf56d8e158e530507621096a2953c64af920f2d2d8cfbd",
+      "sourceOffset": 24949,
+      "nameRawHex": "b0abafab00",
+      "descriptionRawHex": "ba6aa74cbed4aa6bbb50b475a74cbed4aa6bac49ae69a6a8a55caec9b77ca4dfa440c0bb00ab000051834c83568393009d89c10008000293f192b475a74cbed4aa6ba600"
+    },
+    {
+      "nativeSkillId": 42,
+      "name": "槍神",
+      "description": "槍兵戰法成功時施展會心一擊",
+      "recordSha256": "faf269108d668e47a18ee44794c09a2536c687a8d91d71f52fcd673dd6469d74",
+      "sourceOffset": 25042,
+      "nameRawHex": "ba6aafab00",
+      "descriptionRawHex": "ba6aa74cbed4aa6ba6a8a55caec9ac49ae69b77ca4dfa440c0bb00834e837d830301a47dafab00004c83858345835683930082af82bd8e9e8141a9b8a74cbed4aa6ba600"
+    },
+    {
+      "nativeSkillId": 48,
+      "name": "霸王",
+      "description": "全戰法成功時施展會心一擊",
+      "recordSha256": "0a2b2d62f299cab8253f8f127872e9083bc7536bcb3f2f08d13aabc4712c9240",
+      "sourceOffset": 25600,
+      "nameRawHex": "c551a4fd00",
+      "descriptionRawHex": "a5febed4aa6ba6a8a55caec9ac49ae69b77ca4dfa440c0bb00b6c30095ba82cc0301ae67a4e20000568383835683850082f08bad89bb00010100a569a9f3b4cbaa4ca800"
+    }
+  ],
+  "tactics": [
+    {
+      "nativeTacticId": 0,
+      "name": "突刺",
+      "nameRawHex": "acf0a8eb00e9b80083",
+      "recordSha256": "aa7bb311c6ef2d847af606a52500efa24e9e99baa082f6c530ef5adda04c5352",
+      "sourceOffset": 33748
+    },
+    {
+      "nativeTacticId": 1,
+      "name": "螺旋突刺",
+      "nameRawHex": "c1b3b1dbacf0a8eb00",
+      "recordSha256": "1a46c426f7ce6ae6cc76e43ba2e951482aef5bf9e4fbd324be0a21f181d1ecd8",
+      "sourceOffset": 33804
+    },
+    {
+      "nativeTacticId": 2,
+      "name": "二段突刺",
+      "nameRawHex": "a447ac71acf0a8eb00",
+      "recordSha256": "b2244a3d85291733ac6d6843bb848fb276f87a26a431aa6d1b29938555fe1542",
+      "sourceOffset": 33860
+    },
+    {
+      "nativeTacticId": 3,
+      "name": "熊手",
+      "nameRawHex": "bab5a4e200837e8363",
+      "recordSha256": "c40b57e078daa0d4d650323cdb80387c185d2084c9f37f1f61a8caa921a11878",
+      "sourceOffset": 33916
+    },
+    {
+      "nativeTacticId": 4,
+      "name": "橫掃",
+      "nameRawHex": "beeeb1bd0086834500",
+      "recordSha256": "eb06e527280f668559702e2d6e69fc843e8e02424d8dd17d4bb71ce2f72951bd",
+      "sourceOffset": 33972
+    },
+    {
+      "nativeTacticId": 5,
+      "name": "旋風",
+      "nameRawHex": "b1dbadb70083450000",
+      "recordSha256": "d98631d773d3774dfff55a613d94ccb41ebb60dc73e4253fae14a4b98313b608",
+      "sourceOffset": 34028
+    },
+    {
+      "nativeTacticId": 6,
+      "name": "火矢",
+      "nameRawHex": "a4f5a5da0045000000",
+      "recordSha256": "b382d8d9fc9809a2375acf0c0dabef35640625e0b571d26b5e7e1b2c1365859d",
+      "sourceOffset": 34084
+    },
+    {
+      "nativeTacticId": 7,
+      "name": "貫箭",
+      "nameRawHex": "b365bd620000000012",
+      "recordSha256": "d0cdeaa926c5905173591078944b64d9dbc919c2db366751566bf01a23e0e33a",
+      "sourceOffset": 34140
+    },
+    {
+      "nativeTacticId": 8,
+      "name": "亂射",
+      "nameRawHex": "b6c3ae670045000a97",
+      "recordSha256": "32fbc87add9287626133cdf9923962ba134a07a47210d9b865bbe0220ada3ec3",
+      "sourceOffset": 34196
+    },
+    {
+      "nativeTacticId": 9,
+      "name": "突擊",
+      "nameRawHex": "acf0c0bb00001f97c1",
+      "recordSha256": "030c74dc24d3e9d2933c24859a5088e38620865810af89c489140bd85647a885",
+      "sourceOffset": 34252
+    },
+    {
+      "nativeTacticId": 10,
+      "name": "突破",
+      "nameRawHex": "acf0af7d000f97cf00",
+      "recordSha256": "538d85a475d49068e2940723469cbf0129f1c6d738ecd3a578affafcc17f63ea",
+      "sourceOffset": 34308
+    },
+    {
+      "nativeTacticId": 11,
+      "name": "突進",
+      "nameRawHex": "acf0b6690097e50083",
+      "recordSha256": "0828c9b35ee86de0f934de474065d1f92d83d3375331a7067460dce8e3fdfcb1",
+      "sourceOffset": 34364
+    },
+    {
+      "nativeTacticId": 12,
+      "name": "火矢",
+      "nameRawHex": "a4f5a5da004400838d",
+      "recordSha256": "856deb60757e5900b2c7e07e0de5f45570b447e649e521b03952ae316958e0c5",
+      "sourceOffset": 34420
+    },
+    {
+      "nativeTacticId": 13,
+      "name": "破碎",
+      "nameRawHex": "af7db8480000000000",
+      "recordSha256": "8455c2d2a5e0b90e17b1f6da75048d0709fa7ea36b18f8a6cfb27fb3e3404277",
+      "sourceOffset": 34476
+    },
+    {
+      "nativeTacticId": 14,
+      "name": "放射",
+      "nameRawHex": "a9f1ae670000000000",
+      "recordSha256": "c2963aeeb06b06119430f39491e08c1ba248237921ae13523e4eff0c78b970ca",
+      "sourceOffset": 34532
+    },
+    {
+      "nativeTacticId": 15,
+      "name": "投石",
+      "nameRawHex": "a7eba5db0000000000",
+      "recordSha256": "29c2b1f901405839adbcaf4a3ff3c5392143421eedaae8853c9d203753300cc4",
+      "sourceOffset": 34588
+    },
+    {
+      "nativeTacticId": 16,
+      "name": "火矢",
+      "nameRawHex": "a4f5a5da0000000000",
+      "recordSha256": "88ec0ddecabc4475c2f883536c9d1c64f390c2d01d2c9a2f1aa607af300555ea",
+      "sourceOffset": 34644
+    },
+    {
+      "nativeTacticId": 17,
+      "name": "猛撞",
+      "nameRawHex": "b272bcb20000000000",
+      "recordSha256": "9be9e1636e0672e77cb333291fc0759cdf6a2706046359839e4df9ebc8fe9d1a",
+      "sourceOffset": 34700
+    },
+    {
+      "nativeTacticId": 18,
+      "name": "投石",
+      "nameRawHex": "a7eba5db0000000000",
+      "recordSha256": "5d3b62cd9f8ca3f8199fcc5ff3955a21ed5620774d3ff7ee34268b2426a63cde",
+      "sourceOffset": 34756
+    },
+    {
+      "nativeTacticId": 19,
+      "name": "戰法19",
+      "nameRawHex": "bed4aa6b3139000000",
+      "recordSha256": "911ad69e495917df9fe0d9a97695d5223992699d1f67fd405959a92585c44a33",
+      "sourceOffset": 34812
+    },
+    {
+      "nativeTacticId": 20,
+      "name": "戰法20",
+      "nameRawHex": "bed4aa6b3230000000",
+      "recordSha256": "e0d999b0c4998e10f5b977521a72f5fcf4f3cbd4d8b7b3235f4d678f64f9003c",
+      "sourceOffset": 34868
+    },
+    {
+      "nativeTacticId": 21,
+      "name": "戰法21",
+      "nameRawHex": "bed4aa6b3231000000",
+      "recordSha256": "5675a5448961e1a5532e7cbabd277750ef7ec4e0394c62e0ec2de00eab94b3a5",
+      "sourceOffset": 34924
+    },
+    {
+      "nativeTacticId": 22,
+      "name": "戰法22",
+      "nameRawHex": "bed4aa6b3232000000",
+      "recordSha256": "45635ef6a5c438eba8fa66e365e526f3700f64c9b62885a8396aaec04c8d7586",
+      "sourceOffset": 34980
+    },
+    {
+      "nativeTacticId": 23,
+      "name": "戰法23",
+      "nameRawHex": "bed4aa6b3233000000",
+      "recordSha256": "8b17e0bdd8a99c43658e47d573400cb47badb1efe79c648c81edc721e16a3571",
+      "sourceOffset": 35036
+    },
+    {
+      "nativeTacticId": 24,
+      "name": "戰法24",
+      "nameRawHex": "bed4aa6b3234000000",
+      "recordSha256": "3842087bb7d582ac230b539d38eb27ef4415e83c60c50bd3670d1ceed6ff055c",
+      "sourceOffset": 35092
+    },
+    {
+      "nativeTacticId": 25,
+      "name": "戰法25",
+      "nameRawHex": "bed4aa6b3235000000",
+      "recordSha256": "08a975dde1c88a352a2f9a1f243a312978d2d62edaf1f31f03ec9f3d980cc39f",
+      "sourceOffset": 35148
+    },
+    {
+      "nativeTacticId": 26,
+      "name": "戰法26",
+      "nameRawHex": "bed4aa6b3236000000",
+      "recordSha256": "26b3a2f44fed00d7429f0dc75e5e3ad6cd0357a824c9ad01bccd0dc16894f180",
+      "sourceOffset": 35204
+    },
+    {
+      "nativeTacticId": 27,
+      "name": "戰法27",
+      "nameRawHex": "bed4aa6b3237000000",
+      "recordSha256": "ec59f806f8502ee399822a31adebb2f23b19af47f91e7436b9c9b913256f6995",
+      "sourceOffset": 35260
+    },
+    {
+      "nativeTacticId": 28,
+      "name": "戰法28",
+      "nameRawHex": "bed4aa6b3238000000",
+      "recordSha256": "c3fc652c602a63470584110250e4af3341c8dfad6cbedf2860bc95e091e1a87f",
+      "sourceOffset": 35316
+    },
+    {
+      "nativeTacticId": 29,
+      "name": "戰法29",
+      "nameRawHex": "bed4aa6b3239000000",
+      "recordSha256": "86d35a6315a4ebe441632383c2828072538d7b3895ffb86edb37930c6b7630b1",
+      "sourceOffset": 35372
+    },
+    {
+      "nativeTacticId": 30,
+      "name": "戰法30",
+      "nameRawHex": "bed4aa6b333000a467",
+      "recordSha256": "37b61da80f5090e89f3d27988a37efac26dbd2879c01ee0f1a1c0b480c82f229",
+      "sourceOffset": 35428
+    },
+    {
+      "nativeTacticId": 31,
+      "name": "戰法31",
+      "nameRawHex": "bed4aa6b3331006000",
+      "recordSha256": "335c36b0aa87e5816d9064d242a7927ac6672ec7fc77410ff0333f4a60607bb7",
+      "sourceOffset": 35484
+    }
+  ],
+  "stores": [
+    {
+      "nativeTacticId": 0,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 0,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 0,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 0,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 1,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 1,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 1,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 1,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 2,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 2,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 2,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 2,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 3,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 3,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 3,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 3,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 4,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 4,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 4,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 4,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 5,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 5,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 5,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 5,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 6,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 6,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 6,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 6,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 7,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 7,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 7,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 7,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 8,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 8,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 8,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 8,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 9,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 9,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 9,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 9,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 10,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 10,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 10,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 10,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 11,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 11,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 11,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 11,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 12,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 12,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 12,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 12,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 13,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 13,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 13,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 13,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 14,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 14,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 14,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 14,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 15,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 15,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 15,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 15,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 16,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 16,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 16,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 16,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 17,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 17,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 17,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 17,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 18,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 18,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 18,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 18,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 19,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 19,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 19,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 19,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 20,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 20,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 20,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 20,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 21,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 21,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 21,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 21,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 22,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 22,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 22,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 22,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 23,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 23,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 23,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 23,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 24,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 24,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 24,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 24,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 25,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 25,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 25,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 25,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 26,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 26,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 26,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 26,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 27,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 27,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 27,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 27,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 28,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 28,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 28,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 28,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 29,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 29,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 29,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 29,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 30,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 30,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 30,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 30,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    },
+    {
+      "nativeTacticId": 31,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 31,
+      "alreadyProducedSuccessRaw": 0,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 31,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 0,
+      "record0Raw": 0
+    },
+    {
+      "nativeTacticId": 31,
+      "alreadyProducedSuccessRaw": 1,
+      "alreadyProducedCriticalRaw": 1,
+      "record0Raw": 1
+    }
+  ],
+  "staticOnlyCriticalInstructions": [
+    {
+      "address": "0x5ae610",
+      "mnemonic": "push",
+      "operands": "ecx",
+      "hex": "51"
+    },
+    {
+      "address": "0x5ae611",
+      "mnemonic": "push",
+      "operands": "ebx",
+      "hex": "53"
+    },
+    {
+      "address": "0x5ae612",
+      "mnemonic": "push",
+      "operands": "ebp",
+      "hex": "55"
+    },
+    {
+      "address": "0x5ae613",
+      "mnemonic": "push",
+      "operands": "edi",
+      "hex": "57"
+    },
+    {
+      "address": "0x5ae614",
+      "mnemonic": "mov",
+      "operands": "edi, dword ptr [esp + 0x14]",
+      "hex": "8b7c2414"
+    },
+    {
+      "address": "0x5ae618",
+      "mnemonic": "mov",
+      "operands": "ebx, eax",
+      "hex": "8bd8"
+    },
+    {
+      "address": "0x5ae61a",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [edi]",
+      "hex": "8b07"
+    },
+    {
+      "address": "0x5ae61c",
+      "mnemonic": "push",
+      "operands": "0xb",
+      "hex": "6a0b"
+    },
+    {
+      "address": "0x5ae61e",
+      "mnemonic": "mov",
+      "operands": "ecx, edi",
+      "hex": "8bcf"
+    },
+    {
+      "address": "0x5ae620",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x2c]",
+      "hex": "ff502c"
+    },
+    {
+      "address": "0x5ae623",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae625",
+      "mnemonic": "je",
+      "operands": "0x5ae63e",
+      "hex": "7417"
+    },
+    {
+      "address": "0x5ae627",
+      "mnemonic": "mov",
+      "operands": "ebp, dword ptr [edi]",
+      "hex": "8b2f"
+    },
+    {
+      "address": "0x5ae629",
+      "mnemonic": "call",
+      "operands": "0x468e60",
+      "hex": "e832a8ebff"
+    },
+    {
+      "address": "0x5ae62e",
+      "mnemonic": "push",
+      "operands": "eax",
+      "hex": "50"
+    },
+    {
+      "address": "0x5ae62f",
+      "mnemonic": "mov",
+      "operands": "ecx, edi",
+      "hex": "8bcf"
+    },
+    {
+      "address": "0x5ae631",
+      "mnemonic": "call",
+      "operands": "dword ptr [ebp + 0x2c]",
+      "hex": "ff552c"
+    },
+    {
+      "address": "0x5ae634",
+      "mnemonic": "mov",
+      "operands": "ebp, eax",
+      "hex": "8be8"
+    },
+    {
+      "address": "0x5ae636",
+      "mnemonic": "neg",
+      "operands": "ebp",
+      "hex": "f7dd"
+    },
+    {
+      "address": "0x5ae638",
+      "mnemonic": "sbb",
+      "operands": "ebp, ebp",
+      "hex": "1bed"
+    },
+    {
+      "address": "0x5ae63a",
+      "mnemonic": "and",
+      "operands": "ebp, edi",
+      "hex": "23ef"
+    },
+    {
+      "address": "0x5ae63c",
+      "mnemonic": "jmp",
+      "operands": "0x5ae640",
+      "hex": "eb02"
+    },
+    {
+      "address": "0x5ae63e",
+      "mnemonic": "xor",
+      "operands": "ebp, ebp",
+      "hex": "33ed"
+    },
+    {
+      "address": "0x5ae640",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae642",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae644",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x3c]",
+      "hex": "ff523c"
+    },
+    {
+      "address": "0x5ae647",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [eax]",
+      "hex": "8b00"
+    },
+    {
+      "address": "0x5ae649",
+      "mnemonic": "mov",
+      "operands": "dword ptr [esp + 0xc], eax",
+      "hex": "8944240c"
+    },
+    {
+      "address": "0x5ae64d",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [esp + 0xc]",
+      "hex": "8b4c240c"
+    },
+    {
+      "address": "0x5ae651",
+      "mnemonic": "movsx",
+      "operands": "eax, ax",
+      "hex": "0fbfc0"
+    },
+    {
+      "address": "0x5ae654",
+      "mnemonic": "imul",
+      "operands": "eax, eax, 0xc8",
+      "hex": "69c0c8000000"
+    },
+    {
+      "address": "0x5ae65a",
+      "mnemonic": "sar",
+      "operands": "ecx, 0x10",
+      "hex": "c1f910"
+    },
+    {
+      "address": "0x5ae65d",
+      "mnemonic": "add",
+      "operands": "eax, ecx",
+      "hex": "03c1"
+    },
+    {
+      "address": "0x5ae65f",
+      "mnemonic": "test",
+      "operands": "ebp, ebp",
+      "hex": "85ed"
+    },
+    {
+      "address": "0x5ae661",
+      "mnemonic": "lea",
+      "operands": "edx, [eax + eax*4]",
+      "hex": "8d1480"
+    },
+    {
+      "address": "0x5ae664",
+      "mnemonic": "lea",
+      "operands": "eax, [edx*4 + 0x6fb0e68]",
+      "hex": "8d0495680efb06"
+    },
+    {
+      "address": "0x5ae66b",
+      "mnemonic": "mov",
+      "operands": "dword ptr [esp + 0xc], eax",
+      "hex": "8944240c"
+    },
+    {
+      "address": "0x5ae66f",
+      "mnemonic": "je",
+      "operands": "0x5ae67e",
+      "hex": "740d"
+    },
+    {
+      "address": "0x5ae671",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae673",
+      "mnemonic": "mov",
+      "operands": "ecx, ebp",
+      "hex": "8bcd"
+    },
+    {
+      "address": "0x5ae675",
+      "mnemonic": "call",
+      "operands": "0x495720",
+      "hex": "e8a670eeff"
+    },
+    {
+      "address": "0x5ae67a",
+      "mnemonic": "mov",
+      "operands": "edi, eax",
+      "hex": "8bf8"
+    },
+    {
+      "address": "0x5ae67c",
+      "mnemonic": "jmp",
+      "operands": "0x5ae683",
+      "hex": "eb05"
+    },
+    {
+      "address": "0x5ae67e",
+      "mnemonic": "mov",
+      "operands": "edi, 0x65",
+      "hex": "bf65000000"
+    },
+    {
+      "address": "0x5ae683",
+      "mnemonic": "test",
+      "operands": "ebx, ebx",
+      "hex": "85db"
+    },
+    {
+      "address": "0x5ae685",
+      "mnemonic": "jl",
+      "operands": "0x5ae794",
+      "hex": "0f8c09010000"
+    },
+    {
+      "address": "0x5ae68b",
+      "mnemonic": "cmp",
+      "operands": "ebx, 0x1f",
+      "hex": "83fb1f"
+    },
+    {
+      "address": "0x5ae68e",
+      "mnemonic": "jg",
+      "operands": "0x5ae794",
+      "hex": "0f8f00010000"
+    },
+    {
+      "address": "0x5ae694",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae696",
+      "mnemonic": "push",
+      "operands": "0x30",
+      "hex": "6a30"
+    },
+    {
+      "address": "0x5ae698",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae69a",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x58]",
+      "hex": "ff5258"
+    },
+    {
+      "address": "0x5ae69d",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae69f",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "0f85bb000000"
+    },
+    {
+      "address": "0x5ae6a5",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae6a7",
+      "mnemonic": "push",
+      "operands": "0x27",
+      "hex": "6a27"
+    },
+    {
+      "address": "0x5ae6a9",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae6ab",
+      "mnemonic": "call",
+      "operands": "0x495680",
+      "hex": "e8d06feeff"
+    },
+    {
+      "address": "0x5ae6b0",
+      "mnemonic": "cmp",
+      "operands": "eax, edi",
+      "hex": "3bc7"
+    },
+    {
+      "address": "0x5ae6b2",
+      "mnemonic": "jg",
+      "operands": "0x5ae760",
+      "hex": "0f8fa8000000"
+    },
+    {
+      "address": "0x5ae6b8",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi + 0xa8]",
+      "hex": "8b86a8000000"
+    },
+    {
+      "address": "0x5ae6be",
+      "mnemonic": "dec",
+      "operands": "eax",
+      "hex": "48"
+    },
+    {
+      "address": "0x5ae6bf",
+      "mnemonic": "cmp",
+      "operands": "eax, 0xa",
+      "hex": "83f80a"
+    },
+    {
+      "address": "0x5ae6c2",
+      "mnemonic": "ja",
+      "operands": "0x5ae7d0",
+      "hex": "0f8708010000"
+    },
+    {
+      "address": "0x5ae6c8",
+      "mnemonic": "jmp",
+      "operands": "dword ptr [eax*4 + 0x5ae8d0]",
+      "hex": "ff2485d0e85a00"
+    },
+    {
+      "address": "0x5ae6cf",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi]",
+      "hex": "8b06"
+    },
+    {
+      "address": "0x5ae6d1",
+      "mnemonic": "push",
+      "operands": "0x29",
+      "hex": "6a29"
+    },
+    {
+      "address": "0x5ae6d3",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae6d5",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x58]",
+      "hex": "ff5058"
+    },
+    {
+      "address": "0x5ae6d8",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae6da",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "0f8580000000"
+    },
+    {
+      "address": "0x5ae6e0",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae6e2",
+      "mnemonic": "push",
+      "operands": "0x2a",
+      "hex": "6a2a"
+    },
+    {
+      "address": "0x5ae6e4",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae6e6",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x58]",
+      "hex": "ff5258"
+    },
+    {
+      "address": "0x5ae6e9",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae6eb",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "7573"
+    },
+    {
+      "address": "0x5ae6ed",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae6ef",
+      "mnemonic": "push",
+      "operands": "0x22",
+      "hex": "6a22"
+    },
+    {
+      "address": "0x5ae6f1",
+      "mnemonic": "jmp",
+      "operands": "0x5ae737",
+      "hex": "eb44"
+    },
+    {
+      "address": "0x5ae6f3",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi]",
+      "hex": "8b06"
+    },
+    {
+      "address": "0x5ae6f5",
+      "mnemonic": "push",
+      "operands": "0x29",
+      "hex": "6a29"
+    },
+    {
+      "address": "0x5ae6f7",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae6f9",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x58]",
+      "hex": "ff5058"
+    },
+    {
+      "address": "0x5ae6fc",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae6fe",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "7560"
+    },
+    {
+      "address": "0x5ae700",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae702",
+      "mnemonic": "push",
+      "operands": "0x2b",
+      "hex": "6a2b"
+    },
+    {
+      "address": "0x5ae704",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae706",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x58]",
+      "hex": "ff5258"
+    },
+    {
+      "address": "0x5ae709",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae70b",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "7553"
+    },
+    {
+      "address": "0x5ae70d",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae70f",
+      "mnemonic": "push",
+      "operands": "0x23",
+      "hex": "6a23"
+    },
+    {
+      "address": "0x5ae711",
+      "mnemonic": "jmp",
+      "operands": "0x5ae737",
+      "hex": "eb24"
+    },
+    {
+      "address": "0x5ae713",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi]",
+      "hex": "8b06"
+    },
+    {
+      "address": "0x5ae715",
+      "mnemonic": "push",
+      "operands": "0x2c",
+      "hex": "6a2c"
+    },
+    {
+      "address": "0x5ae717",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae719",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x58]",
+      "hex": "ff5058"
+    },
+    {
+      "address": "0x5ae71c",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae71e",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "7540"
+    },
+    {
+      "address": "0x5ae720",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae722",
+      "mnemonic": "push",
+      "operands": "0x24",
+      "hex": "6a24"
+    },
+    {
+      "address": "0x5ae724",
+      "mnemonic": "jmp",
+      "operands": "0x5ae737",
+      "hex": "eb11"
+    },
+    {
+      "address": "0x5ae726",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae728",
+      "mnemonic": "push",
+      "operands": "0x2d",
+      "hex": "6a2d"
+    },
+    {
+      "address": "0x5ae72a",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae72c",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x58]",
+      "hex": "ff5258"
+    },
+    {
+      "address": "0x5ae72f",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae731",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "752d"
+    },
+    {
+      "address": "0x5ae733",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae735",
+      "mnemonic": "push",
+      "operands": "0x25",
+      "hex": "6a25"
+    },
+    {
+      "address": "0x5ae737",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae739",
+      "mnemonic": "call",
+      "operands": "0x495680",
+      "hex": "e8426feeff"
+    },
+    {
+      "address": "0x5ae73e",
+      "mnemonic": "cmp",
+      "operands": "eax, edi",
+      "hex": "3bc7"
+    },
+    {
+      "address": "0x5ae740",
+      "mnemonic": "jg",
+      "operands": "0x5ae760",
+      "hex": "7f1e"
+    },
+    {
+      "address": "0x5ae742",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae744",
+      "mnemonic": "push",
+      "operands": "0x28",
+      "hex": "6a28"
+    },
+    {
+      "address": "0x5ae746",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae748",
+      "mnemonic": "call",
+      "operands": "0x495680",
+      "hex": "e8336feeff"
+    },
+    {
+      "address": "0x5ae74d",
+      "mnemonic": "cmp",
+      "operands": "eax, edi",
+      "hex": "3bc7"
+    },
+    {
+      "address": "0x5ae74f",
+      "mnemonic": "jg",
+      "operands": "0x5ae760",
+      "hex": "7f0f"
+    },
+    {
+      "address": "0x5ae751",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae753",
+      "mnemonic": "push",
+      "operands": "0",
+      "hex": "6a00"
+    },
+    {
+      "address": "0x5ae755",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae757",
+      "mnemonic": "call",
+      "operands": "0x495680",
+      "hex": "e8246feeff"
+    },
+    {
+      "address": "0x5ae75c",
+      "mnemonic": "cmp",
+      "operands": "eax, edi",
+      "hex": "3bc7"
+    },
+    {
+      "address": "0x5ae75e",
+      "mnemonic": "jle",
+      "operands": "0x5ae7d0",
+      "hex": "7e70"
+    },
+    {
+      "address": "0x5ae760",
+      "mnemonic": "pop",
+      "operands": "edi",
+      "hex": "5f"
+    },
+    {
+      "address": "0x5ae761",
+      "mnemonic": "pop",
+      "operands": "ebp",
+      "hex": "5d"
+    },
+    {
+      "address": "0x5ae762",
+      "mnemonic": "mov",
+      "operands": "eax, 1",
+      "hex": "b801000000"
+    },
+    {
+      "address": "0x5ae767",
+      "mnemonic": "pop",
+      "operands": "ebx",
+      "hex": "5b"
+    },
+    {
+      "address": "0x5ae768",
+      "mnemonic": "pop",
+      "operands": "ecx",
+      "hex": "59"
+    },
+    {
+      "address": "0x5ae769",
+      "mnemonic": "ret",
+      "operands": "",
+      "hex": "c3"
+    },
+    {
+      "address": "0x5ae76a",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi]",
+      "hex": "8b06"
+    },
+    {
+      "address": "0x5ae76c",
+      "mnemonic": "push",
+      "operands": "0x2e",
+      "hex": "6a2e"
+    },
+    {
+      "address": "0x5ae76e",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae770",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x58]",
+      "hex": "ff5058"
+    },
+    {
+      "address": "0x5ae773",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae775",
+      "mnemonic": "je",
+      "operands": "0x5ae7d0",
+      "hex": "7459"
+    },
+    {
+      "address": "0x5ae777",
+      "mnemonic": "pop",
+      "operands": "edi",
+      "hex": "5f"
+    },
+    {
+      "address": "0x5ae778",
+      "mnemonic": "pop",
+      "operands": "ebp",
+      "hex": "5d"
+    },
+    {
+      "address": "0x5ae779",
+      "mnemonic": "mov",
+      "operands": "eax, 1",
+      "hex": "b801000000"
+    },
+    {
+      "address": "0x5ae77e",
+      "mnemonic": "pop",
+      "operands": "ebx",
+      "hex": "5b"
+    },
+    {
+      "address": "0x5ae77f",
+      "mnemonic": "pop",
+      "operands": "ecx",
+      "hex": "59"
+    },
+    {
+      "address": "0x5ae780",
+      "mnemonic": "ret",
+      "operands": "",
+      "hex": "c3"
+    },
+    {
+      "address": "0x5ae781",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae783",
+      "mnemonic": "push",
+      "operands": "0x2f",
+      "hex": "6a2f"
+    },
+    {
+      "address": "0x5ae785",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae787",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x58]",
+      "hex": "ff5258"
+    },
+    {
+      "address": "0x5ae78a",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae78c",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "75d2"
+    },
+    {
+      "address": "0x5ae78e",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae790",
+      "mnemonic": "push",
+      "operands": "0x26",
+      "hex": "6a26"
+    },
+    {
+      "address": "0x5ae792",
+      "mnemonic": "jmp",
+      "operands": "0x5ae755",
+      "hex": "ebc1"
+    },
+    {
+      "address": "0x5ae794",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae796",
+      "mnemonic": "push",
+      "operands": "0x28",
+      "hex": "6a28"
+    },
+    {
+      "address": "0x5ae798",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae79a",
+      "mnemonic": "call",
+      "operands": "0x495680",
+      "hex": "e8e16eeeff"
+    },
+    {
+      "address": "0x5ae79f",
+      "mnemonic": "cmp",
+      "operands": "eax, edi",
+      "hex": "3bc7"
+    },
+    {
+      "address": "0x5ae7a1",
+      "mnemonic": "jg",
+      "operands": "0x5ae760",
+      "hex": "7fbd"
+    },
+    {
+      "address": "0x5ae7a3",
+      "mnemonic": "push",
+      "operands": "1",
+      "hex": "6a01"
+    },
+    {
+      "address": "0x5ae7a5",
+      "mnemonic": "push",
+      "operands": "0x17",
+      "hex": "6a17"
+    },
+    {
+      "address": "0x5ae7a7",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae7a9",
+      "mnemonic": "call",
+      "operands": "0x495680",
+      "hex": "e8d26eeeff"
+    },
+    {
+      "address": "0x5ae7ae",
+      "mnemonic": "cmp",
+      "operands": "eax, edi",
+      "hex": "3bc7"
+    },
+    {
+      "address": "0x5ae7b0",
+      "mnemonic": "jg",
+      "operands": "0x5ae760",
+      "hex": "7fae"
+    },
+    {
+      "address": "0x5ae7b2",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [esi + 0xa8], 4",
+      "hex": "83bea800000004"
+    },
+    {
+      "address": "0x5ae7b9",
+      "mnemonic": "jne",
+      "operands": "0x5ae7d0",
+      "hex": "7515"
+    },
+    {
+      "address": "0x5ae7bb",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esp + 0x18]",
+      "hex": "8b442418"
+    },
+    {
+      "address": "0x5ae7bf",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae7c1",
+      "mnemonic": "je",
+      "operands": "0x5ae7d0",
+      "hex": "740d"
+    },
+    {
+      "address": "0x5ae7c3",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi]",
+      "hex": "8b06"
+    },
+    {
+      "address": "0x5ae7c5",
+      "mnemonic": "push",
+      "operands": "0x19",
+      "hex": "6a19"
+    },
+    {
+      "address": "0x5ae7c7",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae7c9",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x58]",
+      "hex": "ff5058"
+    },
+    {
+      "address": "0x5ae7cc",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae7ce",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "7590"
+    },
+    {
+      "address": "0x5ae7d0",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi]",
+      "hex": "8b16"
+    },
+    {
+      "address": "0x5ae7d2",
+      "mnemonic": "push",
+      "operands": "0x11",
+      "hex": "6a11"
+    },
+    {
+      "address": "0x5ae7d4",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae7d6",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x58]",
+      "hex": "ff5258"
+    },
+    {
+      "address": "0x5ae7d9",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae7db",
+      "mnemonic": "je",
+      "operands": "0x5ae7f0",
+      "hex": "7413"
+    },
+    {
+      "address": "0x5ae7dd",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [esp + 0x14]",
+      "hex": "8b4c2414"
+    },
+    {
+      "address": "0x5ae7e1",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [ecx]",
+      "hex": "8b01"
+    },
+    {
+      "address": "0x5ae7e3",
+      "mnemonic": "push",
+      "operands": "5",
+      "hex": "6a05"
+    },
+    {
+      "address": "0x5ae7e5",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x2c]",
+      "hex": "ff502c"
+    },
+    {
+      "address": "0x5ae7e8",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae7ea",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "0f8570ffffff"
+    },
+    {
+      "address": "0x5ae7f0",
+      "mnemonic": "test",
+      "operands": "ebp, ebp",
+      "hex": "85ed"
+    },
+    {
+      "address": "0x5ae7f2",
+      "mnemonic": "je",
+      "operands": "0x5ae814",
+      "hex": "7420"
+    },
+    {
+      "address": "0x5ae7f4",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [esp + 0xc]",
+      "hex": "8b4c240c"
+    },
+    {
+      "address": "0x5ae7f8",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [ecx + 4]",
+      "hex": "8b5104"
+    },
+    {
+      "address": "0x5ae7fb",
+      "mnemonic": "and",
+      "operands": "edx, 0x1f",
+      "hex": "83e21f"
+    },
+    {
+      "address": "0x5ae7fe",
+      "mnemonic": "cmp",
+      "operands": "dl, 5",
+      "hex": "80fa05"
+    },
+    {
+      "address": "0x5ae801",
+      "mnemonic": "jne",
+      "operands": "0x5ae814",
+      "hex": "7511"
+    },
+    {
+      "address": "0x5ae803",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esi]",
+      "hex": "8b06"
+    },
+    {
+      "address": "0x5ae805",
+      "mnemonic": "push",
+      "operands": "0xf",
+      "hex": "6a0f"
+    },
+    {
+      "address": "0x5ae807",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae809",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x58]",
+      "hex": "ff5058"
+    },
+    {
+      "address": "0x5ae80c",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae80e",
+      "mnemonic": "jne",
+      "operands": "0x5ae760",
+      "hex": "0f854cffffff"
+    },
+    {
+      "address": "0x5ae814",
+      "mnemonic": "mov",
+      "operands": "al, byte ptr [esi + 0xc5]",
+      "hex": "8a86c5000000"
+    },
+    {
+      "address": "0x5ae81a",
+      "mnemonic": "xor",
+      "operands": "ebx, ebx",
+      "hex": "33db"
+    },
+    {
+      "address": "0x5ae81c",
+      "mnemonic": "cmp",
+      "operands": "al, 0x50",
+      "hex": "3c50"
+    },
+    {
+      "address": "0x5ae81e",
+      "mnemonic": "jb",
+      "operands": "0x5ae827",
+      "hex": "7207"
+    },
+    {
+      "address": "0x5ae820",
+      "mnemonic": "mov",
+      "operands": "ebx, 2",
+      "hex": "bb02000000"
+    },
+    {
+      "address": "0x5ae825",
+      "mnemonic": "jmp",
+      "operands": "0x5ae830",
+      "hex": "eb09"
+    },
+    {
+      "address": "0x5ae827",
+      "mnemonic": "cmp",
+      "operands": "al, 0x3c",
+      "hex": "3c3c"
+    },
+    {
+      "address": "0x5ae829",
+      "mnemonic": "jb",
+      "operands": "0x5ae830",
+      "hex": "7205"
+    },
+    {
+      "address": "0x5ae82b",
+      "mnemonic": "mov",
+      "operands": "ebx, 1",
+      "hex": "bb01000000"
+    },
+    {
+      "address": "0x5ae830",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae832",
+      "mnemonic": "call",
+      "operands": "0x496d70",
+      "hex": "e83985eeff"
+    },
+    {
+      "address": "0x5ae837",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae839",
+      "mnemonic": "add",
+      "operands": "ebx, eax",
+      "hex": "03d8"
+    },
+    {
+      "address": "0x5ae83b",
+      "mnemonic": "call",
+      "operands": "0x495a40",
+      "hex": "e80072eeff"
+    },
+    {
+      "address": "0x5ae840",
+      "mnemonic": "mov",
+      "operands": "ebp, eax",
+      "hex": "8be8"
+    },
+    {
+      "address": "0x5ae842",
+      "mnemonic": "mov",
+      "operands": "dword ptr [esp + 0x14], 0",
+      "hex": "c744241400000000"
+    },
+    {
+      "address": "0x5ae84a",
+      "mnemonic": "lea",
+      "operands": "ebx, [ebx]",
+      "hex": "8d9b00000000"
+    },
+    {
+      "address": "0x5ae850",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [esp + 0x14]",
+      "hex": "8b4c2414"
+    },
+    {
+      "address": "0x5ae854",
+      "mnemonic": "push",
+      "operands": "ecx",
+      "hex": "51"
+    },
+    {
+      "address": "0x5ae855",
+      "mnemonic": "mov",
+      "operands": "ecx, esi",
+      "hex": "8bce"
+    },
+    {
+      "address": "0x5ae857",
+      "mnemonic": "call",
+      "operands": "0x495270",
+      "hex": "e8146aeeff"
+    },
+    {
+      "address": "0x5ae85c",
+      "mnemonic": "mov",
+      "operands": "edi, eax",
+      "hex": "8bf8"
+    },
+    {
+      "address": "0x5ae85e",
+      "mnemonic": "test",
+      "operands": "edi, edi",
+      "hex": "85ff"
+    },
+    {
+      "address": "0x5ae860",
+      "mnemonic": "jl",
+      "operands": "0x5ae8a7",
+      "hex": "7c45"
+    },
+    {
+      "address": "0x5ae862",
+      "mnemonic": "cmp",
+      "operands": "edi, 0x44b",
+      "hex": "81ff4b040000"
+    },
+    {
+      "address": "0x5ae868",
+      "mnemonic": "jg",
+      "operands": "0x5ae8a7",
+      "hex": "7f3d"
+    },
+    {
+      "address": "0x5ae86a",
+      "mnemonic": "push",
+      "operands": "edi",
+      "hex": "57"
+    },
+    {
+      "address": "0x5ae86b",
+      "mnemonic": "mov",
+      "operands": "ecx, ebp",
+      "hex": "8bcd"
+    },
+    {
+      "address": "0x5ae86d",
+      "mnemonic": "call",
+      "operands": "0x4887d0",
+      "hex": "e85e9fedff"
+    },
+    {
+      "address": "0x5ae872",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae874",
+      "mnemonic": "jne",
+      "operands": "0x5ae8a4",
+      "hex": "752e"
+    },
+    {
+      "address": "0x5ae876",
+      "mnemonic": "push",
+      "operands": "edi",
+      "hex": "57"
+    },
+    {
+      "address": "0x5ae877",
+      "mnemonic": "mov",
+      "operands": "ecx, ebp",
+      "hex": "8bcd"
+    },
+    {
+      "address": "0x5ae879",
+      "mnemonic": "call",
+      "operands": "0x48bc10",
+      "hex": "e892d3edff"
+    },
+    {
+      "address": "0x5ae87e",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae880",
+      "mnemonic": "jne",
+      "operands": "0x5ae8a4",
+      "hex": "7522"
+    },
+    {
+      "address": "0x5ae882",
+      "mnemonic": "push",
+      "operands": "edi",
+      "hex": "57"
+    },
+    {
+      "address": "0x5ae883",
+      "mnemonic": "mov",
+      "operands": "ecx, ebp",
+      "hex": "8bcd"
+    },
+    {
+      "address": "0x5ae885",
+      "mnemonic": "call",
+      "operands": "0x488910",
+      "hex": "e886a0edff"
+    },
+    {
+      "address": "0x5ae88a",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae88c",
+      "mnemonic": "je",
+      "operands": "0x5ae893",
+      "hex": "7405"
+    },
+    {
+      "address": "0x5ae88e",
+      "mnemonic": "add",
+      "operands": "ebx, 2",
+      "hex": "83c302"
+    },
+    {
+      "address": "0x5ae891",
+      "mnemonic": "jmp",
+      "operands": "0x5ae8a7",
+      "hex": "eb14"
+    },
+    {
+      "address": "0x5ae893",
+      "mnemonic": "push",
+      "operands": "edi",
+      "hex": "57"
+    },
+    {
+      "address": "0x5ae894",
+      "mnemonic": "mov",
+      "operands": "ecx, ebp",
+      "hex": "8bcd"
+    },
+    {
+      "address": "0x5ae896",
+      "mnemonic": "call",
+      "operands": "0x4889e0",
+      "hex": "e845a1edff"
+    },
+    {
+      "address": "0x5ae89b",
+      "mnemonic": "test",
+      "operands": "eax, eax",
+      "hex": "85c0"
+    },
+    {
+      "address": "0x5ae89d",
+      "mnemonic": "je",
+      "operands": "0x5ae8a7",
+      "hex": "7408"
+    },
+    {
+      "address": "0x5ae89f",
+      "mnemonic": "sub",
+      "operands": "ebx, 5",
+      "hex": "83eb05"
+    },
+    {
+      "address": "0x5ae8a2",
+      "mnemonic": "jmp",
+      "operands": "0x5ae8a7",
+      "hex": "eb03"
+    },
+    {
+      "address": "0x5ae8a4",
+      "mnemonic": "add",
+      "operands": "ebx, 4",
+      "hex": "83c304"
+    },
+    {
+      "address": "0x5ae8a7",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esp + 0x14]",
+      "hex": "8b442414"
+    },
+    {
+      "address": "0x5ae8ab",
+      "mnemonic": "inc",
+      "operands": "eax",
+      "hex": "40"
+    },
+    {
+      "address": "0x5ae8ac",
+      "mnemonic": "cmp",
+      "operands": "eax, 2",
+      "hex": "83f802"
+    },
+    {
+      "address": "0x5ae8af",
+      "mnemonic": "mov",
+      "operands": "dword ptr [esp + 0x14], eax",
+      "hex": "89442414"
+    },
+    {
+      "address": "0x5ae8b3",
+      "mnemonic": "jl",
+      "operands": "0x5ae850",
+      "hex": "7c9b"
+    },
+    {
+      "address": "0x5ae8b5",
+      "mnemonic": "xor",
+      "operands": "edx, edx",
+      "hex": "33d2"
+    },
+    {
+      "address": "0x5ae8b7",
+      "mnemonic": "test",
+      "operands": "ebx, ebx",
+      "hex": "85db"
+    },
+    {
+      "address": "0x5ae8b9",
+      "mnemonic": "setl",
+      "operands": "dl",
+      "hex": "0f9cc2"
+    },
+    {
+      "address": "0x5ae8bc",
+      "mnemonic": "dec",
+      "operands": "edx",
+      "hex": "4a"
+    },
+    {
+      "address": "0x5ae8bd",
+      "mnemonic": "and",
+      "operands": "edx, ebx",
+      "hex": "23d3"
+    },
+    {
+      "address": "0x5ae8bf",
+      "mnemonic": "push",
+      "operands": "edx",
+      "hex": "52"
+    },
+    {
+      "address": "0x5ae8c0",
+      "mnemonic": "call",
+      "operands": "0x4721d0",
+      "hex": "e80b39ecff"
+    },
+    {
+      "address": "0x5ae8c5",
+      "mnemonic": "add",
+      "operands": "esp, 4",
+      "hex": "83c404"
+    },
+    {
+      "address": "0x5ae8c8",
+      "mnemonic": "pop",
+      "operands": "edi",
+      "hex": "5f"
+    },
+    {
+      "address": "0x5ae8c9",
+      "mnemonic": "pop",
+      "operands": "ebp",
+      "hex": "5d"
+    },
+    {
+      "address": "0x5ae8ca",
+      "mnemonic": "pop",
+      "operands": "ebx",
+      "hex": "5b"
+    },
+    {
+      "address": "0x5ae8cb",
+      "mnemonic": "pop",
+      "operands": "ecx",
+      "hex": "59"
+    },
+    {
+      "address": "0x5ae8cc",
+      "mnemonic": "ret",
+      "operands": "",
+      "hex": "c3"
+    }
+  ],
+  "codeSha256": {
+    "0x490c90": "88f3102e23fb96f2d8690c480fc307c98368d156e295e7e313a30c128bb744c5",
+    "0x5afd82": "cb8d9a56760139e48f7c62afd5fbdf06b4f058a8144bb1eef4aaa7d5545a19bd",
+    "0x5aff08": "5257851cf520ba4c2c67b1e7fd0f86a07336757c3a81f55a0189389f76e7c764",
+    "0x5ae610": "6a45494d94d425e1d8d921ff665122f73145109d8b248a6df6445a69e278aec4",
+    "0x494670": "ab8ddf8240a60586e13977caf064e69e59b1fb93a83be53373ee949eac494ba2",
+    "0x494600": "d7be5ccc14154ffa10318a953f44301e7f5b3a9475768e3b5b7903a081a986a7"
+  },
+  "established": [
+    "Same order/action argument goes through original490c90 into source-labelled table84858, not project enum ordinal.",
+    "Original skill41鬥神/42槍神/48霸王 descriptions and decision branches identify record0 as applied critical; source failure forces0.",
+    "Combined source chain27 maps record0 zero/nonzero to sound49/78 in the exact named spear tactic action path."
+  ],
+  "limits": [
+    "Critical decision/probabilities/rules/RNG never executed; inputs already-produced explicit fixture values.",
+    "No full PC battle, callback wall-clock timing or Android integration claimed by this tool.",
+    "Project critical formula remains owned by core; media consumes actual immutable applied facts without changing it.",
+    "String-pool pointer distances are not skill IDs; the initial41槍神 guess is withdrawn and actual source41鬥神/42槍神 preserved."
+  ]
+}

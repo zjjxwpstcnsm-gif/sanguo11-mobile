@@ -1,0 +1,1587 @@
+{
+  "counts": {
+    "load_boundary_only": 373440,
+    "source_backed": 714560
+  },
+  "decodedSha256": "e9905746508e9b9e635cef0200e12678174a17a486b2a4dce1cd4ccaac607fa3",
+  "descriptors": [
+    {
+      "flags": 1,
+      "id": 0,
+      "kind": 2,
+      "labelPointer": "0x7ebb0c",
+      "name": "目錄",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 1,
+      "kind": 8,
+      "labelPointer": "0x7ecb18",
+      "name": "武將",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 2,
+      "kind": 12,
+      "labelPointer": "0x7ebe7b",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 3,
+      "kind": 6,
+      "labelPointer": "0x7ecb10",
+      "name": "所屬",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 4,
+      "kind": 10,
+      "labelPointer": "0x7ecb08",
+      "name": "所在",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 5,
+      "kind": 6,
+      "labelPointer": "0x7ecafc",
+      "name": "容貌號碼",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 6,
+      "kind": 2,
+      "labelPointer": "0x7ecaec",
+      "name": "性別",
+      "subtype": 2
+    },
+    {
+      "flags": 1,
+      "id": 7,
+      "kind": 3,
+      "labelPointer": "0x7ecae4",
+      "name": "登場年",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 8,
+      "kind": 3,
+      "labelPointer": "0x7ecadc",
+      "name": "出生年",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 9,
+      "kind": 3,
+      "labelPointer": "0x7eca88",
+      "name": "歿年",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 10,
+      "kind": 8,
+      "labelPointer": "0x7eca80",
+      "name": "死因",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 11,
+      "kind": 8,
+      "labelPointer": "0x7ecad4",
+      "name": "血緣",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 12,
+      "kind": 8,
+      "labelPointer": "0x7ecacc",
+      "name": "父親",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 13,
+      "kind": 8,
+      "labelPointer": "0x7ecac4",
+      "name": "母親",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 14,
+      "kind": 4,
+      "labelPointer": "0x7ecabc",
+      "name": "世代",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 15,
+      "kind": 8,
+      "labelPointer": "0x7ecab4",
+      "name": "配偶",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 16,
+      "kind": 8,
+      "labelPointer": "0x7ecaac",
+      "name": "義兄",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 17,
+      "kind": 4,
+      "labelPointer": "0x7ecaa4",
+      "name": "相性",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 18,
+      "kind": 4,
+      "labelPointer": "0x7eca9c",
+      "name": "語氣",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 19,
+      "kind": 10,
+      "labelPointer": "0x7eb8b4",
+      "name": "軍團",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 20,
+      "kind": 4,
+      "labelPointer": "0x7eb144",
+      "name": "身份",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 21,
+      "kind": 8,
+      "labelPointer": "0x7eb9f8",
+      "name": "官職",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 22,
+      "kind": 12,
+      "labelPointer": "0x7eca70",
+      "name": "登場預定君主",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 23,
+      "kind": 4,
+      "labelPointer": "0x7eb4a8",
+      "name": "忠誠",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 24,
+      "kind": 5,
+      "labelPointer": "0x7eb820",
+      "name": "功績",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 25,
+      "kind": 3,
+      "labelPointer": "0x7eb3b4",
+      "name": "統率",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 26,
+      "kind": 3,
+      "labelPointer": "0x7eb1e8",
+      "name": "武力",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 27,
+      "kind": 3,
+      "labelPointer": "0x7eb478",
+      "name": "智力",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 28,
+      "kind": 3,
+      "labelPointer": "0x7eb580",
+      "name": "政治",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 29,
+      "kind": 3,
+      "labelPointer": "0x7eb134",
+      "name": "魅力",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 30,
+      "kind": 3,
+      "labelPointer": "0x7eca64",
+      "name": "統率經驗",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 31,
+      "kind": 3,
+      "labelPointer": "0x7eca58",
+      "name": "武力經驗",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 32,
+      "kind": 3,
+      "labelPointer": "0x7eca4c",
+      "name": "智力經驗",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 33,
+      "kind": 3,
+      "labelPointer": "0x7eca40",
+      "name": "政治經驗",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 34,
+      "kind": 3,
+      "labelPointer": "0x7eca34",
+      "name": "魅力經驗",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 35,
+      "kind": 3,
+      "labelPointer": "0x7eca28",
+      "name": "統率變動",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 36,
+      "kind": 3,
+      "labelPointer": "0x7eca1c",
+      "name": "武力變動",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 37,
+      "kind": 3,
+      "labelPointer": "0x7eca10",
+      "name": "智力變動",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 38,
+      "kind": 3,
+      "labelPointer": "0x7eca04",
+      "name": "政治變動",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 39,
+      "kind": 3,
+      "labelPointer": "0x7ec9f8",
+      "name": "魅力變動",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 40,
+      "kind": 3,
+      "labelPointer": "0x7eb4cc",
+      "name": "體力",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 41,
+      "kind": 4,
+      "labelPointer": "0x7ec9f0",
+      "name": "出身地",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 42,
+      "kind": 4,
+      "labelPointer": "0x7eb39c",
+      "name": "特技",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 43,
+      "kind": 8,
+      "labelPointer": "0x7ec9e0",
+      "name": "舌戰得意話題",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 44,
+      "kind": 14,
+      "labelPointer": "0x7ea744",
+      "name": "情義",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 45,
+      "kind": 14,
+      "labelPointer": "0x7ec9d8",
+      "name": "野心",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 46,
+      "kind": 4,
+      "labelPointer": "0x7ec9d0",
+      "name": "起用",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 47,
+      "kind": 4,
+      "labelPointer": "0x7eb588",
+      "name": "性格",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 48,
+      "kind": 8,
+      "labelPointer": "0x7ec9c8",
+      "name": "音聲",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 49,
+      "kind": 4,
+      "labelPointer": "0x7ec9c0",
+      "name": "漢室",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 50,
+      "kind": 8,
+      "labelPointer": "0x7ec9b4",
+      "name": "戰略傾向",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 51,
+      "kind": 8,
+      "labelPointer": "0x7ec9ac",
+      "name": "地元執",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 52,
+      "kind": 2,
+      "labelPointer": "0x7ec99c",
+      "name": "容貌CG變更年",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 53,
+      "kind": 2,
+      "labelPointer": "0x7ec994",
+      "name": "行動",
+      "subtype": 2
+    },
+    {
+      "flags": 2,
+      "id": 54,
+      "kind": 2,
+      "labelPointer": "0x7eb184",
+      "name": "褒賞",
+      "subtype": 2
+    },
+    {
+      "flags": 2,
+      "id": 55,
+      "kind": 2,
+      "labelPointer": "0x7eca90",
+      "name": "死亡預定",
+      "subtype": 2
+    },
+    {
+      "flags": 2,
+      "id": 56,
+      "kind": 12,
+      "labelPointer": "0x7ec988",
+      "name": "留守Counter",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 57,
+      "kind": 4,
+      "labelPointer": "0x7eb6d4",
+      "name": "傷病",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 58,
+      "kind": 12,
+      "labelPointer": "0x7ec978",
+      "name": "仕官禁止君主",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 59,
+      "kind": 12,
+      "labelPointer": "0x7ec968",
+      "name": "仕官禁止期間",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 60,
+      "kind": 8,
+      "labelPointer": "0x7ec960",
+      "name": "舊勢力",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 61,
+      "kind": 16,
+      "labelPointer": "0x7ec950",
+      "name": "俘虜月數Counter",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 62,
+      "kind": 8,
+      "labelPointer": "0x7ec944",
+      "name": "年初功績",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 63,
+      "kind": 3,
+      "labelPointer": "0x7ec938",
+      "name": "統率修正",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 64,
+      "kind": 3,
+      "labelPointer": "0x7ec92c",
+      "name": "武力修正",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 65,
+      "kind": 3,
+      "labelPointer": "0x7ec920",
+      "name": "智力修正",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 66,
+      "kind": 3,
+      "labelPointer": "0x7ec914",
+      "name": "政治修正",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 67,
+      "kind": 3,
+      "labelPointer": "0x7ec908",
+      "name": "魅力修正",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 68,
+      "kind": 3,
+      "labelPointer": "0x7eb3b4",
+      "name": "統率",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 69,
+      "kind": 3,
+      "labelPointer": "0x7eb1e8",
+      "name": "武力",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 70,
+      "kind": 3,
+      "labelPointer": "0x7eb478",
+      "name": "智力",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 71,
+      "kind": 3,
+      "labelPointer": "0x7eb580",
+      "name": "政治",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 72,
+      "kind": 3,
+      "labelPointer": "0x7eb134",
+      "name": "魅力",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 73,
+      "kind": 2,
+      "labelPointer": "0x7ec900",
+      "name": "年齡",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 74,
+      "kind": 5,
+      "labelPointer": "0x7eb784",
+      "name": "指揮",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 75,
+      "kind": 8,
+      "labelPointer": "0x7e9e18",
+      "name": "勢力",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 76,
+      "kind": 8,
+      "labelPointer": "0x7eb8b4",
+      "name": "軍團",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 77,
+      "kind": 10,
+      "labelPointer": "0x7ec8b8",
+      "name": "透明",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 78,
+      "kind": 10,
+      "labelPointer": "0x7ec8a4",
+      "name": "武器•左",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 79,
+      "kind": 10,
+      "labelPointer": "0x7ec898",
+      "name": "武器•右",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 80,
+      "kind": 8,
+      "labelPointer": "0x7ec894",
+      "name": "馬",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 81,
+      "kind": 10,
+      "labelPointer": "0x7eb2dc",
+      "name": "任務",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 82,
+      "kind": 10,
+      "labelPointer": "0x7eb4d4",
+      "name": "對象",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 83,
+      "kind": 6,
+      "labelPointer": "0x7ec88c",
+      "name": "期間",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 84,
+      "kind": 2,
+      "labelPointer": "0x7ec884",
+      "name": "道具",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 85,
+      "kind": 2,
+      "labelPointer": "0x7e9e20",
+      "name": "太守",
+      "subtype": 2
+    },
+    {
+      "flags": 2,
+      "id": 86,
+      "kind": 4,
+      "labelPointer": "0x7eb174",
+      "name": "俸祿",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 87,
+      "kind": 4,
+      "labelPointer": "0x7ec8c0",
+      "name": "出擊",
+      "subtype": 2
+    },
+    {
+      "flags": 0,
+      "id": 88,
+      "kind": 44,
+      "labelPointer": "0x7ec8e0",
+      "name": "喜好武將",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 89,
+      "kind": 44,
+      "labelPointer": "0x7ec8d4",
+      "name": "厭惡武將",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 90,
+      "kind": 8,
+      "labelPointer": "0x7ec86c",
+      "name": "捕獲勢力",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 91,
+      "kind": 2,
+      "labelPointer": "0x7eb8dc",
+      "name": "軍師",
+      "subtype": 2
+    },
+    {
+      "flags": 1,
+      "id": 92,
+      "kind": 4,
+      "labelPointer": "0x7eb8b4",
+      "name": "軍團",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 93,
+      "kind": 66,
+      "labelPointer": "0x7ecb20",
+      "name": "說明",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 94,
+      "kind": 2,
+      "labelPointer": "0x7ec860",
+      "name": "軍師推薦",
+      "subtype": 2
+    },
+    {
+      "flags": 1,
+      "id": 95,
+      "kind": 3,
+      "labelPointer": "0x7ec858",
+      "name": "日數",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 96,
+      "kind": 32,
+      "labelPointer": "0x7ec8f8",
+      "name": "意見",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 97,
+      "kind": 28,
+      "labelPointer": "0x7ec8ec",
+      "name": "執行武將",
+      "subtype": 0
+    },
+    {
+      "flags": 1,
+      "id": 98,
+      "kind": 2,
+      "labelPointer": "0x7eb800",
+      "name": "行動力",
+      "subtype": 1
+    },
+    {
+      "flags": 2,
+      "id": 99,
+      "kind": 2,
+      "labelPointer": "0x7ec840",
+      "name": "履行",
+      "subtype": 1
+    },
+    {
+      "flags": 1,
+      "id": 100,
+      "kind": 14,
+      "labelPointer": "0x7ec830",
+      "name": "與舊君主之關係",
+      "subtype": 2
+    },
+    {
+      "flags": 2,
+      "id": 101,
+      "kind": 2,
+      "labelPointer": "0x7ec850",
+      "name": "新武將",
+      "subtype": 2
+    },
+    {
+      "flags": 2,
+      "id": 102,
+      "kind": 2,
+      "labelPointer": "0x7ec848",
+      "name": "登場",
+      "subtype": 2
+    },
+    {
+      "flags": 1,
+      "id": 103,
+      "kind": 4,
+      "labelPointer": "0x7eb144",
+      "name": "身份",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 104,
+      "kind": 17,
+      "labelPointer": "0x7ea1a0",
+      "name": "義兄弟",
+      "subtype": 0
+    },
+    {
+      "flags": 2,
+      "id": 105,
+      "kind": 2,
+      "labelPointer": "0x7ebe7c",
+      "name": "古代武將",
+      "subtype": 2
+    },
+    {
+      "flags": 0,
+      "id": 106,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 107,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 108,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 109,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 110,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 111,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 112,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 113,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 114,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 115,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 116,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 117,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 118,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 119,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 120,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 121,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 122,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 123,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 124,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 125,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 126,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 127,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 128,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 129,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 130,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 131,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 132,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 133,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 134,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 135,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 136,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 137,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 138,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 139,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    },
+    {
+      "flags": 0,
+      "id": 140,
+      "kind": 0,
+      "labelPointer": "0x0",
+      "name": "",
+      "subtype": 0
+    }
+  ],
+  "identityAuditSha256": "6187bc46f59e2b20e1bbdb45cd394151a145be8d13060629f0120d2323e71ca4",
+  "limits": [
+    "Native load boundary before actual scenario-start events and MOD overrides",
+    "Runtime-only zero fields are not imported as startup XP/current state",
+    "Biographies have proven original message selectors; rendered text/gaiji and active resource priority still pending",
+    "No PC writes, no Wine, no runtime resource or old save changed"
+  ],
+  "packedSha256": "1542571b3c9f50a3751ac86078f825648d5be24efc772d3aac0f5e7b7780ec35",
+  "propertySourceOffsets": {
+    "10": [
+      62,
+      100
+    ],
+    "106": [
+      75,
+      76,
+      100
+    ],
+    "107": [
+      77,
+      78,
+      100
+    ],
+    "108": [
+      79,
+      80,
+      100
+    ],
+    "109": [
+      81,
+      82,
+      100
+    ],
+    "11": [
+      63,
+      64,
+      100
+    ],
+    "110": [
+      83,
+      84,
+      100
+    ],
+    "111": [
+      85,
+      86,
+      100
+    ],
+    "112": [
+      87,
+      88,
+      100
+    ],
+    "113": [
+      89,
+      90,
+      100
+    ],
+    "114": [
+      91,
+      92,
+      100
+    ],
+    "115": [
+      93,
+      94,
+      100
+    ],
+    "116": [
+      100,
+      107
+    ],
+    "117": [
+      100,
+      108
+    ],
+    "118": [
+      100,
+      109
+    ],
+    "119": [
+      100,
+      110
+    ],
+    "12": [
+      65,
+      66,
+      100
+    ],
+    "120": [
+      100,
+      111
+    ],
+    "121": [
+      100,
+      112
+    ],
+    "128": [
+      100,
+      136
+    ],
+    "129": [
+      100,
+      137
+    ],
+    "13": [
+      67,
+      68,
+      100
+    ],
+    "130": [
+      100,
+      138
+    ],
+    "131": [
+      100,
+      139
+    ],
+    "132": [
+      100,
+      140
+    ],
+    "133": [
+      100,
+      141
+    ],
+    "134": [
+      100,
+      142
+    ],
+    "135": [
+      100,
+      143
+    ],
+    "14": [
+      69,
+      100
+    ],
+    "15": [
+      70,
+      71,
+      100
+    ],
+    "16": [
+      72,
+      73,
+      100
+    ],
+    "17": [
+      74,
+      100
+    ],
+    "18": [
+      100,
+      131
+    ],
+    "19": [
+      95,
+      100
+    ],
+    "20": [
+      100
+    ],
+    "21": [
+      100,
+      101
+    ],
+    "22": [
+      100,
+      102,
+      103
+    ],
+    "23": [
+      100,
+      104
+    ],
+    "24": [
+      100,
+      105,
+      106
+    ],
+    "25": [
+      100,
+      113
+    ],
+    "26": [
+      100,
+      114
+    ],
+    "27": [
+      100,
+      115
+    ],
+    "28": [
+      100,
+      116
+    ],
+    "29": [
+      100,
+      117
+    ],
+    "3": [
+      96,
+      97,
+      100
+    ],
+    "30": [
+      100
+    ],
+    "31": [
+      100
+    ],
+    "32": [
+      100
+    ],
+    "33": [
+      100
+    ],
+    "34": [
+      100
+    ],
+    "35": [
+      100,
+      118
+    ],
+    "36": [
+      100,
+      119
+    ],
+    "37": [
+      100,
+      120
+    ],
+    "38": [
+      100,
+      121
+    ],
+    "39": [
+      100,
+      122
+    ],
+    "4": [
+      98,
+      99,
+      100
+    ],
+    "40": [
+      100
+    ],
+    "41": [
+      100,
+      123
+    ],
+    "42": [
+      100,
+      124
+    ],
+    "43": [
+      100,
+      125
+    ],
+    "44": [
+      100,
+      126
+    ],
+    "45": [
+      100,
+      127
+    ],
+    "46": [
+      100,
+      128
+    ],
+    "47": [
+      100,
+      129
+    ],
+    "48": [
+      100,
+      130
+    ],
+    "49": [
+      100,
+      132
+    ],
+    "50": [
+      100,
+      133
+    ],
+    "51": [
+      100,
+      134
+    ],
+    "52": [
+      100
+    ],
+    "58": [
+      100
+    ],
+    "59": [
+      100
+    ],
+    "6": [
+      55,
+      100
+    ],
+    "60": [
+      100
+    ],
+    "61": [
+      100
+    ],
+    "62": [
+      100
+    ],
+    "7": [
+      56,
+      57,
+      100
+    ],
+    "8": [
+      58,
+      59,
+      100
+    ],
+    "88": [
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      100
+    ],
+    "89": [
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      100
+    ],
+    "9": [
+      60,
+      61,
+      100,
+      148,
+      149,
+      150,
+      151
+    ]
+  },
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sources": [
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b"
+    },
+    {
+      "officers": 850,
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a"
+    }
+  ],
+  "specialSlotInitialization": {
+    "completePostload": false,
+    "function": "48aa50",
+    "stopBefore": "48aa7b"
+  }
+}

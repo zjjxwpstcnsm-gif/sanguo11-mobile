@@ -1,0 +1,98 @@
+{
+  "physical_quota_policy": "Never submit another physical test in this audit; next session must re-query exact API29 devices, current project quota and all executions. No billing upgrade.",
+  "pending": [
+    {
+      "priority": 1,
+      "case": "DeployWizard landscape pure touch chain",
+      "status": "FAIL",
+      "kind": "IMPLEMENTATION_UI",
+      "next": "Minimal layout-only production fix, paired rebuild/new SHA and hashes, then cold->deploy->move->attack->report->turn->manual save/load on both original APIs. Keep pre-fix failure evidence."
+    },
+    {
+      "priority": 2,
+      "case": "API29 independent cold start #3",
+      "status": "BLOCKED",
+      "kind": "FREE_QUOTA",
+      "next": "After free quota is actually available, one separately installed starlte/API29 (or then-current physical exact API29 model); original ready120s, no warmup/fixture/retry."
+    },
+    {
+      "priority": 2,
+      "case": "API35 independent cold start #3 / MIUI launch",
+      "status": "FAIL",
+      "kind": "ENVIRONMENT_ACTIVITY_LAUNCH",
+      "acceptance_status": "BLOCKED",
+      "next": "Preserve matrix-3q2x556thgk7g failure; diagnose bounded Activity launch on supported authorized route without security bypass. After quota re-check, another successful independent API35 cold start remains required. Do not count this as renderer execution."
+    },
+    {
+      "priority": 2,
+      "case": "Manual save/load and 30-minute mixed game",
+      "status": "NOT_RUN",
+      "kind": "PREREQUISITE_BLOCKED",
+      "next": "First case never returned on Xiaomi. No long gameplay completed, no manual save/load outcome. Execute on a later authorized free-budget matrix after launch and UI prerequisites, preserving the original required duration."
+    },
+    {
+      "priority": 3,
+      "case": "Owner-thread texture/rig loading",
+      "status": "FAIL",
+      "kind": "IMPLEMENTATION",
+      "next": "Separate CPU IO/decode from owner GPU work with existing bounded generation queue. Measure owner blocking and preserve cancellation/release."
+    },
+    {
+      "priority": 4,
+      "case": "Constrained shoreline geometry",
+      "status": "FAIL",
+      "kind": "IMPLEMENTATION_VISUAL",
+      "next": "Repair step contour within original water/port/narrow-channel constraints; compare official regions against matched PC references."
+    },
+    {
+      "priority": 5,
+      "case": "WindowSurfaceRecovery on actual backing loss",
+      "status": "NOT_RUN",
+      "kind": "EVIDENCE",
+      "next": "Reproduce the old loss with original APK; capture authority/snapshot/widget/Window frames/full pixels before and after relayout. No date calculation/setText workaround."
+    },
+    {
+      "priority": 6,
+      "case": "Delayed worker, failed construction, missing/corrupt resources, low memory, process death, edit/import/world replacement",
+      "status": "NOT_RUN",
+      "kind": "DEVICE_COVERAGE",
+      "next": "Use original required conditions and counts; separate fault fixtures from natural touch chain."
+    },
+    {
+      "priority": 7,
+      "case": "R13 SAF and complete editor/custom flow",
+      "status": "NOT_RUN",
+      "kind": "DEVICE_COVERAGE",
+      "next": "Real document provider create/open/cancel/revoke/interrupted write/process termination/cold restart, retain original valid save and recovery point."
+    },
+    {
+      "priority": 8,
+      "case": "All units/equipment/ships LOD/actions; complete typed events",
+      "status": "NOT_RUN",
+      "kind": "VISUAL_COVERAGE",
+      "next": "Record each original class/LOD/action and actual event type; label any rules fixtures and compare authority separately."
+    },
+    {
+      "priority": 9,
+      "case": "Reference-scene PC comparison",
+      "status": "BLOCKED",
+      "kind": "REFERENCE_EVIDENCE",
+      "next": "Complete referenceId, original region, season/time, camera and source version for V1/V2 and required close views; do not invent absent reference facts."
+    },
+    {
+      "priority": 10,
+      "case": "Actual present intervals and GPU timing",
+      "status": "NOT_RUN",
+      "kind": "MEASUREMENT_COVERAGE",
+      "next": "Collect supported device present-timestamp source; do not call Choreographer, video encoder, gfxinfo Window or CPU submit timing Filament FPS."
+    }
+  ],
+  "rules_baseline": {
+    "input": "8b42af2a70c0fc066620e2ce79951aa31d8b923e",
+    "candidate": "17bd3376508499f2681d3e296939452383506a1e",
+    "status": "FAIL",
+    "kind": "INHERITED_CORE",
+    "failure": "CoreTest.logistics:75 AI uses deployment commands",
+    "changes_authorized_in_this_audit": false
+  }
+}

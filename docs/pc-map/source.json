@@ -1,0 +1,303 @@
+{
+  "source": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/san11pkres.bin",
+  "source_kind": "user-provided modded PC installation",
+  "archive_sha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+  "resources": [
+    {
+      "id": 4791,
+      "magic": "SHEX0008",
+      "bytes": 440008,
+      "offset": 525470903,
+      "sha256": "c726989df91d44c99ea3c3f613d41e7e725c43002a9775dfac2e43516f5c6112"
+    },
+    {
+      "id": 4793,
+      "magic": "K3ST0006",
+      "bytes": 16793616,
+      "offset": 525913191,
+      "sha256": "c1d8256c6bf70b3faffaf7d9f1f5b55453203bf623ad6bd121a9a7dec7aa3fca"
+    },
+    {
+      "id": 4787,
+      "magic": "GCOL0001",
+      "bytes": 3151883,
+      "offset": 512863371,
+      "sha256": "a2a1aba3e430ce0175b869820687da1bfa432a8e4d8596f9a775028fde000b1e"
+    },
+    {
+      "id": 4800,
+      "magic": "WFTX0010",
+      "bytes": 3039536,
+      "offset": 555291111,
+      "sha256": "98bcf300836aa3e032bab678efbab634961b8fa386e1ee2c6a31e620fa59aec0"
+    },
+    {
+      "id": 4788,
+      "magic": "GCOL0001",
+      "bytes": 3151883,
+      "offset": 516015254,
+      "sha256": "436db221648b4948984cbcf209a1f3c630148f31a8282f72e5986e4b9276d12f"
+    },
+    {
+      "id": 4801,
+      "magic": "WFTX0010",
+      "bytes": 3039536,
+      "offset": 558330647,
+      "sha256": "bb2331472531bb9b532f250da1f042a88fe369bbe5404368b0e758b6282f88d2"
+    },
+    {
+      "id": 4789,
+      "magic": "GCOL0001",
+      "bytes": 3151883,
+      "offset": 519167137,
+      "sha256": "ec82300a51e6bac4212e79a6dc7b0a42bd907a3502452582e2e78ec66d7f540e"
+    },
+    {
+      "id": 4802,
+      "magic": "WFTX0010",
+      "bytes": 3039536,
+      "offset": 561370183,
+      "sha256": "5be8b2828f039125e5ceb2955a2fda3c5fa51af989267ebf7c4751280eae8c8a"
+    },
+    {
+      "id": 4790,
+      "magic": "GCOL0001",
+      "bytes": 3151883,
+      "offset": 522319020,
+      "sha256": "1ae91f5fb1f19852b776a8f12c008ad9e202fbca48d0586f8414f25403f445f4"
+    },
+    {
+      "id": 4803,
+      "magic": "WFTX0010",
+      "bytes": 3039536,
+      "offset": 564409719,
+      "sha256": "f3f27d142a3bc094012a2591f321154f1701e4cdd743ebe3283dd2882dc1c0ed"
+    }
+  ],
+  "coordinate_contract": "column-major; vx=114+4*x, vy=114+4*y+2*(x&1)",
+  "height_scale": "source byte *0.5 PC world units *0.05 uniform scene scale = byte*0.025; EXE415920/41c356",
+  "palette_seasons": [
+    "autumn",
+    "spring",
+    "summer",
+    "winter"
+  ],
+  "limits": [
+    "Original GPU lighting and texture UV scale are not yet captured from the PC executable.",
+    "Near face IDs/corner masks and active overlay counts are restored; remaining low flag semantics, far material and special animated texture IDs are not yet reproduced.",
+    "Rule vocabulary merges dirt/wasteland; banks remain impassable.",
+    "Development ownership uses the existing administrative parent table.",
+    "Original scenery, sites, facilities and map-unit integration is separately recorded in docs/pc-visual; flags/effects/fullscreen and visual PC comparisons remain incomplete."
+  ],
+  "near_face_contract": "64-bit little endian: flags[0:2], active overlay count[2:4], four (palette ID:6, corner mask:4) layers[4:44], water byte[44:52], coarse water flags[52:54], far palette[54:60]/mask[60:64]; mask bits BR,BL,TR,TL. Ignore inactive layer bytes.",
+  "water_contract": {
+    "consumer": "supplied EXE415bb0 and415e20, shift helper707de0",
+    "machine_check": "tools/content/check_pc_water.py",
+    "height": "nonzero byte + float32(.0025), multiplied by .5 PC units and .05 scene scale",
+    "minimum_nonzero": 7,
+    "maximum": 60,
+    "previous_nibble_wrong_faces": 14010,
+    "previous_nibble_omitted_faces": 3797,
+    "limits": "Native coarse4x4 topology, four-corner alpha and4844 sheets integrated in v147 candidate; original visible-list timing, PC pixel/MOD overrides and outer nonplayable geometry pending.",
+    "coarse_source": "docs/pc-visual/water-source.json"
+  },
+  "near_layers": [
+    {
+      "layer": 0,
+      "active_faces": 1048576,
+      "animated_id60_faces": 0
+    },
+    {
+      "layer": 1,
+      "active_faces": 241362,
+      "animated_id60_faces": 0
+    },
+    {
+      "layer": 2,
+      "active_faces": 16884,
+      "animated_id60_faces": 0
+    },
+    {
+      "layer": 3,
+      "active_faces": 492,
+      "animated_id60_faces": 0
+    }
+  ],
+  "near_corner_crosscheck": {
+    "mixed_faces": 241362,
+    "matching_corners": 4194304,
+    "total_corners": 4194304,
+    "note": "All face corners match source vertex IDs exactly after ignoring inactive layers."
+  },
+  "terrain_counts": {
+    "15": 14619,
+    "2": 1136,
+    "1": 2329,
+    "6": 4339,
+    "19": 141,
+    "0": 3317,
+    "5": 2121,
+    "3": 1585,
+    "4": 231,
+    "12": 88,
+    "10": 1311,
+    "16": 294,
+    "9": 1324,
+    "18": 38,
+    "11": 141,
+    "14": 1365,
+    "7": 3098,
+    "17": 35,
+    "13": 26,
+    "8": 2462
+  },
+  "moved_ports": [
+    {
+      "id": 20060,
+      "before": [
+        149,
+        110
+      ],
+      "after": [
+        148,
+        110
+      ]
+    },
+    {
+      "id": 20061,
+      "before": [
+        123,
+        65
+      ],
+      "after": [
+        123,
+        66
+      ]
+    },
+    {
+      "id": 20062,
+      "before": [
+        101,
+        71
+      ],
+      "after": [
+        101,
+        72
+      ]
+    },
+    {
+      "id": 20063,
+      "before": [
+        79,
+        69
+      ],
+      "after": [
+        79,
+        70
+      ]
+    },
+    {
+      "id": 20065,
+      "before": [
+        64,
+        73
+      ],
+      "after": [
+        64,
+        74
+      ]
+    },
+    {
+      "id": 20068,
+      "before": [
+        162,
+        109
+      ],
+      "after": [
+        163,
+        109
+      ]
+    },
+    {
+      "id": 20070,
+      "before": [
+        177,
+        100
+      ],
+      "after": [
+        177,
+        101
+      ]
+    },
+    {
+      "id": 20071,
+      "before": [
+        187,
+        117
+      ],
+      "after": [
+        187,
+        118
+      ]
+    },
+    {
+      "id": 20074,
+      "before": [
+        115,
+        136
+      ],
+      "after": [
+        116,
+        137
+      ]
+    },
+    {
+      "id": 20079,
+      "before": [
+        70,
+        109
+      ],
+      "after": [
+        70,
+        110
+      ]
+    },
+    {
+      "id": 20080,
+      "before": [
+        100,
+        133
+      ],
+      "after": [
+        99,
+        133
+      ]
+    }
+  ],
+  "changed_cells": 19642,
+  "runtime_sha256": "c035549c3ccc0c31a96ad9d8f0fb5f774e5f00ab0eae1f050a0b58fcb2ee68f7",
+  "map_sha256": "800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d",
+  "runtime_bytes": 597163,
+  "opening_revision": 65,
+  "opening_dams": "docs/pc-visual/dams-source.json",
+  "opening_note": "Four source OBJS dams are materialized only for new openings; source wetland cells remain unchanged; revision64 saves retain their own entities.",
+  "palette_contract": "Original RGB pixels,260x260 cells,two wrapped texel gutters; no image resize; RGB36x4: width/32,height/32,zero; archive row order autumn,spring,summer,winter; numeric nearest sampling",
+  "palette_source_provenance": "docs/pc-visual/ground-palette-source.json; v156 narrow palette regeneration only, other map binaries retain inherited provenance",
+  "ground_pass_runtime": {
+    "version": 157,
+    "converter": "tools/content/import_pc_ground_passes.py",
+    "source_record": "docs/pc-visual/ground-passes-source.json",
+    "runtime": "FilamentMapView syncPcGround / PcEnvironment / pc-ground.mat / pc-ground-outline.mat",
+    "archive_rows": "autumn0 spring1 summer2 winter3",
+    "normal": "K3ST bytes4..6, no normalization",
+    "paint": "WFTX4800..4803 image35 RGBA",
+    "outline": "4807 image0; original0-based source draw24 c3=1.3XYZ,alpha1",
+    "fog": "SENV base variant0, original441d30 fade, observed24bit float intermediates",
+    "status": "bound; installed verification in validation-v157-working.json; full PC raster acceptance pending",
+    "grid": "4804 image1 packaged candidate only, runtime unbound",
+    "limits": [
+      "Source near base+paint encoded blend combined before linear boundary; far inter-scene blending pending",
+      "Original terrain LOD, atlas mip isolation, water/shoreline, static and unit fog/outline remain distinct unresolved work"
+    ]
+  }
+}

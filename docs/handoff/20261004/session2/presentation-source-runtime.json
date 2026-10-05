@@ -1,0 +1,11 @@
+{
+  "youngFace": 36,
+  "oldFace": 1036,
+  "boundaryYear": 208,
+  "officerId": 1000,
+  "sources": 652,
+  "actualConstructorNoTestBinding": true,
+  "coreApiRuntimeChanged": false,
+  "allBattleCallerFormsProven": false,
+  "result": "PORTRAIT_PRESENTATION PASS checks=1486"
+}

@@ -1,0 +1,63 @@
+{
+  "serial": "emulator-5582",
+  "runner": "UiUxInstrumentation",
+  "arguments": [
+    "suite=criticalAudio",
+    "sourceTactic=SPIRAL",
+    "tacticMiss=1",
+    "sourceTacticSound=-1",
+    "run=infantry-miss-installed-29-r1"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-build-29/frozen/app-debug.apk": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/infantry-sound-test-build-29-r1/frozen/app-debug-androidTest.apk": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7"
+  },
+  "installed_sha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+  "installed_test_sha256": "9370686f2c0678220bd206e0435d6d809405a6052d9c754a856baf5aacb19ab7",
+  "passed": true,
+  "seconds": 25.11,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "shared_prefs/map-renderer.xml",
+      "shared_prefs/sound-effects.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "evidenceDirectory": "out/media/infantry-miss-installed-29-r1",
+  "facts": {
+    "productionHostOnly": true,
+    "facts": [],
+    "originalTacticSoundId": -1,
+    "originalTacticEvents": 0,
+    "syntheticCriticalEvents": 0,
+    "sourceTacticEnum": "SPIRAL",
+    "primaryHitRecorded": false,
+    "explicitMissFixture": true,
+    "fixtureSeed": 6,
+    "alreadyAppliedCritical": false
+  },
+  "actualPcmNegativeCheck": {
+    "status": "PASS_NO_COMPLETE_ORIGINAL_SUCCESS_WAVE",
+    "scope": "Installed miss reference/zero source heads plus no full49/78 match at unchanged.999 gate; residual mobile cues remain, native58 unbound",
+    "apkSha256": "0747e8b08fb409ac83a2c13db2d13849dc9a7ce34a94a858b17119c106128e8a",
+    "captureSha256": "aff606e77bf29dbfde99360d228d3fe21ff498f38a18762f5c68c8fb061910d9",
+    "sourceHeadsZero": 6,
+    "rows": [
+      {
+        "nativeSoundId": 49,
+        "maximumCompleteWaveCorrelation": 0.11250741065244413,
+        "unchangedPositiveIdentityThreshold": 0.999,
+        "sourceWavSha256": "1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705"
+      },
+      {
+        "nativeSoundId": 78,
+        "maximumCompleteWaveCorrelation": 0.0827567144923203,
+        "unchangedPositiveIdentityThreshold": 0.999,
+        "sourceWavSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638"
+      }
+    ]
+  }
+}

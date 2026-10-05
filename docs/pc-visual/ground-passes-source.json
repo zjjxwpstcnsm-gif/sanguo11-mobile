@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "SOURCE_GROUND_BINDINGS_INSTALLED_REFERENCE69_PASS_FULL_PC_RASTER_PENDING",
+  "source_policy": "read-only provided modded PC installation",
+  "resources": [
+    {
+      "resource": 4793,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "c1d8256c6bf70b3faffaf7d9f1f5b55453203bf623ad6bd121a9a7dec7aa3fca",
+      "image": null,
+      "role": "Numeric normal bytes; decode float32(byte*(1/255))*2-1 without normalization; source columns transposed to Android x-fast",
+      "width": 1025,
+      "height": 1025,
+      "mode": "RGB",
+      "pixel_sha256": "2e259118f863062d51610492b3808f9091594e59a6414617d058d1edb42b3191",
+      "output": "app/src/main/assets/3d/pc-map/ground-normal.png",
+      "output_sha256": "1faa47fb688adfc0edf1069e3ce28523b3628f948585adcdd5a6de44956255fc",
+      "runtime_binding": "FilamentMapView syncPcGround / pc-ground.mat, pc-ground-outline.mat",
+      "validation": "Source pixel check all1050625 normals and6RGBA images; minified installed numeric/encoded texture residency and original shader parameter checks; complete raster parity pending"
+    },
+    {
+      "resource": 4800,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "98bcf300836aa3e032bab678efbab634961b8fa386e1ee2c6a31e620fa59aec0",
+      "image": 35,
+      "role": "Ground77ad28: per-vertex max(dot(quantized original normal,c18),0),.5; clamp; select texture RGB and source RGBA alpha",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA",
+      "pixel_sha256": "f41d80e372f9155607611971058e429154f617dfb04bdad01a04241a835affc0",
+      "output": "app/src/main/assets/3d/pc-map/ground-paint-0.png",
+      "output_sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "runtime_binding": "FilamentMapView syncPcGround / pc-ground.mat, pc-ground-outline.mat",
+      "validation": "Source pixel check all1050625 normals and6RGBA images; minified installed numeric/encoded texture residency and original shader parameter checks; complete raster parity pending"
+    },
+    {
+      "resource": 4801,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "bb2331472531bb9b532f250da1f042a88fe369bbe5404368b0e758b6282f88d2",
+      "image": 35,
+      "role": "Ground77ad28: per-vertex max(dot(quantized original normal,c18),0),.5; clamp; select texture RGB and source RGBA alpha",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA",
+      "pixel_sha256": "f41d80e372f9155607611971058e429154f617dfb04bdad01a04241a835affc0",
+      "output": "app/src/main/assets/3d/pc-map/ground-paint-1.png",
+      "output_sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "runtime_binding": "FilamentMapView syncPcGround / pc-ground.mat, pc-ground-outline.mat",
+      "validation": "Source pixel check all1050625 normals and6RGBA images; minified installed numeric/encoded texture residency and original shader parameter checks; complete raster parity pending"
+    },
+    {
+      "resource": 4802,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "5be8b2828f039125e5ceb2955a2fda3c5fa51af989267ebf7c4751280eae8c8a",
+      "image": 35,
+      "role": "Ground77ad28: per-vertex max(dot(quantized original normal,c18),0),.5; clamp; select texture RGB and source RGBA alpha",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA",
+      "pixel_sha256": "f41d80e372f9155607611971058e429154f617dfb04bdad01a04241a835affc0",
+      "output": "app/src/main/assets/3d/pc-map/ground-paint-2.png",
+      "output_sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "runtime_binding": "FilamentMapView syncPcGround / pc-ground.mat, pc-ground-outline.mat",
+      "validation": "Source pixel check all1050625 normals and6RGBA images; minified installed numeric/encoded texture residency and original shader parameter checks; complete raster parity pending"
+    },
+    {
+      "resource": 4803,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "f3f27d142a3bc094012a2591f321154f1701e4cdd743ebe3283dd2882dc1c0ed",
+      "image": 35,
+      "role": "Ground77ad28: per-vertex max(dot(quantized original normal,c18),0),.5; clamp; select texture RGB and source RGBA alpha",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA",
+      "pixel_sha256": "f41d80e372f9155607611971058e429154f617dfb04bdad01a04241a835affc0",
+      "output": "app/src/main/assets/3d/pc-map/ground-paint-3.png",
+      "output_sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4",
+      "runtime_binding": "FilamentMapView syncPcGround / pc-ground.mat, pc-ground-outline.mat",
+      "validation": "Source pixel check all1050625 normals and6RGBA images; minified installed numeric/encoded texture residency and original shader parameter checks; complete raster parity pending"
+    },
+    {
+      "resource": 4807,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "1d26c1570feeda19bccf5bc32e19fc9c8ff8f0c74294d2946a257a37de34a63c",
+      "image": 0,
+      "role": "Original backface normal-extrusion silhouette pass",
+      "width": 64,
+      "height": 64,
+      "mode": "RGBA",
+      "pixel_sha256": "80a609487d109f5d8a754f8ec309ecbe40d83b6f57eefb4d147915577cf91a79",
+      "output": "app/src/main/assets/3d/pc-map/ground-outline.png",
+      "output_sha256": "3c391f71fadc6eda90c769d25f924f69d663c536a39136c0e627b7d6be7ada81",
+      "runtime_binding": "FilamentMapView syncPcGround / pc-ground.mat, pc-ground-outline.mat",
+      "validation": "Source pixel check all1050625 normals and6RGBA images; minified installed numeric/encoded texture residency and original shader parameter checks; complete raster parity pending"
+    },
+    {
+      "resource": 4804,
+      "source_file": "Media/san11pkres.bin",
+      "resource_sha256": "eedfbe0e5919e0beac9bf98c8662070da77c4ab96fed16d44b9fe6ca10aca805",
+      "image": 1,
+      "role": "Original source ground grid-alpha pass; indexed WFTX palette/mip decoder",
+      "width": 64,
+      "height": 64,
+      "mode": "RGBA",
+      "pixel_sha256": "ebcbdf6339c6b826685572c2c52e219665c56971e13d6bc78e473a32cce61e3d",
+      "output": "app/src/main/assets/3d/pc-map/ground-grid.png",
+      "output_sha256": "ceb30f7b4720d648f1499a3f3b00fe7c22175d851ecf2c9df6acc5527ec4203b",
+      "runtime_binding": null,
+      "validation": "Source pixels confirmed; packaged candidate; not drawn by production game"
+    }
+  ],
+  "source_evidence": [
+    "out/pc-visual/v156/ground-passes-source-check.json",
+    "out/pc-visual/v156/ground-normal-texture-capture-check.json"
+  ],
+  "limits": [
+    "Runtime binding, original pass sorting/depth/blending, fog/fade and installed PC raster comparison still required",
+    "Conversion preserves source pixels; Android mip generation/encoded alpha upload must be explicitly controlled",
+    "Observed source vs Android: forest LOD/filter detail, hard terrain/fog/effect edges and water/shoreline differ; no pixel parity acceptance",
+    "Only ground original ambient/fog/outline bound; scenery/unit full pipelines separate",
+    "Original c18 autumn/winter reproduced using double length then float result; other PC seasons still need actual runtime capture"
+  ],
+  "actual_pc_evidence": [
+    "out/pc-visual/v157/source-sampler-check.json",
+    "out/pc-visual/v157/ground-environment-check.json"
+  ],
+  "installed_reference": "out/pc-visual/v157/reference-installed.txt"
+}

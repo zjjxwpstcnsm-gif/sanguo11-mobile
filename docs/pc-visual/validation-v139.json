@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v139 original map-unit and platform rigs installed partial checkpoint",
+  "apk": "out/pc-visual/sanguo11-mobile-v139-pc-source-units-platforms.apk",
+  "apk_sha256": "d1983e9f8e35b07c44f08e7ff164e087d1b75a08c41c0f5dd87913fb1845b72f",
+  "inherited_validation": "docs/pc-visual/validation-v138.json",
+  "checks": [
+    {
+      "name": "installed-29-normal-unit-commands",
+      "status": "pass",
+      "checks": 2815,
+      "log": "out/pc-visual/v139-unit-all-shared-water-installed.txt"
+    },
+    {
+      "name": "installed-normal-damaged-platform-default240s",
+      "status": "pass",
+      "checks": 128,
+      "log": "out/pc-visual/v139-platform-default-shared-water-installed.txt"
+    },
+    {
+      "name": "installed-dam0-damage-far-original120s",
+      "status": "pass",
+      "checks": 313,
+      "log": "out/pc-visual/v139-dam0-shared-water-installed.txt"
+    },
+    {
+      "name": "independent-original-unit-462-poses",
+      "status": "pass",
+      "checks": 4050135,
+      "log": "out/pc-visual/v139-unit-final-shared-water-cpu.txt"
+    },
+    {
+      "name": "independent-original-platform-poses-and-normal-turns",
+      "status": "pass",
+      "checks": 131952,
+      "log": "out/pc-visual/v139-platform-final-shared-water-cpu.txt"
+    },
+    {
+      "name": "map-current-and-legacy",
+      "status": "pass",
+      "checks": 635299,
+      "log": "out/pc-visual/v139-shared-water-map-cpu.txt"
+    },
+    {
+      "name": "R04-materials",
+      "status": "pass",
+      "checks": 87689,
+      "log": "out/pc-visual/v139-shared-water-r04.txt"
+    },
+    {
+      "name": "R11-commands-timeline",
+      "status": "pass",
+      "checks": 99443,
+      "log": "out/pc-visual/v139-platform-timeline-r11-reviewed-boundary.txt"
+    }
+  ],
+  "additional_checks": [
+    "out/pc-visual/v139-apk-integrity.json",
+    "out/pc-visual/v139-ground-shared-water-lossless.json",
+    "out/pc-visual/v139-shared-water-architecture-fence.txt",
+    "out/pc-visual/v139-shared-water-frame-admission.txt",
+    "out/pc-visual/v139-shared-water-camera-window.txt"
+  ],
+  "unit_matrix": "out/pc-visual/v139-unit-all-normal-command-matrix.json",
+  "resource_consumers": "docs/pc-visual/inventory.json",
+  "evidence": "out/pc-visual/v139/evidence/manifest.json",
+  "videos": [
+    {
+      "path": "out/pc-visual/v139-platform-default-production-0.mp4",
+      "metadata": "out/pc-visual/v139-platform-default-video-0.json",
+      "acceptance": "Decoded75s rest,80s raised source arm,85s rest/legacy damage overlay; actual normal firing coverage only, no PC match."
+    },
+    {
+      "path": "out/pc-visual/v139-platform-default-production-1.mp4",
+      "metadata": "out/pc-visual/v139-platform-default-video-1.json",
+      "acceptance": "Decoded0/115..150s damaged rest;170/175s tilted source arm and legacy projectile; actual damaged source-pose coverage, sparse encoding, no complete cadence/PC match."
+    },
+    {
+      "path": "out/pc-visual/v139-unit-warship-production-controls.mp4",
+      "metadata": "out/pc-visual/v139-unit-warship-production-video.json",
+      "status": "decoded frames10s/45s show movement/result and attack/result; frame90s launcher; not uninterrupted original animation or PC-match acceptance",
+      "samples": 1062,
+      "duration_seconds": 163.225
+    }
+  ],
+  "save_preservation": {
+    "before": {
+      "path": "out/pc-visual/v139-autosave-before-install.sg11",
+      "bytes": 168846,
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    "after": {
+      "path": "out/pc-visual/v139-autosave-after-default-platform-pass.sg11",
+      "bytes": 168846,
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    "byte_exact": true
+  },
+  "failures_preserved": {
+    "units": "docs/pc-visual/units-validation-working.json",
+    "platform": "docs/pc-visual/facility-rigs-validation-working.json",
+    "historical_suite": "Original GameSessionTest golden assertion still fails with preserved v138 core. Seven full saves and RNG states match v138 exactly; this is not a full suite pass."
+  },
+  "device": {
+    "abi": "x86_64",
+    "api": 29,
+    "physical_ARM_verified": false
+  },
+  "limitations": [
+    "No PC rendered pixels/video comparison; original/MOD runtime precedence unproven.",
+    "Unit/site/terrain scale, normals, UV, light and transparent sorting still require calibration.",
+    "Original source projectiles, flags, environment FX and fullscreen critical/spell sequences not yet integrated; legacy approximations remain and require explicit source-mode isolation.",
+    "29 command passes do not verify all tactics/status/retreat/collapse clips.",
+    "Source FX graph/347 textures investigation is not runtime effect restoration.",
+    "Emulator timing varies greatly; no stable-performance, long-duration memory or ARM acceptance."
+  ]
+}

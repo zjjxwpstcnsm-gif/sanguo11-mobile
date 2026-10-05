@@ -1,0 +1,1099 @@
+{
+  "schema": 1,
+  "exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shared_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "functions": {
+    "0x47a630": {
+      "size": 38,
+      "sha256": "39414d5052e472ece3b8b80f46b47178be3331aed847fafc4ebd4028aedebe1d"
+    },
+    "0x488430": {
+      "size": 49,
+      "sha256": "7491f2b7b02c21e417945fbd0ee295ad3c5d2c24a99a159e443f306d0acb7f1f"
+    },
+    "0x48a110": {
+      "size": 240,
+      "sha256": "084375fe30d6c83a422cdd4a84455968eb74b701c0d2788fadcbff98b0cb1ec1"
+    }
+  },
+  "labels": {
+    "lookup": [
+      "0x48ea20",
+      "0x48ea30"
+    ],
+    "entries": [
+      {
+        "native_index": 0,
+        "name": "君主",
+        "pointer": "0x7eb8c8",
+        "raw_hex": "a767a544"
+      },
+      {
+        "native_index": 1,
+        "name": "都督",
+        "pointer": "0x7eb354",
+        "raw_hex": "b3a3b7fe"
+      },
+      {
+        "native_index": 2,
+        "name": "太守",
+        "pointer": "0x7e9e20",
+        "raw_hex": "a4d3a675"
+      },
+      {
+        "native_index": 3,
+        "name": "一般",
+        "pointer": "0x7ed584",
+        "raw_hex": "a440afeb"
+      },
+      {
+        "native_index": 4,
+        "name": "在野",
+        "pointer": "0x7e9e28",
+        "raw_hex": "a662b3a5"
+      },
+      {
+        "native_index": 5,
+        "name": "俘虜",
+        "pointer": "0x7e9e30",
+        "raw_hex": "ab52b8b8"
+      },
+      {
+        "native_index": 6,
+        "name": "未登",
+        "pointer": "0x7ed57c",
+        "raw_hex": "a5bcb56e"
+      },
+      {
+        "native_index": 7,
+        "name": "未發",
+        "pointer": "0x7ed574",
+        "raw_hex": "a5bcb56f"
+      },
+      {
+        "native_index": 8,
+        "name": "死亡",
+        "pointer": "0x7ed56c",
+        "raw_hex": "a6baa460"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "spouse_status": 0,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 0,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 1,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 2,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 3,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 4,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 5,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 6,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 7,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 0,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 0,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 0,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 0,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 1,
+      "own_skill": 0,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    },
+    {
+      "spouse_status": 8,
+      "override_17c": 1,
+      "own_skill": 99,
+      "spouse_skill": 99,
+      "valid": 1,
+      "values": [
+        81,
+        81,
+        81,
+        81,
+        81
+      ]
+    }
+  ],
+  "current_ability_checks": 360,
+  "full_three_mib_and_rng_unchanged": true,
+  "non_stack_write_guard": true,
+  "limits": [
+    "Native +17c override semantics outside this explicit numeric test remain unknown; project has no such override state",
+    "Unappeared6/dead8 mapping uses original status labels, not remembered tables",
+    "Scenario/MOD activation and all original status imports remain pending"
+  ]
+}

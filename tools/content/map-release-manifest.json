@@ -1,5 +1,5 @@
 {
-  "release": "0.63.0",
+  "release": 145,
   "baseline_manifest": "tools/content/map-v050-manifest.json",
   "files": [
     {
@@ -250,12 +250,597 @@
     {
       "source_path": "core/src/main/resources/maps/national-map-v056.properties",
       "apk_path": "maps/national-map-v056.properties",
-      "sha256": "75bcd0e68187acc1832cf70f046879d6e5cdc5fb60a8ab2dab598fb18162d95d"
+      "sha256": "800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d"
     },
     {
       "source_path": "core/src/main/resources/maps/national-exterior-v061.properties",
       "apk_path": "maps/national-exterior-v061.properties",
       "sha256": "451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f"
+    },
+    {
+      "source_path": "core/src/main/resources/maps/pc-map.bin.gz",
+      "apk_path": "maps/pc-map.bin.gz",
+      "sha256": "c035549c3ccc0c31a96ad9d8f0fb5f774e5f00ab0eae1f050a0b58fcb2ee68f7"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/color-0.png",
+      "apk_path": "assets/3d/pc-map/color-0.png",
+      "sha256": "03140eadaa8e88bdc85e4787b3af8e2a672c72c1973858bb87f7ed427f739195"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/color-1.png",
+      "apk_path": "assets/3d/pc-map/color-1.png",
+      "sha256": "c60491e0e657cd2b4bb14c41a58a728b772343b930ac8012b34dd88a27c70c47"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/color-2.png",
+      "apk_path": "assets/3d/pc-map/color-2.png",
+      "sha256": "414dc0545cefa6aeb5c1dd97d757ad5b436e545e50040847b77032659c01260e"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/color-3.png",
+      "apk_path": "assets/3d/pc-map/color-3.png",
+      "sha256": "ae3377b7e1368a87f3a167464abfae19d5cff7a5f0f09f34ab3b296087f39aed"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/palette-0.png",
+      "apk_path": "assets/3d/pc-map/palette-0.png",
+      "sha256": "f118d261f8f07a306197d2657a39cc7c16d01350970517fff3ef10ea9f087657"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/palette-1.png",
+      "apk_path": "assets/3d/pc-map/palette-1.png",
+      "sha256": "b98426e88a681da22f44bcd589ea73e2907988c0c8c82e0e36156f374c18610a"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/palette-2.png",
+      "apk_path": "assets/3d/pc-map/palette-2.png",
+      "sha256": "a748bc7535d374ec9de7821bf2194b8c4214a372c62fc36834814467f89ff9e2"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/palette-3.png",
+      "apk_path": "assets/3d/pc-map/palette-3.png",
+      "sha256": "0dc64c478634e79244cf48bb35f2a22f14138459cc14b48ebfde72049cd734ad"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/texture-indices.png",
+      "apk_path": "assets/3d/pc-map/texture-indices.png",
+      "sha256": "277a725d117aeac603f991d864a53e06e32efb41887f5ec0ecb9bae722e3bf54"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground.filamat",
+      "apk_path": "assets/3d/pc-map/ground.filamat",
+      "sha256": "8c831a3d7053c13f271e542a18ba0ab8837b2f3c800db6d9b2f41a529656dc8b"
+    },
+    {
+      "source_path": "core/src/main/resources/maps/national-restrictions-v063.properties",
+      "apk_path": "maps/national-restrictions-v063.properties",
+      "sha256": "be04aaf7361f13b64cac6bc51c12cbefc5aa4a7bc80e1aacdde9233bfb666a76"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/face-low.png",
+      "apk_path": "assets/3d/pc-map/face-low.png",
+      "sha256": "5bdda85b8f3e9ebf9ebd89df7c7df84a5fabe593468ab5df0b458354fd662d02"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/face-high.png",
+      "apk_path": "assets/3d/pc-map/face-high.png",
+      "sha256": "b649df8eae9deb5ff54af5502453ebce3dbf737c8e8de8c00f2764ff3fff025e"
+    },
+    {
+      "apk_path": "assets/3d/pc-scenery/atlas.png",
+      "source_path": "app/src/main/assets/3d/pc-scenery/atlas.png",
+      "sha256": "eb6c4e13bc6fd8052900eb43919b5bb2653134c6485d03fed5aa995a4b0143b1"
+    },
+    {
+      "apk_path": "assets/3d/pc-scenery/scenery.pcz",
+      "source_path": "app/src/main/assets/3d/pc-scenery/scenery.pcz",
+      "sha256": "b3ec85c3d39c54bac4ca65731c8d3349e914baaa5e8a189974def43b4594d415"
+    },
+    {
+      "apk_path": "assets/3d/pc-scenery/scenery.filamat",
+      "source_path": "app/src/main/assets/3d/pc-scenery/scenery.filamat",
+      "sha256": "1e1a914990de53cdc485b742cfc92b35a36be7ffdc86dd21ca659902382dbfb3"
+    },
+    {
+      "apk_path": "assets/3d/pc-sites/sites.pcz",
+      "source_path": "app/src/main/assets/3d/pc-sites/sites.pcz",
+      "sha256": "902cc5f7a46fe14165e42e7e3773d96f00f3f90a26f52a9b54a926e18de78899"
+    },
+    {
+      "apk_path": "assets/3d/pc-sites/atlas.png",
+      "source_path": "app/src/main/assets/3d/pc-sites/atlas.png",
+      "sha256": "e97fb09cee1dbcb3f9ac8f252c12e2e309149ab2c47bd397a6b984cbd152b57a"
+    },
+    {
+      "apk_path": "assets/3d/pc-facilities/facilities.pcz",
+      "source_path": "app/src/main/assets/3d/pc-facilities/facilities.pcz",
+      "sha256": "32a9a868a6df5e2186c534f37aedba73fccc09bf761722ff43f89eedcdacf2c7"
+    },
+    {
+      "apk_path": "assets/3d/pc-facilities/atlas.png",
+      "source_path": "app/src/main/assets/3d/pc-facilities/atlas.png",
+      "sha256": "acf4c254bbb63772690c3acad68757f6be1a4ab3eabaf761b437c2ec23503780"
+    },
+    {
+      "apk_path": "assets/3d/pc-facilities/cliff-walls.pcz",
+      "source_path": "app/src/main/assets/3d/pc-facilities/cliff-walls.pcz",
+      "sha256": "f9764a6d57fc5a341c16f21c7851a007e251489a01a984e88507c4aa11c64b81"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-facilities/dams.pcz",
+      "apk_path": "assets/3d/pc-facilities/dams.pcz",
+      "sha256": "a662a1da667cde433b611c336c14c3302389350766f08c352d002dba14e8d284"
+    },
+    {
+      "source_path": "core/src/main/resources/maps/pc-dams-v065.properties",
+      "apk_path": "maps/pc-dams-v065.properties",
+      "sha256": "2c73957fcfb5873185fe72231e2f4b1b980f960e9962a063ecef4304b58f408a"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/units.pcz",
+      "source_path": "app/src/main/assets/3d/pc-units/units.pcz",
+      "sha256": "32304ade817de4efa7a9e78110c22fcaff1a9854f4b815730ccce612cdd1bffa"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/atlas.png",
+      "source_path": "app/src/main/assets/3d/pc-units/atlas.png",
+      "sha256": "9c3b46e612315756fb1d363c946c467ef7fb2b4333e8ca6100032f6efd74de8e"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit.filamat",
+      "source_path": "app/src/main/assets/3d/pc-units/unit.filamat",
+      "sha256": "f2d22306ef6e96a54ac28f0ef91c5b26b9b3f9cc78d51ef6efb7089ffcf9c558"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-alpha.filamat",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-alpha.filamat",
+      "sha256": "5cd8f2bc8a346f23312be0f8735e204767e6a5eb9522288b5ba2d46af5b78074"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-00.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-00.png",
+      "sha256": "d24e23785f8585e3d90dff707a064cc9529c51c5f5207f553d7b3cb36c56c44a"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-01.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-01.png",
+      "sha256": "cb8660654fd1065565fe8493abf52859fa80437f33641e16569441268f9eaf32"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-02.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-02.png",
+      "sha256": "a5f2b95cc368e58d2bcd614cd811236a025a209052d4858553f6a9d9a691a922"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-03.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-03.png",
+      "sha256": "0227569db33f10a6481dc4daf30a0b834e627f81e8dd5621c0b137760140165a"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-04.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-04.png",
+      "sha256": "9e0be9865efa4e41b9195d30f74f26c74dd751db65cddf13358931046d6ee800"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-05.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-05.png",
+      "sha256": "74f737f111223ca14b62cec2072d1068598e69190919296a39df30e3d4b6bbed"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-06.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-06.png",
+      "sha256": "37788f9e2e6b6a898e8a9a18068e72a94fef8c68ea7ebcb318b73b4eb7de68ed"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-07.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-07.png",
+      "sha256": "807c9d5c438ee44be253e30ffdf93abff38bbf564cf506c590989274daf4ea27"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-08.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-08.png",
+      "sha256": "5e97ade52fd31d657f0350725d70963b73a057171d629fb5b1698ba062008bb3"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-09.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-09.png",
+      "sha256": "62c1b172423353cc18be73d57158761fad59aaae5acf3ecebcb11489ace595e2"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-10.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-10.png",
+      "sha256": "2981b70ea3eed470aa25782a8b29c2a7cde6cb26a66683a980aaa8d9d8d75618"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-11.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-11.png",
+      "sha256": "c5a517ba070162cbc0f9e5e4aec45ffe73057f6aa5e7ebfaae5c60936d8ea142"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-12.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-12.png",
+      "sha256": "b37f44e54fdf13a58aef33f6a1138a899688a6b0d86692fa56551c17c80a4ad5"
+    },
+    {
+      "apk_path": "assets/3d/pc-units/unit-13.png",
+      "source_path": "app/src/main/assets/3d/pc-units/unit-13.png",
+      "sha256": "b8f02267b4d6ab1322bbfd17128444c32aab8a7a154b85d40ac08fd755b128b9"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-facilities/rigs.pcz",
+      "apk_path": "assets/3d/pc-facilities/rigs.pcz",
+      "sha256": "c005139c78e3625e7035f8403240ecc98706ffbed70f02a22a09c7f209b51999"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-environment/environment.bin",
+      "apk_path": "assets/3d/pc-environment/environment.bin",
+      "sha256": "a051f95d998fc2796e30d6632146ea39b5f24529bec13719a3167195663ae42f"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-environment/paint.png",
+      "apk_path": "assets/3d/pc-environment/paint.png",
+      "sha256": "84894bdeca3b0f2b08f39a3544ca0689a0108b0d28175c6a8c53f13c4a490c5d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-environment/silhouette.png",
+      "apk_path": "assets/3d/pc-environment/silhouette.png",
+      "sha256": "0b74a267e3d1e0600bc570438936d999582253a5066447dbc319cacd6fced5c5"
+    },
+    {
+      "source_path": "core/src/main/resources/maps/pc-water.bin.gz",
+      "apk_path": "maps/pc-water.bin.gz",
+      "sha256": "59e26262d70f93334c7c80d5141a1e695610b81be814f014c6abdda0622bf2d1"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/water-0.png",
+      "apk_path": "assets/3d/pc-map/water-0.png",
+      "sha256": "91f64994facfb95054e57ef3f31ffd7b47fa982b8820e98bbe89640ba4381425"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/water-1.png",
+      "apk_path": "assets/3d/pc-map/water-1.png",
+      "sha256": "3a25900c1cdf0177684a1997b72a778e1cd1e44e09037f114b91dd97cf1ecc38"
+    },
+    {
+      "apk_path": "assets/3d/pc-map/water.filamat",
+      "source_path": "app/src/main/assets/3d/pc-map/water.filamat",
+      "sha256": "98e39a51a8f3fdb32dedccfc4c0177a5be584770df179c9319c9cda448577b2c"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/source-kernel.bin",
+      "apk_path": "assets/3d/pc-effects/source-kernel.bin",
+      "sha256": "2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/source-scene.bin",
+      "apk_path": "assets/3d/pc-effects/source-scene.bin",
+      "sha256": "98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-00.png",
+      "apk_path": "assets/3d/pc-effects/image-00.png",
+      "sha256": "e4ddeccfa334d1898273f8be0746abfe2b1b270d8dfa2b83737bf4dc9083e9c6"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-01.png",
+      "apk_path": "assets/3d/pc-effects/image-01.png",
+      "sha256": "b31dabb680238b8c38cd9fae6eab27c09fd43ec41007c0687ab916ac7f5af5a7"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-02.png",
+      "apk_path": "assets/3d/pc-effects/image-02.png",
+      "sha256": "f18ebd7e0b05bb0c0e8e2196bd8db7e88558bb2c266af53f9831280f0777fd1d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-03.png",
+      "apk_path": "assets/3d/pc-effects/image-03.png",
+      "sha256": "2a4f9d7217e855b8972c062f190b1e4d60ffd1e7e543500866e6d9a32f5f4e4f"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-04.png",
+      "apk_path": "assets/3d/pc-effects/image-04.png",
+      "sha256": "102923a0b6eb6690e00621003fc6189c47e269cec3c83e4eb9ce7c0929b6e973"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-05.png",
+      "apk_path": "assets/3d/pc-effects/image-05.png",
+      "sha256": "2381b1a52f6b25e8b4cc9dde168ea60c074183f1e2a1f7e32c3ebb392c9549fe"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-06.png",
+      "apk_path": "assets/3d/pc-effects/image-06.png",
+      "sha256": "2c254ca55a77d04f1b20d9b9ff6a54cec28ffa669d0c3b551b86433fc17d44f5"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-07.png",
+      "apk_path": "assets/3d/pc-effects/image-07.png",
+      "sha256": "d55739654c206825166bbc491f02dffc45e8e369a835c13ea34b60bf7c00bb31"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-08.png",
+      "apk_path": "assets/3d/pc-effects/image-08.png",
+      "sha256": "7adf400ce43686d6c50ebff1b855324e6c5b34f44858867654b8636e1080a638"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-09.png",
+      "apk_path": "assets/3d/pc-effects/image-09.png",
+      "sha256": "98b92b7753d491d45b78a5221678a11e9254dd4450432ced2f604a34463422c6"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-10.png",
+      "apk_path": "assets/3d/pc-effects/image-10.png",
+      "sha256": "26617388a54e2a35ff3ebab9c15a18dacc3d985aa6a23407130c145e7d89e4fe"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-11.png",
+      "apk_path": "assets/3d/pc-effects/image-11.png",
+      "sha256": "80dd396b3bef3d4b822bb9f4d7185040b5b353ff6c475c4eca37266c11878c04"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-12.png",
+      "apk_path": "assets/3d/pc-effects/image-12.png",
+      "sha256": "44d1eb8f1b787f202bf9934e97f30771ae7fada03f1264cfe9166e2322d7a190"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-13.png",
+      "apk_path": "assets/3d/pc-effects/image-13.png",
+      "sha256": "8bec92ae10cd3f40a7b866a308f2e3e0dc9d6f5dbfda7e0db50c00359ae8bb02"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-14.png",
+      "apk_path": "assets/3d/pc-effects/image-14.png",
+      "sha256": "4945db36282c314325a475ba389a8cf123c7869a56e58a72ef777f3daf407716"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-15.png",
+      "apk_path": "assets/3d/pc-effects/image-15.png",
+      "sha256": "4f2869f234ad805eb9581eeb3f2452be92bbb526ce26fddd47a9f1365b98be5e"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-16.png",
+      "apk_path": "assets/3d/pc-effects/image-16.png",
+      "sha256": "6d945d1ec14a985409115fc1a57e2c9090f2095197796f6177b358c9993af8fe"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-17.png",
+      "apk_path": "assets/3d/pc-effects/image-17.png",
+      "sha256": "acaa06aa3d3468ce7f58b3f2ee6654da616196cf86c13ac9befcc542af82493b"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-18.png",
+      "apk_path": "assets/3d/pc-effects/image-18.png",
+      "sha256": "e807f93111007441b2bf4ae4b9a8dba3acd76cae9b2b974bbac6335066da8ffe"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-19.png",
+      "apk_path": "assets/3d/pc-effects/image-19.png",
+      "sha256": "46b5bd47873bd5f27842f5ee4daa812e769c42327e1fa97534909b93bdc54d1c"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-20.png",
+      "apk_path": "assets/3d/pc-effects/image-20.png",
+      "sha256": "9c4922b82949ed174c06b45fb4d009a7dba9cf5922e6501835409458a6fdf8e7"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-21.png",
+      "apk_path": "assets/3d/pc-effects/image-21.png",
+      "sha256": "487e3c2d76e7afad3ad3508c58326ba69a6e5dec95bea2ac71e18139402c53e9"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-22.png",
+      "apk_path": "assets/3d/pc-effects/image-22.png",
+      "sha256": "a89c6bcc641627846878c5c34cd83a7760e870c2fcbe41def471030b02fdc4e3"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-23.png",
+      "apk_path": "assets/3d/pc-effects/image-23.png",
+      "sha256": "3ec5d8a755ed208331f54ceaf4fcd69cd81bd83d21967ea763a4e6640eb39671"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-24.png",
+      "apk_path": "assets/3d/pc-effects/image-24.png",
+      "sha256": "af138dde168bdb5fbbc9d0c3f54c04f01ce99aacab4d85f494f5a67275eada80"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-25.png",
+      "apk_path": "assets/3d/pc-effects/image-25.png",
+      "sha256": "753d715ba181310dcc821e128a2f1f7b6560f40e3bc18598d585f53dfb63405d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-26.png",
+      "apk_path": "assets/3d/pc-effects/image-26.png",
+      "sha256": "707579e1fcf352c1a757edcbf78bb981127cbd23656152dce944c168aa2e9d73"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-27.png",
+      "apk_path": "assets/3d/pc-effects/image-27.png",
+      "sha256": "46c3e54fe2aa3bf69cfc52d911b1d35a9e38a89a44c97797f66bbf5e639cb771"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-28.png",
+      "apk_path": "assets/3d/pc-effects/image-28.png",
+      "sha256": "5c0fb09b0b7faa9796f6336d5a97a19878f03fb899fe41dd058d14a6aaf29c37"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-29.png",
+      "apk_path": "assets/3d/pc-effects/image-29.png",
+      "sha256": "e0102fcb0600293d33f4f4fb89eaf0ce393c6b9e190177798c37c3e4a07a83f5"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-30.png",
+      "apk_path": "assets/3d/pc-effects/image-30.png",
+      "sha256": "24931396a3f385ede5e6132093434aef0fcf0c8de77b8e110dcecd31c98f6371"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-31.png",
+      "apk_path": "assets/3d/pc-effects/image-31.png",
+      "sha256": "d556d433ee1007dc503afba4baa826cc035480977adce25d729a080f6ea09b0d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-effects/image-32.png",
+      "apk_path": "assets/3d/pc-effects/image-32.png",
+      "sha256": "6d1897c35e8d43bad98e9c15ad9f48fdeee11272fd839d61fd9e4afe0ad101df"
+    },
+    {
+      "apk_path": "assets/3d/pc-effects/quad.filamat",
+      "source_path": "app/src/main/assets/3d/pc-effects/quad.filamat",
+      "sha256": "350ee8ad1ea3378ee237b6d194aff1c3253cc85a4f7421f3e2193d6027e8c5bf"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/palette-sizes.png",
+      "apk_path": "assets/3d/pc-map/palette-sizes.png",
+      "sha256": "37c0986011abf7419d48f73d079766d478625237b18c8929be1b46cfe046a92f"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-outline.filamat",
+      "apk_path": "assets/3d/pc-map/ground-outline.filamat",
+      "sha256": "f90fb6009c3741338a9ed2d4d5b950f850f0f9787495bd1bf66029a5a4a60403"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-normal.png",
+      "apk_path": "assets/3d/pc-map/ground-normal.png",
+      "sha256": "1faa47fb688adfc0edf1069e3ce28523b3628f948585adcdd5a6de44956255fc"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-paint-0.png",
+      "apk_path": "assets/3d/pc-map/ground-paint-0.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-paint-1.png",
+      "apk_path": "assets/3d/pc-map/ground-paint-1.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-paint-2.png",
+      "apk_path": "assets/3d/pc-map/ground-paint-2.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-paint-3.png",
+      "apk_path": "assets/3d/pc-map/ground-paint-3.png",
+      "sha256": "7201d2aede4fd27a11a12c577bf90114ef3958a5e8b44ae17fc8e837e2f14cf4"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-outline.png",
+      "apk_path": "assets/3d/pc-map/ground-outline.png",
+      "sha256": "3c391f71fadc6eda90c769d25f924f69d663c536a39136c0e627b7d6be7ada81"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-map/ground-grid.png",
+      "apk_path": "assets/3d/pc-map/ground-grid.png",
+      "sha256": "ceb30f7b4720d648f1499a3f3b00fe7c22175d851ecf2c9df6acc5527ec4203b"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/template-115.pcps",
+      "apk_path": "assets/3d/pc-presentations/template-115.pcps",
+      "sha256": "aadc7f15a89b23649e58f5ef0bfa97509552ab640936b3c37180161cf268526a"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/template-121.pcps",
+      "apk_path": "assets/3d/pc-presentations/template-121.pcps",
+      "sha256": "5ce2a2cf8757ea56f83744f46009b5b8f8279e8c7ea946c0cadd76a41802d564"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-126.png",
+      "apk_path": "assets/3d/pc-presentations/selector-126.png",
+      "sha256": "9cd7ff98a0a98660f398163bfe0e652095c928112be64e4fd7cfd686a7f588e9"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-152.png",
+      "apk_path": "assets/3d/pc-presentations/selector-152.png",
+      "sha256": "2c97d4c458ce6fc08936ae5261d34b63d62cca9df45030a1d3aa863037c22ccd"
+    },
+    {
+      "apk_path": "assets/3d/pc-presentations/over.filamat",
+      "source_path": "app/src/main/assets/3d/pc-presentations/over.filamat",
+      "sha256": "dd0c32816dca1a02644639561c29f8d9393fe33235facd104e86daccc7b2d87e"
+    },
+    {
+      "apk_path": "assets/3d/pc-presentations/add.filamat",
+      "source_path": "app/src/main/assets/3d/pc-presentations/add.filamat",
+      "sha256": "b017e12af9075704304a2ef23767b1a96e92599db7ee64767fd2198f67cfb540"
+    },
+    {
+      "apk_path": "assets/3d/pc-presentations/backdrop.filamat",
+      "source_path": "app/src/main/assets/3d/pc-presentations/backdrop.filamat",
+      "sha256": "822ddf30722f0cdbb96414e5bb6d654eb458859d3448a3266f3f664f255e8be5"
+    },
+    {
+      "apk_path": "assets/3d/pc-presentations/over-encoded.filamat",
+      "source_path": "app/src/main/assets/3d/pc-presentations/over-encoded.filamat",
+      "sha256": "900d277b48345eb0a543f0d1f53150ec1e7d66e4d881b57d9387766186cbaef4"
+    },
+    {
+      "apk_path": "assets/3d/pc-presentations/add-encoded.filamat",
+      "source_path": "app/src/main/assets/3d/pc-presentations/add-encoded.filamat",
+      "sha256": "cf52313ca0a54d9bbdd9b2d854af2226a1981b6d864c2b37b168019ead82953a"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/template-122.pcps",
+      "apk_path": "assets/3d/pc-presentations/template-122.pcps",
+      "sha256": "f500fe03e055b0b2541f74c8dd8975e2911ca8e9fcfff603dd919ee8c22f1181"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-127.png",
+      "apk_path": "assets/3d/pc-presentations/selector-127.png",
+      "sha256": "10adfa15c4ed7200276d6f9fcd793ef64558b2b006694553b3f2fd03772af40d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-131.png",
+      "apk_path": "assets/3d/pc-presentations/selector-131.png",
+      "sha256": "fbc2b1cab494bdf9102fda04c78ec0cee1801c55733257164afc4e4ff5cf54e4"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-132.png",
+      "apk_path": "assets/3d/pc-presentations/selector-132.png",
+      "sha256": "8bd7cfcfda345cd97f7a15e6913295f9b51ba9f977210556158275e7958e06c0"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-133.png",
+      "apk_path": "assets/3d/pc-presentations/selector-133.png",
+      "sha256": "9df735339ef0696497ccd350946665c84b6cc877103495724058553cdf148e1d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-134.png",
+      "apk_path": "assets/3d/pc-presentations/selector-134.png",
+      "sha256": "1aa73cfa6ea6456af6cf339eb6ee6ac10abedb48c4083e10b10c19de8129739b"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-136.png",
+      "apk_path": "assets/3d/pc-presentations/selector-136.png",
+      "sha256": "6312939cae34e23dd2808f1c3bb22c2f7692fe6f43172aa35675af5208bf3d2a"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-143.png",
+      "apk_path": "assets/3d/pc-presentations/selector-143.png",
+      "sha256": "b868269206dfe37c93d442b0a88041445ec6685c69a988f84d77f9f79dfa2fee"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-151.png",
+      "apk_path": "assets/3d/pc-presentations/selector-151.png",
+      "sha256": "3d08b211f4ba8db2fbb95ebbe8918a31e4933bd479bdda370190983054876708"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-153.png",
+      "apk_path": "assets/3d/pc-presentations/selector-153.png",
+      "sha256": "5b1ffc0770879109248f5ca1afab2cd8dd56e65bf031e8a04e30c90a330991b1"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-154.png",
+      "apk_path": "assets/3d/pc-presentations/selector-154.png",
+      "sha256": "f0b06e23d951966d48832ac268233fbc51ad194534a7483d94a2bf66abfc3876"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-156.png",
+      "apk_path": "assets/3d/pc-presentations/selector-156.png",
+      "sha256": "9e7a05c9059e22465e02463731c54391143239eae9c7fd45ec995b33dd675a45"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-163.png",
+      "apk_path": "assets/3d/pc-presentations/selector-163.png",
+      "sha256": "ba19d1a83a68d2f37d6341e631292c8f51faa6a165f171bccc564bc28068fed7"
     }
   ],
   "baseline_commit": "18b1c2d01d6ef5d0bc63fef8a3e483186a99e390",

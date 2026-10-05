@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "status": "ORIGINAL_NAMED_PLOT_DISPATCH_AND_MAGIC_SELECTORS_VERIFIED",
+  "rows": [
+    {
+      "source_plot_id": 0,
+      "source_name": "火計",
+      "name_pointer": "0x7eba44",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x593460",
+      "handler": "0x591270",
+      "dispatch_call": "0x593472",
+      "android_plot": "FIRE"
+    },
+    {
+      "source_plot_id": 1,
+      "source_name": "滅火",
+      "name_pointer": "0x7eb6f4",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x59347c",
+      "handler": "0x5915e0",
+      "dispatch_call": "0x59348e",
+      "android_plot": "EXTINGUISH"
+    },
+    {
+      "source_plot_id": 2,
+      "source_name": "偽報",
+      "name_pointer": "0x7eb970",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x593498",
+      "handler": "0x5917d0",
+      "dispatch_call": "0x5934aa",
+      "android_plot": "MISLEAD"
+    },
+    {
+      "source_plot_id": 3,
+      "source_name": "擾亂",
+      "name_pointer": "0x7eba54",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x5934b4",
+      "handler": "0x591a20",
+      "dispatch_call": "0x5934c6",
+      "android_plot": "CONFUSE"
+    },
+    {
+      "source_plot_id": 4,
+      "source_name": "鎮靜",
+      "name_pointer": "0x7ea094",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x5934cd",
+      "handler": "0x591c70",
+      "dispatch_call": "0x5934df",
+      "android_plot": "CALM"
+    },
+    {
+      "source_plot_id": 5,
+      "source_name": "伏兵",
+      "name_pointer": "0x7eb210",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x5934e6",
+      "handler": "0x592740",
+      "dispatch_call": "0x5934f8",
+      "android_plot": "AMBUSH"
+    },
+    {
+      "source_plot_id": 6,
+      "source_name": "內訌",
+      "name_pointer": "0x7eb400",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x5934ff",
+      "handler": "0x592a80",
+      "dispatch_call": "0x593511",
+      "android_plot": "INFIGHT"
+    },
+    {
+      "source_plot_id": 7,
+      "source_name": "妖術",
+      "name_pointer": "0x7eb0d4",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x593518",
+      "handler": "0x592050",
+      "dispatch_call": "0x59352a",
+      "android_plot": "SORCERY",
+      "fullscreen_selector": 126,
+      "fullscreen_call": "0x592153",
+      "source_wait_argument": 1000,
+      "effect_template": 121,
+      "effect_resource": 246,
+      "texture_resource": 495,
+      "destination_top": 0,
+      "handler_prefix_sha256": "13c7961e77a28a7b049706d6cd260fa30732f057d0a23485849be3ada76fe50a",
+      "cue_context": [
+        {
+          "va": "0x592130",
+          "bytes": "7426",
+          "mnemonic": "je",
+          "operands": "0x592158"
+        },
+        {
+          "va": "0x592132",
+          "bytes": "8bcf",
+          "mnemonic": "mov",
+          "operands": "ecx, edi"
+        },
+        {
+          "va": "0x592134",
+          "bytes": "e89785eeff",
+          "mnemonic": "call",
+          "operands": "0x47a6d0"
+        },
+        {
+          "va": "0x592139",
+          "bytes": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x59213b",
+          "bytes": "741b",
+          "mnemonic": "je",
+          "operands": "0x592158"
+        },
+        {
+          "va": "0x59213d",
+          "bytes": "8b4c2418",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [esp + 0x18]"
+        },
+        {
+          "va": "0x592141",
+          "bytes": "6a78",
+          "mnemonic": "push",
+          "operands": "0x78"
+        },
+        {
+          "va": "0x592143",
+          "bytes": "e8d86dffff",
+          "mnemonic": "call",
+          "operands": "0x588f20"
+        },
+        {
+          "va": "0x592148",
+          "bytes": "8b4c2418",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [esp + 0x18]"
+        },
+        {
+          "va": "0x59214c",
+          "bytes": "68e8030000",
+          "mnemonic": "push",
+          "operands": "0x3e8"
+        },
+        {
+          "va": "0x592151",
+          "bytes": "6a7e",
+          "mnemonic": "push",
+          "operands": "0x7e"
+        },
+        {
+          "va": "0x592153",
+          "bytes": "e82876ffff",
+          "mnemonic": "call",
+          "operands": "0x589780"
+        }
+      ]
+    },
+    {
+      "source_plot_id": 8,
+      "source_name": "落雷",
+      "name_pointer": "0x7eb0ac",
+      "source_name_table": "0x8aecb4",
+      "dispatch_branch": "0x593531",
+      "handler": "0x592ed0",
+      "dispatch_call": "0x593543",
+      "android_plot": "LIGHTNING",
+      "fullscreen_selector": 127,
+      "fullscreen_call": "0x592fb8",
+      "source_wait_argument": 1000,
+      "effect_template": 122,
+      "effect_resource": 247,
+      "texture_resource": 496,
+      "destination_top": 0,
+      "handler_prefix_sha256": "c62fa9dcc92cbe852b77d029ab519808c8c88708ada144b28be700c87b359afa",
+      "cue_context": [
+        {
+          "va": "0x592f97",
+          "bytes": "8bce",
+          "mnemonic": "mov",
+          "operands": "ecx, esi"
+        },
+        {
+          "va": "0x592f99",
+          "bytes": "e83277eeff",
+          "mnemonic": "call",
+          "operands": "0x47a6d0"
+        },
+        {
+          "va": "0x592f9e",
+          "bytes": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x592fa0",
+          "bytes": "741b",
+          "mnemonic": "je",
+          "operands": "0x592fbd"
+        },
+        {
+          "va": "0x592fa2",
+          "bytes": "8b5c241c",
+          "mnemonic": "mov",
+          "operands": "ebx, dword ptr [esp + 0x1c]"
+        },
+        {
+          "va": "0x592fa6",
+          "bytes": "6a79",
+          "mnemonic": "push",
+          "operands": "0x79"
+        },
+        {
+          "va": "0x592fa8",
+          "bytes": "8bcb",
+          "mnemonic": "mov",
+          "operands": "ecx, ebx"
+        },
+        {
+          "va": "0x592faa",
+          "bytes": "e8715fffff",
+          "mnemonic": "call",
+          "operands": "0x588f20"
+        },
+        {
+          "va": "0x592faf",
+          "bytes": "68e8030000",
+          "mnemonic": "push",
+          "operands": "0x3e8"
+        },
+        {
+          "va": "0x592fb4",
+          "bytes": "6a7f",
+          "mnemonic": "push",
+          "operands": "0x7f"
+        },
+        {
+          "va": "0x592fb6",
+          "bytes": "8bcb",
+          "mnemonic": "mov",
+          "operands": "ecx, ebx"
+        },
+        {
+          "va": "0x592fb8",
+          "bytes": "e8c367ffff",
+          "mnemonic": "call",
+          "operands": "0x589780"
+        }
+      ]
+    }
+  ],
+  "correction": "Selector126/template121 belongs to original plot7妖術, not plot3擾亂. Previous AndroidCONFUSE binding removed.",
+  "runtime_binding": "Successful critical SORCERY126/121 and LIGHTNING127/122 from immutable applied PlotOutcome; never reroll",
+  "android_duration_millis": 750,
+  "android_duration_range_millis": [
+    500,
+    1000
+  ],
+  "limits": [
+    "Original name table, dispatch and immediate selector arguments are source evidence, not a PC movie acceptance",
+    "1000 is an original wait argument, not proof of complete PC playback duration",
+    "Other plots may use other paths; absence in this inspector is not proof no fullscreen effect exists",
+    "Visibility flags, successful noncritical magic policy, original lens and MOD playback remain pending",
+    "No Wine launched; source installation remains read-only"
+  ]
+}

@@ -40,6 +40,7 @@ public final class Displacement {
                 case MOUNTAIN:return "山地不可通行";
                 case MOUNTAIN_PATH:return "该部队未满足险径通行条件（难所行军）";
                 case SHALLOWS:return "该部队未满足浅滩通行条件（难所行军）";
+                case PLANK_ROAD:return "该部队未满足栈道通行条件（难所行军）";
                 default:return "该部队不具备此地形的通行能力";
             }
         }
@@ -48,7 +49,10 @@ public final class Displacement {
     private String stepError(World.Unit mover,Hex from,Hex to,int ignoredUnit,boolean traps,World.Unit source){
         String error=terrainError(mover,from,to);if(error!=null)return error;
         World.Unit other=w.unitAt(to);if(other!=null&&other.id!=ignoredUnit&&other.id!=mover.id)return "被"+w.officer(other.officerId).name+"部队占据（"+w.campaign.relationLabel(source.owner,other.owner)+"）";
-        World.City c=w.cityAt(to);if(c!=null&&!SiteFootprint.mayStep(w,mover,from,to))return "被"+c.name+"据点占据";
+        // Forced landings never enter a site, including all seven city cells.
+        // Friendly transit and explicit garrison are separate Army operations;
+        // reusing their permission here lets a defender be pushed into its city.
+        World.City c=w.cityAt(to);if(c!=null)return "被"+c.name+"据点占据";
         Domestic.Facility f=w.domestic.at(to);if(f!=null)return "被"+f.kind.label+"占据";
         War.Structure s=w.war.at(to);if(s!=null&&!(traps&&trigger(s,source)))return "被"+s.kind.label+(affects(source.owner,s.owner)?"占据":"占据，受协定保护");
         return null;
@@ -56,7 +60,8 @@ public final class Displacement {
     String requiredError(World.Unit a,World.Unit b,Kind kind){
         int dq=b.hex.q-a.hex.q,dr=b.hex.r-a.hex.r;
         if(kind==Kind.HOOK){String error=stepError(a,a.hex,step(a.hex,-dq,-dr),-1,false,a);return error==null?null:"熊手：己方退路"+error;}
-        if(kind==Kind.BREAKTHROUGH){String error=stepError(a,b.hex,step(b.hex,dq,dr),-1,false,a);return error==null?null:"突破：敌军身后落点"+error;}
+        // Cavalry landing is an optional effect. Damage and the contest roll do
+        // not require a free cell behind the defender.
         return null;
     }
     Preview preview(World.Unit a,World.Unit b,Kind kind,String error,String heading){
@@ -70,7 +75,10 @@ public final class Displacement {
         if(kind==Kind.HOOK){
             ap.add(step(ah,-dq,-dr));String stop=stepError(b,bh,ah,a.id,false,a);
             if(stop==null)bp.add(ah);else{blocked=ah;text.append("\n目标拉动停止：").append(stop);}
-        }else if(kind==Kind.BREAKTHROUGH)ap.add(step(bh,dq,dr));
+        }else if(kind==Kind.BREAKTHROUGH){
+            Hex behind=step(bh,dq,dr);String stop=stepError(a,bh,behind,-1,false,a);
+            if(stop==null)ap.add(behind);else{blocked=behind;text.append("\n敌军身后受阻：").append(stop).append("；主伤害及强制单挑判定保留，己方不位移");}
+        }
         else for(int n=0;n<kind.steps;n++){
             Hex next=step(bh,dq,dr);String stop=stepError(b,bh,next,a.id,true,a);
             if(stop!=null){

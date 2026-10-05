@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "Normal original source-SEFF production GPU contribution and lifecycle verified on cold x86_64 emulator; full restoration incomplete",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v152/app-debug-source-budget.apk",
+      "bytes": 83436626,
+      "sha256": "da48e77f7559c533c331e27204f3a5751b3f7abb58f11784ea4a0d92430a661f"
+    },
+    {
+      "path": "out/pc-visual/v152/androidTest-source-budget.apk",
+      "bytes": 614259,
+      "sha256": "b5ea99792db5e826344cb0ecf97ec2419c7317d545bd59c0d76b302b7a858e5d"
+    }
+  ],
+  "checks": [
+    {
+      "name": "exact-installed-apk-and-native-library-dir",
+      "status": "pass",
+      "evidence": "out/pc-visual/v152/installed-bytes.json"
+    },
+    {
+      "name": "installed-source-worker-transport",
+      "status": "pass31reported+save-boundary296packets",
+      "evidence": "out/pc-visual/v152/worker-installed.txt"
+    },
+    {
+      "name": "apk-137-assets-and4ABI-libs",
+      "status": "pass",
+      "evidence": "out/pc-visual/v152/apk-pins.txt"
+    },
+    {
+      "name": "host-perspective-interaction",
+      "status": "pass1152",
+      "evidence": "out/pc-visual/v152/perspective-interaction.txt"
+    },
+    {
+      "name": "host-camera-eye",
+      "status": "pass20160",
+      "evidence": "out/pc-visual/v152/camera-eye.txt"
+    },
+    {
+      "name": "host-frame-admission",
+      "status": "pass",
+      "evidence": "out/pc-visual/v152/frame-admission.txt"
+    },
+    {
+      "name": "normal-map-first-run",
+      "status": "FAIL original1s frame progression; source59quads at1.1s errornone, GPU326attempts67admitted259rejected",
+      "evidence": "out/pc-visual/v152/map-effects-installed.txt",
+      "report": "out/pc-visual/v152/map-effects-failed-report.txt"
+    },
+    {
+      "name": "actual-user-save-restoration",
+      "status": "pass exact168846bytes",
+      "evidence": "out/pc-visual/v152/save-restoration.json"
+    },
+    {
+      "name": "actual13commands-original-source-replay",
+      "status": "pass original allocations/queue output59then67",
+      "evidence": "out/pc-visual/v152/actual-commands-source-oracle.json",
+      "limits": [
+        "Actual failed-input memory oracle only, not GPU pixels"
+      ]
+    },
+    {
+      "name": "guest-reboot-instrument-start",
+      "status": "FAIL DeadObjectException activity service not ready; no game execution",
+      "evidence": "out/pc-visual/v152/clean-reboot/start-before-service-ready-failed.txt"
+    },
+    {
+      "name": "cold-normal-map-source-events-and-lifecycle",
+      "status": "PASS314checks normal load3locations/paused native time/resume/activity pause/exit/GPU resources/full authority",
+      "evidence": "out/pc-visual/v152/clean-reboot/map-effects-installed.txt",
+      "report": "out/pc-visual/v152/clean-reboot/map-effects-final-report.txt"
+    },
+    {
+      "name": "actual-source-entity-GPU-pixel-contribution",
+      "status": "PASS15902pixels drift0 entities70",
+      "evidence": "out/pc-visual/v152/clean-reboot/pixel-contribution-and-save.json"
+    },
+    {
+      "name": "graphics-communication-software-clock-sampling",
+      "status": "283samples31.8percent FEngine goldfish_pipe_read_write; emulator-only, not normal timing acceptance",
+      "evidence": "out/pc-visual/v152/clean-reboot/profile-software-report.txt"
+    },
+    {
+      "name": "late-actual-video-container",
+      "status": "161samples177.039seconds sparse, not PC match/timing acceptance",
+      "evidence": "out/pc-visual/v152/clean-reboot/video-late-container.json"
+    },
+    {
+      "name": "normal-WARSHIP-move-and-attack",
+      "status": "PASS3271 source skin/GPU formation/normal journal pause-resume4x/water/exit/exact authoritative RNG and SG11",
+      "evidence": "out/pc-visual/v152/warship-normal-commands.txt",
+      "report": "out/pc-visual/v152/warship-final-report.txt"
+    },
+    {
+      "name": "user-autosave-after-normal-move-attack",
+      "status": "pass168846byte exact",
+      "evidence": "out/pc-visual/v152/warship-save-restoration.json"
+    },
+    {
+      "name": "production-PC-projection-and-shader-pause-host-regression",
+      "status": "pass original assertions plus actual perspective branch/bitwise frozen waterSeconds/resume",
+      "evidence": "out/pc-visual/v152/frame-admission-perspective-pause.txt"
+    },
+    {
+      "name": "source-resource-consumers",
+      "status": "PASS462resources491explicit source hash-checked bindings",
+      "evidence": "out/pc-visual/v152/consumer-bindings.txt"
+    },
+    {
+      "name": "actual-original-PC-D3D9-reference",
+      "status": "real-map-pixels-and-sampled-video-captured-not-Android-match",
+      "evidence": "out/pc-visual/v152/pc-reference/capture-journal.jsonl",
+      "video": "out/pc-visual/v152/pc-reference/xinye-autumn-water-01.mp4",
+      "camera": "docs/pc-visual/camera-live-source.json",
+      "limits": [
+        "Wine original EXE, not native Windows",
+        "29 actual source frames / approx15seconds, no fast battle timing acceptance",
+        "No ARM device or complete MOD-launcher activation acceptance"
+      ]
+    }
+  ],
+  "source_snapshot": "out/pc-visual/v152/source-snapshot/manifest.json",
+  "limits": [
+    "First-run progression failure retained. Cold emulator314 map proof and3271 normal WARSHIP move/attack passed. 5 Window backing losses/recovery events and sparse recordings; no sustained visual continuity/performance acceptance.",
+    "No accepted matching PC lens/pixels/video or actual MOD precedence",
+    "ARM crossbuild only",
+    "Full combat and fullscreen original playback incomplete",
+    "v148 nationalfar pending81 failure preserved"
+  ]
+}

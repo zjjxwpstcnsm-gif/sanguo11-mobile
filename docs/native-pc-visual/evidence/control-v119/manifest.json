@@ -1,0 +1,134 @@
+{
+  "status": "PARTIAL",
+  "scope": "User correction: ordinary CONFUSE and MISLEAD at equal formation intelligence approx 20 percent",
+  "source": "53a31e751de7dc403f88a292a9da01d016c39565",
+  "source_tree": "40e816a0b88460c7731f6a5024f12043cde3b2a2",
+  "input": "5cc511faa6d2fea837f0fecc29f5e2c28c933f8f",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "branch": "agent/native-pc-visual",
+  "pr": 67,
+  "merged": false,
+  "formula": "clamp(20 + (max(caster leader/deputies INT) - max(target leader/deputies INT)) / 2, 5, 85), integer division; then unchanged Skills.plotChance",
+  "original_pc_formula_verified": false,
+  "balance_authorization": "Explicit user request same intelligence around 20 percent for both plots",
+  "new_stage_started": false,
+  "host": {
+    "control_intelligence": "PASS 40106",
+    "control_probability": "PASS 40037",
+    "architecture": "PASS",
+    "balance": "PASS 54",
+    "sample_count_per_plot": 10000,
+    "baseline_confuse": 4527,
+    "baseline_mislead": 6563,
+    "candidate_confuse": 2042,
+    "candidate_mislead": 2042,
+    "inherited_failures": [
+      "CoreTest.logistics:75",
+      "RulesParityTest.actions:54",
+      "MapSkillsTest.geography:29",
+      "CampaignTest.merge:91",
+      "CampaignAiTest.supply:85",
+      "WorldSystemsTest.diplomacy:87"
+    ],
+    "regression_comparison": "original and candidate six-suite raw logs identical; no assertions removed"
+  },
+  "ci_run": 36518573174,
+  "device": {
+    "status": "PASS scoped 2D production UI/authority only",
+    "api29": {
+      "checks": 37,
+      "job": 109246862165,
+      "artifact": 11012058041,
+      "artifact_sha256": "86f0cc14f33e2b4c7d79ada3b3d9fcec1587ecd580cc7365e4b4fc80baebbbd5"
+    },
+    "api35": {
+      "checks": 37,
+      "job": 109246862081,
+      "artifact": 11012332060,
+      "artifact_sha256": "d91acf722b0bd54c252890bde9472a9db6fc29ff6d07168b2ad9687d6e063604"
+    },
+    "cases_per_device": [
+      "CONFUSE failure",
+      "CONFUSE success",
+      "MISLEAD failure",
+      "MISLEAD success"
+    ],
+    "preview_percent": 20,
+    "installed_apk_sha256": "a907ed6577f702664b452298a41ca1418582aebb3ae634d239125003584884d0",
+    "full_save_pairs_equal": 8,
+    "actual_screenshots": 16,
+    "scope_limit": "Legal fixture selected programmatically; normal WarUi and GameSession; target selected via mapPick callback; actual pointer taps menu row and execute. Not full-touch or 3D acceptance."
+  },
+  "physical": "NOT_RUN this focused correction; prior WIF attribute-condition block remains",
+  "preserved": [
+    "app/src/main",
+    "game-api",
+    "game-runtime",
+    "data",
+    "unity",
+    "Army.intelligence",
+    "Skills.plotChance",
+    "SaveCodec format",
+    "RNG algorithm",
+    "v118 spiral change",
+    "v118 drag and forest changes"
+  ],
+  "remaining": [
+    "v118 3D readiness failure and unverified drag/forest visuals",
+    "PC art reference",
+    "ARM64 performance and thermal soak",
+    "national full-touch/SAF/full regression"
+  ],
+  "application_id": "game.sanguo.mobile.dev",
+  "version_code": 119,
+  "version_name": "0.119.0-control-intelligence",
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "build_lint": "PASS exact final source",
+  "build_command": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource=53a31e751de7dc403f88a292a9da01d016c39565 -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true",
+  "initial_source": "b6222f81d1922011eec019701021de2966523710",
+  "initial_ci_run": 36517853259,
+  "initial_apk": {
+    "source_sha": "b6222f81d1922011eec019701021de2966523710",
+    "apk_sha256": "d74112953458cf74241e3380901dfa6326161221924b0b4411cc7a2e64571bd0",
+    "bytes": 37403418,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 300,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "initial_build_artifact": 11011721894,
+  "initial_build_job": 109244048677,
+  "initial_installed": {
+    "api29": "FAIL: visible clickable text missing at list row; screenshot shows menu",
+    "api35": "FAIL: same test-driver failure",
+    "fix": "Pointer tap actual visible accessibility bounds, initial accessibility connection and include-not-important-views; no expected values or timeouts relaxed",
+    "artifacts": [
+      11012295991,
+      11012141619
+    ]
+  },
+  "apk": {
+    "source_sha": "53a31e751de7dc403f88a292a9da01d016c39565",
+    "apk_sha256": "a907ed6577f702664b452298a41ca1418582aebb3ae634d239125003584884d0",
+    "bytes": 37403418,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 300,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "build_artifact": 11011628805,
+  "build_job": 109246251182,
+  "visual_review": "Four raw API29/API35 confirmation screenshots viewed: both plots display 20%; full maps/art not accepted",
+  "evidence_package": "sanguo11-control-v119-evidence.zip",
+  "raw_inventory": "raw-file-inventory.json"
+}

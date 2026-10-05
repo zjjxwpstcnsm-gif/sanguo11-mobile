@@ -1,0 +1,9 @@
+{
+  "baseCommit": "95f40f8065f14a7fc515729384d6c9a798220052",
+  "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+  "beforeSha256": "145c2eb5d3ed77e49d72c63d8a23ebf4323f52c1994fc4f1a451aa67805d79dc",
+  "afterSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+  "patchSha256": "e57c9e93cea9d34181843ec29edf59a19f00811a095a3a77f87d741f062126ab",
+  "replacementCount": 5,
+  "scope": "Only original source spear sound49/78 immutable-event routing and synthesized duplicate suppression; no metadata/rules/geometry/commands"
+}

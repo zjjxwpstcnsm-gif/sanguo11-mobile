@@ -1,0 +1,12 @@
+TOUCH deploy.role.2004 Rect(1509, 670 - 1677, 786)
+TOUCH deploy.tab.1 Rect(634, 256 - 1159, 382)
+TOUCH choice.SWORD Rect(1365, 435 - 1677, 645)
+TOUCH deploy.tab.2 Rect(1159, 256 - 1685, 382)
+TOUCH deploy.confirm Rect(1469, 878 - 1679, 1004)
+LAYOUT_PASS orientation=0 officer=2004 actual={1.0 310mcc260mnc [en_US] ldltr sw411dp w683dp h387dp 420dpi nrml land finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1794, 1080) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_90} s.3} fullSaveParity=true
+TOUCH deploy.role.10660 Rect(856, 945 - 1024, 1061)
+TOUCH deploy.tab.1 Rect(375, 256 - 703, 382)
+TOUCH choice.SWORD Rect(830, 435 - 1024, 645)
+TOUCH deploy.tab.2 Rect(703, 256 - 1032, 382)
+TOUCH deploy.confirm Rect(816, 1592 - 1026, 1718)
+LAYOUT_PASS orientation=1 officer=10660 actual={1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h659dp 420dpi nrml port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 1920) mAppBounds=Rect(0, 0 - 1080, 1794) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} s.5} fullSaveParity=true

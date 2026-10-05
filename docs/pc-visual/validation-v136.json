@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v136 source static wall connections, pillars and endpoint height shear",
+  "apk": "out/pc-visual/sanguo11-mobile-v136-pc-wall-connections.apk",
+  "apk_sha256": "ad157388e4c5f3179dc2186299b96d4b68e47fa519d0ec19a36f77ee756a741e",
+  "checks": [
+    {
+      "name": "source-wall-topology-matrix-normals-quarter-crop-RNG",
+      "status": "pass",
+      "checks": 1831366,
+      "log": "out/pc-visual/v136-cliff-walls-cpu-final.txt"
+    },
+    {
+      "name": "30-core-facility-states-and-six-normal-commands-CPU",
+      "status": "pass",
+      "checks": 4755020,
+      "log": "out/pc-visual/v136-facilities-cpu.txt"
+    },
+    {
+      "name": "installed-3-wall-anchors-2-seasons-national-pause-resume-exit-RNG",
+      "status": "pass",
+      "checks": 255,
+      "log": "out/pc-visual/v136-cliff-walls-installed.txt"
+    },
+    {
+      "name": "cross-python-wall-conversion-and-APK",
+      "status": "pass",
+      "log": "out/pc-visual/v136-reproducibility-fixed.json"
+    },
+    {
+      "name": "APK-pinned-assets",
+      "status": "pass",
+      "log": "out/pc-visual/v136-apk-integrity.txt"
+    }
+  ],
+  "evidence": "out/pc-visual/v136/evidence/manifest.json",
+  "prior_normal_command_video_evidence": "docs/pc-visual/validation-v135.json",
+  "visual_acceptance": {
+    "complete": false,
+    "observed": [
+      "Previously disconnected static source wall segments now connect through original pillars and source EXE endpoint geometry",
+      "Terrain vertex modification performed by source wall initialization remains unimplemented",
+      "PC camera/vertical scaling/lighting/opacity lack matched PC captures",
+      "Units, ownership flags and battle effects remain legacy"
+    ]
+  },
+  "pc_runtime": {
+    "valid_captures": false,
+    "investigation": "docs/pc-visual/PC_RUNTIME.md",
+    "arm_device_validated": false
+  },
+  "remaining": [
+    "Dynamic constructible earth/stone wall connections and command transitions",
+    "Source dam placements/entity persistence and flood",
+    "All unit/rig/animation, environment/combat/fullscreen source assets and real event playback",
+    "Seasonal regional climate, ground/UV/normal/water calibration",
+    "Matched PC screenshots/videos, ARM performance and long-run memory/stacking checks"
+  ],
+  "initial_failed_probes": [
+    {
+      "log": "out/pc-visual/v136-cliff-walls-first.txt",
+      "cause": "CPU test still expected prior binary format; updated to new independently verified graph and full matrix reference"
+    },
+    {
+      "log": "out/pc-visual/v136-reproducibility.json",
+      "cause": "Only gzip header OS byte differed between Python3.9/3.12; portable OS byte pinned, rerun byte equal and built APK matches"
+    },
+    {
+      "log": "out/pc-visual/v136-emulator.txt",
+      "cause": "Prior emulator had exited; restarted existing AVD, matching app/test installed successfully"
+    }
+  ]
+}

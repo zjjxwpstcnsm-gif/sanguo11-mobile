@@ -1,0 +1,10 @@
+Exception in thread "main" java.io.IOException: 设施位置冲突或无效
+	at game.sanguo.core.Domestic.require(Domestic.java:534)
+	at game.sanguo.core.Domestic.validate(Domestic.java:541)
+	at game.sanguo.core.SaveCodec.validate(SaveCodec.java:214)
+	at game.sanguo.core.SaveCodec.encode(SaveCodec.java:19)
+	at game.sanguo.core.DiplomacyTest.bytes(DiplomacyTest.java:12)
+	at game.sanguo.core.DiplomacyTest.copy(DiplomacyTest.java:13)
+	at game.sanguo.core.DiplomacyTest.seed(DiplomacyTest.java:24)
+	at game.sanguo.core.DiplomacyTest.surrender(DiplomacyTest.java:93)
+	at game.sanguo.core.DiplomacyTest.main(DiplomacyTest.java:28)

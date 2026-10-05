@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "source_kind": "user supplied MOD installation",
+  "goal_complete": false,
+  "source": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版",
+  "native_check": {
+    "schema": 1,
+    "status": "PASS_SOURCE_MACHINE_ONLY",
+    "goal_complete": false,
+    "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+    "terrain": {
+      "resource_id": 4793,
+      "sha256": "c1d8256c6bf70b3faffaf7d9f1f5b55453203bf623ad6bd121a9a7dec7aa3fca"
+    },
+    "texture": {
+      "resource_id": 4844,
+      "sha256": "be26061a15da2da6c390ab6bb0d9d8d744474ed169aac4c628e6e083bd19b758",
+      "image_count": 2,
+      "frames_per_image": 64,
+      "native_loader": "422eb0 ->12ec -> WFTX"
+    },
+    "native_functions": [
+      {
+        "va": "0x415e20",
+        "bytes": 252,
+        "sha256": "223f03fd86c78c56b335abfeb57eace8dd5ef995eceba5fd53ca8b732b3a37d9"
+      },
+      {
+        "va": "0x415d80",
+        "bytes": 158,
+        "sha256": "29fd17ef20bb118627bc8e2f28c803b9f6d8b7a604830a7fb10f1d20e515f319"
+      },
+      {
+        "va": "0x422980",
+        "bytes": 367,
+        "sha256": "c7fa4c3ffe1e8616df8a8c647cbe9b6dc0f36f573abd1a0dd8866a1fe0492e92"
+      }
+    ],
+    "coarse_records_checked": 65536,
+    "vertex_cases": 2048,
+    "wet_flags": {
+      "0": 19784,
+      "1": 292
+    },
+    "fine_zero_faces_covered_by_native_coarse_water": 41809,
+    "corners": "TL TR BL BR; wet alpha255, dry alpha32; full coarse quad, no fine-face polygon clipping",
+    "default_WaterAnimTime_ms": 10000,
+    "native_visual_RNG": "raw initial index625; native444150 auto-seeds4357",
+    "source_initialization_reference": {
+      "path": "out/pc-visual/water-import-native-reference.bin",
+      "sha256": "f496de434cf0d0a473dc12b9347b90991ef3cc4d7e70fab55223d40e4425a902"
+    },
+    "limits": [
+      "Native registry setting/MOD memory overrides and PC rasterization are unverified",
+      "Per-cell periods/phases are one authentic native default-seed run, not a captured PC session",
+      "No gameplay RNG/state/save read or write",
+      "Android acceptance is separately recorded in validation-v147-working.json"
+    ]
+  },
+  "resource": {
+    "id": 4844,
+    "format": "WFTX0010",
+    "sha256": "be26061a15da2da6c390ab6bb0d9d8d744474ed169aac4c628e6e083bd19b758",
+    "offset": 571371201,
+    "bytes": 524320,
+    "loose_alias": "media/stage/water.wft",
+    "potential_overrides": [],
+    "selection": "Supplied archive4844; native loader supports loose alias; real PC/MOD active branch remains unverified"
+  },
+  "conversion": "Native415e20/415d80 isolated default initialization; exact source RGBA, PNG lossless",
+  "outputs": [
+    {
+      "path": "core/src/main/resources/maps/pc-water.bin.gz",
+      "sha256": "59e26262d70f93334c7c80d5141a1e695610b81be814f014c6abdda0622bf2d1",
+      "decoded_sha256": "f496de434cf0d0a473dc12b9347b90991ef3cc4d7e70fab55223d40e4425a902",
+      "decoded_bytes": 655368
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/water-0.png",
+      "sha256": "91f64994facfb95054e57ef3f31ffd7b47fa982b8820e98bbe89640ba4381425",
+      "rgba_sha256": "8c14b1ba516e748eacc326055d38d723fe179249237959bd6083f73837183396",
+      "bytes": 87529
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/water-1.png",
+      "sha256": "3a25900c1cdf0177684a1997b72a778e1cd1e44e09037f114b91dd97cf1ecc38",
+      "rgba_sha256": "248c949da4afd3225e002e5ee9e271107d9bae7d80fb5c34f46b0848743e8a24",
+      "bytes": 4805
+    }
+  ],
+  "runtime_binding": "PcMap coarseWater and415cb0 height -> TerrainSurface -> SceneMesh.sourceWater -> GpuMesh.waterChild -> pc-water.mat",
+  "limits": [
+    "PC registry/MOD runtime overrides and matching PC video remain unverified",
+    "Source phases/periods use an isolated native default4357 visual RNG run, not a captured PC session",
+    "Mobile clock pauses with scene/effects and advances visible owner chunks; original per-cell draw-list membership not reproduced; dt capped100ms",
+    "Outer backdrop inherits earlier bounds and coarse land representation;580 of20076 source wet cells outside streamed national geometry remain outstanding",
+    "Installed validation and current video separately recorded in validation-v147-working.json"
+  ],
+  "blend_contract": {
+    "source": "4227e0 and caller41db10",
+    "diffuse": "RGB255, wet alpha255, dry alpha32",
+    "color_alpha": "MODULATE",
+    "alpha_test": "GREATER0",
+    "blend": "SRCALPHA/INVSRCALPHA",
+    "culling": "NONE",
+    "depth_write": false,
+    "depth_evidence": "out/pc-visual/v147-water-depth-source.txt"
+  }
+}

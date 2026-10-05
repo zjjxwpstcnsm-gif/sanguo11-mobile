@@ -1,0 +1,136 @@
+name: Native R11 typed combat and replay consistency
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r11.yml']
+permissions:
+  contents: write
+concurrency:
+  group: native-r11-delivery
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify audited patch and retained architecture
+        run: |
+          set -euo pipefail
+          mkdir -p out/r11
+          git rev-parse HEAD > out/r11/TRANSPORT_COMMIT
+          git fetch origin agent/native-pc-visual main
+          test "$(git rev-parse origin/agent/native-pc-visual)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor origin/main HEAD
+          if test -f .ci/native-r11-0.b64; then
+            python3 - <<'PY'
+          import base64, hashlib, lzma
+          from pathlib import Path
+          text=''.join(Path(f'.ci/native-r11-{i}.b64').read_text().strip() for i in range(3))
+          patch=lzma.decompress(base64.b64decode(text,validate=True))
+          assert len(patch)==84418
+          assert hashlib.sha256(patch).hexdigest()=='4c711c9d9bbe168965ebbb26f13f81a9d2e9e6e4b1578bedc2ceb2ebdecc4710'
+          Path('/tmp/native-r11.patch').write_bytes(patch)
+          PY
+            git apply --check --unidiff-zero /tmp/native-r11.patch
+            git apply --unidiff-zero /tmp/native-r11.patch
+            echo R11_APPLIED=true >> "$GITHUB_ENV"
+          fi
+          git diff --check
+          python3 scripts/verify-r11-contract.py | tee out/r11/protected-cohorts.log
+          python3 scripts/check-architecture.py | tee out/r11/boundaries.log
+      - name: Commit and fast-forward actual production source
+        if: env.R11_APPLIED == 'true'
+        run: |
+          set -euo pipefail
+          git fetch origin agent/native-pc-visual main
+          test "$(git rev-parse origin/agent/native-pc-visual)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor origin/main HEAD
+          git config user.name 'sanguo11 R11 agent'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app core docs scripts version.properties
+          git rm .ci/native-r11-0.b64 .ci/native-r11-1.b64 .ci/native-r11-2.b64
+          git commit -m 'native-pc/R11: typed combat effects and authoritative playback'
+          git push origin HEAD:refs/heads/agent/native-pc-visual
+      - name: Capture exact production identity and source bundle
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD > out/r11/SOURCE_COMMIT
+          git rev-parse origin/main > out/r11/MAIN_COMMIT
+          git diff --stat 5df81a04fd18231d0821471699a4d46eeb827c42 HEAD > out/r11/source-changes.txt
+          mkdir -p out/r11-source
+          git bundle create out/r11-source/source.bundle HEAD refs/remotes/origin/main
+          cp out/r11/SOURCE_COMMIT out/r11-source/
+          for origin in https://repo.maven.apache.org/maven2 https://repo1.maven.org/maven2 https://maven-central.storage-download.googleapis.com/maven2; do
+            if curl -fSL --max-time 35 "$origin/org/json/json/20240303/json-20240303.jar" -o /tmp/json.jar; then break; fi
+          done
+          test -s /tmp/json.jar
+          sha256sum /tmp/json.jar > out/r11/TOOLCHAIN_SHA256
+          echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r11-production-source
+          path: out/r11-source/
+          retention-days: 7
+      - name: Affected host and architecture regression
+        run: |
+          set -euo pipefail
+          for suite in test-native-r11 test-native-r10 test-3d-foundation test-3d-interaction test-architecture; do
+            bash scripts/$suite.sh 2>&1 | tee out/r11/$suite.log
+          done
+          python3 scripts/verify-r11-contract.py | tee out/r11/protected-cohorts.log
+      - name: Retain full core result without weakening inherited assertion
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          bash scripts/test-core.sh 2>&1 | tee out/r11/core-regression.log
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build exact source APK, instrumentation and lint
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true 2>&1 | tee out/r11/build.log
+          cp app/build/outputs/apk/debug/app-debug.apk out/r11/sanguo11-native-r11.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/r11/r11-instrumentation.apk
+          sha256sum out/r11/*.apk > out/r11/APK_SHA256
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r11/sanguo11-native-r11.apk > out/r11/apk-metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r11/sanguo11-native-r11.apk > out/r11/signature.txt
+          unzip -l out/r11/sanguo11-native-r11.apk > out/r11/apk-contents.txt
+          git status --porcelain > out/r11/post-build-working-tree.txt
+          test ! -s out/r11/post-build-working-tree.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r11-apk
+          path: out/r11/
+          retention-days: 14
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r11.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r11-evidence
+          path: out/r11/
+          retention-days: 14

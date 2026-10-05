@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "videos": [
+    {
+      "label": "tactic-critical",
+      "original": "/Users/paopao/Desktop/战法暴击.mov",
+      "preserved_copy": "out/pc-visual/user-reference-20261002/tactic-critical.mov",
+      "bytes": 22744606,
+      "sha256": "d522e2b1695daabab0199ab42e76d4edbde6319017913d88dbfa9032fd66e127",
+      "metadata": "out/pc-visual/user-reference-20261002/tactic-critical-metadata.json",
+      "validation": "ONLINE_REFERENCE_CONTENT_REVIEW_IN_PROGRESS",
+      "integration_version_match_accepted": false
+    },
+    {
+      "label": "strategy-critical",
+      "original": "/Users/paopao/Desktop/计略暴击.mov",
+      "preserved_copy": "out/pc-visual/user-reference-20261002/strategy-critical.mov",
+      "bytes": 13983861,
+      "sha256": "723ff27905c6385db3d1c54898cb3b8d22cca69adedfba4c1709a28da6f8265d",
+      "metadata": "out/pc-visual/user-reference-20261002/strategy-critical-metadata.json",
+      "validation": "ONLINE_REFERENCE_CONTENT_REVIEW_IN_PROGRESS",
+      "integration_version_match_accepted": false
+    },
+    {
+      "label": "fireball-ignite",
+      "original": "/Users/paopao/Desktop/道具火球点燃.mov",
+      "preserved_copy": "out/pc-visual/user-reference-20261002/fireball-ignite.mov",
+      "bytes": 27210839,
+      "sha256": "94df9345b1bcdc9611d490f5b011c9b922ceb64411151b273b1076875b2f010e",
+      "metadata": "out/pc-visual/user-reference-20261002/fireball-ignite-metadata.json",
+      "validation": "ONLINE_REFERENCE_CONTENT_REVIEW_IN_PROGRESS",
+      "integration_version_match_accepted": false
+    }
+  ],
+  "limits": [
+    "Bilibili watermarks, subtitles, player UI and potential editing/playback gaps are external overlays, never game resources",
+    "Source integration-version pixel/timing/MOD parity not accepted from these references",
+    "Assets continue to come only from supplied read-only installation"
+  ],
+  "provenance": "User confirmed these are online presentation references, not supplied integration-version runtime recordings",
+  "implementation_direction": {
+    "user_requested_duration_millis": 750,
+    "duration_basis": "Latest user explicitly accepts 0.5–1 second without strict millisecond matching; default0.75 second; not suppliedPC runtime timing acceptance",
+    "wine_policy": "User explicitly requested no more Wine launches; owned Wine process closed. Continue source inspection/conversion and Android event integration without Wine.",
+    "accepted_duration_range_millis": [
+      500,
+      1000
+    ]
+  }
+}

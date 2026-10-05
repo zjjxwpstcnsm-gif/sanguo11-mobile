@@ -1,0 +1,18 @@
+# 批28：原枪兵战法49/78的新包真实混音
+
+应用实现55572ae8847f18337c1f3402af1c3a7484284e35，308015016字节，SHA `fadbfeb645d3f8f76278bdb677ff3010411074fdaaa3f919cef9ab2eac836e48`；初始测试包2076451字节，SHA `40ed39036c88c4e1267a633ea7fa63bc144f5f425c322aaa0fcc372f6d6fdf06`。独占emulator-5582重新安装并读回两个SHA；PC目录、原工程、会话一和5554录音未动。
+
+实际正常3D螺旋突刺UI路径：取消没有提交或声音阶段；双确认仅提交一次；完整Save/RNG等于独立参考命令结果。两个明确准备的战斗夹具分别产生已施展会心与非会心，生产端只读取这些已提交事实，不改规则。会心原78路径17.21秒、非会心原49路径14.77秒通过；每次原tactic-source身份只消费一次，旧合成critical计数为0。MapHost明确该来源分支也不调用旧合成action。未命中的已提交战法可发原49，不能把49称作命中成功提示。
+
+原sound78与原技巧点33的完整双来源PCM模型相关性0.9999997257466406；独立扣除另一路后分别0.9999993693113846、0.9999995465393436。原49与原33的模型相关性0.9999995904185194，独立分别0.9999881383893392、0.9999995755027702。二者均为真实5582录音窗口，正向可听gain，使用完整声明波形及未变0.999门槛，不编辑录音、不以play返回通过、不把旧合成作为原声。原33对应各自真实逐次fact.id，NET线路不同时发声。源输入WAV、原PCM和播放格式转换SHA分别保留在独立manifest及每轮JSON。
+
+同包来源身份已批准的簡雍10122/native122/face174按原lookup显示共享动态头像190；实际正常3D战法28.01秒通过，原纹理与效果层真实PixelCopy可见。取消、双确认、完整参考Save/RNG、动态4张GPU缓存与renderer替换释放通过。这是已准备战斗夹具和控制暂停的检查帧，不能称连续原PC时序/色彩完成，也不能称190是专属簡雍绘图。
+
+三轮全部用户保存、库和偏好逐字节恢复；auto/manual3原保存SHA `02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69`。完整输出在out/media/tactic78-normal-installed-28、tactic49-normal-installed-28、dynamic-portrait-installed-28；对应session2的TACTIC78_NORMAL_INSTALLED_28.json、TACTIC49_NORMAL_INSTALLED_28.json和DYNAMIC_PORTRAIT_INSTALLED_28.json保留安装、事实、混音、来源、缓存与恢复数据。
+
+绑定范围只有已明确的THRUST/SPIRAL/DOUBLE_THRUST三种原枪兵战法native0/1/2；未借给其它战法、普通攻击、计略、舰船或设施。普通地图BGM、正常人物voice、全部原SFX、全部人物caller/MOD生效覆盖、原完整时序及Unity Player/ARM真机/手机扬声器仍未完成。目标active。
+
+
+追加测试实现69a4f7b4517b99abde7bfd323e9db00c3324b91e，仅两个媒体测试文件；应用APK不变。新测试包2079579字节，SHA `01af7fa59634ec21158f8a426c9153c6505ef299d82eaf9dd29b4d0de844a872`，与同一冻结应用一起重新安装并读回SHA。90项生命周期47.12秒通过，六轨实测buffer545964字节，暂停头保持/续播、重复/暂停/mute/zero身份不补播、普通destroy六轨全STATE_UNINITIALIZED；全Save/RNG及用户文件恢复通过。这里original49/78直接调用是明确生命周期夹具，不能计作另一正常战法绑定。正常战法声音证明仍是上面的两份完整录音。
+
+同轮真实UI系统Back取消原sound1 PCM相关性0.9999996760440769、正向可听gain0.017731636850582586；实际取消callback仅一次、普通完成dismiss不触发，全Save/RNG不变。不借给普通positive click或其它未核事件。资料见TACTIC_LIFECYCLE_INSTALLED_28.json及out/media/tactic-lifecycle-installed-28。

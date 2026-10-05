@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "functions": [
+    {
+      "name": "building_type_equals",
+      "address": "0x486660",
+      "end_exclusive": "0x486671",
+      "sha256": "e72af672be66ee5fadf3f3b55ce61256f1e4cee5790592ded885bda9d295bb9e"
+    },
+    {
+      "name": "command_fields_valid",
+      "address": "0x5ca450",
+      "end_exclusive": "0x5ca4d4",
+      "sha256": "aa8c82a485ee336364f380c58a63676073329f5a05d7edf9541178b8bc6debcf"
+    },
+    {
+      "name": "maximum_quantity",
+      "address": "0x5ca770",
+      "end_exclusive": "0x5ca91c",
+      "sha256": "70c57bcbde35852febb62ef1b20102d3251138f35dbd36776d5cefbae7df8699"
+    },
+    {
+      "name": "city_entry_gate",
+      "address": "0x5ca985",
+      "end_exclusive": "0x5ca9c9",
+      "sha256": "12a55f52ace57262f82d796c6b2501d858668cf4cb6d8118b20f5ade6b73acce"
+    },
+    {
+      "name": "quantity_dialog_setup",
+      "address": "0x6095ee",
+      "end_exclusive": "0x6096dc",
+      "sha256": "5dccf7c55e1048be54c6d5b83d1738f991a0016ad56f6e1c776640a91003fb4f"
+    }
+  ],
+  "implemented": {
+    "rule": "Merchant building must be a city",
+    "native": "building type0 and valid native city index0..41",
+    "project": "World.SiteKind.CITY, not literal project ID0..41; custom city IDs remain valid",
+    "failure_code": "TRADE_SITE",
+    "field": "city",
+    "legacy": "Preserve old gate/port stocks and traded records; reject new trades without mutation"
+  },
+  "quantity": {
+    "buy": "min(gold*rate*400/((450-currentPolitics)*10),1000000-food), integer division",
+    "sell": "min((100000-gold)*(450-currentPolitics)*rate/3200,max(0,food-1)), integer division",
+    "fields": "rate city+7c, currentPolitics officer+173",
+    "maximum_result": "signed64 minimum with INT_MAX; valid stock cases tested, no inferred lower clamp",
+    "validator": "nonzero signed food delta and food+delta<=1000000; does not itself check every resource condition",
+    "numeric_input": "6095ee..6096dc supplies absolute final food bounds to numeric dialog and stores returned integer; no thousand rounding in this path"
+  },
+  "tests": {
+    "site_cases": 261,
+    "capacity_cases": 320,
+    "capacity_null_cases": 2,
+    "quantity_validator_cases": 60,
+    "method": "Original native functions, full3MiB world and RNG purity"
+  },
+  "limits": [
+    "Quantity calculations/input/validator evidence is not yet implemented; project still1000..20000 step1000",
+    "UI numeric dialog internals not fully emulated, and full merchant command includes separate actor/AP/use gates",
+    "Prices/state initialization/environment conditions still require integration",
+    "No claim about enabled MOD overlays; pinned offline EXE only"
+  ]
+}

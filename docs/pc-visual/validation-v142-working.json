@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v142 source painting / staged camera-window delivery",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v142/app-debug-window-stream.apk",
+      "bytes": 80956883,
+      "sha256": "9d0104789e683f130a06904822f30cc6c347bca93cd716192012db7112a1e973"
+    },
+    {
+      "path": "out/pc-visual/v142/androidTest-window-stream.apk",
+      "bytes": 596581,
+      "sha256": "68ea3a9e6c05c9cbb711eb1ceaa07e3f79df3648a06bd6379ac7cf7b2a583667"
+    }
+  ],
+  "changes": [
+    "Overlapping CPU construction and admitted GPU uploads on every terrain window",
+    "Old CPU/GPU coverage retained per replacement key until its new upload completes",
+    "No source geometry/material reduction; original120s readiness assertion preserved"
+  ],
+  "checks": [
+    {
+      "name": "host-window-coverage-cancellation",
+      "status": "pass",
+      "log": "out/pc-visual/v142-window-coverage-host.txt"
+    },
+    {
+      "name": "host-frame-admission",
+      "status": "pass",
+      "log": "out/pc-visual/v142-frame-admission-host.txt"
+    },
+    {
+      "name": "APK-resource-pins",
+      "status": "pass",
+      "pins": 97,
+      "log": "out/pc-visual/v142-apk-pins.txt"
+    },
+    {
+      "name": "installed-far-diagnostic",
+      "status": "fail",
+      "log": "out/pc-visual/v142-scenery-far-diagnostic-installed.txt",
+      "pending_after120s": 35,
+      "visible_terrain_chunks": 125,
+      "resident_terrain_chunks": 125,
+      "evidence": "out/pc-visual/v142/evidence-far-failed/manifest.json",
+      "limits": "Same scene and120s limit as v141 diagnostic; emulator results, neither all12-seasons nor PC comparison accepted"
+    },
+    {
+      "name": "installed-facilities-six-normal-commands",
+      "status": "fail",
+      "log": "out/pc-visual/v142-facilities-normal-installed.txt",
+      "limits": "Normal commands tested before independent overview/lifecycle tail; complete status depends on terminal report",
+      "normal_command_and_renderer_checks": 247,
+      "normal_commands": "all6pass",
+      "scene_far_and_pause_resume": "pass",
+      "failure": "10s Activity destruction barrier timed out; no weakened assertion",
+      "evidence": "out/pc-visual/v142/evidence-facilities/manifest.json"
+    }
+  ],
+  "inherited": "docs/pc-visual/validation-v141-working.json",
+  "hardware": {
+    "PC_reference": "NOT_AVAILABLE",
+    "ARM": "NOT_RUN",
+    "emulator": "API29 x86_64 host OpenGL"
+  },
+  "remaining": [
+    "All v141 unresolved source effects/outline/fog/visual reference",
+    "Uniform coordinate conversion remains pending; source-machine scale proof recorded",
+    "Installed full scenery/city/facility/rig validation pending",
+    "Remaining35 far scenery uploads at120s; installed full validation incomplete"
+  ],
+  "install": {
+    "status": "pass",
+    "main_log": "out/pc-visual/v142-install-main.txt",
+    "test_log": "out/pc-visual/v142-install-test.txt",
+    "device_APK_byte_checks": "out/pc-visual/v142-installed-apk-byte-check.json",
+    "autosave_preserved_before_test": true,
+    "autosave_after_test_byte_exact": true,
+    "autosave_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "autosave_after_facilities_process_exit_byte_exact": true,
+    "facilities_target_process_exited": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceArchiveSha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+  "source": {
+    "bank": 0,
+    "slot": 1,
+    "headerResource": 2282,
+    "waveResource": 2281,
+    "soundIds": [
+      1
+    ],
+    "eventRole": "UNVERIFIED",
+    "status": "ORIGINAL_PCM_BYTES_AND_NATIVE_FORMAT_VERIFIED_PLAYBACK_PENDING",
+    "descriptorOffset": 160,
+    "descriptorHex": "0000320144ac00480200010000000000e20b000000360000c4170000000000000000000000100000",
+    "descriptorSha256": "6fe69c78081554f61130386538525d159048b18f2ab3c4f45c2265cda68a3693",
+    "rawSampleOffset": 13824,
+    "rawSampleBytes": 6084,
+    "pcmS16leSha256": "0781cc395a7e0f0f777508e4e8b0da95691e83d1ca33a40c98c2dab6ecca12c3",
+    "sampleRate": 44100,
+    "channels": 1,
+    "samples": 3042,
+    "durationSeconds": 0.06897959183673469,
+    "asset": "wav/bank-00-slot-001.wav",
+    "wavSha256": "a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6",
+    "peakS16": 16799,
+    "rmsDbfs": -15.02245727042361,
+    "sampleFlagsRaw": 0,
+    "loopFlagRaw": 0,
+    "loopStartRaw": 0,
+    "loopStartSample": null,
+    "loopEndSample": null,
+    "loopStatus": "ORIGINAL_LOOP_FIELDS_RETAINED_COMPLETE_PLAY_POLICY_PENDING",
+    "gainPitchRawHex": "000000000000000000100000",
+    "nativeFormatHex": "0100010044ac000088580100020010000000"
+  },
+  "asset": "audio/pc/ui-close-1.wav",
+  "nativeBinding": {
+    "negativeReturnRaw": -2,
+    "nativeSoundId": 1,
+    "callers": [
+      "4dd8c0 flags8 without flags2",
+      "63b270 child1237"
+    ],
+    "originalDispatch": "4d0570 -> 6e98b0 bank0 slot1"
+  },
+  "androidBinding": "Actual AlertDialog OnCancel callback; BACK/outside cancellation only, no ordinary dismiss or rule failure inference",
+  "status": "SOURCE_CLOSE_BRANCH_AND_PCM_VERIFIED_ANDROID_INSTALL_PENDING",
+  "limits": [
+    "Explicit native child lookup and window callback fixture boundaries; original OS routing not emulated.",
+    "Other generic UI interactions retain mobile composition; no complete PC UI sound matrix claim."
+  ]
+}
