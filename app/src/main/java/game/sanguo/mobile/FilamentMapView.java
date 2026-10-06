@@ -1814,6 +1814,25 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 p.setTextSize(11*d);c.drawText("点击跳过",left+height+8*d,top+77*d,p);
             }
         }
+        /** Persistent state information, independent of the still unbound PC fire emitter. */
+        private void drawSourceFireState(Canvas c){
+            if(snapshot.ground.pcMap==null)return;
+            float d=getResources().getDisplayMetrics().density;int labels=0;
+            for(MapSceneSnapshot.FireState fire:snapshot.fires){
+                if(fire.remaining<=0||!visible(fire.hex))continue;
+                float wx=snapshot.ground.grid.x(fire.hex),wz=snapshot.ground.grid.z(fire.hex),height=snapshot.ground.surface.at(fire.hex)+.04f;
+                float x=camera.screenX(wx,wz,height),y=camera.screenY(wx,wz,height);
+                p.setStyle(Paint.Style.FILL);p.setColor(0xff5b2815);c.drawCircle(x,y,4*d,p);
+                p.setColor(0xffffbc6a);c.drawCircle(x,y,2*d,p);
+                // Every visible cell is marked. Keep the extra text bounded,
+                // including reduced motion, pause, LOW quality and overview.
+                if(camera.span<32&&labels++<32){
+                    float font=11*getResources().getDisplayMetrics().scaledDensity;p.setTextSize(font);float width=p.measureText(fire.label),baseline=y-7*d;
+                    p.setColor(0xff321b14);c.drawRoundRect(x-width/2-3*d,baseline-font-3*d,x+width/2+3*d,baseline+font*.25f+3*d,3*d,3*d,p);
+                    p.setColor(0xffffd0a2);c.drawText(fire.label,x-width/2,baseline,p);
+                }
+            }
+        }
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
             // Screen source art owns the viewport during its brief cue.
@@ -1860,6 +1879,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 selectedSite=true;selectedSite(c,item.site.cells,0xffffd576);
             }
             if(!selectedSite&&snapshot.selected!=null)selectedCell(c,snapshot.selected,0xffffd576);
+            drawSourceFireState(c);
             if(draggingUnit){selectedCell(c,dragTarget,dragPlan==null?0xffff7979:0xff6ddcc5);drawDragGhost(c);}
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){

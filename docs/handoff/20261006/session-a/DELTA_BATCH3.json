@@ -1,0 +1,60 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parentBatchCommit": "08a57f802bd9f40d9b6a3f77276ac49106fd754c",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeCommonBaseSha256": "185c3979c4fb2e9bf5f35d19ed8a0e579b83b22959ce6f0a7a9b87fbc932f71a",
+      "beforeBatchSha256": "ca12b46aec30a0967d51f2101abeafc22759653daf77328c082b3403d653c9b3",
+      "afterSha256": "f11b30cf2914057fbbcb6d016ae01f11b57a9c4003d2c4ad720afb62aff01437",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "beforeCommonBaseSha256": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+      "beforeBatchSha256": "864af6710d6515c2c9aedb4780f0ae17bfc666fb334f90b95b3066b96381d501",
+      "afterSha256": "2f98f88083500b968936fad839a908cd404c08bb5e2266f1005e6570abdfb275",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "beforeCommonBaseSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58",
+      "beforeBatchSha256": "d73d34aea94d9b3ad0781eafb098fa6a5e7a3094250ca7fc987ef090971bc827",
+      "afterSha256": "f60212c8f9dfca66de89864fa15836e4d9010e7241552efda6ac1d3b7258ebff",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiTheme.java",
+      "beforeCommonBaseSha256": "3ffed703800dcf0ba242c74541d1b7fa35a02b3c50eacd75dc013d3cefd4ca21",
+      "beforeBatchSha256": "e810a7abc9a57cd2be25560045e917095359a8c9ccde6a5ed5dc40dd9711936e",
+      "afterSha256": "0a15523b3ddac296f9ea3e9f542e7f91f7bf06835fcb1d0946b35b7a39c3de32",
+      "owner": "A"
+    }
+  ],
+  "protectedInputsChecked": 699,
+  "protectedInputsUnchanged": true,
+  "jni4AndPinned168Unchanged": true,
+  "conflicts": [],
+  "mergedBWip": false,
+  "originalPcFireRestored": false,
+  "fireStateMarker": "real immutable FireState only; new APK normal FIRE/expiry/load pending",
+  "latestSourceMediaJoins": 10720,
+  "sourceMediaUnknowns": 0,
+  "currentGaijiNames": [
+    "孔伷",
+    "司馬伷",
+    "朱儁",
+    "劉璝"
+  ],
+  "allPngShaVerified": 2892,
+  "dynamicAgeChecks": 160806,
+  "dynamicSelectors": 62,
+  "normalAndroidMediaValidated": false,
+  "newApkBuilt": false,
+  "newApkInstalled": false,
+  "armAccepted": false,
+  "completeGoal": false,
+  "freeBytes": 320421888,
+  "original4301InputsGuard": "PRESERVATION_BATCH3.json: unchanged original source/head/status",
+  "finalJavaCompile": "353 SDK35 source/resource compile plus UiTheme/FilamentMapView/SceneMesh incremental compile PASS"
+}

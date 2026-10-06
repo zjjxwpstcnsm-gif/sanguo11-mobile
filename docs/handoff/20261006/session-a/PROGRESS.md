@@ -13,3 +13,13 @@ OOM：正在用实际生产地形路径执行384MiB桌面堆诊断，仅CPU证�
 实际PC地形共享同位置顶点、只上传原unlit shaders读取的UV0（未读取UV1声明别名保留）、16种上限的同字节索引模板复用；保留源全部三角面/水/网格。旧窗口先筛为目标可见覆盖，不在近景任务捕获全图覆盖。MapHost.release清空detachedWorld/ground/投影缓存/回调；Filament释放原有CPU/GPU。增加实际Java堆/限制/nativeHeapAllocated及主机数日志，不将GPU估计称峰值。
 
 384MiB桌面生产路径旧版全图→近景→全图OOM在Arrays.copyOf/SurfaceBuilder.mesh；修复后4次往返全Save/RNG不变。全图唯一CPU数组177,286,368→60,182,568B（约66%减少）。仅CPU桌面，真实截图设备栈、native/GPU/Android长生命周期仍待。16个PC/旧图窗口原indexed xyz/UV0/三角顺序、水、网格与旧图全部属性SHA相同；实际原PC地图622,065项mesh/picking/save检查通过。SDK35实际353个生产Java+AAPT2资源编译和架构静态边界通过。未做dex/R8/签名/完整APK构建和安装，不称手机OOM已关闭。
+
+## 第三批：火状态信息、最新身份和原caller证据
+
+PC地图直接消费真实FireState位置/剩余旬显示持久信息标记，全部可见格有标记、近景最多32文字，暂停/低画质/缩放/读档的实际效果仍待新包。保留旧工程火粒子禁用，没有将标记称为原火焰恢复。完成原EXE命名火計/滅火静态caller/原四参数opcode22与部分voice原profile70取证；真实持久火控制器/发言角色/准入/材质生命周期仍未知。
+
+最新16来源实际保存媒体投影10720身份与manifest精确连接、未知0，四字形当前名孔伷/司馬伷/朱儁/劉璝准确native/recordSHA；695个独立正常头像资产被本轮source当前年解析，全部2892 PNG原SHA核对。正常Android目录/所有caller不能据此宣称通过。动态原年龄查找再次160806检查/32160向量/62selector通过。全source-map静态79条件库存已记录；原声producer/长曲与-22仍缺。
+
+基线384MiB桌面复现重复轮OOM栈在TerrainMaterialField.attach数组申请，而首轮在SurfaceBuilder.mesh/Arrays.copyOf，两处栈均保留在Git批次证据，属于同大数组驻留峰值风险；不将它们当用户ARM栈。SDK35生产353 Java/资源编译是部分构建证据，没有可安装新APK；安装/完整用户2.6GiB备份及ARM仍待空间/设备。
+
+最终只读保护复核：原目录4301受守卫路径/HEAD52315bf0/dirtystatus1305完全不变，PC EXE SHA全等。第三批所有生产增量A拥有，699核心/B/Unity/桥接/JNI/配置路径与基点全等，168固定输入全等，无B WIP合入。小尺寸PC视窗的scratch容量按含外部32格的完整16×16块上限保留；正常200源输出容量相同。主题保留选中/焦点语义色，富文本只改变Span，不替换Editable字符/光标或触发重复TextWatcher。

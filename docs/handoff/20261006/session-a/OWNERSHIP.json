@@ -30,7 +30,20 @@
     "docs/handoff/20261006/session-a/run_mesh_parity.py",
     "docs/handoff/20261006/session-a/run_android_java_compile.py",
     "docs/handoff/20261006/session-a/ANDROID_JAVA_COMPILE.json",
-    "docs/handoff/20261006/session-a/DELTA_BATCH2.json"
+    "docs/handoff/20261006/session-a/DELTA_BATCH2.json",
+    "docs/handoff/20261006/session-a/MediaIdentityProbe.java",
+    "docs/handoff/20261006/session-a/run_media_identity_audit.py",
+    "docs/handoff/20261006/session-a/MEDIA_IDENTITY_AUDIT.json",
+    "docs/handoff/20261006/session-a/FIRE_STATE_UI.md",
+    "docs/handoff/20261006/session-a/inspect_fire_calls.py",
+    "docs/handoff/20261006/session-a/PC_FIRE_CALLS.json",
+    "docs/handoff/20261006/session-a/SOURCE_MAP_AUDIT.json",
+    "docs/handoff/20261006/session-a/DELTA_BATCH3.json",
+    "docs/handoff/20261006/session-a/HOST_VALIDATION_NOTES.md",
+    "docs/handoff/20261006/session-a/DYNAMIC_PORTRAIT_AUDIT.json",
+    "docs/handoff/20261006/session-a/INTEGRATION_REQUEST.md",
+    "docs/handoff/20261006/session-a/TEST_MATRIX.json",
+    "docs/handoff/20261006/session-a/PRESERVATION_BATCH3.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

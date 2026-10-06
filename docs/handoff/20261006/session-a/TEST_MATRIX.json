@@ -1,0 +1,89 @@
+{
+  "completeGoal": false,
+  "rows": [
+    {
+      "item": "complete-source",
+      "status": "PASS",
+      "evidence": "10714 paths/794435386 bytes, SHA/pinned168/JNI4",
+      "next": "final delta guard"
+    },
+    {
+      "item": "palette16",
+      "status": "HOST PASS",
+      "evidence": "13273 checks; 16 source47 slots/9 engineering; all opaque/contrast>=4.5",
+      "next": "new APK menus/map deep surfaces"
+    },
+    {
+      "item": "terrain-oom",
+      "status": "HOST FIX VERIFIED",
+      "evidence": "baseline384MiB OOM; retained177286368→60182568B;4 returns passed",
+      "next": "Android Java/native/GPU peaks/all16 preview/Home/rotation/reopen/save"
+    },
+    {
+      "item": "terrain-parity",
+      "status": "HOST PASS",
+      "evidence": "16 indexed triangles/UV/source water/grid exact;622065 map/picking/save checks",
+      "next": "new APK actual pixels/driver lifecycle"
+    },
+    {
+      "item": "android-compile",
+      "status": "COMPILE PASS",
+      "evidence": "353 production Java SDK35 +aapt2 resources",
+      "next": "Gradle/dex/R8/sign/new APK install"
+    },
+    {
+      "item": "fire-state-ui",
+      "status": "SOURCE COMPILE",
+      "evidence": "real FireState positions/remaining static markers; no local expiry/RNG",
+      "next": "normal reachable FIRE/EXTINGUISH/expiry/load/low/pause"
+    },
+    {
+      "item": "pc-fire-controller",
+      "status": "PENDING",
+      "evidence": "named supplied EXE fire/extinguish callers recorded",
+      "next": "original cell emitter/controller/material/lifetime and chains"
+    },
+    {
+      "item": "identity16",
+      "status": "HOST PASS",
+      "evidence": "10720 exact joins/0 unknown;2892 PNG SHA;current four gaiji",
+      "next": "actual Android all sources/forms/callers"
+    },
+    {
+      "item": "dynamic-age",
+      "status": "HOST PASS",
+      "evidence": "160806 checks/10720 identities/62 selectors/32160 vectors",
+      "next": "ordinary/fullscreen pixels/crop/timing/lifecycle"
+    },
+    {
+      "item": "map-bgm-voice-event",
+      "status": "PENDING",
+      "evidence": "source policies retained; normal producer contract missing",
+      "next": "B frozen token/scene/real actor/profile facts"
+    },
+    {
+      "item": "music-continuity",
+      "status": "PENDING",
+      "evidence": "0.995 retained;capture-22 not resolved",
+      "next": "new package original full PCM/initialization evidence"
+    },
+    {
+      "item": "save-preservation",
+      "status": "NO DEVICE MUTATION",
+      "evidence": "no installation/data clearing;source guards",
+      "next": "backup entire user files then install/restore/readSHA"
+    },
+    {
+      "item": "arm",
+      "status": "PENDING",
+      "evidence": "ADB only5554/5582 x86_64",
+      "next": "real ARM long flow/device/API/ABI/APK SHA"
+    },
+    {
+      "item": "final-combination",
+      "status": "PENDING",
+      "evidence": "A only/no B WIP merge",
+      "next": "A+B completed frozen source→new combo APK→fresh matrix"
+    }
+  ]
+}

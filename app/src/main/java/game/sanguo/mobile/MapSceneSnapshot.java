@@ -127,8 +127,8 @@ final class MapSceneSnapshot {
         }
     }
     static final class FireState {
-        final Hex hex;final int remaining;
-        FireState(War.Fire f){hex=f.hex;remaining=f.remaining;}
+        final Hex hex;final int remaining;final String label;
+        FireState(War.Fire f){hex=f.hex;remaining=f.remaining;label="火 · "+remaining+"旬";}
     }
     final int month;
     /** Source odd-q connection bits, derived only from detached live wall values. */

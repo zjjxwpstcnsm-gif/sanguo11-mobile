@@ -245,7 +245,7 @@ final class SceneMesh {
             // Maximum capacity for one 16x16 chunk. The previous per-chunk
             // allocation discarded up to 1.5 MiB of scratch on each iteration.
             // Keep one task-local buffer; only immutable used ranges escape.
-            if(scratch==null){int cells=Math.min(16,g.width)*Math.min(16,g.height);scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}
+            if(scratch==null){int cells=g.pcMap==null?Math.min(16,g.width)*Math.min(16,g.height):16*16;scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}
             else scratch.reset();
             SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){

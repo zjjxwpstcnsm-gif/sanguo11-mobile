@@ -1,0 +1,1037 @@
+{
+  "scope": "static all source-map branches in production Java; not automatic evidence of wrong suppression",
+  "rows": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcSites.java",
+      "line": 47,
+      "condition": "if(g.pcMap==null||item.site==null)return null;",
+      "context": [
+        "    Placement placement(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){",
+        "        if(g.pcMap==null||item.site==null)return null;",
+        "        for(Placement p:placements){",
+        "            if((p.kind<6?0:p.kind==6?2:1)!=item.kind)continue;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneCamera.java",
+      "line": 58,
+      "condition": "heightLimit=ground.pcMap==null?TerrainSurface.MAX_HEIGHT:game.sanguo.core.PcMap.MAX_HEIGHT;",
+      "context": [
+        "    void clampTo(MapSceneSnapshot.Ground ground){",
+        "        heightLimit=ground.pcMap==null?TerrainSurface.MAX_HEIGHT:game.sanguo.core.PcMap.MAX_HEIGHT;",
+        "        sanitize();x=Math.max(ground.minX,Math.min(ground.maxX,x));z=Math.max(ground.minZ,Math.min(ground.maxZ,z));",
+        "    }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
+      "line": 49,
+      "condition": "if(g.pcMap!=null)throw new IllegalStateException(\"PC map requires source scenery; legacy placement rejected\");",
+      "context": [
+        "            List<SceneMesh> previous,FieldAssets assets,SceneMesh.TerrainWindow window)throws Exception {",
+        "        if(g.pcMap!=null)throw new IllegalStateException(\"PC map requires source scenery; legacy placement rejected\");",
+        "        // At national scale retain every far triangle, but batch 16x16 cells.",
+        "        // Near/mid streaming retains its existing 8x8 granularity and edit halo."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 154,
+      "condition": "if(g.pcMap!=null)return null; // Source scenery is streamed with the same quarter-grid as playable terrain.",
+      "context": [
+        "    static SceneMesh backdrop(MapSceneSnapshot.Ground g){",
+        "        if(g.pcMap!=null)return null; // Source scenery is streamed with the same quarter-grid as playable terrain.",
+        "        float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;",
+        "        for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++)if(g.valid(new Hex(q,r))){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 168,
+      "condition": "b.vertex(minX+q*step,g.pcMap==null?-.04f:g.surface.pcLandHeight(minX+q*step,minZ+r*step)-.015f,minZ+r*step,0xffffffff);",
+      "context": [
+        "        for(int r=0;r<=rows;r++)for(int q=0;q<=columns;q++)",
+        "            b.vertex(minX+q*step,g.pcMap==null?-.04f:g.surface.pcLandHeight(minX+q*step,minZ+r*step)-.015f,minZ+r*step,0xffffffff);",
+        "        for(int r=0;r<rows;r++)for(int q=0;q<columns;q++){",
+        "            int n=r*(columns+1)+q,next=n+columns+1;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 173,
+      "condition": "SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;",
+      "context": [
+        "        }",
+        "        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;",
+        "        if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);",
+        "        // Identical weights, lighting frame, macro tone and shore data to the foreground."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 174,
+      "condition": "if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);",
+      "context": [
+        "        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;",
+        "        if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);",
+        "        // Identical weights, lighting frame, macro tone and shore data to the foreground.",
+        "        new TerrainMaterialField(g).attachBackdrop(m);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 220,
+      "condition": "int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;",
+      "context": [
+        "        List<int[]> requests=new ArrayList<>();",
+        "        int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;",
+        "        for(int r=-margin;r<rLimit;r+=16)for(int q=-margin;q<qLimit;q+=16)requests.add(new int[]{q,r});",
+        "        if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 231,
+      "condition": "fingerprint=(fingerprint^(g.pcMap==null?0:64))*1099511628211L;",
+      "context": [
+        "            fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;",
+        "            fingerprint=(fingerprint^(g.pcMap==null?0:64))*1099511628211L;",
+        "            fingerprint=(fingerprint^lod^(window!=null&&window.span<48?0x12100:0))*1099511628211L;",
+        "            // Grid-bearing chunks may not retain another force/research state's lines."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 248,
+      "condition": "if(scratch==null){int cells=Math.min(16,g.width)*Math.min(16,g.height);scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}",
+      "context": [
+        "            // Keep one task-local buffer; only immutable used ranges escape.",
+        "            if(scratch==null){int cells=Math.min(16,g.width)*Math.min(16,g.height);scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}",
+        "            else scratch.reset();",
+        "            SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 252,
+      "condition": "Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);",
+      "context": [
+        "            for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){",
+        "                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);",
+        "                minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);",
+        "                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 254,
+      "condition": "int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);",
+      "context": [
+        "                minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);",
+        "                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);",
+        "                if(g.pcMap!=null){",
+        "                    for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 255,
+      "condition": "if(g.pcMap!=null){",
+      "context": [
+        "                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);",
+        "                if(g.pcMap!=null){",
+        "                    for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){",
+        "                        float vx=x-.5f+ix*.25f,vz=z-.5f+iz*.25f;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 274,
+      "condition": "m.pcGround=g.pcMap!=null;",
+      "context": [
+        "                m.landIndexCount=landCount;",
+        "                m.pcGround=g.pcMap!=null;",
+        "                if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;",
+        "                new TerrainMaterialField(g).attach(m,stats);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 277,
+      "condition": "SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);",
+      "context": [
+        "                new TerrainMaterialField(g).attach(m,stats);",
+        "                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);",
+        "                fine.pcGround=g.pcMap!=null;",
+        "                if(lod==0&&g.pcMap==null)fine=detail(fine,g);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 278,
+      "condition": "fine.pcGround=g.pcMap!=null;",
+      "context": [
+        "                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);",
+        "                fine.pcGround=g.pcMap!=null;",
+        "                if(lod==0&&g.pcMap==null)fine=detail(fine,g);",
+        "                // Transport the entire LOD family only after canonical height/material"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 279,
+      "condition": "if(lod==0&&g.pcMap==null)fine=detail(fine,g);",
+      "context": [
+        "                fine.pcGround=g.pcMap!=null;",
+        "                if(lod==0&&g.pcMap==null)fine=detail(fine,g);",
+        "                // Transport the entire LOD family only after canonical height/material",
+        "                // sampling. Water/land and all shared attributes follow one rounded shore."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 287,
+      "condition": "if(g.pcMap!=null)fine.sourceWater=sourceWater(g,q,r,fine);",
+      "context": [
+        "                fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;",
+        "                if(g.pcMap!=null)fine.sourceWater=sourceWater(g,q,r,fine);",
+        "                // One immutable GPU batch per streamed ground chunk. No UI-thread",
+        "                // terrain sampling/raycast per grid cell during camera gestures."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 308,
+      "condition": "if(g.pcMap.coarseWaterByte(x,y)==0)continue;",
+      "context": [
+        "        for(int x=left;x<=right;x++)for(int y=top;y<=bottom;y++){",
+        "            if(g.pcMap.coarseWaterByte(x,y)==0)continue;",
+        "            float wx=x-originX,wz=y-originZ;Hex cell=g.grid.cell(wx+.5f,wz+.5f);",
+        "            if(q<0){if(g.valid(cell))continue;}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 362,
+      "condition": "int faces=16*16*8*(g.pcMap==null?1:2)*2;",
+      "context": [
+        "    private static SurfaceBuilder gridScratch(MapSceneSnapshot.Ground g){",
+        "        int faces=16*16*8*(g.pcMap==null?1:2)*2;",
+        "        return new SurfaceBuilder(faces*4,faces*6);",
+        "    }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "line": 381,
+      "condition": "int segments=g.pcMap==null?1:2;",
+      "context": [
+        "                // join without drawing over a mountain/restricted cell interior.",
+        "                int segments=g.pcMap==null?1:2;",
+        "                for(int part=0;part<segments;part++){",
+        "                    float t0=part/(float)segments,t1=(part+1)/(float)segments;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "line": 27,
+      "condition": "pcMap=NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty()&&w.columnStaggered?PcMap.get():null;",
+      "context": [
+        "            originalNational=NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty();",
+        "            pcMap=NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty()&&w.columnStaggered?PcMap.get():null;",
+        "            width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);",
+        "            Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "line": 161,
+      "condition": "if(g.pcMap==null)return Collections.emptyMap();",
+      "context": [
+        "    private static Map<Hex,Integer> wallConnections(Ground g,List<Item> items){",
+        "        if(g.pcMap==null)return Collections.emptyMap();",
+        "        Map<SourceGridCoord,Item> healthy=new HashMap<>();",
+        "        for(Item i:items)if(wallType(i)&&i.facility.complete&&i.facility.hp>=Math.min(i.facility.maxHp/2,500))healthy.put(g.source(i.hex),i);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 349,
+      "condition": "if(snapshot==null||snapshot.ground.pcMap==null)return;",
+      "context": [
+        "    private void syncPcGround(){",
+        "        if(snapshot==null||snapshot.ground.pcMap==null)return;",
+        "        try{",
+        "            if(pcWaterMaterial==null){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 396,
+      "condition": "if(pcGroundMaterial==null||snapshot==null||snapshot.ground.pcMap==null)return;",
+      "context": [
+        "    private void syncPcGroundFog(){",
+        "        if(pcGroundMaterial==null||snapshot==null||snapshot.ground.pcMap==null)return;",
+        "        float near=(float)(camera.nearPlane()/.05),far=(float)(camera.farPlane()/.05);",
+        "        if(pcFogMonth==snapshot.month&&pcFogNear==near&&pcFogFar==far)return;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 406,
+      "condition": "return snapshot!=null&&snapshot.ground.pcMap!=null&&pcGroundMaterial!=null?pcGroundMaterial.getDefaultInstance():(overview?overviewGroundMaterial:groundMaterial).getDefaultInstance();",
+      "context": [
+        "    private MaterialInstance landMaterial(boolean overview){",
+        "        return snapshot!=null&&snapshot.ground.pcMap!=null&&pcGroundMaterial!=null?pcGroundMaterial.getDefaultInstance():(overview?overviewGroundMaterial:groundMaterial).getDefaultInstance();",
+        "    }",
+        "    private void loadWaterMaterial(Context context)throws java.io.IOException {"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 616,
+      "condition": "Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||next.ground.pcMap!=null&&scenerySeasonChanged||!excluded.equals(woodExcluded);",
+      "context": [
+        "        if(pendingFit)fit();",
+        "        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||next.ground.pcMap!=null&&scenerySeasonChanged||!excluded.equals(woodExcluded);",
+        "        if(groundChanged||woodsChanged){",
+        "            outputVerified=false;outputStatus=\"WAITING_MESH\";uniformOutputCount=0;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 646,
+      "condition": "if(ground.pcMap!=null){",
+      "context": [
+        "        // Legacy vegetation retains its existing ground-first loading order.",
+        "        if(ground.pcMap!=null){",
+        "            long forestStart=System.nanoTime(),forestStartCpu=android.os.Debug.threadCpuTimeNanos();",
+        "            List<SceneMesh> source=new ArrayList<>(nativeAssets.buildWindow(ground,excluded,trees,window,month));"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 678,
+      "condition": "+\" sceneryWallMs=\"+(ground.pcMap!=null?sourceForestWall:done-forestStarted)/1e6+\" sceneryCpuMs=\"+(ground.pcMap!=null?sourceForestCpu:android.os.Debug.threadCpuTimeNanos()-forestCpu)/1e6+\" groundDeliveryBackpressureWallMs=\"+(forestStarted-groundDone)/1e6",
+      "context": [
+        "        android.util.Log.i(\"Sanguo3D\",\"Field CPU ready forestChunks=\"+forest.size()+\" totalMs=\"+(done-started)/1e6",
+        "            +\" sceneryWallMs=\"+(ground.pcMap!=null?sourceForestWall:done-forestStarted)/1e6+\" sceneryCpuMs=\"+(ground.pcMap!=null?sourceForestCpu:android.os.Debug.threadCpuTimeNanos()-forestCpu)/1e6+\" groundDeliveryBackpressureWallMs=\"+(forestStarted-groundDone)/1e6",
+        "            +\" processGcMs=\"+(gc<0||endGc<0?-1:endGc-gc)+\" processAllocatedBytes=\"+(allocated<0||endAllocated<0?-1:endAllocated-allocated)",
+        "            +\" interrupted=\"+Thread.currentThread().isInterrupted());"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 769,
+      "condition": "\" source_effects=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-SEFF-map-quads/source-critical-first/other-combat-pending\":\"legacy-compatible\")+(pcMapEffects==null?\" pc_map_fx=closed\":pcMapEffects.report())+(pcPresentations==null?\" pc_presentation=closed\":pcPresentations.report())+(presentationStage==null?\"\":presentationStage.report())+\" pc_map=\"+(snapshot!=null&&snapshot.ground.pcMap!=null)+\" pc_scenery=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-943-objects\":\"legacy-compatible\")+\" pc_sites=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source\":\"legacy-compatible\")+\" pc_units=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-rig-14-models-75-clips/event-mapping-provisional\":\"legacy-compatible\")+\" pc_season=\"+pcSeason+\" pc_texture_bytes=\"+pcBytes+",
+      "context": [
+        "            \" pc_ground_vertex_samples=\"+(pcGroundMaterial!=null?2:0)+\" pc_ground_outline=\"+(pcGroundOutlineMaterial!=null)+",
+        "            \" source_effects=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-SEFF-map-quads/source-critical-first/other-combat-pending\":\"legacy-compatible\")+(pcMapEffects==null?\" pc_map_fx=closed\":pcMapEffects.report())+(pcPresentations==null?\" pc_presentation=closed\":pcPresentations.report())+(presentationStage==null?\"\":presentationStage.report())+\" pc_map=\"+(snapshot!=null&&snapshot.ground.pcMap!=null)+\" pc_scenery=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-943-objects\":\"legacy-compatible\")+\" pc_sites=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source\":\"legacy-compatible\")+\" pc_units=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-rig-14-models-75-clips/event-mapping-provisional\":\"legacy-compatible\")+\" pc_season=\"+pcSeason+\" pc_texture_bytes=\"+pcBytes+",
+        "            \" frame_queued=\"+queued+\" texture_estimate_bytes=\"+(textureBytes+pcBytes)+\" \"+textureFormat+\" mip_upload_cpu_ms=\"+textureUploadCpuNanos/1e6+\" CPU提交ms P50/P95/P99=\"+percentile(times,.50)+\"/\"+percentile(times,.95)+\"/\"+percentile(times,.99)+\" samples=\"+cpuCount+\"（非驱动DrawCall/GPU帧时）\";",
+        "    }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 840,
+      "condition": "if(snapshot!=null&&snapshot.ground.pcMap!=null){",
+      "context": [
+        "                    }",
+        "                    if(snapshot!=null&&snapshot.ground.pcMap!=null){",
+        "                        // A normal map has no screen presentation to prepare. The",
+        "                        // committed cue owns its first decode/upload; playback still"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 886,
+      "condition": "if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}",
+      "context": [
+        "    private void animatePcMapEffects(float dt){",
+        "        if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}",
+        "        // Source startup shares no work with the initial terrain/texture/pose",
+        "        // upload burst. The normal map becomes usable before its native visual"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 890,
+      "condition": "if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;",
+      "context": [
+        "        // scene starts; deadlines stay bounded instead of competing with GC.",
+        "        if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;",
+        "        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene);",
+        "        // Source441b80 perspective normalizes every coefficient by far. This"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 891,
+      "condition": "if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene);",
+      "context": [
+        "        if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;",
+        "        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene);",
+        "        // Source441b80 perspective normalizes every coefficient by far. This",
+        "        // preserves clip ratios while abs(w)=view distance/far feeds4420a0's"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 898,
+      "condition": "private void closePcMapEffects(){if(pcMapEffects!=null){pcMapEffects.close();pcMapEffects=null;}}",
+      "context": [
+        "    }",
+        "    private void closePcMapEffects(){if(pcMapEffects!=null){pcMapEffects.close();pcMapEffects=null;}}",
+        "    private void clearPresentationFence(){if(presentationFence!=null&&engine!=null)engine.destroyFence(presentationFence);presentationFence=null;presentationDriverReady=false;}",
+        "    private void closePcPresentations(){clearPresentationFence();if(pcPresentations!=null){pcPresentations.close();pcPresentations=null;}if(presentationStage!=null){presentationStage.close();presentationStage=null;}presentationCue=null;presentationPhase=0;submittedPresentationCue=null;submittedPresentationPhase=Float.NaN;}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1100,
+      "condition": "final PcUnits.Selection nativeUnit=item.unit!=null&&assetGround.pcMap!=null?pcUnits.idle(item.unit):null;",
+      "context": [
+        "        final MapSceneSnapshot.Ground assetGround=snapshot.ground;",
+        "        final PcUnits.Selection nativeUnit=item.unit!=null&&assetGround.pcMap!=null?pcUnits.idle(item.unit):null;",
+        "        final PcSites nativeSiteAssets=pcSites;",
+        "        final PcSites.Placement nativeSite=nativeSiteAssets.placement(assetGround,item);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1105,
+      "condition": "if(assetGround.pcMap!=null&&nativeUnit==null&&nativeSite==null&&!nativeFacility){",
+      "context": [
+        "        final boolean nativeFacility=nativeFacilityAssets.supports(assetGround,item);",
+        "        if(assetGround.pcMap!=null&&nativeUnit==null&&nativeSite==null&&!nativeFacility){",
+        "            // An unsupported source object is a recorded restoration gap. Do not",
+        "            // load an authored mobile model as if it belonged to the PC pack."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1136,
+      "condition": "if(assetGround.pcMap!=null)throw new IllegalStateException(\"Original PC asset unavailable: \"+key+\": \"+error);",
+      "context": [
+        "            String error=assetWork.error(key);if(error==null){assetSyncPending=true;return null;}",
+        "            if(assetGround.pcMap!=null)throw new IllegalStateException(\"Original PC asset unavailable: \"+key+\": \"+error);",
+        "            if(missingAssets.add(key))android.util.Log.w(\"Sanguo3D\",\"Asset fallback \"+key+\": \"+error);",
+        "            source=SceneMesh.proxy(item.kind,0xffff00ff);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1192,
+      "condition": "if(snapshot!=null&&snapshot.ground.pcMap!=null)return \"\";",
+      "context": [
+        "        // and scaffolding are compatibility assets, never source restoration.",
+        "        if(snapshot!=null&&snapshot.ground.pcMap!=null)return \"\";",
+        "        return item.facility==null?\"\":item.facility.burning?\"fire\":!item.facility.complete&&!nativeFacility?\"scaffold\":\"\";",
+        "    }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1263,
+      "condition": "if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}",
+      "context": [
+        "    void critical(CriticalHit hit,float phase,android.graphics.drawable.Drawable portrait){",
+        "        if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}",
+        "        criticalPortrait=portrait;",
+        "        criticalHit=hit;criticalPhase=phase;overlay.invalidate();"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "legacy critical portrait suppression; source PcPresentations path preserved, unbound original callers remain unknown"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1276,
+      "condition": "if(snapshot.ground.pcMap!=null){clearEffects();return;}",
+      "context": [
+        "        // Unrecovered PC emitters must not fall through to mobile approximations.",
+        "        if(snapshot.ground.pcMap!=null){clearEffects();return;}",
+        "        combat.detail(quality==SceneQuality.LOW||thermal.constrained?0:quality==SceneQuality.MEDIUM?1:2);",
+        "        combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "confirmed old mobile fire/combat suppression; real FireState UI separately added, original PC cell emitter pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1344,
+      "condition": "camera.perspective=snapshot!=null&&snapshot.ground.pcMap!=null;",
+      "context": [
+        "    private void clampCamera(){",
+        "        camera.perspective=snapshot!=null&&snapshot.ground.pcMap!=null;",
+        "        camera.sanitize();if(snapshot!=null)camera.clampTo(snapshot.ground);",
+        "    }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1482,
+      "condition": "if(snapshot.ground.pcMap==null&&(item.site!=null||item.unit!=null&&!shape.source.pcUnit||item.facility!=null&&!(shape.source.pcDam&&item.facility.owner<0))){String key=\"flag:\"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flagShape.references++;flag=EntityManager.get().create();flagShape.build(flag);}",
+      "context": [
+        "            if(shape.source.uv!=null){instance=(shape.source.pcUnit||shape.source.pcFacilityRig?pcUnitMaterial:nativeBody()?pcSceneryMaterial:item.unit==null?siteMaterial:unitMaterial).createInstance();instance.setParameter(\"atlas\",shape.source.pcUnit?pcUnitSheets[shape.source.pcUnitModel]:shape.source.pcFacility?pcFacilitiesAtlas:shape.source.pcSite?pcSitesAtlas:item.site!=null?siteAtlas:item.unit!=null?unitAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));if(!nativeBody())instance.setParameter(\"damage\",0f);if(shape.source.pcUnit||shape.source.pcFacilityRig){alphaInstance=pcUnitAlphaMaterial.createInstance();bindPcUnitTextures();if(shape.source.pcFacilityRig){float[] single=new float[76*4];single[3]=1;instance.setParameter(\"members\",MaterialInstance.FloatElement.FLOAT4,single,0,76);alphaInstance.setParameter(\"members\",MaterialInstance.FloatElement.FLOAT4,single,0,76);}}shape.build(entity,instance,1,alphaInstance);}else shape.build(entity);",
+        "            if(snapshot.ground.pcMap==null&&(item.site!=null||item.unit!=null&&!shape.source.pcUnit||item.facility!=null&&!(shape.source.pcDam&&item.facility.owner<0))){String key=\"flag:\"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flagShape.references++;flag=EntityManager.get().create();flagShape.build(flag);}",
+        "            // Seven-cell occupancy is shown by the selection overlay; ground blends in the terrain field.",
+        "            if(!facilityOverlay(item,shape.source.pcFacility).isEmpty()){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "legacy geometry/flag suppression; no claim all original faction flags and states are restored"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1819,
+      "condition": "if(snapshot.ground.pcMap==null)return;",
+      "context": [
+        "        private void drawSourceFireState(Canvas c){",
+        "            if(snapshot.ground.pcMap==null)return;",
+        "            float d=getResources().getDisplayMetrics().density;int labels=0;",
+        "            for(MapSceneSnapshot.FireState fire:snapshot.fires){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 1922,
+      "condition": "p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?\"原版美术恢复中 · 部分演出暂缺 | \":\"\")+((pending>0)?\"3D 地形装载中… · 请稍候\":(draggingUnit?(dragPlan==null?\"移出范围 · 松手取消\":\"松手移动 · 消耗\"+dragPlan.cost):editorGrid?\"编辑网格临时显示 · 不修改游戏网格设置\":\"长按己方选中部队拖动 · 双指缩放/旋转\")),12,24*getResources().getDisplayMetrics().density,p);",
+      "context": [
+        "            }",
+        "            p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?\"原版美术恢复中 · 部分演出暂缺 | \":\"\")+((pending>0)?\"3D 地形装载中… · 请稍候\":(draggingUnit?(dragPlan==null?\"移出范围 · 松手取消\":\"松手移动 · 消耗\"+dragPlan.cost):editorGrid?\"编辑网格临时显示 · 不修改游戏网格设置\":\"长按己方选中部队拖动 · 双指缩放/旋转\")),12,24*getResources().getDisplayMetrics().density,p);",
+        "            if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split(\"\\n\")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}",
+        "            drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "line": 1149,
+      "condition": "if(map!=null&&map.sourceVisuals())return;",
+      "context": [
+        "        if(hit==null||body==null||!UiMotion.enabled())return;",
+        "        if(map!=null&&map.sourceVisuals())return;",
+        "        if(criticalFlash!=null)criticalFlash.dismiss();",
+        "        CriticalFlash flash=new CriticalFlash(this,world,hit,()->{if(criticalFlash!=null){body.removeView(criticalFlash);criticalFlash=null;}});"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "line": 12,
+      "condition": "WaterVisualField(MapSceneSnapshot.Ground ground){this.ground=ground;flows=ground.pcMap==null?null:new Samples();distances=ground.pcMap==null?null:new Samples();}",
+      "context": [
+        "    private final Samples flows,distances;",
+        "    WaterVisualField(MapSceneSnapshot.Ground ground){this.ground=ground;flows=ground.pcMap==null?null:new Samples();distances=ground.pcMap==null?null:new Samples();}",
+        "    /** Bounded memo of exact immutable-field results across neighboring chunks and",
+        "     * camera windows. Float-bit keys preserve signed zero. No quantization, terrain"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "line": 105,
+      "condition": "float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}",
+      "context": [
+        "        }",
+        "        float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}",
+        "        float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}",
+        "        /** Transport all fine vertices through the same original fan, including"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "line": 106,
+      "condition": "float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}",
+      "context": [
+        "        float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}",
+        "        float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}",
+        "        /** Transport all fine vertices through the same original fan, including",
+        "         * attributes sampled before transport. This keeps every LOD plane identical. */"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "line": 147,
+      "condition": "if(g.pcMap!=null){",
+      "context": [
+        "        void transport(SceneMesh mesh){",
+        "            if(g.pcMap!=null){",
+        "                // Source shoreline displacement is identically zero. Keep even",
+        "                // signed-zero addition semantics without allocating a float[2]"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcDams.java",
+      "line": 33,
+      "condition": "if(g.pcMap==null||item.facility==null||!item.facility.type.equals(\"military/DAM\"))return null;",
+      "context": [
+        "    Placement placement(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){",
+        "        if(g.pcMap==null||item.facility==null||!item.facility.type.equals(\"military/DAM\"))return null;",
+        "        var cell=g.source(item.hex);for(Placement p:placements)if(p.sourceX==cell.x&&p.sourceY==cell.y)return p;return null;",
+        "    }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilities.java",
+      "line": 84,
+      "condition": "boolean supports(MapSceneSnapshot.Ground ground,MapSceneSnapshot.Item item){return ground.pcMap!=null&&bindings.containsKey(kind(item.facility));}",
+      "context": [
+        "    }",
+        "    boolean supports(MapSceneSnapshot.Ground ground,MapSceneSnapshot.Item item){return ground.pcMap!=null&&bindings.containsKey(kind(item.facility));}",
+        "    String key(MapSceneSnapshot.Item item,int month,int lod){return \"pc-facility:\"+kind(item.facility)+\":\"+state(item.facility)+\":\"+quarter(month)+\":\"+(lod==0?0:1);}",
+        "    SceneMesh mesh(MapSceneSnapshot.Item item,int month,int lod){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcScenery.java",
+      "line": 64,
+      "condition": "if(g.pcMap==null)return Collections.emptyList();",
+      "context": [
+        "            SceneMesh.TerrainWindow window,int month)throws InterruptedException {",
+        "        if(g.pcMap==null)return Collections.emptyList();",
+        "        // National views upload the identical source far meshes in larger batches.",
+        "        // This changes ownership/culling granularity, never source model detail,"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java",
+      "line": 29,
+      "condition": "static boolean supports(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){return g.pcMap!=null&&item.facility!=null&&item.facility.complete&&item.facility.type.equals(\"military/CATAPULT_TOWER\");}",
+      "context": [
+        "    static int duration(TurnJournal.Event e){return firing(e)?DURATION_MILLIS:e.durationMillis();}",
+        "    static boolean supports(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){return g.pcMap!=null&&item.facility!=null&&item.facility.complete&&item.facility.type.equals(\"military/CATAPULT_TOWER\");}",
+        "    static int frame(float fraction){return Math.min(LAST_FRAME,Math.max(0,(int)((CombatVisual.fraction(fraction)*DURATION_MILLIS-DELAY_MILLIS)*.06f)));}",
+        "    static int frame(MapSceneSnapshot.Item item,TurnJournal.Event event,float fraction){return firing(event)&&item.key.equals(\"structure:\"+event.sourceKey.substring(1))?frame(fraction):0;}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 100,
+      "condition": "int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;",
+      "context": [
+        "        String id=\"journal:\"+event.id;",
+        "        int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;",
+        "        boolean critical=event.critical!=null;",
+        "        if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 103,
+      "condition": "if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+\":critical\",SoundEffects.Cue.CRITICAL);",
+      "context": [
+        "        if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}",
+        "        if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+\":critical\",SoundEffects.Cue.CRITICAL);",
+        "        completionSound(event);",
+        "        SoundEffects.Cue cue=switch(event.kind){case MOVE,ENTER,DEPLOY->SoundEffects.Cue.MARCH;case ATTACK,FACILITY_ATTACK,FACILITY_COUNTER->SoundEffects.Cue.ATTACK;case TACTIC->SoundEffects.Cue.TACTIC;case PLOT->SoundEffects.Cue.PLOT;case RECOVER->SoundEffects.Cue.COMPLETE;default->null;};"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 119,
+      "condition": "if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null&&(!sourceVisuals()||PcPresentationPlan.tacticSound(event)<0))sounds().event(\"journal:\"+event.id+\":critical\",SoundEffects.Cue.CRITICAL);}",
+      "context": [
+        "                // It does not also mute the already committed action.",
+        "                if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null&&(!sourceVisuals()||PcPresentationPlan.tacticSound(event)<0))sounds().event(\"journal:\"+event.id+\":critical\",SoundEffects.Cue.CRITICAL);}",
+        "                finishReplay(event);",
+        "            }"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 125,
+      "condition": "commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?originalCriticalDuration(e):0),e->sourceVisuals()?originalCriticalDuration(e):0);",
+      "context": [
+        "        }",
+        "        commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?originalCriticalDuration(e):0),e->sourceVisuals()?originalCriticalDuration(e):0);",
+        "        if(spatial!=null&&before!=null&&publishedSnapshot!=null&&before.ground==publishedSnapshot.ground){",
+        "            commandFinalSnapshot=publishedSnapshot;spatial.snapshot(before);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 134,
+      "condition": "return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();",
+      "context": [
+        "    int presentationDuration(TurnJournal.Event event){",
+        "        return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();",
+        "    }",
+        "    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 136,
+      "condition": "boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}",
+      "context": [
+        "    }",
+        "    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}",
+        "    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:OfficerPortrait.presentationSource(world,event.critical.officerId);}",
+        "    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 140,
+      "condition": "int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}",
+      "context": [
+        "    private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}",
+        "    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}",
+        "    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}",
+        "    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 141,
+      "condition": "boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}",
+      "context": [
+        "    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}",
+        "    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}",
+        "    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}",
+        "    void criticalEvent(TurnJournal.Event event,float fraction){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 142,
+      "condition": "boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}",
+      "context": [
+        "    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}",
+        "    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}",
+        "    void criticalEvent(TurnJournal.Event event,float fraction){",
+        "        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 144,
+      "condition": "if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}",
+      "context": [
+        "    void criticalEvent(TurnJournal.Event event,float fraction){",
+        "        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}",
+        "        if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null){",
+        "            int pcSound=PcPresentationPlan.tacticSound(event);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 196,
+      "condition": "TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);",
+      "context": [
+        "        if(commandEffects.done()){cancelCommandEffects();return;}",
+        "        TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);",
+        "        float elapsed=commandEffects.fraction()*(prelude+action);",
+        "        if(prelude>0&&elapsed<prelude){replayFrame(event,0);criticalEvent(event,elapsed/prelude);}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 413,
+      "condition": "void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}",
+      "context": [
+        "    void setCriticalSkip(Runnable skip){criticalSkip=skip;if(spatial!=null)spatial.criticalSkip(skip);}",
+        "    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}",
+        "    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f)techniquePhase(e);if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}",
+        "    boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcConstructibleWalls.java",
+      "line": 17,
+      "condition": "int kind=PcFacilities.kind(item.facility);if(g.pcMap==null||kind!=17&&kind!=28)return null;",
+      "context": [
+        "    static Placement placement(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){",
+        "        int kind=PcFacilities.kind(item.facility);if(g.pcMap==null||kind!=17&&kind!=28)return null;",
+        "        SourceGridCoord cell=g.source(item.hex);",
+        "        // EXE 5a0160 creates rawX=2*q+57, rawZ=2*r+(q&1)+57."
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "line": 45,
+      "condition": "if(map.sourceVisuals()&&!map.criticalSubmitted()){last=now-elapsed;map.postOnAnimation(tick);return;}",
+      "context": [
+        "                    if(!map.criticalReady()){map.postOnAnimation(tick);return;}",
+        "                    if(map.sourceVisuals()&&!map.criticalSubmitted()){last=now-elapsed;map.postOnAnimation(tick);return;}",
+        "                    if(!event.id.equals(work.announcedCritical)){work.announcedCritical=event.id;work.criticalsShown++;}",
+        "                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "line": 47,
+      "condition": "work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));",
+      "context": [
+        "                    if(!event.id.equals(work.announcedCritical)){work.announcedCritical=event.id;work.criticalsShown++;}",
+        "                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));",
+        "                    map.replayFrame(event,0);map.criticalEvent(event,work.criticalElapsed/criticalDuration);",
+        "                    if(applied){map.invalidateScene();map.setWorld(work.visual,null,-1);}"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "line": 51,
+      "condition": "if(ground.pcMap!=null)return pcHeight(ground.grid.x(h),ground.grid.z(h));",
+      "context": [
+        "    float target(Hex h){",
+        "        if(ground.pcMap!=null)return pcHeight(ground.grid.x(h),ground.grid.z(h));",
+        "        if(!ground.valid(h)||water(h)||ground.bases.contains(h))return 0;",
+        "        Float override=overrides.get(h);if(override!=null)return override;"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "line": 74,
+      "condition": "float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+      "context": [
+        "    }",
+        "    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+        "    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+        "    float sample(float x,float z){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "line": 75,
+      "condition": "float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+      "context": [
+        "    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+        "    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+        "    float sample(float x,float z){",
+        "        if(ground.pcMap!=null)return pcHeight(x,z);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "line": 77,
+      "condition": "if(ground.pcMap!=null)return pcHeight(x,z);",
+      "context": [
+        "    float sample(float x,float z){",
+        "        if(ground.pcMap!=null)return pcHeight(x,z);",
+        "        int ix=Math.round(x*2),iz=Math.round(z*2);",
+        "        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return quarterSample(x,z);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "line": 132,
+      "condition": "if(ground.pcMap!=null)return pcHeight(x,z);",
+      "context": [
+        "    float meshHeight(float x,float z){",
+        "        if(ground.pcMap!=null)return pcHeight(x,z);",
+        "        WaterVisualField.Shoreline.Point point=ground.shoreline.inverse(x,z);x=point.x;z=point.z;",
+        "        return canonicalMeshHeight(x,z);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "line": 152,
+      "condition": "if(ground.pcMap!=null)return pcRayHeight(camera,sx,sy);",
+      "context": [
+        "    float rayHeight(SceneCamera camera,float sx,float sy){",
+        "        if(ground.pcMap!=null)return pcRayHeight(camera,sx,sy);",
+        "        float x=camera.worldX(sx,sy,0),base=camera.worldZ(sx,sy,0);",
+        "        float cotX=(float)(camera.cos()/camera.sin()*camera.backX()),cotZ=(float)(camera.cos()/camera.sin()*camera.rightX());"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "line": 12,
+      "condition": "TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.pcMap==null?ground.waterField():null;}",
+      "context": [
+        "    final WaterVisualField waterField;",
+        "    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.pcMap==null?ground.waterField():null;}",
+        "    float[] sample(float x,float z){return sample(x,z,0);}",
+        "    float[] sample(float x,float z,float slope){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "line": 17,
+      "condition": "if(ground.pcMap!=null){",
+      "context": [
+        "        Hex center=ground.grid.cell(x,z);",
+        "        if(ground.pcMap!=null){",
+        "            if(!ground.valid(center))return new float[]{0,1,0,0};",
+        "            switch(TYPES[ground.terrain[center.r*ground.width+center.q]]){"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
+      "line": 39,
+      "condition": "if(g.pcMap==null)return Collections.emptyList();List<Hex> anchors=new ArrayList<>();",
+      "context": [
+        "    List<Hex> anchors(MapSceneSnapshot.Ground g){",
+        "        if(g.pcMap==null)return Collections.emptyList();List<Hex> anchors=new ArrayList<>();",
+        "        for(Placement p:placements){Hex h=g.grid.cell(p.x-g.sourceOriginX,p.z-g.sourceOriginY);if(g.valid(h))anchors.add(h);}",
+        "        return Collections.unmodifiableList(anchors);"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
+      "line": 44,
+      "condition": "if(g.pcMap==null)return Collections.emptyList();int quarter=PcFacilities.quarter(month),size=window.span<14?8:16;",
+      "context": [
+        "    List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,List<SceneMesh> previous,SceneMesh.TerrainWindow window,int month)throws InterruptedException {",
+        "        if(g.pcMap==null)return Collections.emptyList();int quarter=PcFacilities.quarter(month),size=window.span<14?8:16;",
+        "        Map<Long,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)if(m.pcCliffWall)cache.put(key(m.chunkQ,m.chunkR),m);",
+        "        Map<Long,List<Placement>> groups=new TreeMap<>();"
+      ],
+      "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+    }
+  ],
+  "rowCount": 79,
+  "knownSuppression": "FilamentMapView.animateEffects legacy combat/fire bypass; state UI restored separately, original cell emitter pending",
+  "mediaContractStatus": "BGM/voice/event58 no normal fact producer verified",
+  "normalAndroidValidated": false,
+  "reviewBoundary": "All79 branches inventoried; source geometry vs intentionally suppressed legacy approximations separated from pending original status/effect restoration. Actual APK/PC pixels are still required."
+}

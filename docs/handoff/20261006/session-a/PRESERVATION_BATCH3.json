@@ -1,0 +1,16 @@
+{
+  "originalDirectory": "/Users/paopao/workspace/sanguo11-mobile",
+  "originalHeadBefore": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+  "originalHeadAfter": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+  "headUnchanged": true,
+  "fileCountChecked": 4301,
+  "changedBaselinePaths": [],
+  "statusSha256Before": "c3c34e11c53ee4aec13915f7629c21f7eca75534a34ed0cd9c57a6b0089499a0",
+  "statusSha256After": "c3c34e11c53ee4aec13915f7629c21f7eca75534a34ed0cd9c57a6b0089499a0",
+  "dirtyEntriesAfter": 1305,
+  "statusUnchanged": true,
+  "readonlyPcExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "resetCleanOrOverwritePerformed": false,
+  "installedApkThisSession": false,
+  "deviceUserDataModified": false
+}

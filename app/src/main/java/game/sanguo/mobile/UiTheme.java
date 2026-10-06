@@ -34,15 +34,21 @@ final class UiTheme {
     }
     /** Shared by A and B pages; enabled semantic ink survives, disabled ink stays readable. */
     static void readable(TextView v){
-        int enabled=FactionColors.readableText(v.getTextColors().getDefaultColor(),SURFACE);
-        v.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{MUTED,enabled}));
+        ColorStateList colors=v.getTextColors();int enabled=FactionColors.readableText(colors.getDefaultColor(),SURFACE);
+        int selected=FactionColors.readableText(colors.getColorForState(new int[]{android.R.attr.state_enabled,android.R.attr.state_selected},enabled),SURFACE);
+        int focused=FactionColors.readableText(colors.getColorForState(new int[]{android.R.attr.state_enabled,android.R.attr.state_focused},enabled),SURFACE);
+        v.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{android.R.attr.state_selected},new int[]{android.R.attr.state_focused},new int[]{}},new int[]{MUTED,selected,focused,enabled}));
         if(v.getText() instanceof Spanned){
-            android.text.SpannableString copy=new android.text.SpannableString(v.getText());
+            Spanned original=(Spanned)v.getText();
+            android.text.Spannable copy=original instanceof android.text.Spannable?(android.text.Spannable)original:new android.text.SpannableString(original);
+            boolean changed=false;
             for(ForegroundColorSpan span:copy.getSpans(0,copy.length(),ForegroundColorSpan.class)){
                 int color=FactionColors.readableText(span.getForegroundColor(),SURFACE);
-                if(color!=span.getForegroundColor()){int start=copy.getSpanStart(span),end=copy.getSpanEnd(span),flags=copy.getSpanFlags(span);copy.removeSpan(span);copy.setSpan(new ForegroundColorSpan(color),start,end,flags);}
+                if(color!=span.getForegroundColor()){int start=copy.getSpanStart(span),end=copy.getSpanEnd(span),flags=copy.getSpanFlags(span);copy.removeSpan(span);copy.setSpan(new ForegroundColorSpan(color),start,end,flags);changed=true;}
             }
-            v.setText(copy);
+            // Styling an Editable never replaces its characters/selection or
+            // calls form TextWatchers again just because a dialog is themed.
+            if(changed&&copy!=original)v.setText(copy);
         }
     }
     static void readableTree(View root){
