@@ -15,9 +15,9 @@
     },
     {
       "item": "terrain-oom",
-      "status": "NORMAL384 ALL16 EMULATOR PASS; ARM PENDING",
-      "evidence": "new5df034d1 actual16 sources2729+cold79, Java330279456/402653184B, 11 raw videos and full9/3797SHA restore; original26 failure stack retained",
-      "next": "defaultlarge actual commands; rapid switches/more longloops and ARM"
+      "status": "ORDINARY38 ALL16 FUNCTIONAL PASS; BUDGET OPEN",
+      "evidence": "Army-onlyb8 actual2731+cold81/restored9/3797, Source11zoom402573928/402653184B; original26stack retained; new279 float-array upload candidate built,40 live",
+      "next": "new40 install/GPU/Source11 actual heap, full16 ordinary/default and ARM"
     },
     {
       "item": "terrain-parity",
@@ -33,9 +33,9 @@
     },
     {
       "item": "fire-state-ui",
-      "status": "OLD31 NORMAL/COLD PASS; NEW37 REAL HOME PARTIAL",
-      "evidence": "new7415 Source14 normal FIRE/native13 + actual Home Activity/map/Filament paused, visualclock frozen, wholeSave/RNG/Token pure; reduced-motion not reached due test API29 readAllBytes failure; all9/3797/system preferences restored",
-      "next": "compatible newtest rerun low/reduced-motion/extinguish/expiry/read/cold"
+      "status": "NEWSEARCH39 PAUSE/NORMAL/COLD PASS",
+      "evidence": "2b68 actualSource14 FIRE/Home Activity-map-Filament/reducedmotion frozenclock/low/EXTINGUISH/reignite/expiry/burningread/cold; complete9/3797+system pref restored",
+      "next": "279 uploader combination fresh fire/chains/facilities/ARM"
     },
     {
       "item": "pc-fire-controller",
@@ -47,7 +47,7 @@
       "item": "identity16",
       "status": "PACKAGE28 ACTUAL SAVES JOINS PASS",
       "evidence": "latest16 actual source captures10720 exact joins/0unknown/695assets/2892PNG SHA",
-      "next": "all actual forms/callers/pixels/timing/lifecycle and ARM"
+      "next": "279 actual media16 four source-native identities through roster/detail128caller current-year pixels; all ages/fullscreen/ARM remain"
     },
     {
       "item": "dynamic-age",
@@ -81,10 +81,10 @@
     },
     {
       "item": "final-combination",
-      "status": "COMPLETED B ARMY SOURCE INTEGRATED; NEW38 LIVE",
-      "evidence": "B833fcde4/71c3e90b exact40/7path audit import115c0ba3/1ac54a2d; noWIP; new7415 actual35 normal/cold military AP success; newb8 ordinary38 live",
-      "next": "fullnewmatrix/defaultlarge/ARM final integration"
+      "status": "SEARCH SOURCE INTEGRATED,39 FIRE PASS;279 SOURCE40 LIVE",
+      "evidence": "ExactB28/7 noWIP; new2b68 real39fire/restored;279 candidate newd760 independently built/actual install running; latest SEARCH A normal input and fullmatrix pending",
+      "next": "source40/16media/normalSEARCH/newdefault/fullcommands/ARM serialfinal"
     }
   ],
-  "updatedAfter": "2026-10-07 latest completed35/37 partial and live38"
+  "updatedAfter": "completed38/39 and live40,2026-10-07"
 }

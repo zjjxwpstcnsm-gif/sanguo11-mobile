@@ -1,3 +1,23 @@
+# 2026-10-07 当前交付检查点（完整目标仍进行中）
+
+此段取代下方历史记录中的“当前/未集成/未安装”描述，历史回执和失败保留。完整共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059；本完整隔离源码 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile`，分支codex/map-ui-media-repair。main仍ef413be3653820dd6449ba7f02aa60bed5b26ef5；原旧目录和PC只读源不改。所有新增台账/契约/工具在本session注册，原4JNI与168固定资源守卫保持。
+
+最近已完成 B 增量全部串行审计，尤其军团833fcde4/71c3e90b导入115c0ba3/1ac54a2d、搜索d852cc78/2377c30b导入5793ab0a/ac7abd09；搜索28源码与7文档前后SHA全等，无冲突，不合B其余COMMAND_NATIVE_WORK/direct-recruitment/domestic/recruitment-admission WIP。A MainActivity/MapHost/MapSceneSnapshot/ScenarioFactionPicker/FactionColors/UiTheme保持唯一所有权；B16页面只继承其完成提交。
+
+最新已经实际安装并验收火焰的默认大堆组合：源码3e315e6e，APK `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3e315e6e-search-combination/app-debug.apk`，312855795B、SHA2b68afe964be8709dd681e4d72463a7d9d373fd34cc39a2d8d3d611065d5cc5c；测试c9f1bb578ea693f83d5a655d3f39b435124972d5903f35805b2db467ba830270。39实际Source14新局/两编队/火计取消与执行/原13控制器/真实Home及减少动画冻结原视觉时钟/低画质/灭火/再燃/逐旬到期/烧中存读/新PID冷原火通过；6972→27875、完整SaveSHA629aad994ee95f8620c7fe91e8704fbc16789a85acbe7a2c03844ee7fbd8625a；9内部/3797外部SHA和global动画偏好恢复。并发自身构建存在，功能成绩不等于无干扰性能或ARM。
+
+普通堆上一独立组合e9679b94/b8bbf643实际38全16菜单/预览/势力/取消重试/新局/缩放平移/人物/真实system Home暂停/方向/全存读/退出重开2731与独立冷81通过，SaveSHA3635326d、PID9205→3877、9/3797全SHA恢复。但Source11缩放Java402573928/402653184B，只有79256B采样余量，预算未通过，不能仅凭无OOM关闭。该包不包含新SEARCH，不借给最新组合。
+
+当前源27915f9a候选修复四条GpuMesh浮点流的额外Java direct-byte副本，使用已核实Filament1.56 primitive数组/global-ref/回调生命周期，几何/UV/索引和原资源不变。JNI可能有native复制，不声称零拷贝。新的普通堆APK `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-27915f9a-array-upload-normal384/app-debug.apk`，312855763B、SHAd760da6ea751b420d58625f7999dc0b96939c4dc7b1a8d75b721dabfced3fc19；测试4b34497ac430b73f1ed942e172bcee46c89d4782cbd39bde283fa92acc53e27d。构建与168/4JNI包内SHA守卫通过；40正在独立安装Source11真实GPU/缩放/四字形列表与详情原像素/冷流程，尚未判通过。后续全16正常media16、最新搜索/建设/单挑舌战/多旬/普通与默认堆/ARM及最终完整组合仍需验收。
+
+33技巧/1取消/49之78及9工程合成标识保留。10720实际身份/0未知、695普通资产及2892原PNG SHA为28范围，非全caller/年龄/形态实装成绩。34新包原曲2238的44.1/48k捕获初始化成功且正常菜单全Save/RNG/Token纯，但整首相关0.714538<原0.995，局部时间线阶跃继续定位；旧-22根因未关闭。正常地图BGM、真实speaker voice、58/普通事件原声缺已提交caller/profile/scene事实，未知不按姓名ordinal猜。原格子火连锁与设施全部施工/受损/完成/拆除原演出、PC整帧/MOD优先级、所有媒体生命周期及真实ARM仍未闭合。
+
+源守卫PRESERVATION_20261007复核10714继承目录路径、4301旧目录守卫项及原4JNI均相同。各正常批次具有全文件SHA备份/恢复；当前live40完成后才解除5554锁。这里提供具体可复现检查点，不称最终完整目标交付。
+
+---
+
+以下为历史批次记录，仅属于各自源码/APK/设备和当时范围：
+
 # 20261006 Session A 当前安装交付与继续项
 
 共同完整基点0e7b9bc2df90249a50851baeda58c7d183ea6059；main ef413be3653820dd6449ba7f02aa60bed5b26ef5仍未变。A生产完成6ea385ff2e1e021dc5d7d519f9f6cbb2ab57ffba：共享/压缩地图CPU数组、有界缓存/释放、全势力配色与独立可读文字、大堆额外余量及地图原加法材质准备。A分支codex/map-ui-media-repair，本目录完整继承；B精确完成224751a7/cc4e7abd及454d60db/1c3b54b5顺序复制于独立组合分支codex/map-ui-media-integration，没有B WIP或冲突。6442生产路径核验见INTEGRATION_AUDIT.json。
