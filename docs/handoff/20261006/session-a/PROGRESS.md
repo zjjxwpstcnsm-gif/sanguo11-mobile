@@ -52,3 +52,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 46实际新普通384游戏937ae8a6/test053d7458安装成功，两APK设备SHA精确一致；设备pm list真实声明A search/direct组件，helper前置注册检查通过，当前正常SEARCH正在运行，未判正常/冷/恢复通过。live句柄64669，native观察6053；下一轮必须续读此具体进程而非重启，保存备份及设备锁继续守卫。当前commit source e6d92908更后仅助手/文档，实际包scope依其BuildConfig与冻结记录。
 
 701d31bb完整源码检查点导出已完成：11056文件/902267628B逐SHA回读，归档652655501B/SHAa656907aa00e06f1dab1be07e7571ea22b47462e0add52295d115278169b8ef2，原4/新增2JNI精确。原目录及用户资源未删除。46已在正常SEARCH跑出自然人类胜负，仍需中途保存/冷/完整恢复，不宣布通过；修正PLAN对用户授权largeHeap和当前UNKNOWN描述。
+
+46最终937/053实际普通384 SEARCH普通正常与冷均通过，正常菜单/取消/拒绝/原目标选择/可选舌战/自然胜负/完整native模型与双RNG存读/多旬、新PID6148→5362、SaveSHAbdef45582b6a724e5ed8c25a22c7d378abf344d729ae5f41f2f7d5498c79c31a、A全token呈现纯通过；完整9/3797最终SHA恢复。最新默认large48f2b873组合376f03a1及testd472ff07独立构建168/6JNI精确、尚未安装，不借普通成绩；47同实际普通组合directCause正常/冷准备完整备份。

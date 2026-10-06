@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "sourceCommit": "e6d92908",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e6d92908-cause-factions-normal384/app-debug.apk": "937ae8a6af05b53feee5c8cdd88dfb49cdf1c515fd29fa82c6aee4e63dcc7358",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e6d92908-cause-factions-normal384/app-debug-androidTest.apk": "053d7458f7b6537e48f74eccf2ba4de0b7cabbca27f47ea533746e2fcfdefa34"
+  },
+  "scope": "Actual A latest normal384 source SEARCH: menu/cancel/decline/optional debate/natural human win-loss/mid model save/load/terminal save/load/whole turns, new-PID cold and authoritative presentation pure. Not all search gates/treasure/admission/duel/voice/ARM.",
+  "checks": {
+    "evidence/progress.txt": 1763,
+    "cold-evidence/progress.txt": 1407
+  },
+  "coldProcess": {
+    "beforePid": "6148",
+    "afterPid": "5362",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "bdef45582b6a724e5ed8c25a22c7d378abf344d729ae5f41f2f7d5498c79c31a",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualRunnerRegistered": true,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-cause-normal384-46",
+  "evidenceSha256": {
+    "session.json": "688355d1fa39b4cfd6c5f4619430c17e6668154eefcc490b7527b74d3ba89243",
+    "cold-instrumentation.txt": "0984b3df021fd01c986f6af934e481d97f2735a2ab98094c408d7d10f808e510",
+    "instrumentation-registered.txt": "ce16b3d14899e0b599b606002396b72022aeb58d57528ba0ab271ab4989f207f",
+    "meminfo-timeline.txt": "154a8b531a24e1d4b0acf083543b9d0d04efc6352acdabdf73592aff7067ee56",
+    "native-worker-smaps.jsonl": "8d62755dc9b6b3c8e0cc95f94ccbd3e8fb1ad5c08c6e4e7129233078e7cfa33c",
+    "installation.txt": "50daa2ba76a5c9784728abf9461823bc72d3c4835986fc7ba7cdd96abebea397",
+    "logcat.txt": "38f4784d541e866a197e87abe09d0df3d73c87412fb82faa80173abdd5255ee8",
+    "instrumentation.txt": "61f229001b3c7af1e92666ead348783f77eae2294a2a7cd574b7c4aed4cdf049",
+    "evidence/search-trial-1-campaign-result.png": "223dde752ef4e287a64ab45b6b13d42861950278671a57c4bbf6b80d7c5aa682",
+    "evidence/search-saved-native-human.png": "9d78824e94d723c8b46c81613d9f5e867a80447585fd3ec86a530b5d15d7b906",
+    "evidence/search-trial-0-campaign-result.png": "ac67170b7500e1f074d34db2bd5af031ff4bdd804abe3fb571458710562f66c2",
+    "evidence/trial-1-finished.sg11": "8f80d59967cd0ab58663239064cd89f8e973bc5b6916fad23770d30b32b823da",
+    "evidence/declined-search.sg11": "4e474971809d9cbdb227050f918297fca72d29251bf1da150294218903da878c",
+    "evidence/search-trial-0-terminal.png": "1f370f0db61bb58d4f4fcc0bbf01db93b846e1399d271dab52dee775a6c301e0",
+    "evidence/search-trial-1-terminal.png": "bc20d7503c5830e2d639ad869a4b06e0be633013cd613a64260127d7aec4ee2d",
+    "evidence/search-cancel-preview.png": "3689cca69c4d9754e8772cd37a0eb130442c104024dd3a1f8f0d55b976ab8e69",
+    "evidence/progress.txt": "df0de7b67924835009a08b2d8ec319c4739d977bf7e194186e1d67116f4f34dd",
+    "evidence/diagnosis.txt": "f09df9b0a336b37657745c731e29cf6be6552a09b9ef3d691c590adbafbdd950",
+    "evidence/discovered-choice.sg11": "392aa3cdb90e115c2d41c9b689edff4008fd4e7394dafca77eb839c58ecf0772",
+    "evidence/actual-mid.sg11": "bdef45582b6a724e5ed8c25a22c7d378abf344d729ae5f41f2f7d5498c79c31a",
+    "evidence/optional-debate-choice.sg11": "33cb9eddd8ece5a96e223589d3ab9878ebcefd17f8da8ad79c0ef99c48ee841d",
+    "evidence/trial-0-mid.sg11": "8387be3e9dd7b9005630252352ecfa2a24aebfe732a612e36b1f954a448a706c",
+    "evidence/trial-1-mid.sg11": "f72ab6ae93ac13bf386833d962940ecf4448cf2261469bb76de2bc1566e00044",
+    "evidence/search-preview.png": "91cdae4d71331eac5e636de6d82c9c2509f999f32d23b21ab098c6c8cf8b8828",
+    "evidence/scene-facts-a-search-normal.json": "45c499519e4cc568ba1365da8b6f7e63aa3efc8a7b0d7ccd4cd2c335336f9093",
+    "evidence/trial-0-finished.sg11": "039aef58a192f6a70edce5d9f2a6660f2b139155c14bfed765c86319c9895657",
+    "evidence/a-presentation-a-search-normal.txt": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223",
+    "evidence/normal-discovery-consent.png": "f341e35a87e77695c15f41ffaa60715d8b1eeef75ae008f1c034b5202703cd02"
+  },
+  "overallGoalComplete": false
+}
