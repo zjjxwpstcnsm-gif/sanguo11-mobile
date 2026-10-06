@@ -46,3 +46,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 44同562/7c测试only更新后AppOp临时allow实际44100/48000初始化成功；130s真正常菜单原2238整首wave相关0.9972379373450883≥未改0.995、17固定窗偏移全314844、首曲接受15618048B/SHA c90与解码完全一致，Android解码与原参考SHA437仍非逐字节相同，Windows exactPCM不声称。正常UI62+完整Save/双RNG/fullToken不变。游戏9/3797、原test4b APK/测试全部文件/麦克风false/AppOp default均恢复。42−1显式default权限拒绝对照成立，旧−22/34失败唯一原因仍未关闭；地图BGM/voice/58/普通原事件与ARM仍未知。最新cause+全可选势力/逐源取消重试的普通384新包编译中；45计划同562做正常SEARCH/自然舌战冷流程，不包含新directCause，已进入完整备份复核。
 
 45新SEARCH runner仅dex存在而manifest未注册，ActivityManager拒绝instrumentation，am自身5708异常退出，游戏未启动，无SEARCH成绩；游戏9/3797完整SHA恢复。后继源码测试同步还暴露重复onCreate编译失败，16f2db3f去重、e6d92908后继manifest补A搜索/direct实际组件（确切HEAD见git）。两个失败原日志不删，不合B文件WIP。新正常384/cause/全可选势力/逐源取消与真实组件包正在重新构建，须检查实际APKmanifest和设备pm list后再运行，之前562音乐44及279全16/128caller41成绩保持各自范围。
+
+45 manifest入口缺失和后继A测试重复onCreate两个工具失误均保留失败证据，16f2db3f去重/e6d92908注册实际A search/direct components，后继普通384实际APK+test编译成功，实际packaged manifest包含两个入口；helper执行前设备pm list检查防重犯。此新包尚未安装，46将先正常SEARCH/自然舌战/存读/冷体验，而不是借B旧APK成绩或45错误作为产品判定。
