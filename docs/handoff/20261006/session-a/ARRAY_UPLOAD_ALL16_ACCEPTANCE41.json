@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "sourceCommit": "27915f9a",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-27915f9a-array-upload-normal384/app-debug.apk": "d760da6ea751b420d58625f7999dc0b96939c4dc7b1a8d75b721dabfced3fc19",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-27915f9a-array-upload-normal384/app-debug-androidTest.apk": "4b34497ac430b73f1ed942e172bcee46c89d4782cbd39bde283fa92acc53e27d"
+  },
+  "scope": "Installed normal384 all16 actual menu/source/factions(first-last), firstSourcecancel/retry,newgame/whole-near/pan/4gaiji normal roster-detail/current-year original128caller pixels/Home actual background owner guard/rotation/fullSave/read/exit/reopen and newPID cold; direct1b7/musicsubmission diagnostics/all-force successor excluded",
+  "normalChecks": 4699,
+  "coldChecks": 81,
+  "normalSamples": 413,
+  "independentPeaks": {
+    "javaUsed": 350859048,
+    "nativeAllocated": 290377232,
+    "totalPss": 609917,
+    "graphicsPss": 0
+  },
+  "actualHeapBudget": "normalMiB=384 largeMiB=512 actualBytes=402653184 deviceRamBytes=2089222144 largeHeap=false",
+  "sampledJavaHeadroomBytes": 51794136,
+  "source11NormalHistoryJavaPeak": 313990232,
+  "coldSamples": 7,
+  "coldProcess": {
+    "beforePid": "13672",
+    "afterPid": "18617",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "62e45fcd56ebc6661807fca8456bb6d80a4f9adfcea433000876e7e91f687e07",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "media128ActualFullBitmapSameAs": true,
+  "sourcePortraitProofFiles": [
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-0-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-1-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-10-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-11-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-12-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-13-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-14-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-15-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-2-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-3-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-4-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-5-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-6-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-7-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-8-portrait-callers.json",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41/evidence/source-9-portrait-callers.json"
+  ],
+  "childSamples": 718,
+  "maxSimultaneousChildren": 2,
+  "independentPerChildPssKiB": 56390,
+  "graphicsPss": "0 means unavailable driver GPU measure, not zeroVRAM",
+  "comparisonTo38": {
+    "oldSource": "e9679b94",
+    "oldAll16JavaPeak": 402573928,
+    "newAll16JavaPeak": 350859048,
+    "differenceBytes": 51714880,
+    "oldSource11Peak": 402573928,
+    "newSource11Peak": 313990232,
+    "scope": "Independent sequential16 normal runs;41 includes BSEARCH+normalportrait checks,38 excludes them. Not synchronized or proof every byte difference caused by uploader. Explicit duplicate Java float upload copy removed; source geometry unchanged."
+  },
+  "hostPerturbation": "own compile/hosttests concurrent per host-context; no recorder/dumpheap/forcedGC, not unperturbed FPS/CPU/latency score",
+  "video": "40 partial original video separate; no41 video claim",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-all16-media-normal384-41",
+  "evidenceSha256": {
+    "session.json": "feef6fa98adb609b4ed353bdcca1d7bc515b528d6f7f06c06edc3a36e9608ee4",
+    "instrumentation.txt": "e93a77d3f2e3de0b201081143a397da69e775ac6118c1d1a5ede7728b2925c71",
+    "cold-instrumentation.txt": "f9cb37d915261b57f494aca7e01c58a3c046eb6d28d6b0a26b83a4946e13b35e",
+    "evidence/memory.csv": "bdaeb54d177cd2bc125915fed8314a309f2da978395192a8e588a470853a9411",
+    "evidence/heap-budget.txt": "3b46c9558d074b249cccca9df5af5ca04c16f61bbe868d17aa439478c0a81493",
+    "host-context.json": "997246be962bbb6d8c57119465a63ac51e950d3f932372e72a8b831daa5cd432"
+  },
+  "observedOrdinaryMatrixUnderHeapCap": true,
+  "wholeBudgetAllForcesLongFlowsArmAccepted": false,
+  "all695CallerAgeFullscreenVoiceAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}
