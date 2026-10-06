@@ -2,6 +2,8 @@ package game.sanguo.mobile;
 import game.sanguo.core.map.SourceGridCoord;
 
 import game.sanguo.core.*;
+import game.sanguo.api.SceneFactsSnapshot;
+import game.sanguo.api.StateToken;
 import java.util.*;
 
 /** Immutable presentation values. Never publishes a World to mesh workers or Filament. */
@@ -112,10 +114,14 @@ final class MapSceneSnapshot {
     }
     /** Exact detached state, ready for S03's future asset resolver; never retains a core entity. */
     static final class FacilityState {
-        final String type; final int owner,level,upgradeTo,hp,maxHp,remaining,direction;
+        final String type; final int owner,level,upgradeTo,hp,maxHp,remaining,direction,builderUnitId,builderOfficerId;
         final boolean complete,burning;
         FacilityState(String type,int owner,int level,int upgradeTo,int hp,int maxHp,
                       int remaining,int direction,boolean complete,boolean burning){
+            this(type,owner,level,upgradeTo,hp,maxHp,remaining,direction,complete,burning,-1,-1);
+        }
+        FacilityState(String type,int owner,int level,int upgradeTo,int hp,int maxHp,int remaining,int direction,boolean complete,boolean burning,int builderUnitId,int builderOfficerId){
+            this.builderUnitId=builderUnitId;this.builderOfficerId=builderOfficerId;
             this.type=type;this.owner=owner;this.level=level;this.upgradeTo=upgradeTo;
             this.hp=hp;this.maxHp=maxHp;this.remaining=remaining;this.direction=direction;
             this.complete=complete;this.burning=burning;
@@ -127,19 +133,29 @@ final class MapSceneSnapshot {
         }
     }
     static final class FireState {
-        final Hex hex;final int remaining;final String label;
-        FireState(War.Fire f){hex=f.hex;remaining=f.remaining;label="火 · "+remaining+"旬";}
+        final Hex hex;final int remaining,owner,power;final boolean trap;final Integer sourceX,sourceY;final String label;
+        FireState(War.Fire f){hex=f.hex;remaining=f.remaining;owner=f.owner;power=f.power;trap=f.trap;sourceX=null;sourceY=null;label="火 · "+remaining+"旬";}
+        FireState(SceneFactsSnapshot.Fire f){hex=new Hex(f.cell.q,f.cell.r);remaining=f.remaining;owner=f.owner;power=f.power;trap=f.trap;sourceX=f.cell.sourceX;sourceY=f.cell.sourceY;label="火 · "+remaining+"旬";}
     }
     final int month;
+    final StateToken state;
+    final boolean authoritativeSceneFacts;
     /** Source odd-q connection bits, derived only from detached live wall values. */
     final Map<Hex,Integer> wallConnections;
     final List<FireState> fires;
     final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage,attackTargets;
-    MapSceneSnapshot(Ground ground,World w,Hex selected,int moving) {
-        month=(w.startMonth-1+w.turn/3)%12+1;
+    MapSceneSnapshot(Ground ground,World w,Hex selected,int moving){this(ground,w,selected,moving,null,null);}
+    MapSceneSnapshot(Ground ground,World w,Hex selected,int moving,StateToken expected,SceneFactsSnapshot input) {
+        SceneFactsSnapshot facts=SceneFactsPresentation.accept(w,expected,input);state=expected;authoritativeSceneFacts=facts!=null;
+        month=facts==null?(w.startMonth-1+w.turn/3)%12+1:facts.month;
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
         for(World.City c:w.cities){Item item=new Item("site:"+c.id,c.name,c.hex,c.kind==World.SiteKind.CITY?0:c.kind==World.SiteKind.PORT?1:2,FactionColors.color(w,c.owner),new SiteVisual(w,c,ground.grid));list.add(item);}
         for(World.Unit u:w.fieldUnits())list.add(new Item(w,u));
+        List<FireState> fireList=new ArrayList<>();
+        if(facts==null){for(War.Fire f:w.war.fires())if(f.remaining>0)fireList.add(new FireState(f));}
+        else for(SceneFactsSnapshot.Fire f:facts.fires)if(f.remaining>0)fireList.add(new FireState(f));
+        Set<Hex> burning=new HashSet<>();for(FireState fire:fireList)burning.add(fire.hex);
+        if(facts==null){
         for(Domestic.Facility f:w.domestic.facilities){
             World.City home=w.city(f.cityId);int owner=home==null?-1:home.owner;
             list.add(new Item("domestic:"+f.id,f.kind.label,f.hex,4,FactionColors.color(w,owner),
@@ -149,9 +165,19 @@ final class MapSceneSnapshot {
         for(War.Structure s:w.war.structures())list.add(new Item("structure:"+s.id,s.kind.label,s.hex,5,FactionColors.color(w,s.owner),
             new FacilityState("military/"+s.kind.name(),s.owner,0,0,s.hp,s.kind.hp,0,s.direction,
                 s.complete,w.war.fireAt(s.hex)!=null)));
+        }else{
+            for(SceneFactsSnapshot.Domestic f:facts.domestic){
+                Hex hex=new Hex(f.cell.q,f.cell.r);Domestic.Kind kind=Domestic.Kind.valueOf(f.kind);
+                list.add(new Item("domestic:"+f.id,kind.label,hex,4,FactionColors.color(w,f.owner),new FacilityState("domestic/"+f.kind,f.owner,f.level,f.upgradeTo,f.hp,f.maxHp,f.remaining,0,f.remaining==0,burning.contains(hex),-1,f.builderOfficerId)));
+            }
+            for(SceneFactsSnapshot.Military f:facts.military){
+                Hex hex=new Hex(f.cell.q,f.cell.r);War.StructureKind kind=War.StructureKind.valueOf(f.kind);
+                list.add(new Item("structure:"+f.id,kind.label,hex,5,FactionColors.color(w,f.owner),new FacilityState("military/"+f.kind,f.owner,0,0,f.hp,f.maxHp,0,f.direction,f.complete,burning.contains(hex),f.builderUnitId,-1)));
+            }
+        }
         items=Collections.unmodifiableList(list);
         wallConnections=wallConnections(ground,list);
-        List<FireState> fireList=new ArrayList<>();for(War.Fire f:w.war.fires())if(f.remaining>0)fireList.add(new FireState(f));fires=Collections.unmodifiableList(fireList);
+        fires=Collections.unmodifiableList(fireList);
         reachable=Collections.unmodifiableSet(new HashSet<>(w.orders.marchReachable(w.unit(moving)).keySet()));
         attackTargets=attackTargets(w,moving);
         coverage=Collections.unmodifiableSet(new HashSet<>(w.fieldworks.coverage(w.war.at(selected))));

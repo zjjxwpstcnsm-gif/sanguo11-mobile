@@ -8,6 +8,11 @@ import android.widget.Toast;
 import java.util.*;
 import java.util.function.Consumer;
 import game.sanguo.core.*;
+import game.sanguo.api.SceneFactsSnapshot;
+import game.sanguo.api.StateToken;
+import game.sanguo.api.GameEvent;
+import game.sanguo.api.AppliedEventSnapshot;
+import game.sanguo.runtime.query.AppliedEventQuery;
 
 /** The game's sole map host. UI commands and TurnPlayback never select a second World. */
 final class MapHost extends FrameLayout implements MapPresentation {
@@ -40,6 +45,20 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private CriticalHit projectedCritical;
     private android.graphics.drawable.Drawable projectedPortrait;
     private World world,groundWorld;
+    private SceneFactsSnapshot sceneFacts;
+    private StateToken sceneState,appliedFactsState;
+    private final LinkedHashMap<String,AppliedEventSnapshot> appliedFacts=new LinkedHashMap<>();
+    private long appliedFactsCaptured;
+    AppliedEventSnapshot appliedEvent(String id){return appliedFacts.get(id);}
+    void recordAppliedEvent(World layout,StateToken state,GameEvent parent,TurnJournal.Event event){
+        if(state==null||event==null)return;
+        if(!state.equals(appliedFactsState)){appliedFacts.clear();appliedFactsState=state;}
+        if(appliedFacts.containsKey(event.id))return;
+        GameEvent proven=parent!=null&&state.equals(parent.state)?parent:null;
+        AppliedEventSnapshot fact=AppliedEventQuery.capture(layout,state,proven,event);
+        appliedFacts.put(fact.id,fact);appliedFactsCaptured++;
+        while(appliedFacts.size()>CombatSequence.CAPACITY)appliedFacts.remove(appliedFacts.keySet().iterator().next());
+    }
     private int terrainRevision=-1,moving=-1;
     private Hex selected;
     private MapSceneSnapshot.Ground ground;
@@ -348,7 +367,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     }
     private void leave3D(){hideLoadingCurtain();persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
     void release(){
-        released=true;hideLoadingCurtain();renderGate.close();cancelCommandEffects();persistCamera();
+        released=true;clearSceneFacts();appliedFacts.clear();appliedFactsState=null;hideLoadingCurtain();renderGate.close();cancelCommandEffects();persistCamera();
         if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
         // Dismissed dialogs can outlive their Surface. Drop the detached World,
         // terrain wrappers and projection caches at this explicit boundary.
@@ -363,8 +382,13 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(value&&commandEffects!=null){commandEffectTime=android.os.SystemClock.uptimeMillis();pauseEffects(commandEffects.paused());postOnAnimation(commandEffectTick);}
     }
     void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(commandersShown,unitBarsShown);spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
-    String report(){return "nativeHosts="+activeNativeHosts+" released="+released+" | "+(spatial==null?"3D 地图暂不可用":spatial.report());}
-    @Override public void setWorld(World w,Hex s,int moving){
+    String report(){return "sceneFacts="+(sceneFacts!=null)+" appliedFacts="+appliedFacts.size()+" appliedFactsCaptured="+appliedFactsCaptured+" nativeHosts="+activeNativeHosts+" released="+released+" | "+(spatial==null?"3D 地图暂不可用":spatial.report());}
+    void clearSceneFacts(){sceneFacts=null;sceneState=null;dirty=true;}
+    @Override public void setWorld(World w,Hex s,int moving){setWorld(w,s,moving,null,null);}
+    void setWorld(World w,Hex s,int moving,StateToken expected,SceneFactsSnapshot facts){
+        SceneFactsSnapshot accepted=SceneFactsPresentation.accept(w,expected,facts);
+        if(!Objects.equals(sceneState,expected)||sceneFacts!=accepted)dirty=true;
+        sceneState=expected;sceneFacts=accepted;
         boolean gridChanged=ground!=null&&!ground.matchesGridContext(w,gridForce(w));
         boolean changed=world!=w||gridChanged||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;
         if(visualResolved!=w){visualResolved=w;if(w.visualMap==null&&!w.customMapId.isEmpty())try{MapPatch p=new MapLibrary(getContext()).visual(w);if(p!=null)w.visualMap=p;}catch(java.io.IOException e){android.util.Log.w("MapRenderer","Visual map unavailable; deterministic defaults",e);}}
@@ -376,13 +400,14 @@ final class MapHost extends FrameLayout implements MapPresentation {
         android.os.Trace.beginSection("R16.mapProjection");try{
         cancelCommandEffects();
         android.content.Context app=getContext().getApplicationContext();
-        if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}
+        if(sceneState!=null)spatial.sceneIdentity(sceneState);
+        else if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}
         if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){
             if(ground==null||!ground.matchesTerrain(world))ground=new MapSceneSnapshot.Ground(world,gridForce());
             groundWorld=world;terrainRevision=world.terrainRevision;
         }
         ground=ground.withGridContext(world,gridForce());
-        publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving);spatial.snapshot(publishedSnapshot);
+        publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving,sceneState,sceneFacts);spatial.snapshot(publishedSnapshot);
         spatial.mapLayers(projection.layers(world,ground,territoryMode),territoryMode,openingPreview,previewFaction);dirty=false;
         }finally{android.os.Trace.endSection();}
     }

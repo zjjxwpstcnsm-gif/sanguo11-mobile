@@ -1,0 +1,40 @@
+package game.sanguo.mobile;
+import game.sanguo.api.*;
+import game.sanguo.core.*;
+import android.os.SystemClock;
+import java.nio.file.Files;
+import java.io.File;
+import java.util.*;
+
+/** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
+public final class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+ @Override protected void verifySceneFacts(String label)throws Exception {
+  super.verifySceneFacts(label);
+  byte[] before=capture();StateToken prior=activity.deploymentState();
+  MapSceneSnapshot[] snap={null};SceneFactsSnapshot[] facts={null};World[] layout={null};
+  long deadline=SystemClock.uptimeMillis()+120000;
+  while(SystemClock.uptimeMillis()<deadline){
+   runOnMainSync(()->{try{
+    MapHost map=(MapHost)field(activity,"map");snap[0]=(MapSceneSnapshot)field(map,"publishedSnapshot");facts[0]=(SceneFactsSnapshot)field(activity,"sceneFacts");layout[0]=SessionProbe.view(activity);
+   }catch(Exception e){throw new RuntimeException(e);}});
+   if(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state))break;
+   SystemClock.sleep(100);
+  }
+  check(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state)&&facts[0]!=null&&prior.equals(facts[0].state),"actual A map accepts exact full StateToken "+label);
+  for(SceneFactsSnapshot.Fire fire:facts[0].fires)if(fire.remaining>0){
+   MapSceneSnapshot.FireState shown=snap[0].fires.stream().filter(f->f.hex.equals(new Hex(fire.cell.q,fire.cell.r))).findFirst().orElseThrow();
+   check(shown.remaining==fire.remaining&&shown.owner==fire.owner&&shown.power==fire.power&&shown.trap==fire.trap&&shown.sourceX==fire.cell.sourceX&&shown.sourceY==fire.cell.sourceY,"actual A source fire projection "+label);
+  }
+  for(SceneFactsSnapshot.Military f:facts[0].military){
+   MapSceneSnapshot.Item item=snap[0].items.stream().filter(x->x.key.equals("structure:"+f.id)).findFirst().orElseThrow();
+   check(item.facility.hp==f.hp&&item.facility.maxHp==f.maxHp&&item.facility.complete==f.complete&&item.facility.direction==f.direction&&item.facility.builderUnitId==f.builderUnitId,"actual A current military lifecycle "+f.id);
+  }
+  int profiles=0;
+  for(var p:PcScenarioPeople.saved(layout[0])){
+   PortraitMediaIdentity source=PortraitMediaSources.source(layout[0],p.officerId);if(source==null)continue;
+   check(source.nativeId==p.nativeId&&source.recordSha.equals(p.recordSha)&&source.originalFields.equals(p.fields)&&Objects.equals(source.originalVoiceProfile,p.fields.get(48)),"actual A typed original voice source "+p.officerId);profiles++;
+  }
+  check(Arrays.equals(before,capture())&&prior.equals(activity.deploymentState()),"actual A presentation preserves full Save/bothRNG/StateToken "+label);
+  Files.write(new File(evidence,"a-presentation-"+label+".txt").toPath(),("sameToken=true sourceVoiceJoins="+profiles+" fires="+snap[0].fires.size()+" facilities="+facts[0].military.size()+" originalFire13=false originalSpeechCaller=unknown\n").getBytes("UTF-8"));
+ }
+}

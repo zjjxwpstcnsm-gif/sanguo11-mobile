@@ -86,7 +86,13 @@
     "docs/handoff/20261006/session-a/INTEGRATION_AUDIT.json",
     "docs/handoff/20261006/session-a/prepare_frozen_integration.py",
     "docs/handoff/20261006/session-a/observe_worker_memory.py",
-    "docs/handoff/20261006/session-a/record_installed_flow.py"
+    "docs/handoff/20261006/session-a/record_installed_flow.py",
+    "docs/handoff/20261006/session-a/SCENE_ADAPTER_CONTRACT.md",
+    "docs/handoff/20261006/session-a/SCENE_ADAPTER_FROZEN.json",
+    "docs/handoff/20261006/session-a/SceneFactsPresentationProbe.java",
+    "docs/handoff/20261006/session-a/SCENE_ADAPTER_VALIDATION.json",
+    "app/src/main/java/game/sanguo/mobile/SceneFactsPresentation.java",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAScenePresentationInstrumentation.java"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

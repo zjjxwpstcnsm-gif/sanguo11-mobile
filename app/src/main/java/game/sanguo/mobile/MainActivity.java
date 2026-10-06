@@ -28,6 +28,8 @@ public final class MainActivity extends Activity {
     private boolean techniqueDeferred;
     private final UiLatencyMonitor latency=new UiLatencyMonitor();
     private LegacyView legacyView;
+    private SceneFactsSnapshot sceneFacts;
+    private GameEvent lastAppliedCommit;
     private GameApi.Subscription sessionSubscription;
     private GameSession boundSession;
     private boolean dispatchingCommand,replacingSession;
@@ -36,6 +38,7 @@ public final class MainActivity extends Activity {
         if(techniqueHud!=null&&(replacingSession||current!=boundSession))techniqueHud.discardPending();
         if(map!=null)map.cancelCommandEffects();
         if(current!=boundSession){
+            sceneFacts=null;lastAppliedCommit=null;if(map!=null)map.clearSceneFacts();
             if(sessionSubscription!=null)sessionSubscription.close();
             boundSession=current;
             WeakReference<MainActivity> weak=new WeakReference<>(this);
@@ -45,10 +48,12 @@ public final class MainActivity extends Activity {
             });
         }
         legacyView=current.legacyView();world=legacyView.draft;
+        sceneFacts=SceneFactsPresentation.accept(world,legacyView.state,current.sceneFacts());
         PortraitMediaSources.bind(world,legacyView.state,current.officers());
         OfficerPortrait.bindView(this,world);
     }
     private void sessionChanged(GameEvent event){
+        lastAppliedCommit=event.kind==GameEvent.Kind.CLOSED?null:event;
         if(techniqueHud!=null)techniqueHud.committedFacts(event,world.player);
         SoundEffects.Cue cue=switch(event.kind){case DEPLOYED,TRANSPORT_DISPATCHED->SoundEffects.Cue.MARCH;case CONSTRUCTION_STARTED->SoundEffects.Cue.CONSTRUCTION;case PRODUCTION_COMMITTED,CITY_ACTION_COMMITTED,RECRUITED,PATROLLED,TRADE_COMMITTED->SoundEffects.Cue.COMPLETE;case TURN_COMMITTED->SoundEffects.Cue.TURN;default->null;};
         if(cue!=null&&sounds!=null)sounds.event("receipt:"+event.state.sessionId+":"+event.state.generation+":"+event.state.revision+":"+event.kind,cue);
@@ -613,7 +618,7 @@ public final class MainActivity extends Activity {
         techniqueDeferred=result.ok&&effects.stream().anyMatch(e->e.kind==TurnJournal.Kind.ATTACK||e.kind==TurnJournal.Kind.TACTIC||e.kind==TurnJournal.Kind.PLOT||e.kind==TurnJournal.Kind.FACILITY_ATTACK);
         try{showResult(result);}finally{techniqueDeferred=false;}
         // showResult has already bound and autosaved committed authority. Effects cannot gate it.
-        if(result.ok&&map!=null){map.playCommandEffects(effects,before);map.commandEffectSpeed(getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1));}
+        if(result.ok&&map!=null){for(TurnJournal.Event event:effects)map.recordAppliedEvent(world,legacyView.state,lastAppliedCommit,event);map.playCommandEffects(effects,before);map.commandEffectSpeed(getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1));}
         if(result.ok)guardCommandTransition();
         return result;
     }
@@ -752,7 +757,8 @@ public final class MainActivity extends Activity {
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
         panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将一览":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":ui.page.equals("factions")?"天下势力":ui.page.equals("units")?"全部部队":ui.page.equals("ports")?"港口一览":ui.page.equals("gates")?"关卡一览":ui.page.equals("facilities")?"设施一览":"资料");
         if(world.unit(moving)==null)moving=-1;
-        map.setWorld(playback!=null&&turnWork!=null?turnWork.visual:world,playback==null?selected:null,playback==null?moving:-1);
+        if(playback!=null&&turnWork!=null)map.setWorld(turnWork.visual,null,-1);
+        else map.setWorld(world,selected,moving,legacyView.state,sceneFacts);
         if(!showPanel){/* Hidden details are not inflated or measured. */}
         else if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
         else if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
@@ -1373,7 +1379,7 @@ public final class MainActivity extends Activity {
         // Never save the render world or a partially computed faction. Commit only the complete turn.
         if(turnWork.done&&!turnWork.savedFinal){long began=android.os.SystemClock.elapsedRealtime();turnWork.savedFinal=save("auto",false);turnWork.saveMillis+=android.os.SystemClock.elapsedRealtime()-began;}
         if(turnWork.visual==null||playback!=null)return;
-        playback=new TurnPlayback(map,turnWork,()->refreshTurnProgress(),this::completeTurnPlayback);
+        playback=new TurnPlayback(map,turnWork,()->refreshTurnProgress(),this::completeTurnPlayback,()->gameHost.session().state(),()->lastAppliedCommit);
         nextTurn.setText("演示控制");nextTurn.setEnabled(true);nextTurn.setOnClickListener(v->showPlaybackControls());
         playback.start();refreshTurnProgress();
     }

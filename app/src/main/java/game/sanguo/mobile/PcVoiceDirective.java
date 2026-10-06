@@ -20,6 +20,7 @@ final class PcVoiceDirective {
                      int voiceTypeRaw,int nativeProfile,int sideRaw,boolean alternateRaw,int priority,Selector selector,int[] currentAbilityBytes,Integer actorStatusRaw,Integer actor17cRaw){
         if(state==null||id==null||id.isEmpty()||parentId==null||parentId.isEmpty()||presentationParentId==null||presentationParentId.isEmpty()
             ||speaker==null||priority<0||priority>3)throw new IllegalArgumentException("Incomplete source voice directive");
+        if(speaker.originalVoiceProfile!=null&&speaker.originalVoiceProfile!=nativeProfile)throw new IllegalArgumentException("Voice profile differs from saved original speaker metadata");
         boolean actorValid=PcVoicePolicy.actorValidFromRaw(actorStatusRaw,actor17cRaw);
         if(!actorValid)throw new IllegalArgumentException("Missing/invalid committed original actor validity");
         int selected;

@@ -1,0 +1,100 @@
+{
+  "completeBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "aProductionBase": "6ea385ff2e1e021dc5d7d519f9f6cbb2ab57ffba",
+  "integrationBefore": "79e6dbe884307902631b344299ff37af8563ed5c",
+  "requiresCompletedBSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120",
+  "requiresCompletedBDoc": "969c518829351e84d4a1a0bba5275b8ee53fbd25",
+  "directory": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile",
+  "branch": "codex/map-ui-media-integration",
+  "paths": [
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "2a79d9ab74e276a64a0b0709c4af8d8e519655ca2e920be51f370140b8594c7c",
+      "afterSha256": "2e6952df432435960e84d6706a27bc5e4508e7a05acf615686a8507f61a0ba5c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "fc1ed192a256be306dcd6aa292958af17e4f822232f788981702f993b7a45de5",
+      "afterSha256": "e3449146ab111089b4b663fc9dfb5c94078bf6407a1e2884589bae003e7405f4"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeSha256": "69a66c6c78145961947cfabb8f74624397fe412b95245aa05df5895bf4c8f930",
+      "afterSha256": "a75f5a4c520fc7eed963b29f90f5cec9bf47c139355944ec70d504f6a6298c3c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "beforeSha256": "2f98f88083500b968936fad839a908cd404c08bb5e2266f1005e6570abdfb275",
+      "afterSha256": "5bba6913ebfaea0e297522de5521ff88965414ccb253112108c1fee004056260"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java",
+      "beforeSha256": "7a7d876c06f05f91b553838c70ad3a059b1c168e9bebe822551faf0d19bb6aa1",
+      "afterSha256": "798b3976ff1cdac9333eb816ea362cfbc9942b128640b9eff95ba5f76a63749f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaIdentity.java",
+      "beforeSha256": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126",
+      "afterSha256": "ce5e2f5c614ee67947dc751f6116a0dda1fd495379c1970c030bcd0754545cc3"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaSources.java",
+      "beforeSha256": "c687d224e1c7f7c27b113bdbd910022b1bcc88bc9edae40e2d6b0845e41dc516",
+      "afterSha256": "efbae49ad3a5325e210fa172795afc1bd8748431205d5bb87fe5254f16b52f24"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "beforeSha256": "9d13abadd7c3a57e489f2f1b0184b81a20ce1684a880075ef8dc1206ae7522fd",
+      "afterSha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/ANDROID_JAVA_COMPILE.json",
+      "beforeSha256": "3cc6dfaffbd74c7f2aa61ed9999fc51d3190ea63fb5c7e5921392639009e3bfa",
+      "afterSha256": "852b23d0649596425de1122e4eedf1f22a405f6c7c33b120226e00d3b44c2e5e"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/OWNERSHIP.json",
+      "beforeSha256": "a67d17eb75062a86553f2216bfb334cf2cb8412ab7fe324aec7d55b77695644b",
+      "afterSha256": "92c24bb83c0becfebf9807901deec0364aa27b58721461cc57abc3210cd333ac"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/device_session.py",
+      "beforeSha256": "c1470a9f31f647d3822d33f181b7377557da08f28be4655e0a9793fcefa90b11",
+      "afterSha256": "debe16c68787bd7dbed152e54b62b34921c476de50125bd7653dcb13c6dce32f"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenePresentationInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "bcc254523280e3a76df69d282f4606c9339e8282421495f6f63335f0de20af74"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneFactsPresentation.java",
+      "beforeSha256": null,
+      "afterSha256": "330ec985ed3bf68d8f5b456c045a38e72d15b2a95641bd3eb53995e183c8b6ff"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/SCENE_ADAPTER_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "0be04f0c035900a980d0e43a6d2693ca3c4cc19594ea4e34223b3102c9c92bff"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/SCENE_ADAPTER_VALIDATION.json",
+      "beforeSha256": null,
+      "afterSha256": "8ac60a3de644a179d0f2586a580e8e2c2ff16dcb6d191b45429f5abe70c3b186"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/SceneFactsPresentationProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "08d2c1e13d49172a8a1c3e2a24fccc7f3eaf6985a1292cf9da693e182259e656"
+    }
+  ],
+  "onlyAFilesEdited": true,
+  "bProductionModifiedByA": false,
+  "jni4Modified": false,
+  "inherited168InputsModified": false,
+  "hostActualSavedProjection22Passed": true,
+  "newNormalApkAccepted": false,
+  "originalFire13Accepted": false,
+  "originalSpeechCallerKnown": false,
+  "overallGoalComplete": false
+}

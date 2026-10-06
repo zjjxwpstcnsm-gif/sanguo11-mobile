@@ -3,6 +3,7 @@ package game.sanguo.mobile;
 import android.os.Handler;
 import android.os.Looper;
 import game.sanguo.api.StateToken;
+import game.sanguo.api.OfficerSnapshot;
 import java.lang.ref.WeakReference;
 import java.util.*;
 import java.util.concurrent.*;
@@ -20,19 +21,16 @@ final class PortraitMediaSources {
     private static final ThreadPoolExecutor worker=new ThreadPoolExecutor(1,1,30,TimeUnit.SECONDS,new ArrayBlockingQueue<>(8),r->new Thread(r,"SavedPortraitSources"),new ThreadPoolExecutor.AbortPolicy());
     static{worker.allowCoreThreadTimeOut(true);}
     private PortraitMediaSources(){}
-    private static Object field(Object value,String name)throws ReflectiveOperationException{return value.getClass().getField(name).get(value);}
-    static synchronized void bind(Object view,StateToken expected,Object snapshot){
-        if(view==null||snapshot==null)throw new IllegalArgumentException("Readonly portrait snapshot required");
-        try{
-            if(!expected.equals(field(snapshot,"state")))throw new IllegalArgumentException("Portrait metadata token differs");
-            Map<Integer,PortraitMediaIdentity> next=new HashMap<>();
-            for(Object officer:(Iterable<?>)field(snapshot,"officers")){
-                Object source=field(officer,"source");if(source==null)continue;int id=(Integer)field(officer,"id");
-                PortraitMediaIdentity identity=new PortraitMediaIdentity(id,(Integer)field(source,"nativeId"),(String)field(source,"sourceVariant"),(String)field(source,"sourcePath"),(String)field(source,"sourceSha"),(String)field(source,"recordSha"));
-                if(next.put(id,identity)!=null)throw new IllegalArgumentException("Duplicate portrait source identity");
-            }
-            retired.remove(view);Entry entry=new Entry();entry.identities=Collections.unmodifiableMap(next);Entry previous=sources.put(view,entry);if(previous!=null)notifyReady(previous);
-        }catch(ReflectiveOperationException error){throw new IllegalArgumentException("Completed source DTO contract missing",error);}
+    static synchronized void bind(Object view,StateToken expected,OfficerSnapshot snapshot){
+        if(view==null||snapshot==null||expected==null)throw new IllegalArgumentException("Readonly portrait snapshot required");
+        if(!expected.equals(snapshot.state))throw new IllegalArgumentException("Portrait metadata token differs");
+        Map<Integer,PortraitMediaIdentity> next=new HashMap<>();
+        for(OfficerSnapshot.Officer officer:snapshot.officers){
+            OfficerSnapshot.SourceInfo source=officer.source;if(source==null)continue;
+            PortraitMediaIdentity identity=new PortraitMediaIdentity(officer.id,source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.canonicalOfficerId,source.originalVoiceProfile,source.originalFields);
+            if(next.put(officer.id,identity)!=null)throw new IllegalArgumentException("Duplicate portrait source identity");
+        }
+        retired.remove(view);Entry entry=new Entry();entry.identities=Collections.unmodifiableMap(next);Entry previous=sources.put(view,entry);if(previous!=null)notifyReady(previous);
     }
     static synchronized boolean bound(Object view){return sources.containsKey(view);}
     /** raw is the detached copy supplied by SaveExtensions.get; names are already copied on the UI boundary. */
