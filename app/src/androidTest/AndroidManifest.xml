@@ -1,4 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <application>
+        <activity android:name="game.sanguo.mobile.SessionAAudioCaptureActivity" android:exported="true" />
+        <service android:name="game.sanguo.mobile.SessionAAudioCaptureService" android:exported="false" android:foregroundServiceType="mediaProjection" />
+    </application>
     <!-- AGP replaces the first runner with testInstrumentationRunner. Keep the
          default entry first so the named editor runner remains discoverable. -->
     <instrumentation android:name="game.sanguo.mobile.GameSmokeRunner"

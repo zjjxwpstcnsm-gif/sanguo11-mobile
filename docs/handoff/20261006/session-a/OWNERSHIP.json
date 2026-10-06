@@ -132,7 +132,10 @@
     "app/src/androidTest/java/game/sanguo/mobile/SessionADebatePresentationInstrumentation.java",
     "docs/handoff/20261006/session-a/BUILD_BATCH10.json",
     "docs/handoff/20261006/session-a/NORMAL384_GRID27.json",
-    "docs/handoff/20261006/session-a/observe_flow_video.py"
+    "docs/handoff/20261006/session-a/observe_flow_video.py",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureActivity.java",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_CONTRACT.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
