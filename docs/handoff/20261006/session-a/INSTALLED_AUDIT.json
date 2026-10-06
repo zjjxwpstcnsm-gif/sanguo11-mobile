@@ -1,0 +1,74 @@
+{
+  "sourceBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "branch": "codex/map-ui-media-repair",
+  "productionSourceRevision": "5431de8d121f9fd107b0021854f1f769399ff690",
+  "serial": "emulator-5554",
+  "API": 29,
+  "ABI": "x86_64",
+  "normalNonDebuggableR8": true,
+  "apk": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5431de8d/app-debug.apk",
+    "bytes": 311403267,
+    "sha256": "9bc6bff86e19be0309cccdc9ca5b5e52e00d1b3b1748ce7734c9645d6cf2cdaa"
+  },
+  "installedReadbackShaEqual": true,
+  "pinnedResourceShaEqualCount": 168,
+  "frozenJni": {
+    "lib/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "lib/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "lib/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "lib/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "userOriginalApkSha": "306830e30ce5a944fb356b0664de4beaae4adce4ff4de77f6a052a7bcbb1f0b6",
+  "fullBackup": {
+    "internal": {
+      "regularFiles": 9,
+      "archiveSha256": "781553aad563d95031e6d2a956c381e3e7fc798d625315c8c215396f32023054",
+      "bytes": 6272512
+    },
+    "external": {
+      "regularFiles": 3797,
+      "archiveSha256": "f288dd8abfd21ebfcae4cd3925aa5ae25b32e509f1c552903f27fdc6e4ba7ea6",
+      "bytes": 2721678848
+    }
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797
+    }
+  },
+  "acceptance": {
+    "passed": false,
+    "result": "first preview cancel retirement assertion observed too early; no completed zoom loop or all16 new-game acceptance",
+    "normalMenuReached": true,
+    "actualSourceIndex": 0,
+    "realPcMapPixelsVerified": true,
+    "previewWholeSaveRngAndTokenEqual": true,
+    "failureArtifact": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/resume-install-01/evidence/FAIL.png",
+    "failedRunNotReusedAsPass": true
+  },
+  "memory": {
+    "scope": "partial first preview; intrusive dumpsys -a diagnostics, not no-GC stress nor ARM root cause",
+    "javaHeapLimitBytes": [
+      536870912
+    ],
+    "loggedJavaUsedPeakBytes": 308260456,
+    "loggedNativeAllocatedPeakBytes": 200545280,
+    "graphicsPssReported": 0,
+    "graphicsPssZeroNotGpuVramEvidence": true,
+    "observedTerrainGpuBuffersEstimateBytes": 76838964,
+    "observedTexturesEstimateBytes": 75460576
+  },
+  "nextRevision": "630a4ce7",
+  "nextChange": "main-thread retirement completion wait; observer --local avoids process dump requests",
+  "armAccepted": false,
+  "fireParticleRestored": false,
+  "normalBgmVoiceBound": false,
+  "BfrozenDeltaIntegrated": false,
+  "completeGoal": false
+}
