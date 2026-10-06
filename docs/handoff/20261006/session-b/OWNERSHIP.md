@@ -60,3 +60,13 @@ Ignored verification output is confined to out/session-b/ and independent build 
 
 - docs/handoff/20261006/session-b/MILITARY_BATCH.json (sanitized completed military acceptance summary; B; register before creation)
 - docs/handoff/20261006/session-b/military-flow-17.tar.gz (only fresh test evidence, no user backups; B; register before creation)
+
+- app/src/androidTest/java/game/sanguo/mobile/SessionBCapacityInstrumentation.java (ordinary source0/menu/HeYi13000 deployment/wholeturn/save/cold; B; registered before creation)
+- docs/handoff/20261006/session-b/capacity.instrumentation.init.gradle (own runner only; shared Gradle/manifest unchanged; B)
+
+- docs/handoff/20261006/session-b/CAPACITY_BATCH.json (bounded capacity actual-flow acceptance and compatibility guards; B; register before creation)
+- docs/handoff/20261006/session-b/CAPACITY_DELTA.json (exact before/after SHA relative to completed military parent cc4e7abd; B; register before creation)
+- docs/handoff/20261006/session-b/capacity-flow-20.tar.gz (fresh capacity test artifacts only, no user backup files; B; register before creation)
+- tools/content/session_b_pack_capacity_expected.py (pinned original all16 report to deterministic test fixture; B; register before creation)
+- core/src/test/resources/pc-command-capacity/original-capacities.tsv.gz (original constructed domain, mapped coverage measured separately; B; register before creation)
+- core/src/test/java/game/sanguo/core/PcCommandCapacityAllSourcesTest.java (10720 direct production queries with record/source joins, pure saves and hard mismatch failure; B; register before creation)

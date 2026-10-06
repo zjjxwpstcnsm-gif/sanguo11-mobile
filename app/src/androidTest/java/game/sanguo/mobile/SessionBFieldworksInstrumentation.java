@@ -15,39 +15,39 @@ import java.util.*;
 import java.util.function.Predicate;
 
 /** Normal source menu, deployment and map widgets. No fixture world or resource injection. */
-public final class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
-    private MainActivity activity;private File evidence;
-    private boolean coldMode;
+public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
+    protected MainActivity activity;protected File evidence;
+    protected boolean coldMode;
     @Override public void onCreate(Bundle args){coldMode=args!=null&&"cold".equals(args.getString("mode"));super.onCreate(args);}
-    private Object invoke(String name,Class<?>[] types,Object...args)throws Exception{
+    protected Object invoke(String name,Class<?>[] types,Object...args)throws Exception{
         Method method=UiUxInstrumentation.class.getDeclaredMethod(name,types);method.setAccessible(true);
         try{return method.invoke(this,args);}catch(InvocationTargetException e){Throwable cause=e.getCause();if(cause instanceof Exception)throw (Exception)cause;throw new AssertionError(cause);}
     }
-    private void put(String name,Object value)throws Exception{Field f=UiUxInstrumentation.class.getDeclaredField(name);f.setAccessible(true);f.set(this,value);}
-    private void settle(){SystemClock.sleep(350);runOnMainSync(()->{});}
-    private void option(String s)throws Exception{tap(await(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)));}
-    private void preparedOption(String s)throws Exception{tap(awaitPreparation(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)));}
-    private void text(String s)throws Exception{tap(await(v->v instanceof TextView&&v.isClickable()&&((TextView)v).getText().toString().startsWith(s)));}
-    private void description(String s)throws Exception{tap(await(v->v.isClickable()&&v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith(s)));}
-    private void nav(String s)throws Exception{description("打开功能导航");description("导航 · "+s);settle();}
-    private void check(boolean b,String s)throws Exception{invoke("check",new Class<?>[]{boolean.class,String.class},b,s);}
-    private View awaitPreparation(Predicate<View> p)throws Exception{
+    protected void put(String name,Object value)throws Exception{Field f=UiUxInstrumentation.class.getDeclaredField(name);f.setAccessible(true);f.set(this,value);}
+    protected void settle(){SystemClock.sleep(350);runOnMainSync(()->{});}
+    protected void option(String s)throws Exception{tap(await(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)));}
+    protected void preparedOption(String s)throws Exception{tap(awaitPreparation(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)));}
+    protected void text(String s)throws Exception{tap(await(v->v instanceof TextView&&v.isClickable()&&((TextView)v).getText().toString().startsWith(s)));}
+    protected void description(String s)throws Exception{tap(await(v->v.isClickable()&&v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith(s)));}
+    protected void nav(String s)throws Exception{description("打开功能导航");description("导航 · "+s);settle();}
+    protected void check(boolean b,String s)throws Exception{invoke("check",new Class<?>[]{boolean.class,String.class},b,s);}
+    protected View awaitPreparation(Predicate<View> p)throws Exception{
         long deadline=SystemClock.uptimeMillis()+300000;AssertionError last=null;
         do{try{return await(p);}catch(AssertionError failure){if(!failure.toString().contains("visible control timeout"))throw failure;last=failure;}}while(SystemClock.uptimeMillis()<deadline);
         throw last;
     }
-    private View visible(View root,Predicate<View> p){Rect r=new Rect();if(!root.isShown()||!root.getGlobalVisibleRect(r)||r.width()<8||r.height()<8)return null;if(p.test(root))return root;if(root instanceof ViewGroup)for(int i=0;i<((ViewGroup)root).getChildCount();i++){View found=visible(((ViewGroup)root).getChildAt(i),p);if(found!=null)return found;}return null;}
-    private View await(Predicate<View> p)throws Exception{long deadline=SystemClock.uptimeMillis()+30000;do{View[] found={null};runOnMainSync(()->{List<View> roots=WindowInspector.getGlobalWindowViews();for(int i=roots.size()-1;i>=0;i--)if(roots.get(i).hasWindowFocus()&&(found[0]=visible(roots.get(i),p))!=null)break;});if(found[0]!=null)return found[0];SystemClock.sleep(150);}while(SystemClock.uptimeMillis()<deadline);throw new AssertionError("visible control timeout");}
-    private View tag(String s)throws Exception{return await(v->s.equals(v.getTag()));}
-    private void pointer(float x,float y,int presses){for(int i=0;i<presses;i++){long now=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(now,now,MotionEvent.ACTION_DOWN,x,y,0);down.setSource(InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(down);SystemClock.sleep(80);MotionEvent up=MotionEvent.obtain(now,SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,x,y,0);up.setSource(InputDevice.SOURCE_TOUCHSCREEN);try{sendPointerSync(up);}catch(RuntimeException lost){/* Dismissed target window; authority checks determine outcome. */}down.recycle();up.recycle();SystemClock.sleep(120);}}
-    private void tap(View v)throws Exception{tap(v,1);}
-    private void tap(View v,int presses)throws Exception{Rect r=new Rect();runOnMainSync(()->{v.getGlobalVisibleRect(r);int[] at=new int[2];v.getRootView().getLocationOnScreen(at);r.offset(at[0],at[1]);});check(!r.isEmpty(),"visible real pointer target "+(v instanceof TextView?((TextView)v).getText():v.getClass().getSimpleName()));pointer(r.centerX(),r.centerY(),presses);settle();}
-    private void shot(String label)throws Exception{settle();android.graphics.Bitmap bitmap=getUiAutomation().takeScreenshot();check(bitmap!=null,"actual screenshot "+label);try(OutputStream out=new FileOutputStream(new File(evidence,label+".png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}}
-    private byte[] capture()throws Exception{return (byte[])invoke("capture",new Class<?>[0]);}
-    private Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
-    private void pose(Hex h)throws Exception{runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");ClientState ui=(ClientState)field(activity,"ui");ui.page="map";ui.panelVisible=false;activity.refresh();FilamentMapView view=(FilamentMapView)field(host,"spatial");MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");view.camera.x=snap.ground.grid.x(h);view.camera.z=snap.ground.grid.z(h);view.camera.span=9;view.camera.yaw=0;view.camera.tilt=70;view.camera.clampTo(snap.ground);if((Boolean)field(host,"navigatorShown"))host.toggleNavigator();}catch(Exception e){throw new RuntimeException(e);}});settle();}
-    private void tile(Hex h)throws Exception{float[] xy=(float[])invoke("screenHex",new Class<?>[]{Hex.class},h);check((Boolean)invoke("routePoint",new Class<?>[]{Hex.class,float[].class},h,xy),"exact real3D target ray "+h);pointer(xy[0],xy[1],1);settle();}
-    private void advance(String label)throws Exception{
+    protected View visible(View root,Predicate<View> p){Rect r=new Rect();if(!root.isShown()||!root.getGlobalVisibleRect(r)||r.width()<8||r.height()<8)return null;if(p.test(root))return root;if(root instanceof ViewGroup)for(int i=0;i<((ViewGroup)root).getChildCount();i++){View found=visible(((ViewGroup)root).getChildAt(i),p);if(found!=null)return found;}return null;}
+    protected View await(Predicate<View> p)throws Exception{long deadline=SystemClock.uptimeMillis()+30000;do{View[] found={null};runOnMainSync(()->{List<View> roots=WindowInspector.getGlobalWindowViews();for(int i=roots.size()-1;i>=0;i--)if(roots.get(i).hasWindowFocus()&&(found[0]=visible(roots.get(i),p))!=null)break;});if(found[0]!=null)return found[0];SystemClock.sleep(150);}while(SystemClock.uptimeMillis()<deadline);throw new AssertionError("visible control timeout");}
+    protected View tag(String s)throws Exception{return await(v->s.equals(v.getTag()));}
+    protected void pointer(float x,float y,int presses){for(int i=0;i<presses;i++){long now=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(now,now,MotionEvent.ACTION_DOWN,x,y,0);down.setSource(InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(down);SystemClock.sleep(80);MotionEvent up=MotionEvent.obtain(now,SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,x,y,0);up.setSource(InputDevice.SOURCE_TOUCHSCREEN);try{sendPointerSync(up);}catch(RuntimeException lost){/* Dismissed target window; authority checks determine outcome. */}down.recycle();up.recycle();SystemClock.sleep(120);}}
+    protected void tap(View v)throws Exception{tap(v,1);}
+    protected void tap(View v,int presses)throws Exception{Rect r=new Rect();runOnMainSync(()->{v.getGlobalVisibleRect(r);int[] at=new int[2];v.getRootView().getLocationOnScreen(at);r.offset(at[0],at[1]);});check(!r.isEmpty(),"visible real pointer target "+(v instanceof TextView?((TextView)v).getText():v.getClass().getSimpleName()));pointer(r.centerX(),r.centerY(),presses);settle();}
+    protected void shot(String label)throws Exception{settle();android.graphics.Bitmap bitmap=getUiAutomation().takeScreenshot();check(bitmap!=null,"actual screenshot "+label);try(OutputStream out=new FileOutputStream(new File(evidence,label+".png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}}
+    protected byte[] capture()throws Exception{return (byte[])invoke("capture",new Class<?>[0]);}
+    protected Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
+    protected void pose(Hex h)throws Exception{runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");ClientState ui=(ClientState)field(activity,"ui");ui.page="map";ui.panelVisible=false;activity.refresh();FilamentMapView view=(FilamentMapView)field(host,"spatial");MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");view.camera.x=snap.ground.grid.x(h);view.camera.z=snap.ground.grid.z(h);view.camera.span=9;view.camera.yaw=0;view.camera.tilt=70;view.camera.clampTo(snap.ground);if((Boolean)field(host,"navigatorShown"))host.toggleNavigator();}catch(Exception e){throw new RuntimeException(e);}});settle();}
+    protected void tile(Hex h)throws Exception{float[] xy=(float[])invoke("screenHex",new Class<?>[]{Hex.class},h);check((Boolean)invoke("routePoint",new Class<?>[]{Hex.class,float[].class},h,xy),"exact real3D target ray "+h);pointer(xy[0],xy[1],1);settle();}
+    protected void advance(String label)throws Exception{
         nav("地图");int turn=SessionProbe.view(activity).turn;text("下一旬");long began=SystemClock.elapsedRealtime();text("执行");
         long deadline=began+900000,last=began;boolean background=false,skipRequested=false;
         while(field(activity,"turnWork")!=null&&SystemClock.elapsedRealtime()<deadline){
@@ -64,21 +64,21 @@ public final class SessionBFieldworksInstrumentation extends UiUxInstrumentation
         note("turn="+label+" finalElapsedMs="+(SystemClock.elapsedRealtime()-began)+" background="+background);
         check(field(activity,"turnWork")==null&&SessionProbe.view(activity).turn==turn+1,"normal whole turn "+label+" background="+background);
     }
-    private void note(String s)throws Exception{Files.write(new File(evidence,"diagnosis.txt").toPath(),(s+"\n").getBytes("UTF-8"),java.nio.file.StandardOpenOption.CREATE,java.nio.file.StandardOpenOption.APPEND);}
-    private View search(View v,Predicate<View> p){if(p.test(v))return v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){View hit=search(((ViewGroup)v).getChildAt(i),p);if(hit!=null)return hit;}return null;}
-    private void revealDescription(String name)throws Exception{
+    protected void note(String s)throws Exception{Files.write(new File(evidence,"diagnosis.txt").toPath(),(s+"\n").getBytes("UTF-8"),java.nio.file.StandardOpenOption.CREATE,java.nio.file.StandardOpenOption.APPEND);}
+    protected View search(View v,Predicate<View> p){if(p.test(v))return v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){View hit=search(((ViewGroup)v).getChildAt(i),p);if(hit!=null)return hit;}return null;}
+    protected void revealDescription(String name)throws Exception{
         runOnMainSync(()->{for(View root:WindowInspector.getGlobalWindowViews())if(root.hasWindowFocus()){
             View hit=search(root,v->name.equals(v.getContentDescription()==null?null:v.getContentDescription().toString()));
             if(hit!=null)hit.requestRectangleOnScreen(new android.graphics.Rect(0,0,hit.getWidth(),hit.getHeight()),true);
         }});settle();description(name);
     }
-    private void unitAction(String label)throws Exception{
+    protected void unitAction(String label)throws Exception{
         description("选中对象指令 ·");text("展开");
         runOnMainSync(()->{View hit=search(activity.getWindow().getDecorView(),v->v instanceof Button&&((Button)v).getText().toString().startsWith(label));if(hit!=null)hit.requestRectangleOnScreen(new android.graphics.Rect(0,0,hit.getWidth(),hit.getHeight()),true);});settle();text(label);
     }
-    private void militaryMenu()throws Exception{unitAction("设置军事设施");}
-    private void selectUnit(int id)throws Exception{runOnMainSync(()->activity.selectUnitAndFocus(id));settle();}
-    private int safety(World world,World.Unit builder,Hex tile){
+    protected void militaryMenu()throws Exception{unitAction("设置军事设施");}
+    protected void selectUnit(int id)throws Exception{runOnMainSync(()->activity.selectUnitAndFocus(id));settle();}
+    protected int safety(World world,World.Unit builder,Hex tile){
         int nearest=999;
         for(World.Unit enemy:world.units)if(world.campaign.hostile(builder.owner,enemy.owner))nearest=Math.min(nearest,tile.distance(enemy.hex));
         for(World.City enemy:world.cities)if(world.campaign.hostile(builder.owner,enemy.owner))nearest=Math.min(nearest,SiteFootprint.distance(enemy,tile));

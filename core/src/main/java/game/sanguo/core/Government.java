@@ -50,7 +50,7 @@ public final class Government {
         return baseCommandLimit(officer)+(w.campaign.has(o.owner,Campaign.Tech.MILITARY_REFORM)?3000:0);
     }
     public int baseCommandLimit(int officer){
-        World.Officer o=w.officer(officer);if(o==null)return 0;Rank r=office(officer);
+        World.Officer o=w.officer(officer);if(o==null)return 0;Integer original=PcCommandCapacityPolicy.base(w,o);if(original!=null)return original;Rank r=office(officer);
         return o.role==Strategy.Role.RULER?w.governance.rulerCommand(o.owner):r==null?PcOfficerRanks.unassigned().command:r.troops;
     }
     public String commandDescription(int officer){

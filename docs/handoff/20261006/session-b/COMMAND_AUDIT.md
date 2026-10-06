@@ -20,3 +20,7 @@
 |舌战|StrategyUi普通说服/外交；PcDebateCampaign原人控实验|39原实验续行已继承；生产native finish/abandon明确拒绝未核实结算|原真实准入/金/AP/功绩/先手装备/一次性终局，胜败放弃/保存重开；不能把工程100/10/+100当原值|
 
 优先继续军建正常流程。本表潜在列表不一致尚未修改规则，不代表已确认所有命令无问题。原流程、正常APK与旧档验收逐项追加；未知须保留。禁止以局部算术、原getter、注册人数或演练界面替代完成。
+
+## Later completed flow updates
+
+Military17 is completed bounded source14 normal funding/build500/wall300/multipleturn/save/cold, described in MILITARY_BATCH.json. Capacity20 is completed bounded Source0/force28/native58 normal roster13000/once-only stock debit/three turns/fullsave/cold, described in CAPACITY_BATCH.json. These supersede the table earlier pending build16/capacity prototype status, but do not close governor/district/budget/activation or all16-page flow matrix. Repair list/formal admission mismatch still awaits normal-state reproduction.
