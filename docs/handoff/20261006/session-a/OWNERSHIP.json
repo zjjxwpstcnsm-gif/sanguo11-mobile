@@ -181,7 +181,8 @@
     "docs/handoff/20261006/session-a/MUSIC_SUBMISSION_ACCEPTANCE44.json",
     "docs/handoff/20261006/session-a/SEARCH_RUNNER_MANIFEST_FAILURE45.json",
     "app/src/androidTest/AndroidManifest.xml",
-    "docs/handoff/20261006/session-a/CAUSE_FACTIONS_REGISTERED_BUILD46.json"
+    "docs/handoff/20261006/session-a/CAUSE_FACTIONS_REGISTERED_BUILD46.json",
+    "docs/handoff/20261006/session-a/export_complete_source.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
