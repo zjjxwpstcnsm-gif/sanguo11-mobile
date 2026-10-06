@@ -1,5 +1,12 @@
 # 2026-10-07 当前交付检查点（完整目标仍进行中）
 
+更新检查点41/44：279普通384包d760da6e实际全16正常4699+冷81/128normal roster-detail current-year原图像素及10720identityjoin/0unknown通过，9/3797最终SHA恢复；Java峰350859048B/384MiB、Source11子阶段313990232B，native独立290377232B/PSS609917KiB/GPU未知。这个包尚未含后继PDR1/directCause。
+
+后继4cb8f8cb默认large包 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug.apk`，313471840B、SHA562fabeb23540c0256ab9bcc4282a2a4f2d729805990062c29c46ed2b0e9743a；测试7c677d1b0e0532a65a60bde5a08caaf05817918d2c3f3007e504ff2543c49d30。44实际正常菜单原2238整首捕获0.997237937≥原0.995，17窗偏移稳定，首曲接受15618048B与解码SHA完全一致，正常UI62/完整Save-RNG-Token不变；9/3797与旧测试APK/全部测试文件/麦克风false/AppOp default恢复。42显式default的native−1拒绝已通过same packageallow对照定位，43复用旧testSHA被正确拦截且恢复，旧−22与34失败独立保留。Android解码与原参考SHA仍不同，Windows exactPCM不称已通过；地图BGM/voice/其它事件原声/ARM不借这条菜单成绩。
+
+B已完成direct1b7a8b41/5ce10e6b、directCause292d0c72/aa9bdf6d逐17/7与4/6路径SHA串行导入9a19d39e/babe0660及9bb0b425/157a9881。所有剩余DUEL/DOMESTIC等WIP排除；project DIRECT_RECRUITMENT原因不是原voice caller。45同562正常SEARCH/自然舌战多旬/冷存读正在运行，最新cause+全可选势力/每来源取消重试的普通384包编译中，仍须各自实际安装。当前真实最新游戏包是562，当前源码继承其后继cause，不能混称包已包含后继。全目标保持未完成。
+
+
 此段取代下方历史记录中的“当前/未集成/未安装”描述，历史回执和失败保留。完整共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059；本完整隔离源码 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile`，分支codex/map-ui-media-repair。main仍ef413be3653820dd6449ba7f02aa60bed5b26ef5；原旧目录和PC只读源不改。所有新增台账/契约/工具在本session注册，原4JNI与168固定资源守卫保持。
 
 最近已完成 B 增量全部串行审计，尤其军团833fcde4/71c3e90b导入115c0ba3/1ac54a2d、搜索d852cc78/2377c30b导入5793ab0a/ac7abd09；搜索28源码与7文档前后SHA全等，无冲突，不合B其余COMMAND_NATIVE_WORK/direct-recruitment/domestic/recruitment-admission WIP。A MainActivity/MapHost/MapSceneSnapshot/ScenarioFactionPicker/FactionColors/UiTheme保持唯一所有权；B16页面只继承其完成提交。
