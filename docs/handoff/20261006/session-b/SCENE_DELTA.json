@@ -1,0 +1,159 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "mainBase": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "parentCompletedBatch": "1c3b54b517a8f8177006a3d71e5b9d4a4695e11d",
+  "sourceCommit": "41313d2f7e7c41003c750a10dcf72c3b43c52120",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "status": "completed-bounded-readonly-API-and-military-flow21-x86_64",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
+      "beforeSha256": "d3824152c6a88a401b027a03bb1bf4e43bdad3dcd5e6178fd5a1c122c8b7af64",
+      "afterSha256": "47725ed85e3b4a16b36c9061909136898a0ac36275075aa56e86f8afc69c8bb2",
+      "bytes": 24987
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TurnJournal.java",
+      "beforeSha256": "4948c6818db1d46569f001b403f4fcf1694a75758a3d2014907a259e8b25ef5b",
+      "afterSha256": "9fcc564cdf349905a5e22d67fc4800f6f2131bfba784d6fce4fa56651db02dca",
+      "bytes": 25736
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ACCEPTANCE.md",
+      "beforeSha256": "a4c4e8fbe6af1a21ab3c19c13038df37cfd0b07166b85c45ba4ad8740ed63020",
+      "afterSha256": "c443f95e28399da94f0b03afbf2f2f1e07dcd1fe8c5b06d72e094e2850fd3b9d",
+      "bytes": 9065
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_CAPACITY.md",
+      "beforeSha256": "7e36582ac6158b700b615659a897f330ab87aaf7f2f9e7ca25f1096896c772e1",
+      "afterSha256": "08cf0d54e7e65044283e6c0dbe5a4056aa6f1f941ddfed2481d03afcc0fb5253",
+      "bytes": 5119
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": "75757fc8badb20fc89f4fd529cae71d766e49da026197d10362d25d4cce1375d",
+      "afterSha256": "3e4efdfc4bc01673723e4c8426c9dc79f932e250e5622c1d653130b98086eac2",
+      "bytes": 8658
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/PROGRESS.md",
+      "beforeSha256": "d30439e12fe89e4b2e42a136ef20c79f74853e6fcd7d99f4236a462ac7b6006e",
+      "afterSha256": "bdb5020737e9d4383009a7363ad975307a915da127e6a0bed76b8ef6a12def05",
+      "bytes": 26452
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SCENE_FACTS_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "48823ea60558ab402b838914e559daa0148aa8e993009ce2ef9af1c4c091c60e",
+      "bytes": 9178
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/UNKNOWN.md",
+      "beforeSha256": "d3226997ee87b5cd8ea68d4d48757a0abc875338c1ca8e03bafd0b4db6165aed",
+      "afterSha256": "4157f1ce4434be8e46859957941cf5f0616c6bc097b8a59a55eb514f2f764124",
+      "bytes": 4896
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/scene-facts-installed-21.json",
+      "beforeSha256": null,
+      "afterSha256": "5867883101dc82fe758c2719be69e9770b45bf3a74bf1bd118d13823f569da13",
+      "bytes": 418507
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/scene-flow-21.tar.gz",
+      "beforeSha256": null,
+      "afterSha256": "c1377700ce87532dd04c2c5399caf715545b07c2e92502e33e293d6a440f5c4a",
+      "bytes": 17067560
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/AppliedEventSnapshot.java",
+      "beforeSha256": null,
+      "afterSha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "bytes": 4770
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "beforeSha256": "cd53aa6168acd1ec0e492e4cdb70cc75d624650173bad103ad15c93da8195808",
+      "afterSha256": "ae7f8a479cad148e6372d9f9f93e5ea495911c3e7aeb4bab3da5fba02ba3939b",
+      "bytes": 1464
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "beforeSha256": "a34f1f26dfd335cd4e44fc3c5a103b364ee83df18dd1b2ae8760b691f9aff621",
+      "afterSha256": "56d6961270c49b7974ba58e464310555dafdade9d81ad422bc3df7464edcc1c3",
+      "bytes": 7331
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java",
+      "beforeSha256": null,
+      "afterSha256": "d832f7bd7412228c47fb0bbd241025e53b2585a0e7d9ac1c49e1403de5ca8426",
+      "bytes": 5781
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "beforeSha256": "4ba5ad5cdabef347c9632a2d9a5fb50978d383e20f55e61c3267d4063862fb22",
+      "afterSha256": "12818c8c7a5d890e2ad9a5962b81b662c37d1a14bcd4e38905332990ff4cde41",
+      "bytes": 28567
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/AppliedEventQuery.java",
+      "beforeSha256": null,
+      "afterSha256": "5588db228f5b6e1f4b133457c0c73ea0327fcf6b98e44cbe390f921ad1965dd6",
+      "bytes": 2582
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "beforeSha256": "2616554e048c3d3590e53eaae0e9169afa5a32a7727300684be30cd9bfe3fabe",
+      "afterSha256": "e5724fe5eb62033b233da5fc5b49440fd196ff7c60d017b02bc3a5750af3c7ab",
+      "bytes": 10327
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SceneFactsQuery.java",
+      "beforeSha256": null,
+      "afterSha256": "37006d3166d30c5232be13a422944b7b7bb3d4af79994634ef13abd543ca9a1a",
+      "bytes": 3486
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SceneFactsExportProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "1848c82c350b9aee2b99216a294c61295d8dbdb1c277188439bbfb33ec289004",
+      "bytes": 5116
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SceneFactsQueryTest.java",
+      "beforeSha256": null,
+      "afterSha256": "411c0a0ae06223585190564edb24a0ae13c1c40bff4ea3984eef2a831b076d80",
+      "bytes": 9026
+    }
+  ],
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "ignored": true
+    }
+  ],
+  "conflicts": "20 exact B source/evidence paths. Sequentially apply completed military224751a7/cc4e7abd, capacity454d60db/1c3b54b5, then this source. No A WIP or A-owned file overwrite. A must implement exact consumers in SCENE_FACTS_CONTRACT in its own files and return frozen increment for later sequential installed verification. Shared Gradle/manifest unedited.",
+  "goalComplete": false
+}
