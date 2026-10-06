@@ -74,3 +74,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 1146全normalCaller测试Gradle构建成功；后继只读工具减少非产品测试噪声：每source仅解一次saved原身份map供全部caller精确比较，避免每个Bitmap比较重解670条资料；仍每次完整Save/RNG/Token纯检查。可读性纯色contrast在任意祖先alpha非1时记未知而非未经合成的数值。没有改生产资源/规则/显示，后继测试需新构建/实装；48冻结376/d472仍live。
 
 76780817后继全normal媒体caller+可读性+directHUD测试独立构建成功，冻结out/session-a/apk-76780817-full-normal-media-test；SHA1e58fa62496d416611fe011be67fb33812c40409d1a0dcf70289d6d74c6975db、2603791B，实际BuildConfig revision 7678081798c1fed4977cedaf024c1c63aa59ff00；未安装/未正常通过。49将配确切当前376做actualdirectHUD及实际文字状态，然后source分批mediaAll16/火/建设/全16页面，最新原媒体caller事实与ARM未知仍保留。48仍376/d472实际正常source7进行，句柄53424/native66620，原备份与锁保留，不能重启。
+
+48 Source7实际37个可选势力/47槽预览完成；用户指定陶謙side18/韓玄31/韓遂41均actual3D+选择摘要+opaque文字，正常真实PNG设备/主机SHA精确一致，韓遂图现场检查姓名/正常原头像/资源及按钮可读。回执为partial48，未借为全部16或ARM同设备前后图。source0—8已完成131实际可选预览及9正常源保存，进程53424/66620继续；76780817新测试1e58fa62未安装，下一轮仍待完整恢复。

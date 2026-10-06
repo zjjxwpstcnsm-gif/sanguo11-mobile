@@ -1,0 +1,43 @@
+{
+  "scope": "Live actual default376/d472 Source7 targeted reported-name previews; all37 enabled source forces also completed. Partial48 only, not final16/cold/restore/ARM acceptance.",
+  "gameApkSha256": "376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8",
+  "testApkSha256": "d472ff07a09ac90ab8efb701f672f28aa1a71a611be69ab38301f140b012fcc6",
+  "sourceIndex": 7,
+  "actualEnabledForces": 37,
+  "slots": 47,
+  "targets": [
+    {
+      "side": 18,
+      "label": "陶謙",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 陶謙 · 城池1 · 武将7",
+      "actual3DVerified": true
+    },
+    {
+      "side": 31,
+      "label": "韓玄",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 韓玄 · 城池1 · 武将4",
+      "actual3DVerified": true
+    },
+    {
+      "side": 41,
+      "label": "韓遂",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 韓遂 · 城池1 · 武将11",
+      "actual3DVerified": true
+    }
+  ],
+  "screenshotSha256": {
+    "source-7-faction-31-preview.png": "ba9703b6def83a85b314edabff1684d23e30b2c07bd7edccdbab799c9c050f35",
+    "source-7-faction-41-preview.png": "8ed6f2538a442e37b16de65678e93ccefe17f653c29f1f4add009ebc04cff6b8",
+    "source-7-faction-18-preview.png": "a5602c3390fd2480c51d9046ffcd02b944e0eb39bc95a213d35ce31c22e8c9f6"
+  },
+  "metadataSha256": "dd91e3903111bcca43c4039fe97857c49be50b6b85c9407e7465e4aad85a6f4f",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/all-factions-default-large-48/partial-inspection",
+  "manualInspection": "Actual Source7 韓遂 selected preview inspected: gold selected label, readable target/other force labels, normal leader image and resource/army/controller text; no user ARM before-after same-device claim.",
+  "wholeGoalComplete": false
+}
