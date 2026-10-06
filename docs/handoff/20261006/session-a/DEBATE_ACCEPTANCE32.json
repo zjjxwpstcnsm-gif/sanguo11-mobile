@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "apkSha256": "a7d4b7113d50d89edbc668178cc7dac07c935540264e0eb480d0d3c469c43520",
+  "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "scope": "actual normal Source0 recruitment debate/cancel/human legal cards/naturalwin-loss/once-only settlement/mid+terminal fullsave-read/wholeturn; actual newPID cold auto+manual savedmodel/human terminal/wholeturn and typed A scene facts; not newarmy-budget semantics",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "coldProcess": {
+    "beforePid": "10523",
+    "afterPid": "29585",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "0bc6089cf4dc0c5590849daaea30c47085536b7e82d91616386ae884159fdf20",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "turns": [
+    {
+      "label": "trial-0-nextturn",
+      "elapsedMs": 7393,
+      "background": false
+    },
+    {
+      "label": "after-terminal-save-0",
+      "elapsedMs": 9288,
+      "background": false
+    },
+    {
+      "label": "trial-1-nextturn",
+      "elapsedMs": 11932,
+      "background": false
+    },
+    {
+      "label": "after-terminal-save-1",
+      "elapsedMs": 16155,
+      "background": false
+    }
+  ],
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/debate-large-32",
+  "evidenceSha256": {
+    "session.json": "c73608381c672bd8013723efcfe235fb358e06377dcca30da3ebbc935240385f",
+    "instrumentation.txt": "476146a4554cb0fe71c3acc0c3799439b764386084b28a42c8e52147dc47df30",
+    "cold-instrumentation.txt": "61d7d9155edbab1ec8a2ed9e9c935bc2a3d83dc52d0f02e564ec950f2c5657ce",
+    "logcat.txt": "2f63e1c008e35f8ed90c67643bcdf0cc3bf148ec5d4905aaf60115c2715f9196",
+    "evidence/actual-mid.sg11": "0bc6089cf4dc0c5590849daaea30c47085536b7e82d91616386ae884159fdf20",
+    "evidence/diagnosis.txt": "6b8babc3d646f80761014aa745962d1aa12b0300b003ac64f808ed161d8a07db"
+  },
+  "originalAdmissionFeesConcessionDiplomacyFullNativeDuelComplete": false,
+  "newArmyBudgetCombinationAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}
