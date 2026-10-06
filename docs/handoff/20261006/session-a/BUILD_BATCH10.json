@@ -1,0 +1,48 @@
+{
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "aProductionCommit": "c6315ba6",
+  "BCompletedSourceImport": "fe8489ee",
+  "BCompletedDocsImport": "25af1379",
+  "branch": "codex/map-ui-media-repair",
+  "directory": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "packages": [
+    {
+      "kind": "normal384",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4e312b89-grid-debate-normal384/app-debug.apk",
+      "bytes": 312840994,
+      "sha256": "5df034d1c0ce243126eb07c81addef4597ce250785257a21b154c6e979b1194c",
+      "installed": true,
+      "fullAll16Accepted": false
+    },
+    {
+      "kind": "large512",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4e312b89-grid-debate-large512/app-debug.apk",
+      "bytes": 312840990,
+      "sha256": "a7d4b7113d50d89edbc668178cc7dac07c935540264e0eb480d0d3c469c43520",
+      "installed": false,
+      "fullAll16Accepted": false
+    }
+  ],
+  "original168PinsExactInsideBothApks": true,
+  "original4JniExactInsideBothApks": true,
+  "original40000PositionPrimitiveAdapterByteExact": true,
+  "sameTokenSourceFacts22HostPassed": true,
+  "grid28ExpandedPayloadWindowsExact": true,
+  "debateHost": {
+    "sourceNumericOutcomesChecks": 80,
+    "ordinaryWinsLossesSaveRulesChecks": 156,
+    "GameSessionValidatedDebateChecks": 68,
+    "sourceInitialProfilesFullDeckPassed": true
+  },
+  "architectureStaticPassed": true,
+  "fullArchitectureScriptPassed": false,
+  "retainedFailure": "unchanged Unity U01 fixture generated vs tracked mismatch; no shared frozen edits",
+  "WipMerged": false,
+  "ARM": false,
+  "goalComplete": false,
+  "testPackage": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4e312b89-grid-debate-normal384/app-debug-androidTest.apk",
+    "sha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29"
+  }
+}
