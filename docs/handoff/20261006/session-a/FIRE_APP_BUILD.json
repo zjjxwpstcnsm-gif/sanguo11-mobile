@@ -1,0 +1,28 @@
+{
+  "sourceRevision": "96af4a7a",
+  "branch": "codex/map-ui-media-repair",
+  "completedBImmutableCache": "cb87d90d343099361413d44a9d7a981d3bc89664",
+  "largeHeap": true,
+  "old4JniExact": true,
+  "extraFireWorkersExact": [
+    {
+      "path": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "305e2ce68eb78a70dcb71adbb1234310605e4d83bbd298ccd375aa1dcfcc43d6"
+    },
+    {
+      "path": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "a3638baceb49591644e1b3ad9291e5780ee3abe9177f90a4e3eee731006a8529"
+    }
+  ],
+  "old168PinsExact": true,
+  "source2AndNewMapAddPinsExact": true,
+  "files": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-96af4a7a-original-fire/app-debug-androidTest.apk": "58a4699074d98cf07fb20e8c3dcd227ea9147dd3443fcfba96762206605cf473",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-96af4a7a-original-fire/app-debug.apk": "cd34cf57e1095fcca93c129084508397e73cecb6e1a2dac656d9f6c59c8617b1"
+  },
+  "installed": false,
+  "normalOriginalFireAccepted": false,
+  "manualFireExtinguishAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}

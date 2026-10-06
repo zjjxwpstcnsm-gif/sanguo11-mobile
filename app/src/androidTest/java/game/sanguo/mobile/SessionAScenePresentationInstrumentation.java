@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.*;
 
 /** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
-public final class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+public class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
  @Override public void finish(int code,android.os.Bundle result){
   try {
    // Frozen B calls Activity.finish(); its 350ms settle can end before autosave/onDestroy.

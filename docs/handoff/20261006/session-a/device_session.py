@@ -161,14 +161,14 @@ def main():
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
             with (out/'instrumentation.txt').open('wb') as f:
                 run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
-            r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput']) and 'FAIL' not in r['testOutput']
+            r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             b_folder='capacity' if a.runner=='SessionBCapacityInstrumentation' else 'fieldworks'
-            b_runner=a.runner in ['SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionBCapacityInstrumentation']
+            b_runner=a.runner in ['SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionAFireFlowInstrumentation','SessionBCapacityInstrumentation']
             relative='session-b/'+b_folder if b_runner else folder+'/'+run_id
             run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+relative,str(out/'evidence'))
             if a.fresh_process_reopen:
-                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionBCapacityInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
+                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionAFireFlowInstrumentation','SessionBCapacityInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
                 normal_pass=r['passed'];r['normalPassed']=normal_pass;r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
                 expected=run('shell','sha256sum','/data/data/'+PACKAGE+'/files/auto.sg11').decode().split()[0]
                 if b_runner:
@@ -194,7 +194,7 @@ def main():
                 new_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',after_log)
                 if not new_pids:raise ValueError('No actual second-process PID evidence')
                 new_pid=new_pids[-1]
-                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else 'PASS SESSION B FIELDWORKS COLD') in cold) and 'FAIL' not in cold and old_pid!=new_pid}
+                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else ('PASS SESSION A FIRE COLD' if a.runner=='SessionAFireFlowInstrumentation' else 'PASS SESSION B FIELDWORKS COLD')) in cold) and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
         finally:
