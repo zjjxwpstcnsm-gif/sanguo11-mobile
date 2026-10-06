@@ -136,5 +136,16 @@
       }
     ],
     "conclusion": "Most original samples present; complete timeline not continuous at unchanged .995 gate. Short-window normalization silent-energy issue is separate from full-wave failure. Capture versus playback discontinuity cause pending."
+  },
+  "localTimelineDiagnostic": {
+    "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/audio-capture-34/local-discontinuity.json",
+    "sha256": "da1dd95e2392070c5941efbaa66e862ce972930047b1e70b3c46c25a199d01ba",
+    "offsetStepsSamples": [
+      160,
+      128,
+      192,
+      320
+    ],
+    "scope": "Original local waveform almost exact before and after each step; captures contain a changing offset, no complete-wave acceptance or capture/player cause established"
   }
 }

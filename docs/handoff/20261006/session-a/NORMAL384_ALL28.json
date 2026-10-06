@@ -4,7 +4,7 @@
   "apkSha256": "5df034d1c0ce243126eb07c81addef4597ce250785257a21b154c6e979b1194c",
   "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
   "exactAlreadyInstalled27ApkReverified28": true,
-  "scope": "all16 actual menu/source/factions/cancel/retry/newgame/whole-near/pan/normalofficers/Home/orientation/fullSave/read/exit/reopen and separate cold process; not all command/media/ARM/PC framebuffer acceptance",
+  "scope": "all16 actual menu/source/factions/cancel/retry/newgame/whole-near/pan/normalofficers/Home-key-attempt/orientation/fullSave/read/exit/reopen and separate cold process; not all command/media/ARM/PC framebuffer acceptance",
   "device": {
     "ro.build.version.sdk": "29",
     "ro.product.cpu.abi": "x86_64",
@@ -225,5 +225,10 @@
   "ordinary384IssueClosedForThisEmulatorMatrix": true,
   "userOriginalArmOomStackKnown": false,
   "defaultLarge512SameSourceApkActualInstalled": false,
-  "overallGoalComplete": false
+  "overallGoalComplete": false,
+  "homeLifecycleVerificationCorrection": {
+    "verified": false,
+    "discoveredAtBatch": 36,
+    "reason": "Earlier runner used Instrumentation.sendKeyDownUpSync(KEYCODE_HOME) without asserting actual background lifecycle. Batch36 demonstrates that key can leave Activity foreground; earlier full16 result retains valid other checks but cannot establish actual Home pause. Later real global Home and lifecycle guard required."
+  }
 }
