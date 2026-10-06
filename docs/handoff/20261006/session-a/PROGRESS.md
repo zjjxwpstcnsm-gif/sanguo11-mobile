@@ -66,3 +66,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 48最新默认large376f03a1/testd472ff07已实际安装，两APK设备读回SHA精确、真实pm组件注册守卫通过。正常日志PID24639：normal384/large512、Runtime536870912B、设备物理2089222144B、largeHeap=true。完整9/3797当前SHA先核及独立完整archive已保留；全部16可选势力逐一真实预览/逐源取消重试/缩放/存读/真正Home/方向/冷矩阵正在运行，句柄53424/native66620，尚未判通过。49后续directHUD仅测试观察f086工具构建live46987，不能借47截图或事实当可见终值通过。
 
 49 directHUD只读观察测试独立Gradle成功，冻结out/session-a/apk-a3c88c25-direct-hud-observation-test，实际SOURCE_REVISION a3c88c25c4039f568b61767013e6c8a36d848aee、testSHA0c8a307bdd5681c857bda96e51aa24ceea48d34ea8d844fbb1e06ab1331fc188，尚未安装；当前48仍实际376/d472，不更新当前正在运行的testAPK。正常48实际CSV持续记录512MiB上限，全可选势力第一来源逐一预览进行中，不以中间峰值或ready当整矩阵通过。
+
+补全正常Android可读性验收工具：新增已登记A SessionAUiReadabilityAudit，A正常命令截图旁记录实际focused/shown TextView、enabled/selected/foregroundSpan/alpha/可见范围及仅明确纯色背景的contrast；渐变/图像/透明背景与Canvas地图标注不伪装为像素证明。只读当前真实widgets，无构造World/snapshot、无修改B16页面/规则。A普通截图hook接入，待独立编译/安装新测试；48继续冻结原376/d472，不替换其live APK。

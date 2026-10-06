@@ -188,7 +188,8 @@
     "docs/handoff/20261006/session-a/DEFAULT_LARGE_BUILD48.json",
     "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT48.json",
     "docs/handoff/20261006/session-a/DIRECT_PRESENTATION_ACCEPTANCE47.json",
-    "docs/handoff/20261006/session-a/INSTALLED_DEFAULT_LARGE48.json"
+    "docs/handoff/20261006/session-a/INSTALLED_DEFAULT_LARGE48.json",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAUiReadabilityAudit.java"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

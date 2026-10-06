@@ -8,6 +8,13 @@ import java.util.*;
 
 /** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
 public class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+ @Override protected void shot(String label)throws Exception {
+  super.shot(label);
+  org.json.JSONArray roots=new org.json.JSONArray();Throwable[] failure={null};
+  runOnMainSync(()->{try{for(android.view.View root:android.view.inspector.WindowInspector.getGlobalWindowViews())if(root.isShown()&&root.hasWindowFocus())roots.put(SessionAUiReadabilityAudit.collect(root));}catch(Throwable e){failure[0]=e;}});
+  if(failure[0]!=null)throw new IllegalStateException("Actual UI readability inventory",failure[0]);
+  Files.write(new File(evidence,label+"-actual-text.json").toPath(),new org.json.JSONObject().put("normalScreenshot",label+".png").put("focusedRoots",roots).toString(2).getBytes("UTF-8"));
+ }
  @Override public void finish(int code,android.os.Bundle result){
   try {
    // Frozen B calls Activity.finish(); its 350ms settle can end before autosave/onDestroy.
