@@ -153,7 +153,8 @@
     "docs/handoff/20261006/session-a/ARMY_ACCEPTANCE35.json",
     "docs/handoff/20261006/session-a/AUDIO_CAPTURE_ACCEPTANCE34.json",
     "docs/handoff/20261006/session-a/diagnose_capture_timeline.py",
-    "docs/handoff/20261006/session-a/FIRE_PAUSE36_NAVIGATION_FAILURE.json"
+    "docs/handoff/20261006/session-a/FIRE_PAUSE36_NAVIGATION_FAILURE.json",
+    "docs/handoff/20261006/session-a/PRESERVATION_20261007.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

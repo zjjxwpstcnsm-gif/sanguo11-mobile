@@ -1,0 +1,50 @@
+{
+  "scope": "Read-only original complete source and old workspace SHA guard plus four original JNI; no B WIP integration or main mutation",
+  "checkedAt": "2026-10-07 Asia/Shanghai",
+  "branch": "codex/map-ui-media-repair",
+  "head": "38d33f9da39e3e3d331f05f5f597011acb6deaaa",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "guards": [
+    {
+      "guard": "SOURCE_GUARD.json",
+      "root": "/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile",
+      "entries": 10714,
+      "mismatches": [],
+      "head": "0e7b9bc2df90249a50851baeda58c7d183ea6059"
+    },
+    {
+      "guard": "ORIGINAL_GUARD.json",
+      "root": "/Users/paopao/workspace/sanguo11-mobile",
+      "entries": 4301,
+      "mismatches": [],
+      "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef"
+    }
+  ],
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "expectedSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "expectedSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "expectedSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "expectedSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "passed": true
+}
