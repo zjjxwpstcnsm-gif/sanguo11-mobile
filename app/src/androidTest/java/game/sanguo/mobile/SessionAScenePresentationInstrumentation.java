@@ -23,18 +23,20 @@ public final class SessionAScenePresentationInstrumentation extends SessionBFiel
  }
 
  @Override protected void verifySceneFacts(String label)throws Exception {
-  super.verifySceneFacts(label);
   byte[] before=capture();StateToken prior=activity.deploymentState();
-  MapSceneSnapshot[] snap={null};SceneFactsSnapshot[] facts={null};World[] layout={null};
+  nav("地图"); // Cold startup may restore a menu page; enter the actual map normally.
+  super.verifySceneFacts(label);
+  MapSceneSnapshot[] snap={null};SceneFactsSnapshot[] facts={null};World[] layout={null};boolean[] rendered={false};
   long deadline=SystemClock.uptimeMillis()+120000;
   while(SystemClock.uptimeMillis()<deadline){
    runOnMainSync(()->{try{
-    MapHost map=(MapHost)field(activity,"map");snap[0]=(MapSceneSnapshot)field(map,"publishedSnapshot");facts[0]=(SceneFactsSnapshot)field(activity,"sceneFacts");layout[0]=SessionProbe.view(activity);
+    MapHost map=(MapHost)field(activity,"map");snap[0]=(MapSceneSnapshot)field(map,"publishedSnapshot");facts[0]=(SceneFactsSnapshot)field(activity,"sceneFacts");layout[0]=SessionProbe.view(activity);FilamentMapView renderer=(FilamentMapView)field(map,"spatial");rendered[0]=renderer!=null&&(Boolean)field(renderer,"outputVerified")&&(Long)field(renderer,"renderedFrames")>2&&(Integer)field(renderer,"pending")==0&&!(Boolean)field(renderer,"assetSyncPending");
    }catch(Exception e){throw new RuntimeException(e);}});
-   if(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state))break;
+   if(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state)&&rendered[0])break;
    SystemClock.sleep(100);
   }
-  check(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state)&&facts[0]!=null&&prior.equals(facts[0].state),"actual A map accepts exact full StateToken "+label);
+  note("A map boundary label="+label+" rendered="+rendered[0]+" snapshotState="+(snap[0]==null?"absent":snap[0].state.sessionId+":"+snap[0].state.generation+":"+snap[0].state.revision)+" expected="+prior.sessionId+":"+prior.generation+":"+prior.revision);
+  check(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state)&&facts[0]!=null&&prior.equals(facts[0].state)&&rendered[0],"actual A map accepts exact full StateToken "+label);
   for(SceneFactsSnapshot.Fire fire:facts[0].fires)if(fire.remaining>0){
    MapSceneSnapshot.FireState shown=snap[0].fires.stream().filter(f->f.hex.equals(new Hex(fire.cell.q,fire.cell.r))).findFirst().orElseThrow();
    check(shown.remaining==fire.remaining&&shown.owner==fire.owner&&shown.power==fire.power&&shown.trap==fire.trap&&shown.sourceX==fire.cell.sourceX&&shown.sourceY==fire.cell.sourceY,"actual A source fire projection "+label);
