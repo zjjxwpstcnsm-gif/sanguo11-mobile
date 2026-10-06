@@ -44,3 +44,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 43仅包守卫失败：42结束有意恢复原test4b，使用reuse-installed跳过更新导致要求7c不匹配，捕获/allow试验尚未开始；游戏9/3797与测试原文件/APK/权限模式再次完整恢复。44改test-only-update，游戏同562、测试7c独立安装SHA核验后才执行AppOp allow对照；当前备份完整并已启动，不算成绩。后继directCause已接4/6确切SHA并A测试同步验证actualTPfact cause/city/actor/parent/token，无原声猜接。
 
 44同562/7c测试only更新后AppOp临时allow实际44100/48000初始化成功；130s真正常菜单原2238整首wave相关0.9972379373450883≥未改0.995、17固定窗偏移全314844、首曲接受15618048B/SHA c90与解码完全一致，Android解码与原参考SHA437仍非逐字节相同，Windows exactPCM不声称。正常UI62+完整Save/双RNG/fullToken不变。游戏9/3797、原test4b APK/测试全部文件/麦克风false/AppOp default均恢复。42−1显式default权限拒绝对照成立，旧−22/34失败唯一原因仍未关闭；地图BGM/voice/58/普通原事件与ARM仍未知。最新cause+全可选势力/逐源取消重试的普通384新包编译中；45计划同562做正常SEARCH/自然舌战冷流程，不包含新directCause，已进入完整备份复核。
+
+45新SEARCH runner仅dex存在而manifest未注册，ActivityManager拒绝instrumentation，am自身5708异常退出，游戏未启动，无SEARCH成绩；游戏9/3797完整SHA恢复。后继源码测试同步还暴露重复onCreate编译失败，16f2db3f去重、285e后继manifest补A搜索/direct实际组件（确切HEAD见git）。两个失败原日志不删，不合B文件WIP。新正常384/cause/全可选势力/逐源取消与真实组件包正在重新构建，须检查实际APKmanifest和设备pm list后再运行，之前562音乐44及279全16/128caller41成绩保持各自范围。
