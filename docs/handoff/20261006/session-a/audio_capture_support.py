@@ -2,10 +2,29 @@
 """Optional true-projection capture, only after guarded test-package installation.
 All captured PCM is raw. Initializing input is never a waveform acceptance.
 """
-import json,pathlib,re,shlex,subprocess,tarfile,time,xml.etree.ElementTree as ET
+import json,pathlib,re,shlex,subprocess,tarfile,time,threading,xml.etree.ElementTree as ET
 import device_session as ds
 TEST=ds.PACKAGE+'.test';SERVICE='game.sanguo.mobile.SessionAAudioCaptureService';ACTIVITY='game.sanguo.mobile.SessionAAudioCaptureActivity'
 def shell(command):return ds.run('shell',command).decode().strip()
+_MIXER_MONITORS={}
+def begin_mixer_measurement(out,record):
+ path=out/('mixer-'+record['run']+'.jsonl');stop=threading.Event();_MIXER_MONITORS[record['run']]=stop
+ record['mixerMeasurementPath']=str(path);record['mixerMeasurementScope']='read-only dumpsys AudioFlinger every5s, counters cumulative; only time-local changes eligible for attribution; no PCM rewrite/threshold change'
+ def measure():
+  began=time.monotonic()
+  with path.open('x') as f:
+   while not stop.is_set() and time.monotonic()-began<record['seconds']+30:
+    sample={'observedHostUnix':time.time()}
+    try:
+     sample['deviceMonotonicUptime']=ds.run('shell','cat /proc/uptime',timeout=10).decode().strip()
+     sample['audioFlinger']=ds.run('shell','dumpsys media.audio_flinger',timeout=15).decode()
+    except Exception as e:sample['unavailable']=str(e)
+    f.write(json.dumps(sample)+'\n');f.flush();stop.wait(5)
+ threading.Thread(target=measure,name='session-a-mixer-measurement',daemon=True).start()
+def end_mixer_measurement(record):
+ stop=_MIXER_MONITORS.pop(record['run'],None)
+ if stop is not None:stop.set()
+
 def save(out,r): (out/'session.json').write_text(json.dumps(r,indent=2))
 def prepare(out,r):
  if TEST in shell('ps -A'):raise ValueError('Test package already active')
@@ -50,7 +69,7 @@ def start(out,r,rate,run,seconds):
  while time.monotonic()<end:
   ready=shell('cat '+shlex.quote(path+'/ready.json')+' 2>/dev/null || true');result=shell('cat '+shlex.quote(path+'/result.json')+' 2>/dev/null || true')
   if result:record['result']=json.loads(result);save(out,r);return record
-  if ready:record['ready']=True;record['readyData']=json.loads(ready);save(out,r);return record
+  if ready:record['ready']=True;record['readyData']=json.loads(ready);begin_mixer_measurement(out,record);save(out,r);return record
   time.sleep(.3)
  raise ValueError('No initialized capture or failure receipt')
 def collect(out,r,record,timeout=20):
@@ -58,7 +77,7 @@ def collect(out,r,record,timeout=20):
  while time.monotonic()<end:
   raw=shell('cat '+shlex.quote(path+'/result.json')+' 2>/dev/null || true')
   if raw:
-   record['result']=json.loads(raw);dest=out/('audio-'+record['run']);ds.run('pull',path,str(dest));record['hostPath']=str(dest);save(out,r)
+   end_mixer_measurement(record);record['result']=json.loads(raw);dest=out/('audio-'+record['run']);ds.run('pull',path,str(dest));record['hostPath']=str(dest);save(out,r)
    until=time.monotonic()+10
    while SERVICE in shell('dumpsys activity services '+TEST) and time.monotonic()<until:time.sleep(.5)
    if SERVICE in shell('dumpsys activity services '+TEST):raise ValueError('Actual previous capture service not yet stopped')
@@ -71,6 +90,7 @@ def stop_and_restore(out,r):
  if SERVICE in shell('dumpsys activity services '+TEST):shell('am stopservice -n '+TEST+'/'+SERVICE)
  else:c['serviceAlreadyStoppedAtRollback']=True;save(out,r)
  for record in c['captures']:
+  end_mixer_measurement(record)
   if 'hostPath' not in record:
    try:collect(out,r,record,20)
    except Exception as error:record['collectionError']=str(error);save(out,r)
