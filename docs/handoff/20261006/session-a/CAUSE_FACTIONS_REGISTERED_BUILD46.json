@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "e6d92908",
+  "gameLargeHeap": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e6d92908-cause-factions-normal384/app-debug.apk",
+      "sha256": "937ae8a6af05b53feee5c8cdd88dfb49cdf1c515fd29fa82c6aee4e63dcc7358",
+      "bytes": 313471940
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e6d92908-cause-factions-normal384/app-debug-androidTest.apk",
+      "sha256": "053d7458f7b6537e48f74eccf2ba4de0b7cabbca27f47ea533746e2fcfdefa34",
+      "bytes": 2598843
+    }
+  ],
+  "actualPackagedTestManifestSha256": "4beacd5ba17561925abc8cb143cd241babc67e9103574a85a09bbac376714935",
+  "newRunnersActuallyDeclared": true,
+  "scope": "Fresh ordinary384 includes latest directCause, immutable array uploader/music diagnostics, all selectable force+eachsource cancellation and actual search/direct components; not installed/accepted yet",
+  "installed": false,
+  "original168PinnedInputsExact": true,
+  "original4JniExact": true,
+  "sourceBuildFailureRetained": "direct-cause-all-faction-normal384-build.log duplicate A onCreate, repaired16f2db3f",
+  "sourceRegistrationFailureRetained": "SEARCH_RUNNER_MANIFEST_FAILURE45.json, repaired e6d92908",
+  "actualInstallSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-cause-normal384-46",
+  "actualInstallVerified": false,
+  "actualSearchPassed": false,
+  "ARM": false,
+  "goalComplete": false
+}
