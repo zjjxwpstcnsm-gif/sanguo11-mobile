@@ -127,10 +127,10 @@
       "reason": "new lifecycle candidate normal military plus actual cold map/full Save/RNG/manual load passed; exit test read preferences before main onDestroy finished, overall FAIL"
     }
   ],
-  "nextRun": 18,
+  "nextRun": null,
   "nextTestSource": "16ca8161",
   "nextTestSha256": "da31c8a19f6c9476a87c5c5a0526ce3c6219134feaa386c8806c5212ca039333",
-  "nextRunAcceptance": "pending normal+different PID submitted map+fullsave/RNG+actual destruction+every-file restoration",
+  "nextRunAcceptance": "Scene18 completed exact scoped pass; new cache combo must independently rebuild/install and test",
   "ARM": "no physical ARM device connected, unaccepted",
   "originalFire13": "new separate source transport compiled; default4JNI unchanged; no normal original fire acceptance; nonempty new9 host compatibility failed",
   "sourcePreservation": {
@@ -145,5 +145,36 @@
       "protectedHeadUnchanged": true
     }
   },
-  "goalComplete": false
+  "goalComplete": false,
+  "scene18": {
+    "passed": true,
+    "normalPassed": true,
+    "coldProcess": {
+      "beforePid": "29138",
+      "afterPid": "25339",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "a66ef244e2751edaa5c1e85dde4a1a59c698a634ca0d7ef61d141d594cd085d8",
+      "passed": true
+    },
+    "apks": {
+      "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-41a9ab1b-scene/app-debug.apk": "d7cd4368ce3f29cee5cd77d54f6ab41008ec6208704f3a153d9c593808091ffd",
+      "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-16ca8161-test/app-debug-androidTest.apk": "da31c8a19f6c9476a87c5c5a0526ce3c6219134feaa386c8806c5212ca039333"
+    },
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "testSource": "16ca8161",
+    "scope": "Source14 normal military+actual A scene/typed source profile/full Save/bothRNG/token+new process actual rendered3D/manual load+complete UI native destruction; no new all16 or ARM originalFire/BGM/voice caller acceptance"
+  }
 }
