@@ -1,0 +1,229 @@
+{
+  "passed": true,
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "apkSha256": "5df034d1c0ce243126eb07c81addef4597ce250785257a21b154c6e979b1194c",
+  "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
+  "exactAlreadyInstalled27ApkReverified28": true,
+  "scope": "all16 actual menu/source/factions/cancel/retry/newgame/whole-near/pan/normalofficers/Home/orientation/fullSave/read/exit/reopen and separate cold process; not all command/media/ARM/PC framebuffer acceptance",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "sourceIndicesCompleted": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "normalChecks": 2729,
+  "coldChecks": 79,
+  "memory": {
+    "evidence": {
+      "samples": 413,
+      "javaUsedPeakBytes": 330279456,
+      "javaLimitBytes": 402653184,
+      "nativeAllocatedIndependentPeakBytes": 282724688,
+      "mainPssIndependentPeakKiB": 557195,
+      "graphicsPss": "reported0/unavailable; not zero GPU use"
+    },
+    "cold-evidence": {
+      "samples": 7,
+      "javaUsedPeakBytes": 94349728,
+      "javaLimitBytes": 402653184,
+      "nativeAllocatedIndependentPeakBytes": 127624064,
+      "mainPssIndependentPeakKiB": 259871,
+      "graphicsPss": "reported0/unavailable; not zero GPU use"
+    }
+  },
+  "nativeChildrenIndependent": {
+    "samples": 726,
+    "maxChildren": 2,
+    "peakPerChildPssKiB": 43195,
+    "notSynchronizedWithJavaNativeGpuPeaks": true
+  },
+  "coldProcess": {
+    "beforePid": "15426",
+    "afterPid": "23688",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "18d63d2f4d1a1303ef83c958d6f99ea3eea19b2dc07b8ea5645802dff1e4ea5e",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "original168And4JniApkExact": true,
+  "sourceMediaLatestReceipt": "MEDIA_IDENTITY_INSTALLED28.json",
+  "videos": [
+    {
+      "part": 1,
+      "beginUnix": 1791296527.0492811,
+      "endUnix": 1791296707.891544,
+      "recordPid": "16114",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part01.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "92fd6a0ca14d25a02dc755cc7c316e1358d17e29e40090790e970536179cad5f",
+      "sha256": "92fd6a0ca14d25a02dc755cc7c316e1358d17e29e40090790e970536179cad5f",
+      "bytes": 28408316,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part01.mp4"
+    },
+    {
+      "part": 2,
+      "beginUnix": 1791296708.838498,
+      "endUnix": 1791296891.601125,
+      "recordPid": "27978",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part02.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "24bed7b192ec619f86b76bc7ccaf7e47ebb57f692c76a1c7a19fbd7628939ed8",
+      "sha256": "24bed7b192ec619f86b76bc7ccaf7e47ebb57f692c76a1c7a19fbd7628939ed8",
+      "bytes": 24258238,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part02.mp4"
+    },
+    {
+      "part": 3,
+      "beginUnix": 1791296892.150516,
+      "endUnix": 1791297074.711637,
+      "recordPid": "6357",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part03.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "02e16fa995610f8f7a536ddf67d2f50745d5eed88c32ab9aad5fdee2368e0749",
+      "sha256": "02e16fa995610f8f7a536ddf67d2f50745d5eed88c32ab9aad5fdee2368e0749",
+      "bytes": 25866012,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part03.mp4"
+    },
+    {
+      "part": 4,
+      "beginUnix": 1791297075.59449,
+      "endUnix": 1791297257.0356312,
+      "recordPid": "15684",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part04.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "44c41d206a0584289fffb80fce8fbc8f5e9f6e33f320396652450d190281351d",
+      "sha256": "44c41d206a0584289fffb80fce8fbc8f5e9f6e33f320396652450d190281351d",
+      "bytes": 21438547,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part04.mp4"
+    },
+    {
+      "part": 5,
+      "beginUnix": 1791297257.5647712,
+      "endUnix": 1791297438.760206,
+      "recordPid": "24224",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part05.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "9a9023b6b881399ac913e2b90ee53fca25a2d387a77a47068de948bc57bae4ed",
+      "sha256": "9a9023b6b881399ac913e2b90ee53fca25a2d387a77a47068de948bc57bae4ed",
+      "bytes": 25145338,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part05.mp4"
+    },
+    {
+      "part": 6,
+      "beginUnix": 1791297439.3487868,
+      "endUnix": 1791297620.4726841,
+      "recordPid": "1417",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part06.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "6ad6e4a07109f38f7f719285222d953937acdd96e3183b72334ee1943bfca9b8",
+      "sha256": "6ad6e4a07109f38f7f719285222d953937acdd96e3183b72334ee1943bfca9b8",
+      "bytes": 31735046,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part06.mp4"
+    },
+    {
+      "part": 7,
+      "beginUnix": 1791297621.102774,
+      "endUnix": 1791297802.2044601,
+      "recordPid": "16003",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part07.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "6fc763635b090f8cb714524750b2e46d5e70feb8380bca3a0fe38d6beabeaec0",
+      "sha256": "6fc763635b090f8cb714524750b2e46d5e70feb8380bca3a0fe38d6beabeaec0",
+      "bytes": 20214962,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part07.mp4"
+    },
+    {
+      "part": 8,
+      "beginUnix": 1791297803.0102441,
+      "endUnix": 1791297985.4116962,
+      "recordPid": "24014",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part08.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "88f91aba7fe888ccb172786bc0645188f3f0312aca0babcac7a483e955d29d40",
+      "sha256": "88f91aba7fe888ccb172786bc0645188f3f0312aca0babcac7a483e955d29d40",
+      "bytes": 27286866,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part08.mp4"
+    },
+    {
+      "part": 9,
+      "beginUnix": 1791297985.953435,
+      "endUnix": 1791298168.523007,
+      "recordPid": "3502",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part09.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "6973a7ca6e5dd0666c29cf9d4ad8d3b327eb8ce2b052b27c956a1d6db8ad6281",
+      "sha256": "6973a7ca6e5dd0666c29cf9d4ad8d3b327eb8ce2b052b27c956a1d6db8ad6281",
+      "bytes": 29069196,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part09.mp4"
+    },
+    {
+      "part": 10,
+      "beginUnix": 1791298169.122338,
+      "endUnix": 1791298352.5339708,
+      "recordPid": "16151",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part10.mp4",
+      "stageAtEnd": "cold-process-running",
+      "deviceSha256": "0ef8b910430c0001a196a80be654854bf195454130d16c96f4353d9a876d4996",
+      "sha256": "0ef8b910430c0001a196a80be654854bf195454130d16c96f4353d9a876d4996",
+      "bytes": 21967142,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part10.mp4"
+    },
+    {
+      "part": 11,
+      "beginUnix": 1791298354.024819,
+      "endUnix": 1791298424.0351481,
+      "recordPid": "25770",
+      "devicePath": "/data/local/tmp/session_a_video_normal_all_source_28/part11.mp4",
+      "stageAtEnd": "restored-verified",
+      "deviceSha256": "42a844f66a9ebdb1059f60c5f120b3072617df3eb894b341ec5ad64913aa1b04",
+      "sha256": "42a844f66a9ebdb1059f60c5f120b3072617df3eb894b341ec5ad64913aa1b04",
+      "bytes": 3840600,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28/video/part11.mp4"
+    }
+  ],
+  "decodedVideoInspection": "video/decoded-inspection.json first3 metadata+selected90s frames only",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-28",
+  "evidenceSha256": {
+    "session.json": "5194f7234207bc89cd1513ae3aceabdb38dd2d950e2619abf4ea1396083c68a4",
+    "instrumentation.txt": "00568dda820f1bcf33214126fd121194ac494fff3ef47fdc1d3ab6fe51740541",
+    "cold-instrumentation.txt": "2e2734c126a892d1bce51849fcea9064bf82e58a0e758e29018eb053c8d751ae",
+    "logcat.txt": "ec3133314e52fe85dc73a54c4b24cf739997ad425b4596a90df625d76fcae407",
+    "evidence/memory.csv": "8555b4ca772c33a8d2db9890f9cc44d4ada0268679476e5b744cb193f7153b98",
+    "cold-evidence/memory.csv": "3c1e7848a82125ea5af7ac1c49d54664481ab0477d5b33b41e83d4f574b0329f"
+  },
+  "ordinary384IssueClosedForThisEmulatorMatrix": true,
+  "userOriginalArmOomStackKnown": false,
+  "defaultLarge512SameSourceApkActualInstalled": false,
+  "overallGoalComplete": false
+}

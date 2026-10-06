@@ -15,9 +15,9 @@
     },
     {
       "item": "terrain-oom",
-      "status": "CURRENT NORMAL384 SOURCE11 PASS, FULL16 RUNNING",
-      "evidence": "failure26 actual stack retained; new5df034d1 source11 314+cold79; Java peak260934640B/384MiB; full9/3797SHA restored; exact28 grid windows",
-      "next": "same exact package full16 normal28 then defaultlarge real commands and ARM"
+      "status": "NORMAL384 ALL16 EMULATOR PASS; ARM PENDING",
+      "evidence": "new5df034d1 actual16 sources2729+cold79, Java330279456/402653184B, 11 raw videos and full9/3797SHA restore; original26 failure stack retained",
+      "next": "defaultlarge actual commands; rapid switches/more longloops and ARM"
     },
     {
       "item": "terrain-parity",
@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "PACKAGE20 SAVES HOST JOINS PASS",
-      "evidence": "10720 current-source joins/0unknown/2892PNG/695assets",
-      "next": "all actual form/caller pixels/time/lifecycle current APK"
+      "status": "PACKAGE28 ACTUAL SAVES JOINS PASS",
+      "evidence": "latest16 actual source captures10720 exact joins/0unknown/695assets/2892PNG SHA",
+      "next": "all actual forms/callers/pixels/timing/lifecycle and ARM"
     },
     {
       "item": "dynamic-age",
@@ -86,5 +86,5 @@
       "next": "A+B completed frozen source→new combo APK→fresh matrix"
     }
   ],
-  "updatedAfter": "normal-grid-27"
+  "updatedAfter": "normal-all-source-28"
 }

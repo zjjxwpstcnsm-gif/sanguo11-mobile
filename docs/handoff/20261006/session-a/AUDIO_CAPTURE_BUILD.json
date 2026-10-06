@@ -23,5 +23,11 @@
   "waveformAccepted": false,
   "normalMapBgmBound": false,
   "ARM": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "supersedingTestSourceCommit": "5415c4f1",
+  "supersedingTestPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5415c4f1-audio-capture-test/app-debug-androidTest.apk",
+  "supersedingTestSha256": "47ffec089c6efcb85f10cea81b4f601b1fc07613999768aac93083e8e13fc04d",
+  "testerFullFileBackupAndOldApkRestoration": true,
+  "actualPhysicalFirstTrackHeadGate": true,
+  "uniqueNotificationChannelRemovedOnDestroy": true
 }
