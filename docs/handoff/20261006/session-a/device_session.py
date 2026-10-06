@@ -169,6 +169,8 @@ def main():
                 installed_sha=run('shell','sha256sum',remote,timeout=180).decode().split()[0]
                 (out/(package+'-installed.sha256')).write_text(installed_sha+'  '+remote+'\n')
                 if installed_sha != digest(apk): raise ValueError('Installed APK SHA differs')
+            registered=run('shell','pm','list','instrumentation').decode();(out/'instrumentation-registered.txt').write_text(registered);expected_component='instrumentation: '+PACKAGE+'.test/game.sanguo.mobile.'+a.runner+' (target='+PACKAGE+')';r['actualRunnerRegistered']=expected_component in registered.splitlines();report_path.write_text(json.dumps(r,indent=2));
+            if not r['actualRunnerRegistered']:raise ValueError('Actual requested instrumentation component is not registered for target package')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
             if a.audio_capture_rate:
                 for capture_rate in [44100,48000]:
