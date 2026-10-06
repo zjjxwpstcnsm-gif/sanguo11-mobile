@@ -89,6 +89,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     }
     private void techniqueFinished(TurnJournal.Event event){
         if(event==null)return;
+        android.util.Log.i("TechniquePhase","finished phase="+event.id+" resumed="+resumed+" renderActive="+renderGate.active());
         if(resumed&&replayCommitted&&renderGate.active())techniquePhase(event);
         else if(techniqueSkip!=null)techniqueSkip.accept(event.id);
     }
@@ -172,6 +173,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         spatial.presentation(cues.get(index),scaled-index);
     }
     void cancelCommandEffects(){
+        if(commandEffects!=null){StringBuilder ids=new StringBuilder();for(var event:techniqueCommandEvents)ids.append(event.id).append(',');android.util.Log.i("TechniquePhase","cancel phases="+ids+" resumed="+resumed+" renderActive="+renderGate.active()+" caller="+java.util.Arrays.toString(new Throwable().getStackTrace()));}
         if(commandEffects!=null){for(var event:techniqueCommandEvents)if(techniqueSkip!=null)techniqueSkip.accept(event.id);}
         techniqueCommandEvents=Collections.emptyList();
         removeCallbacks(commandEffectTick);

@@ -80,3 +80,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 48完成正常5059+独立冷81：16源244可选势力/752槽、每源取消重试、真实3D/全近缩放/平移/人物/真实Home/旋转/全Save-RNG-token纯/保存读取/退出重开；PID24639→7930、SaveSHAb7529ce71bc60f4e97e318fb4ede70720a03920acfcf190248644239cfb44750，9/3797全部最终SHA恢复。672正常采样Java472598704/536870912B，采样余量64272208B；native独立333336856B/主PSS727616KiB，子进程独立PSS峰60559KiB/max同时2，GPU不可得；并发自己的测试Gradle，不称无干扰性能。无48录像、不借旧视频；普通384全部force/长命令/全媒体/ARM仍待。49配同376游戏与新1e58测试观察directHUD实际12/一次roll及正常文字状态，完整备份准备中。
 
 48正式回执/矩阵/交付已更新，244全可选预览和752总槽、61.3MiB采样Java余量与实际完整恢复边界明确；49当前同376游戏+test1e58完整备份后更新actualregistered组件，句柄57949/native13994，尚未判可见技巧终值/正常cold/恢复通过。
+
+49新test1e58实际注册/SHA核验后正常direct成功提交事实+12，但10秒真实badge一直0且未见roll，判实际产品呈现失败；原9/3797全SHA恢复，正常/冷不判通过。presentationParent3:1、foregroundtrue/pausedfalse、committed12已取证，尚无精确取消/调度栈，50先加A app最小phase commit/poll/start/finish/cancel原因日志，不推断唯一根因、不改B数值/结果/Save/RNG，不手动放行phase。源码/新包须独立编译安装复现。

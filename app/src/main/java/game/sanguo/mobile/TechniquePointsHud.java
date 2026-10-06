@@ -72,6 +72,7 @@ final class TechniquePointsHud {
         TechniqueFactQueue.Result result=facts.committed(event,side);
         if(result==TechniqueFactQueue.Result.RESET||result==TechniqueFactQueue.Result.RESYNC)discardPending();
         else pumpFacts();
+        if(!event.techniquePointsFacts.isEmpty())android.util.Log.i("TechniquePhase","commit event="+event.id+" side="+side+" result="+result+" queued="+facts.size()+" active="+(activeFact==null?"none":activeFact.id)+" startPending="+(startFrame!=null)+" animator="+(animator!=null)+" text="+badge.getText());
         return result;
     }
     boolean mediaNeedsResync(){return facts.needsResync();}
@@ -80,6 +81,7 @@ final class TechniquePointsHud {
     void resynchronizeFacts(StateToken next,int side,int points){if(staleBaseline(next))return;discardPending();facts.resynchronize(next,side);syncFactsBaseline(next,side,points);}
     void releasePresentation(String parent){facts.releasePresentation(parent);pumpFacts();}
     void skipPresentation(String parent){
+        android.util.Log.i("TechniquePhase","skip parent="+parent+" queued="+facts.size()+" active="+(activeFact==null?"none":activeFact.id)+" committed="+committedPoints+" text="+badge.getText());
         facts.skipPresentation(parent);
         if(activeFact!=null&&activeFact.presentationParentId.equals(parent)){cancelMotion();target=committedPoints;show(target);}
         pumpFacts();
@@ -93,9 +95,11 @@ final class TechniquePointsHud {
         if(!factsMode||!foreground||factsPaused||animator!=null||startFrame!=null)return;
         TechniquePointsFact fact=facts.poll();if(fact==null)return;
         activeFact=fact;show(fact.before);target=fact.after;
+        android.util.Log.i("TechniquePhase","poll fact="+fact.id+" phase="+fact.presentationParentId+" before="+fact.before+" after="+fact.after+" attached="+badge.isAttachedToWindow()+" visible="+badge.isShown()+" focused="+badge.hasWindowFocus());
         startFrame=()->{
             if(factsPaused&&foreground){badge.postDelayed(startFrame,60);return;}
             startFrame=null;if(!foreground)return;
+            android.util.Log.i("TechniquePhase","start fact="+fact.id+" before="+fact.before+" after="+fact.after+" text="+badge.getText());
             sound.accept(fact.id,fact.delta>0);rolls++;
             badge.setContentDescription("本势力技巧点 "+fact.after+" 点，变化 "+(fact.delta>0?"+":"")+fact.delta);
             if(!UiMotion.enabled()){activeFact=null;show(fact.after);pumpFacts();return;}

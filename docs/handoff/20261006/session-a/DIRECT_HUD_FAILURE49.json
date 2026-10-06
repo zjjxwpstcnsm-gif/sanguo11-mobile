@@ -1,0 +1,49 @@
+{
+  "passed": false,
+  "scope": "Actual same376/new1e58 ordinary direct committed+12, shown0 for full10second bounded wait. Product-visible failure, exact cancellation/start-frame cause pending diagnostics. No cold score.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-48f2b873-cause-default-large/app-debug.apk": "376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-76780817-full-normal-media-test/app-debug-androidTest.apk": "1e58fa62496d416611fe011be67fb33812c40409d1a0dcf70289d6d74c6975db"
+  },
+  "actualFactId": "cf2d0758-e123-46b7-b812-dd6842c89f7d:3:1:LEGACY_COMMITTED:technique:1",
+  "presentationParentId": "3:1",
+  "actualCause": "DIRECT_RECRUITMENT",
+  "expectedCommitted": 12,
+  "sampleCount": 188,
+  "actualObservation": {
+    "uptimeMs": 51878415,
+    "text": "技巧\n0",
+    "rolls": 0,
+    "foreground": true,
+    "paused": false,
+    "queueSize": 0,
+    "target": 0,
+    "committed": 12
+  },
+  "lastObservation": {
+    "uptimeMs": 51888379,
+    "text": "技巧\n0",
+    "rolls": 0,
+    "foreground": true,
+    "paused": false,
+    "queueSize": 0,
+    "target": 0,
+    "committed": 12
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-hud-default-large-49",
+  "wholeGoalComplete": false
+}

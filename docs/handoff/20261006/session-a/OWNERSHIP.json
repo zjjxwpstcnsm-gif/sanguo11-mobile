@@ -191,7 +191,8 @@
     "docs/handoff/20261006/session-a/INSTALLED_DEFAULT_LARGE48.json",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAUiReadabilityAudit.java",
     "docs/handoff/20261006/session-a/USER_REPORTED_LABELS_SOURCE7_PARTIAL48.json",
-    "docs/handoff/20261006/session-a/ALL_FACTIONS_DEFAULT_LARGE_ACCEPTANCE48.json"
+    "docs/handoff/20261006/session-a/ALL_FACTIONS_DEFAULT_LARGE_ACCEPTANCE48.json",
+    "docs/handoff/20261006/session-a/DIRECT_HUD_FAILURE49.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
