@@ -1,0 +1,137 @@
+{
+  "status": "completed-bounded-governor-election-APK27-full-goal-incomplete",
+  "goalComplete": false,
+  "base": "0df890120ebce45003546ffaf24eb8c79dfdfffc",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "mainBase": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/governor-build-27/frozen/app-debug.apk",
+      "bytes": 312769712,
+      "sha256": "8a997144341a3f8cb019218f6fbbc4c4111b61407a8d7fb305155ae52fe4273b"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/governor-build-27/frozen/app-debug-androidTest.apk",
+      "bytes": 2537682,
+      "sha256": "938d0e31bf3b017c5175e36742049c3c94e00c20d7bd9cf58df02e65773b3879"
+    }
+  ],
+  "effectiveInputsUnchanged": 10810,
+  "productionGuardPaths": 6080,
+  "actual": {
+    "sourceIndex": 0,
+    "factions": [
+      28,
+      29
+    ],
+    "normalMenuNew": true,
+    "administrationPagePure": true,
+    "personnelPreviewCancelPure": true,
+    "realCivilDepartureSingleCommit": true,
+    "civilArrivalWholeTurns": 5,
+    "governorNative440": true,
+    "army6LeaderNative436": true,
+    "savedAdministrativeHomeNative3Army5": true,
+    "ordinaryMoveToAttackEndpoint": true,
+    "ordinaryAttackNeutralPortNative57": true,
+    "realCaptureGarrisonArmy7RulerNative91": true,
+    "retiredUnitArmyMetadataRemoved": true,
+    "manualSaveContinueLoad": true,
+    "trueProcessColdAutoAndManualLoad": true,
+    "completeWorldBothRng": true,
+    "wholeTurnMillis": [
+      3046,
+      2908,
+      3022,
+      4030,
+      3142,
+      3958,
+      6514,
+      5801,
+      4781
+    ]
+  },
+  "checks": [
+    "original source governor18736/1392 initial elections",
+    "administration native-site/runtime/immutable/pure2273",
+    "existing scene40228",
+    "capacity89",
+    "original mapped capacities10720 zero mismatches",
+    "GameSession1690",
+    "BridgeSession",
+    "architecture",
+    "actual installed pre-governorSource20 initial+3 complete future Save fingerprints exact parent969c518"
+  ],
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "additional": []
+    },
+    "external": {
+      "originalFiles": 772,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "additional": []
+    }
+  },
+  "freshArchive": {
+    "path": "docs/handoff/20261006/session-b/governor-flow-27.tar.gz",
+    "bytes": 6767342,
+    "sha256": "ed52b9202a19d970d7420c3a1454d750fd3207cfef8d3a0664d99a27efc8891f",
+    "files": 39,
+    "containsUserBackups": false
+  },
+  "resources": {
+    "rawSHA": "909254e0e7e8801e8e505e4c0be3c633f808101fcdc461c06759e4f82cfd8ef6",
+    "compressedSHA": "f642b0d78a35df48210ddf81fd3872a81a2db78ee0e0028d6e37d8f01755927e",
+    "twoImportsByteEqual": true,
+    "sealed27And28JavaActivated": false
+  },
+  "unknown": [
+    "complete original army controller/delegation/action budget and new army allocation",
+    "all death/captive/succession/dismiss/custom/native NPC army callbacks",
+    "all16 Android governor/command/cold matrix",
+    "complete old31-39/custom Android continuation (authentic31/38 still missing)",
+    "complete scenario opening events/units/extra NPC/field activation and officer data coverage",
+    "full original duel/debate trigger/admission/fees/equipment/terminal/campaign settlement",
+    "A persistent ATTACK-route adapter and broader original scene/region/voice caller parity",
+    "ARM device/speaker/Unity player validation"
+  ],
+  "conflicts": "Only B production/test/tool paths; completed A473 six-file dependency compiled read-only. No A WIP, shared Gradle/manifest, BridgeJson/Unity/JNI or original old609 dirty checkout modified.",
+  "oldCheckoutGuard": {
+    "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "dirtyEntries": 609,
+    "statusBytes": 31896,
+    "sha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
+  },
+  "jniGuard": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "sourceCommit": "45173c6c3a334f4635f716fbf4cae960be1e0689",
+  "compiledInputGitHead": "0df890120ebce45003546ffaf24eb8c79dfdfffc",
+  "compiledDirtyCompletedSourceMatchesCommit": true,
+  "nativeFeeWipExcluded": true
+}
