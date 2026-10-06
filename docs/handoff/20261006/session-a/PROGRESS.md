@@ -104,3 +104,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 54完整backup-verified后同b819/0a35 mediaAll16 begin11/end12实际启动，driver21394/native观察同专用5554，原9/3797与APK每SHA先核，待全部原身份正常列表/详情/冷/最终恢复，不将工具或静态资源计数当正常caller验收。交付与矩阵更新53实际1489+2725及性能未闭合边界。
 
 54继续中：同b819/0a35实际installed-verified，SOURCE_REVISION a14ebe55，driver21394/native72473；当前真实Source11取消重试/势力/预览全近缩放和正常新局全近平移完成，完整caller回执尚待。完整守卫54通过：source10714/旧4301含absence/PC EXE/原4JNI逐SHA不变，main仍ef413/source仍0e7/B最新完成仍aa9b，不合WIP。5554仅A锁，仍无ARM设备；观察不造state、不强制GC、不取heapdump、无54视频，非完整内存峰值验收。持续续读具体句柄与session.json，不能重启或安装下一包；helper结束必须全SHA恢复。
+
+后续正常地图/人物工具增加真实focusedText状态旁证：每张原截图后只读记录实际显示的文字、选中/禁用、alpha、富文本及已知不透明纯色对比度；渐变/图像/Canvas未直接测像素保持未知。此工具修改尚未构建安装，不计入当前54的0a35成绩；当前54driver21394/native72473继续，不改正在跑的已安装测试包。
