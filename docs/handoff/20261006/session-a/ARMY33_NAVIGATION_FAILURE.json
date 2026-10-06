@@ -1,0 +1,34 @@
+{
+  "passed": false,
+  "gameSha256": "7415f48c03f4808e381de70cb646331bdac3dea177e347f5dc77071bb1285c66",
+  "testSha256": "0891c71024166890381d6ceba88f736151f9717919238c7d3b0eb36eb7bd48a2",
+  "scope": "actual new combination normal picker source0/faction28 -> editor faction list; failed waiting for offscreen faction label before editor preview",
+  "actualScreenshotInspected": "evidence/failed.png shows normal scrollable list beginning0..11; desired28 offscreen",
+  "failureTrace": "FAIL SESSION A ARMY java.lang.AssertionError: visible control timeout\n\tat game.sanguo.mobile.SessionBFieldworksInstrumentation.await(SessionBFieldworksInstrumentation.java:40)\n\tat game.sanguo.mobile.SessionBFieldworksInstrumentation.option(SessionBFieldworksInstrumentation.java:28)\n\tat game.sanguo.mobile.SessionAArmyBudgetInstrumentation.editorBudgetPreview(SessionAArmyBudgetInstrumentation.java:6)\n\tat game.sanguo.mobile.SessionAArmyBudgetInstrumentation.onStart(SessionAArmyBudgetInstrumentation.java:36)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 3,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "fixTestOnlyCommit": "6d8e4be5",
+  "productOrBCommandRetried": false,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/army-combination-33",
+  "evidenceHashes": {
+    "session.json": "879543dc6220c7b6cff04f800548a1cd1186c502d8d36a50a4d70df7bb45fe60",
+    "instrumentation.txt": "a4d553abc4cde48d46b29c93311987bb8f1932de8fda897e4be05d26af32233c",
+    "evidence/failed.png": "f073cff2f104ea71ebc50d91e3a0ecd6ac3b74b0e8c021234de79e9707dad684",
+    "evidence/progress.txt": "3521f3220122b86bf3eb5ca319809634e6b7167738eff2a3da75f5123c0bcc23"
+  },
+  "newBudgetUiCommandMatrixAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}

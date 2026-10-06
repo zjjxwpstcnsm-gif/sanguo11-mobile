@@ -147,7 +147,8 @@
     "docs/handoff/20261006/session-a/FIRE_ACCEPTANCE31.json",
     "docs/handoff/20261006/session-a/ARMY_BUDGET_INTEGRATION_AUDIT.json",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAArmyBudgetInstrumentation.java",
-    "docs/handoff/20261006/session-a/DEBATE_ACCEPTANCE32.json"
+    "docs/handoff/20261006/session-a/DEBATE_ACCEPTANCE32.json",
+    "docs/handoff/20261006/session-a/ARMY33_NAVIGATION_FAILURE.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
