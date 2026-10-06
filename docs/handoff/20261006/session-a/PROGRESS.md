@@ -58,3 +58,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 最新默认large376f03a1/testd472ff07独立冻结，168及原4/新增2JNI APK内SHA全等，不含测试场景/引擎。更新当前矩阵/源码分支只读SHA定位，保留历史条件而不把静态匹配当原演出闭合；PC_FIRE_EVIDENCE补原13后继与仍未知边界。47已实际同937/053组件与SHA守卫启动正常direct，尚未判通过。
 
 当前完成继承源10714逐SHA、原旧目录4301含缺失项守卫、原4JNI和PC EXE再核全部相同；main ef413未变，不并B WIP。为逐源全部势力的更长正常UI矩阵，A helper仅对factions16把外层进程期限扩至4小时，单控件/准备120秒约束不变、不会忽略失败或恢复页；启动仍独占5554/完整备份/包与组件SHA注册守卫。
+
+47正常与独立冷流程/原directCause事实均通过并9/3797全SHA恢复；实际结果截屏HUD仍是动画起点0，不能仅凭cause事实宣布可见滚动或原声完成。新增A direct工具10秒有界只读观察真实badge/rolls/queue/foreground/paused/parent，以实际显示12及一次roll和全Save/RNG/Token纯为验收，尚未编译实装，不预设产品缺陷或手动放行phase。48default全势力使用冻结原48f2测试scope，完整备份已完成。
