@@ -40,3 +40,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 41最终已完成：相同279/d760实际普通384全16正常4699+新PID冷81，13672→18617，SaveSHA62e45fcd；原9/3797全部SHA读回恢复。413正常采样Java350859048/402653184B，采样余量51794136B；Source11子阶段313990232B，native独立290377232B、主PSS独立609917KiB；原子进程独立PSS最高56390KiB，GPU来源不可得。16×4身份×列表/详情=128实际入口完整原240px图sameAs、当前年份/recordSHA/token纯通过；最新16保存10720身份join/0未知/695资产/2892原PNG SHA再核。与38独立矩阵的峰值差51714880B，不把全部差值当唯一因果，41新增SEARCH与头像检查，未包含后继PDR/PCM诊断。全可选势力/深命令长期/全年龄全屏/声媒/ARM预算仍未闭合。42后继562默认大堆首曲实际接受PCM/时戳/Mixer/raw捕获准备完整备份中。
 
 42最新562/7c实际安装但44100与48000初始化均失败，native AudioPolicy明确uid10147录音拒绝/getInputForAttr−1，Java−20/state未初始化；不是旧−22复现。 runtime RECORD_AUDIO已授予，而AppOps保留显式default。正常菜单未执行；游戏9/3797及测试原APK/全部文件/麦克风false/AppOps default完整恢复。43保持同精确包和设备、仅本测试AppOp临时allow的对照已经备份/实际SHA验证后运行，最后仍恢复原mode，不改变PCM/资源/门槛/规则。后继B directCause292d0c72/aa9bdf6d4源码6文档SHA全等导入9bb0b425/157a9881；只修项目命令原因，无原voice新证据，当前43包不含该标签修正。
+
+43仅包守卫失败：42结束有意恢复原test4b，使用reuse-installed跳过更新导致要求7c不匹配，捕获/allow试验尚未开始；游戏9/3797与测试原文件/APK/权限模式再次完整恢复。44改test-only-update，游戏同562、测试7c独立安装SHA核验后才执行AppOp allow对照；当前备份完整并已启动，不算成绩。后继directCause已接4/6确切SHA并A测试同步验证actualTPfact cause/city/actor/parent/token，无原声猜接。
