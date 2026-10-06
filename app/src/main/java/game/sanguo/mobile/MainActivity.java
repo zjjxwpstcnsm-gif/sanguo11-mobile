@@ -486,6 +486,7 @@ public final class MainActivity extends Activity {
         if(h==null){clearUnitSelection();return;}
         World.Unit source=world.unit(moving);
         if(source!=null&&unitCommand.equals("march")){if(h.equals(source.hex)){clearUnitSelection();return;}if(pendingMarch!=null&&pendingMarch.order!=null&&pendingMarch.order.intent!=MarchOrders.Intent.MOVE)previewTargetMarch(source,h);else previewMarch(source,h);return;}
+        if(source!=null&&unitCommand.equals("attack-task")){previewAttackTask(source,h);return;}
         if(source!=null&&unitCommand.equals("attack")){
             List<World.Unit> candidates=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(h.equals(u.hex)&&u.id!=source.id)candidates.add(u);
             World.City underlying=world.cityAt(h);
@@ -554,9 +555,19 @@ public final class MainActivity extends Activity {
         pickOnMap(title,origin,targets,action);pickError=h->{String reason=error.apply(h);return reason==null?"目标已变化，请重新选择":reason;};
     }
     void cancelMapPick(){clearTacticPreview();mapPick=null;pickTargets=Collections.emptySet();pickTitle="";refresh();}
-    private void approach(World.Unit u,Hex h){
-        if(unitCommand.equals("march")){previewTargetMarch(u,h);return;}
-        confirm("目标在当前射程外，预览自动攻击路线？确认后将逐旬接近并持续攻击，攻下据点后自动进驻。",()->{unitCommand="march";previewTargetMarch(u,h);});
+    private void attackTaskOnMap(World.Unit u){
+        if(u instanceof Domestic.Mission){message("攻击任务","运输队不能设置攻击任务。");return;}
+        Set<Hex> targets=new LinkedHashSet<>();
+        for(World.City c:world.cities)if(world.campaign.hostile(u.owner,c.owner))targets.addAll(SiteFootprint.cells(c));
+        for(World.Unit target:world.fieldUnits())if(target.id!=u.id&&world.campaign.hostile(u.owner,target.owner))targets.add(target.hex);
+        for(War.Structure target:world.war.structures())if(world.campaign.hostile(u.owner,target.owner))targets.add(target.hex);
+        for(Domestic.Facility target:world.domestic.facilities){World.City owner=world.city(target.cityId);if(owner!=null&&world.campaign.hostile(u.owner,owner.owner))targets.add(target.hex);}
+        pickOnMap("攻击任务 · 选择敌方或中立目标",u.hex,targets,h->{mapPick=null;pickTargets=Collections.emptySet();previewAttackTask(u,h);});
+    }
+    private void previewAttackTask(World.Unit u,Hex h){
+        MarchOrders.Plan plan=world.marches.preview(u.id,h);
+        if(plan.order==null||plan.order.intent!=MarchOrders.Intent.ATTACK){pendingMarch=null;unitCommand="select";refresh();message("无法设置攻击任务","请选择敌方或中立的部队、据点或设施。己方进驻请使用进驻指令。");return;}
+        pendingMarch=plan;unitCommand="attack-task";showMarchPreview();
     }
     private void showTactics(World.Unit u){
         pendingMarch=null;unitCommand="select";refresh();
@@ -842,6 +853,7 @@ public final class MainActivity extends Activity {
             Button cancel=button("取消",v->clearUnitSelection());
             if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(()->world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
             for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            if(!(u instanceof Domestic.Mission)){Button task=button("攻击任务",v->attackTaskOnMap(u));task.setTag("unit.attack-task");task.setContentDescription("设置逐旬接近并持续攻击任务");actions.addView(task,new LinearLayout.LayoutParams(0,dp(48),1));}
             if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止任务",v->apply(()->world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;

@@ -24,11 +24,17 @@ public final class SessionAFireFlowInstrumentation extends SessionAScenePresenta
   World w=SessionProbe.view(activity);World.Unit a=w.unit(actor),b=w.unit(other);int range=w.war.plotRange(other,War.Plot.EXTINGUISH);
   return a.hex.neighbors().stream().filter(h->w.inside(h)&&w.unitAt(h)==null&&w.war.fireAt(h)==null&&w.war.plotError(actor,h,War.Plot.FIRE)==null&&b.hex.distance(h)<=range).findFirst().orElseThrow();
  }
+ private void menuOption(String prefix)throws Exception {
+  boolean[] found={false};runOnMainSync(()->{for(View root:android.view.inspector.WindowInspector.getGlobalWindowViews())if(root.hasWindowFocus()){
+   View hit=search(root,v->v instanceof ListView);if(hit instanceof ListView){ListView list=(ListView)hit;for(int i=0;i<list.getAdapter().getCount();i++)if(String.valueOf(list.getAdapter().getItem(i)).startsWith(prefix)){list.setSelection(i);found[0]=true;break;}}
+  }});check(found[0],"real dialog scroll item "+prefix);settle();option(prefix);
+ }
  private void plot(int actor,Hex target,String label,boolean cancel)throws Exception {
   selectUnit(actor);pose(target);text("计略");option(label+" ·");tile(target);text(cancel?"取消":"执行");settle();
  }
  private void nativeTarget(Hex target,String label,boolean burning)throws Exception {
-  byte[] before=capture();StateToken token=activity.deploymentState();pose(target);
+  byte[] before=capture();StateToken token=activity.deploymentState();
+  View[] cancel={null};runOnMainSync(()->cancel[0]=search(activity.getWindow().getDecorView(),v->v instanceof Button&&"取消".contentEquals(((Button)v).getText())));if(cancel[0]!=null)tap(cancel[0]);pose(target);
   long deadline=SystemClock.uptimeMillis()+120000;boolean[] ready={false};String[] report={""};
   while(SystemClock.uptimeMillis()<deadline){runOnMainSync(()->{try{
    MapHost host=(MapHost)field(activity,"map");FilamentMapView view=(FilamentMapView)field(host,"spatial");PcMapEffects fx=(PcMapEffects)field(view,"pcMapEffects");MapSceneSnapshot snap=(MapSceneSnapshot)field(host,"publishedSnapshot");
@@ -51,7 +57,7 @@ public final class SessionAFireFlowInstrumentation extends SessionAScenePresenta
    byte[] before=capture();StateToken token=activity.deploymentState();plot(first,target,"火计",true);check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"normal cancel fire preserves complete Save/bothRNG/token");
    boolean lit=false;for(int attempt=0;attempt<4&&!lit;attempt++){World w=SessionProbe.view(activity);note("player fire attempt="+attempt+" actor="+first+" target="+target+" chance="+w.war.plotChance(first,target,War.Plot.FIRE));plot(first,target,"火计",false);lit=SessionProbe.view(activity).war.fireAt(target)!=null;if(!lit)advance("fire-retry-"+attempt);}
    check(lit,"actual player normal fire success reported in B state, no injected burning");nativeTarget(target,"01-player-fire",true);
-   before=capture();token=activity.deploymentState();text("视图");text("3D 画质");option("低 ·");nativeTarget(target,"02-low-quality-fire",true);check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"actual quality switch pure source fire");
+   before=capture();token=activity.deploymentState();text("视图");menuOption("3D 画质");option("低 ·");nativeTarget(target,"02-low-quality-fire",true);check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"actual quality switch pure source fire");
    plot(second,target,"灭火",false);check(SessionProbe.view(activity).war.fireAt(target)==null,"actual player extinguish updates B state");nativeTarget(target,"03-player-extinguished",false);
    advance("reset-before-reignite");boolean relit=false;for(int attempt=0;attempt<4&&!relit;attempt++){plot(first,target,"火计",false);relit=SessionProbe.view(activity).war.fireAt(target)!=null;if(!relit)advance("reignite-retry-"+attempt);}
    check(relit,"same source cell real player reignite");nativeTarget(target,"04-real-reignite",true);byte[] burningSave=capture();Files.write(new File(evidence,"burning-save.sg11").toPath(),burningSave);

@@ -241,7 +241,7 @@
     "app/src/main/java/game/sanguo/mobile/LandscapeProfile.java": "ae6e52f29ec5be73a97703e7b1a2d1c608f72345921d91a5876b366bc20e6a5c",
     "app/src/main/java/game/sanguo/mobile/LegacyCommandSink.java": "fcdcc57cf7eb428dd9c569b1a3b05e29c6a78d3f540f358567376e598f10bfb9",
     "app/src/main/java/game/sanguo/mobile/LifecycleUi.java": "d6501c3a912ed803cc2c4e6429df4dd87d4eebb0e55f650141bfd3801289ca68",
-    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "e3449146ab111089b4b663fc9dfb5c94078bf6407a1e2884589bae003e7405f4",
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "c83f8b5a8152bc68825e34bcde691662043d99f1574253b2bca0fdb3580eb811",
     "app/src/main/java/game/sanguo/mobile/MapCamera.java": "bfb5750f99ab7ced1e1fc433247d36e4d368241b8d77e7fac4644e7c3d97c947",
     "app/src/main/java/game/sanguo/mobile/MapEditorActivity.java": "d1928ccd7bed9dcf55e051020d765c7fa9036531181e787af18800771af7846b",
     "app/src/main/java/game/sanguo/mobile/MapEditorUi.java": "ac8021f768002dadc039d4d2feaa4c233bc317b9222645daa86fdb51d8d55e7b",
@@ -275,7 +275,7 @@
     "app/src/main/java/game/sanguo/mobile/PcEnvironment.java": "c0dc9a34a3ac764036b7ae1b2526f5d0dd484f18a3e888117fde7880558f0965",
     "app/src/main/java/game/sanguo/mobile/PcFacilities.java": "1b163f19768cb09a912165363ab269232f309fcef56063de2c677d6cab76d928",
     "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java": "3dcee8e7a0dfa89d38f52b0ab795fc874664bbc9e0b71812f81c4e4b941f5b3b",
-    "app/src/main/java/game/sanguo/mobile/PcMapEffects.java": "92d0acdd2eaf0e128fc5280d5a015ceaf0fd41560c2c1aa9af5ef5c4c0925a1e",
+    "app/src/main/java/game/sanguo/mobile/PcMapEffects.java": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
     "app/src/main/java/game/sanguo/mobile/PcMapMusicDirective.java": "cfa1ecb6cf55522964b891e5d422e1342eb9ffa8ab78674e9aa6bbf5ac66728f",
     "app/src/main/java/game/sanguo/mobile/PcMediaPlayback.java": "6d1cf1c861b37f4350751d0e4676a652684ad21b12a01fc6ccc743a764b54729",
     "app/src/main/java/game/sanguo/mobile/PcMusicCatalog.java": "bba87a957c235d196678a3167f26fe020a1d00cf3e69e3fafee8bb2cebe244a7",
@@ -410,5 +410,5 @@
   ],
   "log": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/javac.log",
   "output": "Note: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\n",
-  "sourceRevision": "608dd5f1bfbe35866392f462f7b51a23979328e5"
+  "sourceRevision": "31f63daf9056508a88089ccbcf8dd61fe5db857f"
 }

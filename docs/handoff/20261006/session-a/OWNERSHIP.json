@@ -115,7 +115,8 @@
     "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
     "docs/handoff/20261006/session-a/FIRE_APP_BINDING.md",
     "docs/handoff/20261006/session-a/FIRE_APP_BUILD.json",
-    "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java"
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
+    "docs/handoff/20261006/session-a/ATTACK_TASK_ENTRY.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
