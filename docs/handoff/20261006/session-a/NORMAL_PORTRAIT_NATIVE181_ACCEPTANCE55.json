@@ -183,7 +183,7 @@
       "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part03.mp4"
     }
   ],
-  "videoScope": "Actual exclusive installed55 normal/cold native recordings; everypart device-hostSHA exact, no originalPC pixels/timing/FPS/ARM claim. Full decode inspection stored separately, pending if still running.",
+  "videoScope": "Actual exclusive installed55 normal/cold rawMP4; everypart device-hostSHA exact, all3889frames decoded, native input PTS strictly increasing at1/90000. No raw edits/fixedFPS/originalPC pixel-timing/ARM or unperturbed performance claim.",
   "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55",
   "evidenceSha256": {
     "session.json": "193c7b4abf9b69a2b23ebe63ff049e5a0fa06c1111d581183456d50579d64311",
@@ -196,5 +196,69 @@
   "originalShortTouchFailure54RootClosed": false,
   "allNormalSourceMediaAccepted": false,
   "ARM": false,
-  "completeGoal": false
+  "completeGoal": false,
+  "nativeVideoDecodeInspection": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/native-input-inspection/inspection.json",
+    "sha256": "1ede617cc61897d75aeceb215c65cccd8e2549f57cee21552825dcd84980adff",
+    "parts": [
+      {
+        "part": 1,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part01.mp4",
+        "sha256": "ab3ecda0cf94583167e91218804e651d2d711995c88682e2425ab2d32620be50",
+        "decodedFrames": 1377,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16175349,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "0745044168045d0116bf116e743ed21fbd9c0d6f0f0efb90f5c4644910aa3ccc"
+      },
+      {
+        "part": 2,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part02.mp4",
+        "sha256": "cf8a85ac74baefabc01e2117e27d77e8e57d2fe4c73147c4b58e0861838f2582",
+        "decodedFrames": 2041,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16189870,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "128a3f04b1b930a5b3a626ae026d7cbcde3970d87d7e0de35e1fb68fae3068de"
+      },
+      {
+        "part": 3,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part03.mp4",
+        "sha256": "74a806ad27b4290a110038555351b256f81faaccd245d196ee04b59211efa8d3",
+        "decodedFrames": 471,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 8176472,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "de9f64442e0f009497fdebe197b4b186328ea4fde59df26ca0d892a010a6eb90"
+      }
+    ],
+    "scope": "Actual raw native screenrecord every-frame decode and input PTS inspection only; no original PC pixels/timing, fixed FPS, unperturbed performance or ARM claim"
+  }
 }
