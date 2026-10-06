@@ -84,7 +84,8 @@
     "docs/handoff/20261006/session-a/DELTA_BATCH7.json",
     "docs/handoff/20261006/session-a/HEAP_BUDGET.md",
     "docs/handoff/20261006/session-a/INTEGRATION_AUDIT.json",
-    "docs/handoff/20261006/session-a/prepare_frozen_integration.py"
+    "docs/handoff/20261006/session-a/prepare_frozen_integration.py",
+    "docs/handoff/20261006/session-a/observe_worker_memory.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
