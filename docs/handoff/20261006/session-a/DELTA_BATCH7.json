@@ -137,8 +137,39 @@
   "normal12": {
     "sourceRevision": "6ea385ff2e1e021dc5d7d519f9f6cbb2ab57ffba",
     "gameApkSha256": "5a1625eded1146953b6abab9e5fddd38c25985afea9b1f8422a2c7316e6a365d",
-    "passed": null,
-    "stage": "separately-backed-up actual install/test in progress; no large11 result credit"
+    "passed": true,
+    "stage": "restored-verified",
+    "normalFlowChecks": 475,
+    "coldFlowChecks": 79,
+    "coldProcess": {
+      "beforePid": "20871",
+      "afterPid": "1447",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "aed8016befda5e1d0ef25d17a14de178129ca706fbc2fce3cbbfe6e11db47d98",
+      "passed": true
+    },
+    "actualRuntimeHeapBytes": 402653184,
+    "javaPeakBytes": 319901608,
+    "sampleCount": 77,
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "videoNativeSha256": "78df7c5cb36b163498b88894c5f7d71d6719c64ee19527e0d471472af571c050",
+    "videoNativeDurationSeconds": 60.12,
+    "videoNativeDecodedFrames": 1365,
+    "videoHasAudio": false,
+    "scope": "Actual normal Source7/8 preview/cancel/newgame/repeated gestures/officers/Home/orientation/save-load/Activity and new process; not all16 ordinary-heap or ARM acceptance"
   },
   "combined": {
     "directory": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile",
@@ -153,6 +184,8 @@
     "hostMedia16Joins": 10720,
     "hostMediaUnknowns": 0,
     "hostMediaPngSha": 2892,
-    "normalMediaPixelsCallerClosed": false
+    "normalMediaPixelsCallerClosed": false,
+    "supersededBeforeInstall": true,
+    "reason": "Completed B capacity increment454d60db/1c3b54b5 will be audited/applied then candidate rebuilt; no old APK score reuse"
   }
 }

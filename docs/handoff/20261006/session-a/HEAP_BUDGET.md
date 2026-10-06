@@ -15,3 +15,7 @@
 6ea385ff新包8e866064fbc340fab7559615731e8531609a3f1a6b7dd18df42f568a2d24cb89，5554 API29/x86_64实际Runtime536870912B(512MiB)。16真实来源完整地图/取消重试/势力/缩放/人物/Home/方向/存读/Activity重开PASS2729；新PID27156→18033真实自动读回PASS79，完整Save/RNG SHA59e38e0368fd67fac4a946a67bbbfcb889ccf4ac6827364daa354c825eb90753。原9内部/3797外部全部最终SHA恢复，未清数据。
 
 413次采样Java最高359.663MiB/512MiB；native heap单独最高273.510MiB，主进程总PSS单独最高574.764MiB。另从来源6后开始的原效果子进程smaps_rollup采样最高69392KiB PSS，最多2个后回落1/0。这些峰值不同时、不相加；graphicsPss0不表示GPU VRAM为0。没有原用户ARM栈，不宣布原OOM根因全闭合。普通堆5a1625…包独立构建/备份/安装复验进行中，结果不能复用大堆包。
+
+## 普通堆实装Normal12
+
+5a1625eded1146953b6abab9e5fddd38c25985afea9b1f8422a2c7316e6a365d实际Runtime402653184B(384MiB)，largeHeap=false。来源7/8正常取消/新局/反复缩放/人物/Home/方向/存读/Activity重开PASS475，独立新PID20871→1447读回完整Save/RNG SHAaed8016befda5e1d0ef25d17a14de178129ca706fbc2fce3cbbfe6e11db47d98，PASS79。77次Java采样最高305.082MiB。原9内部/3797外部最终SHA全等，锁释放。原生60.12秒MP4共1365帧、无音频，SHA78df7c5cb36b163498b88894c5f7d71d6719c64ee19527e0d471472af571c050；文件本身保留，未重定时；原PC时序/ARM未接受。
