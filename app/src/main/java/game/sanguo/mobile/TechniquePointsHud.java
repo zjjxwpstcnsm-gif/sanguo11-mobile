@@ -82,8 +82,10 @@ final class TechniquePointsHud {
     void releasePresentation(String parent){facts.releasePresentation(parent);pumpFacts();}
     void skipPresentation(String parent){
         android.util.Log.i("TechniquePhase","skip parent="+parent+" queued="+facts.size()+" active="+(activeFact==null?"none":activeFact.id)+" committed="+committedPoints+" text="+badge.getText());
+        boolean queued=facts.pendingPresentation(parent);
         facts.skipPresentation(parent);
         if(activeFact!=null&&activeFact.presentationParentId.equals(parent)){cancelMotion();target=committedPoints;show(target);}
+        else if(queued&&activeFact==null&&animator==null&&startFrame==null){target=committedPoints;show(target);}
         pumpFacts();
     }
     void pauseFacts(boolean value){

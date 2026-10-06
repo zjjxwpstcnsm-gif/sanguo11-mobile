@@ -44,6 +44,11 @@ final class TechniqueFactQueue {
     void close(){pending.clear();skippedParents.clear();state=null;owner=-1;foreground=false;resync=false;paused=false;closed=true;}
     boolean needsResync(){return resync;}
     int size(){return pending.size();}
+    boolean pendingPresentation(String parent){
+        if(parent==null||parent.isEmpty())return false;
+        for(Pending item:pending)if(item.fact.presentationParentId.equals(parent))return true;
+        return false;
+    }
     private Result invalid(){pending.clear();resync=true;return Result.RESYNC;}
     /** Atomic batch admission: one malformed row rejects every row, including already pending media. */
     Result committed(GameEvent event,int side){

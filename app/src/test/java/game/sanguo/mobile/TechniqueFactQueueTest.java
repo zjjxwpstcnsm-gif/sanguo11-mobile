@@ -72,7 +72,9 @@ public final class TechniqueFactQueueTest {
         lateQueue.skipPresentation("a");lateQueue.skipPresentation("b");check(lateQueue.needsResync(),"phase history overflow explicit");
         lateQueue.resynchronize(token(1,1),0);lateQueue.baseline(token(2,0),0);lateQueue.committed(batch(2,1,"finished-before-commit"),0);
         lateQueue.releasePresentation("finished-before-commit");check(lateQueue.poll()!=null,"new generation clears old skipped phases");
-        queue.committed(batch(1,2,"skipped",""),0);queue.skipPresentation("skipped");
+        queue.committed(batch(1,2,"skipped",""),0);
+        check(queue.pendingPresentation("skipped")&&!queue.pendingPresentation("unrelated")&&!queue.pendingPresentation(""),"only exact queued phase is pending");
+        queue.skipPresentation("skipped");check(!queue.pendingPresentation("skipped"),"discarded queued phase no longer pending");
         check(queue.poll().sequence==2&&queue.poll()==null,"skip suppresses only its transient sound");
         queue.committed(batch(1,3,"paused"),0);queue.foreground(false);queue.releasePresentation("paused");queue.foreground(true);
         check(queue.poll()==null&&queue.committed(batch(1,3,"paused"),0)==TechniqueFactQueue.Result.IGNORED,"pause discards without replay");

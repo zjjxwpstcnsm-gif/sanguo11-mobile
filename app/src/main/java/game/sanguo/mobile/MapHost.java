@@ -190,6 +190,13 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private void advanceCommandEffects(){
         if(commandEffects==null)return;
         long now=android.os.SystemClock.uptimeMillis();
+        // A command can commit inside its confirmation dialog. Losing map focus
+        // for that dialog is a presentation pause, not completion or a user skip.
+        if(!resumed||!renderGate.active()){
+            commandEffectTime=now;
+            if(resumed&&!released)postOnAnimation(commandEffectTick);
+            return;
+        }
         boolean sourcePrelude=false;
         if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){
             TurnJournal.Event current=commandEffects.current();int prelude=originalCriticalDuration(current);
