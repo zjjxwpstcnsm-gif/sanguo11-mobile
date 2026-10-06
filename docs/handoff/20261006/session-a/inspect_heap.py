@@ -9,7 +9,7 @@ import argparse, collections, hashlib, json, mmap, pathlib, struct
 p=argparse.ArgumentParser();p.add_argument('hprof',type=pathlib.Path);p.add_argument('--output',type=pathlib.Path,required=True);a=p.parse_args()
 sizes={2:0,4:1,5:2,6:4,7:8,8:1,9:2,10:4,11:8}
 names={4:'boolean',5:'char',6:'float',7:'double',8:'byte',9:'short',10:'int',11:'long'}
-strings={};loaded={};classes={};arrays=collections.Counter();instances=collections.Counter();top=[]
+strings={};loaded={};classes={};arrays=collections.Counter();instances=collections.Counter();top=[];large_arrays={};holder_arrays=collections.defaultdict(set)
 with a.hprof.open('rb') as f, mmap.mmap(f.fileno(),0,access=mmap.ACCESS_READ) as data:
     end=data.find(b'\0');id_size=struct.unpack_from('>I',data,end+1)[0];sizes[2]=id_size
     def num(pos,n):return int.from_bytes(data[pos:pos+n],'big')
@@ -49,6 +49,7 @@ with a.hprof.open('rb') as f, mmap.mmap(f.fileno(),0,access=mmap.ACCESS_READ) as
             for t,b,e in heap(start,stop):
                 if t==0x23:
                     count=num(b+id_size+4,4);kind=data[b+id_size+8];size=count*sizes[kind];arrays[(kind,'bytes')]+=size;arrays[(kind,'count')]+=1
+                    if size>=4096:large_arrays[num(b,id_size)]=(kind,size)
                     if size>=65536:top.append((size,num(b,id_size),kind,count))
                 elif t==0x21:instances[num(b+id_size+4,id_size)]+=1
     top.sort(reverse=True);top=top[:80];wanted={x[1] for x in top};owners=collections.defaultdict(list)
@@ -65,6 +66,7 @@ with a.hprof.open('rb') as f, mmap.mmap(f.fileno(),0,access=mmap.ACCESS_READ) as
                 for fid,ft in fields(cid):
                     if ft==2:
                         target=num(pos,id_size)
+                        if target in large_arrays:holder_arrays[class_name(cid)+'.'+strings.get(fid,hex(fid))].add(target)
                         if target in wanted and len(owners[target])<8:owners[target].append(class_name(cid)+'.'+strings.get(fid,hex(fid)))
                     pos+=sizes[ft]
             elif t==0x22:
@@ -72,5 +74,5 @@ with a.hprof.open('rb') as f, mmap.mmap(f.fileno(),0,access=mmap.ACCESS_READ) as
                 for i in range(count):
                     target=num(pos+i*id_size,id_size)
                     if target in wanted and len(owners[target])<8:owners[target].append(class_name(cid)+'['+str(i)+']')
-    result={'input':str(a.hprof.resolve()),'bytes':len(data),'scope':'Post-GC live objects only; no allocation stacks or unperturbed peak; top80 arrays >=64KiB, up to8 direct field/array owners each','primitiveArrays':{names[t]:{'bytes':arrays[(t,'bytes')],'count':arrays[(t,'count')]} for t in names},'largestArrays':[{'bytes':n,'id':hex(i),'type':names[t],'elements':c,'directOwners':owners[i]} for n,i,t,c in top],'instanceCounts':[{ 'class':class_name(cid),'count':n} for cid,n in instances.most_common(60)]}
+    result={'input':str(a.hprof.resolve()),'bytes':len(data),'scope':'Post-GC live objects only; no allocation stacks or unperturbed peak; top80 arrays >=64KiB, up to8 direct field/array owners each','primitiveArrays':{names[t]:{'bytes':arrays[(t,'bytes')],'count':arrays[(t,'count')]} for t in names},'largestArrays':[{'bytes':n,'id':hex(i),'type':names[t],'elements':c,'directOwners':owners[i]} for n,i,t,c in top],'largeArrayHolderGroups':[{'holder':holder,'arrays':len(ids),'bytes':sum(large_arrays[i][1] for i in ids)} for holder,ids in sorted(holder_arrays.items(),key=lambda item:-sum(large_arrays[i][1] for i in item[1]))],'holderBoundary':'All arrays >=4096B; unique within each holder group, shared arrays can appear in multiple groups; group totals not additive. Static/GC root ownership not inferred.','instanceCounts':[{ 'class':class_name(cid),'count':n} for cid,n in instances.most_common()]}
 a.output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ['largestArrays','instanceCounts']}))

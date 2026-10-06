@@ -1,12 +1,12 @@
 {
-  "phase": "prepared diagnostic; not installed yet",
+  "phase": "actual diagnostic workflow complete and all original data restored",
   "gameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
   "diagnosticTestApkSha256": "520fb407dd58a80b17807f3757f88998ec160491463f646d95fa0b0769e5d13f",
   "diagnosticTestPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/test-heap-profile/app-debug-androidTest.apk",
   "trigger": "Real sampled Java used >340MiB at normal UI phase; one Debug.dumpHprofData. Requires fresh complete backup, installed test SHA and actual source-menu workflow. No World/snapshot injection.",
   "perturbation": "Dump triggers GC. Profile is not an unperturbed peak/stability acceptance.",
   "allocationStackCaptured": false,
-  "liveObjectsCaptured": false,
+  "liveObjectsCaptured": true,
   "hypothesis": "GpuMesh separately copies immutable SceneMesh float arrays into direct buffers for each upload. On Android10 DirectByteBuffer.MemoryRef uses VMRuntime.newNonMovableArray(byte.class,capacity+7). These are Java heap allocations. Need actual histogram/owners to quantify peak contribution, not assume sole OOM cause.",
   "primaryImplementationSources": [
     {
@@ -22,6 +22,170 @@
       "observation": "AutoBuffer kept by JniBufferCallback; async buffer consumption."
     }
   ],
-  "candidateChange": "Potential FloatBuffer.wrap immutable published arrays, removing extra Java direct-copy allocation. Native array copy/pinning lifetime and peak must be measured; production not changed at93a04cd7. Frozen JNI stays unchanged.",
-  "remaining": "Actual live-object owner evidence and allocation trace; bounded pending uploads/native/GPU budget; fresh installed full normal flow and ARM"
+  "candidateChange": "Direct float-array wrapping remains an allocation-churn hypothesis, not established sole OOM root. No production change made from this sample. Earlier verified CPU mesh reduction remains actual fix; unperturbed Android peak and ARM margin remain open.",
+  "remaining": "Actual live-object owner evidence and allocation trace; bounded pending uploads/native/GPU budget; fresh installed full normal flow and ARM",
+  "run": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/heap-08",
+  "control": "Game APK unchanged; heap-profile testAPK separate. Wait for actual installed SHA/dump evidence; no credit until complete.",
+  "diagnosticTestInstalled": true,
+  "installedTestSha256": "520fb407dd58a80b17807f3757f88998ec160491463f646d95fa0b0769e5d13f",
+  "actualDump": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/heap-08/root-live.hprof",
+    "bytes": 199444332,
+    "hostAndDeviceSha256": "695f477ae6fcedd20d5ffc1e5a29f67ed8f1f4d9fda937fc1ada58cd3efc4819",
+    "javaConvertedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/heap-08/root-live-java.hprof",
+    "javaConvertedSha256": "57611af2fba47f075a580826a69bcf0c66d28e879baeccf6c853875147de23a1",
+    "method": "Actual root am dumpheap on running unchanged game in diagnostic mode, explicit GC; initial external path SELinux-denied, used supported /data/local/tmp, no SELinux change. Only own temporary dump removed after complete host/deviceSHAequal.",
+    "holderReport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/heap-08/live-objects-all.json",
+    "primitiveArrays": {
+      "boolean": {
+        "bytes": 5907,
+        "count": 75
+      },
+      "char": {
+        "bytes": 4842478,
+        "count": 51178
+      },
+      "float": {
+        "bytes": 87169444,
+        "count": 92185
+      },
+      "double": {
+        "bytes": 2568,
+        "count": 26
+      },
+      "byte": {
+        "bytes": 37519026,
+        "count": 360243
+      },
+      "short": {
+        "bytes": 7774,
+        "count": 66
+      },
+      "int": {
+        "bytes": 15557208,
+        "count": 27551
+      },
+      "long": {
+        "bytes": 1471728,
+        "count": 8528
+      }
+    },
+    "largeArrayHolderGroups": [
+      {
+        "holder": "game.sanguo.mobile.SceneMesh.vertices",
+        "arrays": 418,
+        "bytes": 62877724
+      },
+      {
+        "holder": "game.sanguo.mobile.SceneMesh.indices",
+        "arrays": 164,
+        "bytes": 9640200
+      },
+      {
+        "holder": "java.nio.DirectByteBuffer$MemoryRef.buffer",
+        "arrays": 16,
+        "bytes": 6475188
+      },
+      {
+        "holder": "java.nio.DirectByteBuffer.hb",
+        "arrays": 16,
+        "bytes": 6475188
+      },
+      {
+        "holder": "game.sanguo.mobile.SceneMesh.surfaceData",
+        "arrays": 255,
+        "bytes": 6155320
+      },
+      {
+        "holder": "java.util.TreeMap$TreeMapEntry.value",
+        "arrays": 15,
+        "bytes": 5996361
+      },
+      {
+        "holder": "game.sanguo.mobile.PcFacilities$Model.data",
+        "arrays": 235,
+        "bytes": 5584224
+      },
+      {
+        "holder": "game.sanguo.mobile.SceneMesh.tangents",
+        "arrays": 99,
+        "bytes": 4136192
+      },
+      {
+        "holder": "game.sanguo.mobile.PcSites$Model.data",
+        "arrays": 80,
+        "bytes": 2729712
+      },
+      {
+        "holder": "game.sanguo.mobile.SceneMesh.uv",
+        "arrays": 90,
+        "bytes": 2037728
+      },
+      {
+        "holder": "java.util.concurrent.atomic.AtomicIntegerArray.array",
+        "arrays": 2,
+        "bytes": 1315440
+      },
+      {
+        "holder": "game.sanguo.mobile.SceneMesh$SurfaceBuilder.vertices",
+        "arrays": 2,
+        "bytes": 1096704
+      },
+      {
+        "holder": "game.sanguo.core.PcMap.heights",
+        "arrays": 1,
+        "bytes": 1050625
+      },
+      {
+        "holder": "game.sanguo.core.PcMap.water",
+        "arrays": 1,
+        "bytes": 1048576
+      },
+      {
+        "holder": "game.sanguo.core.PcMap.coarseWater",
+        "arrays": 1,
+        "bytes": 655360
+      }
+    ],
+    "renderers": [
+      {
+        "class": "game.sanguo.core.World",
+        "count": 4
+      },
+      {
+        "class": "game.sanguo.mobile.MapHost",
+        "count": 2
+      },
+      {
+        "class": "game.sanguo.mobile.FilamentMapView",
+        "count": 1
+      },
+      {
+        "class": "game.sanguo.mobile.MapSceneSnapshot$Ground",
+        "count": 1
+      }
+    ]
+  },
+  "finding": "This post-GC sample is dominated by SceneMesh vertex arrays, not direct-buffer live bytes. One live FilamentMapView plus2 MapHost, with released preview renderer field already verified null; no retained-multiple-Filament claim supported.4 World includes authoritative/presentation/template and read-only testdecode values; not by itself proof of a leak.",
+  "productionChanged": false,
+  "diagnosticSamples": 77,
+  "diagnosticJavaMaxBytes": 319759456,
+  "diagnosticMemoryAcceptance": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "checks": "475",
+  "automatic340MiBThresholdTriggered": false,
+  "profileResultIsNormalMemoryAcceptance": false
 }

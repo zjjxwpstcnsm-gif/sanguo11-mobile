@@ -8,4 +8,6 @@
 
 BGM/voice/58等仍按20261004/session2/MEDIA_INPUT_CONTRACT.md原请求，尤其完整源势力/原城地域/实际日历/有方向关系与三predicate（未知≠false）、真实scene与同提交StateToken/事件id/parent。不按姓名/owner ordinal猜资源、不用菜单曲充当地图曲。33/1/49/78及九工程合成标识保留。
 
-最终APK验收需设备独占锁、完整内部/外部保存/库/偏好备份和恢复读回SHA。现5554外部用户目录约2.6GiB、主机只剩约300MiB，暂未安装。ARM无设备；模拟器不替真机长流程/扬声器。
+最终APK验收需设备独占锁、完整内部/外部保存/库/偏好备份和恢复读回SHA。空间阻断已解除；5554现为完整继承的私有扩容AVD，原AVD保留且停止，5582不操作。fd9f455a普通包已实装：16来源菜单/势力切换/新局/缩放与目录完成，Run07同包正常存取/Activity重开PASS314，每轮原9内部/3797外部文件最终SHA全等。Source8缩放采样Java383.91MiB/384MiB，无OOM不等于安全余量；新的堆诊断独立记录，不能代替非侵入验收。ARM仍无设备；模拟器不替真机长流程/扬声器。
+
+Run07只读启动取证：sigquit-trace.txt的ui-read位于PcOfficerInfo.read → String.matches → Pattern.compile/native compile，main仍在MessageQueue，堆75MB/78MB、52次GC累计49.000s。仅单次栈，不证明死锁或唯一卡顿根因；A未修改B核心。最终B冻结增量组合需另测冷启动/剧本准备时延。A已提供完整主题5文件及最小普通MOVE入口47326188冻结依赖，之后93a04cd7/3c02fea5仅新增本地验收证据与测试工具，未交付新的渲染限帧变更。

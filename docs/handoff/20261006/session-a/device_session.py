@@ -58,6 +58,7 @@ def main():
     p.add_argument('--reuse-installed',action='store_true')
     p.add_argument('--test-only-update',action='store_true')
     p.add_argument('--heap-profile',action='store_true')
+    p.add_argument('--fresh-process-reopen',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
     out = a.output.resolve(); report_path = out/'session.json'
     if a.mode=='reuse-backup':
@@ -161,6 +162,19 @@ def main():
             with (out/'instrumentation.txt').open('wb') as f:
                 run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput']) and 'FAIL' not in r['testOutput']
+            if a.fresh_process_reopen:
+                if a.runner!='SessionAMapRepairInstrumentation' or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
+                normal_pass=r['passed'];r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
+                expected=run('shell','sha256sum','/data/data/'+PACKAGE+'/files/auto.sg11').decode().split()[0]
+                old_pid=run('shell','pidof',PACKAGE).decode().strip()
+                run('shell','am','force-stop',PACKAGE)
+                with (out/'cold-instrumentation.txt').open('wb') as f:
+                    run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
+                cold=(out/'cold-instrumentation.txt').read_text()
+                new_pid=run('shell','pidof',PACKAGE).decode().strip()
+                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':'SESSION_A_MAP PASS' in cold and 'FAIL' not in cold and old_pid!=new_pid}
+                r['passed']=normal_pass and r['coldProcess']['passed']
+                run('pull','/sdcard/Android/data/'+PACKAGE+'/files/session-a-map/'+run_id+'_cold',str(out/'cold-evidence'))
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id,str(out/'evidence'))
         finally:
