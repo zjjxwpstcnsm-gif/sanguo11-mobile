@@ -1,0 +1,7 @@
+# Normal portrait caller acceptance successor
+
+Use existing SessionAMapRepairInstrumentation suite media16. All16 normal source selection/new games remain normal UI actions, no constructed World/snapshot or rule injection. Within each normal roster, select four current source records by native identity184/229/249/616 from authoritative saved metadata, never map by name; only use the resulting current name as the normal visible search input. Clear real filters, search/scroll/touch the actual row and open its real detail dialog.
+
+For actual attached roster compound Drawable and detail ImageView Drawable, require original OfficerPortrait identity officerId/nativeId/variant/path/sourceSHA/recordSHA match the immutable saved record. Require current sourceYear equals the real calendar year. Wait for actual shared bounded loader, decode independent packaged PNG with inScaled=false and compare full decoded bitmap bytes via sameAs. Record source asset/SHA/dimensions/current name and both caller labels; screenshot each real dialog. UI search and view entry must preserve entire Save/bothRNG/fullStateToken.
+
+This establishes64 ordinary identities and128 normal attached caller pixels at actual current years if passed. It does not establish all695 assets in all callers, age boundary transitions, full-screen forms/FCE/critical speaker routes, original Windows framebuffer exactness, live MOD priority, voice or ARM. Host10720 identity/2892 original PNG SHA proof remains separate. Never overwrite earlier acceptance or borrow older APK scores.
