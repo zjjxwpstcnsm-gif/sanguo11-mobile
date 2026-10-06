@@ -1,0 +1,71 @@
+{
+  "schema": 2,
+  "asset": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-fire-scene.bin",
+  "bytes": 158192,
+  "sha256": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",
+  "templates": [
+    {
+      "effect": 8,
+      "resource": 133,
+      "bytes": 9004,
+      "sha256": "61d2336b72e1cd74b690d715551b8df7c7289ce082f7e04e04bf7c5662882c40"
+    },
+    {
+      "effect": 9,
+      "resource": 134,
+      "bytes": 11180,
+      "sha256": "74d5e52ea159e144508291ab980942fd057ebaebced87ae812315e7a7ca5c0ba"
+    },
+    {
+      "effect": 13,
+      "resource": 138,
+      "bytes": 20076,
+      "sha256": "7cc91cc42aeb548bcc85d21663251391ed5e78495129d38f9f8d8f708fcc44d7"
+    },
+    {
+      "effect": 16,
+      "resource": 141,
+      "bytes": 16076,
+      "sha256": "6ebfbb771d74f2d9b2495d3ee85dc437f5e81a40a6f72b0026696903392a40f8"
+    },
+    {
+      "effect": 17,
+      "resource": 142,
+      "bytes": 11596,
+      "sha256": "63119708bad346a5f5758ed2e157c03cecd6b9178b3cc7c1b1657ef00047db81"
+    },
+    {
+      "effect": 18,
+      "resource": 143,
+      "bytes": 26108,
+      "sha256": "049650f13fbfab6aa0d09851c6f84411592f543909920c008c702aa37d670c1a"
+    },
+    {
+      "effect": 19,
+      "resource": 144,
+      "bytes": 16204,
+      "sha256": "632e75db2606ada8fbcedab2c4e623c29a9fe9de0c51e463aa7ab5a3437fb135"
+    },
+    {
+      "effect": 20,
+      "resource": 145,
+      "bytes": 38876,
+      "sha256": "b2194fdb5b1278e693288ac5f68abf68ad1a2db8959f0a0f4a94ee015715da39"
+    },
+    {
+      "effect": 23,
+      "resource": 148,
+      "bytes": 6332,
+      "sha256": "60d6dfcb3e64688694d1633cdfc5daffcb2b3c5c58b3428ef6cc60546c39ef5a"
+    }
+  ],
+  "placements": 126,
+  "oldSceneByteEqual": true,
+  "originalSeffByteEqual": true,
+  "twoConversionsByteEqual": true,
+  "jni4Modified": false,
+  "currentOldWorkerAcceptsV2": false,
+  "normalOriginalFire13Accepted": false,
+  "originalModPriorityKnown": false,
+  "overallGoalComplete": false
+}

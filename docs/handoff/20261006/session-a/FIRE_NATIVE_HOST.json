@@ -1,0 +1,863 @@
+{
+  "passed": false,
+  "scope": "host C transport and original controller only; chosen test terrainY0 is not original placement/normal game acceptance",
+  "AndroidAccepted": false,
+  "ARMAccepted": false,
+  "GPUAccepted": false,
+  "legacy": {
+    "stdoutPath": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/host/legacy-probe-source-scene.bin-10-stdout.bin",
+    "stdoutSha256": "d7cd53b0db3fc6cf4c14fbfa9bbef98a4cbd1057d612639d0dd2848977d64415",
+    "ready": "5043465852445931080000007e000000",
+    "frames": [
+      {
+        "count": 0,
+        "elapsed": 0.10000000149011612,
+        "recordsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "updateMs": 38.566001892089844,
+        "drawMs": 6.319000244140625,
+        "geometryMs": 0.17800001800060272,
+        "bytes": 0
+      },
+      {
+        "count": 2,
+        "elapsed": 0.20000000298023224,
+        "recordsSha256": "4b16c5980ecb38e26e75ed481b2ead4e11d8bc04c8374d16184e53096217e814",
+        "updateMs": 27.534000396728516,
+        "drawMs": 4.78000020980835,
+        "geometryMs": 7.193999767303467,
+        "bytes": 368
+      },
+      {
+        "count": 2,
+        "elapsed": 0.30000001192092896,
+        "recordsSha256": "d1c60fa18bac8e861ca6535904d96e774ec2ad32872d8c2d28896e404fef6e8b",
+        "updateMs": 25.825000762939453,
+        "drawMs": 3.634999990463257,
+        "geometryMs": 1.4819999933242798,
+        "bytes": 368
+      },
+      {
+        "count": 7,
+        "elapsed": 0.4000000059604645,
+        "recordsSha256": "085c92683d9961907b13a2ca20e7e84fe562f5aea0d599be91280353a87800cb",
+        "updateMs": 21.781999588012695,
+        "drawMs": 3.0409998893737793,
+        "geometryMs": 2.174999952316284,
+        "bytes": 1288
+      },
+      {
+        "count": 10,
+        "elapsed": 0.5,
+        "recordsSha256": "0ab3061c13adf64ae8d8315ddb897e78e53b04521e49b3e8ebe01a26af2f02fb",
+        "updateMs": 19.51300048828125,
+        "drawMs": 3.9639999866485596,
+        "geometryMs": 3.7739999294281006,
+        "bytes": 1840
+      },
+      {
+        "count": 10,
+        "elapsed": 0.6000000238418579,
+        "recordsSha256": "23947cc78afcfb484e6e3f2675bd8f6f528addcbb302b0fa0cb77c67756bdfb5",
+        "updateMs": 19.993999481201172,
+        "drawMs": 5.254000186920166,
+        "geometryMs": 3.128000020980835,
+        "bytes": 1840
+      },
+      {
+        "count": 14,
+        "elapsed": 0.7000000476837158,
+        "recordsSha256": "a0987cfa54b5062a3951a390094e288b69172dd45f13b46db5e8011c4b2a0ba9",
+        "updateMs": 17.832000732421875,
+        "drawMs": 5.665999889373779,
+        "geometryMs": 4.328000068664551,
+        "bytes": 2576
+      },
+      {
+        "count": 14,
+        "elapsed": 0.8000000715255737,
+        "recordsSha256": "5e26f5a17f7442a857cb9a3d6c451a674630c2cec90a07fa7fd2b4b215852a2b",
+        "updateMs": 29.444000244140625,
+        "drawMs": 5.807000160217285,
+        "geometryMs": 4.110000133514404,
+        "bytes": 2576
+      },
+      {
+        "count": 14,
+        "elapsed": 0.9000000953674316,
+        "recordsSha256": "3d80d479e9848d471de77f656b911966082ed7c7fc1c4672cdc2b0a70fd479ed",
+        "updateMs": 21.474000930786133,
+        "drawMs": 5.949999809265137,
+        "geometryMs": 4.427999973297119,
+        "bytes": 2576
+      },
+      {
+        "count": 19,
+        "elapsed": 1.0000001192092896,
+        "recordsSha256": "9a36fa785f8d98048732dabfe63e47daf0e0bd35fdeb4348085725acbf9e65a3",
+        "updateMs": 40.44300079345703,
+        "drawMs": 4.8379998207092285,
+        "geometryMs": 3.052999973297119,
+        "bytes": 3496
+      }
+    ],
+    "wallSec": 0.563416329,
+    "stderr": ""
+  },
+  "newNoFire": {
+    "stdoutPath": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/host/pc-effect-fire-probe-source-fire-scene.bin-10-stdout.bin",
+    "stdoutSha256": "491577a6380c70ed3e1b9d84fcd5c14bf981c5b68bc065b8f1b1d5f43d42a47f",
+    "ready": "5043465852445932090000007e000000",
+    "frames": [
+      {
+        "count": 0,
+        "elapsed": 0.10000000149011612,
+        "recordsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "updateMs": 28.30299949645996,
+        "drawMs": 5.520999908447266,
+        "geometryMs": 0.15199999511241913,
+        "bytes": 0
+      },
+      {
+        "count": 2,
+        "elapsed": 0.20000000298023224,
+        "recordsSha256": "56d0bbb783957252d344e54f779b565ae963eff9e2081cef631a80281c7b1c40",
+        "updateMs": 27.020999908447266,
+        "drawMs": 4.827000141143799,
+        "geometryMs": 6.539000034332275,
+        "bytes": 368
+      },
+      {
+        "count": 2,
+        "elapsed": 0.30000001192092896,
+        "recordsSha256": "2796ff20d434958ac6ea99bd02803b56e2f9ddb82bf11a3e226e8ac87334515b",
+        "updateMs": 22.339000701904297,
+        "drawMs": 4.247000217437744,
+        "geometryMs": 1.840000033378601,
+        "bytes": 368
+      },
+      {
+        "count": 7,
+        "elapsed": 0.4000000059604645,
+        "recordsSha256": "ecb7fb598724e4fd498316df1a46aa06ef0130c20375ae148e8a1478cccc6108",
+        "updateMs": 20.058000564575195,
+        "drawMs": 2.7890000343322754,
+        "geometryMs": 2.624000072479248,
+        "bytes": 1288
+      },
+      {
+        "count": 10,
+        "elapsed": 0.5,
+        "recordsSha256": "81c19794ede5a96c6f32a21e7e79a3a45b278d9dd4ff422d415df3a3e3821a0d",
+        "updateMs": 15.477999687194824,
+        "drawMs": 4.355000019073486,
+        "geometryMs": 3.8970000743865967,
+        "bytes": 1840
+      },
+      {
+        "count": 10,
+        "elapsed": 0.6000000238418579,
+        "recordsSha256": "6372303ed1b9b05cfbcb4e7afca5ccb2cd4c5d03a692e8dbdf9f17a0d4b4ab2d",
+        "updateMs": 19.156999588012695,
+        "drawMs": 3.361999988555908,
+        "geometryMs": 3.4149999618530273,
+        "bytes": 1840
+      },
+      {
+        "count": 14,
+        "elapsed": 0.7000000476837158,
+        "recordsSha256": "8b47eb887f14fbe02bf7aad3ecab8a75baaa162e0e4ea3770bda7fc16cab48ea",
+        "updateMs": 19.485000610351562,
+        "drawMs": 3.4519999027252197,
+        "geometryMs": 3.694000005722046,
+        "bytes": 2576
+      },
+      {
+        "count": 14,
+        "elapsed": 0.8000000715255737,
+        "recordsSha256": "f4ae84d446989daeb4756bf1dde7e39efa3379268100f9401a32dde17c9e7e3b",
+        "updateMs": 23.274999618530273,
+        "drawMs": 3.4590001106262207,
+        "geometryMs": 4.019999980926514,
+        "bytes": 2576
+      },
+      {
+        "count": 14,
+        "elapsed": 0.9000000953674316,
+        "recordsSha256": "4bd5c16777f9858ad1dd0135fe59e667604ef0f4ff7850d71c388a2402714ec6",
+        "updateMs": 20.48900032043457,
+        "drawMs": 5.431000232696533,
+        "geometryMs": 2.7769999504089355,
+        "bytes": 2576
+      },
+      {
+        "count": 19,
+        "elapsed": 1.0000001192092896,
+        "recordsSha256": "9e19657d0228cbc4b52db7ed1f40564e3133a1e725dd00d222b35e56c1c94146",
+        "updateMs": 31.61199951171875,
+        "drawMs": 4.77400016784668,
+        "geometryMs": 3.871999979019165,
+        "bytes": 3496
+      }
+    ],
+    "wallSec": 0.531383994,
+    "stderr": ""
+  },
+  "new9NoFireOld8ByteCompatibility": false,
+  "old8ByteCompatibility": true,
+  "cameraFixture": {
+    "path": "/Users/paopao/workspace/sanguo11-mobile/out/pc-visual/v150-native-x86-source-rh-camera-final/commands.bin",
+    "sha256": "eee7a29a813eb094a3b9d189c096e219b392b65dcf4b265067e8ceb798902176",
+    "scope": "recorded transport fixture only, not source/rule/Android acceptance"
+  },
+  "dynamic": {
+    "stdoutPath": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/host/pc-effect-fire-probe-source-fire-scene.bin-71-stdout.bin",
+    "stdoutSha256": "0aea344b84fcf36e0a1f0bb124e3378a72159e36bc503ed05dfa0f32d8d70299",
+    "ready": "5043465852445932090000007e000000",
+    "frames": [
+      {
+        "count": 0,
+        "elapsed": 0.10000000149011612,
+        "recordsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "updateMs": 26.895000457763672,
+        "drawMs": 5.123000144958496,
+        "geometryMs": 0.14699995517730713,
+        "bytes": 0
+      },
+      {
+        "count": 2,
+        "elapsed": 0.20000000298023224,
+        "recordsSha256": "9c8361f5afead0387a745f2172f0e691f291f9958bf864b379ae5ae0b508c79d",
+        "updateMs": 24.23699951171875,
+        "drawMs": 3.052000045776367,
+        "geometryMs": 5.334000110626221,
+        "bytes": 368
+      },
+      {
+        "count": 2,
+        "elapsed": 0.30000001192092896,
+        "recordsSha256": "01d0b2bae632729fff178f7ddba2b3be6961c03f1f05e542443aa6740771e0f1",
+        "updateMs": 20.774999618530273,
+        "drawMs": 3.635999917984009,
+        "geometryMs": 1.4320000410079956,
+        "bytes": 368
+      },
+      {
+        "count": 7,
+        "elapsed": 0.4000000059604645,
+        "recordsSha256": "e06f64646d31457a166d3123ea79a897ba59949cc35338ef2d953628a1870cd6",
+        "updateMs": 17.802000045776367,
+        "drawMs": 2.63100004196167,
+        "geometryMs": 2.109999895095825,
+        "bytes": 1288
+      },
+      {
+        "count": 10,
+        "elapsed": 0.5,
+        "recordsSha256": "803c81604c516e7aab62915082cb245c8072a72fed1ec1edeeb07994c452b348",
+        "updateMs": 16.857999801635742,
+        "drawMs": 2.6760001182556152,
+        "geometryMs": 3.003999948501587,
+        "bytes": 1840
+      },
+      {
+        "count": 10,
+        "elapsed": 0.6000000238418579,
+        "recordsSha256": "85177491fa9cfe2b8ba9ead40b631cb9867d3661b67a5024942d43fb63273413",
+        "updateMs": 16.801000595092773,
+        "drawMs": 3.382999897003174,
+        "geometryMs": 2.6579999923706055,
+        "bytes": 1840
+      },
+      {
+        "count": 14,
+        "elapsed": 0.7000000476837158,
+        "recordsSha256": "ba286259fc777d48a8227f1895b8b35efbd2447ae7b4acfec9022e97b077106f",
+        "updateMs": 21.441999435424805,
+        "drawMs": 3.5190000534057617,
+        "geometryMs": 3.559999942779541,
+        "bytes": 2576
+      },
+      {
+        "count": 14,
+        "elapsed": 0.8000000715255737,
+        "recordsSha256": "fccb7026ecf7e51e8cae561eecaf0f7220b4cb3790e6f27ec7c0dda518cc4349",
+        "updateMs": 23.18000030517578,
+        "drawMs": 4.251999855041504,
+        "geometryMs": 2.861999988555908,
+        "bytes": 2576
+      },
+      {
+        "count": 14,
+        "elapsed": 0.9000000953674316,
+        "recordsSha256": "e34447bfd318b62b1556ed87497fadee7783981e7f71307a6985e37726b6a8aa",
+        "updateMs": 20.493000030517578,
+        "drawMs": 4.586999893188477,
+        "geometryMs": 2.682000160217285,
+        "bytes": 2576
+      },
+      {
+        "count": 19,
+        "elapsed": 1.0000001192092896,
+        "recordsSha256": "731d2ca6bd4b5d206cca3681d922fdd8f3ef4ecef42841b83b0e46eb62dc0fc7",
+        "updateMs": 29.398000717163086,
+        "drawMs": 4.494999885559082,
+        "geometryMs": 4.302000045776367,
+        "bytes": 3496
+      },
+      {
+        "count": 19,
+        "elapsed": 1.0000001192092896,
+        "recordsSha256": "731d2ca6bd4b5d206cca3681d922fdd8f3ef4ecef42841b83b0e46eb62dc0fc7",
+        "updateMs": 0.00200001522898674,
+        "drawMs": 5.876999855041504,
+        "geometryMs": 1.3209999799728394,
+        "bytes": 3496
+      },
+      {
+        "count": 18,
+        "elapsed": 1.1000001430511475,
+        "recordsSha256": "a20593d6b808cbf7cbf1681f278caf6a1000b01f3f778d25e786ee9177ee06c7",
+        "updateMs": 21.827999114990234,
+        "drawMs": 6.5920000076293945,
+        "geometryMs": 4.513999938964844,
+        "bytes": 3312
+      },
+      {
+        "count": 18,
+        "elapsed": 1.2000001668930054,
+        "recordsSha256": "b9cf1f284dd352900a5e010d848e73e0e65308e4cf733eaac532f085a6523696",
+        "updateMs": 22.764999389648438,
+        "drawMs": 6.289999961853027,
+        "geometryMs": 3.0850000381469727,
+        "bytes": 3312
+      },
+      {
+        "count": 18,
+        "elapsed": 1.3000001907348633,
+        "recordsSha256": "0b0b6dfc845f2ae06fe243342a3ea20eb5beb4936f06ce9f85603c4b2b2abf97",
+        "updateMs": 30.089000701904297,
+        "drawMs": 7.196000099182129,
+        "geometryMs": 4.340000152587891,
+        "bytes": 3312
+      },
+      {
+        "count": 20,
+        "elapsed": 1.4000002145767212,
+        "recordsSha256": "a13c7ad9461fb54d5a51a9e7b0c9331fc3281ba83a56cb1e0a7216b6c2944947",
+        "updateMs": 27.155000686645508,
+        "drawMs": 5.478000164031982,
+        "geometryMs": 2.8589999675750732,
+        "bytes": 3680
+      },
+      {
+        "count": 22,
+        "elapsed": 1.500000238418579,
+        "recordsSha256": "293d214a6164059046cba4a86f1a9de4abc11d45d9c518802d471f06be03bdfc",
+        "updateMs": 22.26799964904785,
+        "drawMs": 4.671999931335449,
+        "geometryMs": 4.117000102996826,
+        "bytes": 4048
+      },
+      {
+        "count": 21,
+        "elapsed": 1.600000262260437,
+        "recordsSha256": "c1945ca559283dca18144caef9301b61b11fe27415fab2e8409cba7218e32d9f",
+        "updateMs": 24.086000442504883,
+        "drawMs": 4.433000087738037,
+        "geometryMs": 2.759999990463257,
+        "bytes": 3864
+      },
+      {
+        "count": 23,
+        "elapsed": 1.700000286102295,
+        "recordsSha256": "1de4af671f0a70ec98a37e489a95d04b7b0e7d272a10f2618502acc47a00e0c6",
+        "updateMs": 30.43600082397461,
+        "drawMs": 7.15500020980835,
+        "geometryMs": 3.7170000076293945,
+        "bytes": 4232
+      },
+      {
+        "count": 23,
+        "elapsed": 1.8000003099441528,
+        "recordsSha256": "014685014a129ddf7fa1e523a6f9756095b50ea200f1c5eb1adad6e4bb8f0346",
+        "updateMs": 27.402000427246094,
+        "drawMs": 4.539999961853027,
+        "geometryMs": 3.3469998836517334,
+        "bytes": 4232
+      },
+      {
+        "count": 23,
+        "elapsed": 1.9000003337860107,
+        "recordsSha256": "e671d5bbb0dc3662205fb919eaef122dff99020b15738258939298aeec4b03b1",
+        "updateMs": 27.802000045776367,
+        "drawMs": 5.989999771118164,
+        "geometryMs": 4.7870001792907715,
+        "bytes": 4232
+      },
+      {
+        "count": 27,
+        "elapsed": 2.000000238418579,
+        "recordsSha256": "30fbd0d18f4ce689b01a1572d74abe9e2797745a681a95be35f841c139aecfea",
+        "updateMs": 32.849998474121094,
+        "drawMs": 4.625,
+        "geometryMs": 3.000999927520752,
+        "bytes": 4968
+      },
+      {
+        "count": 26,
+        "elapsed": 2.1000001430511475,
+        "recordsSha256": "39830d9333d4d288c7d6e8c90349cb29a152844fc1785572baca6fa01f2ba84c",
+        "updateMs": 30.67799949645996,
+        "drawMs": 5.519000053405762,
+        "geometryMs": 4.384999752044678,
+        "bytes": 4784
+      },
+      {
+        "count": 24,
+        "elapsed": 2.200000047683716,
+        "recordsSha256": "8ebad8fe06658be76246137c63f68986afca1e8a6b90f6497d813a4dce178234",
+        "updateMs": 29.059999465942383,
+        "drawMs": 5.081999778747559,
+        "geometryMs": 3.3329999446868896,
+        "bytes": 4416
+      },
+      {
+        "count": 24,
+        "elapsed": 2.299999952316284,
+        "recordsSha256": "823e1aae196c5431760f98425b8ee574e91fede47eecd3254c697006a3f52b45",
+        "updateMs": 26.82200050354004,
+        "drawMs": 7.822000026702881,
+        "geometryMs": 4.5279998779296875,
+        "bytes": 4416
+      },
+      {
+        "count": 24,
+        "elapsed": 2.3999998569488525,
+        "recordsSha256": "4edfd61116e271b8f2b9b1fa6658f7b5c8b801cca6c858318f68ceabfab22b66",
+        "updateMs": 38.064998626708984,
+        "drawMs": 8.057000160217285,
+        "geometryMs": 4.604000091552734,
+        "bytes": 4416
+      },
+      {
+        "count": 26,
+        "elapsed": 2.499999761581421,
+        "recordsSha256": "7185c4c8e262df3152b64167e9d327b8e0dd3a5b2def643dc4c07be071304e88",
+        "updateMs": 36.665000915527344,
+        "drawMs": 8.07699966430664,
+        "geometryMs": 4.665999889373779,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 2.5999996662139893,
+        "recordsSha256": "0eac878f7c3c3ec0d7b5c74d23e947fe0d4f1938e1735cbcd6f4c9f0dc2e70c8",
+        "updateMs": 37.74700164794922,
+        "drawMs": 8.729000091552734,
+        "geometryMs": 5.901000022888184,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 2.6999995708465576,
+        "recordsSha256": "dfecf0f0c415684737153bb35f2bc23e81523985ea71304a63fd53e0787784ff",
+        "updateMs": 31.735000610351562,
+        "drawMs": 6.830999851226807,
+        "geometryMs": 4.644999980926514,
+        "bytes": 4600
+      },
+      {
+        "count": 24,
+        "elapsed": 2.799999475479126,
+        "recordsSha256": "50a08b6fa3dd7cb540dc6ca640d5c7b2bdabe362ca30ec39dd75661dd7088fa8",
+        "updateMs": 29.756000518798828,
+        "drawMs": 7.63100004196167,
+        "geometryMs": 4.71999979019165,
+        "bytes": 4416
+      },
+      {
+        "count": 24,
+        "elapsed": 2.8999993801116943,
+        "recordsSha256": "d026285cfea2cc9de0bc70450af991c39b1449b0f7087003348d21babc8c5a14",
+        "updateMs": 34.70800018310547,
+        "drawMs": 6.802000045776367,
+        "geometryMs": 4.828000068664551,
+        "bytes": 4416
+      },
+      {
+        "count": 26,
+        "elapsed": 2.9999992847442627,
+        "recordsSha256": "5e35dbaea0b43b1ec31212db47dea4b947bf24c42394935782546add35f11824",
+        "updateMs": 45.415000915527344,
+        "drawMs": 8.380000114440918,
+        "geometryMs": 5.334000110626221,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 3.099999189376831,
+        "recordsSha256": "cd6e29272f4bc5417b6ab6c5cd129bb077655f259bd208469460330756aa09ec",
+        "updateMs": 35.52399826049805,
+        "drawMs": 8.899999618530273,
+        "geometryMs": 5.934999942779541,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 3.1999990940093994,
+        "recordsSha256": "b93ed3a187e05aef6f126204cc6802dfa3dc6d46c86e0194fdf861f4cd110eb9",
+        "updateMs": 43.29899978637695,
+        "drawMs": 8.734000205993652,
+        "geometryMs": 4.177999973297119,
+        "bytes": 4600
+      },
+      {
+        "count": 24,
+        "elapsed": 3.2999989986419678,
+        "recordsSha256": "c9254435f1c73fa3645413e9daa381f2e098f40d174c83cd197432b4005f7186",
+        "updateMs": 37.90399932861328,
+        "drawMs": 8.114999771118164,
+        "geometryMs": 3.134999990463257,
+        "bytes": 4416
+      },
+      {
+        "count": 24,
+        "elapsed": 3.399998903274536,
+        "recordsSha256": "0e041001e5e591aac2ff7edca09f64f74470207625a6cd22d48e9ae6f37c6221",
+        "updateMs": 51.20199966430664,
+        "drawMs": 12.036999702453613,
+        "geometryMs": 5.322000026702881,
+        "bytes": 4416
+      },
+      {
+        "count": 26,
+        "elapsed": 3.4999988079071045,
+        "recordsSha256": "24a7917b94d7718b629683365f4fc65679636c97c2c6a885660b3e3a066b84b5",
+        "updateMs": 46.284000396728516,
+        "drawMs": 10.329000473022461,
+        "geometryMs": 4.113999843597412,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 3.599998712539673,
+        "recordsSha256": "16ed48fcf0196ba6b12db372332aab85a396b8af561d1df19f0503200584f978",
+        "updateMs": 57.56999969482422,
+        "drawMs": 8.196999549865723,
+        "geometryMs": 4.394000053405762,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 3.699998617172241,
+        "recordsSha256": "4b60c13511fc6a663248bfd040e78fc0a2ea2c327b4b6ff5db6b57f32cdd8097",
+        "updateMs": 47.66999816894531,
+        "drawMs": 9.185999870300293,
+        "geometryMs": 4.4039998054504395,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 3.7999985218048096,
+        "recordsSha256": "9efd738bacbb2afc8128a27615420bdc582b82ee0c473d7f9ee49b142b9a1181",
+        "updateMs": 50.50299835205078,
+        "drawMs": 9.54699993133545,
+        "geometryMs": 5.26800012588501,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 3.899998426437378,
+        "recordsSha256": "0a922c6afed2e03b2f6be41c08390a6877a7cfd3bcaa62d8d2ab2da43912da36",
+        "updateMs": 39.56700134277344,
+        "drawMs": 9.345999717712402,
+        "geometryMs": 5.449999809265137,
+        "bytes": 4600
+      },
+      {
+        "count": 26,
+        "elapsed": 3.9999983310699463,
+        "recordsSha256": "b252f8a6fc89f7543784ad568863ae28575ee0338c1c64aa8721d169bfe53b53",
+        "updateMs": 55.38399887084961,
+        "drawMs": 17.354999542236328,
+        "geometryMs": 5.802999973297119,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 4.099998474121094,
+        "recordsSha256": "ca4a436f3ba2fabf315caccb23b5630edb19c572c8c33b003c1f06f089dcd7fa",
+        "updateMs": 62.48899841308594,
+        "drawMs": 14.173999786376953,
+        "geometryMs": 7.35699987411499,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 4.199998378753662,
+        "recordsSha256": "45e4a801a32ac4c2192c79e809ca985467c57f25157247231d9d1407c0e37b95",
+        "updateMs": 63.30099868774414,
+        "drawMs": 10.010000228881836,
+        "geometryMs": 4.708000183105469,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 4.2999982833862305,
+        "recordsSha256": "9039ddd8294b4f1a612054a8260892bb116e669ade5e15e93e554c6d6f89bc14",
+        "updateMs": 38.82099914550781,
+        "drawMs": 8.13599967956543,
+        "geometryMs": 4.131999969482422,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 4.399998188018799,
+        "recordsSha256": "5038329034a6e3a1dc1ba95c1042ee83ba9a2c501bdc2857d4950095e1eea222",
+        "updateMs": 37.25199890136719,
+        "drawMs": 7.953999996185303,
+        "geometryMs": 5.379000186920166,
+        "bytes": 4600
+      },
+      {
+        "count": 27,
+        "elapsed": 4.499998092651367,
+        "recordsSha256": "39e530dffb63638e130ed5a2a51c842fe67115a7c9e15bdd95368178ed9e7048",
+        "updateMs": 31.08799934387207,
+        "drawMs": 6.560999870300293,
+        "geometryMs": 2.796999931335449,
+        "bytes": 4968
+      },
+      {
+        "count": 25,
+        "elapsed": 4.5999979972839355,
+        "recordsSha256": "cc4952419b2449e745959b70e9fc924a595b41e18b3ed0d8b9bb2b9bf4ced577",
+        "updateMs": 29.823999404907227,
+        "drawMs": 6.315999984741211,
+        "geometryMs": 3.1649999618530273,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 4.699997901916504,
+        "recordsSha256": "27b7a0ff938e1cd083b1683bf77954fef5e7a8a79d1a939c1e2dc5d398f0e10f",
+        "updateMs": 36.54199981689453,
+        "drawMs": 6.107999801635742,
+        "geometryMs": 3.5220000743865967,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 4.799997806549072,
+        "recordsSha256": "60bc0f9b3d71b8fbd24b5ce4c68ef59842cc32a024558b3a6d5645f213a9e558",
+        "updateMs": 39.36899948120117,
+        "drawMs": 7.684000015258789,
+        "geometryMs": 3.5480000972747803,
+        "bytes": 4600
+      },
+      {
+        "count": 24,
+        "elapsed": 4.899997711181641,
+        "recordsSha256": "55f18e2973c1bbcfb4c37c296ea85b6dbf6885faebfb93758ef58b3c753291e4",
+        "updateMs": 34.27799987792969,
+        "drawMs": 6.816999912261963,
+        "geometryMs": 3.740000009536743,
+        "bytes": 4416
+      },
+      {
+        "count": 26,
+        "elapsed": 4.999997615814209,
+        "recordsSha256": "c438d21bee1b7770306f4a83214ce088ff7625b7203a5f5f4aa7d1eae31be832",
+        "updateMs": 45.17599868774414,
+        "drawMs": 6.744999885559082,
+        "geometryMs": 3.120000123977661,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 5.099997520446777,
+        "recordsSha256": "5e36dc82ec3435ae76f6010f5b01f981140ec7ab62391fb978e28909527c0002",
+        "updateMs": 39.840999603271484,
+        "drawMs": 6.416999816894531,
+        "geometryMs": 3.38100004196167,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 5.199997425079346,
+        "recordsSha256": "78f310431f5e76df90d1d16f18ca39c5f3ac0a2cc56e43ea4f3c73a0c8bbfdee",
+        "updateMs": 37.96699905395508,
+        "drawMs": 6.7820000648498535,
+        "geometryMs": 2.7850000858306885,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 5.299997329711914,
+        "recordsSha256": "3652ab5d94ce2b2c6bf58d9d7c73434c575f70fd878a8ecabc7fa75c02b85e7c",
+        "updateMs": 35.25199890136719,
+        "drawMs": 7.104000091552734,
+        "geometryMs": 2.8959999084472656,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 5.399997234344482,
+        "recordsSha256": "e1801afa670f43561712556137ae157d073a0d083d9a1881f0012322b7906e1f",
+        "updateMs": 38.57699966430664,
+        "drawMs": 6.639999866485596,
+        "geometryMs": 3.312999963760376,
+        "bytes": 4600
+      },
+      {
+        "count": 26,
+        "elapsed": 5.499997138977051,
+        "recordsSha256": "ab4b40e35b31076ce36184847d30bfc5c409e3ac8b593a735e6955886c39fdc3",
+        "updateMs": 44.51100158691406,
+        "drawMs": 8.085000038146973,
+        "geometryMs": 4.056000232696533,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 5.599997043609619,
+        "recordsSha256": "239a700811c6845096f2589b0ca71bdbeaa8e0d2491961548ce789423c84d0e7",
+        "updateMs": 41.83700180053711,
+        "drawMs": 8.16100025177002,
+        "geometryMs": 3.0769999027252197,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 5.6999969482421875,
+        "recordsSha256": "83dc49af59c73c737db463a944b4852ef769fd234d64dc3cd16c250606b5fedd",
+        "updateMs": 45.69200134277344,
+        "drawMs": 6.785999774932861,
+        "geometryMs": 5.193999767303467,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 5.799996852874756,
+        "recordsSha256": "19e21895991dbaa22b11076f94558b99658cbdab0d26eef04b5af0c1059880ce",
+        "updateMs": 40.75699996948242,
+        "drawMs": 10.312999725341797,
+        "geometryMs": 3.4790000915527344,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 5.899996757507324,
+        "recordsSha256": "fe7ec0a4d8bb3eefabbb1db8e2042ce7351833d5c2f54ff3a865186180a05c08",
+        "updateMs": 47.02399826049805,
+        "drawMs": 9.331999778747559,
+        "geometryMs": 4.663000106811523,
+        "bytes": 4600
+      },
+      {
+        "count": 27,
+        "elapsed": 5.999996662139893,
+        "recordsSha256": "864f07cc9cf82f31906ad1c64f8439af499e7029ad560c69bae5ba71d4385f36",
+        "updateMs": 56.58599853515625,
+        "drawMs": 8.696999549865723,
+        "geometryMs": 3.3519999980926514,
+        "bytes": 4968
+      },
+      {
+        "count": 25,
+        "elapsed": 6.099996566772461,
+        "recordsSha256": "f12c068b1cec3fc1b272f5c858d847dccc47bf376fd339ca954fc3687aa1f58f",
+        "updateMs": 43.14799880981445,
+        "drawMs": 7.583000183105469,
+        "geometryMs": 4.145999908447266,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 6.199996471405029,
+        "recordsSha256": "a947cd3a959d2362ea038121845309704e80c75adcbf969a4f07c59083175342",
+        "updateMs": 40.87099838256836,
+        "drawMs": 8.388999938964844,
+        "geometryMs": 3.305999994277954,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 6.299996376037598,
+        "recordsSha256": "37f2bfd72777a754ee69089de545b32a84d4aec89cd11b447a8f0741c2dde81e",
+        "updateMs": 48.75400161743164,
+        "drawMs": 9.303999900817871,
+        "geometryMs": 3.635999917984009,
+        "bytes": 4600
+      },
+      {
+        "count": 24,
+        "elapsed": 6.399996280670166,
+        "recordsSha256": "fdc76a045ffb08509734eed8ac484e129097c509fb93284cdd64c56ea3abad40",
+        "updateMs": 63.573001861572266,
+        "drawMs": 7.677999973297119,
+        "geometryMs": 4.066999912261963,
+        "bytes": 4416
+      },
+      {
+        "count": 26,
+        "elapsed": 6.499996185302734,
+        "recordsSha256": "43d30916d5f33b35dd04d3e1cb7212161a1d57b96ed10926c049cc55ee29bc53",
+        "updateMs": 46.74399948120117,
+        "drawMs": 6.843999862670898,
+        "geometryMs": 4.120999813079834,
+        "bytes": 4784
+      },
+      {
+        "count": 25,
+        "elapsed": 6.599996089935303,
+        "recordsSha256": "1bd2d8999c8a63ac3558ce3c98001a48460800d8e59f8a1e26246e46d2ec2e8e",
+        "updateMs": 38.22999954223633,
+        "drawMs": 6.7230000495910645,
+        "geometryMs": 2.8440001010894775,
+        "bytes": 4600
+      },
+      {
+        "count": 25,
+        "elapsed": 6.699995994567871,
+        "recordsSha256": "9e586db2f3666ceaec2eac2fd606e122b7941641a1c6b5c872544d8d28e989ec",
+        "updateMs": 43.1510009765625,
+        "drawMs": 8.670000076293945,
+        "geometryMs": 2.864000082015991,
+        "bytes": 4600
+      },
+      {
+        "count": 24,
+        "elapsed": 6.7999958992004395,
+        "recordsSha256": "a6c852254a9d34cae12561bb31b26e994ccba8d35c4e06fd8ebc2de4e3489929",
+        "updateMs": 38.803001403808594,
+        "drawMs": 7.828999996185303,
+        "geometryMs": 2.7699999809265137,
+        "bytes": 4416
+      },
+      {
+        "count": 24,
+        "elapsed": 6.899995803833008,
+        "recordsSha256": "93063d47280babf0e1b81a8ad1c608a624a0d755f4096648a35a3aa29b392035",
+        "updateMs": 39.000999450683594,
+        "drawMs": 8.168999671936035,
+        "geometryMs": 2.944000005722046,
+        "bytes": 4416
+      },
+      {
+        "count": 26,
+        "elapsed": 6.999995708465576,
+        "recordsSha256": "c20cde4e359a52508870dd11600c882e276b4d5922145656b96f8d7c5e779bd0",
+        "updateMs": 49.1150016784668,
+        "drawMs": 7.60099983215332,
+        "geometryMs": 3.128000020980835,
+        "bytes": 4784
+      }
+    ],
+    "wallSec": 3.6496858860000003,
+    "stderr": ""
+  },
+  "creationRefreshPauseRemovalFadeReaddTransport": true,
+  "ruleRngHook": "472150/4721d0 forbidden in native worker; a hit terminates child",
+  "error": "Nonempty old8 scene records differ under new9 manager; APK binding blocked pending source differential, old format unchanged"
+}
