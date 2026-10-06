@@ -136,7 +136,8 @@
     "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureActivity.java",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
     "docs/handoff/20261006/session-a/AUDIO_CAPTURE_CONTRACT.md",
-    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_BUILD.json"
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_BUILD.json",
+    "docs/handoff/20261006/session-a/audio_capture_support.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

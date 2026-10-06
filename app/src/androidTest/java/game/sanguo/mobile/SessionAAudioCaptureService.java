@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 /** Raw Android mix capture of only the installed game's UID; no microphone or display capture. */
 public final class SessionAAudioCaptureService extends Service {
-    private static final String TARGET="game.sanguo.mobile.dev",CHANNEL="game-mix-measurement";
+    private static final String TARGET="game.sanguo.mobile.dev",CHANNEL="session-a-game-mix-measurement";
     private final AtomicBoolean cancelled=new AtomicBoolean();
     private final Handler main=new Handler(Looper.getMainLooper());
     private volatile AudioRecord recorder;
@@ -127,5 +127,5 @@ public final class SessionAAudioCaptureService extends Service {
             stopForeground(true);stopSelf();
         }
     }
-    @Override public void onDestroy(){cancel();if(projection!=null){projection.stop();projection=null;}super.onDestroy();}
+    @Override public void onDestroy(){cancel();if(projection!=null){projection.stop();projection=null;}((NotificationManager)getSystemService(NOTIFICATION_SERVICE)).deleteNotificationChannel(CHANNEL);super.onDestroy();}
 }

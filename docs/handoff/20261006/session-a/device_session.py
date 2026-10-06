@@ -59,9 +59,11 @@ def main():
     p.add_argument('--test-only-update',action='store_true')
     p.add_argument('--heap-profile',action='store_true')
     p.add_argument('--menu-music',action='store_true')
+    p.add_argument('--audio-capture-rate',type=int,choices=[44100,48000])
     p.add_argument('--fresh-process-reopen',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
     if a.menu_music and (a.runner!='UiUxInstrumentation' or a.suite!='audio'):raise ValueError('Menu music requires the real UiUx audio runner')
+    if a.audio_capture_rate and not a.menu_music:raise ValueError('Actual music capture needs the normal menu flow')
     out = a.output.resolve(); report_path = out/'session.json'
     if a.mode=='reuse-backup':
         # Reuse only a COMPLETE byte archive whose entire current file set is
@@ -149,6 +151,9 @@ def main():
         log_file=(out/'logcat.txt').open('wb')
         log_process=subprocess.Popen([ADB,'-s','emulator-5554','logcat','-v','threadtime','-T','1'],stdout=log_file,stderr=subprocess.STDOUT)
         try:
+            if a.audio_capture_rate:
+                import audio_capture_support as capture_support
+                capture_support.prepare(out,r)
             with (out/'installation.txt').open('wb') as f:
                 if not a.reuse_installed:
                     for apk in ([a.test_apk] if a.test_only_update else [a.apk,a.test_apk]): f.write(run('install','-r',str(apk.resolve()),timeout=300)); f.flush()
@@ -161,8 +166,17 @@ def main():
                 (out/(package+'-installed.sha256')).write_text(installed_sha+'  '+remote+'\n')
                 if installed_sha != digest(apk): raise ValueError('Installed APK SHA differs')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
+            if a.audio_capture_rate:
+                for capture_rate in [44100,48000]:
+                    trial=capture_support.start(out,r,capture_rate,run_id+'_init'+str(capture_rate),3)
+                    capture_support.collect(out,r,trial,15)
+                selected=next(t for t in r['audioCapture']['captures'] if t['rate']==a.audio_capture_rate)
+                if selected['result']['failure'] or selected['result']['frames']<=0:raise ValueError('Requested raw capture input unavailable; initialization results retained')
+                music_capture=capture_support.start(out,r,a.audio_capture_rate,run_id+'_menu',130)
+                if not music_capture['ready']:raise ValueError('Normal menu capture did not initialize')
             with (out/'instrumentation.txt').open('wb') as f:
                 run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
+            if a.audio_capture_rate:capture_support.collect(out,r,music_capture,30)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION A ATTACK normal' in r['testOutput'] or 'PASS SESSION A DEBATE ordinary' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             b_folder='capacity' if a.runner=='SessionBCapacityInstrumentation' else 'debate' if a.runner=='SessionADebatePresentationInstrumentation' else 'fieldworks'
@@ -200,8 +214,15 @@ def main():
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
         finally:
+            capture_restore_error=None
+            if a.audio_capture_rate:
+                try:capture_support.stop_and_restore(out,r)
+                except Exception as error:capture_restore_error=error;r['audioCaptureRestoreError']=str(error)
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
             report_path.write_text(json.dumps(r,indent=2)); restore(out,r)
+            if capture_restore_error is not None:
+                LOCK.mkdir();(LOCK/'owner.json').write_text(json.dumps({'root':str(ROOT),'output':str(out),'pid':os.getpid(),'purpose':'A capture test-package restore incomplete; main full SHA restored'}))
+                raise capture_restore_error
     else: restore(out,r)
 
 def restore(out,r):
