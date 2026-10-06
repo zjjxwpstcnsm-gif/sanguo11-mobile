@@ -1,0 +1,35 @@
+{
+  "goalComplete": false,
+  "blockedConditionRecurringGoalTurns": 3,
+  "previousTurnClassification": "progress: original cell fire factory/stop/material source proof and committed fourth batch",
+  "currentHead": "0c00727184670a90d1e5dc82d2ca462084243737",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "freeDiskBytes": 378437632,
+  "externalWritableVolumeAvailable": false,
+  "connectedArmDevice": false,
+  "newApkBuilt": false,
+  "newApkInstalled": false,
+  "fullCurrentBackupAvailable": false,
+  "olderBackupMissingCurrentFiles": 531,
+  "frozenBDeliveryFound": false,
+  "frozenJniExpansionAllowedInParallel": false,
+  "serialNativePlan": "NATIVE_FIRE_SERIAL_CONTRACT.md",
+  "sourceOnlyValidationInsufficient": true,
+  "remainingGates": [
+    "fresh complete backup of all internal/external saves libraries preferences",
+    "independent Gradle build dex R8 sign actual APK and installed hash",
+    "normal16 source menu/picker/new/load workflow and zoom/lifecycle stress",
+    "actual Android Java/native/GPU peaks and allocation stacks",
+    "serial original fire dynamic worker and additive map material integration",
+    "B exact token/scene/actor/profile/event facts for BGM voice and remaining sounds",
+    "original full music PCM continuity0.995 and capture-22 diagnosis",
+    "ARM long normal flow and speaker evidence",
+    "A+B completed frozen increment final combination build/install full matrix"
+  ],
+  "noSafeAcceptanceStepWithoutExternalChange": true,
+  "resolutionInputs": [
+    "adequate free disk capacity or writable external output/backup directory",
+    "B completed frozen facts/integration input and final serial native integration",
+    "ARM device/access information for hardware acceptance"
+  ]
+}

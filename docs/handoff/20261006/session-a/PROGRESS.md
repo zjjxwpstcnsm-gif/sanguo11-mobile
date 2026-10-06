@@ -31,3 +31,7 @@ PC地图直接消费真实FireState位置/剩余旬显示持久信息标记，�
 冻结worker的8-template/126-SEFF协议没有动态火命令，当前map材质拒绝1/5/2，须依NATIVE_FIRE_SERIAL_CONTRACT.md最终串行扩展。四JNI和旧scene未改，状态标记不扩大为原火恢复。
 
 存储优化只对72个同字节大输入作原子APFS clone，SHA未变，未获得足够空间，停止无收益重复。完整备份候选读取核验：旧3266文件均与设备相同，但当前多531文件，不能将旧archive当完整本轮备份。RAM16GiB约1.4GiB free、swap约6.0/6.4GiB已用，不建立大RAM构建卷。磁盘仍约300MiB，新APK与完整用户备份尚待空间。
+
+## 第三个连续goal轮：受阻审计
+
+main仍ef413be3，审计后继源仍0e7b9bc2；本分支四批到0c007271，工作区复核干净。仅5554/5582两台x86_64，无ARM，无可写外置卷，无B冻结交付。磁盘约362MiB，同一完整备份与新APK实装阻断未解除。完整目标未完成，具体门槛与恢复条件见BLOCKED.md及BLOCKED_AUDIT.json。

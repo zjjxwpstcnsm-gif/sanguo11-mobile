@@ -55,7 +55,9 @@
     "docs/handoff/20261006/session-a/REFLINK_STORAGE_AUDIT.json",
     "docs/handoff/20261006/session-a/audit_existing_backup.py",
     "docs/handoff/20261006/session-a/BACKUP_REUSE_AUDIT.json",
-    "docs/handoff/20261006/session-a/DELTA_BATCH4.json"
+    "docs/handoff/20261006/session-a/DELTA_BATCH4.json",
+    "docs/handoff/20261006/session-a/BLOCKED_AUDIT.json",
+    "docs/handoff/20261006/session-a/BLOCKED.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
