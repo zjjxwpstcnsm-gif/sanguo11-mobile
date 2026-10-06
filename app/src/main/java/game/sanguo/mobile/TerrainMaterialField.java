@@ -9,7 +9,7 @@ final class TerrainMaterialField {
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
     final WaterVisualField waterField;
-    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.waterField();}
+    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.pcMap==null?ground.waterField():null;}
     float[] sample(float x,float z){return sample(x,z,0);}
     float[] sample(float x,float z,float slope){
         if(!Float.isFinite(x)||!Float.isFinite(z))return new float[]{0,1,0,0};
@@ -108,6 +108,15 @@ final class TerrainMaterialField {
     /** Coarse exterior scenery must not interpolate cell-owned hazard carriers. */
     void attachBackdrop(SceneMesh mesh){attach(mesh,null,false);}
     private void attach(SceneMesh mesh,SceneMesh.BuildStats stats,boolean springs){
+        if(mesh.pcGround){
+            // Both original ground shaders read canonical UV0 and source
+            // textures for pigment/normal/fog. Their unlit programs never read
+            // the legacy tangent, shore-distance or flow/tone carriers. Keep
+            // the declared, unread UV1 attribute aliases UV0 at upload time.
+            int count=mesh.vertices.length/7;mesh.surfaceData=new float[count*2];
+            for(int i=0;i<count;i++){mesh.surfaceData[i*2]=mesh.vertices[i*7];mesh.surfaceData[i*2+1]=-mesh.vertices[i*7+2];}
+            return;
+        }
         int count=mesh.vertices.length/7;mesh.surfaceData=new float[count*8];
         // Chunk-local memo only: shared fan vertices have identical field inputs.
         // Preserve separate wet/dry flow channels at the same shore coordinate.

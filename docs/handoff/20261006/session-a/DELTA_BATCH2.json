@@ -1,0 +1,67 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parentBatchCommit": "d7221f8e297ce5ad1c6b9be6ff5f899d02cf5c0c",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeCommonBaseSha256": "185c3979c4fb2e9bf5f35d19ed8a0e579b83b22959ce6f0a7a9b87fbc932f71a",
+      "beforeBatchSha256": "4b31c0b2189726190067878db87cd6297394bf80891e8eae58ad7f768ae85c56",
+      "afterSha256": "ca12b46aec30a0967d51f2101abeafc22759653daf77328c082b3403d653c9b3",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeCommonBaseSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+      "beforeBatchSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+      "afterSha256": "69a66c6c78145961947cfabb8f74624397fe412b95245aa05df5895bf4c8f930",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapProjectionQuery.java",
+      "beforeCommonBaseSha256": "6ed9aaab333558fe9f6440aa2ff11baa0523b66579320f7506e2e4adaa565131",
+      "beforeBatchSha256": "6ed9aaab333558fe9f6440aa2ff11baa0523b66579320f7506e2e4adaa565131",
+      "afterSha256": "09672849dfe5e206bb37727a586fd9360b5094301ceb0494fb6ba9a41a27dd11",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "beforeCommonBaseSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58",
+      "beforeBatchSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58",
+      "afterSha256": "d73d34aea94d9b3ad0781eafb098fa6a5e7a3094250ca7fc987ef090971bc827",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "beforeCommonBaseSha256": "91c3d9403815ab39ae11ee9f0af5d1a159f6d9308807e3b89f40699ee4a40f32",
+      "beforeBatchSha256": "91c3d9403815ab39ae11ee9f0af5d1a159f6d9308807e3b89f40699ee4a40f32",
+      "afterSha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PcMapRestorationTest.java",
+      "beforeCommonBaseSha256": "04e6922c068d38724b3c52d0bc41d1c58965b70d77cdd864f8b5d1463c5fe75b",
+      "beforeBatchSha256": "04e6922c068d38724b3c52d0bc41d1c58965b70d77cdd864f8b5d1463c5fe75b",
+      "afterSha256": "4f3eeda507acae3c39ad73644c0d315a468c12c21d9a7544c9ade8a328d76f19",
+      "owner": "A"
+    }
+  ],
+  "protectedInputCount": 696,
+  "protectedInputsUnchanged": true,
+  "jni4AndPinned168Unchanged": true,
+  "conflicts": [],
+  "mergedBWip": false,
+  "memoryEvidence": "desktop CPU actual production path; no Android/native/GPU peak proof",
+  "beforeNationalCpuArrays": 177286368,
+  "afterNationalCpuArrays": 60182568,
+  "heapLimit": 402653184,
+  "hostBefore": "OOM SurfaceBuilder.mesh / Arrays.copyOf",
+  "hostAfter": true,
+  "indexedShaderTriangleParityWindows": 16,
+  "pcMapMeshPickingSaveChecks": 622065,
+  "productionJavaSourcesCompiled": 353,
+  "architectureStaticBoundary": "PASS",
+  "newApkBuilt": false,
+  "newApkInstalled": false,
+  "armAccepted": false,
+  "completeGoal": false
+}

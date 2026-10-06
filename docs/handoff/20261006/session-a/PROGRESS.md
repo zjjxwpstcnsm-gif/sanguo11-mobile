@@ -7,3 +7,9 @@
 OOM：正在用实际生产地形路径执行384MiB桌面堆诊断，仅CPU证据，不等价截图手机根因。真实APK/设备Java/native/GPU峰值和分配栈未取得。现有释放与有界TerrainSurface已确认，不凭旧推断归因。
 
 设备5554/API29/x86_64、5582/API待查；无ARM ADB。5554存档/偏好约416KiB，但外部用户目录2,679,460KiB，完整备份与新包构建空间不足；尚未安装、未清数据、未改设备用户文件。可用空间约336MiB，需要可用空间/外置盘后继续实际安装。
+
+## 第二批：地形驻留和生命期
+
+实际PC地形共享同位置顶点、只上传原unlit shaders读取的UV0（未读取UV1声明别名保留）、16种上限的同字节索引模板复用；保留源全部三角面/水/网格。旧窗口先筛为目标可见覆盖，不在近景任务捕获全图覆盖。MapHost.release清空detachedWorld/ground/投影缓存/回调；Filament释放原有CPU/GPU。增加实际Java堆/限制/nativeHeapAllocated及主机数日志，不将GPU估计称峰值。
+
+384MiB桌面生产路径旧版全图→近景→全图OOM在Arrays.copyOf/SurfaceBuilder.mesh；修复后4次往返全Save/RNG不变。全图唯一CPU数组177,286,368→60,182,568B（约66%减少）。仅CPU桌面，真实截图设备栈、native/GPU/Android长生命周期仍待。16个PC/旧图窗口原indexed xyz/UV0/三角顺序、水、网格与旧图全部属性SHA相同；实际原PC地图622,065项mesh/picking/save检查通过。SDK35实际353个生产Java+AAPT2资源编译和架构静态边界通过。未做dex/R8/签名/完整APK构建和安装，不称手机OOM已关闭。

@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "sdk": 35,
+  "javaSources": 353,
+  "scope": "actual core/API/runtime/app Java and AAPT2 resources only; manual generated BuildConfig matches version.properties; no dex/R8/signing/install/Android runtime claim",
+  "apkBuilt": false,
+  "installed": false,
+  "commands": [
+    [
+      "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/build-tools/35.0.0/aapt2",
+      "compile",
+      "--dir",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/res",
+      "-o",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/resources.zip"
+    ],
+    [
+      "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/build-tools/35.0.0/aapt2",
+      "link",
+      "-I",
+      "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar",
+      "--manifest",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/AndroidManifest.xml",
+      "--java",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/generated",
+      "--custom-package",
+      "game.sanguo.mobile",
+      "--auto-add-overlay",
+      "-o",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/resources-only.apk",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/resources.zip"
+    ],
+    [
+      "java",
+      "-Xmx512m",
+      "-m",
+      "jdk.compiler/com.sun.tools.javac.Main",
+      "--release",
+      "17",
+      "-encoding",
+      "UTF-8",
+      "-cp",
+      "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/filament.jar",
+      "-d",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/classes",
+      "@/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/sources.txt"
+    ]
+  ],
+  "log": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/javac.log",
+  "output": "Note: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\n",
+  "sourceRevision": "d7221f8e297ce5ad1c6b9be6ff5f899d02cf5c0c"
+}

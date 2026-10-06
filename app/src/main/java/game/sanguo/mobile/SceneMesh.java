@@ -6,6 +6,14 @@ import java.util.*;
 /** CPU-only mesh preparation; no Android or renderer references. */
 final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
+    // Source quarter-cell topology repeats across every full16x16 chunk.
+    // Share only byte-identical immutable index arrays, bounded to16 patterns.
+    private static final List<int[]> PC_INDEX_PATTERNS=new ArrayList<>();
+    private static synchronized int[] pcIndices(int[] indices){
+        for(int[] pattern:PC_INDEX_PATTERNS)if(Arrays.equals(pattern,indices))return pattern;
+        if(PC_INDEX_PATTERNS.size()<16)PC_INDEX_PATTERNS.add(indices);
+        return indices;
+    }
     SceneMesh distant,grid,sourceWater;
     boolean vegetation,pcGround,pcWater,pcScenery,pcSite,pcFacility,pcCliffWall,pcWall,pcDam,pcUnit,pcFacilityRig;
     int pcUnitModel=-1,pcUnitOpaqueIndices;
@@ -88,11 +96,23 @@ final class SceneMesh {
         final int[] land;
         int[] water;
         final float[] clippedPolygon=new float[12];
+        // Exact PC positions share one vertex within a chunk. Fixed scratch is
+        // reset with the task's builder; no boxed map or cross-window cache.
+        long[] pcKeys;int[] pcSlots;
         int vertexCount,landCount,waterCount;
         SurfaceBuilder(int maxVertices,int maxIndices){vertices=new float[maxVertices*7];land=new int[maxIndices];}
         // mesh() owns copies of all used elements. One worker may therefore
         // reuse this bounded scratch without sharing published mesh arrays.
-        void reset(){vertexCount=landCount=waterCount=0;}
+        void reset(){vertexCount=landCount=waterCount=0;if(pcSlots!=null)Arrays.fill(pcSlots,0);}
+        int pcVertex(float x,float y,float z,int color){
+            if(pcSlots==null){pcSlots=new int[16384];pcKeys=new long[16384];}
+            long key=((long)Float.floatToRawIntBits(x)<<32)|(Float.floatToRawIntBits(z)&0xffffffffL);
+            long mixed=(key^(key>>>33))*0xff51afd7ed558ccdL;
+            mixed=(mixed^(mixed>>>33))*0xc4ceb9fe1a85ec53L;
+            int slot=(int)(mixed^(mixed>>>33))&16383;
+            while(pcSlots[slot]!=0){if(pcKeys[slot]==key)return pcSlots[slot]-1;slot=(slot+1)&16383;}
+            int at=vertexCount;vertex(x,y,z,color);pcKeys[slot]=key;pcSlots[slot]=at+1;return at;
+        }
         void vertex(float x,float y,float z,int color){
             int n=vertexCount++*7;vertices[n]=x;vertices[n+1]=y;vertices[n+2]=z;
             vertices[n+3]=((color>>16)&255)/255f;vertices[n+4]=((color>>8)&255)/255f;
@@ -111,7 +131,7 @@ final class SceneMesh {
         SceneMesh mesh(float x,float z,float radius){
             int[] indices=Arrays.copyOf(land,landCount+waterCount);
             if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
-            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),indices,x,z,radius);
+            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),pcSlots==null?indices:pcIndices(indices),x,z,radius);
             mesh.landIndexCount=landCount;return mesh;
         }
     }
@@ -185,6 +205,11 @@ final class SceneMesh {
         for(SceneMesh m:previous)merged.putIfAbsent(((long)m.chunkR<<32)|(m.chunkQ&0xffffffffL),m);
         return Collections.unmodifiableList(new ArrayList<>(merged.values()));
     }
+    static List<SceneMesh> windowCoverage(List<SceneMesh> meshes,TerrainWindow window){
+        List<SceneMesh> result=new ArrayList<>();
+        for(SceneMesh m:meshes)if(window.contains(m.x,m.z,m.radius))result.add(m);
+        return Collections.unmodifiableList(result);
+    }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window){
         return ground(g,previous,window,null);
     }
@@ -195,7 +220,7 @@ final class SceneMesh {
         int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;
         for(int r=-margin;r<rLimit;r+=16)for(int q=-margin;q<qLimit;q+=16)requests.add(new int[]{q,r});
         if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));
-        SurfaceBuilder scratch=null,gridScratch=null;
+        SurfaceBuilder scratch=null,gridScratch=null;int[] pcCell=new int[25];
         for(int[] request:requests){
             int q=request[0],r=request[1];float cx=g.grid.x(q+8,r+8),cz=g.grid.z(q+8,r+8);
             if(window!=null&&!window.contains(cx,cz,13))continue;
@@ -220,7 +245,7 @@ final class SceneMesh {
             // Maximum capacity for one 16x16 chunk. The previous per-chunk
             // allocation discarded up to 1.5 MiB of scratch on each iteration.
             // Keep one task-local buffer; only immutable used ranges escape.
-            if(scratch==null){int cells=Math.min(16,g.width)*Math.min(16,g.height);scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:153),cells*(g.pcMap==null?24:192));}
+            if(scratch==null){int cells=Math.min(16,g.width)*Math.min(16,g.height);scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}
             else scratch.reset();
             SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){
@@ -230,10 +255,10 @@ final class SceneMesh {
                 if(g.pcMap!=null){
                     for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){
                         float vx=x-.5f+ix*.25f,vz=z-.5f+iz*.25f;
-                        b.vertex(vx,g.surface.pcLandHeight(vx,vz),vz,0xff999999);
+                        pcCell[iz*5+ix]=b.pcVertex(vx,g.surface.pcLandHeight(vx,vz),vz,0xff999999);
                     }
                     for(int iz=0;iz<4;iz++)for(int ix=0;ix<4;ix++){
-                        int a=n+iz*5+ix;b.triangle(false,a,a+5,a+6);b.triangle(false,a,a+6,a+1);
+                        int a=iz*5+ix;b.triangle(false,pcCell[a],pcCell[a+5],pcCell[a+6]);b.triangle(false,pcCell[a],pcCell[a+6],pcCell[a+1]);
                     }
                     continue;
                 }
@@ -246,6 +271,7 @@ final class SceneMesh {
             if(landCount+b.waterCount>0){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
                 m.landIndexCount=landCount;
+                m.pcGround=g.pcMap!=null;
                 if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;
                 new TerrainMaterialField(g).attach(m,stats);
                 SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);

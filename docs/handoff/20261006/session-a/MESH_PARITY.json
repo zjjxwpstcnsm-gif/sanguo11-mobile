@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "windows": 16,
+  "scope": "desktop real production terrain; original indexed xyz/UV0/triangle order and full source water/grid exact; legacy all attributes exact; cache/rebuild/saveRNG invariance",
+  "unusedPcCarriersRemoved": "legacy vertex pigment/tangent/shore/flow unused by original unlit source shaders",
+  "androidGpuPixelsValidated": false,
+  "results": {
+    "baseline": [
+      "PC source=81,79 span=8.0 chunks=16 indexedShaderTrianglesSha=f37fe5134c21b054f484a1e4da54864bba557bea3481930c1216555b5e42f99e",
+      "PC source=81,79 span=50.0 chunks=16 indexedShaderTrianglesSha=9b248ef0819ea1f8aa2912e1cdddfc17d31a5a84c3ef5a44f1f8360ae926614c",
+      "PC source=108,119 span=8.0 chunks=16 indexedShaderTrianglesSha=04e56d44285a970aee6b732a0ab5f22ef7e5536aea9fa234bbf11a44e0f5db13",
+      "PC source=108,119 span=50.0 chunks=16 indexedShaderTrianglesSha=0235b0ec9ee2256e19d476fff7b865d8380e9a3ced1cf7e3d57a8dab8867b7de",
+      "PC source=176,21 span=8.0 chunks=16 indexedShaderTrianglesSha=7f63b1c4236b12a99b13a32ea56f3be51606a026df6bfec5f25d1727ad30f186",
+      "PC source=176,21 span=50.0 chunks=16 indexedShaderTrianglesSha=4d2e3c9e81e72dab0fed9a34bd70d776f930ffedd50e75813fac378778c3ed49",
+      "PC source=40,82 span=8.0 chunks=12 indexedShaderTrianglesSha=dcca82d1f08349a2fde7ad619916afaa1677cce852fbac20e56d87a20659c78c",
+      "PC source=40,82 span=50.0 chunks=12 indexedShaderTrianglesSha=3c2d34e77c9d7bb90d8398b6bd9e23fedbb22efdb7b763b286e669b38dfdfc82",
+      "legacy source=81,79 span=8.0 chunks=16 indexedShaderTrianglesSha=cd085971feb6fbfdc6e1e2196ea8cb5648ca024ea206ac28d793f1cba812f970",
+      "legacy source=81,79 span=50.0 chunks=16 indexedShaderTrianglesSha=97c701ab8a01f61a657dd8238585e84adfad747f04f3b0308a2829bae1f540cc",
+      "legacy source=108,119 span=8.0 chunks=16 indexedShaderTrianglesSha=5344dbcc0491c039da87baafbe9c013edfade460f6175cef9211dc7e769e5716",
+      "legacy source=108,119 span=50.0 chunks=16 indexedShaderTrianglesSha=6a6ec1f35e2373662ad3f345a1215a32f6683ef7f37a8a52f586d925681a6bd8",
+      "legacy source=176,21 span=8.0 chunks=15 indexedShaderTrianglesSha=60c24c491e8089e00b46ef3d0e4ddac4ad8c40676e6889d941b3964cdd1a9317",
+      "legacy source=176,21 span=50.0 chunks=15 indexedShaderTrianglesSha=c6e2d91b00454829440c24ac4693dbae344500aa309baecc53759f7b18368854",
+      "legacy source=40,82 span=8.0 chunks=12 indexedShaderTrianglesSha=38991ead0623b4b779f2e1c16c2838ca6edd14b22889c57576512309d6d114fd",
+      "legacy source=40,82 span=50.0 chunks=12 indexedShaderTrianglesSha=96d1fb7c8e03c33dc16356e7520c3ec6b8d460226d6b07b7b81bbe5e21f04da6"
+    ],
+    "current": [
+      "PC source=81,79 span=8.0 chunks=16 indexedShaderTrianglesSha=f37fe5134c21b054f484a1e4da54864bba557bea3481930c1216555b5e42f99e",
+      "PC source=81,79 span=50.0 chunks=16 indexedShaderTrianglesSha=9b248ef0819ea1f8aa2912e1cdddfc17d31a5a84c3ef5a44f1f8360ae926614c",
+      "PC source=108,119 span=8.0 chunks=16 indexedShaderTrianglesSha=04e56d44285a970aee6b732a0ab5f22ef7e5536aea9fa234bbf11a44e0f5db13",
+      "PC source=108,119 span=50.0 chunks=16 indexedShaderTrianglesSha=0235b0ec9ee2256e19d476fff7b865d8380e9a3ced1cf7e3d57a8dab8867b7de",
+      "PC source=176,21 span=8.0 chunks=16 indexedShaderTrianglesSha=7f63b1c4236b12a99b13a32ea56f3be51606a026df6bfec5f25d1727ad30f186",
+      "PC source=176,21 span=50.0 chunks=16 indexedShaderTrianglesSha=4d2e3c9e81e72dab0fed9a34bd70d776f930ffedd50e75813fac378778c3ed49",
+      "PC source=40,82 span=8.0 chunks=12 indexedShaderTrianglesSha=dcca82d1f08349a2fde7ad619916afaa1677cce852fbac20e56d87a20659c78c",
+      "PC source=40,82 span=50.0 chunks=12 indexedShaderTrianglesSha=3c2d34e77c9d7bb90d8398b6bd9e23fedbb22efdb7b763b286e669b38dfdfc82",
+      "legacy source=81,79 span=8.0 chunks=16 indexedShaderTrianglesSha=cd085971feb6fbfdc6e1e2196ea8cb5648ca024ea206ac28d793f1cba812f970",
+      "legacy source=81,79 span=50.0 chunks=16 indexedShaderTrianglesSha=97c701ab8a01f61a657dd8238585e84adfad747f04f3b0308a2829bae1f540cc",
+      "legacy source=108,119 span=8.0 chunks=16 indexedShaderTrianglesSha=5344dbcc0491c039da87baafbe9c013edfade460f6175cef9211dc7e769e5716",
+      "legacy source=108,119 span=50.0 chunks=16 indexedShaderTrianglesSha=6a6ec1f35e2373662ad3f345a1215a32f6683ef7f37a8a52f586d925681a6bd8",
+      "legacy source=176,21 span=8.0 chunks=15 indexedShaderTrianglesSha=60c24c491e8089e00b46ef3d0e4ddac4ad8c40676e6889d941b3964cdd1a9317",
+      "legacy source=176,21 span=50.0 chunks=15 indexedShaderTrianglesSha=c6e2d91b00454829440c24ac4693dbae344500aa309baecc53759f7b18368854",
+      "legacy source=40,82 span=8.0 chunks=12 indexedShaderTrianglesSha=38991ead0623b4b779f2e1c16c2838ca6edd14b22889c57576512309d6d114fd",
+      "legacy source=40,82 span=50.0 chunks=12 indexedShaderTrianglesSha=96d1fb7c8e03c33dc16356e7520c3ec6b8d460226d6b07b7b81bbe5e21f04da6"
+    ]
+  }
+}

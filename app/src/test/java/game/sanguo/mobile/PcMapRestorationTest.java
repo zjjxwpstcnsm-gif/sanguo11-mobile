@@ -70,7 +70,8 @@ public final class PcMapRestorationTest {
             // in fixtures/native-v146; they cannot describe native full quads.
             check(m.landIndexCount==m.indices.length,"original ground never binds legacy fine-face water material");
             if(m.sourceWater!=null)PcWaterRestorationTest.checkMesh(m.sourceWater,g,null);
-            check(m.indices.length%3==0&&m.surfaceData.length==m.vertices.length/7*8,"complete native streams");
+            check(m.indices.length%3==0&&m.surfaceData.length==m.vertices.length/7*2,"complete compact native UV streams");
+            for(int v=0;v<m.vertices.length/7;v++)check(m.surfaceData[v*2]==m.vertices[v*7]&&m.surfaceData[v*2+1]==-m.vertices[v*7+2],"native UV0 keeps exact world source coordinate");
         }
         SceneCamera camera=new SceneCamera();camera.width=1000;camera.height=800;camera.x=x;camera.z=z;camera.span=8;
         float y=g.surface.at(city.hex),sx=camera.screenX(x,z),sy=camera.screenY(x,z,y);

@@ -10,6 +10,7 @@ final class MapProjectionQuery {
     private Object ground;
     private String identity="";
     private int[] colors,factionBorders,siteBorders;
+    void clear(){ground=null;identity="";colors=factionBorders=siteBorders=null;}
     Set<Long> blocked(World w,boolean show){
         Set<Long> cells=new HashSet<>();
         if(show&&w!=null)for(int r=0;r<w.height;r++)for(int q=0;q<w.width;q++){

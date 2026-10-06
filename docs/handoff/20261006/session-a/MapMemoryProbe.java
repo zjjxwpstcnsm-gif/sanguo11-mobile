@@ -4,8 +4,10 @@ import java.lang.management.*;
 import java.util.*;
 /** Actual CPU terrain producer under a384MiB host heap; not an Android reproduction. */
 public final class MapMemoryProbe {
- static long bytes(SceneMesh m,Set<SceneMesh> seen){if(m==null||!seen.add(m))return 0;return 4L*(m.vertices.length+m.indices.length+(m.surfaceData==null?0:m.surfaceData.length)+(m.tangents==null?0:m.tangents.length)+(m.uv==null?0:m.uv.length))+bytes(m.grid,seen)+bytes(m.sourceWater,seen)+bytes(m.distant,seen);}
- static void report(String phase,List<SceneMesh> meshes){Set<SceneMesh> seen=Collections.newSetFromMap(new IdentityHashMap<>());long n=0,vertices=0;for(SceneMesh m:meshes){n+=bytes(m,seen);vertices+=m.vertices.length/7;}Runtime r=Runtime.getRuntime();System.out.println(phase+" chunks="+meshes.size()+" vertices="+vertices+" cpuArrays="+n+" heapUsed="+(r.totalMemory()-r.freeMemory())+" heapLimit="+r.maxMemory());System.out.flush();}
+ static final Set<Object> arrays=Collections.newSetFromMap(new IdentityHashMap<>());
+ static long array(Object value,int length){return value!=null&&arrays.add(value)?4L*length:0;}
+ static long bytes(SceneMesh m,Set<SceneMesh> seen){if(m==null||!seen.add(m))return 0;return array(m.vertices,m.vertices.length)+array(m.indices,m.indices.length)+array(m.surfaceData,m.surfaceData==null?0:m.surfaceData.length)+array(m.tangents,m.tangents==null?0:m.tangents.length)+array(m.uv,m.uv==null?0:m.uv.length)+bytes(m.grid,seen)+bytes(m.sourceWater,seen)+bytes(m.distant,seen);}
+ static void report(String phase,List<SceneMesh> meshes){arrays.clear();Set<SceneMesh> seen=Collections.newSetFromMap(new IdentityHashMap<>());long n=0,vertices=0;for(SceneMesh m:meshes){n+=bytes(m,seen);vertices+=m.vertices.length/7;}Runtime r=Runtime.getRuntime();System.out.println(phase+" chunks="+meshes.size()+" vertices="+vertices+" cpuArrays="+n+" heapUsed="+(r.totalMemory()-r.freeMemory())+" heapLimit="+r.maxMemory());System.out.flush();}
  public static void main(String[] args)throws Exception{
   World w=PcScenarioCatalog.preview(PcScenarioCatalog.all().get(7).identity.scenarioId);byte[] save=SaveCodec.encode(w);MapSceneSnapshot.Ground g=new MapSceneSnapshot.Ground(w);
   SceneCamera c=new SceneCamera();c.perspective=true;c.width=930;c.height=1000;c.heightLimit=PcMap.MAX_HEIGHT;c.x=(g.minX+g.maxX)/2;c.z=(g.minZ+g.maxZ)/2;

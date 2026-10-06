@@ -347,14 +347,23 @@ final class MapHost extends FrameLayout implements MapPresentation {
         android.util.Log.e("MapRenderer","3D rendering stopped",e);cancelCommandEffects();leave3D();showRenderFailure("3D地图暂不可用："+(e.getMessage()==null?e.getClass().getSimpleName():e.getMessage())+"\n存档已保留，可重试或返回。");
     }
     private void leave3D(){hideLoadingCurtain();persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
-    void release(){released=true;hideLoadingCurtain();renderGate.close();cancelCommandEffects();persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
+    void release(){
+        released=true;hideLoadingCurtain();renderGate.close();cancelCommandEffects();persistCamera();
+        if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
+        // Dismissed dialogs can outlive their Surface. Drop the detached World,
+        // terrain wrappers and projection caches at this explicit boundary.
+        world=groundWorld=visualResolved=null;ground=null;territory=null;publishedSnapshot=commandFinalSnapshot=null;
+        projectedCritical=null;projectedPortrait=null;route=null;tacticPreview=null;targets=editorCells=Collections.emptySet();projection.clear();
+        listenerCallbacksClosed();
+    }
+    private void listenerCallbacksClosed(){unitDrop=null;criticalSkip=null;techniqueFeedback=null;techniqueSkip=null;techniqueDiscard=null;techniquePause=null;editorStroke=null;}
     void resume(boolean value){
         if(!value){removeCallbacks(commandEffectTick);if(commandEffects!=null)pauseEffects(true);persistCamera();}
         resumed=value;renderGate.resumed(value);
         if(value&&commandEffects!=null){commandEffectTime=android.os.SystemClock.uptimeMillis();pauseEffects(commandEffects.paused());postOnAnimation(commandEffectTick);}
     }
     void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(commandersShown,unitBarsShown);spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
-    String report(){return spatial==null?"3D 地图暂不可用":spatial.report();}
+    String report(){return "nativeHosts="+activeNativeHosts+" released="+released+" | "+(spatial==null?"3D 地图暂不可用":spatial.report());}
     @Override public void setWorld(World w,Hex s,int moving){
         boolean gridChanged=ground!=null&&!ground.matchesGridContext(w,gridForce(w));
         boolean changed=world!=w||gridChanged||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;

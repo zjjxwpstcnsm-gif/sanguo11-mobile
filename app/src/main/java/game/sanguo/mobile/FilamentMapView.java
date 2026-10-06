@@ -621,8 +621,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             final FieldAssets assets=fieldAssets;final PcScenery nativeAssets=pcScenery;final PcCliffWalls nativeWalls=pcCliffWalls;final SceneMesh oldScenery=backdropSource;
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;
+            previous=SceneMesh.windowCoverage(previous,requested);
+            List<SceneMesh> coveredPrevious=previous;
             long queuedAt=System.nanoTime();
-            meshWork.submitPhased(publish->buildMeshes(next.ground,terrainChanged,oldScenery,previous,oldWoods,assets,nativeAssets,nativeWalls,next.month,excluded,requested,queuedAt,publish));
+            meshWork.submitPhased(publish->buildMeshes(next.ground,terrainChanged,oldScenery,coveredPrevious,oldWoods,assets,nativeAssets,nativeWalls,next.month,excluded,requested,queuedAt,publish));
         }
         // The owner accepts immutable state now; GPU updates wait for frame admission.
         assetSyncPending=true;refreshPendingMeshes();overlay.invalidate();schedule();
@@ -724,6 +726,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;float y=snapshot.ground.surface.at(h);return Math.abs(camera.screenX(g.x(h),g.z(h),y)-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.x(h),g.z(h),y)-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
     String startupReport(){return "first_submit_wall_ms="+firstSubmittedMillis+" first_verified_wall_ms="+firstVerifiedMillis+" resume_verified_wall_ms="+resumeVerifiedMillis+" source="+BuildConfig.SOURCE_REVISION+" profile="+(BuildConfig.UNITY_ENABLED?"unity-opt-in":"native")
+        +" javaHeapUsedBytes="+(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())+" javaHeapLimitBytes="+Runtime.getRuntime().maxMemory()+" nativeHeapAllocatedBytes="+android.os.Debug.getNativeHeapAllocatedSize()
         +" device="+android.os.Build.MODEL+" api="+android.os.Build.VERSION.SDK_INT+" abi="+java.util.Arrays.toString(android.os.Build.SUPPORTED_ABIS)
         +"\nsnapshot="+(snapshot!=null)+" surface="+(swap!=null)+" viewport="+bufferWidth+"x"+bufferHeight
         +" session="+(sceneToken==null?"editor":sceneToken.sessionId+":"+sceneToken.generation+":"+sceneToken.revision)+" assetRevision=1.56.0/R06"
@@ -1000,7 +1003,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span)){
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
-            List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
+            List<SceneMesh> previous=SceneMesh.windowCoverage(chunks,requested),trees=woods;SceneMesh scenery=backdropSource;
             Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;PcScenery nativeAssets=pcScenery;PcCliffWalls nativeWalls=pcCliffWalls;int month=snapshot.month;
             boolean changed=backdropSurface!=ground.surface;
             long queuedAt=System.nanoTime();
@@ -1398,7 +1401,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         GpuMesh waterChild;MaterialInstance waterInstance;String waterKey;
         GpuMesh(SceneMesh m){source=m;try{
             VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.tangents!=null?3:m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
-            if(m.surfaceData!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,32).attribute(VertexBuffer.VertexAttribute.TANGENTS,1,VertexBuffer.AttributeType.FLOAT4,8,32).attribute(VertexBuffer.VertexAttribute.UV1,1,VertexBuffer.AttributeType.FLOAT2,24,32);
+            if(m.surfaceData!=null){
+                if(m.pcGround)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,8).attribute(VertexBuffer.VertexAttribute.UV1,1,VertexBuffer.AttributeType.FLOAT2,0,8);
+                else builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,32).attribute(VertexBuffer.VertexAttribute.TANGENTS,1,VertexBuffer.AttributeType.FLOAT4,8,32).attribute(VertexBuffer.VertexAttribute.UV1,1,VertexBuffer.AttributeType.FLOAT2,24,32);
+            }
             if(m.tangents!=null)builder.attribute(VertexBuffer.VertexAttribute.TANGENTS,2,VertexBuffer.AttributeType.FLOAT4,0,16);
             if(m.uv!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,8);vb=builder.build(engine);
             if(m.surfaceData!=null){FloatBuffer data=ByteBuffer.allocateDirect(m.surfaceData.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();data.put(m.surfaceData).flip();vb.setBufferAt(engine,1,data);}

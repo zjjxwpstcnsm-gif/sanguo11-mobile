@@ -27,7 +27,10 @@
     "docs/handoff/20261006/session-a/MEMORY_FIX.json",
     "docs/handoff/20261006/session-a/MESH_PARITY.json",
     "docs/handoff/20261006/session-a/MeshParityProbe.java",
-    "docs/handoff/20261006/session-a/run_mesh_parity.py"
+    "docs/handoff/20261006/session-a/run_mesh_parity.py",
+    "docs/handoff/20261006/session-a/run_android_java_compile.py",
+    "docs/handoff/20261006/session-a/ANDROID_JAVA_COMPILE.json",
+    "docs/handoff/20261006/session-a/DELTA_BATCH2.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
