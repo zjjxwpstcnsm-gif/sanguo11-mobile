@@ -1,0 +1,36 @@
+{
+  "passed": false,
+  "actualHomePausePassed": true,
+  "scope": "Actual Source14 player fire/original13 displayed; real global Home pauses Activity/map/Filament, freezes source visual clock and resumes full Save/bothRNG/StateToken pure. Next system settings read failed in test helper due API29 FileInputStream.readAllBytes NoSuchMethodError before reduced-motion setting changed; no established product reduced-motion failure",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e078fb2f-army-combination/app-debug.apk": "7415f48c03f4808e381de70cb646331bdac3dea177e347f5dc77071bb1285c66",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-9dc7c933-fire-home-test/app-debug-androidTest.apk": "0a1f43f7fbeae4edc8564d0474a93d372612a138144804ef0d0a25f17c869ec4"
+  },
+  "failure": "FAIL SESSION A FIRE java.lang.NoSuchMethodError: No virtual method readAllBytes()[B in class Ljava/io/FileInputStream; or its super classes (declaration of 'java.io.FileInputStream' appears in /apex/com.android.runtime/javalib/core-oj.jar)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation$$ExternalSyntheticApiModelOutline0.m(R8$$SyntheticClass:0)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.system(SessionAFireFlowInstrumentation.java:18)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.pausedFire(SessionAFireFlowInstrumentation.java:28)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.onStart(SessionAFireFlowInstrumentation.java:77)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 3,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "systemPreferenceBefore": "null",
+  "systemPreferenceRestored": true,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-pause-army-37",
+  "evidenceSha256": {
+    "session.json": "c05b5477498e1975fd4055a42a979f4813472120ff4fde63c2c6ea2a3cf4de61",
+    "instrumentation.txt": "14e954bd24195cd8dd770b00c5e69ec05390d646db74720b3dec51f49cc5769a",
+    "evidence/progress.txt": "56dcd218f0aef54e0de0911a9ebf73692bca3a28acf347a34e6af0e921ea07e6",
+    "evidence/failed.png": "cdffd850660510bb9d44b572a82193d649b5c91b9764711a3005f6bebcd14930"
+  },
+  "completeLifecycleAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}

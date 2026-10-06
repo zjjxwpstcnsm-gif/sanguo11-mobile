@@ -15,7 +15,7 @@ public final class SessionAFireFlowInstrumentation extends SessionAScenePresenta
  private boolean pauseProbe;
  @Override public void onCreate(Bundle args){pauseProbe="true".equals(args.getString("pauseFire","false"));super.onCreate(args);}
  private String system(String command)throws Exception{
-  try(var descriptor=getUiAutomation().executeShellCommand(command);var in=new FileInputStream(descriptor.getFileDescriptor())){return new String(in.readAllBytes(),"UTF-8").trim();}
+  try(var descriptor=getUiAutomation().executeShellCommand(command);var in=new FileInputStream(descriptor.getFileDescriptor())){ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] buffer=new byte[2048];for(int n;(n=in.read(buffer))!=-1;){bytes.write(buffer,0,n);if(bytes.size()>65536)throw new IOException("Unexamined diagnostic shell response extent");}return bytes.toString("UTF-8").trim();}
  }
  private double fireClock()throws Exception{double[] value={0};runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");FilamentMapView view=(FilamentMapView)field(host,"spatial");value[0]=(Double)field(field(view,"pcMapEffects"),"clock");}catch(Exception e){throw new RuntimeException(e);}});return value[0];}
  private void pausedFire(Hex target)throws Exception{
