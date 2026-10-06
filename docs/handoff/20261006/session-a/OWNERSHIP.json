@@ -186,7 +186,8 @@
     "docs/handoff/20261006/session-a/SOURCE_CHECKPOINT_EXPORT.json",
     "docs/handoff/20261006/session-a/SEARCH_PRESENTATION_ACCEPTANCE46.json",
     "docs/handoff/20261006/session-a/DEFAULT_LARGE_BUILD48.json",
-    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT48.json"
+    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT48.json",
+    "docs/handoff/20261006/session-a/DIRECT_PRESENTATION_ACCEPTANCE47.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

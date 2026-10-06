@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "sourceCommit": "e6d92908",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e6d92908-cause-factions-normal384/app-debug.apk": "937ae8a6af05b53feee5c8cdd88dfb49cdf1c515fd29fa82c6aee4e63dcc7358",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e6d92908-cause-factions-normal384/app-debug-androidTest.apk": "053d7458f7b6537e48f74eccf2ba4de0b7cabbca27f47ea533746e2fcfdefa34"
+  },
+  "scope": "Actual latest normal384 direct same-city menu/review/cancel/original success-failure/AP20/gold0/rewards/fullSave/bothRNG/wholeturns/newPIDcold; A same-token rendering pure and DIRECT_RECRUITMENT fact/city/actor/parent proven. Does not prove visible HUD animation completion/source voice/special gates/crosscity/ARM.",
+  "checks": {
+    "evidence/progress.txt": 1494,
+    "cold-evidence/progress.txt": 1400
+  },
+  "coldProcess": {
+    "beforePid": "10356",
+    "afterPid": "21633",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "db1e8508e780e1dfcb5a37c014a5b07ea0def595041bd36003014e9bb839d156",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualRunnerRegistered": true,
+  "visibleTechniqueCompletion": "Not observed by frozen test; immediate actual screenshot displays0 animation start. New bounded no-injection observation f086e94d pending separate install.",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-cause-normal384-47",
+  "evidenceSha256": {
+    "session.json": "a308206a6712d2f69654c01009488f9dfb6bd3fdac47ced96bbda6da5065ae03",
+    "cold-instrumentation.txt": "c8acbcc7ad5e7504d31070ea48db87a2d19cbe81669e725765220c141e6c309e",
+    "instrumentation-registered.txt": "ce16b3d14899e0b599b606002396b72022aeb58d57528ba0ab271ab4989f207f",
+    "meminfo-timeline.txt": "8f9342a1ca24f9db78aff536f95ecfd1bbd88705b49d587332da60e43f695733",
+    "native-worker-smaps.jsonl": "b728b626b921ce3eb9c6450990b632145b70cf5afed47f996c9cacc3a1f874da",
+    "installation.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logcat.txt": "680728d414315126539ba623250cace3094d96583d9675f301b8df12fd8570b5",
+    "instrumentation.txt": "2857622850819ec30ba72473c471fb3c269ed6ad798801cd35b182df1f33b853",
+    "evidence/direct-review-116.png": "ab6390ad1e01ec56e53914d616ffa7ddc3ada903e7f1bfbfe7ec06f3fb56cb38",
+    "evidence/direct-before-cold.png": "60fd7c557f74cb28380051542e855b3f2e6077ecef3f11d358dd6b568951d223",
+    "evidence/direct-result-163.png": "a1ec36fcaae64ed29ff7c7ff2a0f9209db482ff8c2059feaa80fc723bcd830eb",
+    "evidence/direct-review-cancel.png": "360029dc97bbc9823e93770401b79c11a002bc7e2be5c1631e97d150f28a1a10",
+    "evidence/direct-success.sg11": "de7e9e47bb98b897c2a4dbff991acc36e40593cd78dc9c77424bd5fefb41b8c5",
+    "evidence/progress.txt": "f009628eb33d55ade1989aaa49e73f3dbf830e021c8cfe792189ec5ca070035e",
+    "evidence/direct-review-163.png": "6df51989a34143c98b68111e7be285a6a290c109734a1dc7e787211868682e97",
+    "evidence/a-presentation-a-direct-normal.txt": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223",
+    "evidence/diagnosis.txt": "4cbc0c563dc3e661319e82e54064cf30bc97b98cf13e33d553c01966114892a4",
+    "evidence/direct-result-116.png": "f8fbf72344f0964da6fbcbfc6d01b235b5302bdd402652369871b9c4dd9985dc",
+    "evidence/actual-mid.sg11": "db1e8508e780e1dfcb5a37c014a5b07ea0def595041bd36003014e9bb839d156",
+    "evidence/direct-failure.sg11": "b4a33eee7a10357bd1bdab9fe1576b70dbada58e7bfa7655ff9289bf97d0b919",
+    "evidence/scene-facts-a-direct-normal.json": "2e39d41bd67c82f4f0d3838a66a1d929fbec382b31d66ffd1a18d522c8c12caa",
+    "cold-evidence/cold-direct-finished.sg11": "edeb6d8e1b146d224c39cbcf39e5605654a269cab5b0d728855599146dfa5856",
+    "cold-evidence/direct-result-163.png": "79b8e5fb6ab24472785184cbd075b2f3ee0b4f9dc19380f130f05e3b56e27431",
+    "cold-evidence/scene-facts-a-direct-cold.json": "18127353b34fee5dd119a7aed4c1e682980522ea42cb5503570c140e111d79a1",
+    "cold-evidence/progress.txt": "d639377446d666d0f300fbfbb04213e0dc02026917b61099ef9a07da1481759c",
+    "cold-evidence/direct-review-163.png": "a35c97581e2df9da3e244a5146e806fc9d83d6c07f8d8e720a75f6fdec2c5e3e",
+    "cold-evidence/diagnosis.txt": "c60bef9751f1bc7211f23ea139a2eaed4fd1bb251d4ce35c53d674fdd3213280",
+    "cold-evidence/a-presentation-a-direct-cold.txt": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223"
+  },
+  "overallGoalComplete": false
+}
