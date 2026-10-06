@@ -70,5 +70,33 @@
   "fireParticleRestored": false,
   "normalBgmVoiceBound": false,
   "BfrozenDeltaIntegrated": false,
-  "completeGoal": false
+  "completeGoal": false,
+  "resumedAfterPrivateAvdGrowth": {
+    "sourceRevision": "47326188fbc43837c8d52caf0fa76051390faaf4",
+    "apk": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-47326188/app-debug.apk",
+      "bytes": 311403399,
+      "sha256": "7b65eee5e9132fd99192de3eb2862b5bba4fb3f2257695467df99784f0041ca8"
+    },
+    "installedReadbackShaEqual": true,
+    "privateAvd": "san11-session-a-repair",
+    "dataFreeGiB": 11,
+    "API": 29,
+    "ABI": "x86_64",
+    "configuredGrowthLimit": "384m",
+    "actualAppRuntimeHeapLimitYetMeasured": false,
+    "normalFlowAccepted": false,
+    "reason": "test evidence directory already existed; precondition failed before activity flow",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797
+      }
+    },
+    "nextRun": "resume-install-04; unique runId; same installed APK reverified; no inherited pass"
+  }
 }
