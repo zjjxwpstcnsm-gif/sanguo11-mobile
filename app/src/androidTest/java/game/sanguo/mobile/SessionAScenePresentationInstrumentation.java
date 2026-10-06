@@ -8,6 +8,21 @@ import java.util.*;
 
 /** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
 public final class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+ @Override public void finish(int code,android.os.Bundle result){
+  try {
+   // Frozen B calls Activity.finish(); its 350ms settle can end before autosave/onDestroy.
+   // Wait for real normal destruction before starting a separate cold process.
+   if(activity!=null&&activity.isFinishing()){
+    long until=SystemClock.uptimeMillis()+30000;
+    while(!activity.isDestroyed()&&SystemClock.uptimeMillis()<until)SystemClock.sleep(100);
+    check(activity.isDestroyed(),"normal Activity actually destroyed before process termination");
+    var preferences=getTargetContext().getSharedPreferences("map-renderer",0);
+    note("normal exit nativeSession="+preferences.getBoolean("nativeSession",false)+" nativeFailure="+preferences.getBoolean("nativeFailure",false));
+    if(result.getString("stream","").startsWith("PASS"))check(!preferences.getBoolean("nativeSession",false)&&!preferences.getBoolean("nativeFailure",false),"normal exit clears only incomplete healthy startup protection");
+   }
+  }catch(Throwable failure){result.putString("stream",result.getString("stream","")+"\nFAIL A orderly lifecycle "+android.util.Log.getStackTraceString(failure));}
+  super.finish(code,result);
+ }
  @Override protected void tap(android.view.View target,int presses)throws Exception {
   // A ListView settling after scroll may consume the first down as scroll-stop.
   // Wait for attached, focused, enabled and stable actual screen bounds first.
@@ -36,6 +51,7 @@ public final class SessionAScenePresentationInstrumentation extends SessionBFiel
    SystemClock.sleep(100);
   }
   note("A map boundary label="+label+" rendered="+rendered[0]+" snapshotState="+(snap[0]==null?"absent":snap[0].state.sessionId+":"+snap[0].state.generation+":"+snap[0].state.revision)+" expected="+prior.sessionId+":"+prior.generation+":"+prior.revision);
+  if(!rendered[0]){shot("a-map-unverified-"+label);runOnMainSync(()->{try{android.util.Log.w("SessionAScene",((MapHost)field(activity,"map")).report());}catch(Exception e){throw new RuntimeException(e);}});}
   check(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state)&&facts[0]!=null&&prior.equals(facts[0].state)&&rendered[0],"actual A map accepts exact full StateToken "+label);
   for(SceneFactsSnapshot.Fire fire:facts[0].fires)if(fire.remaining>0){
    MapSceneSnapshot.FireState shown=snap[0].fires.stream().filter(f->f.hex.equals(new Hex(fire.cell.q,fire.cell.r))).findFirst().orElseThrow();

@@ -368,12 +368,19 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private void leave3D(){hideLoadingCurtain();persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
     void release(){
         released=true;clearSceneFacts();appliedFacts.clear();appliedFactsState=null;hideLoadingCurtain();renderGate.close();cancelCommandEffects();persistCamera();
-        if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
+        if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);persistOrderlyRelease();}
         // Dismissed dialogs can outlive their Surface. Drop the detached World,
         // terrain wrappers and projection caches at this explicit boundary.
         world=groundWorld=visualResolved=null;ground=null;territory=null;publishedSnapshot=commandFinalSnapshot=null;
         projectedCritical=null;projectedPortrait=null;route=null;tacticPreview=null;targets=editorCells=Collections.emptySet();projection.clear();
         listenerCallbacksClosed();
+    }
+    private void persistOrderlyRelease(){
+        SharedPreferences.Editor health=prefs.edit().putBoolean("nativeSession",activeNativeHosts>0);
+        // Closing an initialized-but-not-yet-visible host normally is not a renderer failure.
+        // safeMode retains an actual Java/native failure or an unverified manual recovery.
+        if(activeNativeHosts==0&&!safeMode)health.putBoolean("nativeFailure",false);
+        if(!health.commit())android.util.Log.w("MapRenderer","Could not persist orderly native release");
     }
     private void listenerCallbacksClosed(){unitDrop=null;criticalSkip=null;techniqueFeedback=null;techniqueSkip=null;techniqueDiscard=null;techniquePause=null;editorStroke=null;}
     void resume(boolean value){
