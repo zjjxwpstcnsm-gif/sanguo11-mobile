@@ -114,7 +114,32 @@
       }
     }
   },
-  "lifecycle07": "Pending same installed game bytes, revised hash readback, no credit yet",
+  "lifecycle07": {
+    "passed": true,
+    "checks": 314,
+    "gameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+    "testApkSha256": "251a747988fe6a7bec73ec1bac16301b9632649cab27f2910ba08721ad6cebf6",
+    "normalPath": "Real Source15 selection/cancel-retry/faction buttons/new game/full-near/pan/officer directory/Home/orientation/save slot3/load/Activity exit/reopen",
+    "saveSlot3AndBeforeWorldSha256": "c615c8999a730ccc36c40201a2135986b0ad7510bfb535b91eec3d68f4ac8799",
+    "observedJavaMaxBytes": 297276880,
+    "runtimeMaxHeapBytes": 402653184,
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797
+      }
+    },
+    "installedShaFiles": [
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/lifecycle-07/game.sanguo.mobile.dev-installed.sha256",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/lifecycle-07/game.sanguo.mobile.dev.test-installed.sha256"
+    ],
+    "evidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/lifecycle-07/evidence",
+    "limitations": "Same installed game APK asRun05; supplementary314-check run. Does not retroactively mark Run05 failed final save assertion PASS. Reopen is Activity recreation in same process, NOT fresh-process acceptance; manual bytes and fullSave/RNG proved. No rule command/fire/ARM proof."
+  },
   "remaining": [
     "Java heap margin and allocations; real ARM long normal workflow",
     "Final B frozen rule increment and serial combination new APK normal move/fire/build/multiple turns/save/new process",

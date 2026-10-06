@@ -177,8 +177,19 @@ def restore(out,r):
         for added in current.keys()-expected.keys():
             if added.startswith('/') or '..' in pathlib.PurePosixPath(added).parts: raise ValueError('Unsafe added file')
             run('shell','rm','--',record['path']+'/'+added)
-        with archive.open('rb') as f: run('shell','-T','tar','-C',record['path'],'-xf','-',input=f)
-        after=device_manifest(record['path']); restored[name]={'exactRegularFileSha':after==expected,'files':len(after)}
+        # Every current original file was hashed above. Rewriting gigabytes of
+        # untouched media is unnecessary: restore mismatching/missing original
+        # members from the COMPLETE guarded archive, then read ALL SHAs again.
+        changed=[file for file,sha in expected.items() if current.get(file)!=sha]
+        if changed:
+            selected=out/(name+'-restore-changed.tar')
+            with tarfile.open(archive,'r:') as source,tarfile.open(selected,'w:') as target:
+                members={member.name.removeprefix('./'):member for member in source if member.isfile()}
+                for file in changed:
+                    member=members[file]
+                    with source.extractfile(member) as content:target.addfile(member,content)
+            with selected.open('rb') as f:run('shell','-T','tar','-C',record['path'],'-xf','-',input=f)
+        after=device_manifest(record['path']); restored[name]={'exactRegularFileSha':after==expected,'files':len(after),'rewrittenOriginalFiles':len(changed),'strategy':'Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read'}
         r['restoration']=restored; (out/'session.json').write_text(json.dumps(r,indent=2))
         if after!=expected: raise ValueError('Restoration SHA mismatch '+name)
     r['stage']='restored-verified'; (out/'session.json').write_text(json.dumps(r,indent=2))

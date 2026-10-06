@@ -1,0 +1,27 @@
+{
+  "phase": "prepared diagnostic; not installed yet",
+  "gameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+  "diagnosticTestApkSha256": "520fb407dd58a80b17807f3757f88998ec160491463f646d95fa0b0769e5d13f",
+  "diagnosticTestPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/test-heap-profile/app-debug-androidTest.apk",
+  "trigger": "Real sampled Java used >340MiB at normal UI phase; one Debug.dumpHprofData. Requires fresh complete backup, installed test SHA and actual source-menu workflow. No World/snapshot injection.",
+  "perturbation": "Dump triggers GC. Profile is not an unperturbed peak/stability acceptance.",
+  "allocationStackCaptured": false,
+  "liveObjectsCaptured": false,
+  "hypothesis": "GpuMesh separately copies immutable SceneMesh float arrays into direct buffers for each upload. On Android10 DirectByteBuffer.MemoryRef uses VMRuntime.newNonMovableArray(byte.class,capacity+7). These are Java heap allocations. Need actual histogram/owners to quantify peak contribution, not assume sole OOM cause.",
+  "primaryImplementationSources": [
+    {
+      "url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-10.0.0_r1/ojluni/src/main/java/java/nio/DirectByteBuffer.java",
+      "observation": "Official Android10 MemoryRef(int capacity) allocates nonmovable byte[]; fetched from format=TEXT and base64 decoded."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/filament/v1.56.0/android/common/NioUtils.cpp",
+      "observation": "Official pinnedFilament wrapped arrays supported via JNI GetFloatArrayElements/ReleaseFloatArrayElements, global references until callback release."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/filament/v1.56.0/android/filament-android/src/main/cpp/VertexBuffer.cpp",
+      "observation": "AutoBuffer kept by JniBufferCallback; async buffer consumption."
+    }
+  ],
+  "candidateChange": "Potential FloatBuffer.wrap immutable published arrays, removing extra Java direct-copy allocation. Native array copy/pinning lifetime and peak must be measured; production not changed at93a04cd7. Frozen JNI stays unchanged.",
+  "remaining": "Actual live-object owner evidence and allocation trace; bounded pending uploads/native/GPU budget; fresh installed full normal flow and ARM"
+}
