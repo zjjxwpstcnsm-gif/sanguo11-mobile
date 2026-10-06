@@ -5,7 +5,7 @@ No data clear. Backup covers the whole private and external application trees.
 Restoration removes only regular files added during this exclusive session,
 extracts the original archive, and reads every regular file SHA back.
 """
-import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading
+import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading, re
 
 ROOT = pathlib.Path(__file__).resolve().parents[4]
 ADB = '/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb'
@@ -162,21 +162,33 @@ def main():
             with (out/'instrumentation.txt').open('wb') as f:
                 run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput']) and 'FAIL' not in r['testOutput']
+            folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
+            run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id,str(out/'evidence'))
             if a.fresh_process_reopen:
                 if a.runner!='SessionAMapRepairInstrumentation' or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
-                normal_pass=r['passed'];r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
+                normal_pass=r['passed'];r['normalPassed']=normal_pass;r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
                 expected=run('shell','sha256sum','/data/data/'+PACKAGE+'/files/auto.sg11').decode().split()[0]
-                old_pid=run('shell','pidof',PACKAGE).decode().strip()
+                # Android ends the target when instrumentation finishes. Use
+                # its actual previously recorded frame-submission PID, not pidof
+                # after process death. Preserve first-phase evidence above.
+                prior_log=(out/'logcat.txt').read_text(errors='replace')
+                previous_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',prior_log)
+                if not previous_pids:raise ValueError('No actual first-process PID evidence')
+                old_pid=previous_pids[-1];cold_log_offset=len(prior_log)
+                r['coldProcess']={'beforePid':old_pid,'expectedStartupSaveSha256':expected,'passed':False}
+                report_path.write_text(json.dumps(r,indent=2))
                 run('shell','am','force-stop',PACKAGE)
                 with (out/'cold-instrumentation.txt').open('wb') as f:
                     run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
                 cold=(out/'cold-instrumentation.txt').read_text()
-                new_pid=run('shell','pidof',PACKAGE).decode().strip()
+                after_log=(out/'logcat.txt').read_text(errors='replace')[cold_log_offset:]
+                new_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',after_log)
+                if not new_pids:raise ValueError('No actual second-process PID evidence')
+                new_pid=new_pids[-1]
                 r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':'SESSION_A_MAP PASS' in cold and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
                 run('pull','/sdcard/Android/data/'+PACKAGE+'/files/session-a-map/'+run_id+'_cold',str(out/'cold-evidence'))
-            folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
-            run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id,str(out/'evidence'))
+
         finally:
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
             report_path.write_text(json.dumps(r,indent=2)); restore(out,r)

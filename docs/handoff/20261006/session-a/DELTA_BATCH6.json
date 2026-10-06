@@ -1,0 +1,32 @@
+{
+  "completeBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "completedEvidenceCommits": [
+    "93a04cd7",
+    "3c02fea5",
+    "520ea3126f672400979e5ac6b99f448f4a274066"
+  ],
+  "productionRevision": "47326188fbc43837c8d52caf0fa76051390faaf4",
+  "installedPackageSourceRevision": "fd9f455a0209b9a750709820ccb226e0dbedb6aa",
+  "installedGameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+  "productionFilesChangedThisBatch": [],
+  "nativeOrResourceFilesChanged": [],
+  "noBWipMerged": true,
+  "newNativeFireInstalled": false,
+  "normalMemoryAcceptance": "Run05 all16 actual sources/51 full-near with no observed OOM, Java sampled383.91/384MiB; memory margin/userARM not closed.",
+  "storageAcceptance": "Run07 Source15 normal save/load/Activity reopen PASS314; whole9/3797 originals restored SHA equal.",
+  "diagnosticAcceptance": "Heap08 Source7/8 actual normal UI in explicit diagnostic mode PASS475; whole9/3797 originals restored. Post-GC dump199444332B, large SceneMesh.vertices62877724B vs directMemoryRef6475188B,1 FilamentMapView. Not unperturbed memory acceptance, no sole upload-buffer root inferred.",
+  "coldProcessTest": "cold09 pending; same installed game, independently built testfd4c78e6f9bbc2d5a0fdb96c36e109fcb230d63e506b901695447edaa2a42233; actual autosaveSHA comparator only, no injected state.",
+  "details": [
+    "INSTALLED_16_SOURCE_MATRIX.json",
+    "HEAP_PROFILE.json",
+    "VIDEO_EVIDENCE.json"
+  ],
+  "remaining": [
+    "ARM actual reportedOOM stack and real-device long流程",
+    "B completed frozen rules/sourceAPI/events increment and final serial combination fresh APK",
+    "Original cell fire native factory/template13/additive material and lifecycle normal gameplay",
+    "Normal BGM, real voice/remaining58/ordinary sounds producers; fullscreen ordinary pixels/color/crop/time/lifecycle and wholePCM0.995/-22",
+    "Normal combined movement/construction/fire/multiturn/contest and every16 source full gameplay matrix"
+  ]
+}

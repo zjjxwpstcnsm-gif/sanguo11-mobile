@@ -146,5 +146,28 @@
     "Original cell fire template13 additive map material and frozen JNI serial extension; UI marker only currently",
     "Normal BGM and real voice/event producers, remaining58 and ordinary event sounds; whole-song0.995/-22 audit",
     "Full original fullscreen/ordinary media pixels/timing/profiles and selected/disabled/action feedback normal paths"
-  ]
+  ],
+  "cold09": {
+    "overallPassed": false,
+    "firstNormalFlowChecks": 314,
+    "secondProcessStarted": false,
+    "failure": "Harness queried pidof after instrumentation had already terminated the target. Actual recordedPID10590; fixed to recorded first-submission PIDs and pull first-phase evidence before restart. No product failure inferred.",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "evidenceBoundary": "First testOutput/logcat preserved; its screenshot folder was not pulled before second-stage harness failure and restoration. Not claiming lost screenshots.",
+    "testSha256": "fd4c78e6f9bbc2d5a0fdb96c36e109fcb230d63e506b901695447edaa2a42233"
+  },
+  "cold10": "Pending fresh complete backup and same-game/test SHA; corrected PID lifecycle observation."
 }

@@ -74,7 +74,8 @@
     "docs/handoff/20261006/session-a/inspect_heap.py",
     "docs/handoff/20261006/session-a/HEAP_PROFILE.json",
     "docs/handoff/20261006/session-a/VIDEO_EVIDENCE.json",
-    "docs/handoff/20261006/session-a/convert_recording.py"
+    "docs/handoff/20261006/session-a/convert_recording.py",
+    "docs/handoff/20261006/session-a/DELTA_BATCH6.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
