@@ -84,5 +84,7 @@
     "docs/handoff/20261006/session-b/cache-flow-22.tar.gz"
   ],
   "conflicts": "No A production/shared Gradle/bridge/Unity/JNI edit; stage cache-only core to exclude own uncommitted governor WIP. Only these exact completed cache paths are deliverable.",
-  "selfShaPolicy": "This delta is identified by its Git blob/commit; no recursive self SHA."
+  "selfShaPolicy": "This delta is identified by its Git blob/commit; no recursive self SHA.",
+  "sourceCommit": "cb87d90d343099361413d44a9d7a981d3bc89664",
+  "metadataNote": "CACHE_BATCH sourceCommit added after source acceptance; source path SHA refers to that immutable source commit, metadata audited separately."
 }

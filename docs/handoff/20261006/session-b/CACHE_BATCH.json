@@ -109,5 +109,6 @@
     "source query host medians similar; observed Android full-turn latency improvement only",
     "Unity U01 inherited map63/65 mismatch retained; no golden or bridge/JNI changes",
     "do not merge own uncommitted governance WIP"
-  ]
+  ],
+  "sourceCommit": "cb87d90d343099361413d44a9d7a981d3bc89664"
 }
