@@ -23,3 +23,8 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 37真实system Home/Activity/map/Filament暂停/原火时钟冻结/返回全Save-RNG-Token不变通过；随后测试FileInputStream.readAllBytes在API29不支持，减少动画尚未执行，完整9/3797及系统偏好SHA恢复。2cecc643已改有界兼容流读取，需新测试包重验。新e9679b94普通堆独立构建b8bbf643包与70264176测试包（已修真实地图Home守卫），38全16实际安装回归准备中；没有沿用旧28成绩。
 
 38新普通堆包b8bbf643和测试70264176实际安装，设备读回APK SHA精确相同；168固定输入包内逐SHA全等、原4JNI包内全等。正常菜单实测Runtime402653184B（384MiB）、largeHeap=false，16来源回归已启动、冷流程与最终恢复未完成，不判通过。2cecc643 API29兼容测试工具Java编译通过，尚未新测试APK实装。当前目标保持进行中。
+
+
+2026-10-07 后继闭合：38普通384新军团包b8bbf643实际16来源正常2731+新PID冷81，通过实际system Home/Activity-map-Filament-focus guard；9205→3877，SaveSHA3635326d，9/3797全SHA恢复。但Source11缩放Java402573928/402653184B，仅79256B采样余量，内存预算仍未通过，不将“无OOM”当关闭。B新完成SEARCH d852cc78/2377c30b逐28源码/7文档前后SHA审计，导入5793ab0a/ac7abd09，未合剩余WIP；A自己的普通搜索渲染/同Token/真实销毁/冷流程测试3e315e6e准备。新组合默认large APK2b68afe9、testc9f1bb57实际39原火/真实Home/减少动画冻结时钟/低画质/灭火再燃到期/烧中存读/新PID6972→27875冷原13全部通过，SaveSHA629aad99，9/3797及global动画偏好恢复。
+
+27915f9a候选消除GpuMesh四条float流的额外Java direct-byte副本，使用已核实Filament1.56 primitive-array/global-ref/callback释放，数据/数组/顶点顺序/UV/索引不变。JNI可能拷到native，不声称零拷贝/GPU节省。新普通384 APK已独立构建并168守卫通过，40来源11真实GPU/缩放/冷矩阵正在备份准备，须实际安装测量；不借39火或38峰值。正常media16四字形列表/详情128实际caller像素检查已实现且新包编译，尚未运行，不等同所有年龄/全屏/voice闭合。SEARCH主机754/530/18、GameSession1690、SceneFacts41782、Bridge、军团1058、军建52、舌战156与静态架构通过；A组合正常搜索还待新包实际操作。

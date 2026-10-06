@@ -1,0 +1,27 @@
+{
+  "scope": "Actual newly imported frozen SEARCH core/API/runtime classes; host validation separate from normal installed A or B APK; native570 original fixture omitted, RulesTest754 only",
+  "passed": true,
+  "checks": {
+    "PcSearchRulesTest": 754,
+    "PcSearchOrdinaryTest": 530,
+    "PcSearchSessionTest": 18,
+    "GameSessionTest": 1690,
+    "SceneFactsQueryTest": 41782,
+    "PcArmyActionPolicyTest": 1058,
+    "SessionBFieldworksTest": 52,
+    "PcDebateOrdinaryCampaignTest": 156
+  },
+  "bridgePassed": true,
+  "staticArchitecturePassed": true,
+  "retainedInitialFailure": "BridgeSessionTest invoked with wrong parent package; actual class game.sanguo.runtime.bridge.BridgeSessionTest then passed; no source/test changes",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-combination-host",
+  "evidenceSha256": {
+    "compile.log": "026608506dd3be326bd8dc47d72ea9acf6d9405f700007102157db26750c97ca",
+    "tests.txt": "b2d01a805b64667ff6ef33fb3165e7afbba6f45a681b34d75bce213ac142c17b",
+    "bridge-test.txt": "37a0531d5e030dcc834ccb7e44a924e5853bdaa5cff1f43a55cf073cac8aba0d",
+    "regressions.txt": "5a8010e97bdf790c16486c4032331c8b29f4217eda642f8cbb031da80e16196f",
+    "architecture.txt": "ed6121390c876c0455e1b190692157f579eeac9831e806f5ab8022f20ccabc78"
+  },
+  "normalACombinedSearchAccepted": false,
+  "ARM": false
+}

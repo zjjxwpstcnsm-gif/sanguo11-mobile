@@ -162,7 +162,9 @@
     "app/src/androidTest/java/game/sanguo/mobile/SessionASearchPresentationInstrumentation.java",
     "docs/handoff/20261006/session-a/SEARCH_PRESENTATION_CONTRACT.md",
     "docs/handoff/20261006/session-a/NORMAL384_ALL38.json",
-    "docs/handoff/20261006/session-a/MESH_UPLOAD_ARRAY_CONTRACT.md"
+    "docs/handoff/20261006/session-a/MESH_UPLOAD_ARRAY_CONTRACT.md",
+    "docs/handoff/20261006/session-a/FIRE_PAUSE_ACCEPTANCE39.json",
+    "docs/handoff/20261006/session-a/SEARCH_HOST_VALIDATION.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

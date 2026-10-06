@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "sourceCommit": "3e315e6e",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3e315e6e-search-combination/app-debug.apk": "2b68afe964be8709dd681e4d72463a7d9d373fd34cc39a2d8d3d611065d5cc5c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3e315e6e-search-combination/app-debug-androidTest.apk": "c9f1bb578ea693f83d5a655d3f39b435124972d5903f35805b2db467ba830270"
+  },
+  "scope": "Latest completed SEARCH combination real Source14 two formations/playerFIRE/cancel/native13/Home owner pause/reduced-motion setting/frozen visual clock/lowquality/actualEXTINGUISH/reignite/wholeturn expiry/fullburning save-read and independent newPID cold; no injected world or flame/ruleRNG; primitive-array uploader279 excluded",
+  "actualPauseChecks": [
+    "actual Home pauses Activity/map/Filament",
+    "real Home stops existing native fire visual clock",
+    "actual reduced-motion setting pauses native visual updates",
+    "motion pause keeps entire Save/bothRNG/StateToken",
+    "actual animation preference/enabled state restored exactly"
+  ],
+  "coldProcess": {
+    "beforePid": "6972",
+    "afterPid": "27875",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "629aad994ee95f8620c7fe91e8704fbc16789a85acbe7a2c03844ee7fbd8625a",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "systemAnimationPreferenceBefore": "null",
+  "systemAnimationPreferenceRestored": true,
+  "normalTurns": [
+    {
+      "label": "reset-before-reignite",
+      "elapsedMs": 25341,
+      "background": false
+    },
+    {
+      "label": "real-fire-expiry-0",
+      "elapsedMs": 35166,
+      "background": false
+    },
+    {
+      "label": "real-fire-expiry-1",
+      "elapsedMs": 35294,
+      "background": false
+    }
+  ],
+  "childSamples": 169,
+  "maxSimultaneousChildren": 1,
+  "independentPerChildPssKiB": 54118,
+  "performanceScope": "Functional only; own independent Gradle build concurrent, no recording/dumpheap/native performance guarantee",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-pause-search-combination-39",
+  "evidenceSha256": {
+    "session.json": "5dd5e0ca8ef376070352fee36874677881d4a4b51cc0e6516772478698a57b38",
+    "instrumentation.txt": "af471d9d7c4f228afb0721756afbb4c9ebbcccf46d536d1e4cf43226ce4f06a8",
+    "cold-instrumentation.txt": "94c43d7ea0d00fd69b53a4188c7ec434a7e2f2a835013b44e1b4739b6a8cd24d",
+    "evidence/progress.txt": "c13ee788c09d4187e7c4608256e52986643152e276d6e394f8261a1ae7ff82fb",
+    "evidence/diagnosis.txt": "40b2a6cc804504518fcb6a685dedbdd058e04612569d80b67cdecf10e3cc673a",
+    "evidence/burning-save.sg11": "629aad994ee95f8620c7fe91e8704fbc16789a85acbe7a2c03844ee7fbd8625a",
+    "evidence/actual-build.sg11": "629aad994ee95f8620c7fe91e8704fbc16789a85acbe7a2c03844ee7fbd8625a",
+    "evidence/pause-home-restored-fire.png": "00540dab749cc34c4708867a5a7fcb541540ead59f4512a0fa064d5e51e7cecc",
+    "evidence/pause-reduced-motion-real-fire.png": "2b39ed4b8567f39f78d323a1ba89d1dcd71abb3faa43c299e7b2c6561955f624"
+  },
+  "all16NewSearchAccepted": false,
+  "chainFacilitiesAllOriginalEffectsAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}
