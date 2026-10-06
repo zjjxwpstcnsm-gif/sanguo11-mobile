@@ -88,3 +88,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 50实际诊断再次失败且保留：03:24:15.447 direct事实ACCEPTED/queued1，03:24:16.074 actual phase3:1 finished resumedtrue/renderActivefalse→skip queued1/committed12→advanceCommandEffects cancel调用栈；没有poll/start。精确证明确认弹窗焦点未恢复时非可见CHANGE阶段被clock完成并误丢弃。A修复：advanceCommandEffects在未resumed或renderGate非active时暂停视觉时钟，真正后台不自排帧；主动跳过确有待呈现phase且无其他活动动画时只回显已提交committedPoints、保持静音。pure exactphase查询补测试，不改B规则/API/数值/Save/RNG/bridge/Unity/4JNI。需独立新包51实装normal/cold及旧暂停/火与源表现回归，不能以源码改动宣布修复。
 
 50已实际失败且完整9/3797最终SHA恢复，精确栈回执DIRECT_HUD_PHASE_ROOT50已保留；修复3b2a3b32主机queue46通过（首轮漏core/runtime依赖修正，非产品失败）。51新修复包独立构建168/6JNI全等后完整备份实装，live60426/native73212，需真实badge12/一次roll/源事实/cold/fullRestore，尚未判通过；新源媒体/火与全局长流程仍不能借48旧包成绩。
+
+51真实3b2焦点暂停修复已让phase3:1在renderActivetrue才完成并poll(+12)，但紧接正常done调用cancelCommandEffects→skip同activeFact，取消下一帧滚动；真实10秒显示12/roll0仍失败，不能判反馈完成。新A MapHost清理分正常完成false/主动取消true；正常done不skip已放行phase，保留下一帧滚动/原33声音，外部显式cancel/关闭维持跳过静默行为。B/Save/RNG/原资产/JNI不改，新包52需实装normal/cold/全恢复及火/生命周期回归。

@@ -173,8 +173,13 @@ final class MapHost extends FrameLayout implements MapPresentation {
         spatial.presentation(cues.get(index),scaled-index);
     }
     void cancelCommandEffects(){
+        clearCommandEffects(true);
+    }
+    private void clearCommandEffects(boolean skipped){
         if(commandEffects!=null){StringBuilder ids=new StringBuilder();for(var event:techniqueCommandEvents)ids.append(event.id).append(',');android.util.Log.i("TechniquePhase","cancel phases="+ids+" resumed="+resumed+" renderActive="+renderGate.active()+" caller="+java.util.Arrays.toString(new Throwable().getStackTrace()));}
-        if(commandEffects!=null){for(var event:techniqueCommandEvents)if(techniqueSkip!=null)techniqueSkip.accept(event.id);}
+        // Normal completion has already released the exact committed phase.
+        // Its HUD roll may start on the next frame; cleanup must not skip it.
+        if(skipped&&commandEffects!=null){for(var event:techniqueCommandEvents)if(techniqueSkip!=null)techniqueSkip.accept(event.id);}
         techniqueCommandEvents=Collections.emptyList();
         removeCallbacks(commandEffectTick);
         commandPreparedEvent=null;
@@ -220,7 +225,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         }
         commandEffects.advance(wallElapsed,this::replayVisible);commandEffectTime=now;
         if(!commandEffects.paused())for(var event:techniqueCommandEvents)if(combatLedger().completed(event))techniqueFinished(event);
-        if(commandEffects.done()){cancelCommandEffects();return;}
+        if(commandEffects.done()){clearCommandEffects(false);return;}
         TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);
         float elapsed=commandEffects.fraction()*(prelude+action);
         if(prelude>0&&elapsed<prelude){replayFrame(event,0);criticalEvent(event,elapsed/prelude);}
