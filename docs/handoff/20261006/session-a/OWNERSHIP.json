@@ -203,7 +203,9 @@
     "docs/handoff/20261006/session-a/TURN_TIMEOUT_DIAGNOSTIC.md",
     "docs/handoff/20261006/session-a/B_MEDIA_FACT_REQUEST.md",
     "docs/handoff/20261006/session-a/COMPLETED_B_OBJECT_GUARD54.json",
-    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_CALLER_FAILURE54.json"
+    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_CALLER_FAILURE54.json",
+    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_NATIVE181_ACCEPTANCE55.json",
+    "docs/handoff/20261006/session-a/inspect_native_mp4.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

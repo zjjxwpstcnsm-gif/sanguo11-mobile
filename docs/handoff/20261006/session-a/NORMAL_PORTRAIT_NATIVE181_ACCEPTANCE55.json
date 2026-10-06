@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "scope": "Targeted native181 actual normalSource11 membership670, advertised physical longpress at visible portrait/name, actual normal roster/detail/currentyear187/fulloriginalface509 pixels and fullSaveRNGStateToken pure, exact saved source/newPID/cold same person actual roster/detail again. One person only, not all670/all16/shorttap root/ageboundary/fullscreen/ARM.",
+  "gameSourceRevision": "a14ebe55d5736283ff4715b1d039def101da289b",
+  "testSourceRevision": "a75a24ed1018c502da134fedae248a83bb9504a1",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk": "b8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a75a24ed-portrait-longpress-cold-test/app-debug-androidTest.apk": "39e49ecb5000f9b5101cb8ed6610c8e36297df92eea2fce8dfe65b825259beb9"
+  },
+  "checks": {
+    "evidence": 353,
+    "cold-evidence": 133
+  },
+  "normalAndColdActualCallerProof": {
+    "evidence": {
+      "sourceIndex": 11,
+      "rows": [
+        {
+          "caller": "normal-roster",
+          "officerId": 10181,
+          "nativeId": 181,
+          "currentName": "公孫續",
+          "year": 187,
+          "sourceVariant": "media-scenario-scen011-s11-3ee5409f8649-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "sourcePath": "Media/scenario/Scen011.s11",
+          "sourceSha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "recordSha256": "42df75542bac44c2606d66bc0876daf41c16dd85ed68191e594be08e1b21959b",
+          "asset": "portraits/pc/group-0/face-0509.png",
+          "pngSha256": "35b81087753d1785b89477d76456634919bac9e24178e1da77269df69a20663f",
+          "rgbaSha256": "ce612aaee1d2a7217f0db1dd417d0e753d8064a4c4c69c53c32224999d30d54e",
+          "faceId": 509,
+          "fullBitmapSameAs": true,
+          "width": 240,
+          "height": 240
+        },
+        {
+          "caller": "normal-detail",
+          "officerId": 10181,
+          "nativeId": 181,
+          "currentName": "公孫續",
+          "year": 187,
+          "sourceVariant": "media-scenario-scen011-s11-3ee5409f8649-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "sourcePath": "Media/scenario/Scen011.s11",
+          "sourceSha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "recordSha256": "42df75542bac44c2606d66bc0876daf41c16dd85ed68191e594be08e1b21959b",
+          "asset": "portraits/pc/group-0/face-0509.png",
+          "pngSha256": "35b81087753d1785b89477d76456634919bac9e24178e1da77269df69a20663f",
+          "rgbaSha256": "ce612aaee1d2a7217f0db1dd417d0e753d8064a4c4c69c53c32224999d30d54e",
+          "faceId": 509,
+          "fullBitmapSameAs": true,
+          "width": 240,
+          "height": 240
+        }
+      ],
+      "expectedOfficers": 670,
+      "requestedOfficers": 1,
+      "portraitNative": 181,
+      "actualVisitedOfficers": 1,
+      "requestedCallersComplete": true,
+      "sourceComplete": false,
+      "allOriginalOfficerCallers": false,
+      "actualNormalMenuRosterDetail": true,
+      "fullSaveRngStateTokenPure": true,
+      "ageBoundaryFullScreenVoiceArmAccepted": false
+    },
+    "cold-evidence": {
+      "sourceIndex": 11,
+      "rows": [
+        {
+          "caller": "normal-roster",
+          "officerId": 10181,
+          "nativeId": 181,
+          "currentName": "公孫續",
+          "year": 187,
+          "sourceVariant": "media-scenario-scen011-s11-3ee5409f8649-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "sourcePath": "Media/scenario/Scen011.s11",
+          "sourceSha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "recordSha256": "42df75542bac44c2606d66bc0876daf41c16dd85ed68191e594be08e1b21959b",
+          "asset": "portraits/pc/group-0/face-0509.png",
+          "pngSha256": "35b81087753d1785b89477d76456634919bac9e24178e1da77269df69a20663f",
+          "rgbaSha256": "ce612aaee1d2a7217f0db1dd417d0e753d8064a4c4c69c53c32224999d30d54e",
+          "faceId": 509,
+          "fullBitmapSameAs": true,
+          "width": 240,
+          "height": 240
+        },
+        {
+          "caller": "normal-detail",
+          "officerId": 10181,
+          "nativeId": 181,
+          "currentName": "公孫續",
+          "year": 187,
+          "sourceVariant": "media-scenario-scen011-s11-3ee5409f8649-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "sourcePath": "Media/scenario/Scen011.s11",
+          "sourceSha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+          "recordSha256": "42df75542bac44c2606d66bc0876daf41c16dd85ed68191e594be08e1b21959b",
+          "asset": "portraits/pc/group-0/face-0509.png",
+          "pngSha256": "35b81087753d1785b89477d76456634919bac9e24178e1da77269df69a20663f",
+          "rgbaSha256": "ce612aaee1d2a7217f0db1dd417d0e753d8064a4c4c69c53c32224999d30d54e",
+          "faceId": 509,
+          "fullBitmapSameAs": true,
+          "width": 240,
+          "height": 240
+        }
+      ],
+      "expectedOfficers": 670,
+      "requestedOfficers": 1,
+      "portraitNative": 181,
+      "actualVisitedOfficers": 1,
+      "requestedCallersComplete": true,
+      "sourceComplete": false,
+      "allOriginalOfficerCallers": false,
+      "actualNormalMenuRosterDetail": true,
+      "fullSaveRngStateTokenPure": true,
+      "ageBoundaryFullScreenVoiceArmAccepted": false
+    }
+  },
+  "coldProcess": {
+    "beforePid": "30671",
+    "afterPid": "16188",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "b6c2d2c07aa62005d95e3bb9812eda0fd362d9fb2f6094ebf0501cac26a4de24",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualTextInventory": {
+    "shownRows": 178,
+    "knownOpaqueSolidContrastRows": 41,
+    "knownSolidContrastBelow4_5": [],
+    "zeroTextAlpha": [],
+    "foregroundSpanCount": 0,
+    "backgroundUnresolvedRows": 137,
+    "scope": "Actual focused normal/cold widget state metadata. Gradients/images/Canvas pixel contrast unresolved; not globalUI completion."
+  },
+  "videoParts": [
+    {
+      "part": 1,
+      "beginUnix": 1791319867.374036,
+      "endUnix": 1791320049.460563,
+      "recordPid": "30738",
+      "devicePath": "/data/local/tmp/session_a_video_portrait_native181_longpress_55/part01.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "ab3ecda0cf94583167e91218804e651d2d711995c88682e2425ab2d32620be50",
+      "sha256": "ab3ecda0cf94583167e91218804e651d2d711995c88682e2425ab2d32620be50",
+      "bytes": 18356637,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part01.mp4"
+    },
+    {
+      "part": 2,
+      "beginUnix": 1791320049.8580701,
+      "endUnix": 1791320231.7429152,
+      "recordPid": "5914",
+      "devicePath": "/data/local/tmp/session_a_video_portrait_native181_longpress_55/part02.mp4",
+      "stageAtEnd": "cold-process-running",
+      "deviceSha256": "cf8a85ac74baefabc01e2117e27d77e8e57d2fe4c73147c4b58e0861838f2582",
+      "sha256": "cf8a85ac74baefabc01e2117e27d77e8e57d2fe4c73147c4b58e0861838f2582",
+      "bytes": 25881090,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part02.mp4"
+    },
+    {
+      "part": 3,
+      "beginUnix": 1791320232.422791,
+      "endUnix": 1791320327.826179,
+      "recordPid": "17915",
+      "devicePath": "/data/local/tmp/session_a_video_portrait_native181_longpress_55/part03.mp4",
+      "stageAtEnd": "restored-verified",
+      "deviceSha256": "74a806ad27b4290a110038555351b256f81faaccd245d196ee04b59211efa8d3",
+      "sha256": "74a806ad27b4290a110038555351b256f81faaccd245d196ee04b59211efa8d3",
+      "bytes": 8767832,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55/video/part03.mp4"
+    }
+  ],
+  "videoScope": "Actual exclusive installed55 normal/cold native recordings; everypart device-hostSHA exact, no originalPC pixels/timing/FPS/ARM claim. Full decode inspection stored separately, pending if still running.",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native181-longpress-55",
+  "evidenceSha256": {
+    "session.json": "193c7b4abf9b69a2b23ebe63ff049e5a0fa06c1111d581183456d50579d64311",
+    "instrumentation.txt": "202962620a91a0884ed66f44b59594150a289a920790444551168b593283a26e",
+    "cold-instrumentation.txt": "56426c973b4d3f8c89d6b2d690ff832f31354498d1d1d0911d584d06c6b4087a",
+    "evidence/source-11-portrait-callers.json": "b4d85d93f2b18c8e785c8d9eee76abc25441168e22a43c474ec1a0325c4c10fb",
+    "cold-evidence/source-11-portrait-callers.json": "b4d85d93f2b18c8e785c8d9eee76abc25441168e22a43c474ec1a0325c4c10fb",
+    "video/video.json": "78f32e3c74fa94e2ca4907dff08b8fe13a3ff19e72bb8f769a696a44384800c7"
+  },
+  "originalShortTouchFailure54RootClosed": false,
+  "allNormalSourceMediaAccepted": false,
+  "ARM": false,
+  "completeGoal": false
+}
