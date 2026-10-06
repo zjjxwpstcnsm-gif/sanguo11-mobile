@@ -16,6 +16,8 @@ public final class SessionAScenePresentationInstrumentation extends SessionBFiel
     long until=SystemClock.uptimeMillis()+30000;
     while(!activity.isDestroyed()&&SystemClock.uptimeMillis()<until)SystemClock.sleep(100);
     check(activity.isDestroyed(),"normal Activity actually destroyed before process termination");
+    // Android marks destroyed before calling onDestroy; wait for the UI callback to return.
+    runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");if(!(Boolean)field(host,"released")||field(host,"spatial")!=null)throw new AssertionError("actual native host teardown completed");}catch(Exception e){throw new RuntimeException(e);}});
     var preferences=getTargetContext().getSharedPreferences("map-renderer",0);
     note("normal exit nativeSession="+preferences.getBoolean("nativeSession",false)+" nativeFailure="+preferences.getBoolean("nativeFailure",false));
     if(result.getString("stream","").startsWith("PASS"))check(!preferences.getBoolean("nativeSession",false)&&!preferences.getBoolean("nativeFailure",false),"normal exit clears only incomplete healthy startup protection");
