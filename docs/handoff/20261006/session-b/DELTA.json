@@ -4,7 +4,7 @@
   "branch": "codex/rules-content-contest-repair",
   "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
   "status": "completed-bounded-military-build17-full-goal-incomplete",
-  "commit": null,
+  "commit": "224751a7fadf6c2ef562e74be2e67576461d5e32",
   "paths": [
     {
       "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
@@ -396,5 +396,6 @@
   "excludedNextBatchWip": [
     "docs/handoff/20261006/session-b/COMMAND_CAPACITY_STRATEGY.md",
     "tools/content/session_b_pack_capacity_references.py"
-  ]
+  ],
+  "pathHashesReferToSourceCommit": "224751a7fadf6c2ef562e74be2e67576461d5e32"
 }

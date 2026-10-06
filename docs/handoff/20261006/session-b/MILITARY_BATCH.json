@@ -4,7 +4,7 @@
   "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
   "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
   "branch": "codex/rules-content-contest-repair",
-  "commit": null,
+  "commit": "224751a7fadf6c2ef562e74be2e67576461d5e32",
   "apk": {
     "out/session-b/military-build-17/frozen/app-debug.apk": "48b89bd30f28c7b9d7f15ef6a0ea9ea7644359f1db087a883f004c85b03dbdb2",
     "out/session-b/military-build-17/frozen/app-debug-androidTest.apk": "0f5a39e57638c200690be65c7db8e9abc0743f76a7d69c05b79853184e88354e"
@@ -80,5 +80,6 @@
     "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
     "dirtyCount": 609,
     "porcelainNulSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
-  }
+  },
+  "pathHashesReferToSourceCommit": "224751a7fadf6c2ef562e74be2e67576461d5e32"
 }
