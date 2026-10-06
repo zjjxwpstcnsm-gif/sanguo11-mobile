@@ -176,7 +176,8 @@
     "docs/handoff/20261006/session-a/MEDIA_IDENTITY_INSTALLED41.json",
     "docs/handoff/20261006/session-a/ARRAY_UPLOAD_ALL16_ACCEPTANCE41.json",
     "docs/handoff/20261006/session-a/DIRECT_EVENT_INTEGRATION_AUDIT.json",
-    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_PERMISSION_FAILURE42.json"
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_PERMISSION_FAILURE42.json",
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_TEST_APK_GUARD43.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

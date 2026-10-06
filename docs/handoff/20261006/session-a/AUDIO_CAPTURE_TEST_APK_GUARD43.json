@@ -1,0 +1,42 @@
+{
+  "passed": false,
+  "scope": "Before capture, exact installed test SHA guard rejected reuse-installed because42 had intentionally restored original old test APK. No capture AppOp experiment or music result ran. Use test-only-update next, same game562.",
+  "plannedApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug.apk": "562fabeb23540c0256ab9bcc4282a2a4f2d729805990062c29c46ed2b0e9743a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug-androidTest.apk": "7c677d1b0e0532a65a60bde5a08caaf05817918d2c3f3007e504ff2543c49d30"
+  },
+  "actualGameInstalledSha": "562fabeb23540c0256ab9bcc4282a2a4f2d729805990062c29c46ed2b0e9743a",
+  "actualTestInstalledSha": "4b34497ac430b73f1ed942e172bcee46c89d4782cbd39bde283fa92acc53e27d",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "testCaptureRestoration": {
+    "test-internal": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    },
+    "test-external": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    }
+  },
+  "captures": [],
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-submission-appop-43",
+  "evidenceSha256": {
+    "session.json": "c86231c235d3129d1252222094ca93853dc4b92fd2128e1127d1631f851431df"
+  },
+  "goalComplete": false
+}
