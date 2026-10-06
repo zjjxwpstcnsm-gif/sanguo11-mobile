@@ -155,7 +155,8 @@
     "docs/handoff/20261006/session-a/diagnose_capture_timeline.py",
     "docs/handoff/20261006/session-a/FIRE_PAUSE36_NAVIGATION_FAILURE.json",
     "docs/handoff/20261006/session-a/PRESERVATION_20261007.json",
-    "docs/handoff/20261006/session-a/FIRE_PAUSE37_API_FAILURE.json"
+    "docs/handoff/20261006/session-a/FIRE_PAUSE37_API_FAILURE.json",
+    "docs/handoff/20261006/session-a/BUILD_NORMAL384_38.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

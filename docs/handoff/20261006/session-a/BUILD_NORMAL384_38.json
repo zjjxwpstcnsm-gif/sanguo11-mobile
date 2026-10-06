@@ -1,0 +1,52 @@
+{
+  "sourceCommit": "e9679b94",
+  "gameLargeHeap": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e9679b94-army-normal384/app-debug.apk",
+      "sha256": "b8bbf6430093209519028bbe29a37e6146303803252eb90faab4be93fe8f1cdf",
+      "bytes": 312845218
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e9679b94-army-normal384/app-debug-androidTest.apk",
+      "sha256": "7026417616d606dbf568dafb798a1af9110a46f490fa77e68dc46bf8c50a6892",
+      "bytes": 2582507
+    }
+  ],
+  "installed": false,
+  "scope": "Fresh independent ordinary384 package includes completed army budget plus corrected real map Home guard; pauseFire test known API29 readAllBytes failure remains excluded pending own correction",
+  "actualInstalledGameAndTestShaVerified": true,
+  "actualHeapBudget": "normalMiB=384 largeMiB=512 actualBytes=402653184 deviceRamBytes=2089222144 largeHeap=false",
+  "original4Jni": [
+    {
+      "apkPath": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "originalSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "same": true
+    },
+    {
+      "apkPath": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "originalSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "same": true
+    },
+    {
+      "apkPath": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "originalSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "same": true
+    },
+    {
+      "apkPath": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "originalSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "same": true
+    }
+  ],
+  "original168PinsExactInsideApk": true,
+  "sessionPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/all-source-normal384-army-38",
+  "matrixPassed": false,
+  "status": "installed actualSHA and heap verified; normal all16 running, full rollback pending completion",
+  "goalComplete": false,
+  "ARM": false
+}
