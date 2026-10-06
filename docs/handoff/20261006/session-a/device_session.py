@@ -164,11 +164,11 @@ def main():
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             b_folder='capacity' if a.runner=='SessionBCapacityInstrumentation' else 'fieldworks'
-            b_runner=a.runner in ['SessionBFieldworksInstrumentation','SessionBCapacityInstrumentation']
+            b_runner=a.runner in ['SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionBCapacityInstrumentation']
             relative='session-b/'+b_folder if b_runner else folder+'/'+run_id
             run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+relative,str(out/'evidence'))
             if a.fresh_process_reopen:
-                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation','SessionBCapacityInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
+                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionBCapacityInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
                 normal_pass=r['passed'];r['normalPassed']=normal_pass;r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
                 expected=run('shell','sha256sum','/data/data/'+PACKAGE+'/files/auto.sg11').decode().split()[0]
                 if b_runner:
