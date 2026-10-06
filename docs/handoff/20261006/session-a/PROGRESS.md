@@ -50,3 +50,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 45 manifest入口缺失和后继A测试重复onCreate两个工具失误均保留失败证据，16f2db3f去重/e6d92908注册实际A search/direct components，后继普通384实际APK+test编译成功，实际packaged manifest包含两个入口；helper执行前设备pm list检查防重犯。此新包尚未安装，46将先正常SEARCH/自然舌战/存读/冷体验，而不是借B旧APK成绩或45错误作为产品判定。
 
 46实际新普通384游戏937ae8a6/test053d7458安装成功，两APK设备SHA精确一致；设备pm list真实声明A search/direct组件，helper前置注册检查通过，当前正常SEARCH正在运行，未判正常/冷/恢复通过。live句柄64669，native观察6053；下一轮必须续读此具体进程而非重启，保存备份及设备锁继续守卫。当前commit source e6d92908更后仅助手/文档，实际包scope依其BuildConfig与冻结记录。
+
+701d31bb完整源码检查点导出已完成：11056文件/902267628B逐SHA回读，归档652655501B/SHAa656907aa00e06f1dab1be07e7571ea22b47462e0add52295d115278169b8ef2，原4/新增2JNI精确。原目录及用户资源未删除。46已在正常SEARCH跑出自然人类胜负，仍需中途保存/冷/完整恢复，不宣布通过；修正PLAN对用户授权largeHeap和当前UNKNOWN描述。

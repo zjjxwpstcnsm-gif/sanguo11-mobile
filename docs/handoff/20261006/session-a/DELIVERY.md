@@ -1,3 +1,13 @@
+# 最新检查点补充（2026-10-07，46仍运行）
+
+当前实际安装普通384组合为 `out/session-a/apk-e6d92908-cause-factions-normal384/app-debug.apk`，SHA937ae8a6af05b53feee5c8cdd88dfb49cdf1c515fd29fa82c6aee4e63dcc7358；测试053d7458f7b6537e48f74eccf2ba4de0b7cabbca27f47ea533746e2fcfdefa34。实际设备SHA/pm instrumentation注册守卫均通过，46正常SEARCH自然胜负已出现，独立冷启动与完整文件恢复尚待，不判本轮通过。45仅测试manifest失败且游戏未启动，原失败与全恢复证据保留。
+
+完整源码检查点701d31bb已导出并逐文件SHA复核：`out/session-a/source-checkpoint-e6-cause/sanguo11-mobile-source.tar.gz`，652655501B，SHAa656907aa00e06f1dab1be07e7571ea22b47462e0add52295d115278169b8ef2；11056文件/902267628原字节、原4及新增2JNI均精确。完整清单和回执见SOURCE_CHECKPOINT_EXPORT.json及导出目录source-files.json。归档不含Git库/Gradle/build/SDK/设备备份，不代表最终main/ARM验收。后续文档提交不在该确切701d31bb归档内。
+
+用户授权的默认largeHeap已经实现；普通384是独立回归配置，不能将模拟器512MiB大堆视为所有8/12/16GB手机的固定Java上限。下方均保留历史检查点范围，最新未知统一以UNKNOWN.md为准。
+
+---
+
 # 2026-10-07 当前交付检查点（完整目标仍进行中）
 
 更新检查点41/44：279普通384包d760da6e实际全16正常4699+冷81/128normal roster-detail current-year原图像素及10720identityjoin/0unknown通过，9/3797最终SHA恢复；Java峰350859048B/384MiB、Source11子阶段313990232B，native独立290377232B/PSS609917KiB/GPU未知。这个包尚未含后继PDR1/directCause。
