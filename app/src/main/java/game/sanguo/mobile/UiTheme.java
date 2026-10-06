@@ -27,9 +27,27 @@ final class UiTheme {
         v.setElevation(dp(v.getContext(),12));v.setClipToOutline(true);
     }
     static void text(TextView v){
+        readable(v);
         v.setIncludeFontPadding(false);v.setFontFeatureSettings("tnum");
         v.setTypeface(Typeface.create("sans-serif",Typeface.NORMAL));
         v.setLineSpacing(dp(v.getContext(),2),1f);
+    }
+    /** Shared by A and B pages; enabled semantic ink survives, disabled ink stays readable. */
+    static void readable(TextView v){
+        int enabled=FactionColors.readableText(v.getTextColors().getDefaultColor(),SURFACE);
+        v.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{MUTED,enabled}));
+        if(v.getText() instanceof Spanned){
+            android.text.SpannableString copy=new android.text.SpannableString(v.getText());
+            for(ForegroundColorSpan span:copy.getSpans(0,copy.length(),ForegroundColorSpan.class)){
+                int color=FactionColors.readableText(span.getForegroundColor(),SURFACE);
+                if(color!=span.getForegroundColor()){int start=copy.getSpanStart(span),end=copy.getSpanEnd(span),flags=copy.getSpanFlags(span);copy.removeSpan(span);copy.setSpan(new ForegroundColorSpan(color),start,end,flags);}
+            }
+            v.setText(copy);
+        }
+    }
+    static void readableTree(View root){
+        if(root instanceof TextView)readable((TextView)root);
+        if(root instanceof ViewGroup){ViewGroup group=(ViewGroup)root;for(int i=0;i<group.getChildCount();i++)readableTree(group.getChildAt(i));}
     }
     static void title(TextView v){
         CharSequence value=v.getText();int line=value.toString().indexOf('\n');
@@ -53,10 +71,19 @@ final class UiTheme {
     }
     static void dialog(AlertDialog d){
         if(d.getWindow()==null)return;
+        if(!d.isShowing()){
+            // trackDialog can precede show(). Do not replace a page's OnShowListener.
+            View decor=d.getWindow().getDecorView();
+            decor.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(){
+                public void onViewAttachedToWindow(View v){v.removeOnAttachStateChangeListener(this);v.post(()->{if(d.isShowing())dialog(d);});}
+                public void onViewDetachedFromWindow(View v){}
+            });
+        }
         d.getWindow().setBackgroundDrawable(surface(d.getContext(),0xff1c2d37,0xff111e28,20));
         d.getWindow().setDimAmount(.42f);
+        readableTree(d.getWindow().getDecorView());
         for(int which:new int[]{AlertDialog.BUTTON_POSITIVE,AlertDialog.BUTTON_NEGATIVE,AlertDialog.BUTTON_NEUTRAL}){
-            Button b=d.getButton(which);if(b!=null){b.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff526670,which==AlertDialog.BUTTON_POSITIVE?JADE:MUTED}));b.setAllCaps(false);}
+            Button b=d.getButton(which);if(b!=null){b.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{MUTED,which==AlertDialog.BUTTON_POSITIVE?JADE:MUTED}));b.setAllCaps(false);}
         }
     }
     static void search(EditText edit){

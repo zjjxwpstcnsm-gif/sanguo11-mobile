@@ -93,16 +93,16 @@ final class MapSceneSnapshot {
         boolean valid(Hex h){return h!=null&&valid(h.q,h.r);}
     }
     static final class Item {
-        final String key,label; final Hex hex; final int kind,color;
+        final String key,label; final Hex hex; final int kind,color,textColor;
         final FacilityState facility; final SiteVisual site; final UnitVisual unit;
         Item(String key,String label,Hex hex,int kind,int color,FacilityState facility){
-            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.facility=facility;this.site=null;this.unit=null;
+            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.textColor=FactionColors.textColor(color);this.facility=facility;this.site=null;this.unit=null;
         }
         Item(String key,String label,Hex hex,int kind,int color,SiteVisual site){
-            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.site=site;this.facility=null;this.unit=null;
+            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.textColor=FactionColors.textColor(color);this.site=site;this.facility=null;this.unit=null;
         }
         Item(World w,World.Unit u){
-            key="unit:"+u.id;hex=u.hex;kind=3;color=FactionColors.color(w,u.owner);
+            key="unit:"+u.id;hex=u.hex;kind=3;color=FactionColors.color(w,u.owner);textColor=FactionColors.textColor(color);
             facility=null;site=null;unit=new UnitVisual(w,u);label=unit.label();
         }
         // Transition meshes are shared by silhouette/color only; status does not create GPU variants.

@@ -1,0 +1,26 @@
+engineering-0 slots=7 active=7 zero=0 alpha=255 minContrast>=4.5
+engineering-1 slots=18 active=18 zero=0 alpha=255 minContrast>=4.5
+engineering-2 slots=19 active=19 zero=0 alpha=255 minContrast>=4.5
+engineering-3 slots=9 active=9 zero=0 alpha=255 minContrast>=4.5
+engineering-4 slots=12 active=12 zero=0 alpha=255 minContrast>=4.5
+engineering-5 slots=28 active=28 zero=0 alpha=255 minContrast>=4.5
+engineering-6 slots=3 active=3 zero=0 alpha=255 minContrast>=4.5
+engineering-7 slots=3 active=3 zero=0 alpha=255 minContrast>=4.5
+engineering-8 slots=3 active=3 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen000.s11 slots=47 active=8 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN001.S11 slots=47 active=19 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN002.S11 slots=47 active=19 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN003.S11 slots=47 active=10 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN004.S11 slots=47 active=12 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN005.S11 slots=47 active=7 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN006.S11 slots=47 active=5 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/SCEN007.S11 slots=47 active=37 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen008.s11 slots=47 active=14 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen009.s11 slots=47 active=10 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen010.s11 slots=47 active=5 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen011.s11 slots=47 active=22 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen012.s11 slots=47 active=15 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen013.s11 slots=47 active=22 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen014.S11 slots=47 active=37 zero=0 alpha=255 minContrast>=4.5
+Media/scenario/Scen015.s11 slots=47 active=2 zero=0 alpha=255 minContrast>=4.5
+PASS PALETTE checks=13273 sources=16 engineering=9; host evidence, Android pixels/install pending

@@ -1890,8 +1890,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 if(box.bottom<font*2||box.top>camera.height||box.right<0||box.left>camera.width)continue;
                 boolean overlap=false;for(android.graphics.RectF used:occupied)if(android.graphics.RectF.intersects(used,box)){overlap=true;break;}
                 if((overlap&&!selected)||!labelVisible(object)||box.right>camera.width-panelRight||box.bottom>camera.height-panelBottom||(!openingPreview&&navigatorShown&&android.graphics.RectF.intersects(box,miniRect)))continue;occupied.add(box);labelHits.put(item.key,box);if(openingPreview&&item.site!=null)namedFactions.add(siteOwners.getOrDefault(item.key,-1));
-                p.setColor(selected?0xe61b2f37:0xb3122027);c.drawRoundRect(box,pad,pad,p);
-                p.setColor(selected?0xffffd576:item.color);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
+                p.setColor(selected?0xff1b2f37:FactionColors.LABEL_BACKGROUND);c.drawRoundRect(box,pad,pad,p);
+                p.setColor(selected?0xffffd576:item.textColor);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
             }
             p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?"原版美术恢复中 · 部分演出暂缺 | ":"")+((pending>0)?"3D 地形装载中… · 请稍候":(draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转")),12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}

@@ -13,8 +13,9 @@ import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.function.Function;
 
-/** Stable unique faction colors, assigned independently of player selection. */
+/** Stable faction fills, assigned independently of player selection. Text has its own contrast policy. */
 final class FactionColors {
+    static final int LABEL_BACKGROUND = 0xff122027;
     private static final Map<World, int[]> CACHE = Collections.synchronizedMap(new WeakHashMap());
     private static final int[] PALETTE = {-14301736, -1209806, -1875528, -4273870, -7428102, -4433600, -10301535, -5407677, -3167025, -6898586, -12288362, -2384214, -7568063, -10378528, -1062789, -8169112, -5322067, -3458967, -5552147, -2376415, -9669442, -7614791, -7047274, -2395057, -12423456, -11290505, -4143129, -7166152, -1599012, -10191256, -1530528, -9855839, -2134895};
 
@@ -61,19 +62,26 @@ final class FactionColors {
     }
 
     public static int[] build(final World w) {
-        int[] result = new int[w.factions.length];
+        Objects.requireNonNull(w);
+        String[] names = new String[w.factions.length];
+        for (int i = 0; i < names.length; i++) names[i] = w.faction(i);
+        return build(names);
+    }
+
+    static int[] build(String[] names) {
+        int[] result = new int[names.length];
         Set<Integer> used = new HashSet<>();
         used.add(-5855578);
         List<Integer> order = new ArrayList<>();
         for (int i = 0; i < result.length; i++) {
             order.add(Integer.valueOf(i));
         }
-        Objects.requireNonNull(w);
-        order.sort(Comparator.comparing(w::faction));
+        order.sort(Comparator.comparing(i -> names[i]));
+        int generated = 0;
         Iterator<Integer> it = order.iterator();
         while (it.hasNext()) {
             int id = it.next().intValue();
-            int color = canonical(w.faction(id));
+            int color = canonical(names[id]);
             if (color != 0 && used.add(Integer.valueOf(color))) {
                 result[id] = color;
             }
@@ -98,10 +106,52 @@ final class FactionColors {
                         }
                     }
                 }
+                // The installed sources contain 47 slots, including inactive ones.
+                // Keep the original palette choices, then extend deterministically.
+                // An odd permutation visits every RGB value before repeating; only
+                // the finite RGB space can exhaust uniqueness, never opacity.
+                if (best == 0) {
+                    do {
+                        best = 0xff000000 | ((generated++ * 0x9e3779 + 0x5a83c7) & 0xffffff);
+                    } while (used.size() < 0x1000000 && used.contains(best));
+                }
                 result[id2] = best;
                 used.add(Integer.valueOf(best));
             }
         }
         return result;
+    }
+
+    /** Preserve hue where possible, lifting only label ink to 4.5:1 on its opaque plaque. */
+    static int textColor(int fill) { return readableText(fill, LABEL_BACKGROUND); }
+
+    static int readableText(int color, int background) {
+        color |= 0xff000000;
+        if (contrast(color, background) >= 4.5) return color;
+        int r = (color >>> 16) & 255, g = (color >>> 8) & 255, b = color & 255;
+        int low = 0, high = 255;
+        while (low < high) {
+            int step = (low+high)/2;
+            int lifted = lift(r,g,b,step);
+            if (contrast(lifted, background) >= 4.5) high = step;
+            else low = step+1;
+        }
+        return lift(r,g,b,high);
+    }
+    private static int lift(int r,int g,int b,int step) {
+        return 0xff000000 | ((r + (255-r)*step/255) << 16)
+            | ((g + (255-g)*step/255) << 8) | (b + (255-b)*step/255);
+    }
+
+    static double contrast(int a, int b) {
+        double x = luminance(a), y = luminance(b);
+        return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);
+    }
+    private static double luminance(int color) {
+        return .2126*linear((color>>>16)&255)+.7152*linear((color>>>8)&255)+.0722*linear(color&255);
+    }
+    private static double linear(int channel) {
+        double c = channel/255.0;
+        return c <= .04045 ? c/12.92 : Math.pow((c+.055)/1.055,2.4);
     }
 }

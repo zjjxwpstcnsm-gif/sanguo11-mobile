@@ -1,0 +1,48 @@
+{
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "branch": "codex/map-ui-media-repair",
+  "source": "/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile",
+  "destination": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "fileCount": 10714,
+  "bytes": 794435386,
+  "verifiedShaCount": 10714,
+  "pinnedInputs": 168,
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "copiedPaths": [
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so"
+  ],
+  "copyMode": "APFS clone independent inode copy-on-write; no hardlinks",
+  "freeBefore": 367984640,
+  "freeAfter": 365473792,
+  "gradleUserHome": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gradle-home",
+  "build": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/build",
+  "out": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a",
+  "sourceStatusUnchanged": true,
+  "originalDirtyEntries": 1305,
+  "fullBuildSpaceSufficient": false
+}

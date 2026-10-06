@@ -1,0 +1,786 @@
+{
+  "scope": "all APP_OWNERSHIP production Java static inventory; static inventory is not readability acceptance",
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/AbilityUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ArmyUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BattleReportUi.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 30,
+          "text": "search=new EditText(a);search.setSingleLine(true);search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setTextSize(13);search.setHint(\"搜索武将 / 据点 / 结果\");search.setTag(\"reports.search\");search.setContentDescription(\"战报搜索\");search.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_DONE);search.setInputType(android.text.InputType.TYPE_CLASS_TEXT);second.addView(search,new LinearLayout.LayoutParams(0,a.dp(48),1));"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildPicker.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 25,
+          "text": "EditText query=new EditText(a);query.setSingleLine();query.setHint(officers?\"搜索执行武将\":\"搜索设施\");query.setContentDescription(\"建设搜索\");query.setText(draft.getString(officers?\"officerQuery\":\"facilityQuery\",\"\"));UiTheme.search(query);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 87,
+          "text": "input=new EditText(a);input.setInputType(InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);input.setTextColor(UiTheme.TEXT);input.setContentDescription(\"交易粮食数量\");input.setTag(\"trade.amount\");input.setSelectAllOnFocus(true);input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});"
+        },
+        {
+          "line": 116,
+          "text": "if(!preview.allowed())s.append(\"\\n\\n不能执行：\").append(MainActivity.commandError(preview.error,preview.detail));quote.setText(s);error.setTextColor(preview.allowed()?UiTheme.JADE:0xfff2aa9e);error.setText(preview.allowed()?\"条件已核对，确认后成交\":MainActivity.commandError(preview.error,preview.detail));dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(preview.allowed());"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CargoWizard.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 30,
+          "text": "LinearLayout tabRow=new LinearLayout(a);String[] titles={\"运输编队\",\"钱粮兵力\",\"兵装\",\"舰船\"};tabs=new Button[titles.length];pages=new LinearLayout[titles.length];"
+        },
+        {
+          "line": 34,
+          "text": "roles=new Button[3];"
+        },
+        {
+          "line": 36,
+          "text": "returning=new CheckBox(a);returning.setText(\"卸货后武将返回出发城\");returning.setTextColor(UiTheme.TEXT);returning.setMinHeight(a.dp(48));returning.setChecked(draft.getBoolean(\"returning\"));pages[0].addView(returning);"
+        },
+        {
+          "line": 74,
+          "text": "error.setTextColor(UiTheme.MUTED);error.setText(numeric?\"正在核对运输条件…\":\"请在钱粮或兵装页填写完整数量。\");error.setVisibility(View.VISIBLE);dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);remember();"
+        },
+        {
+          "line": 93,
+          "text": "error.setTextColor(hint.isEmpty()?UiTheme.JADE:0xfff2aa9e);error.setText(hint.isEmpty()?\"条件已核对 · 行动力 \"+inspected.resources.actionPointsCost:hint);error.setVisibility(View.VISIBLE);dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(inspected.allowed()&&valid);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 22,
+          "text": "button.setTextColor(available?UiTheme.TEXT:UiTheme.MUTED);button.setTag(\"choice.\"+item.toString());button.setContentDescription(caption.replace('\\n',' ')+(available?\"，点选\":\"，不可选\"));"
+        },
+        {
+          "line": 48,
+          "text": "LinearLayout search=new LinearLayout(a);EditText query=new EditText(a);query.setHint(\"搜索名称 / 所在地\");query.setContentDescription(\"选项搜索\");query.setSingleLine();UiTheme.search(query);search.addView(query,new LinearLayout.LayoutParams(0,UiTheme.dp(a,48),1));"
+        },
+        {
+          "line": 52,
+          "text": "TextView empty=new TextView(a);UiTheme.text(empty);empty.setTextColor(UiTheme.MUTED);empty.setTextSize(14);empty.setGravity(Gravity.CENTER);empty.setText(options.isEmpty()?\"当前没有可选对象\":\"没有匹配的选项\\n清空搜索后可查看全部选项\");body.addView(empty,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(empty);host.addView(body,new LinearLayout.LayoutParams(-1,UiTheme.dp(a,240)));"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CommandStats.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 16,
+          "text": "TextView number=new TextView(context);UiTheme.text(number);number.setGravity(Gravity.CENTER);number.setTypeface(null,Typeface.BOLD);number.setTextColor(i==0?UiTheme.BRASS:UiTheme.TEXT);"
+        },
+        {
+          "line": 20,
+          "text": "TextView label=new TextView(context);UiTheme.text(label);label.setText(labels[i]);label.setTextColor(UiTheme.MUTED);label.setTextSize(10);label.setGravity(Gravity.CENTER);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CompactButtons.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 18,
+          "text": "Button b=new Button(context);b.setSoundEffectsEnabled(false);"
+        },
+        {
+          "line": 28,
+          "text": "b.setTextColor(new ColorStateList(states,new int[]{0xff81909f,0xffd9fff0,0xffeef6ff,0xffe5edf5}));"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 29,
+          "text": "EditText search=new EditText(a);search.setSingleLine();search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint(\"搜索名称或稳定 ID\");search.setContentDescription(\"搜索资料\");search.setText(state.contentQuery);host.addView(search,new LinearLayout.LayoutParams(-1,a.dp(40)));"
+        },
+        {
+          "line": 85,
+          "text": "protected void onDraw(Canvas c){c.drawColor(0xff162b30);c.save();c.translate(dx,dy);c.scale(zoom,zoom);float u=unit();for(ContentCatalog.Entry e:catalog.rows(\"sites\"))if(e.fields.get(2).equals(\"city\")){float x=(Integer.parseInt(e.fields.get(3))+5)*u,y=(Integer.parseInt(e.fields.get(4))+5)*u;p.setColor(a.gold);c.drawCircle(x,y,3/zoom,p);p.setTextSize(12*a.getResources().getDisplayMetrics().density/zoom);p.setColor(a.paper);c.drawText(e.name,x+4/zoom,y,p);}c.restore();}"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 40,
+          "text": "private void label(LinearLayout panel,String text,int size,int color){TextView v=new TextView(a);v.setText(text);v.setTextSize(size);v.setTextColor(color);v.setPadding(0,dp(3),0,dp(5));panel.addView(v);}"
+        },
+        {
+          "line": 42,
+          "text": "Button b=CompactButtons.create(a);b.setText(text);b.setTextColor(paper);b.setTextSize(13);b.setAllCaps(false);b.setMinHeight(dp(48));b.setEnabled(enabled);b.setOnClickListener(v->action.run());panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CriticalScene.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 39,
+          "text": "canvas.drawText(\"战 法 暴 击\",tx,top+band*.30f,paint);"
+        },
+        {
+          "line": 41,
+          "text": "canvas.drawText(hit.name,tx,top+band*.54f,paint);"
+        },
+        {
+          "line": 43,
+          "text": "canvas.drawText(hit.tactic,tx,top+band*.70f,paint);"
+        },
+        {
+          "line": 46,
+          "text": "canvas.drawText(\"高光瞬间 · 点击可跳过\",width/2f,Math.min(height-12*d,top+band+30*d),paint);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerActivity.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 29,
+          "text": "private TextView label(String value){TextView t=new TextView(this);t.setText(value);t.setTextColor(UiTheme.TEXT);t.setTextSize(14);t.setPadding(0,dp(6),0,dp(6));return t;}"
+        },
+        {
+          "line": 39,
+          "text": "EditText search=new EditText(this);search.setHint(\"搜索姓名 / 特技 / 稳定ID\");search.setTextColor(UiTheme.TEXT);search.setHintTextColor(UiTheme.MUTED);search.setSingleLine(true);search.setText(query);root.addView(search);search.addTextChangedListener(watch(()->{query=search.getText().toString();refreshRows();}));"
+        },
+        {
+          "line": 87,
+          "text": "for(int i=0;i<5;i++){final int bit=1<<i;CheckBox check=new CheckBox(this);check.setTextColor(UiTheme.TEXT);check.setText(\"话术 · \"+Debate.Talk.values()[i].label);check.setChecked((editing.optInt(\"talkMask\")&bit)!=0);check.setOnCheckedChangeListener((b,on)->put(\"talkMask\",on?editing.optInt(\"talkMask\")|bit:editing.optInt(\"talkMask\")&~bit));content.addView(check);}"
+        },
+        {
+          "line": 92,
+          "text": "if(editing.optInt(\"targetId\",-1)>=0){CheckBox replace=new CheckBox(this);replace.setTextColor(UiTheme.TEXT);replace.setText(\"显式覆盖该历史人物原有直接关系\");replace.setChecked(editing.optBoolean(\"replaceRelations\",false));replace.setOnCheckedChangeListener((v,on)->{if(on)new AlertDialog.Builder(this).setTitle(\"载入历史关系以编辑？\").setMessage(\"此操作会用编辑后的关系列表替换启用新局中的原关系，并通过原引擎更新对称关系。不改动历史资料或旧战局。缺失剧本人物将阻止投放，须明确处理。\").setPositiveButton(\"载入并覆盖\",(dlg,n)->{try{JSONArray baseline=new JSONArray();for(ContentCatalog.Relation r:ContentCatalog.get().relations())if(r.officer==editing.getInt(\"targetId\"))baseline.put(new JSONObject().put(\"kind\",r.kind.name()).put(\"target\",\"h:\"+r.target));editing.put(\"relationships\",baseline);put(\"replaceRelations\",true);renderEditor();}catch(Exception e){error(e);}}).setNegativeButton(\"取消\",(dlg,n)->renderEditor()).show();else{put(\"replaceRelations\",false);renderEditor();}});content.addView(replace);}"
+        },
+        {
+          "line": 102,
+          "text": "private EditText field(String key,String title,String value,boolean number){content.addView(label(title));EditText e=new EditText(this);e.setTextColor(UiTheme.TEXT);e.setSingleLine(true);e.setContentDescription(title);e.setTag(\"officer.\"+key);if(number)e.setInputType(InputType.TYPE_CLASS_NUMBER);e.setText(raw.optString(key,value));inputs.put(key,e);content.addView(e);e.addTextChangedListener(watch(()->{try{raw.put(key,e.getText().toString());persistDraft();}catch(JSONException x){error(x);}}));return e;}"
+        },
+        {
+          "line": 138,
+          "text": "LinearLayout box=new LinearLayout(a);box.setOrientation(LinearLayout.VERTICAL);EditText query=new EditText(a);query.setSingleLine(true);query.setHint(\"输入姓名、ID、特技或关键词\");query.setContentDescription(\"搜索列表\");box.addView(query);ListView list=new ListView(a);box.addView(list,new LinearLayout.LayoutParams(-1,Math.max(220,a.getResources().getDisplayMetrics().heightPixels/2)));List<T> filtered=new ArrayList<>(values);List<String> labels=new ArrayList<>();for(T value:values)labels.add(label.apply(value));"
+        },
+        {
+          "line": 143,
+          "text": "LinearLayout row=new LinearLayout(a);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(12,8,12,8);ImageView image=new ImageView(a);image.setImageDrawable(portrait);row.addView(image,new LinearLayout.LayoutParams(UiTheme.dp(a,44),UiTheme.dp(a,48)));TextView text=new TextView(a);text.setText(getItem(position));text.setTextSize(15);text.setPadding(12,0,4,0);row.addView(text,new LinearLayout.LayoutParams(0,-2,1));return row;"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerImages.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 47,
+          "text": "TextView note=new TextView(a);note.setText(\"方形适配：缩放、水平与垂直裁剪。可旋转纠正照片方向。\");box.addView(note);box.addView(zoom);box.addView(x);box.addView(y);int[] rotation={0};"
+        },
+        {
+          "line": 49,
+          "text": "SeekBar.OnSeekBarChangeListener listener=new SeekBar.OnSeekBarChangeListener(){public void onProgressChanged(SeekBar bar,int n,boolean user){render.run();}public void onStartTrackingTouch(SeekBar b){}public void onStopTrackingTouch(SeekBar b){}};zoom.setOnSeekBarChangeListener(listener);x.setOnSeekBarChangeListener(listener);y.setOnSeekBarChangeListener(listener);Button rotate=new Button(a);rotate.setText(\"旋转90°\");rotate.setOnClickListener(v->{rotation[0]=(rotation[0]+90)%360;render.run();});box.addView(rotate);render.run();"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerPlacementUi.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 16,
+          "text": "private Button button(String label,Runnable run){Button b=new Button(a);b.setText(label);b.setAllCaps(false);b.setOnClickListener(v->{try{run.run();}catch(Exception e){fail(e);}});return b;}"
+        },
+        {
+          "line": 20,
+          "text": "status=new TextView(a);status.setText(resolved.scenarioName+\" · \"+resolved.date()+\"\\n据点来自当前实际地图；启用前必须通过投放预览。\");box.addView(status);"
+        },
+        {
+          "line": 35,
+          "text": "LinearLayout box=new LinearLayout(a);box.setOrientation(LinearLayout.VERTICAL);TextView note=new TextView(a);note.setText(d.getString(\"name\")+\" · 生 \"+d.optInt(\"birth\")+\" / 登场 \"+d.optInt(\"appearance\")+\" / 没 \"+d.optInt(\"death\")+\"\\n历史覆盖保留君主、军师、太守与原归属，不重新任命。\");box.addView(note);"
+        },
+        {
+          "line": 44,
+          "text": "TextView loyaltyLabel=new TextView(a);loyaltyLabel.setText(\"初始忠诚（0—100；在野/未登场强制0）\");box.addView(loyaltyLabel);EditText loyalty=new EditText(a);loyalty.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);loyalty.setText(Integer.toString(previous==null?85:previous.optInt(\"loyalty\",85)));box.addView(loyalty);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DataTable.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 37,
+          "text": "search=new EditText(a);search.setSingleLine();search.setHint(\"搜索姓名、势力、所在地、特技\");search.setContentDescription(\"表格搜索\");UiTheme.search(search);"
+        },
+        {
+          "line": 44,
+          "text": "count=new TextView(a);UiTheme.text(count);count.setTextColor(UiTheme.MUTED);count.setTextSize(11);count.setPadding(dp(6),dp(4),dp(6),dp(4));count.setAccessibilityLiveRegion(ACCESSIBILITY_LIVE_REGION_POLITE);addView(count);if(compact)count.setVisibility(GONE);"
+        },
+        {
+          "line": 48,
+          "text": "TextView emptyText=new TextView(a);UiTheme.text(emptyText);emptyText.setText(\"没有符合条件的对象\\n请清空关键词，或调整上方筛选条件\");emptyText.setTextSize(14);emptyText.setTextColor(UiTheme.MUTED);emptyText.setGravity(Gravity.CENTER);empty.addView(emptyText);"
+        },
+        {
+          "line": 74,
+          "text": "text.setText(col.text.apply(item));text.setTextColor(index==sort?UiTheme.JADE:UiTheme.TEXT);"
+        },
+        {
+          "line": 128,
+          "text": "for(int j=0;j<visible.length;j++){final int index=visible[j];TextView text=cell(j);text.setTypeface(null,android.graphics.Typeface.BOLD);text.setTextColor(UiTheme.JADE);"
+        },
+        {
+          "line": 132,
+          "text": "private TextView cell(int position){Column<T> c=columns.get(visible[position]);TextView v=new TextView(a);UiTheme.text(v);v.setTextColor(UiTheme.TEXT);v.setTextSize(c.numeric?12:13);v.setGravity(c.numeric?Gravity.CENTER:Gravity.CENTER_VERTICAL);v.setSingleLine();v.setEllipsize(TextUtils.TruncateAt.END);v.setPadding(dp(c.numeric?2:6),0,dp(c.numeric?2:6),0);v.setLayoutParams(new LayoutParams(widths[position],-1));return v;}"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DeployWizard.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 16,
+          "text": "private final View[] pages=new View[3];private final Button[] tabs=new Button[3];"
+        },
+        {
+          "line": 84,
+          "text": "LinearLayout tools=new LinearLayout(a);search=new EditText(a);UiTheme.search(search);search.setSingleLine(true);search.setHint(\"搜索姓名 / 特技\");search.setTag(\"deploy.officer.search\");tools.addView(search,new LinearLayout.LayoutParams(0,a.dp(48),1));"
+        },
+        {
+          "line": 100,
+          "text": "private void tab(int index){draft.putInt(\"tab\",index);for(int i=0;i<3;i++){pages[i].setVisibility(i==index?View.VISIBLE:View.GONE);tabs[i].setTextColor(i==index?a.gold:a.muted);tabs[i].setSelected(i==index);tabs[i].setBackground(UiTheme.surface(a,i==index?0xff38584f:0xff23323b,i==index?0xff183b32:0xff15212a,8));}save();if(root!=null)fitForm(root);}"
+        },
+        {
+          "line": 119,
+          "text": "summary.setText(\"正在核对出征条件…\");summary.setTextColor(a.muted);if(dialog!=null&&dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);"
+        },
+        {
+          "line": 141,
+          "text": "String error=error();summary.setTextColor(error==null?a.gold:0xfff2aa9e);summary.setText(error==null?\"留守：兵 \"+preview.remaining.troops+\" · 粮 \"+preview.remaining.food+\" · 金 \"+preview.remaining.gold+\"\\n\"+weapon().label+\" · \"+(1+deputies().length)+\"将 · 行动力\"+preview.actionPointsCost+\" · 可直接确认出征\":error);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DiplomacyUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DomesticUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/EditorUi.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 44,
+          "text": "EditText field(String label,String value,boolean number){TextView t=new TextView(a);t.setText(label);box.addView(t);EditText e=new EditText(a);e.setSingleLine(true);e.setText(value);e.setContentDescription(label);if(number)e.setInputType(InputType.TYPE_CLASS_NUMBER);box.addView(e);return e;}"
+        },
+        {
+          "line": 46,
+          "text": "<T> Spinner pick(String label,List<T> options,Function<T,String> name,T selected){TextView t=new TextView(a);t.setText(label);box.addView(t);String[] labels=new String[options.size()];for(int i=0;i<labels.length;i++)labels[i]=name.apply(options.get(i));Spinner s=new Spinner(a);s.setContentDescription(label);s.setAdapter(new ArrayAdapter<>(a,android.R.layout.simple_spinner_dropdown_item,labels));s.setSelection(Math.max(0,options.indexOf(selected)));box.addView(s);return s;}"
+        },
+        {
+          "line": 52,
+          "text": "final Form f=new Form();final EditText name;final EditText[] stats=new EditText[5],apt=new EditText[6];"
+        },
+        {
+          "line": 72,
+          "text": "EditText[] gear=new EditText[9],ships=new EditText[2];for(int i=0;i<9;i++)gear[i]=f.number(World.Weapon.values()[i].label+\"库存\",c.equipment[i]);for(int i=0;i<2;i++)ships[i]=f.number(Army.Ship.values()[i+1].label+\"库存\",c.ships[i]);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/EstatesUi.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FactionColors.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 1680,
+          "text": "p.setStyle(Paint.Style.FILL);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);p.setColor(0xfff0e5c8);c.drawText(\"北 ↑ · 点按/拖动定位\",miniRect.left,miniRect.bottom+13*getResources().getDisplayMetrics().density,p);"
+        },
+        {
+          "line": 1784,
+          "text": "c.drawText(\"−\"+(strike.beforeTroops-strike.afterTroops)+\"兵\",camera.screenX(snapshot.ground.grid.x(strike.target),snapshot.ground.grid.z(strike.target),rootY),camera.screenY(snapshot.ground.grid.x(strike.target),snapshot.ground.grid.z(strike.target),rootY)-(phase-CombatVisual.FEEDBACK)*50*d,p);"
+        },
+        {
+          "line": 1798,
+          "text": "p.setColor(hit.loss?0xffffbb90:0xffa5eed0);c.drawText(text,x,y-line*17*d,p);"
+        },
+        {
+          "line": 1806,
+          "text": "p.setColor(0xffffdf9e);p.setTextSize(18*d);c.drawText(criticalHit.name+\" · 暴击\",left+height+8*d,top+30*d,p);"
+        },
+        {
+          "line": 1807,
+          "text": "p.setTextSize(13*d);c.drawText(criticalHit.tactic,left+height+8*d,top+54*d,p);"
+        },
+        {
+          "line": 1808,
+          "text": "p.setTextSize(11*d);c.drawText(\"点击跳过\",left+height+8*d,top+77*d,p);"
+        },
+        {
+          "line": 1836,
+          "text": "if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);float rootY=snapshot.ground.surface.at(h);c.drawText(snapshot.ground.source(h).toString(),camera.screenX(grid.x(h),grid.z(h),rootY),camera.screenY(grid.x(h),grid.z(h),rootY),p);}"
+        },
+        {
+          "line": 1894,
+          "text": "p.setColor(selected?0xffffd576:FactionColors.textColor(item.color));c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);"
+        },
+        {
+          "line": 1896,
+          "text": "p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?\"原版美术恢复中 · 部分演出暂缺 | \":\"\")+((pending>0)?\"3D 地形装载中… · 请稍候\":(draggingUnit?(dragPlan==null?\"移出范围 · 松手取消\":\"松手移动 · 消耗\"+dragPlan.cost):editorGrid?\"编辑网格临时显示 · 不修改游戏网格设置\":\"长按己方选中部队拖动 · 双指缩放/旋转\")),12,24*getResources().getDisplayMetrics().density,p);"
+        },
+        {
+          "line": 1897,
+          "text": "if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split(\"\\n\")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GameIcon.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/InlineChoices.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 23,
+          "text": "if(!button.isEnabled()){button.setTextColor(0xff888888);button.setAlpha(.55f);}"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LifecycleUi.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 18,
+          "text": "private void text(LinearLayout p,String value){TextView t=new TextView(a);t.setText(value);t.setTextSize(16);t.setTextColor(0xffebe3cd);t.setPadding(0,8,0,8);p.addView(t);}"
+        },
+        {
+          "line": 30,
+          "text": "EditText query=new EditText(a);query.setSingleLine(true);query.setHint(\"武将姓名\");query.setContentDescription(\"生卒武将姓名\");"
+        },
+        {
+          "line": 39,
+          "text": "private EditText year(LinearLayout p,String title,int value){TextView t=new TextView(a);t.setText(title+\"（0为未知）\");p.addView(t);EditText e=new EditText(a);e.setSingleLine(true);e.setInputType(2);e.setContentDescription(title);e.setText(Integer.toString(value));p.addView(e);return e;}"
+        },
+        {
+          "line": 43,
+          "text": "TextView hint=new TextView(a);hint.setText(\"修改生卒属于局面编辑，将标记此局为已编辑。登场据点：\"+w.city(home).name+\"。未登场人物必须由剧本配置。\");p.addView(hint);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 206,
+          "text": "for(Button control:new Button[]{reportsButton,territoryToggle,gridToggle,tools})control.setLayoutParams(narrow?new LinearLayout.LayoutParams(0,dp(48),1):new LinearLayout.LayoutParams(dp(48),dp(52)));"
+        },
+        {
+          "line": 331,
+          "text": "navigationDialog.show();UiTheme.dialog(navigationDialog);"
+        },
+        {
+          "line": 335,
+          "text": "CheckBox mute=new CheckBox(this);mute.setText(\"静音\");mute.setTextColor(paper);mute.setChecked(sounds.muted());mute.setOnCheckedChangeListener((v,checked)->sounds.muted(checked));panel.addView(mute);"
+        },
+        {
+          "line": 339,
+          "text": "panel.addView(button(\"试听音效\",v->sounds.ui()));AlertDialog dialog=new AlertDialog.Builder(this).setTitle(\"音效与音量\").setView(panel).setPositiveButton(\"完成\",null).create();trackDialog(dialog);dialog.show();UiTheme.dialog(dialog);"
+        },
+        {
+          "line": 382,
+          "text": "gridToggle.setSelected(shown);gridToggle.setTextColor(shown?gold:muted);"
+        },
+        {
+          "line": 435,
+          "text": "void trackDialog(AlertDialog dialog){confirmationDialog=dialog;dialog.setOnCancelListener(cancelled->{if(sounds!=null)sounds.cancelledDialog();});UiTheme.dialog(dialog);fitConfirmation();}"
+        },
+        {
+          "line": 443,
+          "text": "TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);UiTheme.text(t);return t;}"
+        },
+        {
+          "line": 741,
+          "text": "for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}"
+        },
+        {
+          "line": 828,
+          "text": "for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));"
+        },
+        {
+          "line": 840,
+          "text": "Button execute=button(\"确认任务\",v->apply(()->world.marches.execute(plan)));execute.setTextColor(gold);execute.setEnabled(plan.valid()&&!aiRunning);"
+        },
+        {
+          "line": 872,
+          "text": "AlertDialog dialog=new AlertDialog.Builder(this).setTitle(\"地块信息\").setMessage(body.toString()).setPositiveButton(\"返回部队 / 地图\",null).create();trackDialog(dialog);dialog.show();UiTheme.dialog(dialog);"
+        },
+        {
+          "line": 1081,
+          "text": "EditText[] fields=new EditText[3];String[] names={\"兵\",\"粮\",\"金\"};for(int i=0;i<3;i++){fields[i]=new EditText(this);fields[i].setInputType(android.text.InputType.TYPE_CLASS_NUMBER);fields[i].setHint(names[i]+\"数量（0为不移交）\");fields[i].setContentDescription(\"运输补给\"+names[i]);form.addView(fields[i]);}"
+        },
+        {
+          "line": 1328,
+          "text": "TextView row=(TextView)super.getView(position,reuse,parent);UiTheme.text(row);row.setTextSize(14);row.setMinHeight(dp(64));row.setPadding(dp(20),dp(12),dp(20),dp(12));row.setTextColor(isEnabled(position)?paper:muted);return row;"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapEditorActivity.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 40,
+          "text": "private TextView text(String value,int size){TextView v=new TextView(this);v.setText(value);v.setTextSize(size);v.setTextColor(0xffe8e0c7);v.setPadding(dp(8),dp(4),dp(8),dp(4));return v;}"
+        },
+        {
+          "line": 93,
+          "text": "private void initialForm(MapPatch.Site s){MapPatch p=session.patch();World.City c=session.world().city(s.id());MapPatch.Initial existing=p.initial(p.preview,s.id());MapPatch.Initial state=existing!=null?existing:c==null?MapPatch.Initial.neutral(s.kind()):MapPatch.Initial.of(c);LinearLayout form=form();CheckBox enabled=new CheckBox(this);enabled.setText(\"在当前预览剧本启用\");enabled.setTextColor(0xffe8e0c7);enabled.setChecked(state.enabled());form.addView(enabled);String[] sides=new String[session.world().factions.length+1];sides[0]=\"中立\";for(int i=1;i<sides.length;i++)sides[i]=session.world().faction(i-1);Spinner owner=spinner(form,\"初始势力（不是地理属性）\",sides,state.owner()+1);"
+        },
+        {
+          "line": 121,
+          "text": "private EditText input(LinearLayout form,String label,String value,boolean numeric){form.addView(text(label,12));EditText input=new EditText(this);input.setSingleLine(true);input.setTextColor(0xffe8e0c7);input.setHint(label);input.setContentDescription(label);input.setInputType(numeric?InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED:InputType.TYPE_CLASS_TEXT);input.setText(value);form.addView(input);return input;}"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 323,
+          "text": "android.widget.TextView label=new android.widget.TextView(context);UiTheme.text(label);label.setText(\"正在准备 3D 地图…\");label.setTextColor(UiTheme.TEXT);label.setTextSize(15);status.addView(label);"
+        },
+        {
+          "line": 329,
+          "text": "android.widget.TextView label=new android.widget.TextView(context);UiTheme.text(label);label.setText(reason);label.setTextColor(UiTheme.TEXT);label.setPadding(24,24,24,24);status.addView(label);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapProjectionQuery.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaVolumeControls.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 13,
+          "text": "Button resume=new Button(context);resume.setText(\"继续播放音乐\");resume.setContentDescription(\"恢复当前音乐播放\");resume.setOnClickListener(v->sounds.resumeEstablishedMusic());panel.addView(resume);"
+        },
+        {
+          "line": 16,
+          "text": "TextView label=new TextView(context);label.setTextColor(UiTheme.TEXT);label.setTextSize(15);label.setText(title+\" \"+current+\"%\");UiTheme.text(label);panel.addView(label);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficePicker.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 20,
+          "text": "TextView summary=new TextView(a);summary.setText(w.governance.titleProgress(city.owner)+\"\\n\"+target.name+\" · 功绩\"+w.government.merit(target.id)+\"\\n\"+w.government.commandDescription(target.id));summary.setTextSize(13);host.addView(summary);"
+        },
+        {
+          "line": 26,
+          "text": "EditText query=new EditText(a);query.setSingleLine();query.setHint(\"搜索官职 / 所需爵位 / 功绩\");host.addView(query);"
+        },
+        {
+          "line": 40,
+          "text": "TextView empty=new TextView(a);empty.setText(\"没有符合条件的官职；切换“全部”查看爵位、功绩或占用原因。\");empty.setTextSize(13);host.addView(empty);list.setEmptyView(empty);"
+        },
+        {
+          "line": 59,
+          "text": "refresh.run();dialog.show();UiTheme.dialog(dialog);if(a instanceof MainActivity)((MainActivity)a).trackDialog(dialog);"
+        },
+        {
+          "line": 72,
+          "text": "AlertDialog dialog=new AlertDialog.Builder(a).setTitle(\"君主爵位与官职\").setMessage(text.toString()).setPositiveButton(\"返回\",null).show();UiTheme.dialog(dialog);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OverviewUi.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 54,
+          "text": "LinearLayout copy=(LinearLayout)row.getChildAt(1);((TextView)copy.getChildAt(0)).setText(title.apply(getItem(p)));((TextView)copy.getChildAt(0)).setTextColor(a.gold);"
+        },
+        {
+          "line": 75,
+          "text": "EditText input=new EditText(a);input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);input.setSingleLine();UiTheme.search(input);input.setHint(\"1–\"+adapter.pages());input.setContentDescription(\"跳转页码\");"
+        },
+        {
+          "line": 99,
+          "text": "EditText field=new EditText(a);field.setSingleLine();UiTheme.search(field);field.setTextColor(a.paper);field.setHintTextColor(a.muted);field.setHint(hint);field.setContentDescription(hint);field.setText(value);host.addView(field,new LinearLayout.LayoutParams(-1,a.dp(48)));"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/QuantityControl.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 36,
+          "text": "input=new EditText(a);input.setInputType(InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);"
+        },
+        {
+          "line": 37,
+          "text": "input.setTextColor(a.paper);input.setContentDescription(label+\"数量\");input.setSelectAllOnFocus(true);input.setOnFocusChangeListener((v,focused)->{if(focused)post(this::revealInput);});"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/RealmUi.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 105,
+          "text": "String[] labels={\"概况\",\"收支\",\"技巧树\",\"能力研究\"};Button[] buttons=new Button[labels.length];"
+        },
+        {
+          "line": 112,
+          "text": "AlertDialog dialog=builder.create();dialog.show();UiTheme.dialog(dialog);if(dialog.getWindow()!=null)dialog.getWindow().setLayout(Math.min(a.getResources().getDisplayMetrics().widthPixels-a.dp(16),a.dp(680)),Math.round(a.getResources().getDisplayMetrics().heightPixels*.88f));show.accept(0);return dialog;"
+        },
+        {
+          "line": 132,
+          "text": "EditText field=new EditText(a);field.setSingleLine(true);field.setText(w.governance.nation(side));field.setHint(\"输入1至8字国号\");field.setContentDescription(\"皇帝国号\");"
+        },
+        {
+          "line": 133,
+          "text": "AlertDialog dialog=new AlertDialog.Builder(a).setTitle(\"皇帝 · 设定国号\").setMessage(\"仅修改展示国号，保留势力身份、城池与外交关系。\").setView(field).setPositiveButton(\"确定\",null).setNegativeButton(\"取消\",null).create();dialog.show();UiTheme.dialog(dialog);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "owner": "B",
+      "staticHits": [
+        {
+          "line": 104,
+          "text": "android.widget.TextView count=new android.widget.TextView(activity);UiTheme.text(count);count.setTextColor(UiTheme.JADE);count.setPadding(16,12,16,12);host.addView(count);"
+        },
+        {
+          "line": 112,
+          "text": "dialog.show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);update.run();UiTheme.dialog(dialog);"
+        },
+        {
+          "line": 132,
+          "text": "android.widget.TextView advice=new android.widget.TextView(activity);UiTheme.text(advice);advice.setTextSize(14);advice.setPadding(16,12,16,12);advice.setTag(\"recruit.advice\");"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TechniquePointsHud.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiReadTask.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 31,
+          "text": "TextView text=new TextView(activity);UiTheme.text(text);text.setText(label);text.setTextColor(UiTheme.TEXT);text.setTextSize(16);text.setPadding(pad,0,0,0);"
+        },
+        {
+          "line": 34,
+          "text": "dialog.setOnCancelListener(d->cancel(request));pending=dialog;dialog.show();UiTheme.dialog(dialog);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiTheme.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 38,
+          "text": "v.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{MUTED,enabled}));"
+        },
+        {
+          "line": 41,
+          "text": "for(ForegroundColorSpan span:copy.getSpans(0,copy.length(),ForegroundColorSpan.class)){"
+        },
+        {
+          "line": 43,
+          "text": "if(color!=span.getForegroundColor()){int start=copy.getSpanStart(span),end=copy.getSpanEnd(span),flags=copy.getSpanFlags(span);copy.removeSpan(span);copy.setSpan(new ForegroundColorSpan(color),start,end,flags);}"
+        },
+        {
+          "line": 56,
+          "text": "s.setSpan(new ForegroundColorSpan(TEXT),0,line,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);"
+        },
+        {
+          "line": 58,
+          "text": "s.setSpan(new ForegroundColorSpan(MUTED),line,s.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);"
+        },
+        {
+          "line": 78,
+          "text": "Button b=d.getButton(which);if(b!=null){b.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{MUTED,which==AlertDialog.BUTTON_POSITIVE?JADE:MUTED}));b.setAllCaps(false);}"
+        },
+        {
+          "line": 84,
+          "text": "edit.setTextColor(TEXT);edit.setHintTextColor(MUTED);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VisualGuide.java",
+      "owner": "A",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WarUi.java",
+      "owner": "B",
+      "staticHits": [],
+      "dynamicAcceptance": "pending new APK"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WorldUi.java",
+      "owner": "A",
+      "staticHits": [
+        {
+          "line": 24,
+          "text": "ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(text.toString());body.setTextSize(16);body.setPadding(24,16,24,16);scroll.addView(body);"
+        },
+        {
+          "line": 80,
+          "text": "private void detail(Districts.District d){ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(describe(d));body.setTextSize(16);body.setPadding(24,16,24,16);LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(body);Button settings=CompactButtons.create(a);settings.setText(\"经营设置\");settings.setOnClickListener(v->settings(d));panel.addView(settings);"
+        },
+        {
+          "line": 115,
+          "text": "private EditText amount(LinearLayout panel,String label,int value){TextView title=new TextView(a);title.setText(label);panel.addView(title);EditText input=new EditText(a);input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);input.setContentDescription(label);input.setText(Integer.toString(value));panel.addView(input);return input;}"
+        },
+        {
+          "line": 147,
+          "text": "LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(24,12,24,12);EditText name=new EditText(a);name.setSingleLine(true);name.setHint(\"军团名称\");name.setContentDescription(\"军团名称\");name.setText(old==null?nextName():old.name());panel.addView(name);"
+        }
+      ],
+      "dynamicAcceptance": "pending new APK"
+    }
+  ]
+}
