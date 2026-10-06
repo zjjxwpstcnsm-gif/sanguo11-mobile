@@ -72,5 +72,17 @@
     ],
     "scope": "normal menu/new/real military+funding+construction+multiple whole turns+save/load+Activity+new-process actual rendered map/manual read/presentation exact Save/bothRNG/token+native teardown"
   },
-  "newAll16": "next run20 pending; results from old combination13 not reused"
+  "newAll16": {
+    "run": 20,
+    "status": "running after full9/3797 every-file verification/backup",
+    "gameSha256": "cbe64874877da39e2881d513bda2945f97e2cce2ff5f77cd6a5e11cfe2a2f691",
+    "runner": "SessionAMapRepairInstrumentation",
+    "range": [
+      0,
+      16
+    ],
+    "actualNoOldScoresReused": true,
+    "output": "out/session-a/all-source-20",
+    "normalAndColdPending": true
+  }
 }
