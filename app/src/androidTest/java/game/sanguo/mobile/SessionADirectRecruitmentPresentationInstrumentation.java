@@ -11,7 +11,6 @@ public final class SessionADirectRecruitmentPresentationInstrumentation extends 
  }
 
  @Override public void onCreate(Bundle args){if(args==null)args=new Bundle();args.putString("flow","direct");directMode=true;searchMode=false;super.onCreate(args);}
- @Override public void onCreate(Bundle args){if(args==null)args=new Bundle();args.putString("flow","direct");directMode=true;searchMode=false;super.onCreate(args);}
  private World.Officer person(World w,int nativeId)throws Exception {for(var p:PcScenarioPeople.saved(w))if(p.nativeId==nativeId)return w.officer(p.officerId);throw new AssertionError("Missing native identity "+nativeId);}
  private void newSource(int faction)throws Exception {
   var source=PcScenarioCatalog.all().get(0);String name=PcScenarioCatalog.preview(source.identity.scenarioId).faction(faction);
