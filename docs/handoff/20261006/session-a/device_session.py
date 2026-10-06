@@ -218,20 +218,22 @@ def main():
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
         finally:
-            if a.pause_fire and 'firePauseSystemAnimationBefore' in r:
-                original=r['firePauseSystemAnimationBefore']
-                if original=='null':run('shell','settings','delete','global','animator_duration_scale')
-                else:run('shell','settings','put','global','animator_duration_scale',original)
-                after=run('shell','settings','get','global','animator_duration_scale').decode().strip();r['firePauseSystemAnimationRestored']=after==original
-                if after!=original:raise ValueError('System motion preference restoration mismatch')
             capture_restore_error=None
+            if a.pause_fire and 'firePauseSystemAnimationBefore' in r:
+                try:
+                    original=r['firePauseSystemAnimationBefore']
+                    if original=='null':run('shell','settings','delete','global','animator_duration_scale')
+                    else:run('shell','settings','put','global','animator_duration_scale',original)
+                    after=run('shell','settings','get','global','animator_duration_scale').decode().strip();r['firePauseSystemAnimationRestored']=after==original
+                    if after!=original:raise ValueError('System motion preference restoration mismatch')
+                except Exception as error:capture_restore_error=error;r['systemAnimationRestoreError']=str(error)
             if a.audio_capture_rate:
                 try:capture_support.stop_and_restore(out,r)
                 except Exception as error:capture_restore_error=error;r['audioCaptureRestoreError']=str(error)
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
             report_path.write_text(json.dumps(r,indent=2)); restore(out,r)
             if capture_restore_error is not None:
-                LOCK.mkdir();(LOCK/'owner.json').write_text(json.dumps({'root':str(ROOT),'output':str(out),'pid':os.getpid(),'purpose':'A capture test-package restore incomplete; main full SHA restored'}))
+                LOCK.mkdir();(LOCK/'owner.json').write_text(json.dumps({'root':str(ROOT),'output':str(out),'pid':os.getpid(),'purpose':'A optional capture/motion state restore incomplete; main full SHA restored'}))
                 raise capture_restore_error
     else: restore(out,r)
 
