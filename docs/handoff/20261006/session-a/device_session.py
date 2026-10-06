@@ -153,6 +153,8 @@ def main():
         log_file=(out/'logcat.txt').open('wb')
         log_process=subprocess.Popen([ADB,'-s','emulator-5554','logcat','-v','threadtime','-T','1'],stdout=log_file,stderr=subprocess.STDOUT)
         try:
+            if a.pause_fire:
+                r['firePauseSystemAnimationBefore']=run('shell','settings','get','global','animator_duration_scale').decode().strip();report_path.write_text(json.dumps(r,indent=2))
             if a.audio_capture_rate:
                 import audio_capture_support as capture_support
                 capture_support.prepare(out,r)
@@ -216,6 +218,12 @@ def main():
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
         finally:
+            if a.pause_fire and 'firePauseSystemAnimationBefore' in r:
+                original=r['firePauseSystemAnimationBefore']
+                if original=='null':run('shell','settings','delete','global','animator_duration_scale')
+                else:run('shell','settings','put','global','animator_duration_scale',original)
+                after=run('shell','settings','get','global','animator_duration_scale').decode().strip();r['firePauseSystemAnimationRestored']=after==original
+                if after!=original:raise ValueError('System motion preference restoration mismatch')
             capture_restore_error=None
             if a.audio_capture_rate:
                 try:capture_support.stop_and_restore(out,r)
