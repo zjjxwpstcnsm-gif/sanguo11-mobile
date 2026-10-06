@@ -1,0 +1,49 @@
+{
+  "passed": false,
+  "sourceIndex": 11,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk": "b8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug-androidTest.apk": "0a351dc1f235e3f9ec64a9503717e383bd6e0bca9bd8941ac5046c71ef203094"
+  },
+  "scope": "Actual normal newSource11 complete roster membership670, real gestures and attempted all normal roster/detail/currentyear/fulloriginalbitmap/fullSaveRNGToken checks; failed before all670, no cold acceptance.",
+  "confirmedCompletePortraitPairsFromActualLog": 194,
+  "persistedCheckpointOfficers": 192,
+  "expectedOfficers": 670,
+  "failureNativeId": 181,
+  "failureName": "公孫續",
+  "actualStatus": "未登场 ·190年 ·原条件未核实",
+  "failure": "Actual visible correct original roster portrait passed, injected whole row short touch accepted; detail ImageView unavailable120s. Product or input timing cause not yet proven; documented long-press detail will be tested without excluding unborn identity.",
+  "wholeSourceAccepted": false,
+  "coldAccepted": false,
+  "restore": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-54",
+  "evidenceSha256": {
+    "session.json": "cf7c8995eb1f33c3e9463eeaa410498cdb526aa6c674a7c170f604a2588151f9",
+    "evidence/result.txt": "26c4ecd3eb16058713eccbbbd28e28ce63e6943e7186ab7979b7328942e639a6",
+    "evidence/FAIL.png": "e36a9fc4a6f5b8ff16ad5ffd940bf0666b7e82f79bb2b8f77a5c44d7a73c4b75",
+    "evidence/source-11-portrait-callers.json": "f436cea71ba4a7bf2f932dd36851db55271e9046e25ef31bd39e939d0dca48cb",
+    "logcat.txt": "860829fb69e02734e7ee18e9679e877e235198b59d5a74ed63d89d70d7e5f44c"
+  },
+  "lateVideo": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-54/late-video-after-failure.mp4",
+    "sha256": "03b64837a06d14229fe24b3f9108115c6f4766210735961e08b9d6fda4d99ece",
+    "deviceSha256": "03b64837a06d14229fe24b3f9108115c6f4766210735961e08b9d6fda4d99ece",
+    "acceptedAsMediaEvidence": false,
+    "reason": "Recorder began after terminal test failure/restoration; no actual source caller proof, retained artifact only."
+  },
+  "ARM": false,
+  "completeGoal": false
+}

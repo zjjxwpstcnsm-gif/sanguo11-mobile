@@ -22,8 +22,8 @@ import java.util.function.Predicate;
 public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private MainActivity activity; private File output; private int checks;
     private StringBuilder log=new StringBuilder(), memory=new StringBuilder("phase,javaUsed,javaTotal,javaLimit,nativeAllocated,totalPss,graphicsPss\n");
-    private String run,expectedStartupSha; private int begin,end; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers;
-    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
+    private String run,expectedStartupSha; private int begin,end,portraitNative=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers;
+    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);if(a instanceof MainActivity)activity=(MainActivity)a;}
     private void check(boolean condition,String message){checks++;log.append(condition?"PASS ":"FAIL ").append(message).append('\n');if(!condition)throw new AssertionError(message);}
     private void ui(Runnable work){Throwable[] error={null};runOnMainSync(()->{try{work.run();}catch(Throwable e){error[0]=e;}});if(error[0]!=null)throw new AssertionError(error[0]);}
@@ -32,6 +32,16 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private View await(Predicate<View> test){long deadline=SystemClock.uptimeMillis()+120000;while(SystemClock.uptimeMillis()<deadline){View[] found={null};ui(()->{List<View> roots=WindowInspector.getGlobalWindowViews();for(int i=roots.size()-1;i>=0;i--)if(roots.get(i).hasWindowFocus()&&(found[0]=find(roots.get(i),test))!=null)break;});if(found[0]!=null)return found[0];SystemClock.sleep(100);}throw new AssertionError("Normal widget unavailable");}
     private View desc(String value){return await(v->value.equals(v.getContentDescription()==null?"":v.getContentDescription().toString()));}
     private void tap(View view){Rect rect=new Rect();ui(()->view.requestRectangleOnScreen(new Rect(0,0,view.getWidth(),view.getHeight()),true));SystemClock.sleep(200);ui(()->{check(view.getGlobalVisibleRect(rect)&&rect.width()>0&&rect.height()>0,"control reachable "+view.getContentDescription());int[] loc=new int[2];view.getRootView().getLocationOnScreen(loc);rect.offset(loc[0],loc[1]);});long down=SystemClock.uptimeMillis();for(int action:new int[]{0,1}){MotionEvent e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,rect.centerX(),rect.centerY(),0);e.setSource(InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(e,true),"pointer accepted");e.recycle();}SystemClock.sleep(200);}
+    private void longPressPortrait(TextView cell,int nativeId)throws Exception {
+        Rect rect=new Rect();ui(()->cell.requestRectangleOnScreen(new Rect(0,0,cell.getWidth(),cell.getHeight()),true));
+        SystemClock.sleep(400);
+        ui(()->{check(cell.getGlobalVisibleRect(rect)&&!rect.isEmpty(),"actual source portrait long-press reachable "+nativeId);int[] origin=new int[2];cell.getRootView().getLocationOnScreen(origin);rect.offset(origin[0],origin[1]);});
+        long down=SystemClock.uptimeMillis();MotionEvent event=MotionEvent.obtain(down,down,MotionEvent.ACTION_DOWN,rect.centerX(),rect.centerY(),0);
+        event.setSource(InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(event,true),"actual portrait long-press down "+nativeId);event.recycle();
+        SystemClock.sleep(ViewConfiguration.getLongPressTimeout()+200);
+        event=MotionEvent.obtain(down,SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,rect.centerX(),rect.centerY(),0);
+        event.setSource(InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(event,true),"actual portrait long-press up "+nativeId);event.recycle();SystemClock.sleep(400);
+    }
     private void text(String s){tap(await(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)&&(v.isClickable()||v.getParent() instanceof AdapterView)));}
     private void nav(String page){tap(await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航")));tap(desc("导航 · "+page));}
     private byte[] capture(){byte[][] bytes={null};ui(()->{try{bytes[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new IllegalStateException(e);}});return bytes[0];}
@@ -94,20 +104,24 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         if(allPortraitCallers){ids.addAll(sourcePeople.keySet());Collections.sort(ids);ui(()->table.search.setText(""));SystemClock.sleep(400);
             Set<Integer> actual=new HashSet<>();ui(()->{for(int i=0;i<table.list.getAdapter().getCount();i++)actual.add(((World.Officer)table.list.getAdapter().getItem(i)).id);});check(actual.equals(new HashSet<>(ids)),"normal all-officer roster equals complete current saved original identity set "+source);
         }else for(int nativeId:new int[]{184,229,249,616})ids.add(sourcePeople.values().stream().filter(p->p.nativeId==nativeId).findFirst().orElseThrow().officerId);
+        if(portraitNative>=0){ids.removeIf(id->sourcePeople.get(id).nativeId!=portraitNative);check(ids.size()==1,"targeted original native identity exists in complete actual roster "+portraitNative);}
         int visited=0;
         for(int id:ids){
             var person=sourcePeople.get(id);World.Officer officer=visual.officer(id);check(officer!=null,"source native officer exists "+person.nativeId);
             tap(table.search);ui(()->table.search.setText(officer.name));sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);SystemClock.sleep(400);
             int[] position={-1};ui(()->{for(int i=0;i<table.list.getAdapter().getCount();i++)if(((World.Officer)table.list.getAdapter().getItem(i)).id==officer.id){position[0]=i;table.list.setSelection(i);break;}});check(position[0]>=0,"normal visible name search contains exact source officer "+person.nativeId);SystemClock.sleep(400);
             TextView cell=(TextView)await(v->{if(!(v instanceof TextView)||!officer.name.contentEquals(((TextView)v).getText())||!(((TextView)v).getCompoundDrawables()[0] instanceof OfficerPortrait))return false;try{return ((World.Officer)field(((TextView)v).getCompoundDrawables()[0],"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}});OfficerPortrait rowImage=(OfficerPortrait)cell.getCompoundDrawables()[0];rows.put(originalPortrait(rowImage,visual,officer.id,"normal-roster",person));
-            View row=cell;while(!(row.getParent() instanceof ListView))row=(View)row.getParent();tap(row);
+            ui(()->check(activity.officerSnapshot().officer(id)!=null,"current authoritative detail identity available "+source+":"+person.nativeId));
+            // Use the normal page's advertised long-press detail gesture, on its
+            // visible name/portrait cell rather than the horizontally scrolling row.
+            longPressPortrait(cell,person.nativeId);
             ImageView detail=(ImageView)await(v->{if(!(v instanceof ImageView)||!(((ImageView)v).getDrawable() instanceof OfficerPortrait))return false;try{return ((World.Officer)field(((ImageView)v).getDrawable(),"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}});
             rows.put(originalPortrait((OfficerPortrait)detail.getDrawable(),visual,officer.id,"normal-detail",person));visited++;
             if(!allPortraitCallers||visited==1||visited==ids.size()||visited%32==0||person.nativeId==184||person.nativeId==229||person.nativeId==249||person.nativeId==616)shot("source-"+source+"-native-"+person.nativeId+"-normal-detail");
             text("返回");unchanged(before,prior,"normal source portrait roster/detail "+source+":"+person.nativeId);
             if(visited%16==0)sample("source-"+source+"-portrait-"+visited);
             // Persist completed real caller proofs incrementally; an interrupted source remains partial.
-            if(visited%32==0||visited==ids.size())Files.write(new File(output,"source-"+source+"-portrait-callers.json").toPath(),new org.json.JSONObject().put("sourceIndex",source).put("rows",rows).put("expectedOfficers",ids.size()).put("actualVisitedOfficers",visited).put("sourceComplete",visited==ids.size()).put("allOriginalOfficerCallers",allPortraitCallers).put("actualNormalMenuRosterDetail",true).put("fullSaveRngStateTokenPure",true).put("ageBoundaryFullScreenVoiceArmAccepted",false).toString(2).getBytes("UTF-8"));
+            if(visited%32==0||visited==ids.size())Files.write(new File(output,"source-"+source+"-portrait-callers.json").toPath(),new org.json.JSONObject().put("sourceIndex",source).put("rows",rows).put("expectedOfficers",sourcePeople.size()).put("requestedOfficers",ids.size()).put("portraitNative",portraitNative).put("actualVisitedOfficers",visited).put("requestedCallersComplete",visited==ids.size()).put("sourceComplete",allPortraitCallers&&portraitNative<0&&visited==ids.size()).put("allOriginalOfficerCallers",allPortraitCallers&&portraitNative<0).put("actualNormalMenuRosterDetail",true).put("fullSaveRngStateTokenPure",true).put("ageBoundaryFullScreenVoiceArmAccepted",false).toString(2).getBytes("UTF-8"));
         }
         ui(()->table.search.setText(""));check(rows.length()==ids.size()*2,"every requested original normal roster/detail caller proven "+source);
     }
