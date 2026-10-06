@@ -1,0 +1,191 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parent": "71c3e90b5c057ff89de6c1bed1a649a7764dca92",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "branch": "codex/rules-content-contest-repair",
+  "sourceCommit": "d852cc78e9335c0f4f06737db8b44eeeed864897",
+  "scope": "Completed bounded normal source SEARCH/consent/optional native debate and compatibility; full goal remains incomplete",
+  "files": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java",
+      "beforeSha256": "314a5d325b64ee005efab9ad101a0bef339017016c385efd08179ea29bc24ded",
+      "afterSha256": "a5cf43d550243a85227e772c1c7e46ba88552bd6d7236a8cae56538632d47ee2",
+      "bytes": 15077
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "beforeSha256": "f00891d760a5d0ad73e6ad2fb05441b0893c3913fa0b4f9c44a40c33aeb712f9",
+      "afterSha256": "38c990366d59d12b32e32fa4b39349a93df853218918fb6672928053dd00f456",
+      "bytes": 12330
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "beforeSha256": "54e2211c2203eaebdb845ea5104f2bfe31a23f6d512340a58443f13f48ac6704",
+      "afterSha256": "d7787002798911861a470a8e33ea9c9435ce1d6b1b02a72a044d3ceb31b8e17d",
+      "bytes": 15433
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "beforeSha256": "8993cc3cc109da4924ba2cb9affe739d5d016c69a730e97994951c3994df2730",
+      "afterSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
+      "bytes": 5169
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "beforeSha256": "8206afec3abe9302c86a3194b4b117941ceb35988fa0dbf9f92dfbafa0dbdbb6",
+      "afterSha256": "3ea8e50389c39c490248d216945d559517384700bc24e8de24ff636f64e8eada",
+      "bytes": 11985
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "beforeSha256": "1368f02e7637d6c84f2c6d1842cd9e5cc6edec39f1c2c0f92d8478ab7cc5e5dc",
+      "afterSha256": "5f61a616ed3c155149fb128c51cc568c3cd71c1e8f9ebc948064318ae4e23eb3",
+      "bytes": 21217
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCommandRoll.java",
+      "beforeSha256": null,
+      "afterSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
+      "bytes": 538
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRecruitmentFormula.java",
+      "beforeSha256": null,
+      "afterSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
+      "bytes": 776
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "ceedfdc0b2b0b98414cfa419c9deb28809e870d29b0a454eef769a4cf80e0491",
+      "afterSha256": "2f7072b744202000c8b8795486bb7ab28a1e6fb4b7375dad63e23d4eb965ee92",
+      "bytes": 9306
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSearchPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
+      "bytes": 12815
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSearchRules.java",
+      "beforeSha256": null,
+      "afterSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
+      "bytes": 1099
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "058dd2b6199dcba17ac52bfa0b3409a99cfafe8ce8c2cb8626ad25f399ca528c",
+      "afterSha256": "8849c1c5ba6eaf8165eea9c0f7c303554fffef46caff560b923e634b8da0a3cd",
+      "bytes": 18172
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "beforeSha256": "9a4f697f7d76142019183199917bbd9caf26c89ef2364eb84019c647043a9dd4",
+      "afterSha256": "56db19a138c271fb6673f6a96315af33a0b18145db67ee1d6c1c4d9bc6904c3d",
+      "bytes": 26794
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/search-regions.tsv",
+      "beforeSha256": null,
+      "afterSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
+      "bytes": 102450
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcSearchOrdinaryTest.java",
+      "beforeSha256": null,
+      "afterSha256": "495917fb8377aa3560f9232e36cbedb8660a71bef83917fc661af95b6e94dd6d",
+      "bytes": 7704
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcSearchRulesTest.java",
+      "beforeSha256": null,
+      "afterSha256": "16f02eb1bc0232f7e0d9d0f00f7404de7de8c858e03ddad5b24b86f4e76cefda",
+      "bytes": 2832
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "beforeSha256": "ebcbb001df682bf4eecf8eeae913ad98755a800bc96fe9c4738243a9dabe50ae",
+      "afterSha256": "0889a174cef611e6655c2ec7dcc2b067ae0b27177903e1b073dd5f561b563ce4",
+      "bytes": 2148
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java",
+      "beforeSha256": "b5097c4fedef71f3948c395cd9d483b736c7568fd8fff4a6a903138781cdb4ee",
+      "afterSha256": "e3bdcfe6b446bbb0d2f951f5b5dd68b72a28ea4455dc7c51d2e4aed0696e9d9d",
+      "bytes": 3278
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "beforeSha256": "19b83775295978c8b4c526c4ebaf07d0e482332a3b04130396f53d3e452eee50",
+      "afterSha256": "fc650327d79352e2318764a56b986508aa7bb4a9bf49b87014b36b2643dd0099",
+      "bytes": 28834
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
+      "beforeSha256": "9e55d99ad6574cfc259da37b2c53c53011274bef969246b8efa681693ce65bbf",
+      "afterSha256": "d0b595cd345b23e6b1caa1bb40b3d399a2d1f823f05d461407e8ab2f2af461e1",
+      "bytes": 4998
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/PcSearchSessionTest.java",
+      "beforeSha256": null,
+      "afterSha256": "a4a27985459fa9cb0d39e3efea57907df5de8bf8f85d03d752a45de846ad6207",
+      "bytes": 3306
+    },
+    {
+      "path": "tools/content/session_b_pack_search_regions.py",
+      "beforeSha256": null,
+      "afterSha256": "0ba4952626b535ba66e2fa3ee153dcf6d91e303d5cf036a0802e776a8c6c640d",
+      "bytes": 2294
+    },
+    {
+      "path": "tools/content/session_b_pc_command_roll.py",
+      "beforeSha256": null,
+      "afterSha256": "e5afcb117180b5ebcd0181b7cc04f5fb9346bb1933a72cd46e38ae6ff7b68b01",
+      "bytes": 1817
+    },
+    {
+      "path": "tools/content/session_b_pc_ordinary_search.py",
+      "beforeSha256": null,
+      "afterSha256": "e201f93310986b25658caaa8f2b11f116dbc2069ca7843503e2ef672ad7807c8",
+      "bytes": 5447
+    },
+    {
+      "path": "tools/content/session_b_pc_search_consent_tail.py",
+      "beforeSha256": null,
+      "afterSha256": "058360a54d0a803ab138b2c4196570096157c53e9970c439ff360bf9e5b83758",
+      "bytes": 5718
+    },
+    {
+      "path": "tools/content/session_b_pc_search_followup.py",
+      "beforeSha256": null,
+      "afterSha256": "0a3ec9f59809b07820b47106e668db9298793d0564297e045edb4d9fc2fc1fac",
+      "bytes": 4560
+    },
+    {
+      "path": "tools/content/session_b_pc_search_selection.py",
+      "beforeSha256": null,
+      "afterSha256": "a8cb5d14ef6e0e347e55d0c07673360d3869a5f1992a7b62ee6242aa99587383",
+      "bytes": 3707
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": "782273bd313984cc80eaa37d5824017b8972241026b66c1067766b39581a30b5",
+      "afterSha256": "c2185ee2c376336ff9ad78672bad1ce68f629b965f18d167709344fe70a7faa7",
+      "bytes": 9637
+    }
+  ],
+  "productionGuardCount": 6089,
+  "productionGuardUnchanged": true,
+  "excludedFutureWip": [
+    "session_b_pc_direct_recruitment.py",
+    "session_b_pc_domestic_menu_admission.py",
+    "session_b_pc_recruitment_admission.py",
+    "session_b_pc_recruitment_command.py",
+    "session_b_pc_recruitment_special_gate.py",
+    "ignored native-command-drafts and candidate probe"
+  ],
+  "conflicts": [],
+  "aDependency": "47326188fbc43837c8d52caf0fa76051390faaf4",
+  "frozenBridgeUnityJniUnchanged": true
+}

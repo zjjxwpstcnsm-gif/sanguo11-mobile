@@ -1,0 +1,106 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parent": "71c3e90b5c057ff89de6c1bed1a649a7764dca92",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "sourceCommit": "d852cc78e9335c0f4f06737db8b44eeeed864897",
+  "scope": "Completed bounded normal source SEARCH/consent/optional native debate and compatibility; full goal remains incomplete",
+  "completeGoal": false,
+  "apk": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/search-build-38/frozen/app-debug.apk",
+      "bytes": 312786809,
+      "sha256": "9cb9da4d234e39cf83ae4c13ac05caf55970e889ea62639d9855bed4ca4f08f9"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/search-build-38/frozen/app-debug-androidTest.apk",
+      "bytes": 2546911,
+      "sha256": "53d5d3365461d8f77d50d1ab401d7cec84000c841fe5a92f4a4d8e6c1eabc63a"
+    }
+  ],
+  "archive": {
+    "path": "docs/handoff/20261006/session-b/search-flow-38.tar.gz",
+    "bytes": 14402751,
+    "sha256": "3dea45dd8c1d27677b6972d6be4b226b24897c8e8482c73aa3da8c58d56e435d",
+    "freshProofFiles": 37,
+    "containsUserBackups": false
+  },
+  "receipt": {
+    "passed": true,
+    "serial": "emulator-5582",
+    "apks": {
+      "out/session-b/search-build-38/frozen/app-debug.apk": "9cb9da4d234e39cf83ae4c13ac05caf55970e889ea62639d9855bed4ca4f08f9",
+      "out/session-b/search-build-38/frozen/app-debug-androidTest.apk": "53d5d3365461d8f77d50d1ab401d7cec84000c841fe5a92f4a4d8e6c1eabc63a"
+    },
+    "installed": {
+      "game.sanguo.mobile.dev": "9cb9da4d234e39cf83ae4c13ac05caf55970e889ea62639d9855bed4ca4f08f9",
+      "game.sanguo.mobile.dev.test": "53d5d3365461d8f77d50d1ab401d7cec84000c841fe5a92f4a4d8e6c1eabc63a"
+    },
+    "instrumentationPassed": true,
+    "coldPassed": true,
+    "scope": "actual source0 twoforces ordinary SEARCH/cancel/discovery/consent/optionalDebate/decline/naturalwin-loss/whole model/allRNG/save/cold/terminal/nextturn; complete special gates/treasure/concession/ARM pending; separate from core probe and ARM",
+    "runner": "game.sanguo.mobile.SessionBDebateInstrumentation",
+    "restoration": {
+      "internal": {
+        "originalFiles": 15,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "preservedAdditionalFiles": []
+      },
+      "external": {
+        "originalFiles": 772,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "preservedAdditionalFiles": []
+      }
+    }
+  },
+  "hostChecks": {
+    "originalSearch": 1324,
+    "ordinarySearch": 530,
+    "searchSession": 18,
+    "armyBudget": 1058,
+    "gameSession": 1690,
+    "sceneFacts": 41782,
+    "bridge": "PASS",
+    "military": 52,
+    "standaloneDebate": 156,
+    "historical9ContinuationRows": 36,
+    "historicalSaveRngPolicySha256": "487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2",
+    "architecture": "PASS"
+  },
+  "guards": {
+    "effectiveBuildInputs": 10865,
+    "productionInputs": 6089,
+    "productionSourceGuardExact": true,
+    "immutableInheritedResourceBuildUnity": 5648,
+    "jni": 4,
+    "oldDirtyEntries": 609,
+    "oldDirtyStatusSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
+  },
+  "foregroundTurnMillis": [
+    9096,
+    24692,
+    12844,
+    11066,
+    25433,
+    42860,
+    6536
+  ],
+  "unknown": [
+    "Full native relationship/eligibility/score-tie gates",
+    "Native no-discovery/treasure/gold result branches",
+    "Original menu settings/startup RNG",
+    "Native42人材府 construction/cost modifier",
+    "Native in-model concession/diplomacy/full duel/support/equipment/capture",
+    "Complete effective850/1100 activation/all source fields/opening events/initial units",
+    "All16 Android ordinary command/full old31-39/custom matrix; genuine31/38 missing",
+    "UnityU01 original map63/65/terrain/coordinate semantics and ARM/speaker acceptance"
+  ],
+  "priorFailures": {
+    "build34": "Never installed; overly strict idle dependency caught by inherited budget test",
+    "build35": "Android readAllBytes failure, preserved; full restoration plus exact own cache cleanup",
+    "build36": "Verifier中文 key injection did not type; full restoration",
+    "build37": "Verifier dialog row screen-coordinate mismatch; full restoration"
+  },
+  "buildCommitMetadata": "APK38 built from parent71c3e90b plus exact completed28-path B working delta; every production path matches committed d852cc78. BuildConfig carries build-time parent; no claim of byte-identical packaging after a new HEAD build."
+}
