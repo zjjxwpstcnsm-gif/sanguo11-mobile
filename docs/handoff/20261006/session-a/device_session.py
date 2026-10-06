@@ -58,8 +58,10 @@ def main():
     p.add_argument('--reuse-installed',action='store_true')
     p.add_argument('--test-only-update',action='store_true')
     p.add_argument('--heap-profile',action='store_true')
+    p.add_argument('--menu-music',action='store_true')
     p.add_argument('--fresh-process-reopen',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
+    if a.menu_music and (a.runner!='UiUxInstrumentation' or a.suite!='audio'):raise ValueError('Menu music requires the real UiUx audio runner')
     out = a.output.resolve(); report_path = out/'session.json'
     if a.mode=='reuse-backup':
         # Reuse only a COMPLETE byte archive whose entire current file set is
@@ -134,7 +136,7 @@ def main():
         r['apks'] = {str(v.resolve()):digest(v) for v in [a.apk,a.test_apk]}
         run_id='session_a_'+out.name.replace('-','_')
         r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
-        r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
+        r['menuMusicNormalFlow']=a.menu_music;r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()
         def observe():
             with (out/'meminfo-timeline.txt').open('wb') as f:
@@ -160,7 +162,7 @@ def main():
                 if installed_sha != digest(apk): raise ValueError('Installed APK SHA differs')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION A ATTACK normal' in r['testOutput'] or 'PASS SESSION A DEBATE ordinary' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             b_folder='capacity' if a.runner=='SessionBCapacityInstrumentation' else 'debate' if a.runner=='SessionADebatePresentationInstrumentation' else 'fieldworks'
