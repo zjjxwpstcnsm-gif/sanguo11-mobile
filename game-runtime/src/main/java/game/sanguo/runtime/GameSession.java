@@ -331,6 +331,10 @@ public final class GameSession implements GameApi, AutoCloseable {
         thread();if(closed)throw new IllegalStateException("Session closed");
         return game.sanguo.runtime.query.OfficerQuery.capture(authority,state());
     }
+    @Override public SceneFactsSnapshot sceneFacts(){
+        thread();if(closed)throw new IllegalStateException("Session closed");
+        return game.sanguo.runtime.query.SceneFactsQuery.capture(authority,state());
+    }
     @Override public ContestSnapshot contest(){thread();if(closed)throw new IllegalStateException("Session closed");return game.sanguo.runtime.query.ContestQuery.capture(authority,state());}
     public TurnTicket beginTurn()throws IOException{
         write();if(busy())throw new IllegalStateException("HOST_BUSY");

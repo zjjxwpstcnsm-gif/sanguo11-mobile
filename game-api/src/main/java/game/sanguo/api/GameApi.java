@@ -25,6 +25,7 @@ public interface GameApi {
     CommandResult execute(ProductionCommand command);
     GameSnapshot snapshot();
     OfficerSnapshot officers();
+    default SceneFactsSnapshot sceneFacts(){return SceneFactsSnapshot.unsupported(state());}
     default ContestSnapshot contest(){return ContestSnapshot.none(state());}
     Subscription subscribe(Consumer<GameEvent> listener);
 }

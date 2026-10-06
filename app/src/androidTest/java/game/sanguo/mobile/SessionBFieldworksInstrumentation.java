@@ -44,6 +44,18 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
     protected void tap(View v,int presses)throws Exception{Rect r=new Rect();runOnMainSync(()->{v.getGlobalVisibleRect(r);int[] at=new int[2];v.getRootView().getLocationOnScreen(at);r.offset(at[0],at[1]);});check(!r.isEmpty(),"visible real pointer target "+(v instanceof TextView?((TextView)v).getText():v.getClass().getSimpleName()));pointer(r.centerX(),r.centerY(),presses);settle();}
     protected void shot(String label)throws Exception{settle();android.graphics.Bitmap bitmap=getUiAutomation().takeScreenshot();check(bitmap!=null,"actual screenshot "+label);try(OutputStream out=new FileOutputStream(new File(evidence,label+".png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}}
     protected byte[] capture()throws Exception{return (byte[])invoke("capture",new Class<?>[0]);}
+    protected void verifySceneFacts(String label)throws Exception{
+        byte[] before=capture();game.sanguo.api.SceneFactsSnapshot[] scene={null};game.sanguo.api.OfficerSnapshot[] officers={null};
+        runOnMainSync(()->{try{NativeGameHost host=(NativeGameHost)field(activity,"gameHost");scene[0]=host.session().sceneFacts();officers[0]=host.session().officers();}catch(Exception e){throw new RuntimeException(e);}});
+        World current=SessionProbe.view(activity);var facts=scene[0];
+        check(facts.available&&facts.state.equals(activity.deploymentState())&&officers[0].state.equals(facts.state),"actual serial scene/officer API same StateToken "+label);
+        check(facts.sites.size()==current.cities.size()&&facts.military.size()==current.war.structures().size()&&facts.fires.size()==current.war.fires().size(),"actual scene entity counts "+label);
+        for(var fact:facts.military){War.Structure s=current.war.structures().stream().filter(v->v.id==fact.id).findFirst().orElseThrow();check(fact.cell.q==s.hex.q&&fact.cell.r==s.hex.r&&fact.hp==s.hp&&fact.complete==s.complete&&fact.builderUnitId==s.builder&&fact.direction==s.direction,"actual facility construction DTO "+fact.id);}
+        int sourceVoices=0;for(var p:PcScenarioPeople.saved(current))if(p.officerId>=0){var o=officers[0].officer(p.officerId);check(o!=null&&o.source!=null&&o.source.nativeId==p.nativeId&&o.source.recordSha.equals(p.recordSha)&&o.source.originalFields.equals(p.fields)&&java.util.Objects.equals(o.source.originalVoiceProfile,p.fields.get(48)),"actual stored source/voice join "+p.officerId);if(o.source.originalVoiceProfile!=null)sourceVoices++;}
+        check(java.util.Arrays.equals(before,capture()),"actual scene/officer API preserves fullWorld/bothRNG "+label);
+        org.json.JSONObject report=new org.json.JSONObject();report.put("sourceId",current.scenarioId);report.put("turn",facts.turn);report.put("sessionId",facts.state.sessionId);report.put("generation",facts.state.generation);report.put("revision",facts.state.revision);report.put("storedVoiceProfiles",sourceVoices);report.put("militaryCount",facts.military.size());report.put("fireCount",facts.fires.size());report.put("originalSpeechCaller","unknown");
+        Files.write(new File(evidence,"scene-facts-"+label+".json").toPath(),report.toString(2).getBytes("UTF-8"));
+    }
     protected Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
     protected void pose(Hex h)throws Exception{runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");ClientState ui=(ClientState)field(activity,"ui");ui.page="map";ui.panelVisible=false;activity.refresh();FilamentMapView view=(FilamentMapView)field(host,"spatial");MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");view.camera.x=snap.ground.grid.x(h);view.camera.z=snap.ground.grid.z(h);view.camera.span=9;view.camera.yaw=0;view.camera.tilt=70;view.camera.clampTo(snap.ground);if((Boolean)field(host,"navigatorShown"))host.toggleNavigator();}catch(Exception e){throw new RuntimeException(e);}});settle();}
     protected void tile(Hex h)throws Exception{float[] xy=(float[])invoke("screenHex",new Class<?>[]{Hex.class},h);check((Boolean)invoke("routePoint",new Class<?>[]{Hex.class,float[].class},h,xy),"exact real3D target ray "+h);pointer(xy[0],xy[1],1);settle();}
@@ -93,7 +105,7 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
             await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));
             if(coldMode){
                 byte[] expected=Files.readAllBytes(new File(getTargetContext().getExternalFilesDir("session-b"),"fieldworks/actual-build.sg11").toPath());
-                check(Arrays.equals(expected,capture()),"new process auto-resumes complete actual source/fee/construction/bothRNG");shot("01-cold-process-resume");
+                check(Arrays.equals(expected,capture()),"new process auto-resumes complete actual source/fee/construction/bothRNG");verifySceneFacts("cold-restored");shot("01-cold-process-resume");
                 nav("菜单");text("读取存档");preparedOption("槽位 3");text("读取存档");awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));settle();
                 check(Arrays.equals(expected,capture()),"new process ordinary manual load restores exact full campaign/bothRNG");
                 result.putString("stream","PASS SESSION B FIELDWORKS COLD actual new-process auto-resume/manual-load complete world and bothRNG; ARM pending\n");break flow;
@@ -107,7 +119,7 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
                 if(hit!=null)hit.requestRectangleOnScreen(new android.graphics.Rect(0,0,hit.getWidth(),hit.getHeight()),true);
             }});settle();text("曹操");description("确认开局势力");text("开始新局");
             awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));settle();
-            World w=SessionProbe.view(activity);check(w.scenarioId.equals(source.identity.scenarioId)&&!Arrays.equals(original,capture()),"normal menu creates exact Source14 campaign");shot("01-source-new-game");
+            World w=SessionProbe.view(activity);check(w.scenarioId.equals(source.identity.scenarioId)&&!Arrays.equals(original,capture()),"normal menu creates exact Source14 campaign");verifySceneFacts("source-new");shot("01-source-new-game");
             World.City city=w.home();World.Officer leader=w.idle(city).stream().max(Comparator.comparingInt(o->o.leadership+o.war)).orElseThrow();nav("地图");description("定位己方据点 "+city.name);text("出征");
             ListView roster=(ListView)tag("deploy.officers");invoke("showRosterTag",new Class<?>[]{ListView.class,String.class},roster,"deploy.role."+leader.id);tap(tag("deploy.role."+leader.id));await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().equals("从编队移除 "+leader.name));tap(tag("deploy.tab.1"));description("枪兵 库存");
             revealDescription("兵力数量");EditText troops=(EditText)await(v->v instanceof EditText&&"兵力数量".equals(v.getContentDescription()));invoke("enter",new Class<?>[]{EditText.class,String.class},troops,"5000");sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);settle();
@@ -162,7 +174,7 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
             selectUnit(id);pose(site);militaryMenu();option("阵 · 金500");tile(site);
             long revision=activity.deploymentState().revision;View execute=await(v->v instanceof Button&&"执行".contentEquals(((Button)v).getText()));tap(execute,2);settle();
             w=SessionProbe.view(activity);War.Structure built=w.war.at(site);
-            check(built!=null&&built.builder==id&&!built.complete&&w.unit(id).gold==400&&w.unit(id).acted,"real legal map construction debits500 once, uses action and starts construction");check(activity.deploymentState().revision==revision+1,"double execute commits once");shot("04-real-construction");
+            check(built!=null&&built.builder==id&&!built.complete&&w.unit(id).gold==400&&w.unit(id).acted,"real legal map construction debits500 once, uses action and starts construction");check(activity.deploymentState().revision==revision+1,"double execute commits once");verifySceneFacts("actual-build");shot("04-real-construction");
             byte[] started=capture();Files.write(new File(evidence,"actual-build.sg11").toPath(),started);
             // Actual save/load UI protects the whole campaign and both RNG streams.
             boolean existedSlot=new File(activity.getFilesDir(),"manual3.sg11").exists();

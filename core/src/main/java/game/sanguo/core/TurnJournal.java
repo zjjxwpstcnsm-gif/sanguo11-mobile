@@ -95,8 +95,12 @@ public final class TurnJournal {
     }
     /** Scalar before/after image, safe even after the authoritative entity has disappeared. */
     public static final class State {
-        public final String key,type,status; public final Hex hex;
+        public final String key,type,status,category; public final Hex hex;
         public final int owner,troops,hp,energy,remaining;
+        /** Copied applied facility/fire facts; no new resolution or serialization. */
+        public final Integer maxHp;
+        public final int builderId,direction,power,level,upgradeTo;
+        public final boolean complete,trap;
         private State(Node n){
             key=n.key;hex=n.hex;Object o=n.image;
             World.Unit u=o instanceof World.Unit?(World.Unit)o:null;
@@ -104,12 +108,18 @@ public final class TurnJournal {
             War.Structure s=o instanceof War.Structure?(War.Structure)o:null;
             War.Fire f=o instanceof War.Fire?(War.Fire)o:null;
             Domestic.Facility d=o instanceof Domestic.Facility?(Domestic.Facility)o:null;
+            category=u!=null?"UNIT":c!=null?"SITE":s!=null?"MILITARY":d!=null?"DOMESTIC":"FIRE";
             type=u!=null?u.weapon.name():c!=null?c.kind.name():s!=null?s.kind.name():d!=null?d.kind.name():"FIRE";
             owner=u!=null?u.owner:c!=null?c.owner:s!=null?s.owner:f!=null?f.owner:-1;
             troops=u!=null?u.troops:c!=null?c.troops:0;
             hp=c!=null?c.defense:s!=null?s.hp:d!=null?d.hp:0;
             energy=u==null?0:u.energy;status=u==null?"":u.status.name();
             remaining=f!=null?f.remaining:u!=null?u.burning:d!=null?d.remaining:0;
+            maxHp=s!=null?Integer.valueOf(s.kind.hp):d!=null?Integer.valueOf(d.maxHp()):null;
+            builderId=s!=null?s.builder:d!=null?d.builderId:-1;
+            direction=s!=null?s.direction:0;power=f!=null?f.power:u!=null?u.burningPower:0;
+            level=d!=null?d.level:0;upgradeTo=d!=null?d.upgradeTo:0;
+            complete=s!=null?s.complete:d!=null&&d.remaining==0;trap=f!=null&&f.trap;
         }
     }
     public static final class StateChange {
