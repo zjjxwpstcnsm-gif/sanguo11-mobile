@@ -96,7 +96,7 @@ def main():
             with (out/'meminfo-timeline.txt').open('wb') as f:
                 while not stop.is_set():
                     try:
-                        f.write(('\nSAMPLE '+str(time.time())+'\n').encode()); f.write(run('shell','dumpsys','meminfo','-a',PACKAGE,timeout=30));f.flush()
+                        f.write(('\nSAMPLE '+str(time.time())+' local-only; no process dump/GC request\n').encode()); f.write(run('shell','dumpsys','meminfo','--local',PACKAGE,timeout=30));f.flush()
                     except Exception as error: f.write(str(error).encode());f.flush()
                     stop.wait(2)
         observer=threading.Thread(target=observe);observer.start()
