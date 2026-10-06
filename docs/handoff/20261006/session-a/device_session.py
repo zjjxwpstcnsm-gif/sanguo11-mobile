@@ -188,14 +188,14 @@ def main():
                 with (out/'cold-instrumentation.txt').open('wb') as f:
                     run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,'-e','mode','cold',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
                 cold=(out/'cold-instrumentation.txt').read_text()
+                cold_relative='session-b/'+b_folder+'-cold' if b_runner else 'session-a-map/'+run_id+'_cold'
+                run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+cold_relative,str(out/'cold-evidence'))
                 after_log=(out/'logcat.txt').read_text(errors='replace')[cold_log_offset:]
                 new_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',after_log)
                 if not new_pids:raise ValueError('No actual second-process PID evidence')
                 new_pid=new_pids[-1]
                 r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else 'PASS SESSION B FIELDWORKS COLD') in cold) and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
-                cold_relative='session-b/'+b_folder+'-cold' if b_runner else 'session-a-map/'+run_id+'_cold'
-                run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+cold_relative,str(out/'cold-evidence'))
 
         finally:
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
