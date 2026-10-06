@@ -72,5 +72,50 @@
     22,
     23
   ],
-  "goalComplete": false
+  "goalComplete": false,
+  "latestCombined25": {
+    "source": "8979dae26bcee93f962a86d65725e346badbbba2",
+    "completedBSource": "45173c6c3a334f4635f716fbf4cae960be1e0689",
+    "gameSha256": "d72b47f364439337ff358d61b1707cf23cd9259633ddfe66dfe896f813f4097e",
+    "testSha256": "5235d8878d6bab2d543d0a3da10f8bafd1ec9a816cdd423eb4ef20ad0bdcded2",
+    "normalPlayerFireLifecyclePassed": true,
+    "coldPassed": true,
+    "coldProcess": {
+      "beforePid": "10232",
+      "afterPid": "26103",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "ef6156100bad05b827bb47e9fd32fc5cb36126533b436918a8ce054efab27d78",
+      "passed": true
+    },
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "tcgRequestedAndStandaloneReadbackBytes": 33554432,
+    "sourceRecordsAndTime50Legacy71FireExact": true,
+    "nativePerChildPssPeakKiB": 52410,
+    "nativeSamples": 153,
+    "maximumObservedChildren": 1,
+    "beforeSeparateRun24PeakKiB": 234524,
+    "peakComparisonScope": "independent real flows; not simultaneous peaks or controlled GPU comparison",
+    "fireLabelDoesNotOverlapUnitSiteInInspectedScreenshot": true,
+    "newMainAttackTaskDynamicAcceptance": false,
+    "remaining": [
+      "normal384 all-source regression",
+      "current package all16",
+      "paused/rapid switch/stress",
+      "ARM",
+      "allmedia/originalcaller/PCframebuffer/otherfiretypes"
+    ]
+  }
 }
