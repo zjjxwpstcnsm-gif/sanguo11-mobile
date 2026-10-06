@@ -140,7 +140,9 @@
     "docs/handoff/20261006/session-a/audio_capture_support.py",
     "docs/handoff/20261006/session-a/MEDIA_IDENTITY_INSTALLED28.json",
     "docs/handoff/20261006/session-a/NORMAL384_ALL28.json",
-    "docs/handoff/20261006/session-a/ATTACK_TASK_ACCEPTANCE29.json"
+    "docs/handoff/20261006/session-a/ATTACK_TASK_ACCEPTANCE29.json",
+    "docs/handoff/20261006/session-a/ARMY_ACTION_PENDING_CONTRACT.md",
+    "docs/handoff/20261006/session-a/MILITARY30_PERFORMANCE_DIAGNOSTIC.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
