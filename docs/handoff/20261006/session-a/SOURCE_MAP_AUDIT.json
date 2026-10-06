@@ -1030,8 +1030,8 @@
     }
   ],
   "rowCount": 79,
-  "knownSuppression": "FilamentMapView.animateEffects legacy combat/fire bypass; state UI restored separately, original cell emitter pending",
+  "knownSuppression": "Legacy animateEffects remains bypassed for PC map; original cell fires now separately routed through animatePcMapEffects/PcCellFireSet and source13 native worker. Actual39 normal/Home/reduced-motion/low/expiry/read/cold passed. Generic legacy spell fire/scaffolding/critical overlays remain intentionally suppressed; missing original chains/facilities/callers still open.",
   "mediaContractStatus": "BGM/voice/event58 no normal fact producer verified",
-  "normalAndroidValidated": false,
-  "reviewBoundary": "All79 branches inventoried; source geometry vs intentionally suppressed legacy approximations separated from pending original status/effect restoration. Actual APK/PC pixels are still required."
+  "normalAndroidValidated": "Original source13 fire39 and old map28/new army38 matrices only; all branches/fullPCpixel/ARM not accepted",
+  "reviewBoundary": "Historical all79 static branch inventory; line numbers reflect initial audit. Actual later original fire/selection/native body paths checked separately; this is not all source-map suppression closure."
 }
