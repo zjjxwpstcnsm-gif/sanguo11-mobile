@@ -35,3 +35,11 @@ PC地图直接消费真实FireState位置/剩余旬显示持久信息标记，�
 ## 第三个连续goal轮：受阻审计
 
 main仍ef413be3，审计后继源仍0e7b9bc2；本分支四批到0c007271，工作区复核干净。仅5554/5582两台x86_64，无ARM，无可写外置卷，无B冻结交付。磁盘约362MiB，同一完整备份与新APK实装阻断未解除。完整目标未完成，具体门槛与恢复条件见BLOCKED.md及BLOCKED_AUDIT.json。
+
+## 用户解除空间阻断后的实装批次（进行中）
+
+2026-10-06用户要求继续；主机约190GiB可用，旧阻断已解除。独立Gradle缓存重新建立，普通非debuggable/R8包5431de8d实际构建/安装5554，APK SHA9bc6bff86e19be0309cccdc9ca5b5e52e00d1b3b1748ce7734c9645d6cf2cdaa；168资源及4JNI全等。完整9内部/3797外部文件重新备份、最终恢复逐SHA全等。正常菜单→Source0势力预览实际原地图像素与Save/RNG/StateToken纯预览检查通过，但取消后立即观察释放的验收断言失败，未进入缩放循环，不记整轮通过。实际Java堆限制512MiB（不是用户截图384MiB），原始日志峰值308260456B、native200545280B为局部且采样侵入的观察，不是ARM根因闭合。详情见INSTALLED_AUDIT.json。
+
+630a4ce7将释放观察放在主线程等待完成，采样改为dumpsys meminfo --local避免向进程请求GC。接B精确接口请求，在47326188适配普通军事行军previewMove，保留明确自动攻击/接近、进驻、运输改道和routeMove保存；跨界正常入城格仍待B规则冻结组合。5个完成主题依赖在THEME_FROZEN.json提供前后SHA及独立只读导出，B在其16页消费，不复制A WIP。
+
+47326188普通APK已构建，SHA7b65eee5e9132fd99192de3eb2862b5bba4fb3f2257695467df99784f0041ca8，签名/168资源/4JNI通过。第二次安装在PackageInstaller阶段失败（设备历史finalStatus=-4，/data6GiB仅余约0.9GiB）；未把这个包标成已实装。第二次完整备份与失败后9/3797恢复SHA全等。主机空间充足，改为复制原A独占5554的完整AVD并只扩容独立副本；原AVD/用户库/资源保留，具体新设备来源和SHA见后继AVD_CLONE.json。5582不操作。当前仍无ARM、无B完成冻结增量，完整目标未完成。

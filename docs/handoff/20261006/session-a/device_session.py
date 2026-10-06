@@ -20,9 +20,12 @@ def digest(path):
     return h.hexdigest()
 
 def run(*args, output=None, input=None, timeout=900):
-    return subprocess.run([ADB, '-s', 'emulator-5554', *args], check=True,
+    result=subprocess.run([ADB, '-s', 'emulator-5554', *args],
                           stdout=output or subprocess.PIPE, stdin=input,
-                          stderr=subprocess.PIPE, timeout=timeout).stdout
+                          stderr=subprocess.PIPE, timeout=timeout)
+    if result.returncode:
+        raise RuntimeError('ADB command failed '+repr(args)+': '+(result.stdout or b'').decode(errors='replace')+' '+result.stderr.decode(errors='replace'))
+    return result.stdout
 
 def archive_manifest(path):
     files = {}
@@ -48,11 +51,36 @@ def device_manifest(tree):
     return result
 
 def main():
-    p = argparse.ArgumentParser(); p.add_argument('mode', choices=['backup','install-test','restore'])
+    p = argparse.ArgumentParser(); p.add_argument('mode', choices=['backup','reuse-backup','install-test','restore'])
     p.add_argument('--output', type=pathlib.Path, required=True)
+    p.add_argument('--previous',type=pathlib.Path)
     p.add_argument('--apk', type=pathlib.Path); p.add_argument('--test-apk', type=pathlib.Path)
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
     out = a.output.resolve(); report_path = out/'session.json'
+    if a.mode=='reuse-backup':
+        # Reuse only a COMPLETE byte archive whose entire current file set is
+        # freshly verified. The older3266-file incomplete archive never qualifies.
+        source=json.loads((a.previous.resolve()/'session.json').read_text())
+        if source['stage']!='restored-verified':raise ValueError('Prior session not fully restored')
+        if PACKAGE in run('shell','ps','-A').decode():raise ValueError('App active')
+        if LOCK.exists():
+            owner=json.loads((LOCK/'owner.json').read_text())
+            if owner['root']!=str(ROOT) or owner.get('purpose')!='full AVD clone/resize; only5554':raise ValueError('Another owner')
+        else:LOCK.mkdir()
+        out.mkdir(parents=True,exist_ok=False)
+        (LOCK/'owner.json').write_text(json.dumps({'root':str(ROOT),'pid':os.getpid(),'output':str(out)}))
+        r={'serial':'emulator-5554','root':str(ROOT),'stage':'backup','trees':{},'archiveReuseSource':str(a.previous.resolve()),'freshEveryFileShaVerification':True,'device':{}}
+        for prop in ['ro.build.version.sdk','ro.product.cpu.abi','dalvik.vm.heapsize','dalvik.vm.heapgrowthlimit']:
+            r['device'][prop]=run('shell','getprop',prop).decode().strip()
+        for name,record in source['trees'].items():
+            archive=pathlib.Path(record['archive']);expected={k:v['sha256'] for k,v in record['files'].items()}
+            if digest(archive)!=record['archiveSha256'] or device_manifest(record['path'])!=expected:raise ValueError('Complete prior backup no longer exact '+name)
+            target=out/(name+'-before.tar');subprocess.run(['cp','-c',str(archive),str(target)],check=True)
+            if digest(target)!=record['archiveSha256']:raise ValueError('Backup copy guard')
+            r['trees'][name]={**record,'archive':str(target)}
+        remote=run('shell','pm','path',PACKAGE).decode().strip().removeprefix('package:')
+        with (out/'previous-installed.apk').open('wb') as f:run('exec-out','cat',remote,output=f)
+        r['previousApkSha256']=digest(out/'previous-installed.apk');r['stage']='backup-verified';report_path.write_text(json.dumps(r,indent=2));print('Complete current file set verified; independent full backups retained',flush=True);return
     if a.mode == 'backup':
         if run('shell','id','-u').strip() != b'0': raise ValueError('Root emulator required')
         if run('shell','dumpsys','activity').decode().find('mActiveInstrumentation=[]') < 0:
