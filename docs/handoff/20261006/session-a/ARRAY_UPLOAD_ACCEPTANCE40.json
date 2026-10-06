@@ -226,5 +226,8 @@
   "wholeBudgetAccepted": false,
   "all16Accepted": false,
   "ARM": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "videoDecodedInspectionPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-source11-normal384-40/video/decoded-inspection.json",
+  "videoDecodedInspectionSha256": "2ac525389169184fc7e529dab69fd6e0c4ad28fed047735b0d465a306178e2c0",
+  "videoOriginalTimingRetained": true
 }
