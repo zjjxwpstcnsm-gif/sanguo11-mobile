@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "exactFloat32Vectors": 40000,
+  "counts": {
+    "water": 5560,
+    "land": 34440
+  },
+  "originalVectorsSha256": "d5c0ecf752e1b082e27d5801b1891a6a092811bebc08c3f01a6203bfba4da908",
+  "ruleRngCalls": [],
+  "scope": "original helper against source-derived height/cell view plus inherited original-coarse-water field; not normal Android/RNG/save/gameplay acceptance",
+  "sourceExeSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shex4791Sha256": "c726989df91d44c99ea3c3f613d41e7e725c43002a9775dfac2e43516f5c6112",
+  "mesh4793Sha256": "c1d8256c6bf70b3faffaf7d9f1f5b55453203bf623ad6bd121a9a7dec7aa3fca",
+  "inheritedCoarseWaterSha256": "59e26262d70f93334c7c80d5141a1e695610b81be814f014c6abdda0622bf2d1",
+  "coarseWaterProvenance": "existing original415e20 initialization/import contract; readonly no reconstruction of governance/World",
+  "helperCodeSha256": "157cb6601ceeeb00a2d23c3554f997162ddb47018f966bd3e9d480e36a061837",
+  "normalAndroid": false,
+  "ARM": false,
+  "goalComplete": false
+}
