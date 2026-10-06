@@ -8,6 +8,20 @@ import java.util.*;
 
 /** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
 public final class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+ @Override protected void tap(android.view.View target,int presses)throws Exception {
+  // A ListView settling after scroll may consume the first down as scroll-stop.
+  // Wait for attached, focused, enabled and stable actual screen bounds first.
+  android.graphics.Rect previous=new android.graphics.Rect(),bounds=new android.graphics.Rect();long stable=0,deadline=SystemClock.uptimeMillis()+12000;
+  runOnMainSync(()->target.requestRectangleOnScreen(new android.graphics.Rect(0,0,target.getWidth(),target.getHeight()),true));
+  while(SystemClock.uptimeMillis()<deadline){
+   boolean[] visible={false};runOnMainSync(()->{visible[0]=target.isAttachedToWindow()&&target.hasWindowFocus()&&target.isEnabled()&&target.getGlobalVisibleRect(bounds);int[] root=new int[2];target.getRootView().getLocationOnScreen(root);bounds.offset(root[0],root[1]);});
+   if(visible[0]&&!bounds.isEmpty()&&bounds.equals(previous)){if(stable==0)stable=SystemClock.uptimeMillis();if(SystemClock.uptimeMillis()-stable>=600)break;}else stable=0;
+   previous.set(bounds);SystemClock.sleep(100);
+  }
+  check(stable!=0&&SystemClock.uptimeMillis()-stable>=600,"stable actual touch bounds "+target.getTag()+" "+bounds);
+  pointer(bounds.centerX(),bounds.centerY(),presses);settle();
+ }
+
  @Override protected void verifySceneFacts(String label)throws Exception {
   super.verifySceneFacts(label);
   byte[] before=capture();StateToken prior=activity.deploymentState();
