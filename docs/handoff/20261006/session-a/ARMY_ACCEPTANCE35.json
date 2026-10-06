@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "sourceCommit": "e078fb2f6a23e16aef275cd8cf8c1c870416beb8",
+  "testCommit": "6d8e4be556f0726e739471353ebe4883639211e4",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e078fb2f-army-combination/app-debug.apk": "7415f48c03f4808e381de70cb646331bdac3dea177e347f5dc77071bb1285c66",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-6d8e4be5-army-scroll-test/app-debug-androidTest.apk": "14b498178cef3b4a0ac827774021d15246243a0851ff41e918fff0cc7aebedf6"
+  },
+  "scope": "Actual normal Source0 two factions: army5/6 separate AP, first-army255 editor preview-cancel pure complete Save/bothRNG/StateToken, transfer sourcearmy6 debit only, five turns arrival/replacement; Source29 nativearmy7 opening65 deployment10 debit, MOVE approach, ordinary attack neutral port57 capture/garrison; fullsave/read/wholeturn and independent newPID cold; typed A presentation",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "coldProcess": {
+    "beforePid": "15717",
+    "afterPid": "30889",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "56c9d8bf1bc3682e974f64183eb4ef108b5381f198b3efefa01727ae5d548d61",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/army-combination-35",
+  "evidenceSha256": {
+    "session.json": "022e61324e5845c78a5cb60c5d6389e7ca6b538a04dbb80f6e61f52fef9a065f",
+    "instrumentation.txt": "c6e2e226cb35b3afab681571413126c2af327761cf2c45f0f9d6b67618fcc600",
+    "cold-instrumentation.txt": "9e20320d13ece3680e3aaaab1b08c01f42d0d51d2601bdc896995e98634158d4",
+    "evidence/actual-source.sg11": "56c9d8bf1bc3682e974f64183eb4ef108b5381f198b3efefa01727ae5d548d61",
+    "evidence/progress.txt": "ce52aaa32ce444dea8ef08784d5d4777cb284b5b69881d9350f25328104a136b",
+    "evidence/diagnosis.txt": "b98626c2a5f62e2a88fad0f26b25613b66aaf19d68abd2cd501e7a66c26040ae",
+    "cold-evidence/progress.txt": "51e5e799cc3242db44e7eba7b2a1dcb5ac32c92a84de4f4a0cf0edb7dae4b95c",
+    "evidence/a-first-army255-preview.png": "2635db052f575c93d7d69b62efdac62709a382b46018cc29bd4ff8e7523cbe58"
+  },
+  "all16NewPackageAccepted": false,
+  "original384NewPackageAccepted": false,
+  "firePauseNewPackageAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}

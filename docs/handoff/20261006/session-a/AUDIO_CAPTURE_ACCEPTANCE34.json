@@ -1,0 +1,140 @@
+{
+  "captureApiInitializationPassed": true,
+  "normalMenuSaveRngAndFullTokenPassed": true,
+  "wholeTrackWaveformPassed": false,
+  "unchangedWholeTrackGate": 0.995,
+  "measuredWholeTrackCorrelation": 0.71453806299659,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e078fb2f-army-combination/app-debug.apk": "7415f48c03f4808e381de70cb646331bdac3dea177e347f5dc77071bb1285c66",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e078fb2f-army-combination/app-debug-androidTest.apk": "0891c71024166890381d6ceba88f736151f9717919238c7d3b0eb36eb7bd48a2"
+  },
+  "scope": "5554 API29 x86_64 actual system MediaProjection consent and UID/GAME-only AudioPlaybackCapture, no microphone or display recording; 130 seconds real normal menu music2238; capture API plus complete Save/RNG/StateToken invariance separate from failed waveform continuity",
+  "captures": [
+    {
+      "sampleRate": 44100,
+      "bytes": 425984,
+      "frames": 106496,
+      "failure": "",
+      "elapsedNanos": 3110668000,
+      "wavSha256": "dc605aeb324de7de1dec3e9e47213cc5f5a48fdaa0f0a78844fee0416cb94df3",
+      "run": "session_a_audio_capture_34_init44100",
+      "consentFromObservedSystemUi": true
+    },
+    {
+      "sampleRate": 48000,
+      "bytes": 557056,
+      "frames": 139264,
+      "failure": "",
+      "elapsedNanos": 3116043000,
+      "wavSha256": "81375ebb5bb0434218e3a13bdf1f8e771a4163d0aa67d05044f5c5d0ebc70a0b",
+      "run": "session_a_audio_capture_34_init48000",
+      "consentFromObservedSystemUi": true
+    },
+    {
+      "sampleRate": 44100,
+      "bytes": 22872064,
+      "frames": 5718016,
+      "failure": "",
+      "elapsedNanos": 130090787000,
+      "wavSha256": "23d23b607bcdca3dd750ec8559c541067fba496406796e4de44126b401f0a18d",
+      "run": "session_a_audio_capture_34_menu",
+      "consentFromObservedSystemUi": true
+    }
+  ],
+  "normalMenu": {
+    "normalMenuOnly": true,
+    "noTestPlaybackDirective": true,
+    "resourceId": 2238,
+    "musicId": 1,
+    "identity": "8e5fcb65-f210-4f33-877a-a50b3b4a702f:0:pc-menu-559220",
+    "firstWriteMillis": 201,
+    "loopWaitMillis": 108971,
+    "loops": 1,
+    "originalFirstLoopUnderruns": 0,
+    "originalFirstTrackFrames": 3904512,
+    "actualPlaybackHeadAtBoundary": 3906144,
+    "bufferFrames": 16384,
+    "musicGain": 65,
+    "beforeSaveSha256Base64": "glVCabGSC11nuJRdIqVfAlPKt+0upVv1IO9bmzuZ8Kk=",
+    "allSaveRngEqual": true,
+    "allStateTokenEqual": true,
+    "stateSessionId": "8e5fcb65-f210-4f33-877a-a50b3b4a702f",
+    "stateGeneration": 0,
+    "stateRevision": 0,
+    "mapBgmBound": false,
+    "armEvidence": false
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "testCaptureStateRestoration": {
+    "testOldApkAndEveryFileShaAndMicAppOpModeRestored": true,
+    "priorFailureRetained": "audioCaptureRestoreError",
+    "cause": "strict stop command returned already not running after natural recorded completion"
+  },
+  "historicalRestoreErrorRetained": "ADB command failed ('shell', 'am stopservice -n game.sanguo.mobile.dev.test/game.sanguo.mobile.SessionAAudioCaptureService'): Stopping service: Intent { cmp=game.sanguo.mobile.dev.test/game.sanguo.mobile.SessionAAudioCaptureService }\n Service not stopped: was not running.\n",
+  "oldMinus22ReproducedHere": false,
+  "oldMinus22RootCauseClosed": false,
+  "numericalShortWindowDiagnostic": "Raw coarse normalization selected silent windows with prefix energy zero but FFT residual; audible-gated fixed17 diagnostic added separately, no PCM rewriting or relaxed whole-track gate",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/audio-capture-34",
+  "evidenceSha256": {
+    "session.json": "8dc7f8ae4aa28d3479fb7fb996092305065f77ce4fe57c472a3e5d82d3b1f028",
+    "instrumentation.txt": "98ae5955e08f39c7deb7ff5c1a78c9099ddde1b6aebf14850c40d7b2a485311a",
+    "evidence/menu-music.json": "dc4404fbcd6d1365e0e8d70bc1dc0dc2cbf78ea0430934e5a6950bbbc4015de5",
+    "music-whole-check.log": "7ae16438191d29b239a1ee93c78b89fe7d7955fe9ce871a701f47347d0f91b80",
+    "fixed-window-timeline.json": "c06ea00e6c7822ab97fab3bd422cc88e639b8389ae606e1201ff0b900025bc52",
+    "fixed-window-audible-timeline.json": "4ada356edb9f3e82bb4c916e20d05fcf1ca1a73b61e03127f45633d32bac5b48",
+    "reference/manifest.json": "1449b72063c1d820ae1fc0657b4c251bff97e4b06c796883a13857ed5e6c0a1a"
+  },
+  "mapBgmVoice58OrdinaryEventClosed": false,
+  "ARM": false,
+  "goalComplete": false,
+  "fixed17MeasuredDiagnostic": {
+    "minCorrelation": 0.44001970327473017,
+    "windowsAbove0995": 15,
+    "windows": 17,
+    "offsetSamplesByReferenceSeconds": {
+      "5": 426276,
+      "10": 426436,
+      "15": 426436,
+      "20": 426436,
+      "25": 426564,
+      "30": 426564,
+      "35": 426564,
+      "40": 426564,
+      "45": 426564,
+      "50": 426564,
+      "55": 426564,
+      "60": 426564,
+      "65": 426564,
+      "70": 426564,
+      "75": 426564,
+      "80": 426756,
+      "85": 427076
+    },
+    "lowWindows": [
+      {
+        "referenceSeconds": 25,
+        "correlation": 0.6337523039383678,
+        "offsetSamples": 426564
+      },
+      {
+        "referenceSeconds": 80,
+        "correlation": 0.44001970327473017,
+        "offsetSamples": 426756
+      }
+    ],
+    "conclusion": "Most original samples present; complete timeline not continuous at unchanged .995 gate. Short-window normalization silent-energy issue is separate from full-wave failure. Capture versus playback discontinuity cause pending."
+  }
+}
