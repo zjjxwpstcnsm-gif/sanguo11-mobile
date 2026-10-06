@@ -19,3 +19,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 正常地图BGM、真实人物speaker voice、58和普通事件原声仍缺caller事实，不按姓名或ordinal猜。33技巧/1取消/49之78与9工程合成标识保留。A独占5554，B5582不动，无ARM实装证据。最终完整组合、全流程、源/资源/JNI守卫与可复现交付持续推进。
 
 验收纠正：36暴露KEYCODE_HOME注入不能保证真实后台，旧28 Home标签现明确仅键尝试，保留其他有效矩阵成绩，实际Home暂停需系统global Home及Activity/地图/Filament/焦点状态共同验证。不会把尚未观察到的后台生命周期记为通过。
+
+37真实system Home/Activity/map/Filament暂停/原火时钟冻结/返回全Save-RNG-Token不变通过；随后测试FileInputStream.readAllBytes在API29不支持，减少动画尚未执行，完整9/3797及系统偏好SHA恢复。2cecc643已改有界兼容流读取，需新测试包重验。新e9679b94普通堆独立构建b8bbf643包与70264176测试包（已修真实地图Home守卫），38全16实际安装回归准备中；没有沿用旧28成绩。
