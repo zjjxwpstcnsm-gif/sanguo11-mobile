@@ -74,7 +74,7 @@
   },
   "newAll16": {
     "run": 20,
-    "status": "running after full9/3797 every-file verification/backup",
+    "status": "passed actual newly installed package and exact restoration",
     "gameSha256": "cbe64874877da39e2881d513bda2945f97e2cce2ff5f77cd6a5e11cfe2a2f691",
     "runner": "SessionAMapRepairInstrumentation",
     "range": [
@@ -83,6 +83,37 @@
     ],
     "actualNoOldScoresReused": true,
     "output": "out/session-a/all-source-20",
-    "normalAndColdPending": true
+    "normalAndColdPending": false,
+    "normalChecks": 2729,
+    "coldChecks": 79,
+    "coldProcess": {
+      "beforePid": "24924",
+      "afterPid": "11918",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "9a614f9918191760305341ca29a5d653f48a12da4b10230dee4e7d3cdfd19d1f",
+      "passed": true
+    },
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "memory": {
+      "samples": 413,
+      "javaUsedPeakBytes": 399716976,
+      "nativeAllocatedPeakBytes": 282964840,
+      "mainTotalPssPeakKiB": 617424,
+      "graphicsPssAllReportedZero": "driver GPU memory unavailable; never interpreted as zero GPU use",
+      "peaksNotSimultaneous": true
+    }
   }
 }

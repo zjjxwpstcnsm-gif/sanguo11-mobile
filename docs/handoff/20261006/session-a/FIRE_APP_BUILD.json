@@ -1,10 +1,8 @@
 {
-  "sourceRevision": "96af4a7a",
-  "branch": "codex/map-ui-media-repair",
-  "completedBImmutableCache": "cb87d90d343099361413d44a9d7a981d3bc89664",
+  "sourceRevision": "c10603d32a1d24850b10bcbcd690a4c5b221a133",
   "largeHeap": true,
   "old4JniExact": true,
-  "extraFireWorkersExact": [
+  "extraWorkersExact": [
     {
       "path": "lib/x86_64/libpc_effect_fire_worker.so",
       "sha256": "305e2ce68eb78a70dcb71adbb1234310605e4d83bbd298ccd375aa1dcfcc43d6"
@@ -15,14 +13,16 @@
     }
   ],
   "old168PinsExact": true,
-  "source2AndNewMapAddPinsExact": true,
+  "fixedCommittedSourceAfterDiscardedOverlappingTestBuild": true,
   "files": {
-    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-96af4a7a-original-fire/app-debug-androidTest.apk": "58a4699074d98cf07fb20e8c3dcd227ea9147dd3443fcfba96762206605cf473",
-    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-96af4a7a-original-fire/app-debug.apk": "cd34cf57e1095fcca93c129084508397e73cecb6e1a2dac656d9f6c59c8617b1"
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-c10603d3-original-fire/app-debug-androidTest.apk": "b72eed962206eae1733c9b0c1b5a9efef4abe83a3b4e1c462ac7665cd729364e",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-c10603d3-original-fire/app-debug.apk": "6ed8f224defb794843e787f2633218cb1eb8f81ec2b6b4b47a22bff99e3a20b0"
   },
   "installed": false,
-  "normalOriginalFireAccepted": false,
-  "manualFireExtinguishAccepted": false,
+  "normalPlayerFireAccepted": false,
   "ARM": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "pendingDeviceRun": 21,
+  "supersededUninstalledPackage96af4a7a": "cd34cf57e1095fcca93c129084508397e73cecb6e1a2dac656d9f6c59c8617b1",
+  "discardedOverlappingTestBuild": "build-fire-player-test.log never frozen/installed; rebuilt both artifacts from fixedc10603d3"
 }

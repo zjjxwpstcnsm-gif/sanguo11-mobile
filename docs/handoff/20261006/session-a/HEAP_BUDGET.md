@@ -19,3 +19,5 @@
 ## 普通堆实装Normal12
 
 5a1625eded1146953b6abab9e5fddd38c25985afea9b1f8422a2c7316e6a365d实际Runtime402653184B(384MiB)，largeHeap=false。来源7/8正常取消/新局/反复缩放/人物/Home/方向/存读/Activity重开PASS475，独立新PID20871→1447读回完整Save/RNG SHAaed8016befda5e1d0ef25d17a14de178129ca706fbc2fce3cbbfe6e11db47d98，PASS79。77次Java采样最高305.082MiB。原9内部/3797外部最终SHA全等，锁释放。原生60.12秒MP4共1365帧、无音频，SHA78df7c5cb36b163498b88894c5f7d71d6719c64ee19527e0d471472af571c050；文件本身保留，未重定时；原PC时序/ARM未接受。
+
+Cached scene package170cdd76/cbe648… newly installed all-source20 completes2729 normal checks across16 real sources plus79 true cold checks. Runtime512MiB,413 normal Java samples peak399716976B (381.20MiB), native allocated independent peak282964840B, main totalPSS independent peak617424KiB. GPU graphicsPSS reports0 on this emulator driver: unavailable, not zero. Peaks are independent, not summed. New cached API package normal384MiB regression still pending (old6ea Source7/8 ordinary result remains separate). Complete9/3797 original SHA restored. Source13 binding packagec10603d3/6ed8f2… is next independently installed fire21 and cannot inherit these all16 results.

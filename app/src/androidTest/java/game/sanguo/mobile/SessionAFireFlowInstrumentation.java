@@ -13,7 +13,8 @@ import java.util.*;
 /** Actual menu/new/deploy/player fire/extinguish/turn expiry/save/load/cold; no World edits. */
 public final class SessionAFireFlowInstrumentation extends SessionAScenePresentationInstrumentation {
  private int deploy(World.City city)throws Exception {
-  World w=SessionProbe.view(activity);World.Officer leader=w.idle(city).stream().max(Comparator.comparingInt(o->o.intelligence)).orElseThrow();
+  World w=SessionProbe.view(activity);World.Officer leader=w.idle(city).stream().filter(o->w.government.commandLimit(o.id)>=5000).max(Comparator.comparingInt(o->o.intelligence)).orElseThrow();
+  note("actual deploy leader="+leader.name+" id="+leader.id+" commandLimit="+w.government.commandLimit(leader.id)+" intelligence="+leader.intelligence);
   nav("地图");description("定位己方据点 "+city.name);text("出征");ListView roster=(ListView)tag("deploy.officers");
   invoke("showRosterTag",new Class<?>[]{ListView.class,String.class},roster,"deploy.role."+leader.id);tap(tag("deploy.role."+leader.id));await(v->("从编队移除 "+leader.name).equals(v.getContentDescription()));
   tap(tag("deploy.tab.1"));description("枪兵 库存");revealDescription("兵力数量");EditText troops=(EditText)await(v->v instanceof EditText&&"兵力数量".equals(v.getContentDescription()));invoke("enter",new Class<?>[]{EditText.class,String.class},troops,"5000");sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);settle();tap(tag("deploy.confirm"));
