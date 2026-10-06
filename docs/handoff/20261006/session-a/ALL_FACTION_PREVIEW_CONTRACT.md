@@ -5,3 +5,5 @@ Existing16 map matrices checked all faction chips for opaque nonzero text but ph
 Each source still follows normal cancel/retry/newgame/zoom/pan/Home/rotation/save/read/reopen/cold flow. This is preview coverage for every actually selectable faction; starting a new game for every force/source pair remains a distinct broader matrix and is not claimed. Deep command pages, original entire opening/settings, all media/ARM remain separate. Fresh testAPK build/actual installation required, current live41 uses earlier exact frozen test without this option.
 
 Compilation/build at65905c7e passed. Frozen test-only artifact in out/session-a/apk-65905c7e-all-faction-test/build.json, not installed/accepted yet. Current live41 unchanged279/d760+4b test; all-faction option remains separate pending real tests.
+
+The factions16 successor also repeats preview-back/source-cancel/retry for every source, rather than only the first source. Existing41 preserves its earlier first-source cancellation scope. This additional option must be rebuilt before use;659 test is the prior version, not proof of every-source cancel.
