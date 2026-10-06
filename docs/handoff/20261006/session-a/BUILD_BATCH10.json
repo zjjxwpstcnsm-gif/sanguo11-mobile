@@ -13,15 +13,17 @@
       "bytes": 312840994,
       "sha256": "5df034d1c0ce243126eb07c81addef4597ce250785257a21b154c6e979b1194c",
       "installed": true,
-      "fullAll16Accepted": false
+      "fullAll16Accepted": true
     },
     {
       "kind": "large512",
       "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4e312b89-grid-debate-large512/app-debug.apk",
       "bytes": 312840990,
       "sha256": "a7d4b7113d50d89edbc668178cc7dac07c935540264e0eb480d0d3c469c43520",
-      "installed": false,
-      "fullAll16Accepted": false
+      "installed": true,
+      "fullAll16Accepted": false,
+      "actualInstallSession": "attack-large-29",
+      "normalCommandAcceptanceComplete": false
     }
   ],
   "original168PinsExactInsideBothApks": true,
@@ -47,5 +49,8 @@
   },
   "normal384Source11Accepted": true,
   "normal384Source11Receipt": "NORMAL384_GRID27.json",
-  "normal384Full16Running": "normal-all-source-28"
+  "normal384Full16Running": null,
+  "normal384Full16Accepted": true,
+  "normal384Full16Receipt": "NORMAL384_ALL28.json",
+  "defaultLargeActualInstall29Running": true
 }
