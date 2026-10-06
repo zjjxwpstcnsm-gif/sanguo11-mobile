@@ -150,6 +150,7 @@ public final class Government {
         }
     }
     void allegianceChanged(int officer){
+        PcDirectRecruitmentPolicy.allegianceChanged(w,officer);
         ranks.remove(officer);advisors.values().removeIf(id->id==officer);World.Officer o=w.officer(officer);if(o!=null)w.officerAbilities.refresh(o);
     }
     World.City refuge(int owner,Hex from){return w.cities.stream().filter(c->c.owner==owner)

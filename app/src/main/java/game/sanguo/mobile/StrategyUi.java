@@ -38,10 +38,7 @@ final class StrategyUi {
         }
         if(n==2){choose("选择登用目标",w.strategy.recruitmentTargets(c.id),target->{
             List<World.Officer> actors=w.loyalty.recruitmentActors(c.id,target.id);
-            chooseRecruiter(c,target,actors,
-                o->confirm("登用"+target.name,"消耗金100；当前成功率 "+w.strategy.recruitmentChance(c.id,o.id,target.id)+"%。\n"+
-                    w.loyalty.recommendation(c.id,target.id,o.id)+"\n"+w.recruitment.travelDescription(c.id,target.id)+
-                    "\n抵达时会按目标当时忠诚与归属重新判定，并非必然成功。",()->apply.execute(w,()->w.strategy.recruitOfficer(c.id,o.id,target.id))),null);
+            chooseRecruiter(c,target,actors,o->reviewRecruitment(c,o,target),null);
         });return;}
         if(n==3){batchReward(c);return;}
         if(n==4){final AlertDialog[] targets={null};targets[0]=DataTable.chooseRetained(activity,w,"选择太守",w.idle(c),t->{
@@ -55,6 +52,14 @@ final class StrategyUi {
     private void basicCommand(World.City c,int operation){
         String title=operation==1?"搜索人才":operation==5?"巡察":operation==6?"征兵":"训练";
         chooseCityActor(c,title,operation==1?"SEARCH":operation==5?"PATROL":operation==6?"RECRUIT":"TRAIN",new int[0],null);
+    }
+    private void reviewRecruitment(World.City city,World.Officer actor,World.Officer target){
+        RecruitmentPlan plan=w.strategy.previewRecruitment(city.id,actor.id,target.id);
+        String detail=plan.description()+"\n当前金 "+plan.goldAvailable+" / 行动力 "+plan.actionPointsAvailable+"\n消耗金 "+plan.goldCost+" / 行动力 "+plan.actionPointsCost+
+            "\n"+(plan.nativeRules?"原日期检定阈值 ":"当前工程成功率 ")+plan.chance+" / 100\n"+w.recruitment.travelDescription(city.id,target.id)+
+            (plan.allowed()?"":"\n不能执行："+plan.failure.detail);
+        AlertDialog review=activity.commandDialog("登用"+target.name,detail,"执行","返回修改",w,()->apply.execute(w,()->w.strategy.recruitOfficer(city.id,actor.id,target.id)));
+        review.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(plan.allowed());
     }
 
     private AlertDialog chooseCityActor(World.City c,String title,String operation,int[] targets,Runnable committed){return chooseCityActor(c,title,operation,targets,committed,null);}

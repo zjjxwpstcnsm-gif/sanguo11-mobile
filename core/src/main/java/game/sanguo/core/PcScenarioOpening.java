@@ -89,6 +89,7 @@ final class PcScenarioOpening {
         PcArmyActionPolicy.initializeOpening(w);
         PcDebateCampaignPolicy.initializeOpening(w);
         PcSearchPolicy.initializeOpening(w);
+        PcDirectRecruitmentPolicy.initializeOpening(w);
         SaveCodec.validate(w);
         w.note("安装来源候选开局："+source.identity.path+"；已导入据点/库存与人物记录，完整原事件和部分规则仍未核实。");return w;
     }

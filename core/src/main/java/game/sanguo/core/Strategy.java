@@ -231,9 +231,12 @@ public final class Strategy {
         if (city == null) {
             return 0;
         }
+        try{World.Officer actor=w.officer(officerId),target=w.officer(targetId);if(PcDirectRecruitmentPolicy.eligible(w,city,actor,target)!=null)return PcDirectRecruitmentPolicy.probability(w,actor,target);}catch(java.io.IOException e){throw new IllegalStateException(e);}
         return recruitChance(city.owner, officerId, targetId);
     }
+    public RecruitmentPlan previewRecruitment(int cityId,int officerId,int targetId){return new RecruitmentPlan(w,cityId,officerId,targetId);}
     public World.Result recruitOfficer(int cityId, int officerId, int targetId) {w.reports.prepare();
+        if(PcDirectRecruitmentPolicy.enabled(w)){RecruitmentPlan plan=previewRecruitment(cityId,officerId,targetId);if(!plan.allowed())return w.fail(plan.failure.detail);if(plan.nativeRules)try{return PcDirectRecruitmentPolicy.execute(w,plan);}catch(java.io.IOException e){throw new IllegalStateException(e);}}
         World.City c = this.w.city(cityId);
         World.Officer o = this.w.officer(officerId);
         String error = this.w.cityError(c, o, 100);
