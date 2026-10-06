@@ -19,11 +19,14 @@ android {
     // Verified original visual child builds stay outside the tracked source
     // tree. import_pc_effect_worker.py stages pinned artifacts for both ABIs.
     sourceSets.main.jniLibs.srcDir rootProject.file('out/pc-native-runtime/jniLibs')
+    // Final serial A binding adds a separate executable; the frozen4 remain exact.
+    sourceSets.main.jniLibs.srcDir rootProject.file('out/session-a/pc-fire-runtime/additional-jniLibs')
+
     packaging.jniLibs {
         // Child executables must have an installed nativeLibraryDir path;
         // Android10 forbids executing a copy from the writable data directory.
         useLegacyPackaging = true
-        keepDebugSymbols += ['**/libpc_effect_worker.so', '**/libunicorn.so']
+        keepDebugSymbols += ['**/libpc_effect_worker.so', '**/libpc_effect_fire_worker.so', '**/libunicorn.so']
     }
     defaultConfig {
         applicationId 'game.sanguo.mobile.dev'

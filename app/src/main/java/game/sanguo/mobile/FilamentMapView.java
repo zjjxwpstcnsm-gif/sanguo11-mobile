@@ -53,7 +53,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void sceneIdentity(game.sanguo.api.StateToken token){
         meshWork.owner();
         if(sceneToken!=null&&(!sceneToken.sessionId.equals(token.sessionId)||sceneToken.generation!=token.generation)){
-            closePcMapEffects();closePcPresentations();
+            closePcMapEffects();acceptedCellFires=null;closePcPresentations();
             cancelUnitDrag();
             visibilityStamp.invalidate();terrainVisibilityDirty=true;meshWork.invalidate();assetWork.invalidate();generation++;pending=0;replay=null;animatedUnit=null;clearEffects();
             for(Proxy p:objects.values())p.destroy();objects.clear();
@@ -83,6 +83,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final Map<String,Long> pcWaterClocks=new HashMap<>();
     private final Set<String> pcWaterAdvanced=new HashSet<>();
     private PcMapEffects pcMapEffects;
+    private PcCellFireSet acceptedCellFires;
     private PcPresentations pcPresentations;private PcPresentationStage presentationStage;
     java.util.function.Consumer<PcPresentationStage> presentationStageObserver; // Installed diagnostic, null in normal play.
     private PcPresentationPlan.Cue presentationCue;private float presentationPhase;
@@ -610,7 +611,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         boolean scenerySeasonChanged=snapshot==null||PcScenery.season(snapshot.month)!=PcScenery.season(next.month);
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;
         boolean terrainChanged=snapshot==null||snapshot.ground.surface!=next.ground.surface;
-        if(snapshot!=null&&(snapshot.ground.mapIdentity!=next.ground.mapIdentity||snapshot.ground.sourceOriginX!=next.ground.sourceOriginX||snapshot.ground.sourceOriginY!=next.ground.sourceOriginY)){pcWaterClocks.clear();closePcMapEffects();closePcPresentations();}
+        if(snapshot!=null&&(snapshot.ground.mapIdentity!=next.ground.mapIdentity||snapshot.ground.sourceOriginX!=next.ground.sourceOriginX||snapshot.ground.sourceOriginY!=next.ground.sourceOriginY)){pcWaterClocks.clear();closePcMapEffects();acceptedCellFires=null;closePcPresentations();}
+        if(terrainChanged&&pcMapEffects!=null)closePcMapEffects();
+        if(next.authoritativeSceneFacts)acceptedCellFires=PcCellFireSet.from(next,sceneToken);
+        else if(acceptedCellFires!=null&&(sceneToken==null||!acceptedCellFires.state.equals(sceneToken)))acceptedCellFires=null;
         snapshot=next;terrainVisibilityDirty=true;
         if(pendingFit)fit();
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||next.ground.pcMap!=null&&scenerySeasonChanged||!excluded.equals(woodExcluded);
@@ -888,12 +892,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         // upload burst. The normal map becomes usable before its native visual
         // scene starts; deadlines stay bounded instead of competing with GC.
         if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;
-        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene);
+        PcCellFireSet fires=acceptedCellFires!=null&&sceneToken!=null&&acceptedCellFires.state.equals(sceneToken)?acceptedCellFires:null;
+        if(pcMapEffects!=null&&pcMapEffects.fireScene!=(fires!=null))closePcMapEffects();
+        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene,fires!=null);
         // Source441b80 perspective normalizes every coefficient by far. This
         // preserves clip ratios while abs(w)=view distance/far feeds4420a0's
         // strict0..1 depth queue. Orthographic w=1 cannot drive that map queue.
         float[] sourceCamera=PcEffectCoordinates.camera(lens.getViewMatrix(new float[16]),lens.getProjectionMatrix(new double[16]),snapshot.ground.sourceOriginX,snapshot.ground.sourceOriginY,camera.perspective?1/camera.farPlane():1);
-        pcMapEffects.frame(dt,sourceCamera,snapshot.ground.sourceOriginX,snapshot.ground.sourceOriginY);
+        pcMapEffects.frame(dt,sourceCamera,snapshot.ground.sourceOriginX,snapshot.ground.sourceOriginY,fires);
     }
     private void closePcMapEffects(){if(pcMapEffects!=null){pcMapEffects.close();pcMapEffects=null;}}
     private void clearPresentationFence(){if(presentationFence!=null&&engine!=null)engine.destroyFence(presentationFence);presentationFence=null;presentationDriverReady=false;}

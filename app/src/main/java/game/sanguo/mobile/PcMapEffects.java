@@ -15,6 +15,8 @@ final class PcMapEffects implements AutoCloseable {
     private final Context context;
     private final Engine engine;
     private final Scene scene;
+    final boolean fireScene;
+    private PcCellFireSet acceptedFires;
     private final ExecutorService background=Executors.newSingleThreadExecutor(r->{Thread t=new Thread(r,"PC source map effects");t.setDaemon(true);return t;});
     private volatile PcEffectProcess process;
     private volatile boolean closed;
@@ -33,15 +35,20 @@ final class PcMapEffects implements AutoCloseable {
     private long frames,textureBytes;
     private float sourceElapsed,updateMillis,drawMillis,geometryMillis;
     private static final class Delivery {
-        final PcEffectProcess.Frame frame;final float[] camera;
-        Delivery(PcEffectProcess.Frame frame,float[] camera){this.frame=frame;this.camera=camera;}
+        final PcEffectProcess.Frame frame;final float[] camera;final PcCellFireSet fires;
+        Delivery(PcEffectProcess.Frame frame,float[] camera,PcCellFireSet fires){this.frame=frame;this.camera=camera;this.fires=fires;}
     }
-    PcMapEffects(Context context,Engine engine,Scene scene){this.context=context.getApplicationContext();this.engine=engine;this.scene=scene;}
+    PcMapEffects(Context context,Engine engine,Scene scene){this(context,engine,scene,false);}
+    PcMapEffects(Context context,Engine engine,Scene scene,boolean fireScene){this.context=context.getApplicationContext();this.engine=engine;this.scene=scene;this.fireScene=fireScene;}
 
     /** Called only after renderer.beginFrame(true); asynchronous native work
      * has one request and one result slot. No producer can grow a frame queue.
      */
-    void frame(float dt,float[] camera,double originX,double originZ) {
+    void frame(float dt,float[] camera,double originX,double originZ){frame(dt,camera,originX,originZ,null);}
+    void frame(float dt,float[] camera,double originX,double originZ,PcCellFireSet fires) {
+        if(fireScene!=(fires!=null))throw new IllegalArgumentException("Admitted original fire facts required");
+        if(acceptedFires!=null&&fires!=null&&!acceptedFires.state.equals(fires.state))hide();
+        acceptedFires=fires;
         if(closed)return;
         if(displayedCamera!=null&&!Arrays.equals(displayedCamera,camera))hide();
         synchronized(this) {
@@ -50,15 +57,16 @@ final class PcMapEffects implements AutoCloseable {
             if(!busy&&ready==null&&error.isEmpty()) {
                 float step=dt==0?0:(float)Math.min(.1,Math.max(0,clock-submittedClock));
                 submittedClock+=step;busy=true;float[] captured=camera.clone();
+                PcCellFireSet capturedFires=fires;
                 background.execute(()->{
                     try {
                         PcEffectProcess worker=process;
                         if(worker==null) {
-                            worker=PcEffectProcess.open(context,captured);
+                            worker=PcEffectProcess.open(context,captured,fireScene);
                             synchronized(this){if(closed){worker.close();return;}process=worker;}
                         }
-                        PcEffectProcess.Frame result=worker.frame(step,captured);
-                        synchronized(this){if(!closed)ready=new Delivery(result,captured);}
+                        PcEffectProcess.Frame result=worker.frame(step,captured,capturedFires);
+                        synchronized(this){if(!closed)ready=new Delivery(result,captured,capturedFires);}
                     }catch(Exception failure){error=failure.toString();android.util.Log.e("Sanguo3D","Original map effects stopped",failure);PcEffectProcess worker=process;if(worker!=null)worker.close();}
                     finally{synchronized(this){busy=false;}}
                 });
@@ -66,7 +74,7 @@ final class PcMapEffects implements AutoCloseable {
         }
         if(!error.isEmpty()){hide();return;}
         if(pending==null)return;
-        if(!Arrays.equals(pending.camera,camera)){pending=null;hide();return;}
+        if(!Arrays.equals(pending.camera,camera)||fireScene&&!pending.fires.state.equals(fires.state)){pending=null;hide();return;}
         PcEffectProcess.Frame frame=pending.frame;
         ByteBuffer data=frame.records;
         // Source-over map packets and original cell-fire ADD/SRCALPHA/ONE.
@@ -163,9 +171,9 @@ final class PcMapEffects implements AutoCloseable {
         }
     }
     private void hide(){for(int i=0;i<shown;i++)scene.removeEntity(entities.get(i));shown=0;}
-    String report(){return " pc_map_fx_frames="+frames+" pc_map_fx_serial="+serial+" pc_map_fx_quads="+shown+" pc_map_fx_capacity="+capacity+" pc_map_fx_texture_bytes="+textureBytes+" pc_map_fx_source_time="+sourceElapsed+" pc_map_fx_update_ms="+updateMillis+" pc_map_fx_draw_ms="+drawMillis+" pc_map_fx_geometry_ms="+geometryMillis+" pc_map_fx_error="+(error.isEmpty()?"none":error.replace(' ','_'));}
+    String report(){return " fire_native="+(process==null?"closed":process.fireSummary().replace(' ','_'))+" fire_scene="+fireScene+" admitted_fire_cells="+(acceptedFires==null?0:acceptedFires.cells.size())+" omitted_fire_cells="+(acceptedFires==null?0:acceptedFires.omitted)+" pc_map_fx_frames="+frames+" pc_map_fx_serial="+serial+" pc_map_fx_quads="+shown+" pc_map_fx_capacity="+capacity+" pc_map_fx_texture_bytes="+textureBytes+" pc_map_fx_source_time="+sourceElapsed+" pc_map_fx_update_ms="+updateMillis+" pc_map_fx_draw_ms="+drawMillis+" pc_map_fx_geometry_ms="+geometryMillis+" pc_map_fx_error="+(error.isEmpty()?"none":error.replace(' ','_'));}
     @Override public void close() {
-        synchronized(this){if(closed)return;closed=true;ready=null;pending=null;}
+        synchronized(this){if(closed)return;closed=true;ready=null;pending=null;acceptedFires=null;}
         PcEffectProcess worker=process;if(worker!=null)worker.close();background.shutdownNow();
         hide();for(int entity:entities){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}entities.clear();
         if(vertices!=null)engine.destroyVertexBuffer(vertices);if(indices!=null)engine.destroyIndexBuffer(indices);vertices=null;indices=null;

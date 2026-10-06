@@ -40,7 +40,8 @@ static void forbid_rule_rng(uc_engine *u,uint64_t address,uint32_t size,void *op
 }
 /* Schema2 consumes only immutable admitted burning cells; no gameplay access. */
 static uint32_t fire_handles[40000],fire_generations[40000];
-static void source_fire_sync(Machine *m,uint32_t manager) {
+static void source_fire_sync(Machine *m,uint32_t manager,uint32_t serial) {
+    static uint32_t total_created,total_stopped;uint32_t created=0,stopped=0;
     unsigned char count_bytes[4];if(fread(count_bytes,1,4,stdin)!=4)exit(2);
     uint32_t count=file_u32(count_bytes);if(count>128)exit(2);
     unsigned char seen[40000]={0};
@@ -60,12 +61,13 @@ static void source_fire_sync(Machine *m,uint32_t manager) {
             if(!handle||read32(m,manager+0x334)||read32(m,manager+0x338)){
                 fprintf(stderr,"Original fire factory boundary: cell=%u,%u handle=%x\n",x,y,handle);exit(2);
             }
-            fire_handles[key]=handle;fire_generations[key]=generation;
+            fire_handles[key]=handle;fire_generations[key]=generation;created++;total_created++;
         }
     }
     for(uint32_t key=0;key<40000;key++)if(fire_handles[key]&&!seen[key]) {
-        call(m,0x413470,manager,1,&fire_handles[key]);fire_handles[key]=0;fire_generations[key]=0;
+        call(m,0x413470,manager,1,&fire_handles[key]);fire_handles[key]=0;fire_generations[key]=0;stopped++;total_stopped++;
     }
+    if(created||stopped)fprintf(stderr,"PC_FIRE_SYNC serial=%u active=%u created=%u stopped=%u totalCreated=%u totalStopped=%u\n",serial,count,created,stopped,total_created,total_stopped);
 }
 int main(int argc,char **argv) {
     if(argc<7){fprintf(stderr,"scene-probe VERIFIED_KERNEL VERIFIED_SCENE SOURCE_CAM_X Y Z DT...\n");return 2;}
@@ -175,7 +177,7 @@ int main(int argc,char **argv) {
             previous_serial=serial;if(type==3)break;
             float values[51];memcpy(values,command+12,sizeof(values));
             source_camera_input(&m,camera,values);
-            if(type==4)source_fire_sync(&m,manager);
+            if(type==4)source_fire_sync(&m,manager,serial);
             call(&m,0x441a40,0,2,(uint32_t[]){camera,DRAW_BASE+0x9010});
         } else {dt=finite_arg(argv[i]);if(dt<=0||dt>30)return 2;}
         uint32_t bits;memcpy(&bits,&dt,4);double tick=now();

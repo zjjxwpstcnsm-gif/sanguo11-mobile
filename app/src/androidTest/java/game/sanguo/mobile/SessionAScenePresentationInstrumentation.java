@@ -55,6 +55,16 @@ public final class SessionAScenePresentationInstrumentation extends SessionBFiel
   note("A map boundary label="+label+" rendered="+rendered[0]+" snapshotState="+(snap[0]==null?"absent":snap[0].state.sessionId+":"+snap[0].state.generation+":"+snap[0].state.revision)+" expected="+prior.sessionId+":"+prior.generation+":"+prior.revision);
   if(!rendered[0]){shot("a-map-unverified-"+label);runOnMainSync(()->{try{android.util.Log.w("SessionAScene",((MapHost)field(activity,"map")).report());}catch(Exception e){throw new RuntimeException(e);}});}
   check(snap[0]!=null&&snap[0].authoritativeSceneFacts&&prior.equals(snap[0].state)&&facts[0]!=null&&prior.equals(facts[0].state)&&rendered[0],"actual A map accepts exact full StateToken "+label);
+  if(!facts[0].fires.isEmpty()){
+   long[] priorFrames={0};runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");FilamentMapView renderer=(FilamentMapView)field(host,"spatial");PcMapEffects effects=(PcMapEffects)field(renderer,"pcMapEffects");if(effects!=null)priorFrames[0]=(Long)field(effects,"frames");}catch(Exception e){throw new RuntimeException(e);}});
+   var first=facts[0].fires.get(0);runOnMainSync(()->activity.selectAndFocus(new Hex(first.cell.q,first.cell.r)));
+   long nativeDeadline=SystemClock.uptimeMillis()+120000;String[] nativeReport={""};boolean[] ready={false};
+   while(SystemClock.uptimeMillis()<nativeDeadline){runOnMainSync(()->{try{
+    MapHost host=(MapHost)field(activity,"map");FilamentMapView renderer=(FilamentMapView)field(host,"spatial");PcMapEffects effects=(PcMapEffects)field(renderer,"pcMapEffects");
+    ready[0]=effects!=null&&effects.fireScene&&(Long)field(effects,"frames")>priorFrames[0]+2&&(Integer)field(renderer,"pending")==0&&!(Boolean)field(renderer,"assetSyncPending")&&(Boolean)field(renderer,"outputVerified")&&(Integer)field(effects,"shown")>0&&((String)field(effects,"error")).isEmpty()&&((PcEffectProcess)field(effects,"process")).fireSummary().contains("active="+facts[0].fires.size()+" ")&&((PcCellFireSet)field(effects,"acceptedFires")).state.equals(activity.deploymentState());nativeReport[0]=host.report();
+   }catch(Exception e){throw new RuntimeException(e);}});if(ready[0])break;SystemClock.sleep(100);}
+   note("original fire actual native "+label+" "+nativeReport[0]);check(ready[0],"original source13 native actual map submitted "+label);shot("a-original-fire-"+label);
+  }
   for(SceneFactsSnapshot.Fire fire:facts[0].fires)if(fire.remaining>0){
    MapSceneSnapshot.FireState shown=snap[0].fires.stream().filter(f->f.hex.equals(new Hex(fire.cell.q,fire.cell.r))).findFirst().orElseThrow();
    check(shown.remaining==fire.remaining&&shown.owner==fire.owner&&shown.power==fire.power&&shown.trap==fire.trap&&shown.sourceX==fire.cell.sourceX&&shown.sourceY==fire.cell.sourceY,"actual A source fire projection "+label);
@@ -69,6 +79,6 @@ public final class SessionAScenePresentationInstrumentation extends SessionBFiel
    check(source.nativeId==p.nativeId&&source.recordSha.equals(p.recordSha)&&source.originalFields.equals(p.fields)&&Objects.equals(source.originalVoiceProfile,p.fields.get(48)),"actual A typed original voice source "+p.officerId);profiles++;
   }
   check(Arrays.equals(before,capture())&&prior.equals(activity.deploymentState()),"actual A presentation preserves full Save/bothRNG/StateToken "+label);
-  Files.write(new File(evidence,"a-presentation-"+label+".txt").toPath(),("sameToken=true sourceVoiceJoins="+profiles+" fires="+snap[0].fires.size()+" facilities="+facts[0].military.size()+" originalFire13=false originalSpeechCaller=unknown\n").getBytes("UTF-8"));
+  Files.write(new File(evidence,"a-presentation-"+label+".txt").toPath(),("sameToken=true sourceVoiceJoins="+profiles+" fires="+snap[0].fires.size()+" facilities="+facts[0].military.size()+" originalFire13=runtime9-original-native-check originalSpeechCaller=unknown\n").getBytes("UTF-8"));
  }
 }

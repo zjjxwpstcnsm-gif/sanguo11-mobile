@@ -38,7 +38,9 @@ final class PcEffectProcess implements AutoCloseable {
     private final AtomicBoolean closed=new AtomicBoolean();
     private final StringBuilder error=new StringBuilder();
     private int serial;
+    private boolean fireScene;
     private volatile String deadlineFailure="";
+    private volatile String fireSummary="not-yet-created";
     // Bounded visual-input evidence for a failed source call. Contains only
     // camera matrices and visual time, never authority, gameplay RNG or saves.
     private final java.util.ArrayDeque<byte[]> commandTrace=new java.util.ArrayDeque<>();
@@ -54,15 +56,16 @@ final class PcEffectProcess implements AutoCloseable {
         }
     }
 
-    static PcEffectProcess open(Context context,float[] sourceCamera) throws IOException {
+    static PcEffectProcess open(Context context,float[] sourceCamera) throws IOException {return open(context,sourceCamera,false);}
+    static PcEffectProcess open(Context context,float[] sourceCamera,boolean fireScene) throws IOException {
         if(sourceCamera!=null)sourceCamera=sourceCamera.clone();
         checkCamera(sourceCamera);
         File directory=new File(context.getCacheDir(),"pc-source-effects");
         if(!directory.isDirectory()&&!directory.mkdirs())throw new IOException("PC visual cache directory");
         File kernel=verifiedAsset(context,directory,"source-kernel.bin",KERNEL_SHA,5779520);
-        File scene=verifiedAsset(context,directory,"source-scene.bin",SCENE_SHA,138072);
+        File scene=fireScene?verifiedAsset(context,directory,"source-fire-scene.bin","ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",158192):verifiedAsset(context,directory,"source-scene.bin",SCENE_SHA,138072);
         File libraries=new File(context.getApplicationInfo().nativeLibraryDir);
-        File binary=new File(libraries,"libpc_effect_worker.so");
+        File binary=new File(libraries,fireScene?"libpc_effect_fire_worker.so":"libpc_effect_worker.so");
         if(!binary.isFile())throw new IOException("Original visual worker unavailable for installed ABI");
         ProcessBuilder builder=new ProcessBuilder(binary.getAbsolutePath(),kernel.getAbsolutePath(),scene.getAbsolutePath(),
             Float.toString(sourceCamera[0]),Float.toString(sourceCamera[1]),Float.toString(sourceCamera[2]),"--stream");
@@ -73,13 +76,13 @@ final class PcEffectProcess implements AutoCloseable {
         // guard conservatively retains the5M instruction cap, avoiding the
         // per-instruction accounting cost. Native5s/Java6s deadlines remain.
         builder.environment().put("PC_VM_PROBE_BLOCK_BUDGET","1");
-        PcEffectProcess worker=new PcEffectProcess(builder.start());
+        PcEffectProcess worker=new PcEffectProcess(builder.start());worker.fireScene=fireScene;
         ScheduledFuture<?> deadline=worker.deadline(15000);
         try {
             worker.command(0,0,0,sourceCamera);
             byte[] ready=worker.read(16);
-            if(!Arrays.equals(Arrays.copyOf(ready,8),new byte[]{'P','C','F','X','R','D','Y','1'})
-                ||ByteBuffer.wrap(ready).order(ByteOrder.LITTLE_ENDIAN).getInt(8)!=8
+            if(!Arrays.equals(Arrays.copyOf(ready,8),new byte[]{'P','C','F','X','R','D','Y',fireScene?(byte)'2':(byte)'1'})
+                ||ByteBuffer.wrap(ready).order(ByteOrder.LITTLE_ENDIAN).getInt(8)!=(fireScene?9:8)
                 ||ByteBuffer.wrap(ready).order(ByteOrder.LITTLE_ENDIAN).getInt(12)!=126)
                 throw new IOException("Original visual worker readiness contract");
             return worker;
@@ -95,6 +98,7 @@ final class PcEffectProcess implements AutoCloseable {
                 while((n=stream.read(bytes))>=0)if(n>0)synchronized(error) {
                     error.append(new String(bytes,0,n,java.nio.charset.StandardCharsets.UTF_8));
                     if(error.length()>8192)error.delete(0,error.length()-8192);
+                    int start=error.lastIndexOf("PC_FIRE_SYNC ");if(start>=0){int end=error.indexOf("\n",start);if(end>=0)fireSummary=error.substring(start,end);}
                 }
             } catch(IOException ignored) { /* Pipe closure is owned by close(). */ }
         },"PC visual child diagnostics");
@@ -102,7 +106,9 @@ final class PcEffectProcess implements AutoCloseable {
     }
 
     /** dt==0 is a paused redraw: no source update or visual RNG advance. */
-    synchronized Frame frame(float dt,float[] sourceCamera) throws IOException {
+    synchronized Frame frame(float dt,float[] sourceCamera) throws IOException {return frame(dt,sourceCamera,null);}
+    synchronized Frame frame(float dt,float[] sourceCamera,PcCellFireSet fires) throws IOException {
+        if(fireScene!=(fires!=null))throw new IllegalArgumentException("Original fire scene/token contract");
         if(sourceCamera!=null)sourceCamera=sourceCamera.clone();
         checkCamera(sourceCamera);
         if(!Float.isFinite(dt)||dt<0||dt>30)throw new IllegalArgumentException("Source visual dt");
@@ -111,7 +117,8 @@ final class PcEffectProcess implements AutoCloseable {
         int request=++serial;
         ScheduledFuture<?> deadline=deadline(6000);
         try {
-            command(dt==0?2:1,request,dt,sourceCamera);
+            if(fireScene)fireCommand(request,dt,sourceCamera,fires);
+            else command(dt==0?2:1,request,dt,sourceCamera);
             byte[] bytes=read(32);
             if(!Arrays.equals(Arrays.copyOf(bytes,8),new byte[]{'P','C','F','X','F','R','0','1'}))
                 throw new IOException("PC visual frame header");
@@ -140,6 +147,14 @@ final class PcEffectProcess implements AutoCloseable {
     private void command(int type,int serial,float dt,float[] camera) throws IOException {
         ByteBuffer bytes=ByteBuffer.allocate(216).order(ByteOrder.LITTLE_ENDIAN);
         bytes.putInt(type).putInt(serial).putFloat(dt);for(float value:camera)bytes.putFloat(value);
+        synchronized(commandTrace){if(commandTrace.size()==65){commandTrace.removeFirst();commandTraceTruncated=true;}commandTrace.addLast(bytes.array());}
+        input.write(bytes.array());input.flush();
+    }
+    String fireSummary(){return fireSummary;}
+    private void fireCommand(int serial,float dt,float[] camera,PcCellFireSet fires)throws IOException {
+        ByteBuffer bytes=ByteBuffer.allocate(220+fires.cells.size()*12).order(ByteOrder.LITTLE_ENDIAN);
+        bytes.putInt(4).putInt(serial).putFloat(dt);for(float value:camera)bytes.putFloat(value);
+        bytes.putInt(fires.cells.size());for(var cell:fires.cells)bytes.putInt(cell.x).putInt(cell.y).putFloat(cell.position.y);
         synchronized(commandTrace){if(commandTrace.size()==65){commandTrace.removeFirst();commandTraceTruncated=true;}commandTrace.addLast(bytes.array());}
         input.write(bytes.array());input.flush();
     }
