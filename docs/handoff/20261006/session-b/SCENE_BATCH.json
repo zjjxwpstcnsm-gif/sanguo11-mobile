@@ -1,0 +1,152 @@
+{
+  "status": "completed-bounded-readonly-API-and-military-flow21-x86_64",
+  "goalComplete": false,
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "mainBase": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "parentCompletedBatch": "1c3b54b517a8f8177006a3d71e5b9d4a4695e11d",
+  "sourceCommit": "41313d2f7e7c41003c750a10dcf72c3b43c52120",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "apk": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/scene-build-21/frozen/app-debug.apk",
+      "bytes": 312057365,
+      "sha256": "ab3c7aa0741009de46959cf3c6ce031602635372ae44e5415985e949fd859d22"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/scene-build-21/frozen/app-debug-androidTest.apk",
+      "bytes": 2532274,
+      "sha256": "abe883a84028a0408c4b8712dacd12606af9efe3ddccd0c1a66cb4fb96e353cf"
+    }
+  ],
+  "installedSha": {
+    "game.sanguo.mobile.dev": "ab3c7aa0741009de46959cf3c6ce031602635372ae44e5415985e949fd859d22",
+    "game.sanguo.mobile.dev.test": "abe883a84028a0408c4b8712dacd12606af9efe3ddccd0c1a66cb4fb96e353cf"
+  },
+  "ordinaryFlowPassed": true,
+  "coldProcessPassed": true,
+  "flow": "source14/CaoCao ordinary new/deploy5000spear1000gold/city-center MOVE/fund200 cancel+once/wall300/normal completion+reset/legal CAMP500 cancel+once/unfinished save/four whole construction turns/completion/normal load/activity recreation/true new-process auto+manual continuation fullWorld/bothRNG exact; live serial scene/officer DTO at new/build/cold with same StateToken/native/runtime/record/voice/construction facts and pure complete saves",
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "allShaReadbackMatches": true,
+      "mismatchCount": 0,
+      "additionalFileCount": 0
+    },
+    "external": {
+      "originalFiles": 772,
+      "allShaReadbackMatches": true,
+      "mismatchCount": 0,
+      "additionalFileCount": 0
+    }
+  },
+  "buildInputs": 10784,
+  "buildInputsUnchangedBeforeAfter": true,
+  "productionGuardPaths": 6077,
+  "productionInputsStillExact": true,
+  "inheritedNonBGuardPaths": 10714,
+  "inheritedOutsideRegisteredBStillExact": true,
+  "fixedInheritedInputs": 168,
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "ignored": true
+    }
+  ],
+  "originalDirtyEntries": 609,
+  "originalStatusNulSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": [
+    "SceneFactsQuery40228/16 source previews/9 genuine old files/pure fullWorld bothRNG/detached actual construction-fire-removal/token-thread",
+    "GameSession1690",
+    "BridgeSession",
+    "staticArchitecture",
+    "fieldworks52",
+    "militaryFee17"
+  ],
+  "contract": "docs/handoff/20261006/session-b/SCENE_FACTS_CONTRACT.md",
+  "sample": {
+    "path": "docs/handoff/20261006/session-b/scene-facts-installed-21.json",
+    "origin": "decoded own exact installed fresh construction save with recorded live token; not a new live session",
+    "saveSha256": "9fda5fe43f0031a5fec5f9cf705f7e9fe98d9b021a417128dbca3c09a4af1fab",
+    "builderRuntime": 2003,
+    "builderNative": 78,
+    "originalVoiceProfile": 2,
+    "currentFireCount": 2,
+    "encodingEnvelope": "only report gzip OS byte(Android0/JVM255) plus outerCRC differs; decompressed report and all other payload bytes identical; raw bytes retained, no serializer policy change"
+  },
+  "evidence": {
+    "path": "docs/handoff/20261006/session-b/scene-flow-21.tar.gz",
+    "bytes": 17067560,
+    "sha256": "c1377700ce87532dd04c2c5399caf715545b07c2e92502e33e293d6a440f5c4a",
+    "privateUserBackupsExcluded": true
+  },
+  "performance": {
+    "wholeTurnElapsedMs": [
+      111236,
+      271383,
+      243428,
+      193778,
+      158859,
+      144262,
+      158964
+    ],
+    "backgroundAfter120s": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "diagnosis": "one SIGQUIT main thread commit/WorldCopies/SaveCodec/GovernmentSave/PcScenarioPeople parse; rule phases completed; GC/scheduling pressure observed; no unverified optimization promoted"
+  },
+  "governorAudit": {
+    "sources": 16,
+    "siteJoins": 1392,
+    "verifiedCurrentOpeningVsIndependentOriginalElectionDifferences": 479,
+    "unknownWinnerIdentity": 0,
+    "productionGovernorPolicyEnabled": false,
+    "limits": "independent original4bca30 election versus current source opening; no opening controller/AP/event sequence restoration claim"
+  },
+  "postFreezeNonCompiledAdditions": [
+    "exporter test+installed sample",
+    "ignored governor read-only audit and own documentation/evidence"
+  ],
+  "aDependencies": "only completed47326188 six exact compile-only staged files; A production paths never edited",
+  "frozenBridgeUnityJniSerializationChanged": false,
+  "conflicts": "20 exact B source/evidence paths. Sequentially apply completed military224751a7/cc4e7abd, capacity454d60db/1c3b54b5, then this source. No A WIP or A-owned file overwrite. A must implement exact consumers in SCENE_FACTS_CONTRACT in its own files and return frozen increment for later sequential installed verification. Shared Gradle/manifest unedited.",
+  "incomplete": [
+    "whole goal",
+    "A rendering adaptation and complete original source scene-region/caller-parent/voice trigger facts",
+    "typed current birth/appearance/death beyond existing lifecycle DTO descriptions",
+    "all16 complete normal B command/contest/save matrix",
+    "governor/district/openingAP/events and effective extra/ancient/NPC activation",
+    "source-complete officer fields/skills/biographies",
+    "complete original duel/debate production terminal callbacks",
+    "repair/stop/destruction/full foreign military admission/HQ discount/original rates",
+    "full31-39/custom continuation; genuine31/38 missing",
+    "inherited core/U01 failure boundaries",
+    "ARM/Unity Player/audio physical acceptance"
+  ]
+}

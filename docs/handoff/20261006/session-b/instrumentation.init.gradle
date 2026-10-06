@@ -1,0 +1,8 @@
+// Test invocation only. Frozen shared Gradle/manifest files and production APK inputs stay intact.
+gradle.beforeProject { project ->
+    project.plugins.withId('com.android.application') {
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            android.defaultConfig.testInstrumentationRunner = 'game.sanguo.mobile.SessionBFieldworksInstrumentation'
+        }
+    }
+}

@@ -10,7 +10,7 @@ import java.util.function.*;
 final class DiplomacyUi {
     private final MainActivity a;private final World w;private final LegacyCommandSink apply;
     DiplomacyUi(MainActivity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
-    private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
+    private void info(String title,String text){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show());}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private void confirm(String title,String error,String text,Runnable action){
         if(error!=null){info(title,error);return;}
@@ -36,7 +36,7 @@ final class DiplomacyUi {
         choose("援军任务",options,x->w.diplomacy.describe(x),x->{
             AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle("援军任务").setMessage(w.diplomacy.describe(x)).setPositiveButton("返回",null);
             if(!x.returning)dialog.setNeutralButton("结束援军",(d,i)->confirm("结束援军",null,"援军将返回盟军据点，已交付礼金不退还。",()->apply.execute(w,()->w.diplomacy.cancelAid(x.source))));
-            dialog.show();
+            UiTheme.dialog(dialog.show());
         });
     }
 }

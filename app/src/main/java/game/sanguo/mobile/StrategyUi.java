@@ -21,7 +21,7 @@ final class StrategyUi {
     void city(World.City c){
         String title=c.name+" · 人事 / 城市治理";
         String[] labels={"城市与武将状态","搜索人才","登用武将","褒奖武将","任命太守","巡察","征兵","训练","舌战登用"};
-        new AlertDialog.Builder(activity).setTitle(title).setItems(labels,(d,n)->command(c,n)).setNegativeButton("返回",null).show();
+        UiTheme.dialog(new AlertDialog.Builder(activity).setTitle(title).setItems(labels,(d,n)->command(c,n)).setNegativeButton("返回",null).show());
     }
     void command(World.City c,int n){
         World.Officer governor=w.officer(c.governorId);
@@ -101,7 +101,7 @@ final class StrategyUi {
         List<World.Officer> targets=new ArrayList<>();for(World.Officer o:w.officers)if(w.strategy.rewardable(c,o))targets.add(o);
         if(targets.isEmpty()){info("批量褒奖","本城没有符合条件的武将；在外、忠诚已满或本旬已褒奖者不可选。");return;}
         Set<Integer> selected=new LinkedHashSet<>();android.widget.LinearLayout host=new android.widget.LinearLayout(activity);host.setOrientation(android.widget.LinearLayout.VERTICAL);
-        android.widget.TextView count=new android.widget.TextView(activity);UiTheme.text(count);count.setTextColor(UiTheme.JADE);count.setPadding(16,12,16,12);host.addView(count);
+        android.widget.TextView count=new android.widget.TextView(activity);UiTheme.text(count);count.setTextColor(UiTheme.JADE);UiTheme.readable(count);count.setPadding(16,12,16,12);host.addView(count);
         Runnable update=()->count.setText("已选 "+selected.size()+" / "+targets.size()+" 人 · 选择执行武将后核对费用与效果");
         DataTable<World.Officer> table=DataTable.officers(activity,w,targets,o->"忠诚 "+o.loyalty,o->{if(!selected.add(o.id))selected.remove(o.id);update.run();});
         table.selection(o->selected.contains(o.id));table.list.setOnItemClickListener((parent,v,index,id)->{if(!selected.add((int)id))selected.remove((int)id);table.selection(o->selected.contains(o.id));update.run();});

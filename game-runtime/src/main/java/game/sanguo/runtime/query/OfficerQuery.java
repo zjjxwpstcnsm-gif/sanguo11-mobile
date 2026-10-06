@@ -45,8 +45,8 @@ public final class OfficerQuery {
                     else unknown.add("originalHiddenLoyaltyMissingFromSave");
                     PcContestProfiles.Fact contest=contestFacts.get(o.id);
                     if(contest!=null&&contest.nativeId==nativePerson.nativeId&&contest.recordSha.equals(nativePerson.recordSha))facts+="\n原性格："+contest.personality()+"\n原话术标记："+contest.talks();
-                    if(source!=null)source=new OfficerSnapshot.SourceInfo(source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.courtesy,source.courtesyRaw,source.biography,source.biographyResourceSha,source.biographyRenderedSha,unknown,identity,facts,rawLoyalty,canonicalId);
-                    else if(scenario!=null)source=new OfficerSnapshot.SourceInfo(nativePerson.nativeId,scenario.sourceVariant,scenario.path,scenario.sha,nativePerson.recordSha,nativePerson.courtesy,nativePerson.courtesyRaw,"","","",unknown,identity,facts,rawLoyalty,canonicalId);
+                    if(source!=null)source=new OfficerSnapshot.SourceInfo(source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.courtesy,source.courtesyRaw,source.biography,source.biographyResourceSha,source.biographyRenderedSha,unknown,identity,facts,rawLoyalty,canonicalId,nativePerson.fields);
+                    else if(scenario!=null)source=new OfficerSnapshot.SourceInfo(nativePerson.nativeId,scenario.sourceVariant,scenario.path,scenario.sha,nativePerson.recordSha,nativePerson.courtesy,nativePerson.courtesyRaw,"","","",unknown,identity,facts,rawLoyalty,canonicalId,nativePerson.fields);
                 }catch(java.io.IOException e){unknown.add("sourceOpeningMetadataUnreadable");}
             }
             if(invalidSource)unknown.add("sourceMetadataUnreadable");

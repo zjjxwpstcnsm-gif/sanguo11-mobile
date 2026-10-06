@@ -8,6 +8,8 @@ import java.util.zip.GZIPInputStream;
 
 /** Original personality/talk facts, attached only to explicit source new games. */
 public final class PcContestProfiles {
+    private static final java.util.regex.Pattern FORMAT_0=java.util.regex.Pattern.compile("[0-9a-f]{64}");
+    private static final java.util.regex.Pattern FORMAT_1=java.util.regex.Pattern.compile("(?:[0-9a-f]{2})*");
     private static final int MAGIC=0x50435031,SAVED_MAGIC=0x50435032;
     public static final String NAMESPACE="pc-contest-profile-source-v1";
     private static final Debate.Temper[] TEMPER={Debate.Temper.TIMID,Debate.Temper.CALM,Debate.Temper.BOLD,Debate.Temper.RASH};
@@ -25,7 +27,7 @@ public final class PcContestProfiles {
     private static final class Record {
         final int nativeId,birth,sex,temper,talk;
         final String sha,nameRaw;
-        Record(DataInputStream in)throws IOException{nativeId=PcOfficerInfo.bounded(in.readInt(),0,849);sha=PcOfficerInfo.text(in,64);nameRaw=PcOfficerInfo.text(in,128);birth=in.readInt();sex=in.readInt();temper=PcOfficerInfo.bounded(in.readInt(),0,3);talk=PcOfficerInfo.bounded(in.readInt(),0,31);if(!sha.matches("[0-9a-f]{64}")||!nameRaw.matches("(?:[0-9a-f]{2})*"))throw new IOException("原对战记录指纹无效");}
+        Record(DataInputStream in)throws IOException{nativeId=PcOfficerInfo.bounded(in.readInt(),0,849);sha=PcOfficerInfo.text(in,64);nameRaw=PcOfficerInfo.text(in,128);birth=in.readInt();sex=in.readInt();temper=PcOfficerInfo.bounded(in.readInt(),0,3);talk=PcOfficerInfo.bounded(in.readInt(),0,31);if(!FORMAT_0.matcher(sha).matches()||!FORMAT_1.matcher(nameRaw).matches())throw new IOException("原对战记录指纹无效");}
     }
     private static final class Source {
         final String id,path,variant,sha;final List<Record> records;
@@ -40,7 +42,7 @@ public final class PcContestProfiles {
         }
         try(InputStream index=PcContestProfiles.class.getResourceAsStream("/pc-contest-profiles/index.txt")){
             if(index==null)throw new IOException("原对战索引缺失");ByteArrayOutputStream expected=new ByteArrayOutputStream();int value;while((value=index.read())!=-1){if(expected.size()>=128)throw new IOException("原对战索引过大");expected.write(value);}String hex=new String(expected.toByteArray(),StandardCharsets.US_ASCII).trim();
-            if(!hex.matches("[0-9a-f]{64}")||!hex.equals(hash(raw)))throw new IOException("原对战资源指纹变化");
+            if(!FORMAT_0.matcher(hex).matches()||!hex.equals(hash(raw)))throw new IOException("原对战资源指纹变化");
         }
         DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));
         if(in.readInt()!=MAGIC||!PcOfficerInfo.text(in,64).equals(PcScenarioIdentity.EXE_SHA)||!PcOfficerInfo.text(in,64).equals("e4341546432e8d257851ed830bc3388d1f8ce8697db1547e108285d2b3b68d2c"))throw new IOException("原对战资源来源未知");
@@ -66,7 +68,7 @@ public final class PcContestProfiles {
         DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));PcScenarioIdentity.Source source=PcScenarioIdentity.saved(w);
         if(in.readInt()!=SAVED_MAGIC||source==null||!PcOfficerInfo.text(in,80).equals(source.scenarioId)||!PcOfficerInfo.text(in,64).equals(source.sha))throw new IOException("已存原对战来源不匹配");
         int n=PcOfficerInfo.bounded(in.readInt(),850,850);Map<Integer,Fact> result=new TreeMap<>();Set<Integer> natives=new HashSet<>();
-        for(int i=0;i<n;i++){int id=PcOfficerInfo.bounded(in.readInt(),-1,999999),nativeId=PcOfficerInfo.bounded(in.readInt(),0,849),temper=PcOfficerInfo.bounded(in.readInt(),0,3),mask=PcOfficerInfo.bounded(in.readInt(),0,31);String sha=PcOfficerInfo.text(in,64);if(!sha.matches("[0-9a-f]{64}")||!natives.add(nativeId))throw new IOException("已存原对战记录无效");if(id>=0&&(w.officer(id)==null||result.put(id,new Fact(id,nativeId,temper,mask,sha))!=null))throw new IOException("已存原对战人物无效");}
+        for(int i=0;i<n;i++){int id=PcOfficerInfo.bounded(in.readInt(),-1,999999),nativeId=PcOfficerInfo.bounded(in.readInt(),0,849),temper=PcOfficerInfo.bounded(in.readInt(),0,3),mask=PcOfficerInfo.bounded(in.readInt(),0,31);String sha=PcOfficerInfo.text(in,64);if(!FORMAT_0.matcher(sha).matches()||!natives.add(nativeId))throw new IOException("已存原对战记录无效");if(id>=0&&(w.officer(id)==null||result.put(id,new Fact(id,nativeId,temper,mask,sha))!=null))throw new IOException("已存原对战人物无效");}
         if(in.available()!=0)throw new IOException("已存原对战尾部未知");return Collections.unmodifiableMap(result);
     }
 }

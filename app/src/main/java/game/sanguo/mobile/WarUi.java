@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 final class WarUi {
     private final MainActivity a;private final World w;private final LegacyCommandSink apply;
     WarUi(MainActivity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
-    private void info(String text){new AlertDialog.Builder(a).setMessage(text).setPositiveButton("返回",null).show();}
+    private void info(String text){UiTheme.dialog(new AlertDialog.Builder(a).setMessage(text).setPositiveButton("返回",null).show());}
     private void confirm(String title,String text,Runnable command){a.commandDialog(title,text,"执行",w,command);}
     void move(World.Unit u,Hex target){
         UnitOrders.MovePlan plan=w.orders.previewMove(u.id,target);
@@ -52,12 +52,12 @@ final class WarUi {
     void plots(World.Unit u){
         List<War.Plot> plots=new ArrayList<>();for(War.Plot p:War.Plot.values())if(w.advancedBattle.unlocked(u,p))plots.add(p);
         String[] names=new String[plots.size()];for(int i=0;i<names.length;i++){War.Plot p=plots.get(i);names[i]=p.label+" · 气力"+w.war.plotCost(u.id,p);}
-        new AlertDialog.Builder(a).setTitle("部队计略").setItems(names,(d,i)->{
+        UiTheme.dialog(new AlertDialog.Builder(a).setTitle("部队计略").setItems(names,(d,i)->{
             War.Plot plot=plots.get(i);List<Hex> targets=new ArrayList<>();
             int range=w.war.plotRange(u.id,plot);
             for(int q=Math.max(0,u.hex.q-range);q<=Math.min(w.width-1,u.hex.q+range);q++)for(int r=Math.max(0,u.hex.r-range);r<=Math.min(w.height-1,u.hex.r+range);r++){Hex h=new Hex(q,r);if(w.war.plotError(u.id,h,plot)==null)targets.add(h);}
             if(targets.isEmpty()){info("没有可施展目标。\n"+plot.effect+"\n需要计略范围内有效目标和足够气力；伏兵还需自身位于森林。");return;}
             a.pickOnMap(plot.label+" · 选择目标",u.hex,targets,h->confirm(plot.label,plot.effect+(plot==War.Plot.FIRE?"\n"+w.fieldworks.ignitionPreview(u,h):"")+"\n成功率 "+w.war.plotChance(u.id,h,plot)+"%\n消耗气力"+w.war.plotCost(u.id,plot)+"和本旬行动；失败也消耗。\n火种可连锁引爆，己方部队进入火场也会受伤。",()->apply.execute(w,()->w.war.plot(u.id,h,plot))),h->h==null?"目标在地图范围外":w.war.plotError(u.id,h,plot));
-        }).setNegativeButton("取消",null).show();
+        }).setNegativeButton("取消",null).show());
     }
 }

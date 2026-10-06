@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 final class DomesticUi {
     private final MainActivity activity;private final World w;private final LegacyCommandSink apply;private final Consumer<Hex> focus;
     DomesticUi(MainActivity a,World w,LegacyCommandSink apply,Consumer<Hex> focus){activity=a;this.w=w;this.apply=apply;this.focus=focus;}
-    private void message(String title,String text){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
+    private void message(String title,String text){UiTheme.dialog(new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton("返回",null).show());}
     private void confirm(String title,String text,String positive,Runnable run){activity.commandDialog(title,text,positive,w,run);}
     private void officer(World.City c,Consumer<World.Officer> next){DataTable.choose(activity,w,"执行武将",w.idle(c),o->"",next,null);}
     private void destination(int owner,int excluded,Consumer<World.City> next){
@@ -42,7 +42,7 @@ final class DomesticUi {
         for(World.City c:w.cities)if(c.owner==w.player){labels.add(c.name+" · 人事 / 城市治理 / 武将状态");actions.add(()->new StrategyUi(activity,w,apply).city(c));}
         for(Domestic.Facility f:w.domestic.facilities)if(w.city(f.cityId).owner==w.player){labels.add(w.city(f.cityId).name+" · "+f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"));actions.add(()->facility(f));}
         for(Domestic.Mission m:w.domestic.missions)if(m.owner==w.player){labels.add((m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name+" → "+w.city(m.targetCity).name+" · "+w.domestic.status(m));actions.add(()->mission(m));}
-        new AlertDialog.Builder(activity).setTitle("政务与在途 · 点击详情").setItems(labels.toArray(new String[0]),(d,i)->actions.get(i).run()).setNegativeButton("返回",null).show();
+        UiTheme.dialog(new AlertDialog.Builder(activity).setTitle("政务与在途 · 点击详情").setItems(labels.toArray(new String[0]),(d,i)->actions.get(i).run()).setNegativeButton("返回",null).show());
     }
     void facility(Domestic.Facility f){
         focus.accept(f.hex);World.City c=w.city(f.cityId);
@@ -51,7 +51,7 @@ final class DomesticUi {
             if(f.remaining>0)dialog.setPositiveButton("取消建设",(d,n)->confirm("取消建设","不会退还建设费用，本旬不能重复使用武将。","确定取消",()->apply.execute(w,()->w.domestic.cancelBuild(f.id))));
             else dialog.setPositiveButton("拆除",(d,n)->officer(c,o->confirm("拆除设施","需要一名闲置武将与行动力10，不退还费用。","确定拆除",()->apply.execute(w,()->w.domestic.demolish(f.id,o.id)))));
         }
-        dialog.show();
+        UiTheme.dialog(dialog.show());
     }
     void mission(Domestic.Mission m){
         focus.accept(m.hex);StringBuilder detail=new StringBuilder(w.officer(m.officerId).name+"\n"+w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+w.domestic.status(m)+"\n当前坐标 "+m.hex.q+", "+m.hex.r);
@@ -62,6 +62,6 @@ final class DomesticUi {
         detail.append("\n\n运输队可被截击；城内受城防保护。目的地失守自动选择可达己城；无路则等待。满仓保留货物，下一旬重试。");
         AlertDialog.Builder d=new AlertDialog.Builder(activity).setTitle(m.transport?"运输详情":"调动详情").setMessage(detail).setNegativeButton("返回",null);
         if(!w.gameOver())d.setPositiveButton("改道 / 返回",(dialog,n)->destination(m.owner,m.targetCity,c->confirm("任务改道","改道至"+c.name+"，消耗行动力10。","执行",()->apply.execute(w,()->w.domestic.redirect(m.id,c.id)))));
-        d.show();
+        UiTheme.dialog(d.show());
     }
 }

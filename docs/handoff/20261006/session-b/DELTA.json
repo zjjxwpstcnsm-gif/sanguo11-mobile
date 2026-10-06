@@ -1,0 +1,401 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "mainBase": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "status": "completed-bounded-military-build17-full-goal-incomplete",
+  "commit": "224751a7fadf6c2ef562e74be2e67576461d5e32",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "98206d0ee36d36c0424c12e8b2eb6456bee90feb2f26c7848a6f545afb3a56cc",
+      "bytes": 22480
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/AbilityUi.java",
+      "beforeSha256": "f80ae1494d5ab868c28b785be098f41d38138cc583ef1ef6d6050be9cbca4f88",
+      "afterSha256": "0c32f562b48235a5ea6597ae6c5529b66b7b48a10162e9e3505d1cadbe4e5921",
+      "bytes": 5857
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ArmyUi.java",
+      "beforeSha256": "99faa707ca4f58da4e071f9f0a496d2ffe678506fc7ffa12e623d0b665f3ec5e",
+      "afterSha256": "dcd2d0c8d8e12661967141f1c2ac3bfbab07b5056ad04145a7c438fe7930ab8b",
+      "bytes": 6909
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildPicker.java",
+      "beforeSha256": "1e2aff239961d1dc3760bf359f981a6e9896106a3cd9889f80895306784f3d3b",
+      "afterSha256": "51f4b47bca0147866a3de1b4e40a40fcdf813b7d45cb4a2da9abcff5575c09c9",
+      "bytes": 9079
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
+      "beforeSha256": "aa21891c1af0da706bde287a1f55bb89ec4c931bc166a7c816590470bac4f753",
+      "afterSha256": "8d12833055b91489662a6f98656d52ecd0fea84952a2542f8c4f6806c60cf5dd",
+      "bytes": 20029
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CargoWizard.java",
+      "beforeSha256": "fd05f227ac75e4b82b78c3304bf86ee77c8c0e705ed22105ed8391677335051a",
+      "afterSha256": "5ecf691b19499ddfcc8c14bfcd627e4b42104ced05fadbe5fbc9a5b0edf6d516",
+      "bytes": 16244
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "beforeSha256": "fda7d2aa2d14f31dca41e65e754990f3f887ef8cb285cbbb8d09513ad96e4749",
+      "afterSha256": "eebe3dd0b1ecbf0ac8e20c892ab155e0973c6f376d388783520026ca860439b9",
+      "bytes": 13171
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "beforeSha256": "5616f8a05196903174029dd84d514f80280be57745bc25a99f4da87af8d436da",
+      "afterSha256": "f5f88a3def7be02edc1f845e9ca2b69a938f11f29ab85b6458c69a002d82b571",
+      "bytes": 10371
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerPlacementUi.java",
+      "beforeSha256": "e6a2eb21997df630d77d05af39f6a830028219e3b78a5a89a12ce42167bc148a",
+      "afterSha256": "6170e2a3e31fb89bd432c8827d38e9034b313b3e5ff4c8968a8b5f8795ce7669",
+      "bytes": 10257
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DeployWizard.java",
+      "beforeSha256": "5dad7164fd60ca3121a9454e0a6ee66e0c39e95e3835965fb3041871be50a501",
+      "afterSha256": "07704e64ffbc02290f6cb5df33b53a479d4e56159bb5acfd43f770a11bc509bb",
+      "bytes": 23631
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DiplomacyUi.java",
+      "beforeSha256": "6163515813068a5bbf29fef45a4b6c38eea4cf5741ac05b8e7be5d6f5200d732",
+      "afterSha256": "9a78b0997ba889b3077e7aefc8abd81b8fd767309fe26f04d101b028c6aba22c",
+      "bytes": 4652
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DomesticUi.java",
+      "beforeSha256": "ad2399c3a8cc68fb7495787e0417e509a8b012363765e6439eee5987eae61623",
+      "afterSha256": "3c9f44cf419f9f0f531787b9003c29fcff043c1715b2533ca54bc88a601a9300",
+      "bytes": 6856
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "beforeSha256": "c72317c3d9832415d15da5cc3ab535d46449164edd10f6fe788c2c1c6eb3859a",
+      "afterSha256": "7c49b5dfaea9367eb5faa11e97b4b92def22efa952bc513e4c77183b33b95673",
+      "bytes": 5312
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+      "beforeSha256": "04aa3615a7619e493964e9dca72b9a26b6b807103912036cd8ca0a2636f7c2f8",
+      "afterSha256": "a37810611e39a983f5ac30b450fada1226bac2a9f71dec018998cdb6b5e0c648",
+      "bytes": 7991
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LifecycleUi.java",
+      "beforeSha256": "32f7a76a936b9e8a44e4cf1ce78e44cf7fc6fa7dedd64c1802015cae9604661c",
+      "afterSha256": "d6501c3a912ed803cc2c4e6429df4dd87d4eebb0e55f650141bfd3801289ca68",
+      "bytes": 5978
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "beforeSha256": "4ab5d2bda571ad1597a9cea551dd0d0933ea129c05bcb5c11163ef45c1bf4f66",
+      "afterSha256": "4386b4176c61c8349f2a8f174fc5df9388ababa82616fea00567cfb57879737a",
+      "bytes": 15044
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WarUi.java",
+      "beforeSha256": "cfd87592a2fda1e2a2c241078656db70bb7be7047e7e168cf85638219289c996",
+      "afterSha256": "e8cc4a4219f1be8f7e4c2b928439f99b4db07a77f18ba6064f1da06e96c6838c",
+      "bytes": 6261
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Fieldworks.java",
+      "beforeSha256": "f2015c85be753bda63564178615364675f248918e80249d554a2714fed76b49c",
+      "afterSha256": "27afb6d8a0efe50012e21bdadbcfafdf74af6a17183b2f1003b333a68378a93a",
+      "bytes": 28361
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MarchOrders.java",
+      "beforeSha256": "aa7422d4b4443528d18d307cf249cbeb884b6b88753ebaad8b3b473d0967303f",
+      "afterSha256": "d153c5f54bdb38a33bb8a317f5513cc37cdd85c1b89b9bfb269b6db849b4cc22",
+      "bytes": 25141
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcContestProfiles.java",
+      "beforeSha256": "51c75ef83f9e828ad7cc32628629d3f31f09251d52ef08d5123e906a701ca903",
+      "afterSha256": "8cd03daa743e7cedc7de6de2899b8074a87520df338c6c309aa8861f005c3958",
+      "bytes": 8519
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMilitaryCostPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "4db1dcbf45ee3f4007e8c2c87e3dd33b68d89774c790a7165eeb2172297fbbe3",
+      "bytes": 4621
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerCampaignFacts.java",
+      "beforeSha256": "2659965f8f620a31c81318706905e48b85be8b1aa6550dbbbe261856ad0a2c17",
+      "afterSha256": "04aad8b221800529ffabaef7119ff068cdb97394925047741f24575640d92060",
+      "bytes": 7541
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerInfo.java",
+      "beforeSha256": "b294e696199ec4c694377c9f01895d037c581652f6bad8acdca66c5ee5741e17",
+      "afterSha256": "605870859e9e0f9cb42ca885a58c790f5def13e68edbc74cd6149720c832a51e",
+      "bytes": 5670
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioIdentity.java",
+      "beforeSha256": "b55e8465a9d08f5a17527cc484f7d199902c995d7589802c5e43522be2eaa5fb",
+      "afterSha256": "020b60f4b7f07b2e0c47adb05333a3e7b16a08b7c7c2fbd6c09fd95a43fad026",
+      "bytes": 6764
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "180290a2544e1da07861bb6bd73d78affecb9f8276acf339524e1e8b98f2cd9e",
+      "afterSha256": "54c91f0d44cfea24f43f6c8f3a2a37e043887573d7500c7491782e164506e90e",
+      "bytes": 9067
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+      "beforeSha256": "e97e891a3df2de2758abe6c847968af9428e10ef26025cfe658af331d494718f",
+      "afterSha256": "60bb8e880c5cd80180368444eda033697e81f33002fd61775e45bd281b8a1cc3",
+      "bytes": 7599
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "88268375e4beb2e4ebcdc1891cb222eea76c4e55091ad82e6077d6fd53f81e03",
+      "afterSha256": "8546764b2d351dd6a1a7b67306e91b9fe3f6300831f0e03dfcdbefe99959876d",
+      "bytes": 17816
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMilitaryCostPolicyTest.java",
+      "beforeSha256": null,
+      "afterSha256": "a494117817858039046f30b75976267d8c4ad89324ea41a845a8474895fb5dd8",
+      "bytes": 3699
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerTextDecoderTest.java",
+      "beforeSha256": null,
+      "afterSha256": "52dc59f219e89fc373c568451bfbd23b73a48d78e283527cc66f965ec48ff994",
+      "bytes": 1954
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBFieldworksTest.java",
+      "beforeSha256": null,
+      "afterSha256": "c2b5d9b94cefa9d866698f8e6e26122720a7b7647c75366a1535b4856fcf6b8c",
+      "bytes": 4603
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBLegacyContinuationProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "2e421f48c70174fb747359a93ec6d495905b3db6565d217a40c26d5299bc05be",
+      "bytes": 3248
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBMilitaryFlowProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "10a73928ef6a5d9ad3cf8e07f19696adfeb9a3338c45e9b2082ed3d93130e7da",
+      "bytes": 3578
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ACCEPTANCE.md",
+      "beforeSha256": null,
+      "afterSha256": "e631270d13dc68320815542daaa03cb7aae73cca779fd5c76e14e3f75a67f571",
+      "bytes": 6987
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/A_FROZEN.json",
+      "beforeSha256": null,
+      "afterSha256": "4580df391e63a46712862c1ba27a7b7b80e684da059902b3764fa6c1d37cfe1a",
+      "bytes": 1796
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMMAND_AUDIT.md",
+      "beforeSha256": null,
+      "afterSha256": "ddb8eeca0e5cc6c23ab73f82235f21ee21d3fa2f492345a39375b7bb7ce569c5",
+      "bytes": 3787
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMPATIBILITY.md",
+      "beforeSha256": null,
+      "afterSha256": "62888de0f22ce1759d9771b18dc88dc97692f661d288054f80c1e88451b320aa",
+      "bytes": 3793
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "790be325d1db48516b2c9658eb0c12d0376afe745dd4c47df941d6d2bd92e33f",
+      "bytes": 8292
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_CAPACITY.md",
+      "beforeSha256": null,
+      "afterSha256": "412c56bad38fba06614b303818d35f461fe84fa4ef7d786409cb906f3047a421",
+      "bytes": 3849
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/INHERITANCE.json",
+      "beforeSha256": null,
+      "afterSha256": "584b41866f4a3baf6f502593eac7346550e95879fe3492326e7b1d213ef17957",
+      "bytes": 2269996
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/MILITARY_BATCH.json",
+      "beforeSha256": null,
+      "afterSha256": "2d0b0d9ac3496c0b7c75f07a9dfb501e83a17c23da17c0b9fbd0d68e3f80456b",
+      "bytes": 3258
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/MILITARY_COST.md",
+      "beforeSha256": null,
+      "afterSha256": "078907d7fd8f9d8176d1ace5004e19c75493502eeefedbd77a0b10d28034c6c9",
+      "bytes": 2702
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": null,
+      "afterSha256": "870074870bcb3cc7a6685fffb9d6be362914c49475db0ed256a2da6a2efcfe33",
+      "bytes": 5275
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/PLAN.md",
+      "beforeSha256": null,
+      "afterSha256": "9a5ae0dbf12414205801ec09735e33565986997ffddb93bae5a04bda55a71220",
+      "bytes": 1896
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/PROGRESS.md",
+      "beforeSha256": null,
+      "afterSha256": "ecc31c0b7fcf028b5b848a9ec6eb31fef9305aaeb90a1fbc977a84766034389a",
+      "bytes": 20741
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/U01_AUDIT.md",
+      "beforeSha256": null,
+      "afterSha256": "b969ed25ded88add46c9c4a50af6096b3fde19b6800575365011ea285589986a",
+      "bytes": 1577
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/UNKNOWN.md",
+      "beforeSha256": null,
+      "afterSha256": "e95752d39eeb09c7fdf18cea46913e39f2784a22509ab52d3bb015532735355d",
+      "bytes": 2969
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/a-frozen-47326188.tar.gz",
+      "beforeSha256": null,
+      "afterSha256": "1c327b3a678222d09c41299d067a16a910132a6a18de5cdd6d809da0777e00c9",
+      "bytes": 47072
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/instrumentation.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "31a806eed39088a89f10e652b43277a1b9cea93c789b11998abe8cec2d96ec5b",
+      "bytes": 408
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/military-flow-17.tar.gz",
+      "beforeSha256": null,
+      "afterSha256": "93d0ae7904cb115ea972aa8beb6b18bfe6cbbebc70f0bbe4976d8a27c9086980",
+      "bytes": 7271346
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/original-military-base-cost.json",
+      "beforeSha256": null,
+      "afterSha256": "675e6739e604e58a9f00c2f4d40d5751156967d09a548be329b9064ab742ca5e",
+      "bytes": 4778
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/run-session-b.sh",
+      "beforeSha256": null,
+      "afterSha256": "5289ebf90c24b58025e6b2b1579bf963167b6f2d623a51185ba9acc8b4ee150c",
+      "bytes": 611
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/theme-dependencies.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "c9440c7e04fc3182b443671a89965b3d7b6e55f552737fcc1f53ae51c9f7978d",
+      "bytes": 935
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/u01-diff.json",
+      "beforeSha256": null,
+      "afterSha256": "61e92f038345ccad6783e087e4d768ab1e69a27edb3043b876d272a2e3852e36",
+      "bytes": 8214
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SessionBOfficerDtoParityProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "8170149e4c9ee599da3a6351c503c4b32e14c8ce29ee8db8b6865ed77e23456a",
+      "bytes": 2510
+    },
+    {
+      "path": "tools/content/session_b_apply_theme_pages.py",
+      "beforeSha256": null,
+      "afterSha256": "1e28f48ac326b1d63d151c35d27ec70479f66fbbaf1169a62ff6d41e307cf4b1",
+      "bytes": 2312
+    },
+    {
+      "path": "tools/content/session_b_freeze_apk.py",
+      "beforeSha256": null,
+      "afterSha256": "7ce2812e083721473de0bffd167985e07790fb64b80e9a6e94f937faf3f3288d",
+      "bytes": 3057
+    },
+    {
+      "path": "tools/content/session_b_pc_build_spacing.py",
+      "beforeSha256": null,
+      "afterSha256": "5fd1b786fc2ab3ef8000cdc58db053104e861472cd8f9f7d778e8150ad40a5f9",
+      "bytes": 4613
+    },
+    {
+      "path": "tools/content/session_b_pc_command_capacity.py",
+      "beforeSha256": null,
+      "afterSha256": "8512f4c0a495ece5e77e6a69254d6ef8f7bfefbaef4874fdd5e051a841ca0d2a",
+      "bytes": 4506
+    },
+    {
+      "path": "tools/content/session_b_pc_military_cost.py",
+      "beforeSha256": null,
+      "afterSha256": "6c2d7b7c9e5a59f40c0ea526bde2c7ee79e3542a620fb5f0c70d74c3f9ed28b7",
+      "bytes": 3111
+    },
+    {
+      "path": "tools/content/session_b_stage_frozen_dependencies.py",
+      "beforeSha256": null,
+      "afterSha256": "cd54b10c05335f4b2b7d49c57ef9701c4d2052c9a337407490585d0600f73c78",
+      "bytes": 2811
+    },
+    {
+      "path": "tools/content/session_b_stage_movement_dependency.py",
+      "beforeSha256": null,
+      "afterSha256": "6c18a035ffb8c550ae4dffbd366852fe0f8ef28363ae09b722f20254bad08eb0",
+      "bytes": 1283
+    },
+    {
+      "path": "tools/content/session_b_stage_theme_dependencies.py",
+      "beforeSha256": null,
+      "afterSha256": "07b26d845becdfcc9be3c9ddd842346bb50068abb862bdb2187619d11b927d31",
+      "bytes": 2119
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": null,
+      "afterSha256": "c5ed5f48cd8ccb99a13479406cece4ab7332e08efc2fd8afcc7d938681e0b7ab",
+      "bytes": 7239
+    }
+  ],
+  "APK": {
+    "productionSha256": "48b89bd30f28c7b9d7f15ef6a0ea9ea7644359f1db087a883f004c85b03dbdb2",
+    "testSha256": "0f5a39e57638c200690be65c7db8e9abc0743f76a7d69c05b79853184e88354e",
+    "accepted": true,
+    "scope": "source14/CaoCao/x86_64 exact ordinary military/save/cold flow and restored originals only"
+  },
+  "ACompletedDependency": "47326188 six compile-only paths; not merged or included in B production delta",
+  "frozenGuards": "AndroidGameBridge/Unity/rootGradle/4JNI/168 inherited assets unchanged; see INHERITANCE",
+  "excludedNextBatchWip": [
+    "docs/handoff/20261006/session-b/COMMAND_CAPACITY_STRATEGY.md",
+    "tools/content/session_b_pack_capacity_references.py"
+  ],
+  "pathHashesReferToSourceCommit": "224751a7fadf6c2ef562e74be2e67576461d5e32"
+}

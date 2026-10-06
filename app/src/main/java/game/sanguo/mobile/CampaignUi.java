@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 final class CampaignUi {
     private final MainActivity a;private final World w;private final LegacyCommandSink apply;
     CampaignUi(MainActivity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
-    private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
+    private void info(String title,String text){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show());}
     private void confirm(String title,String text,Runnable action){a.commandDialog(title,text,"执行",w,action);}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private void officer(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),o->o.name+" · 政"+o.politics+" / 智"+o.intelligence+" / 魅"+o.charm,next);}
@@ -34,7 +34,7 @@ final class CampaignUi {
     }
     private void treaty(World.City c,int side,Campaign.TreatyKind kind){
         DiplomacyPreview terms=a.previewDiplomacy(new DiplomacyCommand(a.deploymentState(),c.id,-1,side,kind.name(),0));
-        if(terms.treatyDurations.isEmpty()){new AlertDialog.Builder(a).setTitle("暂时无法设置期限").setMessage(MainActivity.commandError(terms.error,terms.detail)).setNegativeButton("返回外交",(d,n)->foreignCommands(c,side)).show();return;}
+        if(terms.treatyDurations.isEmpty()){UiTheme.dialog(new AlertDialog.Builder(a).setTitle("暂时无法设置期限").setMessage(MainActivity.commandError(terms.error,terms.detail)).setNegativeButton("返回外交",(d,n)->foreignCommands(c,side)).show());return;}
         ChoiceDialog.show(a,w,"选择期限",terms.treatyDurations,n->n+"旬",turns->reviewDiplomacy(c,side,kind.name(),turns,kind.label,()->treaty(c,side,kind)),()->foreignCommands(c,side));
     }
     private void reviewDiplomacy(World.City c,int side,String operation,int turns,String title,Runnable back){
@@ -84,7 +84,7 @@ final class CampaignUi {
             LinearLayout modes=new LinearLayout(a);buy=a.button("买粮",v->mode("BUY"));sell=a.button("卖粮",v->mode("SELL"));modes.addView(buy,new LinearLayout.LayoutParams(0,a.dp(48),1));modes.addView(sell,new LinearLayout.LayoutParams(0,a.dp(48),1));body.addView(modes);
             actor=a.button("",v->DataTable.choose(a,w,"交易 · 选择执行武将",w.idle(city()),o->"",o->{draft.putInt("officer",o.id);update();},null,()->{if(dialog.isShowing())a.trackDialog(dialog);}));actor.setTag("trade.actor");body.addView(actor,new LinearLayout.LayoutParams(-1,a.dp(48)));
             body.addView(a.text("交易粮食数量",14,UiTheme.TEXT));LinearLayout row=new LinearLayout(a);
-            input=new EditText(a);input.setInputType(InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);input.setTextColor(UiTheme.TEXT);input.setContentDescription("交易粮食数量");input.setTag("trade.amount");input.setSelectAllOnFocus(true);input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+            input=new EditText(a);input.setInputType(InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);input.setTextColor(UiTheme.TEXT);UiTheme.readable(input);input.setContentDescription("交易粮食数量");input.setTag("trade.amount");input.setSelectAllOnFocus(true);input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
             input.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_DONE|android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);input.setOnEditorActionListener((v,action,event)->{if(action!=android.view.inputmethod.EditorInfo.IME_ACTION_DONE)return false;hideKeyboard();return true;});
             row.addView(input,new LinearLayout.LayoutParams(0,a.dp(48),1));minimum=a.button("最少",v->{if(preview!=null&&preview.quote!=null)input.setText(Integer.toString(preview.quote.minimum));});maximum=a.button("可用上限",v->{if(preview!=null&&preview.quote!=null)input.setText(Integer.toString(preview.quote.availableMaximum));});row.addView(minimum,new LinearLayout.LayoutParams(a.dp(56),a.dp(48)));row.addView(maximum,new LinearLayout.LayoutParams(a.dp(88),a.dp(48)));body.addView(row);
             quote=a.text("核对交易条件…",14,UiTheme.TEXT);quote.setTag("trade.quote");quote.setPadding(0,a.dp(8),0,a.dp(8));body.addView(quote);
@@ -113,7 +113,7 @@ final class CampaignUi {
                 minimum.setEnabled(true);maximum.setEnabled(q.availableMaximum>=q.minimum);
             }
             if(preview.effects!=null){TradePreview.Effects e=preview.effects;s.append("\n成交后金 ").append(e.goldAfter).append(" / 粮 ").append(e.foodAfter).append("\n成交后行动力 ").append(e.actionPointsAfter).append(e.actedAfter?" · 武将本旬已行动":"");}
-            if(!preview.allowed())s.append("\n\n不能执行：").append(MainActivity.commandError(preview.error,preview.detail));quote.setText(s);error.setTextColor(preview.allowed()?UiTheme.JADE:0xfff2aa9e);error.setText(preview.allowed()?"条件已核对，确认后成交":MainActivity.commandError(preview.error,preview.detail));dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(preview.allowed());
+            if(!preview.allowed())s.append("\n\n不能执行：").append(MainActivity.commandError(preview.error,preview.detail));quote.setText(s);error.setTextColor(preview.allowed()?UiTheme.JADE:0xfff2aa9e);UiTheme.readable(error);error.setText(preview.allowed()?"条件已核对，确认后成交":MainActivity.commandError(preview.error,preview.detail));dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(preview.allowed());
         }
         void review(){
             if(reviewing)return;handler.removeCallbacks(pending);inspect();if(preview==null||!preview.allowed())return;hideKeyboard();reviewing=true;TradeCommand reviewed=command;
@@ -136,11 +136,11 @@ final class CampaignUi {
         StringBuilder text=new StringBuilder("技巧点 "+w.campaign.points(c.owner)+"\n每城每旬产出10点（势力上限100点/旬），战斗和部分军政命令也可获得技巧点。\n");
         for(Campaign.Project p:w.campaign.projects())if(p.owner==c.owner)text.append('\n').append(w.city(p.cityId).name).append(" · ").append(w.officer(p.officerId).name).append(" · ").append(p.label()).append(" · 剩").append(w.officer(p.officerId).otherTaskTurns).append("旬");
         for(Campaign.Tech t:Campaign.Tech.values())if(w.campaign.has(c.owner,t))text.append("\n已掌握 ").append(t.label).append("：").append(t.effect);
-        new AlertDialog.Builder(a).setTitle("研究与培养进度").setMessage(text.toString()).setPositiveButton("返回",null)
+        UiTheme.dialog(new AlertDialog.Builder(a).setTitle("研究与培养进度").setMessage(text.toString()).setPositiveButton("返回",null)
             .setNeutralButton("中止任务",(d,n)->{
                 List<Campaign.Project> own=new ArrayList<>();for(Campaign.Project p:w.campaign.projects())if(p.owner==w.active)own.add(p);
                 choose("选择中止的任务",own,p->w.officer(p.officerId).name+" · "+p.label(),p->confirm("中止"+p.label(),"已付金和技巧点不退还，武将本旬仍算已行动。",()->apply.execute(w,()->w.campaign.cancelProject(p.officerId))));
-            }).show();
+            }).show());
     }
     void repair(World.City c){officer(c,o->confirm("修复城防","金300、行动力10；修复"+w.cityDefense.repairAmount(c,o)+"城防。"+(w.cityDefense.besieged(c)?"\n受围攻，补修效率为平时的¼。":""),()->apply.execute(w,()->w.campaign.repair(c.id,o.id))));}
     void dismiss(World.City c){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);

@@ -10,8 +10,8 @@ import java.util.function.*;
 final class AbilityUi {
     private final Activity a;private final World w;private final LegacyCommandSink apply;
     AbilityUi(Activity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
-    private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
-    private void confirm(String title,String message,Runnable run){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show();}
+    private void info(String title,String message){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show());}
+    private void confirm(String title,String message,Runnable run){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show());}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private String state(int side,AbilityResearch.Node n){AbilityResearch.Research r=w.abilities.research(side);return w.abilities.learned(side,n.id)?"已研究 · 剩"+w.abilities.remaining(side,n.id)+"次":r!=null&&r.nodeId.equals(n.id)?"研究中 · 剩"+r.remaining+"旬":w.abilities.unlocked(side,n)?"可研究":"待解锁";}
     void research(World.City city){
@@ -48,6 +48,6 @@ final class AbilityUi {
         AlertDialog.Builder b=new AlertDialog.Builder(a).setTitle("PK研究与培养进度").setMessage(text.toString()).setPositiveButton("返回",null);
         if(city.owner==w.active&&r!=null)b.setNeutralButton("中止研究",(d,i)->confirm("中止能力研究","已付金与行动力不退还。",()->apply.execute(w,()->w.abilities.cancelResearch(city.owner))));
         if(city.owner==w.active&&!own.isEmpty())b.setNegativeButton("中止培养",(d,i)->choose("中止培养",own,t->w.officer(t.officerId).name+" · "+t.label(),t->confirm("中止培养","本次未完成，不消耗培养次数；行动力不退还。",()->apply.execute(w,()->w.abilities.cancelTraining(t.officerId)))));
-        b.show();
+        UiTheme.dialog(b.show());
     }
 }

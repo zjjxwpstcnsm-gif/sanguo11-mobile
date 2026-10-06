@@ -1,0 +1,159 @@
+{
+  "exeSha": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sharedSha": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "rows": [
+    {
+      "nativeId": 3,
+      "name": "陣",
+      "baseCost": 500,
+      "originalFunctionCost": 500,
+      "recordSha": "845d2849338882ff525d9e747cdb5c73df6e0c0f5772333e13d4678e6f4e7481",
+      "hpFieldC2": 1100
+    },
+    {
+      "nativeId": 4,
+      "name": "砦",
+      "baseCost": 500,
+      "originalFunctionCost": 500,
+      "recordSha": "91b5a414b7fca488c77d33ffb14fd29297acd7b7ad8d4e16d5b81c8dcde94238",
+      "hpFieldC2": 1100
+    },
+    {
+      "nativeId": 5,
+      "name": "城塞",
+      "baseCost": 500,
+      "originalFunctionCost": 500,
+      "recordSha": "7459a24ba3fe19ff7870db8005dbbed72d9cc49488d5fceb7669ed8044ae5ef6",
+      "hpFieldC2": 1100
+    },
+    {
+      "nativeId": 6,
+      "name": "箭樓",
+      "baseCost": 600,
+      "originalFunctionCost": 600,
+      "recordSha": "08726f60d6540c624959d3457da22909aef6e430fa1fcc0e3d9768e83da7c20e",
+      "hpFieldC2": 700
+    },
+    {
+      "nativeId": 7,
+      "name": "連弩樓",
+      "baseCost": 600,
+      "originalFunctionCost": 600,
+      "recordSha": "5bb8e9a80444b070debb3dc1197a798d2eba9c63692f19f14b1d55d53f0eb6d8",
+      "hpFieldC2": 700
+    },
+    {
+      "nativeId": 8,
+      "name": "土壘",
+      "baseCost": 300,
+      "originalFunctionCost": 300,
+      "recordSha": "ad86d109c977fc5d8575f7ebf242f5908190a7436cbc5eb8203ac0aad4849256",
+      "hpFieldC2": 400
+    },
+    {
+      "nativeId": 9,
+      "name": "石牆",
+      "baseCost": 300,
+      "originalFunctionCost": 300,
+      "recordSha": "1e96ccd3cc31cbfaeec495abf7d5e7a36895be4eaeef98bdb0df23a3028a184c",
+      "hpFieldC2": 400
+    },
+    {
+      "nativeId": 10,
+      "name": "投石台",
+      "baseCost": 800,
+      "originalFunctionCost": 800,
+      "recordSha": "478de98c4ffff614c17337ebb41d435cf2482dece3edb89d993593974094fba0",
+      "hpFieldC2": 1000
+    },
+    {
+      "nativeId": 11,
+      "name": "太鼓台",
+      "baseCost": 500,
+      "originalFunctionCost": 500,
+      "recordSha": "2210033e2e69d1c20b6f077ee1ae6fb647cfe78e6f3eba53171fb8ad6201d6a9",
+      "hpFieldC2": 800
+    },
+    {
+      "nativeId": 12,
+      "name": "軍樂台",
+      "baseCost": 800,
+      "originalFunctionCost": 800,
+      "recordSha": "d1232d28a0bc9ba0ee40f0c8a5ff5acdacc7b88a21a4bf61cfc31a7ad929b397",
+      "hpFieldC2": 800
+    },
+    {
+      "nativeId": 13,
+      "name": "石兵八陣",
+      "baseCost": 1200,
+      "originalFunctionCost": 1200,
+      "recordSha": "d812248f0eede57f0510022cad9d548edf393fa53eef814899ef1c9e8d38a9be",
+      "hpFieldC2": 1000
+    },
+    {
+      "nativeId": 16,
+      "name": "火種",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "7cad77223b94c34406c4a0b9b68a510ab5b5aff73172bebbc69ce60acdc4f72b",
+      "hpFieldC2": 200
+    },
+    {
+      "nativeId": 17,
+      "name": "火焰種",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "a5d0855886955f9d8354f9464f2dbb5174955224a9686bfeab4dd827ed1b31d8",
+      "hpFieldC2": 200
+    },
+    {
+      "nativeId": 18,
+      "name": "火球",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "d8548cb22b82abaee795d862e06e67b45d234b57383cc6bea9a785b38f144a17",
+      "hpFieldC2": 200
+    },
+    {
+      "nativeId": 19,
+      "name": "火焰球",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "77f4f9288fae11a0211345346a0b1a2f6b96a403506825bfd4679689a9f4f8dd",
+      "hpFieldC2": 200
+    },
+    {
+      "nativeId": 20,
+      "name": "火船",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "8a5716d808d4552f19909819673bcffc1a0c9f7f67046420bb6843a2508dd5c0",
+      "hpFieldC2": 200
+    },
+    {
+      "nativeId": 21,
+      "name": "業火球",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "ca9b275328ac6081baabf50eb50f1c7eb0324e2837a7465882bf1f074e778c5d",
+      "hpFieldC2": 200
+    },
+    {
+      "nativeId": 22,
+      "name": "業火種",
+      "baseCost": 200,
+      "originalFunctionCost": 200,
+      "recordSha": "d95cee9d9c35be8e502d6cc30d78201abd36de252eeb434b82b065ee0e5f5f90",
+      "hpFieldC2": 200
+    }
+  ],
+  "unitOriginalConstructor": "496d90",
+  "unitVirtualOwnerGetter": "0x4955a0",
+  "defaultOwnerUnsigned16": 65535,
+  "worldRngPure": true,
+  "limits": [
+    "Native constructed unit exact default owner and empty province grid are a bounded no-discount fixture, not real force/region admission",
+    "Original49db10 base branch execution only; militaryHQ80percent effect separately pending",
+    "No cost/technology/terrain/action relaxation; no PC UI/normal campaign certification"
+  ]
+}

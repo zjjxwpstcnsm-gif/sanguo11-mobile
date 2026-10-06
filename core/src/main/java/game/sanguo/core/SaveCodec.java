@@ -233,6 +233,7 @@ public final class SaveCodec {
         ContestSave.validate(w);
         AbilitySave.validate(w);
         FieldworksSave.validate(w);
+        PcMilitaryCostPolicy.validate(w);PcCommandCapacityPolicy.validate(w);
         EstatesSave.validate(w);
         w.marches.validate();
         WorldSystemsSave.validate(w);

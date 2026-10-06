@@ -33,7 +33,7 @@ final class CargoWizard {
         host.addView(tabRow);host.addView(scroll,new LinearLayout.LayoutParams(-1,a.dp(320)));
         roles=new Button[3];
         for(int i=0;i<3;i++){final int role=i;LinearLayout row=new LinearLayout(a);roles[i]=a.button("",v->pickOfficer(role));roles[i].setTag("cargo.role."+i);row.addView(roles[i],new LinearLayout.LayoutParams(0,a.dp(56),1));Button remove=a.button("移除",v->setOfficer(role,-1));remove.setContentDescription("移除运输"+(i==0?"主将":"副将"+i));row.addView(remove,new LinearLayout.LayoutParams(a.dp(56),a.dp(56)));pages[0].addView(row);}
-        returning=new CheckBox(a);returning.setText("卸货后武将返回出发城");returning.setTextColor(UiTheme.TEXT);returning.setMinHeight(a.dp(48));returning.setChecked(draft.getBoolean("returning"));pages[0].addView(returning);
+        returning=new CheckBox(a);returning.setText("卸货后武将返回出发城");returning.setTextColor(UiTheme.TEXT);UiTheme.readable(returning);returning.setMinHeight(a.dp(48));returning.setChecked(draft.getBoolean("returning"));pages[0].addView(returning);
         pages[0].addView(a.text("先选择主将，可选两名副将。\n确认前核对实际路线、耗粮与目的地容量。途中可能被截击。",14,UiTheme.MUTED));
         equipmentEnd=3+World.Weapon.values().length;amounts=new QuantityControl[equipmentEnd+2];int[] stock=new int[amounts.length];stock[0]=c.gold;stock[1]=c.food;stock[2]=c.troops;
         String[] names=amountNames=new String[amounts.length];stockKeys=new String[amounts.length];stockKeys[0]="GOLD";stockKeys[1]="FOOD";stockKeys[2]="TROOPS";names[0]="运输金";names[1]="运输粮";names[2]="运输兵";
@@ -71,7 +71,7 @@ final class CargoWizard {
         String[] raw=new String[amounts.length];boolean numeric=true;for(int i=0;i<amounts.length;i++){raw[i]=amounts[i].draftValue();numeric&=amounts[i].value()>=0;}draft.putStringArray("amounts",raw);draft.putBoolean("returning",returning.isChecked());
         int[] ids=crew();for(int i=0;i<ids.length;i++){World.Officer o=w.officer(ids[i]);String role=i==0?"主将":"副将"+i;roles[i].setText(role+" · "+(o==null?"选择武将":o.name));roles[i].setContentDescription("运输"+role+" · "+(o==null?"未选择":o.name));}
         World.Officer leader=w.officer(ids[0]);summary.setText(source().name+" → "+target().name+" · "+(leader==null?"未选主将":leader.name)+" · 副将"+(int)Arrays.stream(ids).skip(1).filter(id->id>=0).count()+"人");
-        error.setTextColor(UiTheme.MUTED);error.setText(numeric?"正在核对运输条件…":"请在钱粮或兵装页填写完整数量。");error.setVisibility(View.VISIBLE);dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);remember();
+        error.setTextColor(UiTheme.MUTED);UiTheme.readable(error);error.setText(numeric?"正在核对运输条件…":"请在钱粮或兵装页填写完整数量。");error.setVisibility(View.VISIBLE);dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);remember();
         if(numeric&&!reviewing)handler.postDelayed(inspectPending,100);
     }
     private TransportCommand command(){
@@ -90,7 +90,7 @@ final class CargoWizard {
         }
         boolean valid=true;for(QuantityControl amount:amounts)valid&=amount.valid();
         String hint=draft.getInt("leader",-1)<0?"请选择运输主将。":!inspected.allowed()?MainActivity.commandError(inspected.error,inspected.detail):!valid?"请修正标红的运输数量。":"";
-        error.setTextColor(hint.isEmpty()?UiTheme.JADE:0xfff2aa9e);error.setText(hint.isEmpty()?"条件已核对 · 行动力 "+inspected.resources.actionPointsCost:hint);error.setVisibility(View.VISIBLE);dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(inspected.allowed()&&valid);
+        error.setTextColor(hint.isEmpty()?UiTheme.JADE:0xfff2aa9e);UiTheme.readable(error);error.setText(hint.isEmpty()?"条件已核对 · 行动力 "+inspected.resources.actionPointsCost:hint);error.setVisibility(View.VISIBLE);dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(inspected.allowed()&&valid);
         if(inspected.resources!=null){TransportPreview current=inspected;errorDetails.setEnabled(true);errorDetails.setOnClickListener(v->{
             if(!a.currentWorld(w))return;
             AlertDialog details=new AlertDialog.Builder(a).setTitle("运输条件").setMessage(conditions(current,true)).setNegativeButton("返回修改",null).show();a.trackDialog(details);details.setOnDismissListener(x->{if(dialog.isShowing())a.trackDialog(dialog);});

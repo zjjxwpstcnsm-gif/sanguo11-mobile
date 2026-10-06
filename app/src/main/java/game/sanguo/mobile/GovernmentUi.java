@@ -10,8 +10,8 @@ import java.util.function.*;
 final class GovernmentUi {
     private final Activity a;private final World w;private final LegacyCommandSink apply;
     GovernmentUi(Activity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
-    private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
-    private void confirm(String title,String message,Runnable run){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show();}
+    private void info(String title,String message){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show());}
+    private void confirm(String title,String message,Runnable run){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show());}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private String officer(World.Officer o){Government.Rank r=w.government.office(o.id);return o.name+" · 功绩"+w.government.merit(o.id)+(r==null?"":" · "+r.id);}
     private List<World.Officer> residents(World.City c){List<World.Officer> list=new ArrayList<>();for(World.Officer o:w.officers)if(o.cityId==c.id&&o.owner==c.owner&&!w.government.captive(o.id))list.add(o);return list;}
@@ -19,7 +19,7 @@ final class GovernmentUi {
     private void actor(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),this::officer,next);}
     void city(World.City c){
         String[] commands={"军师建议","任命军师","授予官职","免除官职","俘虏处置","赎回己将","召唤武将","城池委任","补给城外部队"};
-        new AlertDialog.Builder(a).setTitle(c.name+" · 军政管理").setItems(commands,(d,n)->{
+        UiTheme.dialog(new AlertDialog.Builder(a).setTitle(c.name+" · 军政管理").setItems(commands,(d,n)->{
             switch(n){
                 case 0:info("军师建议",w.government.advice(c.id));break;
                 case 1:actor(c,o->choose("选择军师",w.idle(c),t->t.name+" · 智"+t.intelligence,t->confirm("任命军师","需要智力70，执行者和军师消耗本旬行动、行动力10。",()->apply.execute(w,()->w.government.appointAdvisor(c.id,o.id,t.id)))));break;
@@ -35,7 +35,7 @@ final class GovernmentUi {
                 case 8:replenish(c);break;
                 default:break;
             }
-        }).setNegativeButton("返回",null).show();
+        }).setNegativeButton("返回",null).show());
     }
     private void prisoners(World.City c){
         List<Government.Prisoner> list=new ArrayList<>();for(Government.Prisoner p:w.government.prisoners())if(p.captor==c.owner&&p.cityId==c.id)list.add(p);

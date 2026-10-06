@@ -6,6 +6,10 @@ import java.util.*;
 
 /** Saved source text facts. Loading/querying never consults the current catalog. */
 public final class PcOfficerInfo {
+    // ICU native converter allocation is expensive on Android. Decoders stay thread-local,
+    // retain REPORT behavior and are reset for each independently bounded string.
+    private static final java.util.regex.Pattern HASH=java.util.regex.Pattern.compile("[0-9a-f]{64}"), RAW_BYTES=java.util.regex.Pattern.compile("(?:[0-9a-f]{2})*"), OPTIONAL_HASH=java.util.regex.Pattern.compile("(?:[0-9a-f]{64})?");
+    private static final ThreadLocal<java.nio.charset.CharsetDecoder> UTF8=ThreadLocal.withInitial(()->StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT));
     public static final String NAMESPACE="pc-officer-source-v1";
     static final int MAGIC=0x50434f31,MAX_BYTES=16*1024*1024;
     private PcOfficerInfo(){}
@@ -50,8 +54,8 @@ public final class PcOfficerInfo {
     static Person read(DataInputStream in)throws IOException{
         int id=bounded(in.readInt(),0,1000000),nativeId=bounded(in.readInt(),0,1099);String[] s=new String[10];
         for(int i=0;i<s.length;i++)s[i]=text(in,i==7?32768:1024);
-        if(s[0].isEmpty()||s[1].isEmpty()||s[2].isEmpty()||!s[3].matches("[0-9a-f]{64}")||!s[4].matches("[0-9a-f]{64}")||
-                !s[6].matches("(?:[0-9a-f]{2})*")||!s[8].matches("[0-9a-f]{64}")||!s[9].matches("(?:[0-9a-f]{64})?"))
+        if(s[0].isEmpty()||s[1].isEmpty()||s[2].isEmpty()||!HASH.matcher(s[3]).matches()||!HASH.matcher(s[4]).matches()||
+                !RAW_BYTES.matcher(s[6]).matches()||!HASH.matcher(s[8]).matches()||!OPTIONAL_HASH.matcher(s[9]).matches())
             throw new IOException("人物来源资料身份或指纹无效");
         int n=bounded(in.readInt(),0,100);List<String> unknown=new ArrayList<>();for(int i=0;i<n;i++)unknown.add(text(in,256));
         return new Person(id,nativeId,s[0],s[1],s[2],s[3],s[4],s[5],s[6],s[7],s[8],s[9],unknown);
@@ -62,7 +66,11 @@ public final class PcOfficerInfo {
     static String text(DataInputStream in,int max)throws IOException{
         int n=bounded(in.readInt(),0,max);if(n>in.available())throw new IOException("人物来源资料截断");
         byte[] raw=new byte[n];in.readFully(raw);
-        return StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT).decode(java.nio.ByteBuffer.wrap(raw)).toString();
+        // Hashes, paths and other ASCII fields need no ICU converter.
+        // High-bit bytes retain the strict REPORT decoder, including malformed UTF8.
+        boolean ascii=true;for(byte b:raw)if(b<0){ascii=false;break;}
+        if(ascii)return new String(raw,StandardCharsets.US_ASCII);
+        return UTF8.get().reset().decode(java.nio.ByteBuffer.wrap(raw)).toString();
     }
     static void text(DataOutputStream out,String text)throws IOException{
         byte[] bytes=text.getBytes(StandardCharsets.UTF_8);out.writeInt(bytes.length);out.write(bytes);

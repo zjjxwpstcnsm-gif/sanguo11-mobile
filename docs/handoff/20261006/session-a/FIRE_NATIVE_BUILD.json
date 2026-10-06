@@ -1,0 +1,72 @@
+{
+  "outputs": [
+    {
+      "abi": "x86_64",
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=x86_64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/sources/pc_effect_scene_probe.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64/libpc_effect_worker.so"
+      ],
+      "worker": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 37096,
+      "sha256": "764e0af841bd586096ad3a33c5867e217b4b72ecc79f430615e6a41e722f16e0",
+      "unicornSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "runtimeAccepted": false
+    },
+    {
+      "abi": "arm64-v8a",
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=aarch64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/sources/pc_effect_scene_probe.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so"
+      ],
+      "worker": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 38072,
+      "sha256": "df25a88d7d13e571e7ca4e8736e6bbbdc1bf08c5b0d1d838b4f0f182b8cef3ec",
+      "unicornSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "runtimeAccepted": false
+    }
+  ],
+  "sourceSha256": {
+    "pc_effect_scene_probe.c": "fefb1366e97cdaef6fdd2a47fda1637300604f2339e9b498bfdecf3d8a00a31c",
+    "pc_effect_vm_probe.c": "f92ec0d43a1e09480a580c07464a0951f9cfb3a57c786b4dce355cffc711cef9"
+  },
+  "ndk": "27.3.13750724",
+  "unicornCommit": "8028ec436f2d9376525352dd38ed9ed6b9f6be10",
+  "frozen4JniSourceUntouched": true,
+  "oldSceneInputUntouched": true,
+  "newNativeArtifactScope": "independent compile only; not installed/defaultJNI/ARM/performance acceptance",
+  "goalComplete": false
+}

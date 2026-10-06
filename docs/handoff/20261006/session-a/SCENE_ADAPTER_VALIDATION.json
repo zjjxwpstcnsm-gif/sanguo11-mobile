@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "sampleSha256": "9fda5fe43f0031a5fec5f9cf705f7e9fe98d9b021a417128dbca3c09a4af1fab",
+  "recordedToken": {
+    "sessionId": "5910add4-111a-45b6-b8c8-947b90826337",
+    "generation": 1,
+    "revision": 10
+  },
+  "scope": "actual B21 installed saved-state read-only host projection; not new A normal APK acceptance",
+  "output": "PASS actual installed-source projection 22 checks; host only, no normal APK/fire13/caller acceptance\n",
+  "newApkInstalled": false,
+  "originalFire13": false,
+  "originalSpeechCallerKnown": false,
+  "overallGoalComplete": false
+}

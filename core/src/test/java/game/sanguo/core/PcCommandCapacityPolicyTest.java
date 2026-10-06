@@ -1,0 +1,26 @@
+package game.sanguo.core;
+import java.util.*;import java.nio.file.*;import java.io.*;
+/** Explicit fresh-source policy, normal commands, opaque legacy and cache invalidation. */
+public final class PcCommandCapacityPolicyTest {
+ private static int checks;private static void check(boolean b,String s){checks++;if(!b)throw new AssertionError(s);}
+ private static byte[] save(World w)throws Exception{return SaveCodec.encode(w);}
+ private static World.Officer person(World w,int nativeId)throws Exception{for(var p:PcScenarioPeople.saved(w))if(p.nativeId==nativeId)return w.officer(p.officerId);throw new AssertionError("No verified native identity");}
+ public static void main(String[] args)throws Exception{
+  var source=PcScenarioCatalog.all().get(0);World w=PcScenarioCatalog.load(source.identity.scenarioId,28,42);World.Officer he=person(w,58),ruler=person(w,403);World.City city=w.city(he.cityId);
+  check(w.government.commandLimit(he.id)==13000,"original native58 branch13000");check(w.government.commandLimit(ruler.id)==15000,"country5 ruler15000 with original title preserved");
+  byte[] before=save(w);for(int i=0;i<50;i++)check(w.government.commandLimit(he.id)==13000,"same-state repeated authority");check(Arrays.equals(before,save(w)),"reads preserve allWorld/bothRNG");
+  World restored=SaveCodec.decode(before);check(restored.government.commandLimit(he.id)==13000&&Arrays.equals(before,save(restored)),"complete saved strategy roundtrip");
+  int troopsBefore=city.troops,foodBefore=city.food,goldBefore=city.gold;
+  World.Result result=w.army.deploy(city.id,he.id,new int[0],World.Weapon.SWORD,Army.Ship.BOAT,13000,26000,500);check(result.ok,result.message);World.Unit unit=w.unit(he.unitId);check(unit!=null&&unit.troops==13000&&unit.gold==500&&w.city(city.id).troops==troopsBefore-13000&&w.city(city.id).food==foodBefore-26000&&w.city(city.id).gold==goldBefore-500,"real normal deployment holds exact requested capacity");check(Arrays.equals(save(w),save(SaveCodec.decode(save(w)))),"deployed complete campaign/RNG persists");
+  for(int turn=0;turn<3;turn++){World.Result advance=w.nextTurn();check(advance.ok,advance.message);byte[] completed=save(w);World continued=SaveCodec.decode(completed);check(Arrays.equals(completed,save(continued)),"normal three whole turns fullWorld/bothRNG persisted");check(continued.extensions.get(PcCommandCapacityPolicy.NAMESPACE)!=null,"explicit capacity strategy survives normal campaign progression");w=continued;}
+  World tooMany=SaveCodec.decode(before);check(!tooMany.army.deploy(city.id,he.id,new int[0],World.Weapon.SWORD,Army.Ship.BOAT,13001,26002,500).ok,"exact13000 ceiling retained");check(Arrays.equals(before,save(tooMany)),"rejected over-ceiling command pure");
+  World old=SaveCodec.decode(before);old.extensions.put(PcCommandCapacityPolicy.NAMESPACE,null);byte[] oldBytes=save(old);check(old.government.commandLimit(he.id)==5000,"absent strategy retains prior5000");World oldReload=SaveCodec.decode(oldBytes);check(oldReload.extensions.get(PcCommandCapacityPolicy.NAMESPACE)==null&&oldReload.government.commandLimit(he.id)==5000&&Arrays.equals(oldBytes,save(oldReload)),"decode does not backfill or upgrade old source");
+  byte[] opaque={1,2,3,4,5};old.extensions.put(PcCommandCapacityPolicy.NAMESPACE,opaque);byte[] unknown=save(old);check(old.government.commandLimit(he.id)==5000&&Arrays.equals(opaque,SaveCodec.decode(unknown).extensions.get(PcCommandCapacityPolicy.NAMESPACE)),"unknown strategy preserved opaque and inactive");
+  World corrupt=SaveCodec.decode(before);byte[] policy=corrupt.extensions.get(PcCommandCapacityPolicy.NAMESPACE);policy[7]=2;corrupt.extensions.put(PcCommandCapacityPolicy.NAMESPACE,policy);boolean rejected=false;try{SaveCodec.validate(corrupt);}catch(IOException expected){rejected=true;}check(rejected,"recognized unsupported version rejects save/load");
+  World changed=SaveCodec.decode(before);check(changed.government.commandLimit(he.id)==13000,"cache filled");changed.extensions.put(PcCommandCapacityPolicy.NAMESPACE,null);check(changed.government.commandLimit(he.id)==5000,"removal invalidates strategy cache");changed.extensions.put(PcCommandCapacityPolicy.NAMESPACE,restored.extensions.get(PcCommandCapacityPolicy.NAMESPACE));check(changed.government.commandLimit(he.id)==13000,"restored policy revalidates cache");
+  for(String name:List.of("core/src/test/resources/save-v32-central-native.sg11","core/src/test/resources/pre-base-construction-v33.sg11","core/src/test/resources/pre-merchant-r25-v34.sg11","core/src/test/resources/legacy-market-v35/host/coalition-190.sg11","core/src/test/resources/legacy-production-v36/coalition-190-host.sg11","docs/handoff/20261004/session2/six-turn-authority-29/authority-before.sg11","docs/handoff/20261004/session1/batch19-actual-art-mid.sg11")){
+   World legacy=SaveCodec.decode(Files.readAllBytes(Path.of(name)));byte[] b=save(legacy);check(legacy.extensions.get(PcCommandCapacityPolicy.NAMESPACE)==null,"genuine historical namespace absent");check(Arrays.equals(b,save(SaveCodec.decode(b))),"genuine historical wholeWorld/RNG roundtrip unchanged");
+  }
+  System.out.println("PASS PcCommandCapacityPolicy "+checks+" normal native58 deploy13000/fullsave/bothRNG/opaque/old32-39/cache guards; original complete governance and actualAPK still separate");
+ }
+}

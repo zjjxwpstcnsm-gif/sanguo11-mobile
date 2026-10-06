@@ -7,12 +7,14 @@ import java.util.*;
 public final class SaveExtensions {
     private static final int MAGIC=0x53475831, MAX_TOTAL=16*1024*1024;
     private final SortedMap<String,byte[]> values=new TreeMap<>();
+    private final Map<String,Long> revisions=new HashMap<>();
+    public long revision(String key){return revisions.getOrDefault(key,0L);}
     public byte[] get(String namespace){byte[] v=values.get(namespace);return v==null?null:v.clone();}
     public void put(String namespace,byte[] value){
         if(namespace==null||!namespace.matches("[A-Za-z][A-Za-z0-9.-]{0,63}"))throw new IllegalArgumentException("存档扩展命名空间无效");
-        if(value==null){values.remove(namespace);return;}
+        if(value==null){values.remove(namespace);revisions.put(namespace,revision(namespace)+1);return;}
         int total=value.length;for(Map.Entry<String,byte[]> e:values.entrySet())if(!e.getKey().equals(namespace))total+=e.getValue().length;
-        if(total>MAX_TOTAL||!values.containsKey(namespace)&&values.size()>=32)throw new IllegalArgumentException("存档扩展超过大小限制");values.put(namespace,value.clone());
+        if(total>MAX_TOTAL||!values.containsKey(namespace)&&values.size()>=32)throw new IllegalArgumentException("存档扩展超过大小限制");values.put(namespace,value.clone());revisions.put(namespace,revision(namespace)+1);
     }
     void write(DataOutputStream out)throws IOException{
         if(values.isEmpty())return; // Vanilla v31/v32 files retain their exact original representation.

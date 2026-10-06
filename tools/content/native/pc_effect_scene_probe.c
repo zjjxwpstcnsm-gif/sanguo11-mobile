@@ -35,6 +35,38 @@ static void source_camera_input(Machine *m,uint32_t camera,const float values[51
     require_uc(uc_mem_write(m->u,camera+0x140,values+19,64));
     require_uc(uc_mem_write(m->u,camera+0x180,values+35,64));
 }
+static void forbid_rule_rng(uc_engine *u,uint64_t address,uint32_t size,void *opaque) {
+    (void)u;(void)size;(void)opaque;fprintf(stderr,"Forbidden rule RNG visual call %llx\n",(unsigned long long)address);exit(2);
+}
+/* Schema2 consumes only immutable admitted burning cells; no gameplay access. */
+static uint32_t fire_handles[40000],fire_generations[40000];
+static void source_fire_sync(Machine *m,uint32_t manager) {
+    unsigned char count_bytes[4];if(fread(count_bytes,1,4,stdin)!=4)exit(2);
+    uint32_t count=file_u32(count_bytes);if(count>128)exit(2);
+    unsigned char seen[40000]={0};
+    for(uint32_t i=0;i<count;i++) {
+        unsigned char row[12];if(fread(row,1,12,stdin)!=12)exit(2);
+        uint32_t x=file_u32(row),y=file_u32(row+4);float height;memcpy(&height,row+8,4);
+        if(x>=200||y>=200||!isfinite(height)||height<0||height>128)exit(2);
+        uint32_t key=y*200+x;if(seen[key])exit(2);seen[key]=1;
+        if(!fire_handles[key]) {
+            float point[4]={(4*x+114)*5,height,(4*y+114+2*(x&1))*5,1};
+            require_uc(uc_mem_write(m->u,STOP+0x500,point,16));
+            require_uc(uc_mem_write(m->u,manager+0x334,(uint32_t[2]){0,0},8));
+            uint32_t handle=call(m,0x414670,manager,2,(uint32_t[]){13,STOP+0x500});
+            uint32_t generation;require_uc(uc_reg_read(m->u,UC_X86_REG_EDX,&generation));
+            //413d20 copies the callback opaque pair to its return packet and clears
+            //manager+334/+338 before414670 returns. EDX retains the copied generation.
+            if(!handle||read32(m,manager+0x334)||read32(m,manager+0x338)){
+                fprintf(stderr,"Original fire factory boundary: cell=%u,%u handle=%x\n",x,y,handle);exit(2);
+            }
+            fire_handles[key]=handle;fire_generations[key]=generation;
+        }
+    }
+    for(uint32_t key=0;key<40000;key++)if(fire_handles[key]&&!seen[key]) {
+        call(m,0x413470,manager,1,&fire_handles[key]);fire_handles[key]=0;fire_generations[key]=0;
+    }
+}
 int main(int argc,char **argv) {
     if(argc<7){fprintf(stderr,"scene-probe VERIFIED_KERNEL VERIFIED_SCENE SOURCE_CAM_X Y Z DT...\n");return 2;}
     int stream=argc==7&&!strcmp(argv[6],"--stream");
@@ -46,7 +78,9 @@ int main(int argc,char **argv) {
     }
     size_t kernel_size,pack_size;
     unsigned char *kernel=read_file(argv[1],&kernel_size),*packed=read_file(argv[2],&pack_size);
-    if(pack_size<64||pack_size>0x100000||memcmp(packed,"PCFXSC01",8)||file_u32(packed+8)!=8||file_u32(packed+12)!=126||
+    int fire_scene=pack_size>=64&&!memcmp(packed,"PCFXSC02",8);
+    uint32_t templates=fire_scene?9:8;
+    if(pack_size<64||pack_size>0x100000||(!fire_scene&&memcmp(packed,"PCFXSC01",8))||file_u32(packed+8)!=templates||file_u32(packed+12)!=126||
        file_u32(packed+20)!=2280||file_u32(packed+16)+2280u+64u!=pack_size||memcmp(packed+56,(unsigned char[8]){0},8)) {
         fprintf(stderr,"Exact source scene container boundary\n");return 2;
     }
@@ -60,6 +94,9 @@ int main(int argc,char **argv) {
         if(memcmp(initial_camera,center,12))return 2;
     }
     Machine m;double begin=now();initialize(&m,kernel,kernel_size);free(kernel);
+    uc_hook no_rule_a,no_rule_b;
+    require_uc(uc_hook_add(m.u,&no_rule_a,UC_HOOK_CODE,(void*)forbid_rule_rng,NULL,0x472150,0x472150));
+    require_uc(uc_hook_add(m.u,&no_rule_b,UC_HOOK_CODE,(void*)forbid_rule_rng,NULL,0x4721d0,0x4721d0));
     call(&m,0x73bc80,0,0,NULL);call(&m,0x73bd20,0,0,NULL);
     int source_queue=getenv("PC_VM_PROBE_SOURCE_QUEUE")!=NULL;
     int materials=getenv("PC_VM_PROBE_MATERIALS")!=NULL;
@@ -69,7 +106,8 @@ int main(int argc,char **argv) {
     const uint32_t manager=HEAP+0x8000,camera=DRAW_BASE+0x1000;
     uint32_t slots=HEAP+0x9000;
     if(source_queue) {
-        call(&m,0x45a820,manager,0,NULL);
+        call(&m,fire_scene?0x413510:0x45a820,manager,0,NULL);
+        if(fire_scene&&(read32(&m,manager+0x33c)!=9||read32(&m,manager+0x344)!=0xffffffffu))exit(2);
         // Original4140df/4140e4/4140f5 inputs:244 roots,4096 depth buckets.
         if(call(&m,0x45a620,manager,3,(uint32_t[]){0,4096,244})!=1)return 2;
         slots=read32(&m,manager+0x2e4);
@@ -94,8 +132,9 @@ int main(int argc,char **argv) {
     m.packet_queue=manager+0x220;
     const unsigned char *p=packed+64,*seff=packed+64+file_u32(packed+16);
     uint32_t data=HEAP+0x10000;
-    const uint32_t expected[]={8,9,16,17,18,19,20,23};
-    for(uint32_t i=0;i<8;i++) {
+    const uint32_t expected_old[]={8,9,16,17,18,19,20,23},expected_fire[]={8,9,13,16,17,18,19,20,23};
+    const uint32_t *expected=fire_scene?expected_fire:expected_old;
+    for(uint32_t i=0;i<templates;i++) {
         if(p+44>seff)return 2;
         uint32_t effect=file_u32(p),resource=file_u32(p+4),length=file_u32(p+8),root=HEAP+i*0x100;
         if(effect!=expected[i]||resource!=read32(&m,0x77692c+effect*12+4)||length<20||length>0xe0000||
@@ -119,10 +158,11 @@ int main(int argc,char **argv) {
         call(&m,0x413a80,0,2,(uint32_t[]){STOP+0x600,STOP+0x500});
         call(&m,0x457880,root,2,(uint32_t[]){1,STOP+0x600});
     }
+    if(fire_scene)require_uc(uc_mem_write(m.u,manager+0x314,(uint32_t[]){1},4));
     free(packed);
     if(stream) {
-        stream_write("PCFXRDY1",8);stream_write((uint32_t[]){8,126},8);if(fflush(stdout))return 2;
-    } else printf("{\"initialization_ms\":%.6f,\"source_queue\":%s,\"templates\":8,\"placements\":126,\"frames\":[",(now()-begin)*1000,source_queue?"true":"false");
+        stream_write(fire_scene?"PCFXRDY2":"PCFXRDY1",8);stream_write((uint32_t[]){templates,126},8);if(fflush(stdout))return 2;
+    } else printf("{\"initialization_ms\":%.6f,\"source_queue\":%s,\"templates\":%u,\"placements\":126,\"frames\":[",(now()-begin)*1000,source_queue?"true":"false",templates);
     uint32_t previous_serial=0;
     for(int i=6;stream||i<argc;i++) {
         float dt;uint32_t serial=0,type=1;
@@ -131,14 +171,15 @@ int main(int argc,char **argv) {
             if(!got&&feof(stdin))break;
             if(got!=sizeof(command)){fprintf(stderr,"Incomplete216-byte visual command\n");return 2;}
             type=file_u32(command);serial=file_u32(command+4);memcpy(&dt,command+8,4);
-            if(serial<=previous_serial||type<1||type>3||!isfinite(dt)||dt<0||dt>30||(type==1&&dt==0)||(type!=1&&dt!=0))return 2;
+            if(serial<=previous_serial||type<1||type>(fire_scene?4u:3u)||!isfinite(dt)||dt<0||dt>30||(type==1&&dt==0)||((type==2||type==3)&&dt!=0))return 2;
             previous_serial=serial;if(type==3)break;
             float values[51];memcpy(values,command+12,sizeof(values));
             source_camera_input(&m,camera,values);
+            if(type==4)source_fire_sync(&m,manager);
             call(&m,0x441a40,0,2,(uint32_t[]){camera,DRAW_BASE+0x9010});
         } else {dt=finite_arg(argv[i]);if(dt<=0||dt>30)return 2;}
         uint32_t bits;memcpy(&bits,&dt,4);double tick=now();
-        if(type==1)call(&m,0x45a530,manager,2,(uint32_t[]){camera,bits});
+        if(type==1||(type==4&&dt>0))call(&m,0x45a530,manager,2,(uint32_t[]){camera,bits});
         double update_ms=(now()-tick)*1000;m.packet_count=0;tick=now();
         call(&m,0x45a590,manager,3,(uint32_t[]){0,0,camera});
         double draw_ms=(now()-tick)*1000;

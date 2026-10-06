@@ -12,7 +12,7 @@ final class CustomOfficerPlacementUi {
     private final Activity a;private final World resolved;private CustomOfficerLibrary library;
     private JSONObject root,plan;private AlertDialog dialog;private LinearLayout rows;private TextView status;
     CustomOfficerPlacementUi(Activity a,World resolved){this.a=a;this.resolved=resolved;}
-    private void fail(Exception e){new AlertDialog.Builder(a).setTitle("投放未通过").setMessage(e.getMessage()).setPositiveButton("返回",null).show();}
+    private void fail(Exception e){UiTheme.dialog(new AlertDialog.Builder(a).setTitle("投放未通过").setMessage(e.getMessage()).setPositiveButton("返回",null).show());}
     private Button button(String label,Runnable run){Button b=new Button(a);b.setText(label);b.setAllCaps(false);b.setOnClickListener(v->{try{run.run();}catch(Exception e){fail(e);}});return b;}
     void show(){try{
         library=new CustomOfficerLibrary(a);root=library.snapshot();plan=CustomOfficerLibrary.copy(CustomOfficerSetup.plan(root,resolved.scenarioId));
@@ -25,7 +25,7 @@ final class CustomOfficerPlacementUi {
     }catch(Exception e){fail(e);}}
     private void refresh()throws JSONException{
         rows.removeAllViews();JSONArray placements=plan.getJSONArray("placements");for(int i=0;i<placements.length();i++){final int at=i;JSONObject p=placements.getJSONObject(i),d=library.find(p.getString("definition"));World.City c=resolved.city(p.getInt("city"));
-            rows.addView(button((d==null?"缺失人物":d.getString("name"))+" · "+CustomOfficers.Mode.valueOf(p.getString("mode")).label+"\n"+(c==null?"缺失据点 #"+p.getInt("city"):c.name)+" · "+(p.optBoolean("ignoreDates")?"显式忽略年代":"按年代校验"),()->{new AlertDialog.Builder(a).setItems(new String[]{"修改投放","移除（不删除模板）"},(dlg,n)->{try{if(n==0)edit(d,p,at);else{plan.getJSONArray("placements").remove(at);refresh();}}catch(Exception e){fail(e);}}).show();}));}
+            rows.addView(button((d==null?"缺失人物":d.getString("name"))+" · "+CustomOfficers.Mode.valueOf(p.getString("mode")).label+"\n"+(c==null?"缺失据点 #"+p.getInt("city"):c.name)+" · "+(p.optBoolean("ignoreDates")?"显式忽略年代":"按年代校验"),()->{UiTheme.dialog(new AlertDialog.Builder(a).setItems(new String[]{"修改投放","移除（不删除模板）"},(dlg,n)->{try{if(n==0)edit(d,p,at);else{plan.getJSONArray("placements").remove(at);refresh();}}catch(Exception e){fail(e);}}).show());}));}
     }
     private void add(){try{List<JSONObject> choices=new ArrayList<>();Set<String> selected=new HashSet<>();JSONArray placements=plan.getJSONArray("placements");for(int i=0;i<placements.length();i++)selected.add(placements.getJSONObject(i).getString("definition"));for(JSONObject d:library.entries())if(!selected.contains(d.getString("id")))choices.add(d);
         CustomOfficerActivity.search(a,"选择模板",choices,o->o.optString("name")+" · "+(o.optInt("targetId",-1)<0?"新武将":"历史覆盖 #"+o.optInt("targetId"))+" · "+o.optString("id").substring(0,8),d->{try{edit(d,null,-1);}catch(Exception e){fail(e);}});
@@ -50,6 +50,6 @@ final class CustomOfficerPlacementUi {
     }
     private void preview(){try{
         JSONObject candidate=CustomOfficerLibrary.copy(root),p=CustomOfficerLibrary.copy(plan);p.put("enabled",true);CustomOfficerSetup.putPlan(candidate,p);World next=CustomOfficerSetup.apply(a,resolved,candidate);StringBuilder summary=new StringBuilder("校验通过；预览使用副本，当前战局/基础剧本未改变。\n");JSONArray placements=p.getJSONArray("placements");for(int i=0;i<placements.length();i++){JSONObject d=library.find(placements.getJSONObject(i).getString("definition"));CustomOfficers.Definition def=CustomOfficerSetup.definition(d);World.Officer o=next.officer(def.effectiveId());summary.append(o.name).append(" #").append(o.id).append(" · ").append(next.life.state(o.id).label).append(" · ").append(next.faction(o.owner)).append(" · ").append(o.cityId<0?"未登场":next.city(o.cityId).name).append('\n');World.Unit unit=new World.Unit(999999,o.owner<0?next.player:o.owner,o.id,World.Weapon.SPEAR,next.city(placements.getJSONObject(i).getInt("city")).hex,5000,10000);summary.append("5000枪兵正式计算预览：攻击 ").append(next.combat.attackRating(unit)).append(" / 防御 ").append(next.combat.defenseRating(unit)).append('\n');}
-        status.setText("已完成投放校验 · "+placements.length()+"人");new AlertDialog.Builder(a).setTitle("正式初始化预览").setMessage(summary.toString()).setPositiveButton("返回",null).show();
+        status.setText("已完成投放校验 · "+placements.length()+"人");UiTheme.dialog(new AlertDialog.Builder(a).setTitle("正式初始化预览").setMessage(summary.toString()).setPositiveButton("返回",null).show());
     }catch(Exception e){fail(e);}}
 }

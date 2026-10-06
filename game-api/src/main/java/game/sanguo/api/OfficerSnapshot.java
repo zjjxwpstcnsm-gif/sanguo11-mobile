@@ -11,6 +11,10 @@ public final class OfficerSnapshot {
         public final String identityStatus,originalInformation;
         /** Raw value from this game's original source record; absent on older saves. */
         public final Integer initialRawLoyalty,canonicalOfficerId;
+        /** Immutable original opening fields; native references are not runtime IDs. */
+        public final Map<Integer,Integer> originalFields;
+        /** Original serializer field48; absent remains unknown. Not an audio asset ID. */
+        public final Integer originalVoiceProfile;
         public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
                           String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown){
             this(nativeId,sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha,unknown,"canonical-identity-verified","");
@@ -25,6 +29,12 @@ public final class OfficerSnapshot {
         }
         public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
                           String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown,String identityStatus,String originalInformation,Integer initialRawLoyalty,Integer canonicalOfficerId){
+            this(nativeId,sourceVariant,sourcePath,sourceSha,recordSha,courtesy,courtesyRaw,biography,biographyResourceSha,biographyRenderedSha,unknown,identityStatus,originalInformation,initialRawLoyalty,canonicalOfficerId,Collections.emptyMap());
+        }
+        public SourceInfo(int nativeId,String sourceVariant,String sourcePath,String sourceSha,String recordSha,String courtesy,String courtesyRaw,
+                          String biography,String biographyResourceSha,String biographyRenderedSha,List<String> unknown,String identityStatus,String originalInformation,Integer initialRawLoyalty,Integer canonicalOfficerId,Map<Integer,Integer> originalFields){
+            this.originalFields=Collections.unmodifiableMap(new TreeMap<>(originalFields));
+            this.originalVoiceProfile=this.originalFields.get(48);
             this.canonicalOfficerId=canonicalOfficerId;
             this.initialRawLoyalty=initialRawLoyalty;
             this.identityStatus=identityStatus;this.originalInformation=originalInformation;

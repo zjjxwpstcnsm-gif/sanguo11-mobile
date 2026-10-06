@@ -106,27 +106,45 @@ public final class Fieldworks {
         return w.skills.has(u,Skill.ZHUCHENG)?rate*2:rate;
     }
     static boolean blockedMilitaryTerrain(World.Terrain terrain){return terrain==World.Terrain.FOREST||terrain==World.Terrain.SWAMP;}
-    public String buildError(int unit,War.StructureKind kind,Hex target,int direction){
-        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return error;
-        if(kind==null||!available(u.owner).contains(kind))return "需要前置技巧，或该设施已被强化版替代";
-        if(direction<0||direction>5)return "请选择六个有效方向之一";
-        if(project(unit)!=null)return "部队正在施工，请先中止";
-        if(u.gold<kind.gold)return "部队携金不足，需要"+kind.gold+"金";
-        if(target==null||!w.inside(target)||u.hex.distance(target)!=1)return "只能在部队相邻格设置";
-        if(w.unitAt(target)!=null||w.cityAt(target)!=null||w.domestic.at(target)!=null||w.war.at(target)!=null||w.war.fireAt(target)!=null)return "目标地块已被占用或燃烧";
+    /** Same pure admission result drives selection, human explanation and real execution.
+     * Codes are stable protocol values; detail remains human text. No RNG or saved policy change. */
+    public static final class Validation {
+        public final String code,field,detail;
+        private Validation(String code,String field,String detail){this.code=code;this.field=field;this.detail=detail;}
+        private static final Validation ALLOWED=new Validation("NONE","",null);
+        private static Validation reject(String code,String field,String detail){return new Validation(code,field,detail);}
+        public boolean allowed(){return detail==null;}
+    }
+    public String buildError(int unit,War.StructureKind kind,Hex target,int direction){return buildCheck(unit,kind,target,direction).detail;}
+    /** Base-only strategy: militaryHQ discounts need separate authoritative facility admission. */
+    public int baseBuildCost(War.StructureKind kind){return PcMilitaryCostPolicy.cost(w,kind);}
+    public int buildCost(int unit,War.StructureKind kind,Hex target){return baseBuildCost(kind);}
+    public Validation buildCheck(int unit,War.StructureKind kind,Hex target,int direction){
+        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return Validation.reject("UNIT_COMMAND","unit",error);
+        if(kind==null||!available(u.owner).contains(kind))return Validation.reject("BUILD_TECHNOLOGY","kind","需要前置技巧，或该设施已被强化版替代");
+        if(direction<0||direction>5)return Validation.reject("BUILD_DIRECTION","direction","请选择六个有效方向之一");
+        if(project(unit)!=null)return Validation.reject("UNIT_BUILDING","unit","部队正在施工，请先中止");
+        int price=buildCost(unit,kind,target);
+        if(u.gold<price)return Validation.reject("UNIT_GOLD","gold","部队携金不足，需要"+price+"金");
+        if(target==null||!w.inside(target)||u.hex.distance(target)!=1)return Validation.reject("TARGET_ADJACENCY","target","只能在部队相邻格设置");
+        if(w.unitAt(target)!=null||w.cityAt(target)!=null||w.domestic.at(target)!=null||w.war.at(target)!=null||w.war.fireAt(target)!=null)return Validation.reject("TARGET_OCCUPIED_OR_FIRE","target","目标地块已被占用或燃烧");
         World.Terrain terrain=w.terrain[target.q][target.r];
-        if(terrain==World.Terrain.NON_NAVIGABLE_WATER)return "不可航水域不能设置设施";
-        if(blockedMilitaryTerrain(terrain))return "森林与湿地不能设置军事设施";
-        if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.terrain[target.q][target.r]==World.Terrain.SWAMP||w.terrain[target.q][target.r]==World.Terrain.DAM||w.events.at(target)!=null)return "该地形不能设置此设施";
-        for(World.City c:w.cities)if(SiteFootprint.distance(c,target)<=2)return "据点两格以内不能设置";
-        if(military(kind))for(War.Structure s:w.war.structures)if(military(s.kind)&&s.hex.distance(target)<=2)return "军事设施两格以内不能重复设置";
-        if(w.war.structures.size()>=1000||w.war.nextStructureId>=10000000)return "军事设施达到上限";
-        return null;
+        if(terrain==World.Terrain.NON_NAVIGABLE_WATER)return Validation.reject("TERRAIN_NON_NAVIGABLE","target","不可航水域不能设置设施");
+        if(blockedMilitaryTerrain(terrain))return Validation.reject("TERRAIN_FOREST_OR_SWAMP","target","森林与湿地不能设置军事设施");
+        if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.terrain[target.q][target.r]==World.Terrain.SWAMP||w.terrain[target.q][target.r]==World.Terrain.DAM||w.events.at(target)!=null)return Validation.reject("BUILD_TERRAIN","target","该地形不能设置此设施");
+        // Original category1 radius bit is cleared around seven-city cells;
+        // source category2 walls and category3 traps use a separate bit.
+        // Only own-site placement is closed here; retain old foreign-site bounds
+        // until the original region/diplomacy admission is independently proved.
+        for(World.City c:w.cities)if(SiteFootprint.distance(c,target)<=2&&(military(kind)||c.owner!=u.owner))return Validation.reject("SITE_DISTANCE","target","据点两格以内不能设置");
+        if(military(kind))for(War.Structure s:w.war.structures)if(military(s.kind)&&s.hex.distance(target)<=2)return Validation.reject("MILITARY_DISTANCE","target","军事设施两格以内不能重复设置");
+        if(w.war.structures.size()>=1000||w.war.nextStructureId>=10000000)return Validation.reject("STRUCTURE_LIMIT","global","军事设施达到上限");
+        return Validation.ALLOWED;
     }
     public List<Hex> sites(int unit,War.StructureKind kind){List<Hex> out=new ArrayList<>();World.Unit u=w.unit(unit);if(u!=null)for(Hex h:u.hex.neighbors())if(buildError(unit,kind,h,0)==null)out.add(h);return out;}
     public World.Result build(int unit,War.StructureKind kind,Hex target,int direction){w.reports.prepare();
         String error=buildError(unit,kind,target,direction);if(error!=null)return w.fail(error);
-        World.Unit u=w.unit(unit);w.marches.supersede(u);u.gold-=kind.gold;u.acted=true;
+        int price=buildCost(unit,kind,target);World.Unit u=w.unit(unit);w.marches.supersede(u);u.gold-=price;u.acted=true;
         War.Structure s=new War.Structure(w.war.nextStructureId++,u.owner,kind,target,0);s.complete=false;s.builder=unit;s.direction=direction;w.war.structures.add(s);advance(s,u);
         return w.success("设置"+kind.label+" · "+(s.complete?"已建成":"施工"+s.hp+"/"+kind.hp+"，后续自动补修"));
     }
@@ -140,9 +158,31 @@ public final class Fieldworks {
         if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||s==null)return w.fail("请选择己方施工部队");
         w.marches.supersede(u);s.builder=-1;return w.success("已中止施工，保留当前设施与耐久，费用不退还");
     }
+    /** Funding is a separate action; cities retain seven-cell entry semantics. */
+    public Validation withdrawCheck(int unit,int city,int gold){
+        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);
+        if(error!=null)return Validation.reject("UNIT_COMMAND","unit",error);
+        World.City c=w.city(city);
+        String reason="需要相邻己方据点、足够金及部队携金容量（10000）";
+        if(c==null||c.owner!=u.owner)return Validation.reject("FUND_SITE_OWNER","city",reason);
+        if(!w.army.canEnterSite(u,u.hex,c))return Validation.reject("FUND_SITE_ENTRY","city",reason);
+        if(gold<=0||gold>10000)return Validation.reject("FUND_AMOUNT","gold",reason);
+        if(u.gold>10000-gold)return Validation.reject("UNIT_GOLD_CAPACITY","gold",reason);
+        if(c.gold<gold)return Validation.reject("SITE_GOLD","gold",reason);
+        return Validation.ALLOWED;
+    }
+    public int withdrawMaximum(int unit,int city){
+        World.Unit u=w.unit(unit);World.City c=w.city(city);
+        if(u==null||c==null||!withdrawCheck(unit,city,1).allowed())return 0;
+        return Math.max(0,Math.min(c.gold,Math.min(10000,10000-u.gold)));
+    }
+    public List<World.City> fundingSites(int unit){
+        List<World.City> sites=new ArrayList<>();for(World.City c:w.cities)if(withdrawMaximum(unit,c.id)>0)sites.add(c);
+        return Collections.unmodifiableList(sites);
+    }
     public World.Result withdraw(int unit,int city,int gold){w.reports.prepare();
-        World.Unit u=w.unit(unit);World.City c=w.city(city);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);
-        if(c==null||c.owner!=u.owner||!w.army.canEnterSite(u,u.hex,c)||gold<=0||gold>10000||u.gold>10000-gold||c.gold<gold)return w.fail("需要相邻己方据点、足够金及部队携金容量（10000）");
+        Validation validation=withdrawCheck(unit,city,gold);if(!validation.allowed())return w.fail(validation.detail);
+        World.Unit u=w.unit(unit);World.City c=w.city(city);
         c.gold-=gold;u.gold+=gold;u.acted=true;return w.success("部队补充"+gold+"金");
     }
     public War.Structure byId(int id){for(War.Structure s:w.war.structures)if(s.id==id)return s;return null;}

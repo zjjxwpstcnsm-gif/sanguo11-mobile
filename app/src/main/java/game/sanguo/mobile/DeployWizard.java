@@ -116,7 +116,7 @@ final class DeployWizard {
         if(updating||summary==null)return;
         previewHandler.removeCallbacks(previewWork);preview=null;
         draft.putString("troops",troops.draftValue());draft.putString("food",food.draftValue());draft.putString("gold",gold.draftValue());save();
-        summary.setText("正在核对出征条件…");summary.setTextColor(a.muted);if(dialog!=null&&dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        summary.setText("正在核对出征条件…");summary.setTextColor(a.muted);UiTheme.readable(summary);if(dialog!=null&&dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
         previewHandler.postDelayed(previewWork,100);
     }
     private void refreshPreview(){
@@ -138,7 +138,7 @@ final class DeployWizard {
             crewDetails.setText(selected.length()==0?"在下方同一个列表连续点击即可选好三将。\n第一位为主将，之后两位为副将；副将可留空。":selected.toString().trim());
             DeploymentPreview.UnitFacts facts=preview.unit;
             ration.setText(facts==null?"完成有效编队后显示当前地块粮耗":"当前地块旬耗 "+facts.foodUse+" · 可支撑 "+(facts.foodTurns==Integer.MAX_VALUE?"不限":facts.foodTurns)+" 旬\n按当前编队、位置与补给范围估算");
-            String error=error();summary.setTextColor(error==null?a.gold:0xfff2aa9e);summary.setText(error==null?"留守：兵 "+preview.remaining.troops+" · 粮 "+preview.remaining.food+" · 金 "+preview.remaining.gold+"\n"+weapon().label+" · "+(1+deputies().length)+"将 · 行动力"+preview.actionPointsCost+" · 可直接确认出征":error);
+            String error=error();summary.setTextColor(error==null?a.gold:0xfff2aa9e);UiTheme.readable(summary);summary.setText(error==null?"留守：兵 "+preview.remaining.troops+" · 粮 "+preview.remaining.food+" · 金 "+preview.remaining.gold+"\n"+weapon().label+" · "+(1+deputies().length)+"将 · 行动力"+preview.actionPointsCost+" · 可直接确认出征":error);
             summary.setContentDescription("出征条件 · "+preview.reasonCode+" · "+preview.field+" · "+summary.getText());
             if(dialog!=null&&dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(error==null);
             if(facts==null){attack.setText("攻击 —");defense.setText("防御 —");stats.setText("选好主将与兵种后，显示实际出征格上的部队数值。\n"+(error==null?"城外没有可用出征格":error));return;}

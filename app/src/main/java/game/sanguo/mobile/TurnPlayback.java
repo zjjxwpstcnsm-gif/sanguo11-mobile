@@ -2,17 +2,23 @@ package game.sanguo.mobile;
 
 import android.os.SystemClock;
 import game.sanguo.core.*;
+import game.sanguo.api.StateToken;
+import game.sanguo.api.GameEvent;
+import java.util.function.Supplier;
 
 /** Presentation alone is budgeted; no gameplay, resource, AI or RNG step is ever skipped. */
 final class TurnPlayback {
     private final MapHost map;
     private final TurnWork work;
     private final Runnable changed,finished;
+    private final Supplier<StateToken> committedState;
+    private final Supplier<GameEvent> committedParent;
     private boolean detached,finishedOnce;
     private void finish(){if(finishedOnce)return;finishedOnce=true;map.pauseEffects(false);map.removeCallbacks(tick);finished.run();}
     private long last;
     private TurnJournal.Event current;
-    TurnPlayback(MapHost map,TurnWork work,Runnable changed,Runnable finished){this.map=map;this.work=work;this.changed=changed;this.finished=finished;}
+    TurnPlayback(MapHost map,TurnWork work,Runnable changed,Runnable finished){this(map,work,changed,finished,()->null,()->null);}
+    TurnPlayback(MapHost map,TurnWork work,Runnable changed,Runnable finished,Supplier<StateToken> state,Supplier<GameEvent> parent){this.map=map;this.work=work;this.changed=changed;this.finished=finished;committedState=state;committedParent=parent;}
     void start(){map.replayCommitted(work.done&&work.error==null);map.setCriticalSkip(()->{work.criticalElapsed=map.criticalDuration(current);map.criticalEvent(null,0);});last=SystemClock.uptimeMillis();map.invalidateScene();map.setWorld(work.visual,null,-1);map.postOnAnimation(tick);}
     void detach(){map.discardTechniqueMedia();detached=true;map.replayCommitted(true);map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);map.replayFrame(null,0);map.pauseEffects(false);}
     void pause(boolean paused){work.pause(paused);map.pauseEffects(paused);last=SystemClock.uptimeMillis();}
@@ -32,6 +38,8 @@ final class TurnPlayback {
         work.selectBatch();boolean applied=false;long deadline=now+6;
         while(work.cursor<work.events.size()){
             TurnJournal.Event event=work.events.get(work.cursor);
+            // A computing batch has no committed authority token. Do not manufacture one.
+            if(work.done&&work.error==null)map.recordAppliedEvent(work.visual,committedState.get(),committedParent.get(),event);
             if(current!=event){current=event;elapsed=0;}
             boolean visible=UiMotion.enabled()&&event.visibleAction()&&map.replayVisible(event);
             if(visible){
