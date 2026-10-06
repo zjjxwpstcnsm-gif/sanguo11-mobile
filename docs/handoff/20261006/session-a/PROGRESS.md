@@ -82,3 +82,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 48正式回执/矩阵/交付已更新，244全可选预览和752总槽、61.3MiB采样Java余量与实际完整恢复边界明确；49当前同376游戏+test1e58完整备份后更新actualregistered组件，句柄57949/native13994，尚未判可见技巧终值/正常cold/恢复通过。
 
 49新test1e58实际注册/SHA核验后正常direct成功提交事实+12，但10秒真实badge一直0且未见roll，判实际产品呈现失败；原9/3797全SHA恢复，正常/冷不判通过。presentationParent3:1、foregroundtrue/pausedfalse、committed12已取证，尚无精确取消/调度栈，50先加A app最小phase commit/poll/start/finish/cancel原因日志，不推断唯一根因、不改B数值/结果/Save/RNG，不手动放行phase。源码/新包须独立编译安装复现。
+
+50 diagnostic-only新默认APK136ffd6bb5fbb18767dc844f39a8f233156e71849771488f3ad58ec786fed8ff/test255da8d664807f59b26d4d7dae1fbb18b57e340541b57b5e7006c364165f82db已独立构建并实际安装，两设备SHA/pm组件守卫通过；完整9/3797备份保留，当前direct实际phase诊断live2952/native98466，未判修复/冷/恢复通过。49额外实际focused文字metadata5份/74行无alpha0或已知纯色低于4.5，66背景为渐变/图像/透明未求像素contrast；这仅49已触达界面范围，失败保存，不替代全16页面。
