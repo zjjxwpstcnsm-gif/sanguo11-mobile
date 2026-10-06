@@ -1,0 +1,149 @@
+{
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "branch": "codex/map-ui-media-repair",
+  "sourceHeadBeforeEvidence": "a3c63ab3",
+  "device": "emulator-5554",
+  "sdk": 29,
+  "abi": "x86_64",
+  "largeHeapMiB": 512,
+  "currentInstalledGameSha256": "d7cd4368ce3f29cee5cd77d54f6ab41008ec6208704f3a153d9c593808091ffd",
+  "runs": [
+    {
+      "run": 14,
+      "stage": "restored-verified",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-a4faea1e-scene/app-debug.apk": "a390abdbc3a92250e1a6577ca0bf566411285a1acda2846762462ecabff436c4",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-a4faea1e-scene/app-debug-androidTest.apk": "273c979a27ff7e403ac80ba9d5de1d491833430de2ede73e2b91bfb69c94a111"
+      },
+      "normalPassed": false,
+      "overallPassed": false,
+      "coldProcess": null,
+      "restoration": {
+        "internal": {
+          "exactRegularFileSha": true,
+          "files": 9,
+          "rewrittenOriginalFiles": 3,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        },
+        "external": {
+          "exactRegularFileSha": true,
+          "files": 3797,
+          "rewrittenOriginalFiles": 0,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        }
+      },
+      "reason": "normal roster touch pointer miss; no cold"
+    },
+    {
+      "run": 15,
+      "stage": "restored-verified",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-a4faea1e-scene/app-debug.apk": "a390abdbc3a92250e1a6577ca0bf566411285a1acda2846762462ecabff436c4",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-c8a1887e-test/app-debug-androidTest.apk": "e001b99aeb4e75850e053d33f012c0d551c87668f89b819254ac51f75e2c73ac"
+      },
+      "normalPassed": true,
+      "overallPassed": false,
+      "coldProcess": {
+        "beforePid": "7858",
+        "expectedStartupSaveSha256": "9d310a7647e74c13c58faa05e91b84a3626854c522065673d588d1fd175b6d36",
+        "passed": false
+      },
+      "restoration": {
+        "internal": {
+          "exactRegularFileSha": true,
+          "files": 9,
+          "rewrittenOriginalFiles": 4,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        },
+        "external": {
+          "exactRegularFileSha": true,
+          "files": 3797,
+          "rewrittenOriginalFiles": 0,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        }
+      },
+      "reason": "normal actual commands pass, cold actual A map did not submit"
+    },
+    {
+      "run": 16,
+      "stage": "restored-verified",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-a4faea1e-scene/app-debug.apk": "a390abdbc3a92250e1a6577ca0bf566411285a1acda2846762462ecabff436c4",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-ba95fc08-test/app-debug-androidTest.apk": "bbb0a6bdf5bd1b6011b50ed6fe84c49a775bdd720fff384b3d2902f720435073"
+      },
+      "normalPassed": true,
+      "overallPassed": false,
+      "coldProcess": {
+        "beforePid": "6607",
+        "expectedStartupSaveSha256": "2dc59b1691a44dabd5773ec0b99fdef5ecb293ff1fa491dc63693092368613af",
+        "passed": false
+      },
+      "restoration": {
+        "internal": {
+          "exactRegularFileSha": true,
+          "files": 9,
+          "rewrittenOriginalFiles": 4,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        },
+        "external": {
+          "exactRegularFileSha": true,
+          "files": 3797,
+          "rewrittenOriginalFiles": 0,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        }
+      },
+      "reason": "normal actual commands pass, cold normal navigation still no map; incomplete startup latch after test termination before onDestroy"
+    },
+    {
+      "run": 17,
+      "stage": "restored-verified",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-41a9ab1b-scene/app-debug.apk": "d7cd4368ce3f29cee5cd77d54f6ab41008ec6208704f3a153d9c593808091ffd",
+        "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/apk-41a9ab1b-scene/app-debug-androidTest.apk": "d1943403258896923b163cfd66bb78e2309b43ba019ec05c86ae8d6085e98948"
+      },
+      "normalPassed": true,
+      "overallPassed": false,
+      "coldProcess": {
+        "beforePid": "30997",
+        "afterPid": "27702",
+        "differentPid": true,
+        "expectedStartupSaveSha256": "c374c00c708623c30311cb2ac4ab3bfba186d3136fd772173fdf4e27162cbd7e",
+        "passed": false
+      },
+      "restoration": {
+        "internal": {
+          "exactRegularFileSha": true,
+          "files": 9,
+          "rewrittenOriginalFiles": 4,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        },
+        "external": {
+          "exactRegularFileSha": true,
+          "files": 3797,
+          "rewrittenOriginalFiles": 0,
+          "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+        }
+      },
+      "reason": "new lifecycle candidate normal military plus actual cold map/full Save/RNG/manual load passed; exit test read preferences before main onDestroy finished, overall FAIL"
+    }
+  ],
+  "nextRun": 18,
+  "nextTestSource": "16ca8161",
+  "nextTestSha256": "da31c8a19f6c9476a87c5c5a0526ce3c6219134feaa386c8806c5212ca039333",
+  "nextRunAcceptance": "pending normal+different PID submitted map+fullsave/RNG+actual destruction+every-file restoration",
+  "ARM": "no physical ARM device connected, unaccepted",
+  "originalFire13": "new separate source transport compiled; default4JNI unchanged; no normal original fire acceptance; nonempty new9 host compatibility failed",
+  "sourcePreservation": {
+    "SOURCE_GUARD.json": {
+      "verifiedPaths": 10714,
+      "head": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+      "protectedHeadUnchanged": true
+    },
+    "ORIGINAL_GUARD.json": {
+      "verifiedPaths": 4301,
+      "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+      "protectedHeadUnchanged": true
+    }
+  },
+  "goalComplete": false
+}
