@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "4cb8f8cb",
+  "defaultLargeHeap": true,
+  "completedBDirectSource": "1b7a8b418ffcdf56cf3c6020eb9faf4430ba3942",
+  "completedBDirectDocs": "5ce10e6b53bc84a65ba16b7e27304ae2ad1bb5c5",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug.apk",
+      "sha256": "562fabeb23540c0256ab9bcc4282a2a4f2d729805990062c29c46ed2b0e9743a",
+      "bytes": 313471840
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug-androidTest.apk",
+      "sha256": "7c677d1b0e0532a65a60bde5a08caaf05817918d2c3f3007e504ff2543c49d30",
+      "bytes": 2595871
+    }
+  ],
+  "testClassesAndMusicDiagnosticsPresent": true,
+  "installed": false,
+  "scope": "New exact source includes immutable-array uploader, completed direct recruitment, search, fire and first-track accepted-PCM/timestamp diagnostics; old41 actual scope separate",
+  "original168PinsExact": true,
+  "original4JniExact": true,
+  "hostTests": {
+    "directRules": 13,
+    "directPolicy": 141,
+    "directSession": 9,
+    "GameSession": 1690,
+    "BridgeSessionPassed": true,
+    "staticArchitecturePassed": true
+  },
+  "actualInstalled": false,
+  "goalComplete": false,
+  "ARM": false,
+  "evidenceRoot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-music-host"
+}

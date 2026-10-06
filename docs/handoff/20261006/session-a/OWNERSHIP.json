@@ -169,7 +169,8 @@
     "docs/handoff/20261006/session-a/ARRAY_UPLOAD_ACCEPTANCE40.json",
     "docs/handoff/20261006/session-a/DIRECT_RECRUITMENT_INTEGRATION_AUDIT.json",
     "docs/handoff/20261006/session-a/MUSIC_SUBMISSION_DIAGNOSTIC_CONTRACT.md",
-    "app/src/androidTest/java/game/sanguo/mobile/SessionADirectRecruitmentPresentationInstrumentation.java"
+    "app/src/androidTest/java/game/sanguo/mobile/SessionADirectRecruitmentPresentationInstrumentation.java",
+    "docs/handoff/20261006/session-a/DIRECT_MUSIC_BUILD.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
