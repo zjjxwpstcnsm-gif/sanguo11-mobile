@@ -18,7 +18,7 @@ final class BuildPicker {
     private void remember(){draft.putBoolean("open",true);a.rememberForm(draft);}
     void show(){
         World.City c=w.city(draft.getInt("city",-1));Hex h=new Hex(draft.getInt("q"),draft.getInt("r"));
-        if(c==null||c.owner!=w.player||!w.domestic.buildSites(c.id).contains(h)){a.closeForm();new AlertDialog.Builder(a).setTitle("开发地不可用").setMessage("地块已被占用或城池归属已改变，请重新选择。").setPositiveButton("返回",null).show();return;}
+        if(c==null||c.owner!=w.player||!w.domestic.buildSites(c.id).contains(h)){a.closeForm();UiTheme.dialog(new AlertDialog.Builder(a).setTitle("开发地不可用").setMessage("地块已被占用或城池归属已改变，请重新选择。").setPositiveButton("返回",null).show());return;}
         remember();boolean officers=draft.containsKey("facility");
         LinearLayout form=new LinearLayout(a);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(a.dp(12),0,a.dp(12),0);
         TextView description=a.text(c.name+" · 开发地 "+h.q+","+h.r+"\n已用 "+w.domestic.count(c.id)+" / "+w.development.capacity(c.id)+" · 可用金 "+c.gold+"\n选择执行人后核对费用和工期 · 闲置武将 "+w.idle(c).size()+"人",14,a.paper);form.addView(description);

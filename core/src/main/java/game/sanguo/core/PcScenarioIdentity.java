@@ -8,6 +8,10 @@ import java.util.*;
 /** Saved, explicit installation-source identity. Never looked up during decoding.
  * This identifies a candidate source, not completed opening/event restoration. */
 public final class PcScenarioIdentity {
+    private static final java.util.regex.Pattern FORMAT_0=java.util.regex.Pattern.compile("[0-9a-f]{64}");
+    private static final java.util.regex.Pattern FORMAT_1=java.util.regex.Pattern.compile("pc-scen[0-9]{3}-[0-9a-f]{64}");
+    private static final java.util.regex.Pattern FORMAT_2=java.util.regex.Pattern.compile("[a-z0-9-]+");
+    private static final java.util.regex.Pattern FORMAT_3=java.util.regex.Pattern.compile("Media/scenario/(?i:Scen)[0-9]{3}\\.(?i:S11)");
     public static final String NAMESPACE="pc-scenario-source-v1";
     public static final String DATA_SOURCE="pc-installed-candidate";
     public static final String EXE_SHA="30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb";
@@ -20,11 +24,11 @@ public final class PcScenarioIdentity {
         public final List<String> unknown;
         public Source(String scenarioId,String name,String sourceVariant,String path,String sha,String sharedSha,
                       int year,int month,int day,List<String> unknown)throws IOException{
-            if(scenarioId==null||sha==null||!sha.matches("[0-9a-f]{64}")||!scenarioId.matches("pc-scen[0-9]{3}-[0-9a-f]{64}")||!scenarioId.endsWith(sha))throw new IOException("PC剧本身份/SHA无效");
-            if(name==null||name.isEmpty()||name.length()>100||sourceVariant==null||sourceVariant.length()>200||!sourceVariant.matches("[a-z0-9-]+")||!sourceVariant.endsWith(sha))throw new IOException("PC剧本名称/变体无效");
-            if(path==null||!path.matches("Media/scenario/(?i:Scen)[0-9]{3}\\.(?i:S11)")||!path.substring(path.lastIndexOf('/')+1,path.lastIndexOf('.')).substring(4).equals(scenarioId.substring(7,10)))throw new IOException("PC剧本路径/槽位无效");
+            if(scenarioId==null||sha==null||!FORMAT_0.matcher(sha).matches()||!FORMAT_1.matcher(scenarioId).matches()||!scenarioId.endsWith(sha))throw new IOException("PC剧本身份/SHA无效");
+            if(name==null||name.isEmpty()||name.length()>100||sourceVariant==null||sourceVariant.length()>200||!FORMAT_2.matcher(sourceVariant).matches()||!sourceVariant.endsWith(sha))throw new IOException("PC剧本名称/变体无效");
+            if(path==null||!FORMAT_3.matcher(path).matches()||!path.substring(path.lastIndexOf('/')+1,path.lastIndexOf('.')).substring(4).equals(scenarioId.substring(7,10)))throw new IOException("PC剧本路径/槽位无效");
             if(!sourceVariant.equals(variant(path,sha)))throw new IOException("PC剧本变体与路径/SHA不一致");
-            if(sharedSha==null||!sharedSha.matches("[0-9a-f]{64}")||year<1||year>9999||month<1||month>12||day!=1)throw new IOException("PC剧本日期/Shared来源无效；当前日期结构仅支持原1日开局");
+            if(sharedSha==null||!FORMAT_0.matcher(sharedSha).matches()||year<1||year>9999||month<1||month>12||day!=1)throw new IOException("PC剧本日期/Shared来源无效；当前日期结构仅支持原1日开局");
             if(unknown==null||unknown.size()>128)throw new IOException("PC剧本缺口列表无效");
             Set<String> seen=new HashSet<>();for(String gap:unknown)if(gap==null||gap.isEmpty()||gap.length()>200||!seen.add(gap))throw new IOException("PC剧本缺口重复或无效");
             this.scenarioId=scenarioId;this.name=name;this.sourceVariant=sourceVariant;this.path=path;this.sha=sha;this.sharedSha=sharedSha;

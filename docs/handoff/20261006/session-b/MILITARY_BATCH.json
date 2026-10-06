@@ -1,0 +1,84 @@
+{
+  "status": "military-flow-passed-bounded-source14-x86_64",
+  "goalComplete": false,
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "branch": "codex/rules-content-contest-repair",
+  "commit": null,
+  "apk": {
+    "out/session-b/military-build-17/frozen/app-debug.apk": "48b89bd30f28c7b9d7f15ef6a0ea9ea7644359f1db087a883f004c85b03dbdb2",
+    "out/session-b/military-build-17/frozen/app-debug-androidTest.apk": "0f5a39e57638c200690be65c7db8e9abc0743f76a7d69c05b79853184e88354e"
+  },
+  "actualInstalled": {
+    "game.sanguo.mobile.dev": "48b89bd30f28c7b9d7f15ef6a0ea9ea7644359f1db087a883f004c85b03dbdb2",
+    "game.sanguo.mobile.dev.test": "0f5a39e57638c200690be65c7db8e9abc0743f76a7d69c05b79853184e88354e"
+  },
+  "wholeFlowPassed": true,
+  "coldProcessPassed": true,
+  "originalFileRestoration": {
+    "internal": {
+      "files": 14,
+      "allShaReadbackMatch": true,
+      "additionalFiles": []
+    },
+    "external": {
+      "files": 772,
+      "allShaReadbackMatch": true,
+      "additionalFiles": []
+    }
+  },
+  "guardCount": 6070,
+  "productionInputsStillExact": true,
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "bytes": 121016
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "bytes": 7387104
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "bytes": 108856
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "bytes": 7320976
+    }
+  ],
+  "archive": "military-flow-17.tar.gz",
+  "archiveSha256": "93d0ae7904cb115ea972aa8beb6b18bfe6cbbebc70f0bbe4976d8a27c9086980",
+  "archiveBytes": 7271346,
+  "privateUserBackupsExcluded": true,
+  "unknown": [
+    "ARM acceptance",
+    "all16 full APK flows",
+    "original militaryHQ discount/full admission/progress",
+    "repair/stop/destruction complete APK matrix",
+    "source governors/districts/budgets/events/effective extra/NPC",
+    "native58 production strategy is separate unpromoted draft",
+    "full original duel/debate normal campaign settlement",
+    "full genuine31-39/custom APK continuation",
+    "inherited U01/core fixture failures"
+  ],
+  "checks": {
+    "architectureBoundary": "PASS current",
+    "GameSession": "PASS1690 current",
+    "BridgeSession": "PASS current",
+    "U01": "FAIL inherited revision63/65 fixture; source audited, no golden/Unity change",
+    "militarySemantics": "PASS52 current",
+    "freshSourceFees": "PASS17 current",
+    "textDecoder": "PASS strict recovery/concurrency current",
+    "officerDtoAndSaveParity": "PASS25 complete source/old-save fingerprints current"
+  },
+  "originalWorkspaceGuard": {
+    "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "dirtyCount": 609,
+    "porcelainNulSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
+  }
+}

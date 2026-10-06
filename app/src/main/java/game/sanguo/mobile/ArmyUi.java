@@ -13,7 +13,7 @@ import java.util.function.*;
 final class ArmyUi {
     private final MainActivity a;private final World w;private final LegacyCommandSink apply;private final Consumer<Hex> focus;
     ArmyUi(MainActivity a,World w,LegacyCommandSink apply,Consumer<Hex> focus){this.a=a;this.w=w;this.apply=apply;this.focus=focus;}
-    private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
+    private void info(String title,String text){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show());}
     private void confirm(String title,String text,Runnable action){a.commandDialog(title,text,"执行",w,action);}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     void quickDeploy(World.City c){new DeployWizard(a,w,this,DeployWizard.start(a,c,true)).show();}
@@ -62,7 +62,7 @@ final class ArmyUi {
         a.pickOnMap(t.label+" · 选择目标",u.hex,targets,h->{World.City c=w.cityAt(h);World.Unit b=w.unitAt(h);
             Runnable field=()->a.showTacticPreview(w,w.army.tacticPreview(u.id,h,t),()->apply.execute(w,()->w.army.tactic(u.id,h,t)));
             Runnable site=()->a.showTacticPreview(w,w.army.tacticCityPreview(u.id,c.id,t),()->apply.execute(w,()->w.army.tacticCity(u.id,c.id,t)));
-            if(c!=null&&b!=null)new AlertDialog.Builder(a).setTitle("同格战法目标").setItems(new String[]{w.officer(b.officerId).name+" · 部队",c.name+" · 据点"},(d,i)->{if(i==0)field.run();else site.run();}).setNegativeButton("取消",null).show();
+            if(c!=null&&b!=null)UiTheme.dialog(new AlertDialog.Builder(a).setTitle("同格战法目标").setItems(new String[]{w.officer(b.officerId).name+" · 部队",c.name+" · 据点"},(d,i)->{if(i==0)field.run();else site.run();}).setNegativeButton("取消",null).show());
             else if(c!=null)site.run();else field.run();},h->h==null?"目标在地图范围外":w.army.tacticError(u.id,h,t));
     });}
 }

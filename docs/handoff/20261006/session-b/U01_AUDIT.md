@@ -1,0 +1,7 @@
+# U01 inherited fixture mismatch: source semantic audit
+
+Baseline and candidate both pass GameSession1690 and BridgeSession, then cmp fails. Golden last changed by faaa0e40 (`feat: bridge Unity presentation to authoritative Java session`). Recorder uses real `ScenarioCatalog.load("coalition-190",0,20260923L)`, wraps GameSession/BridgeSession, and writes a read-only Editor preview. It is a project scenario, not one of the16 native installation sources.
+
+Current loader attaches NationalMap.RESOURCE national-map-v056, REVISION65, SHA800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d. NationalMap checks the resource bytes/layout/native200 and decodes SourceGridCoord through MapCoordinates. Inherited source explicitly states64/65 share PC terrain and65 adds opening-only source dams;63 keeps reviewed legacy geography/restrictions only in existing saved worlds. The generator opens a new current world; the stored golden carries revision63 and different terrain/site coordinates. Neither B rule edit changes this map resource/revision/coordinate converter.
+
+Exact terrain/entity differences, both hashes and unchanged protocol/scenario metadata are in u01-diff.json. This narrows the failure to fixture geographic content drift rather than a demonstrated command/save/bridge regression. It does not certify full PC geography or justify rewriting the golden. Golden, Unity and shared script remain untouched; final integration must review the intended Editor fixture geography and its historical resource binding. Complete architecture remains failed at cmp.

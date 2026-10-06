@@ -5,6 +5,8 @@ import java.util.*;
 /** Immutable per-source original records. Live abilities/assignments remain in World.
  * Extra/NPC/unmapped identities are explicit; no slot arithmetic becomes an officer ID. */
 public final class PcScenarioPeople {
+    private static final java.util.regex.Pattern FORMAT_0=java.util.regex.Pattern.compile("[0-9a-f]{64}");
+    private static final java.util.regex.Pattern FORMAT_1=java.util.regex.Pattern.compile("(?:[0-9a-f]{2})*");
     public static final String NAMESPACE="pc-scenario-people-v1";
     private static final int MAGIC=0x50535031;
     private PcScenarioPeople(){}
@@ -54,7 +56,7 @@ public final class PcScenarioPeople {
     static Person read(DataInputStream in)throws IOException{
         int nativeId=PcOfficerInfo.bounded(in.readInt(),0,1099),id=PcOfficerInfo.bounded(in.readInt(),-1,999999);boolean strict=in.readBoolean();
         String name=PcOfficerInfo.text(in,1024),raw=PcOfficerInfo.text(in,128),sha=PcOfficerInfo.text(in,64),courtesy=PcOfficerInfo.text(in,1024),courtesyRaw=PcOfficerInfo.text(in,128);
-        if(!sha.matches("[0-9a-f]{64}")||!raw.matches("(?:[0-9a-f]{2})*")||id>=0&&raw.isEmpty()||strict&&id<0)throw new IOException("原人物字节身份无效");
+        if(!FORMAT_0.matcher(sha).matches()||!FORMAT_1.matcher(raw).matches()||id>=0&&raw.isEmpty()||strict&&id<0)throw new IOException("原人物字节身份无效");
         int n=PcOfficerInfo.bounded(in.readInt(),0,300);Map<Integer,Integer> fields=new TreeMap<>();
         for(int i=0;i<n;i++){int key=PcOfficerInfo.bounded(in.readInt(),0,300);if(fields.put(key,in.readInt())!=null)throw new IOException("原人物字段重复");}
         n=PcOfficerInfo.bounded(in.readInt(),0,128);List<String> unknown=new ArrayList<>();for(int i=0;i<n;i++)unknown.add(PcOfficerInfo.text(in,256));

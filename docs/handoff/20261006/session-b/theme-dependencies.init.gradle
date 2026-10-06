@@ -1,0 +1,13 @@
+// Generated compile inputs from SHA-verified A completed subset; original A paths stay untouched.
+gradle.beforeProject { project ->
+    project.plugins.withId('com.android.application') {
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            def deps = new File(project.rootDir, 'out/session-b/readonly-theme-dependencies')
+            if (!new File(deps, 'manifest.json').isFile()) throw new GradleException('Stage exact A frozen theme dependencies first')
+            android.sourceSets.main.java.exclude('game/sanguo/mobile/UiTheme.java', 'game/sanguo/mobile/FactionColors.java')
+            if (new File(deps, 'movement-manifest.json').isFile()) android.sourceSets.main.java.exclude('game/sanguo/mobile/MainActivity.java')
+            android.sourceSets.main.java.srcDir(new File(deps, 'java'))
+            android.sourceSets.main.res.setSrcDirs([new File(deps, 'res')])
+        }
+    }
+}

@@ -17,15 +17,15 @@ final class ContestUi {
     private final int paper=Color.rgb(235,227,205),gold=Color.rgb(216,183,116);
     ContestUi(MainActivity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
     private int dp(int value){return Math.round(value*a.getResources().getDisplayMetrics().density);}
-    private void confirm(String title,String text,Runnable action){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->action.run()).setNegativeButton("取消",null).show();}
-    private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
+    private void confirm(String title,String text,Runnable action){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->action.run()).setNegativeButton("取消",null).show());}
+    private void info(String title,String text){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show());}
     void challenge(World.Unit actor){
         List<World.Unit> targets=new ArrayList<>();for(World.Unit u:w.units)if(w.contests.duelError(actor.id,u.id)==null)targets.add(u);
         if(targets.isEmpty()){info("单挑","需要相邻的陆上交战部队、正常状态和10气力；器械与水军不能发起。");return;}
         String[] labels=new String[targets.size()];for(int i=0;i<labels.length;i++){World.Unit u=targets.get(i);labels[i]=w.officer(u.officerId).name+" · 应战率"+w.contests.acceptance(actor.id,u.id)+"%";}
-        new AlertDialog.Builder(a).setTitle("选择单挑目标").setItems(labels,(d,n)->{
+        UiTheme.dialog(new AlertDialog.Builder(a).setTitle("选择单挑目标").setItems(labels,(d,n)->{
             World.Unit target=targets.get(n);confirm("发起单挑","消耗10气力和本旬行动；对方可能拒绝。\n当前上阵武将体力归零即败，五十合平手。\n主将败北可能被俘并导致部队解散，副将败北则仅退出编队。",()->apply.execute(w,()->w.contests.challenge(actor.id,target.id)));
-        }).setNegativeButton("取消",null).show();
+        }).setNegativeButton("取消",null).show());
     }
     View view(){
         Contests.Session s=w.contests.current();ScrollView scroll=new ScrollView(a);scroll.setFillViewport(true);
@@ -37,9 +37,9 @@ final class ContestUi {
         label(panel,"每次操作后自动保存。可到菜单手动保存、导出，或读取另一局。",11,paper);
         return scroll;
     }
-    private void label(LinearLayout panel,String text,int size,int color){TextView v=new TextView(a);v.setText(text);v.setTextSize(size);v.setTextColor(color);v.setPadding(0,dp(3),0,dp(5));panel.addView(v);}
+    private void label(LinearLayout panel,String text,int size,int color){TextView v=new TextView(a);v.setText(text);v.setTextSize(size);v.setTextColor(color);UiTheme.readable(v);v.setPadding(0,dp(3),0,dp(5));panel.addView(v);}
     private void button(LinearLayout panel,String text,boolean enabled,Runnable action){
-        Button b=CompactButtons.create(a);b.setText(text);b.setTextColor(paper);b.setTextSize(13);b.setAllCaps(false);b.setMinHeight(dp(48));b.setEnabled(enabled);b.setOnClickListener(v->action.run());panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));
+        Button b=CompactButtons.create(a);b.setText(text);b.setTextColor(paper);UiTheme.readable(b);b.setTextSize(13);b.setAllCaps(false);b.setMinHeight(dp(48));b.setEnabled(enabled);b.setOnClickListener(v->action.run());panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));
     }
     private void duel(LinearLayout panel,Contests.Session s){
         Duel d=s.duel();final int id=s.id(),revision=s.revision();

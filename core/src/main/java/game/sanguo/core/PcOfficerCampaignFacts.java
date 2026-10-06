@@ -12,6 +12,9 @@ public final class PcOfficerCampaignFacts {
     public static final String NAMESPACE="pc-officer-campaign-record-v1";
     private static final int CATALOG_MAGIC=0x50434631,SAVED_MAGIC=0x50434632;
     private static final String IDENTITY_SHA="e4341546432e8d257851ed830bc3388d1f8ce8697db1547e108285d2b3b68d2c";
+    // 16x850 records share these formats. Compile once; retain full-match semantics.
+    private static final java.util.regex.Pattern RECORD_SHA=java.util.regex.Pattern.compile("[0-9a-f]{64}");
+    private static final java.util.regex.Pattern RAW_NAME=java.util.regex.Pattern.compile("(?:[0-9a-f]{2})*");
     public static final class Fact {
         public final int officerId,nativeId,initialRawLoyalty;
         public final String recordSha;
@@ -19,7 +22,7 @@ public final class PcOfficerCampaignFacts {
     }
     private static final class Record {
         final int nativeId,birth,sex,raw;final String sha,nameRaw;
-        Record(DataInputStream in)throws IOException{nativeId=PcOfficerInfo.bounded(in.readInt(),0,849);sha=PcOfficerInfo.text(in,64);nameRaw=PcOfficerInfo.text(in,128);birth=in.readInt();sex=in.readInt();raw=in.readUnsignedByte();if(!sha.matches("[0-9a-f]{64}")||!nameRaw.matches("(?:[0-9a-f]{2})*"))throw new IOException("原内部人物记录指纹无效");}
+        Record(DataInputStream in)throws IOException{nativeId=PcOfficerInfo.bounded(in.readInt(),0,849);sha=PcOfficerInfo.text(in,64);nameRaw=PcOfficerInfo.text(in,128);birth=in.readInt();sex=in.readInt();raw=in.readUnsignedByte();if(!RECORD_SHA.matcher(sha).matches()||!RAW_NAME.matcher(nameRaw).matches())throw new IOException("原内部人物记录指纹无效");}
     }
     private static final class Source {
         final String id,path,variant,sha;final List<Record> rows;
@@ -34,7 +37,7 @@ public final class PcOfficerCampaignFacts {
             if(resource==null)throw new IOException("原内部人物资源缺失");try(InputStream in=new GZIPInputStream(resource)){raw=boundedBytes(in,4*1024*1024);}
         }
         try(InputStream index=PcOfficerCampaignFacts.class.getResourceAsStream("/pc-officer-campaign/index.txt")){
-            if(index==null)throw new IOException("原内部人物索引缺失");String expected=new String(boundedBytes(index,128),StandardCharsets.US_ASCII).trim();if(!expected.matches("[0-9a-f]{64}")||!expected.equals(hash(raw)))throw new IOException("原内部人物资源指纹改变");
+            if(index==null)throw new IOException("原内部人物索引缺失");String expected=new String(boundedBytes(index,128),StandardCharsets.US_ASCII).trim();if(!RECORD_SHA.matcher(expected).matches()||!expected.equals(hash(raw)))throw new IOException("原内部人物资源指纹改变");
         }
         DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));if(in.readInt()!=CATALOG_MAGIC||!PcOfficerInfo.text(in,64).equals(PcScenarioIdentity.EXE_SHA)||!PcOfficerInfo.text(in,64).equals(IDENTITY_SHA))throw new IOException("原内部人物资源来源不明");
         int n=PcOfficerInfo.bounded(in.readInt(),16,16);List<Source> sources=new ArrayList<>();Set<String> ids=new HashSet<>();for(int i=0;i<n;i++){Source s=new Source(in);if(!ids.add(s.id))throw new IOException("原内部人物来源重复");sources.add(s);}if(in.available()!=0)throw new IOException("原内部人物资源未知尾部");return cached=List.copyOf(sources);

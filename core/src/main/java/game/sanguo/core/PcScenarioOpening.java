@@ -81,7 +81,7 @@ final class PcScenarioOpening {
         }
         w.officerAbilities.refresh();w.merchantMarket.initializeSource();w.pcProduction.initializeOpening();w.pcTechniquePoints.initializeOpening();
         w.abilities.initialize(seed);PcScenarioPeople.attach(w,source.people);PcScenarioPeople.attachOpening(w,source);PcOfficerSources.attachOpening(w,source.identity.scenarioId);
-        PcOfficerCampaignFacts.initializeOpening(w,source);PcOfficerIdentities.initializeOpening(w,source);
+        PcOfficerCampaignFacts.initializeOpening(w,source);PcOfficerIdentities.initializeOpening(w,source);PcMilitaryCostPolicy.initializeOpening(w);
         NaturalStructures.seedOpening(w);w.invalidateSiteIndex();
         if(player<0){for(int side=0;side<42;side++)if(w.alive(side)){player=side;break;}}
         if(player<0||player>=42||!source.forces.get(player).valid||!w.alive(player))throw new IOException("原来源没有该可选势力");w.player=player;w.active=player;

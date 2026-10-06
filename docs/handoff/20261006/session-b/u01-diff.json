@@ -1,0 +1,378 @@
+{
+  "oldSha256": "6ac082148b5d110b019af188dd57506c6f1c8629d64bc92973dfa0a2517564fb",
+  "currentGeneratedSha256": "875e4d0930543fbd154f43305257d136ff3036d704c4dc81766e01ab4c6894e3",
+  "mapRevision": {
+    "before": 63,
+    "after": 65
+  },
+  "terrainDifferences": 19642,
+  "terrainLengths": [
+    59800,
+    59800
+  ],
+  "entityChanges": [
+    {
+      "entityId": "site:20060",
+      "before": {
+        "entityId": "site:20060",
+        "kind": "PORT",
+        "name": "濡須港",
+        "q": 135,
+        "r": 149,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20060",
+        "kind": "PORT",
+        "name": "濡須港",
+        "q": 135,
+        "r": 148,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20061",
+      "before": {
+        "entityId": "site:20061",
+        "kind": "PORT",
+        "name": "頓丘港",
+        "q": 103,
+        "r": 123,
+        "owner": 9,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20061",
+        "kind": "PORT",
+        "name": "頓丘港",
+        "q": 104,
+        "r": 123,
+        "owner": 9,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20062",
+      "before": {
+        "entityId": "site:20062",
+        "kind": "PORT",
+        "name": "官渡港",
+        "q": 120,
+        "r": 101,
+        "owner": 1,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20062",
+        "kind": "PORT",
+        "name": "官渡港",
+        "q": 121,
+        "r": 101,
+        "owner": 1,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20063",
+      "before": {
+        "entityId": "site:20063",
+        "kind": "PORT",
+        "name": "孟津港",
+        "q": 129,
+        "r": 79,
+        "owner": 5,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20063",
+        "kind": "PORT",
+        "name": "孟津港",
+        "q": 130,
+        "r": 79,
+        "owner": 5,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20065",
+      "before": {
+        "entityId": "site:20065",
+        "kind": "PORT",
+        "name": "新豐港",
+        "q": 140,
+        "r": 64,
+        "owner": 5,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20065",
+        "kind": "PORT",
+        "name": "新豐港",
+        "q": 141,
+        "r": 64,
+        "owner": 5,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20068",
+      "before": {
+        "entityId": "site:20068",
+        "kind": "PORT",
+        "name": "蕪湖港",
+        "q": 127,
+        "r": 162,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20068",
+        "kind": "PORT",
+        "name": "蕪湖港",
+        "q": 127,
+        "r": 163,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20070",
+      "before": {
+        "entityId": "site:20070",
+        "kind": "PORT",
+        "name": "曲阿港",
+        "q": 111,
+        "r": 177,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20070",
+        "kind": "PORT",
+        "name": "曲阿港",
+        "q": 112,
+        "r": 177,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20071",
+      "before": {
+        "entityId": "site:20071",
+        "kind": "PORT",
+        "name": "句章港",
+        "q": 123,
+        "r": 187,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20071",
+        "kind": "PORT",
+        "name": "句章港",
+        "q": 124,
+        "r": 187,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20074",
+      "before": {
+        "entityId": "site:20074",
+        "kind": "PORT",
+        "name": "陸口港",
+        "q": 178,
+        "r": 115,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20074",
+        "kind": "PORT",
+        "name": "陸口港",
+        "q": 178,
+        "r": 116,
+        "owner": -1,
+        "troops": 0,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20079",
+      "before": {
+        "entityId": "site:20079",
+        "kind": "PORT",
+        "name": "中廬港",
+        "q": 173,
+        "r": 70,
+        "owner": 15,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20079",
+        "kind": "PORT",
+        "name": "中廬港",
+        "q": 174,
+        "r": 70,
+        "owner": 15,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    },
+    {
+      "entityId": "site:20080",
+      "before": {
+        "entityId": "site:20080",
+        "kind": "PORT",
+        "name": "烏林港",
+        "q": 182,
+        "r": 100,
+        "owner": 15,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      },
+      "after": {
+        "entityId": "site:20080",
+        "kind": "PORT",
+        "name": "烏林港",
+        "q": 183,
+        "r": 99,
+        "owner": 15,
+        "troops": 3000,
+        "energy": 80,
+        "officerId": -1,
+        "gold": 1500,
+        "food": 15000,
+        "order": 90
+      }
+    }
+  ],
+  "unchangedTopLevel": [
+    "type",
+    "sessionId",
+    "schemaVersion",
+    "sequence",
+    "revision",
+    "width",
+    "height",
+    "turn",
+    "player",
+    "removed"
+  ],
+  "recorderPath": "game-runtime/src/test/java/game/sanguo/runtime/bridge/BridgeFixtureRecorder.java",
+  "recorderScenario": "coalition-190",
+  "recorderSeed": 20260923,
+  "currentMapSource": "core/src/main/resources/maps/national-map-v056.properties",
+  "currentMapSha256": "800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d",
+  "currentMapRevision": 65,
+  "fixtureLastCommit": "faaa0e40ae6b1ab1c1fc8f26d6d1c32745b4a33c",
+  "goldenModified": false,
+  "unityModified": false,
+  "passed": false
+}
