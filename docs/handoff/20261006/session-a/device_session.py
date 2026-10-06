@@ -210,7 +210,7 @@ def main():
                 report_path.write_text(json.dumps(r,indent=2))
                 run('shell','am','force-stop',PACKAGE)
                 with (out/'cold-instrumentation.txt').open('wb') as f:
-                    run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,'-e','mode','cold',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
+                    run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,'-e','suite','mediaAll16' if a.portrait_native>=0 else 'cold3D','-e','portraitNative',str(a.portrait_native),'-e','coldPortraitSource',a.begin if a.portrait_native>=0 else '-1','-e','mode','cold',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
                 cold=(out/'cold-instrumentation.txt').read_text()
                 cold_relative='session-b/'+b_folder+'-cold' if b_runner else 'session-a-map/'+run_id+'_cold'
                 run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+cold_relative,str(out/'cold-evidence'))

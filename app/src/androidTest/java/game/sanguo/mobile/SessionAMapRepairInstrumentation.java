@@ -22,8 +22,8 @@ import java.util.function.Predicate;
 public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private MainActivity activity; private File output; private int checks;
     private StringBuilder log=new StringBuilder(), memory=new StringBuilder("phase,javaUsed,javaTotal,javaLimit,nativeAllocated,totalPss,graphicsPss\n");
-    private String run,expectedStartupSha; private int begin,end,portraitNative=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers;
-    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
+    private String run,expectedStartupSha; private int begin,end,portraitNative=-1,coldPortraitSource=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers;
+    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));coldPortraitSource=Integer.parseInt(args.getString("coldPortraitSource","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);if(a instanceof MainActivity)activity=(MainActivity)a;}
     private void check(boolean condition,String message){checks++;log.append(condition?"PASS ":"FAIL ").append(message).append('\n');if(!condition)throw new AssertionError(message);}
     private void ui(Runnable work){Throwable[] error={null};runOnMainSync(()->{try{work.run();}catch(Throwable e){error[0]=e;}});if(error[0]!=null)throw new AssertionError(error[0]);}
@@ -140,6 +140,11 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
             for(int cycle=0;cycle<2;cycle++){normalFit();closeView(current);pan(current);ready(current);unchanged(state,currentToken,"new game gestures "+index+"/"+cycle);}
             shot("source-"+index+"-map");Files.write(new File(output,"source-"+index+".sg11").toPath(),state);nav("武将");shot("source-"+index+"-officers");if(portraitPixels)normalPortraitRows(index);unchanged(state,currentToken,"normal directory "+index);nav("地图");sample("source-"+index+"-complete");
             Bundle update=new Bundle();update.putString("stream","SESSION_A source "+index+" normal flow complete\n");sendStatus(0,update);
+        }
+        if(!expectedStartupSha.isEmpty()&&portraitNative>=0){
+            check(allPortraitCallers&&coldPortraitSource>=0&&coldPortraitSource<sources.size(),"targeted cold caller tied to exact normal source and saved SHA");
+            check(SessionProbe.view(activity).scenarioId.equals(sources.get(coldPortraitSource).identity.scenarioId),"targeted cold scenario matches exact normal source");
+            nav("武将");normalPortraitRows(coldPortraitSource);nav("地图");ready(host(false));sample("cold-original-portrait-"+portraitNative);
         }
         byte[] state=capture();StateToken prior=token();
         check(getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HOME),"system global Home accepted");
