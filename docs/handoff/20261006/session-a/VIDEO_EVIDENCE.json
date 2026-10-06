@@ -126,7 +126,53 @@
       "originalTimingVerified": false,
       "coverage": "Second actual normal12 recording during post-source8 UI/lifecycle, not whole gameplay or PC parity",
       "video": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-12/video-native/actual-gestures.mp4",
-      "videoSha256": "78df7c5cb36b163498b88894c5f7d71d6719c64ee19527e0d471472af571c050"
+      "videoSha256": "78df7c5cb36b163498b88894c5f7d71d6719c64ee19527e0d471472af571c050",
+      "nativeEncodedVideoSamples": 1365,
+      "decodedOutputFramesMayIncludeVfrDuplicates": true,
+      "sampleCountMethod": "FFmpeg demux stream copy to null; unchanged native MP4; no CFR decode-output count used as original sample count"
+    },
+    {
+      "apkSha256": "3e11df1874e77a54db8645f14f6164f4c7ea939020c28110a3d27a22cc3af200",
+      "videoHasAudio": false,
+      "nativeTimingAvailable": true,
+      "goalComplete": false,
+      "recordReturnCode": 0,
+      "recordOutput": "",
+      "recordStartUtcEpoch": 1791277450.847431,
+      "recordEndUtcEpoch": 1791277511.235116,
+      "normalRun": "session_a_combined_13",
+      "recordingFormat": "native MP4 container",
+      "file": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-13/video-native/actual-gestures.mp4",
+      "sha256": "303d4b8f6a52c54b172de1851331d31104dae6857253c52838a9cc13be43d7f5",
+      "bytes": 6732068,
+      "hostDeviceByteEqual": true,
+      "onlyOwnRemoteRemoved": true,
+      "run": "combined-13-native-mp4",
+      "method": "Original Android screenrecord MP4 retained byte for byte; no retiming or game frame editing",
+      "metadata": {
+        "ffmpeg_version": "7.1 built with Apple clang version 13.0.0 (clang-1300.0.29.30)",
+        "codec": "h264",
+        "pix_fmt": "yuv420p(tv, bt709, progressive)",
+        "fps": 18.57,
+        "source_size": [
+          540,
+          960
+        ],
+        "size": [
+          540,
+          960
+        ],
+        "rotate": 0,
+        "duration": 59.99
+      },
+      "decodedFrames": 3599,
+      "originalTimingVerified": false,
+      "coverage": "Actual combined13 first-source zoom/pan sequence, not whole16 or PC parity",
+      "video": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-13/video-native/actual-gestures.mp4",
+      "videoSha256": "303d4b8f6a52c54b172de1851331d31104dae6857253c52838a9cc13be43d7f5",
+      "nativeEncodedVideoSamples": 1114,
+      "decodedOutputFramesMayIncludeVfrDuplicates": true,
+      "sampleCountMethod": "FFmpeg demux stream copy to null; unchanged native MP4; no CFR decode-output count used as original sample count"
     }
   ]
 }

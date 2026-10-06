@@ -187,5 +187,52 @@
     "normalMediaPixelsCallerClosed": false,
     "supersededBeforeInstall": true,
     "reason": "Completed B capacity increment454d60db/1c3b54b5 will be audited/applied then candidate rebuilt; no old APK score reuse"
+  },
+  "combined13": {
+    "directory": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile",
+    "sourceRevision": "3fa965308134ad68b6752881dcb213dcb8b0a608",
+    "gameApkSha256": "3e11df1874e77a54db8645f14f6164f4c7ea939020c28110a3d27a22cc3af200",
+    "testApkSha256": "532a5d1046754ac5f695b8b360058bb8dd26103361be0419387946bd189e6446",
+    "normal16SourceChecks": 2729,
+    "coldProcessChecks": 79,
+    "coldProcess": {
+      "beforePid": "8760",
+      "afterPid": "877",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "ca38fad35e7af1905de782b900e630e968c6722ffaea3d6a30b51dc91a870c26",
+      "passed": true
+    },
+    "javaPeakBytes": 374436264,
+    "javaLimitBytes": 536870912,
+    "nativeSeparatePeakBytes": 285172720,
+    "mainPssSeparatePeakKiB": 582555,
+    "samples": 413,
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "passed": true,
+    "all16ActualSavedMediaJoins": 10720,
+    "mediaUnknowns": 0,
+    "pngShaVerified": 2892,
+    "videoNativeSha256": "303d4b8f6a52c54b172de1851331d31104dae6857253c52838a9cc13be43d7f5",
+    "videoNativeSamples": 1114,
+    "videoNativeDuration": 59.99,
+    "ARM": false,
+    "originalFire13": false,
+    "militaryAndCapacityCommandsOnThisApk": false,
+    "nextCompletedBSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120",
+    "nextBSceneDoc": "969c518829351e84d4a1a0bba5275b8ee53fbd25",
+    "scope": "New combined A+B military/capacity APK actually installed; normal all16 map/source/storage/lifecycle only, not B command flow or source fire/media/full goal"
   }
 }
