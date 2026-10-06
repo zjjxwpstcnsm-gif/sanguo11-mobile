@@ -55,6 +55,7 @@ def main():
     p.add_argument('--output', type=pathlib.Path, required=True)
     p.add_argument('--previous',type=pathlib.Path)
     p.add_argument('--apk', type=pathlib.Path); p.add_argument('--test-apk', type=pathlib.Path)
+    p.add_argument('--reuse-installed',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
     out = a.output.resolve(); report_path = out/'session.json'
     if a.mode=='reuse-backup':
@@ -118,6 +119,8 @@ def main():
             if device_manifest(record['path']) != {k:v['sha256'] for k,v in record['files'].items()}:
                 raise ValueError('User tree changed after backup')
         r['apks'] = {str(v.resolve()):digest(v) for v in [a.apk,a.test_apk]}
+        run_id='session_a_'+out.name.replace('-','_')
+        r['runId']=run_id;r['reuseInstalled']=a.reuse_installed
         r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()
         def observe():
@@ -132,7 +135,8 @@ def main():
         log_process=subprocess.Popen([ADB,'-s','emulator-5554','logcat','-v','threadtime','-T','1'],stdout=log_file,stderr=subprocess.STDOUT)
         try:
             with (out/'installation.txt').open('wb') as f:
-                for apk in [a.apk,a.test_apk]: f.write(run('install','-r',str(apk.resolve()),timeout=300)); f.flush()
+                if not a.reuse_installed:
+                    for apk in [a.apk,a.test_apk]: f.write(run('install','-r',str(apk.resolve()),timeout=300)); f.flush()
             for package, apk in [(PACKAGE,a.apk),(PACKAGE+'.test',a.test_apk)]:
                 remote = run('shell','pm','path',package).decode().strip().removeprefix('package:')
                 local = out/(package+'-installed.apk')
@@ -140,10 +144,10 @@ def main():
                 if digest(local) != digest(apk): raise ValueError('Installed APK SHA differs')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run','session_a_resume','-e','begin',a.begin,'-e','end',a.end,PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
-            run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/session_a_resume',str(out/'evidence'))
+            run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id,str(out/'evidence'))
         finally:
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
             report_path.write_text(json.dumps(r,indent=2)); restore(out,r)
