@@ -1,0 +1,76 @@
+{
+  "source": "c10603d32a1d24850b10bcbcd690a4c5b221a133",
+  "testSource": "03e1fa10",
+  "gameSha256": "6ed8f224defb794843e787f2633218cb1eb8f81ec2b6b4b47a22bff99e3a20b0",
+  "testSha256": "8dbaeec5a813f40cdbd0728c34d8eb3c49b8efb805bac09c1e84082d34326ef0",
+  "run": 24,
+  "device": "emulator-5554",
+  "sdk": 29,
+  "abi": "x86_64",
+  "heapMiB": 512,
+  "actual": {
+    "menuNewSource14": true,
+    "realTwoDeployments": "\u8340\u5f675000\u67aa/\u90ed\u56095000\u5251; only actual stocks and command capacities",
+    "normalCancelNoSaveRngTokenChange": true,
+    "playerFireChance": 87,
+    "playerFireSucceeded": true,
+    "normalLowQualityReloadBurningVisible": true,
+    "playerExtinguish": true,
+    "sameCellReignite": true,
+    "actualWholeTurnExpiry": true,
+    "wholeTurnMs": [
+      11099,
+      15618,
+      14231
+    ],
+    "normalBurningSaveRead": true,
+    "trueColdAutoAndManualFullSaveRead": true,
+    "actualNative13FactoryStopUpdateDraw": true,
+    "actualUploadedExactStateToken": true,
+    "purePresentationFullSaveBothRngTokenUnchanged": true
+  },
+  "coldProcess": {
+    "beforePid": "23523",
+    "afterPid": "7299",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "75d5bb283a174d48b7b87d409d1c202a518c796490226cf15c7926a233431c93",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "nativeMemory": {
+    "samples": 127,
+    "maximumObservedChildren": 1,
+    "perChildPssPeakKiB": 234524,
+    "scope": "independent smaps samples, not Java/native allocator or GPU total; no summation"
+  },
+  "pending": [
+    "paused/rapid switch/stress lifecycle",
+    "complete current extra-native-package all16",
+    "normal384 heap current package",
+    "32MiB TCG re-install and memory verification",
+    "ARM physical device",
+    "original PC framebuffer and full fireball/fireseed/fireboat chains",
+    "all media/caller/BGM scope"
+  ],
+  "normalPassed": true,
+  "coldPassed": true,
+  "previousFailuresRetained": [
+    21,
+    22,
+    23
+  ],
+  "goalComplete": false
+}

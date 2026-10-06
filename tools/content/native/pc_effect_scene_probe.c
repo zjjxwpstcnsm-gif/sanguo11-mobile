@@ -4,6 +4,7 @@
  */
 #define main pc_effect_single_probe_main
 #define PC_VM_SHARED_SCENE 1
+#define PC_VM_TCG_BUFFER_BYTES (32u*1024u*1024u)
 #include "pc_effect_vm_probe.c"
 #undef main
 

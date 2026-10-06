@@ -24,8 +24,8 @@
         "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64/libpc_effect_fire_worker.so"
       ],
       "worker": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64/libpc_effect_fire_worker.so",
-      "bytes": 37424,
-      "sha256": "305e2ce68eb78a70dcb71adbb1234310605e4d83bbd298ccd375aa1dcfcc43d6",
+      "bytes": 37776,
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
       "unicornSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
       "runtimeAccepted": false,
       "apkAdditionalPath": "lib/x86_64/libpc_effect_fire_worker.so"
@@ -54,16 +54,16 @@
         "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a/libpc_effect_fire_worker.so"
       ],
       "worker": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
-      "bytes": 38384,
-      "sha256": "a3638baceb49591644e1b3ad9291e5780ee3abe9177f90a4e3eee731006a8529",
+      "bytes": 38712,
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
       "unicornSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
       "runtimeAccepted": false,
       "apkAdditionalPath": "lib/arm64-v8a/libpc_effect_fire_worker.so"
     }
   ],
   "sourceSha256": {
-    "pc_effect_scene_probe.c": "19bada49dcf8e11cdff402be1a6bad29316cc49b49fa4f6aac8fda332a18274b",
-    "pc_effect_vm_probe.c": "f92ec0d43a1e09480a580c07464a0951f9cfb3a57c786b4dce355cffc711cef9"
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
   },
   "ndk": "27.3.13750724",
   "unicornCommit": "8028ec436f2d9376525352dd38ed9ed6b9f6be10",

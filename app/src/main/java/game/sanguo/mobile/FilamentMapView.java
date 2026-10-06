@@ -1821,7 +1821,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             }
         }
         /** Persistent state information, independent of the still unbound PC fire emitter. */
-        private void drawSourceFireState(Canvas c){
+        private void drawSourceFireState(Canvas c,List<android.graphics.RectF> occupied){
             if(snapshot.ground.pcMap==null)return;
             float d=getResources().getDisplayMetrics().density;int labels=0;
             for(MapSceneSnapshot.FireState fire:snapshot.fires){
@@ -1833,9 +1833,17 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 // Every visible cell is marked. Keep the extra text bounded,
                 // including reduced motion, pause, LOW quality and overview.
                 if(camera.span<32&&labels++<32){
-                    float font=11*getResources().getDisplayMetrics().scaledDensity;p.setTextSize(font);float width=p.measureText(fire.label),baseline=y-7*d;
-                    p.setColor(0xff321b14);c.drawRoundRect(x-width/2-3*d,baseline-font-3*d,x+width/2+3*d,baseline+font*.25f+3*d,3*d,3*d,p);
-                    p.setColor(0xffffd0a2);c.drawText(fire.label,x-width/2,baseline,p);
+                    float font=11*getResources().getDisplayMetrics().scaledDensity;p.setTextSize(font);float width=p.measureText(fire.label);
+                    android.graphics.RectF box=new android.graphics.RectF();boolean placed=false;float left=0,baseline=0;
+                    for(int slot=0;slot<8;slot++){
+                        left=slot==0||slot==1?x-width/2:slot%2==0?x+9*d:x-width-9*d;
+                        baseline=slot==0?y-7*d:slot==1?y+font+9*d:slot<4?y+font*.4f:slot<6?y-font-9*d:y+font*2+9*d;
+                        box.set(left-3*d,baseline-font-3*d,left+width+3*d,baseline+font*.25f+3*d);
+                        if(box.left<0||box.top<0||box.right>camera.width-panelRight||box.bottom>camera.height-panelBottom||(!openingPreview&&navigatorShown&&android.graphics.RectF.intersects(box,miniRect)))continue;
+                        boolean overlap=false;for(android.graphics.RectF used:occupied)if(android.graphics.RectF.intersects(used,box)){overlap=true;break;}
+                        if(!overlap){placed=true;break;}
+                    }
+                    if(placed){occupied.add(box);p.setColor(0xffffbc6a);p.setStrokeWidth(d);c.drawLine(x,y,Math.max(box.left,Math.min(x,box.right)),Math.max(box.top,Math.min(y,box.bottom)),p);p.setColor(0xff321b14);c.drawRoundRect(box,3*d,3*d,p);p.setColor(0xffffd0a2);c.drawText(fire.label,left,baseline,p);}
                 }
             }
         }
@@ -1885,7 +1893,6 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 selectedSite=true;selectedSite(c,item.site.cells,0xffffd576);
             }
             if(!selectedSite&&snapshot.selected!=null)selectedCell(c,snapshot.selected,0xffffd576);
-            drawSourceFireState(c);
             if(draggingUnit){selectedCell(c,dragTarget,dragPlan==null?0xffff7979:0xff6ddcc5);drawDragGhost(c);}
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){
@@ -1925,6 +1932,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 p.setColor(selected?0xff1b2f37:FactionColors.LABEL_BACKGROUND);c.drawRoundRect(box,pad,pad,p);
                 p.setColor(selected?0xffffd576:item.textColor);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
             }
+            drawSourceFireState(c,occupied);p.setTextSize(font);
             p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?"原版美术恢复中 · 部分演出暂缺 | ":"")+((pending>0)?"3D 地形装载中… · 请稍候":(draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转")),12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();

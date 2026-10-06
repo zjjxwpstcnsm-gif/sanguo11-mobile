@@ -329,6 +329,10 @@ static void initialize(Machine *m,const unsigned char *exe,size_t n) {
     if(!tail_bytes || n!=159920128 || memcmp(exe+0x49d0a4,(uint32_t[]){0x73bc80,0x73bd20},8) ||
        memcmp(exe+0x4a5b68,(uint32_t[]){625,0,0x9908b0df},12)){fprintf(stderr,"Unverified source layout\n");exit(2);}
     require_uc(uc_open(UC_ARCH_X86,UC_MODE_32,&m->u));
+#ifdef PC_VM_TCG_BUFFER_BYTES
+    // Cap host translation memory before the first Unicorn initialization.
+    require_uc(uc_ctl_set_tcg_buffer_size(m->u,(uint32_t)PC_VM_TCG_BUFFER_BYTES));
+#endif
     map(m,0,4096);map(m,0x400000,0x500000);require_uc(uc_mem_write(m->u,0x400000,exe,0x500000));
     map(m,0x6ed0000,0x10000);map(m,0x9c00000,0x100000);
     // The verified EXE ends inside this mapped segment. Python's original
@@ -357,6 +361,11 @@ static void initialize(Machine *m,const unsigned char *exe,size_t n) {
     }
     const unsigned char reset[]={0xdb,0xe3,0xc3};require_uc(uc_mem_write(m->u,STOP+0x180,reset,sizeof(reset)));
     call(m,STOP+0x180,0,0,NULL);call(m,0x707075,0,1,(uint32_t[]){1});
+#ifdef PC_VM_TCG_BUFFER_BYTES
+    uint32_t actual_tcg;require_uc(uc_ctl_get_tcg_buffer_size(m->u,&actual_tcg));
+    if(!actual_tcg||actual_tcg>PC_VM_TCG_BUFFER_BYTES){fprintf(stderr,"Native translation budget not honored\n");exit(2);}
+    fprintf(stderr,"PC_TCG_BUDGET requested=%u actual=%u\n",(uint32_t)PC_VM_TCG_BUFFER_BYTES,actual_tcg);
+#endif
     if(reg32(m,UC_X86_REG_FPCW)!=0x23f){fprintf(stderr,"Native CRT x87 state differs\n");exit(2);}
 }
 static unsigned char *read_file(const char *path,size_t *n) {

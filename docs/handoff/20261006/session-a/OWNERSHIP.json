@@ -116,7 +116,11 @@
     "docs/handoff/20261006/session-a/FIRE_APP_BINDING.md",
     "docs/handoff/20261006/session-a/FIRE_APP_BUILD.json",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
-    "docs/handoff/20261006/session-a/ATTACK_TASK_ENTRY.md"
+    "docs/handoff/20261006/session-a/ATTACK_TASK_ENTRY.md",
+    "docs/handoff/20261006/session-a/FIRE_TCG_BUDGET.json",
+    "docs/handoff/20261006/session-a/validate_fire_tcg_budget.py",
+    "docs/handoff/20261006/session-a/FIRE_NORMAL_ACCEPTANCE.json",
+    "docs/handoff/20261006/session-a/GOVERNOR_INTEGRATION_AUDIT.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
