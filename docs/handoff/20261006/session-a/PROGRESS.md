@@ -43,3 +43,11 @@ main仍ef413be3，审计后继源仍0e7b9bc2；本分支四批到0c007271，工�
 630a4ce7将释放观察放在主线程等待完成，采样改为dumpsys meminfo --local避免向进程请求GC。接B精确接口请求，在47326188适配普通军事行军previewMove，保留明确自动攻击/接近、进驻、运输改道和routeMove保存；跨界正常入城格仍待B规则冻结组合。5个完成主题依赖在THEME_FROZEN.json提供前后SHA及独立只读导出，B在其16页消费，不复制A WIP。
 
 47326188普通APK已构建，SHA7b65eee5e9132fd99192de3eb2862b5bba4fb3f2257695467df99784f0041ca8，签名/168资源/4JNI通过。第二次安装在PackageInstaller阶段失败（设备历史finalStatus=-4，/data6GiB仅余约0.9GiB）；未把这个包标成已实装。第二次完整备份与失败后9/3797恢复SHA全等。主机空间充足，改为复制原A独占5554的完整AVD并只扩容独立副本；原AVD/用户库/资源保留，具体新设备来源和SHA见后继AVD_CLONE.json。5582不操作。当前仍无ARM、无B完成冻结增量，完整目标未完成。
+
+## Run05: 16-source installed flow; 384MiB risk remains open
+
+Normal non-debuggable fd9f455a APK daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e installed with equal readbackSHA. All16 real source menus, new games, first/last enabled faction selections, real full-near/pan and officer directories completed;51 actual full-near crossings. Home and actual orientation menu kept complete Save/RNG/StateToken. Final save assertion failed: no overall PASS. Run06 transport timeout before instrumentation, no operation credit. All original9 internal/3797 external files restored exactSHA each round.
+
+411 sampled Java maxima402559744B (383.91MiB) vs max402653184B (384MiB), only93440B free at source8 zoom. No observed OOM, but blocking Alloc GCs: memory closure requires allocation/live-object evidence. Native sampled max284132928B; totalPss624606KiB. These maxima are not simultaneous/additive; graphicsPss0 is not measured GPU VRAM. Renderer values remain estimates. INSTALLED_16_SOURCE_MATRIX.json records exact limits.
+
+5554 is the full inherited private expanded AVD; original retained/stopped. API29/x86_64/hostGPU/384MiB is not ARM acceptance. B fees/construction still candidate; no WIP or results incorporated into A APK.

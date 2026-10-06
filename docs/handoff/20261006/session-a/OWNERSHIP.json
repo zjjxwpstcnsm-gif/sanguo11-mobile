@@ -68,7 +68,13 @@
     "docs/handoff/20261006/session-a/clone_avd.py",
     "docs/handoff/20261006/session-a/AVD_STORAGE.md",
     "docs/handoff/20261006/session-a/MOVEMENT_FROZEN.json",
-    "docs/handoff/20261006/session-a/MOVEMENT_FROZEN.patch"
+    "docs/handoff/20261006/session-a/MOVEMENT_FROZEN.patch",
+    "docs/handoff/20261006/session-a/INSTALLED_16_SOURCE_MATRIX.json",
+    "docs/handoff/20261006/session-a/DELTA_BATCH5.json",
+    "docs/handoff/20261006/session-a/inspect_heap.py",
+    "docs/handoff/20261006/session-a/HEAP_PROFILE.json",
+    "docs/handoff/20261006/session-a/VIDEO_EVIDENCE.json",
+    "docs/handoff/20261006/session-a/convert_recording.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

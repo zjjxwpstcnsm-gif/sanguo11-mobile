@@ -1,0 +1,125 @@
+{
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "completeInheritedBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "branch": "codex/map-ui-media-repair",
+  "sourceRoot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "sourceRevision": "fd9f455a0209b9a750709820ccb226e0dbedb6aa",
+  "installedApk": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd9f455a/app-debug.apk": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd9f455a/app-debug-androidTest.apk": "f1c7003428dd1d2c843887aa8a84f9d0d1fc80ae000b23574b6d1aff6863b1ed"
+  },
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "deviceBoundary": "Private complete inherited san11-session-a-repair AVD on5554, x86_64 API29, GPU host;16GiB private /data; original AVD retained and stopped; no ARM connected. Runtime max384MiB, app no largeHeap.5554 exclusive lock;5582 untouched.",
+  "run05": {
+    "overallPassed": false,
+    "failure": "Last save assert sampled before confirmation completion; failed final Save byte assertion. Not counted as whole-flow PASS.",
+    "normalSourcesCompleted": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "realFullToNearCrossings": 51,
+    "sourceSelection": "Exact source button, real enabled first/last faction buttons, actual new-game confirmation",
+    "normalPath": "16 exact source picker / faction preview / cancel-retry(first) / new game / full-near / pan / normal officer directory; Home/resume and actual orientation menu",
+    "stateGuards": "Complete Save including RNG and full StateToken equal before/after every pure presentation path; new game explicitly changes state",
+    "noOOMObserved": true,
+    "observedMemorySamples": 411,
+    "sampledMaxima": {
+      "javaUsed": {
+        "value": 402559744,
+        "unit": "bytes",
+        "MiB": 383.910888671875,
+        "phase": "zoom"
+      },
+      "javaTotal": {
+        "value": 402653184,
+        "unit": "bytes",
+        "MiB": 384.0,
+        "phase": "zoom"
+      },
+      "javaLimit": {
+        "value": 402653184,
+        "unit": "bytes",
+        "MiB": 384.0,
+        "phase": "ready"
+      },
+      "nativeAllocated": {
+        "value": 284132928,
+        "unit": "bytes",
+        "MiB": 270.97027587890625,
+        "phase": "ready"
+      },
+      "totalPss": {
+        "value": 624606,
+        "unit": "KiB",
+        "MiB": 609.966796875,
+        "phase": "zoom"
+      },
+      "graphicsPss": {
+        "value": 0,
+        "unit": "KiB",
+        "MiB": 0.0,
+        "phase": "ready"
+      }
+    },
+    "rendererReportedEstimatesBytes": {
+      "buffers_bytes": 76838964,
+      "texture_estimate_bytes": 75460576,
+      "pc_map_fx_texture_bytes": 393216
+    },
+    "memoryClosed": false,
+    "memoryRisk": "Sampled Java used402559744 of402653184 bytes at source8 zoom: only93440B free before GC, blocking Alloc GCs logged. Absence of OOM in this sequence does not establish safe memory margin or ARM stability. Allocation/live-object profiling required. Graphics PSS0 does not measure GPU VRAM; native+Java+PSS peaks not additive simultaneous peaks.",
+    "evidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/resume-install-05/evidence",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797
+      }
+    }
+  },
+  "lifecycle06": {
+    "testSha": "251a747988fe6a7bec73ec1bac16301b9632649cab27f2910ba08721ad6cebf6",
+    "operationsStarted": false,
+    "failure": "Complete311MB installed APK exec-out readback timed out900s before instrumentation. Transport failure, no acceptance credit.",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797
+      }
+    }
+  },
+  "lifecycle07": "Pending same installed game bytes, revised hash readback, no credit yet",
+  "remaining": [
+    "Java heap margin and allocations; real ARM long normal workflow",
+    "Final B frozen rule increment and serial combination new APK normal move/fire/build/multiple turns/save/new process",
+    "Original cell fire template13 additive map material and frozen JNI serial extension; UI marker only currently",
+    "Normal BGM and real voice/event producers, remaining58 and ordinary event sounds; whole-song0.995/-22 audit",
+    "Full original fullscreen/ordinary media pixels/timing/profiles and selected/disabled/action feedback normal paths"
+  ]
+}

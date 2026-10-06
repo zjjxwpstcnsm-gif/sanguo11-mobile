@@ -1,0 +1,44 @@
+{
+  "run": "resume-install-05",
+  "coverage": "Actual encoded frames from a first180s recording attempt, NOT the full16-source sequence. Elementary H264 lost wall-clock packet timestamps. This preview explicitly assigns25fps; temporal/lifecycle acceptance must use logs and screenshots, NOT the preview playback pace.",
+  "apkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+  "source": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/touch-flow-05.h264",
+  "sourceSha256": "624c510cc2bd358a6ee236dadef29b4adbabe2be4d260d80eb678eacce9f34ea",
+  "video": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/touch-flow-05.mp4",
+  "videoSha256": "687f873cdc21c3163d9b470c4797fdafb06f13f5ba6a8a11c2856c2dbbbd94cf",
+  "method": "FFmpeg stream copy, no game frame edits/synthetic content",
+  "command": [
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/video-tools/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1",
+    "-y",
+    "-r",
+    "25",
+    "-i",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/touch-flow-05.h264",
+    "-c",
+    "copy",
+    "-movflags",
+    "+faststart",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/touch-flow-05.mp4"
+  ],
+  "ffmpegVersion": "7.1",
+  "metadata": {
+    "ffmpeg_version": "7.1 built with Apple clang version 13.0.0 (clang-1300.0.29.30)",
+    "codec": "h264",
+    "pix_fmt": "yuv420p(progressive)",
+    "fps": 25.0,
+    "source_size": [
+      1080,
+      1920
+    ],
+    "size": [
+      1080,
+      1920
+    ],
+    "rotate": 0,
+    "duration": 24.64
+  },
+  "decodedFrames": 616,
+  "originalTimingVerified": false,
+  "previewAssignedFps": 25,
+  "log": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/touch-flow-05-remux.txt"
+}

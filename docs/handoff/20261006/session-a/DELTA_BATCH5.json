@@ -1,0 +1,161 @@
+{
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "completeBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "ownBranch": "codex/map-ui-media-repair",
+  "ownRoot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "parentCommit": "de31d61d6f9aa019fdf83c7057fd5471b516a742",
+  "paths": [
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeCompleteBaseSha256": "54963c940283c0993006dc42c593d862432472d25f336388c2b2b3d6955586b8",
+      "afterSha256": "78df67b38c98b5cfc1c76529020204d951bb03f9ab80b8e08f520b4cee4d1cf4",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "beforeCompleteBaseSha256": null,
+      "afterSha256": "61050de4c25be8aac6d9e01b00f12de685b9e1d38989d411da3b2e086359625e",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FactionColors.java",
+      "beforeCompleteBaseSha256": "1de01cf2b8bfb86b628dcfc847582909fc3842bc8e5c98f15421546cef502d30",
+      "afterSha256": "542014754033b774fa44ce41613eb7a0d43112d06a9f85061686d76b53460119",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeCompleteBaseSha256": "185c3979c4fb2e9bf5f35d19ed8a0e579b83b22959ce6f0a7a9b87fbc932f71a",
+      "afterSha256": "f11b30cf2914057fbbcb6d016ae01f11b57a9c4003d2c4ad720afb62aff01437",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeCompleteBaseSha256": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+      "afterSha256": "fc1ed192a256be306dcd6aa292958af17e4f822232f788981702f993b7a45de5",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeCompleteBaseSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+      "afterSha256": "69a66c6c78145961947cfabb8f74624397fe412b95245aa05df5895bf4c8f930",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapProjectionQuery.java",
+      "beforeCompleteBaseSha256": "6ed9aaab333558fe9f6440aa2ff11baa0523b66579320f7506e2e4adaa565131",
+      "afterSha256": "09672849dfe5e206bb37727a586fd9360b5094301ceb0494fb6ba9a41a27dd11",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "beforeCompleteBaseSha256": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+      "afterSha256": "2f98f88083500b968936fad839a908cd404c08bb5e2266f1005e6570abdfb275",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "beforeCompleteBaseSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58",
+      "afterSha256": "f60212c8f9dfca66de89864fa15836e4d9010e7241552efda6ac1d3b7258ebff",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "beforeCompleteBaseSha256": "91c3d9403815ab39ae11ee9f0af5d1a159f6d9308807e3b89f40699ee4a40f32",
+      "afterSha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiTheme.java",
+      "beforeCompleteBaseSha256": "3ffed703800dcf0ba242c74541d1b7fa35a02b3c50eacd75dc013d3cefd4ca21",
+      "afterSha256": "0a15523b3ddac296f9ea3e9f542e7f91f7bf06835fcb1d0946b35b7a39c3de32",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/res/color/readable_secondary_text.xml",
+      "beforeCompleteBaseSha256": null,
+      "afterSha256": "5607fe3a336fad08ac75d30ff163b8ef5125a60d95042e1c5d1ec97624f4cb79",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/res/color/readable_text.xml",
+      "beforeCompleteBaseSha256": null,
+      "afterSha256": "a50f0699365f4c52cb5ced5a333a93339c906eb83889148da8fd3c807c124606",
+      "owner": "A"
+    },
+    {
+      "path": "app/src/main/res/values/styles.xml",
+      "beforeCompleteBaseSha256": "be47efccb136b25ab40a92d96e527b12d1eb6575c3937b1b28d1026774badd2d",
+      "afterSha256": "5c27fae6c5ad72719e3dba96819d816490d310b20d526109a641d32deb7e6a27",
+      "owner": "A"
+    }
+  ],
+  "protectedFrozenPaths": 635,
+  "frozenMismatches": [],
+  "jni4": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "currentSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "currentSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "currentSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "currentSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "originalGuardFiles": 4301,
+  "originalMismatches": [],
+  "originalHeadUnchanged": true,
+  "originalStatusShaUnchanged": true,
+  "noBWipMerged": true,
+  "conflicts": [],
+  "installed16SourceMatrix": "INSTALLED_16_SOURCE_MATRIX.json",
+  "overallAcceptanceComplete": false,
+  "pinnedSourceAndInstalledApkInputsChecked": 168,
+  "pinnedMismatches": [],
+  "installedApkJni": [
+    {
+      "apkPath": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "expected": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "apkPath": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "expected": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "apkPath": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "expected": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "apkPath": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "expected": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "pcExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "productionChangedSince47326188": false,
+  "diagnosticTestSourceSha256": "61050de4c25be8aac6d9e01b00f12de685b9e1d38989d411da3b2e086359625e",
+  "diagnosticTestApkSha256": "520fb407dd58a80b17807f3757f88998ec160491463f646d95fa0b0769e5d13f",
+  "diagnosticTestBuilt": true,
+  "diagnosticTestInstalled": false,
+  "videoEvidence": "VIDEO_EVIDENCE.json",
+  "heapProfiler": "inspect_heap.py (SDK hprof-conv input; post-GC objects, not allocation stack or unperturbed peak)"
+}

@@ -56,6 +56,8 @@ def main():
     p.add_argument('--previous',type=pathlib.Path)
     p.add_argument('--apk', type=pathlib.Path); p.add_argument('--test-apk', type=pathlib.Path)
     p.add_argument('--reuse-installed',action='store_true')
+    p.add_argument('--test-only-update',action='store_true')
+    p.add_argument('--heap-profile',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
     out = a.output.resolve(); report_path = out/'session.json'
     if a.mode=='reuse-backup':
@@ -80,8 +82,18 @@ def main():
             if digest(target)!=record['archiveSha256']:raise ValueError('Backup copy guard')
             r['trees'][name]={**record,'archive':str(target)}
         remote=run('shell','pm','path',PACKAGE).decode().strip().removeprefix('package:')
-        with (out/'previous-installed.apk').open('wb') as f:run('exec-out','cat',remote,output=f)
-        r['previousApkSha256']=digest(out/'previous-installed.apk');r['stage']='backup-verified';report_path.write_text(json.dumps(r,indent=2));print('Complete current file set verified; independent full backups retained',flush=True);return
+        installed_sha=run('shell','sha256sum',remote,timeout=180).decode().split()[0]
+        prior=a.previous.resolve()/'previous-installed.apk'
+        candidates=[prior]+[pathlib.Path(v) for v in source.get('apks',{})]
+        equivalent=next((v for v in candidates if v.is_file() and digest(v)==installed_sha),None)
+        if equivalent is None:
+            with (out/'previous-installed.apk').open('wb') as f:run('exec-out','cat',remote,output=f)
+        else:
+            subprocess.run(['cp','-c',str(equivalent),str(out/'previous-installed.apk')],check=True)
+            r['previousApkBackupSource']=str(equivalent);r['previousApkDeviceReadbackSha256']=installed_sha
+        r['previousApkSha256']=digest(out/'previous-installed.apk')
+        if r['previousApkSha256']!=installed_sha:raise ValueError('Previous APK backup SHA differs')
+        r['stage']='backup-verified';report_path.write_text(json.dumps(r,indent=2));print('Complete current file set verified; independent full backups retained',flush=True);return
     if a.mode == 'backup':
         if run('shell','id','-u').strip() != b'0': raise ValueError('Root emulator required')
         if run('shell','dumpsys','activity').decode().find('mActiveInstrumentation=[]') < 0:
@@ -120,7 +132,7 @@ def main():
                 raise ValueError('User tree changed after backup')
         r['apks'] = {str(v.resolve()):digest(v) for v in [a.apk,a.test_apk]}
         run_id='session_a_'+out.name.replace('-','_')
-        r['runId']=run_id;r['reuseInstalled']=a.reuse_installed
+        r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
         r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()
         def observe():
@@ -136,15 +148,18 @@ def main():
         try:
             with (out/'installation.txt').open('wb') as f:
                 if not a.reuse_installed:
-                    for apk in [a.apk,a.test_apk]: f.write(run('install','-r',str(apk.resolve()),timeout=300)); f.flush()
+                    for apk in ([a.test_apk] if a.test_only_update else [a.apk,a.test_apk]): f.write(run('install','-r',str(apk.resolve()),timeout=300)); f.flush()
             for package, apk in [(PACKAGE,a.apk),(PACKAGE+'.test',a.test_apk)]:
                 remote = run('shell','pm','path',package).decode().strip().removeprefix('package:')
-                local = out/(package+'-installed.apk')
-                with local.open('wb') as f: run('exec-out','cat',remote,output=f)
-                if digest(local) != digest(apk): raise ValueError('Installed APK SHA differs')
+                # Read installed bytes through the device SHA tool. Streaming a
+                # 311MB APK over exec-out stalled once; the hash still reads the
+                # complete installed file without a large transport allocation.
+                installed_sha=run('shell','sha256sum',remote,timeout=180).decode().split()[0]
+                (out/(package+'-installed.sha256')).write_text(installed_sha+'  '+remote+'\n')
+                if installed_sha != digest(apk): raise ValueError('Installed APK SHA differs')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id,str(out/'evidence'))
