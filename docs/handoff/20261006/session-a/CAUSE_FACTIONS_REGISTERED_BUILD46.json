@@ -22,8 +22,10 @@
   "sourceBuildFailureRetained": "direct-cause-all-faction-normal384-build.log duplicate A onCreate, repaired16f2db3f",
   "sourceRegistrationFailureRetained": "SEARCH_RUNNER_MANIFEST_FAILURE45.json, repaired e6d92908",
   "actualInstallSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-cause-normal384-46",
-  "actualInstallVerified": false,
+  "actualInstallVerified": true,
   "actualSearchPassed": false,
   "ARM": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "actualRunnerRegisteredOnDevice": true,
+  "status": "actualgame937/test053 installedSHA checked and pm list contains both A runners; normalsearch46 running, fullrestore pending"
 }
