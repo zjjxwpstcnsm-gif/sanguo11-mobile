@@ -1,0 +1,100 @@
+{
+  "functionalPassed": true,
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "apkSha256": "a7d4b7113d50d89edbc668178cc7dac07c935540264e0eb480d0d3c469c43520",
+  "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
+  "scope": "actualSource14 normaldeploy/move/gold-fund/cancel/double/city-near-wall/empty-selection/military-camp/direction/multi-turn-build/fullSave/allRNG/read/normalrecreation/newprocess cold and actualA typed source/fire/facility render assertions; not timing or ARM acceptance",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "coldProcess": {
+    "beforePid": "10583",
+    "afterPid": "22060",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "190ab81a070ad30b403e677b75f6a18a8fc734e997811dcfbf0ae4a80a6103f7",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "turns": [
+    {
+      "label": "funding-reset",
+      "elapsedMs": 75029,
+      "background": false
+    },
+    {
+      "label": "wall-construction",
+      "elapsedMs": 183404,
+      "background": true
+    },
+    {
+      "label": "wall-action-reset",
+      "elapsedMs": 133068,
+      "background": true
+    },
+    {
+      "label": "camp-construction-0",
+      "elapsedMs": 62851,
+      "background": false
+    },
+    {
+      "label": "camp-construction-1",
+      "elapsedMs": 36603,
+      "background": false
+    },
+    {
+      "label": "camp-construction-2",
+      "elapsedMs": 31277,
+      "background": false
+    },
+    {
+      "label": "camp-construction-3",
+      "elapsedMs": 32888,
+      "background": false
+    }
+  ],
+  "performancePassed": false,
+  "performanceOpenEvidence": "MILITARY30_PERFORMANCE_DIAGNOSTIC.md; partial recording and1SIGQUIT; stages vary and are not controlled timing comparison",
+  "typedActualRendering": {
+    "evidence/a-presentation-actual-build.txt": "sameToken=true sourceVoiceJoins=670 fires=2 facilities=6 originalFire13=runtime9-original-native-check originalSpeechCaller=unknown\n",
+    "evidence/a-presentation-source-new.txt": "sameToken=true sourceVoiceJoins=670 fires=0 facilities=4 originalFire13=runtime9-original-native-check originalSpeechCaller=unknown\n",
+    "cold-evidence/a-presentation-cold-restored.txt": "sameToken=true sourceVoiceJoins=670 fires=2 facilities=6 originalFire13=runtime9-original-native-check originalSpeechCaller=unknown\n"
+  },
+  "sourceVoiceProvenanceNotSpeakerInference": true,
+  "nativeChildrenIndependent": {
+    "samples": 336,
+    "maxChildren": 2,
+    "peakPerChildPssKiB": 50570,
+    "notJavaNativeAllocatorOrGpuPeak": true
+  },
+  "recordingStoppedForDiagnostic": true,
+  "videos": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/military-large-30/video",
+  "oneDiagnosticArtTraceSha256": "be1359d112a2b32a58b64aa700911c80cd9f17096067c387b7b631a6dff50bf0",
+  "noBSourceModified": true,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/military-large-30",
+  "evidenceSha256": {
+    "session.json": "0607569699d87f87cab5afce60f4941d96262e0d9bdb2f5150ca77d685190b7c",
+    "instrumentation.txt": "f268f7e0515b5688474dc9c8c5009a9bc3caf45fefe3ac044cfbcdbac45a59d4",
+    "cold-instrumentation.txt": "e227351c5c47701cba9c4bcfe8244fb80d2045e732bcc2b24dabe1cc205055f3",
+    "logcat.txt": "dc48c582763cc97da450f5142cc072df765afcc2660ff6f5d4748c8adabc3127",
+    "evidence/actual-build.sg11": "190ab81a070ad30b403e677b75f6a18a8fc734e997811dcfbf0ae4a80a6103f7",
+    "evidence/diagnosis.txt": "239e77d14037d4a5c76e0a288243a7125ede15242ce47f83b8f911bf7a656c89"
+  },
+  "ARM": false,
+  "overallGoalComplete": false
+}
