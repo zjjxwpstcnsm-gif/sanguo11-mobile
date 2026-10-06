@@ -9,15 +9,15 @@
     },
     {
       "item": "palette16",
-      "status": "HOST AND INSTALLED41 ALL16 PASS; EVERY FORCE PENDING",
-      "evidence": "stable arbitrary opaque palette host13273; 41 actual16 previews/map/128portrait callers; latest46 search choice readable screenshot",
-      "next": "latest default all selectable force previews, remaining deep16 pages and ARM"
+      "status": "LATEST DEFAULT48 ALL16/EVERY244 NORMAL PREVIEW PASS",
+      "evidence": "16sources752slots/244actualenabled selected/map/summary; source7 reported韓玄/韓遂/陶謙 actualopaque/UI PNGs, no authority mutation",
+      "next": "deep16 command selected/disabled/span/amount/error/direction/completion and ARM"
     },
     {
       "item": "terrain-oom",
-      "status": "279 ORDINARY41 ALL16 PASS WITH49.4MiB SAMPLED JAVA MARGIN; BROADER BUDGET OPEN",
-      "evidence": "actuald760 full16 normal4699+cold81/full9/3797SHA restore;413samples Java350859048/384MiB,Source11peak313990232;nativeindependent290377232/PSS609917KiB,childPSS56390KiB; original26 stack retained",
-      "next": "all selectable force cancellation/retry/longcommand flows/latestPDR+diag/defaultlarge/GPU/ARM"
+      "status": "ORDINARY41 MATRIX AND DEFAULT48 EVERYFORCE MATRIX PASS; LONG/ARM OPEN",
+      "evidence": "d760 ordinary384 all16 sampled350859048;376default512 every244 preview+all16 normal5059/cold81/restored,672samples Java472598704/536870912B headroom64272208;native333336856/PSS727616independent;GPU unknown",
+      "next": "latestordinary everyforce/fastpending cancellation/longcommands/ARM, retain actual26 stack and no sole-largeHeap claim"
     },
     {
       "item": "terrain-parity",
@@ -27,9 +27,9 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST DEFAULT LARGE ACTUALLY INSTALLED48 MATRIX RUNNING",
-      "evidence": "376f03a1/d472ff07 actualdevice APK SHA/pm components exact; Runtime512MiB/largeHeaptrue;168/original4/new2JNI guard",
-      "next": "48 allforces/cold/fullrestore; new HUD test pending"
+      "status": "LATEST DEFAULT LARGE INSTALLED48 MATRIX PASS",
+      "evidence": "376/d472 actualdevice SHA/pm components exact;Runtime512MiB/largeHeap true,168/original4/new2JNI; normal5059+cold81/full9/3797restored",
+      "next": "newtest1e58 actual49 HUD/globaltext/allnormalcallers and latestfire/military/fullcommands"
     },
     {
       "item": "fire-state-ui",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "46/47 EXACT RESTORED;48 GUARDED LIVE",
-      "evidence": "46/47 full9internal/3797external finalSHA same;48 beforeinstall allfiles currentSHA+independent completearchives",
-      "next": "48 normal/cold/finalrestore and later installations"
+      "status": "48 EXACT RESTORED;49 GUARD ACTIVE",
+      "evidence": "48 full9internal/3797external finalSHA same;49 freshcompletebackup/readbackSHA beforetestonly update",
+      "next": "49 normal/cold/finalrestore and every subsequentinstall"
     },
     {
       "item": "arm",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "FROZEN B EXACT INTEGRATED;46 SEARCH/47 DIRECT PASS;DEFAULT48 LIVE",
-      "evidence": "No WIP;937 ordinary SEARCH and direct normal/cold/token/save pure/restored; latest376 default actual512 runtime",
-      "next": "48 allforce/fullmatrix, latestfire/military/16pages/ARM, actualHUD49 and finalserialcombo"
+      "status": "FROZEN B EXACT INTEGRATED;LATESTDEFAULT48 NORMAL/COLD EVERY244 PASS",
+      "evidence": "NoWIP;937 SEARCH46/direct47 normalcoldpure/restored,376default48 full16every244/normal5059+cold81/restored",
+      "next": "49 HUD and subsequent allnormalmedia/currentfire/military/16pages/GPU/ARM/finalserialmain"
     },
     {
       "item": "search-normal",
@@ -93,5 +93,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "46/47 normal+cold+restore complete; default48 actually installed/factions16 running; next HUD observation not installed"
+  "updatedCheckpoint": "48 actual default512 all16/every244 selectable previews/cold/restored;49 samegame/newtest normal direct HUD pending"
 }
