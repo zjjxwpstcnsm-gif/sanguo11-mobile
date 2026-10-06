@@ -21,3 +21,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 验收纠正：36暴露KEYCODE_HOME注入不能保证真实后台，旧28 Home标签现明确仅键尝试，保留其他有效矩阵成绩，实际Home暂停需系统global Home及Activity/地图/Filament/焦点状态共同验证。不会把尚未观察到的后台生命周期记为通过。
 
 37真实system Home/Activity/map/Filament暂停/原火时钟冻结/返回全Save-RNG-Token不变通过；随后测试FileInputStream.readAllBytes在API29不支持，减少动画尚未执行，完整9/3797及系统偏好SHA恢复。2cecc643已改有界兼容流读取，需新测试包重验。新e9679b94普通堆独立构建b8bbf643包与70264176测试包（已修真实地图Home守卫），38全16实际安装回归准备中；没有沿用旧28成绩。
+
+38新普通堆包b8bbf643和测试70264176实际安装，设备读回APK SHA精确相同；168固定输入包内逐SHA全等、原4JNI包内全等。正常菜单实测Runtime402653184B（384MiB）、largeHeap=false，16来源回归已启动、冷流程与最终恢复未完成，不判通过。2cecc643 API29兼容测试工具Java编译通过，尚未新测试APK实装。当前目标保持进行中。
