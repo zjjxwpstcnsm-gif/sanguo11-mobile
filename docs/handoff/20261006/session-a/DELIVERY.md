@@ -1,3 +1,15 @@
+# 当前检查点：HUD修复52通过，原火53进行中
+
+最新确切实装游戏包为 `out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk`，313472812B，SHAb8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6；测试0a351dc1f235e3f9ec64a9503717e383bd6e0bca9bd8941ac5046c71ef203094。52已实际正常1497+不同PID冷1403通过：同城登用取消/成功失败/原费用奖励/多旬/全保存读取，真实技巧中间2/4/6/8/9/10/11→12、一次roll（冷也同样实见中间值），完整Save/双RNG/StateToken纯；5336→23719、完整保存SHA85cd483ada7ae9a777b34774425f40d6cc0de2a449bf5b31ee20889235705270，9内部/3797外部全部原文件SHA已恢复。
+
+49/50一直0和51静默12/无roll的失败均保留，两个真实根因已分别修复：确认弹窗失焦期间仍推进phase；正常完成清理误skip刚放行的activeFact。没有重放规则、改数值/存档/RNG或补造原voice。正常完成保留反馈，主动跳过静默回显权威终值。52实际3段原nativeMP4设备/主机SHA一致，范围是observer启动后的正常/冷，非全前段/原PC像素时序/FPS证明。
+
+完整源码8ee37403检查点 `out/session-a/source-checkpoint-8ee-hud-completion/sanguo11-mobile-source.tar.gz`，652688140B、SHA5ca39633d2fc2a5350bfcb8f7982b6fe62c54fbe7dddd30f291fae6b77046957；11068文件逐SHA全部回读，原4/新增2JNI精确，后继证据文档不在这个确切归档内。共同基点0e7b9bc2/main ef413仍保持，不并B WIP/不改原旧dirty/PC源。
+
+53正以同b819/0a35进行正常火计/Home/减少动画/低画质/灭火再燃到期/烧中存读/冷回归（live82334/native47127/video62010），尚未判通过。全normal媒体caller工具已包含但尚未实测；地图BGM/真实voice/58/其它原事件/完整连锁设施效果/其余命令/长内存预算/ARM及最终main组合仍未完成。48旧376包244势力/16源成绩不移用到HUD改动后的最新包。
+
+---
+
 # 最新实测补充：默认大堆48已完成，49进行中
 
 确切默认游戏包 `out/session-a/apk-48f2b873-cause-default-large/app-debug.apk`，SHA376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8，配测试d472ff07在48完成16来源244个全部可选势力/752总槽、每源取消重试、正常新局/全近缩放平移/人物/Home/方向/存读/退出重开；正常5059+新PID冷81通过，24639→7930、SaveSHAb7529ce71bc60f4e97e318fb4ede70720a03920acfcf190248644239cfb44750，全9/3797原文件最终SHA恢复一致。

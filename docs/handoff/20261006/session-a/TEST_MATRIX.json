@@ -27,9 +27,9 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST DEFAULT LARGE INSTALLED48 MATRIX PASS",
-      "evidence": "376/d472 actualdevice SHA/pm components exact;Runtime512MiB/largeHeap true,168/original4/new2JNI; normal5059+cold81/full9/3797restored",
-      "next": "newtest1e58 actual49 HUD/globaltext/allnormalcallers and latestfire/military/fullcommands"
+      "status": "LATEST b819/0a35 INSTALLED52 HUD/NORMAL/COLD PASS",
+      "evidence": "a14 actualAPK SHAs/pm components; original168/6JNI; normal1497+cold1403, newPID/full9/3797 restore",
+      "next": "53 latestfire/pause; fullnormalmedia/commands/latestfull16/ARM"
     },
     {
       "item": "fire-state-ui",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "48 EXACT RESTORED;49 GUARD ACTIVE",
-      "evidence": "48 full9internal/3797external finalSHA same;49 freshcompletebackup/readbackSHA beforetestonly update",
-      "next": "49 normal/cold/finalrestore and every subsequentinstall"
+      "status": "52 EXACT RESTORED;53 GUARDED LIVE",
+      "evidence": "52 full9internal/3797external finalSHA same;53 freshcompletearchive/currentSHA guard prior reuseverified actualsameAPK",
+      "next": "53 normal/cold/finalrestore/systemanimationrestore"
     },
     {
       "item": "arm",
@@ -81,17 +81,23 @@
     },
     {
       "item": "final-combination",
-      "status": "FROZEN B EXACT INTEGRATED;LATESTDEFAULT48 NORMAL/COLD EVERY244 PASS",
-      "evidence": "NoWIP;937 SEARCH46/direct47 normalcoldpure/restored,376default48 full16every244/normal5059+cold81/restored",
-      "next": "49 HUD and subsequent allnormalmedia/currentfire/military/16pages/GPU/ARM/finalserialmain"
+      "status": "LATEST a14 HUD52 PASS;SAME b819 FIRE53 LIVE",
+      "evidence": "FrozenB completed only, no WIP; two actualHUD roots repaired, normal/cold actualintermediate→12 once/Saverngtoken pure/restored;244fullforce48 remainsolder376 scope",
+      "next": "53 fire/pause/military/mediaAll16/16pages/latest fullmatrix/ARM/finalserialmain"
     },
     {
       "item": "search-normal",
       "status": "LATEST937 ACTUAL NORMAL AND COLD PASS",
       "evidence": "SEARCH_PRESENTATION_ACCEPTANCE46; naturalwins/losses/menu/cancel/decline/optional/midmodel/terminal saves/wholeturns/newPID/fullrestore",
       "next": "complete gates/treasure/original duel/ARM"
+    },
+    {
+      "item": "technique-visible-completion",
+      "status": "LATEST52 REAL INTERMEDIATE/NORMAL/COLD PASS",
+      "evidence": "DIRECT_HUD_ACCEPTANCE52; two actual phase cancellation roots, observed normal2/4/6/8/9/10/11→12 and cold2/4/7/9/10/11→12, once-only/fullSaveRNGToken pure/restored",
+      "next": "latest fire/pause/silentcancel/zero-net and source SFX broader verification"
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "48 actual default512 all16/every244 selectable previews/cold/restored;49 samegame/newtest normal direct HUD pending"
+  "updatedCheckpoint": "52 actual latest HUD intermediate roll normal+cold+fullrestore PASS;53 sameAPK fire lifecycle live; allnormal media tool unaccepted"
 }
