@@ -15,9 +15,9 @@
     },
     {
       "item": "terrain-oom",
-      "status": "ORDINARY38 ALL16 FUNCTIONAL PASS; BUDGET OPEN",
-      "evidence": "Army-onlyb8 actual2731+cold81/restored9/3797, Source11zoom402573928/402653184B; original26stack retained; new279 float-array upload candidate built,40 live",
-      "next": "new40 install/GPU/Source11 actual heap, full16 ordinary/default and ARM"
+      "status": "279 ORDINARY41 ALL16 PASS WITH49.4MiB SAMPLED JAVA MARGIN; BROADER BUDGET OPEN",
+      "evidence": "actuald760 full16 normal4699+cold81/full9/3797SHA restore;413samples Java350859048/384MiB,Source11peak313990232;nativeindependent290377232/PSS609917KiB,childPSS56390KiB; original26 stack retained",
+      "next": "all selectable force cancellation/retry/longcommand flows/latestPDR+diag/defaultlarge/GPU/ARM"
     },
     {
       "item": "terrain-parity",
@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "PACKAGE28 ACTUAL SAVES JOINS PASS",
-      "evidence": "latest16 actual source captures10720 exact joins/0unknown/695assets/2892PNG SHA",
-      "next": "279 actual media16 four source-native identities through roster/detail128caller current-year pixels; all ages/fullscreen/ARM remain"
+      "status": "LATEST41 10720 JOIN/0UNKNOWN;128 NORMAL CALLER PIXELS PASS",
+      "evidence": "16 actual new saves10720 provenance joins/695normalassets/2892PNG originalSHA;4 native gaiji per source attached roster+detail=128 fullbitmap/currentyear/sameToken checks",
+      "next": "all age boundaries/fullscreen forms/callers/timing/MOD/voice/ARM"
     },
     {
       "item": "dynamic-age",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "ALL COMPLETED RUNS EXACT RESTORED; LIVE38 GUARDED",
-      "evidence": "latest35/36/37 full9 internal/3797 external originalSHA restored, 34 also oldtestAPK/fulltestfiles/mic/appop restored;38 complete backup guarded while running",
-      "next": "38 completion fullSHA restoration then next install"
+      "status": "COMPLETED41 EXACT RESTORED;42 NEW GUARDED BACKUP PREPARING",
+      "evidence": "41full9internal/3797external finalSHA restored; no clear data; new42 fresh everyfileSHA/wholearchives before install",
+      "next": "42actual menu/rawcapture and game+test permissions/oldAPK/file rollback"
     },
     {
       "item": "arm",
@@ -86,5 +86,5 @@
       "next": "source40/16media/normalSEARCH/newdefault/fullcommands/ARM serialfinal"
     }
   ],
-  "updatedAfter": "completed38/39 and live40,2026-10-07"
+  "updatedAfter": "completed41 and42 guard preparation,2026-10-07"
 }
