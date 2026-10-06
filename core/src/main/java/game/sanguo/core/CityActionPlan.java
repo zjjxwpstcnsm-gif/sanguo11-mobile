@@ -29,9 +29,10 @@ public final class CityActionPlan {
   public final OfficerExperiencePlan experience;
   OfficerEffect(World w,Operation op,World.Officer actor,World.Officer o,int[] targets,int oldGovernor){
    id=o.id;boolean target=false;for(int t:targets)target|=t==id;
-   boolean paidActor=id==actor.id&&w.cityActionCost(actor)>0;
+   boolean pendingSearch=op==Operation.SEARCH&&PcSearchPolicy.pendingPreview(w,w.city(actor.cityId),actor);
+   boolean paidActor=id==actor.id&&w.cityActionCost(actor)>0&&!pendingSearch;
    loyaltyBefore=o.loyalty;loyaltyAfter=op==Operation.REWARD&&target?o.loyalty+Strategy.rewardGain(o):o.loyalty;
-   int stat=id==actor.id?OfficerExperiencePlan.cityStat(op):-1;
+   int stat=id==actor.id&&!pendingSearch?OfficerExperiencePlan.cityStat(op):-1;
    experience=new OfficerExperiencePlan(w,o,stat,2);
    meritBefore=w.government.merit(id);meritAfter=paidActor?Math.min(1000000,meritBefore+OfficerExperiencePlan.merit(o,stat,w.government)):meritBefore;
    actedBefore=o.acted;actedAfter=o.acted||paidActor||op==Operation.APPOINT_GOVERNOR&&target;
@@ -44,7 +45,7 @@ public final class CityActionPlan {
  public static final class Search {
   public final int officerCheckChance,goldCheckChance,goldFoundMinimum,goldFoundMaximum;
   public final List<String> possibleOutcomeKinds=Collections.unmodifiableList(Arrays.asList("OFFICER","TREASURE","GOLD","NOTHING"));
-  Search(World w,World.City c,World.Officer o,long postCostGold){officerCheckChance=w.strategy.searchChance(o.id);goldCheckChance=10+o.politics/5;goldFoundMinimum=0;goldFoundMaximum=(int)Math.min(120,Math.max(0,w.campaign.goldCap(c)-postCostGold));}
+  Search(World w,World.City c,World.Officer o,long postCostGold){int chance=w.strategy.searchChance(o.id);if(PcSearchPolicy.operative(w))try{chance=PcSearchPolicy.chance(w,c.id,o.id);}catch(java.io.IOException e){throw new IllegalStateException(e);}officerCheckChance=chance;goldCheckChance=10+o.politics/5;goldFoundMinimum=0;goldFoundMaximum=(int)Math.min(120,Math.max(0,w.campaign.goldCap(c)-postCostGold));}
  }
  CityActionPlan(World w,Operation op,World.City c,World.Officer o,int[] targets,RuleFailure failure){
   this.failure=failure;goldAvailable=c==null?0:c.gold;goldCost=w.cityActionCost(o)==0?0:Strategy.cityActionGold(op,targets);

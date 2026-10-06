@@ -86,6 +86,7 @@ final class StrategyUi {
                 detail.append("\n\n有符合条件的人才时，发现检定 ").append(search.officerCheckChance).append("%。")
                     .append("\n进入寻金判定时，成功检定 ").append(search.goldCheckChance).append("%，可能获得金 ").append(search.goldFoundMinimum).append("～").append(search.goldFoundMaximum).append("。")
                     .append("\n以上为条件检定，并非最终结果概率；也可能发现宝物或毫无发现。");
+                if(w.strategy.originalSearchChoiceEnabled())detail.append("\n人物发现采用原日期/身份检定；发现后确认是否招揽，再按条件进入舌战。行动力20在搜索回调结束时扣除，期间不能执行其他命令。关系特例、宝物和未发现后的寻金仍有工程替代。");
             }
             AlertDialog review=activity.commandDialog(title,detail.toString(),"执行","返回修改",w,()->{
                 picker[0].dismiss();if(committed!=null)committed.run();activity.executeCityAction(command);

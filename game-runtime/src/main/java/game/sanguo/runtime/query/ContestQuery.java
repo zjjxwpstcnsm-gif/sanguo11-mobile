@@ -9,6 +9,11 @@ public final class ContestQuery {
     private static String nativeLabel(int card){if(card==0)return "熟慮";if(card>=1&&card<=9)return TOPICS[(card-1)/3]+"·"+new String[]{"小","中","大"}[(card-1)%3];return new String[]{"大喝","詭辯","無視","鎮靜","憤怒"}[card-10];}
     public static ContestSnapshot capture(World w,StateToken state){
         Contests.Session current=w.contests.current();if(current==null)return ContestSnapshot.none(state);
+        if(current.searchChoice()){
+            try{var source=PcScenarioIdentity.saved(w);var people=PcScenarioPeople.saved(w);List<ContestSnapshot.Speaker> speakers=new ArrayList<>();for(int id:new int[]{w.contests.searchActorId(),w.contests.searchTargetId()}){var p=people.stream().filter(x->x.officerId==id).findFirst().orElseThrow();World.Officer o=w.officer(id);speakers.add(new ContestSnapshot.Speaker(id,p.nativeId,o.name,"",source.sourceVariant,0,0,0,0,o.intelligence,o.war));}
+                int phase=w.contests.searchChoicePhase();return new ContestSnapshot(state,ContestSnapshot.Kind.SEARCH_CHOICE,current.id(),current.revision(),phase,0,0,-1,-1,true,false,false,false,phase==1?"搜索 · 是否招揽":"搜索招揽 · 是否舌战","",source.scenarioId,source.sourceVariant,source.sha,phase==1?"人物已发现；选择后结算原搜索回调":"招揽未成功；可进入舌战或放弃",speakers,List.of(),List.of());
+            }catch(java.io.IOException e){throw new IllegalStateException(e);}
+        }
         PcDebateCampaign.Facts f=current.nativeDebate();
         if(f!=null){
             List<ContestSnapshot.Speaker> speakers=new ArrayList<>();int[] ids={f.actorId,f.targetId},natives={f.actorNativeId,f.targetNativeId};

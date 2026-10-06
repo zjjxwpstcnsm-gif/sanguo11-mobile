@@ -3,7 +3,7 @@ import java.util.*;
 
 /** Immutable authoritative contest display. No rule object or RNG crosses API. */
 public final class ContestSnapshot {
-    public enum Kind { NONE, DUEL, DEBATE }
+    public enum Kind { NONE, DUEL, DEBATE, SEARCH_CHOICE }
     public static final class Speaker {
         public final int officerId,nativeId,health,maxHealth,anger,fury,intelligence,war;
         public final String name,personality,sourceVariant;

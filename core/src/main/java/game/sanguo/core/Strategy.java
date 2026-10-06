@@ -33,7 +33,7 @@ public final class Strategy {
         public final World.Result result;
         public final SearchOutcome outcome;
         public final int officerId, goldFound;
-        private SearchResult(World.Result result, SearchOutcome outcome, int officerId, int gold) {
+        SearchResult(World.Result result, SearchOutcome outcome, int officerId, int gold) {
             this.result=result; this.outcome=outcome; this.officerId=officerId; goldFound=gold;
         }
     }
@@ -124,7 +124,9 @@ public final class Strategy {
         World.Officer o=w.officer(officerId);
         return o==null?0:w.skills.has(o,Skill.YANLI)?100:StrategyRules.searchChance(o.politics,o.intelligence);
     }
+    public boolean originalSearchChoiceEnabled(){return PcSearchPolicy.operative(w);}
     int cityActionBaseCost(CityActionPlan.Operation op){
+        if(op==CityActionPlan.Operation.SEARCH&&PcSearchPolicy.operative(w))return 20;
         if(!BasicCityPolicy.nativeRules(w))return 10;
         if(op==null)return 10;
         return switch(op){case PATROL->PcCityActionCosts.PATROL;case TRAIN->PcCityActionCosts.TRAIN;case RECRUIT->PcCityActionCosts.RECRUIT;default->10;};
@@ -192,9 +194,10 @@ public final class Strategy {
     public SearchResult searchTalent(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.SEARCH,cityId,officerId,new int[0]);
         if(failure!=null)return new SearchResult(w.fail(failure.detail),SearchOutcome.REJECTED,-1,0);
+        if(PcSearchPolicy.operative(w)){try{SearchResult found=PcSearchPolicy.found(w,c,o);if(found!=null)return found;}catch(java.io.IOException e){throw new IllegalStateException(e);}}
         List<Talent> candidates=discoverable(cityId);
-        List<World.Officer> originals=w.life.undiscovered(cityId);
-        w.spend(c,o,SEARCH_COST);int roll=nextInt(100);
+        List<World.Officer> originals=PcSearchPolicy.handlesActor(w,o)?Collections.emptyList():w.life.undiscovered(cityId);
+        w.spend(c,o,SEARCH_COST,cityActionBaseCost(CityActionPlan.Operation.SEARCH));int roll=nextInt(100);
         if(!originals.isEmpty()&&StrategyRules.succeeds(searchChance(o.id),roll)) {
             World.Officer discovered=originals.get(nextInt(originals.size()));w.life.discover(discovered.id);
             return new SearchResult(w.success(o.name+"在"+c.name+"发现了在野武将"+discovered.name),SearchOutcome.OFFICER,discovered.id,0);

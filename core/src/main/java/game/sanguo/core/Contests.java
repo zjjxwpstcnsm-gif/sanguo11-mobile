@@ -21,13 +21,14 @@ public final class Contests {
     public static final class Session {
         final int id,owner,turn,leftRef,rightRef,city;
         int revision;
-        Duel duel;Debate debate;PcDebateCampaign nativeDebate;
+        Duel duel;Debate debate;PcDebateCampaign nativeDebate;boolean searchChoice;
         Campaign.TreatyKind treaty;int foreign=-1,duration;
         Session(int id,int owner,int turn,int left,int right,int city){this.id=id;this.owner=owner;this.turn=turn;leftRef=left;rightRef=right;this.city=city;}
         public int id(){return id;} public int revision(){return revision;}
         public Duel duel(){return duel;} public Debate debate(){return debate;}
         public PcDebateCampaign.Facts nativeDebate(){return nativeDebate==null?null:nativeDebate.facts();}
         public boolean isDuel(){return duel!=null;}
+        public boolean searchChoice(){return searchChoice;}
         public boolean diplomatic(){return treaty!=null;}
         public String purpose(){return treaty==null?"登用":"外交 · "+treaty.label+" "+duration+"旬";}
     }
@@ -42,6 +43,11 @@ public final class Contests {
     public boolean busy(){return session!=null;}
     public boolean nativeCampaignSettlementEnabled(){return PcDebateCampaignPolicy.enabled(w);}
     public Session current(){return session;}
+    public int searchChoicePhase(){try{return session!=null&&session.searchChoice?PcSearchPolicy.read(w).phase:0;}catch(java.io.IOException e){throw new IllegalStateException(e);}}
+    public boolean searchOrigin(){return PcSearchPolicy.owns(w,session);}
+    public int searchActorId(){return session==null?-1:session.leftRef;}
+    public int searchTargetId(){return session==null?-1:session.rightRef;}
+    public World.Result searchChoice(int id,int revision,boolean yes){w.reports.prepare();String error=currentError(id,revision,false);if(error!=null)return w.fail(error);if(!session.searchChoice)return w.fail("当前不是搜索确认阶段");try{return PcSearchPolicy.choose(w,yes);}catch(java.io.IOException e){return w.fail(e.getMessage());}}
     public String lastResult(){return lastResult;}
     public Profile profile(int officer){Profile p=profiles.getOrDefault(officer,DEFAULT);int gear=p.gearMask|w.treasures.gearMask(officer);return gear==p.gearMask?p:new Profile(p.temper,p.talkMask,gear);}
     public boolean hasProfile(int officer){return profiles.containsKey(officer);}
@@ -170,6 +176,7 @@ public final class Contests {
     }
     public World.Result debateCard(int id,int revision,int index){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.searchChoice)return w.fail("请先确认是否招揽或舌战");
         if(session.nativeDebate!=null){error=session.nativeDebate.cardError(index);if(error!=null)return w.fail(error);session.nativeDebate.card(w,index);session.revision++;return w.success("已按原舌战规则出牌");}
         error=session.debate.error(index);if(error!=null)return w.fail(error);
         session.debate.play(w,index);session.revision++;
@@ -177,6 +184,7 @@ public final class Contests {
     }
     public World.Result rethink(int id,int revision){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.searchChoice)return w.fail("请先确认是否招揽或舌战");
         if(session.nativeDebate!=null)return debateCard(id,revision,0);
         Debate d=session.debate;if(d.winner!=-2||!d.left.canRethink())return w.fail("目前不能再考，心理台阶下降后恢复一次机会");
         // Even a calm fury gets only one rethink per exchange. Reset is keyed to rounds, not clicks.
@@ -185,6 +193,7 @@ public final class Contests {
     }
     public World.Result finishDebate(int id,int revision,boolean mercy){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.searchChoice)return w.fail("请先确认是否招揽或舌战");
         if(session.nativeDebate!=null){
             if(session.nativeDebate.waitingMercy()){session.nativeDebate.mercy(w,mercy);session.revision++;if(!PcDebateCampaignPolicy.enabled(w))return w.success("终局选择已记录；原战役结算尚待核实");}
             if(!PcDebateCampaignPolicy.enabled(w))return w.fail("原战役结算尚未启用；旧档需明确采用新结算策略");
@@ -223,6 +232,7 @@ public final class Contests {
             if(PcDebateCampaignPolicy.read(w).lastFinished>=id)return w.fail("原战役终局已经结算");
             PcDebateCampaignRules.terminalRewards(w,actor,target,d.model.state.terminalWinner,d.model.outcome);
             PcDebateCampaignRules.recruitmentResult(w,actor,target,session.city,success);
+            PcSearchPolicy.finish(w,session);
             PcDebateCampaignPolicy.recordFinished(w,id);
         }catch(java.io.IOException failure){throw new IllegalStateException(failure);}
         String text=success?actor.name+"原舌战获胜，"+target.name+"接受登用；原经验、功绩、技巧与伤病已结算":actor.name+"原舌战落败；登用失败，原双方经验、功绩与伤病已结算";
@@ -232,6 +242,7 @@ public final class Contests {
     public World.Result concede(int id,int revision){w.reports.prepare();
         if(session==null)return w.fail("没有正在进行的对局");
         String error=currentError(id,revision,session.isDuel());if(error!=null)return w.fail(error);
+        if(session.searchChoice)return searchChoice(id,revision,false);
         if(session.isDuel()){
             // A voluntary surrender loses the current combatant; retreat remains a separate 100-spirit move.
             session.duel.winner=1;session.duel.active(0).hp=0;session.revision++;return finishDuel();

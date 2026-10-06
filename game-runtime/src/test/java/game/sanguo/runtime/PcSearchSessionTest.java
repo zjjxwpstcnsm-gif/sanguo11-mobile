@@ -1,0 +1,16 @@
+package game.sanguo.runtime;
+import game.sanguo.api.*;import game.sanguo.core.*;import java.util.*;
+/** Normal typed SEARCH/choice StateToken and save transactions; no forced result. */
+public final class PcSearchSessionTest {
+ static int checks;static void check(boolean b,String m){checks++;if(!b)throw new AssertionError(m);}
+ public static void main(String[]args)throws Exception {
+  World w=PcScenarioCatalog.load(PcScenarioCatalog.all().get(0).identity.scenarioId,2,23);int actor=PcScenarioPeople.saved(w).stream().filter(p->p.nativeId==198).findFirst().orElseThrow().officerId;int city=w.officer(actor).cityId;
+  try(GameSession game=new GameSession(w)){
+   byte[]before=game.captureSave();var command=new CityActionCommand(game.state(),"SEARCH",city,actor,new int[0]);var preview=game.preview(command);check(preview.allowed()&&preview.resources.actionPointsCost==20,"normal typed preview cost20");check(Arrays.equals(before,game.captureSave()),"whole preview no World/RNG mutation");check(preview.effects.officers.stream().filter(o->o.id==actor).allMatch(o->!o.actedAfter&&o.meritAfter==o.meritBefore),"pending discovery preview no early action or merit");
+   check(game.execute(command).ok(),"ordinary typed SEARCH");var found=game.contest();check(found.kind==ContestSnapshot.Kind.SEARCH_CHOICE&&found.phase==1,"API native discovery/choice");byte[]pending=game.captureSave();check(!game.execute(command).ok()&&Arrays.equals(pending,game.captureSave()),"double/stale SEARCH pure");check(game.busy(),"pending normal commands blocked");var decline=ContestCommand.searchChoice(found.state,found.contestId,found.revision,false);check(game.execute(decline).ok(),"native decline transaction");byte[]declined=game.captureSave();check(!game.execute(decline).ok()&&Arrays.equals(declined,game.captureSave()),"decline once-only StateToken");
+   game.replace(SaveCodec.decode(pending));var fresh=game.contest();check(fresh.kind==ContestSnapshot.Kind.SEARCH_CHOICE,"load pending full source choice");check(!game.execute(decline).ok()&&Arrays.equals(pending,game.captureSave()),"restore identity fence rejects pre-load command");check(game.execute(ContestCommand.searchChoice(fresh.state,fresh.contestId,fresh.revision,true)).ok(),"native consent enters optionalDebate");var optional=game.contest();check(optional.phase==2,"saved optional phase2");byte[]atChoice=game.captureSave();check(!game.execute(ContestCommand.card(optional.state,optional.contestId,optional.revision,0)).ok()&&Arrays.equals(atChoice,game.captureSave()),"cards unavailable at optional choice pure");
+   check(game.execute(ContestCommand.searchChoice(optional.state,optional.contestId,optional.revision,true)).ok(),"normal search enters native model");var nativeModel=game.contest();check(nativeModel.nativeRules&&nativeModel.kind==ContestSnapshot.Kind.DEBATE,"API original human model");byte[]model=game.captureSave();game.replace(SaveCodec.decode(model));check(Arrays.equals(model,game.captureSave()),"full native model allRNG exact cold-compatible load");check(!game.execute(ContestCommand.searchChoice(optional.state,optional.contestId,optional.revision,true)).ok(),"old optional token cannot double-start model");
+  }
+  System.out.println("PASS ordinary SEARCH session StateToken/save/API "+checks+" checks; APK/cold separate");
+ }
+}

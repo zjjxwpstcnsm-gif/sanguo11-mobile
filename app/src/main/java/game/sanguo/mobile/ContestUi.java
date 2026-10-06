@@ -32,12 +32,19 @@ final class ContestUi {
         LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(10),dp(6),dp(10),dp(12));scroll.addView(panel);
         if(s==null)return scroll;
         ContestSnapshot facts=a.contestSnapshot();
-        if(facts.nativeRules&&facts.contestId==s.id()&&facts.revision==s.revision())nativeDebate(panel,facts);
+        if(facts.kind==ContestSnapshot.Kind.SEARCH_CHOICE&&facts.contestId==s.id()&&facts.revision==s.revision())searchChoice(panel,facts);
+        else if(facts.nativeRules&&facts.contestId==s.id()&&facts.revision==s.revision())nativeDebate(panel,facts);
         else if(s.isDuel())duel(panel,s);else if(s.debate()!=null)debate(panel,s);
         label(panel,"每次操作后自动保存。可到菜单手动保存、导出，或读取另一局。",11,paper);
         return scroll;
     }
     private void label(LinearLayout panel,String text,int size,int color){TextView v=new TextView(a);v.setText(text);v.setTextSize(size);v.setTextColor(color);UiTheme.readable(v);v.setPadding(0,dp(3),0,dp(5));panel.addView(v);}
+    private void searchChoice(LinearLayout panel,ContestSnapshot facts){
+        label(panel,facts.purpose,20,gold);for(var p:facts.speakers)label(panel,p.name+" · 智力 "+p.intelligence+" · 武力 "+p.war,15,paper);label(panel,facts.status,13,paper);
+        label(panel,"搜索行动力20，金费0；可保存后继续选择。人物关系特例及未发现后的寻金、宝物分支仍有工程替代。",12,paper);
+        button(panel,facts.phase==1?"尝试招揽":"进入舌战",true,()->a.executeContest(w,state->ContestCommand.searchChoice(state,facts.contestId,facts.revision,true)));
+        button(panel,facts.phase==1?"不招揽，结束搜索":"放弃舌战，结束招揽",true,()->a.executeContest(w,state->ContestCommand.searchChoice(state,facts.contestId,facts.revision,false)));
+    }
     private void button(LinearLayout panel,String text,boolean enabled,Runnable action){
         Button b=CompactButtons.create(a);b.setText(text);b.setTextColor(paper);UiTheme.readable(b);b.setTextSize(13);b.setAllCaps(false);b.setMinHeight(dp(48));b.setEnabled(enabled);b.setOnClickListener(v->action.run());panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));
     }
@@ -62,7 +69,7 @@ final class ContestUi {
         button(panel,"单挑规则",true,()->info("单挑规则","重视攻击：伤害提高，防御与蓄气较弱。\n重视防御：降低伤害，可格挡和完全防御。\n重视斗志：更快蓄气，可额外获得100斗志。\n重视一击：偶尔重击。\n急所使对手负伤，无双清除强化；暗器与伪退需携物且每场一次，伪退需15合。\n支援者到场后可换将，体力与斗志分别保留。"));
     }
     private void nativeDebate(LinearLayout panel,ContestSnapshot facts){
-        label(panel,"舌战 · 第"+facts.round+"合",20,gold);label(panel,facts.purpose,14,gold);label(panel,"原卡牌/数值/登用终局；触发准入、起始费用、认输和外交仍待原链核实",12,paper);
+        label(panel,"舌战 · 第"+facts.round+"合",20,gold);label(panel,facts.purpose,14,gold);label(panel,w.contests.searchOrigin()?"搜索发现→招揽→可选舌战；金费0，终局一次结算搜索行动力20。原认输、关系特例及完整开局仍待核实。":"原卡牌/数值/登用终局；触发准入、起始费用、认输和外交仍待原链核实",12,paper);
         for(int side=0;side<facts.speakers.size();side++){
             ContestSnapshot.Speaker p=facts.speakers.get(side);
             label(panel,(side==0?"我方 ":"对方 ")+p.name+" · "+p.personality,15,paper);
