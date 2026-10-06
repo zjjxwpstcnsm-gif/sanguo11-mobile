@@ -126,3 +126,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 56全Source11仍实际driver70137/native1873/video35122进行。并行只读核查source-map补入10个漏记的源坐标/缓存/原火门控及源火其它条件，刷新每文件SHA/确切条件位置；历史不匹配保留。特别标出任一surface override及多火格容量使原粒子省略的未验证范围，持续标签不等于全部原效果闭合；不改B高度/规则/RNG，不靠静态清单称完成。B仍active但Git完成对象仍aa9，mainEF/完整源0e7不变，没有新WIP导入。
 
 56终端FAIL并全部9/3797逐SHA恢复：b819/39e实际完整670列表membership通过，仅6人完整列表/详情/Save-RNG-token纯；曹操native343搜索同时匹配本势力5人，目标下方不可见，旧test list.setSelection没有实际揭露姓名/头像cell，120秒失败，无cold成绩。FAIL PNG/focusedText现场确认曹操查询/5条真实候选；不更换人物、不删候选。A测试补实际ListView指针滑动，按稳定人物ID和≥80%可见姓名cell确认，未改产品或B文件。
+
+57已实际安装新测试且SHA/pm组件核实：游戏仍a14/b819，test源86dfdda3c48ac7ddf2dd415a4c5c445f78d0c148、SHAb2f51143de8a932854809b4bcfe2bbd6c449ad9450f488704ef382b0aa13cf7f/2606375B；正常Source11全部670名原人物，以真实上下滑动揭露稳定ID再长按。当前installed-verified/driver52769/native18848/video1598确认live，未判normal/cold/restore通过；续读具体句柄，禁止重启或覆盖下一包，完整备份与5554锁保留。B完成Git仍aa9、无新main，未发送待授权草稿或合B WIP。当前97条source条件台账明确无全语义完成结论。
