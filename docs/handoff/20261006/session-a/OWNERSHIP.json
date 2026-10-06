@@ -104,7 +104,10 @@
     "docs/handoff/20261006/session-a/FIRE_NATIVE_HOST.json",
     "docs/handoff/20261006/session-a/COMBINED_SOURCE_RECEIPT.json",
     "docs/handoff/20261006/session-a/INSTALLED_SCENE_AUDIT.json",
-    "docs/handoff/20261006/session-a/DELTA_BATCH8.json"
+    "docs/handoff/20261006/session-a/DELTA_BATCH8.json",
+    "docs/handoff/20261006/session-a/probe_fire_rng_initialization.py",
+    "docs/handoff/20261006/session-a/FIRE_INIT_RNG.json",
+    "docs/handoff/20261006/session-a/CACHE_COMBINATION_AUDIT.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

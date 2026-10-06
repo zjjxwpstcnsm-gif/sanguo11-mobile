@@ -1,0 +1,63 @@
+{
+  "scope": "isolated original evaluator RNG diagnostic only; state is never applied to authority or rewritten",
+  "cameraFixtureSha256": "eee7a29a813eb094a3b9d189c096e219b392b65dcf4b265067e8ceb798902176",
+  "initStateEqual": false,
+  "afterOneFrameStateEqual": false,
+  "rows": [
+    {
+      "label": "old",
+      "afterFrames": 0,
+      "bytes": 2504,
+      "sha256": "61cad30aa7496b5aa807a0aa1e32c16ee71a5c6fbdae23e65b764cffbc9c51e0",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-init-rng/old-0.bin",
+      "nativeWorkerSha256": "c40687260d002a03d76efab422d29c33951f0189a02aa9713937ec7365299884"
+    },
+    {
+      "label": "new9",
+      "afterFrames": 0,
+      "bytes": 2504,
+      "sha256": "a5ca52dfd19f4ce501d031b7a5f37e9b50318e997b7e44c26dd30c356e4479bd",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-init-rng/new9-0.bin",
+      "nativeWorkerSha256": "f76aea782febe6979685ef22f4ba3254c240e74d4a30b4e9e4fffbf5a30fbafa"
+    },
+    {
+      "label": "old",
+      "afterFrames": 1,
+      "bytes": 2504,
+      "sha256": "46d1174677aa0f80bd57c7087037844eac19078278d2d33856266c0cf073e504",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-init-rng/old-1.bin",
+      "nativeWorkerSha256": "c40687260d002a03d76efab422d29c33951f0189a02aa9713937ec7365299884"
+    },
+    {
+      "label": "new9",
+      "afterFrames": 1,
+      "bytes": 2504,
+      "sha256": "4ffb0fa0d8632d5a2fef9048d92807813cd9d7ca5a37928dea84fd2a6950e546",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-init-rng/new9-1.bin",
+      "nativeWorkerSha256": "f76aea782febe6979685ef22f4ba3254c240e74d4a30b4e9e4fffbf5a30fbafa"
+    }
+  ],
+  "normalAndroid": false,
+  "ARM": false,
+  "originalPCFramebufferParity": false,
+  "goalComplete": false,
+  "readOnlyObservedStateDiff": [
+    {
+      "afterFrames": 0,
+      "oldCursor": 382,
+      "newCursor": 526,
+      "cursorDifference": 144,
+      "remaining2500BytesEqual": true
+    },
+    {
+      "afterFrames": 1,
+      "oldCursor": 470,
+      "newCursor": 614,
+      "cursorDifference": 144,
+      "remaining2500BytesEqual": true
+    }
+  ],
+  "inference": "Additional original13 initialization consumes144 visual generator entries before first update; first .1 frame advances88 entries in both managers. This explains a shifted isolated visual stream without evidence of different material/controller/timing.",
+  "new9NoFireExactByteCompatibility": false,
+  "ruleRngOrWorldStateApplied": false
+}

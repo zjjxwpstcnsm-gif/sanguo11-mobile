@@ -1,0 +1,32 @@
+{
+  "completedBSource": "cb87d90d343099361413d44a9d7a981d3bc89664",
+  "ownSerialImport": "170cdd76",
+  "cache15376Passed": true,
+  "complete25OfficerDTOAndSaveFingerprintsExactToCompletedParent": true,
+  "parentFixture": "completed B cache-flow-22.tar.gz host/cache-dto-parent.tsv",
+  "fullOwnSourceBuildNoGovWip": true,
+  "newAPK": {
+    "sourceRevision": "170cdd76",
+    "completedBImmutableCacheSource": "cb87d90d343099361413d44a9d7a981d3bc89664",
+    "fullOwnSourceBuild": true,
+    "compileBGovernorWip": false,
+    "largeHeap": true,
+    "defaultJNI4Exact": true,
+    "pins168Exact": true,
+    "newFireV2AssetUnbound": true,
+    "files": {
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-170cdd76-cache-scene/app-debug-androidTest.apk": "5d3b87d1815274228cd862cf7f8c3502217dc64af7214753fd658ef7eb20ddb3",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-170cdd76-cache-scene/app-debug.apk": "cbe64874877da39e2881d513bda2945f97e2cce2ff5f77cd6a5e11cfe2a2f691"
+    },
+    "installed": false,
+    "actual16Accepted": false,
+    "actualMilitaryAndColdAccepted": false,
+    "ARM": false,
+    "goalComplete": false
+  },
+  "deviceRun": 19,
+  "deviceAcceptance": "running; no old package scores reused",
+  "ARM": false,
+  "nativeOriginalFire13": false,
+  "goalComplete": false
+}
