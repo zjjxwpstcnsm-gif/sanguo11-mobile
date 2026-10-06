@@ -44,5 +44,8 @@
   "testPackage": {
     "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4e312b89-grid-debate-normal384/app-debug-androidTest.apk",
     "sha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29"
-  }
+  },
+  "normal384Source11Accepted": true,
+  "normal384Source11Receipt": "NORMAL384_GRID27.json",
+  "normal384Full16Running": "normal-all-source-28"
 }

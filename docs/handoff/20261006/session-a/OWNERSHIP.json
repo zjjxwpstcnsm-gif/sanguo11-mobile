@@ -130,7 +130,9 @@
     "docs/handoff/20261006/session-a/DELTA_BATCH10.json",
     "docs/handoff/20261006/session-a/DEBATE_INTEGRATION_AUDIT.json",
     "app/src/androidTest/java/game/sanguo/mobile/SessionADebatePresentationInstrumentation.java",
-    "docs/handoff/20261006/session-a/BUILD_BATCH10.json"
+    "docs/handoff/20261006/session-a/BUILD_BATCH10.json",
+    "docs/handoff/20261006/session-a/NORMAL384_GRID27.json",
+    "docs/handoff/20261006/session-a/observe_flow_video.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

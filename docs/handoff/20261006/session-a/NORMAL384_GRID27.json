@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "scope": "new installed package source11 real normal preview/cancel/retry/faction switches/4x full-near preview/2x newgame gestures/Home/orientation/save/read/exit/reopen plus actual separate cold-process79; not all16/ARM/whole goal",
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "apkSha256": "5df034d1c0ce243126eb07c81addef4597ce250785257a21b154c6e979b1194c",
+  "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "normalChecks": 314,
+  "coldChecks": 79,
+  "actualHeapBytes": 402653184,
+  "memory": {
+    "evidence": {
+      "samples": 53,
+      "javaUsedPeakBytes": 260934640,
+      "nativeAllocatedIndependentPeakBytes": 203197728,
+      "mainPssIndependentPeakKiB": 417970,
+      "graphicsPssAvailability": "reported0, unmeasured GPU not zero usage"
+    },
+    "cold-evidence": {
+      "samples": 7,
+      "javaUsedPeakBytes": 86678968,
+      "nativeAllocatedIndependentPeakBytes": 127792640,
+      "mainPssIndependentPeakKiB": 250640,
+      "graphicsPssAvailability": "reported0, unmeasured GPU not zero usage"
+    }
+  },
+  "coldProcess": {
+    "beforePid": "2415",
+    "afterPid": "12148",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "763ffac78fad1e29fbfcfd8798458fbc058251277f7f7c62eb6f8cc02af84c89",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "failure26SamePackage": false,
+  "nativeChildIndependent": {
+    "samples": 133,
+    "maxChildren": 2,
+    "peakPssKiB": 61672
+  },
+  "screenshotsInspected": [
+    "source-11-map.png"
+  ],
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-grid-27",
+  "evidenceSha256": {
+    "session.json": "de281662eea8e9169cbe383983d2b01b712386e05a758ccc7c6c089ff950e80b",
+    "logcat.txt": "1353568fda3b3f2d224cb5b466e552a913506f70cb711ed5168d388e248c558b",
+    "instrumentation.txt": "78cdce9b380be0ce7e056a21a2ec7626db7181b62b553ec94374686bc1269d3e",
+    "cold-instrumentation.txt": "d0d4a1d113b142c5c0d77f3800772bc58dfb7ff7facd8cc4ee18489d1912d959",
+    "evidence/memory.csv": "2f32606dbf9015d4674ce108db574a847bbbe78b5bd8da36fe28f46ccab4fae6",
+    "cold-evidence/memory.csv": "f902f26a0d579c81d77691c6bf06c6b7959f0db9e3a64aba8b12ff29d220fc05"
+  },
+  "next": "independent full16 ordinary regression28 then current default large APK real commands",
+  "ARM": false,
+  "overallGoalComplete": false
+}

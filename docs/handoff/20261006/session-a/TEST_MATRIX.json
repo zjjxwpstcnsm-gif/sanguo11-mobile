@@ -15,9 +15,9 @@
     },
     {
       "item": "terrain-oom",
-      "status": "CURRENT NORMAL384 FAIL",
-      "evidence": "package6f987fd0 source11 zoom actual641552-byte OOM; arrays.copyOf/grid/ground/buildMeshes; full9/3797SHA restored",
-      "next": "exact grid parity/memory reduction then new384/512 installs"
+      "status": "CURRENT NORMAL384 SOURCE11 PASS, FULL16 RUNNING",
+      "evidence": "failure26 actual stack retained; new5df034d1 source11 314+cold79; Java peak260934640B/384MiB; full9/3797SHA restored; exact28 grid windows",
+      "next": "same exact package full16 normal28 then defaultlarge real commands and ARM"
     },
     {
       "item": "terrain-parity",
@@ -86,5 +86,5 @@
       "next": "A+B completed frozen source→new combo APK→fresh matrix"
     }
   ],
-  "updatedAfter": "normal-all-source-26"
+  "updatedAfter": "normal-grid-27"
 }
