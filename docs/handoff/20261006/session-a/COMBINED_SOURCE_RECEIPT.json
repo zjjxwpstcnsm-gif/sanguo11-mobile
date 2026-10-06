@@ -2546,5 +2546,99 @@
   "independentCachesRetained": true,
   "pins168Unchanged": true,
   "installedLatestLifecycleCandidate": "d7cd4368ce3f29cee5cd77d54f6ab41008ec6208704f3a153d9c593808091ffd",
-  "latestFullColdAcceptance": false
+  "latestFullColdAcceptance": false,
+  "verifiedBFrozenTestsAndTools": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBCapacityInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "6c0d4d0c3531a50aff4b17d14d5894e831c26161164df003fd64c17042441899",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "47725ed85e3b4a16b36c9061909136898a0ac36275075aa56e86f8afc69c8bb2",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_apply_theme_pages.py",
+      "beforeSha256": null,
+      "afterSha256": "1e28f48ac326b1d63d151c35d27ec70479f66fbbaf1169a62ff6d41e307cf4b1",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_freeze_apk.py",
+      "beforeSha256": null,
+      "afterSha256": "7ce2812e083721473de0bffd167985e07790fb64b80e9a6e94f937faf3f3288d",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_pack_capacity_expected.py",
+      "beforeSha256": null,
+      "afterSha256": "f0592f3d902e427c68108d3bf976a72bb49c3cd47540138a0f864d4f352045d3",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_pack_capacity_references.py",
+      "beforeSha256": null,
+      "afterSha256": "1dc16b57ba9f6669f23dab83183b4ef1b651a46d67fa989a77c14201b472c7ee",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_pc_build_spacing.py",
+      "beforeSha256": null,
+      "afterSha256": "5fd1b786fc2ab3ef8000cdc58db053104e861472cd8f9f7d778e8150ad40a5f9",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_pc_command_capacity.py",
+      "beforeSha256": null,
+      "afterSha256": "8512f4c0a495ece5e77e6a69254d6ef8f7bfefbaef4874fdd5e051a841ca0d2a",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_pc_military_cost.py",
+      "beforeSha256": null,
+      "afterSha256": "6c2d7b7c9e5a59f40c0ea526bde2c7ee79e3542a620fb5f0c70d74c3f9ed28b7",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_stage_frozen_dependencies.py",
+      "beforeSha256": null,
+      "afterSha256": "cd54b10c05335f4b2b7d49c57ef9701c4d2052c9a337407490585d0600f73c78",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_stage_movement_dependency.py",
+      "beforeSha256": null,
+      "afterSha256": "6c18a035ffb8c550ae4dffbd366852fe0f8ef28363ae09b722f20254bad08eb0",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_stage_theme_dependencies.py",
+      "beforeSha256": null,
+      "afterSha256": "07b26d845becdfcc9be3c9ddd842346bb50068abb862bdb2187619d11b927d31",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": null,
+      "afterSha256": "2c41f2a402b6ca3895a0d0ca99bfe427e544856a4b3b1205e78d7e644be12072",
+      "owner": "B",
+      "importedOnlyFromCompletedSource": "41313d2f7e7c41003c750a10dcf72c3b43c52120"
+    }
+  ],
+  "verifiedBTotalIncludingFrozenTestsTools": 638
 }
