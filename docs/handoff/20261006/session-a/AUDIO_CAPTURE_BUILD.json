@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "2fb1325127bf663d4f0f7207f46c25e9ed4d89ed",
+  "testPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2fb13251-audio-state-test/app-debug-androidTest.apk",
+  "testSha256": "0c9b7fc86bab6b722f27422feb28b3e940bc932cfe93b5e05e7ec4d6c94b9d7f",
+  "testBytes": 2570646,
+  "buildPassed": true,
+  "installed": false,
+  "productionGameUnchanged": "normal5df034d1 and largea7d4b711 frozen at4e312b89; new test build intermediate production metadata is not delivered or installed",
+  "captureSource": "new A androidTest only; earlier session2 proposal remains read only",
+  "actualProjectionConsentRequired": true,
+  "realRecordPermissionRequired": true,
+  "rawTrialRates": [
+    44100,
+    48000
+  ],
+  "defaultActual5554RemoteSubmixDeclaredRate": 48000,
+  "previousNativeInputError": -22,
+  "previousInputErrorRootCauseEstablished": false,
+  "normalMenuUiUxResource": 2238,
+  "fullSaveRngAndStateTokenChecksAdded": true,
+  "wholeMusicThreshold": 0.995,
+  "declaredSampleWindowThreshold": 0.999,
+  "waveformAccepted": false,
+  "normalMapBgmBound": false,
+  "ARM": false,
+  "goalComplete": false
+}

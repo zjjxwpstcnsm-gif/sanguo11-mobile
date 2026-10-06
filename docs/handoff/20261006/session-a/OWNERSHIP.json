@@ -135,7 +135,8 @@
     "docs/handoff/20261006/session-a/observe_flow_video.py",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureActivity.java",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
-    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_CONTRACT.md"
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_CONTRACT.md",
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_BUILD.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
