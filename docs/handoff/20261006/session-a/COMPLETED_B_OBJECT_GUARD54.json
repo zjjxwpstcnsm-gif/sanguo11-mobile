@@ -1,0 +1,1374 @@
+{
+  "scope": "Changed B production/tools and registered B increments vs exact completed aa9bdf6d Git objects, never workingtree/WIP. New A production/tool registration and frozen AndroidGameBridge checked. Not full goal/ARM acceptance.",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completedBCommit": "aa9bdf6de39b521548b436aeedf81118f82e7ad0",
+  "completedBOwnershipSha256": "811d2f9819bf64e5da5e91162de2bafc4209dd9e9a54a49c34c12b1639d28d0e",
+  "ownershipCorrection": "Initial classifier incorrectly treated contract-owned existing app resources and completed-B registered new tools as unregistered A. Preserved initial diagnostic in out; corrected using exact public CONTRACT and completed B OWNERSHIP Git object, not a production relaxation.",
+  "ownHead": "5f05fe623d6c8ee595c44975e79b869608a34bcb",
+  "changedPaths": 455,
+  "BChangedPaths": 225,
+  "rows": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBCapacityInstrumentation.java",
+      "ownSha256": "6c0d4d0c3531a50aff4b17d14d5894e831c26161164df003fd64c17042441899",
+      "completedBObjectSha256": "6c0d4d0c3531a50aff4b17d14d5894e831c26161164df003fd64c17042441899",
+      "match": true
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java",
+      "ownSha256": "ec204ebf0d6e7bf5dd6a2533fa04ef34c5de3610c61ce07d849fc21988883139",
+      "completedBObjectSha256": "ec204ebf0d6e7bf5dd6a2533fa04ef34c5de3610c61ce07d849fc21988883139",
+      "match": true
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
+      "ownSha256": "47725ed85e3b4a16b36c9061909136898a0ac36275075aa56e86f8afc69c8bb2",
+      "completedBObjectSha256": "47725ed85e3b4a16b36c9061909136898a0ac36275075aa56e86f8afc69c8bb2",
+      "match": true
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBGovernorInstrumentation.java",
+      "ownSha256": "182460d89bba0015ccafdbf87f512a216836bcc8661ac17d4ac835d4658270cc",
+      "completedBObjectSha256": "182460d89bba0015ccafdbf87f512a216836bcc8661ac17d4ac835d4658270cc",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/AbilityUi.java",
+      "ownSha256": "0c32f562b48235a5ea6597ae6c5529b66b7b48a10162e9e3505d1cadbe4e5921",
+      "completedBObjectSha256": "0c32f562b48235a5ea6597ae6c5529b66b7b48a10162e9e3505d1cadbe4e5921",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ArmyUi.java",
+      "ownSha256": "dcd2d0c8d8e12661967141f1c2ac3bfbab07b5056ad04145a7c438fe7930ab8b",
+      "completedBObjectSha256": "dcd2d0c8d8e12661967141f1c2ac3bfbab07b5056ad04145a7c438fe7930ab8b",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildPicker.java",
+      "ownSha256": "51f4b47bca0147866a3de1b4e40a40fcdf813b7d45cb4a2da9abcff5575c09c9",
+      "completedBObjectSha256": "51f4b47bca0147866a3de1b4e40a40fcdf813b7d45cb4a2da9abcff5575c09c9",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
+      "ownSha256": "8d12833055b91489662a6f98656d52ecd0fea84952a2542f8c4f6806c60cf5dd",
+      "completedBObjectSha256": "8d12833055b91489662a6f98656d52ecd0fea84952a2542f8c4f6806c60cf5dd",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CargoWizard.java",
+      "ownSha256": "5ecf691b19499ddfcc8c14bfcd627e4b42104ced05fadbe5fbc9a5b0edf6d516",
+      "completedBObjectSha256": "5ecf691b19499ddfcc8c14bfcd627e4b42104ced05fadbe5fbc9a5b0edf6d516",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "ownSha256": "eebe3dd0b1ecbf0ac8e20c892ab155e0973c6f376d388783520026ca860439b9",
+      "completedBObjectSha256": "eebe3dd0b1ecbf0ac8e20c892ab155e0973c6f376d388783520026ca860439b9",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "ownSha256": "38c990366d59d12b32e32fa4b39349a93df853218918fb6672928053dd00f456",
+      "completedBObjectSha256": "38c990366d59d12b32e32fa4b39349a93df853218918fb6672928053dd00f456",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerPlacementUi.java",
+      "ownSha256": "6170e2a3e31fb89bd432c8827d38e9034b313b3e5ff4c8968a8b5f8795ce7669",
+      "completedBObjectSha256": "6170e2a3e31fb89bd432c8827d38e9034b313b3e5ff4c8968a8b5f8795ce7669",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DeployWizard.java",
+      "ownSha256": "07704e64ffbc02290f6cb5df33b53a479d4e56159bb5acfd43f770a11bc509bb",
+      "completedBObjectSha256": "07704e64ffbc02290f6cb5df33b53a479d4e56159bb5acfd43f770a11bc509bb",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DiplomacyUi.java",
+      "ownSha256": "9a78b0997ba889b3077e7aefc8abd81b8fd767309fe26f04d101b028c6aba22c",
+      "completedBObjectSha256": "9a78b0997ba889b3077e7aefc8abd81b8fd767309fe26f04d101b028c6aba22c",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DomesticUi.java",
+      "ownSha256": "3c9f44cf419f9f0f531787b9003c29fcff043c1715b2533ca54bc88a601a9300",
+      "completedBObjectSha256": "3c9f44cf419f9f0f531787b9003c29fcff043c1715b2533ca54bc88a601a9300",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "ownSha256": "7c49b5dfaea9367eb5faa11e97b4b92def22efa952bc513e4c77183b33b95673",
+      "completedBObjectSha256": "7c49b5dfaea9367eb5faa11e97b4b92def22efa952bc513e4c77183b33b95673",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+      "ownSha256": "b45618c44496bdb2ff64b72001f74a9d608c5a2f0dcac3fbd8af7c2d0f49cec3",
+      "completedBObjectSha256": "b45618c44496bdb2ff64b72001f74a9d608c5a2f0dcac3fbd8af7c2d0f49cec3",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LifecycleUi.java",
+      "ownSha256": "d6501c3a912ed803cc2c4e6429df4dd87d4eebb0e55f650141bfd3801289ca68",
+      "completedBObjectSha256": "d6501c3a912ed803cc2c4e6429df4dd87d4eebb0e55f650141bfd3801289ca68",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "ownSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
+      "completedBObjectSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
+      "match": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WarUi.java",
+      "ownSha256": "e8cc4a4219f1be8f7e4c2b928439f99b4db07a77f18ba6064f1da06e96c6838c",
+      "completedBObjectSha256": "e8cc4a4219f1be8f7e4c2b928439f99b4db07a77f18ba6064f1da06e96c6838c",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AbilityResearch.java",
+      "ownSha256": "e6f855b75789ae0966b4f53194a84eddb9954836cfbb428aa30f38e3de10fa48",
+      "completedBObjectSha256": "e6f855b75789ae0966b4f53194a84eddb9954836cfbb428aa30f38e3de10fa48",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Army.java",
+      "ownSha256": "36bbaaa66066827ad71b6ce998101756afaecad744764c560beab12dc3295bcd",
+      "completedBObjectSha256": "36bbaaa66066827ad71b6ce998101756afaecad744764c560beab12dc3295bcd",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CampaignAi.java",
+      "ownSha256": "11feabd75e0aae9f665a58c0f269554d262d8bb0a14b59deb050bed30163a63e",
+      "completedBObjectSha256": "11feabd75e0aae9f665a58c0f269554d262d8bb0a14b59deb050bed30163a63e",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "ownSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
+      "completedBObjectSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ConstructionPlan.java",
+      "ownSha256": "df0a1aa7a95c79f30d668a4cfbada87515178c48795dd0b5f6f57a3745b4ba8e",
+      "completedBObjectSha256": "df0a1aa7a95c79f30d668a4cfbada87515178c48795dd0b5f6f57a3745b4ba8e",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "ownSha256": "3ea8e50389c39c490248d216945d559517384700bc24e8de24ff636f64e8eada",
+      "completedBObjectSha256": "3ea8e50389c39c490248d216945d559517384700bc24e8de24ff636f64e8eada",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "ownSha256": "5f61a616ed3c155149fb128c51cc568c3cd71c1e8f9ebc948064318ae4e23eb3",
+      "completedBObjectSha256": "5f61a616ed3c155149fb128c51cc568c3cd71c1e8f9ebc948064318ae4e23eb3",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DeploymentPlan.java",
+      "ownSha256": "13d56168e3a5ee9153db9dd3f1f1f92b8b5019e264c7c93d2493039bb7cf9d01",
+      "completedBObjectSha256": "13d56168e3a5ee9153db9dd3f1f1f92b8b5019e264c7c93d2493039bb7cf9d01",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Diplomacy.java",
+      "ownSha256": "b98809fd20fe1e33aa6189212dc23efc2a4bb8e95304225104a278fe15f40d66",
+      "completedBObjectSha256": "b98809fd20fe1e33aa6189212dc23efc2a4bb8e95304225104a278fe15f40d66",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DiplomacyPlan.java",
+      "ownSha256": "b3b993993fa863e755a33f2693fdcccc5d3c9d523519e1698f28b4a175e354c3",
+      "completedBObjectSha256": "b3b993993fa863e755a33f2693fdcccc5d3c9d523519e1698f28b4a175e354c3",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DistrictManagement.java",
+      "ownSha256": "39910bd39742a4ed5d7c48189b04d354f959b0ccdccb86ddd4a1b159c02a8637",
+      "completedBObjectSha256": "39910bd39742a4ed5d7c48189b04d354f959b0ccdccb86ddd4a1b159c02a8637",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Districts.java",
+      "ownSha256": "93c4c67756bd8a9c29d4bff59ecaf161978399f49d5fec349ecaeba6dc566feb",
+      "completedBObjectSha256": "93c4c67756bd8a9c29d4bff59ecaf161978399f49d5fec349ecaeba6dc566feb",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Domestic.java",
+      "ownSha256": "808c6748ebff27069ec5a25fa9fb26168a9ed9908d06f8a6cc94537608005693",
+      "completedBObjectSha256": "808c6748ebff27069ec5a25fa9fb26168a9ed9908d06f8a6cc94537608005693",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Editor.java",
+      "ownSha256": "4c23d1e95ca67ec3b9d79da8d89dc6840a39740809694cc3e5f6358f399c0146",
+      "completedBObjectSha256": "4c23d1e95ca67ec3b9d79da8d89dc6840a39740809694cc3e5f6358f399c0146",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Envoys.java",
+      "ownSha256": "a7e9add880cb5995afd9dd180f6f275a453450bad96eaa5e5d8dac3f670bed49",
+      "completedBObjectSha256": "a7e9add880cb5995afd9dd180f6f275a453450bad96eaa5e5d8dac3f670bed49",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/FactionCollapse.java",
+      "ownSha256": "d09089cba050d9deec8fe2180cfd3d7c9520d742e60fe3070a5f0c36797e39ee",
+      "completedBObjectSha256": "d09089cba050d9deec8fe2180cfd3d7c9520d742e60fe3070a5f0c36797e39ee",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Fieldworks.java",
+      "ownSha256": "27afb6d8a0efe50012e21bdadbcfafdf74af6a17183b2f1003b333a68378a93a",
+      "completedBObjectSha256": "27afb6d8a0efe50012e21bdadbcfafdf74af6a17183b2f1003b333a68378a93a",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Governance.java",
+      "ownSha256": "6e81c4e343d3eb242eed62b9e54062280db44678382aa2579d61e4eec5439f46",
+      "completedBObjectSha256": "6e81c4e343d3eb242eed62b9e54062280db44678382aa2579d61e4eec5439f46",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Government.java",
+      "ownSha256": "6c5fd12405c0dac331474b85c6699d3f75b14fc420c8860e4536dfdd6caa2109",
+      "completedBObjectSha256": "6c5fd12405c0dac331474b85c6699d3f75b14fc420c8860e4536dfdd6caa2109",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "ownSha256": "3a8cc34ad1a7e6a0cea1677226f7f87a8ea381bcd4ed40300acfe1643901edc0",
+      "completedBObjectSha256": "3a8cc34ad1a7e6a0cea1677226f7f87a8ea381bcd4ed40300acfe1643901edc0",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Loyalty.java",
+      "ownSha256": "a16abb2deb971c90cdfde6185c3b727fcfd8fb0f559e0b98a205f4df30feab6a",
+      "completedBObjectSha256": "a16abb2deb971c90cdfde6185c3b727fcfd8fb0f559e0b98a205f4df30feab6a",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MarchOrders.java",
+      "ownSha256": "d153c5f54bdb38a33bb8a317f5513cc37cdd85c1b89b9bfb269b6db849b4cc22",
+      "completedBObjectSha256": "d153c5f54bdb38a33bb8a317f5513cc37cdd85c1b89b9bfb269b6db849b4cc22",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcArmyActionPolicy.java",
+      "ownSha256": "87d62c6ba4ce9fe167f494a15b38453aa496d7ba2f0d90c0bbb197581d64b088",
+      "completedBObjectSha256": "87d62c6ba4ce9fe167f494a15b38453aa496d7ba2f0d90c0bbb197581d64b088",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcArmyActionRules.java",
+      "ownSha256": "f2907f591e1d0176d14be9a87776250966604a9350803cdc863d58e3820abbcc",
+      "completedBObjectSha256": "f2907f591e1d0176d14be9a87776250966604a9350803cdc863d58e3820abbcc",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCommandCapacityPolicy.java",
+      "ownSha256": "be740e3484a3e3f55478e7467bd660977b82bdbe28325241a41e00207326b082",
+      "completedBObjectSha256": "be740e3484a3e3f55478e7467bd660977b82bdbe28325241a41e00207326b082",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCommandRoll.java",
+      "ownSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
+      "completedBObjectSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcContestProfiles.java",
+      "ownSha256": "8cd03daa743e7cedc7de6de2899b8074a87520df338c6c309aa8861f005c3958",
+      "completedBObjectSha256": "8cd03daa743e7cedc7de6de2899b8074a87520df338c6c309aa8861f005c3958",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "ownSha256": "c3cb8f9e3a70c73f1212f5e928eb53bdca193e3cdc20a4bafa9cb0093e133213",
+      "completedBObjectSha256": "c3cb8f9e3a70c73f1212f5e928eb53bdca193e3cdc20a4bafa9cb0093e133213",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignPolicy.java",
+      "ownSha256": "3f59dce35698df9daefa3a13046f93fd2a0159843b7e997c56bab0cd8be75dcb",
+      "completedBObjectSha256": "3f59dce35698df9daefa3a13046f93fd2a0159843b7e997c56bab0cd8be75dcb",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignRules.java",
+      "ownSha256": "da567cdf150b3c2d818edb974783fe91c217804384f836e3c9fee91c5ce5ff88",
+      "completedBObjectSha256": "da567cdf150b3c2d818edb974783fe91c217804384f836e3c9fee91c5ce5ff88",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentPolicy.java",
+      "ownSha256": "00ca17b58c2eb2f8916f7b234e7dca6098c28dd3156e457df2c15cc3d3685008",
+      "completedBObjectSha256": "00ca17b58c2eb2f8916f7b234e7dca6098c28dd3156e457df2c15cc3d3685008",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentRules.java",
+      "ownSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
+      "completedBObjectSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcGovernorPolicy.java",
+      "ownSha256": "505f787aabacbdcc15095bf8eff5d66bbdd3ebad6f2cfd0ce395a085087a2544",
+      "completedBObjectSha256": "505f787aabacbdcc15095bf8eff5d66bbdd3ebad6f2cfd0ce395a085087a2544",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMilitaryCostPolicy.java",
+      "ownSha256": "4db1dcbf45ee3f4007e8c2c87e3dd33b68d89774c790a7165eeb2172297fbbe3",
+      "completedBObjectSha256": "4db1dcbf45ee3f4007e8c2c87e3dd33b68d89774c790a7165eeb2172297fbbe3",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeHealthPolicy.java",
+      "ownSha256": "3089f7ebff804a53b6d0b26e4099659725db59526eac21cdffff6feb3ee98b03",
+      "completedBObjectSha256": "3089f7ebff804a53b6d0b26e4099659725db59526eac21cdffff6feb3ee98b03",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerCampaignFacts.java",
+      "ownSha256": "04aad8b221800529ffabaef7119ff068cdb97394925047741f24575640d92060",
+      "completedBObjectSha256": "04aad8b221800529ffabaef7119ff068cdb97394925047741f24575640d92060",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerInfo.java",
+      "ownSha256": "605870859e9e0f9cb42ca885a58c790f5def13e68edbc74cd6149720c832a51e",
+      "completedBObjectSha256": "605870859e9e0f9cb42ca885a58c790f5def13e68edbc74cd6149720c832a51e",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRecruitmentFormula.java",
+      "ownSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
+      "completedBObjectSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioIdentity.java",
+      "ownSha256": "020b60f4b7f07b2e0c47adb05333a3e7b16a08b7c7c2fbd6c09fd95a43fad026",
+      "completedBObjectSha256": "020b60f4b7f07b2e0c47adb05333a3e7b16a08b7c7c2fbd6c09fd95a43fad026",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "ownSha256": "8ae211e8633bea1b025f420355b954068df394863db41c27aed0401e03b9ff45",
+      "completedBObjectSha256": "8ae211e8633bea1b025f420355b954068df394863db41c27aed0401e03b9ff45",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+      "ownSha256": "cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44",
+      "completedBObjectSha256": "cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSearchPolicy.java",
+      "ownSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
+      "completedBObjectSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSearchRules.java",
+      "ownSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
+      "completedBObjectSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ProductionPlan.java",
+      "ownSha256": "3d8c9363eb754da631325ecd21431eeb72b3d643fa75c851903a9195c46a5a39",
+      "completedBObjectSha256": "3d8c9363eb754da631325ecd21431eeb72b3d643fa75c851903a9195c46a5a39",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RecruitmentPlan.java",
+      "ownSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
+      "completedBObjectSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "ownSha256": "72091fee5ca08bd34911e964d1e7503dd0e214cd2bfbb44b54c371b9a519f452",
+      "completedBObjectSha256": "72091fee5ca08bd34911e964d1e7503dd0e214cd2bfbb44b54c371b9a519f452",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveExtensions.java",
+      "ownSha256": "136f7648c400738f70e387d1f756eee1febc4e3c0f436b401c957998a517859f",
+      "completedBObjectSha256": "136f7648c400738f70e387d1f756eee1febc4e3c0f436b401c957998a517859f",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategicAi.java",
+      "ownSha256": "1257e4db88510a02872bd6b8e4ab1aebfeec2d504fb00bb7201d9aed1f5c3f86",
+      "completedBObjectSha256": "1257e4db88510a02872bd6b8e4ab1aebfeec2d504fb00bb7201d9aed1f5c3f86",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "ownSha256": "b090c9875cb5780c98f3974476b37d87bdaaa1bc25499038eedbc55775b88c42",
+      "completedBObjectSha256": "b090c9875cb5780c98f3974476b37d87bdaaa1bc25499038eedbc55775b88c42",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategySave.java",
+      "ownSha256": "c1126352937280ee6ae0b89826cce2c163eb6b8cbf48f21bf174509a031d21d5",
+      "completedBObjectSha256": "c1126352937280ee6ae0b89826cce2c163eb6b8cbf48f21bf174509a031d21d5",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TechniquePointsJournal.java",
+      "ownSha256": "0c3078f36a29dbe5fe1ced36d4f30ce42e17358c77763322623b2bb345ed9ea0",
+      "completedBObjectSha256": "0c3078f36a29dbe5fe1ced36d4f30ce42e17358c77763322623b2bb345ed9ea0",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TradePlan.java",
+      "ownSha256": "ec6270b30c862c378a20adf38f7e8be6b5c17f80ee00105ab13c4bca1470b173",
+      "completedBObjectSha256": "ec6270b30c862c378a20adf38f7e8be6b5c17f80ee00105ab13c4bca1470b173",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TransportPlan.java",
+      "ownSha256": "3d41a17586887d1a9bd9679ff0c2e3ef658b3f5af766f70ddf25ce245937c16f",
+      "completedBObjectSha256": "3d41a17586887d1a9bd9679ff0c2e3ef658b3f5af766f70ddf25ce245937c16f",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TurnJournal.java",
+      "ownSha256": "9fcc564cdf349905a5e22d67fc4800f6f2131bfba784d6fce4fa56651db02dca",
+      "completedBObjectSha256": "9fcc564cdf349905a5e22d67fc4800f6f2131bfba784d6fce4fa56651db02dca",
+      "match": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "ownSha256": "1572c197c8ba3d87bbcf36bc7f526c9c03ea8a8f93fcb0692d2750b2925f022c",
+      "completedBObjectSha256": "1572c197c8ba3d87bbcf36bc7f526c9c03ea8a8f93fcb0692d2750b2925f022c",
+      "match": true
+    },
+    {
+      "path": "core/src/main/resources/pc-command-capacity/index.txt",
+      "ownSha256": "74e7ed31586415bac0e1cd70a96884bec4d74b6e6b9c5e000c0e53992d65793b",
+      "completedBObjectSha256": "74e7ed31586415bac0e1cd70a96884bec4d74b6e6b9c5e000c0e53992d65793b",
+      "match": true
+    },
+    {
+      "path": "core/src/main/resources/pc-command-capacity/references.bin.gz",
+      "ownSha256": "1538f1e6dbb120600e47421ad5cf835f29af443ad666dd60b6af21e4f6e7ec9b",
+      "completedBObjectSha256": "1538f1e6dbb120600e47421ad5cf835f29af443ad666dd60b6af21e4f6e7ec9b",
+      "match": true
+    },
+    {
+      "path": "core/src/main/resources/pc-governor-rosters/index.txt",
+      "ownSha256": "25fe996e158f1799cdfb13424d0d97bc8116ba63e7344bdc37368864261fa370",
+      "completedBObjectSha256": "25fe996e158f1799cdfb13424d0d97bc8116ba63e7344bdc37368864261fa370",
+      "match": true
+    },
+    {
+      "path": "core/src/main/resources/pc-governor-rosters/rosters.bin.gz",
+      "ownSha256": "f642b0d78a35df48210ddf81fd3872a81a2db78ee0e0028d6e37d8f01755927e",
+      "completedBObjectSha256": "f642b0d78a35df48210ddf81fd3872a81a2db78ee0e0028d6e37d8f01755927e",
+      "match": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/raw-loyalty.tsv.gz",
+      "ownSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
+      "completedBObjectSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
+      "match": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/search-regions.tsv",
+      "ownSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
+      "completedBObjectSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcArmyActionPolicyTest.java",
+      "ownSha256": "dd9bd942b23e5953cc1dda1697f05fa2ed1bce3bf73e39f16c61398f665dd6bd",
+      "completedBObjectSha256": "dd9bd942b23e5953cc1dda1697f05fa2ed1bce3bf73e39f16c61398f665dd6bd",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcArmyValidityFactsTest.java",
+      "ownSha256": "4ec2bfbeaa5d1c52a0edf010c6ef6a016bfb0ae92cf574de7a42dd94f35dd137",
+      "completedBObjectSha256": "4ec2bfbeaa5d1c52a0edf010c6ef6a016bfb0ae92cf574de7a42dd94f35dd137",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcCommandCapacityAllSourcesTest.java",
+      "ownSha256": "bd4c198c6f06b1e0d4b44d66314a58799492e01408acab118bf942328517c42a",
+      "completedBObjectSha256": "bd4c198c6f06b1e0d4b44d66314a58799492e01408acab118bf942328517c42a",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcCommandCapacityPolicyTest.java",
+      "ownSha256": "c29e78959db381feed68a10a096c4f773176475079d853ed711f96a97c2054d1",
+      "completedBObjectSha256": "c29e78959db381feed68a10a096c4f773176475079d853ed711f96a97c2054d1",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateCampaignRulesTest.java",
+      "ownSha256": "d6b12e8c037aa77f246e53a35b3a2c0a9767fa7acc48487dd1649a0ec70faa80",
+      "completedBObjectSha256": "d6b12e8c037aa77f246e53a35b3a2c0a9767fa7acc48487dd1649a0ec70faa80",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateOrdinaryCampaignTest.java",
+      "ownSha256": "f31a6338ed13a143295ff59bae9f0b5c89f0f845c12141f4ad14f8fd71767644",
+      "completedBObjectSha256": "f31a6338ed13a143295ff59bae9f0b5c89f0f845c12141f4ad14f8fd71767644",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateSourceContextTest.java",
+      "ownSha256": "41dece434c5e2e25a4333333e7a7e449f0271722e845d2401402383474ad2fa9",
+      "completedBObjectSha256": "41dece434c5e2e25a4333333e7a7e449f0271722e845d2401402383474ad2fa9",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDirectRecruitmentPolicyTest.java",
+      "ownSha256": "3a09cbfd05f22fdc23910262bb87af9f227893bb1e186f89c6290205fcf1d153",
+      "completedBObjectSha256": "3a09cbfd05f22fdc23910262bb87af9f227893bb1e186f89c6290205fcf1d153",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDirectRecruitmentRulesTest.java",
+      "ownSha256": "0e8b58705099748a84ed5bfd725861c94a1f38044ac5e34000fff0f3c9dd12c5",
+      "completedBObjectSha256": "0e8b58705099748a84ed5bfd725861c94a1f38044ac5e34000fff0f3c9dd12c5",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcGovernorPolicyTest.java",
+      "ownSha256": "9c552482783f08b24637ee53ee0848be52b7310d55e5b2d9f7585aef38952b26",
+      "completedBObjectSha256": "9c552482783f08b24637ee53ee0848be52b7310d55e5b2d9f7585aef38952b26",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcMilitaryCostPolicyTest.java",
+      "ownSha256": "a494117817858039046f30b75976267d8c4ad89324ea41a845a8474895fb5dd8",
+      "completedBObjectSha256": "a494117817858039046f30b75976267d8c4ad89324ea41a845a8474895fb5dd8",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcOfficerTextDecoderTest.java",
+      "ownSha256": "52dc59f219e89fc373c568451bfbd23b73a48d78e283527cc66f965ec48ff994",
+      "completedBObjectSha256": "52dc59f219e89fc373c568451bfbd23b73a48d78e283527cc66f965ec48ff994",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcScenarioPeopleCacheTest.java",
+      "ownSha256": "a4e0bd7b3d8aea5392718a84833d2d1b5682a68a660617b86657cc171d211363",
+      "completedBObjectSha256": "a4e0bd7b3d8aea5392718a84833d2d1b5682a68a660617b86657cc171d211363",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcScenarioPeopleReplayProbe.java",
+      "ownSha256": "498bf98f36a87939c4f71c2bf789d0da2cef813e31aaaafcee615ffb8d3ddf4b",
+      "completedBObjectSha256": "498bf98f36a87939c4f71c2bf789d0da2cef813e31aaaafcee615ffb8d3ddf4b",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcSearchOrdinaryTest.java",
+      "ownSha256": "495917fb8377aa3560f9232e36cbedb8660a71bef83917fc661af95b6e94dd6d",
+      "completedBObjectSha256": "495917fb8377aa3560f9232e36cbedb8660a71bef83917fc661af95b6e94dd6d",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcSearchRulesTest.java",
+      "ownSha256": "16f02eb1bc0232f7e0d9d0f00f7404de7de8c858e03ddad5b24b86f4e76cefda",
+      "completedBObjectSha256": "16f02eb1bc0232f7e0d9d0f00f7404de7de8c858e03ddad5b24b86f4e76cefda",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBFieldworksTest.java",
+      "ownSha256": "c2b5d9b94cefa9d866698f8e6e26122720a7b7647c75366a1535b4856fcf6b8c",
+      "completedBObjectSha256": "c2b5d9b94cefa9d866698f8e6e26122720a7b7647c75366a1535b4856fcf6b8c",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBLegacyContinuationProbe.java",
+      "ownSha256": "2e421f48c70174fb747359a93ec6d495905b3db6565d217a40c26d5299bc05be",
+      "completedBObjectSha256": "2e421f48c70174fb747359a93ec6d495905b3db6565d217a40c26d5299bc05be",
+      "match": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBMilitaryFlowProbe.java",
+      "ownSha256": "10a73928ef6a5d9ad3cf8e07f19696adfeb9a3338c45e9b2082ed3d93130e7da",
+      "completedBObjectSha256": "10a73928ef6a5d9ad3cf8e07f19696adfeb9a3338c45e9b2082ed3d93130e7da",
+      "match": true
+    },
+    {
+      "path": "core/src/test/resources/pc-army-action/original-all16.tsv",
+      "ownSha256": "bf6175b2440833e7eb230ac01de915d1189905dc064237fc1bb50b5a330d837e",
+      "completedBObjectSha256": "bf6175b2440833e7eb230ac01de915d1189905dc064237fc1bb50b5a330d837e",
+      "match": true
+    },
+    {
+      "path": "core/src/test/resources/pc-command-capacity/original-capacities.tsv.gz",
+      "ownSha256": "a032fe5413ea8c6a51e73e579ac85aa52e62ebcb0473dc224bfddd2673cd3f2c",
+      "completedBObjectSha256": "a032fe5413ea8c6a51e73e579ac85aa52e62ebcb0473dc224bfddd2673cd3f2c",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ACCEPTANCE.md",
+      "ownSha256": "c443f95e28399da94f0b03afbf2f2f1e07dcd1fe8c5b06d72e094e2850fd3b9d",
+      "completedBObjectSha256": "c443f95e28399da94f0b03afbf2f2f1e07dcd1fe8c5b06d72e094e2850fd3b9d",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ARMY_BUDGET_BATCH.json",
+      "ownSha256": "2f0854ae6277d86eecfd0ba60eb40ef512cfd28c950c7c4f02779a0711ee1874",
+      "completedBObjectSha256": "2f0854ae6277d86eecfd0ba60eb40ef512cfd28c950c7c4f02779a0711ee1874",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ARMY_BUDGET_DELTA.json",
+      "ownSha256": "42c828f937c6f6f8137b8c5e1f3b1aa3444c41665c342d7a1db9a4da95bc4efa",
+      "completedBObjectSha256": "42c828f937c6f6f8137b8c5e1f3b1aa3444c41665c342d7a1db9a4da95bc4efa",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ARMY_BUDGET_REPRODUCE.md",
+      "ownSha256": "2a294ca33f6243d97998d062c1fb9b957164d1856c5b045f6800ad0a7b4830f2",
+      "completedBObjectSha256": "2a294ca33f6243d97998d062c1fb9b957164d1856c5b045f6800ad0a7b4830f2",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/ARMY_BUDGET_STRATEGY.md",
+      "ownSha256": "48271614abe2aebe891f34c18b63b232d1425db897c1e33b8b64052e56aeb371",
+      "completedBObjectSha256": "48271614abe2aebe891f34c18b63b232d1425db897c1e33b8b64052e56aeb371",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/A_FROZEN.json",
+      "ownSha256": "4580df391e63a46712862c1ba27a7b7b80e684da059902b3764fa6c1d37cfe1a",
+      "completedBObjectSha256": "4580df391e63a46712862c1ba27a7b7b80e684da059902b3764fa6c1d37cfe1a",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CACHE_BATCH.json",
+      "ownSha256": "4c04b022d473f9912112b8c433dee130e273005768e7a382a5b8fa8e7767661b",
+      "completedBObjectSha256": "4c04b022d473f9912112b8c433dee130e273005768e7a382a5b8fa8e7767661b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CACHE_DELTA.json",
+      "ownSha256": "1ab9671248615e48b5c3688ee8a10f8541072e8d5fe0970a0b030bdae2a0a5ad",
+      "completedBObjectSha256": "1ab9671248615e48b5c3688ee8a10f8541072e8d5fe0970a0b030bdae2a0a5ad",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CACHE_REPRODUCE.md",
+      "ownSha256": "9c4dd002855268e65b4fad3cf4d9142c53eb1edb4d10c17e367882fe33df9ed1",
+      "completedBObjectSha256": "9c4dd002855268e65b4fad3cf4d9142c53eb1edb4d10c17e367882fe33df9ed1",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CAPACITY_BATCH.json",
+      "ownSha256": "211e123f7ef7d40e7a5642205cce39f7057bacff59381739425d689fa2a4498d",
+      "completedBObjectSha256": "211e123f7ef7d40e7a5642205cce39f7057bacff59381739425d689fa2a4498d",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CAPACITY_DELTA.json",
+      "ownSha256": "3631b621043b3e09ad9eadab1c7c1675bb644fe6dfe18b878eddec14ff0f8468",
+      "completedBObjectSha256": "3631b621043b3e09ad9eadab1c7c1675bb644fe6dfe18b878eddec14ff0f8468",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMMAND_AUDIT.md",
+      "ownSha256": "fec30fd261a90e29b57155acb37facbaf993171b2fe26274529dffb056e06b8a",
+      "completedBObjectSha256": "fec30fd261a90e29b57155acb37facbaf993171b2fe26274529dffb056e06b8a",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMMAND_CAPACITY_STRATEGY.md",
+      "ownSha256": "f5df82b4875defbe698802a257717cbb9ab9a76e921933776a6e8e7b1acabd22",
+      "completedBObjectSha256": "f5df82b4875defbe698802a257717cbb9ab9a76e921933776a6e8e7b1acabd22",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMPATIBILITY.md",
+      "ownSha256": "62888de0f22ce1759d9771b18dc88dc97692f661d288054f80c1e88451b320aa",
+      "completedBObjectSha256": "62888de0f22ce1759d9771b18dc88dc97692f661d288054f80c1e88451b320aa",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CONTRACT.md",
+      "ownSha256": "56f66f5b2eaf3d200cf47d7c03b0c8f5070324497afa3031a69254122996aaa4",
+      "completedBObjectSha256": "56f66f5b2eaf3d200cf47d7c03b0c8f5070324497afa3031a69254122996aaa4",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_BATCH.json",
+      "ownSha256": "39cbc374a956a8ea5688050a57827818d4905c34d707c69776feca699b05b698",
+      "completedBObjectSha256": "39cbc374a956a8ea5688050a57827818d4905c34d707c69776feca699b05b698",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_CAMPAIGN_PLAN.md",
+      "ownSha256": "1489fb5bb5d0481da52ef829b8de804de0fd851e9d8d89e9ff3feee571d9ce00",
+      "completedBObjectSha256": "1489fb5bb5d0481da52ef829b8de804de0fd851e9d8d89e9ff3feee571d9ce00",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_CONTRACT.md",
+      "ownSha256": "6c0feb323cde916c59e08d8c2645acb28e1735fd5d47d146d5ec93bce71dc12b",
+      "completedBObjectSha256": "6c0feb323cde916c59e08d8c2645acb28e1735fd5d47d146d5ec93bce71dc12b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_DELTA.json",
+      "ownSha256": "5ae24671f098f7da82e20a03b4abe2e4426a6c744a56b8a80a572dfb7c3d9c09",
+      "completedBObjectSha256": "5ae24671f098f7da82e20a03b4abe2e4426a6c744a56b8a80a572dfb7c3d9c09",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_REPRODUCE.md",
+      "ownSha256": "55b146e74e36e28208c9741e04ee6d47175f7e7c662c97248643962272ffed25",
+      "completedBObjectSha256": "55b146e74e36e28208c9741e04ee6d47175f7e7c662c97248643962272ffed25",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DELTA.json",
+      "ownSha256": "b9e654ef439dde441df9fe358f3c2158d0283e5b9e3035c3a26dc9ad0517a55b",
+      "completedBObjectSha256": "b9e654ef439dde441df9fe358f3c2158d0283e5b9e3035c3a26dc9ad0517a55b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_BATCH.json",
+      "ownSha256": "a275d7f35adfa386824c44f4c50ab8465cae229ed3ed1bd22bc7756d8a411213",
+      "completedBObjectSha256": "a275d7f35adfa386824c44f4c50ab8465cae229ed3ed1bd22bc7756d8a411213",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_CONTRACT.md",
+      "ownSha256": "cb0d016cb743beec6c75be66097bf1e82662ab7ba6d8a3c3339b600b0a6f58c2",
+      "completedBObjectSha256": "cb0d016cb743beec6c75be66097bf1e82662ab7ba6d8a3c3339b600b0a6f58c2",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_DELTA.json",
+      "ownSha256": "b96dd12b30f6d2e449021776e99cada8d775216f761968f5b90652459030272e",
+      "completedBObjectSha256": "b96dd12b30f6d2e449021776e99cada8d775216f761968f5b90652459030272e",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_REPRODUCE.md",
+      "ownSha256": "73915bfcef52a8d215f78184f86a995ff3be8a67e3f088e1dca4ccd138d9089d",
+      "completedBObjectSha256": "73915bfcef52a8d215f78184f86a995ff3be8a67e3f088e1dca4ccd138d9089d",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_BATCH.json",
+      "ownSha256": "388b773279e252af32a35290e1e373663c5f05836b58f7b1c61d9b486ab9afbf",
+      "completedBObjectSha256": "388b773279e252af32a35290e1e373663c5f05836b58f7b1c61d9b486ab9afbf",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_CONTRACT.md",
+      "ownSha256": "fea4ca0681383467c8de16594a9dd9e86ecb61654f2e6e43751ca580778bb065",
+      "completedBObjectSha256": "fea4ca0681383467c8de16594a9dd9e86ecb61654f2e6e43751ca580778bb065",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_DELTA.json",
+      "ownSha256": "e7f2dc43dcaa808a6b268bd256bf390040e97c7571d76450e5071291de9a905b",
+      "completedBObjectSha256": "e7f2dc43dcaa808a6b268bd256bf390040e97c7571d76450e5071291de9a905b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_REPRODUCE.md",
+      "ownSha256": "ae3f8b9ae149694602c09d45022d977f1f22bd20c4e3c7f0dbebe3242e27a4bd",
+      "completedBObjectSha256": "ae3f8b9ae149694602c09d45022d977f1f22bd20c4e3c7f0dbebe3242e27a4bd",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_STRATEGY.md",
+      "ownSha256": "0189fd38e29aeb8efc9e333f35de51ec8f9c8bdc596b2ae96a2b0bf46fee3cbd",
+      "completedBObjectSha256": "0189fd38e29aeb8efc9e333f35de51ec8f9c8bdc596b2ae96a2b0bf46fee3cbd",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_BATCH.json",
+      "ownSha256": "b5cb27c0032cb740aae56c38b132564dc847bc4cc99d783941f59c0097657541",
+      "completedBObjectSha256": "b5cb27c0032cb740aae56c38b132564dc847bc4cc99d783941f59c0097657541",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_CAPACITY.md",
+      "ownSha256": "08cf0d54e7e65044283e6c0dbe5a4056aa6f1f941ddfed2481d03afcc0fb5253",
+      "completedBObjectSha256": "08cf0d54e7e65044283e6c0dbe5a4056aa6f1f941ddfed2481d03afcc0fb5253",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_CONTRACT.md",
+      "ownSha256": "17153268ed9ff6866a1a1755fcaa66c17cb6b3135ef4ef70c832329168646e27",
+      "completedBObjectSha256": "17153268ed9ff6866a1a1755fcaa66c17cb6b3135ef4ef70c832329168646e27",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_DELTA.json",
+      "ownSha256": "5390c6f347596073f33db1980feeb282e8504841113037a5eefc1ae278f87a59",
+      "completedBObjectSha256": "5390c6f347596073f33db1980feeb282e8504841113037a5eefc1ae278f87a59",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_REPRODUCE.md",
+      "ownSha256": "7a7d3b232ddd1f247078dd40596758c35285569cfb2667a161ac7f57438b820a",
+      "completedBObjectSha256": "7a7d3b232ddd1f247078dd40596758c35285569cfb2667a161ac7f57438b820a",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_STRATEGY.md",
+      "ownSha256": "7fba870c1fbb641fc53587e0d0654ffeb41130c75c3952327a6a9bfa6f225471",
+      "completedBObjectSha256": "7fba870c1fbb641fc53587e0d0654ffeb41130c75c3952327a6a9bfa6f225471",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/INHERITANCE.json",
+      "ownSha256": "584b41866f4a3baf6f502593eac7346550e95879fe3492326e7b1d213ef17957",
+      "completedBObjectSha256": "584b41866f4a3baf6f502593eac7346550e95879fe3492326e7b1d213ef17957",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/MILITARY_BATCH.json",
+      "ownSha256": "f41f1e3c11f90af303ed66702c56cc728c1bed4c6da8cf173bf116a6ebb52b27",
+      "completedBObjectSha256": "f41f1e3c11f90af303ed66702c56cc728c1bed4c6da8cf173bf116a6ebb52b27",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/MILITARY_COST.md",
+      "ownSha256": "078907d7fd8f9d8176d1ace5004e19c75493502eeefedbd77a0b10d28034c6c9",
+      "completedBObjectSha256": "078907d7fd8f9d8176d1ace5004e19c75493502eeefedbd77a0b10d28034c6c9",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "ownSha256": "811d2f9819bf64e5da5e91162de2bafc4209dd9e9a54a49c34c12b1639d28d0e",
+      "completedBObjectSha256": "811d2f9819bf64e5da5e91162de2bafc4209dd9e9a54a49c34c12b1639d28d0e",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/PLAN.md",
+      "ownSha256": "9a5ae0dbf12414205801ec09735e33565986997ffddb93bae5a04bda55a71220",
+      "completedBObjectSha256": "9a5ae0dbf12414205801ec09735e33565986997ffddb93bae5a04bda55a71220",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/PROGRESS.md",
+      "ownSha256": "c7825b018c8876781d9ab196f6f046e9b23a32c4dd114f10f93227285467668b",
+      "completedBObjectSha256": "c7825b018c8876781d9ab196f6f046e9b23a32c4dd114f10f93227285467668b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SCENE_BATCH.json",
+      "ownSha256": "a2a69ea4de0aa289c7c375537cc45316ffca89fb34f27d8631c1be26f6d2b70b",
+      "completedBObjectSha256": "a2a69ea4de0aa289c7c375537cc45316ffca89fb34f27d8631c1be26f6d2b70b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SCENE_DELTA.json",
+      "ownSha256": "0b8296bccb1c2ff43699205c1031a718c66d6ce5476b40b813302545b414e58b",
+      "completedBObjectSha256": "0b8296bccb1c2ff43699205c1031a718c66d6ce5476b40b813302545b414e58b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SCENE_FACTS_CONTRACT.md",
+      "ownSha256": "48823ea60558ab402b838914e559daa0148aa8e993009ce2ef9af1c4c091c60e",
+      "completedBObjectSha256": "48823ea60558ab402b838914e559daa0148aa8e993009ce2ef9af1c4c091c60e",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SEARCH_BATCH.json",
+      "ownSha256": "f8fa7d404dd1dbfb21a91952eb457c0850522ed8e9e26d65822fd17b403fbb83",
+      "completedBObjectSha256": "f8fa7d404dd1dbfb21a91952eb457c0850522ed8e9e26d65822fd17b403fbb83",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SEARCH_CONTRACT.md",
+      "ownSha256": "12d7d091cf3defd24485796744902cdb769b90598ab3ff4b19bcb8f90f6cca29",
+      "completedBObjectSha256": "12d7d091cf3defd24485796744902cdb769b90598ab3ff4b19bcb8f90f6cca29",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SEARCH_DELTA.json",
+      "ownSha256": "8eba38782403935a77e4dc61ac70b09997f0e604998b3b390a43650e4c6976a1",
+      "completedBObjectSha256": "8eba38782403935a77e4dc61ac70b09997f0e604998b3b390a43650e4c6976a1",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SEARCH_REPRODUCE.md",
+      "ownSha256": "33e0b6b57b762eed28cce9fe349e23c1ac0d12949882c98eaa4dfd903c5b5a4f",
+      "completedBObjectSha256": "33e0b6b57b762eed28cce9fe349e23c1ac0d12949882c98eaa4dfd903c5b5a4f",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/SEARCH_STRATEGY.md",
+      "ownSha256": "3c22279125eb42d0b863a157add14c00dc6e916f89365ce31afdf37a049629ae",
+      "completedBObjectSha256": "3c22279125eb42d0b863a157add14c00dc6e916f89365ce31afdf37a049629ae",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/U01_AUDIT.md",
+      "ownSha256": "b969ed25ded88add46c9c4a50af6096b3fde19b6800575365011ea285589986a",
+      "completedBObjectSha256": "b969ed25ded88add46c9c4a50af6096b3fde19b6800575365011ea285589986a",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/UNKNOWN.md",
+      "ownSha256": "4157f1ce4434be8e46859957941cf5f0616c6bc097b8a59a55eb514f2f764124",
+      "completedBObjectSha256": "4157f1ce4434be8e46859957941cf5f0616c6bc097b8a59a55eb514f2f764124",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/a-frozen-47326188.tar.gz",
+      "ownSha256": "1c327b3a678222d09c41299d067a16a910132a6a18de5cdd6d809da0777e00c9",
+      "completedBObjectSha256": "1c327b3a678222d09c41299d067a16a910132a6a18de5cdd6d809da0777e00c9",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/army-budget-flow-32.tar.gz",
+      "ownSha256": "7738178fb19ec7deec8162be53c6d32948bae61616b9725f1ca04129bdfd5017",
+      "completedBObjectSha256": "7738178fb19ec7deec8162be53c6d32948bae61616b9725f1ca04129bdfd5017",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/army-budget-flow-33.tar.gz",
+      "ownSha256": "a8cb6e097acbe67f1f8424c722d5d9d2f3234b57a2ef69838f45dba9d6d44259",
+      "completedBObjectSha256": "a8cb6e097acbe67f1f8424c722d5d9d2f3234b57a2ef69838f45dba9d6d44259",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/cache-core.init.gradle",
+      "ownSha256": "330c84ec2432a9127d27c8c132f3ade78e62514f22bbbb2d56bb6ae7bb2f16b5",
+      "completedBObjectSha256": "330c84ec2432a9127d27c8c132f3ade78e62514f22bbbb2d56bb6ae7bb2f16b5",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/cache-flow-22.tar.gz",
+      "ownSha256": "e285454aeff583041e684f62feefa32ff80382e903ed4d0436b44bb1e8e7f9a7",
+      "completedBObjectSha256": "e285454aeff583041e684f62feefa32ff80382e903ed4d0436b44bb1e8e7f9a7",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/capacity-flow-20.tar.gz",
+      "ownSha256": "16a41f0d17db20b4504998ab970939d7912e18ffcecc7cdca33b22ac57772916",
+      "completedBObjectSha256": "16a41f0d17db20b4504998ab970939d7912e18ffcecc7cdca33b22ac57772916",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/capacity.instrumentation.init.gradle",
+      "ownSha256": "134fabf2ab75af3f62581d9b47d60e739f969511ac685f3a128c29fa64f23316",
+      "completedBObjectSha256": "134fabf2ab75af3f62581d9b47d60e739f969511ac685f3a128c29fa64f23316",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/debate-flow-31.tar.gz",
+      "ownSha256": "373e226539e740c51d2fa09900c7197d81a9a4baa8528d4d66a27712fa9645e9",
+      "completedBObjectSha256": "373e226539e740c51d2fa09900c7197d81a9a4baa8528d4d66a27712fa9645e9",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/debate.instrumentation.init.gradle",
+      "ownSha256": "e80a27f35ef074abc93700f94a8fbf200406e60684dbba12035c3fbc234dcea7",
+      "completedBObjectSha256": "e80a27f35ef074abc93700f94a8fbf200406e60684dbba12035c3fbc234dcea7",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/direct-event-flow-40.tar.gz",
+      "ownSha256": "5829f885d008affa21ebae0aa9779a31991f139f3d00a74e7fc6b1785e0c38db",
+      "completedBObjectSha256": "5829f885d008affa21ebae0aa9779a31991f139f3d00a74e7fc6b1785e0c38db",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/direct-flow-39.tar.gz",
+      "ownSha256": "55ecf06327e29b3bd97e65598326593b89c611e9288f7b40d3e12e7d895d9075",
+      "completedBObjectSha256": "55ecf06327e29b3bd97e65598326593b89c611e9288f7b40d3e12e7d895d9075",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/governor-flow-27.tar.gz",
+      "ownSha256": "ed52b9202a19d970d7420c3a1454d750fd3207cfef8d3a0664d99a27efc8891f",
+      "completedBObjectSha256": "ed52b9202a19d970d7420c3a1454d750fd3207cfef8d3a0664d99a27efc8891f",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/governor.instrumentation.init.gradle",
+      "ownSha256": "887ea05836034068806d07784e2d5053a397a37c61a7452ecd8a7b67013f0884",
+      "completedBObjectSha256": "887ea05836034068806d07784e2d5053a397a37c61a7452ecd8a7b67013f0884",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/instrumentation.init.gradle",
+      "ownSha256": "31a806eed39088a89f10e652b43277a1b9cea93c789b11998abe8cec2d96ec5b",
+      "completedBObjectSha256": "31a806eed39088a89f10e652b43277a1b9cea93c789b11998abe8cec2d96ec5b",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/military-flow-17.tar.gz",
+      "ownSha256": "93d0ae7904cb115ea972aa8beb6b18bfe6cbbebc70f0bbe4976d8a27c9086980",
+      "completedBObjectSha256": "93d0ae7904cb115ea972aa8beb6b18bfe6cbbebc70f0bbe4976d8a27c9086980",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/original-military-base-cost.json",
+      "ownSha256": "675e6739e604e58a9f00c2f4d40d5751156967d09a548be329b9064ab742ca5e",
+      "completedBObjectSha256": "675e6739e604e58a9f00c2f4d40d5751156967d09a548be329b9064ab742ca5e",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/run-session-b.sh",
+      "ownSha256": "5289ebf90c24b58025e6b2b1579bf963167b6f2d623a51185ba9acc8b4ee150c",
+      "completedBObjectSha256": "5289ebf90c24b58025e6b2b1579bf963167b6f2d623a51185ba9acc8b4ee150c",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/scene-facts-installed-21.json",
+      "ownSha256": "5867883101dc82fe758c2719be69e9770b45bf3a74bf1bd118d13823f569da13",
+      "completedBObjectSha256": "5867883101dc82fe758c2719be69e9770b45bf3a74bf1bd118d13823f569da13",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/scene-flow-21.tar.gz",
+      "ownSha256": "c1377700ce87532dd04c2c5399caf715545b07c2e92502e33e293d6a440f5c4a",
+      "completedBObjectSha256": "c1377700ce87532dd04c2c5399caf715545b07c2e92502e33e293d6a440f5c4a",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/search-flow-38.tar.gz",
+      "ownSha256": "3dea45dd8c1d27677b6972d6be4b226b24897c8e8482c73aa3da8c58d56e435d",
+      "completedBObjectSha256": "3dea45dd8c1d27677b6972d6be4b226b24897c8e8482c73aa3da8c58d56e435d",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/theme-dependencies.init.gradle",
+      "ownSha256": "c9440c7e04fc3182b443671a89965b3d7b6e55f552737fcc1f53ae51c9f7978d",
+      "completedBObjectSha256": "c9440c7e04fc3182b443671a89965b3d7b6e55f552737fcc1f53ae51c9f7978d",
+      "match": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/u01-diff.json",
+      "ownSha256": "61e92f038345ccad6783e087e4d768ab1e69a27edb3043b876d272a2e3852e36",
+      "completedBObjectSha256": "61e92f038345ccad6783e087e4d768ab1e69a27edb3043b876d272a2e3852e36",
+      "match": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/AppliedEventSnapshot.java",
+      "ownSha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "completedBObjectSha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "match": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "ownSha256": "0889a174cef611e6655c2ec7dcc2b067ae0b27177903e1b073dd5f561b563ce4",
+      "completedBObjectSha256": "0889a174cef611e6655c2ec7dcc2b067ae0b27177903e1b073dd5f561b563ce4",
+      "match": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java",
+      "ownSha256": "e3bdcfe6b446bbb0d2f951f5b5dd68b72a28ea4455dc7c51d2e4aed0696e9d9d",
+      "completedBObjectSha256": "e3bdcfe6b446bbb0d2f951f5b5dd68b72a28ea4455dc7c51d2e4aed0696e9d9d",
+      "match": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "ownSha256": "ae7f8a479cad148e6372d9f9f93e5ea495911c3e7aeb4bab3da5fba02ba3939b",
+      "completedBObjectSha256": "ae7f8a479cad148e6372d9f9f93e5ea495911c3e7aeb4bab3da5fba02ba3939b",
+      "match": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "ownSha256": "56d6961270c49b7974ba58e464310555dafdade9d81ad422bc3df7464edcc1c3",
+      "completedBObjectSha256": "56d6961270c49b7974ba58e464310555dafdade9d81ad422bc3df7464edcc1c3",
+      "match": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java",
+      "ownSha256": "6e302a32a65a6bde1d3194c6f73449c9d0763a89236a2221c145161090037893",
+      "completedBObjectSha256": "6e302a32a65a6bde1d3194c6f73449c9d0763a89236a2221c145161090037893",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "ownSha256": "fc650327d79352e2318764a56b986508aa7bb4a9bf49b87014b36b2643dd0099",
+      "completedBObjectSha256": "fc650327d79352e2318764a56b986508aa7bb4a9bf49b87014b36b2643dd0099",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/AppliedEventQuery.java",
+      "ownSha256": "5588db228f5b6e1f4b133457c0c73ea0327fcf6b98e44cbe390f921ad1965dd6",
+      "completedBObjectSha256": "5588db228f5b6e1f4b133457c0c73ea0327fcf6b98e44cbe390f921ad1965dd6",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
+      "ownSha256": "d0b595cd345b23e6b1caa1bb40b3d399a2d1f823f05d461407e8ab2f2af461e1",
+      "completedBObjectSha256": "d0b595cd345b23e6b1caa1bb40b3d399a2d1f823f05d461407e8ab2f2af461e1",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "ownSha256": "e5724fe5eb62033b233da5fc5b49440fd196ff7c60d017b02bc3a5750af3c7ab",
+      "completedBObjectSha256": "e5724fe5eb62033b233da5fc5b49440fd196ff7c60d017b02bc3a5750af3c7ab",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SceneFactsQuery.java",
+      "ownSha256": "67207de3010e5bbc40cfee0d391bb4a96c2f5e7ce21631e0ad3bf502af5774a2",
+      "completedBObjectSha256": "67207de3010e5bbc40cfee0d391bb4a96c2f5e7ce21631e0ad3bf502af5774a2",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateSettlementSessionTest.java",
+      "ownSha256": "319e29ea09b67971a8b6325813f02b89c5f072e4edb304298b0bbbc0dcebc08b",
+      "completedBObjectSha256": "319e29ea09b67971a8b6325813f02b89c5f072e4edb304298b0bbbc0dcebc08b",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcGovernorRuntimeFactsTest.java",
+      "ownSha256": "bc5cd8f689da2497905ee7874361e24ad31f175519e4d713708d2ca4bbf067de",
+      "completedBObjectSha256": "bc5cd8f689da2497905ee7874361e24ad31f175519e4d713708d2ca4bbf067de",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/PcDirectRecruitmentSessionTest.java",
+      "ownSha256": "af2876673ef9e83f5993178204a9d77884627716f5fce0d7eef86cd186f6c93b",
+      "completedBObjectSha256": "af2876673ef9e83f5993178204a9d77884627716f5fce0d7eef86cd186f6c93b",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/PcSearchSessionTest.java",
+      "ownSha256": "a4a27985459fa9cb0d39e3efea57907df5de8bf8f85d03d752a45de846ad6207",
+      "completedBObjectSha256": "a4a27985459fa9cb0d39e3efea57907df5de8bf8f85d03d752a45de846ad6207",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SceneFactsExportProbe.java",
+      "ownSha256": "1848c82c350b9aee2b99216a294c61295d8dbdb1c277188439bbfb33ec289004",
+      "completedBObjectSha256": "1848c82c350b9aee2b99216a294c61295d8dbdb1c277188439bbfb33ec289004",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SceneFactsQueryTest.java",
+      "ownSha256": "02d1dd1325847a44c0f96736689255ee1b6203bf34766ac00fc97b9d05655c7a",
+      "completedBObjectSha256": "02d1dd1325847a44c0f96736689255ee1b6203bf34766ac00fc97b9d05655c7a",
+      "match": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SessionBOfficerDtoParityProbe.java",
+      "ownSha256": "374836357346a539e4d5dd3e899b5c906f01f17175ded1a082956685ca875155",
+      "completedBObjectSha256": "374836357346a539e4d5dd3e899b5c906f01f17175ded1a082956685ca875155",
+      "match": true
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_campaign_settlement.py",
+      "ownSha256": "3b46f73edab1bdd93c467129843b1c6f2e903bc7ae9c926407f152c33decf6b9",
+      "completedBObjectSha256": "3b46f73edab1bdd93c467129843b1c6f2e903bc7ae9c926407f152c33decf6b9",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_apply_theme_pages.py",
+      "ownSha256": "1e28f48ac326b1d63d151c35d27ec70479f66fbbaf1169a62ff6d41e307cf4b1",
+      "completedBObjectSha256": "1e28f48ac326b1d63d151c35d27ec70479f66fbbaf1169a62ff6d41e307cf4b1",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_freeze_apk.py",
+      "ownSha256": "7ce2812e083721473de0bffd167985e07790fb64b80e9a6e94f937faf3f3288d",
+      "completedBObjectSha256": "7ce2812e083721473de0bffd167985e07790fb64b80e9a6e94f937faf3f3288d",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_freeze_cache_apk.py",
+      "ownSha256": "780e2ab3f87e1bdcf76ab66956eca754479078be25943abee5af6368118a34af",
+      "completedBObjectSha256": "780e2ab3f87e1bdcf76ab66956eca754479078be25943abee5af6368118a34af",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pack_army_action_expected.py",
+      "ownSha256": "6474859a2ffde9e889f54b076cc7175e3ac27bca014738f3e82e74b1b0bc00dc",
+      "completedBObjectSha256": "6474859a2ffde9e889f54b076cc7175e3ac27bca014738f3e82e74b1b0bc00dc",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pack_capacity_expected.py",
+      "ownSha256": "f0592f3d902e427c68108d3bf976a72bb49c3cd47540138a0f864d4f352045d3",
+      "completedBObjectSha256": "f0592f3d902e427c68108d3bf976a72bb49c3cd47540138a0f864d4f352045d3",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pack_capacity_references.py",
+      "ownSha256": "1dc16b57ba9f6669f23dab83183b4ef1b651a46d67fa989a77c14201b472c7ee",
+      "completedBObjectSha256": "1dc16b57ba9f6669f23dab83183b4ef1b651a46d67fa989a77c14201b472c7ee",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pack_governor_rosters.py",
+      "ownSha256": "303720abe84a621444573004869f76980105454d3873b4ad8941bff3b76a5fb7",
+      "completedBObjectSha256": "303720abe84a621444573004869f76980105454d3873b4ad8941bff3b76a5fb7",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pack_raw_loyalty.py",
+      "ownSha256": "04d986ec98d04eb0638e34b95dc9c76c17ee979b6b3ae2aa7fba99a62929c1d4",
+      "completedBObjectSha256": "04d986ec98d04eb0638e34b95dc9c76c17ee979b6b3ae2aa7fba99a62929c1d4",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pack_search_regions.py",
+      "ownSha256": "0ba4952626b535ba66e2fa3ee153dcf6d91e303d5cf036a0802e776a8c6c640d",
+      "completedBObjectSha256": "0ba4952626b535ba66e2fa3ee153dcf6d91e303d5cf036a0802e776a8c6c640d",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_army_action_points.py",
+      "ownSha256": "08a960ee9f5ccd22bd4b09bde1ff486a4461c8ab0b9a5b7a7e8724e822ecd094",
+      "completedBObjectSha256": "08a960ee9f5ccd22bd4b09bde1ff486a4461c8ab0b9a5b7a7e8724e822ecd094",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_build_spacing.py",
+      "ownSha256": "5fd1b786fc2ab3ef8000cdc58db053104e861472cd8f9f7d778e8150ad40a5f9",
+      "completedBObjectSha256": "5fd1b786fc2ab3ef8000cdc58db053104e861472cd8f9f7d778e8150ad40a5f9",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_command_capacity.py",
+      "ownSha256": "8512f4c0a495ece5e77e6a69254d6ef8f7bfefbaef4874fdd5e051a841ca0d2a",
+      "completedBObjectSha256": "8512f4c0a495ece5e77e6a69254d6ef8f7bfefbaef4874fdd5e051a841ca0d2a",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_command_roll.py",
+      "ownSha256": "e5afcb117180b5ebcd0181b7cc04f5fb9346bb1933a72cd46e38ae6ff7b68b01",
+      "completedBObjectSha256": "e5afcb117180b5ebcd0181b7cc04f5fb9346bb1933a72cd46e38ae6ff7b68b01",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_debate_context.py",
+      "ownSha256": "c7c89f5b549af43d849b2f422f0e5833f77eb0e61096d201db549f4992aeceb3",
+      "completedBObjectSha256": "c7c89f5b549af43d849b2f422f0e5833f77eb0e61096d201db549f4992aeceb3",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_direct_recruitment.py",
+      "ownSha256": "04116e414d95ab3a22516f02a7aac81814d48ee32892b901a1809a6e0d56afd8",
+      "completedBObjectSha256": "04116e414d95ab3a22516f02a7aac81814d48ee32892b901a1809a6e0d56afd8",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_geography_context.py",
+      "ownSha256": "175ac040f82b3bdb36d972ce1b4de81c2b096feeeb4812f2548a4e6c92c3453b",
+      "completedBObjectSha256": "175ac040f82b3bdb36d972ce1b4de81c2b096feeeb4812f2548a4e6c92c3453b",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_governor_admission.py",
+      "ownSha256": "3ee722ee175a257dbfd2707e757ed225dada6363a5588eaf4ead0bf0961e91ec",
+      "completedBObjectSha256": "3ee722ee175a257dbfd2707e757ed225dada6363a5588eaf4ead0bf0961e91ec",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_military_cost.py",
+      "ownSha256": "6c2d7b7c9e5a59f40c0ea526bde2c7ee79e3542a620fb5f0c70d74c3f9ed28b7",
+      "completedBObjectSha256": "6c2d7b7c9e5a59f40c0ea526bde2c7ee79e3542a620fb5f0c70d74c3f9ed28b7",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_ordinary_search.py",
+      "ownSha256": "e201f93310986b25658caaa8f2b11f116dbc2069ca7843503e2ef672ad7807c8",
+      "completedBObjectSha256": "e201f93310986b25658caaa8f2b11f116dbc2069ca7843503e2ef672ad7807c8",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_raw_loyalty.py",
+      "ownSha256": "2fee246ece5cddf33a3d0316ad02059aedbc42d721c45c721757e6b4574009bf",
+      "completedBObjectSha256": "2fee246ece5cddf33a3d0316ad02059aedbc42d721c45c721757e6b4574009bf",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_recruitment_cost.py",
+      "ownSha256": "05e898f529c5332bf865a6c6df9d0cfb5f0bce97b68599973a31548d2a354b31",
+      "completedBObjectSha256": "05e898f529c5332bf865a6c6df9d0cfb5f0bce97b68599973a31548d2a354b31",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_search_consent_tail.py",
+      "ownSha256": "058360a54d0a803ab138b2c4196570096157c53e9970c439ff360bf9e5b83758",
+      "completedBObjectSha256": "058360a54d0a803ab138b2c4196570096157c53e9970c439ff360bf9e5b83758",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_search_followup.py",
+      "ownSha256": "0a3ec9f59809b07820b47106e668db9298793d0564297e045edb4d9fc2fc1fac",
+      "completedBObjectSha256": "0a3ec9f59809b07820b47106e668db9298793d0564297e045edb4d9fc2fc1fac",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_pc_search_selection.py",
+      "ownSha256": "a8cb5d14ef6e0e347e55d0c07673360d3869a5f1992a7b62ee6242aa99587383",
+      "completedBObjectSha256": "a8cb5d14ef6e0e347e55d0c07673360d3869a5f1992a7b62ee6242aa99587383",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_stage_cache_core.py",
+      "ownSha256": "340fd81fcb93e04f095c89bb11397866ed2c603bdfc27cea6867a7cb9a2fc695",
+      "completedBObjectSha256": "340fd81fcb93e04f095c89bb11397866ed2c603bdfc27cea6867a7cb9a2fc695",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_stage_frozen_dependencies.py",
+      "ownSha256": "cd54b10c05335f4b2b7d49c57ef9701c4d2052c9a337407490585d0600f73c78",
+      "completedBObjectSha256": "cd54b10c05335f4b2b7d49c57ef9701c4d2052c9a337407490585d0600f73c78",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_stage_governor_legacy.py",
+      "ownSha256": "ca0299529eb666351236ccff00df817cf58cbc929e5c6f4b8faed27be6eba88e",
+      "completedBObjectSha256": "ca0299529eb666351236ccff00df817cf58cbc929e5c6f4b8faed27be6eba88e",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_stage_movement_dependency.py",
+      "ownSha256": "6c18a035ffb8c550ae4dffbd366852fe0f8ef28363ae09b722f20254bad08eb0",
+      "completedBObjectSha256": "6c18a035ffb8c550ae4dffbd366852fe0f8ef28363ae09b722f20254bad08eb0",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_stage_theme_dependencies.py",
+      "ownSha256": "07b26d845becdfcc9be3c9ddd842346bb50068abb862bdb2187619d11b927d31",
+      "completedBObjectSha256": "07b26d845becdfcc9be3c9ddd842346bb50068abb862bdb2187619d11b927d31",
+      "match": true
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "ownSha256": "8ddf391d724a1535300136f351c07c8176d6829c36ac88b2f688486d6624ea92",
+      "completedBObjectSha256": "8ddf391d724a1535300136f351c07c8176d6829c36ac88b2f688486d6624ea92",
+      "match": true
+    }
+  ],
+  "mismatches": [],
+  "unregisteredNewAProductionOrTools": [],
+  "AProductionOrToolPaths": 35,
+  "AndroidGameBridge": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java",
+      "sha256": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08",
+      "match": true
+    }
+  ],
+  "BWorkingTreeReadOrMerged": false,
+  "passed": true
+}
