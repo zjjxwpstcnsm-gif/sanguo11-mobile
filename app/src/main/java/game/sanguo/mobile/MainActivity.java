@@ -480,7 +480,7 @@ public final class MainActivity extends Activity {
         }
         if(h==null){clearUnitSelection();return;}
         World.Unit source=world.unit(moving);
-        if(source!=null&&unitCommand.equals("march")){if(h.equals(source.hex)){clearUnitSelection();return;}previewMarch(source,h);return;}
+        if(source!=null&&unitCommand.equals("march")){if(h.equals(source.hex)){clearUnitSelection();return;}if(pendingMarch!=null&&pendingMarch.order!=null&&pendingMarch.order.intent!=MarchOrders.Intent.MOVE)previewTargetMarch(source,h);else previewMarch(source,h);return;}
         if(source!=null&&unitCommand.equals("attack")){
             List<World.Unit> candidates=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(h.equals(u.hex)&&u.id!=source.id)candidates.add(u);
             World.City underlying=world.cityAt(h);
@@ -550,8 +550,8 @@ public final class MainActivity extends Activity {
     }
     void cancelMapPick(){clearTacticPreview();mapPick=null;pickTargets=Collections.emptySet();pickTitle="";refresh();}
     private void approach(World.Unit u,Hex h){
-        if(unitCommand.equals("march")){previewMarch(u,h);return;}
-        confirm("目标在当前射程外，预览自动攻击路线？确认后将逐旬接近并持续攻击，攻下据点后自动进驻。",()->{unitCommand="march";previewMarch(u,h);});
+        if(unitCommand.equals("march")){previewTargetMarch(u,h);return;}
+        confirm("目标在当前射程外，预览自动攻击路线？确认后将逐旬接近并持续攻击，攻下据点后自动进驻。",()->{unitCommand="march";previewTargetMarch(u,h);});
     }
     private void showTactics(World.Unit u){
         pendingMarch=null;unitCommand="select";refresh();
@@ -776,8 +776,18 @@ public final class MainActivity extends Activity {
         if(sounds!=null)sounds.establishedMenu(this,legacyView.state,showPanel&&ui.page.equals("menu"));
     }
     private void previewMarch(World.Unit unit,Hex target){
+        // A military move retains the exact chosen tile. Cargo rerouting keeps
+        // its existing explicit delivery-city semantics.
+        if(unit instanceof Domestic.Mission){previewTargetMarch(unit,target);return;}
+        pendingMarch=world.marches.previewMove(unit.id,target);
+        showMarchPreview();
+    }
+    private void previewTargetMarch(World.Unit unit,Hex target){
         World.City c=world.cityAt(target);
         pendingMarch=c!=null&&c.owner==unit.owner?world.marches.previewCity(unit.id,c.id):world.marches.preview(unit.id,target);
+        showMarchPreview();
+    }
+    private void showMarchPreview(){
         ui.page="map";ui.panelVisible=false;refresh();
         if(!pendingMarch.valid())commandDock.announceForAccessibility(pendingMarch.error);
     }
@@ -810,7 +820,7 @@ public final class MainActivity extends Activity {
         commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);commandDock.setGravity(Gravity.CENTER_VERTICAL);
         if(pendingMarch==null){
             String error=world.orders.error(u);
-            String hint=unitCommand.equals("march")?"终点为己方据点任意占地格即自动入城；途中可穿行":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
+            String hint=unitCommand.equals("march")?(u instanceof Domestic.Mission?"点己方据点改道并交付；途中可穿行":"移动到点选地块后待命；进入据点请用进驻指令"):unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
             TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
             LinearLayout summary=new LinearLayout(this);summary.setGravity(Gravity.CENTER_VERTICAL);
             summary.addView(state,new LinearLayout.LayoutParams(0,-2,1));
