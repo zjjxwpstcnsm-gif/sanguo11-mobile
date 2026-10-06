@@ -89,5 +89,70 @@
   "newApkInstalled": false,
   "noBWipMerged": true,
   "conflicts": [],
-  "overallGoalComplete": false
+  "overallGoalComplete": false,
+  "large11": {
+    "sourceRevision": "6ea385ff2e1e021dc5d7d519f9f6cbb2ab57ffba",
+    "gameApk": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-6ea385ff-large/app-debug.apk",
+    "gameApkSha256": "8e866064fbc340fab7559615731e8531609a3f1a6b7dd18df42f568a2d24cb89",
+    "testApkSha256": "d4b747d3043b6d764615d9e882e27fa6387177334483c2d29591163e784008d6",
+    "normalFlowChecks": 2729,
+    "coldProcessChecks": 79,
+    "actualRuntimeHeapBytes": 536870912,
+    "javaSamples": 413,
+    "javaUsedPeakBytes": 377134224,
+    "nativeHeapSeparatePeakBytes": 286795808,
+    "mainTotalPssSeparatePeakKiB": 588558,
+    "sourceChildSeparatePeakPssKiB": 69392,
+    "sourceChildPeakCount": 2,
+    "childObservationScope": "Late source6 onward only; original8-template child, not new fire13; not GPU VRAM, maxima not summed",
+    "coldProcess": {
+      "beforePid": "27156",
+      "afterPid": "18033",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "59e38e0368fd67fac4a946a67bbbfcb889ccf4ac6827364daa354c825eb90753",
+      "passed": true
+    },
+    "all16RealSourceMenus": true,
+    "purePresentationFullSaveRngStateTokenPreserved": true,
+    "allOriginalFileRestoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "passed": true,
+    "lockReleased": true,
+    "evidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/large-11",
+    "ARM": false,
+    "overallGoalComplete": false
+  },
+  "normal12": {
+    "sourceRevision": "6ea385ff2e1e021dc5d7d519f9f6cbb2ab57ffba",
+    "gameApkSha256": "5a1625eded1146953b6abab9e5fddd38c25985afea9b1f8422a2c7316e6a365d",
+    "passed": null,
+    "stage": "separately-backed-up actual install/test in progress; no large11 result credit"
+  },
+  "combined": {
+    "directory": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile",
+    "branch": "codex/map-ui-media-integration",
+    "sourceRevision": "a4ad5221571dcdb3a154610bde00a3e828e290cd",
+    "gameApkSha256": "a0111f346d3f2c384d8897b0cf661313c3879f57a3a26b767004560fd7940900",
+    "installed": false,
+    "frozenBSource": "224751a7fadf6c2ef562e74be2e67576461d5e32",
+    "frozenBDoc": "cc4e7abd39c2998c4ae708123a15365b96ede80a",
+    "conflicts": [],
+    "nativeFire13Installed": false,
+    "hostMedia16Joins": 10720,
+    "hostMediaUnknowns": 0,
+    "hostMediaPngSha": 2892,
+    "normalMediaPixelsCallerClosed": false
+  }
 }
