@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "apkSha256": "a7d4b7113d50d89edbc668178cc7dac07c935540264e0eb480d0d3c469c43520",
+  "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
+  "scope": "actual Source0/faction29/native91 normal deploy; exact TILE MOVE preview+cancel; explicit neutral CITY ATTACK preview+cancel+confirm; actual2 whole turns capture; automatic full garrison/nativearmy7 and retiredunit; fullSave/allRNG manual/load, newprocess cold autosave/manual/map; no direct rule injection",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "actualJavaHeapLimitBytes": 536870912,
+  "turnDiagnostics": "turn=explicit-attack-capture-0 finalElapsedMs=17197 background=false\nturn=explicit-attack-capture-1 finalElapsedMs=21541 background=false\nA map boundary label=actual-attack-capture rendered=true snapshotState=302039e3-4b5f-4d62-86e8-efc9e93e8dc0:1:4 expected=302039e3-4b5f-4d62-86e8-efc9e93e8dc0:1:4\nturn=after-capture-save finalElapsedMs=11416 background=false\nA map boundary label=actual-attack-readback rendered=true snapshotState=bd999e74-dac1-421f-98da-3fb6c1f03e8a:2:0 expected=bd999e74-dac1-421f-98da-3fb6c1f03e8a:2:0\nnormal exit nativeSession=false nativeFailure=false\n",
+  "coldProcess": {
+    "beforePid": "28256",
+    "afterPid": "7371",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "b5ef42873daa8985746bd7950e74756385bcd92cd30fe4a27faa72b028067b34",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "nativeChildIndependent": {
+    "samples": 125,
+    "maxChildren": 2,
+    "peakPerChildPssKiB": 46814,
+    "notJavaNativeAllocatorOrGpuPeak": true
+  },
+  "videos": [
+    {
+      "part": 1,
+      "beginUnix": 1791298796.6718621,
+      "endUnix": 1791298979.0421388,
+      "recordPid": "30564",
+      "devicePath": "/data/local/tmp/session_a_video_attack_large_29/part01.mp4",
+      "stageAtEnd": "cold-process-running",
+      "deviceSha256": "bd877b8beaca7ef831eeb798778acc46f053461fb31c1c8b9b90ce30652bc6f3",
+      "sha256": "bd877b8beaca7ef831eeb798778acc46f053461fb31c1c8b9b90ce30652bc6f3",
+      "bytes": 28053060,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/attack-large-29/video/part01.mp4"
+    },
+    {
+      "part": 2,
+      "beginUnix": 1791298979.487521,
+      "endUnix": 1791299004.426059,
+      "recordPid": "10301",
+      "devicePath": "/data/local/tmp/session_a_video_attack_large_29/part02.mp4",
+      "stageAtEnd": "restored-verified",
+      "deviceSha256": "57636c352b434562e407fd89271c70e9630244f2b61fadd1085d39c0e713fb08",
+      "sha256": "57636c352b434562e407fd89271c70e9630244f2b61fadd1085d39c0e713fb08",
+      "bytes": 42879,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/attack-large-29/video/part02.mp4"
+    }
+  ],
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/attack-large-29",
+  "evidenceSha256": {
+    "session.json": "7dbe9e272eb7c6a50184d1ac5e777c523984bdccefa50d2745338ba15126a9e5",
+    "logcat.txt": "87d48352c8a7a01e2e9a02324ee31d206bea9ae9a992cdd52efc590a4b4965ae",
+    "instrumentation.txt": "d8d317921045421f33ec412a4129497750f949ddb781437f7c086612272e8b28",
+    "cold-instrumentation.txt": "166b1e804593b2440ba759c21857cca21fbd0f201388a3b586f59c9b3d84615b",
+    "evidence/actual-build.sg11": "b5ef42873daa8985746bd7950e74756385bcd92cd30fe4a27faa72b028067b34",
+    "evidence/diagnosis.txt": "e6fe08fdabaded4853a31e05b653957b6b39839135290213280f0b1b22dd5b97"
+  },
+  "ordinaryMoveBehaviorReverted": false,
+  "militaryFireDebateCurrentSamePackageAccepted": false,
+  "ARM": false,
+  "overallGoalComplete": false,
+  "screenshotsInspected": [
+    "01-explicit-attack-preview.png",
+    "03-actual-task-capture.png"
+  ],
+  "inspectionScope": "normal plan title/path/cancel/confirm/task explanation/result/captured-port label and complete-turn text readable; full PC terrain framebuffer parity remains pending"
+}
