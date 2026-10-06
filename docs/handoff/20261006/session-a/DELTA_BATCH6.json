@@ -28,5 +28,130 @@
     "Original cell fire native factory/template13/additive material and lifecycle normal gameplay",
     "Normal BGM, real voice/remaining58/ordinary sounds producers; fullscreen ordinary pixels/color/crop/time/lifecycle and wholePCM0.995/-22",
     "Normal combined movement/construction/fire/multiturn/contest and every16 source full gameplay matrix"
-  ]
+  ],
+  "exactTestAndEvidenceDeltas": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "61050de4c25be8aac6d9e01b00f12de685b9e1d38989d411da3b2e086359625e",
+      "afterSha256": "447bc639ac511bdf23a1939cf437a2bf2af0f0b4a01a35491476a9307c1de565",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/CONTRACT.md",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "082168270cbaf5f9b5d98f1bbeb2beada5e9dc6af55c22b7fb9e8aba7a16d278",
+      "afterSha256": "e52413a20579a6eba908691d646fd48c2002054ea79009ba9f38b2ab379a701c",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/DELIVERY.md",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": null,
+      "afterSha256": "94a43c55d4b00ae1288a7df5785dbf52a8dd29bac51a24d299fd8a983bcf0660",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/HEAP_PROFILE.json",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "d46f99beea1ce048d781071823bd40abc8d79b670f54017c1efcd68520e2f0f5",
+      "afterSha256": "02208e12d6d2bb6bf9d6d5e0a110359c714127abe3665ea3e10a14e31b604142",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/INSTALLED_16_SOURCE_MATRIX.json",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "e17a6e6ebeef37b57e8ee39db3994d866616362e9d52be43bf392eb5037e0027",
+      "afterSha256": "7e9896ba01145d88a1a03d18f4cd8a669943a665940317057f18c8f214dccaee",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/INTEGRATION_REQUEST.md",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "87f4514e719c984a929a5d5b5e22b0cf17e6818107ad08122cdc443a93601750",
+      "afterSha256": "dce5195aef3eb55d6bbf806d4aeb1a623c84d20ed546298356f626a271b6361a",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/OWNERSHIP.json",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "688775fcb4e106eab8b963ba9dfbb6c2a1cab00f707efb287336e897ab01e65c",
+      "afterSha256": "2c48245b382c7a6ffc0f511fe5582610518443a757df90781940e90f445d5312",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/PROGRESS.md",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "550b985f3c81102184d658dc7abbc0d88ace541f944e370674da344998ddebae",
+      "afterSha256": "0168bcd7f3a877d0c4f7f41550d618283e3d745ad6d83af4cb8949cb62671215",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/device_session.py",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "b4909091cbc00a34e96ace53b5fb157542782c1218d172e2d939bd24f31acc7a",
+      "afterSha256": "400bbae363e5ca5e3cdda7f2a2e7e88d8e6d70e8d7fc9478bb990251f9492ba1",
+      "owner": "A test/session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/inspect_heap.py",
+      "beforeCommit": "3c02fea5",
+      "beforeSha256": "33ef31c659c3ebfbc7706c0658d6590223480f342a3e01dd56f5f66fa16c1033",
+      "afterSha256": "be00aac83c5b1c7945a5cfe5c75888bae61055472dd55edf815960d591bb7f75",
+      "owner": "A test/session"
+    }
+  ],
+  "installedGameBytesUnchangedThroughCold10": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+  "cold09HarnessFailure": "First normal314 checks completed, PID query after framework target death prevented second phase; restored9/3797 exactSHA. No fresh-process acceptance borrowed.",
+  "cold10": {
+    "passed": true,
+    "gameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+    "testApkSha256": "fd4c78e6f9bbc2d5a0fdb96c36e109fcb230d63e506b901695447edaa2a42233",
+    "normalFlowChecks": 314,
+    "coldProcessChecks": 79,
+    "coldProcess": {
+      "beforePid": "17291",
+      "afterPid": "24237",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "92dd0ae7ee541c6348a07e0f3b53c4ba283d8fb6c5cd4d10721bbc135878373e",
+      "passed": true
+    },
+    "normalPath": "Real Source15 catalog/faction/cancel-retry/new-game/zoom/pan/officers/Home/orientation/save3/load/Activity reopen; framework termination then OS starts distinct target process and normal MainActivity loads actual autosave. ExpectedSHA comparator only, no injected state.",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "lockReleased": true,
+    "normalEvidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cold-10/evidence",
+    "coldEvidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cold-10/cold-evidence",
+    "deviceBoundary": "5554 private complete inherited AVD, API29 x86_64, real runtime384MiB; not ARM.",
+    "limitations": "Same APK supplementary flow, not final B combination/normal move-fire-build-multiple-turns or all-media acceptance. No performance/ARM closure inferred."
+  },
+  "finalPreservation": {
+    "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+    "originalFilesChecked": 4301,
+    "originalMismatches": [],
+    "originalStatusShaEqual": true,
+    "originalHeadEqual": true,
+    "frozenCoreApiRuntimeUnityChecked": 635,
+    "frozenMismatches": [],
+    "resourceSourceAndApkChecked": 168,
+    "resourceMismatches": [],
+    "jniSourceAndApkChecked": 4,
+    "jniMismatches": [],
+    "gameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+    "noBWipMerged": true,
+    "conflicts": []
+  },
+  "overallGoalComplete": false
 }

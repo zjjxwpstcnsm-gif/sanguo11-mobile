@@ -169,5 +169,38 @@
     "evidenceBoundary": "First testOutput/logcat preserved; its screenshot folder was not pulled before second-stage harness failure and restoration. Not claiming lost screenshots.",
     "testSha256": "fd4c78e6f9bbc2d5a0fdb96c36e109fcb230d63e506b901695447edaa2a42233"
   },
-  "cold10": "Pending fresh complete backup and same-game/test SHA; corrected PID lifecycle observation."
+  "cold10": {
+    "passed": true,
+    "gameApkSha256": "daecedbb0436e5eebd5423b4b607d7f8926b544ce411409edb4448c8c6719d1e",
+    "testApkSha256": "fd4c78e6f9bbc2d5a0fdb96c36e109fcb230d63e506b901695447edaa2a42233",
+    "normalFlowChecks": 314,
+    "coldProcessChecks": 79,
+    "coldProcess": {
+      "beforePid": "17291",
+      "afterPid": "24237",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "92dd0ae7ee541c6348a07e0f3b53c4ba283d8fb6c5cd4d10721bbc135878373e",
+      "passed": true
+    },
+    "normalPath": "Real Source15 catalog/faction/cancel-retry/new-game/zoom/pan/officers/Home/orientation/save3/load/Activity reopen; framework termination then OS starts distinct target process and normal MainActivity loads actual autosave. ExpectedSHA comparator only, no injected state.",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "lockReleased": true,
+    "normalEvidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cold-10/evidence",
+    "coldEvidence": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cold-10/cold-evidence",
+    "deviceBoundary": "5554 private complete inherited AVD, API29 x86_64, real runtime384MiB; not ARM.",
+    "limitations": "Same APK supplementary flow, not final B combination/normal move-fire-build-multiple-turns or all-media acceptance. No performance/ARM closure inferred."
+  }
 }

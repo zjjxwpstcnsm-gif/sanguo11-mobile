@@ -58,7 +58,10 @@ MOVEMENT_FROZEN.json. No later rendering-throttle production patch was supplied.
   buffer arrays6475188B. This does not establish the sole OOM cause.
 - Cold09: first normal flow PASS314, second-stage harness failed because
   instrumentation had already terminated the process before pidof. Original
-  data restored. Cold10 corrected PID observation is pending.
+  data restored. Cold10 corrected observer PASS:314 normal checks +79 fresh-process checks,
+  PID17291 ->24237, actual complete saved/runtime SHA
+  `92dd0ae7ee541c6348a07e0f3b53c4ba283d8fb6c5cd4d10721bbc135878373e`.
+  Original9/3797 files restored exactSHA and lock released.
 - Every finished session above restored all original9 internal/3797 external
   regular files by final full-tree SHA. No clear-data or user-resource cleanup.
 - 5554 is a complete private expanded clone of the original AVD, API29/x86_64,
