@@ -68,7 +68,8 @@ def collect(out,r,record,timeout=20):
 def stop_and_restore(out,r):
  c=r.get('audioCapture')
  if c is None:return
- shell('am stopservice -n '+TEST+'/'+SERVICE)
+ if SERVICE in shell('dumpsys activity services '+TEST):shell('am stopservice -n '+TEST+'/'+SERVICE)
+ else:c['serviceAlreadyStoppedAtRollback']=True;save(out,r)
  for record in c['captures']:
   if 'hostPath' not in record:
    try:collect(out,r,record,20)
