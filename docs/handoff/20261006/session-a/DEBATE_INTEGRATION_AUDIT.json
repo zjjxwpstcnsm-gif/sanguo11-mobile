@@ -224,8 +224,13 @@
   ],
   "sourcePathCount": 27,
   "WipReadOrMerged": false,
-  "imported": false,
+  "imported": true,
   "apkInstalled": false,
   "B5582ScoresAreACombinationScores": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "primarySourceImport": "fe8489ee",
+  "primaryDocImport": "25af1379",
+  "conflicts": [],
+  "AHelperProjection22Pass": true,
+  "AHelperPosition40000RawFloatExact": true
 }
