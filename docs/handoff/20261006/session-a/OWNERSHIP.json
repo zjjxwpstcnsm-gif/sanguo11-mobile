@@ -205,7 +205,8 @@
     "docs/handoff/20261006/session-a/COMPLETED_B_OBJECT_GUARD54.json",
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_CALLER_FAILURE54.json",
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_NATIVE181_ACCEPTANCE55.json",
-    "docs/handoff/20261006/session-a/inspect_native_mp4.py"
+    "docs/handoff/20261006/session-a/inspect_native_mp4.py",
+    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_SCROLL_FAILURE56.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

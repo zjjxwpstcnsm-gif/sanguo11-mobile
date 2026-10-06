@@ -98,6 +98,38 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         check(expected!=null&&expected.sameAs(loaded[0]),"actual caller bitmap equals complete packaged original pixels "+caller);expected.recycle();check(loader.bytes()<=16*1024*1024,"actual portrait cache stays within16MiB "+caller);
         return new org.json.JSONObject().put("caller",caller).put("officerId",id).put("nativeId",identity[0].nativeId).put("currentName",visual.officer(id).name).put("year",year).put("sourceVariant",identity[0].sourceVariant).put("sourcePath",identity[0].sourcePath).put("sourceSha256",identity[0].sourceSha).put("recordSha256",identity[0].recordSha).put("asset",expectedSource.asset).put("pngSha256",expectedSource.pngSha).put("rgbaSha256",expectedSource.rgbaSha).put("faceId",expectedSource.face).put("fullBitmapSameAs",true).put("width",loaded[0].getWidth()).put("height",loaded[0].getHeight());
     }
+    private TextView revealPortrait(DataTable<?> table,World.Officer officer,int nativeId)throws Exception {
+        int[] position={-1};
+        ui(()->{for(int i=0;i<table.list.getAdapter().getCount();i++)if(((World.Officer)table.list.getAdapter().getItem(i)).id==officer.id){position[0]=i;break;}});
+        check(position[0]>=0,"normal name search contains exact source officer "+nativeId);
+        long deadline=SystemClock.uptimeMillis()+120000;
+        while(SystemClock.uptimeMillis()<deadline){
+            TextView[] cell={null};int[] first={0};Rect viewport=new Rect();
+            ui(()->{
+                first[0]=table.list.getFirstVisiblePosition();
+                View found=find(table.list,v->{
+                    if(!(v instanceof TextView)||!officer.name.contentEquals(((TextView)v).getText())||!(((TextView)v).getCompoundDrawables()[0] instanceof OfficerPortrait))return false;
+                    Rect visible=new Rect();if(!v.getGlobalVisibleRect(visible)||visible.height()<v.getHeight()*.8f)return false;
+                    try{return ((World.Officer)field(((TextView)v).getCompoundDrawables()[0],"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}
+                });
+                if(found!=null)cell[0]=(TextView)found;
+                check(table.list.getGlobalVisibleRect(viewport)&&viewport.height()>0,"actual filtered roster viewport reachable "+nativeId);
+                int[] origin=new int[2];table.list.getRootView().getLocationOnScreen(origin);viewport.offset(origin[0],origin[1]);
+            });
+            if(cell[0]!=null)return cell[0];
+            // Search includes faction/status columns. The exact person can be
+            // below the viewport; use a human-reachable ListView swipe, never
+            // select a different name or bypass the callback with performClick.
+            boolean forward=position[0]>=first[0];float x=viewport.centerX();
+            float start=viewport.top+viewport.height()*(forward?.8f:.2f),finish=viewport.top+viewport.height()*(forward?.2f:.8f);
+            log.append("ACTUAL roster swipe native=").append(nativeId).append(" targetIndex=").append(position[0]).append(" firstVisible=").append(first[0]).append(" forward=").append(forward).append('\n');
+            long down=SystemClock.uptimeMillis();pointer(down,MotionEvent.ACTION_DOWN,x,start);
+            for(int i=1;i<=10;i++)pointer(down,MotionEvent.ACTION_MOVE,x,start+(finish-start)*i/10f);
+            pointer(down,MotionEvent.ACTION_UP,x,finish);SystemClock.sleep(400);
+        }
+        throw new AssertionError("Actual source portrait row not reachable after real swipes native="+nativeId+" name="+officer.name);
+    }
+
     private void normalPortraitRows(int source)throws Exception{
         byte[] before=capture();StateToken prior=token();World visual=SessionProbe.view(activity);Map<Integer,PcOfficerInfo.Person> sourcePeople=PcOfficerInfo.saved(visual);org.json.JSONArray rows=new org.json.JSONArray();text("清除");DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
         List<Integer> ids=new ArrayList<>();
@@ -109,8 +141,8 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         for(int id:ids){
             var person=sourcePeople.get(id);World.Officer officer=visual.officer(id);check(officer!=null,"source native officer exists "+person.nativeId);
             tap(table.search);ui(()->table.search.setText(officer.name));sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);SystemClock.sleep(400);
-            int[] position={-1};ui(()->{for(int i=0;i<table.list.getAdapter().getCount();i++)if(((World.Officer)table.list.getAdapter().getItem(i)).id==officer.id){position[0]=i;table.list.setSelection(i);break;}});check(position[0]>=0,"normal visible name search contains exact source officer "+person.nativeId);SystemClock.sleep(400);
-            TextView cell=(TextView)await(v->{if(!(v instanceof TextView)||!officer.name.contentEquals(((TextView)v).getText())||!(((TextView)v).getCompoundDrawables()[0] instanceof OfficerPortrait))return false;try{return ((World.Officer)field(((TextView)v).getCompoundDrawables()[0],"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}});OfficerPortrait rowImage=(OfficerPortrait)cell.getCompoundDrawables()[0];rows.put(originalPortrait(rowImage,visual,officer.id,"normal-roster",person));
+            TextView cell=revealPortrait(table,officer,person.nativeId);
+            OfficerPortrait rowImage=(OfficerPortrait)cell.getCompoundDrawables()[0];rows.put(originalPortrait(rowImage,visual,officer.id,"normal-roster",person));
             ui(()->check(activity.officerSnapshot().officer(id)!=null,"current authoritative detail identity available "+source+":"+person.nativeId));
             // Use the normal page's advertised long-press detail gesture, on its
             // visible name/portrait cell rather than the horizontally scrolling row.

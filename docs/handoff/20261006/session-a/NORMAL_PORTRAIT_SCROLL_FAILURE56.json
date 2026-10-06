@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "scope": "Exact b819/39e actual normalSource11 roster membership670, attempted every original identity longpress; six complete caller pairs only, no cold acceptance.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk": "b8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a75a24ed-portrait-longpress-cold-test/app-debug-androidTest.apk": "39e49ecb5000f9b5101cb8ed6610c8e36297df92eea2fce8dfe65b825259beb9"
+  },
+  "actualCompletePortraitPairs": 6,
+  "expectedOfficers": 670,
+  "failureNativeId": 343,
+  "failureName": "曹操",
+  "failure": "Actual name query also matches faction, five rows; intended native343 below viewport, old test list.setSelection did not reveal actual cell. Correct person is in real adapter and cannot be skipped; next tool uses physical ListView swipes and visible stable officer ID. Product backend failure not claimed.",
+  "actualFailureScreenshotRead": true,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-longpress-56",
+  "evidenceSha256": {
+    "session.json": "da91a24d4c91b841942889584438ef7544673bcc822a537c03c1af14ee36b5cc",
+    "evidence/result.txt": "774ac8639ebbf24fe7d5b40770339b4eb87cfa6d58b46659dea6a5e6d84c3d3e",
+    "evidence/FAIL.png": "1d347de1dd4dd60ca1ccd590ebba763e0fb0e3e024b2b89774df08e6d5c53e8f",
+    "evidence/FAIL-actual-text.json": "9972eea74fb0e0e5c25940fbe7643f27a76f0c8bfaec8daa08fa9c7fe2439c30",
+    "logcat.txt": "de2ff512785d3f75a3c356cb34bd626f33d426a7d0636d15fefbcd4f0639346f"
+  },
+  "allNormalMediaAccepted": false,
+  "coldAccepted": false,
+  "completeGoal": false
+}
