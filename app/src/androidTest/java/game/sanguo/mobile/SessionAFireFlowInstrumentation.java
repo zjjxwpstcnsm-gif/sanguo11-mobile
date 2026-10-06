@@ -12,6 +12,20 @@ import java.util.*;
 
 /** Actual menu/new/deploy/player fire/extinguish/turn expiry/save/load/cold; no World edits. */
 public final class SessionAFireFlowInstrumentation extends SessionAScenePresentationInstrumentation {
+ private boolean pauseProbe;
+ @Override public void onCreate(Bundle args){pauseProbe="true".equals(args.getString("pauseFire","false"));super.onCreate(args);}
+ private String system(String command)throws Exception{
+  try(var descriptor=getUiAutomation().executeShellCommand(command);var in=new FileInputStream(descriptor.getFileDescriptor())){return new String(in.readAllBytes(),"UTF-8").trim();}
+ }
+ private double fireClock()throws Exception{double[] value={0};runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");FilamentMapView view=(FilamentMapView)field(host,"spatial");value[0]=(Double)field(field(view,"pcMapEffects"),"clock");}catch(Exception e){throw new RuntimeException(e);}});return value[0];}
+ private void pausedFire(Hex target)throws Exception{
+  byte[] before=capture();StateToken token=activity.deploymentState();sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_HOME);SystemClock.sleep(700);double homeClock=fireClock();SystemClock.sleep(700);check(fireClock()==homeClock,"real Home stops existing native fire visual clock");
+  getTargetContext().startActivity(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));nativeTarget(target,"pause-home-restored-fire",true);check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"real burning Home/resume entire Save/RNG/StateToken unchanged");
+  String original=system("settings get global animator_duration_scale");check(original.equals("null")||original.matches("[0-9.]+"),"examined original system animation preference");boolean enabled=UiMotion.enabled();
+  try{system("settings put global animator_duration_scale 0");long until=SystemClock.uptimeMillis()+10000;while(UiMotion.enabled()&&SystemClock.uptimeMillis()<until)SystemClock.sleep(100);check(!UiMotion.enabled(),"actual reduced-motion setting pauses native visual updates");nativeTarget(target,"pause-reduced-motion-real-fire",true);SystemClock.sleep(700);double paused=fireClock();SystemClock.sleep(800);check(fireClock()==paused,"real original fire clock remains frozen with reduced motion");check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"motion pause keeps entire Save/bothRNG/StateToken");}
+  finally{system("settings put global animator_duration_scale "+(original.equals("null")?(enabled?"1":"0"):original));long until=SystemClock.uptimeMillis()+5000;while(UiMotion.enabled()!=enabled&&SystemClock.uptimeMillis()<until)SystemClock.sleep(50);if(original.equals("null"))system("settings delete global animator_duration_scale");check(original.equals(system("settings get global animator_duration_scale"))&&UiMotion.enabled()==enabled,"actual animation preference/enabled state restored exactly");}
+  nativeTarget(target,"pause-resumed-original-fire",true);
+ }
  private int deploy(World.City city)throws Exception {
   World w=SessionProbe.view(activity);World.Officer leader=w.idle(city).stream().filter(o->w.government.commandLimit(o.id)>=5000).max(Comparator.comparingInt(o->o.intelligence)).orElseThrow();
   note("actual deploy leader="+leader.name+" id="+leader.id+" commandLimit="+w.government.commandLimit(leader.id)+" intelligence="+leader.intelligence);
@@ -56,7 +70,7 @@ public final class SessionAFireFlowInstrumentation extends SessionAScenePresenta
    World.City city=SessionProbe.view(activity).home();int first=deploy(city);city=SessionProbe.view(activity).home();int second=deploy(city);Hex target=fireTarget(first,second);
    byte[] before=capture();StateToken token=activity.deploymentState();plot(first,target,"火计",true);check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"normal cancel fire preserves complete Save/bothRNG/token");
    boolean lit=false;for(int attempt=0;attempt<4&&!lit;attempt++){World w=SessionProbe.view(activity);note("player fire attempt="+attempt+" actor="+first+" target="+target+" chance="+w.war.plotChance(first,target,War.Plot.FIRE));plot(first,target,"火计",false);lit=SessionProbe.view(activity).war.fireAt(target)!=null;if(!lit)advance("fire-retry-"+attempt);}
-   check(lit,"actual player normal fire success reported in B state, no injected burning");nativeTarget(target,"01-player-fire",true);
+   check(lit,"actual player normal fire success reported in B state, no injected burning");nativeTarget(target,"01-player-fire",true);if(pauseProbe)pausedFire(target);
    before=capture();token=activity.deploymentState();text("视图");menuOption("3D 画质");option("低 ·");nativeTarget(target,"02-low-quality-fire",true);check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"actual quality switch pure source fire");
    plot(second,target,"灭火",false);check(SessionProbe.view(activity).war.fireAt(target)==null,"actual player extinguish updates B state");nativeTarget(target,"03-player-extinguished",false);
    advance("reset-before-reignite");boolean relit=false;for(int attempt=0;attempt<4&&!relit;attempt++){plot(first,target,"火计",false);relit=SessionProbe.view(activity).war.fireAt(target)!=null;if(!relit)advance("reignite-retry-"+attempt);}
