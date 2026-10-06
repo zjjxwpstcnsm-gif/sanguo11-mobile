@@ -1,0 +1,93 @@
+{
+  "completeBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "inheritedMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "previousACommit": "43e3fe2d8d5f87281e519ba294f022a6d5ac22cc",
+  "branch": "codex/map-ui-media-repair",
+  "delta": [
+    {
+      "path": "app/build.gradle",
+      "beforeSha256": "1673b0987cd498eb4bef9c09a2b9f926a047f5312a25c710fb0f6785b0566a78",
+      "afterSha256": "8a2fa5e4a6725af57a02e9edbb081154ddf185eb8849f10975396c73508135c9"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/PcMapEffectsInstrumentation.java",
+      "beforeSha256": "ec0f9c1fed4bec24601665bbed90817b696fa77d3b91bb455ab5edaac3bf40f0",
+      "afterSha256": "f0782149f2a25723475fb9815dd211d352f839e6380c7689adf19167c3eed2c1"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "beforeSha256": "447bc639ac511bdf23a1939cf437a2bf2af0f0b4a01a35491476a9307c1de565",
+      "afterSha256": "18fd930e0e65edb67d7513b8faab0d573721a69abc7e2bfbd2e8c4ea04e64449"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "beforeSha256": "c6049f6fa607324c84fe50804ae2f69f3674d15e490b18a0ffa19a739e3e7f75",
+      "afterSha256": "595fa2230b0f23398620beabf60de7ba3cbd261ea4f6307fd5df5f5e2f7fcd6c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GameApplication.java",
+      "beforeSha256": "63710e43bec9d3b66fd66f37dd8d7c703811fd28e5058934a5267d1ca060182f",
+      "afterSha256": "bd63c8d8b09925ebdb4ad62792f2c156916d8d9ce8f6757e65c73f747d9aabff"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "beforeSha256": "c3d05ad7abf214d3624e89fcb260e2c8cd020b3852709482ff147d93f97f5852",
+      "afterSha256": "a6068ed4a0065ae1def5af401c297546546e576688222a17aee007019883bd28"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VerifiedMaterial.java",
+      "beforeSha256": "0d83e6aee0d7d6225e71202ffc0e4aedd11d42355aeaabcfd10d51efc9eeed2b",
+      "afterSha256": "6a930a3c16968a5e5b8438bc62d87f8568e976c36343a389ac498e070afc902a"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/ANDROID_JAVA_COMPILE.json",
+      "beforeSha256": "b26c2f9d3ad73b7799c6ee68513fe5cab4ddbe23c8e413a2632fc48fb1f32f0a",
+      "afterSha256": "a543b84a907127d82789125a59e5c3403d4eeba7355f1eef9b950091179ba6df"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/OWNERSHIP.json",
+      "beforeSha256": "2c48245b382c7a6ffc0f511fe5582610518443a757df90781940e90f445d5312",
+      "afterSha256": "0983564856ad9845002d1110ea1afacb938f2a0045350c370d471de484d849c7"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/run_android_java_compile.py",
+      "beforeSha256": "4207d77426e83ed5d18dfb5dec14100a19f36b1dda5163bdf2a9b355604e8fe2",
+      "afterSha256": "91a03cde6c715e94b65cb80038f00ab736762810425dfa56f69c147aaa2d7e3b"
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/quad-add.filamat",
+      "beforeSha256": null,
+      "afterSha256": "0adff6b5f46acacce7e5466448c288ef3d5b3359e059e8e59dd30664b5777a2c"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_MATERIAL.json",
+      "beforeSha256": null,
+      "afterSha256": "f5326d97c9653715d52f5ce764d4b4f7728d2ffa8c64ee82953b928b4df75b5f"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/HEAP_BUDGET.md",
+      "beforeSha256": null,
+      "afterSha256": "3fea2a02f3e49edeeac252288620a50895bcb8e490d8eef43e8a85f6293de647"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/build_fire_material.py",
+      "beforeSha256": null,
+      "afterSha256": "ac9ab0938beab19ad6d48aa0c6419ae35ba73327dfaeee64b94291e0e655f583"
+    },
+    {
+      "path": "tools/3d/session-a-pc-map-effect-add.mat",
+      "beforeSha256": null,
+      "afterSha256": "6ad921d0dd763bc4864c9bdb83ee358d357fdd351a0552e33e9e9653bc148e37"
+    }
+  ],
+  "changes": "Device-controlled largeHeap margin with normal-heap build option/actual startup budgets; bounded mixed original map blends with newly pinned map additive material. Dynamic fire13 remains absent from frozenJNI.",
+  "hostJavaCompile": true,
+  "verifiedMaterialChecks": 157,
+  "jni4Exact": true,
+  "originalFiles4301Exact": true,
+  "frozenCoreApiRuntimeUnity635Exact": true,
+  "newApkInstalled": false,
+  "noBWipMerged": true,
+  "conflicts": [],
+  "overallGoalComplete": false
+}

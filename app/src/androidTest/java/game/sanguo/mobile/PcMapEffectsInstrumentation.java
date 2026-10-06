@@ -51,7 +51,8 @@ public final class PcMapEffectsInstrumentation extends SceneInstrumentation {
             check((Boolean)field(effects,"closed"),"source map effect controller closed");check(((List<?>)field(effects,"entities")).isEmpty(),"source quad entities released");
             check(field(effects,"vertices")==null&&field(effects,"indices")==null&&field(effects,"material")==null,"source effect GPU buffers/material released");
             for(Object image:(Object[])field(effects,"textures"))check(image==null,"source image owner cleared after destroy");
-            for(Object material:(Object[])field(effects,"instances"))check(material==null,"source image material owner cleared after destroy");
+            for(Object blend:(Object[])field(effects,"instances"))for(Object material:(Object[])blend)check(material==null,"source image material owner cleared after destroy");
+            check(field(effects,"addMaterial")==null,"source additive material released");
             check((Long)field(effects,"textureBytes")==0&&(Integer)field(effects,"capacity")==0,"source effect resource counters cleared");
             check(((java.util.concurrent.atomic.AtomicBoolean)field(process,"closed")).get(),"native child destruction requested on scene exit");
             result.putString("stream","PASS PC MAP EFFECTS installed checks="+checks+"; normal PC map load/source SEFF, GPU quads, camera, pause/resume/exit, exact authority; PC pixels/MOD/ARM/sustained performance and combat/fullscreen pending\n");

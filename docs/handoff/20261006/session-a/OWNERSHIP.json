@@ -76,7 +76,13 @@
     "docs/handoff/20261006/session-a/VIDEO_EVIDENCE.json",
     "docs/handoff/20261006/session-a/convert_recording.py",
     "docs/handoff/20261006/session-a/DELTA_BATCH6.json",
-    "docs/handoff/20261006/session-a/DELIVERY.md"
+    "docs/handoff/20261006/session-a/DELIVERY.md",
+    "tools/3d/session-a-pc-map-effect-add.mat",
+    "app/src/main/assets/3d/pc-effects/quad-add.filamat",
+    "docs/handoff/20261006/session-a/build_fire_material.py",
+    "docs/handoff/20261006/session-a/FIRE_MATERIAL.json",
+    "docs/handoff/20261006/session-a/DELTA_BATCH7.json",
+    "docs/handoff/20261006/session-a/HEAP_BUDGET.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -1,0 +1,22 @@
+{
+  "material": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/quad-add.filamat",
+  "source": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/3d/session-a-pc-map-effect-add.mat",
+  "bytes": 26364,
+  "sha256": "0adff6b5f46acacce7e5466448c288ef3d5b3359e059e8e59dd30664b5777a2c",
+  "compiler": "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/matc-build/tools/matc/matc",
+  "compilerSha256": "7ea9b7cdca74e44abf0419ca074ca262fd2abac161c79ee164e14047cba7132b",
+  "version": 56,
+  "repeatedCompilationByteEqual": true,
+  "sourceBlend": [
+    1,
+    5,
+    2
+  ],
+  "depthTest": true,
+  "depthWrite": false,
+  "alphaTest": "GREATER1/255",
+  "inherited168PinsModified": false,
+  "jni4Modified": false,
+  "normalOriginalCellFireAccepted": false,
+  "encodedFramebufferParityAccepted": false
+}

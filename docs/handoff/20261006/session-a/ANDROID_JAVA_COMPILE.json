@@ -226,7 +226,7 @@
     "app/src/main/java/game/sanguo/mobile/FieldAssets.java": "2924e9a5d1ef9ab1706e12ff46287229dab3f0c6369d8202aad08bd742aa615b",
     "app/src/main/java/game/sanguo/mobile/FieldworkUi.java": "c72317c3d9832415d15da5cc3ab535d46449164edd10f6fe788c2c1c6eb3859a",
     "app/src/main/java/game/sanguo/mobile/FilamentMapView.java": "f11b30cf2914057fbbcb6d016ae01f11b57a9c4003d2c4ad720afb62aff01437",
-    "app/src/main/java/game/sanguo/mobile/GameApplication.java": "63710e43bec9d3b66fd66f37dd8d7c703811fd28e5058934a5267d1ca060182f",
+    "app/src/main/java/game/sanguo/mobile/GameApplication.java": "bd63c8d8b09925ebdb4ad62792f2c156916d8d9ce8f6757e65c73f747d9aabff",
     "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
     "app/src/main/java/game/sanguo/mobile/GovernmentUi.java": "04aa3615a7619e493964e9dca72b9a26b6b807103912036cd8ca0a2636f7c2f8",
     "app/src/main/java/game/sanguo/mobile/GridWorldTransform.java": "721fc68a564a4d22d562a5de87c20ab50a070795b66a1c48137db25046842f00",
@@ -235,7 +235,7 @@
     "app/src/main/java/game/sanguo/mobile/LandscapeProfile.java": "ae6e52f29ec5be73a97703e7b1a2d1c608f72345921d91a5876b366bc20e6a5c",
     "app/src/main/java/game/sanguo/mobile/LegacyCommandSink.java": "fcdcc57cf7eb428dd9c569b1a3b05e29c6a78d3f540f358567376e598f10bfb9",
     "app/src/main/java/game/sanguo/mobile/LifecycleUi.java": "32f7a76a936b9e8a44e4cf1ce78e44cf7fc6fa7dedd64c1802015cae9604661c",
-    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "fc1ed192a256be306dcd6aa292958af17e4f822232f788981702f993b7a45de5",
     "app/src/main/java/game/sanguo/mobile/MapCamera.java": "bfb5750f99ab7ced1e1fc433247d36e4d368241b8d77e7fac4644e7c3d97c947",
     "app/src/main/java/game/sanguo/mobile/MapEditorActivity.java": "d1928ccd7bed9dcf55e051020d765c7fa9036531181e787af18800771af7846b",
     "app/src/main/java/game/sanguo/mobile/MapEditorUi.java": "ac8021f768002dadc039d4d2feaa4c233bc317b9222645daa86fdb51d8d55e7b",
@@ -267,7 +267,7 @@
     "app/src/main/java/game/sanguo/mobile/PcEnvironment.java": "c0dc9a34a3ac764036b7ae1b2526f5d0dd484f18a3e888117fde7880558f0965",
     "app/src/main/java/game/sanguo/mobile/PcFacilities.java": "1b163f19768cb09a912165363ab269232f309fcef56063de2c677d6cab76d928",
     "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java": "3dcee8e7a0dfa89d38f52b0ab795fc874664bbc9e0b71812f81c4e4b941f5b3b",
-    "app/src/main/java/game/sanguo/mobile/PcMapEffects.java": "c3d05ad7abf214d3624e89fcb260e2c8cd020b3852709482ff147d93f97f5852",
+    "app/src/main/java/game/sanguo/mobile/PcMapEffects.java": "a6068ed4a0065ae1def5af401c297546546e576688222a17aee007019883bd28",
     "app/src/main/java/game/sanguo/mobile/PcMapMusicDirective.java": "cfa1ecb6cf55522964b891e5d422e1342eb9ffa8ab78674e9aa6bbf5ac66728f",
     "app/src/main/java/game/sanguo/mobile/PcMediaPlayback.java": "6d1cf1c861b37f4350751d0e4676a652684ad21b12a01fc6ccc743a764b54729",
     "app/src/main/java/game/sanguo/mobile/PcMusicCatalog.java": "bba87a957c235d196678a3167f26fe020a1d00cf3e69e3fafee8bb2cebe244a7",
@@ -342,7 +342,7 @@
     "app/src/main/java/game/sanguo/mobile/UnitVisual.java": "76278a9ead08a38fe49f893220a624413280af56c7a5a69aa2ad47a5614727d1",
     "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
     "app/src/main/java/game/sanguo/mobile/Vegetation.java": "f49190c7987814ba90cb15e078eebbc4aeeef780ea841dff8698b195d54455a1",
-    "app/src/main/java/game/sanguo/mobile/VerifiedMaterial.java": "0d83e6aee0d7d6225e71202ffc0e4aedd11d42355aeaabcfd10d51efc9eeed2b",
+    "app/src/main/java/game/sanguo/mobile/VerifiedMaterial.java": "6a930a3c16968a5e5b8438bc62d87f8568e976c36343a389ac498e070afc902a",
     "app/src/main/java/game/sanguo/mobile/VisualAssets.java": "1741f6cff552c3c32ef3c6d8297adee2b6a35b58ca55689515df06e7d51dfc3b",
     "app/src/main/java/game/sanguo/mobile/VisualGuide.java": "7b262a7c7694497fdab6bd06133d3c5cb1ec39cd80e92207f3041a6a5490c73e",
     "app/src/main/java/game/sanguo/mobile/WarUi.java": "cfd87592a2fda1e2a2c241078656db70bb7be7047e7e168cf85638219289c996",
@@ -401,10 +401,5 @@
   ],
   "log": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-java/javac.log",
   "output": "Note: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\n",
-  "sourceRevision": "08a57f802bd9f40d9b6a3f77276ac49106fd754c",
-  "incrementalPostCompile": [
-    "UiTheme.java",
-    "FilamentMapView.java",
-    "SceneMesh.java"
-  ]
+  "sourceRevision": "43e3fe2d8d5f87281e519ba294f022a6d5ac22cc"
 }

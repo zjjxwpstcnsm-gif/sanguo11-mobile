@@ -27,6 +27,9 @@ android {
     }
     defaultConfig {
         applicationId 'game.sanguo.mobile.dev'
+        // Device-controlled extra margin; -PgameLargeHeap=false keeps the normal-heap regression.
+        manifestPlaceholders.gameLargeHeap = providers.gradleProperty('gameLargeHeap').getOrElse('true')
+        if (!(manifestPlaceholders.gameLargeHeap in ['true','false'])) throw new GradleException('gameLargeHeap must be true or false')
         minSdk 26
         targetSdk 35
         testInstrumentationRunner providers.gradleProperty('unityBridgeProbe').map { it.toBoolean() ? 'game.sanguo.mobile.UnityBridgeInstrumentation' : providers.gradleProperty('mapEditorProbe').map { it.toBoolean() ? 'game.sanguo.mobile.MapEditor67Instrumentation' : 'game.sanguo.mobile.GameSmokeRunner' }.getOrElse('game.sanguo.mobile.GameSmokeRunner') }.getOrElse('game.sanguo.mobile.GameSmokeRunner')

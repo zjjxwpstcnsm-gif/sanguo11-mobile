@@ -8,6 +8,7 @@ import java.util.*;
 final class VerifiedMaterial {
     private static final Map<String,String> EXPECTED = new HashMap<>();
     static {
+        EXPECTED.put("3d/pc-effects/quad-add.filamat", "0adff6b5f46acacce7e5466448c288ef3d5b3359e059e8e59dd30664b5777a2c");
         EXPECTED.put("3d/pc-presentations/add-encoded.filamat", "cf52313ca0a54d9bbdd9b2d854af2226a1981b6d864c2b37b168019ead82953a");
         EXPECTED.put("3d/pc-presentations/over-encoded.filamat", "900d277b48345eb0a543f0d1f53150ec1e7d66e4d881b57d9387766186cbaef4");
         EXPECTED.put("3d/pc-presentations/backdrop.filamat", "822ddf30722f0cdbb96414e5bb6d654eb458859d3448a3266f3f664f255e8be5");

@@ -23,9 +23,9 @@ final class PcMapEffects implements AutoCloseable {
     private Delivery ready,pending;
     private float[] displayedCamera;
     private volatile String error="";
-    private Material material;
+    private Material material,addMaterial;
     private final Texture[] textures=new Texture[33];
-    private final MaterialInstance[] instances=new MaterialInstance[33];
+    private final MaterialInstance[][] instances=new MaterialInstance[2][33];
     private final ArrayList<Integer> entities=new ArrayList<>();
     private VertexBuffer vertices;
     private IndexBuffer indices;
@@ -69,11 +69,11 @@ final class PcMapEffects implements AutoCloseable {
         if(!Arrays.equals(pending.camera,camera)){pending=null;hide();return;}
         PcEffectProcess.Frame frame=pending.frame;
         ByteBuffer data=frame.records;
-        // Every observed source map packet uses ADD/SRCALPHA/INVSRCALPHA.
+        // Source-over map packets and original cell-fire ADD/SRCALPHA/ONE.
         // Unexamined blend modes must remain visible failures, never substitutes.
         for(int i=0;i<frame.count;i++) {
             int p=i*184;
-            if(data.getInt(p+8)!=1||data.getInt(p+12)!=5||data.getInt(p+16)!=6) {
+            if(data.getInt(p+8)!=1||data.getInt(p+12)!=5||(data.getInt(p+16)!=6&&data.getInt(p+16)!=2)) {
                 error="Unexamined original map blend "+data.getInt(p+8)+"/"+data.getInt(p+12)+"/"+data.getInt(p+16);hide();PcEffectProcess worker=process;if(worker!=null)worker.close();return;
             }
         }
@@ -100,7 +100,7 @@ final class PcMapEffects implements AutoCloseable {
             RenderableManager manager=engine.getRenderableManager();
             for(int i=0;i<frame.count;i++) {
                 int entity=entities.get(i),instance=manager.getInstance(entity);
-                manager.setMaterialInstanceAt(instance,0,instances[data.getInt(i*184+4)]);
+                manager.setMaterialInstanceAt(instance,0,instanceFor(data.getInt(i*184+4),data.getInt(i*184+16)==2));
                 if(i>=shown)scene.addEntity(entity);
             }
             for(int i=frame.count;i<shown;i++)scene.removeEntity(entities.get(i));
@@ -118,11 +118,22 @@ final class PcMapEffects implements AutoCloseable {
             textures[image]=new Texture.Builder().width(bitmap.getWidth()).height(bitmap.getHeight()).levels(1).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.RGBA8).build(engine);
             com.google.android.filament.android.TextureHelper.setBitmap(engine,textures[image],0,bitmap,new android.os.Handler(android.os.Looper.getMainLooper()),bitmap::recycle);queued=true;
             textureBytes+=(long)bitmap.getWidth()*bitmap.getHeight()*4;
-            instances[image]=material.createInstance();
-            // Source pipeline sets linear MIN/MAG; addressing is inherited and
-            // remains a PC-reference gap. D3D9's default is WRAP, recorded here.
-            instances[image].setParameter("image",textures[image],new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT));
         }finally{if(!queued)bitmap.recycle();}
+    }
+    private MaterialInstance instanceFor(int image,boolean additive)throws java.io.IOException {
+        int blend=additive?1:0;
+        if(instances[blend][image]==null) {
+            if(additive&&addMaterial==null) {
+                String path="3d/pc-effects/quad-add.filamat";
+                byte[] bytes=VerifiedMaterial.read(path,context.getAssets().open(path));
+                addMaterial=new Material.Builder().payload(ByteBuffer.wrap(bytes),bytes.length).build(engine);
+            }
+            MaterialInstance instance=(additive?addMaterial:material).createInstance();
+            instances[blend][image]=instance;
+            // Source linear filtering, D3D9 default WRAP; one shared texture per image.
+            instance.setParameter("image",textures[image],new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT));
+        }
+        return instances[blend][image];
     }
     private void ensureCapacity(int count) {
         if(count>capacity) {
@@ -158,9 +169,10 @@ final class PcMapEffects implements AutoCloseable {
         PcEffectProcess worker=process;if(worker!=null)worker.close();background.shutdownNow();
         hide();for(int entity:entities){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}entities.clear();
         if(vertices!=null)engine.destroyVertexBuffer(vertices);if(indices!=null)engine.destroyIndexBuffer(indices);vertices=null;indices=null;
-        for(MaterialInstance instance:instances)if(instance!=null)engine.destroyMaterialInstance(instance);
+        for(MaterialInstance[] blend:instances)for(MaterialInstance instance:blend)if(instance!=null)engine.destroyMaterialInstance(instance);
         for(Texture texture:textures)if(texture!=null)engine.destroyTexture(texture);
-        Arrays.fill(instances,null);Arrays.fill(textures,null);textureBytes=0;capacity=0;displayedCamera=null;
+        for(MaterialInstance[] blend:instances)Arrays.fill(blend,null);Arrays.fill(textures,null);textureBytes=0;capacity=0;displayedCamera=null;
         if(material!=null)engine.destroyMaterial(material);material=null;
+        if(addMaterial!=null)engine.destroyMaterial(addMaterial);addMaterial=null;
     }
 }
