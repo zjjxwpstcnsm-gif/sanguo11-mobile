@@ -106,3 +106,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 54继续中：同b819/0a35实际installed-verified，SOURCE_REVISION a14ebe55，driver21394/native72473；当前真实Source11取消重试/势力/预览全近缩放和正常新局全近平移完成，完整caller回执尚待。完整守卫54通过：source10714/旧4301含absence/PC EXE/原4JNI逐SHA不变，main仍ef413/source仍0e7/B最新完成仍aa9b，不合WIP。5554仅A锁，仍无ARM设备；观察不造state、不强制GC、不取heapdump、无54视频，非完整内存峰值验收。持续续读具体句柄与session.json，不能重启或安装下一包；helper结束必须全SHA恢复。
 
 后续正常地图/人物工具增加真实focusedText状态旁证：每张原截图后只读记录实际显示的文字、选中/禁用、alpha、富文本及已知不透明纯色对比度；渐变/图像/Canvas未直接测像素保持未知。此工具修改尚未构建安装，不计入当前54的0a35成绩；当前54driver21394/native72473继续，不改正在跑的已安装测试包。
+
+54仍driver21394/native72473实际逐人Source11运行，下一只读focusedText工具bb33源码开始独立测试APK构建，当前已安装0a35不改变；此次有自己host Gradle并发，54不作为无干扰时序/FPS证明，真实Java/native/PSS采样只陈述本次观察范围。新的test构建尚未安装，不转借0a35成绩。超时SIGQUIT工具35e26648只做python语法检查，未运行/未定位，不在54人物测试发送信号。

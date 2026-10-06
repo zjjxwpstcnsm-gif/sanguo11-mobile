@@ -200,7 +200,8 @@
     "docs/handoff/20261006/session-a/FIRE_LIFECYCLE_HUD_FIX_ACCEPTANCE53.json",
     "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT54.json",
     "docs/handoff/20261006/session-a/observe_turn_timeout_stacks.py",
-    "docs/handoff/20261006/session-a/TURN_TIMEOUT_DIAGNOSTIC.md"
+    "docs/handoff/20261006/session-a/TURN_TIMEOUT_DIAGNOSTIC.md",
+    "docs/handoff/20261006/session-a/B_MEDIA_FACT_REQUEST.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
