@@ -1,0 +1,48 @@
+{
+  "owner": "A",
+  "completeSubsetFrozen": true,
+  "sourceRevision": "47326188fbc43837c8d52caf0fa76051390faaf4",
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "branch": "codex/map-ui-media-repair",
+  "sourceDirectory": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiTheme.java",
+      "beforeSha256": "3ffed703800dcf0ba242c74541d1b7fa35a02b3c50eacd75dc013d3cefd4ca21",
+      "afterSha256": "0a15523b3ddac296f9ea3e9f542e7f91f7bf06835fcb1d0946b35b7a39c3de32",
+      "readonlyFinishedExport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/frozen-theme-47326188/app/src/main/java/game/sanguo/mobile/UiTheme.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FactionColors.java",
+      "beforeSha256": "1de01cf2b8bfb86b628dcfc847582909fc3842bc8e5c98f15421546cef502d30",
+      "afterSha256": "542014754033b774fa44ce41613eb7a0d43112d06a9f85061686d76b53460119",
+      "readonlyFinishedExport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/frozen-theme-47326188/app/src/main/java/game/sanguo/mobile/FactionColors.java"
+    },
+    {
+      "path": "app/src/main/res/values/styles.xml",
+      "beforeSha256": "be47efccb136b25ab40a92d96e527b12d1eb6575c3937b1b28d1026774badd2d",
+      "afterSha256": "5c27fae6c5ad72719e3dba96819d816490d310b20d526109a641d32deb7e6a27",
+      "readonlyFinishedExport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/frozen-theme-47326188/app/src/main/res/values/styles.xml"
+    },
+    {
+      "path": "app/src/main/res/color/readable_text.xml",
+      "beforeSha256": null,
+      "afterSha256": "a50f0699365f4c52cb5ced5a333a93339c906eb83889148da8fd3c807c124606",
+      "readonlyFinishedExport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/frozen-theme-47326188/app/src/main/res/color/readable_text.xml"
+    },
+    {
+      "path": "app/src/main/res/color/readable_secondary_text.xml",
+      "beforeSha256": null,
+      "afterSha256": "5607fe3a336fad08ac75d30ff163b8ef5125a60d95042e1c5d1ec97624f4cb79",
+      "readonlyFinishedExport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/frozen-theme-47326188/app/src/main/res/color/readable_secondary_text.xml"
+    }
+  ],
+  "scope": "finished theme dependency subset only; not full A goal or combined APK acceptance",
+  "mayReadOrCompileFinishedDependency": true,
+  "mustNotModifyAOwnedPaths": true,
+  "wholeBranchCherryPickByB": false,
+  "normalAll16PageAcceptance": false,
+  "evidence": "13273 host palette checks plus first actual source picker/card/map screenshot; complete Android state matrix pending",
+  "themeContract": "docs/handoff/20261006/session-a/THEME_CONTRACT.md",
+  "applyingParty": "B applies APIs only in its16 owned pages; final integrator applies identical dependency bytes serially"
+}

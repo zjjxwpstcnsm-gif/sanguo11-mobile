@@ -62,7 +62,8 @@
     "docs/handoff/20261006/session-a/RESUME.md",
     "docs/handoff/20261006/session-a/INSTALLED_AUDIT.json",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
-    "docs/handoff/20261006/session-a/MOVEMENT_ADAPTER.md"
+    "docs/handoff/20261006/session-a/MOVEMENT_ADAPTER.md",
+    "docs/handoff/20261006/session-a/THEME_FROZEN.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
