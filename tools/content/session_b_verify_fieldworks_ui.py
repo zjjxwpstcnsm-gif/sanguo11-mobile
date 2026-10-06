@@ -15,8 +15,8 @@ def members(path):
    rows[m.name]=dict(bytes=m.size,sha256=digest.hexdigest())
  return rows
 def run(a):
- runner={'capacity':'game.sanguo.mobile.SessionBCapacityInstrumentation','governor':'game.sanguo.mobile.SessionBGovernorInstrumentation','fieldworks':'game.sanguo.mobile.SessionBFieldworksInstrumentation'}[a.runner]
- marker={'capacity':'PASS SESSION B CAPACITY','governor':'PASS SESSION B GOVERNOR','fieldworks':'PASS SESSION B FIELDWORKS'}[a.runner]
+ runner={'debate':'game.sanguo.mobile.SessionBDebateInstrumentation','capacity':'game.sanguo.mobile.SessionBCapacityInstrumentation','governor':'game.sanguo.mobile.SessionBGovernorInstrumentation','fieldworks':'game.sanguo.mobile.SessionBFieldworksInstrumentation'}[a.runner]
+ marker={'debate':'PASS SESSION B DEBATE','capacity':'PASS SESSION B CAPACITY','governor':'PASS SESSION B GOVERNOR','fieldworks':'PASS SESSION B FIELDWORKS'}[a.runner]
  if a.serial!='emulator-5582':raise ValueError('B target is5582; no other device authorized by this tool')
  guard=json.loads(a.source_guard.read_text())
  from session_b_freeze_apk import paths
@@ -39,7 +39,7 @@ def run(a):
   with path.open('wb')as f:subprocess.run(adb+['exec-out','tar','-C',remote,'-cf','-','.'],check=True,stdout=f,stderr=subprocess.PIPE,timeout=300)
   return members(path)
  internal='/data/data/'+PACKAGE;external='/sdcard/Android/data/'+PACKAGE
- report=dict(passed=False,serial=a.serial,owner=owner,apks={str(p):sha(p.read_bytes())for p in [a.apk,a.test_apk]},device=command('shell','getprop').decode(),scope=({'capacity':'actual source0/native58/13000/new/deploy/turns/save/cold','governor':'actual source0/two factions/menu/administration/transfer/capture/save/cold','fieldworks':'actual source14/new/deploy/map military widgets'}[a.runner])+'; separate from core probe and ARM',runner=runner)
+ report=dict(passed=False,serial=a.serial,owner=owner,apks={str(p):sha(p.read_bytes())for p in [a.apk,a.test_apk]},device=command('shell','getprop').decode(),scope=({'debate':'actual source0 ordinary recruitment/human win-loss/whole model save/cold/terminal/nextturn; original admission-cost-concession-diplomacy pending','capacity':'actual source0/native58/13000/new/deploy/turns/save/cold','governor':'actual source0/two factions/menu/administration/transfer/capture/save/cold','fieldworks':'actual source14/new/deploy/map military widgets'}[a.runner])+'; separate from core probe and ARM',runner=runner)
  def save():(output/'results.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  backed=False
  try:
@@ -88,6 +88,6 @@ def run(a):
  if not report.get('passed'):raise SystemExit(1)
  print('PASS Session B actual APK/widgets and complete original user SHA restoration',flush=True)
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--serial',required=True);p.add_argument('--runner',choices=['fieldworks','capacity','governor'],default='fieldworks')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--serial',required=True);p.add_argument('--runner',choices=['fieldworks','capacity','governor','debate'],default='fieldworks')
  for name in ['apk','test-apk','source-guard','output']:p.add_argument('--'+name,type=Path,required=True)
  run(p.parse_args())

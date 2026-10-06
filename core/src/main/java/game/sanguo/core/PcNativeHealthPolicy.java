@@ -14,6 +14,12 @@ final class PcNativeHealthPolicy {
         if(!w.pcSourceFrame||w.turn!=0||w.commandRevision()!=0||w.contests.busy()||enabled(w)||PcOfficerCampaignFacts.saved(w).isEmpty())throw new IOException("Original recovery strategy requires explicit fresh source game");
         write(w,new State());
     }
+    /** Explicit adopted contest policy only: do not migrate/backfill existing legacy injuries. */
+    static void adoptNewInjuryRecovery(World w)throws IOException{
+        if(enabled(w))return;
+        if(!w.pcSourceFrame||!PcNativeDebatePolicy.enabled(w)||PcContestProfiles.saved(w).isEmpty())throw new IOException("Original new-injury recovery source absent");
+        State state=new State();state.lastTurn=w.turn;write(w,state);
+    }
     private static State read(World w)throws IOException{
         byte[] raw=w.extensions.get(NAMESPACE);if(raw==null||raw.length>32768)throw new IOException("Original recovery strategy missing/invalid");
         Cache cached=caches.get(w);if(cached!=null&&Arrays.equals(raw,cached.bytes))return cached.state;

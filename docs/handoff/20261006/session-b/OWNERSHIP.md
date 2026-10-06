@@ -170,12 +170,92 @@ Ignored verification output is confined to out/session-b/ and independent build 
 - app/src/androidTest/java/game/sanguo/mobile/SessionBGovernorInstrumentation.java (B ordinary new/menu/personnel/capture/save/cold validation; registered before creation)
 - docs/handoff/20261006/session-b/governor.instrumentation.init.gradle (B runner selection without shared Gradle or manifest change; registered before creation)
 
+- tools/content/session_b_pc_recruitment_cost.py (B full original recruitment action-cost query with actual source site/army; read-only executable, no admission/GUI substitution; registered before creation)
+- out/session-b/recruitment-cost-original-source0.json (ignored exact native fee/RNG/purity/source report; B; registered before creation)
+- out/session-b/recruitment-cost-original-source0.log (ignored original query log; B)
 
 - tools/content/session_b_stage_governor_legacy.py (B pinned extraction of own completed actual Source20 save for reproducible old-policy replay; registered before creation)
+- out/session-b/recruitment-cost-original-source0-diagnostic.json (ignored complete original fault/partial query receipt; B; registered before creation)
+- out/session-b/recruitment-cost-original-source0-diagnostic.log (ignored full original diagnostic run; B)
 
+- out/session-b/recruitment-cost-original-source0-site8.json (ignored narrow actual original callback-site8 action-cost query; B; registered before creation)
+- out/session-b/recruitment-cost-original-source0-site8.log (ignored narrow original callback-site8 log; B)
 
 - docs/handoff/20261006/session-b/GOVERNOR_CONTRACT.md (B exact read-only source/native/current administrative joins and A adapter request; registered before creation)
 - docs/handoff/20261006/session-b/GOVERNOR_BATCH.json (B completed bounded source/election/ordinary APK/save/cold/user restore receipt; registered before creation)
 - docs/handoff/20261006/session-b/GOVERNOR_DELTA.json (B exact parent/current paths and before-after SHA; registered before creation)
 - docs/handoff/20261006/session-b/GOVERNOR_REPRODUCE.md (B reproducible original converter/core/API/build/widget/legacy procedure; registered before creation)
 - docs/handoff/20261006/session-b/governor-flow-27.tar.gz (B fresh own evidence only, never user backup archives; registered before creation)
+
+- tools/content/session_b_pc_debate_context.py (B actual source caller input/side/initiative/effective talk/book/settlement receipt; registered before creation)
+- out/session-b/debate-source0-context.json (ignored original complete initializer and source/profile/side evidence; B; registered before creation)
+- out/session-b/debate-source0-context.partial.json (ignored native checkpoint/fault retention; B)
+- out/session-b/debate-source0-context.log (ignored complete native context log; B)
+- docs/handoff/20261006/session-b/DEBATE_CAMPAIGN_PLAN.md (B source-faithful ordinary campaign closure strategy and compatibility; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDebateSourceContextTest.java (B original source-backed canonical sides/current inputs/deck/hand/seed comparison; registered before creation)
+
+- out/session-b/debate-source0-context-host.log (ignored source-backed Java initial model comparison; B; registration corrected after first launch)
+- out/session-b/debate-source0-postload-settlement.json.gz (ignored full original numeric+ordinary recruitment callback after source date/postload/growth0; B; registered before creation)
+- out/session-b/debate-source0-postload-settlement.log (ignored complete original callback log; B)
+
+- core/src/main/java/game/sanguo/core/PcDebateCampaignRules.java (B production source/current callback and original terminal settlement rules; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDebateCampaignRulesTest.java (B full source0 original postload callback comparison and normal host/save/RNG replay; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDebateCampaignPolicy.java (B explicit fresh/visible old-prototype adoption and once-only native terminal receipt; registered before creation)
+- out/session-b/debate-campaign-rules-test.log (ignored80 full original callback comparisons; B; registration corrected after launch)
+
+- core/src/test/java/game/sanguo/core/PcDebateOrdinaryCampaignTest.java (B actual ordinary command/human win-loss/protocol/future turns/fullSave/all RNG/explicit39 adoption compatibility; registered before creation)
+- out/session-b/debate-ordinary-campaign-test.log (ignored normal core campaign result; B; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDebateSettlementSessionTest.java (B actual GameSession normal caller/human/once/stale/token/save/terminal continuation; registered before creation)
+
+- app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java (B ordinary new/menu/recruit/human cards/win-loss/save/cold verification; registered before creation)
+- docs/handoff/20261006/session-b/debate.instrumentation.init.gradle (B own runner without shared Gradle or manifest changes; registered before creation)
+- out/session-b/debate-build-28/ (ignored exact build/source/APK inputs and receipts; B; registered before creation)
+- out/session-b/debate-ui-28/ (ignored full user guards/actual widget/cold/screenshot receipts; B; registered before creation)
+- out/session-b/debate-campaign-checks.log (ignored fresh tests and adoption rejection purity; B; registered before creation)
+
+- out/session-b/debate-build-29/ (ignored exact corrected build/source/APK receipts; B; registered before creation)
+- out/session-b/debate-ui-29/ (ignored complete user backup/restore and real widget receipts; B; registered before creation)
+
+- out/session-b/RecruitmentCostTrace.py (ignored read-only original cost fault trace, no rule substitutions; B; registered before creation)
+- out/session-b/recruitment-cost-trace.json (ignored actual native site0 cost/fault/recent call evidence; B; registered before creation)
+- out/session-b/recruitment-cost-trace.log (ignored complete trace log; B; registered before creation)
+
+- out/session-b/debate-build-30/ (ignored unchanged production/corrected real list row runner build receipts; B; registered before creation)
+- out/session-b/debate-ui-30/ (ignored complete user guard/actual widget/cold receipts; B; registered before creation)
+
+- out/session-b/RecruitmentCostWrites.py (ignored original source city facility-domain write trace; B; registered before creation)
+- out/session-b/recruitment-cost-writes.json (ignored original constructors/load/postload writes, no data substitution; B; registered before creation)
+- out/session-b/recruitment-cost-writes.log (ignored full trace log; B; registered before creation)
+
+- out/session-b/debate-build-31/ (ignored identical production/main-thread read-only contest snapshot runner build; B; registered before creation)
+- out/session-b/debate-ui-31/ (ignored complete backup/restore/actual page/cold receipts; B; registered before creation)
+
+- out/session-b/RecruitmentCostSHEX.py (ignored actual original484090 loader plus source0 cost/postload diagnostic; B; registered before creation)
+- out/session-b/recruitment-cost-shex-source0.json (ignored source SHEX/full original loader/cost receipts; B; registered before creation)
+- out/session-b/recruitment-cost-shex-source0.log (ignored complete original geography loader/cost diagnostic; B; registered before creation)
+
+- out/session-b/recruitment-cost-original-shex-all87-source0.json (ignored full originalSHEX/source0/87-site action-cost query and purity; B; registered before creation)
+- out/session-b/recruitment-cost-original-shex-all87-source0.log (ignored complete original query log; B; registered before creation)
+
+- tools/content/session_b_pc_geography_context.py (B shared exact originalSHEX484090 input initialization and40kregion validation for native oracles; registered before creation)
+- tools/content/inspect_pc_debate_campaign_settlement.py (B existing original numeric/result oracle; optional exact original geography initialization, preserve prior read boundaries)
+- out/session-b/debate-source0-shex-settlement.json.gz (ignored original8source0/date/postload/geography numeric/result receipts; B; registered before creation)
+- out/session-b/debate-source0-shex-settlement.log (ignored complete original callback/context rerun log; B; registered before creation)
+
+- docs/handoff/20261006/session-b/DEBATE_BATCH.json (B bounded ordinary original-card/numeric-recruitment/save/cold APK proof, explicit unknowns; registered before creation)
+- docs/handoff/20261006/session-b/DEBATE_DELTA.json (B exact before-after owned source/tool/test SHA and guards; registered before creation)
+- docs/handoff/20261006/session-b/DEBATE_CONTRACT.md (B source/current/native contest DTO and explicit old adoption/API/A integration scope; registered before creation)
+- docs/handoff/20261006/session-b/DEBATE_REPRODUCE.md (B original converter/geography/core/API/actual APK/save/cold reproducibility; registered before creation)
+- docs/handoff/20261006/session-b/debate-flow-31.tar.gz (B fresh own evidence only; never user backup archives/inventory; registered before creation)
+- out/session-b/debate-source0-shex-comparison.json (ignored8full-geography original case equality receipt; B; registered before creation)
+
+- out/session-b/recruitment-cost-original-shex-all87-source0-v2.json (ignored reusable helper87query equivalence/reproducibility receipt; B; registered before creation)
+- out/session-b/recruitment-cost-original-shex-all87-source0-v2.log (ignored complete final helper87query log; B; registered before creation)
+
+- out/session-b/recruitment-cost-original-shex-all87-source0-v3.json (ignored second final helper import byte reproducibility; B; registered before creation)
+- out/session-b/recruitment-cost-original-shex-all87-source0-v3.log (ignored repeated final query/import log; B; registered before creation)
+
+- out/session-b/debate-inheritance-guard-31.json (ignored full inherited non-B/resource/fourJNI/old609/compiled source SHA audit; B; registered before creation)

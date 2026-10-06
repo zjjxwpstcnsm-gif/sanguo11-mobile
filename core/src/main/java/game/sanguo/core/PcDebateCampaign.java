@@ -18,8 +18,10 @@ public final class PcDebateCampaign {
         PcContestProfiles.Fact a=facts.get(actor),b=facts.get(target);leftOfficer=actor;rightOfficer=target;leftNative=a.nativeId;rightNative=b.nativeId;
         sourceId=source.scenarioId;sourceSha=source.sha;sourceVariant=source.sourceVariant;leftRecordSha=a.recordSha;rightRecordSha=b.recordSha;
         World.Officer left=w.officer(actor),right=w.officer(target);
-        model=new PcDebateModel(new PcDebateState(left.intelligence,right.intelligence,a.nativePersonality,b.nativePersonality,a.nativeTalkMask,b.nativeTalkMask,PcNativeDebatePolicy.seed(w),left.war,right.war),0);
+        int leftTalks=PcDebateCampaignPolicy.enabled(w)&&w.treasures.has(actor,Treasures.Kind.BOOK)?31:a.nativeTalkMask,rightTalks=PcDebateCampaignPolicy.enabled(w)&&w.treasures.has(target,Treasures.Kind.BOOK)?31:b.nativeTalkMask;
+        model=new PcDebateModel(new PcDebateState(left.intelligence,right.intelligence,a.nativePersonality,b.nativePersonality,leftTalks,rightTalks,PcNativeDebatePolicy.seed(w),left.war,right.war),0);
         model.state.ui=new PcDebateUiEffects();model.human[0]=true;
+        if(PcDebateCampaignPolicy.enabled(w)){model.state.ui.terminalPreferences[0]=w.relations.dislikes(actor,target)?0:w.relations.likes(actor,target)?1:-1;model.state.ui.terminalPreferences[1]=w.relations.dislikes(target,actor)?0:w.relations.likes(target,actor)?1:-1;}
         // Source relationship, effective book ownership and PC caller initiative
         // are still pending; prototype records those boundaries explicitly.
         advance(w);
@@ -60,7 +62,8 @@ public final class PcDebateCampaign {
         PcScenarioIdentity.Source source=PcScenarioIdentity.saved(w);Map<Integer,PcContestProfiles.Fact> facts=PcContestProfiles.saved(w);PcContestProfiles.Fact a=facts.get(leftOfficer),b=facts.get(rightOfficer);
         if(source==null||!sourceId.equals(source.scenarioId)||!sourceSha.equals(source.sha)||!sourceVariant.equals(source.sourceVariant)||a==null||b==null||a.nativeId!=leftNative||b.nativeId!=rightNative||!a.recordSha.equals(leftRecordSha)||!b.recordSha.equals(rightRecordSha)||session.leftRef!=leftOfficer||session.rightRef!=rightOfficer)throw new IOException("Native contest source identity differs");
         if(model.state.ui==null||!model.human[0]||model.human[1]||inputs<0||inputs>10000||inputs!=session.revision||frames<0||frames>100000||rounds<0||rounds>frames||model.state.random.state!=PcNativeDebatePolicy.seed(w))throw new IOException("Native contest policy/sequence invalid");
-        if(model.state.left.temper!=a.nativePersonality||model.state.right.temper!=b.nativePersonality||model.state.left.talkMask!=a.nativeTalkMask||model.state.right.talkMask!=b.nativeTalkMask)throw new IOException("Native person attributes rebound");
+        boolean nativeSettlement=PcDebateCampaignPolicy.enabled(w)&&PcDebateCampaignPolicy.read(w).adoptedSession!=session.id;int leftTalks=nativeSettlement&&w.treasures.has(leftOfficer,Treasures.Kind.BOOK)?31:a.nativeTalkMask,rightTalks=nativeSettlement&&w.treasures.has(rightOfficer,Treasures.Kind.BOOK)?31:b.nativeTalkMask;
+        if(model.state.left.temper!=a.nativePersonality||model.state.right.temper!=b.nativePersonality||model.state.left.talkMask!=leftTalks||model.state.right.talkMask!=rightTalks)throw new IOException("Native person attributes rebound");
         World.Officer left=w.officer(leftOfficer),right=w.officer(rightOfficer);World.City city=w.city(session.city);
         if(city==null||city.owner!=session.owner||left.owner!=session.owner||left.cityId!=city.id||right.owner==session.owner||left.unitId!=-1||right.unitId!=-1||!left.acted||!right.acted)throw new IOException("Native campaign participants invalid");
         if(!waitingCard()&&!waitingMercy()&&model.phase!=9)throw new IOException("Native saved model not at a stable input boundary");PcDebateModelSave.write(model);

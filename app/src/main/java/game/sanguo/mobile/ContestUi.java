@@ -62,7 +62,7 @@ final class ContestUi {
         button(panel,"单挑规则",true,()->info("单挑规则","重视攻击：伤害提高，防御与蓄气较弱。\n重视防御：降低伤害，可格挡和完全防御。\n重视斗志：更快蓄气，可额外获得100斗志。\n重视一击：偶尔重击。\n急所使对手负伤，无双清除强化；暗器与伪退需携物且每场一次，伪退需15合。\n支援者到场后可换将，体力与斗志分别保留。"));
     }
     private void nativeDebate(LinearLayout panel,ContestSnapshot facts){
-        label(panel,"舌战 · 第"+facts.round+"合",20,gold);label(panel,facts.purpose,14,gold);
+        label(panel,"舌战 · 第"+facts.round+"合",20,gold);label(panel,facts.purpose,14,gold);label(panel,"原卡牌/数值/登用终局；触发准入、起始费用、认输和外交仍待原链核实",12,paper);
         for(int side=0;side<facts.speakers.size();side++){
             ContestSnapshot.Speaker p=facts.speakers.get(side);
             label(panel,(side==0?"我方 ":"对方 ")+p.name+" · "+p.personality,15,paper);
@@ -77,7 +77,10 @@ final class ContestUi {
             button(panel,"选择智力经验奖励",true,()->a.executeContest(w,ignored->ContestCommand.finishDebate(facts.state,facts.contestId,facts.revision,true)));
             button(panel,"选择势力技巧奖励",true,()->a.executeContest(w,ignored->ContestCommand.finishDebate(facts.state,facts.contestId,facts.revision,false)));
         }
-        if(facts.phase==9)label(panel,facts.winner==0?"舌战获胜 · 结算待核实":"舌战落败 · 结算待核实",17,gold);
+        if(facts.phase==9){label(panel,facts.winner==0?"舌战获胜 · 等待结算":"舌战落败 · 等待结算",17,gold);
+            button(panel,"结算原登用终局",true,()->a.executeContest(w,ignored->ContestCommand.finishDebate(facts.state,facts.contestId,facts.revision,false)));
+        }
+        if(!w.contests.nativeCampaignSettlementEnabled())button(panel,"旧原舌战 · 明确采用已核实终局策略",true,()->confirm("采用原终局策略","仅为这份存档启用原数值和登用回调，并为新增原伤病启用恢复策略；已有伤病保持原策略。不重抽手牌、改人物能力或随机数。原准入及起始费用仍是已有工程规则。原认输与外交回调尚未闭合。",()->a.executeContest(w,ignored->ContestCommand.adoptNativeSettlement(facts.state,facts.contestId,facts.revision))));
     }
     private void debate(LinearLayout panel,Contests.Session s){
         Debate d=s.debate();final int id=s.id(),revision=s.revision();

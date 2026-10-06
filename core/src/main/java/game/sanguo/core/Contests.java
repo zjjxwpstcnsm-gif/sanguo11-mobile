@@ -40,6 +40,7 @@ public final class Contests {
     String lastResult="";
     Contests(World w){this.w=w;}
     public boolean busy(){return session!=null;}
+    public boolean nativeCampaignSettlementEnabled(){return PcDebateCampaignPolicy.enabled(w);}
     public Session current(){return session;}
     public String lastResult(){return lastResult;}
     public Profile profile(int officer){Profile p=profiles.getOrDefault(officer,DEFAULT);int gear=p.gearMask|w.treasures.gearMask(officer);return gear==p.gearMask?p:new Profile(p.temper,p.talkMask,gear);}
@@ -141,7 +142,7 @@ public final class Contests {
         w.spend(w.city(city),w.officer(actor),100);w.officer(target).acted=true;
         session=new Session(nextId++,w.active,w.turn,actor,target,city);
         if(PcNativeDebatePolicy.enabled(w)){try{session.nativeDebate=new PcDebateCampaign(w,actor,target);}catch(java.io.IOException e){throw new IllegalStateException(e);}}else session.debate=new Debate(w,actor,target);
-        return w.success(w.officer(actor).name+"以舌战说服"+w.officer(target).name+"；金100、行动力10已消耗");
+        return w.success(w.officer(actor).name+"以舌战说服"+w.officer(target).name+"；金100、行动力10已消耗"+(PcDebateCampaignPolicy.enabled(w)?"（工程准入/费用；原完整启动链待核实）":""));
     }
     World.Officer foreignSpeaker(int side){
         return w.officers.stream().filter(o->o.owner==side&&o.cityId>=0&&o.unitId==-1&&!o.acted&&!w.government.captive(o.id)&&!w.domestic.busy(o.id)&&!w.strategy.busy(o.id))
@@ -184,7 +185,11 @@ public final class Contests {
     }
     public World.Result finishDebate(int id,int revision,boolean mercy){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
-        if(session.nativeDebate!=null){if(session.nativeDebate.waitingMercy()){session.nativeDebate.mercy(w,mercy);session.revision++;return w.success("终局选择已记录；原战役结算尚待核实");}return w.fail("原战役结算尚未核实");}
+        if(session.nativeDebate!=null){
+            if(session.nativeDebate.waitingMercy()){session.nativeDebate.mercy(w,mercy);session.revision++;if(!PcDebateCampaignPolicy.enabled(w))return w.success("终局选择已记录；原战役结算尚待核实");}
+            if(!PcDebateCampaignPolicy.enabled(w))return w.fail("原战役结算尚未启用；旧档需明确采用新结算策略");
+            return finishNativeDebate();
+        }
         Debate d=session.debate;if(d.winner==-2)return w.fail("请先完成舌战");
         World.Officer actor=w.officer(session.leftRef),target=w.officer(session.rightRef);
         String text;
@@ -201,6 +206,26 @@ public final class Contests {
             boolean grew=!mercy&&OfficerAbilities.base(actor,2)<100&&w.strategy.nextInt(100)<20;if(grew)OfficerAbilities.setBase(actor,2,OfficerAbilities.base(actor,2)+1);
             text=actor.name+"舌战获胜，"+target.name+"加入"+w.faction(session.owner)+(mercy?"；留情，技巧+50":grew?"；智力+1，技巧+20":"；继续追问，技巧+20，智力未增长");
         }else text=d.winner==1?actor.name+"舌战落败，登用未成功":"舌战平手，登用未成功";
+        session=null;lastResult=text;return w.success(text);
+    }
+    public World.Result adoptNativeDebateSettlement(int id,int revision){w.reports.prepare();
+        String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
+        if(session.nativeDebate==null||PcDebateCampaignPolicy.enabled(w))return w.fail("没有可采用新策略的旧原舌战");
+        try{PcDebateCampaignPolicy.initialize(w);}catch(java.io.IOException invalid){return w.fail(invalid.getMessage());}
+        return w.success("已明确采用原数值与登用终局结算；原先手牌、模型和随机数保持；触发准入及费用仍为已有工程规则");
+    }
+    private World.Result finishNativeDebate(){
+        PcDebateCampaign d=session.nativeDebate;
+        if(d.model.phase!=9||d.model.state.terminalWinner<0)return w.fail("请先完成原舌战");
+        if(session.diplomatic())return w.fail("原外交回调尚未闭合");
+        int id=session.id;World.Officer actor=w.officer(session.leftRef),target=w.officer(session.rightRef);boolean success=d.model.state.terminalWinner==0;
+        try{
+            if(PcDebateCampaignPolicy.read(w).lastFinished>=id)return w.fail("原战役终局已经结算");
+            PcDebateCampaignRules.terminalRewards(w,actor,target,d.model.state.terminalWinner,d.model.outcome);
+            PcDebateCampaignRules.recruitmentResult(w,actor,target,session.city,success);
+            PcDebateCampaignPolicy.recordFinished(w,id);
+        }catch(java.io.IOException failure){throw new IllegalStateException(failure);}
+        String text=success?actor.name+"原舌战获胜，"+target.name+"接受登用；原经验、功绩、技巧与伤病已结算":actor.name+"原舌战落败；登用失败，原双方经验、功绩与伤病已结算";
         session=null;lastResult=text;return w.success(text);
     }
     /** Conceding is a paid outcome, not cancelling the already-started command. */

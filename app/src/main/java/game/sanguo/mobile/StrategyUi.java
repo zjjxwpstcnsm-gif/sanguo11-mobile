@@ -48,7 +48,7 @@ final class StrategyUi {
             chooseCityActor(c,"任命"+t.name,"APPOINT_GOVERNOR",new int[]{t.id},targets[0]::dismiss,()->{if(targets[0].isShowing())activity.trackDialog(targets[0]);});
         });return;}
         if(n==8){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.cityId==c.id&&w.strategy.canRecruitTarget(c.id,t.id)&&!t.acted)targets.add(t);
-            choose("选择舌战登用目标",targets,t->{List<World.Officer> actors=new ArrayList<>();for(World.Officer o:w.idle(c))if(w.contests.debateError(c.id,o.id,t.id)==null)actors.add(o);choose("选择执行武将",actors,o->confirm("舌战说服"+t.name,"消耗金100；获胜后加入本势力，失败不退费。",()->apply.execute(w,()->w.contests.persuade(c.id,o.id,t.id))));});return;}
+            choose("选择舌战登用目标",targets,t->{List<World.Officer> actors=new ArrayList<>();for(World.Officer o:w.idle(c))if(w.contests.debateError(c.id,o.id,t.id)==null)actors.add(o);choose("选择执行武将",actors,o->confirm("舌战说服"+t.name,"当前工程准入：金100、行动力10；原启动准入与费用待核实。获胜后加入本势力，失败不退费。",()->apply.execute(w,()->w.contests.persuade(c.id,o.id,t.id))));});return;}
         basicCommand(c,n);
     }
 

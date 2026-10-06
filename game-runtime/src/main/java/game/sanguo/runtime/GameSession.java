@@ -284,6 +284,7 @@ public final class GameSession implements GameApi, AutoCloseable {
                 case DEBATE_CARD:result=contests.debateCard(command.contestId,command.contestRevision,command.choice);break;
                 case RETHINK:result=contests.rethink(command.contestId,command.contestRevision);break;
                 case FINISH_DEBATE:result=contests.finishDebate(command.contestId,command.contestRevision,command.mercy);break;
+                case ADOPT_NATIVE_SETTLEMENT:result=contests.adoptNativeDebateSettlement(command.contestId,command.contestRevision);break;
                 case CONCEDE:result=contests.concede(command.contestId,command.contestRevision);break;
                 default:throw new IllegalArgumentException("Contest operation");
             }

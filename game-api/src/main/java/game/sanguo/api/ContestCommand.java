@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /** Progress only the current contest; no rule callback or mutable world crosses this boundary. */
 public final class ContestCommand {
-    public enum Operation { DUEL_MOVE, DEBATE_CARD, RETHINK, FINISH_DEBATE, CONCEDE }
+    public enum Operation { DUEL_MOVE, DEBATE_CARD, RETHINK, FINISH_DEBATE, CONCEDE, ADOPT_NATIVE_SETTLEMENT }
     public final Operation operation;
     public final StateToken expected;
     public final int contestId,contestRevision,choice;
@@ -18,5 +18,6 @@ public final class ContestCommand {
     public static ContestCommand card(StateToken state,int id,int revision,int index){return new ContestCommand(Operation.DEBATE_CARD,state,id,revision,index,null,null,false);}
     public static ContestCommand rethink(StateToken state,int id,int revision){return new ContestCommand(Operation.RETHINK,state,id,revision,-1,null,null,false);}
     public static ContestCommand finishDebate(StateToken state,int id,int revision,boolean mercy){return new ContestCommand(Operation.FINISH_DEBATE,state,id,revision,-1,null,null,mercy);}
+    public static ContestCommand adoptNativeSettlement(StateToken state,int id,int revision){return new ContestCommand(Operation.ADOPT_NATIVE_SETTLEMENT,state,id,revision,-1,null,null,false);}
     public static ContestCommand concede(StateToken state,int id,int revision){return new ContestCommand(Operation.CONCEDE,state,id,revision,-1,null,null,false);}
 }

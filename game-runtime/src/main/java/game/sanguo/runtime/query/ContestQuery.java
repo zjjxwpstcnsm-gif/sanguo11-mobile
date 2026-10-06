@@ -15,8 +15,8 @@ public final class ContestQuery {
             for(int side=0;side<2;side++)speakers.add(new ContestSnapshot.Speaker(ids[side],natives[side],w.officer(ids[side]).name,PERSONALITIES[f.personalities.get(side)],f.sourceVariant,f.health.get(side),1000,f.anger.get(side),f.fury.get(side),f.intelligence.get(side),f.war.get(side)));
             List<ContestSnapshot.Card> cards=new ArrayList<>();for(int slot=0;slot<f.hand.size();slot++){int card=f.hand.get(slot);if(card>=0)cards.add(new ContestSnapshot.Card(slot,card,nativeLabel(card),f.cardErrors.get(slot)));}
             List<ContestSnapshot.Event> events=f.events.stream().map(e->new ContestSnapshot.Event(e.frame,e.nativeFunction,e.side,e.card,e.counter,e.reflected,e.choices)).collect(java.util.stream.Collectors.collectingAndThen(java.util.stream.Collectors.toList(),java.util.Collections::unmodifiableList));
-            String status=f.waitingCard?"请选择手牌":f.waitingMercy?"选择智力经验或势力技巧奖励":f.phase==9?"原战役结算仍待核实，当前对局已完整保留":"原对局状态已保留";
-            return new ContestSnapshot(state,ContestSnapshot.Kind.DEBATE,current.id(),current.revision(),f.phase,f.sub,f.round,f.leader,f.winner,true,f.waitingCard,f.waitingMercy,false,current.purpose(),TOPICS[f.topic],f.sourceId,f.sourceVariant,f.sourceSha,status,speakers,cards,events);
+            String status=f.waitingCard?"请选择手牌":f.waitingMercy?"选择智力经验或势力技巧奖励":f.phase==9?(w.contests.nativeCampaignSettlementEnabled()?"原登用终局可结算；启动准入/费用仍待核实":"旧原型已保留；需明确采用终局策略"):"原对局状态已保留";
+            return new ContestSnapshot(state,ContestSnapshot.Kind.DEBATE,current.id(),current.revision(),f.phase,f.sub,f.round,f.leader,f.winner,true,f.waitingCard,f.waitingMercy,f.phase==9&&w.contests.nativeCampaignSettlementEnabled(),current.purpose(),TOPICS[f.topic],f.sourceId,f.sourceVariant,f.sourceSha,status,speakers,cards,events);
         }
         List<ContestSnapshot.Speaker> speakers=new ArrayList<>();List<ContestSnapshot.Card> cards=new ArrayList<>();int round,leader,winner;String topic,status;boolean waiting=false,settlement=false;
         if(current.isDuel()){

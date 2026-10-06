@@ -9,9 +9,10 @@ from pathlib import Path
 from unicorn import UC_HOOK_CODE
 from inspect_pc_debate_flow import NativeDebateFlow
 from pc_original_pe_data import load_original_data
+from session_b_pc_geography_context import load_geography
 from audit_pc_restoration_sources import ROOT,EXE_SHA,output_guard,json_bytes,sha
 
-def inspect(installation,output,postload=False,only_source=None,source_date=False,ability_change=None):
+def inspect(installation,output,postload=False,only_source=None,source_date=False,ability_change=None,geography=False):
     installation=installation.resolve();output_guard(installation,output);exe=(installation/'san11pk.exe').read_bytes()
     manifest_raw=(ROOT/'docs/handoff/20261004/session1/source-manifest.json').read_bytes();shared=(installation/'Media/scenario/Scenario.s11').read_bytes();sources=[]
     for source in json.loads(manifest_raw)['scenarios']:
@@ -33,6 +34,7 @@ def inspect(installation,output,postload=False,only_source=None,source_date=Fals
             if effective!=(1 if fixed else ability_change):raise ValueError('Original ability option setter differs')
             settings=dict(requestedAbilityChange=ability_change,sourceFixedAgeFlag=fixed,effectiveGrowthDisabled=effective,
                 setters=['0x4827b0','0x493f70','0x4827f0'],source='explicit verified option; source user preference remains unknown')
+        geography_context=load_geography(w,installation)if geography else None
         if postload:w.call(0x493400,receiver=w.root,count=50000000)
         actors=[w.root+0xc0bc+i*0x190 for i in [116,222]];records={r['native_index']:r for r in loaded['records']if r['kind']=='officer'}
         fields=[3,4,20,21,23,24,25,26,27,28,29,30,31,32,33,34,40,41,44,45,49]
@@ -77,6 +79,7 @@ def inspect(installation,output,postload=False,only_source=None,source_date=Fals
                 worldChangedBytes=[dict(offset=i,before=a,after=b)for i,(a,b)in enumerate(zip(world_before,world_after))if a!=b]))
             if postload:cases[-1].update(sitesBefore=site_before,sitesAfter=sites())
         entry=dict(**source,originalDataPages=pages,cases=cases)
+        if geography_context is not None:entry["geographyContext"]=geography_context
         if settings is not None:entry['explicitAbilitySettings']=settings
         if postload:entry['directPostload493400']=True
         sources.append(entry);print(json.dumps(dict(source=source['sourcePath'],cases=8)),flush=True)
@@ -92,4 +95,4 @@ def inspect(installation,output,postload=False,only_source=None,source_date=Fals
     if source_date:report['explicitSourceDate']=True
     output.parent.mkdir(parents=True,exist_ok=True);output.write_bytes(gzip.compress(json_bytes(report),mtime=0));print(json.dumps(dict(cases=sum(len(s['cases'])for s in sources),sha256=sha(output.read_bytes()))),flush=True)
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('installation',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--postload',action='store_true');p.add_argument('--only-source');p.add_argument('--source-date',action='store_true');p.add_argument('--ability-change',type=int,choices=[0,1]);a=p.parse_args();inspect(a.installation,a.output,a.postload,a.only_source,a.source_date,a.ability_change)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('installation',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--geography',action='store_true');p.add_argument('--postload',action='store_true');p.add_argument('--only-source');p.add_argument('--source-date',action='store_true');p.add_argument('--ability-change',type=int,choices=[0,1]);a=p.parse_args();inspect(a.installation,a.output,a.postload,a.only_source,a.source_date,a.ability_change,a.geography)
