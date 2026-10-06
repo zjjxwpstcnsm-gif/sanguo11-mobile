@@ -25,8 +25,52 @@
     "goalComplete": false
   },
   "deviceRun": 19,
-  "deviceAcceptance": "running; no old package scores reused",
+  "deviceAcceptance": "passed exact scope and complete restoration",
   "ARM": false,
   "nativeOriginalFire13": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "actual": {
+    "normalPassed": true,
+    "overallPassed": true,
+    "coldProcess": {
+      "beforePid": "27660",
+      "afterPid": "23388",
+      "differentPid": true,
+      "expectedStartupSaveSha256": "1df1b858ec525d2f1d975235db9170a22e828f4fd5a89264f6c70288b5a75fc4",
+      "passed": true
+    },
+    "apks": {
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-170cdd76-cache-scene/app-debug.apk": "cbe64874877da39e2881d513bda2945f97e2cce2ff5f77cd6a5e11cfe2a2f691",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-170cdd76-cache-scene/app-debug-androidTest.apk": "5d3b87d1815274228cd862cf7f8c3502217dc64af7214753fd658ef7eb20ddb3"
+    },
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 4,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "sourceIndex": 14,
+    "typedOriginalVoiceJoins": 670,
+    "actualFires": 2,
+    "actualMilitaryFacilities": 6,
+    "turnMs": [
+      11758,
+      18642,
+      19073,
+      17926,
+      16558,
+      16858,
+      15770
+    ],
+    "scope": "normal menu/new/real military+funding+construction+multiple whole turns+save/load+Activity+new-process actual rendered map/manual read/presentation exact Save/bothRNG/token+native teardown"
+  },
+  "newAll16": "next run20 pending; results from old combination13 not reused"
 }
