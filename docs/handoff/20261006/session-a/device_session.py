@@ -183,16 +183,16 @@ def main():
             if a.audio_capture_rate:capture_support.collect(out,r,music_capture,30)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION A ATTACK normal' in r['testOutput'] or 'PASS SESSION A ARMY normal' in r['testOutput'] or 'PASS SESSION A DEBATE ordinary' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
-            b_folder='capacity' if a.runner=='SessionBCapacityInstrumentation' else 'governor' if a.runner=='SessionAArmyBudgetInstrumentation' else 'debate' if a.runner=='SessionADebatePresentationInstrumentation' else 'fieldworks'
-            b_runner=a.runner in ['SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionAFireFlowInstrumentation','SessionAAttackTaskInstrumentation','SessionADebatePresentationInstrumentation','SessionAArmyBudgetInstrumentation','SessionBCapacityInstrumentation']
+            b_folder='search' if a.runner=='SessionASearchPresentationInstrumentation' else 'capacity' if a.runner=='SessionBCapacityInstrumentation' else 'governor' if a.runner=='SessionAArmyBudgetInstrumentation' else 'debate' if a.runner=='SessionADebatePresentationInstrumentation' else 'fieldworks'
+            b_runner=a.runner in ['SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionAFireFlowInstrumentation','SessionAAttackTaskInstrumentation','SessionADebatePresentationInstrumentation','SessionAArmyBudgetInstrumentation','SessionASearchPresentationInstrumentation','SessionBCapacityInstrumentation']
             relative='session-b/'+b_folder if b_runner else folder+'/'+run_id
             run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+relative,str(out/'evidence'))
             if a.fresh_process_reopen:
-                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionAFireFlowInstrumentation','SessionAAttackTaskInstrumentation','SessionADebatePresentationInstrumentation','SessionAArmyBudgetInstrumentation','SessionBCapacityInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
+                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation','SessionAScenePresentationInstrumentation','SessionAFireFlowInstrumentation','SessionAAttackTaskInstrumentation','SessionADebatePresentationInstrumentation','SessionAArmyBudgetInstrumentation','SessionASearchPresentationInstrumentation','SessionBCapacityInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
                 normal_pass=r['passed'];r['normalPassed']=normal_pass;r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
                 expected=run('shell','sha256sum','/data/data/'+PACKAGE+'/files/auto.sg11').decode().split()[0]
                 if b_runner:
-                    expected_file='actual-source.sg11' if b_folder in ['capacity','governor'] else 'actual-mid.sg11' if b_folder=='debate' else 'actual-build.sg11'
+                    expected_file='actual-source.sg11' if b_folder in ['capacity','governor'] else 'actual-mid.sg11' if b_folder in ['debate','search'] else 'actual-build.sg11'
                     expected_build=run('shell','sha256sum','/sdcard/Android/data/'+PACKAGE+'/files/session-b/'+b_folder+'/'+expected_file).decode().split()[0]
                     if expected_build!=expected:raise ValueError('B actual build and normal autosave differ')
                 # Android ends the target when instrumentation finishes. Use
@@ -214,7 +214,7 @@ def main():
                 new_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',after_log)
                 if not new_pids:raise ValueError('No actual second-process PID evidence')
                 new_pid=new_pids[-1]
-                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else ('PASS SESSION A FIRE COLD' if a.runner=='SessionAFireFlowInstrumentation' else ('PASS SESSION A ATTACK COLD' if a.runner=='SessionAAttackTaskInstrumentation' else 'PASS SESSION A DEBATE COLD' if b_folder=='debate' else 'PASS SESSION A ARMY COLD' if b_folder=='governor' else 'PASS SESSION B FIELDWORKS COLD'))) in cold) and 'FAIL' not in cold and old_pid!=new_pid}
+                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else ('PASS SESSION A FIRE COLD' if a.runner=='SessionAFireFlowInstrumentation' else ('PASS SESSION A SEARCH COLD' if b_folder=='search' else 'PASS SESSION A ATTACK COLD' if a.runner=='SessionAAttackTaskInstrumentation' else 'PASS SESSION A DEBATE COLD' if b_folder=='debate' else 'PASS SESSION A ARMY COLD' if b_folder=='governor' else 'PASS SESSION B FIELDWORKS COLD'))) in cold) and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
         finally:

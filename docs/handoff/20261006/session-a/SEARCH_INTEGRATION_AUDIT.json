@@ -11,7 +11,9 @@
       "afterSha256": "a5cf43d550243a85227e772c1c7e46ba88552bd6d7236a8cae56538632d47ee2",
       "bytes": 15077,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "a5cf43d550243a85227e772c1c7e46ba88552bd6d7236a8cae56538632d47ee2",
+      "primaryAfterExact": true
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
@@ -19,7 +21,9 @@
       "afterSha256": "38c990366d59d12b32e32fa4b39349a93df853218918fb6672928053dd00f456",
       "bytes": 12330,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "38c990366d59d12b32e32fa4b39349a93df853218918fb6672928053dd00f456",
+      "primaryAfterExact": true
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
@@ -27,7 +31,9 @@
       "afterSha256": "d7787002798911861a470a8e33ea9c9435ce1d6b1b02a72a044d3ceb31b8e17d",
       "bytes": 15433,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "d7787002798911861a470a8e33ea9c9435ce1d6b1b02a72a044d3ceb31b8e17d",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
@@ -35,7 +41,9 @@
       "afterSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
       "bytes": 5169,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
@@ -43,7 +51,9 @@
       "afterSha256": "3ea8e50389c39c490248d216945d559517384700bc24e8de24ff636f64e8eada",
       "bytes": 11985,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "3ea8e50389c39c490248d216945d559517384700bc24e8de24ff636f64e8eada",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/Contests.java",
@@ -51,7 +61,9 @@
       "afterSha256": "5f61a616ed3c155149fb128c51cc568c3cd71c1e8f9ebc948064318ae4e23eb3",
       "bytes": 21217,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "5f61a616ed3c155149fb128c51cc568c3cd71c1e8f9ebc948064318ae4e23eb3",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcCommandRoll.java",
@@ -59,7 +71,9 @@
       "afterSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
       "bytes": 538,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcRecruitmentFormula.java",
@@ -67,7 +81,9 @@
       "afterSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
       "bytes": 776,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
@@ -75,7 +91,9 @@
       "afterSha256": "2f7072b744202000c8b8795486bb7ab28a1e6fb4b7375dad63e23d4eb965ee92",
       "bytes": 9306,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "2f7072b744202000c8b8795486bb7ab28a1e6fb4b7375dad63e23d4eb965ee92",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcSearchPolicy.java",
@@ -83,7 +101,9 @@
       "afterSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
       "bytes": 12815,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcSearchRules.java",
@@ -91,7 +111,9 @@
       "afterSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
       "bytes": 1099,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
@@ -99,7 +121,9 @@
       "afterSha256": "8849c1c5ba6eaf8165eea9c0f7c303554fffef46caff560b923e634b8da0a3cd",
       "bytes": 18172,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "8849c1c5ba6eaf8165eea9c0f7c303554fffef46caff560b923e634b8da0a3cd",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/Strategy.java",
@@ -107,7 +131,9 @@
       "afterSha256": "56db19a138c271fb6673f6a96315af33a0b18145db67ee1d6c1c4d9bc6904c3d",
       "bytes": 26794,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "56db19a138c271fb6673f6a96315af33a0b18145db67ee1d6c1c4d9bc6904c3d",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/resources/pc-scenarios/search-regions.tsv",
@@ -115,7 +141,9 @@
       "afterSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
       "bytes": 102450,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/test/java/game/sanguo/core/PcSearchOrdinaryTest.java",
@@ -123,7 +151,9 @@
       "afterSha256": "495917fb8377aa3560f9232e36cbedb8660a71bef83917fc661af95b6e94dd6d",
       "bytes": 7704,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "495917fb8377aa3560f9232e36cbedb8660a71bef83917fc661af95b6e94dd6d",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/test/java/game/sanguo/core/PcSearchRulesTest.java",
@@ -131,7 +161,9 @@
       "afterSha256": "16f02eb1bc0232f7e0d9d0f00f7404de7de8c858e03ddad5b24b86f4e76cefda",
       "bytes": 2832,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "16f02eb1bc0232f7e0d9d0f00f7404de7de8c858e03ddad5b24b86f4e76cefda",
+      "primaryAfterExact": true
     },
     {
       "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
@@ -139,7 +171,9 @@
       "afterSha256": "0889a174cef611e6655c2ec7dcc2b067ae0b27177903e1b073dd5f561b563ce4",
       "bytes": 2148,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "0889a174cef611e6655c2ec7dcc2b067ae0b27177903e1b073dd5f561b563ce4",
+      "primaryAfterExact": true
     },
     {
       "path": "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java",
@@ -147,7 +181,9 @@
       "afterSha256": "e3bdcfe6b446bbb0d2f951f5b5dd68b72a28ea4455dc7c51d2e4aed0696e9d9d",
       "bytes": 3278,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "e3bdcfe6b446bbb0d2f951f5b5dd68b72a28ea4455dc7c51d2e4aed0696e9d9d",
+      "primaryAfterExact": true
     },
     {
       "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
@@ -155,7 +191,9 @@
       "afterSha256": "fc650327d79352e2318764a56b986508aa7bb4a9bf49b87014b36b2643dd0099",
       "bytes": 28834,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "fc650327d79352e2318764a56b986508aa7bb4a9bf49b87014b36b2643dd0099",
+      "primaryAfterExact": true
     },
     {
       "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
@@ -163,7 +201,9 @@
       "afterSha256": "d0b595cd345b23e6b1caa1bb40b3d399a2d1f823f05d461407e8ab2f2af461e1",
       "bytes": 4998,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "d0b595cd345b23e6b1caa1bb40b3d399a2d1f823f05d461407e8ab2f2af461e1",
+      "primaryAfterExact": true
     },
     {
       "path": "game-runtime/src/test/java/game/sanguo/runtime/PcSearchSessionTest.java",
@@ -171,7 +211,9 @@
       "afterSha256": "a4a27985459fa9cb0d39e3efea57907df5de8bf8f85d03d752a45de846ad6207",
       "bytes": 3306,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "a4a27985459fa9cb0d39e3efea57907df5de8bf8f85d03d752a45de846ad6207",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pack_search_regions.py",
@@ -179,7 +221,9 @@
       "afterSha256": "0ba4952626b535ba66e2fa3ee153dcf6d91e303d5cf036a0802e776a8c6c640d",
       "bytes": 2294,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "0ba4952626b535ba66e2fa3ee153dcf6d91e303d5cf036a0802e776a8c6c640d",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_command_roll.py",
@@ -187,7 +231,9 @@
       "afterSha256": "e5afcb117180b5ebcd0181b7cc04f5fb9346bb1933a72cd46e38ae6ff7b68b01",
       "bytes": 1817,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "e5afcb117180b5ebcd0181b7cc04f5fb9346bb1933a72cd46e38ae6ff7b68b01",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_ordinary_search.py",
@@ -195,7 +241,9 @@
       "afterSha256": "e201f93310986b25658caaa8f2b11f116dbc2069ca7843503e2ef672ad7807c8",
       "bytes": 5447,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "e201f93310986b25658caaa8f2b11f116dbc2069ca7843503e2ef672ad7807c8",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_search_consent_tail.py",
@@ -203,7 +251,9 @@
       "afterSha256": "058360a54d0a803ab138b2c4196570096157c53e9970c439ff360bf9e5b83758",
       "bytes": 5718,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "058360a54d0a803ab138b2c4196570096157c53e9970c439ff360bf9e5b83758",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_search_followup.py",
@@ -211,7 +261,9 @@
       "afterSha256": "0a3ec9f59809b07820b47106e668db9298793d0564297e045edb4d9fc2fc1fac",
       "bytes": 4560,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "0a3ec9f59809b07820b47106e668db9298793d0564297e045edb4d9fc2fc1fac",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_search_selection.py",
@@ -219,7 +271,9 @@
       "afterSha256": "a8cb5d14ef6e0e347e55d0c07673360d3869a5f1992a7b62ee6242aa99587383",
       "bytes": 3707,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "a8cb5d14ef6e0e347e55d0c07673360d3869a5f1992a7b62ee6242aa99587383",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_verify_fieldworks_ui.py",
@@ -227,7 +281,9 @@
       "afterSha256": "c2185ee2c376336ff9ad78672bad1ce68f629b965f18d167709344fe70a7faa7",
       "bytes": 9637,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "c2185ee2c376336ff9ad78672bad1ce68f629b965f18d167709344fe70a7faa7",
+      "primaryAfterExact": true
     }
   ],
   "documentRows": [
@@ -235,49 +291,65 @@
       "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
       "beforeSha256": "b8c943e08245f9b8aff479883a1345e6ce0dc04f9285bcd0cfa4c6c725474c50",
       "afterSha256": "09758624d945d3154b9097c6dba921078ab810c6351813654818a3d69105e725",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "09758624d945d3154b9097c6dba921078ab810c6351813654818a3d69105e725",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/SEARCH_BATCH.json",
       "beforeSha256": null,
       "afterSha256": "f8fa7d404dd1dbfb21a91952eb457c0850522ed8e9e26d65822fd17b403fbb83",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "f8fa7d404dd1dbfb21a91952eb457c0850522ed8e9e26d65822fd17b403fbb83",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/SEARCH_CONTRACT.md",
       "beforeSha256": null,
       "afterSha256": "12d7d091cf3defd24485796744902cdb769b90598ab3ff4b19bcb8f90f6cca29",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "12d7d091cf3defd24485796744902cdb769b90598ab3ff4b19bcb8f90f6cca29",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/SEARCH_DELTA.json",
       "beforeSha256": null,
       "afterSha256": "8eba38782403935a77e4dc61ac70b09997f0e604998b3b390a43650e4c6976a1",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "8eba38782403935a77e4dc61ac70b09997f0e604998b3b390a43650e4c6976a1",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/SEARCH_REPRODUCE.md",
       "beforeSha256": null,
       "afterSha256": "33e0b6b57b762eed28cce9fe349e23c1ac0d12949882c98eaa4dfd903c5b5a4f",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "33e0b6b57b762eed28cce9fe349e23c1ac0d12949882c98eaa4dfd903c5b5a4f",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/SEARCH_STRATEGY.md",
       "beforeSha256": null,
       "afterSha256": "3c22279125eb42d0b863a157add14c00dc6e916f89365ce31afdf37a049629ae",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "3c22279125eb42d0b863a157add14c00dc6e916f89365ce31afdf37a049629ae",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/search-flow-38.tar.gz",
       "beforeSha256": null,
       "afterSha256": "3dea45dd8c1d27677b6972d6be4b226b24897c8e8482c73aa3da8c58d56e435d",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "3dea45dd8c1d27677b6972d6be4b226b24897c8e8482c73aa3da8c58d56e435d",
+      "primaryAfterExact": true
     }
   ],
   "conflicts": [],
   "WipMerged": false,
-  "stage": "all28source7docs-before-after-verified; not imported yet",
+  "stage": "completed source28/doc7 imported, every afterSHA exact",
   "AOwnFilesModifiedByB": false,
   "newCombinationBuiltInstalledAccepted": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "primaryImportedHead": "ac7abd09d1f71775269b9bb06f393809d45c68ca",
+  "live38Scope": "Live38 frozen e967/b8bbf643 matrix excludes this new SEARCH strategy; no live source/test substitution"
 }
