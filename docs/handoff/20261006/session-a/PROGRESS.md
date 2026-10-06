@@ -100,3 +100,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 52三个native MP4完整解码/原PTS严格递增已核实（1801/1625/1030帧、1080×1920、timebase1/90000），原片未改/不重设FPS，现场结果截图技巧12与完成文案可读；派生检查PNG仅检视用，不当原PC像素或无干扰FPS。53真实Source14逐旬再次超过前台120秒，保留原截图/原helper记录；功能结果尚待，长期CPU/响应速度不因此关闭，B核心不可由A越权修改。继续同82334/native47127/video62010句柄，不重启或借52成绩。
 
 53最新b819/0a35实际原火正常1489+独立冷2725通过，PID29356→10033、SaveSHA1833735ae1388b72bc92d77fc0fce5079a0005f3787f9284bfc2c3dfc4294a97，9/3797全部原文件SHA及system动画null精确恢复。真实globalHome/Activity-map-Filament-focus/原时钟冻结、减少动画/LOW/灭火再燃真实到期/烧中存读/native13/全Save-RNG-token纯保留；前台120s截图及旧KEYCODE_HOME仅键尝试边界明确，功能通过不关闭性能/原完整连锁设施FX/ARM。54计划同b819/0a35 mediaAll16 begin11/end12，逐源分批全部原身份列表/详情，完整备份prepare65713。
+
+54完整backup-verified后同b819/0a35 mediaAll16 begin11/end12实际启动，driver21394/native观察同专用5554，原9/3797与APK每SHA先核，待全部原身份正常列表/详情/冷/最终恢复，不将工具或静态资源计数当正常caller验收。交付与矩阵更新53实际1489+2725及性能未闭合边界。

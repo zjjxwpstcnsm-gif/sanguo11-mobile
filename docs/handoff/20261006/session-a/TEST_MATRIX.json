@@ -4,7 +4,7 @@
     {
       "item": "complete-source",
       "status": "CHECKPOINT COMPLETE SHA VERIFIED",
-      "evidence": "701d31bb archive11056 files/902267628B; archiveSHAa656907a; all original4/new2JNI exact",
+      "evidence": "8ee37403 archive11068files/902397731B; archiveSHA5ca39633; everyentry and original4/new2JNI exact; later evidence docs outside exact archive",
       "next": "final source delta and serial integrated main guard"
     },
     {
@@ -27,15 +27,15 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST b819/0a35 INSTALLED52 HUD/NORMAL/COLD PASS",
-      "evidence": "a14 actualAPK SHAs/pm components; original168/6JNI; normal1497+cold1403, newPID/full9/3797 restore",
-      "next": "53 latestfire/pause; fullnormalmedia/commands/latestfull16/ARM"
+      "status": "LATEST b819/0a35 INSTALLED52 HUD AND53 FIRE NORMAL/COLD PASS",
+      "evidence": "a14 actualAPK SHAs/pm components; original168/6JNI;52 normal1497/cold1403;53 normal1489/cold2725; each newPID/full9/3797 restore",
+      "next": "54 fullnormalmedia Source11 ongoing; other15/commands/latestfull16/ARM pending"
     },
     {
       "item": "fire-state-ui",
-      "status": "NEWSEARCH39 PAUSE/NORMAL/COLD PASS",
-      "evidence": "2b68 actualSource14 FIRE/Home Activity-map-Filament/reducedmotion frozenclock/low/EXTINGUISH/reignite/expiry/burningread/cold; complete9/3797+system pref restored",
-      "next": "279 uploader combination fresh fire/chains/facilities/ARM"
+      "status": "LATEST b819/0a35 NORMAL/COLD53 PASS",
+      "evidence": "Source14 original13/realglobalHome Activity-map-Filament focus clockfreeze/reducedmotion/LOW/EXTINGUISH/reignite/realexpiry/burningread/newPID; complete9/3797 and animator null restored",
+      "next": "120s foreground turn performance; chains/facilities/original fullframe/GPU/ARM open"
     },
     {
       "item": "pc-fire-controller",
