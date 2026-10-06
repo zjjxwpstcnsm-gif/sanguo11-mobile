@@ -1,0 +1,124 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parent": "2377c30ba99419ba1a26eea5efe3fc953eae8766",
+  "branch": "codex/rules-content-contest-repair",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "sourceCommit": "1b7a8b418ffcdf56cf3c6020eb9faf4430ba3942",
+  "files": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java",
+      "beforeSha256": "a5cf43d550243a85227e772c1c7e46ba88552bd6d7236a8cae56538632d47ee2",
+      "afterSha256": "4fdbc835f4e73618093f13b97f3e431abedd46f6594879be4b8c15de190c2d8e",
+      "bytes": 18142
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "beforeSha256": "d7787002798911861a470a8e33ea9c9435ce1d6b1b02a72a044d3ceb31b8e17d",
+      "afterSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
+      "bytes": 15902
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Government.java",
+      "beforeSha256": "853e83dfe088328df555380a66951e426588463897830eec5603797213413f74",
+      "afterSha256": "6c5fd12405c0dac331474b85c6699d3f75b14fc420c8860e4536dfdd6caa2109",
+      "bytes": 23750
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "2f7072b744202000c8b8795486bb7ab28a1e6fb4b7375dad63e23d4eb965ee92",
+      "afterSha256": "8ae211e8633bea1b025f420355b954068df394863db41c27aed0401e03b9ff45",
+      "bytes": 9362
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "8849c1c5ba6eaf8165eea9c0f7c303554fffef46caff560b923e634b8da0a3cd",
+      "afterSha256": "72091fee5ca08bd34911e964d1e7503dd0e214cd2bfbb44b54c371b9a519f452",
+      "bytes": 18210
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "beforeSha256": "56db19a138c271fb6673f6a96315af33a0b18145db67ee1d6c1c4d9bc6904c3d",
+      "afterSha256": "b090c9875cb5780c98f3974476b37d87bdaaa1bc25499038eedbc55775b88c42",
+      "bytes": 27521
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "d49a4025a8b4eba5564432d9735eac0956193e705db807ecf6d9fbd9acc0d156",
+      "bytes": 8905
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentRules.java",
+      "beforeSha256": null,
+      "afterSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
+      "bytes": 902
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RecruitmentPlan.java",
+      "beforeSha256": null,
+      "afterSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
+      "bytes": 2408
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/raw-loyalty.tsv.gz",
+      "beforeSha256": null,
+      "afterSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
+      "bytes": 619992
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDirectRecruitmentPolicyTest.java",
+      "beforeSha256": null,
+      "afterSha256": "3a09cbfd05f22fdc23910262bb87af9f227893bb1e186f89c6290205fcf1d153",
+      "bytes": 4984
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDirectRecruitmentRulesTest.java",
+      "beforeSha256": null,
+      "afterSha256": "0e8b58705099748a84ed5bfd725861c94a1f38044ac5e34000fff0f3c9dd12c5",
+      "bytes": 1137
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/PcDirectRecruitmentSessionTest.java",
+      "beforeSha256": null,
+      "afterSha256": "31093f00b7aa973ee3f93e5ce68e0f7c977bcf86dc0a5b4dec17db3de99ca421",
+      "bytes": 2701
+    },
+    {
+      "path": "tools/content/session_b_pack_raw_loyalty.py",
+      "beforeSha256": null,
+      "afterSha256": "04d986ec98d04eb0638e34b95dc9c76c17ee979b6b3ae2aa7fba99a62929c1d4",
+      "bytes": 1995
+    },
+    {
+      "path": "tools/content/session_b_pc_raw_loyalty.py",
+      "beforeSha256": null,
+      "afterSha256": "2fee246ece5cddf33a3d0316ad02059aedbc42d721c45c721757e6b4574009bf",
+      "bytes": 3441
+    },
+    {
+      "path": "tools/content/session_b_pc_direct_recruitment.py",
+      "beforeSha256": null,
+      "afterSha256": "04116e414d95ab3a22516f02a7aac81814d48ee32892b901a1809a6e0d56afd8",
+      "bytes": 6612
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": "c2185ee2c376336ff9ad78672bad1ce68f629b965f18d167709344fe70a7faa7",
+      "afterSha256": "8ddf391d724a1535300136f351c07c8176d6829c36ac88b2f688486d6624ea92",
+      "bytes": 9955
+    }
+  ],
+  "productionGuardCount": 6093,
+  "productionGuardUnchanged": true,
+  "conflicts": [],
+  "aDependency": "six frozen compile-only A47326188, original A production untouched",
+  "frozenBridgeUnityJniUnchanged": true,
+  "excludedFutureWip": [
+    "session_b_pc_domestic_menu_admission.py",
+    "session_b_pc_recruitment_admission.py",
+    "session_b_pc_recruitment_command.py",
+    "session_b_pc_recruitment_special_gate.py",
+    "COMMAND_NATIVE_WORK.md",
+    "DUEL_NEXT_CONTRACT.md"
+  ]
+}

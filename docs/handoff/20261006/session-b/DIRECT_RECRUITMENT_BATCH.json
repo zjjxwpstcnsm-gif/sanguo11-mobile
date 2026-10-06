@@ -1,0 +1,141 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parent": "2377c30ba99419ba1a26eea5efe3fc953eae8766",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "sourceCommit": "1b7a8b418ffcdf56cf3c6020eb9faf4430ba3942",
+  "scope": "Completed bounded normal independent same-city source0 direct recruitment; full goal remains incomplete",
+  "completeGoal": false,
+  "apk": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/direct-build-39/frozen/app-debug.apk",
+      "bytes": 313403198,
+      "sha256": "e634f3b8e421c58753616daa6531594e81005f89cfd4673f99ef80365f11ed74"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/direct-build-39/frozen/app-debug-androidTest.apk",
+      "bytes": 2548287,
+      "sha256": "70b673f3c9f0a7026ae619263a764e8a18e1d96d60eafbb19490aa0adc3fb914"
+    }
+  ],
+  "archive": {
+    "path": "docs/handoff/20261006/session-b/direct-flow-39.tar.gz",
+    "bytes": 7653223,
+    "sha256": "55ecf06327e29b3bd97e65598326593b89c611e9288f7b40d3e12e7d895d9075",
+    "freshProofFiles": 42,
+    "containsUserBackups": false
+  },
+  "receipt": {
+    "passed": true,
+    "serial": "emulator-5582",
+    "apks": {
+      "out/session-b/direct-build-39/frozen/app-debug.apk": "e634f3b8e421c58753616daa6531594e81005f89cfd4673f99ef80365f11ed74",
+      "out/session-b/direct-build-39/frozen/app-debug-androidTest.apk": "70b673f3c9f0a7026ae619263a764e8a18e1d96d60eafbb19490aa0adc3fb914"
+    },
+    "installed": {
+      "game.sanguo.mobile.dev": "e634f3b8e421c58753616daa6531594e81005f89cfd4673f99ef80365f11ed74",
+      "game.sanguo.mobile.dev.test": "70b673f3c9f0a7026ae619263a764e8a18e1d96d60eafbb19490aa0adc3fb914"
+    },
+    "instrumentationPassed": true,
+    "coldPassed": true,
+    "scope": "actual source0 normal independent direct recruit/cancel/success-failure/original0gold20AP/rewards/datehash/fullsave/allRNG/cold/fullturn; full special gates/crosscity/ARM pending; separate from core probe and ARM",
+    "runner": "game.sanguo.mobile.SessionBDebateInstrumentation",
+    "restoration": {
+      "internal": {
+        "originalFiles": 15,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "preservedAdditionalFiles": []
+      },
+      "external": {
+        "originalFiles": 772,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "preservedAdditionalFiles": []
+      }
+    },
+    "removedAuthoredStreamCaches": [
+      {
+        "path": "cache/pc-music-stream-167272627000027-1/original.pcm.part",
+        "bytes": 526592,
+        "sha256": "757b260b55e1f0433c3a00fc0ea804122fa685acc59363cb8b8bef1eb254d3fd",
+        "source": "PcMusicStreamPlayer97/115; only added exclusive-run file, archived/liveSHA exact"
+      }
+    ]
+  },
+  "hostChecks": {
+    "directRules": 13,
+    "ordinaryDirect": 141,
+    "directAdapter": 9,
+    "armyBudget": 1058,
+    "ordinarySearch": 530,
+    "gameSession": 1690,
+    "sceneFacts": 41782,
+    "bridge": "PASS",
+    "military": 52,
+    "standaloneDebate": 156,
+    "historical9ContinuationRows": 36,
+    "historicalSaveRngPolicySha256": "487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2",
+    "architecture": "PASS"
+  },
+  "guards": {
+    "immutableCount": 5700,
+    "immutableMismatch": [],
+    "jniMismatch": [],
+    "jni": [
+      {
+        "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+        "bytes": 121016,
+        "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+        "ignored": true
+      },
+      {
+        "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+        "bytes": 7387104,
+        "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+        "ignored": true
+      },
+      {
+        "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+        "bytes": 108856,
+        "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+        "ignored": true
+      },
+      {
+        "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+        "bytes": 7320976,
+        "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+        "ignored": true
+      }
+    ],
+    "oldHead": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "oldStatusSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+    "oldStatusBytes": 31896,
+    "oldDirtyEntries": 609,
+    "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+    "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+    "fixed168InheritedVerified": true
+  },
+  "productionGuardCount": 6093,
+  "effectiveBuildInputs": 10879,
+  "foregroundTurnMillis": [
+    28601,
+    12430,
+    12831,
+    8791
+  ],
+  "unknown": [
+    "Original full relationship/special gates/current mutable raw loyalty",
+    "Cross-city task12/routes/arrival settlement",
+    "All16 source multi-force command/contest/fullWorld/RNG/exit matrix",
+    "Effective850/1100 activation/all original fields/biography/events",
+    "Full original duel/human/support/equip/retreat/capture/campaign",
+    "Debate concession/diplomacy/init all pairs",
+    "Genuine31/38/custom fullAndroid continuation",
+    "UnityU01 map63/65/terrain/coordinate semantics",
+    "ARM and speakers"
+  ],
+  "buildCommitMetadata": "BuildConfig parent2377c30b plus exact completed working delta; later source commit/rebuild packaging not byte-identical promise",
+  "priorFailures": [
+    "Supplemental direct adapter test first javac missed IOException declaration; corrected and9checksPASS; original failed compile log retained"
+  ]
+}
