@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "scope": "Read-only post completed B direct import and A music diagnostics guard; not runtime/ARM acceptance",
+  "guards": [
+    {
+      "guard": "SOURCE_GUARD.json",
+      "root": "/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile",
+      "entries": 10714,
+      "mismatches": [],
+      "head": "0e7b9bc2df90249a50851baeda58c7d183ea6059"
+    },
+    {
+      "guard": "ORIGINAL_GUARD.json",
+      "root": "/Users/paopao/workspace/sanguo11-mobile",
+      "entries": 4301,
+      "mismatches": [],
+      "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef"
+    }
+  ],
+  "original4Jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "expectedSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "expectedSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "expectedSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "expectedSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "pcExeSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "pcExeBytes": 159920128,
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "primaryHead": "65905c7e5dacdebd3eeec45b71becf2b6d6312c9",
+  "WipMerged": false
+}

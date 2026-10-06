@@ -171,7 +171,8 @@
     "docs/handoff/20261006/session-a/MUSIC_SUBMISSION_DIAGNOSTIC_CONTRACT.md",
     "app/src/androidTest/java/game/sanguo/mobile/SessionADirectRecruitmentPresentationInstrumentation.java",
     "docs/handoff/20261006/session-a/DIRECT_MUSIC_BUILD.json",
-    "docs/handoff/20261006/session-a/ALL_FACTION_PREVIEW_CONTRACT.md"
+    "docs/handoff/20261006/session-a/ALL_FACTION_PREVIEW_CONTRACT.md",
+    "docs/handoff/20261006/session-a/PRESERVATION_DIRECT_MUSIC.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
