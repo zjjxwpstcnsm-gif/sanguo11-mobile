@@ -23,3 +23,11 @@ PC地图直接消费真实FireState位置/剩余旬显示持久信息标记，�
 基线384MiB桌面复现重复轮OOM栈在TerrainMaterialField.attach数组申请，而首轮在SurfaceBuilder.mesh/Arrays.copyOf，两处栈均保留在Git批次证据，属于同大数组驻留峰值风险；不将它们当用户ARM栈。SDK35生产353 Java/资源编译是部分构建证据，没有可安装新APK；安装/完整用户2.6GiB备份及ARM仍待空间/设备。
 
 最终只读保护复核：原目录4301受守卫路径/HEAD52315bf0/dirtystatus1305完全不变，PC EXE SHA全等。第三批所有生产增量A拥有，699核心/B/Unity/桥接/JNI/配置路径与基点全等，168固定输入全等，无B WIP合入。小尺寸PC视窗的scratch容量按含外部32格的完整16×16块上限保留；正常200源输出容量相同。主题保留选中/焦点语义色，富文本只改变Span，不替换Editable字符/光标或触发重复TextWatcher。
+
+## 第四批：原格子火 factory 与停止句柄
+
+供给EXE的59fea0证明持续格子火模板13/资源138，真实火状态非零创建、清零413470 stop，使用原417880世界坐标。两次独立原controller/finalquad/material执行字节一致，纹理2/11/13与归档逐原像素相等，原混合1/5/2与1/5/6确认；真实413510/414670/413d20/413770/413470构造和停止两个实例通过独立VM，最终无绘制、无规则RNG调用。完全PC启动/GPU/正常Android不在证据范围。
+
+冻结worker的8-template/126-SEFF协议没有动态火命令，当前map材质拒绝1/5/2，须依NATIVE_FIRE_SERIAL_CONTRACT.md最终串行扩展。四JNI和旧scene未改，状态标记不扩大为原火恢复。
+
+存储优化只对72个同字节大输入作原子APFS clone，SHA未变，未获得足够空间，停止无收益重复。完整备份候选读取核验：旧3266文件均与设备相同，但当前多531文件，不能将旧archive当完整本轮备份。RAM16GiB约1.4GiB free、swap约6.0/6.4GiB已用，不建立大RAM构建卷。磁盘仍约300MiB，新APK与完整用户备份尚待空间。

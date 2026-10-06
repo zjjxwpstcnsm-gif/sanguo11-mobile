@@ -1,0 +1,494 @@
+{
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "effectIndex": 13,
+  "resourceId": 138,
+  "sourceFile": "media/effect/effect013.efdx",
+  "sourceBytes": 20076,
+  "sourceSha256": "7cc91cc42aeb548bcc85d21663251391ed5e78495129d38f9f8d8f708fcc44d7",
+  "sourceTableFlagRaw": 0,
+  "isolatedSourceRuns": [
+    {
+      "startMode": "native457880 count1/matrix; original template13 factory helper conditions both false",
+      "frames": [
+        {
+          "inputDt": 0.0333333333,
+          "quads": 7,
+          "snapshot": {
+            "root_state_sha256": "dfd0b80f1ada0cb27409980f34a52660aa3e1d7fe99937ad05f5a7f7e135f95e",
+            "root_elapsed": 0.03333333507180214,
+            "source_emission_attempts": 8,
+            "source_particle_allocations": 8,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1074,
+              "0x465a10": 1,
+              "0x45aed0": 8,
+              "0x45cf90": 8,
+              "0x46d400": 1,
+              "0x4442a0": 21,
+              "0x4657b0": 1
+            }
+          }
+        },
+        {
+          "inputDt": 0.1,
+          "quads": 7,
+          "snapshot": {
+            "root_state_sha256": "1309b661ba04f712260e1a11a1adc151c6dcf7b048919b794684c4388a7aaad9",
+            "root_elapsed": 0.13333334028720856,
+            "source_emission_attempts": 8,
+            "source_particle_allocations": 8,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1074,
+              "0x465a10": 1,
+              "0x45aed0": 8,
+              "0x45cf90": 8,
+              "0x46d400": 2,
+              "0x4442a0": 21,
+              "0x4657b0": 2
+            }
+          }
+        },
+        {
+          "inputDt": 0.3,
+          "quads": 11,
+          "snapshot": {
+            "root_state_sha256": "8dd44037e530669eebf4a1d3a4fe26bc035729705bc9f0adbefdf088591d2634",
+            "root_elapsed": 0.4333333373069763,
+            "source_emission_attempts": 12,
+            "source_particle_allocations": 12,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1113,
+              "0x465a10": 1,
+              "0x45aed0": 12,
+              "0x45cf90": 12,
+              "0x46d400": 3,
+              "0x4442a0": 33,
+              "0x4657b0": 3
+            }
+          }
+        },
+        {
+          "inputDt": 0.5,
+          "quads": 22,
+          "snapshot": {
+            "root_state_sha256": "80206d0b81f834d29cf91246f1ad009513f70adc70dd6eafb5006b8c82ae8bb9",
+            "root_elapsed": 0.9333333373069763,
+            "source_emission_attempts": 23,
+            "source_particle_allocations": 23,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1228,
+              "0x465a10": 1,
+              "0x45aed0": 23,
+              "0x45cf90": 23,
+              "0x46d400": 4,
+              "0x4442a0": 66,
+              "0x4657b0": 4
+            }
+          }
+        },
+        {
+          "inputDt": 1,
+          "quads": 19,
+          "snapshot": {
+            "root_state_sha256": "6c298b0c45bfe36d1b267d0a23f82e0f56c0a3bf31a2326d750e2c20c14563f8",
+            "root_elapsed": 1.933333396911621,
+            "source_emission_attempts": 32,
+            "source_particle_allocations": 32,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1301,
+              "0x465a10": 1,
+              "0x45aed0": 32,
+              "0x45cf90": 32,
+              "0x46d400": 5,
+              "0x4442a0": 93,
+              "0x4657b0": 5
+            }
+          }
+        },
+        {
+          "inputDt": 2,
+          "quads": 33,
+          "snapshot": {
+            "root_state_sha256": "d4ee2a8f7730ff83624b8c1e1c2849d98284ed540038790d4f970baf0c74f0ed",
+            "root_elapsed": 3.933333396911621,
+            "source_emission_attempts": 68,
+            "source_particle_allocations": 68,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1645,
+              "0x465a10": 1,
+              "0x45aed0": 68,
+              "0x45cf90": 68,
+              "0x46d400": 6,
+              "0x4442a0": 201,
+              "0x4657b0": 6,
+              "0x464bc0": 3
+            }
+          }
+        },
+        {
+          "inputDt": 4,
+          "quads": 53,
+          "snapshot": {
+            "root_state_sha256": "10c3b7526673364171a9f16b4978417ab169ffce4fba4ef244fe0c582210fed8",
+            "root_elapsed": 7.933333396911621,
+            "source_emission_attempts": 168,
+            "source_particle_allocations": 168,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 2641,
+              "0x465a10": 1,
+              "0x45aed0": 168,
+              "0x45cf90": 168,
+              "0x46d400": 7,
+              "0x4442a0": 501,
+              "0x4657b0": 7,
+              "0x464bc0": 10
+            }
+          }
+        }
+      ],
+      "quadMaterialsSha256": "e7008ecf5a21991f438e5896ace1ada109c1b3482a0403eb1e54bfe09721e7b0",
+      "blendModes": [
+        [
+          1,
+          5,
+          2
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "textureIndices": [
+        2,
+        11,
+        13
+      ],
+      "pausedPacketsEqual": true,
+      "pausedRootElapsedUnchanged": true,
+      "diagnosticCamera": {
+        "view_hex": "0000803f000000000000000000000000000000000000803f000000000000000000000000000000000000803f000000000000008000000080000000800000803f",
+        "projection_hex": "6f12833a000000000000000000000000000000006f12833a000000000000000000000000000000006f12833a0000000000000000000000000000003f0000803f",
+        "scale": 0.001,
+        "source_center": [
+          0,
+          0,
+          0
+        ],
+        "camera_provider": "source795190/46d820; native457bd0 slot1",
+        "status": "explicit diagnostic input, not captured PC view/projection"
+      }
+    },
+    {
+      "startMode": "native457880 count1/matrix; original template13 factory helper conditions both false",
+      "frames": [
+        {
+          "inputDt": 0.0333333333,
+          "quads": 7,
+          "snapshot": {
+            "root_state_sha256": "dfd0b80f1ada0cb27409980f34a52660aa3e1d7fe99937ad05f5a7f7e135f95e",
+            "root_elapsed": 0.03333333507180214,
+            "source_emission_attempts": 8,
+            "source_particle_allocations": 8,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1074,
+              "0x465a10": 1,
+              "0x45aed0": 8,
+              "0x45cf90": 8,
+              "0x46d400": 1,
+              "0x4442a0": 21,
+              "0x4657b0": 1
+            }
+          }
+        },
+        {
+          "inputDt": 0.1,
+          "quads": 7,
+          "snapshot": {
+            "root_state_sha256": "1309b661ba04f712260e1a11a1adc151c6dcf7b048919b794684c4388a7aaad9",
+            "root_elapsed": 0.13333334028720856,
+            "source_emission_attempts": 8,
+            "source_particle_allocations": 8,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1074,
+              "0x465a10": 1,
+              "0x45aed0": 8,
+              "0x45cf90": 8,
+              "0x46d400": 2,
+              "0x4442a0": 21,
+              "0x4657b0": 2
+            }
+          }
+        },
+        {
+          "inputDt": 0.3,
+          "quads": 11,
+          "snapshot": {
+            "root_state_sha256": "8dd44037e530669eebf4a1d3a4fe26bc035729705bc9f0adbefdf088591d2634",
+            "root_elapsed": 0.4333333373069763,
+            "source_emission_attempts": 12,
+            "source_particle_allocations": 12,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1113,
+              "0x465a10": 1,
+              "0x45aed0": 12,
+              "0x45cf90": 12,
+              "0x46d400": 3,
+              "0x4442a0": 33,
+              "0x4657b0": 3
+            }
+          }
+        },
+        {
+          "inputDt": 0.5,
+          "quads": 22,
+          "snapshot": {
+            "root_state_sha256": "80206d0b81f834d29cf91246f1ad009513f70adc70dd6eafb5006b8c82ae8bb9",
+            "root_elapsed": 0.9333333373069763,
+            "source_emission_attempts": 23,
+            "source_particle_allocations": 23,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1228,
+              "0x465a10": 1,
+              "0x45aed0": 23,
+              "0x45cf90": 23,
+              "0x46d400": 4,
+              "0x4442a0": 66,
+              "0x4657b0": 4
+            }
+          }
+        },
+        {
+          "inputDt": 1,
+          "quads": 19,
+          "snapshot": {
+            "root_state_sha256": "6c298b0c45bfe36d1b267d0a23f82e0f56c0a3bf31a2326d750e2c20c14563f8",
+            "root_elapsed": 1.933333396911621,
+            "source_emission_attempts": 32,
+            "source_particle_allocations": 32,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1301,
+              "0x465a10": 1,
+              "0x45aed0": 32,
+              "0x45cf90": 32,
+              "0x46d400": 5,
+              "0x4442a0": 93,
+              "0x4657b0": 5
+            }
+          }
+        },
+        {
+          "inputDt": 2,
+          "quads": 33,
+          "snapshot": {
+            "root_state_sha256": "d4ee2a8f7730ff83624b8c1e1c2849d98284ed540038790d4f970baf0c74f0ed",
+            "root_elapsed": 3.933333396911621,
+            "source_emission_attempts": 68,
+            "source_particle_allocations": 68,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 1645,
+              "0x465a10": 1,
+              "0x45aed0": 68,
+              "0x45cf90": 68,
+              "0x46d400": 6,
+              "0x4442a0": 201,
+              "0x4657b0": 6,
+              "0x464bc0": 3
+            }
+          }
+        },
+        {
+          "inputDt": 4,
+          "quads": 53,
+          "snapshot": {
+            "root_state_sha256": "10c3b7526673364171a9f16b4978417ab169ffce4fba4ef244fe0c582210fed8",
+            "root_elapsed": 7.933333396911621,
+            "source_emission_attempts": 168,
+            "source_particle_allocations": 168,
+            "memory_allocation_count": 15,
+            "memory_allocation_bytes": 4231636,
+            "source_calls": {
+              "0x443930": 11,
+              "0x4438d0": 2,
+              "0x457c40": 1,
+              "0x71deb8": 2,
+              "0x707dff": 3,
+              "0x444280": 2641,
+              "0x465a10": 1,
+              "0x45aed0": 168,
+              "0x45cf90": 168,
+              "0x46d400": 7,
+              "0x4442a0": 501,
+              "0x4657b0": 7,
+              "0x464bc0": 10
+            }
+          }
+        }
+      ],
+      "quadMaterialsSha256": "e7008ecf5a21991f438e5896ace1ada109c1b3482a0403eb1e54bfe09721e7b0",
+      "blendModes": [
+        [
+          1,
+          5,
+          2
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "textureIndices": [
+        2,
+        11,
+        13
+      ],
+      "pausedPacketsEqual": true,
+      "pausedRootElapsedUnchanged": true,
+      "diagnosticCamera": {
+        "view_hex": "0000803f000000000000000000000000000000000000803f000000000000000000000000000000000000803f000000000000008000000080000000800000803f",
+        "projection_hex": "6f12833a000000000000000000000000000000006f12833a000000000000000000000000000000006f12833a0000000000000000000000000000003f0000803f",
+        "scale": 0.001,
+        "source_center": [
+          0,
+          0,
+          0
+        ],
+        "camera_provider": "source795190/46d820; native457bd0 slot1",
+        "status": "explicit diagnostic input, not captured PC view/projection"
+      }
+    }
+  ],
+  "repeatByteEqual": true,
+  "normalAndroidCellFireBound": false,
+  "originalManagerHandleStopValidated": false,
+  "limits": [
+    "explicit source diagnostic view/matrix, not PC captured camera/pixels",
+    "source particle VM only, no World/session/commands/rule RNG",
+    "grid-fire creation/deletion identified in source, immutable fireState integration and opaque handle stop remain pending"
+  ],
+  "completeGoal": false,
+  "texturesPixelVerified": [
+    {
+      "imageIndex": 2,
+      "asset": "app/src/main/assets/3d/pc-effects/image-02.png",
+      "size": [
+        128,
+        128
+      ],
+      "rgbaSha256": "5b23c13c7d5a3b10a22e8fd44237f39e90683c79d094b0f0741a0eab659e74b6",
+      "originalPixelsExact": true
+    },
+    {
+      "imageIndex": 11,
+      "asset": "app/src/main/assets/3d/pc-effects/image-11.png",
+      "size": [
+        128,
+        128
+      ],
+      "rgbaSha256": "affc4981427ddcbd57dedad3e31fd35af7dc8718822e928115296c8001f38879",
+      "originalPixelsExact": true
+    },
+    {
+      "imageIndex": 13,
+      "asset": "app/src/main/assets/3d/pc-effects/image-13.png",
+      "size": [
+        256,
+        256
+      ],
+      "rgbaSha256": "bd5364cf06e342ddad61364fbd00e21e3bc9ccc8e01272c1ae591d9e48a8b92b",
+      "originalPixelsExact": true
+    }
+  ]
+}

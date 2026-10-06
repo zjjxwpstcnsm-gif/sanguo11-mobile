@@ -1,0 +1,131 @@
+{
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parentCommit": "c63271305935285653199a3e0acd28eb8d9eb20a",
+  "paths": [
+    {
+      "path": "docs/handoff/20261006/session-a/OWNERSHIP.json",
+      "beforeSha256": "c94e39aa6f40b90889f4355df1d8b0dd8817c960dc8e51f1ffc0f1140cd1727c",
+      "afterSha256": "9982a8d0f393ac3e17d45e0c430f0f1be0b917f855f6196dadbb305ce5cb7616",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/PROGRESS.md",
+      "beforeSha256": "efa6423eb34a2c5fb29c7eb7ac57d75d1df8ab38bd633d28f074ada75f84d30c",
+      "afterSha256": "645a48b7eca8d331629d2bd8cbd47156042f150761acc80817ed47c0cf06b30a",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/BACKUP_REUSE_AUDIT.json",
+      "beforeSha256": null,
+      "afterSha256": "d29298789fe8ef736e68c97a83ef263192fd17220dccc8142f8d40dce564da20",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_FACTORY_RUNTIME.json",
+      "beforeSha256": null,
+      "afterSha256": "88c5240bbdeec6495abbd72491b0640b59f01bc21d9a765497989323c1e8dff3",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_LIFECYCLE_SOURCE.json",
+      "beforeSha256": null,
+      "afterSha256": "92f67df20e56a8e5e6d49dee4f995493aff8e59fe36f323486a482f2d24e6369",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_SOURCE_RUNTIME.json",
+      "beforeSha256": null,
+      "afterSha256": "ffb6f3c3477ea996c78d5c0a910a36f035045db78e7d704e846a09d50cf7fa9f",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/NATIVE_FIRE_SERIAL_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "0d8f26ae411da578c7b60af0038cf8f444a1da6bf3b010b8517218afb76bd771",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/REFLINK_STORAGE_AUDIT.json",
+      "beforeSha256": null,
+      "afterSha256": "31482bd2b87776651ab643fa8930c69780f1a38be8d1c1791fc85e17ca8352f6",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/audit_existing_backup.py",
+      "beforeSha256": null,
+      "afterSha256": "6d11aa23ac7a5dfb8147fc4bc2debe3b92833dfaf4dd3abd0bcd001834ea6735",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/inspect_fire_lifecycle.py",
+      "beforeSha256": null,
+      "afterSha256": "f96195736bdb3e2a8d4fe27d3838aeeb7d9c63b559ad3063e1a85f06d0aacfb3",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/probe_fire_factory.py",
+      "beforeSha256": null,
+      "afterSha256": "f0f2773c81550c726336464aa26b726f9c316c0d8cc70cc2bfca5730fea6594d",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/probe_fire_source.py",
+      "beforeSha256": null,
+      "afterSha256": "d5a36ecd3642bdd068d5fb928b9fa1367ad8a2f0e090e105be5b13622300f399",
+      "owner": "A session"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/reflink_verified_inputs.py",
+      "beforeSha256": null,
+      "afterSha256": "a80d427464f2a678e617763dfd26721222734f86d05c343808085c670d81c6db",
+      "owner": "A session"
+    }
+  ],
+  "productionBytesChangedThisBatch": false,
+  "resource168ShaUnchanged": true,
+  "jni4": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "jniUnchanged": true,
+  "fireSourceBinding": {
+    "effectIndex": 13,
+    "resourceId": 138,
+    "sourceSha256": "7cc91cc42aeb548bcc85d21663251391ed5e78495129d38f9f8d8f708fcc44d7",
+    "sourceFactoryAndStopValidated": true,
+    "sourceRepeatedQuadMaterialBytesEqual": true,
+    "originalTexturePixelsVerified": [
+      2,
+      11,
+      13
+    ],
+    "normalAndroidBound": false
+  },
+  "backupReuseRejected": {
+    "oldFilesMatch": 3266,
+    "currentAdditionalFiles": 531
+  },
+  "reflinkResourcesDropped": 0,
+  "newApkBuiltOrInstalled": false,
+  "sourceWorkerExtensionRequiresFinalSerialIntegration": true,
+  "freeBytes": 380497920,
+  "completeGoal": false
+}

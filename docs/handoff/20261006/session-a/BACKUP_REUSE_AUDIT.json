@@ -1,0 +1,18 @@
+{
+  "scope": "read-only emulator external regular files vs old complete backup; no installation/restore; must refresh internal/prefs and reacquire exclusive lock before use",
+  "serial": "emulator-5554",
+  "archive": "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/installed-batch26-all16/source-15-cold/external-before.tar",
+  "archiveFileCount": 3266,
+  "archiveLogicalFileBytes": 2475735205,
+  "deviceFileCount": 3797,
+  "missingFromArchiveCount": 531,
+  "extraArchiveCount": 0,
+  "differentShaCount": 0,
+  "exactCurrentBackupMatch": false,
+  "currentSetDigest": "db462d4da72452cf9d68bea5d8444ce4f6726c9a5d5ca403fae62aa90e4d3f1f",
+  "priorSetDigest": "d14c1504716357e2dc090bcc838acde87c5396a3ae176ba5177e8b2e571422de",
+  "seconds": 29.871045518,
+  "mayReuseAsCurrentFullBackup": false,
+  "normalAndroidAccepted": false,
+  "completeGoal": false
+}

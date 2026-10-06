@@ -1,0 +1,374 @@
+{
+  "status": "partial byte-preserving conversion; stopped after no measured space recovery",
+  "filesWithVerifiedBaseBytesAndNewCtime": [
+    {
+      "path": "app/src/main/assets/3d/pc-effects/source-kernel.bin",
+      "bytes": 5779520,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/atlas.png",
+      "bytes": 5830128,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/facilities.pcz",
+      "bytes": 1700476,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-0.png",
+      "bytes": 1979507,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-1.png",
+      "bytes": 1839138,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-2.png",
+      "bytes": 1907894,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/color-3.png",
+      "bytes": 1711949,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-0.png",
+      "bytes": 1970788,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-1.png",
+      "bytes": 1978026,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-2.png",
+      "bytes": 1974244,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-map/palette-3.png",
+      "bytes": 1896849,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-sites/atlas.png",
+      "bytes": 2126960,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2239.ogg",
+      "bytes": 1938776,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2240.ogg",
+      "bytes": 1859625,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2245.ogg",
+      "bytes": 4275771,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2247.ogg",
+      "bytes": 2592021,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2248.ogg",
+      "bytes": 2092169,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2251.ogg",
+      "bytes": 1801079,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2255.ogg",
+      "bytes": 2035942,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2259.ogg",
+      "bytes": 1820234,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/music/2260.ogg",
+      "bytes": 2558748,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/voice-identities.json",
+      "bytes": 4516767,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/voice-manifest.json",
+      "bytes": 2147544,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/buildings.png",
+      "bytes": 2172625,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/items-facilities-v040.png",
+      "bytes": 2023802,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/terrain-v040.png",
+      "bytes": 4211842,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/units-v040.png",
+      "bytes": 1709880,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/map/units-v043.png",
+      "bytes": 1775601,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/portraits/officers-v040.png",
+      "bytes": 2801124,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/portraits/officers.png",
+      "bytes": 3398251,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/portraits/pc/media-manifest.json",
+      "bytes": 9924551,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officers/source-text.bin.gz",
+      "bytes": 3776506,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/headed-original.tsv",
+      "bytes": 1734997,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch19-actual-art-mid.sg11",
+      "bytes": 2139833,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/batch28-unfinished-candidate-delta.tar.gz",
+      "bytes": 1982179,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/inherited-v33-ap-baseline-difference.json",
+      "bytes": 1905619,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/layered-scenario-fields-initial-bounded.json.gz",
+      "bytes": 2564566,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/layered-scenario-fields.json.gz",
+      "bytes": 2557706,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/source-fields-native.json.gz",
+      "bytes": 37684649,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session1/started-scenario-native.json.gz",
+      "bytes": 2481970,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-clean-26-mix.wav",
+      "bytes": 19447852,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-25-mix.wav",
+      "bytes": 19447852,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-music-27-mix.wav",
+      "bytes": 19308588,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/music-policy-shared-19-captured-window.wav",
+      "bytes": 2715692,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-source-join-current.json.gz",
+      "bytes": 4467925,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-source-join.json.gz",
+      "bytes": 4072636,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-voice-source-join.json.gz",
+      "bytes": 4098748,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/ui-close-installed-20-captured-window.wav",
+      "bytes": 5652524,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/handoff/20261004/session2/voice-validity-27-mix.wav",
+      "bytes": 2252844,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/native-pc-visual/evidence/firebase-20260928/matrix.json",
+      "bytes": 1900579,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/native-pc-visual/evidence/full-acceptance/matrix.json",
+      "bytes": 2241333,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/native-pc-visual/evidence/repeat-20260926/matrix.json",
+      "bytes": 3962393,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/pc-data/scenario-officers-native.json.gz",
+      "bytes": 2867831,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/pc-visual/effect-bindings-source.json",
+      "bytes": 4382854,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/pc-visual/effect-controllers-working.json",
+      "bytes": 10500516,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/pc-visual/effect-curves-working.json",
+      "bytes": 11896152,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/pc-visual/effect-uv-working.json",
+      "bytes": 3662411,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/pc-visual/inventory.json",
+      "bytes": 3075724,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-05/01-map-targets.png",
+      "bytes": 1755944,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-05/05-building.png",
+      "bytes": 1837836,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-10/naval-preview.png",
+      "bytes": 1715560,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-12/02-barracks-ready.png",
+      "bytes": 2001356,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-13/barracks-building.png",
+      "bytes": 1895110,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-13/barracks-ready.png",
+      "bytes": 1999560,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-15/production-completed.png",
+      "bytes": 2002395,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-17/flat-landscape.png",
+      "bytes": 1899741,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-17/flat-portrait-return.png",
+      "bytes": 2102003,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-17/flat-resumed.png",
+      "bytes": 2088553,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-17/mini-before.png",
+      "bytes": 1738860,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "docs/uiux/evidence-17/native-released.png",
+      "bytes": 2132368,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256Unchanged": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256Unchanged": true
+    }
+  ],
+  "count": 72,
+  "failedAttempt": "input-72 music/2253.ogg cp -c -p returned1; original stderr was captured by subprocess but unavailable after process exit; fresh private diagnostic clone subsequently succeeded",
+  "stageCleanup": "only own failed-probe.clone removed after diagnosis",
+  "userResourcePathsDeleted": [],
+  "currentFreeBytes": 296435712,
+  "meaningfulSpaceRecovered": false,
+  "sourceByteChanges": false,
+  "originalDirectoriesWritten": false,
+  "completeGoal": false
+}

@@ -43,7 +43,19 @@
     "docs/handoff/20261006/session-a/DYNAMIC_PORTRAIT_AUDIT.json",
     "docs/handoff/20261006/session-a/INTEGRATION_REQUEST.md",
     "docs/handoff/20261006/session-a/TEST_MATRIX.json",
-    "docs/handoff/20261006/session-a/PRESERVATION_BATCH3.json"
+    "docs/handoff/20261006/session-a/PRESERVATION_BATCH3.json",
+    "docs/handoff/20261006/session-a/FIRE_LIFECYCLE_SOURCE.json",
+    "docs/handoff/20261006/session-a/inspect_fire_lifecycle.py",
+    "docs/handoff/20261006/session-a/NATIVE_FIRE_SERIAL_CONTRACT.md",
+    "docs/handoff/20261006/session-a/probe_fire_source.py",
+    "docs/handoff/20261006/session-a/FIRE_SOURCE_RUNTIME.json",
+    "docs/handoff/20261006/session-a/probe_fire_factory.py",
+    "docs/handoff/20261006/session-a/FIRE_FACTORY_RUNTIME.json",
+    "docs/handoff/20261006/session-a/reflink_verified_inputs.py",
+    "docs/handoff/20261006/session-a/REFLINK_STORAGE_AUDIT.json",
+    "docs/handoff/20261006/session-a/audit_existing_backup.py",
+    "docs/handoff/20261006/session-a/BACKUP_REUSE_AUDIT.json",
+    "docs/handoff/20261006/session-a/DELTA_BATCH4.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -1,0 +1,345 @@
+{
+  "passed": true,
+  "managerConstructor": "source413510; mode9/remap-1",
+  "initializationBoundary": "source45a620 and actual template13 registration; post-source414134 ready flag explicit; GPU/bootstrap not simulated",
+  "factory": "source414670→413d20→457880; callback413770",
+  "handles": [
+    {
+      "handle": "0x10504ec0",
+      "generation": 0,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "flagsBefore": 458755
+    },
+    {
+      "handle": "0x1050d5e0",
+      "generation": 0,
+      "position": [
+        250,
+        0,
+        100
+      ],
+      "flagsBefore": 458755
+    }
+  ],
+  "stop": "source413470 clears flag0x04 in byte+6",
+  "stopBytes": [
+    {
+      "handle": "0x10504ec0",
+      "before": "c001000003000700",
+      "after": "c001000003000300"
+    },
+    {
+      "handle": "0x1050d5e0",
+      "before": "c001000003000700",
+      "after": "c001000003000300"
+    }
+  ],
+  "frames": [
+    {
+      "inputDt": 0.0333333333,
+      "packetCount": 14,
+      "root": {
+        "root_state_sha256": "c41292929187f6bf26d2c78d6bb5e94cdf5ccc4bc22f48ed77898f872f42c20e",
+        "root_elapsed": 0.03333333507180214,
+        "source_emission_attempts": 16,
+        "source_particle_allocations": 16,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1124,
+          "0x465a10": 2,
+          "0x45aed0": 16,
+          "0x45cf90": 16,
+          "0x464bc0": 3,
+          "0x46d400": 1,
+          "0x4442a0": 42,
+          "0x4657b0": 1
+        }
+      }
+    },
+    {
+      "inputDt": 0.1,
+      "packetCount": 14,
+      "root": {
+        "root_state_sha256": "72426cc3b5113836993117edc1b3f23979c08415e198a2fe1e84f456e9218afa",
+        "root_elapsed": 0.13333334028720856,
+        "source_emission_attempts": 16,
+        "source_particle_allocations": 16,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1124,
+          "0x465a10": 2,
+          "0x45aed0": 16,
+          "0x45cf90": 16,
+          "0x464bc0": 3,
+          "0x46d400": 2,
+          "0x4442a0": 42,
+          "0x4657b0": 2
+        }
+      }
+    },
+    {
+      "inputDt": 0.3,
+      "packetCount": 22,
+      "root": {
+        "root_state_sha256": "8bd7c8e9d83c24c698c6eb0d634594ce4a9299a0a4170d61434b3e8d73bedc1a",
+        "root_elapsed": 0.4333333373069763,
+        "source_emission_attempts": 24,
+        "source_particle_allocations": 24,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1202,
+          "0x465a10": 2,
+          "0x45aed0": 24,
+          "0x45cf90": 24,
+          "0x464bc0": 3,
+          "0x46d400": 3,
+          "0x4442a0": 66,
+          "0x4657b0": 3
+        }
+      }
+    },
+    {
+      "inputDt": 0.5,
+      "packetCount": 44,
+      "root": {
+        "root_state_sha256": "32bcb7afc2094d101374591c13f2379dea333537b56f600a0a09e0237563a2f1",
+        "root_elapsed": 0.9333333373069763,
+        "source_emission_attempts": 46,
+        "source_particle_allocations": 46,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1432,
+          "0x465a10": 2,
+          "0x45aed0": 46,
+          "0x45cf90": 46,
+          "0x464bc0": 3,
+          "0x46d400": 4,
+          "0x4442a0": 132,
+          "0x4657b0": 4
+        }
+      }
+    },
+    {
+      "inputDt": 1,
+      "packetCount": 34,
+      "root": {
+        "root_state_sha256": "4b0f4acbc51f8a9be39dbbde2168519678baa332b1b6521fba6cb2c8f7564b58",
+        "root_elapsed": 1.933333396911621,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 5,
+          "0x4442a0": 186,
+          "0x4657b0": 5
+        }
+      }
+    },
+    {
+      "afterStopInputDt": 0.1,
+      "packetCount": 17,
+      "root": {
+        "root_state_sha256": "48fa44ddddbffcffd17d23bfb3a6485f8354779fe4007f7d334f7dd32ea6e239",
+        "root_elapsed": 2.0333333015441895,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 6,
+          "0x4442a0": 186,
+          "0x4657b0": 6
+        }
+      }
+    },
+    {
+      "afterStopInputDt": 0.3,
+      "packetCount": 14,
+      "root": {
+        "root_state_sha256": "919a413fb571bc770d7778c2b081bde6e50ac7171e9a5ea3e27eed6b58a9d731",
+        "root_elapsed": 2.3333332538604736,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 7,
+          "0x4442a0": 186,
+          "0x4657b0": 7
+        }
+      }
+    },
+    {
+      "afterStopInputDt": 0.5,
+      "packetCount": 6,
+      "root": {
+        "root_state_sha256": "ba699023029e90d2d3d19ea3a58eca3a955734c7da1d466b959a5232d96d74b2",
+        "root_elapsed": 2.8333332538604736,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 8,
+          "0x4442a0": 186,
+          "0x4657b0": 8
+        }
+      }
+    },
+    {
+      "afterStopInputDt": 1,
+      "packetCount": 0,
+      "root": {
+        "root_state_sha256": "b783a442ff599f325f9965a3a2d004d4f80aea1508194bb3b16c989d9441952f",
+        "root_elapsed": 3.8333332538604736,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 9,
+          "0x4442a0": 186,
+          "0x4657b0": 9
+        }
+      }
+    },
+    {
+      "afterStopInputDt": 2,
+      "packetCount": 0,
+      "root": {
+        "root_state_sha256": "af8524e65f0f905dd34ac45caad287152f6a9734f814a0d1be90aa0a31f0a8ce",
+        "root_elapsed": 5.8333330154418945,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 10,
+          "0x4442a0": 186,
+          "0x4657b0": 10
+        }
+      }
+    },
+    {
+      "afterStopInputDt": 4,
+      "packetCount": 0,
+      "root": {
+        "root_state_sha256": "609786b1666cd991d7ec6337e1ddf2f0bc02dc3e2dd78c2e4c5e54ca0575ebd0",
+        "root_elapsed": 9.833333015441895,
+        "source_emission_attempts": 64,
+        "source_particle_allocations": 64,
+        "memory_allocation_count": 18,
+        "memory_allocation_bytes": 8443316,
+        "source_calls": {
+          "0x443930": 13,
+          "0x4438d0": 3,
+          "0x457c40": 1,
+          "0x71deb8": 2,
+          "0x707dff": 3,
+          "0x444280": 1578,
+          "0x465a10": 2,
+          "0x45aed0": 64,
+          "0x45cf90": 64,
+          "0x464bc0": 8,
+          "0x46d400": 11,
+          "0x4442a0": 186,
+          "0x4657b0": 11
+        }
+      }
+    }
+  ],
+  "ruleRngCalls": [],
+  "rulePercentStateUnchanged": true,
+  "destroyedInstancesDrawZero": true,
+  "normalAndroidAccepted": false,
+  "completeGoal": false
+}
