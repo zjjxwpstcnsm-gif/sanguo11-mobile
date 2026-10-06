@@ -1,0 +1,440 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "aBefore": "608dd5f1bfbe35866392f462f7b51a23979328e5",
+  "aCompletedSource": "8979dae26bcee93f962a86d65725e346badbbba2",
+  "branch": "codex/map-ui-media-repair",
+  "directory": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "paths": [
+    {
+      "path": "app/build.gradle",
+      "beforeSha256": "8a2fa5e4a6725af57a02e9edbb081154ddf185eb8849f10975396c73508135c9",
+      "afterSha256": "950621288dc981478a73c941cde0b00a5cd0e49a73cf0aeecdde10ca11b4dfdb"
+    },
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "2e6952df432435960e84d6706a27bc5e4508e7a05acf615686a8507f61a0ba5c",
+      "afterSha256": "d76ef951b293f4dccfc451de81753fe8d1fed5369bc8369044688ae6029480ec"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "5ad8755f4c389da93514deb6b6f6429c1d1f9bec97e429f91a3bb50836bae87a"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenePresentationInstrumentation.java",
+      "beforeSha256": "019b1d2ac1ae31f7e11d858a7061e5f6638b7093060006a62f66249038a78af9",
+      "afterSha256": "a4130a23e9835e3f56cec4626637e8d1d99425e88ef1c1321972708f69073f87"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeSha256": "f11b30cf2914057fbbcb6d016ae01f11b57a9c4003d2c4ad720afb62aff01437",
+      "afterSha256": "446da591356d5a3e5abe8bf5f9b16b4791e5acb630e034469b0faedd4e1c6791"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "e3449146ab111089b4b663fc9dfb5c94078bf6407a1e2884589bae003e7405f4",
+      "afterSha256": "c83f8b5a8152bc68825e34bcde691662043d99f1574253b2bca0fdb3580eb811"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+      "beforeSha256": null,
+      "afterSha256": "c9ace0e123c4213b553bf7b1a7ac882d9083961de06aed441a54bc7c2c443426"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcEffectProcess.java",
+      "beforeSha256": "f9dffb5168662958c488f8d6d7585ef6b06c0880bbfae91a0144bdd4905eb8d1",
+      "afterSha256": "a34f05c315520eba7ffa4c3982cacdfeb5094f862ab0df75a04b1b677b379655"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "beforeSha256": "a6068ed4a0065ae1def5af401c297546546e576688222a17aee007019883bd28",
+      "afterSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/ANDROID_JAVA_COMPILE.json",
+      "beforeSha256": "852b23d0649596425de1122e4eedf1f22a405f6c7c33b120226e00d3b44c2e5e",
+      "afterSha256": "785c1295c94c9dac0ad2ffa156fe2e3129ec571e5f966c77d6066f8486fe2d12"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/ATTACK_TASK_ENTRY.md",
+      "beforeSha256": null,
+      "afterSha256": "6afcc46a958f76432e179184902ee3a27fe75b6fe812f94b5ad1a2d9b0f15575"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/CACHE_COMBINATION_AUDIT.json",
+      "beforeSha256": "be2f9dbaafb4e3f12296cdb02e53d75f9d82c72edbaf23469e87a7d3c83a2534",
+      "afterSha256": "6fd92dea443deb112b129001a6149a5d73e74069cd565fc0cd5e3e25ff09a8bc"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/DELIVERY.md",
+      "beforeSha256": "326ae5282a3d7d9cdf78c93712312fad435253cf9caf3c335e7a18996d0f54e6",
+      "afterSha256": "bcb1d3b54262419b517acb73a72cf63bb10ee8b86d8c6b69fdc8f1925092da72"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_APP_BINDING.md",
+      "beforeSha256": null,
+      "afterSha256": "cf8bdc91650f99ab3bb93e9a693b2d2e35eab71bbc96dc6f6ca163f7eaefa24d"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_APP_BUILD.json",
+      "beforeSha256": null,
+      "afterSha256": "3c97ee0778992f56253310a2739f007ea9f34e2291c5caeb03aaae1be8af4e6e"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_NATIVE_BUILD.json",
+      "beforeSha256": "aa6d1c41d1ed7a8d40175da054f3d9901b4360fa09c74d6814fb6a5557e4708f",
+      "afterSha256": "50f35e3d164a14f3cd8f01880365867ec9419dbdf60689b9c43790b46bef9d43"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_NORMAL_ACCEPTANCE.json",
+      "beforeSha256": null,
+      "afterSha256": "271cdf90df98d8651ffcb5c8081cb1ea65ae7bd44f9c1f2f4223a8c53015c61d"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/FIRE_TCG_BUDGET.json",
+      "beforeSha256": null,
+      "afterSha256": "2b90c60ba9e458444fe4dc910929b7f5af1006ab0ec22024ea885514bc3b9895"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/GOVERNOR_INTEGRATION_AUDIT.json",
+      "beforeSha256": null,
+      "afterSha256": "9aeff29d36c3fa31a915ad85c2c76fbabc4be2a273ecc90eec0252e8376b71b2"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/HEAP_BUDGET.md",
+      "beforeSha256": "4f2e2532b2ad32d9441593ee14db328a7a4134c727db8ec7375060ef953814fe",
+      "afterSha256": "7a52d395f0be87efdbd1cf0f28f4db45ab9c7e50e8436abd0416434dde13d0cc"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/MEDIA_IDENTITY_AUDIT.json",
+      "beforeSha256": "674398889e2333fe9500bef299b38e3d8e937e9239081020fe00d12b1c5d545f",
+      "afterSha256": "5aba3b33d4117d807cd7c5d43adf34dd21f2c525fbdac48ea06460919d4e7090"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/OWNERSHIP.json",
+      "beforeSha256": "9f0fe317317fc1f695c973cdba1056b841a276aa2c0a6299ad21488acdca8b56",
+      "afterSha256": "ac21ad9b1b7dd4ebb6508fe0d44bab69c0f16cb11febad0dcfd34843c403fa8a"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/device_session.py",
+      "beforeSha256": "4a7fe82d7e68272e77766f5872a1e32805ae70ecb86e6a07a16f7f0d75783531",
+      "afterSha256": "d39f0af4fdb90c745cd54c0f4bf2bd8f132ecc4043b5cc6b6f228a7313f2750e"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/observe_worker_memory.py",
+      "beforeSha256": "32edebf3262797863713f1a3d995cbf9b264429e4f60c4c87705b9b65a6d81d9",
+      "afterSha256": "a74510600a3580f1704d6f83f3f41397b2b26ffbd51dfcb46a7dd50a4379dd39"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/validate_fire_tcg_budget.py",
+      "beforeSha256": null,
+      "afterSha256": "f475535769fa960c8addd08a632eb4d7f0b21b76435c0bf73bcf62cf60b3b9d0"
+    },
+    {
+      "path": "tools/content/native/pc_effect_scene_probe.c",
+      "beforeSha256": "fefb1366e97cdaef6fdd2a47fda1637300604f2339e9b498bfdecf3d8a00a31c",
+      "afterSha256": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4"
+    },
+    {
+      "path": "tools/content/native/pc_effect_vm_probe.c",
+      "beforeSha256": "f92ec0d43a1e09480a580c07464a0951f9cfb3a57c786b4dce355cffc711cef9",
+      "afterSha256": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+    },
+    {
+      "path": "tools/content/session_a_build_fire_worker.py",
+      "beforeSha256": "f5f1c2b03f4919384ee3be24d21e2dfd4436e048ba53c8b6a709f48ac010b649",
+      "afterSha256": "0e5748584fc498b44eb9aa132d6a35fd6d3b648037497a8fd69ec449d486dfca"
+    }
+  ],
+  "BCompletedSource": "45173c6c3a334f4635f716fbf4cae960be1e0689",
+  "BDoc": "3b5d9b70c39ea7274c5a40ece3e82cc5cc92a3c0",
+  "B32PathsSeparate": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBGovernorInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "dac00714a9c067e871355f4778db6b3702c0ee2cde23a3d88c5bd375d1187f9d",
+      "bytes": 11611
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+      "beforeSha256": "a37810611e39a983f5ac30b450fada1226bac2a9f71dec018998cdb6b5e0c648",
+      "afterSha256": "917c27783a545a14f6c70a6586f59e1b2099cdb444ab1b91f90f3c66ddf19cd3",
+      "bytes": 9589
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Army.java",
+      "beforeSha256": "552d3d7cbad55ac49728672004c02586186bb34a0329176dffdd323fa10dd446",
+      "afterSha256": "36bbaaa66066827ad71b6ce998101756afaecad744764c560beab12dc3295bcd",
+      "bytes": 33351
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "beforeSha256": "159a4adb4597ea04383c143355c3facbb801d38a48fe9f758c14200f2c42cb73",
+      "afterSha256": "b9805dd26ebcd18a5067307cb627218e0501a86a942e5f53318f066fd9d6fea2",
+      "bytes": 4917
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "beforeSha256": "ad6d781a8f1f4b1c8030aacca8d92e86020f11e50d691096ba0ca2a1c88f5933",
+      "afterSha256": "17801e550f76ea0589f7980ff5c7a21c35b3aa7db48505a5ecf5e1f9536cbb79",
+      "bytes": 17832
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Domestic.java",
+      "beforeSha256": "d0aff18d3f311f0a82dc2a5111de2f123c8aa5cfbe56a73800b85bb4df64d24a",
+      "afterSha256": "e3fa80a32bcab5e40e37096aea897276c22ed6b3ad659e1c3a68ac3f2e7eb119",
+      "bytes": 52497
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/FactionCollapse.java",
+      "beforeSha256": "cd26f04be8f5844635381aeb2cc409cab5140cf145d823aaf70bc189ddf1ab3b",
+      "afterSha256": "5082898c23b8aba08c64ad3cf939b6af5bc99ce7f0fab23539f00f1f861dec81",
+      "bytes": 4849
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Governance.java",
+      "beforeSha256": "0852b0d3b255584c39dbbf5b880c4fd87b1489bfdbff2cd3b267aef34e64e5b0",
+      "afterSha256": "6e81c4e343d3eb242eed62b9e54062280db44678382aa2579d61e4eec5439f46",
+      "bytes": 8879
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Government.java",
+      "beforeSha256": "213141e1e65d8eb3aa010c56fe7f92e0032334c67d48c881d8a3824c66320f63",
+      "afterSha256": "853e83dfe088328df555380a66951e426588463897830eec5603797213413f74",
+      "bytes": 23686
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "beforeSha256": "3fc1ffac8df3e6ec28c3982977760114b9b29f78f324db393b9e49934ae0d2b9",
+      "afterSha256": "3a8cc34ad1a7e6a0cea1677226f7f87a8ea381bcd4ed40300acfe1643901edc0",
+      "bytes": 16840
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Loyalty.java",
+      "beforeSha256": "bb7ec4bcab6361c9592342237ed976614c8cd2e2266676bf8dd1988e10b53eb9",
+      "afterSha256": "a16abb2deb971c90cdfde6185c3b727fcfd8fb0f559e0b98a205f4df30feab6a",
+      "bytes": 11836
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcGovernorPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "6837903ddd7a3ff2a0c36e2a3cd778bcb5f99d82ed8380672eb27e9a029e6c1f",
+      "bytes": 23619
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "ebfbe995f5daaaae3830acb7033d28b6402d3fd9f83ab2b265cd239ca9f41f63",
+      "afterSha256": "af12dd15def556fc28696d7ecdc04d51cab409e98b2334fc4e23128a8d75640d",
+      "bytes": 9159
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "20cadb5d9eb0101871d248853fda9fbcfbaeeefd970225550fd55e04c388df04",
+      "afterSha256": "e85220d7ee4a15c9d895a6ab252f99504bbac5009f7a6cdc692e2e7ae50f6a0c",
+      "bytes": 17881
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "beforeSha256": "305d99807a3ba7c50663edbc8ce19be90e90c7a71345d0f5502fc77b369f9237",
+      "afterSha256": "9a4f697f7d76142019183199917bbd9caf26c89ef2364eb84019c647043a9dd4",
+      "bytes": 26333
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategySave.java",
+      "beforeSha256": "160b10e27e87cc455258e03a1a17b5f9a5e0f78db23d400f33a0b02399ac54ab",
+      "afterSha256": "c1126352937280ee6ae0b89826cce2c163eb6b8cbf48f21bf174509a031d21d5",
+      "bytes": 5997
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "beforeSha256": "cf4738ed3239b509cbd56e06068db874453d38ef20836ed6f1d9588c3b14417d",
+      "afterSha256": "7f7cce9e324109e85dd3cf6f96188113ab4cb394eecd6f10945ea70fed75247f",
+      "bytes": 43432
+    },
+    {
+      "path": "core/src/main/resources/pc-governor-rosters/index.txt",
+      "beforeSha256": null,
+      "afterSha256": "25fe996e158f1799cdfb13424d0d97bc8116ba63e7344bdc37368864261fa370",
+      "bytes": 65
+    },
+    {
+      "path": "core/src/main/resources/pc-governor-rosters/rosters.bin.gz",
+      "beforeSha256": null,
+      "afterSha256": "f642b0d78a35df48210ddf81fd3872a81a2db78ee0e0028d6e37d8f01755927e",
+      "bytes": 711266
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcGovernorPolicyTest.java",
+      "beforeSha256": null,
+      "afterSha256": "9c552482783f08b24637ee53ee0848be52b7310d55e5b2d9f7585aef38952b26",
+      "bytes": 15554
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "17153268ed9ff6866a1a1755fcaa66c17cb6b3135ef4ef70c832329168646e27",
+      "bytes": 4315
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_REPRODUCE.md",
+      "beforeSha256": null,
+      "afterSha256": "7a7d3b232ddd1f247078dd40596758c35285569cfb2667a161ac7f57438b820a",
+      "bytes": 4635
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/GOVERNOR_STRATEGY.md",
+      "beforeSha256": null,
+      "afterSha256": "7fba870c1fbb641fc53587e0d0654ffeb41130c75c3952327a6a9bfa6f225471",
+      "bytes": 3506
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/governor.instrumentation.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "887ea05836034068806d07784e2d5053a397a37c61a7452ecd8a7b67013f0884",
+      "bytes": 279
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java",
+      "beforeSha256": "d832f7bd7412228c47fb0bbd241025e53b2585a0e7d9ac1c49e1403de5ca8426",
+      "afterSha256": "eca5ee9901cfabff84a5c885c52724c815cb4a0dbf3a7c4e489766994da909c2",
+      "bytes": 8660
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SceneFactsQuery.java",
+      "beforeSha256": "37006d3166d30c5232be13a422944b7b7bb3d4af79994634ef13abd543ca9a1a",
+      "afterSha256": "0819aad5f804c0f711d5d13feb60dbf891f763d23fccc6b68b95583733113d71",
+      "bytes": 4178
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcGovernorRuntimeFactsTest.java",
+      "beforeSha256": null,
+      "afterSha256": "bc5cd8f689da2497905ee7874361e24ad31f175519e4d713708d2ca4bbf067de",
+      "bytes": 2912
+    },
+    {
+      "path": "tools/content/session_b_pack_governor_rosters.py",
+      "beforeSha256": null,
+      "afterSha256": "303720abe84a621444573004869f76980105454d3873b4ad8941bff3b76a5fb7",
+      "bytes": 5265
+    },
+    {
+      "path": "tools/content/session_b_pc_governor_admission.py",
+      "beforeSha256": null,
+      "afterSha256": "3ee722ee175a257dbfd2707e757ed225dada6363a5588eaf4ead0bf0961e91ec",
+      "bytes": 15819
+    },
+    {
+      "path": "tools/content/session_b_stage_governor_legacy.py",
+      "beforeSha256": null,
+      "afterSha256": "ca0299529eb666351236ccff00df817cf58cbc929e5c6f4b8faed27be6eba88e",
+      "bytes": 966
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": "708c46a239d2d8fb09582f491c22d3dd5cf2e9ea476b8442c933a2fa9daff680",
+      "afterSha256": "f3bc12d7c1d47e95c11a617ccc1d268e0e0db8d8450cff984a9b095388197347",
+      "bytes": 8013
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": "ce45ad1aef6a69c5218cd847f147af7eba094cbf03d54cb11bb000544641162d",
+      "afterSha256": "7278d5e7751b828a9dae8f66c78cc3c79ea57ae93c178747a753afc66bf5dca5",
+      "bytes": 18179,
+      "stagedCompletedSubsetOnly": true
+    }
+  ],
+  "conflicts": [],
+  "old4Jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "additional2Native": [
+    {
+      "abi": "x86_64",
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=x86_64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/sources/pc_effect_scene_probe.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64/libpc_effect_fire_worker.so"
+      ],
+      "worker": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "bytes": 37776,
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "unicornSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "runtimeAccepted": false,
+      "apkAdditionalPath": "lib/x86_64/libpc_effect_fire_worker.so"
+    },
+    {
+      "abi": "arm64-v8a",
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=aarch64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/sources/pc_effect_scene_probe.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a/libpc_effect_fire_worker.so"
+      ],
+      "worker": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "bytes": 38712,
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "unicornSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "runtimeAccepted": false,
+      "apkAdditionalPath": "lib/arm64-v8a/libpc_effect_fire_worker.so"
+    }
+  ],
+  "old168PinsExact": true,
+  "normalInstalledFire25Passed": true,
+  "actualGameSha256": "d72b47f364439337ff358d61b1707cf23cd9259633ddfe66dfe896f813f4097e",
+  "normal384PackageSha256": "6f987fd08bdd7c77eea99d200993b70f152597e6e3e391b7a6288d4bf0243dbb",
+  "normal384Installed": false,
+  "attackTaskDynamicAccepted": false,
+  "BAnyWipMerged": false,
+  "ARM": false,
+  "goalComplete": false
+}
