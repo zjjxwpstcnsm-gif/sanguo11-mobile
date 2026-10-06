@@ -94,7 +94,9 @@ public final class SaveCodec {
             w.player=d.readInt();w.startYear=d.readInt();w.startMonth=d.readInt();w.dataRevision=d.readInt();
             w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
         }
-        for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
+        // The saved extension is read later. Final validation applies the old
+        // limit unless an explicitly recognized original-army policy exists.
+        for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,47*255);
         for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=31?14:version>=26?12:version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
@@ -180,7 +182,7 @@ public final class SaveCodec {
         bounded(w.startYear,1,9999);bounded(w.startMonth,1,12);bounded(w.dataRevision,1,1000000);
         label(w.scenarioId,80);label(w.scenarioName,100);label(w.dataSource,500);
         require(w.dataHash!=null&&(w.dataHash.isEmpty()||w.dataHash.matches("[0-9a-f]{64}")),"数据指纹无效");
-        bounded(w.nextUnitId,1,10000000);for(int ap:w.actionPoints)bounded(ap,0,60);
+        bounded(w.nextUnitId,1,10000000);for(int ap:w.actionPoints)bounded(ap,0,PcArmyActionPolicy.enabled(w)?47*255:60);
         require(!w.cities.isEmpty()&&w.cities.size()<=1000&&w.officers.size()<=10000&&w.units.size()<=10000&&w.log.size()<=40,"记录数量无效");
         for(World.Terrain[] row:w.terrain)for(World.Terrain t:row)require(t!=null,"地形缺失");
         Set<Integer> ids=new HashSet<>();Set<Hex> occupied=new HashSet<>();
@@ -233,7 +235,7 @@ public final class SaveCodec {
         ContestSave.validate(w);PcDebateCampaignPolicy.validate(w);
         AbilitySave.validate(w);
         FieldworksSave.validate(w);
-        PcMilitaryCostPolicy.validate(w);PcCommandCapacityPolicy.validate(w);PcGovernorPolicy.validate(w);
+        PcMilitaryCostPolicy.validate(w);PcCommandCapacityPolicy.validate(w);PcGovernorPolicy.validate(w);PcArmyActionPolicy.validate(w);
         EstatesSave.validate(w);
         w.marches.validate();
         WorldSystemsSave.validate(w);

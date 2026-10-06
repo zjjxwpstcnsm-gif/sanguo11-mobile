@@ -24,7 +24,7 @@ public final class DeploymentPlan {
         goldMax=Math.min(10000,Math.max(0,stockGold-(reserveEnforced?reserveGold:0)));
         int equipmentLimit=weapon==null?0:weapon==World.Weapon.SWORD?commandLimit:Army.siegeWeapon(weapon)?(stockEquipment>0?commandLimit:0):stockEquipment;
         troopsMax=Math.max(0,Math.min(Math.min(commandLimit,equipmentLimit),Math.min(foodMax,stockTroops-(reserveEnforced?reserveTroops:0))));
-        actionPointsAvailable=w.actionPoints[w.active];actionPointsCost=w.cityActionCost(leader);
+        actionPointsAvailable=w.cityActionPoints(c);actionPointsCost=w.cityActionCost(leader);
         equipmentCost=weapon==null?0:Army.equipmentNeeded(weapon,troops);shipCost=ship==null||ship==Army.Ship.BOAT?0:1;
         troopsCost=troops;foodCost=food;goldCost=gold;
         remainingTroops=(long)stockTroops-troops;remainingFood=(long)stockFood-food;remainingGold=(long)stockGold-gold;

@@ -46,7 +46,7 @@ public final class StrategicAi {
     public Decision plan(int cityId,boolean emergency){return w.loyalty.readRulers(()->planReadOnly(cityId,emergency));}
     private Decision planReadOnly(int cityId,boolean emergency){
         World.City c=w.city(cityId);
-        if(c==null||c.owner!=w.active||w.gameOver()||w.actionPoints[w.active]<10)return null;
+        if(c==null||c.owner!=w.active||w.gameOver()||w.cityActionPoints(c)<10)return null;
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return null;
         World.Officer admin=best(idle,o->o.politics+o.charm),charmer=best(idle,o->2*o.charm+o.politics);
         int pressure=pressure(c),residents=0;

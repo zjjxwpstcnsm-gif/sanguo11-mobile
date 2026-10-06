@@ -8,7 +8,7 @@ public final class ConstructionPlan {
     public final String label,effect;
     ConstructionPlan(World w,World.City c,World.Officer o,Domestic.Kind kind,RuleFailure failure){
         this.failure=failure;goldAvailable=c==null?0:c.gold;goldCost=kind==null||w.cityActionCost(o,PcFacilityCosts.BUILD_ACTION_POINTS)==0?0:kind.cost;
-        actionPointsAvailable=w.active>=0&&w.active<w.actionPoints.length?w.actionPoints[w.active]:0;
+        actionPointsAvailable=w.cityActionPoints(c);
         actionPointsCost=w.cityActionCost(o,PcFacilityCosts.BUILD_ACTION_POINTS);goldRemaining=(long)goldAvailable-goldCost;actionPointsRemaining=(long)actionPointsAvailable-actionPointsCost;
         turns=o==null?0:Domestic.constructionTurns(o);level=kind==null?0:Domestic.buildLevel(kind);
         Domestic.Facility preview=kind==null?null:new Domestic.Facility(0,c==null?-1:c.id,kind,null,o==null?-1:o.id,turns);

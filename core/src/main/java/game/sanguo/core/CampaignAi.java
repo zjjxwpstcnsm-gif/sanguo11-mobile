@@ -261,7 +261,7 @@ public final class CampaignAi {
         return deployment(city,minimumReserve,c->true);
     }
     Deployment deployment(int city,int minimumReserve,Predicate<World.City> objectives){
-        World.City c=w.city(city);if(c==null||c.owner!=w.active||w.gameOver()||!w.districts.directCity(c.id)||w.actionPoints[w.active]<10||c.morale<65)return null;
+        World.City c=w.city(city);if(c==null||c.owner!=w.active||w.gameOver()||!w.districts.directCity(c.id)||w.cityActionPoints(c)<10||c.morale<65)return null;
         List<World.Officer> idle=idle(c);if(idle.isEmpty())return null;
         Districts.District district=w.districts.city(c.id);
         if(district!=null&&new DistrictManagement(w).residents(c)<3&&incoming(c)==0)return null;
@@ -367,7 +367,7 @@ public final class CampaignAi {
         List<World.Officer> idle=idle(c);if(idle.isEmpty())return false;
         World.Officer o=idle.stream().max(Comparator.comparingInt(this::admin).thenComparingInt(x->-x.id)).orElseThrow();
         if(support(city))return true;
-        if(w.actionPoints[w.active]<PcCityActionCosts.PRODUCTION)return false;
+        if(w.cityActionPoints(c)<PcCityActionCosts.PRODUCTION)return false;
         if(c.troops<reserve(c)+3000||c.gold<1500)return false;
         World.Weapon preferred=World.Weapon.SPEAR;int aptitude=-1;
         for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY}){

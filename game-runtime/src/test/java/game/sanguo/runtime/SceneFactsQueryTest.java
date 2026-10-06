@@ -33,6 +33,14 @@ public final class SceneFactsQueryTest {
             check(source.originalFields.equals(person.fields)&&Objects.equals(source.originalVoiceProfile,person.fields.get(48)),"stored opening voice/all numeric fields without guessing");
             immutable(()->source.originalFields.put(48,999));
         }
+        var administration=PcGovernorPolicy.view(w);
+        check(scene.administration.originalElectionEnabled==administration.enabled,"explicit original administration strategy");
+        check(scene.administration.armies.size()==administration.armies.size(),"original army slot coverage");
+        for(int i=0;i<administration.armies.size();i++){
+            var expected=administration.armies.get(i);var actual=scene.administration.armies.get(i);
+            check(actual.originalValid==expected.originalValid&&actual.nativeId==expected.nativeId&&actual.owner==expected.owner,"army validity preserved independently of raw owner0");
+            check(actual.actionPoints==PcArmyActionPolicy.points(w,expected.nativeId),"saved original army AP, absent unknown−1 not fabricated60");
+        }
         immutable(()->scene.fires.clear());immutable(()->scene.sites.get(0).footprint.clear());
         check(Arrays.equals(before,SaveCodec.encode(w)),"scene/officer reads preserve fullWorld/bothRNG");
     }

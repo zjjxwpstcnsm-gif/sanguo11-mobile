@@ -45,8 +45,9 @@ final class GovernmentUi {
         World.Officer governor=w.officer(city.governorId);
         text.append(city.name).append("\n\u5f53\u524d\u592a\u5b88\uff1a").append(governor==null?"\u65e0":governor.name+" · "+governor.role.label).append("\n\u539f\u751f\u519b\u56e2 ID\uff1a").append(nativeArmy==null?"\u672a\u77e5":nativeArmy);
         if(facts.unknownSites.contains(city.id))text.append("\n\u539f\u519b\u56e2\u5206\u914d\u672a\u77e5\uff1a\u4f7f\u7528\u5de5\u7a0b\u592a\u5b88\u7b56\u7565");
-        for(var army:facts.armies)if(army.owner==city.owner){World.Officer leader=w.officer(army.leaderOfficerId);text.append("\n\n").append("\u7b2c").append(army.display).append("\u519b\u56e2 · native ID ").append(army.nativeId).append("\n\u5f53\u524d\u9996\u957f\uff1a").append(leader==null?"\u672a\u6620\u5c04 native "+army.leaderNativeId:leader.name+" · "+leader.role.label);}
-        text.append("\n\n\u539f\u519b\u56e2\u884c\u52a8\u9884\u7b97\u4e0e\u59d4\u4efb\u63a7\u5236\u4ecd\u672a\u6838\u5b9e\uff1b\u52a0\u8f7d AP0 \u4e0d\u662f\u5f00\u5c40\u9884\u7b97\u3002");
+        for(var army:facts.armies)if(army.originalValid&&army.owner==city.owner){World.Officer leader=w.officer(army.leaderOfficerId);text.append("\n\n").append("\u7b2c").append(army.display).append("\u519b\u56e2 · native ID ").append(army.nativeId).append("\n\u5f53\u524d\u9996\u957f\uff1a").append(leader==null?"\u672a\u6620\u5c04 native "+army.leaderNativeId:leader.name+" · "+leader.role.label);}
+        if(PcArmyActionPolicy.enabled(w))text.append("\n\n本据点军团行动力：").append(PcArmyActionPolicy.cityPoints(w,city.id)).append("；由所属原军团独立扣除，逐旬补给上限255。");
+        if(!PcArmyActionPolicy.enabled(w))text.append("\n\n\u539f\u519b\u56e2\u884c\u52a8\u9884\u7b97\u4e0e\u59d4\u4efb\u63a7\u5236\u4ecd\u672a\u6838\u5b9e\uff1b\u52a0\u8f7d AP0 \u4e0d\u662f\u5f00\u5c40\u9884\u7b97\u3002");
         info("\u539f\u519b\u56e2\u4e0e\u592a\u5b88",text.toString());
     }
     private void prisoners(World.City c){

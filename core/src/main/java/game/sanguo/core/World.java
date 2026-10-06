@@ -268,15 +268,19 @@ public final class World {
         if(envoys.resolving(o==null?-1:o.id))return o!=null&&o.owner==c.owner&&o.unitId<0&&!government.captive(o.id)?null:new RuleFailure("ENVOY_CHANGED","leader","使者状态变化");
         if(!districts.directCity(c.id))return new RuleFailure("CITY_DELEGATED","city","该据点由委任军团管理，请先重编或撤销军团");
         if(!available(o,c))return new RuleFailure("LEADER_UNAVAILABLE","leader","需要一名本旬尚未行动的在城武将");
-        if(actionPoints[active]<actionCost)return new RuleFailure("ACTION_POINTS","global","行动力不足"+actionCost);
+        if(PcArmyActionPolicy.enabled(this)){RuleFailure budget=PcArmyActionPolicy.failure(this,c,actionCost);if(budget!=null)return budget;}
+        else if(actionPoints[active]<actionCost)return new RuleFailure("ACTION_POINTS","global","行动力不足"+actionCost);
         if(c.gold<gold)return new RuleFailure("CITY_GOLD","gold","金不足");
         return null;
     }
     int cityActionCost(Officer o){return cityActionCost(o,10);}
     int cityActionCost(Officer o,int baseCost){return o!=null&&envoys.resolving(o.id)?0:baseCost;}
+    int cityActionPoints(City c){return PcArmyActionPolicy.enabled(this)?c==null?-1:PcArmyActionPolicy.cityPoints(this,c.id):active>=0&&active<actionPoints.length?actionPoints[active]:0;}
+    RuleFailure actionPointFailure(City c,int cost){return PcArmyActionPolicy.enabled(this)?PcArmyActionPolicy.failure(this,c,cost):cityActionPoints(c)<cost?new RuleFailure("ACTION_POINTS","global","行动力不足"+cost):null;}
+    void debitActionPoints(City c,int cost){if(PcArmyActionPolicy.enabled(this))PcArmyActionPolicy.debit(this,c,cost);else actionPoints[active]-=cost;}
     void spend(City c,Officer o,int gold) { spend(c,o,gold,10); }
     void spend(City c,Officer o,int gold,int baseCost) { spend(c,o,gold,baseCost,100); }
-    void spend(City c,Officer o,int gold,int baseCost,int merit) { int cost=cityActionCost(o,baseCost);if(cost==0)return; c.gold-=gold;actionPoints[active]-=cost;o.acted=true;government.earn(o.id,merit); }
+    void spend(City c,Officer o,int gold,int baseCost,int merit) { int cost=cityActionCost(o,baseCost);if(cost==0)return;debitActionPoints(c,cost);c.gold-=gold;o.acted=true;government.earn(o.id,merit); }
     /** Compatibility entry points: UI, AI and callers share the strategy rules. */
     public Result recruit(int cityId,int officerId) {reports.prepare(); return strategy.recruitSoldiers(cityId,officerId); }
     public Result train(int cityId,int officerId) {reports.prepare(); return strategy.trainArmy(cityId,officerId); }
@@ -498,9 +502,10 @@ public final class World {
             reports.note(c.name+"本旬收支：金收入+"+goldIncome+"，粮收入+"+foodIncome+"，驻军实际粮耗"+reportFoodUse+(SiegeRules.blocked(siege,c)?"（围城：本次钱粮收入已减25%）":""));
         }
         progress.accept("事件、寿命与外交");merchantMarket.beforeWeather();events.tick();merchantMarket.tick();reports.checkpoint("世界事件结算");life.tick();reports.checkpoint("武将生涯结算");diplomacy.tick();reports.checkpoint("外交变化结算");
+        if(PcArmyActionPolicy.enabled(this)){governance.reconcile(false);PcArmyActionPolicy.replenish(this);reports.checkpoint("原军团行动力补给");}
     }
     private void reset(int owner) {
-        this.actionPoints[owner] = 60;
+        if(PcArmyActionPolicy.enabled(this))PcArmyActionPolicy.mirror(this);else this.actionPoints[owner] = 60;
         this.districts.reset(owner);
         for (Officer o : this.officers) {
             if (o.owner == owner) {

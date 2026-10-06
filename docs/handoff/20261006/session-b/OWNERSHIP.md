@@ -259,3 +259,152 @@ Ignored verification output is confined to out/session-b/ and independent build 
 - out/session-b/recruitment-cost-original-shex-all87-source0-v3.log (ignored repeated final query/import log; B; registered before creation)
 
 - out/session-b/debate-inheritance-guard-31.json (ignored full inherited non-B/resource/fourJNI/old609/compiled source SHA audit; B; registered before creation)
+
+- tools/content/session_b_pc_recruitment_admission.py (B full original source0 recruitment resolver/probability/roll/admission trace with observational UI boundaries; registered before creation)
+- out/session-b/recruitment-admission-source0.json (ignored actual native ordinary resolver branches and input facts; B; registered before creation)
+- out/session-b/recruitment-admission-source0.partial.json (ignored native case checkpoints/fault retention; B)
+- out/session-b/recruitment-admission-source0.log (ignored complete original resolver log; B)
+
+- out/session-b/recruitment-admission-source0-residents.json (ignored pure native same-city actor scan and full ordinary resolver branches; B; registered before creation)
+- out/session-b/recruitment-admission-source0-residents.partial.json (ignored checkpoints/fault retention; B)
+- out/session-b/recruitment-admission-source0-residents.log (ignored complete source actor/branch run; B)
+
+- out/session-b/recruitment-probability-inputs-source0.json (ignored original locals/hash/scalars and relationship gate proof; B; registered before creation)
+- out/session-b/recruitment-probability-inputs-source0.partial.json (ignored checkpoints/fault receipt; B)
+- out/session-b/recruitment-probability-inputs-source0.log (ignored complete scalar trace log; B)
+
+- tools/content/session_b_pc_recruitment_command.py (B complete original5d56a0 command and5d3ac0 admission with source actors/explicit AP fixtures; registered before creation)
+- out/session-b/recruitment-command-source0.json (ignored full command gold/AP/merit/TP/action/target/RNG and observational UI boundaries; B; registered before creation)
+- out/session-b/recruitment-command-source0.partial.json (ignored native checkpoints/fault receipt; B)
+- out/session-b/recruitment-command-source0.log (ignored complete original command trace log; B)
+
+- tools/content/session_b_pc_army_action_points.py (B original full army AP replenishment598880 and per-army5986a0/source47e9b0 input evidence; registered before creation)
+- out/session-b/army-action-points-source0.json (ignored complete original47army budget increment and source/current inputs; B; registered before creation)
+- out/session-b/army-action-points-source0.log (ignored complete original AP driver log; B)
+
+- out/session-b/army-action-points-source0-v2.json (ignored signed-native-ID-safe full original AP driver proof; B; registered before creation)
+- out/session-b/army-action-points-source0-v2.log (ignored corrected query complete log; B)
+
+- core/src/main/java/game/sanguo/core/PcCommandRoll.java (B exact original5ba410 signed32 deterministic command hash, distinct from native global RNG; registered before creation)
+- core/src/test/java/game/sanguo/core/PcCommandRollTest.java (B original hash boundary/source argument parity and RNG-purity tests; registered before creation)
+- tools/content/session_b_pc_command_roll.py (B complete original5ba410 scalar boundary/source hash oracle; registered before creation)
+- out/session-b/command-roll-native.tsv (ignored complete native scalar outputs; B; registered before creation)
+- out/session-b/command-roll-native.log (ignored original scalar oracle log; B)
+
+- out/session-b/recruitment-command-source0-v2.json (ignored corrected original action bit124 and full original command receipt; B; registered before creation)
+- out/session-b/recruitment-command-source0-v2.log (ignored complete action/stock/AP/RNG corrected run; B)
+
+- out/session-b/army-action-points-selected-source0.json (ignored original selectedforce setter plus full4bc910 ordering/AP driver context; B; registered before creation)
+- out/session-b/army-action-points-selected-source0.log (ignored original selected-player/ordering/AP run; B)
+- out/session-b/command-roll-checks.log (ignored native hash Java parity check; B; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcRecruitmentFormula.java (B exact original5c4f80 arithmetic supplied with verified current scalar/relationship inputs; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRecruitmentFormulaTest.java (B compare original source0 executed fallback locals/output; no production eligibility claim; registered before creation)
+- out/session-b/recruitment-formula-native.tsv (ignored executed native source scalar/output fixture; B; registered before creation)
+- out/session-b/recruitment-formula-checks.log (ignored native arithmetic parity; B; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcArmyActionRules.java (B exact original5986a0 budget arithmetic with current commander/adviser/count/military-office inputs; registered before creation)
+- core/src/test/java/game/sanguo/core/PcArmyActionRulesTest.java (B original executed army/source AP parity, no opening/controller integration claim; registered before creation)
+- out/session-b/army-action-rules-native.tsv (ignored source0 original47driver budget input/output rows; B; registered before creation)
+- out/session-b/army-action-rules-checks.log (ignored native budget arithmetic comparator; B; registered before creation)
+
+- out/session-b/army-action-points-all16/source-00.json (ignored independent original source0/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-01.json (ignored independent original source1/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-02.json (ignored independent original source2/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-03.json (ignored independent original source3/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-04.json (ignored independent original source4/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-05.json (ignored independent original source5/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-06.json (ignored independent original source6/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-07.json (ignored independent original source7/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-08.json (ignored independent original source8/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-09.json (ignored independent original source9/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-10.json (ignored independent original source10/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-11.json (ignored independent original source11/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-12.json (ignored independent original source12/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-13.json (ignored independent original source13/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-14.json (ignored independent original source14/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/source-15.json (ignored independent original source15/47army AP driver evidence; B; registered before creation)
+- out/session-b/army-action-points-all16/run.log (ignored16-source sequential original driver log; B; registered before creation)
+
+- out/session-b/army-action-points-all16.log (ignored sequential native driver log; spelling correction registered after initial creation; B)
+- out/session-b/ArmyActionSourceParity.java (ignored compare actual current candidateWorld inputs/counts/normal-player armies against original driver; B; registered before creation)
+- out/session-b/army-action-current-inputs.tsv (ignored current authoritative original-map/canonical linked input diagnostics; B; registered before creation)
+- out/session-b/army-action-current-inputs.log (ignored JVM current-input diagnostic log; B; registered before creation)
+
+- out/session-b/recruitment-targets-source0.json (ignored full original target enumeration/sort and source2/player-context variants; B; registered before creation)
+- out/session-b/recruitment-targets-source0.partial.json (ignored native enumeration checkpoint/fault receipt; B)
+- out/session-b/recruitment-targets-source0.log (ignored complete original enumeration log; B)
+
+- docs/handoff/20261006/session-b/COMMAND_NATIVE_WORK.md (B current unintegrated native recruitment/army budget evidence and required normal-flow integration; registered before creation)
+- out/session-b/army-action-current-comparison.json (ignored full source/current army authority parity audit; B; registered before creation)
+
+- tools/content/session_b_pc_direct_recruitment.py (B complete original direct5c5940 recruitment admission/dispatch/results, separate from search5d56a0; registered before creation)
+- out/session-b/direct-recruitment-source0.json (ignored complete original same-city direct recruitment proof; B; registered before creation)
+- out/session-b/direct-recruitment-source0.partial.json (ignored full native command checkpoints/fault receipt; B)
+- out/session-b/direct-recruitment-source0.log (ignored full direct-recruitment native log; B)
+
+- core/src/main/java/game/sanguo/core/PcGovernorPolicy.java (B preserve original army validity for detached facts; existing owned path)
+- game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java (B additive original army validity, constructor compatibility; existing owned path)
+- game-runtime/src/main/java/game/sanguo/runtime/query/SceneFactsQuery.java (B detached original validity projection; existing owned path)
+- app/src/main/java/game/sanguo/mobile/GovernmentUi.java (B hide invalid original army records; existing owned page)
+- core/src/test/java/game/sanguo/core/PcArmyValidityFactsTest.java (B16-source original-valid/inactive army facts and complete save/RNG purity; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcArmyActionPolicy.java (B fresh saved per-original-army budget/scope/replenishment, legacy absence preserved; registered before creation)
+- core/src/test/java/game/sanguo/core/PcArmyActionPolicyTest.java (B16source initial native parity/save/scope/debit/replenishment/old absence; registered before creation)
+- out/session-b/army-validity-checks.log (ignored validation log; registration corrected after initial creation; B)
+- out/session-b/army-action-policy-checks.log (ignored production budget/compatibility verification; B; registered before creation)
+
+- core/src/test/resources/pc-army-action/original-all16.tsv (B16separate source/valid normal-owner army AP driver fixture; registered before creation)
+
+- core/src/main/java/game/sanguo/core/{World,SaveCodec,CityActionPlan,ConstructionPlan,DeploymentPlan,TradePlan,ProductionPlan,TransportPlan,DiplomacyPlan,AbilityResearch,Domestic,Diplomacy,Envoys}.java (existing B owned paths; explicit-policy city AP preview/preflight/debit/save integration; no new paths)
+
+- game-runtime/src/test/java/game/sanguo/runtime/SceneFactsQueryTest.java (existing B runtime detached validity/full-save regression checks)
+- out/session-b/army-runtime-checks.log (ignored B runtime validity/session/bridge checks; registered before creation)
+- out/session-b/army-runtime-sources.txt (ignored isolated javac input listing; registered before creation)
+
+- out/session-b/direct-recruitment-special-gate-disasm.txt (ignored B pinnedEXE original4af7d0/4afd60 evidence; registered before creation)
+
+- tools/content/session_b_pc_recruitment_special_gate.py (B original4af7d0 forced relationship gate and4afd60 exact source targets; registered before creation)
+- out/session-b/direct-recruitment-special-gate-source0.json (ignored B exact native gate/noRNG/world purity evidence; registered before creation)
+- out/session-b/direct-recruitment-special-gate-source0.log (ignored B native gate terminal log; registered before creation)
+
+- out/session-b/direct-recruitment-special-gate-source0-v2.json (ignored B corrected exact original direct caller/receiver/date; registered before creation)
+- out/session-b/direct-recruitment-special-gate-source0-v2.log (ignored B corrected native gate terminal log; registered before creation)
+
+- out/session-b/army-action-facility-modifier-disasm.txt (ignored B original5986a0 modifier exact native facility ID; registered before creation)
+
+- out/session-b/domestic-menu-extra-native-disasm.txt (ignored B original600e15/6011bf nine missing domestic kinds admission; registered before creation)
+
+- tools/content/session_b_pc_domestic_menu_admission.py (B original5bb4e0/5bb3d0 full source-city20-kind domestic eligibility; registered before creation)
+- out/session-b/domestic-menu-admission-source0.json (ignored B original840city-kind query results; registered before creation)
+- out/session-b/domestic-menu-admission-source0.log (ignored B native query log; registered before creation)
+
+- out/session-b/domestic-full-command-disasm.txt (ignored B original5bc dispatcher/worker/progress chain; registered before creation)
+
+- out/session-b/army-parent-00179360/core/src/main/** (ignored B immutable completedparent archive for inherited failure audit; registered before creation)
+- out/session-b/army-parent-00179360/classes/** (ignored isolated B completedparent javac cache; registered before creation)
+- out/session-b/army-parent-00179360/sources.txt (ignored B parent javac input listing; registered before creation)
+- out/session-b/army-parent-00179360/checks.log (ignored B exact parent ArmyTest reproduction; registered before creation)
+
+- core/src/main/java/game/sanguo/core/{CampaignAi,StrategicAi,DistrictManagement}.java (existing B owned AP scope prechecks; legacy branch retained)
+
+- core/src/main/java/game/sanguo/core/{Districts,Editor,FactionCollapse}.java (existing B owned original AP management/explicit first-army edit/collapse integration; A EditorUi unchanged)
+
+- game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java and game-runtime/src/main/java/game/sanguo/runtime/query/SceneFactsQuery.java (existing B detached per-original-army saved AP, −1 unknown; constructor-compatible, frozen bridge untouched)
+
+- core/src/main/java/game/sanguo/core/PcScenarioOpening.java (existing B explicit newsource-only saved original army initialization; old savedworld load untouched)
+
+- app/src/androidTest/java/game/sanguo/mobile/SessionBGovernorInstrumentation.java (existing B actual ordinary armyAP new/page/transfer/deploy/save/cold assertions; no injected rule values)
+- out/session-b/army-build-32/** (ignored B independently frozen actual production32/APK inputs/source guards; registered before creation)
+- out/session-b/army-build-32.log (ignored B isolatedGradle terminal log; registered before creation)
+- out/session-b/army-installed-32/** (ignored B actual5582 completebackup/install/normal/cold/restore; registered before creation, user backups never publish)
+- out/session-b/army-installed-32.log (ignored B actual fullbackup/restore verifier log; registered before creation)
+
+- docs/handoff/20261006/session-b/ARMY_BUDGET_STRATEGY.md (B explicit newsource saved budget/provenance/scope/compatibility and unknowns; registered before creation)
+
+- tools/content/session_b_pack_army_action_expected.py (B reproducible285/16 original APdriver fixture/sourceSHA packer; registered before creation)
+- docs/handoff/20261006/session-b/ARMY_BUDGET_BATCH.json (B actual32 bounded receipt/APK/restoration/scope; registered before creation)
+- docs/handoff/20261006/session-b/ARMY_BUDGET_DELTA.json (B exact completed paths/before-afterSHA; registered before creation)
+- docs/handoff/20261006/session-b/ARMY_BUDGET_REPRODUCE.md (B original/host/build/install/restore reproduce; registered before creation)
+- docs/handoff/20261006/session-b/army-budget-flow-32.tar.gz (B sanitized original/actual32fresh proof only, no user backup/inventory; registered before creation)
+- out/session-b/army-action-expected-repeat.tsv (ignored B two-import exact-byte proof; registered before creation)

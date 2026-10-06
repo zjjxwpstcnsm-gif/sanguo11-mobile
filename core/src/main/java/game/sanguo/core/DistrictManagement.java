@@ -41,9 +41,9 @@ public final class DistrictManagement {
     void balance(Districts.District d){
         List<World.City> targets=new ArrayList<>();for(int id:w.districts.sites(d))targets.add(w.city(id));
         targets.sort(Comparator.comparingInt(this::residents).thenComparingInt(c->c.id));
-        for(World.City target:targets){if(residents(target)+arriving(target)>=3||w.actionPoints[d.owner]<10)continue;
+        for(World.City target:targets){if(residents(target)+arriving(target)>=3||!PcArmyActionPolicy.enabled(w)&&w.actionPoints[d.owner]<10)continue;
             World.Officer chosen=null;World.City source=null;int best=Integer.MIN_VALUE;
-            for(int id:w.districts.sites(d)){World.City c=w.city(id);if(id==target.id||residents(c)<=3||ai.incoming(c)>0)continue;
+            for(int id:w.districts.sites(d)){World.City c=w.city(id);if(id==target.id||residents(c)<=3||ai.incoming(c)>0||w.cityActionPoints(c)<10)continue;
                 World.Officer candidate=null;for(World.Officer o:w.idle(c))if(o.role!=Strategy.Role.RULER&&o.role!=Strategy.Role.GOVERNOR&&(candidate==null||o.politics*2+o.charm>candidate.politics*2+candidate.charm))candidate=o;
                 if(candidate==null)continue;int score=candidate.politics*2+candidate.charm-c.hex.distance(target.hex)*2;
                 if(score>best&&w.domestic.route(c.hex,target.hex,c.owner)!=null){best=score;chosen=candidate;source=c;}

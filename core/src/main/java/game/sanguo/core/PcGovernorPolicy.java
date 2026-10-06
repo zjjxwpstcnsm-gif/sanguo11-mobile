@@ -16,6 +16,7 @@ public final class PcGovernorPolicy {
         String id,path,variant,sha,shared;
         final SortedMap<Integer,Person> people=new TreeMap<>();
         final SortedMap<Integer,Site> sites=new TreeMap<>();
+        final Map<Integer,Boolean> armyOriginalValid=new TreeMap<>();
         final Map<Integer,Integer> armyOwners=new TreeMap<>(),armyLeaders=new TreeMap<>(),armyDisplays=new TreeMap<>();
     }
     static Map<String,Source> sources;
@@ -42,7 +43,7 @@ public final class PcGovernorPolicy {
             if(in.readInt()!=850)throw new IOException("Governor person domain differs");
             for(int j=0;j<850;j++){Person p=new Person();p.nativeId=in.readInt();p.id=in.readInt();p.sha=PcOfficerInfo.text(in,64);int[] v=new int[12];for(int k=0;k<12;k++)v[k]=in.readInt();p.army=v[1];p.home=v[2];p.current=v[3];p.status=v[4];p.allowed=v[9]!=0;p.resident=v[10]!=0;p.mask=v[11]!=0;if(p.nativeId!=j)throw new IOException("Governor native ordering differs");src.people.put(j,p);}
             if(in.readInt()!=47)throw new IOException("Governor army domain differs");
-            for(int j=0;j<47;j++){if(in.readInt()!=j)throw new IOException("Governor army ordering differs");in.readInt();int owner=in.readInt();src.armyOwners.put(j,owner);src.armyDisplays.put(j,in.readInt());src.armyLeaders.put(j,in.readInt());for(int k=0;k<5;k++)in.readInt();}
+            for(int j=0;j<47;j++){if(in.readInt()!=j)throw new IOException("Governor army ordering differs");src.armyOriginalValid.put(j,in.readInt()!=0);int owner=in.readInt();src.armyOwners.put(j,owner);src.armyDisplays.put(j,in.readInt());src.armyLeaders.put(j,in.readInt());for(int k=0;k<5;k++)in.readInt();}
             if(all.put(src.id,src)!=null)throw new IOException("Governor source duplicate");
         }
         if(in.available()!=0)throw new IOException("Governor input trailing bytes");return sources=Collections.unmodifiableMap(all);
@@ -207,7 +208,8 @@ public final class PcGovernorPolicy {
 
     public static final class ArmyFact {
         public final int nativeId,owner,display,leaderNativeId,leaderOfficerId,openingLeaderNativeId;
-        ArmyFact(int id,int owner,int display,int leader,int runtime,int opening){nativeId=id;this.owner=owner;this.display=display;leaderNativeId=leader;leaderOfficerId=runtime;openingLeaderNativeId=opening;}
+        public final boolean originalValid;
+        ArmyFact(boolean originalValid,int id,int owner,int display,int leader,int runtime,int opening){this.originalValid=originalValid;nativeId=id;this.owner=owner;this.display=display;leaderNativeId=leader;leaderOfficerId=runtime;openingLeaderNativeId=opening;}
     }
     public static final class View {
         public final boolean enabled;public final List<ArmyFact> armies;
@@ -221,7 +223,7 @@ public final class PcGovernorPolicy {
     public static View view(World w){
         if(!recognized(w))return new View(false,List.of(),Map.of(),Map.of(),Map.of(),Map.of(),Set.of(),Map.of());
         try{Data data=data(w);List<ArmyFact> armies=new ArrayList<>();Map<Integer,Integer> officers=new TreeMap<>(),homes=new TreeMap<>();
-            for(int id=0;id<47;id++){int leader=data.armyLeaders.get(id);Person p=data.source.people.get(leader);armies.add(new ArmyFact(id,data.source.armyOwners.get(id),data.source.armyDisplays.get(id),leader,p==null?-1:p.id,data.source.armyLeaders.get(id)));}
+            for(int id=0;id<47;id++){int leader=data.armyLeaders.get(id);Person p=data.source.people.get(leader);armies.add(new ArmyFact(data.source.armyOriginalValid.get(id),id,data.source.armyOwners.get(id),data.source.armyDisplays.get(id),leader,p==null?-1:p.id,data.source.armyLeaders.get(id)));}
             for(var e:data.assignments.entrySet()){officers.put(e.getKey(),e.getValue().army);homes.put(e.getKey(),e.getValue().home);}
             Map<Integer,Integer> nativeSites=new TreeMap<>();for(Site site:data.source.sites.values())nativeSites.put(site.id,site.nativeId);
             return new View(true,armies,data.siteArmies,data.unitArmies,officers,homes,data.unknownSites,nativeSites);

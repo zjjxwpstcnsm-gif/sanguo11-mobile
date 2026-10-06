@@ -50,7 +50,12 @@ public final class SceneFactsSnapshot {
     }
     public static final class NativeArmy {
         public final int nativeId,owner,display,leaderNativeId,leaderOfficerId,openingLeaderNativeId;
-        public NativeArmy(int nativeId,int owner,int display,int leaderNativeId,int leaderOfficerId,int openingLeaderNativeId){this.nativeId=nativeId;this.owner=owner;this.display=display;this.leaderNativeId=leaderNativeId;this.leaderOfficerId=leaderOfficerId;this.openingLeaderNativeId=openingLeaderNativeId;}
+        public final boolean originalValid;
+        /** -1 means this save has no recognized original budget or unresolved inputs. */
+        public final int actionPoints;
+        public NativeArmy(int nativeId,int owner,int display,int leaderNativeId,int leaderOfficerId,int openingLeaderNativeId){this(true,nativeId,owner,display,leaderNativeId,leaderOfficerId,openingLeaderNativeId);}
+        public NativeArmy(boolean originalValid,int nativeId,int owner,int display,int leaderNativeId,int leaderOfficerId,int openingLeaderNativeId){this(originalValid,nativeId,owner,display,leaderNativeId,leaderOfficerId,openingLeaderNativeId,-1);}
+        public NativeArmy(boolean originalValid,int nativeId,int owner,int display,int leaderNativeId,int leaderOfficerId,int openingLeaderNativeId,int actionPoints){this.originalValid=originalValid;this.nativeId=nativeId;this.owner=owner;this.display=display;this.leaderNativeId=leaderNativeId;this.leaderOfficerId=leaderOfficerId;this.openingLeaderNativeId=openingLeaderNativeId;this.actionPoints=actionPoints;}
     }
     public static final class Administration {
         public final boolean originalElectionEnabled;public final List<NativeArmy> armies;

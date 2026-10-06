@@ -1,0 +1,87 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parent": "001793601192f8bc8770a7658832f109726f67b1",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "sourceCommit": "pending",
+  "scope": "Explicit fresh original per-army saved budget and normal two-faction campaign/cold acceptance; full restoration incomplete",
+  "apk": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-32/frozen/app-debug.apk",
+      "bytes": 312776280,
+      "sha256": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-32/frozen/app-debug-androidTest.apk",
+      "bytes": 2543887,
+      "sha256": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+    }
+  ],
+  "archive": {
+    "path": "docs/handoff/20261006/session-b/army-budget-flow-32.tar.gz",
+    "bytes": 5775205,
+    "sha256": "7738178fb19ec7deec8162be53c6d32948bae61616b9725f1ca04129bdfd5017",
+    "freshProofFiles": 45,
+    "containsUserBackups": false
+  },
+  "receipt": {
+    "passed": true,
+    "serial": "emulator-5582",
+    "apks": {
+      "out/session-b/army-build-32/frozen/app-debug.apk": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426",
+      "out/session-b/army-build-32/frozen/app-debug-androidTest.apk": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+    },
+    "installed": {
+      "game.sanguo.mobile.dev": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426",
+      "game.sanguo.mobile.dev.test": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+    },
+    "instrumentationPassed": true,
+    "coldPassed": true,
+    "scope": "actual source0/two factions/menu/administration/transfer/capture/save/cold; separate from core probe and ARM",
+    "runner": "game.sanguo.mobile.SessionBGovernorInstrumentation",
+    "restoration": {
+      "internal": {
+        "originalFiles": 15,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "preservedAdditionalFiles": []
+      },
+      "external": {
+        "originalFiles": 772,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "preservedAdditionalFiles": []
+      }
+    }
+  },
+  "hostChecks": {
+    "armyBudget": 1058,
+    "originalValidity": 784,
+    "originalGovernor": 18736,
+    "capacity": 89,
+    "allSourceCapacity": 10720,
+    "sceneFacts": 41782,
+    "gameSession": 1690,
+    "bridge": "PASS",
+    "nativeDebate": 156,
+    "legacyV32": 24,
+    "architecture": "PASS"
+  },
+  "unknown": [
+    "Native army-controller/delegation/new allocation",
+    "Missing effective NPC42-46 identities and budgets",
+    "Native40符節台/41軍事府/42人材府 construction/modifiers",
+    "Complete opening-events/units/full16normalcommand matrix",
+    "Original direct-recruitment/search optional debate admission and concession/diplomacy",
+    "Complete original duel human/AI/support/equipment/escape/campaign",
+    "Historical31-39/custom full installed continuation",
+    "UnityU01 original semantic discrepancy",
+    "ARM/speaker verification"
+  ],
+  "oldWorktree": {
+    "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "dirty": 609,
+    "statusSha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
+  },
+  "fourJni": "unchanged",
+  "fullGoalComplete": false
+}

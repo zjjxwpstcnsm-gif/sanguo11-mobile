@@ -119,10 +119,11 @@ public final class Envoys {
         World.City from=w.city(source),to=w.city(destination);
         int travel=travelTurns(source,destination);
         World.Officer o = this.w.officer(actor);
-        this.w.spend(from, o, fee + gift);
-        int[] iArr = this.w.actionPoints;
-        int i = from.owner;
-        iArr[i] = iArr[i] - (ap - 10);
+        if(PcArmyActionPolicy.enabled(w))this.w.spend(from,o,fee+gift,ap);
+        else {
+            this.w.spend(from, o, fee + gift);
+            this.w.actionPoints[from.owner]-=ap-10;
+        }
         Mission m2 = new Mission(kind, actor, source, destination, from.owner, to.owner, a, b, c, travel, gift);
         this.missions.add(m2);
         this.w.strategy.releaseGovernor(actor);

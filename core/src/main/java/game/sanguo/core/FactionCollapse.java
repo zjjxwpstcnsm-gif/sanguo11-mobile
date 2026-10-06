@@ -107,7 +107,7 @@ final class FactionCollapse {
         }
         w.war.structures.removeIf(s2->s2.owner==owner);
         w.campaign.treaties.removeIf(t->t.a==owner||t.b==owner);
-        w.actionPoints[owner] = 0;
+        if(PcArmyActionPolicy.enabled(w))PcArmyActionPolicy.clearOwner(w,owner);else w.actionPoints[owner] = 0;
         if (w.life.pendingOwner == owner) {
             w.life.pendingOwner = -1;
             w.life.pendingRuler = -1;

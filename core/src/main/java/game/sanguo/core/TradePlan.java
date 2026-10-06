@@ -47,7 +47,7 @@ public final class TradePlan {
   goldCapacity=c==null?0:w.campaign.goldCap(c);foodCapacity=c==null?0:w.campaign.foodCap(c);
   quotedGold=nativePricing&&op==Operation.SELL?Math.min(rawGoldQuote,Math.max(0,(long)goldCapacity-goldBefore)):rawGoldQuote;
   quotaRemaining=c==null||c.kind!=World.SiteKind.CITY||tradedBefore>0?0:maximum;
-  actionPointsBefore=w.active>=0&&w.active<w.actionPoints.length?w.actionPoints[w.active]:0;actionPointsCost=w.cityActionCost(o,PcCityActionCosts.TRADE);
+  actionPointsBefore=w.cityActionPoints(c);actionPointsCost=w.cityActionCost(o,PcCityActionCosts.TRADE);
   long capacity=0;
   if(nativePricing){if(c!=null&&o!=null&&op!=null)capacity=w.merchantMarket.maximum(c,o,op==Operation.BUY);}
   else if(c!=null&&op!=null&&pricePerThousand>0){

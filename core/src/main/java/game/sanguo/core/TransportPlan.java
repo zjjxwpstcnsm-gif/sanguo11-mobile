@@ -22,7 +22,7 @@ public final class TransportPlan {
   }
  }
  TransportPlan(World w,World.City c,World.City d,World.Officer o,RuleFailure failure,Domestic.Mission m,SiteFootprint.Deployment departure,int turns,boolean fits){
-  this.failure=failure;actionPointsAvailable=w.active>=0&&w.active<w.actionPoints.length?w.actionPoints[w.active]:0;actionPointsCost=w.cityActionCost(o);
+  this.failure=failure;actionPointsAvailable=w.cityActionPoints(c);actionPointsCost=w.cityActionCost(o);
   List<Stock> values=new ArrayList<>();
   int reserveGold=0,reserveFood=0,reserveTroops=0;
   if(c!=null&&w.districts.executing(c.id)){Districts.District district=w.districts.city(c.id);reserveGold=district.reserveGold();reserveFood=district.reserveFood();reserveTroops=district.reserveTroops();}

@@ -77,7 +77,7 @@ public final class Districts {
     public World.Result settings(int id,int troops,int gold,int food,boolean transfer,boolean supply){w.reports.prepare();
         String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
         if(d==null||d.owner!=w.active||troops<0||troops>100000||gold<0||gold>1000000||food<0||food>1000000)return w.fail("军团或留存数值无效");
-        d.reserveTroops=troops;d.reserveGold=gold;d.reserveFood=food;d.transfer=transfer;d.supplyEnabled=supply;w.actionPoints[w.active]-=20;
+        d.reserveTroops=troops;d.reserveGold=gold;d.reserveFood=food;d.transfer=transfer;d.supplyEnabled=supply;debitManagement();
         return w.success(d.name+"经营设置已保存；已出发任务继续运抵，不重复扣款");
     }
     public DistrictManagement.SupplyPlan supportPlan(int source,int target){
@@ -85,20 +85,22 @@ public final class Districts {
         if(c==null||t==null||d==null||c.owner!=w.player||t.owner!=w.player||source==target)return null;
         World.Officer courier=w.idle(c).stream().filter(o->o.role!=Strategy.Role.RULER).min(Comparator.comparingInt(o->o.politics)).orElse(null);
         DistrictManagement.SupplyPlan plan=new DistrictManagement(w).plan(d,c,t,courier);
-        if(d.points<10)return new DistrictManagement.SupplyPlan(source,target,courier==null?-1:courier.id,0,0,0,new int[World.Weapon.values().length],false,"出发军团行动预算不足10");
+        if((PcArmyActionPolicy.enabled(w)?w.cityActionPoints(c):d.points)<10)return new DistrictManagement.SupplyPlan(source,target,courier==null?-1:courier.id,0,0,0,new int[World.Weapon.values().length],false,"出发军团行动预算不足10");
         return plan;
     }
     public World.Result requestSupport(int source,int target){w.reports.prepare();
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player||executing!=-1)return w.fail("当前不能申请军团支援");
         DistrictManagement.SupplyPlan p=supportPlan(source,target);if(p==null)return w.fail("请选择已授权的己方军团来源和目的地");if(!p.valid())return w.fail(p.reason);
-        District d=city(source);int points=w.actionPoints[w.active];executing=d.id;w.actionPoints[w.active]=d.points;
+        District d=city(source);int points=w.actionPoints[w.active];executing=d.id;if(!PcArmyActionPolicy.enabled(w))w.actionPoints[w.active]=d.points;
         try{World.Result result=new DistrictManagement(w).send(p);if(result.ok){d.report=w.city(source).name+"接受支援申请→"+w.city(target).name+"；实际派送 金"+p.gold+" / 粮"+p.food+" / 兵"+p.troops;d.reportTurn=w.turn;}return result;}
-        finally{d.points=w.actionPoints[w.active];w.actionPoints[w.active]=points;executing=-1;}
+        finally{if(!PcArmyActionPolicy.enabled(w)){d.points=w.actionPoints[w.active];w.actionPoints[w.active]=points;}executing=-1;}
     }
     private String manageError(){
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return "当前无法编制军团";
+        if(PcArmyActionPolicy.enabled(w)){RuleFailure failure=PcArmyActionPolicy.primaryFailure(w,w.active,20);return failure==null?null:failure.detail;}
         return w.actionPoints[w.active]<20?"编制需要第一军团20行动力":null;
     }
+    private void debitManagement(){if(PcArmyActionPolicy.enabled(w))PcArmyActionPolicy.debitPrimary(w,w.active,20);else w.actionPoints[w.active]-=20;}
     public String configureError(int id,String name,int[] members,Policy policy,int target,int supply){
         String error=manageError();if(error!=null)return error;
         District prior=id<0?null:get(id);if(id>=0&&(prior==null||prior.owner!=w.active))return "军团不存在或不属于当前势力";
@@ -127,13 +129,13 @@ public final class Districts {
         String error=configureError(id,name,members,policy,target,supply);if(error!=null)return w.fail(error);
         District d=id<0?new District(nextId++,w.active,name.trim()):get(id);
         d.name=name.trim();d.policy=policy;d.target=target;d.supply=supply;d.attack=attack;d.produce=produce;d.cities.clear();for(int member:members){d.cities.add(member);w.government.policies.remove(member);}
-        groups.put(d.id,d);for(int site:sites(d))w.government.policies.remove(site);units.entrySet().removeIf(e->{AiOrders.Order order=w.aiOrders.orders.get(e.getKey());return e.getValue()==d.id&&order!=null&&order.home>=0&&city(order.home)!=d;});for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==d.id)w.aiOrders.orders.remove(e.getKey());w.actionPoints[w.active]-=20;chooseLeader(d);
+        groups.put(d.id,d);for(int site:sites(d))w.government.policies.remove(site);units.entrySet().removeIf(e->{AiOrders.Order order=w.aiOrders.orders.get(e.getKey());return e.getValue()==d.id&&order!=null&&order.home>=0&&city(order.home)!=d;});for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==d.id)w.aiOrders.orders.remove(e.getKey());debitManagement();chooseLeader(d);
         return w.success(d.name+"已编制 · "+policy.label+"；新军团下一旬取得行动力，直属部队与城务交由都督执行");
     }
     public World.Result dissolve(int id){w.reports.prepare();
         String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
         if(d==null||d.owner!=w.active)return w.fail("请选择己方委任军团");
-        w.actionPoints[w.active]-=20;groups.remove(id);for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==id)w.aiOrders.orders.remove(e.getKey());units.values().removeIf(value->value==id);
+        debitManagement();groups.remove(id);for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==id)w.aiOrders.orders.remove(e.getKey());units.values().removeIf(value->value==id);
         return w.success(d.name+"已撤销，据点与部队回归第一军团，未用军团行动力作废");
     }
     void deployed(int city,World.Unit u){District d=city(city);if(d!=null)units.put(u.id,d.id);}
@@ -177,7 +179,7 @@ public final class Districts {
     void run(){
         cleanup();int owner=w.active;
         for(District d:new ArrayList<>(groups.values()))if(d.owner==owner&&d.actedTurn!=w.turn){
-            d.actedTurn=w.turn;int mainPoints=w.actionPoints[owner];executing=d.id;w.actionPoints[owner]=d.points;
+            d.actedTurn=w.turn;int mainPoints=w.actionPoints[owner];executing=d.id;if(!PcArmyActionPolicy.enabled(w))w.actionPoints[owner]=d.points;
             try{
                 List<Integer> ordered=new ArrayList<>(sites(d));
                 // Restore the lowest order first within the same threat/urgency tier.
@@ -188,22 +190,28 @@ public final class Districts {
                 ordered.sort(Comparator.comparingInt((Integer id)->{
                     World.City c=w.city(id);return c==null?0:-(planner.incoming(c)+(c.order<65?100000:0));
                 }).thenComparingInt(id->{World.City c=w.city(id);return c!=null&&c.order<65?c.order:0;}));
-                int startPoints=w.actionPoints[owner];d.report="";d.reportTurn=w.turn;
+                int startPoints=executionPoints(d);d.report="";d.reportTurn=w.turn;
                 if(d.transfer)new DistrictManagement(w).balance(d);
-                for(int pass=0;pass<4&&w.actionPoints[owner]>=10;pass++)for(int city:ordered){
-                    World.City c=w.city(city);if(c!=null&&c.owner==owner&&w.actionPoints[owner]>=10){
-                        int before=w.actionPoints[owner];order(d,c,pass);
-                        if(w.actionPoints[owner]<before&&d.report.length()<4500)d.report+=c.name+"："+w.log.get(w.log.size()-1)+"\n";
+                for(int pass=0;pass<4&&executionPoints(d)>=10;pass++)for(int city:ordered){
+                    World.City c=w.city(city);if(c!=null&&c.owner==owner&&w.cityActionPoints(c)>=10){
+                        int before=w.cityActionPoints(c);order(d,c,pass);
+                        if(w.cityActionPoints(c)<before&&d.report.length()<4500)d.report+=c.name+"："+w.log.get(w.log.size()-1)+"\n";
                     }
                 }
                 for(World.Unit u:new ArrayList<>(w.units))if(Objects.equals(units.get(u.id),d.id)&&!u.acted)armyOrder(d,u);
                 for(int id:sites(d)){String reason=new DistrictManagement(w).reason(w.city(id));if(!reason.isEmpty()&&d.report.length()<5000)d.report+=w.city(id).name+"："+reason+"\n";}
-                if(w.actionPoints[owner]<10)d.report+="行动预算不足10，剩余城务下旬轮换\n";
+                if(executionPoints(d)<10)d.report+="行动预算不足10，剩余城务下旬轮换\n";
                 if(d.report.isEmpty())d.report="当前无可执行需求；留守、储备和权限限制继续生效";
-                if(startPoints>0)w.note(d.name+"自动经营完成 · 消耗"+(startPoints-w.actionPoints[owner])+"行动力 · 剩余"+w.actionPoints[owner]);
-            }finally{d.points=w.actionPoints[owner];w.actionPoints[owner]=mainPoints;executing=-1;}
+                if(startPoints>0)w.note(d.name+"自动经营完成 · 消耗"+(startPoints-executionPoints(d))+"行动力 · 剩余"+executionPoints(d));
+            }finally{if(!PcArmyActionPolicy.enabled(w)){d.points=w.actionPoints[owner];w.actionPoints[owner]=mainPoints;}executing=-1;}
         }
         cleanup();
+    }
+    private int executionPoints(District d){
+        if(!PcArmyActionPolicy.enabled(w))return w.actionPoints[d.owner];
+        Set<Integer> armies=new HashSet<>();int total=0;
+        for(int site:sites(d)){int army=PcArmyActionPolicy.cityArmy(w,site);if(armies.add(army))total+=Math.max(0,PcArmyActionPolicy.points(w,army));}
+        return total;
     }
     private void order(District d,World.City c,int pass){
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
@@ -215,7 +223,7 @@ public final class Districts {
                 // Retain the delegated reserve and use integer source quotes, not a unit-price inverse.
                 int low=0,high=amount;while(low<high){int mid=low+(high-low+1)/2;TradePlan p=w.campaign.previewTrade(c.id,admin.id,TradePlan.Operation.BUY,mid);if(p.quotedGold<=Math.max(0,c.gold-1000))low=mid;else high=mid-1;}amount=low;
             }else amount=Math.min(20000,Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
-            if(amount>=(w.merchantMarket.enabled()?1:1000)&&w.actionPoints[w.active]>=PcCityActionCosts.TRADE&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
+            if(amount>=(w.merchantMarket.enabled()?1:1000)&&w.cityActionPoints(c)>=PcCityActionCosts.TRADE&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
         }
         StrategicAi civil=new StrategicAi(w);StrategicAi.Decision urgent=civil.plan(c.id,true);
         if(urgent!=null&&civil.execute(urgent).ok)return;
@@ -238,7 +246,7 @@ public final class Districts {
             Domestic.Kind kind=expectedFood<w.cityFoodUse(c)*9+(d.supply>=0&&d.supply!=c.id?20000:0)||new DistrictManagement(w).famineTurn(c)<12?Domestic.Kind.FARM:Domestic.Kind.MARKET;
             List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,kind,sites.get(0)).ok)return;
         }
-        if(d.produce&&c.gold>=d.reserveGold+1500&&w.actionPoints[w.active]>=PcCityActionCosts.PRODUCTION){
+        if(d.produce&&c.gold>=d.reserveGold+1500&&w.cityActionPoints(c)>=PcCityActionCosts.PRODUCTION){
             if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&
                 w.army.productionError(c.id,admin.id,World.Weapon.RAM,null)==null&&w.army.produce(c.id,admin.id,World.Weapon.RAM,null).ok)return;
             World.Weapon preferred=World.Weapon.SPEAR;int best=Integer.MIN_VALUE;

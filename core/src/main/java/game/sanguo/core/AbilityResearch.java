@@ -131,7 +131,7 @@ public final class AbilityResearch {
         if(w.commandsBlocked())return "请先完成当前单挑或舌战";
         if(w.gameOver())return "本局已结束";World.City c=w.city(city);
         if(c==null||c.owner!=w.active)return "请选择己方城池";
-        if(w.actionPoints[w.active]<20)return "行动力不足20";
+        RuleFailure budget=w.actionPointFailure(c,20);if(budget!=null)return budget.detail;
         return c.gold<gold?"金不足":null;
     }
     public String researchError(int city,String id){
@@ -144,7 +144,7 @@ public final class AbilityResearch {
     }
     public World.Result startResearch(int city,String id){w.reports.prepare();
         String error=researchError(city,id);if(error!=null)return w.fail(error);
-        World.City c=w.city(city);Node n=node(id);c.gold-=300;w.actionPoints[c.owner]-=20;
+        World.City c=w.city(city);Node n=node(id);w.debitActionPoints(c,20);c.gold-=300;
         states[c.owner].research=new Research(city,id,n.turns);
         return w.success(w.faction(c.owner)+"开始研究"+n.label+"，需要"+n.turns+"旬");
     }
@@ -172,7 +172,7 @@ public final class AbilityResearch {
     public World.Result train(int city,int officer,String id,boolean overwrite){w.reports.prepare();
         String error=trainingError(city,officer,id,overwrite);if(error!=null)return w.fail(error);
         Node n=node(id);World.Officer o=w.officer(officer);Training t=new Training(o.owner,city,officer,id,value(officer,n),o.skillId);
-        w.actionPoints[o.owner]-=20;o.acted=true;o.otherTask=t.label();o.otherTaskTurns=3;training.add(t);
+        w.debitActionPoints(w.city(city),20);o.acted=true;o.otherTask=t.label();o.otherTaskTurns=3;training.add(t);
         return w.success(o.name+"开始"+t.label()+"，3旬后完成");
     }
     public World.Result cancelTraining(int officer){w.reports.prepare();

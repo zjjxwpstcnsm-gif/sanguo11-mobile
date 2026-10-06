@@ -16,7 +16,7 @@ public final class DiplomacyPlan {
         boolean resolving=w.envoys.resolving(officer);
         goldAvailable=c==null?0:c.gold;goldCost=resolving?0:operation==Operation.GOODWILL?500:
             operation==Operation.CEASEFIRE||operation==Operation.ALLIANCE?1000:0;
-        actionPointsAvailable=w.active<0||w.active>=w.actionPoints.length?0:w.actionPoints[w.active];
+        actionPointsAvailable=w.cityActionPoints(c);
         actionPointsCost=w.cityActionCost(o);goldRemaining=(long)goldAvailable-goldCost;
         actionPointsRemaining=(long)actionPointsAvailable-actionPointsCost;
         delayed=operation!=null&&operation!=Operation.BREAK_TREATY&&!resolving;

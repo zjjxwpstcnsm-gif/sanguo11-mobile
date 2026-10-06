@@ -42,7 +42,7 @@ public final class ProductionPlan {
   boolean malformed=op==null||op==Operation.EQUIPMENT&&ship!=null||op==Operation.SHIP&&weapon!=null;
   boolean naval=op==Operation.SHIP;Domestic.Kind kind=naval?Domestic.Kind.SHIPYARD:Domestic.productionFacility(weapon);
   facility=kind==null?"":kind.name();facilityCapacity=kind==null?0:w.domestic.capacity(city,kind);facilityUsesBefore=kind==null?0:w.domestic.remainingUses(city,kind);
-  goldAvailable=c==null?0:c.gold;actionPointsAvailable=w.active>=0&&w.active<w.actionPoints.length?w.actionPoints[w.active]:0;actionPointsCost=w.cityActionCost(o,PcCityActionCosts.PRODUCTION);
+  goldAvailable=c==null?0:c.gold;actionPointsAvailable=w.cityActionPoints(c);actionPointsCost=w.cityActionCost(o,PcCityActionCosts.PRODUCTION);
   goldCost=actionPointsCost==0?0:naval?(ship==null||c==null?0:w.pcProduction.enabled()?w.pcProduction.gold(city,PcProduction.nativeItem(ship)):ship.gold):c==null?0:w.skills.productionGold(city,officer,weapon);
   stockBefore=c==null?0:naval?(ship==null||ship==Army.Ship.BOAT?0:c.ships[ship.ordinal()-1]):weapon==null?0:c.equipment[weapon.ordinal()];
   stockCapacity=c==null?0:naval||Army.siegeWeapon(weapon)?100:weapon==null?0:w.campaign.equipmentCap(c,weapon);

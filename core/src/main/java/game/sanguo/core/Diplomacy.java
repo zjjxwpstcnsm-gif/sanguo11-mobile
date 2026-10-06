@@ -27,11 +27,11 @@ public final class Diplomacy {
     private void attempt(String kind,int owner,int target){if(attemptTurn!=w.turn){attempts.clear();attemptTurn=w.turn;}attempts.add(kind+":"+owner+":"+target);}
     private String foreignError(int city,int actor,int side,int gold){
         String error=w.cityError(w.city(city),w.officer(actor),gold);if(error!=null)return error;
-        if(!w.envoys.resolving(actor)&&w.actionPoints[w.active]<ACTION_POINTS)return "行动力不足30";
+        if(!w.envoys.resolving(actor)){RuleFailure budget=w.actionPointFailure(w.city(city),ACTION_POINTS);if(budget!=null)return budget.detail;}
         if(side<0||side>=w.factions.length||side==w.active||!w.alive(side))return "请选择其他存活势力";
         return null;
     }
-    private void spend(int city,int actor,int gold){if(w.envoys.resolving(actor))return;w.spend(w.city(city),w.officer(actor),gold);w.actionPoints[w.active]-=ACTION_POINTS-10;}
+    private void spend(int city,int actor,int gold){if(w.envoys.resolving(actor))return;if(PcArmyActionPolicy.enabled(w))w.spend(w.city(city),w.officer(actor),gold,ACTION_POINTS);else{w.spend(w.city(city),w.officer(actor),gold);w.actionPoints[w.active]-=ACTION_POINTS-10;}}
     private int clamp(int chance){return Math.max(5,Math.min(95,chance));}
     private World.Officer ruler(int side){for(World.Officer o:w.officers)if(o.owner==side&&o.role==Strategy.Role.RULER&&w.life.present(o.id))return o;return null;}
     public long strength(int side){long result=0;for(World.City c:w.cities)if(c.owner==side)result+=c.troops+2L*c.defense;for(World.Unit u:w.units)if(u.owner==side)result+=u.troops;return result;}
@@ -149,7 +149,7 @@ public final class Diplomacy {
     public CampaignAi.Deployment plannedAid(int source,int target){
         try{
             World copy=SaveCodec.decode(SaveCodec.encode(w));World.City c=copy.city(source);if(c==null||c.owner<0)return null;
-            copy.active=c.owner;copy.actionPoints[c.owner]=60;
+            copy.active=c.owner;if(!PcArmyActionPolicy.enabled(copy))copy.actionPoints[c.owner]=60;
             for(World.Officer o:copy.officers)if(o.owner==c.owner)o.acted=false;
             return new CampaignAi(copy).deployment(source,6000,t->t.id==target);
         }catch(IOException e){return null;}
@@ -234,7 +234,7 @@ public final class Diplomacy {
         w.campaign.cleanupProjects();w.army.cleanup();w.abilities.cleanup();
         for(Treasures.Item item:new ArrayList<>(w.treasures.items()))if(item.place==Treasures.Place.TREASURY&&item.holder==former)w.treasures.place(item.definition,Treasures.Place.TREASURY,owner);
         for(Government.Prisoner p:new ArrayList<>(w.government.prisoners())){if(p.captor==former)p.captor=owner;if(w.officer(p.officerId).owner==p.captor)w.government.free(p);}
-        w.campaign.treaties.removeIf(t->t.a==former||t.b==former);w.actionPoints[former]=0;
+        w.campaign.treaties.removeIf(t->t.a==former||t.b==former);if(PcArmyActionPolicy.enabled(w))PcArmyActionPolicy.clearOwner(w,former);else w.actionPoints[former]=0;
         w.fieldworks.cleanup();w.districts.cleanup();cleanup();w.checkVictory();
     }
 

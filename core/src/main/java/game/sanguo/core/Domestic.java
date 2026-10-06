@@ -330,12 +330,12 @@ public final class Domestic {
     public World.Result redirect(int id,int target){w.reports.prepare();
         Mission m=mission(id);World.City c=w.city(target);
         if(w.commandsBlocked()||w.gameOver()||m==null||m.owner!=w.active||c==null||c.owner!=m.owner||target==m.targetCity)return w.fail("请选择本势力在途任务与新的己方目的地");
-        if(w.actionPoints[w.active]<10)return w.fail("行动力不足10");
+        RuleFailure budget=w.actionPointFailure(w.city(m.sourceCity),10);if(budget!=null)return w.fail(budget.detail);
         String permission=w.districts.dispatchError(m.sourceCity,target,m.transport);if(permission!=null)return w.fail(permission);
         Districts.District control=w.districts.city(m.sourceCity);
         if(control!=null&&control.owner==w.player&&!w.districts.directCity(m.sourceCity))return w.fail("委任军团任务请先调整军团方针或撤销托管");
         if(m.transport?!w.marches.convoyRoute(m,target).valid():w.personnel.turns(m.hex,target)<0)return w.fail("没有可用路线");
-        w.actionPoints[w.active]-=10;m.targetCity=target;m.stopped=false;m.march=null;if(target==m.sourceCity)m.returnOfficers=false;return w.success("任务已改道至"+c.name);
+        w.debitActionPoints(w.city(m.sourceCity),10);m.targetCity=target;m.stopped=false;m.march=null;if(target==m.sourceCity)m.returnOfficers=false;return w.success("任务已改道至"+c.name);
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
     private int travelCost(Hex h,int owner,boolean sea){
