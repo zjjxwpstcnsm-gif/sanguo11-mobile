@@ -73,7 +73,7 @@ final class EditorUi {
         f.show("编辑据点 · "+c.name,"预览修改",()->{int[] g=new int[9],s=new int[2];for(int i=0;i<9;i++)g[i]=value(gear[i]);for(int i=0;i<2;i++)s[i]=value(ships[i]);preview(w.editor.city(c.id,value(gold),value(food),value(troops),value(order),value(morale),value(defense),value(reserve),g,s));});
     }
     private void faction(){List<Integer> sides=new ArrayList<>();for(int i=0;i<w.factions.length;i++)sides.add(i);choose("选择编辑势力",sides,w::faction,side->new AlertDialog.Builder(a).setTitle(w.faction(side)).setItems(new String[]{"行动力与技巧点","解锁技巧（含前置）"},(d,n)->{
-        if(n==0){Form f=new Form();EditText ap=f.number("行动力（0—60）",w.actionPoints[side]),tp=f.number("技巧点（0—100000）",w.campaign.points(side));f.show("编辑势力资源","预览修改",()->preview(w.editor.faction(side,value(ap),value(tp))));}
+        if(n==0){Form f=new Form();EditText ap=f.number(PcArmyActionPolicy.enabled(w)?"第一军团行动力（0—255）":"行动力（0—60）",w.actionPoints[side]),tp=f.number("技巧点（0—100000）",w.campaign.points(side));f.show("编辑势力资源","预览修改",()->preview(w.editor.faction(side,value(ap),value(tp))));}
         else {List<Campaign.Tech> techs=new ArrayList<>();for(Campaign.Tech t:Campaign.Tech.values())if(t.level>0)techs.add(t);choose("解锁技巧",techs,t->t.label,t->preview(w.editor.learnTechnology(side,t)));}
     }).setNegativeButton("返回",null).show());}
     private void unit(World.Unit u){Form f=new Form();EditText troops=f.number("兵力（1—18000）",u.troops),food=f.number("携粮",u.food),gold=f.number("携金（0—10000）",u.gold),energy=f.number("气力",u.energy),turns=f.number("异常状态剩余旬数",u.statusTurns);Spinner status=f.pick("部队状态",Arrays.asList(War.Status.values()),s->s.label,u.status);

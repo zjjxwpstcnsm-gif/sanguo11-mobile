@@ -327,9 +327,15 @@
   "primaryBefore": "da464318711eec4588b566f8fddc4f671852081b",
   "exactPrimaryBeforeAll40": true,
   "BAnyWipReadOrMerged": false,
-  "imported": false,
+  "imported": true,
   "newCombinationInstalled": false,
   "B33ScoresAreACombinationScores": false,
   "ARM": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "primarySourceImport": "115c0ba3",
+  "primaryDocImport": "1ac54a2d",
+  "allSource40AndMeta7ExactAfterImport": true,
+  "conflicts": [],
+  "aEditorCompatibilityLabelPrepared": true,
+  "aEditorRuntimeAccepted": false
 }
