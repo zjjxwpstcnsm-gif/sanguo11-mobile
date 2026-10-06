@@ -17,7 +17,7 @@ public final class SessionAFireFlowInstrumentation extends SessionAScenePresenta
   note("actual deploy leader="+leader.name+" id="+leader.id+" commandLimit="+w.government.commandLimit(leader.id)+" intelligence="+leader.intelligence);
   nav("地图");description("定位己方据点 "+city.name);text("出征");ListView roster=(ListView)tag("deploy.officers");
   invoke("showRosterTag",new Class<?>[]{ListView.class,String.class},roster,"deploy.role."+leader.id);tap(tag("deploy.role."+leader.id));await(v->("从编队移除 "+leader.name).equals(v.getContentDescription()));
-  tap(tag("deploy.tab.1"));description("枪兵 库存");revealDescription("兵力数量");EditText troops=(EditText)await(v->v instanceof EditText&&"兵力数量".equals(v.getContentDescription()));invoke("enter",new Class<?>[]{EditText.class,String.class},troops,"5000");sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);settle();tap(tag("deploy.confirm"));
+  tap(tag("deploy.tab.1"));World.Weapon equipment=city.equipment[World.Weapon.SPEAR.ordinal()]>=5000?World.Weapon.SPEAR:World.Weapon.SWORD;note("actual equipment="+equipment+" spearStock="+city.equipment[World.Weapon.SPEAR.ordinal()]+" troops="+city.troops);description(equipment==World.Weapon.SPEAR?"枪兵 库存":"剑兵 无需库存");revealDescription("兵力数量");EditText troops=(EditText)await(v->v instanceof EditText&&"兵力数量".equals(v.getContentDescription()));invoke("enter",new Class<?>[]{EditText.class,String.class},troops,"5000");sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);settle();tap(tag("deploy.confirm"));
   World after=SessionProbe.view(activity);World.Unit unit=after.unit(after.officer(leader.id).unitId);check(unit!=null&&!unit.acted,"normal second/player fire formation deploy");return unit.id;
  }
  private Hex fireTarget(int actor,int other){
