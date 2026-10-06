@@ -1,0 +1,120 @@
+{
+  "status": "completed-bounded-command-capacity-source0-x86_64",
+  "goalComplete": false,
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "mainBase": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "parentCompletedBatch": "cc4e7abd39c2998c4ae708123a15365b96ede80a",
+  "sourceCommit": "454d60dbe60fc626e5d8c2d608cbd5e88d731dcf",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "apk": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/capacity-build-20/frozen/app-debug.apk",
+      "bytes": 312052425,
+      "sha256": "5c81ec74ce28cc66c6a53a25957d91e6994fb9f3fb649b09c4f574ff5f56c270"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/capacity-build-20/frozen/app-debug-androidTest.apk",
+      "bytes": 2490013,
+      "sha256": "a0980264b9be165ff5a3326e45b12c20512b5bb6c08f8e112c235c12aa861108"
+    }
+  ],
+  "installedSha": {
+    "game.sanguo.mobile.dev": "5c81ec74ce28cc66c6a53a25957d91e6994fb9f3fb649b09c4f574ff5f56c270",
+    "game.sanguo.mobile.dev.test": "a0980264b9be165ff5a3326e45b12c20512b5bb6c08f8e112c235c12aa861108"
+  },
+  "actualFlowPassed": true,
+  "coldProcessPassed": true,
+  "flow": "ordinary menu Source0/force28/native58(runtime10058,recordSHA verified)/Xuchang/13000SWORD/26000food/500gold; selection/preview fullsave pure; double confirm exact one debit; normal slot3 save; three foreground turns; normal load; true new process auto/manual resume fullWorld/bothRNG exact",
+  "turnElapsedMs": [
+    43360,
+    36295,
+    32530
+  ],
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "allShaReadbackMatches": true,
+      "mismatchCount": 0,
+      "additionalFileCount": 0
+    },
+    "external": {
+      "originalFiles": 772,
+      "allShaReadbackMatches": true,
+      "mismatchCount": 0,
+      "additionalFileCount": 0
+    }
+  },
+  "buildInputs": 10772,
+  "buildInputsUnchangedBeforeAfter": true,
+  "productionGuardPaths": 6073,
+  "productionInputsStillExact": true,
+  "inheritedNonBGuardPaths": 10714,
+  "inheritedOutsideRegisteredBStillExact": true,
+  "fixedInheritedInputs": 168,
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "ignored": true
+    }
+  ],
+  "originalDirtyEntries": 609,
+  "originalStatusNulSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": [
+    "capacityPolicy89",
+    "directProductionOriginalMapped10720/fullsave-pure",
+    "fieldworks52",
+    "militaryFee17",
+    "GameSession1690",
+    "BridgeSession",
+    "staticArchitecture",
+    "original reference and expected fixtures each two byte-identical imports"
+  ],
+  "postFreezeNonCompiledAdditions": [
+    "PcCommandCapacityAllSourcesTest/test fixture/expected converter",
+    "reference converter pinnedSHA checks",
+    "own closeout documentation/evidence archive"
+  ],
+  "saveStrategy": "fresh PC-source namespace only; no absent-policy backfill/header change; opaque unknown retained; recognized invalid rejects; current owner/role live; old source three future turns byte-identical to baseline",
+  "evidence": {
+    "path": "docs/handoff/20261006/session-b/capacity-flow-20.tar.gz",
+    "bytes": 4642336,
+    "sha256": "16a41f0d17db20b4504998ab970939d7912e18ffcecc7cdca33b22ac57772916",
+    "privateUserBackupsExcluded": true
+  },
+  "aDependencies": "completed47326188 six exact compile-only staged paths; A production files never edited",
+  "frozenBridgeUnityJniSerializationChanged": false,
+  "conflicts": "24 exact B source/evidence paths; no A WIP merged. Integrator must sequentially apply completed military224751a7/cc4e7abd then this source commit; do not overwrite newer A files. Ordinary MOVE uses completed A exact-target adapter. Shared Gradle/manifest unedited; init scripts select B test runner only.",
+  "incomplete": [
+    "whole goal",
+    "all16 complete normal APK command/contest/save matrix",
+    "original governor/district/opening AP/events",
+    "effective extra/ancient/NPC activation",
+    "source-complete officer field/skill/biography parity",
+    "complete original duel/debate terminal campaign callbacks",
+    "militaryHQ discount/progress/full foreign admission/repair-stop-destruction APK",
+    "all31-39/custom continuation; genuine31/38 fixtures absent",
+    "inherited core and U01 golden drift failures preserved",
+    "ARM device/Unity Player/audio acceptance"
+  ]
+}
