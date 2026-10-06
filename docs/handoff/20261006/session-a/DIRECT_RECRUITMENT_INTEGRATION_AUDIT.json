@@ -11,7 +11,9 @@
       "afterSha256": "4fdbc835f4e73618093f13b97f3e431abedd46f6594879be4b8c15de190c2d8e",
       "bytes": 18142,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "4fdbc835f4e73618093f13b97f3e431abedd46f6594879be4b8c15de190c2d8e",
+      "primaryAfterExact": true
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
@@ -19,7 +21,9 @@
       "afterSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
       "bytes": 15902,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/Government.java",
@@ -27,7 +31,9 @@
       "afterSha256": "6c5fd12405c0dac331474b85c6699d3f75b14fc420c8860e4536dfdd6caa2109",
       "bytes": 23750,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "6c5fd12405c0dac331474b85c6699d3f75b14fc420c8860e4536dfdd6caa2109",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
@@ -35,7 +41,9 @@
       "afterSha256": "8ae211e8633bea1b025f420355b954068df394863db41c27aed0401e03b9ff45",
       "bytes": 9362,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "8ae211e8633bea1b025f420355b954068df394863db41c27aed0401e03b9ff45",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
@@ -43,7 +51,9 @@
       "afterSha256": "72091fee5ca08bd34911e964d1e7503dd0e214cd2bfbb44b54c371b9a519f452",
       "bytes": 18210,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "72091fee5ca08bd34911e964d1e7503dd0e214cd2bfbb44b54c371b9a519f452",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/Strategy.java",
@@ -51,7 +61,9 @@
       "afterSha256": "b090c9875cb5780c98f3974476b37d87bdaaa1bc25499038eedbc55775b88c42",
       "bytes": 27521,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "b090c9875cb5780c98f3974476b37d87bdaaa1bc25499038eedbc55775b88c42",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentPolicy.java",
@@ -59,7 +71,9 @@
       "afterSha256": "d49a4025a8b4eba5564432d9735eac0956193e705db807ecf6d9fbd9acc0d156",
       "bytes": 8905,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "d49a4025a8b4eba5564432d9735eac0956193e705db807ecf6d9fbd9acc0d156",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentRules.java",
@@ -67,7 +81,9 @@
       "afterSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
       "bytes": 902,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/java/game/sanguo/core/RecruitmentPlan.java",
@@ -75,7 +91,9 @@
       "afterSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
       "bytes": 2408,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/main/resources/pc-scenarios/raw-loyalty.tsv.gz",
@@ -83,7 +101,9 @@
       "afterSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
       "bytes": 619992,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/test/java/game/sanguo/core/PcDirectRecruitmentPolicyTest.java",
@@ -91,7 +111,9 @@
       "afterSha256": "3a09cbfd05f22fdc23910262bb87af9f227893bb1e186f89c6290205fcf1d153",
       "bytes": 4984,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "3a09cbfd05f22fdc23910262bb87af9f227893bb1e186f89c6290205fcf1d153",
+      "primaryAfterExact": true
     },
     {
       "path": "core/src/test/java/game/sanguo/core/PcDirectRecruitmentRulesTest.java",
@@ -99,7 +121,9 @@
       "afterSha256": "0e8b58705099748a84ed5bfd725861c94a1f38044ac5e34000fff0f3c9dd12c5",
       "bytes": 1137,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "0e8b58705099748a84ed5bfd725861c94a1f38044ac5e34000fff0f3c9dd12c5",
+      "primaryAfterExact": true
     },
     {
       "path": "game-runtime/src/test/java/game/sanguo/runtime/PcDirectRecruitmentSessionTest.java",
@@ -107,7 +131,9 @@
       "afterSha256": "31093f00b7aa973ee3f93e5ce68e0f7c977bcf86dc0a5b4dec17db3de99ca421",
       "bytes": 2701,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "31093f00b7aa973ee3f93e5ce68e0f7c977bcf86dc0a5b4dec17db3de99ca421",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pack_raw_loyalty.py",
@@ -115,7 +141,9 @@
       "afterSha256": "04d986ec98d04eb0638e34b95dc9c76c17ee979b6b3ae2aa7fba99a62929c1d4",
       "bytes": 1995,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "04d986ec98d04eb0638e34b95dc9c76c17ee979b6b3ae2aa7fba99a62929c1d4",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_raw_loyalty.py",
@@ -123,7 +151,9 @@
       "afterSha256": "2fee246ece5cddf33a3d0316ad02059aedbc42d721c45c721757e6b4574009bf",
       "bytes": 3441,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "2fee246ece5cddf33a3d0316ad02059aedbc42d721c45c721757e6b4574009bf",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_pc_direct_recruitment.py",
@@ -131,7 +161,9 @@
       "afterSha256": "04116e414d95ab3a22516f02a7aac81814d48ee32892b901a1809a6e0d56afd8",
       "bytes": 6612,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "04116e414d95ab3a22516f02a7aac81814d48ee32892b901a1809a6e0d56afd8",
+      "primaryAfterExact": true
     },
     {
       "path": "tools/content/session_b_verify_fieldworks_ui.py",
@@ -139,7 +171,9 @@
       "afterSha256": "8ddf391d724a1535300136f351c07c8176d6829c36ac88b2f688486d6624ea92",
       "bytes": 9955,
       "primaryBeforeExact": true,
-      "completedCommitAfterExact": true
+      "completedCommitAfterExact": true,
+      "primaryAfterSha256": "8ddf391d724a1535300136f351c07c8176d6829c36ac88b2f688486d6624ea92",
+      "primaryAfterExact": true
     }
   ],
   "documentRows": [
@@ -147,49 +181,65 @@
       "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_BATCH.json",
       "beforeSha256": null,
       "afterSha256": "388b773279e252af32a35290e1e373663c5f05836b58f7b1c61d9b486ab9afbf",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "388b773279e252af32a35290e1e373663c5f05836b58f7b1c61d9b486ab9afbf",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_CONTRACT.md",
       "beforeSha256": null,
       "afterSha256": "fea4ca0681383467c8de16594a9dd9e86ecb61654f2e6e43751ca580778bb065",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "fea4ca0681383467c8de16594a9dd9e86ecb61654f2e6e43751ca580778bb065",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_DELTA.json",
       "beforeSha256": null,
       "afterSha256": "e7f2dc43dcaa808a6b268bd256bf390040e97c7571d76450e5071291de9a905b",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "e7f2dc43dcaa808a6b268bd256bf390040e97c7571d76450e5071291de9a905b",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_REPRODUCE.md",
       "beforeSha256": null,
       "afterSha256": "ae3f8b9ae149694602c09d45022d977f1f22bd20c4e3c7f0dbebe3242e27a4bd",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "ae3f8b9ae149694602c09d45022d977f1f22bd20c4e3c7f0dbebe3242e27a4bd",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/DIRECT_RECRUITMENT_STRATEGY.md",
       "beforeSha256": null,
       "afterSha256": "0189fd38e29aeb8efc9e333f35de51ec8f9c8bdc596b2ae96a2b0bf46fee3cbd",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "0189fd38e29aeb8efc9e333f35de51ec8f9c8bdc596b2ae96a2b0bf46fee3cbd",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
       "beforeSha256": "09758624d945d3154b9097c6dba921078ab810c6351813654818a3d69105e725",
       "afterSha256": "15b293ea74e572fa5b65d7f2fd2e2403cdd051ef16f9a84051ec6e3990348695",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "15b293ea74e572fa5b65d7f2fd2e2403cdd051ef16f9a84051ec6e3990348695",
+      "primaryAfterExact": true
     },
     {
       "path": "docs/handoff/20261006/session-b/direct-flow-39.tar.gz",
       "beforeSha256": null,
       "afterSha256": "55ecf06327e29b3bd97e65598326593b89c611e9288f7b40d3e12e7d895d9075",
-      "primaryBeforeExact": true
+      "primaryBeforeExact": true,
+      "primaryAfterSha256": "55ecf06327e29b3bd97e65598326593b89c611e9288f7b40d3e12e7d895d9075",
+      "primaryAfterExact": true
     }
   ],
   "conflicts": [],
   "WipMerged": false,
-  "stage": "all17source7docs-before-after-verified; not imported yet",
+  "stage": "completed17source7docs imported, every afterSHA exact",
   "AOwnFilesModifiedByB": false,
   "newCombinationBuiltInstalledAccepted": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "primaryImportedHead": "babe0660",
+  "live41Scope": "279/d760 frozen all16 matrix excludes this direct recruitment increment"
 }
