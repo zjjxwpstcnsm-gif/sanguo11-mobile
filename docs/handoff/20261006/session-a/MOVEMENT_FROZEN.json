@@ -1,0 +1,16 @@
+{
+  "owner": "A",
+  "completeSourceSubsetFrozen": true,
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "revision": "47326188fbc43837c8d52caf0fa76051390faaf4",
+  "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+  "beforeSha256": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+  "afterSha256": "fc1ed192a256be306dcd6aa292958af17e4f822232f788981702f993b7a45de5",
+  "patchSha256": "a0b14d482bc33411573208e8be8f60d6ee3b28fb145b644a959dd1032808b0af",
+  "readonlyFinishedExport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/frozen-movement-47326188/app/src/main/java/game/sanguo/mobile/MainActivity.java",
+  "validation": "ordinary R8 APK/java/resources build and APK signature pass; combined B rule/city-stop acceptance pending",
+  "minimalPatchOnlyMovementAdapter": true,
+  "AProductionPathMayBeModifiedByB": false,
+  "BMayReadOrCompileFinishedDependency": true,
+  "finalSerialIntegrationRequired": true
+}

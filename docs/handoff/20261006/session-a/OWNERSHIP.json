@@ -63,7 +63,12 @@
     "docs/handoff/20261006/session-a/INSTALLED_AUDIT.json",
     "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
     "docs/handoff/20261006/session-a/MOVEMENT_ADAPTER.md",
-    "docs/handoff/20261006/session-a/THEME_FROZEN.json"
+    "docs/handoff/20261006/session-a/THEME_FROZEN.json",
+    "docs/handoff/20261006/session-a/AVD_CLONE.json",
+    "docs/handoff/20261006/session-a/clone_avd.py",
+    "docs/handoff/20261006/session-a/AVD_STORAGE.md",
+    "docs/handoff/20261006/session-a/MOVEMENT_FROZEN.json",
+    "docs/handoff/20261006/session-a/MOVEMENT_FROZEN.patch"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
