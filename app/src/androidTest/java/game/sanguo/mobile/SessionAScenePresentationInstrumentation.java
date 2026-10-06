@@ -14,7 +14,7 @@ public final class SessionAScenePresentationInstrumentation extends SessionBFiel
   android.graphics.Rect previous=new android.graphics.Rect(),bounds=new android.graphics.Rect();long stable=0,deadline=SystemClock.uptimeMillis()+12000;
   runOnMainSync(()->target.requestRectangleOnScreen(new android.graphics.Rect(0,0,target.getWidth(),target.getHeight()),true));
   while(SystemClock.uptimeMillis()<deadline){
-   boolean[] visible={false};runOnMainSync(()->{visible[0]=target.isAttachedToWindow()&&target.hasWindowFocus()&&target.isEnabled()&&target.getGlobalVisibleRect(bounds);int[] root=new int[2];target.getRootView().getLocationOnScreen(root);bounds.offset(root[0],root[1]);});
+   boolean[] visible={false};runOnMainSync(()->{visible[0]=target.isAttachedToWindow()&&target.hasWindowFocus()&&target.isEnabled()&&target.getGlobalVisibleRect(new android.graphics.Rect());int[] screen=new int[2];target.getLocationOnScreen(screen);bounds.set(screen[0],screen[1],screen[0]+target.getWidth(),screen[1]+target.getHeight());for(android.view.ViewParent parent=target.getParent();parent instanceof android.view.View;parent=parent.getParent()){android.view.View view=(android.view.View)parent;int[] at=new int[2];view.getLocationOnScreen(at);bounds.intersect(at[0],at[1],at[0]+view.getWidth(),at[1]+view.getHeight());}});
    if(visible[0]&&!bounds.isEmpty()&&bounds.equals(previous)){if(stable==0)stable=SystemClock.uptimeMillis();if(SystemClock.uptimeMillis()-stable>=600)break;}else stable=0;
    previous.set(bounds);SystemClock.sleep(100);
   }
