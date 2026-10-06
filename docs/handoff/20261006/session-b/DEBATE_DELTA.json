@@ -1,0 +1,176 @@
+{
+  "base": "3b5d9b70c39ea7274c5a40ece3e82cc5cc92a3c0",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "sourceCommit": "2039afbcfab964bedc34519247754f654d4e81cd",
+  "sourcePathCount": 27,
+  "status": "completed-bounded-native-numeric-recruitment-ordinary-APK31; full-goal-incomplete",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "314a5d325b64ee005efab9ad101a0bef339017016c385efd08179ea29bc24ded",
+      "bytes": 9583
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "beforeSha256": "f5f88a3def7be02edc1f845e9ca2b69a938f11f29ab85b6458c69a002d82b571",
+      "afterSha256": "f00891d760a5d0ad73e6ad2fb05441b0893c3913fa0b4f9c44a40c33aeb712f9",
+      "bytes": 11207
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "beforeSha256": "4386b4176c61c8349f2a8f174fc5df9388ababa82616fea00567cfb57879737a",
+      "afterSha256": "54e2211c2203eaebdb845ea5104f2bfe31a23f6d512340a58443f13f48ac6704",
+      "bytes": 15109
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "beforeSha256": "17801e550f76ea0589f7980ff5c7a21c35b3aa7db48505a5ecf5e1f9536cbb79",
+      "afterSha256": "1368f02e7637d6c84f2c6d1842cd9e5cc6edec39f1c2c0f92d8478ab7cc5e5dc",
+      "bytes": 20016
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "beforeSha256": "553e7baec13480fac2c884e95bb269554f442377500517fa2aa2e7d70d8fb343",
+      "afterSha256": "c3cb8f9e3a70c73f1212f5e928eb53bdca193e3cdc20a4bafa9cb0093e133213",
+      "bytes": 11582
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "3f59dce35698df9daefa3a13046f93fd2a0159843b7e997c56bab0cd8be75dcb",
+      "bytes": 3127
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignRules.java",
+      "beforeSha256": null,
+      "afterSha256": "da567cdf150b3c2d818edb974783fe91c217804384f836e3c9fee91c5ce5ff88",
+      "bytes": 4035
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeHealthPolicy.java",
+      "beforeSha256": "c9e3172e0297ad9ef7bbd4200fb07ae8ae2c78931631cb5de03d32b10e47f3cb",
+      "afterSha256": "3089f7ebff804a53b6d0b26e4099659725db59526eac21cdffff6feb3ee98b03",
+      "bytes": 6372
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "beforeSha256": "af12dd15def556fc28696d7ecdc04d51cab409e98b2334fc4e23128a8d75640d",
+      "afterSha256": "74ab68fbe0ab96aee2c714e9c1b75848f4cd9a2e798e6206f90ac39f13038ba0",
+      "bytes": 9212
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "e85220d7ee4a15c9d895a6ab252f99504bbac5009f7a6cdc692e2e7ae50f6a0c",
+      "afterSha256": "d07d94f4a73fb27c02b3e6404fc6b47f00c80dae9352b5d3d5d1313a3e434a32",
+      "bytes": 17916
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateCampaignRulesTest.java",
+      "beforeSha256": null,
+      "afterSha256": "d6b12e8c037aa77f246e53a35b3a2c0a9767fa7acc48487dd1649a0ec70faa80",
+      "bytes": 2485
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateOrdinaryCampaignTest.java",
+      "beforeSha256": null,
+      "afterSha256": "f31a6338ed13a143295ff59bae9f0b5c89f0f845c12141f4ad14f8fd71767644",
+      "bytes": 4969
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateSourceContextTest.java",
+      "beforeSha256": null,
+      "afterSha256": "41dece434c5e2e25a4333333e7a7e449f0271722e845d2401402383474ad2fa9",
+      "bytes": 1947
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_CAMPAIGN_PLAN.md",
+      "beforeSha256": null,
+      "afterSha256": "1489fb5bb5d0481da52ef829b8de804de0fd851e9d8d89e9ff3feee571d9ce00",
+      "bytes": 4755
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "6c0feb323cde916c59e08d8c2645acb28e1735fd5d47d146d5ec93bce71dc12b",
+      "bytes": 3692
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DEBATE_REPRODUCE.md",
+      "beforeSha256": null,
+      "afterSha256": "55b146e74e36e28208c9741e04ee6d47175f7e7c662c97248643962272ffed25",
+      "bytes": 3959
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": "7278d5e7751b828a9dae8f66c78cc3c79ea57ae93c178747a753afc66bf5dca5",
+      "afterSha256": "e58d06b839083362eea0fcdad063dfab3584370fc3fefdd1c8f78098eae20176",
+      "bytes": 26958
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/debate.instrumentation.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "e80a27f35ef074abc93700f94a8fbf200406e60684dbba12035c3fbc234dcea7",
+      "bytes": 277
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "beforeSha256": "60de58f864fecb7ddc0aaf5a214da1abfdb46a470269bc04d08c0fb5ea58291e",
+      "afterSha256": "ebcbb001df682bf4eecf8eeae913ad98755a800bc96fe9c4738243a9dabe50ae",
+      "bytes": 1949
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "beforeSha256": "12818c8c7a5d890e2ad9a5962b81b662c37d1a14bcd4e38905332990ff4cde41",
+      "afterSha256": "19b83775295978c8b4c526c4ebaf07d0e482332a3b04130396f53d3e452eee50",
+      "bytes": 28706
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
+      "beforeSha256": "c41f55d0816bb196f76af60b37a4b0b748e5329bbdcf5ac7b85f817b8bf94f2f",
+      "afterSha256": "9e55d99ad6574cfc259da37b2c53c53011274bef969246b8efa681693ce65bbf",
+      "bytes": 3972
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateSettlementSessionTest.java",
+      "beforeSha256": null,
+      "afterSha256": "319e29ea09b67971a8b6325813f02b89c5f072e4edb304298b0bbbc0dcebc08b",
+      "bytes": 2662
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_campaign_settlement.py",
+      "beforeSha256": "ab9b5202eddc960ffebdc3d41489add94f7ae174d2152e65a813d3339d41c5c6",
+      "afterSha256": "3b46f73edab1bdd93c467129843b1c6f2e903bc7ae9c926407f152c33decf6b9",
+      "bytes": 8951
+    },
+    {
+      "path": "tools/content/session_b_pc_debate_context.py",
+      "beforeSha256": null,
+      "afterSha256": "c7c89f5b549af43d849b2f422f0e5833f77eb0e61096d201db549f4992aeceb3",
+      "bytes": 4192
+    },
+    {
+      "path": "tools/content/session_b_pc_geography_context.py",
+      "beforeSha256": null,
+      "afterSha256": "175ac040f82b3bdb36d972ce1b4de81c2b096feeeb4812f2548a4e6c92c3453b",
+      "bytes": 1574
+    },
+    {
+      "path": "tools/content/session_b_pc_recruitment_cost.py",
+      "beforeSha256": null,
+      "afterSha256": "05e898f529c5332bf865a6c6df9d0cfb5f0bce97b68599973a31548d2a354b31",
+      "bytes": 3496
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": "f3bc12d7c1d47e95c11a617ccc1d268e0e0db8d8450cff984a9b095388197347",
+      "afterSha256": "782273bd313984cc80eaa37d5824017b8972241026b66c1067766b39581a30b5",
+      "bytes": 8271
+    }
+  ],
+  "excludedWip": [],
+  "frozenA": "47326188fbc43837c8d52caf0fa76051390faaf4 completed six paths only",
+  "jniFrozen": true,
+  "ownership": "27 exact B owned sources/API/runtime/pages/tools/tests and own session documentation; no A or public ledgers",
+  "conflicts": "B owned source/API/runtime/page/tools/tests only. A473 frozen completed six files read-only; A WIP/Main/Map/picker/theme/media/3D/BridgeJson/Unity/shared Gradle/manifest/fourJNI untouched. Old52315bf0/609dirty checkout unchanged. Source APK31 built at parent plus recorded B dirty main, not a declaration of later commit BuildConfig."
+}

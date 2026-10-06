@@ -1,0 +1,129 @@
+{
+  "status": "completed-bounded-native-numeric-recruitment-ordinary-APK31; full-goal-incomplete",
+  "base": "3b5d9b70c39ea7274c5a40ece3e82cc5cc92a3c0",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "workspace": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "branch": "codex/rules-content-contest-repair",
+  "sourceCommit": "2039afbcfab964bedc34519247754f654d4e81cd",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/debate-build-31/frozen/app-debug.apk",
+      "bytes": 312772136,
+      "sha256": "fb32f23a684fbeb58963fdd5197cfdb16866f795a0928ce80d487e941b9f1cf7"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/debate-build-31/frozen/app-debug-androidTest.apk",
+      "bytes": 2541170,
+      "sha256": "6fec7864f0604c7eb282afd98a42f9e91e412643f7f80f1dd627ff035db000d5"
+    }
+  ],
+  "builtFromRecordedDirtyPathsAtParent": true,
+  "compiledProductionGuard": {
+    "files": 6082,
+    "unchanged": true
+  },
+  "inheritedInputsGuard": "proof/debate-inheritance-guard-31.json",
+  "JNI": "four ignored libraries unchanged, initial exact SHA retained",
+  "actual": {
+    "passed": true,
+    "serial": "emulator-5582",
+    "instrumentationPassed": true,
+    "coldPassed": true,
+    "installed": {
+      "game.sanguo.mobile.dev": "fb32f23a684fbeb58963fdd5197cfdb16866f795a0928ce80d487e941b9f1cf7",
+      "game.sanguo.mobile.dev.test": "6fec7864f0604c7eb282afd98a42f9e91e412643f7f80f1dd627ff035db000d5"
+    },
+    "restoration": {
+      "internal": {
+        "originalFiles": 15,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "additionalFiles": []
+      },
+      "external": {
+        "originalFiles": 772,
+        "shaReadbackMatches": true,
+        "mismatches": [],
+        "additionalFiles": []
+      }
+    },
+    "backupArchivesAndOriginalInventoriesExcluded": true,
+    "ARM": "unverified"
+  },
+  "foregroundWholeTurns": [
+    [
+      "trial-0-nextturn",
+      "16142",
+      "false"
+    ],
+    [
+      "after-terminal-save-0",
+      "13174",
+      "false"
+    ],
+    [
+      "trial-1-nextturn",
+      "11888",
+      "false"
+    ],
+    [
+      "after-terminal-save-1",
+      "17453",
+      "false"
+    ],
+    [
+      "cold-nextturn",
+      "5553",
+      "false"
+    ]
+  ],
+  "tests": {
+    "originalNumericSource0FullGeographyCases": 8,
+    "numericCoreChecks": 80,
+    "ordinaryCoreChecks": 156,
+    "sessionInputChecks": 68,
+    "sessionRegression": 1690,
+    "sceneQueryChecks": 40228,
+    "BridgeSession": "passed corrected fully qualified invocation",
+    "architecture": "passed",
+    "genuinePrototype39": "explicit adoption/full original model and RNG preservation/human terminal/wholeturn host proof; full Android historical matrix unfinished"
+  },
+  "originalGeography": {
+    "loader": "484090",
+    "resource": 4791,
+    "sourceSha": "c726989df91d44c99ea3c3f613d41e7e725c43002a9775dfac2e43516f5c6112",
+    "regionCells": 40000,
+    "WorldAndRngUnchanged": true,
+    "source0CostQueries": 87,
+    "source0EarlyCost": 20,
+    "repeatOutputBytes": 13954,
+    "repeatOutputSha": "653977d0a049788b16de09da40a2b479b45a74dc6bb8d965ab24212a856faaac",
+    "priorZeroGeographyOverflow": "original47d3a7 city0 port-list writesf4..184 corrected by actual original SHEX loader, no substituted rule"
+  },
+  "policy": "fresh pc-debate-campaign-settlement-v1; old absence stays inactive; explicit prototype39 adoption; once-only original result; old injuries retained; no base overwrite",
+  "archive": {
+    "path": "docs/handoff/20261006/session-b/debate-flow-31.tar.gz",
+    "bytes": 11766089,
+    "sha256": "373e226539e740c51d2fa09900c7197d81a9a4baa8528d4d66a27712fa9645e9",
+    "userBackupsExcluded": true
+  },
+  "failedAttempts": {
+    "APK29": "runner incorrectly required ListView row isClickable",
+    "APK30": "runner read snapshot off serial logic thread",
+    "firstPreInstall29": "source guard freeze had not returned; no device action; rerun waited on completion",
+    "oldWrongBridgeInvocation": "incorrect package corrected; not counted as passed"
+  },
+  "conflicts": "B owned source/API/runtime/page/tools/tests only. A473 frozen completed six files read-only; A WIP/Main/Map/picker/theme/media/3D/BridgeJson/Unity/shared Gradle/manifest/fourJNI untouched. Old52315bf0/609dirty checkout unchanged. Source APK31 built at parent plus recorded B dirty main, not a declaration of later commit BuildConfig.",
+  "unfinished": [
+    "original ordinary optional recruitment-debate admission and probability/UI chain",
+    "native recruitment gold/debit/AP/controller/opening budget and native42 placement/modifier",
+    "native voluntary concession and diplomacy result callback",
+    "original100item placements/effective books and active NPC identities/current uncapped loyalty",
+    "complete native duel/support/equipment/escape/campaign settlement",
+    "all16-source full ordinary command/multiturn/save/cold and actual31-39/custom Android continuation",
+    "all effective850/1100 people/scenario events/initial units/settings/source priority fields",
+    "UnityU01 inheritedmap63/65 geometry semantics and ARM/device/speaker acceptance"
+  ],
+  "sourcePathCount": 27
+}
