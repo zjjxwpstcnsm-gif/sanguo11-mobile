@@ -17,6 +17,7 @@ final class PcMapEffects implements AutoCloseable {
     private final Scene scene;
     final boolean fireScene;
     private PcCellFireSet acceptedFires;
+    private game.sanguo.api.StateToken displayedFireState;
     private final ExecutorService background=Executors.newSingleThreadExecutor(r->{Thread t=new Thread(r,"PC source map effects");t.setDaemon(true);return t;});
     private volatile PcEffectProcess process;
     private volatile boolean closed;
@@ -112,7 +113,7 @@ final class PcMapEffects implements AutoCloseable {
                 if(i>=shown)scene.addEntity(entity);
             }
             for(int i=frame.count;i<shown;i++)scene.removeEntity(entities.get(i));
-            shown=frame.count;displayedCamera=pending.camera;serial=frame.serial;frames++;sourceElapsed=frame.sourceElapsed;
+            shown=frame.count;displayedCamera=pending.camera;displayedFireState=pending.fires==null?null:pending.fires.state;serial=frame.serial;frames++;sourceElapsed=frame.sourceElapsed;
             updateMillis=frame.updateMillis;drawMillis=frame.drawMillis;geometryMillis=frame.geometryMillis;pending=null;
         }catch(java.io.IOException|RuntimeException failure){error=failure.toString();hide();android.util.Log.e("Sanguo3D","Original map effect upload stopped",failure);PcEffectProcess worker=process;if(worker!=null)worker.close();}
     }
@@ -170,7 +171,7 @@ final class PcMapEffects implements AutoCloseable {
             }catch(RuntimeException failure){engine.destroyEntity(entity);EntityManager.get().destroy(entity);throw failure;}
         }
     }
-    private void hide(){for(int i=0;i<shown;i++)scene.removeEntity(entities.get(i));shown=0;}
+    private void hide(){for(int i=0;i<shown;i++)scene.removeEntity(entities.get(i));shown=0;displayedFireState=null;}
     String report(){return " fire_native="+(process==null?"closed":process.fireSummary().replace(' ','_'))+" fire_scene="+fireScene+" admitted_fire_cells="+(acceptedFires==null?0:acceptedFires.cells.size())+" omitted_fire_cells="+(acceptedFires==null?0:acceptedFires.omitted)+" pc_map_fx_frames="+frames+" pc_map_fx_serial="+serial+" pc_map_fx_quads="+shown+" pc_map_fx_capacity="+capacity+" pc_map_fx_texture_bytes="+textureBytes+" pc_map_fx_source_time="+sourceElapsed+" pc_map_fx_update_ms="+updateMillis+" pc_map_fx_draw_ms="+drawMillis+" pc_map_fx_geometry_ms="+geometryMillis+" pc_map_fx_error="+(error.isEmpty()?"none":error.replace(' ','_'));}
     @Override public void close() {
         synchronized(this){if(closed)return;closed=true;ready=null;pending=null;acceptedFires=null;}

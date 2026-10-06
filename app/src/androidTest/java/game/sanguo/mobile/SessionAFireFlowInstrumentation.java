@@ -32,7 +32,7 @@ public final class SessionAFireFlowInstrumentation extends SessionAScenePresenta
   while(SystemClock.uptimeMillis()<deadline){runOnMainSync(()->{try{
    MapHost host=(MapHost)field(activity,"map");FilamentMapView view=(FilamentMapView)field(host,"spatial");PcMapEffects fx=(PcMapEffects)field(view,"pcMapEffects");MapSceneSnapshot snap=(MapSceneSnapshot)field(host,"publishedSnapshot");
    boolean shown=snap!=null&&snap.fires.stream().anyMatch(f->f.hex.equals(target));
-   ready[0]=snap!=null&&snap.authoritativeSceneFacts&&token.equals(snap.state)&&shown==burning&&fx!=null&&fx.fireScene&&(Long)field(fx,"frames")>2&&((String)field(fx,"error")).isEmpty()&&(Integer)field(view,"pending")==0&&!(Boolean)field(view,"assetSyncPending")&&(Boolean)field(view,"outputVerified");report[0]=host.report();
+   ready[0]=snap!=null&&snap.authoritativeSceneFacts&&token.equals(snap.state)&&shown==burning&&fx!=null&&fx.fireScene&&token.equals(field(fx,"displayedFireState"))&&(Long)field(fx,"frames")>2&&((String)field(fx,"error")).isEmpty()&&(Integer)field(view,"pending")==0&&!(Boolean)field(view,"assetSyncPending")&&(Boolean)field(view,"outputVerified");report[0]=host.report();
   }catch(Exception e){throw new RuntimeException(e);}});if(ready[0])break;SystemClock.sleep(100);}
   note(label+" target="+target+" burning="+burning+" "+report[0]);check(ready[0],"current native source fire target lifecycle "+label);shot(label);
   check(Arrays.equals(before,capture())&&token.equals(activity.deploymentState()),"source fire rendering/selection preserves full Save/bothRNG/token "+label);
