@@ -1,0 +1,60 @@
+{
+  "passed": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug.apk": "562fabeb23540c0256ab9bcc4282a2a4f2d729805990062c29c46ed2b0e9743a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug-androidTest.apk": "7c677d1b0e0532a65a60bde5a08caaf05817918d2c3f3007e504ff2543c49d30"
+  },
+  "scope": "Actual44.1/48k UID/GAME capture both failed before normal menu; no music submission/timeline/correlation score",
+  "runtimePermissionGrantedDuring": true,
+  "originalAppOp": "RECORD_AUDIO: default; time=+1h50m42s835ms ago; duration=-20732d4h45m52s847ms",
+  "originalMode": "default",
+  "failure": "Native AudioPolicy getInputForAttr recording not allowed for uid10147/pid21725; createRecord/native -1, Java init -20, then state uninitialized. Not old -22 reproduction.",
+  "captures": [
+    {
+      "rate": 44100,
+      "frames": 0,
+      "failure": "java.lang.IllegalStateException: Record not initialized"
+    },
+    {
+      "rate": 48000,
+      "frames": 0,
+      "failure": "java.lang.IllegalStateException: Record not initialized"
+    }
+  ],
+  "mainRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "testRestoration": {
+    "test-internal": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    },
+    "test-external": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    }
+  },
+  "testOldApkPermissionAppOpModeRestored": true,
+  "oldMinus22RootCauseClosed": false,
+  "nextControlledExperiment": "Same frozen562/7c package anddevice, temporary thisTEST RECORD_AUDIO appop allow after completebackup, actual grant/projection; restore exact original default and micfalse afterwards. No system reboot or source/PCM/threshold alteration.",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-submission-direct-combination-42",
+  "evidenceSha256": {
+    "session.json": "2428b5791409c5d9526f423746d847ffbab4836170bf41086b58220d0727868f",
+    "logcat.txt": "2801bb205a34a843bd4453f1f03059a8b882441ac50f38c895ccf4a885a42558"
+  },
+  "ARM": false,
+  "goalComplete": false
+}

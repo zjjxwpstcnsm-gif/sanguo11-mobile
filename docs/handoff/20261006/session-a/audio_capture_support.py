@@ -48,7 +48,7 @@ def prepare(out,r):
 def start(out,r,rate,run,seconds):
  if not re.fullmatch('[A-Za-z0-9_]{1,64}',run) or rate not in [44100,48000]:raise ValueError('Capture identity/rate')
  shell('pm grant '+TEST+' android.permission.RECORD_AUDIO')
- c=r['audioCapture'];c['permissionDuring']=shell('dumpsys package '+TEST);assert re.search(r'android.permission.RECORD_AUDIO: granted=true',c['permissionDuring'])
+ c=r['audioCapture'];c['appOpBeforeThisCapture']=shell('appops get '+TEST+' RECORD_AUDIO');shell('appops set '+TEST+' RECORD_AUDIO allow');c['appOpDuring']=shell('appops get '+TEST+' RECORD_AUDIO');assert re.search(r'RECORD_AUDIO:\s*allow',c['appOpDuring']);c['permissionDuring']=shell('dumpsys package '+TEST);assert re.search(r'android.permission.RECORD_AUDIO: granted=true',c['permissionDuring'])
  path='/sdcard/Android/data/'+TEST+'/files/session-a-game-mix/'+run
  record={'run':run,'rate':rate,'seconds':seconds,'devicePath':path,'ready':False,'consentFromObservedSystemUi':False};c['captures'].append(record);save(out,r)
  shell('am start -n '+TEST+'/'+ACTIVITY+' --es run '+run+' --ei seconds '+str(seconds)+' --ei sampleRate '+str(rate))
