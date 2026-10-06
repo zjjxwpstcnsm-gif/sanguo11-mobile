@@ -5,7 +5,7 @@ No data clear. Backup covers the whole private and external application trees.
 Restoration removes only regular files added during this exclusive session,
 extracts the original archive, and reads every regular file SHA back.
 """
-import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time
+import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading
 
 ROOT = pathlib.Path(__file__).resolve().parents[4]
 ADB = '/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb'
@@ -91,6 +91,17 @@ def main():
                 raise ValueError('User tree changed after backup')
         r['apks'] = {str(v.resolve()):digest(v) for v in [a.apk,a.test_apk]}
         r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
+        stop=threading.Event()
+        def observe():
+            with (out/'meminfo-timeline.txt').open('wb') as f:
+                while not stop.is_set():
+                    try:
+                        f.write(('\nSAMPLE '+str(time.time())+'\n').encode()); f.write(run('shell','dumpsys','meminfo','-a',PACKAGE,timeout=30));f.flush()
+                    except Exception as error: f.write(str(error).encode());f.flush()
+                    stop.wait(2)
+        observer=threading.Thread(target=observe);observer.start()
+        log_file=(out/'logcat.txt').open('wb')
+        log_process=subprocess.Popen([ADB,'-s','emulator-5554','logcat','-v','threadtime','-T','1'],stdout=log_file,stderr=subprocess.STDOUT)
         try:
             with (out/'installation.txt').open('wb') as f:
                 for apk in [a.apk,a.test_apk]: f.write(run('install','-r',str(apk.resolve()),timeout=300)); f.flush()
@@ -106,6 +117,7 @@ def main():
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/session_a_resume',str(out/'evidence'))
         finally:
+            stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
             report_path.write_text(json.dumps(r,indent=2)); restore(out,r)
     else: restore(out,r)
 
