@@ -1,0 +1,827 @@
+{
+  "schema": 1,
+  "baselineCommit": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "note": "All existing app production Java files have exactly one owner; new files and tests require path registration in the session contract before editing. AndroidGameBridge serialization and Unity are frozen.",
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/AbilityUi.java",
+      "owner": "B",
+      "baselineSha256": "f80ae1494d5ab868c28b785be098f41d38138cc583ef1ef6d6050be9cbca4f88"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ArmyUi.java",
+      "owner": "B",
+      "baselineSha256": "99faa707ca4f58da4e071f9f0a496d2ffe678506fc7ffa12e623d0b665f3ec5e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BattleReportUi.java",
+      "owner": "A",
+      "baselineSha256": "8023b602768beaf846b86e3d6729362d270e7f8cfc935d93e24a15686abbabb0"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildPicker.java",
+      "owner": "B",
+      "baselineSha256": "1e2aff239961d1dc3760bf359f981a6e9896106a3cd9889f80895306784f3d3b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildingAtlas.java",
+      "owner": "A",
+      "baselineSha256": "6ea5a687a6576d6513ee64ce4da025749370c5b800991d796ea6e90e1b1ac4c8"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
+      "owner": "B",
+      "baselineSha256": "aa21891c1af0da706bde287a1f55bb89ec4c931bc166a7c816590470bac4f753"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CargoWizard.java",
+      "owner": "B",
+      "baselineSha256": "fd05f227ac75e4b82b78c3304bf86ee77c8c0e705ed22105ed8391677335051a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java",
+      "owner": "A",
+      "baselineSha256": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CityAtlas.java",
+      "owner": "A",
+      "baselineSha256": "3cedf3024c54af8de678f8d1f7776d1b2cecdf4c2cac883d091e941f1d660e91"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ClientState.java",
+      "owner": "A",
+      "baselineSha256": "a2687b6958535c369db739b5bb47376c6bad2cf5c40b4ceb04511adc9c157f2c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CombatReplayLedger.java",
+      "owner": "A",
+      "baselineSha256": "ff681233a971fabfa74c7c453b28f3714365145083c1390513193121bb7e331e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CombatSequence.java",
+      "owner": "A",
+      "baselineSha256": "105feb1a62dde11307f19165f2d33359b03f82d869e07d0aab72d73671328b3c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CombatVisual.java",
+      "owner": "A",
+      "baselineSha256": "59c54138256ecfd5feffdbbd385df2d74dab5d4e072c1a6c35f5edb81bf7fb5f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CommandStats.java",
+      "owner": "A",
+      "baselineSha256": "8d69476d72a7085d2427c87ae80cbef32e1f61c99f82a8cf088d6d255d664dce"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CompactButtons.java",
+      "owner": "A",
+      "baselineSha256": "f007547c7d9b455094317eeaa3ab9f1962baef55be70c95675f9b046c1794d5c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "owner": "B",
+      "baselineSha256": "fda7d2aa2d14f31dca41e65e754990f3f887ef8cb285cbbb8d09513ad96e4749"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "owner": "B",
+      "baselineSha256": "5616f8a05196903174029dd84d514f80280be57745bc25a99f4da87af8d436da"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CriticalFlash.java",
+      "owner": "A",
+      "baselineSha256": "0c221a5ae089f41a0e283acc241158b0ec48be55100e21d1fc282fc2c7b502f4"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CriticalScene.java",
+      "owner": "A",
+      "baselineSha256": "302dbb03e07b811cd9bbe1216210c5cfb282bf2a4c3d5657fdb29b300aa21b05"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerActivity.java",
+      "owner": "A",
+      "baselineSha256": "b4fa0f9d46e254cfa77354f75e3585b666ba021eeb4ad9545b1425640f152c7e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerImages.java",
+      "owner": "A",
+      "baselineSha256": "1f41ca9d21408c1dea26968bebc7687db0321654efd11d8e0a1dc6aa8c9b9a0e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerLibrary.java",
+      "owner": "A",
+      "baselineSha256": "5f7cdea598bc8f54d518b30c3fa809e6be3182d9a9376f5b176e602ef83a15fa"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerPack.java",
+      "owner": "A",
+      "baselineSha256": "73b687c64f549b9d30e044fe188d90d6666d2af00537ac3f053f4e9e7e82ba8e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerPlacementUi.java",
+      "owner": "B",
+      "baselineSha256": "e6a2eb21997df630d77d05af39f6a830028219e3b78a5a89a12ce42167bc148a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerSetup.java",
+      "owner": "A",
+      "baselineSha256": "ef39991cf0651e18e6721c5f1978b01d57435f63f3f4736a6909f1e3343ca73b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DataTable.java",
+      "owner": "A",
+      "baselineSha256": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DeployWizard.java",
+      "owner": "B",
+      "baselineSha256": "5dad7164fd60ca3121a9454e0a6ee66e0c39e95e3835965fb3041871be50a501"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DiplomacyUi.java",
+      "owner": "B",
+      "baselineSha256": "6163515813068a5bbf29fef45a4b6c38eea4cf5741ac05b8e7be5d6f5200d732"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DomesticUi.java",
+      "owner": "B",
+      "baselineSha256": "ad2399c3a8cc68fb7495787e0417e509a8b012363765e6439eee5987eae61623"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/EditorUi.java",
+      "owner": "A",
+      "baselineSha256": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/EnvironmentProfile.java",
+      "owner": "A",
+      "baselineSha256": "2a6645b4ea27d0e571ce109030580734a752922ddfdacdb9f35e1ad421fd9cf6"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/EstatesUi.java",
+      "owner": "A",
+      "baselineSha256": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FactionColors.java",
+      "owner": "A",
+      "baselineSha256": "1de01cf2b8bfb86b628dcfc847582909fc3842bc8e5c98f15421546cef502d30"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldAssets.java",
+      "owner": "A",
+      "baselineSha256": "2924e9a5d1ef9ab1706e12ff46287229dab3f0c6369d8202aad08bd742aa615b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "owner": "B",
+      "baselineSha256": "c72317c3d9832415d15da5cc3ab535d46449164edd10f6fe788c2c1c6eb3859a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "owner": "A",
+      "baselineSha256": "185c3979c4fb2e9bf5f35d19ed8a0e579b83b22959ce6f0a7a9b87fbc932f71a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GameApplication.java",
+      "owner": "A",
+      "baselineSha256": "63710e43bec9d3b66fd66f37dd8d7c703811fd28e5058934a5267d1ca060182f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GameIcon.java",
+      "owner": "A",
+      "baselineSha256": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+      "owner": "B",
+      "baselineSha256": "04aa3615a7619e493964e9dca72b9a26b6b807103912036cd8ca0a2636f7c2f8"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GridWorldTransform.java",
+      "owner": "A",
+      "baselineSha256": "721fc68a564a4d22d562a5de87c20ab50a070795b66a1c48137db25046842f00"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/InlineChoices.java",
+      "owner": "A",
+      "baselineSha256": "9559bb21fb750771fcc21ae81ab6ff71349cb5ea15d757a18c29e9afd73f02d8"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LandscapeLandmarks.java",
+      "owner": "A",
+      "baselineSha256": "4d75cce46f2262e5c0f702dc0661eac688e18264d13186ec1a1b7c5294e41e1b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LandscapeProfile.java",
+      "owner": "A",
+      "baselineSha256": "ae6e52f29ec5be73a97703e7b1a2d1c608f72345921d91a5876b366bc20e6a5c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LegacyCommandSink.java",
+      "owner": "A",
+      "baselineSha256": "fcdcc57cf7eb428dd9c569b1a3b05e29c6a78d3f540f358567376e598f10bfb9"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LifecycleUi.java",
+      "owner": "B",
+      "baselineSha256": "32f7a76a936b9e8a44e4cf1ce78e44cf7fc6fa7dedd64c1802015cae9604661c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "owner": "A",
+      "baselineSha256": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapCamera.java",
+      "owner": "A",
+      "baselineSha256": "bfb5750f99ab7ced1e1fc433247d36e4d368241b8d77e7fac4644e7c3d97c947"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapEditorActivity.java",
+      "owner": "A",
+      "baselineSha256": "d1928ccd7bed9dcf55e051020d765c7fa9036531181e787af18800771af7846b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapEditorUi.java",
+      "owner": "A",
+      "baselineSha256": "ac8021f768002dadc039d4d2feaa4c233bc317b9222645daa86fdb51d8d55e7b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "owner": "A",
+      "baselineSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapLibrary.java",
+      "owner": "A",
+      "baselineSha256": "1524e3d4bc738afd047dbcf1e8fa19b58b6a34a3676ea74f8a65403224dea94a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapModels.java",
+      "owner": "A",
+      "baselineSha256": "62df1cb219d6c9c8b7167240bcdd22ed69ebad06ac7d7e495c22cb9239f253ae"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapPresentation.java",
+      "owner": "A",
+      "baselineSha256": "cd5aa9540e897706b16e014bae06535b9e3c149a6db566b4144d7360d088181f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapProjectionQuery.java",
+      "owner": "A",
+      "baselineSha256": "6ed9aaab333558fe9f6440aa2ff11baa0523b66579320f7506e2e4adaa565131"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapRaster.java",
+      "owner": "A",
+      "baselineSha256": "1a940ce1319596daa54d5406f9ca17f85201d9e1c0369301fdad6d4b9ec409be"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "owner": "A",
+      "baselineSha256": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapTapTrace.java",
+      "owner": "A",
+      "baselineSha256": "16ffd4b227eb8261840c677eab1d7a07e0b895711c86e1a4858537f537a8a015"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaCueLedger.java",
+      "owner": "A",
+      "baselineSha256": "43db8ec4caa93eb64f3ea13efb3957cabf9e985c27ab5d21f93dced263125054"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaHashes.java",
+      "owner": "A",
+      "baselineSha256": "b3287d010a7e83226c2c5d8644b30a3da84e2d1ec34b05884a4b73c33e846a0e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaVolumeControls.java",
+      "owner": "A",
+      "baselineSha256": "f9140b003fc0abca34df542bf56b71f26f986362ac861a09c114e89b97cc6831"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MeshIndexBuffer.java",
+      "owner": "A",
+      "baselineSha256": "345b83223bb5b1e8b10f85900822bc1020450e8abaf8dd7d666874486321cfa2"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/NativeGameHost.java",
+      "owner": "A",
+      "baselineSha256": "db07bf1de83539e2a4d737bbaa3fa2def88c355edc64fcc32a3a6ee6b16e5333"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/NavigatorTransform.java",
+      "owner": "A",
+      "baselineSha256": "41263e9dff841918f7c485795dcaa57f14b36297cca6dac554433c7f212c8e06"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficePicker.java",
+      "owner": "A",
+      "baselineSha256": "dd4be45b6458d91941238bc0717b53d7d18419af8c48cd1ea3def1fe6395f90b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "owner": "A",
+      "baselineSha256": "b916b3a6c28f9a7f3eb3f233dfed6c5ebd60e26e4866dbe2bede0e15130dce95"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OverviewUi.java",
+      "owner": "A",
+      "baselineSha256": "182d4d788368fe690f735f00ec74ea5c6f1a15b00682a4426ffd96dacbed7942"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcAudioSource.java",
+      "owner": "A",
+      "baselineSha256": "c9f8f5be24fc93ab3adef6dcb2bcc4f0dfefadcf868dd3ce369bbbc1c1ebc214"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
+      "owner": "A",
+      "baselineSha256": "c556d4abc96dcb41fec071999c366eba3c736ed4bfdbe417778852d7c349f26c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcConstructibleWalls.java",
+      "owner": "A",
+      "baselineSha256": "efaf36d88305009aded5c6695f5aa8520b4000fcfc16716823c4f3e19c8a8afc"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcDams.java",
+      "owner": "A",
+      "baselineSha256": "353504206d9aa9ad929e65f159aeffb5de5b3c30d42b5b68c8775ebf1186c90d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcDynamicPortraitCatalog.java",
+      "owner": "A",
+      "baselineSha256": "0efa15a539ca70ea37d50696bef48aa3c6ff130c0d743dc71337b502706a2029"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcEffectCoordinates.java",
+      "owner": "A",
+      "baselineSha256": "1b95bda43244d72773815a8675b264acaf5b7dc2d63e310a77f0dba4b0c2ca83"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcEffectProcess.java",
+      "owner": "A",
+      "baselineSha256": "f9dffb5168662958c488f8d6d7585ef6b06c0880bbfae91a0144bdd4905eb8d1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcEffectSourceFile.java",
+      "owner": "A",
+      "baselineSha256": "0489ac4702b503f79a72960b3b3a137a5aeef5cb0df99cd8fd134299672fe5f3"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcEnvironment.java",
+      "owner": "A",
+      "baselineSha256": "c0dc9a34a3ac764036b7ae1b2526f5d0dd484f18a3e888117fde7880558f0965"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilities.java",
+      "owner": "A",
+      "baselineSha256": "1b163f19768cb09a912165363ab269232f309fcef56063de2c677d6cab76d928"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java",
+      "owner": "A",
+      "baselineSha256": "3dcee8e7a0dfa89d38f52b0ab795fc874664bbc9e0b71812f81c4e4b941f5b3b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "owner": "A",
+      "baselineSha256": "c3d05ad7abf214d3624e89fcb260e2c8cd020b3852709482ff147d93f97f5852"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapMusicDirective.java",
+      "owner": "A",
+      "baselineSha256": "cfa1ecb6cf55522964b891e5d422e1342eb9ffa8ab78674e9aa6bbf5ac66728f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMediaPlayback.java",
+      "owner": "A",
+      "baselineSha256": "6d1cf1c861b37f4350751d0e4676a652684ad21b12a01fc6ccc743a764b54729"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicCatalog.java",
+      "owner": "A",
+      "baselineSha256": "bba87a957c235d196678a3167f26fe020a1d00cf3e69e3fafee8bb2cebe244a7"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicFrameStream.java",
+      "owner": "A",
+      "baselineSha256": "cb42a514e29d71e6c2bee93c3e9a24bb87bbdf5356a40668a9ae37d8ca6e03e2"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicPolicy.java",
+      "owner": "A",
+      "baselineSha256": "b1ee85696276974f7c2e613648613c9309fcb003de3c298c35b0fd495527ef54"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "owner": "A",
+      "baselineSha256": "3e444226f65224f48fe285881b528fdd606937adc7d5d7fb344d9b7fcc52e97b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPcmEffectPlayer.java",
+      "owner": "A",
+      "baselineSha256": "f2e11d6a9a02760c7311dd491a32540fbc78c4aa425868779b529da2c1e42396"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPortraitCatalog.java",
+      "owner": "A",
+      "baselineSha256": "5774f0424a977e44a0fd06e283ef4504d892938a93ecdf1c6d4b7f67553da3a5"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPortraitLoader.java",
+      "owner": "A",
+      "baselineSha256": "dadb246180dcc735f61c1fd46042dd9aa60239b9a963ef85d43b12f9a9e85c6f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationClock.java",
+      "owner": "A",
+      "baselineSha256": "0f0601d11d952b026de620c7fa0e452ece439d07d162330a6521aa6259122178"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationLens.java",
+      "owner": "A",
+      "baselineSha256": "7d4c694756995c1e8621a86972f19c78fa8a2f1a92b645ce288932690b69e6c9"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationPlan.java",
+      "owner": "A",
+      "baselineSha256": "34177edbff4cf6fb0746f92637bdc9e40775149df50af6b94927303e7f40e81c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationStage.java",
+      "owner": "A",
+      "baselineSha256": "72b719c4e7de292a00024ece974eedc0f972e9a92b5503ae1436ffd7710c685d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentationTimeline.java",
+      "owner": "A",
+      "baselineSha256": "ef80b323b2b15af58a9fb26a8a47ca0ff677919528eb9f6d7442c9d219b19aed"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcPresentations.java",
+      "owner": "A",
+      "baselineSha256": "5c2b60bcc7d67eaf0768a1a62f3cc88f6dbc5e343bdc9d6a7a7f2adafdb33e70"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcScenery.java",
+      "owner": "A",
+      "baselineSha256": "9fc5f5520fdf3406f7537012e6b647a66001937e7c0a40f3f33815f2117ee234"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcSites.java",
+      "owner": "A",
+      "baselineSha256": "ca4758f74b016f081cdcd0319ad2dec2738b432fe9f4ab29e8abe83575221b1a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+      "owner": "A",
+      "baselineSha256": "216f6c9312687869e9c3b9a4e7724c4265f8cdc8540cab389571fefb2df8dd7e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticSoundPolicy.java",
+      "owner": "A",
+      "baselineSha256": "d8ab86259adce7d2b735ecc0a78d63621e15788d9f7ab4970220af2709eabf0b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcUnitFormation.java",
+      "owner": "A",
+      "baselineSha256": "ca417fcdc93a323f23fae7e7258a67811cb279cfa4c85cacbf8774309520563d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcUnits.java",
+      "owner": "A",
+      "baselineSha256": "4337ec62ee8a37d54a5515f06ada8f1f439b73357821058e20923d028e909c4a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceCatalog.java",
+      "owner": "A",
+      "baselineSha256": "a8442ba7e278b4e780206c553da9ae6cbd2d7630e3bfc3837419aa3c7dcd46a4"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java",
+      "owner": "A",
+      "baselineSha256": "7a7d876c06f05f91b553838c70ad3a059b1c168e9bebe822551faf0d19bb6aa1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoicePolicy.java",
+      "owner": "A",
+      "baselineSha256": "0f36915ee7c20cab7ee7d961d35a4938d2f006761efee9a0f30af48860a9b002"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceStreamPlayer.java",
+      "owner": "A",
+      "baselineSha256": "fff98e8818a46925a40b5eb84ce5a64b64a0594c298e064e9b2ea616fd57b692"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVorbisDecoder.java",
+      "owner": "A",
+      "baselineSha256": "e36bcdd9a8cbde4cf46babee488c36ed4f0602663457afee5488f1751eb9bc0d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcWallGeometry.java",
+      "owner": "A",
+      "baselineSha256": "8b51325de6484b9454e37c74fb56799b1ffc65e529bd8e5cd941bbd9fdfa6f43"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitCatalog.java",
+      "owner": "A",
+      "baselineSha256": "ed8a85b93a24da418d8f6157c5522fe8c8e8098eba002d3e456504ac85a7cbed"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaIdentity.java",
+      "owner": "A",
+      "baselineSha256": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaSources.java",
+      "owner": "A",
+      "baselineSha256": "c687d224e1c7f7c27b113bdbd910022b1bcc88bc9edae40e2d6b0845e41dc516"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitSavedSources.java",
+      "owner": "A",
+      "baselineSha256": "88b9bd2aad2db8f80e47e4b19f0c250d32f0ab27dbcbfe4acb3e49def7620fed"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/QuantityControl.java",
+      "owner": "A",
+      "baselineSha256": "38324d38bd5beed55c2ba92c4e5ad51fe4c5f31b08178726fcc2c18eb5d2fb6d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/RealmUi.java",
+      "owner": "A",
+      "baselineSha256": "a7b4571c6ed7cf1ee6a5b6530f865edaa93f14016afa20fd6da3dc4f11a11fd0"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "owner": "A",
+      "baselineSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneAssetQueue.java",
+      "owner": "A",
+      "baselineSha256": "8ffd8217dc17663bb8e4eff9992e5563f8ebfc5e22b79d1336f9175a62884f0b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneCamera.java",
+      "owner": "A",
+      "baselineSha256": "27708d282b488fc64828e77d60c5874783a0ca85dbe96418db6fcfaf8e5c4efa"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneFrameMetrics.java",
+      "owner": "A",
+      "baselineSha256": "1888eecd7ba4464fe8b81970f4226f3a94dbf584e60ecf75c2c1470c2661b9cb"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneLabelVisibility.java",
+      "owner": "A",
+      "baselineSha256": "5c565d47595c111bbcecbd07782fc78fb64c2f67e31ee16d3de8a6049e0e625d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "owner": "A",
+      "baselineSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenePicking.java",
+      "owner": "A",
+      "baselineSha256": "93237baba93f78ae7b4f421a0d14a89e58015cb9084ae5431cc66ff6733d0321"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneQuality.java",
+      "owner": "A",
+      "baselineSha256": "ab9801919027923616bd646bd87da3bf38b0eaf9ff6649a4ecb8acf0761921a1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneRenderGate.java",
+      "owner": "A",
+      "baselineSha256": "18622d8c42f59e816c3e0502e6e66dfa4f2853209471b44d2d6fcafcbf1567b1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneVisibilityStamp.java",
+      "owner": "A",
+      "baselineSha256": "1d0fae5947effc92ae781dd8554b8f41e4bb381c10d63f4d58974232025d851d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneWorkQueue.java",
+      "owner": "A",
+      "baselineSha256": "6feecbea4207c80efc97ad6f88d04e47ecf80abe0effb8ba029a1164cfaf6590"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SeasonStyle.java",
+      "owner": "A",
+      "baselineSha256": "cfd341ccf745d2d45044532c62ddebb20c7edd3ae6eabf9a914aa7afff93b9c9"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SiegeOverlay.java",
+      "owner": "A",
+      "baselineSha256": "13bd6cbf1f7d316d6591d3324b71b91caf5ef7a4d17cc2a716c872f0f1bf4177"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SiteGlb.java",
+      "owner": "A",
+      "baselineSha256": "b073ab887a119c74b596c63a392f9accc566ede42e06fbf053126a0273bc6d0b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SiteVisual.java",
+      "owner": "A",
+      "baselineSha256": "ce12a222e4963481dd1b79800665e640cc5e7bb8c184ab44f05c4f3ae63c9359"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "owner": "A",
+      "baselineSha256": "50b3dd47be8f1809bcd0b6573d7cc62243ff32f69572c338bd836e3cc7b7f56f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "owner": "B",
+      "baselineSha256": "4ab5d2bda571ad1597a9cea551dd0d0933ea129c05bcb5c11163ef45c1bf4f66"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TechniqueFactQueue.java",
+      "owner": "A",
+      "baselineSha256": "bf29d72528a8734ddc39965a443c1095ce26f2862a0f445677e474b13fb9c393"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TechniquePointsHud.java",
+      "owner": "A",
+      "baselineSha256": "4b7f02da26611f4a723333e0f42789183792897275bff7a74d0ce13ed83afea9"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainArt.java",
+      "owner": "A",
+      "baselineSha256": "f8df314d0482570493c386a2cd4a4b7acd076e5ced61a810a015e685b8e4e9a6"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainConnections.java",
+      "owner": "A",
+      "baselineSha256": "64ac5d145667ef3e8863eb25866be549aef4a2d0dae719f4f6e702d89eee8f81"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "owner": "A",
+      "baselineSha256": "91c3d9403815ab39ae11ee9f0af5d1a159f6d9308807e3b89f40699ee4a40f32"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialLod.java",
+      "owner": "A",
+      "baselineSha256": "24112c77cdd58fa655e4ad1a45702de29808b3c482c4928eb691edaff1588be3"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "owner": "A",
+      "baselineSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainTiles.java",
+      "owner": "A",
+      "baselineSha256": "d7b43a366cf2ad1faa309fe70e55739f57a059b5bc4a6b391d6203cf13c4530e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TileGeometry.java",
+      "owner": "A",
+      "baselineSha256": "c8f9b8f7d4d0fe15d0e41220e13a109b18844645c2c6f5955380b432978c88ec"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "owner": "A",
+      "baselineSha256": "9d13abadd7c3a57e489f2f1b0184b81a20ce1684a880075ef8dc1206ae7522fd"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnWork.java",
+      "owner": "A",
+      "baselineSha256": "6e6196182ffa0763888fa1116c26a73263159d48f6208ab73e495fe66a3d10a1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiLatencyMonitor.java",
+      "owner": "A",
+      "baselineSha256": "f12ed1ba22daf51c6d6e3e1ea332abe004b033c3a5fabc60d30bdf0decab1844"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiModels.java",
+      "owner": "A",
+      "baselineSha256": "f588f680a7f0945d76a8fdce9b19b50e4db2086dcf7a6d69ffe5a85c89822af4"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiMotion.java",
+      "owner": "A",
+      "baselineSha256": "bb0721153ae18cfe0cb1c3fb96e0b22ea4c23681d9e041abe73e9ae2e3e20493"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiReadTask.java",
+      "owner": "A",
+      "baselineSha256": "477df1788331aa9b380599b8cf86832296fa3f8f60e7d71f865e5e7579038daf"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiTheme.java",
+      "owner": "A",
+      "baselineSha256": "3ffed703800dcf0ba242c74541d1b7fa35a02b3c50eacd75dc013d3cefd4ca21"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnitAnimation.java",
+      "owner": "A",
+      "baselineSha256": "391dd058b816b81b0d91fbe4785f57d59c3f0f6004ec6ff5f9574a46b4077272"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnitFormation.java",
+      "owner": "A",
+      "baselineSha256": "7cb856fcd9bb19936fb9260dc53f2fc1cad03fee76cd543b2a57cc55191bd882"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnitLod.java",
+      "owner": "A",
+      "baselineSha256": "b238e1f30e63dd926210cfcd959f294e3b2f3513ad74123cf1e788469ffcaaea"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnitMotion.java",
+      "owner": "A",
+      "baselineSha256": "1af29ac1d2772f2751f76cdeba47289118615709e496afd73b94f28cf0e4f2f5"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnitSilhouette.java",
+      "owner": "A",
+      "baselineSha256": "f71cbe67c31c8a5c3ce77ba01fe0670e33a09cfd337df48586cbc5f8e0af3e9e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnitVisual.java",
+      "owner": "A",
+      "baselineSha256": "76278a9ead08a38fe49f893220a624413280af56c7a5a69aa2ad47a5614727d1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UnityBridge.java",
+      "owner": "A",
+      "baselineSha256": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
+      "owner": "A",
+      "baselineSha256": "f49190c7987814ba90cb15e078eebbc4aeeef780ea841dff8698b195d54455a1"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VerifiedMaterial.java",
+      "owner": "A",
+      "baselineSha256": "0d83e6aee0d7d6225e71202ffc0e4aedd11d42355aeaabcfd10d51efc9eeed2b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VisualAssets.java",
+      "owner": "A",
+      "baselineSha256": "1741f6cff552c3c32ef3c6d8297adee2b6a35b58ca55689515df06e7d51dfc3b"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VisualGuide.java",
+      "owner": "A",
+      "baselineSha256": "7b262a7c7694497fdab6bd06133d3c5cb1ec39cd80e92207f3041a6a5490c73e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WarUi.java",
+      "owner": "B",
+      "baselineSha256": "cfd87592a2fda1e2a2c241078656db70bb7be7047e7e168cf85638219289c996"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "owner": "A",
+      "baselineSha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WindowSurfaceRecovery.java",
+      "owner": "A",
+      "baselineSha256": "48dec7071c5bb84f3498ddeced29d7b7b5a0ef8977e2adeafaf015e7b78b2aad"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WindowSurfaceRecoveryState.java",
+      "owner": "A",
+      "baselineSha256": "0e8a469465c6fd97260312c72e285cd1d4413500744c18356816f4072b702b29"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WorldUi.java",
+      "owner": "A",
+      "baselineSha256": "6de9c5bb1a38e79be952eafcd1a931ca9404aaf13442486fa6665ea37f3d953f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java",
+      "owner": "A",
+      "baselineSha256": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/BridgeJson.java",
+      "owner": "A",
+      "baselineSha256": "1e6462f2bf4918cf3f01109956b7d23b385a748a01a20efb3f6ba573cd76e1bd"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/platform/save/AndroidSaveStore.java",
+      "owner": "A",
+      "baselineSha256": "21af0be945fe3201007bc7692affffeb458e0376bb9b2236de4ea0b9f58c06fc"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/presentation/MapLayerData.java",
+      "owner": "A",
+      "baselineSha256": "3e41eceb952c2be2f32171cb080c48467be89deec2e0aa925e6c361a9cccb818"
+    }
+  ]
+}

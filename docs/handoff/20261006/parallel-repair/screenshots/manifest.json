@@ -1,0 +1,17 @@
+[
+  {
+    "file": "screenshots/01-black-labels.jpg",
+    "bytes": 1637486,
+    "sha256": "bd9db3544867e3f8a27b203d00a81472fe7f6a607de5b9c2237d45030640cf10"
+  },
+  {
+    "file": "screenshots/02-preview-oom.jpg",
+    "bytes": 577393,
+    "sha256": "53c02e87cdd494047ca02317bb40965b000c44e4c7ab2db4e7f921c744b8532f"
+  },
+  {
+    "file": "screenshots/03-faction-black-labels.jpg",
+    "bytes": 1632241,
+    "sha256": "4b92600207da79970fbacc3ffde3ec22e30781ab6234fa175eba1f5bb242af63"
+  }
+]

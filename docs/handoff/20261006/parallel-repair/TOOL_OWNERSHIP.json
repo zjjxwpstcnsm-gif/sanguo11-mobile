@@ -1,0 +1,1816 @@
+{
+  "schema": 1,
+  "baselineCommit": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "files": [
+    {
+      "path": "tools/content/.gitignore",
+      "owner": "B",
+      "baselineSha256": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b"
+    },
+    {
+      "path": "tools/content/ArtOfficerFixtureCanonicalizer.java",
+      "owner": "B",
+      "baselineSha256": "457ccc6383dbea1b821f3dff79ad82e229676e519bf263a663c6049a81242c41"
+    },
+    {
+      "path": "tools/content/DeploymentParityProbe.java",
+      "owner": "B",
+      "baselineSha256": "271a9c580c0ac2970dfd6854dd095c5fc5acb92968fa84abb0a6c23708f4d509"
+    },
+    {
+      "path": "tools/content/DeploymentQueryBenchmark.java",
+      "owner": "B",
+      "baselineSha256": "75e19d74e9063c58b76cce6befc8b4ad58d63445a8f8d8ad515c5599abf6961c"
+    },
+    {
+      "path": "tools/content/DiplomacyParityProbe.java",
+      "owner": "B",
+      "baselineSha256": "9d11262df3ce10643f3c0081f113af4f9575a4cdcd23397d1a4c7f4010f3f2db"
+    },
+    {
+      "path": "tools/content/LegacyMarketOpeningWriter.java",
+      "owner": "B",
+      "baselineSha256": "983eaec6bf3b271716e0858b039f6a102a00d7f8c27ccde84bdf6e51ffde1e72"
+    },
+    {
+      "path": "tools/content/LegacySaveFixtureWriter.java",
+      "owner": "B",
+      "baselineSha256": "020d2f4d81ab06263eee725cb5e3f941898c063f9ce17205c06bc9eefb1efffe"
+    },
+    {
+      "path": "tools/content/MapPatchRepository.java",
+      "owner": "B",
+      "baselineSha256": "099346883684112187af4c2d17e094dd26ff9a50e46e3ac8db27f2af58c84043"
+    },
+    {
+      "path": "tools/content/OfficerUiOpeningWriter.java",
+      "owner": "B",
+      "baselineSha256": "dccde6698eadc75647f338f4a8f1e64a08ea7ee7e259be1802bf721342286f20"
+    },
+    {
+      "path": "tools/content/PcAiTurnReplayProbe.java",
+      "owner": "B",
+      "baselineSha256": "a7feff3b8731fdb5071349ff00a577d0f812c9f5a35a04cb61ae5ea89dbe8370"
+    },
+    {
+      "path": "tools/content/PcCampaignFlowProbe.java",
+      "owner": "B",
+      "baselineSha256": "fa55ec2fca97eecfd96abf4338b2a0e573b943cb8524b2c205e4e8988d3fd77f"
+    },
+    {
+      "path": "tools/content/PcCityActionCompatibilityProbe.java",
+      "owner": "B",
+      "baselineSha256": "ca5e17c8d5b298816b6fcb74849facbb982b7debf978727032cebef75bc08773"
+    },
+    {
+      "path": "tools/content/PcCityActionFlowProbe.java",
+      "owner": "B",
+      "baselineSha256": "e27528092837ab2beab032823fdab87f8cfca514671515006086588bed2ff8bc"
+    },
+    {
+      "path": "tools/content/PcConstructionRecruitFlowProbe.java",
+      "owner": "B",
+      "baselineSha256": "1efbd4c5c806c07b0f6895b54102043bd635b536bd4f4795e1e472ea70d9461a"
+    },
+    {
+      "path": "tools/content/PcConstructionSaveProbe.java",
+      "owner": "B",
+      "baselineSha256": "6cbfcd275820515f1118337f1c075172866446948a9f7086032d8cb583c94bde"
+    },
+    {
+      "path": "tools/content/PcCriticalsProbe.java",
+      "owner": "A",
+      "baselineSha256": "3ed89a4986f11f4c4befc5172eb81d5894e87e6b672e7fa1db1e644b5cfab5b8"
+    },
+    {
+      "path": "tools/content/PcDiplomacyFlowProbe.java",
+      "owner": "B",
+      "baselineSha256": "ec8c2e216b9d699d52bb4bbc386070a8dc2f879806c497d7c6355d2d84e8ea70"
+    },
+    {
+      "path": "tools/content/PcEconomyDebitDeltaProbe.java",
+      "owner": "B",
+      "baselineSha256": "f581336a8cffbffe56239c34cbd386cb0c0f59813f36d5c9f3975e1828735c84"
+    },
+    {
+      "path": "tools/content/PcGroundSnapshotProbe.java",
+      "owner": "A",
+      "baselineSha256": "683a7a3b25245e0513b2f3047e154abdeb426cb511004422a8105e5d3d77ac10"
+    },
+    {
+      "path": "tools/content/PcOfficerCampaignBaseline.java",
+      "owner": "B",
+      "baselineSha256": "5054599852cd7c068f1595a372f44d9ea2dc186450d881728ec72f6f0c316bf7"
+    },
+    {
+      "path": "tools/content/PcProductionCompatibilityProbe.java",
+      "owner": "B",
+      "baselineSha256": "82d3f63154f8b0072f020a16c9932fe4e65a2b88493ddbfd9c5e46cf9abd1e69"
+    },
+    {
+      "path": "tools/content/PcProductionOpeningFixture.java",
+      "owner": "B",
+      "baselineSha256": "21647cc1a2f129afabe17813f8370b34df7282ada9c4b79b8e16e9e460306eee"
+    },
+    {
+      "path": "tools/content/PcSaveCodecProbe.java",
+      "owner": "B",
+      "baselineSha256": "e94af27a7f9614703c9aba3117d829c0f92d536a6a7f2fe0fa7183824564f961"
+    },
+    {
+      "path": "tools/content/PcSaveContinuationProbe.java",
+      "owner": "B",
+      "baselineSha256": "47c3ec208b2eedfa1bd868ea80c03e48fc74ec8bb1c1a74b39a824753ec5033d"
+    },
+    {
+      "path": "tools/content/PcScenarioLegacyProbe.java",
+      "owner": "B",
+      "baselineSha256": "751d6206102fd4ebde9f9c981d68aa12fe6e07593d5409b0d6fd00b81d1a3cc5"
+    },
+    {
+      "path": "tools/content/PcTechniqueOpeningFixture.java",
+      "owner": "B",
+      "baselineSha256": "d86a0fe50975cfe6c870e606a95c9ef4d3ce90c0d08b0bc675c7b7b293a858f3"
+    },
+    {
+      "path": "tools/content/PcTerrainScratchProbe.java",
+      "owner": "B",
+      "baselineSha256": "cd1fbb618b0c0481549e3c88994ed941ba8019d7ea689a931ffe25b7be00d27a"
+    },
+    {
+      "path": "tools/content/PcTradeCompatibilityProbe.java",
+      "owner": "B",
+      "baselineSha256": "789d0520310cb86a59f217bb30615e7de158f39f11a3f58ff8d5548f46f748d9"
+    },
+    {
+      "path": "tools/content/PcTransportCompatibilityProbe.java",
+      "owner": "B",
+      "baselineSha256": "fff69372962e9e5a3a1b45375a4a8830b51ee9bcfe892a2df1fe7b0c151073b2"
+    },
+    {
+      "path": "tools/content/PcTransportFlowProbe.java",
+      "owner": "B",
+      "baselineSha256": "bf0c24f63e57f7342f4544f77b000945f4aa9746e57ec03e66a998b48e1d035e"
+    },
+    {
+      "path": "tools/content/PcTransportSaveProbe.java",
+      "owner": "B",
+      "baselineSha256": "119c01525765c9ac0d6841b476af729beee186a7fa3dca5589eea1a7045ca642"
+    },
+    {
+      "path": "tools/content/PcUnitCommandsProbe.java",
+      "owner": "B",
+      "baselineSha256": "4d667e0f8105b6820d5de3c3d83a770287708ebd75947a64a4cc39ad732a5477"
+    },
+    {
+      "path": "tools/content/SaveCompatibilityProbe.java",
+      "owner": "B",
+      "baselineSha256": "459320a726adf153c33f29e5f80da821df19fac15eba226defc097bc25af907c"
+    },
+    {
+      "path": "tools/content/android/NativeCityDisplacementUiInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "42e8da4f5ce9e51ef4894ca8dbb0ee13d2b044ab6ef146d2a4867caf37005786"
+    },
+    {
+      "path": "tools/content/android/NativeCityRewardsUiInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "9260beb16f171cb3df265fbe30eb5c86a9b578e520844ad8ac6ed5d2d8438220"
+    },
+    {
+      "path": "tools/content/android/NativeMerchantUiInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "f2a336a513a53783d49306fa9e0c27b75db5525d26f7d1e4a3689d92a63bf032"
+    },
+    {
+      "path": "tools/content/android/NativeProductionSourceUiInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "32d862890b45599c270b8ca782952f67c3255bf09dee667abea925c87a5e8092"
+    },
+    {
+      "path": "tools/content/android/NativeProductionTechniqueUiInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "61a8261c38d0fb7f99fda180e21431d0f87a577f1ce7f1bfe3024273ccd4302f"
+    },
+    {
+      "path": "tools/content/android/OfficerInfoInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "eabb7e456d7362c2f03b1c3eeac92dafbe90713d6ef7f6d6672d3be7f94265f1"
+    },
+    {
+      "path": "tools/content/android/PcContestInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "c2e867405d97c89414804b10c986bf96dd09531becf917b9de1feefed309089e"
+    },
+    {
+      "path": "tools/content/android/PcHealthInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "1411787a183248eee9fa15abfaaea07e27e83c6702689d1670e208b24d391c40"
+    },
+    {
+      "path": "tools/content/android/PcScenarioOpeningInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "cbf49a9dac17179cf21d1f3130da367f693c633f25f8c0a8ee097441732e8326"
+    },
+    {
+      "path": "tools/content/android/native-debate/PcContestInstrumentation.java",
+      "owner": "B",
+      "baselineSha256": "dbe309cace027381e3428d51fcbc33ba4249956b971b6ebb52b27fe780df3827"
+    },
+    {
+      "path": "tools/content/android-fixtures/NativeCityDisplacementFixture.java",
+      "owner": "B",
+      "baselineSha256": "6c1782eb337893f7f1aa779207741cba435935d8aa00ffb5a8404e4afdd2f008"
+    },
+    {
+      "path": "tools/content/apply_pc_debate_verification_patch.py",
+      "owner": "B",
+      "baselineSha256": "42560c0f8f51554e22442d978cb8fa4414c84c2b28f51c3fe3062db049f6c8f7"
+    },
+    {
+      "path": "tools/content/architecture/HistoricalSessionContinuationProbe.java",
+      "owner": "B",
+      "baselineSha256": "e704c276c74bef8da007ef9a887381e65e654e1eac1bdfb02f5654023d47ecfa"
+    },
+    {
+      "path": "tools/content/architecture/HistoricalSessionFixtureWriter.java",
+      "owner": "B",
+      "baselineSha256": "34676f795b8bfecf06e22bccf574614173d86b54a2da689f8dbb10cf80a8104f"
+    },
+    {
+      "path": "tools/content/architecture/LegacyV36HostWriter.java",
+      "owner": "B",
+      "baselineSha256": "e6a4f80ba3c23364adc8005a71358b66f21db8a973d2617982370629f799810d"
+    },
+    {
+      "path": "tools/content/archive_pc_visual_snapshot.py",
+      "owner": "B",
+      "baselineSha256": "e52162dcad2b1fe18ffbf4b9f13c648a815851028536d77c5a3850ea90470383"
+    },
+    {
+      "path": "tools/content/audit_native57.py",
+      "owner": "B",
+      "baselineSha256": "29a48c915042ff6c88cf9b14ff4712f61e9127406faa36ed1555a160fd848e08"
+    },
+    {
+      "path": "tools/content/audit_native58.py",
+      "owner": "B",
+      "baselineSha256": "03cb39a1abf4e4c199f64f25f481bd1b9036dccffac182f84d141d4707772737"
+    },
+    {
+      "path": "tools/content/audit_native59.py",
+      "owner": "B",
+      "baselineSha256": "0b3328d933875aa62cf80b0cd136f65955164af1dc77b74745276c8cb19a916a"
+    },
+    {
+      "path": "tools/content/audit_native60.py",
+      "owner": "B",
+      "baselineSha256": "fb0a036ebc95911c8f0853f81b55f056ab7d6f63c91f45cae5efb84847d89dab"
+    },
+    {
+      "path": "tools/content/audit_native61.py",
+      "owner": "B",
+      "baselineSha256": "6007d2f7155704cd64e0e85c7801a78dd016e788ca6756707323490b1ebafae3"
+    },
+    {
+      "path": "tools/content/audit_pc_restoration_sources.py",
+      "owner": "B",
+      "baselineSha256": "15f39355f734ec29a96f71b3377ef5c9380d980918dd5168d0a88348eff31ad6"
+    },
+    {
+      "path": "tools/content/build_bounded_rule_flow_probe.py",
+      "owner": "B",
+      "baselineSha256": "51bd72974f9767b2d5774590a66a5f9ddb2c118ff48715ec475bb9c18e665f33"
+    },
+    {
+      "path": "tools/content/build_city_atlas_v056.py",
+      "owner": "A",
+      "baselineSha256": "0e42fbf48a5d0fccc4464febd21b72d1d3922725068a0bb42416ccc8be4625aa"
+    },
+    {
+      "path": "tools/content/build_city_displacement_fixture.py",
+      "owner": "B",
+      "baselineSha256": "fbc0e2d6a69df5b3fee209266a9621d84078739a4346c23090d4e46c56d9c11f"
+    },
+    {
+      "path": "tools/content/build_content.py",
+      "owner": "B",
+      "baselineSha256": "cd41309ec384eb59f33b8306a899da35c78782149863e019eaca5a342f2490d7"
+    },
+    {
+      "path": "tools/content/build_historical_scenarios.py",
+      "owner": "B",
+      "baselineSha256": "d71b6fa28a88ca15768ee7a5a5267d06474714dfaa4397af190996484e448e5e"
+    },
+    {
+      "path": "tools/content/build_historical_session_fixture.py",
+      "owner": "B",
+      "baselineSha256": "a1f817b29d2b58c00b45756d52ebc3b8000ef6abfce25bc7df30cf6ec3bf0d7d"
+    },
+    {
+      "path": "tools/content/build_legacy_market_openings.py",
+      "owner": "B",
+      "baselineSha256": "fcc305f396d8f345052a89a37f18905b7b1ccf838be973deb9b6ba576f1222b2"
+    },
+    {
+      "path": "tools/content/build_longrun_continuation_probe.py",
+      "owner": "B",
+      "baselineSha256": "7677ef7712778a22faf3cb43ee2403b85a3f845a3b719b9368b95965e2ad6b51"
+    },
+    {
+      "path": "tools/content/build_mobile_scenarios.py",
+      "owner": "B",
+      "baselineSha256": "16efbb91667952c88c62fda63918f2cbb8a5c7434e4451beff08ff9b38673947"
+    },
+    {
+      "path": "tools/content/build_native37_merchant_ui_probe.py",
+      "owner": "B",
+      "baselineSha256": "7e497babadf1a4245a380c1d82b148f533c736652b01ed907be0e5b7fb04df25"
+    },
+    {
+      "path": "tools/content/build_native_merchant_ui_probe.py",
+      "owner": "B",
+      "baselineSha256": "b015e20ff5f57ffb0f825aff8ce45c1216a534d17d043165dfda46a8eeec89c5"
+    },
+    {
+      "path": "tools/content/build_officer_info_ui_probe.py",
+      "owner": "B",
+      "baselineSha256": "3dc88ac48a50a7dd2575c29df05a1749b64b40bd7eb77563930bc277b0528db8"
+    },
+    {
+      "path": "tools/content/build_pc_campaign_state.py",
+      "owner": "B",
+      "baselineSha256": "fb732d036ded338a596ac952b1ddc7677d79ff63c846b0d1b51ff68c036cd1b1"
+    },
+    {
+      "path": "tools/content/build_pc_contest_profiles.py",
+      "owner": "B",
+      "baselineSha256": "1e71834e8c02879d730e6355f9ad9f4ade4f1af13d9fa53ab5354d86d9723295"
+    },
+    {
+      "path": "tools/content/build_pc_debate_headed_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "d03813f92fd956fbe4d1ce161ceedc488d1ded001eddc852c59bdd35f9b19fae"
+    },
+    {
+      "path": "tools/content/build_pc_debate_human_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "f27903c4f899529ce9c72e1ec275e6b397e5ae2e1f8d1c6504b59c96c06e0b73"
+    },
+    {
+      "path": "tools/content/build_pc_debate_model_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "2593ac924019ff5b98dc50cf9782a860a39359a7a9e5d7983fea1bae0a98781e"
+    },
+    {
+      "path": "tools/content/build_pc_debate_oracle_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "25d85416c31a2879b6f93a909a5ee7699915857eb02bf2febc577377fdb98897"
+    },
+    {
+      "path": "tools/content/build_pc_debate_settlement_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "3b9d01b06f612423f13fcda0ef777cbd2b628ad89b0febbea219a5a03d882860"
+    },
+    {
+      "path": "tools/content/build_pc_debate_ui_callback_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "7af4ab1a5dc60ec8a67fa6bc778c3549a343bb871f7fe9f4cc98661ac3ad4a77"
+    },
+    {
+      "path": "tools/content/build_pc_effect_android_probe.py",
+      "owner": "A",
+      "baselineSha256": "f70c8dee13ce70bdb82a986ef8423e4cf4957d367d56830100178d91a7250cc8"
+    },
+    {
+      "path": "tools/content/build_pc_gaiji_identities.py",
+      "owner": "B",
+      "baselineSha256": "c0a6453bfb808bd266dc6f3b34da29c0014a9a72a2380e363d54909790268149"
+    },
+    {
+      "path": "tools/content/build_pc_governor_order_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "00df6e6ce24b1142cbd0eeca7e8b8c8162ecd9fcf8dc6e134c7078e59c299ab4"
+    },
+    {
+      "path": "tools/content/build_pc_governor_policy.py",
+      "owner": "B",
+      "baselineSha256": "221f07454af3dfc78fe269aadac9d6474e0cc51afe5fe471cb3f8068e7f48ddf"
+    },
+    {
+      "path": "tools/content/build_pc_health_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "f5f75036824227808283c7e05d1dcdc4ab2a6a9b9117bb1bb73daec80ae3e74c"
+    },
+    {
+      "path": "tools/content/build_pc_internal_parent_references.py",
+      "owner": "B",
+      "baselineSha256": "67249b094eb9e966851471f9ef1878661bf38d0928f7921daa8c44a404a9a9d7"
+    },
+    {
+      "path": "tools/content/build_pc_native_debate_ui_probe.py",
+      "owner": "B",
+      "baselineSha256": "a3e5374835e17823c32d69b7be9d47ab5c916a641809c18c0201fca247b52e00"
+    },
+    {
+      "path": "tools/content/build_pc_officer_campaign_facts.py",
+      "owner": "B",
+      "baselineSha256": "a5acd1ed8feab9ace9620031b3cda93f7662a9835361bf841e2a8a504008fd92"
+    },
+    {
+      "path": "tools/content/build_pc_officer_join_fixtures.py",
+      "owner": "B",
+      "baselineSha256": "17f80ae2caa5cc55dbf5c54806cfe5f9ae07354f3519fb7835f05f67b5b2d838"
+    },
+    {
+      "path": "tools/content/build_pc_officer_text_catalog.py",
+      "owner": "B",
+      "baselineSha256": "db1a8940cffa0c28eea202708e6c90c9500cef8b855072c6dac30e1b6ebdfd0e"
+    },
+    {
+      "path": "tools/content/build_pc_production_data.py",
+      "owner": "B",
+      "baselineSha256": "d10010f76aa3a52c64e51958590436dcc61bf8a0b8715e6bf10ce8ea9de44811"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_catalog.py",
+      "owner": "B",
+      "baselineSha256": "8ab50107c71ce8b304e6d95ccb41101f8768ff42efc84c159b544594f68d1f32"
+    },
+    {
+      "path": "tools/content/build_pc_scenario_ui_probe.py",
+      "owner": "B",
+      "baselineSha256": "9b506bb5a1316c7fc0011712610c7aa6b10a9c3607637c6e100dc1c2dcafaa2f"
+    },
+    {
+      "path": "tools/content/canonicalize_pc_officer_fixture.py",
+      "owner": "B",
+      "baselineSha256": "7b7ee8b28bea279bad107f20c2c32e9f75ccdac501e3fb10753c154d7f38b92e"
+    },
+    {
+      "path": "tools/content/check_pc_coordinates.py",
+      "owner": "B",
+      "baselineSha256": "a3b43cf3fda70ed77a71776982f82c8f1567a238b704cf65c0a2c1d67f8f1240"
+    },
+    {
+      "path": "tools/content/check_pc_effect_android_probe.py",
+      "owner": "A",
+      "baselineSha256": "10c5351a9a64140d4ccac0974849925fe8d50dfeab921408db18035f20612271"
+    },
+    {
+      "path": "tools/content/check_pc_effect_android_scene.py",
+      "owner": "A",
+      "baselineSha256": "91be0ef44fff4d0806cd1101d07db07d1b89608ea71b90154c0480228f1677dd"
+    },
+    {
+      "path": "tools/content/check_pc_effect_camera_distance.py",
+      "owner": "A",
+      "baselineSha256": "71aee21143563b754c9abbd389c346ef5371dea5a2a24d12b48cd73049b32696"
+    },
+    {
+      "path": "tools/content/check_pc_effect_coordinates.py",
+      "owner": "A",
+      "baselineSha256": "a14fc87a39fc693c3c0f2cc3d4f7c4e384b3d4ee37ec00a23e18089dafa03cb6"
+    },
+    {
+      "path": "tools/content/check_pc_effect_matrices.py",
+      "owner": "A",
+      "baselineSha256": "757f816ae857eb22930b0a9600c4d8bc4d2e5e4ff89e44c4517f75ba7980d0b8"
+    },
+    {
+      "path": "tools/content/check_pc_effect_native_draw.py",
+      "owner": "A",
+      "baselineSha256": "b1ca6fd2d67cbb81f756ac7623a62f77ba021588c3a9e9cabc964adaaadd85da"
+    },
+    {
+      "path": "tools/content/check_pc_effect_native_probe.py",
+      "owner": "A",
+      "baselineSha256": "ccafad2c6bb7e3c7286c3c6bfa167b0606e5fa2c95e82ee36230cffd63767a8e"
+    },
+    {
+      "path": "tools/content/check_pc_effect_primitives.py",
+      "owner": "A",
+      "baselineSha256": "5f82785dbb13eecf8c978a34e3e3a3f712adc31ad19dac0445795f6591a47ede"
+    },
+    {
+      "path": "tools/content/check_pc_effect_shared_scene.py",
+      "owner": "A",
+      "baselineSha256": "a47c58a42555dab736ab9bdcba3e022bd42a5bc3e3c5295cc72b9300c41511aa"
+    },
+    {
+      "path": "tools/content/check_pc_effect_uv.py",
+      "owner": "A",
+      "baselineSha256": "c5d8c457895aff9fc7ccd35eed9bd452abab05388e092b30358ec77b4e3199bd"
+    },
+    {
+      "path": "tools/content/check_pc_effect_worker.py",
+      "owner": "A",
+      "baselineSha256": "0d87004befc50bc0cb8749ae70d837748ca78a58ee4a32b00927e04c4ccc7445"
+    },
+    {
+      "path": "tools/content/check_pc_environment.py",
+      "owner": "B",
+      "baselineSha256": "3371326c2be9c6242d8e541ae2f3e65e4025c86e159f0990924117b0eba5186b"
+    },
+    {
+      "path": "tools/content/check_pc_facility_rig_conversion.py",
+      "owner": "A",
+      "baselineSha256": "581a452458d11fd780b29ea36af81aad5c2f80bac1d9122e0240e37815d4b275"
+    },
+    {
+      "path": "tools/content/check_pc_ground_environment.py",
+      "owner": "A",
+      "baselineSha256": "80c558c428f4f3253c14f68e9446ca939d9635d12fa3429da2a96b6909164406"
+    },
+    {
+      "path": "tools/content/check_pc_ground_normals.py",
+      "owner": "A",
+      "baselineSha256": "50eaa695c8d71099e782439747dbeac72c325cb389eb2f9cc19c8473d5bf74b4"
+    },
+    {
+      "path": "tools/content/check_pc_ground_palette.py",
+      "owner": "A",
+      "baselineSha256": "ad4997fbcceaa3bf4173eaf6530d3f608b12eeb743076fe722bb9a75c4ba72c2"
+    },
+    {
+      "path": "tools/content/check_pc_ground_passes.py",
+      "owner": "A",
+      "baselineSha256": "c81c2c8747cef564b96f3c1dbfff4066f1409217da0336adba8c2630d2a0f62f"
+    },
+    {
+      "path": "tools/content/check_pc_ground_uv.py",
+      "owner": "A",
+      "baselineSha256": "12990d6d9c8a97ede2c098749deb57e84f8cde1aafaf11ac293ba673d2953544"
+    },
+    {
+      "path": "tools/content/check_pc_presentation_factory.py",
+      "owner": "B",
+      "baselineSha256": "16932a2635ff8cdbfa329256a0e06c0cc0af482ec2c6b91be0931d54f5dcc92e"
+    },
+    {
+      "path": "tools/content/check_pc_scenery_climate.py",
+      "owner": "A",
+      "baselineSha256": "a6a8f088e35bde0140a1482826a67deca6dd13b8ce564177c2a2372ea75d671a"
+    },
+    {
+      "path": "tools/content/check_pc_shading.py",
+      "owner": "B",
+      "baselineSha256": "2e25867beb4d48051fd32c6f3a0b9db43067af8624e905d4ffd7206110bdcb82"
+    },
+    {
+      "path": "tools/content/check_pc_static_coordinates.py",
+      "owner": "B",
+      "baselineSha256": "8436456d70ec7f62f2d6bf4845f6b215f8aaf2b2c6d1e7e84a2c5007bda795b7"
+    },
+    {
+      "path": "tools/content/check_pc_unit_conversion.py",
+      "owner": "B",
+      "baselineSha256": "f510d88b53335fcb328baa28150caf4d1d9690aff6304dd649a5d8418c0bc52f"
+    },
+    {
+      "path": "tools/content/check_pc_water.py",
+      "owner": "B",
+      "baselineSha256": "ba78c32fa564fed4842b98602a264071141df7bc0a982875c57bf722e3a021fd"
+    },
+    {
+      "path": "tools/content/check_pc_water_clock.py",
+      "owner": "B",
+      "baselineSha256": "be0ad663533c959feac7ece894ad3e612a5553a3e5f3d4efa2fc7b27b8cbab5e"
+    },
+    {
+      "path": "tools/content/check_pc_water_mesh.py",
+      "owner": "A",
+      "baselineSha256": "3e4adb152697efe777855546562881fbe318dee1e66559e3b174f95d68e2c3fa"
+    },
+    {
+      "path": "tools/content/compare_pc_officer_assignments.py",
+      "owner": "B",
+      "baselineSha256": "2f4611ae57a7a342dd3171e4fc40b34c3449cbab5c90be27273e6d6b2793a7cb"
+    },
+    {
+      "path": "tools/content/compare_pc_scenario_ownership.py",
+      "owner": "B",
+      "baselineSha256": "4c68f172610617c4828171f31783927d7c55e21de004e9d0ef2fbccf02a11f75"
+    },
+    {
+      "path": "tools/content/decode_video_frames.swift",
+      "owner": "A",
+      "baselineSha256": "602cf342b0e22fbe0b7bf88d911194fefc1a71726b71ce0b7f7d3bd7e1603333"
+    },
+    {
+      "path": "tools/content/export_pc_city_action_costs.py",
+      "owner": "B",
+      "baselineSha256": "9f648cc26255a9ddefc99c1492586a4283cc9787b611cbf6429479dc27a5d994"
+    },
+    {
+      "path": "tools/content/export_pc_city_capacities.py",
+      "owner": "B",
+      "baselineSha256": "47b49e08de294d895013165de148d11f28029b311f9ba5f085fd293731044589"
+    },
+    {
+      "path": "tools/content/export_pc_debate_verification.py",
+      "owner": "B",
+      "baselineSha256": "c862542861557c3b1ba67ed1f9fe77bd4f311ae3899c53c5e2d7c55f872665d3"
+    },
+    {
+      "path": "tools/content/export_pc_facility_costs.py",
+      "owner": "B",
+      "baselineSha256": "bf969597c96ba7b141654d268a20e4b602b28dbcaad38d10acfd727e0b9328e4"
+    },
+    {
+      "path": "tools/content/export_pc_merchant_oracle.py",
+      "owner": "B",
+      "baselineSha256": "580e80c50bda4e9cc10f53955c6b747463c4cb72c474e1f8478888286b4e8cba"
+    },
+    {
+      "path": "tools/content/export_pc_officer_ability_oracle.py",
+      "owner": "B",
+      "baselineSha256": "3f17d7a84d6c9e5567c19e68d22698ba914c6351581a56dd23ad365516c07e59"
+    },
+    {
+      "path": "tools/content/export_pc_officer_date_oracle.py",
+      "owner": "B",
+      "baselineSha256": "4c3c93513f610cd0e2c7bf41e9bd4cf8c699b52abb64e7f0622adc6d010da974"
+    },
+    {
+      "path": "tools/content/export_pc_officer_growth_profiles.py",
+      "owner": "B",
+      "baselineSha256": "7e3d78521f24931b29bd32693a699038a8ae0d7c71d854786bbe2009105c4b98"
+    },
+    {
+      "path": "tools/content/export_pc_officer_ranks.py",
+      "owner": "B",
+      "baselineSha256": "8894e81ede5cf37c789e79f13a3abb7f5bb09f0a92b14dcd2e2cd0172e45f05f"
+    },
+    {
+      "path": "tools/content/export_pc_shared_catalog.py",
+      "owner": "B",
+      "baselineSha256": "5cce1d90faa581aa198b33272f0bd24975766916dad30b746c71e22b65750f6c"
+    },
+    {
+      "path": "tools/content/export_pc_tactic_costs.py",
+      "owner": "B",
+      "baselineSha256": "425fe3e2915ee81c8528057725065c65c92c8316c8403e73070b6a9fc5851134"
+    },
+    {
+      "path": "tools/content/finish_map_editor67.py",
+      "owner": "B",
+      "baselineSha256": "05391db0a7f7fe0df78c57613624a9177875ac4d8dabf42eb0f75e0255353681"
+    },
+    {
+      "path": "tools/content/fixtures/WriteOfficerLegacyAm.java.txt",
+      "owner": "B",
+      "baselineSha256": "e8d47fc5f8abfe4f1739f5ee93a969f42c39342f0e0e8e67b4b14c5ade8bb84c"
+    },
+    {
+      "path": "tools/content/fixtures/legacy-market-v35-r29.json",
+      "owner": "B",
+      "baselineSha256": "3fdfe2ff95bc5de2dbbfa28373f7a087360c62b434daf2719fad1b12807ef013"
+    },
+    {
+      "path": "tools/content/fixtures/normal-ui-190.provenance.json",
+      "owner": "B",
+      "baselineSha256": "ffc581a48149fe1473ff418db875ff9ff8b3d6d316c651c54de37ef7587f1f75"
+    },
+    {
+      "path": "tools/content/fixtures/normal-ui-190.sg11",
+      "owner": "B",
+      "baselineSha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    {
+      "path": "tools/content/fixtures/pc-officer-legacy-am-art.json",
+      "owner": "B",
+      "baselineSha256": "432001cf156e094d4aabfe901d056b83816072820f30f490298abaacca93dc63"
+    },
+    {
+      "path": "tools/content/fixtures/pc-officer-legacy-am.json",
+      "owner": "B",
+      "baselineSha256": "cc7beeefc788320e2de983f31b1bad160d250f569a11135c98124f78b4bc11c9"
+    },
+    {
+      "path": "tools/content/fixtures/pc-rank-legacy-ak.json",
+      "owner": "B",
+      "baselineSha256": "c19e0c1df7d138a1b5113db24c9c043a5f472ba1aa79c9a15d152938f98e4775"
+    },
+    {
+      "path": "tools/content/fixtures/pre-merchant-r25-v34.json",
+      "owner": "B",
+      "baselineSha256": "c9588b16c362fac799d1bc668e4c469629e1eb2eb055241a6d2470190dcad1f8"
+    },
+    {
+      "path": "tools/content/generate_pc_effect_worker_fixture.py",
+      "owner": "A",
+      "baselineSha256": "c64267ee0ebcdf37c1cdc6f565d6e49107623ce61d34e4b0eb69e353dcb4918b"
+    },
+    {
+      "path": "tools/content/import_pc_cliff_walls.py",
+      "owner": "B",
+      "baselineSha256": "603b513aeec1de39337debf05d83e493903324d379e182d52313b2f1f614ea01"
+    },
+    {
+      "path": "tools/content/import_pc_dams.py",
+      "owner": "B",
+      "baselineSha256": "9407608b7142b89ee5d4331105582e9ce4221e026e204bc0d8d1484a7d307cf5"
+    },
+    {
+      "path": "tools/content/import_pc_effect_textures.py",
+      "owner": "A",
+      "baselineSha256": "685cd9dc8f4172efc89d3b442037de029f5d46fbca06c2faa52af130ed760129"
+    },
+    {
+      "path": "tools/content/import_pc_effect_worker.py",
+      "owner": "A",
+      "baselineSha256": "1eb264d9400b925783cf617e27228086f22d5f39b79c84ce5c25c95cbcc4feae"
+    },
+    {
+      "path": "tools/content/import_pc_environment.py",
+      "owner": "B",
+      "baselineSha256": "9e3d6f1e87b2466aa92e71c4add8af08c53f33d36ef7336d1cffaba3bef93fee"
+    },
+    {
+      "path": "tools/content/import_pc_facilities.py",
+      "owner": "B",
+      "baselineSha256": "4e5ac730603382a783b8c78a2babc64335db5873973dbfd07b3bcba83e59c357"
+    },
+    {
+      "path": "tools/content/import_pc_facility_rigs.py",
+      "owner": "A",
+      "baselineSha256": "c10b1580897a47ea8794274d0af2f01f114b63266e00bec7f89b19657df63588"
+    },
+    {
+      "path": "tools/content/import_pc_ground_passes.py",
+      "owner": "A",
+      "baselineSha256": "0bfae274180240f88aed7db0501552d6888aa4c24daa3edab233e4bc18bfd287"
+    },
+    {
+      "path": "tools/content/import_pc_map.py",
+      "owner": "B",
+      "baselineSha256": "0f0401ffb2f9e501f0b65460e8d507382e14dde22de7081ff8e58a0347f884be"
+    },
+    {
+      "path": "tools/content/import_pc_presentations.py",
+      "owner": "B",
+      "baselineSha256": "994dc29b6be4c356f70d55572bf725c78fa4c9844addb4bf79b12f4018ee3c65"
+    },
+    {
+      "path": "tools/content/import_pc_scenery.py",
+      "owner": "A",
+      "baselineSha256": "416cacd38e436629807da5ef409af1b9e9999f279b6ea82090c4b2a795900eb3"
+    },
+    {
+      "path": "tools/content/import_pc_sites.py",
+      "owner": "B",
+      "baselineSha256": "2551e0c318122105ed3c410bc7835f185ec8685256f69a95963ab6e796b7b1cd"
+    },
+    {
+      "path": "tools/content/import_pc_units.py",
+      "owner": "B",
+      "baselineSha256": "120452b881c4224d2d6ee8c0596f6bdbc627d6d204023b4923e5a853cd37aa7d"
+    },
+    {
+      "path": "tools/content/import_pc_water.py",
+      "owner": "B",
+      "baselineSha256": "951d8bcb313073a7603580c80a8559fa2ff8d7d1dddcc277b6814339262ff45a"
+    },
+    {
+      "path": "tools/content/import_snapshots.py",
+      "owner": "B",
+      "baselineSha256": "d79f8ed454a687f80d2f317692ee309a19ab4fa985e3ddf36ea65ad9b5653038"
+    },
+    {
+      "path": "tools/content/inspect_mp4_evidence.py",
+      "owner": "B",
+      "baselineSha256": "babcb2f7e6e21a59e52b2d4fa3fed3de917044718de0492fea5804b77563668e"
+    },
+    {
+      "path": "tools/content/inspect_pc_ability_research_native.py",
+      "owner": "B",
+      "baselineSha256": "f1257127af604895d0fbacf76203255edada920f18ddae57d44f8e1762c5d982"
+    },
+    {
+      "path": "tools/content/inspect_pc_biography_messages.py",
+      "owner": "B",
+      "baselineSha256": "23517b50d7447254e5d80cf3efcf49f4961a63878c36f663c2e78c7092273c49"
+    },
+    {
+      "path": "tools/content/inspect_pc_campaign_relations.py",
+      "owner": "B",
+      "baselineSha256": "6a4967e944a91e4dfe7bd77527a2abf160d52a0da4e57de29d1e5a5d35e26fe7"
+    },
+    {
+      "path": "tools/content/inspect_pc_cavalry_building_predicate.py",
+      "owner": "B",
+      "baselineSha256": "71fd9d6b85cc460af3bc0d85975311f4e0c4c6ed767f43ed542f55a4384b36e6"
+    },
+    {
+      "path": "tools/content/inspect_pc_cavalry_dispatch.py",
+      "owner": "B",
+      "baselineSha256": "588cdc5e8911c6f2d752171fa81f00bf144e86927a0a998ebdfe008473d5c4e5"
+    },
+    {
+      "path": "tools/content/inspect_pc_city_experience.py",
+      "owner": "B",
+      "baselineSha256": "98aedc86aaf2e2aac1f7ea59b454da14f508095325dd8ed75a0b36d6eb87e5a3"
+    },
+    {
+      "path": "tools/content/inspect_pc_command_catalog.py",
+      "owner": "B",
+      "baselineSha256": "3bc05ca580438db6b83350ed19be8827a6d13cfe603a913f6da019b7b3a196b6"
+    },
+    {
+      "path": "tools/content/inspect_pc_contest_catalog.py",
+      "owner": "B",
+      "baselineSha256": "2b5e24a972c74b927b3c7a083813c7e42ae5b57d2bd5604d1f13a9b894707c07"
+    },
+    {
+      "path": "tools/content/inspect_pc_contest_equipment.py",
+      "owner": "B",
+      "baselineSha256": "0660a7f9e7ba7528890e9f22fe5e6aaf19bd6c1f43c98ae4a271cd600a31a04a"
+    },
+    {
+      "path": "tools/content/inspect_pc_contest_people.py",
+      "owner": "B",
+      "baselineSha256": "4ccfd0833579362ed129f5be26f79dfd1dd4d6aceb8b97af7726f9993d46c70f"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_ai.py",
+      "owner": "B",
+      "baselineSha256": "c7daf705452a9b4a20beeec2506b1db2d1e10f13afec9ac43b2a5bfd50a7bd4f"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_campaign_settlement.py",
+      "owner": "B",
+      "baselineSha256": "ab9b5202eddc960ffebdc3d41489add94f7ae174d2152e65a813d3339d41c5c6"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_effects.py",
+      "owner": "B",
+      "baselineSha256": "fbf8e5b1cae26383f84d4be3de09abbc1b462e98e98684e9654479522455fbf9"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_flow.py",
+      "owner": "B",
+      "baselineSha256": "396273c3b5f497ce516e76c08188d3b6bca15fd0a7b4007412a461389408dd8d"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_fury.py",
+      "owner": "B",
+      "baselineSha256": "61f12dcbe83b30306bcacddc042476476630ac8384cc9820fdbb4efb859f3a66"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_guidance.py",
+      "owner": "B",
+      "baselineSha256": "4276d3445c63d8f341b67a69b2d00adfe57569ddf41091b1d55d4182fd3e1e9f"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_headed_effects.py",
+      "owner": "B",
+      "baselineSha256": "00525b42ff856590f99080edc53af741fd50034c6ca41014843f3453a4d3dcec"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_high_abilities.py",
+      "owner": "B",
+      "baselineSha256": "1ca79552a14462f9fba47f6cb7370743765b2b434fc10a7943fe8332a2025ff2"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_human.py",
+      "owner": "B",
+      "baselineSha256": "e08222b251b7853eaf5c3e01e5b1ebc54eb03b82c7907410d9fca90b4c9717f8"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_progress.py",
+      "owner": "B",
+      "baselineSha256": "41066ce750013db392d4681750205caac6c2c4f561454a1e604e0ab6b63c7582"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_recruitment.py",
+      "owner": "B",
+      "baselineSha256": "d26704223b32de1d1e14e003de6f3f3d3e2e02230b64e7372cdf2e2ef383e4c8"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_rounds.py",
+      "owner": "B",
+      "baselineSha256": "4467fec02c91d7686c703d57dc2cba0240a8fd2080d230564a76d59248b9e9e2"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_rules.py",
+      "owner": "B",
+      "baselineSha256": "e748984ff112650109837b3928e00540bba8f37124d6b096d6405ec37ea7da6f"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_settlement.py",
+      "owner": "B",
+      "baselineSha256": "60b000d0878ce5b5f4838d6b1fe64794caa0a18caaeffdf10ff014032a6c3e0b"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_ui_callbacks.py",
+      "owner": "B",
+      "baselineSha256": "5ae79d0ab9957240fb72c3ee6332bff9923b19620b268ebdfb0db58c91f6118f"
+    },
+    {
+      "path": "tools/content/inspect_pc_debate_ui_counters.py",
+      "owner": "B",
+      "baselineSha256": "d4039b0586f6ecb2acef6c02ec4c5db963a033c650339d65121acc33a9d5026e"
+    },
+    {
+      "path": "tools/content/inspect_pc_duel_flow.py",
+      "owner": "B",
+      "baselineSha256": "e80ee78d1f29d889942dad3064fc50af85f21671a6fc1b18d489ba348c039288"
+    },
+    {
+      "path": "tools/content/inspect_pc_duel_people.py",
+      "owner": "B",
+      "baselineSha256": "09f0c321ae1dd66e0626635a99b5bfb4050dfa144eda7e1a222e4abd583bf371"
+    },
+    {
+      "path": "tools/content/inspect_pc_effect_bindings.py",
+      "owner": "A",
+      "baselineSha256": "82039eecb07f9fb520bdd31cbc98d1963397d39c0c78eeabda454e7167569b0c"
+    },
+    {
+      "path": "tools/content/inspect_pc_effect_controllers.py",
+      "owner": "A",
+      "baselineSha256": "27433dced403a07e29693d7b5b28b0562a4444fbd2b06a829aca7a3486defbd5"
+    },
+    {
+      "path": "tools/content/inspect_pc_effect_curves.py",
+      "owner": "A",
+      "baselineSha256": "faf484f7117da54c897e7f2d09f6d1e27091c4752e63075cd5e925e5d3b471ac"
+    },
+    {
+      "path": "tools/content/inspect_pc_effect_draw_packets.py",
+      "owner": "A",
+      "baselineSha256": "d2a8dc9eadedfca0df0dc5595f23fff0682999dbeaa604d9f5e97783b564002b"
+    },
+    {
+      "path": "tools/content/inspect_pc_effect_runtime.py",
+      "owner": "A",
+      "baselineSha256": "814960562982a63e89681a7219aa4083ae7dceefe4129d255df06ef9f2d0e113"
+    },
+    {
+      "path": "tools/content/inspect_pc_effect_uv.py",
+      "owner": "A",
+      "baselineSha256": "c33cb224aa778136395183dddf9d4961d8410d53719bd51e6bf08c8fb57977d1"
+    },
+    {
+      "path": "tools/content/inspect_pc_event_bytecode.py",
+      "owner": "B",
+      "baselineSha256": "ae5bd195ff76ff620a098d81fb3e89b9763f3852b0a6d573f24c90dc6ca2dc54"
+    },
+    {
+      "path": "tools/content/inspect_pc_event_resources.py",
+      "owner": "B",
+      "baselineSha256": "f98ee9ca5abe88a7fee09b5848bee2af02200e9442654ebd2fbc1aeee4eb9a83"
+    },
+    {
+      "path": "tools/content/inspect_pc_face_descriptors.py",
+      "owner": "B",
+      "baselineSha256": "99406b56e5fdc4f4c63ac1fffba49d1dbbde25e1e2bb8137e4021e480fbbcc7c"
+    },
+    {
+      "path": "tools/content/inspect_pc_facilities.py",
+      "owner": "B",
+      "baselineSha256": "8846dc5f3a459f271fac2299be75ea5e92694a181fc91a0907ac6ab0b243a01c"
+    },
+    {
+      "path": "tools/content/inspect_pc_gaiji_identities.py",
+      "owner": "B",
+      "baselineSha256": "62cd181ab98506ec6fed62638fe9a546211c05f24ceaac05489ca4863bf25ede"
+    },
+    {
+      "path": "tools/content/inspect_pc_governor_order.py",
+      "owner": "B",
+      "baselineSha256": "b02c574e9b292aa31a956707ab19f6b05c66ed3f4426cfae31ae8ff6731ce733"
+    },
+    {
+      "path": "tools/content/inspect_pc_governor_rosters.py",
+      "owner": "B",
+      "baselineSha256": "1e5bb40cdbcc78b74180d65357e5efac84b4665e36c73667285044a4ce0a6c28"
+    },
+    {
+      "path": "tools/content/inspect_pc_health_recovery.py",
+      "owner": "B",
+      "baselineSha256": "7e2e0db1a96886aab7fe8a261524c038cc60b0f65685cfecc770d09347c8b965"
+    },
+    {
+      "path": "tools/content/inspect_pc_internal_parent_references.py",
+      "owner": "B",
+      "baselineSha256": "335ef57193e7d47d3219c35e8696f1df438187e66c8d7278c3224095bec8b73f"
+    },
+    {
+      "path": "tools/content/inspect_pc_layered_scenario.py",
+      "owner": "B",
+      "baselineSha256": "209e13e00400bc514a5e3093a4bb10cc9214e2730d25d48c663ed6a47ba2fabc"
+    },
+    {
+      "path": "tools/content/inspect_pc_live_draw.py",
+      "owner": "B",
+      "baselineSha256": "9b6377b1ec862885076695a75dee8e718dd9c77689ee8aa911169f438c059665"
+    },
+    {
+      "path": "tools/content/inspect_pc_live_textures.py",
+      "owner": "A",
+      "baselineSha256": "274ce7405732ea0a437b88d009a1efec50cf84409193faee6a230826b6a252c5"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_admission.py",
+      "owner": "B",
+      "baselineSha256": "c3ec8244b9b17f28477f59d8a53e8fd224ffc3bde8f2ed4f926565f0f4e8efa3"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_experience.py",
+      "owner": "B",
+      "baselineSha256": "064719d1bad8b798b3f75fb95a99695a1af821b5bf3be516e5b96ee5ac8244af"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_integration.py",
+      "owner": "B",
+      "baselineSha256": "0480357000281b3802ca8769f1361bbb7e53de190fb30fefd49c22eaaa021581"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_merit.py",
+      "owner": "B",
+      "baselineSha256": "e39403b59e54a63e1100fcb94e052e8a6ba1d592928851a5cd712c3dbf3fd5f1"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_prices.py",
+      "owner": "B",
+      "baselineSha256": "4ece190dddeefd3b971a841064c8b793aaf8210fbe968fe55876f27b4c763ea6"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_state.py",
+      "owner": "B",
+      "baselineSha256": "2456c6b11c4c3f9726be409bec844a026a58936389583c3dbf5ef22f78df678c"
+    },
+    {
+      "path": "tools/content/inspect_pc_merchant_turn.py",
+      "owner": "B",
+      "baselineSha256": "94415848e1a6f5d0be11cc5d98b2b74a6f23aed1f1b1bd1848c38d4e6c21b100"
+    },
+    {
+      "path": "tools/content/inspect_pc_message_resources.py",
+      "owner": "B",
+      "baselineSha256": "7d54cebe0ae3d0a7b080346739f0cce1989460ad1cff972fc6bf7f78d5666d31"
+    },
+    {
+      "path": "tools/content/inspect_pc_object_bindings.py",
+      "owner": "B",
+      "baselineSha256": "11f6b1c6206ca79befa73509faaa5840a612ceaccc191e6f5a6ad65c1628fdf8"
+    },
+    {
+      "path": "tools/content/inspect_pc_officer_ability_sources.py",
+      "owner": "B",
+      "baselineSha256": "88ce38a75a0349d6ac912ab9de53f959dd5dedd7834ad918db421ec22a0a0374"
+    },
+    {
+      "path": "tools/content/inspect_pc_officer_campaign_state.py",
+      "owner": "B",
+      "baselineSha256": "ef0426c570b622b44026b0ffac209980f223efb41ca0359d9a8631f607adc0de"
+    },
+    {
+      "path": "tools/content/inspect_pc_officer_fields.py",
+      "owner": "B",
+      "baselineSha256": "91c10e88788db3607d0bbb05614a3139d5871bbf2a1a57ca017090e8cfb06e9c"
+    },
+    {
+      "path": "tools/content/inspect_pc_officer_initialization.py",
+      "owner": "B",
+      "baselineSha256": "fea2d689c36065693842c489f78b4f3d60a5331498f1941b4523305556b32faf"
+    },
+    {
+      "path": "tools/content/inspect_pc_officer_join_loyalty.py",
+      "owner": "B",
+      "baselineSha256": "47d74aa2f0eaf0082c683124c8ed50175eec1224fe0fd288bd7d69ca2c782e24"
+    },
+    {
+      "path": "tools/content/inspect_pc_opening_references.py",
+      "owner": "B",
+      "baselineSha256": "2f08f79c8faff545dc6021f859149cb850d2a3ca08e83ed93f1d587a28e6d3cb"
+    },
+    {
+      "path": "tools/content/inspect_pc_particle_storage.py",
+      "owner": "B",
+      "baselineSha256": "96f27d862e663fe53eca0c8a1e12165166d0594608634cf5251abea802d89ec2"
+    },
+    {
+      "path": "tools/content/inspect_pc_plot_presentations.py",
+      "owner": "B",
+      "baselineSha256": "d9d94eddc4d4463d2f73a605be1ee4c6d452846d15a677d44ee2398edb43ede7"
+    },
+    {
+      "path": "tools/content/inspect_pc_portrait_snapshot.py",
+      "owner": "A",
+      "baselineSha256": "a513765a068ec8db5144c7c97205c877158433d4936b8d9e35834dd959b5f921"
+    },
+    {
+      "path": "tools/content/inspect_pc_presentation_calls.py",
+      "owner": "B",
+      "baselineSha256": "ee15e9d7c7bfbbdeee45a8b3236d6a3c182b647e4c47fab316e718d6bd984c59"
+    },
+    {
+      "path": "tools/content/inspect_pc_presentation_cameras.py",
+      "owner": "B",
+      "baselineSha256": "aa5642b6281cfdb37b5bac549c8a7c000864719d03eb25fffa47a8c9f9c4a64d"
+    },
+    {
+      "path": "tools/content/inspect_pc_restoration_loader.py",
+      "owner": "B",
+      "baselineSha256": "4266e9c828a3bc5d610101d92f6be0c5ba1d3e88a858e2a39433f4ce3ad65490"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_domains.py",
+      "owner": "B",
+      "baselineSha256": "1c9e1e0dd0a74fc1baf686d79861d1483f74e04a3a9cbac7d51b9ee5eb81cfad"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_fields.py",
+      "owner": "B",
+      "baselineSha256": "bd95bf7e1d1ac89d22a3af1c27cbef36685bdc9698d07b5ce51a6709f1379104"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_metadata.py",
+      "owner": "B",
+      "baselineSha256": "2c4a729cb39124bb87f0b04d2e3be478b9d7e13eb6d54cbe3f662c44a792b922"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_officers.py",
+      "owner": "B",
+      "baselineSha256": "f6fddaae80ff53b6197481f8cc5b4811dc21647ed2061ac8d489935517587b80"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_placements.py",
+      "owner": "B",
+      "baselineSha256": "01084ddeb3db422c5a4b708387b94bd9832fb6bbe0884397264c605b0a97980f"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_portraits.py",
+      "owner": "A",
+      "baselineSha256": "551a48ba8f208389418810655d00347b53dd631ffb4fac1c02ea3c12f9e5f6a9"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_tail.py",
+      "owner": "B",
+      "baselineSha256": "47dec26bf1387ede7dfe2e82ced52514b8d403039abf9c0605aa76530f8ab812"
+    },
+    {
+      "path": "tools/content/inspect_pc_scenario_units.py",
+      "owner": "B",
+      "baselineSha256": "4af95325ed7312f19d35c9eb2c25ad6453b2f5a7b156807c8c6c4cd0ff6d8696"
+    },
+    {
+      "path": "tools/content/inspect_pc_shading.py",
+      "owner": "B",
+      "baselineSha256": "f3cb44a7ddc2055a51e6a4f9c12308ae8d31771ee543a36f032cccec6da73bd1"
+    },
+    {
+      "path": "tools/content/inspect_pc_started_scenario.py",
+      "owner": "B",
+      "baselineSha256": "93d846d615ea0a653a9c650662be826277471f9944efa0519e91f27c5ca35308"
+    },
+    {
+      "path": "tools/content/inspect_pc_technique_calls.py",
+      "owner": "B",
+      "baselineSha256": "df92c3ec5041f4d30b8127206ef9b52ac909b0802d05ff75b640af0d8ce05a16"
+    },
+    {
+      "path": "tools/content/inspect_pc_terrain_labels.py",
+      "owner": "B",
+      "baselineSha256": "100bcedd06470548e21ebda5b0c816a05eaf31a53f59444e35ad85a31eac0c8b"
+    },
+    {
+      "path": "tools/content/integrate_ui_snapshot.py",
+      "owner": "B",
+      "baselineSha256": "5f79f6a0adcfe7aa0b5f2846c0af831528c1e968cab03b9292ec998828cb053e"
+    },
+    {
+      "path": "tools/content/map-release-manifest.json",
+      "owner": "B",
+      "baselineSha256": "9b098ef631ddbb62bbadabf897e7377fb6b25e6b50e2fd0fe32c71fc697a5fd4"
+    },
+    {
+      "path": "tools/content/map-v040-manifest.json",
+      "owner": "B",
+      "baselineSha256": "6df61bfd0c5ba74d77ab6b6a30976bf701f081efd210e56e3967b37e417fba4e"
+    },
+    {
+      "path": "tools/content/map-v050-manifest.json",
+      "owner": "B",
+      "baselineSha256": "8f31ecb5b075f374d00652b5ee9c5750607e735261d9afce1a44e74accf0291a"
+    },
+    {
+      "path": "tools/content/map_patch.py",
+      "owner": "B",
+      "baselineSha256": "8a43d8aa0dc0871ee5b46de1eb689c6d0eba4cedf2747510ffffdd91b029cd15"
+    },
+    {
+      "path": "tools/content/map_reference_atlas.py",
+      "owner": "B",
+      "baselineSha256": "906d5b19efcd87df7b3ab1fad5b2250747928eca561cd03e6fb685167b17992d"
+    },
+    {
+      "path": "tools/content/map_site_review.py",
+      "owner": "A",
+      "baselineSha256": "024008d0afce63a5bbac50a0e9bfd6b8c4c35abc38d3b9148ed7cd73f26850d7"
+    },
+    {
+      "path": "tools/content/materialize_native56.py",
+      "owner": "B",
+      "baselineSha256": "781fcfd1394b3228ce24e9a7951edd79cafe819fba3d67e09886356870f4d3f0"
+    },
+    {
+      "path": "tools/content/migrate_native56_scenarios.py",
+      "owner": "B",
+      "baselineSha256": "645269153b8a65d2a6be77708d195bbf83b1393f46b9ea8c4788e3e18d58913c"
+    },
+    {
+      "path": "tools/content/national_geography.py",
+      "owner": "A",
+      "baselineSha256": "5252c4ea31db3593e914b0eb6b027346404375a5b829370718f4c0bf91edd232"
+    },
+    {
+      "path": "tools/content/native/CMakeLists.txt",
+      "owner": "B",
+      "baselineSha256": "615b5e9799c96a9d3ab6b1758afdc6cc354cdfd82806e70fadb57030402678d4"
+    },
+    {
+      "path": "tools/content/native/pc_effect_scene_probe.c",
+      "owner": "A",
+      "baselineSha256": "9262aaf3e5113fe7d1ba2e42e840764336851a692b84c4ad67e3fb4a1ad2a615"
+    },
+    {
+      "path": "tools/content/native/pc_effect_vm_probe.c",
+      "owner": "A",
+      "baselineSha256": "f92ec0d43a1e09480a580c07464a0951f9cfb3a57c786b4dce355cffc711cef9"
+    },
+    {
+      "path": "tools/content/pack_pc_ability_training_evidence.py",
+      "owner": "B",
+      "baselineSha256": "deef1f5f8014e3d78978ae6aabae27ce8129dd780b3accb18dfc38d9400c79a6"
+    },
+    {
+      "path": "tools/content/pack_pc_data_audit.py",
+      "owner": "B",
+      "baselineSha256": "b0d0b8d81363de3dc8de2fa0fd8d436a872456028e1de8dfec9b14667e2e1b7f"
+    },
+    {
+      "path": "tools/content/pack_pc_effect_scene.py",
+      "owner": "A",
+      "baselineSha256": "a718fa83409bc33b38fa8b1420ed434e4b3cb1bfcae042c0938847bc1e8503b6"
+    },
+    {
+      "path": "tools/content/pack_pc_effect_vm_source.py",
+      "owner": "A",
+      "baselineSha256": "fd30dd6b2d772e97bf9d78d2f3c6732f752f5f15e182aecb458301e7388c66c8"
+    },
+    {
+      "path": "tools/content/pc-rank-project-ids.tsv",
+      "owner": "B",
+      "baselineSha256": "f55389294dfe5e011364d873ef01d73d296dea7f00a2355e64e2f5a199d36920"
+    },
+    {
+      "path": "tools/content/pc_effect_controllers.py",
+      "owner": "A",
+      "baselineSha256": "a09a8df21235181b87b4067d8e1f71b9ec77c9d466b13f9255fc80c571742541"
+    },
+    {
+      "path": "tools/content/pc_effect_curves.py",
+      "owner": "A",
+      "baselineSha256": "87f2cff6d1a0284d642fc742da987f6216ac30c493cdc4fc704039d9dee3334f"
+    },
+    {
+      "path": "tools/content/pc_effect_formats.py",
+      "owner": "A",
+      "baselineSha256": "83366acef48b524e9a8c00e38a08516e1b4eb3008630de2dc90dd6ba3d7df676"
+    },
+    {
+      "path": "tools/content/pc_effect_gpu_observer.py",
+      "owner": "A",
+      "baselineSha256": "3ef1714a7e222776e148c86f616ed622856c5db177a48f10018456c646bb0fda"
+    },
+    {
+      "path": "tools/content/pc_effect_machine.py",
+      "owner": "A",
+      "baselineSha256": "7c9a354051adc3acdf5659a692fb799a5e02202fe9a8c13206f3928577d7c80c"
+    },
+    {
+      "path": "tools/content/pc_effect_primitives.py",
+      "owner": "A",
+      "baselineSha256": "e0b43365397bd91e87ecc76dd4016fe870c48609b88e58f22c3f152c56ea40a7"
+    },
+    {
+      "path": "tools/content/pc_effect_uv.py",
+      "owner": "A",
+      "baselineSha256": "e16d773c08b1c2daeb4b0b3b3b60cd34c09c2e703acd5cc99fce8612554d43ad"
+    },
+    {
+      "path": "tools/content/pc_ground_palette.py",
+      "owner": "A",
+      "baselineSha256": "4a184cc0de27233011e583ce55612bfd794643fa8d5ac205c104154f6d58a8e5"
+    },
+    {
+      "path": "tools/content/pc_original_pe_data.py",
+      "owner": "B",
+      "baselineSha256": "487f92c7f5958b242aa3f604bc07ab75c0165d55497ed656ec28859082a025a8"
+    },
+    {
+      "path": "tools/content/pc_presentation_source.py",
+      "owner": "B",
+      "baselineSha256": "54385ae4583fbb29efad6ac90561c1e7b0c3fdaab81c266b7049f39fc895d1b2"
+    },
+    {
+      "path": "tools/content/pc_readonly_platform.py",
+      "owner": "B",
+      "baselineSha256": "4685ebafc5480b919f369de3611355268e99f14e332e57254aa0a2b07c13ceaf"
+    },
+    {
+      "path": "tools/content/pc_region_climate.py",
+      "owner": "B",
+      "baselineSha256": "e8c522d60c675dff11f5790ef3aa39b642d150747f849dd174b20c6ba9af58e4"
+    },
+    {
+      "path": "tools/content/pc_resources.py",
+      "owner": "B",
+      "baselineSha256": "e2c6cfe48d74970c3b30cdf61400eefaf0bdf4a16ec9776968acc210e9d2af9c"
+    },
+    {
+      "path": "tools/content/pc_scene_coordinates.py",
+      "owner": "B",
+      "baselineSha256": "eb6ef681a93803f165a146679261983919756b58050740428a7e75ba4da1ecad"
+    },
+    {
+      "path": "tools/content/pc_startup_platform.py",
+      "owner": "B",
+      "baselineSha256": "e93ba223aa669f25ce8580c773217add584d713e0d7c6e13c84f2eecad61948a"
+    },
+    {
+      "path": "tools/content/pc_unit_formats.py",
+      "owner": "B",
+      "baselineSha256": "73c655c1e97cdbc310250f1f73b52bfa1085a21ccb94d4506c00f9e44851135c"
+    },
+    {
+      "path": "tools/content/pc_visual_coverage.py",
+      "owner": "B",
+      "baselineSha256": "4b429e7920c21c9ea94746c52b0568861b0b7486d6935ce06b39402c257dfbc0"
+    },
+    {
+      "path": "tools/content/prepare_pc_debate_integration.py",
+      "owner": "B",
+      "baselineSha256": "336779a261e3712e40c377631195094ca65fe54ee47ecf641a4d5e4edd5ee595"
+    },
+    {
+      "path": "tools/content/refine_geography_v044.py",
+      "owner": "A",
+      "baselineSha256": "6531c1c0f3fb22aa83d1cfa7dc37979651c35885d7b5bd5d4eb62fa8af7777e7"
+    },
+    {
+      "path": "tools/content/refine_geography_v045.py",
+      "owner": "A",
+      "baselineSha256": "5a94f840f2fd7ed72c018c5e7be7791f86fedd39e83c511320bf050be8b90b02"
+    },
+    {
+      "path": "tools/content/refine_geography_v050.py",
+      "owner": "A",
+      "baselineSha256": "222cceadcec89010ef91829c00ec70f98bd2051e48cbe049e799bbce857baab7"
+    },
+    {
+      "path": "tools/content/refine_geography_v051.py",
+      "owner": "A",
+      "baselineSha256": "a35b475ab6e12a81976d147ddb0368d4c2b0b593ab3a7e5420295b0ffdef7aef"
+    },
+    {
+      "path": "tools/content/refine_geography_v055.py",
+      "owner": "A",
+      "baselineSha256": "adb1deb622fe5b950bc2eca51dc8dfbb904f1f1f8bcc631efc383d34b53aede5"
+    },
+    {
+      "path": "tools/content/scan_video_frames.swift",
+      "owner": "A",
+      "baselineSha256": "dfe8e372cb4ebe4ab8f5da3cdc9128b8f5ee1abbbf427b58769e078bb7f19f92"
+    },
+    {
+      "path": "tools/content/strategic_sites.py",
+      "owner": "B",
+      "baselineSha256": "1b8b222d4f14dec39f03afde2b721857a8ac071c19ad4a42142863b159f81d75"
+    },
+    {
+      "path": "tools/content/test_audit58.py",
+      "owner": "B",
+      "baselineSha256": "5cecf97389a3c95e59045437fe8e3848e0f15d819b4e2f495be09f868f8d6269"
+    },
+    {
+      "path": "tools/content/test_audit59.py",
+      "owner": "B",
+      "baselineSha256": "bde7a6b1a7b6de25429b31fbdb773e93a1f7e95b794df48c1b6e8fd090ad66ef"
+    },
+    {
+      "path": "tools/content/test_audit60.py",
+      "owner": "B",
+      "baselineSha256": "945e5381fdd3c3a6f332102e61523cdf451212714eccdb9e4332f46f21c83764"
+    },
+    {
+      "path": "tools/content/test_audit61.py",
+      "owner": "B",
+      "baselineSha256": "f088e805bcf3dfb02a0be3c51d8e699c3345fba1daa71c22cb00d35cf8139731"
+    },
+    {
+      "path": "tools/content/test_content.py",
+      "owner": "B",
+      "baselineSha256": "fe1621743b798483bfec12c9ca66a28c948dccfbc4ffa3a054eeac17b93e1221"
+    },
+    {
+      "path": "tools/content/test_geography_v034.py",
+      "owner": "A",
+      "baselineSha256": "f5fea462ba24886fce4ab22d07f66834cec4ea500431dd1b5ad839ba789a537c"
+    },
+    {
+      "path": "tools/content/test_geography_v050.py",
+      "owner": "A",
+      "baselineSha256": "1692157c931102dd8193a5be42a96926dddfa99d8b5dee76b9398f9fed54c690"
+    },
+    {
+      "path": "tools/content/test_geography_v051.py",
+      "owner": "A",
+      "baselineSha256": "ce38958f5ed003b0731d7ff6b7cf60570173b2c21f0f18ce1c1bcba5b458213a"
+    },
+    {
+      "path": "tools/content/test_integrate_ui_snapshot.py",
+      "owner": "B",
+      "baselineSha256": "f2562d485ecc896108f53066a3eb7da6be78e2475882c29d6a60383037813455"
+    },
+    {
+      "path": "tools/content/test_map_patch.py",
+      "owner": "B",
+      "baselineSha256": "6f6c12d2b262c45db16ad48c6dae6f6c431be9f8504494518fae760ed03ab2a1"
+    },
+    {
+      "path": "tools/content/test_map_site_review.py",
+      "owner": "A",
+      "baselineSha256": "ac59fb438e329ee49d602ffab0a207f2bee704393a82d34851a11026fedc68ad"
+    },
+    {
+      "path": "tools/content/test_pc_city_action_costs.py",
+      "owner": "B",
+      "baselineSha256": "4513f36cb5c2ea8236b1e1612e30814059bd5f044188b77bf68a2c930b91179a"
+    },
+    {
+      "path": "tools/content/test_pc_city_experience.py",
+      "owner": "B",
+      "baselineSha256": "e9e27e12dc0c52a64d66a57e47e3ce1f951067bda939c492ac1bb724fb0d0b2b"
+    },
+    {
+      "path": "tools/content/test_pc_construction_calculations.py",
+      "owner": "B",
+      "baselineSha256": "7430e31e4867dd48876c8616bd128b5c7cc2658e96793c213bff64f448fbba11"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "owner": "B",
+      "baselineSha256": "c00dfb3447f423fdff2dec50a7b7fdcada43b51c6963e130cf4679a9c508c03a"
+    },
+    {
+      "path": "tools/content/test_pc_debate_rules.py",
+      "owner": "B",
+      "baselineSha256": "5af6b9c3bffc86e896e5581ecdfc2108d1591f1acbbb5798729c717e970e4587"
+    },
+    {
+      "path": "tools/content/test_pc_event_bytecode.py",
+      "owner": "B",
+      "baselineSha256": "7ada3c349c356cb3875d9cd85eff22d40f30f52a23b231cc9eb3b248f90d9acf"
+    },
+    {
+      "path": "tools/content/test_pc_layered_scenario.py",
+      "owner": "B",
+      "baselineSha256": "9c420a6726bf8760ce0b853b99bc90172bc577479cbb0df8ad8eb93647ca7b8f"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_conditions.py",
+      "owner": "B",
+      "baselineSha256": "2ec1472a69c63bb8149b90c0291a8e9396c5627707868a1f5add5d146121b312"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_experience.py",
+      "owner": "B",
+      "baselineSha256": "832366b6f70b072fb12b89f5f86d467ee4f36f3ee569b7674234fe24b4c7700a"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_harvest_clear.py",
+      "owner": "B",
+      "baselineSha256": "a256e7e7f31c02375057d83652f1228074e37425addc4d125c877c770661b330"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_maximum.py",
+      "owner": "B",
+      "baselineSha256": "afe86c2a42a3b16b64b0947c3fc8a561779aef6f3d13389cae4328f970077488"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_merit.py",
+      "owner": "B",
+      "baselineSha256": "a521df246eb277b10ca49afea8cae005244c43512cfa530e5dcbcc4b99685a92"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_price_update.py",
+      "owner": "B",
+      "baselineSha256": "40e5dcb786a1e7ce1d4ffb90520d0d0f8aefd2e4b8a306e55616088c34a45b14"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_quote.py",
+      "owner": "B",
+      "baselineSha256": "8f72f584676eaf78dbc887aa96b75fe88ffedff1c5d1aeecc5f4770b57ec0a09"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_rounding_capacity.py",
+      "owner": "B",
+      "baselineSha256": "ee9a14babd5ca1a7336837ec6a2f76f61a0c9ebc4fb481bb88f1004e1b09425a"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_site.py",
+      "owner": "B",
+      "baselineSha256": "0dbbdf8a3d3a13f384bf9232744e8627ade49df43a7ff6d3aa1c84b952939925"
+    },
+    {
+      "path": "tools/content/test_pc_merchant_turn.py",
+      "owner": "B",
+      "baselineSha256": "0a14219b43275292d4569059e9d6742a47bcef9d78451e733fa045d4747f7492"
+    },
+    {
+      "path": "tools/content/test_pc_officer_assignments.py",
+      "owner": "B",
+      "baselineSha256": "d4f835642c79cbd8e4efd379c2e38a29a2db1d43209141537ed8c3eb1371642b"
+    },
+    {
+      "path": "tools/content/test_pc_officer_fields.py",
+      "owner": "B",
+      "baselineSha256": "70462eba8f26dd5d80f78f3c075b2e769d65938c080c363ab006c1f9fa39e6a3"
+    },
+    {
+      "path": "tools/content/test_pc_officer_growth.py",
+      "owner": "B",
+      "baselineSha256": "334201b2e9f787ace1edecdfe4e6b072a8c3119184bf0bbcfcd16f3d6a17c86d"
+    },
+    {
+      "path": "tools/content/test_pc_officer_spouse_validity.py",
+      "owner": "B",
+      "baselineSha256": "08583e79c1c07ec4488cd01a256ea1a9596c37c45d297c52ec1570043f460d98"
+    },
+    {
+      "path": "tools/content/test_pc_opening_references.py",
+      "owner": "B",
+      "baselineSha256": "1877b62b66bb3451f495cbe3a684397730d94e1f966bbcf71b9111b92e6e01f2"
+    },
+    {
+      "path": "tools/content/test_pc_patrol_calculations.py",
+      "owner": "B",
+      "baselineSha256": "70ceb5d54fdf5548288b74a8dacbd2c7ff61e05d1211374d8b8e9aa11be82665"
+    },
+    {
+      "path": "tools/content/test_pc_production_quantities.py",
+      "owner": "B",
+      "baselineSha256": "d143c1f8c32d7a866442a1701a15e1c64c886068d2b320e94ad6e8d10c74c174"
+    },
+    {
+      "path": "tools/content/test_pc_production_reward_dispatch.py",
+      "owner": "B",
+      "baselineSha256": "cfe2d118ec9b5c6d7bf223ec7a4cc012da16896affa49ed242b583ad2831a8df"
+    },
+    {
+      "path": "tools/content/test_pc_restoration_sources.py",
+      "owner": "B",
+      "baselineSha256": "e54cd4b0459ec6b6a0eee37eb08a053e0b656be39453ac2bad348676d5f74c16"
+    },
+    {
+      "path": "tools/content/test_pc_scenario_domains.py",
+      "owner": "B",
+      "baselineSha256": "42a4108aa4945c6941f7b50568ffb745423ee269d2e152cc5bc2ed1f9463ac2a"
+    },
+    {
+      "path": "tools/content/test_pc_scenario_metadata.py",
+      "owner": "B",
+      "baselineSha256": "b50ff73a40f276ca28039233c9af5dbb950915a3261fa19b1f47ba1f8ccbd53e"
+    },
+    {
+      "path": "tools/content/test_pc_scenario_officers.py",
+      "owner": "B",
+      "baselineSha256": "161a1830de278d32774f41e51ae7910024aa7d9b31b4a94215011bc4a211d0b0"
+    },
+    {
+      "path": "tools/content/test_pc_scenario_tail.py",
+      "owner": "B",
+      "baselineSha256": "343cac731dbf02be470cc3c87b5f00925cf48d3d08e24e65947a2a61bf8fef42"
+    },
+    {
+      "path": "tools/content/test_pc_scenario_units.py",
+      "owner": "B",
+      "baselineSha256": "b8ae1bc4918d7994b8ba00ac22fa60378f5adf6193f3fc04b2ab0c3c211cbd84"
+    },
+    {
+      "path": "tools/content/test_pc_site_capacity.py",
+      "owner": "B",
+      "baselineSha256": "cb627a38ddfc1d0a9a6e663e4f0a312e81c5cd90359783da7b04271c5f3ce70a"
+    },
+    {
+      "path": "tools/content/test_pc_started_scenario.py",
+      "owner": "B",
+      "baselineSha256": "286a075407cbe65dce8a610507089ca62762ee7d1c498866f66f377c476094b0"
+    },
+    {
+      "path": "tools/content/test_verify_pc_android_merchant.py",
+      "owner": "B",
+      "baselineSha256": "d8f7b1262c7c96bee12e5d71b8dde64a591c8cd2a3cbc8092155998c00dff268"
+    },
+    {
+      "path": "tools/content/update_pc_consumers.py",
+      "owner": "B",
+      "baselineSha256": "12ae12039a477d9225be15100f76a6dd6f2c3180ca656856fbe18c47b13d11c0"
+    },
+    {
+      "path": "tools/content/validate_native56_evidence.py",
+      "owner": "B",
+      "baselineSha256": "409159ee5f0b9e1430cf608abb0db46d38533ddd4264384405ca39b65cf73489"
+    },
+    {
+      "path": "tools/content/verify_legacy_city_rewards_continuation.py",
+      "owner": "B",
+      "baselineSha256": "a908a2e6081bd972cce23bf9935be729fd221c3ea924f41406a17d8d61c5197a"
+    },
+    {
+      "path": "tools/content/verify_legacy_merchant_continuation.py",
+      "owner": "B",
+      "baselineSha256": "79b2d47a4fa0b04ef1517b3ccad823c5911a1650a7f04a4a23f2739c40fbc412"
+    },
+    {
+      "path": "tools/content/verify_legacy_production_compatibility.py",
+      "owner": "B",
+      "baselineSha256": "bfd3d8d85487b54de9d414dd9a1ffab066fb112d910684d12af937a017f923d4"
+    },
+    {
+      "path": "tools/content/verify_pc_ability_completion_native.py",
+      "owner": "B",
+      "baselineSha256": "f7f7da680ce7a9246f849365ce8b4524ac88fa951cfba4ea65df2a79a60c0908"
+    },
+    {
+      "path": "tools/content/verify_pc_ability_countdown_dispatch_native.py",
+      "owner": "B",
+      "baselineSha256": "003681fd946e5021b832c64cf66a4521e617fc84b86805a5017210607eac9661"
+    },
+    {
+      "path": "tools/content/verify_pc_ability_start_core_native.py",
+      "owner": "B",
+      "baselineSha256": "2bf14e2b5674a477cd2fdbd3324999d9362863e29315b2b63dfa396d4ed46c47"
+    },
+    {
+      "path": "tools/content/verify_pc_ability_training_admission_native.py",
+      "owner": "B",
+      "baselineSha256": "68329c0b40650dd627faaceb709679eff794ad176f1fdd2d5b548d51c60d93e5"
+    },
+    {
+      "path": "tools/content/verify_pc_ability_training_ap_native.py",
+      "owner": "B",
+      "baselineSha256": "16d21ef605737d6f5a877dc61b19fa565ad59f79d9bf0da66231ee33282244ee"
+    },
+    {
+      "path": "tools/content/verify_pc_age_install.py",
+      "owner": "B",
+      "baselineSha256": "cd480097e8e08ebf82a361cf98f31c3a181d5628f425b097a9283c9b559d1859"
+    },
+    {
+      "path": "tools/content/verify_pc_all_source_openings_ui.py",
+      "owner": "B",
+      "baselineSha256": "c700fb086e76293e383dd3670449540642110849628b2ad03ee0279028e49909"
+    },
+    {
+      "path": "tools/content/verify_pc_android_city_displacement.py",
+      "owner": "B",
+      "baselineSha256": "af348e537ae68bf04acdc13db591a1ac0cdfa3fbecfcc0dca3f855a8676a6c2d"
+    },
+    {
+      "path": "tools/content/verify_pc_android_city_rewards.py",
+      "owner": "B",
+      "baselineSha256": "3703db2d93bce1c61606cac58b06374954df006e4a300f4b2756347d233f8562"
+    },
+    {
+      "path": "tools/content/verify_pc_android_map_editor.py",
+      "owner": "B",
+      "baselineSha256": "66eb4d294e7b01154752cf5c41ef16330eec19d0364b4775869c4aba9a879bcb"
+    },
+    {
+      "path": "tools/content/verify_pc_android_market.py",
+      "owner": "B",
+      "baselineSha256": "088ea164cf273b73e7370c22c1c663edbbff053e0f4d369dfec4561b7bca3976"
+    },
+    {
+      "path": "tools/content/verify_pc_android_merchant.py",
+      "owner": "B",
+      "baselineSha256": "8fe70def14bf0aac02c8e9dd793caf1a6eccc05faf5e7002d851b85bf0aa5a4e"
+    },
+    {
+      "path": "tools/content/verify_pc_android_production.py",
+      "owner": "B",
+      "baselineSha256": "335e79ca18976c02cf934ef92195788ebba0c9d8c49d3fb0141c85ada5d86a07"
+    },
+    {
+      "path": "tools/content/verify_pc_android_save_copy.py",
+      "owner": "B",
+      "baselineSha256": "b9c67dfd0c66002383a313e7c0b1d5ed612696a720ec2824f1aef5f404778dde"
+    },
+    {
+      "path": "tools/content/verify_pc_cavalry_blocked_survival_native.py",
+      "owner": "B",
+      "baselineSha256": "f839095877cbd4dd1c74d75aeb653a0ca9a2d3a763dcc5915dd044f006d16b96"
+    },
+    {
+      "path": "tools/content/verify_pc_cavalry_continuous_plan_native.py",
+      "owner": "B",
+      "baselineSha256": "f3c3d4165e20cbf0e65642a71e36965e4d07d61216334df5e579e53a1bcdab3e"
+    },
+    {
+      "path": "tools/content/verify_pc_cavalry_landing_loop_native.py",
+      "owner": "B",
+      "baselineSha256": "08bc54622afcf0899c440595e81c4723bfe8ff721457e098a0a09cbcaabc057d"
+    },
+    {
+      "path": "tools/content/verify_pc_cavalry_landing_native.py",
+      "owner": "B",
+      "baselineSha256": "c1768efacc958b8f2b12d3d4d727142ee01002a63523cb45a864a49d29bbea2c"
+    },
+    {
+      "path": "tools/content/verify_pc_city_footprint_native.py",
+      "owner": "B",
+      "baselineSha256": "73d807f269311f8c93631138251ed58cdc2eec60f40fd20b1aaba519c1c06d78"
+    },
+    {
+      "path": "tools/content/verify_pc_delayed_counter_native.py",
+      "owner": "B",
+      "baselineSha256": "5d81280388b1986cdb1bd1b94c2b652c617eff5b83d09bb2f672c2eeb52f4c87"
+    },
+    {
+      "path": "tools/content/verify_pc_development_plot_native.py",
+      "owner": "B",
+      "baselineSha256": "8e341d0d123ccfb69227f1912ab4f31d57ecbb3f16910fb3a92ce07a91f75dc4"
+    },
+    {
+      "path": "tools/content/verify_pc_facility_completion_native.py",
+      "owner": "B",
+      "baselineSha256": "83c63b1d60b473c89454fdb61c5faae50a6b3c3d524225da8dc506fa12a54f2e"
+    },
+    {
+      "path": "tools/content/verify_pc_facility_count_native.py",
+      "owner": "B",
+      "baselineSha256": "1b949b49c40bdacffb43061d8f48657a7a72ac3d71901b93758b0cbe6bc106b0"
+    },
+    {
+      "path": "tools/content/verify_pc_installed_flow.py",
+      "owner": "B",
+      "baselineSha256": "be19a456291d37bb473161e17fbc19fba37541424371f1b5b74506ba23cce701"
+    },
+    {
+      "path": "tools/content/verify_pc_merchant_compatibility.py",
+      "owner": "B",
+      "baselineSha256": "4c745b9285fd3a85f12ec9b7a9c4e041ccf36d6c926e89f71a0071ada9888808"
+    },
+    {
+      "path": "tools/content/verify_pc_native_debate_ui.py",
+      "owner": "B",
+      "baselineSha256": "202b6039f0f86cb1506031951d12d1c7f8f951e6ec5b614ba8a5fee76f74d098"
+    },
+    {
+      "path": "tools/content/verify_pc_officer_ui.py",
+      "owner": "B",
+      "baselineSha256": "8586a4880b4b214cb1415aeb2f8260dc86773cc27679ce84faa1de6e8594d6fe"
+    },
+    {
+      "path": "tools/content/verify_pc_production_native.py",
+      "owner": "B",
+      "baselineSha256": "4b90aa328b3544606f0d65d96cae838d0212bae73521ffca9feb6439d18d57f3"
+    },
+    {
+      "path": "tools/content/verify_pc_production_refresh_native.py",
+      "owner": "B",
+      "baselineSha256": "ec48768666e35c8c48852c3c87f1777a0800b365939c49dc7de58f5604286203"
+    },
+    {
+      "path": "tools/content/verify_pc_source_opening_ui.py",
+      "owner": "B",
+      "baselineSha256": "8477a2535ceba9f75441b8abd39e284206ce01738125351e8fad1dd00b54c78a"
+    },
+    {
+      "path": "tools/content/verify_pc_technique_gain_native.py",
+      "owner": "B",
+      "baselineSha256": "84837b6124017ef0a9b6d781b11f7eb1dd7be026196eadf655e7a180a6c5d059"
+    },
+    {
+      "path": "tools/content/verify_pc_technique_hud_native.py",
+      "owner": "B",
+      "baselineSha256": "ce17a91769d8b9f1d5aabccfe562f974b1f4f28befd39dde43072ecc915836df"
+    },
+    {
+      "path": "tools/content/verify_pc_unit_damage_apply_native.py",
+      "owner": "B",
+      "baselineSha256": "7011a88765a06b51f0b6ca9dc99a67f5e5eae299eb1dd3723a5bb826707fc34b"
+    },
+    {
+      "path": "tools/content/write_pc_legacy_officer_art_fixture.py",
+      "owner": "B",
+      "baselineSha256": "1410dd785c35c7576b46b147abc4a782d447a42e6f809cb8a733cb26cbbb22da"
+    }
+  ]
+}
