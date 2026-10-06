@@ -1,0 +1,31 @@
+{
+  "sourceCommit": "27915f9a",
+  "gameLargeHeap": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-27915f9a-array-upload-normal384/app-debug.apk",
+      "sha256": "d760da6ea751b420d58625f7999dc0b96939c4dc7b1a8d75b721dabfced3fc19",
+      "bytes": 312855763
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-27915f9a-array-upload-normal384/app-debug-androidTest.apk",
+      "sha256": "4b34497ac430b73f1ed942e172bcee46c89d4782cbd39bde283fa92acc53e27d",
+      "bytes": 2589363
+    }
+  ],
+  "scope": "Fresh exact source with completed B SEARCH and A primitive-array mesh float upload; normal matrix/pixels/native allocation/cold actual install pending",
+  "installed": false,
+  "actualGameAndTestInstalledShaVerified": true,
+  "actualHeapBytes": 402653184,
+  "actualNormalMiB": 384,
+  "actualLargeMiB": 512,
+  "device": "emulator-5554/API29/x86_64/2GiB configured RAM",
+  "original168PinsExact": true,
+  "original4JniExactInsideApk": true,
+  "memoryBudgetAccepted": false,
+  "source11Media16NormalColdRunning": true,
+  "all16Accepted": false,
+  "ARM": false,
+  "goalComplete": false,
+  "sessionPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/array-upload-source11-normal384-40"
+}
