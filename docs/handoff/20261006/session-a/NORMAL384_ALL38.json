@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "sourceCommit": "e9679b94",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e9679b94-army-normal384/app-debug.apk": "b8bbf6430093209519028bbe29a37e6146303803252eb90faab4be93fe8f1cdf",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e9679b94-army-normal384/app-debug-androidTest.apk": "7026417616d606dbf568dafb798a1af9110a46f490fa77e68dc46bf8c50a6892"
+  },
+  "scope": "All16 actual menu/source/factions/cancel/retry/newgame/whole-near/pan/officer-directory; actual global Home Activity/map/Filament/focus paused guard, orientation/fullSave/read/exit/reopen, independent newPID cold; source SEARCH successor d852 not included; not allcommand/media/ARM/PCframebuffer acceptance",
+  "normalChecks": 2731,
+  "coldChecks": 81,
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "actualHeapBudget": "normalMiB=384 largeMiB=512 actualBytes=402653184 deviceRamBytes=2089222144 largeHeap=false",
+  "normalMemorySamples": 413,
+  "independentPeaks": {
+    "javaUsed": 402573928,
+    "nativeAllocated": 292106472,
+    "totalPss": 617836,
+    "graphicsPss": 0
+  },
+  "coldMemorySamples": 7,
+  "graphicsPss": "0 reports unavailable driver source, not zero VRAM",
+  "childSamples": 600,
+  "maxSimultaneousChildren": 2,
+  "independentPerChildPssKiB": 54915,
+  "coldProcess": {
+    "beforePid": "9205",
+    "afterPid": "3877",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "3635326d9393d51b3eaa9b6d4e8df1a9929eb9ad120f7d56c5307b77307021ae",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "video": "No current recording/encoder in this matrix; old28 videos retained as separate package evidence, no current video/FPS claim",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/all-source-normal384-army-38",
+  "evidenceSha256": {
+    "session.json": "20cdb75fcacafc6e00d12b6021b42ad8c2790f3c78e56c606ea1dacf82c26b3d",
+    "instrumentation.txt": "1d2332dbd391e1a6c1d3b619bfbf0eb75b8d86441506efbbbeae510e691f7213",
+    "cold-instrumentation.txt": "820e0550a3e00d5fe6383dc1a516ef5fc6abba7d55a8d9f614891d8020f5678a",
+    "evidence/heap-budget.txt": "3b46c9558d074b249cccca9df5af5ca04c16f61bbe868d17aa439478c0a81493",
+    "evidence/memory.csv": "b2bc27fa5f2b30a9118983ce0165f4c6da5c43ebdcfdafc8d74aefced9085c01",
+    "cold-evidence/memory.csv": "1f96d43f9c2e4548b35c68d047b1648e6e217ef505d213c6f02b6496f32c4dd0"
+  },
+  "latestSearchCombinationAccepted": false,
+  "ARM": false,
+  "goalComplete": false,
+  "memoryBudgetAccepted": false,
+  "sampledMinimumJavaHeadroomBytes": 79256,
+  "peakPhase": "Source11 normal zoom afterSource0\u201310",
+  "nextMemoryAction": "Remove verified extra Java float-to-direct-byte upload copy with pinned Filament primitive-array support; native may copy, fresh actual peaks required"
+}

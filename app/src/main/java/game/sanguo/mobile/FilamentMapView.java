@@ -1420,10 +1420,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             }
             if(m.tangents!=null)builder.attribute(VertexBuffer.VertexAttribute.TANGENTS,2,VertexBuffer.AttributeType.FLOAT4,0,16);
             if(m.uv!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,8);vb=builder.build(engine);
-            if(m.surfaceData!=null){FloatBuffer data=ByteBuffer.allocateDirect(m.surfaceData.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();data.put(m.surfaceData).flip();vb.setBufferAt(engine,1,data);}
-            if(m.uv!=null){FloatBuffer uv=ByteBuffer.allocateDirect(m.uv.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();uv.put(m.uv).flip();vb.setBufferAt(engine,1,uv);}
-            if(m.tangents!=null){FloatBuffer t=ByteBuffer.allocateDirect(m.tangents.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();t.put(m.tangents).flip();vb.setBufferAt(engine,2,t);}
-            FloatBuffer v=ByteBuffer.allocateDirect(m.vertices.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();v.put(m.vertices).flip();vb.setBufferAt(engine,0,v);
+            if(m.surfaceData!=null){vb.setBufferAt(engine,1,FloatBuffer.wrap(m.surfaceData));}
+            if(m.uv!=null){vb.setBufferAt(engine,1,FloatBuffer.wrap(m.uv));}
+            if(m.tangents!=null){vb.setBufferAt(engine,2,FloatBuffer.wrap(m.tangents));}
+            // Published mesh streams stay immutable. Filament1.56 holds array/global refs
+            // until its upload callback; avoid a second Java direct-byte payload.
+            vb.setBufferAt(engine,0,FloatBuffer.wrap(m.vertices));
             Buffer indexData=MeshIndexBuffer.encode(m.vertices.length/7,m.indices);
             ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(MeshIndexBuffer.compact(m.vertices.length/7)?IndexBuffer.Builder.IndexType.USHORT:IndexBuffer.Builder.IndexType.UINT).build(engine);ib.setBuffer(engine,indexData);
             entity=EntityManager.get().create();
