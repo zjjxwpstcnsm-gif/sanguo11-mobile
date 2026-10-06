@@ -18,7 +18,7 @@
 
 两次独立原 controller/final quad/material 执行字节一致，七个时间输入的 quad 数为7/7/11/22/19/33/53。纹理仅 common image2、11、13，已与实际归档逐 RGBA 比较。
 
-真实混合为 ADD/SRCALPHA/ONE（1/5/2）及 ADD/SRCALPHA/INVSRCALPHA（1/5/6）。现 `PcMapEffects` 只接受后者，会拒绝原火的前者；不能统一改为 over 或改变原 alpha。
+真实混合为 ADD/SRCALPHA/ONE（1/5/2）及 ADD/SRCALPHA/INVSRCALPHA（1/5/6）。继承版本的 `PcMapEffects` 只接受后者，会拒绝原火的前者；A完成6ea385ff已允许两种已取证混合，并按纹理与混合分别建立有界实例。不能统一改为 over 或改变原 alpha。
 
 需要独立 map additive material，保留地图深度测试、关闭 ZWRITE、双面和原 alpha GREATER1，并保留原队列顺序。现 fullscreen presentation-add 关闭深度测试，不能直接作为地图材质。原 encoded 色彩及 PC/Android framebuffer 比较仍待验收。
 
@@ -31,3 +31,7 @@
 同步只消费同 StateToken 的不可变事实。以源格子坐标为实例 key，非零时创建、清零或灭火到期时调用原 stop；非零寿命刷新不重开（原59fea0也不重开）。session/generation/map来源变化关闭旧 worker，再从真实当前集合重建。app 保留精确 long；私有句柄不进入 SaveCodec、Bridge 或规则。
 
 最终须验收单格、多格、持续燃烧、同格刷新、灭火与到期、暂停dt0、缩放平移、低画质、后台、读档、快速切换与句柄释放。Java/native/GPU预算须实测，不以本诊断替代正常火计、施工、多旬、存读和退出重开。火球、火种、火船、施工、受损与拆除仍各查原 caller，不能借用13。
+
+## A材质完成增量6ea385ff
+
+新地图加法材质`3d/pc-effects/quad-add.filamat`26364B，SHA256 `0adff6b5f46acacce7e5466448c288ef3d5b3359e059e8e59dd30664b5777a2c`，matc56两次字节一致。VerifiedMaterial运行时守卫；旧168固定输入、旧over材质、4JNI均不改。source-over与add分别实例、纹理仍共享33槽，关闭销毁两种材质及全部实例。正常原火13尚无JNI入口，不把宿主材质检查记作原火正常操作通过。最终串行增量需将新材质加入组合发布清单，并独立记录APK资源169或实际计数，不覆写原168SHA。详见FIRE_MATERIAL.json、HEAP_BUDGET.md及DELTA_BATCH7.json。
