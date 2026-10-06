@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "sourceCommit": "a14ebe55d5736283ff4715b1d039def101da289b",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk": "b8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug-androidTest.apk": "0a351dc1f235e3f9ec64a9503717e383bd6e0bca9bd8941ac5046c71ef203094"
+  },
+  "scope": "Fresh exact HUD-fixed b819/0a35 normalSource14/deploytwo/firecancel/playerFIRE/native13/actualsystemHome/Activity-map-Filamentfocus+nativeclockfreeze/reducedmotion/LOW/EXTINGUISH/reignite/wholeturn expiry/burning save/manualread/newPIDcold and fullSaveRNGStateToken pure. Functional only, not original fullchain/facilityFX/GPU/ARM/latency completion.",
+  "checks": {
+    "evidence": 1489,
+    "cold-evidence": 2725
+  },
+  "coldProcess": {
+    "beforePid": "29356",
+    "afterPid": "10033",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "1833735ae1388b72bc92d77fc0fce5079a0005f3787f9284bfc2c3dfc4294a97",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "systemAnimatorBefore": "null",
+  "systemAnimatorRestored": true,
+  "longTurnPerformance": "Actual foreground120s timeout screenshots recorded; inherited KEYCODE_HOME fallback is key attempt only, not realHome verification. RealHome pause separately proved by GLOBAL_ACTION_HOME. Core routing/scheduling cause not inferred solely from time; performance remains open.",
+  "videoParts": [
+    {
+      "part": 1,
+      "beginUnix": 1791316288.8624032,
+      "endUnix": 1791316471.374836,
+      "recordPid": "29450",
+      "devicePath": "/data/local/tmp/session_a_video_fire_lifecycle_hud_fix_53/part01.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "30331f0410d713c028fd237f66a35470efe6d78f7b54f722de0983fa1a316dd6",
+      "sha256": "30331f0410d713c028fd237f66a35470efe6d78f7b54f722de0983fa1a316dd6",
+      "bytes": 33907407,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-lifecycle-hud-fix-53/video/part01.mp4"
+    },
+    {
+      "part": 2,
+      "beginUnix": 1791316472.262526,
+      "endUnix": 1791316654.681227,
+      "recordPid": "14740",
+      "devicePath": "/data/local/tmp/session_a_video_fire_lifecycle_hud_fix_53/part02.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "9c7168d3aa08ad98a2d875b5133712c073413f7e059e56202c7bb3e7c921ed93",
+      "sha256": "9c7168d3aa08ad98a2d875b5133712c073413f7e059e56202c7bb3e7c921ed93",
+      "bytes": 29207636,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-lifecycle-hud-fix-53/video/part02.mp4"
+    },
+    {
+      "part": 3,
+      "beginUnix": 1791316655.391999,
+      "endUnix": 1791316836.684934,
+      "recordPid": "28545",
+      "devicePath": "/data/local/tmp/session_a_video_fire_lifecycle_hud_fix_53/part03.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "449045c89a8f711a80c8ceeb6ffeb9a2418a88ef8b079028da36c1b53164ef23",
+      "sha256": "449045c89a8f711a80c8ceeb6ffeb9a2418a88ef8b079028da36c1b53164ef23",
+      "bytes": 30013377,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-lifecycle-hud-fix-53/video/part03.mp4"
+    },
+    {
+      "part": 4,
+      "beginUnix": 1791316837.212628,
+      "endUnix": 1791316938.928927,
+      "recordPid": "9909",
+      "devicePath": "/data/local/tmp/session_a_video_fire_lifecycle_hud_fix_53/part04.mp4",
+      "stageAtEnd": "restored-verified",
+      "deviceSha256": "4d10b2c7788cfc12a931bc02eeebfa74cc086c0d467c308100aa75499b2e6ac6",
+      "sha256": "4d10b2c7788cfc12a931bc02eeebfa74cc086c0d467c308100aa75499b2e6ac6",
+      "bytes": 9019840,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-lifecycle-hud-fix-53/video/part04.mp4"
+    }
+  ],
+  "videoScope": "Exclusive actual normal/cold native MP4 parts, exact host-deviceSHA; no fullPC frame/time oracle, encoder changes timing so not unperturbed latency score.",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-lifecycle-hud-fix-53",
+  "evidenceSha256": {
+    "session.json": "e9ccbf02b1cd87565eadfb2e390bc51acc216c2f1b776bf6a6ad614a21b40105",
+    "cold-instrumentation.txt": "94c43d7ea0d00fd69b53a4188c7ec434a7e2f2a835013b44e1b4739b6a8cd24d",
+    "logcat.txt": "e5dc7bf6de369fab8e68657be7610264994598c29b02a38be1c7aa21b04bf68c",
+    "instrumentation.txt": "af471d9d7c4f228afb0721756afbb4c9ebbcccf46d536d1e4cf43226ce4f06a8",
+    "video/video.json": "a0270e39201b20f01e6267a6aa16b6fbf11bf2c3bb53a0c5c0cb215756ac278f",
+    "evidence/scene-facts-actual-player-fire-build.json": "9e79fcfca3a320e3f6a209102589bd36edc7bcf81c14e867dd3835d5f34586e1",
+    "evidence/turn-real-fire-expiry-0-foreground120s.png": "baff798695688165beca89f6301993ab58b7e2e25417692d29b3b57da89c95dc",
+    "evidence/pause-reduced-motion-real-fire.png": "410254c0fb16f3f2b5d036bd67917ed50876aeb5affc5317daa933507a1e752f",
+    "evidence/pause-reduced-motion-real-fire-actual-text.json": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693",
+    "evidence/pause-home-restored-fire.png": "15e4e63c22f17fa89b1133e0b40fbbd1c1d617f9752eb217bb02fe2cbf4f20b9",
+    "evidence/result.txt": "740a618a08b64bc1c70bde93e1262758f742303182d85da97d7a789ece48c7d8",
+    "evidence/pause-home-restored-fire-actual-text.json": "5236682dde072e91ace5e3707266c574bffd6013644918086c4856e24c979530",
+    "evidence/pause-resumed-original-fire-actual-text.json": "7199edd009eedd3fb75ddee01451240e6b3798b06f2d4083f3a872dae4b8af3f",
+    "evidence/actual-build.sg11": "1833735ae1388b72bc92d77fc0fce5079a0005f3787f9284bfc2c3dfc4294a97",
+    "evidence/05-real-expired.png": "142d34cb3a9ce005ab5d46c0f470ae754b183b9e9e0264747f8e4e40b67b319b",
+    "evidence/pause-resumed-original-fire.png": "b12d3d6df3ad176cd8facf9e5e904c48c8376711e732ac62ea07e654756bcc15",
+    "evidence/03-player-extinguished.png": "067fb9f9422743210dcd783100321897861e8173f7922c58f97c789b53c62012",
+    "evidence/02-low-quality-fire-actual-text.json": "849a241c6645b9de8a7e3b4db11c257b16f63c505e12ca38411a3e96943a420d",
+    "evidence/progress.txt": "e41d59bb9845be3946e67fc3568cf8ee7c350c6c93c88f67e7cbc808332d263d",
+    "evidence/turn-real-fire-expiry-0-foreground120s-actual-text.json": "4acdf91db6d1a87c3c0fb7991429a2ca813135fb9bae9df2452cd50fd51e0aeb",
+    "evidence/02-low-quality-fire.png": "e6067d37747e70a0cb4245e01f0325283512b0f66e62a0741b260846eda82008",
+    "evidence/burning-save.sg11": "1833735ae1388b72bc92d77fc0fce5079a0005f3787f9284bfc2c3dfc4294a97",
+    "evidence/diagnosis.txt": "c95376745e4d136753be7deadf53edc9f521555f53710ba8ef24c32c1ee71f77",
+    "evidence/06-real-burning-readback.png": "44cf884f3514540771859fd4f4fc84bc677771a7396c0d5cd501a7c3a1289c75",
+    "evidence/01-player-fire-actual-text.json": "9438faf342d2429b56cf2e6a03731f4cf5608f0da27834e16bb9f126d82a4f9b",
+    "evidence/04-real-reignite.png": "9e8c7f6da29195958dab9cbce6eda324cd7b1884bcbed447d5228fb801f067af",
+    "evidence/a-presentation-actual-player-fire-build.txt": "5394a76ebdc149435f8d77c5f258cb7acbc90a14c518ea3bd493986c2fd8cb69",
+    "evidence/turn-real-fire-expiry-1-foreground120s-actual-text.json": "3e12ae0bf6a18a82e1c546692d2e7b596595b95fc0fc605a0494298688a99eec",
+    "evidence/04-real-reignite-actual-text.json": "e18e13ed781d10861d7ea1c308e575d8b3e749b307844f557271dab85846332c",
+    "evidence/03-player-extinguished-actual-text.json": "ef81f84807a9ac889707655e7a25d7fd66827972bbc7c2b45f3f6a56a868434e",
+    "evidence/05-real-expired-actual-text.json": "de2581ea779ce0fb93b5af674a559deac0efb1bfed20b840ae44c9289a6180da",
+    "evidence/a-original-fire-actual-player-fire-build.png": "20bf74fb16399fc9a6b8dc34fe30f10dbb223fe45c8b6954a1e5955f6ef1b73f",
+    "evidence/06-real-burning-readback-actual-text.json": "3462ce6bfce0a7b06d6e638c0f7bc8b1601f03aa869b6503ccc0f271abd82e84",
+    "evidence/01-player-fire.png": "27b4003644f156eec14b8db5fae5903c49106f826e37bc5761fefd0c3e01acd0",
+    "evidence/a-original-fire-actual-player-fire-build-actual-text.json": "d68d9158a0c6472d4079b6abf96d9200ffaf96723832869b12215717fb1c3446",
+    "evidence/turn-real-fire-expiry-1-foreground120s.png": "43f4958c46dc06e944006f54c17edd94bd4d3540d20e4333cdfac5deee3c4001",
+    "cold-evidence/result.txt": "bfd60de11dd284860fedceb23b51c1e312caec194a2306a7fe7dd8facc263a48",
+    "cold-evidence/progress.txt": "7278385bc88a16f83e563d5abb315fe7828efb61560bc62b00788db3ed12f396",
+    "cold-evidence/scene-facts-cold-fire-manual.json": "12a6038e0f4b88abaf0386d198744c0a42e1920e0c29f81d2cc86aa1239677cc",
+    "cold-evidence/a-presentation-cold-fire-manual.txt": "5394a76ebdc149435f8d77c5f258cb7acbc90a14c518ea3bd493986c2fd8cb69",
+    "cold-evidence/diagnosis.txt": "fb42c9b07897f3a7942fb2ad99511be99ecb4c1885080d659e1c72fc286a631e",
+    "cold-evidence/a-original-fire-cold-fire-manual-actual-text.json": "628965b273cf305506db57c0117ce229b06f8c6eaf5a0807e1fa80a1de85e9b7",
+    "cold-evidence/a-presentation-cold-fire-restored.txt": "5394a76ebdc149435f8d77c5f258cb7acbc90a14c518ea3bd493986c2fd8cb69",
+    "cold-evidence/a-original-fire-cold-fire-restored-actual-text.json": "446c442bbcb368ff6e73655d2f8290018c9c633264380eaca2705586f8e5a0f4",
+    "cold-evidence/a-original-fire-cold-fire-manual.png": "683e812b37dbefbc9a56374ab34c3263cdec8bc73ad07b559677f4b9c8364193",
+    "cold-evidence/a-original-fire-cold-fire-restored.png": "a7e59058c5465ca6906059495d2933ff2af022d3f9b67a3b4d29dacb66c5ff62",
+    "cold-evidence/scene-facts-cold-fire-restored.json": "201b31f3bafc0c8bd46af6d50e6554bf07406c6d4be2547c267acb46b6b7c918"
+  },
+  "ARM": false,
+  "wholeGoalComplete": false
+}
