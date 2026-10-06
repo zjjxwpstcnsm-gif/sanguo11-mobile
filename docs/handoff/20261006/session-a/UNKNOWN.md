@@ -18,3 +18,5 @@
 后继direct1b7a8b41/5ce10e6b已精确17/7路径导入9a19d39e/babe0660，A新默认large562fabeb和diagnostic7c677d1b包已构建未实装。接受首曲PCM SHA/时戳/同次Mixer变化尚需实际正常捕获；全可选势力factions16工具test47cbda5a已编译未实装。当前41仍为279/d760旧范围，Source0–13流程在跑，完整128caller/预算/冷/恢复未宣布完成。
 
 41已经普通384全16正常4699+独立冷81、128normalcaller fullbitmap、10720identityjoin/0unknown及9/3797最终SHA恢复；峰值350859048B剩51794136B采样余量。旧来源11 OOM与原用户ARM根因不能据此自动全关闭；全部可选势力预览取消/长命令/最新PDR+PCM诊断包/原GPU和ARM仍待。正常全屏/所有年龄形态和声媒未知保留，42真实音频诊断正在完整备份准备。
+
+44原正常菜单2238整首wave现已以原0.995 gate通过0.997237937（旧34失败仍保留）；Android解码c90与参考437非逐字节等，不声称Windows rawPCM。首曲实际接受字节与解码SHA无差、实际44.1/48初始化及完整主/测试文件、权限/AppOp恢复。旧−22和原34失败唯一原因、其它曲目/正常地图BGM/真实voice/58/原普通事件/ARM仍未关闭。新directCause后继未安装，正常SEARCH45及全势力逐源取消/新384矩阵待。

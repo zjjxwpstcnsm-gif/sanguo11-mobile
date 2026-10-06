@@ -42,3 +42,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 42最新562/7c实际安装但44100与48000初始化均失败，native AudioPolicy明确uid10147录音拒绝/getInputForAttr−1，Java−20/state未初始化；不是旧−22复现。 runtime RECORD_AUDIO已授予，而AppOps保留显式default。正常菜单未执行；游戏9/3797及测试原APK/全部文件/麦克风false/AppOps default完整恢复。43保持同精确包和设备、仅本测试AppOp临时allow的对照已经备份/实际SHA验证后运行，最后仍恢复原mode，不改变PCM/资源/门槛/规则。后继B directCause292d0c72/aa9bdf6d4源码6文档SHA全等导入9bb0b425/157a9881；只修项目命令原因，无原voice新证据，当前43包不含该标签修正。
 
 43仅包守卫失败：42结束有意恢复原test4b，使用reuse-installed跳过更新导致要求7c不匹配，捕获/allow试验尚未开始；游戏9/3797与测试原文件/APK/权限模式再次完整恢复。44改test-only-update，游戏同562、测试7c独立安装SHA核验后才执行AppOp allow对照；当前备份完整并已启动，不算成绩。后继directCause已接4/6确切SHA并A测试同步验证actualTPfact cause/city/actor/parent/token，无原声猜接。
+
+44同562/7c测试only更新后AppOp临时allow实际44100/48000初始化成功；130s真正常菜单原2238整首wave相关0.9972379373450883≥未改0.995、17固定窗偏移全314844、首曲接受15618048B/SHA c90与解码完全一致，Android解码与原参考SHA437仍非逐字节相同，Windows exactPCM不声称。正常UI62+完整Save/双RNG/fullToken不变。游戏9/3797、原test4b APK/测试全部文件/麦克风false/AppOp default均恢复。42−1显式default权限拒绝对照成立，旧−22/34失败唯一原因仍未关闭；地图BGM/voice/58/普通原事件与ARM仍未知。最新cause+全可选势力/逐源取消重试的普通384新包编译中；45计划同562做正常SEARCH/自然舌战冷流程，不包含新directCause，已进入完整备份复核。

@@ -63,9 +63,9 @@
     },
     {
       "item": "music-continuity",
-      "status": "ACTUAL RAW CAPTURE SUCCESS; WHOLE-WAVE FAIL",
-      "evidence": "new7415 actual init44100/48000 PASS,130s raw normalmenu/fullSaveRNGToken pure; fullcorr0.714538<unchanged0.995; localoffsetsteps160/128/192/320; old-22 rootunknown",
-      "next": "distinguish playback and capture time gaps; fresh accepted whole track/ARM"
+      "status": "LATEST562 NORMAL MENU WHOLE TRACK PASS AT ORIGINAL0.995 GATE; OTHER MUSIC/ARM OPEN",
+      "evidence": "44actualrawUID/GAME systemprojection130s source2238 correlation0.997237937;17windows constantoffset;accepted/decodedfirstbytes15618048SHA equal;wholeSaveRNGToken/UI62pure;44.1/48init+allmain/test/mic/AppOp restored.42native-1explicitdefault refusal controlledallow fix,old-22 separate",
+      "next": "normal map scene facts/BGM/whole othertracks/ARM; retain34failedwave and referencePCM mismatch"
     },
     {
       "item": "save-preservation",
@@ -86,5 +86,5 @@
       "next": "source40/16media/normalSEARCH/newdefault/fullcommands/ARM serialfinal"
     }
   ],
-  "updatedAfter": "completed41 and42 guard preparation,2026-10-07"
+  "updatedAfter": "completed41/44 and45backup,2026-10-07"
 }
