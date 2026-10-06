@@ -1,0 +1,49 @@
+{
+  "passed": false,
+  "scope": "Actual first-focus fix51 now shows12 silently but normal done cleanup still calls skip on just-released activeFact before next-frame start; no roll or cold score.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3b2a3b32-direct-hud-focus-fix/app-debug.apk": "0cb9cc2476029fd1a30478b40ced866d8cbb45ec3d055b1a5e8417bac024eef5",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3b2a3b32-direct-hud-focus-fix/app-debug-androidTest.apk": "7bfcf33b7195de60e550110987d7489b6a9c1de4806cb88dc9b95a2f4a2e402a"
+  },
+  "actualTrace": [
+    "10-07 03:32:32.649 28360 28360 I TechniquePhase: finished phase=3:1 resumed=true renderActive=true",
+    "10-07 03:32:32.649 28360 28360 I TechniquePhase: poll fact=c1e66221-0c15-49ae-b72b-478b76f4df21:3:1:LEGACY_COMMITTED:technique:1 phase=3:1 before=0 after=12 attached=true visible=true focused=true",
+    "10-07 03:32:32.649 28360 28360 I TechniquePhase: cancel phases=3:1, resumed=true renderActive=true caller=[game.sanguo.mobile.MapHost.cancelCommandEffects(Unknown Source:79), game.sanguo.mobile.MapHost.advanceCommandEffects(Unknown Source:201), game.sanguo.mobile.MapHost.$r8$lambda$NLuN7mCmVXSKu2FhdMvNiUw3Cn0(Unknown Source:0), game.sanguo.mobile.MapHost$$ExternalSyntheticLambda6.run(Unknown Source:7), android.view.Choreographer$CallbackRecord.run(Choreographer.java:966), android.view.Choreographer.doCallbacks(Choreographer.java:790), android.view.Choreographer.doFrame(Choreographer.java:721), android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:951), android.os.Handler.handleCallback(Handler.java:883), android.os.Handler.dispatchMessage(Handler.java:100), android.os.Looper.loop(Looper.java:214), android.app.ActivityThread.main(ActivityThread.java:7356), java.lang.reflect.Method.invoke(Native Method), com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492), com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)]",
+    "10-07 03:32:32.649 28360 28360 I TechniquePhase: skip parent=3:1 queued=0 active=c1e66221-0c15-49ae-b72b-478b76f4df21:3:1:LEGACY_COMMITTED:technique:1 committed=12 text=技巧"
+  ],
+  "lastObservation": {
+    "uptimeMs": 53079963,
+    "text": "技巧\n12",
+    "rolls": 0,
+    "foreground": true,
+    "paused": false,
+    "queueSize": 0,
+    "target": 12,
+    "committed": 12
+  },
+  "sampleCount": 186,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "fixCommit": "a14ebe55",
+  "fix": "Separate natural completed sequence cleanup from explicit skip; normal completed phase leaves released HUD fact alive. New52 pending install.",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-hud-focus-fix-51",
+  "evidenceSha256": {
+    "session.json": "15e9066f41b8c52c99b0af27abbcc8d9c1c5f6c45cad94a29706715dec8381bc",
+    "logcat.txt": "1b16c1274123f7aed6dd9b68444d3de8cb3baffb5384ee28d5017985aad60dd7",
+    "instrumentation.txt": "e0f2f150abe3a19435c8d1662b8b4ac11e8f609891c113a8073f538094bf67bc",
+    "evidence/direct-technique-normal.json": "adc8467c7b40a095e5dd5b9260a79505cf06864cb80cbd90d58f493ad37d1ddf"
+  },
+  "wholeGoalComplete": false
+}
