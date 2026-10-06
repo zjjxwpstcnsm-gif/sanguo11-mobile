@@ -12,7 +12,16 @@
         "            if((p.kind<6?0:p.kind==6?2:1)!=item.kind)continue;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "ca4758f74b016f081cdcd0319ad2dec2738b432fe9f4ab29e8abe83575221b1a",
+        "exactConditionLines": [
+          47
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneCamera.java",
@@ -25,7 +34,16 @@
         "    }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "27708d282b488fc64828e77d60c5874783a0ca85dbe96418db6fcfaf8e5c4efa",
+        "exactConditionLines": [
+          58
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
@@ -38,7 +56,16 @@
         "        // Near/mid streaming retains its existing 8x8 granularity and edit halo."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "f49190c7987814ba90cb15e078eebbc4aeeef780ea841dff8698b195d54455a1",
+        "exactConditionLines": [
+          49
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -51,7 +78,16 @@
         "        for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++)if(g.valid(new Hex(q,r))){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          189
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -64,7 +100,16 @@
         "            int n=r*(columns+1)+q,next=n+columns+1;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          203
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -77,7 +122,16 @@
         "        // Identical weights, lighting frame, macro tone and shore data to the foreground."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          208
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -90,7 +144,16 @@
         "        new TerrainMaterialField(g).attachBackdrop(m);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          209
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -103,7 +166,16 @@
         "        if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          255
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -116,7 +188,16 @@
         "            // Grid-bearing chunks may not retain another force/research state's lines."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          266
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -129,7 +210,14 @@
         "            SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": true
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -142,7 +230,16 @@
         "                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          287
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -155,7 +252,16 @@
         "                    for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          289
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -168,7 +274,16 @@
         "                        float vx=x-.5f+ix*.25f,vz=z-.5f+iz*.25f;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          290
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -181,7 +296,16 @@
         "                new TerrainMaterialField(g).attach(m,stats);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          309
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -194,7 +318,16 @@
         "                if(lod==0&&g.pcMap==null)fine=detail(fine,g);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          312
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -207,7 +340,16 @@
         "                // Transport the entire LOD family only after canonical height/material"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          313
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -220,7 +362,16 @@
         "                // sampling. Water/land and all shared attributes follow one rounded shore."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          314
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -233,7 +384,16 @@
         "                // terrain sampling/raycast per grid cell during camera gestures."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          322
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -246,7 +406,16 @@
         "            if(q<0){if(g.valid(cell))continue;}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          343
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -259,7 +428,16 @@
         "    }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          397
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
@@ -272,7 +450,16 @@
         "                    float t0=part/(float)segments,t1=(part+1)/(float)segments;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+        "exactConditionLines": [
+          416
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
@@ -285,7 +472,16 @@
         "            Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "97311649965c9775f74e52d366d409c56e2c11f369eb61166826a59140f419dd",
+        "exactConditionLines": [
+          29
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
@@ -298,7 +494,16 @@
         "        for(Item i:items)if(wallType(i)&&i.facility.complete&&i.facility.hp>=Math.min(i.facility.maxHp/2,500))healthy.put(g.source(i.hex),i);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "97311649965c9775f74e52d366d409c56e2c11f369eb61166826a59140f419dd",
+        "exactConditionLines": [
+          187
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -311,7 +516,16 @@
         "            if(pcWaterMaterial==null){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          350
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -324,7 +538,16 @@
         "        if(pcFogMonth==snapshot.month&&pcFogNear==near&&pcFogFar==far)return;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          397
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -337,7 +560,16 @@
         "    private void loadWaterMaterial(Context context)throws java.io.IOException {"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          407
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -350,7 +582,16 @@
         "            outputVerified=false;outputStatus=\"WAITING_MESH\";uniformOutputCount=0;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          620
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -363,7 +604,16 @@
         "            List<SceneMesh> source=new ArrayList<>(nativeAssets.buildWindow(ground,excluded,trees,window,month));"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          650
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -376,7 +626,16 @@
         "            +\" interrupted=\"+Thread.currentThread().isInterrupted());"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          682
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -389,7 +648,16 @@
         "    }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          780
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -402,7 +670,16 @@
         "                        // committed cue owns its first decode/upload; playback still"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          851
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -415,7 +692,16 @@
         "        // upload burst. The normal map becomes usable before its native visual"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          897
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -428,7 +714,16 @@
         "        // Source441b80 perspective normalizes every coefficient by far. This"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          901
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -441,7 +736,14 @@
         "        // preserves clip ratios while abs(w)=view distance/far feeds4420a0's"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": true
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -454,7 +756,16 @@
         "    private void closePcPresentations(){clearPresentationFence();if(pcPresentations!=null){pcPresentations.close();pcPresentations=null;}if(presentationStage!=null){presentationStage.close();presentationStage=null;}presentationCue=null;presentationPhase=0;submittedPresentationCue=null;submittedPresentationPhase=Float.NaN;}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          911
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -467,7 +778,16 @@
         "        final PcSites.Placement nativeSite=nativeSiteAssets.placement(assetGround,item);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1113
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -480,7 +800,16 @@
         "            // load an authored mobile model as if it belonged to the PC pack."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1118
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -493,7 +822,16 @@
         "            source=SceneMesh.proxy(item.kind,0xffff00ff);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1149
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -506,7 +844,16 @@
         "    }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1205
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -519,7 +866,16 @@
         "        criticalHit=hit;criticalPhase=phase;overlay.invalidate();"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "legacy critical portrait suppression; source PcPresentations path preserved, unbound original callers remain unknown"
+      "finding": "legacy critical portrait suppression; source PcPresentations path preserved, unbound original callers remain unknown",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1276
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -532,7 +888,16 @@
         "        combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "confirmed old mobile fire/combat suppression; real FireState UI separately added, original PC cell emitter pending"
+      "finding": "confirmed old mobile fire/combat suppression; real FireState UI separately added, original PC cell emitter pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1289
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -545,7 +910,16 @@
         "    }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1357
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -558,7 +932,16 @@
         "            if(!facilityOverlay(item,shape.source.pcFacility).isEmpty()){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "legacy geometry/flag suppression; no claim all original faction flags and states are restored"
+      "finding": "legacy geometry/flag suppression; no claim all original faction flags and states are restored",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1497
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -571,7 +954,16 @@
         "            for(MapSceneSnapshot.FireState fire:snapshot.fires){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1834
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
@@ -584,7 +976,16 @@
         "            drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          1945
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
@@ -597,7 +998,16 @@
         "        CriticalFlash flash=new CriticalFlash(this,world,hit,()->{if(criticalFlash!=null){body.removeView(criticalFlash);criticalFlash=null;}});"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "fc2af38305250cda4e063b03eb2aa66e68d7d1274465277410d0e01b80c181c9",
+        "exactConditionLines": [
+          1177
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
@@ -610,7 +1020,16 @@
         "     * camera windows. Float-bit keys preserve signed zero. No quantization, terrain"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f",
+        "exactConditionLines": [
+          12
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
@@ -623,7 +1042,16 @@
         "        /** Transport all fine vertices through the same original fan, including"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f",
+        "exactConditionLines": [
+          105
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
@@ -636,7 +1064,16 @@
         "         * attributes sampled before transport. This keeps every LOD plane identical. */"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f",
+        "exactConditionLines": [
+          106
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
@@ -649,7 +1086,16 @@
         "                // signed-zero addition semantics without allocating a float[2]"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f",
+        "exactConditionLines": [
+          147
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcDams.java",
@@ -662,7 +1108,16 @@
         "    }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "353504206d9aa9ad929e65f159aeffb5de5b3c30d42b5b68c8775ebf1186c90d",
+        "exactConditionLines": [
+          33
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcFacilities.java",
@@ -675,7 +1130,16 @@
         "    SceneMesh mesh(MapSceneSnapshot.Item item,int month,int lod){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "1b163f19768cb09a912165363ab269232f309fcef56063de2c677d6cab76d928",
+        "exactConditionLines": [
+          84
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcScenery.java",
@@ -688,7 +1152,16 @@
         "        // This changes ownership/culling granularity, never source model detail,"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "9fc5f5520fdf3406f7537012e6b647a66001937e7c0a40f3f33815f2117ee234",
+        "exactConditionLines": [
+          64
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java",
@@ -701,7 +1174,16 @@
         "    static int frame(MapSceneSnapshot.Item item,TurnJournal.Event event,float fraction){return firing(event)&&item.key.equals(\"structure:\"+event.sourceKey.substring(1))?frame(fraction):0;}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "3dcee8e7a0dfa89d38f52b0ab795fc874664bbc9e0b71812f81c4e4b941f5b3b",
+        "exactConditionLines": [
+          29
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -714,7 +1196,16 @@
         "        if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          119
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -727,7 +1218,16 @@
         "        SoundEffects.Cue cue=switch(event.kind){case MOVE,ENTER,DEPLOY->SoundEffects.Cue.MARCH;case ATTACK,FACILITY_ATTACK,FACILITY_COUNTER->SoundEffects.Cue.ATTACK;case TACTIC->SoundEffects.Cue.TACTIC;case PLOT->SoundEffects.Cue.PLOT;case RECOVER->SoundEffects.Cue.COMPLETE;default->null;};"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          122
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -740,7 +1240,16 @@
         "            }"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          138
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -753,7 +1262,16 @@
         "            commandFinalSnapshot=publishedSnapshot;spatial.snapshot(before);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          144
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -766,7 +1284,16 @@
         "    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          153
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -779,7 +1306,16 @@
         "    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          155
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -792,7 +1328,16 @@
         "    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          159
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -805,7 +1350,16 @@
         "    void criticalEvent(TurnJournal.Event event,float fraction){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          160
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -818,7 +1372,16 @@
         "        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          161
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -831,7 +1394,16 @@
         "            int pcSound=PcPresentationPlan.tacticSound(event);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          163
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -844,7 +1416,16 @@
         "        if(prelude>0&&elapsed<prelude){replayFrame(event,0);criticalEvent(event,elapsed/prelude);}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          215
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
@@ -857,7 +1438,16 @@
         "    boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+        "exactConditionLines": [
+          445
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcConstructibleWalls.java",
@@ -870,7 +1460,16 @@
         "        // EXE 5a0160 creates rawX=2*q+57, rawZ=2*r+(q&1)+57."
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "efaf36d88305009aded5c6695f5aa8520b4000fcfc16716823c4f3e19c8a8afc",
+        "exactConditionLines": [
+          17
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
@@ -883,7 +1482,16 @@
         "                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea",
+        "exactConditionLines": [
+          53
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
@@ -896,7 +1504,16 @@
         "                    if(applied){map.invalidateScene();map.setWorld(work.visual,null,-1);}"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea",
+        "exactConditionLines": [
+          55
+        ],
+        "historicalLineIsCurrent": false,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
@@ -909,7 +1526,16 @@
         "        Float override=overrides.get(h);if(override!=null)return override;"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+        "exactConditionLines": [
+          51
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
@@ -922,7 +1548,16 @@
         "    float sample(float x,float z){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+        "exactConditionLines": [
+          74
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
@@ -935,7 +1570,16 @@
         "        if(ground.pcMap!=null)return pcHeight(x,z);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+        "exactConditionLines": [
+          75
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
@@ -948,7 +1592,17 @@
         "        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return quarterSample(x,z);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+        "exactConditionLines": [
+          77,
+          132
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
@@ -961,7 +1615,17 @@
         "        return canonicalMeshHeight(x,z);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+        "exactConditionLines": [
+          77,
+          132
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
@@ -974,7 +1638,16 @@
         "        float cotX=(float)(camera.cos()/camera.sin()*camera.backX()),cotZ=(float)(camera.cos()/camera.sin()*camera.rightX());"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+        "exactConditionLines": [
+          152
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
@@ -987,7 +1660,16 @@
         "    float[] sample(float x,float z,float slope){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+        "exactConditionLines": [
+          12
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
@@ -1000,7 +1682,16 @@
         "            switch(TYPES[ground.terrain[center.r*ground.width+center.q]]){"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending"
+      "finding": "source geometry/material/water/camera branch; CPU geometry parity checked in recorded windows, installed pixels pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+        "exactConditionLines": [
+          17
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
@@ -1013,7 +1704,16 @@
         "        return Collections.unmodifiableList(anchors);"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "c556d4abc96dcb41fec071999c366eba3c736ed4bfdbe417778852d7c349f26c",
+        "exactConditionLines": [
+          39
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     },
     {
       "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
@@ -1026,12 +1726,30 @@
         "        Map<Long,List<Placement>> groups=new TreeMap<>();"
       ],
       "sourceBindingAcceptance": "pending actual source/runtime proof for suppressed path",
-      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending"
+      "finding": "source vs compatibility branch reviewed by static context; normal operation/caller/material/animation acceptance pending",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "fb43f84c52ac98f17bc047ddd0ca81efa3863baa",
+        "fileSha256": "c556d4abc96dcb41fec071999c366eba3c736ed4bfdbe417778852d7c349f26c",
+        "exactConditionLines": [
+          44
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      }
     }
   ],
   "rowCount": 79,
   "knownSuppression": "Legacy animateEffects remains bypassed for PC map; original cell fires now separately routed through animatePcMapEffects/PcCellFireSet and source13 native worker. Actual39 normal/Home/reduced-motion/low/expiry/read/cold passed. Generic legacy spell fire/scaffolding/critical overlays remain intentionally suppressed; missing original chains/facilities/callers still open.",
   "mediaContractStatus": "BGM/voice/event58 no normal fact producer verified",
   "normalAndroidValidated": "Original source13 fire39 and old map28/new army38 matrices only; all branches/fullPCpixel/ARM not accepted",
-  "reviewBoundary": "Historical all79 static branch inventory; line numbers reflect initial audit. Actual later original fire/selection/native body paths checked separately; this is not all source-map suppression closure."
+  "reviewBoundary": "Historical all79 static branch inventory; line numbers reflect initial audit. Actual later original fire/selection/native body paths checked separately; this is not all source-map suppression closure.",
+  "currentScope": "Historical source-map inventory retained with exact current condition matches/SHA. Static evidence cannot close original animation/caller/framebuffer parity.",
+  "installedProofBoundaries": {
+    "originalCellFire": "animateEffects skips mobile particles, separately animatePcMapEffects at actual frame call consumes same-token acceptedCellFires; actual installed39 original13 normal/cold/Home/reducedmotion proof, latestcause revalidation pending",
+    "persistentFireLabels": "drawSourceFireState draws authoritative remaining>0 labels on source maps even LOW/paused; no rule mutation",
+    "facilityBody": "PcFacilities selects original source models for construction/damage from immutable complete/upgradeTo/hp; source scaffold/mobile overlay intentionally skipped. Original full effect controllers remain unproven",
+    "critical": "source critical legacy portrait overlay skipped; original presentation path exists but all original triggers/timing/fullscreen caller acceptance open",
+    "flags": "authored mobile flag geometry skipped for source models; true force identification preserved in readable labels/picker. Original flag controller parity open",
+    "otherBranches": "Current condition matches are inventory only. Remaining branches require original binding and real normal paths; no blanket completion."
+  }
 }

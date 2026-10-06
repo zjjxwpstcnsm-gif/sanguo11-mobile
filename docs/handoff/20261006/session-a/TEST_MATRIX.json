@@ -3,15 +3,15 @@
   "rows": [
     {
       "item": "complete-source",
-      "status": "PASS",
-      "evidence": "10714 paths/794435386 bytes, SHA/pinned168/JNI4",
-      "next": "final delta guard"
+      "status": "CHECKPOINT COMPLETE SHA VERIFIED",
+      "evidence": "701d31bb archive11056 files/902267628B; archiveSHAa656907a; all original4/new2JNI exact",
+      "next": "final source delta and serial integrated main guard"
     },
     {
       "item": "palette16",
-      "status": "HOST AND OLD28 NORMAL PASS; NEW38 RUNNING",
-      "evidence": "13273 host and old28 actual16; new army ordinary384 APKb8bbf643 current installed all16 running; Home historical key-only scope corrected",
-      "next": "new38 completion/fullSHA restore, deep16 normal pages and ARM"
+      "status": "HOST AND INSTALLED41 ALL16 PASS; EVERY FORCE PENDING",
+      "evidence": "stable arbitrary opaque palette host13273; 41 actual16 previews/map/128portrait callers; latest46 search choice readable screenshot",
+      "next": "latest default all selectable force previews, remaining deep16 pages and ARM"
     },
     {
       "item": "terrain-oom",
@@ -27,9 +27,9 @@
     },
     {
       "item": "android-compile",
-      "status": "NEW ORDINARY384 BUILT AND INSTALLED",
-      "evidence": "e9679b94/b8bbf643 game+70264176 test independently built/installed; actualRuntime384, original168/4JNI exact",
-      "next": "all16/cold/restore pending; API29 fire-helper corrected test build running"
+      "status": "LATEST NORMAL384 INSTALLED46 PASS; DEFAULT LARGE BUILT",
+      "evidence": "937/053 actualinstalled deviceSHA/pm components; SEARCH normal1763+cold1407; default376f03a1/testd472ff07 independent build168/6JNI SHA",
+      "next": "actual default install/allforces/fire/longcommands"
     },
     {
       "item": "fire-state-ui",
@@ -39,9 +39,9 @@
     },
     {
       "item": "pc-fire-controller",
-      "status": "ORIGINAL13 OLD31 NORMAL/COLD PASS; NEW37 PARTIAL",
-      "evidence": "sourcefactory/stop/material/40000positions/32MiB cap exact; new37 actual realHome native clock frozen",
-      "next": "full current lifecycle/chains/facilities/PCframebuffer/ARM"
+      "status": "ORIGINAL13 INSTALLED39 NORMAL/COLD/PAUSE PASS",
+      "evidence": "source factory/stop/material/40000positions/32MiB worker; realHome/reducedmotion/low/extinguish/expiry/newPID39",
+      "next": "latest uploader/cause full fire; chains/facility/original framebuffer/ARM"
     },
     {
       "item": "identity16",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "COMPLETED41 EXACT RESTORED;42 NEW GUARDED BACKUP PREPARING",
-      "evidence": "41full9internal/3797external finalSHA restored; no clear data; new42 fresh everyfileSHA/wholearchives before install",
-      "next": "42actual menu/rawcapture and game+test permissions/oldAPK/file rollback"
+      "status": "46 EXACT RESTORED;47 GUARDED LIVE",
+      "evidence": "46 all9internal/3797external regularfiles SHA restored after newPID6148→5362;47 fullcurrentbackupverified/actualAPK SHA",
+      "next": "47 normal/cold/finalrestore and every later installation"
     },
     {
       "item": "arm",
@@ -81,10 +81,17 @@
     },
     {
       "item": "final-combination",
-      "status": "SEARCH SOURCE INTEGRATED,39 FIRE PASS;279 SOURCE40 LIVE",
-      "evidence": "ExactB28/7 noWIP; new2b68 real39fire/restored;279 candidate newd760 independently built/actual install running; latest SEARCH A normal input and fullmatrix pending",
-      "next": "source40/16media/normalSEARCH/newdefault/fullcommands/ARM serialfinal"
+      "status": "COMPLETE FROZEN B SEARCH/DIRECT/CAUSE INTEGRATED; A46 SEARCH PASS",
+      "evidence": "Exact B completed objects only, no WIP; latest937 actualSEARCH normal/cold/token/save pure and allfiles restored; latestdefault376 built notinstalled",
+      "next": "47 directCause/current allforces/fire/military/multipleturns/16pages/ARM, final serial newcombo"
+    },
+    {
+      "item": "search-normal",
+      "status": "LATEST937 ACTUAL NORMAL AND COLD PASS",
+      "evidence": "SEARCH_PRESENTATION_ACCEPTANCE46; naturalwins/losses/menu/cancel/decline/optional/midmodel/terminal saves/wholeturns/newPID/fullrestore",
+      "next": "complete gates/treasure/original duel/ARM"
     }
   ],
-  "updatedAfter": "completed41/44 and45backup,2026-10-07"
+  "updatedAfter": "completed41/44 and45backup,2026-10-07",
+  "updatedCheckpoint": "46 complete,47 direct live,default48 frozen build only"
 }

@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "48f2b8737225e5a05e75cc889c5c6a7424020674",
+  "gameLargeHeap": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-48f2b873-cause-default-large/app-debug.apk",
+      "sha256": "376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8",
+      "bytes": 313471940
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-48f2b873-cause-default-large/app-debug-androidTest.apk",
+      "sha256": "d472ff07a09ac90ab8efb701f672f28aa1a71a611be69ab38301f140b012fcc6",
+      "bytes": 2598835
+    }
+  ],
+  "pinned168Exact": true,
+  "original4AndNew2Jni": {
+    "lib/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "lib/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "lib/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "lib/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "lib/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "lib/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "scope": "Fresh independent default-large build of complete cause/search/direct/media/render source; not installed or accepted yet",
+  "installed": false
+}
