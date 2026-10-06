@@ -90,3 +90,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 50已实际失败且完整9/3797最终SHA恢复，精确栈回执DIRECT_HUD_PHASE_ROOT50已保留；修复3b2a3b32主机queue46通过（首轮漏core/runtime依赖修正，非产品失败）。51新修复包独立构建168/6JNI全等后完整备份实装，live60426/native73212，需真实badge12/一次roll/源事实/cold/fullRestore，尚未判通过；新源媒体/火与全局长流程仍不能借48旧包成绩。
 
 51真实3b2焦点暂停修复已让phase3:1在renderActivetrue才完成并poll(+12)，但紧接正常done调用cancelCommandEffects→skip同activeFact，取消下一帧滚动；真实10秒显示12/roll0仍失败，不能判反馈完成。新A MapHost清理分正常完成false/主动取消true；正常done不skip已放行phase，保留下一帧滚动/原33声音，外部显式cancel/关闭维持跳过静默行为。B/Save/RNG/原资产/JNI不改，新包52需实装normal/cold/全恢复及火/生命周期回归。
+
+52新a14ebe55完成态修复默认large两包独立构建成功并168/6JNI包内SHA精确，gameSHAb8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6/testSHA0a351dc1f235e3f9ec64a9503717e383bd6e0bca9bd8941ac5046c71ef203094；完整9/3797fresh逐SHA备份后安装进行，live14138/native67784，仍需实际12/一次roll/中间值/冷/最终恢复，不借48旧包成绩。后继只补A清理语义，正常done不skip已放行phase，真正用户cancel仍丢弃声音并回显权威终值。51失败0cb/7bfc已完整原文件恢复，source/Pc/旧dirty目录保护持续，不合B WIP。
