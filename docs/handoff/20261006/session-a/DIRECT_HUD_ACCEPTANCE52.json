@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "sourceCommit": "a14ebe55d5736283ff4715b1d039def101da289b",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk": "b8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug-androidTest.apk": "0a351dc1f235e3f9ec64a9503717e383bd6e0bca9bd8941ac5046c71ef203094"
+  },
+  "scope": "Actual normal same-city direct/review/cancel/success-failure/native fees/rewards/newsource wholeturn/fullsave/read/newPIDcold; real HUD intermediate values to12 once after true phase completion, source facts/cause/token and fullSave-RNG unchanged. Dialog pause and completed cleanup fix proven here, fire/wholelongflow still require fresh sameAPK.",
+  "checks": {
+    "evidence": 1497,
+    "cold-evidence": 1403
+  },
+  "hudObservations": {
+    "normal": {
+      "factId": "e65bb75f-969c-4ed2-bb4d-33b50eae95be:3:1:LEGACY_COMMITTED:technique:1",
+      "parentId": "3:1",
+      "cause": "DIRECT_RECRUITMENT",
+      "samples": 10,
+      "observedIntermediateValues": [
+        2,
+        4,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "finalValue": 12,
+      "oneRoll": true
+    },
+    "cold": {
+      "factId": "ccc1ef98-3482-4bad-bb6f-61c5d249457a:1:1:LEGACY_COMMITTED:technique:1",
+      "parentId": "1:1",
+      "cause": "DIRECT_RECRUITMENT",
+      "samples": 10,
+      "observedIntermediateValues": [
+        2,
+        4,
+        7,
+        9,
+        10,
+        11
+      ],
+      "finalValue": 12,
+      "oneRoll": true
+    }
+  },
+  "coldProcess": {
+    "beforePid": "5336",
+    "afterPid": "23719",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "85cd483ada7ae9a777b34774425f40d6cc0de2a449bf5b31ee20889235705270",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "uiReadabilityMetadata": {
+    "actualScreenshotFiles": 8,
+    "actualTextRows": 125,
+    "fullyTransparentTextRows": 0,
+    "knownSolidContrastBelow4_5": 0,
+    "unresolvedBackgroundRows": 110,
+    "scope": "Only actually touched52 focused shown widgets; solid color metadata, not fullpixel gradient/Canvas/whole16page claim"
+  },
+  "videoParts": [
+    {
+      "part": 1,
+      "beginUnix": 1791315470.492018,
+      "endUnix": 1791315652.870122,
+      "recordPid": "5328",
+      "devicePath": "/data/local/tmp/session_a_video_direct_hud_completion_fix_52/part01.mp4",
+      "stageAtEnd": "installed-verified",
+      "deviceSha256": "a2504a4363444fcaa1eceac06a9b588634f5a220c6619e8b083e5f32931fd6a8",
+      "sha256": "a2504a4363444fcaa1eceac06a9b588634f5a220c6619e8b083e5f32931fd6a8",
+      "bytes": 25504582,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-hud-completion-fix-52/video/part01.mp4"
+    },
+    {
+      "part": 2,
+      "beginUnix": 1791315653.5182002,
+      "endUnix": 1791315834.547362,
+      "recordPid": "15104",
+      "devicePath": "/data/local/tmp/session_a_video_direct_hud_completion_fix_52/part02.mp4",
+      "stageAtEnd": "cold-process-running",
+      "deviceSha256": "0a3ea3a4f88391acd0d757ecfd859f9f459ee4d2a041c224dfbb0dea9f887ce1",
+      "sha256": "0a3ea3a4f88391acd0d757ecfd859f9f459ee4d2a041c224dfbb0dea9f887ce1",
+      "bytes": 23264389,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-hud-completion-fix-52/video/part02.mp4"
+    },
+    {
+      "part": 3,
+      "beginUnix": 1791315834.9082618,
+      "endUnix": 1791315952.675184,
+      "recordPid": "23858",
+      "devicePath": "/data/local/tmp/session_a_video_direct_hud_completion_fix_52/part03.mp4",
+      "stageAtEnd": "restored-verified",
+      "deviceSha256": "2f327cd8ecbc50f46e38e8ed42a2985179a1e9f561522325efa6fdcb7b684962",
+      "sha256": "2f327cd8ecbc50f46e38e8ed42a2985179a1e9f561522325efa6fdcb7b684962",
+      "bytes": 17997357,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-hud-completion-fix-52/video/part03.mp4"
+    }
+  ],
+  "videoScope": "Actual native MP4 only from observer start through remainder normal/cold; no microphone/PC pixel-time oracle or unperturbed latency claim. Host/device allparts byteSHA equal.",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/direct-hud-completion-fix-52",
+  "evidenceSha256": {
+    "session.json": "862b52af5f0b4519125a1e399d4117fe979954366cf9d06eba5e6fede17a6059",
+    "cold-instrumentation.txt": "c8acbcc7ad5e7504d31070ea48db87a2d19cbe81669e725765220c141e6c309e",
+    "logcat.txt": "fcc72b83edfe2e4bd520fd274135dd534cc7cad87df513cce11a17fc92c986a1",
+    "instrumentation.txt": "2857622850819ec30ba72473c471fb3c269ed6ad798801cd35b182df1f33b853",
+    "video/video.json": "6aaedb64fbd25b00290b7314c56acf0f637ca9a26ba225a392d5f0904b1db22a",
+    "evidence/direct-review-116.png": "f58ea371c40e692ecafd7feac9e95d3ee4a5d3f6c57823e292fc0ebc53b4a72b",
+    "evidence/direct-before-cold.png": "fa9f821d1c2e4e5df6848a1122059bbf5301750091fffa37f0df3dee5ad213cb",
+    "evidence/direct-result-163.png": "d3320a3e5a48cf40297f66f0b6e358b9306c487d23ac2761dcbc1d1a8538efc5",
+    "evidence/direct-review-cancel.png": "e4b7a86a172167cee12f693059683bccab64b2160449ab45d942e6b8ea1851b1",
+    "evidence/direct-success.sg11": "88843e9f8e99711c4dcf427f46f449b3c60ec31a1e098480d330b40bd81d1fef",
+    "evidence/progress.txt": "b809c64059dadd435c6207b87526ff36fdb0e472a6fd53e15fbaabc01a38a3e8",
+    "evidence/direct-review-163.png": "47067d58c4f315763311d8ebae6cc8e08cd8f5167d5fc58a624af116c983db32",
+    "evidence/a-presentation-a-direct-normal.txt": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223",
+    "evidence/direct-technique-normal.json": "0b30764515d155405ff80894d5c1a19705562b7409073acf5bf2f539e1cda11c",
+    "evidence/diagnosis.txt": "70036f608ad5502815711f3adfed1b0be8edec00d6890bc06bd6c2a821010b08",
+    "evidence/direct-result-116.png": "da755d6e5feb293d1072f084e88a52b2935f3e3290d3c5afdc10fd99ad75aecd",
+    "evidence/direct-before-cold-actual-text.json": "be6e766d462a487d9d2b3779fd9f22b6e22b8fcec19ae3eceee115b1cdf976ea",
+    "evidence/direct-review-163-actual-text.json": "d8023a396fd3a9ccc89f53c04ff7ab98926b18b90d47017970fd9adf110c8730",
+    "evidence/actual-mid.sg11": "85cd483ada7ae9a777b34774425f40d6cc0de2a449bf5b31ee20889235705270",
+    "evidence/direct-result-163-actual-text.json": "9da7704d2d2ce38653a838ac6fa86530c5a0b33a3baa637f182d2b6d88a24fda",
+    "evidence/direct-failure.sg11": "808e32f7dd16b4dade84a5b8aff6600d536ab8ca6b591b3ba47ff48f8a458b8c",
+    "evidence/direct-review-116-actual-text.json": "5a8cb6d9a2bb1663f363af4a279b9e8640c5b7e2b9274b466c855795a4bcd07f",
+    "evidence/direct-result-116-actual-text.json": "c69fe1c22af7f47815439d1ab6ef4b434d4cb11de6526ea6df6d86878b1baae5",
+    "evidence/direct-review-cancel-actual-text.json": "876deb9cbf8d95759711735fdad293779c61555a45885042fa9ccb1668d2118a",
+    "evidence/scene-facts-a-direct-normal.json": "4def02ca92afb642e0836305bac923ef6113db42cb6a6dbd3582d9bb25a14ab6",
+    "cold-evidence/cold-direct-finished.sg11": "049c840cb83c5ca543c0180485ed2c562048cdadd361ce4938728fb593b62bfd",
+    "cold-evidence/direct-result-163.png": "d2655ab2dcc746e9a434e98f6d5cb25cb63dac3b81951c342d9869b5552c7230",
+    "cold-evidence/direct-technique-cold.json": "7a06b577e0b13cee71731c9b6f2555b31ff7a781f380d648229624af3af72956",
+    "cold-evidence/scene-facts-a-direct-cold.json": "8ca3a06ba1620643fe301de4750816922844ae65afa58174a0fa9145bc54a578",
+    "cold-evidence/progress.txt": "746b232cf6f747621317cb388cba46ef33ae3321321e5409c8b4508817e304fb",
+    "cold-evidence/direct-review-163.png": "2dd77a8a07ca0c86ab5b9c5cd59a717149145c89f09195b80b6bbb8bd8ffd44b",
+    "cold-evidence/diagnosis.txt": "7e58299543ea85a90fdaac7e4cfaac72b66ab171714172fb728a669f303e1506",
+    "cold-evidence/direct-review-163-actual-text.json": "d8023a396fd3a9ccc89f53c04ff7ab98926b18b90d47017970fd9adf110c8730",
+    "cold-evidence/direct-result-163-actual-text.json": "9da7704d2d2ce38653a838ac6fa86530c5a0b33a3baa637f182d2b6d88a24fda",
+    "cold-evidence/a-presentation-a-direct-cold.txt": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223"
+  },
+  "ARM": false,
+  "wholeGoalComplete": false
+}
