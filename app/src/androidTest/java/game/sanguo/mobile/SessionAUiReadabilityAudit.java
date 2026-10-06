@@ -65,6 +65,8 @@ final class SessionAUiReadabilityAudit {
     }
 
     private static Integer solidBackground(View view) {
+        for (View current = view; current != null; current = current.getParent() instanceof View ? (View) current.getParent() : null)
+            if (current.getAlpha() != 1f) return null;
         for (View current = view; current != null;) {
             // An alpha layer requires composition; do not report an uncomposited contrast.
             if (current.getAlpha() != 1f) return null;

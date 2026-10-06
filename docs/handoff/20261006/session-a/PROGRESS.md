@@ -70,3 +70,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 补全正常Android可读性验收工具：新增已登记A SessionAUiReadabilityAudit，A正常命令截图旁记录实际focused/shown TextView、enabled/selected/foregroundSpan/alpha/可见范围及仅明确纯色背景的contrast；渐变/图像/透明背景与Canvas地图标注不伪装为像素证明。只读当前真实widgets，无构造World/snapshot、无修改B16页面/规则。A普通截图hook接入，待独立编译/安装新测试；48继续冻结原376/d472，不替换其live APK。
 
 39bd18c6实际directHUD+当前文字状态测试已独立构建并冻结，testSHA1c67ff3425eeda4bca67046d80cea60951fda07600e53b7c84b26a3c59db9434，尚未安装；49下一步用它配确切已安装376，不覆盖当前48。补全全16正常媒体caller工具mediaAll16：以每源最新实际保存的原身份集合验证正常列表实际membership，再逐人正常列表→详情、原完整Bitmap/currentYear/source-recordSHA/cache≤16MiB与每次全Save/RNG/token纯；每32人增量实测回执、有限实际截图和内存采样。现仅源码工具，未编译/实装，不作为10720全部正常caller通过或全屏/跨年龄/voice声明；可分来源执行，长helper外层期限4小时，单控件120秒不变。
+
+1146全normalCaller测试Gradle构建成功；后继只读工具减少非产品测试噪声：每source仅解一次saved原身份map供全部caller精确比较，避免每个Bitmap比较重解670条资料；仍每次完整Save/RNG/Token纯检查。可读性纯色contrast在任意祖先alpha非1时记未知而非未经合成的数值。没有改生产资源/规则/显示，后继测试需新构建/实装；48冻结376/d472仍live。
