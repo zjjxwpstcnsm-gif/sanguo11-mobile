@@ -179,7 +179,8 @@
     "docs/handoff/20261006/session-a/AUDIO_CAPTURE_PERMISSION_FAILURE42.json",
     "docs/handoff/20261006/session-a/AUDIO_CAPTURE_TEST_APK_GUARD43.json",
     "docs/handoff/20261006/session-a/MUSIC_SUBMISSION_ACCEPTANCE44.json",
-    "docs/handoff/20261006/session-a/SEARCH_RUNNER_MANIFEST_FAILURE45.json"
+    "docs/handoff/20261006/session-a/SEARCH_RUNNER_MANIFEST_FAILURE45.json",
+    "app/src/androidTest/AndroidManifest.xml"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
