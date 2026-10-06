@@ -160,14 +160,18 @@ def main():
                 if installed_sha != digest(apk): raise ValueError('Installed APK SHA differs')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
-            r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput']) and 'FAIL' not in r['testOutput']
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=3600)
+            r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
-            run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id,str(out/'evidence'))
+            relative='session-b/fieldworks' if a.runner=='SessionBFieldworksInstrumentation' else folder+'/'+run_id
+            run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+relative,str(out/'evidence'))
             if a.fresh_process_reopen:
-                if a.runner!='SessionAMapRepairInstrumentation' or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
+                if a.runner not in ['SessionAMapRepairInstrumentation','SessionBFieldworksInstrumentation'] or not r['passed']:raise ValueError('Completed normal source/save workflow required before cold reopen')
                 normal_pass=r['passed'];r['normalPassed']=normal_pass;r['passed']=False;r['stage']='cold-process-running';report_path.write_text(json.dumps(r,indent=2))
                 expected=run('shell','sha256sum','/data/data/'+PACKAGE+'/files/auto.sg11').decode().split()[0]
+                if a.runner=='SessionBFieldworksInstrumentation':
+                    expected_build=run('shell','sha256sum','/sdcard/Android/data/'+PACKAGE+'/files/session-b/fieldworks/actual-build.sg11').decode().split()[0]
+                    if expected_build!=expected:raise ValueError('B actual build and normal autosave differ')
                 # Android ends the target when instrumentation finishes. Use
                 # its actual previously recorded frame-submission PID, not pidof
                 # after process death. Preserve first-phase evidence above.
@@ -179,15 +183,16 @@ def main():
                 report_path.write_text(json.dumps(r,indent=2))
                 run('shell','am','force-stop',PACKAGE)
                 with (out/'cold-instrumentation.txt').open('wb') as f:
-                    run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
+                    run('shell','am','instrument','-w','-e','run',run_id+'_cold','-e','begin','0','-e','end','0','-e','expectedStartupSha',expected,'-e','mode','cold',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=900)
                 cold=(out/'cold-instrumentation.txt').read_text()
                 after_log=(out/'logcat.txt').read_text(errors='replace')[cold_log_offset:]
                 new_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',after_log)
                 if not new_pids:raise ValueError('No actual second-process PID evidence')
                 new_pid=new_pids[-1]
-                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':'SESSION_A_MAP PASS' in cold and 'FAIL' not in cold and old_pid!=new_pid}
+                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else 'PASS SESSION B FIELDWORKS COLD' in cold) and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
-                run('pull','/sdcard/Android/data/'+PACKAGE+'/files/session-a-map/'+run_id+'_cold',str(out/'cold-evidence'))
+                cold_relative='session-b/fieldworks-cold' if a.runner=='SessionBFieldworksInstrumentation' else 'session-a-map/'+run_id+'_cold'
+                run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+cold_relative,str(out/'cold-evidence'))
 
         finally:
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
