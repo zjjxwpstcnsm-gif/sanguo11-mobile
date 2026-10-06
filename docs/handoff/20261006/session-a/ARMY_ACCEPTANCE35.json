@@ -49,5 +49,53 @@
   "original384NewPackageAccepted": false,
   "firePauseNewPackageAccepted": false,
   "ARM": false,
-  "goalComplete": false
+  "goalComplete": false,
+  "normalTurns": [
+    {
+      "label": "transfer-0",
+      "elapsedMs": 6367,
+      "background": false
+    },
+    {
+      "label": "transfer-1",
+      "elapsedMs": 5898,
+      "background": false
+    },
+    {
+      "label": "transfer-2",
+      "elapsedMs": 5496,
+      "background": false
+    },
+    {
+      "label": "transfer-3",
+      "elapsedMs": 5393,
+      "background": false
+    },
+    {
+      "label": "transfer-4",
+      "elapsedMs": 6398,
+      "background": false
+    },
+    {
+      "label": "after-transfer-save",
+      "elapsedMs": 7228,
+      "background": false
+    },
+    {
+      "label": "approach-0",
+      "elapsedMs": 15368,
+      "background": false
+    },
+    {
+      "label": "approach-1",
+      "elapsedMs": 17061,
+      "background": false
+    },
+    {
+      "label": "after-capture-save",
+      "elapsedMs": 8753,
+      "background": false
+    }
+  ],
+  "scene14PerformanceClosed": false
 }

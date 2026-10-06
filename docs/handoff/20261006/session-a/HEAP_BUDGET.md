@@ -23,3 +23,10 @@
 Cached scene package170cdd76/cbe648… newly installed all-source20 completes2729 normal checks across16 real sources plus79 true cold checks. Runtime512MiB,413 normal Java samples peak399716976B (381.20MiB), native allocated independent peak282964840B, main totalPSS independent peak617424KiB. GPU graphicsPSS reports0 on this emulator driver: unavailable, not zero. Peaks are independent, not summed. New cached API package normal384MiB regression still pending (old6ea Source7/8 ordinary result remains separate). Complete9/3797 original SHA restored. Source13 binding packagec10603d3/6ed8f2… is next independently installed fire21 and cannot inherit these all16 results.
 
 Latest combined8979dae2/d72b47… installed Fire25 repeats full normal/cold Source14 original fire lifecycle after completed Gov integration and cap32MiB.153 source-child smaps samples, max one observed, peak52410KiB (~51.18MiB) vs prior independent24 peak234524KiB (~229.03MiB). Exact50/71 source-record/time proof isolates translator-cap semantic invariance; whole-device/PSS peaks are not synchronized or GPU numbers. Full9/3797 user SHA restored; native cap did not replace the CPU-array fix or ordinary384 regression. Ordinary same-source APK6f987fd… independently built, not yet installed/accepted.
+
+
+## 2026-10-07 当前结论（历史批次状态保留）
+
+最新可复现OOM26原栈为网格数组分配，不以largeHeap掩盖：c6315ba6保持展开三角数据逐位相同，跨度33格线数组47410688→23430704B、跨度47为67930368→33527440B。4e312b89普通堆APK5df034d1独立实装28全16正常流程2729+不同PID冷79通过；Java峰值330279456B约314.98MiB/384MiB。完整9/3797SHA恢复。大堆a7d4b711亦独立实装正常攻击/火/建设/舌战，证据互不借用。
+
+最新军团规则组合e078fb2f/7415f48c已默认大堆实装35双势力运输/占港/保存读取/新PID冷恢复通过；36真实火暂停及生命周期正在运行。新组合全16与普通384尚待，旧组合28成绩不等于新包通过。无ARM真机，仍不能从整机8/12/16GB推算Java实际上限；交付保留默认大堆和正常堆回归开关，实际设备日志为准。

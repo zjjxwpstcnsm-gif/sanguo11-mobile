@@ -1,0 +1,36 @@
+{
+  "passed": false,
+  "scope": "Actual Source14 player fire and original13 displayed passed; subsequent KEYCODE_HOME test did not establish real system Home. Screenshot still target Activity and no lifecycle START of launcher. Visual clock continued. Not established production pause bug; replace test navigation with real UiAutomation global Home and explicit Activity/map/Filament/focus assertions",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e078fb2f-army-combination/app-debug.apk": "7415f48c03f4808e381de70cb646331bdac3dea177e347f5dc77071bb1285c66",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-6d8e4be5-army-scroll-test/app-debug-androidTest.apk": "14b498178cef3b4a0ac827774021d15246243a0851ff41e918fff0cc7aebedf6"
+  },
+  "failure": "FAIL SESSION A FIRE java.lang.AssertionError: java.lang.AssertionError: real Home stops existing native fire visual clock\n\tat game.sanguo.mobile.SessionBFieldworksInstrumentation.invoke(SessionBFieldworksInstrumentation.java:24)\n\tat game.sanguo.mobile.SessionBFieldworksInstrumentation.check(SessionBFieldworksInstrumentation.java:33)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.pausedFire(SessionAFireFlowInstrumentation.java:22)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.onStart(SessionAFireFlowInstrumentation.java:73)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\nCaused by: java.lang.AssertionError: real Home stops existing native fire visual clock\n\tat game.sanguo.mobile.UiUxInstrumentation.check(UiUxInstrumentation.java:850)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\t... 5 more\n\n",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 3,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "systemPreferenceBefore": "null",
+  "systemPreferenceRestored": true,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-pause-army-36",
+  "evidenceSha256": {
+    "session.json": "b63b6ef253ea293cf26443f4e1648920b12e668919616ba6c3b6d15513e1e520",
+    "instrumentation.txt": "07085e6cee58e5dfe62ee34c0065c6fd23044069212fd22a8bcda6273da7af5f",
+    "evidence/failed.png": "17a34ef35cbb5a16468bc30fc9331d9d4120b3f1dd143408d7def58399e6f92c",
+    "evidence/01-player-fire.png": "ebd48bd31a97b999fecc09157f9bad32015421841b2d881ac95f0ab6b3fc2e2c",
+    "evidence/progress.txt": "d42b25b91fc2c61f761ab8dd85d9f0a715c0374b03b02a4afe5309b535c00fd4"
+  },
+  "wholeLifecycleAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}
