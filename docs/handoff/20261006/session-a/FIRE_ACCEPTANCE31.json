@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "sourceCommit": "4e312b89c7a5b97968cdf44a7b15c8049819641c",
+  "apkSha256": "a7d4b7113d50d89edbc668178cc7dac07c935540264e0eb480d0d3c469c43520",
+  "testSha256": "69dc95fd6fec02be6eee45753a5e21066a9048b9b28a9df2ef224f0ad4beef29",
+  "scope": "same actual defaultlarge package, Source14 normal2formations/cancel/playerfire/low-quality/extinguish/reignite/actualwholeturnexpiry/burningfullsave-read and distinct cold auto/manual; original13/sourceStateToken checked; no world/snapshot injection",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "turns": [
+    {
+      "label": "reset-before-reignite",
+      "elapsedMs": 45880,
+      "background": false
+    },
+    {
+      "label": "real-fire-expiry-0",
+      "elapsedMs": 37299,
+      "background": false
+    },
+    {
+      "label": "real-fire-expiry-1",
+      "elapsedMs": 36328,
+      "background": false
+    }
+  ],
+  "coldProcess": {
+    "beforePid": "23456",
+    "afterPid": "8262",
+    "differentPid": true,
+    "expectedStartupSaveSha256": "c1952f35bc6bdcad638c291b1f751d6ba8fe80acdce8426246cd2b9c80264705",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "nativeChildrenIndependent": {
+    "samples": 189,
+    "maxChildren": 1,
+    "peakPerChildPssKiB": 55211,
+    "notJavaNativeAllocatorOrGpuPeak": true
+  },
+  "pauseHomeReducedMotionDedicatedAccepted": false,
+  "rapidSwitchesChainsFacilitiesAllStatesAccepted": false,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-large-31",
+  "evidenceSha256": {
+    "session.json": "c495f630f530498548ef9a49a321f8d94c6cb915c48d7a3cc1a77b6599142361",
+    "instrumentation.txt": "af471d9d7c4f228afb0721756afbb4c9ebbcccf46d536d1e4cf43226ce4f06a8",
+    "cold-instrumentation.txt": "94c43d7ea0d00fd69b53a4188c7ec434a7e2f2a835013b44e1b4739b6a8cd24d",
+    "logcat.txt": "9b74762745911cfcdd46b84d3af9cc933de75c57de8f119a57c776fad38a7342",
+    "evidence/actual-build.sg11": "c1952f35bc6bdcad638c291b1f751d6ba8fe80acdce8426246cd2b9c80264705",
+    "evidence/burning-save.sg11": "c1952f35bc6bdcad638c291b1f751d6ba8fe80acdce8426246cd2b9c80264705",
+    "evidence/diagnosis.txt": "41df21c4887948cd3d98326eb5a297793c1a3c9b7648ec56d8ac6de47d378815"
+  },
+  "performanceGoalComplete": false,
+  "ARM": false,
+  "overallGoalComplete": false
+}
