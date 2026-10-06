@@ -1,7 +1,7 @@
 {
   "passed": true,
   "sdk": 35,
-  "javaSources": 354,
+  "javaSources": 355,
   "sourceSha256": {
     "core/src/main/java/game/sanguo/core/AbilityResearch.java": "2f9a8cd87b71e1e0b6c0a415136a998eea2ab482fba397b242dc9a4abdd2ad9b",
     "core/src/main/java/game/sanguo/core/AbilitySave.java": "b89b0b9e2e837a2e591b492201eb56b40fe59f5074607974da77545bea36feab",
@@ -49,7 +49,7 @@
     "core/src/main/java/game/sanguo/core/Fieldworks.java": "27afb6d8a0efe50012e21bdadbcfafdf74af6a17183b2f1003b333a68378a93a",
     "core/src/main/java/game/sanguo/core/FieldworksSave.java": "7ce0c412b69ff190747994a241c534b7e9bd810a9098e2a008d242f5d2322811",
     "core/src/main/java/game/sanguo/core/Governance.java": "0852b0d3b255584c39dbbf5b880c4fd87b1489bfdbff2cd3b267aef34e64e5b0",
-    "core/src/main/java/game/sanguo/core/Government.java": "c3acda34be7ab74f8edee7ebddc261f590ad4e2411324b9450e2fb20f0057d67",
+    "core/src/main/java/game/sanguo/core/Government.java": "213141e1e65d8eb3aa010c56fe7f92e0032334c67d48c881d8a3824c66320f63",
     "core/src/main/java/game/sanguo/core/GovernmentSave.java": "fa59e9bd7106493129862c2ea1006c3e3d43d309b341660333efefbe852d5118",
     "core/src/main/java/game/sanguo/core/Hex.java": "531fefbdc02489fe956f7c596f1b6e77d3078651b07f65244d78fe3ad5a56c83",
     "core/src/main/java/game/sanguo/core/Lifecycle.java": "3fc1ffac8df3e6ec28c3982977760114b9b29f78f324db393b9e49934ae0d2b9",
@@ -72,6 +72,7 @@
     "core/src/main/java/game/sanguo/core/OfficerTemplateCodec.java": "ce4716c2e3cba8ab498f6d90c8e2cdf5c094ea155c6cc9e084d5e412c89a3143",
     "core/src/main/java/game/sanguo/core/PcCityActionCosts.java": "8097ee8cd444f56e56b739ccfc59fe3e1f1f007b3c1c0250a08766bde581eeff",
     "core/src/main/java/game/sanguo/core/PcCityCapacities.java": "de9d5098139da6b4558768f0d152d62f3e5684a43df62e46a4623362e1af83f5",
+    "core/src/main/java/game/sanguo/core/PcCommandCapacityPolicy.java": "be740e3484a3e3f55478e7467bd660977b82bdbe28325241a41e00207326b082",
     "core/src/main/java/game/sanguo/core/PcContestProfiles.java": "8cd03daa743e7cedc7de6de2899b8074a87520df338c6c309aa8861f005c3958",
     "core/src/main/java/game/sanguo/core/PcDamCatalog.java": "5b37ebacbb066cc83c3045c480885abf70901dc0cea904e8901553fe37b241ea",
     "core/src/main/java/game/sanguo/core/PcDebateAi.java": "2b247c6b6c3799c5e73d1adfeb2c23206994cd2f71c88f76c7619ca0ebe19ba7",
@@ -102,7 +103,7 @@
     "core/src/main/java/game/sanguo/core/PcProduction.java": "95f8bb74304e8a4fde736fc6e877b4cdf036bf7cc34826cc403a7c72011a9906",
     "core/src/main/java/game/sanguo/core/PcScenarioCatalog.java": "d9653cf73abb6d970c3a9cdd1bac243fe6c8e1ae94af99832d57c57ca741dfd1",
     "core/src/main/java/game/sanguo/core/PcScenarioIdentity.java": "020b60f4b7f07b2e0c47adb05333a3e7b16a08b7c7c2fbd6c09fd95a43fad026",
-    "core/src/main/java/game/sanguo/core/PcScenarioOpening.java": "54c91f0d44cfea24f43f6c8f3a2a37e043887573d7500c7491782e164506e90e",
+    "core/src/main/java/game/sanguo/core/PcScenarioOpening.java": "ebfbe995f5daaaae3830acb7033d28b6402d3fd9f83ab2b265cd239ca9f41f63",
     "core/src/main/java/game/sanguo/core/PcScenarioPeople.java": "60bb8e880c5cd80180368444eda033697e81f33002fd61775e45bd281b8a1cc3",
     "core/src/main/java/game/sanguo/core/PcTacticCosts.java": "3a6bf3b9e9ea61728ae9f28b58aee2ddf02e8eabb5f5b98114145c65a5b9660a",
     "core/src/main/java/game/sanguo/core/PcTechniquePoints.java": "fe1655a78a9d1c1381eaaac4a506cf70a15f50ed5ca98ea75c830cc99e2eea38",
@@ -114,8 +115,8 @@
     "core/src/main/java/game/sanguo/core/RuleFailure.java": "14201890d1a9b783b65443a283cfb938197e3663e4ab40fe5ffb759d0c5eb4af",
     "core/src/main/java/game/sanguo/core/RulerTitles.java": "029bc1baa2494434c16ac9693fdb805812c006b57724444e3f62ef658a6f5d38",
     "core/src/main/java/game/sanguo/core/RulesSave.java": "a165815b9c90925ec77ac4345db59252baa2e96cf5820dae83c74d013031533f",
-    "core/src/main/java/game/sanguo/core/SaveCodec.java": "8546764b2d351dd6a1a7b67306e91b9fe3f6300831f0e03dfcdbefe99959876d",
-    "core/src/main/java/game/sanguo/core/SaveExtensions.java": "2e808294f1f7b28bdec73d78dd90db62fcba084e2d8626e6edf337922e485eab",
+    "core/src/main/java/game/sanguo/core/SaveCodec.java": "20cadb5d9eb0101871d248853fda9fbcfbaeeefd970225550fd55e04c388df04",
+    "core/src/main/java/game/sanguo/core/SaveExtensions.java": "136f7648c400738f70e387d1f756eee1febc4e3c0f436b401c957998a517859f",
     "core/src/main/java/game/sanguo/core/ScenarioCatalog.java": "495d05c25c8d874ba26ca7ea88145592e01687b436e3d571cdeb6acf5efcd443",
     "core/src/main/java/game/sanguo/core/ScenarioData.java": "fec58ac219be23d4d423c331896853266e5fef9b741ae013456a38d98f4ea179",
     "core/src/main/java/game/sanguo/core/SiegeRules.java": "c43673291a116995151e346796fbc13040690774dabab40ecf8dfe0cd864d3a1",
@@ -402,5 +403,5 @@
   ],
   "log": "/Users/paopao/.codex/worktrees/map-ui-media-integration/sanguo11-mobile/out/session-a/android-java/javac.log",
   "output": "Note: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\n",
-  "sourceRevision": "a4ad5221571dcdb3a154610bde00a3e828e290cd"
+  "sourceRevision": "3fa965308134ad68b6752881dcb213dcb8b0a608"
 }
