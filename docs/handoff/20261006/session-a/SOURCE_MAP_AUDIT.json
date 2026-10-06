@@ -2066,9 +2066,78 @@
         "historicalLineIsCurrent": true,
         "unmatchedMeansHistoricalConditionOnly": false
       }
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "line": 771,
+      "condition": "if(playback!=null&&turnWork!=null)map.setWorld(turnWork.visual,null,-1);",
+      "context": [
+        "        if(world.unit(moving)==null)moving=-1;",
+        "        if(playback!=null&&turnWork!=null)map.setWorld(turnWork.visual,null,-1);",
+        "        else map.setWorld(world,selected,moving,legacyView.state,sceneFacts);",
+        "        if(!showPanel){/* Hidden details are not inflated or measured. */}"
+      ],
+      "finding": "Wholeturn playback supplies detached visual World with no explicit expected StateToken/SceneFacts. Source native fire acceptance through this exact animation path remains unproved; source labels use detached FireState. No fake token or new rule evaluation allowed.",
+      "sourceBindingAcceptance": "pending actual normal wholeturn intermediate source fire/StateToken/parent timeline proof; not treated as completed",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "86dfdda3c48ac7ddf2dd415a4c5c445f78d0c148",
+        "fileSha256": "fc2af38305250cda4e063b03eb2aa66e68d7d1274465277410d0e01b80c181c9",
+        "exactConditionLines": [
+          771
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      },
+      "semanticSourceGate": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "line": 425,
+      "condition": "else if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}",
+      "context": [
+        "        if(sceneState!=null)spatial.sceneIdentity(sceneState);",
+        "        else if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}",
+        "        if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){",
+        "            if(ground==null||!ground.matchesTerrain(world))ground=new MapSceneSnapshot.Ground(world,gridForce());"
+      ],
+      "finding": "Null visual snapshot state uses current session identity for scene ownership. This is not proof that an intermediate visual frame carries matching authoritative source facts; producer timeline contract pending.",
+      "sourceBindingAcceptance": "pending actual normal wholeturn intermediate source fire/StateToken/parent timeline proof; not treated as completed",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "86dfdda3c48ac7ddf2dd415a4c5c445f78d0c148",
+        "fileSha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+        "exactConditionLines": [
+          425
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      },
+      "semanticSourceGate": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "line": 617,
+      "condition": "else if(acceptedCellFires!=null&&(sceneToken==null||!acceptedCellFires.state.equals(sceneToken)))acceptedCellFires=null;",
+      "context": [
+        "        if(next.authoritativeSceneFacts)acceptedCellFires=PcCellFireSet.from(next,sceneToken);",
+        "        else if(acceptedCellFires!=null&&(sceneToken==null||!acceptedCellFires.state.equals(sceneToken)))acceptedCellFires=null;",
+        "        snapshot=next;terrainVisibilityDirty=true;",
+        "        if(pendingFit)fit();"
+      ],
+      "finding": "Non-authoritative visual frame retains accepted fire only if exact state remains equal; otherwise clears it. This prevents stale-rule media, but fullturn intermediate original fire continuity is not closed by final state normal53.",
+      "sourceBindingAcceptance": "pending actual normal wholeturn intermediate source fire/StateToken/parent timeline proof; not treated as completed",
+      "currentReadOnlySourceAudit": {
+        "sourceRevision": "86dfdda3c48ac7ddf2dd415a4c5c445f78d0c148",
+        "fileSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+        "exactConditionLines": [
+          617
+        ],
+        "historicalLineIsCurrent": true,
+        "unmatchedMeansHistoricalConditionOnly": false
+      },
+      "semanticSourceGate": true
     }
   ],
-  "rowCount": 94,
+  "rowCount": 97,
   "knownSuppression": "Legacy animateEffects remains bypassed for PC map; original cell fires now separately routed through animatePcMapEffects/PcCellFireSet and source13 native worker. Actual39 normal/Home/reduced-motion/low/expiry/read/cold passed. Generic legacy spell fire/scaffolding/critical overlays remain intentionally suppressed; missing original chains/facilities/callers still open.",
   "mediaContractStatus": "BGM/voice/event58 no normal fact producer verified",
   "normalAndroidValidated": false,
@@ -2083,7 +2152,8 @@
     ],
     "sourceFireEligibilityClass": "PcCellFireSet",
     "historicalUnmatchedRows": 2,
-    "semanticCompletenessProven": false
+    "semanticCompletenessProven": false,
+    "manuallyAddedTimelineGuards": 3
   },
   "installedProofBoundaries": {
     "originalCellFire": "b819 actual53 original13 normal/cold/realHome/reducedmotion/LOW/extinguish/expiry/save/load passed and all9/3797+systempref restored; fullheight overrides, manycells, chains and facilityFX unproven",

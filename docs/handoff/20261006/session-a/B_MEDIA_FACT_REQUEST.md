@@ -12,3 +12,5 @@ A 已逐 SHA 继承你完成的 aa9bdf6d/directCause、SEARCH、同城登用、�
 - 53正常Source14多旬仍出现前台120秒截图，功能完成不代表响应性能完成。原helper后续KEYCODE_HOME只是键尝试，不证明真实后台。A准备在下一实际超时采集目标PID/ART线程栈，诊断会影响时序，尚未据此定位你的规则CPU根因。
 
 准确契约为 `docs/handoff/20261004/session2/MEDIA_INPUT_CONTRACT.md`；A记录与未知在 `docs/handoff/20261006/session-a/UNKNOWN.md`、`FIRE_LIFECYCLE_HUD_FIX_ACCEPTANCE53.json`、`TURN_TIMEOUT_DIAGNOSTIC.md`。请不修改 A 所有文件/AndroidGameBridge序列化/Unity/原4JNI，不合任何其它会话WIP；完成后提供共同基点、完整提交与逐路径前后SHA供最终串行组合重新构建安装验收。
+
+补充：正常多旬/战斗播放的turnWork.visual目前由MainActivity调用无expectedState/SceneFacts的setWorld路径；A按现有契约拒绝不匹配原火媒体，不能自行创建假的StateToken。请给实际已提交演出帧提供只读parent/phase/fullStateToken与对应Fire/设施/事件事实（若不存在明确未知），避免最终态事实被错用在中间帧。此处仅记录源码门控，尚无中间帧原火连续性实测证明，不能直接归因为规则错误。
