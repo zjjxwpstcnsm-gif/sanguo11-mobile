@@ -1,3 +1,11 @@
+# 当前实际安装补充：默认大堆48运行中
+
+默认large完整组合 `out/session-a/apk-48f2b873-cause-default-large/app-debug.apk` 已实际安装于5554，313471940B、SHA376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8；测试d472ff07a09ac90ab8efb701f672f28aa1a71a611be69ab38301f140b012fcc6，设备逐SHA相同。运行时normal384/large512、Java实际536870912B、largeHeap=true，物理RAM2089222144B。所有16来源全部可选势力正常预览矩阵48正在运行，正常/冷/最终恢复和长期内存预算还未判定；原9/3797全备份守卫受A5554锁保护，下一轮续读53424/66620，不重启覆盖。
+
+47上一普通937/053包同城direct正常1494+冷1400、新PID10356→21633、SaveSHAdb1e8508、全9/3797已精确恢复；新真实项目原因/city/actor/parent/token与渲染纯性通过，原voice/可见技巧滚动终值未借事实成绩。46 SEARCH正常1763+冷1407及全恢复已通过。当前UNKNOWN仍保留完整原媒体、全部命令/连锁设施效果/ARM与最终main串行组合未完成。
+
+---
+
 # 最新检查点补充（2026-10-07，46仍运行）
 
 当前实际安装普通384组合为 `out/session-a/apk-e6d92908-cause-factions-normal384/app-debug.apk`，SHA937ae8a6af05b53feee5c8cdd88dfb49cdf1c515fd29fa82c6aee4e63dcc7358；测试053d7458f7b6537e48f74eccf2ba4de0b7cabbca27f47ea533746e2fcfdefa34。实际设备SHA/pm instrumentation注册守卫均通过，46正常SEARCH自然胜负已出现，独立冷启动与完整文件恢复尚待，不判本轮通过。45仅测试manifest失败且游戏未启动，原失败与全恢复证据保留。

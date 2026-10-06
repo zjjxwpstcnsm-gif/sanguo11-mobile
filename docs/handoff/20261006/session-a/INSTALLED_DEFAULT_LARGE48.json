@@ -1,0 +1,22 @@
+{
+  "installed": true,
+  "sourceCommit": "48f2b8737225e5a05e75cc889c5c6a7424020674",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-48f2b873-cause-default-large/app-debug.apk": "376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-48f2b873-cause-default-large/app-debug-androidTest.apk": "d472ff07a09ac90ab8efb701f672f28aa1a71a611be69ab38301f140b012fcc6"
+  },
+  "actualDeviceReadback": {
+    "game.sanguo.mobile.dev": "376f03a1cc34b90465818a8ad6a8dd11253d8410b8122b2d93dffd0678510bf8",
+    "game.sanguo.mobile.dev.test": "d472ff07a09ac90ab8efb701f672f28aa1a71a611be69ab38301f140b012fcc6"
+  },
+  "actualRunnerRegistered": true,
+  "heapBudgetLog": "10-07 02:31:00.812 24639 24639 I SanguoMemory: heapBudget normalMiB=384 largeMiB=512 actualBytes=536870912 deviceRamBytes=2089222144 largeHeap=true",
+  "actualJavaHeapLimitBytes": 536870912,
+  "actualPhysicalRamBytes": 2089222144,
+  "scope": "Actual default-large latest completed B cause/search/direct + A immutable uploader/fire/media build; 5554 x86_64 only. Normal factions16 running, no matrix/budget/cold/restoration acceptance yet.",
+  "driverHandle": 53424,
+  "nativeObserverHandle": 66620,
+  "normalEveryFileGuardBeforeInstall": true,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/all-factions-default-large-48",
+  "wholeGoalComplete": false
+}

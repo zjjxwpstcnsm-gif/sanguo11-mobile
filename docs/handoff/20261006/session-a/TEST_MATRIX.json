@@ -27,9 +27,9 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST NORMAL384 INSTALLED46 PASS; DEFAULT LARGE BUILT",
-      "evidence": "937/053 actualinstalled deviceSHA/pm components; SEARCH normal1763+cold1407; default376f03a1/testd472ff07 independent build168/6JNI SHA",
-      "next": "actual default install/allforces/fire/longcommands"
+      "status": "LATEST DEFAULT LARGE ACTUALLY INSTALLED48 MATRIX RUNNING",
+      "evidence": "376f03a1/d472ff07 actualdevice APK SHA/pm components exact; Runtime512MiB/largeHeaptrue;168/original4/new2JNI guard",
+      "next": "48 allforces/cold/fullrestore; new HUD test pending"
     },
     {
       "item": "fire-state-ui",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "46 EXACT RESTORED;47 GUARDED LIVE",
-      "evidence": "46 all9internal/3797external regularfiles SHA restored after newPID6148→5362;47 fullcurrentbackupverified/actualAPK SHA",
-      "next": "47 normal/cold/finalrestore and every later installation"
+      "status": "46/47 EXACT RESTORED;48 GUARDED LIVE",
+      "evidence": "46/47 full9internal/3797external finalSHA same;48 beforeinstall allfiles currentSHA+independent completearchives",
+      "next": "48 normal/cold/finalrestore and later installations"
     },
     {
       "item": "arm",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "COMPLETE FROZEN B SEARCH/DIRECT/CAUSE INTEGRATED; A46 SEARCH PASS",
-      "evidence": "Exact B completed objects only, no WIP; latest937 actualSEARCH normal/cold/token/save pure and allfiles restored; latestdefault376 built notinstalled",
-      "next": "47 directCause/current allforces/fire/military/multipleturns/16pages/ARM, final serial newcombo"
+      "status": "FROZEN B EXACT INTEGRATED;46 SEARCH/47 DIRECT PASS;DEFAULT48 LIVE",
+      "evidence": "No WIP;937 ordinary SEARCH and direct normal/cold/token/save pure/restored; latest376 default actual512 runtime",
+      "next": "48 allforce/fullmatrix, latestfire/military/16pages/ARM, actualHUD49 and finalserialcombo"
     },
     {
       "item": "search-normal",
@@ -93,5 +93,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "46 complete,47 direct live,default48 frozen build only"
+  "updatedCheckpoint": "46/47 normal+cold+restore complete; default48 actually installed/factions16 running; next HUD observation not installed"
 }

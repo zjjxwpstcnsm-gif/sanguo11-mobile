@@ -62,3 +62,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 47正常与独立冷流程/原directCause事实均通过并9/3797全SHA恢复；实际结果截屏HUD仍是动画起点0，不能仅凭cause事实宣布可见滚动或原声完成。新增A direct工具10秒有界只读观察真实badge/rolls/queue/foreground/paused/parent，以实际显示12及一次roll和全Save/RNG/Token纯为验收，尚未编译实装，不预设产品缺陷或手动放行phase。48default全势力使用冻结原48f2测试scope，完整备份已完成。
 
 47正式回执：正常1494、冷1400 PASS检查；10356→21633，完整SaveSHAdb1e8508e780e1dfcb5a37c014a5b07ea0def595041bd36003014e9bb839d156，9/3797最终SHA已恢复。原同城direct菜单取消/成功失败/费用奖励/多旬存读与A真实事件原因/同token渲染有效，未夸称HUD即时0截图证明动画终值或原发言者声。
+
+48最新默认large376f03a1/testd472ff07已实际安装，两APK设备读回SHA精确、真实pm组件注册守卫通过。正常日志PID24639：normal384/large512、Runtime536870912B、设备物理2089222144B、largeHeap=true。完整9/3797当前SHA先核及独立完整archive已保留；全部16可选势力逐一真实预览/逐源取消重试/缩放/存读/真正Home/方向/冷矩阵正在运行，句柄53424/native66620，尚未判通过。49后续directHUD仅测试观察f086工具构建live46987，不能借47截图或事实当可见终值通过。
