@@ -1,0 +1,56 @@
+{
+  "scope": "Read only inheritance/original PC/frozenJNI guard during actual54; not runtime acceptance",
+  "guards": [
+    {
+      "guard": "SOURCE_GUARD.json",
+      "root": "/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile",
+      "entries": 10714,
+      "mismatches": [],
+      "head": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+      "expectedHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059"
+    },
+    {
+      "guard": "ORIGINAL_GUARD.json",
+      "root": "/Users/paopao/workspace/sanguo11-mobile",
+      "entries": 4301,
+      "mismatches": [],
+      "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+      "expectedHead": "52315bf070e5d29acb8f509230c5228e47c8d6ef"
+    }
+  ],
+  "original4Jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "actualSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "match": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "actualSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "match": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "actualSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "match": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "actualSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "match": true
+    }
+  ],
+  "pcExeSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "pcExeExpected": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "primaryHead": "c18d3876977b9516783219e7878e1987632354e8",
+  "passed": true
+}

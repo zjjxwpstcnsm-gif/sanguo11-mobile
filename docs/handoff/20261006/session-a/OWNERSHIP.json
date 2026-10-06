@@ -197,7 +197,8 @@
     "docs/handoff/20261006/session-a/DIRECT_HUD_COMPLETION_ROOT51.json",
     "docs/handoff/20261006/session-a/DIRECT_HUD_ACCEPTANCE52.json",
     "docs/handoff/20261006/session-a/SOURCE_CHECKPOINT_EXPORT_8EE.json",
-    "docs/handoff/20261006/session-a/FIRE_LIFECYCLE_HUD_FIX_ACCEPTANCE53.json"
+    "docs/handoff/20261006/session-a/FIRE_LIFECYCLE_HUD_FIX_ACCEPTANCE53.json",
+    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT54.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
