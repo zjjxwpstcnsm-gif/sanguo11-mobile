@@ -1,0 +1,80 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "BParent": "5ce10e6b53bc84a65ba16b7e27304ae2ad1bb5c5",
+  "BSourceCompleted": "292d0c727cdd2cabe34994742a31e8c817363978",
+  "BDocCompleted": "aa9bdf6de39b521548b436aeedf81118f82e7ad0",
+  "sourceRows": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java",
+      "beforeSha256": "4fdbc835f4e73618093f13b97f3e431abedd46f6594879be4b8c15de190c2d8e",
+      "afterSha256": "ec204ebf0d6e7bf5dd6a2533fa04ef34c5de3610c61ce07d849fc21988883139",
+      "bytes": 18925,
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TechniquePointsJournal.java",
+      "beforeSha256": "0133b62352984e99969ad16d2b9786c07e5bf969cf462c6df9847e03a66806f9",
+      "afterSha256": "0c3078f36a29dbe5fe1ced36d4f30ce42e17358c77763322623b2bb345ed9ea0",
+      "bytes": 2326,
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentPolicy.java",
+      "beforeSha256": "d49a4025a8b4eba5564432d9735eac0956193e705db807ecf6d9fbd9acc0d156",
+      "afterSha256": "00ca17b58c2eb2f8916f7b234e7dca6098c28dd3156e457df2c15cc3d3685008",
+      "bytes": 8917,
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/PcDirectRecruitmentSessionTest.java",
+      "beforeSha256": "31093f00b7aa973ee3f93e5ce68e0f7c977bcf86dc0a5b4dec17db3de99ca421",
+      "afterSha256": "af2876673ef9e83f5993178204a9d77884627716f5fce0d7eef86cd186f6c93b",
+      "bytes": 3510,
+      "primaryBeforeExact": true
+    }
+  ],
+  "documentRows": [
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_BATCH.json",
+      "beforeSha256": null,
+      "afterSha256": "a275d7f35adfa386824c44f4c50ab8465cae229ed3ed1bd22bc7756d8a411213",
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "cb0d016cb743beec6c75be66097bf1e82662ab7ba6d8a3c3339b600b0a6f58c2",
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_DELTA.json",
+      "beforeSha256": null,
+      "afterSha256": "b96dd12b30f6d2e449021776e99cada8d775216f761968f5b90652459030272e",
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/DIRECT_EVENT_REPRODUCE.md",
+      "beforeSha256": null,
+      "afterSha256": "73915bfcef52a8d215f78184f86a995ff3be8a67e3f088e1dca4ccd138d9089d",
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": "15b293ea74e572fa5b65d7f2fd2e2403cdd051ef16f9a84051ec6e3990348695",
+      "afterSha256": "811d2f9819bf64e5da5e91162de2bafc4209dd9e9a54a49c34c12b1639d28d0e",
+      "primaryBeforeExact": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/direct-event-flow-40.tar.gz",
+      "beforeSha256": null,
+      "afterSha256": "5829f885d008affa21ebae0aa9779a31991f139f3d00a74e7fc6b1785e0c38db",
+      "primaryBeforeExact": true
+    }
+  ],
+  "stage": "exact4source6docs-before-after-verified, import pending",
+  "conflicts": [],
+  "WipMerged": false,
+  "live42Scope": "562/7c music capture excludes new cause increment, no package replacement",
+  "originalVoiceCallerProven": false,
+  "goalComplete": false
+}
