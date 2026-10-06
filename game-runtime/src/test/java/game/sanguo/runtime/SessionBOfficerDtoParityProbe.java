@@ -6,6 +6,7 @@ import java.io.*;import java.lang.reflect.*;import java.nio.file.*;import java.s
 public final class SessionBOfficerDtoParityProbe {
  static void write(DataOutputStream d,Object v)throws Exception{
   if(v==null){d.writeByte(0);return;}if(v instanceof String||v instanceof Number||v instanceof Boolean){d.writeByte(1);d.writeUTF(v.getClass().getName());byte[] b=v.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8);d.writeInt(b.length);d.write(b);return;}
+  if(v instanceof Map){d.writeByte(4);Map<?,?> map=(Map<?,?>)v;List<Object> keys=new ArrayList<>(map.keySet());keys.sort(Comparator.comparing(Object::toString));d.writeInt(keys.size());for(Object key:keys){write(d,key);write(d,map.get(key));}return;}
   if(v instanceof List){d.writeByte(2);d.writeInt(((List<?>)v).size());for(Object x:(List<?>)v)write(d,x);return;}
   d.writeByte(3);d.writeUTF(v.getClass().getName());Field[] fs=v.getClass().getFields();Arrays.sort(fs,Comparator.comparing(Field::getName));for(Field f:fs)if(!Modifier.isStatic(f.getModifiers())){d.writeUTF(f.getName());write(d,f.get(v));}d.writeUTF("");
  }

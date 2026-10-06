@@ -1,0 +1,11 @@
+// Build only completed parent core plus the one cache overlay; no governance WIP in this APK.
+gradle.beforeProject { project ->
+    if (project.path == ':core') {
+        project.plugins.withId('java-library') {
+            def stage = new File(project.rootDir, 'out/session-b/cache-core-stage')
+            if (!new File(stage, 'manifest.json').isFile()) throw new GradleException('Stage exact completed-parent core first')
+            project.sourceSets.main.java.setSrcDirs([new File(stage, 'java')])
+            project.sourceSets.main.resources.exclude('pc-governor-rosters/**')
+        }
+    }
+}

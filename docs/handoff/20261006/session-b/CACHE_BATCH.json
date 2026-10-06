@@ -1,0 +1,113 @@
+{
+  "status": "completed-bounded-cache-APK22-full-goal-incomplete",
+  "goalComplete": false,
+  "base": "969c518829351e84d4a1a0bba5275b8ee53fbd25",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "mainBase": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/cache-build-22/frozen/app-debug.apk",
+      "bytes": 312058305,
+      "sha256": "3618c14f33e763d4fce5a7dbc146a351244991f3f28bff806c43ae50e08c4d57"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/cache-build-22/frozen/app-debug-androidTest.apk",
+      "bytes": 2532286,
+      "sha256": "8d073651a27c9a042e1d03777c7a779a7fc2c6d39dd745a42819ea54088cc6ed"
+    }
+  ],
+  "compiledCore": {
+    "parent": "969c518829351e84d4a1a0bba5275b8ee53fbd25",
+    "javaPaths": 143,
+    "overlay": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+    "overlaySha256": "cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44",
+    "governanceWipCompiled": false,
+    "oldRoleOrdinalsRetained": true
+  },
+  "effectiveInputsUnchanged": 10945,
+  "frozenProductionAndStagedPaths": 6224,
+  "actual": {
+    "sourceIndex": 14,
+    "menuNewGame": true,
+    "deploymentGold": 1000,
+    "normalMapFundingAndMilitaryConstruction": true,
+    "completedFourTurnCamp": true,
+    "allWholeTurnsForeground": true,
+    "turnMillis": [
+      36575,
+      20807,
+      24026,
+      17603,
+      17090,
+      18736,
+      20049
+    ],
+    "manualSaveLoad": true,
+    "activityRecreation": true,
+    "trueNewProcessAutoAndManualLoad": true,
+    "completeWorldAndBothRng": true,
+    "checks": [
+      "immutable source cache15376",
+      "public officerDTO/map entries+wholeSave25 exact parent comparisons",
+      "own installed21 save+3 complete future turn fingerprints exact",
+      "GameSession1690",
+      "BridgeSession"
+    ]
+  },
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "additional": []
+    },
+    "external": {
+      "originalFiles": 772,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "additional": []
+    }
+  },
+  "originalDirtyStatusSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "ignored": true
+    }
+  ],
+  "evidence": {
+    "path": "docs/handoff/20261006/session-b/cache-flow-22.tar.gz",
+    "bytes": 6619296,
+    "sha256": "e285454aeff583041e684f62feefa32ff80382e903ed4d0436b44bb1e8e7f9a7",
+    "freshFiles": 32
+  },
+  "limits": [
+    "x86_64 emulator only; ARM unverified",
+    "governor/new scenario/controller/AP/activation/content/contests/full old31-39-custom matrix remain incomplete",
+    "source query host medians similar; observed Android full-turn latency improvement only",
+    "Unity U01 inherited map63/65 mismatch retained; no golden or bridge/JNI changes",
+    "do not merge own uncommitted governance WIP"
+  ]
+}

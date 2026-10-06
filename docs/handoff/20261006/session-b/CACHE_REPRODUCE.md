@@ -1,0 +1,14 @@
+# Exact cache-only APK22 reproduction
+
+Completed parent:969c518829351e84d4a1a0bba5275b8ee53fbd25. Exact compiled core is its143 Java paths plus only PcScenarioPeople.java overlay cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44. Governor WIP was excluded; pc-governor-rosters resources were excluded. A frozen dependency remains47326188 (see A_FROZEN.json and existing staging tool). Android x86_64 acceptance does not establish ARM performance or full goal completion.
+
+Use a fresh isolated checkout at the exact completed parent. Copy only the completed cache overlay, two cache probes, strengthened DTO fingerprint probe, three own cache/build/verification scripts and cache-core.init.gradle from this batch into that checkout. Keep HEAD at the parent so the staging guard remains explicit. Reuse the full audited source inheritance/fixed168/fourJNI and independent Gradle/out caches; never use or clean the old609-dirty checkout. Copying is a reproduction step, not merging another WIP. Run through run-session-b.sh:
+
+1. Stage the exact completed A frozen dependencies using the existing session_b_stage_frozen_dependencies.py workflow.
+2. Run python3 tools/content/session_b_stage_cache_core.py. It creates out/session-b/cache-core-stage and refuses an existing directory.
+3. Run python3 tools/content/session_b_freeze_cache_apk.py capture cache-build-22 (or a fresh label).
+4. Build ./gradlew -I docs/handoff/20261006/session-b/theme-dependencies.init.gradle -I docs/handoff/20261006/session-b/instrumentation.init.gradle -I docs/handoff/20261006/session-b/cache-core.init.gradle :app:assembleDebug :app:assembleDebugAndroidTest --console=plain.
+5. Run python3 tools/content/session_b_freeze_cache_apk.py freeze with the same label. Confirm the143 compiled-path manifest, unchanged inherited inputs and excluded WIP before installing.
+6. Verify5582 is free. Run session_b_verify_fieldworks_ui.py with --serial emulator-5582, the two frozen APK paths, frozen/source-guard.json and a fresh out/session-b output path. It backs up full user internal/external data before install, verifies installed SHA, runs ordinary menu/new/deploy/funding/build/multi-turn/fullsave/recreation/truecold, restores and reads all original SHA before releasing the lock. Do not treat an intermediate PASS as complete restoration.
+
+CACHE_BATCH.json records actual22 package SHA and timings. cache-flow-22.tar.gz contains only fresh test evidence/host fingerprints/build provenance; user backups are omitted. Exact rebuild package bytes may depend on signing/cache/package metadata; compare compiled source/resource/JNI inputs separately and freeze the new artifact before its own installation. This batch does not activate governor policy or certify source/controller/contest/old31-39-custom/Unity/ARM gaps.

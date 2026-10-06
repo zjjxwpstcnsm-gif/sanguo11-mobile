@@ -23,12 +23,51 @@ public final class PcScenarioPeople {
         }
         public int field(int key)throws IOException{Integer n=fields.get(key);if(n==null)throw new IOException("原人物字段缺失："+nativeId+"/"+key);return n;}
     }
+    private static final class ParsedPeople {
+        final byte[] raw;final List<Person> people;
+        ParsedPeople(byte[] raw,List<Person> people){this.raw=raw;this.people=people;}
+    }
+    private static final class PeopleKey {
+        final byte[] digest;
+        PeopleKey(byte[] raw)throws IOException{
+            try{digest=java.security.MessageDigest.getInstance("SHA-256").digest(raw);}
+            catch(java.security.NoSuchAlgorithmException e){throw new IOException(e);}
+        }
+        @Override public int hashCode(){return Arrays.hashCode(digest);}
+        @Override public boolean equals(Object other){return other instanceof PeopleKey&&Arrays.equals(digest,((PeopleKey)other).digest);}
+    }
+    private static final class PeopleCache {
+        final long revision;final ParsedPeople parsed;
+        PeopleCache(long revision,ParsedPeople parsed){this.revision=revision;this.parsed=parsed;}
+    }
+    // Neither cache value references its weak World key. Identical immutable source
+    // blobs may be reused across committed/save-decoded copies; current officer facts
+    // remain in each World. Exact raw equality protects the content-addressed lookup.
+    private static final Map<World,PeopleCache> PEOPLE_CACHE=Collections.synchronizedMap(new WeakHashMap<>());
+    private static final Map<PeopleKey,java.lang.ref.WeakReference<ParsedPeople>> PARSED_PEOPLE=
+        new LinkedHashMap<PeopleKey,java.lang.ref.WeakReference<ParsedPeople>>(16,.75f,true){
+            @Override protected boolean removeEldestEntry(Map.Entry<PeopleKey,java.lang.ref.WeakReference<ParsedPeople>> entry){return size()>16;}
+        };
     public static List<Person> saved(World w)throws IOException{
-        if(!w.pcSourceFrame)return Collections.emptyList();byte[] raw=w.extensions.get(NAMESPACE);if(raw==null)return Collections.emptyList();
-        DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));if(in.readInt()!=MAGIC)throw new IOException("原人物状态快照版本未知");
+        if(!w.pcSourceFrame)return Collections.emptyList();
+        long revision=w.extensions.revision(NAMESPACE);PeopleCache cached=PEOPLE_CACHE.get(w);
+        if(cached!=null&&cached.revision==revision)return cached.parsed.people;
+        byte[] raw=w.extensions.get(NAMESPACE);
+        if(raw==null){PEOPLE_CACHE.remove(w);return Collections.emptyList();}
+        PeopleKey key=new PeopleKey(raw);ParsedPeople parsed;
+        synchronized(PARSED_PEOPLE){
+            java.lang.ref.WeakReference<ParsedPeople> reference=PARSED_PEOPLE.get(key);parsed=reference==null?null:reference.get();
+            if(parsed==null||!Arrays.equals(parsed.raw,raw)){
+                parsed=new ParsedPeople(raw,readSaved(raw));PARSED_PEOPLE.put(key,new java.lang.ref.WeakReference<>(parsed));
+            }
+        }
+        PEOPLE_CACHE.put(w,new PeopleCache(revision,parsed));return parsed.people;
+    }
+    private static List<Person> readSaved(byte[] raw)throws IOException{
+        DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));if(in.readInt()!=MAGIC)throw new IOException("\u539f\u4eba\u7269\u72b6\u6001\u5feb\u7167\u7248\u672c\u672a\u77e5");
         int n=PcOfficerInfo.bounded(in.readInt(),0,1100);List<Person> result=new ArrayList<>();Set<Integer> nativeIds=new HashSet<>(),ids=new HashSet<>();
-        for(int i=0;i<n;i++){Person p=read(in);if(!nativeIds.add(p.nativeId)||p.officerId>=0&&!ids.add(p.officerId))throw new IOException("原人物身份重复");result.add(p);}
-        if(in.available()!=0)throw new IOException("原人物状态尾部未知");return List.copyOf(result);
+        for(int i=0;i<n;i++){Person p=read(in);if(!nativeIds.add(p.nativeId)||p.officerId>=0&&!ids.add(p.officerId))throw new IOException("\u539f\u4eba\u7269\u8eab\u4efd\u91cd\u590d");result.add(p);}
+        if(in.available()!=0)throw new IOException("\u539f\u4eba\u7269\u72b6\u6001\u5c3e\u90e8\u672a\u77e5");return List.copyOf(result);
     }
     private static final String OPENING_NAMESPACE="pc-source-opening-record-v1";
     static void attachOpening(World w,PcScenarioCatalog.Source source)throws IOException{

@@ -20,8 +20,11 @@ def run(a):
  if a.serial!='emulator-5582':raise ValueError('B target is5582; no other device authorized by this tool')
  guard=json.loads(a.source_guard.read_text())
  from session_b_freeze_apk import paths
- def guarded(name):return name.startswith(('app/src/main/','core/src/main/','game-api/src/main/','game-runtime/src/main/','out/pc-native-runtime/','out/session-b/readonly-theme-dependencies/'))or name in ['app/build.gradle','build.gradle','settings.gradle','gradle.properties','version.properties']
+ def guarded(name):return name.startswith(('app/src/main/','core/src/main/','game-api/src/main/','game-runtime/src/main/','out/pc-native-runtime/','out/session-b/readonly-theme-dependencies/','out/session-b/cache-core-stage/'))or name in ['app/build.gradle','build.gradle','settings.gradle','gradle.properties','version.properties']
  actual_paths={name for name in paths()if guarded(name)}
+ if any(name.startswith('out/session-b/cache-core-stage/')for name in guard):
+  stage=ROOT/'out/session-b/cache-core-stage'
+  actual_paths.update(str(p.relative_to(ROOT))for p in stage.rglob('*')if p.is_file())
  if actual_paths!=set(guard):raise ValueError('Frozen APK production input path set differs: '+repr(sorted(actual_paths^set(guard))))
  changed=[name for name,digest in guard.items()if sha((ROOT/name).read_bytes())!=digest]
  if changed:raise ValueError('Frozen APK source no longer matches: '+repr(changed))

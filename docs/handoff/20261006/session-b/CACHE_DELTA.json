@@ -1,0 +1,88 @@
+{
+  "base": "969c518829351e84d4a1a0bba5275b8ee53fbd25",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "branch": "codex/rules-content-contest-repair",
+  "directory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "status": "completed-bounded-cache-APK22-full-goal-incomplete",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+      "beforeSha256": "60bb8e880c5cd80180368444eda033697e81f33002fd61775e45bd281b8a1cc3",
+      "afterSha256": "cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44",
+      "bytes": 10142
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcScenarioPeopleCacheTest.java",
+      "beforeSha256": null,
+      "afterSha256": "a4e0bd7b3d8aea5392718a84833d2d1b5682a68a660617b86657cc171d211363",
+      "bytes": 3036
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcScenarioPeopleReplayProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "498bf98f36a87939c4f71c2bf789d0da2cef813e31aaaafcee615ffb8d3ddf4b",
+      "bytes": 1280
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/runtime/SessionBOfficerDtoParityProbe.java",
+      "beforeSha256": "8170149e4c9ee599da3a6351c503c4b32e14c8ce29ee8db8b6865ed77e23456a",
+      "afterSha256": "374836357346a539e4d5dd3e899b5c906f01f17175ded1a082956685ca875155",
+      "bytes": 2761
+    },
+    {
+      "path": "tools/content/session_b_stage_cache_core.py",
+      "beforeSha256": null,
+      "afterSha256": "340fd81fcb93e04f095c89bb11397866ed2c603bdfc27cea6867a7cb9a2fc695",
+      "bytes": 1727
+    },
+    {
+      "path": "tools/content/session_b_freeze_cache_apk.py",
+      "beforeSha256": null,
+      "afterSha256": "780e2ab3f87e1bdcf76ab66956eca754479078be25943abee5af6368118a34af",
+      "bytes": 2960
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": "2c41f2a402b6ca3895a0d0ca99bfe427e544856a4b3b1205e78d7e644be12072",
+      "afterSha256": "708c46a239d2d8fb09582f491c22d3dd5cf2e9ea476b8442c933a2fa9daff680",
+      "bytes": 7783
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/cache-core.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "330c84ec2432a9127d27c8c132f3ade78e62514f22bbbb2d56bb6ae7bb2f16b5",
+      "bytes": 603
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CACHE_REPRODUCE.md",
+      "beforeSha256": null,
+      "afterSha256": "9c4dd002855268e65b4fad3cf4d9142c53eb1edb4d10c17e367882fe33df9ed1",
+      "bytes": 2806
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/CACHE_BATCH.json",
+      "beforeSha256": null,
+      "afterSha256": "f8ec1b73e4438d31a78aa1fbe8c81722f8a08698c4e659c9d63869dcdb3d039c",
+      "bytes": 3943
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": "3e4efdfc4bc01673723e4c8426c9dc79f932e250e5622c1d653130b98086eac2",
+      "afterSha256": "ce45ad1aef6a69c5218cd847f147af7eba094cbf03d54cb11bb000544641162d",
+      "bytes": 10421
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/cache-flow-22.tar.gz",
+      "beforeSha256": null,
+      "afterSha256": "e285454aeff583041e684f62feefa32ff80382e903ed4d0436b44bb1e8e7f9a7",
+      "bytes": 6619296
+    }
+  ],
+  "metadata": [
+    "docs/handoff/20261006/session-b/CACHE_BATCH.json",
+    "docs/handoff/20261006/session-b/CACHE_REPRODUCE.md",
+    "docs/handoff/20261006/session-b/cache-flow-22.tar.gz"
+  ],
+  "conflicts": "No A production/shared Gradle/bridge/Unity/JNI edit; stage cache-only core to exclude own uncommitted governor WIP. Only these exact completed cache paths are deliverable.",
+  "selfShaPolicy": "This delta is identified by its Git blob/commit; no recursive self SHA."
+}
