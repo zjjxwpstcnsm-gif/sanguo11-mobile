@@ -2,37 +2,37 @@
   "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
   "parent": "001793601192f8bc8770a7658832f109726f67b1",
   "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
-  "sourceCommit": "pending",
+  "sourceCommit": "833fcde40fdd8404cbba7a2a3bebe198d066a55f",
   "scope": "Explicit fresh original per-army saved budget and normal two-faction campaign/cold acceptance; full restoration incomplete",
   "apk": [
     {
-      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-32/frozen/app-debug.apk",
-      "bytes": 312776280,
-      "sha256": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426"
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-33/frozen/app-debug.apk",
+      "bytes": 312776116,
+      "sha256": "ea182a908eb9ce75d5a01f1cdcd04ee05ceee3f7a882566d96414fb5694a0277"
     },
     {
-      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-32/frozen/app-debug-androidTest.apk",
-      "bytes": 2543887,
-      "sha256": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-33/frozen/app-debug-androidTest.apk",
+      "bytes": 2543891,
+      "sha256": "ebd50669594dbd3faecb392f82dc62980f800754dd9a4c44dba18410ef3deba6"
     }
   ],
   "archive": {
-    "path": "docs/handoff/20261006/session-b/army-budget-flow-32.tar.gz",
-    "bytes": 5775205,
-    "sha256": "7738178fb19ec7deec8162be53c6d32948bae61616b9725f1ca04129bdfd5017",
-    "freshProofFiles": 45,
+    "path": "docs/handoff/20261006/session-b/army-budget-flow-33.tar.gz",
+    "bytes": 6506213,
+    "sha256": "a8cb6e097acbe67f1f8424c722d5d9d2f3234b57a2ef69838f45dba9d6d44259",
+    "freshProofFiles": 49,
     "containsUserBackups": false
   },
   "receipt": {
     "passed": true,
     "serial": "emulator-5582",
     "apks": {
-      "out/session-b/army-build-32/frozen/app-debug.apk": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426",
-      "out/session-b/army-build-32/frozen/app-debug-androidTest.apk": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+      "out/session-b/army-build-33/frozen/app-debug.apk": "ea182a908eb9ce75d5a01f1cdcd04ee05ceee3f7a882566d96414fb5694a0277",
+      "out/session-b/army-build-33/frozen/app-debug-androidTest.apk": "ebd50669594dbd3faecb392f82dc62980f800754dd9a4c44dba18410ef3deba6"
     },
     "installed": {
-      "game.sanguo.mobile.dev": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426",
-      "game.sanguo.mobile.dev.test": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+      "game.sanguo.mobile.dev": "ea182a908eb9ce75d5a01f1cdcd04ee05ceee3f7a882566d96414fb5694a0277",
+      "game.sanguo.mobile.dev.test": "ebd50669594dbd3faecb392f82dc62980f800754dd9a4c44dba18410ef3deba6"
     },
     "instrumentationPassed": true,
     "coldPassed": true,
@@ -83,5 +83,53 @@
     "statusSha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
   },
   "fourJni": "unchanged",
-  "fullGoalComplete": false
+  "fullGoalComplete": false,
+  "deliveryStatus": "Pure completed-source APK33 normal/cold/complete userSHA restoration PASS; full goal incomplete",
+  "apk32ContainsExcludedDormantHelpers": [
+    "PcCommandRoll",
+    "PcRecruitmentFormula"
+  ],
+  "replacementApk33": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-33/frozen/app-debug.apk",
+      "bytes": 312776116,
+      "sha256": "ea182a908eb9ce75d5a01f1cdcd04ee05ceee3f7a882566d96414fb5694a0277"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-33/frozen/app-debug-androidTest.apk",
+      "bytes": 2543891,
+      "sha256": "ebd50669594dbd3faecb392f82dc62980f800754dd9a4c44dba18410ef3deba6"
+    }
+  ],
+  "priorApk32": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-32/frozen/app-debug.apk",
+      "bytes": 312776280,
+      "sha256": "603bd189c8b167871d5ec8faf77a35aa804f6fa4a9c22ac077057daead94c426"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-32/frozen/app-debug-androidTest.apk",
+      "bytes": 2543887,
+      "sha256": "d839ed56c72f2cfb7361aae15703980235b0c2f0d10537b7c82458ba6a01361b"
+    }
+  ],
+  "priorArchive32": {
+    "path": "docs/handoff/20261006/session-b/army-budget-flow-32.tar.gz",
+    "bytes": 5775205,
+    "sha256": "7738178fb19ec7deec8162be53c6d32948bae61616b9725f1ca04129bdfd5017",
+    "freshProofFiles": 45,
+    "containsUserBackups": false
+  },
+  "oldNinePairedContinuation": {
+    "parent": "001793601192f8bc8770a7658832f109726f67b1",
+    "rows": 36,
+    "sha256": "487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2",
+    "completeBytesMatch": true,
+    "limits": "39 active contest remains blocked unchanged; genuine31/38 and full installed/custom matrix incomplete"
+  },
+  "productionComparedToSourceCommit": {
+    "allExact": true,
+    "guardPaths": 6084,
+    "dormantFutureHelpersExcluded": true
+  }
 }

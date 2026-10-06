@@ -1,7 +1,7 @@
 {
   "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
   "parent": "001793601192f8bc8770a7658832f109726f67b1",
-  "sourceCommit": "pending",
+  "sourceCommit": "833fcde40fdd8404cbba7a2a3bebe198d066a55f",
   "files": [
     {
       "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBGovernorInstrumentation.java",
@@ -245,5 +245,11 @@
     "No frozen bridge/Unity/JNI/sharedGradle changes",
     "NativeAP and originalvalidity additive save namespace; absence/opaque old remains unchanged",
     "WIP original recruitment/search/extra facilities excluded"
-  ]
+  ],
+  "deliveryStatus": "Pure completed-source APK33 normal/cold/complete userSHA restoration PASS; full goal incomplete",
+  "pureApk": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/army-build-33/frozen/app-debug.apk",
+    "bytes": 312776116,
+    "sha256": "ea182a908eb9ce75d5a01f1cdcd04ee05ceee3f7a882566d96414fb5694a0277"
+  }
 }

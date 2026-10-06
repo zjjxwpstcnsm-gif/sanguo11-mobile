@@ -408,3 +408,20 @@ Ignored verification output is confined to out/session-b/ and independent build 
 - docs/handoff/20261006/session-b/ARMY_BUDGET_REPRODUCE.md (B original/host/build/install/restore reproduce; registered before creation)
 - docs/handoff/20261006/session-b/army-budget-flow-32.tar.gz (B sanitized original/actual32fresh proof only, no user backup/inventory; registered before creation)
 - out/session-b/army-action-expected-repeat.tsv (ignored B two-import exact-byte proof; registered before creation)
+
+- out/session-b/native-command-drafts/PcCommandRoll.java (B preserved inactive WIP source moved out of production for pure batch33; registered before move)
+- out/session-b/native-command-drafts/PcRecruitmentFormula.java (B preserved inactive WIP source moved out of production for pure batch33; registered before move)
+- out/session-b/army-build-33/** (ignored B fresh pure completedbudget production33 input/apk guards; registered before creation)
+- out/session-b/army-build-33.log (ignored B independent build33 log; registered before creation)
+- out/session-b/army-installed-33/** (ignored B actual33 completebackup/normal/cold/restore; registered before creation, userbackups never publish)
+- out/session-b/army-installed-33.log (ignored B actual33 verifier log; registered before creation)
+
+- out/session-b/native-command-drafts/PcCommandRollTest.java (B preserved futureWIPtest alongside unused pure source; registered before move)
+- out/session-b/native-command-drafts/PcRecruitmentFormulaTest.java (B preserved futureWIPtest alongside unused pure source; registered before move)
+- out/session-b/native-command-drafts/PcArmyActionRulesTest.java (B preserved early scalar-only future diagnostic; production1058all16 policytest supersedes completedbudget coverage; registered before move)
+
+- out/session-b/army-legacy-current.tsv (ignored B current nine real32-39save/fullthree-turn continuation; registered before creation)
+- out/session-b/army-legacy-parent.tsv (ignored B same runner committedparent00179360 exact continuation; registered before creation)
+- out/session-b/army-legacy-checks.log (ignored B full oldWorld/policy/RNG comparison; registered before creation)
+
+- docs/handoff/20261006/session-b/army-budget-flow-33.tar.gz (B purecompletedsource33 freshactual/original/check/sanitizedreceipt, no userbackup/inventory; registered before creation)
