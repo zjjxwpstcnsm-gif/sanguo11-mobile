@@ -504,7 +504,7 @@ public final class Domestic {
         if(m.transport&&m.returnOfficers&&c.id!=m.sourceCity&&w.city(m.sourceCity).owner==m.owner){
             m.transport=false;m.returning=true;m.returnOfficers=false;m.stopped=false;m.targetCity=m.sourceCity;
             w.note(w.officer(m.officerId).name+"等"+m.crew().length+"将卸货返程，无返程物资");
-        }else{for(int id:m.crew()){World.Officer member=w.officer(id);member.cityId=c.id;member.acted=true;}missions.remove(m);}
+        }else{for(int id:m.crew()){World.Officer member=w.officer(id);member.cityId=c.id;member.acted=true;PcGovernorPolicy.arrived(w,member,c);}missions.remove(m);}
     }
     /** v20 tasks retain their exact cargo/personnel/location; only their battlefield identity is enabled.
      * Overlapping legacy tasks wait at that exact position until they can leave legally. */

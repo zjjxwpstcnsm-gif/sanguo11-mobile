@@ -146,7 +146,7 @@ public final class Army {
         w.spend(c,leader,0);c.troops-=troops;c.food-=food;c.equipment[weapon.ordinal()]-=equipmentNeeded(weapon,troops);if(ship!=Ship.BOAT)c.ships[ship.ordinal()-1]--;
         p.departure.apply(u);w.nextUnitId++;c.gold-=gold;w.units.add(u);
         for(World.Officer o:p.members){w.strategy.releaseGovernor(o.id);o.acted=true;o.cityId=-1;o.unitId=u.id;}
-        w.districts.deployed(city,u);
+        w.districts.deployed(city,u);PcGovernorPolicy.deployed(w,u,c);
         return w.success(leader.name+"率"+troops+weapon.label+"出征 · 编队"+p.members.size()+"将 · 携"+ship.label);
     }
     /** Read-only exit selection shared by preview and the real deployment command. */

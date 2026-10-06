@@ -72,7 +72,7 @@ final class FactionCollapse {
             World.Unit u = (World.Unit) it3.next();
             if (u.owner == owner) {
                 remains = true;
-                w.units.remove(u);
+                w.units.remove(u);PcGovernorPolicy.unitRemoved(w,u.id);
             }
         }
         Iterator it4 = new ArrayList(w.domestic.missions).iterator();

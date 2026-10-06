@@ -54,7 +54,7 @@ final class StrategySave {
             if(c.governorId>=0){
                 World.Officer o=w.officer(c.governorId);
                 require(o!=null&&c.owner>=0&&o.owner==c.owner&&o.cityId==c.id&&o.unitId==-1&&governors.add(o.id),"太守位置或所属势力无效");
-                require(o.role==Strategy.Role.GOVERNOR||o.role==Strategy.Role.RULER,"太守身份不匹配");
+                require(o.role==Strategy.Role.GOVERNOR||o.role==Strategy.Role.RULER||o.role==Strategy.Role.DISTRICT,"太守身份不匹配");
             }
         }
         for(World.Officer o:w.officers){

@@ -127,11 +127,11 @@ public final class Loyalty {
     /** Atomic allegiance transition. Field commanders retain their actual unit and cargo; a deputy alone does not. */
     void join(World.Officer actor,World.Officer target,int city){
         World.Unit u=fieldUnit(target.id);
-        if(u==null){changeOfficer(actor,target);target.unitId=-1;target.cityId=city;return;}
+        if(u==null){changeOfficer(actor,target);target.unitId=-1;target.cityId=city;PcGovernorPolicy.joined(w,target,actor,city);return;}
         if(w.turnJournal!=null)w.turnJournal.mark(TurnJournal.Kind.PLOT,u.id,u.hex,"登用倒戈");
         if(u.officerId!=target.id){
             u.deputies=Arrays.stream(u.deputies).filter(id->id!=target.id).toArray();
-            changeOfficer(actor,target);target.unitId=-1;target.cityId=city;
+            changeOfficer(actor,target);target.unitId=-1;target.cityId=city;PcGovernorPolicy.joined(w,target,actor,city);
             w.note(target.name+"脱离原部队接受登用，原主将与部队归属不变");
         }else{
             List<World.Officer> following=new ArrayList<>(),staying=new ArrayList<>();
@@ -139,7 +139,7 @@ public final class Loyalty {
                 if(chance==100||chance>0&&w.strategy.nextInt(100)<chance)following.add(deputy);else staying.add(deputy);}
             String old=w.faction(u.owner);u.owner=actor.owner;u.deputies=following.stream().mapToInt(o->o.id).toArray();
             List<World.Officer> changed=new ArrayList<>(following);changed.add(target);
-            for(World.Officer o:changed){changeOfficer(actor,o);o.cityId=-1;o.unitId=u instanceof Domestic.Mission?-1:u.id;}
+            for(World.Officer o:changed){changeOfficer(actor,o);o.cityId=-1;o.unitId=u instanceof Domestic.Mission?-1:u.id;PcGovernorPolicy.joined(w,o,actor,city);}
             for(World.Officer o:staying){w.retreat(o,u.hex);w.note(o.name+"拒绝跟随倒戈，脱离部队返回原势力据点");}
             u.march=null;u.acted=true;u.movementSpent=u.movementBudget<0?0:u.movementBudget;
             u.energy=Math.min(u.energy,w.campaign.energyCap(u.owner));

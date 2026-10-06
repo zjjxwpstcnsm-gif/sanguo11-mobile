@@ -373,7 +373,7 @@ public final class World {
         battleImpact(hitCell,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
-            int old=c.owner;c.owner=u.owner;SiteFootprint.ownershipChanged(this,c);domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
+            int old=c.owner;c.owner=u.owner;PcGovernorPolicy.captured(this,c,u);SiteFootprint.ownershipChanged(this,c);domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
             government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);districts.captured(c,u);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100,TechniquePointsJournal.Cause.CITY_CAPTURE,c.id,u.officerId);
             List<String> ruined=domestic.sack(c.id);
@@ -427,15 +427,15 @@ public final class World {
         c.troops+=u.troops+recovered;c.food+=u.food;c.gold+=u.gold;c.equipment[u.weapon.ordinal()]+=gear;
         if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
         int prisoners=government.entered(u,c);Officer commander=officer(u.officerId);
-        for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}
-        u.wounded=0;u.woundRemainder=0;units.remove(u);
+        for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;PcGovernorPolicy.arrived(this,member,c);}
+        u.wounded=0;u.woundRemainder=0;units.remove(u);PcGovernorPolicy.unitRemoved(this,u.id);
         return commander.name+"已进入"+c.name+"，伤兵"+recovered+"立即归队"+(prisoners>0?"；俘虏"+prisoners+"人入狱":"");
     }
     void retreat(Officer o,Hex from) {
         strategy.releaseGovernor(o.id);o.otherTaskTurns=0;o.otherTask="";
         City destination=null;
         for(City c:cities)if(c.owner==o.owner&&(destination==null||from.distance(c.hex)<from.distance(destination.hex)))destination=c;
-        o.unitId=-1;o.cityId=destination==null?-1:destination.id;o.acted=true;
+        o.unitId=-1;o.cityId=destination==null?-1:destination.id;o.acted=true;if(destination!=null)PcGovernorPolicy.arrived(this,o,destination);
     }
     void removeUnit(Unit u) { government.defeated(u,null); }
     void defeatUnit(Unit u,Unit attacker){government.defeated(u,attacker);}

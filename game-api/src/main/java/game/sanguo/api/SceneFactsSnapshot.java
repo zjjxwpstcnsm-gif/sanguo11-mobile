@@ -48,10 +48,23 @@ public final class SceneFactsSnapshot {
             this.id=id;this.name=name;this.nation=nation;this.title=title;this.rulerOfficerId=rulerOfficerId;this.alive=alive;this.originalFields=Collections.unmodifiableMap(new TreeMap<>(originalFields));
         }
     }
+    public static final class NativeArmy {
+        public final int nativeId,owner,display,leaderNativeId,leaderOfficerId,openingLeaderNativeId;
+        public NativeArmy(int nativeId,int owner,int display,int leaderNativeId,int leaderOfficerId,int openingLeaderNativeId){this.nativeId=nativeId;this.owner=owner;this.display=display;this.leaderNativeId=leaderNativeId;this.leaderOfficerId=leaderOfficerId;this.openingLeaderNativeId=openingLeaderNativeId;}
+    }
+    public static final class Administration {
+        public final boolean originalElectionEnabled;public final List<NativeArmy> armies;
+        public final Map<Integer,Integer> siteArmies,unitArmies,officerArmies,officerAdministrativeHomeNative,siteNativeIds;
+        public final Set<Integer> unknownSites;public final List<String> unknown;
+        public Administration(boolean enabled,List<NativeArmy> armies,Map<Integer,Integer> sites,Map<Integer,Integer> units,Map<Integer,Integer> officers,Map<Integer,Integer> homes,Set<Integer> unknownSites,List<String> unknown){this(enabled,armies,sites,units,officers,homes,unknownSites,unknown,Map.of());}
+        public Administration(boolean enabled,List<NativeArmy> armies,Map<Integer,Integer> sites,Map<Integer,Integer> units,Map<Integer,Integer> officers,Map<Integer,Integer> homes,Set<Integer> unknownSites,List<String> unknown,Map<Integer,Integer> nativeSites){siteNativeIds=Collections.unmodifiableMap(new TreeMap<>(nativeSites));originalElectionEnabled=enabled;this.armies=List.copyOf(armies);siteArmies=Collections.unmodifiableMap(new TreeMap<>(sites));unitArmies=Collections.unmodifiableMap(new TreeMap<>(units));officerArmies=Collections.unmodifiableMap(new TreeMap<>(officers));officerAdministrativeHomeNative=Collections.unmodifiableMap(new TreeMap<>(homes));this.unknownSites=Collections.unmodifiableSet(new TreeSet<>(unknownSites));this.unknown=List.copyOf(unknown);}
+        public static Administration unavailable(){return new Administration(false,List.of(),Map.of(),Map.of(),Map.of(),Map.of(),Set.of(),List.of("originalAdministrativeStrategyAbsent"));}
+    }
     public static final class Relationship {
         public final int a,b,value,expires;public final boolean hostile;public final String treaty;
         public Relationship(int a,int b,int value,boolean hostile,String treaty,int expires){this.a=a;this.b=b;this.value=value;this.hostile=hostile;this.treaty=treaty;this.expires=expires;}
     }
+    public final Administration administration;
     public final StateToken state;public final boolean available;
     public final String mapId,scenarioId,scenarioName,dataSource,dataHash;
     public final int mapRevision,terrainRevision,turn,player,year,month,period;
@@ -59,7 +72,10 @@ public final class SceneFactsSnapshot {
     public final List<Domestic> domestic;public final List<Site> sites;public final List<Faction> factions;
     public final List<Relationship> relationships;public final List<String> unknown;
     public SceneFactsSnapshot(StateToken state,boolean available,String mapId,int mapRevision,int terrainRevision,String scenarioId,String scenarioName,String dataSource,String dataHash,int turn,int player,int year,int month,int period,Source source,List<Fire> fires,List<Military> military,List<Domestic> domestic,List<Site> sites,List<Faction> factions,List<Relationship> relationships,List<String> unknown){
-        this.state=Objects.requireNonNull(state);this.available=available;this.mapId=mapId;this.mapRevision=mapRevision;this.terrainRevision=terrainRevision;this.scenarioId=scenarioId;this.scenarioName=scenarioName;this.dataSource=dataSource;this.dataHash=dataHash;this.turn=turn;this.player=player;this.year=year;this.month=month;this.period=period;this.source=source;this.fires=List.copyOf(fires);this.military=List.copyOf(military);this.domestic=List.copyOf(domestic);this.sites=List.copyOf(sites);this.factions=List.copyOf(factions);this.relationships=List.copyOf(relationships);this.unknown=List.copyOf(unknown);
+        this(state,available,mapId,mapRevision,terrainRevision,scenarioId,scenarioName,dataSource,dataHash,turn,player,year,month,period,source,fires,military,domestic,sites,factions,relationships,unknown,Administration.unavailable());
+    }
+    public SceneFactsSnapshot(StateToken state,boolean available,String mapId,int mapRevision,int terrainRevision,String scenarioId,String scenarioName,String dataSource,String dataHash,int turn,int player,int year,int month,int period,Source source,List<Fire> fires,List<Military> military,List<Domestic> domestic,List<Site> sites,List<Faction> factions,List<Relationship> relationships,List<String> unknown,Administration administration){
+        this.administration=Objects.requireNonNull(administration);this.state=Objects.requireNonNull(state);this.available=available;this.mapId=mapId;this.mapRevision=mapRevision;this.terrainRevision=terrainRevision;this.scenarioId=scenarioId;this.scenarioName=scenarioName;this.dataSource=dataSource;this.dataHash=dataHash;this.turn=turn;this.player=player;this.year=year;this.month=month;this.period=period;this.source=source;this.fires=List.copyOf(fires);this.military=List.copyOf(military);this.domestic=List.copyOf(domestic);this.sites=List.copyOf(sites);this.factions=List.copyOf(factions);this.relationships=List.copyOf(relationships);this.unknown=List.copyOf(unknown);
     }
     public static SceneFactsSnapshot unsupported(StateToken state){return new SceneFactsSnapshot(state,false,"",0,0,"","","","",0,-1,0,0,0,null,List.of(),List.of(),List.of(),List.of(),List.of(),List.of(),List.of("sceneFactsUnsupported"));}
 }

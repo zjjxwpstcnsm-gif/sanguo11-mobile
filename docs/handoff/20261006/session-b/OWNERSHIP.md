@@ -84,15 +84,98 @@ Ignored verification output is confined to out/session-b/ and independent build 
 - docs/handoff/20261006/session-b/SCENE_BATCH.json (bounded installed API/military flow and exact guards; B; register before creation)
 - docs/handoff/20261006/session-b/SCENE_DELTA.json (exact source path SHA from completed capacity parent1c3b54b5; B; register before creation)
 - docs/handoff/20261006/session-b/scene-flow-21.tar.gz (fresh test evidence only, no user backups; B; register before creation)
+- tools/content/session_b_pc_governor_admission.py (original full election controlled residency/priority/assignment transitions; no original file writes; B; register before creation)
+- out/session-b/governor-admission-disasm.txt (ignored checked original function disassembly; B; register before creation)
+- docs/handoff/20261006/session-b/GOVERNOR_STRATEGY.md (new-game strategy and source/controller/old-save boundaries; B; register before creation)
+- tools/content/session_b_pack_governor_rosters.py (new original data-only converter with exact source/person/site SHA joins; no candidate code extraction; B; register before creation)
+- core/src/main/resources/pc-governor-rosters/rosters.bin.gz (checked original admission/army/person data; B; register before creation)
+- core/src/main/resources/pc-governor-rosters/index.txt (original roster fingerprint; B; register before creation)
+- core/src/main/java/game/sanguo/core/PcGovernorPolicy.java (new-game-only live governor election strategy, not sealed27/28 code; B; register before creation)
+- core/src/test/java/game/sanguo/core/PcGovernorPolicyTest.java (original/live command/old-save policy and fullWorld/RNG cases; B; register before creation)
+
+- out/session-b/governor-site-army-inspect.py (ignored original getter/setter disassembly probe; B; registered before creation)
+- out/session-b/governor-site-army-disasm.txt (ignored exact original site army getter evidence; B; registered before creation)
+
+- out/session-b/governor-site-army-disasm2.txt (ignored follow-up original concrete city/gate/port getter evidence; B; output registration corrected immediately after creation)
+
+- out/session-b/governor-site-army-original.json (ignored original concrete site army setter/full election controlled cases; B; registered before creation)
+- out/session-b/governor-site-army-original.log (ignored original site army probe log; B; registered before creation)
+
+- out/session-b/governor-site-army-callers.txt (ignored original concrete setter call-site candidates, not gameplay parity proof; B; registered before creation)
+
+- out/session-b/governor-site-army-manager-callers.txt (ignored original manager setter caller candidates; B; registered before creation)
+
+- out/session-b/governor-army-transition-disasm.txt (ignored original full site-army transition candidate disassembly; B; registered before creation)
+
+- out/session-b/governor-full-site-transitions.json (ignored full original4ad550 owner/army transition callbacks, no capture admission substitution; B; registered before creation)
+- out/session-b/governor-full-site-transitions.log (ignored original transition run log; B; registered before creation)
+
+- out/session-b/governor-full-site-transition-callers.txt (ignored original4ad550 caller identity candidates, no capture parity claim; B; registered before creation)
+
+- out/session-b/governor-full-site-transitions2.json (ignored corrected unsigned-argument original transition result; B; registered before creation)
+- out/session-b/governor-full-site-transitions2.partial.json (ignored per-case checkpoint preserving failed-run evidence; B)
+- out/session-b/governor-full-site-transitions2.log (ignored corrected run log; B)
+- out/session-b/governor-full-ownership-helper.json (ignored original4b40c0 with checked native Army object, not attack admission proof; B; registered before creation)
+- out/session-b/governor-full-ownership-helper.partial.json (ignored per-case native helper checkpoint; B)
+- out/session-b/governor-full-ownership-helper.log (ignored native ownership helper log; B)
+
+- out/session-b/governor-full-ownership-helper-diag.json (ignored original helper diagnostic result; B; registered before creation)
+- out/session-b/governor-full-ownership-helper-diag.partial.json (ignored original diagnostic per-case checkpoint; B)
+- out/session-b/governor-full-ownership-helper-diag.failure.json (ignored exact native fault/ring trace; B)
+- out/session-b/governor-full-ownership-helper-diag.log (ignored original diagnostic run log; B)
 
 - core/src/test/java/game/sanguo/core/PcScenarioPeopleCacheTest.java (immutable original record cache namespace invalidation/purity/malformed recovery and parsed-instance reuse; B; registered before creation)
+
+- out/session-b/governor-full-ownership-provider.json (ignored original constructor-scoped ownership helper result; actual PC viewport unknown; B; registered before creation)
+- out/session-b/governor-full-ownership-provider.partial.json (ignored original helper checkpoint; B)
+- out/session-b/governor-full-ownership-provider.failure.json (ignored native constructor/helper fault; B)
+- out/session-b/governor-full-ownership-provider.log (ignored constructor-scoped helper log; B)
+
+- out/session-b/governor-ownership-helper-callers.txt (ignored original4b40c0 caller-mode evidence; B; registered before creation)
+
 - out/session-b/cache-replay-installed-21.sg11 (ignored own fresh installed save extracted from sanitized completed evidence; B; registered before creation)
 - core/src/test/java/game/sanguo/core/PcScenarioPeopleReplayProbe.java (normal full-turn replay wholeWorld/RNG fingerprint and allocation/timing observation; B; registered before creation)
+
 - tools/content/session_b_stage_cache_core.py (exact completed-parent Java snapshot plus cache-only overlay for APK build; B; registered before creation)
 - tools/content/session_b_freeze_cache_apk.py (hash all exact staged core/A/JNI/build inputs and freeze unchanged cache-only APK; B; registered before creation)
 - docs/handoff/20261006/session-b/cache-core.init.gradle (own core source substitution/resource exclusion; shared Gradle untouched; B; registered before creation)
 - out/session-b/cache-core-stage/manifest.json (ignored exact compiled-core source provenance; B; registered before creation)
+
 - docs/handoff/20261006/session-b/CACHE_BATCH.json (completed bounded cache/actual APK22/restore/source exclusion evidence; B; registered before creation)
 - docs/handoff/20261006/session-b/CACHE_DELTA.json (exact completed cache paths/parent and before-after SHA; B; registered before creation)
 - docs/handoff/20261006/session-b/CACHE_REPRODUCE.md (reproduce exact staged parent/cache APK with independent directories, exclude WIP; B; registered before creation)
 - docs/handoff/20261006/session-b/cache-flow-22.tar.gz (fresh own evidence only; never user backup archives; B; registered before creation)
+
+- out/session-b/governor-full-arrivals.json (ignored full original4bf6f0 arrival/status/army-election evidence; B; registered before creation)
+- out/session-b/governor-full-arrivals.partial.json (ignored original per-case checkpoint; B)
+- out/session-b/governor-full-arrivals.log (ignored full arrival log; B)
+
+- out/session-b/governor-full-arrival-armies.json (ignored original full arrival plus47 before-after army metadata; B; registered before creation)
+- out/session-b/governor-full-arrival-armies.partial.json (ignored original checkpoint; B)
+- out/session-b/governor-full-arrival-armies.log (ignored original full arrival-army run; B)
+
+- out/session-b/SourceCaptureRoutes.java (ignored source0 ordinary deployment/real neutral-site march/capture diagnostic; B; registered before creation)
+
+- out/session-b/governor-original-recruitment.json (ignored full original successful5c4840 administration callback, admission/payment separate; B; registered before creation)
+- out/session-b/governor-original-recruitment.partial.json (ignored original callback checkpoint; B)
+- out/session-b/governor-original-recruitment.log (ignored full original recruitment log; B)
+
+- game-runtime/src/test/java/game/sanguo/core/PcGovernorRuntimeFactsTest.java (fresh source live administration/API token/deep immutability/fullSave-RNG/capture and role parity; B; registered before creation)
+
+- out/session-b/governor-legacy-installed-source20.sg11 (ignored own genuine pre-governor installed source save, no user backup; B; registered before creation)
+
+- core/src/main/java/game/sanguo/core/Contests.java (B campaign unit removal must clear new saved army metadata)
+- core/src/main/java/game/sanguo/core/FactionCollapse.java (B faction collapse unit removal metadata)
+- core/src/main/java/game/sanguo/core/Lifecycle.java (B commander death unit removal metadata)
+- app/src/androidTest/java/game/sanguo/mobile/SessionBGovernorInstrumentation.java (B ordinary new/menu/personnel/capture/save/cold validation; registered before creation)
+- docs/handoff/20261006/session-b/governor.instrumentation.init.gradle (B runner selection without shared Gradle or manifest change; registered before creation)
+
+
+- tools/content/session_b_stage_governor_legacy.py (B pinned extraction of own completed actual Source20 save for reproducible old-policy replay; registered before creation)
+
+
+- docs/handoff/20261006/session-b/GOVERNOR_CONTRACT.md (B exact read-only source/native/current administrative joins and A adapter request; registered before creation)
+- docs/handoff/20261006/session-b/GOVERNOR_BATCH.json (B completed bounded source/election/ordinary APK/save/cold/user restore receipt; registered before creation)
+- docs/handoff/20261006/session-b/GOVERNOR_DELTA.json (B exact parent/current paths and before-after SHA; registered before creation)
+- docs/handoff/20261006/session-b/GOVERNOR_REPRODUCE.md (B reproducible original converter/core/API/build/widget/legacy procedure; registered before creation)
+- docs/handoff/20261006/session-b/governor-flow-27.tar.gz (B fresh own evidence only, never user backup archives; registered before creation)

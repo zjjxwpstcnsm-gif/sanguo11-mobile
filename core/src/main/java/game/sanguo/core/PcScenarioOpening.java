@@ -85,6 +85,7 @@ final class PcScenarioOpening {
         NaturalStructures.seedOpening(w);w.invalidateSiteIndex();
         if(player<0){for(int side=0;side<42;side++)if(w.alive(side)){player=side;break;}}
         if(player<0||player>=42||!source.forces.get(player).valid||!w.alive(player))throw new IOException("原来源没有该可选势力");w.player=player;w.active=player;
+        PcGovernorPolicy.initializeOpening(w);
         SaveCodec.validate(w);
         w.note("安装来源候选开局："+source.identity.path+"；已导入据点/库存与人物记录，完整原事件和部分规则仍未核实。");return w;
     }

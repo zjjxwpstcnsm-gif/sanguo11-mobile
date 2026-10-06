@@ -36,7 +36,7 @@ public final class CityActionPlan {
    meritBefore=w.government.merit(id);meritAfter=paidActor?Math.min(1000000,meritBefore+OfficerExperiencePlan.merit(o,stat,w.government)):meritBefore;
    actedBefore=o.acted;actedAfter=o.acted||paidActor||op==Operation.APPOINT_GOVERNOR&&target;
    lastRewardTurnBefore=o.lastRewardTurn;lastRewardTurnAfter=op==Operation.REWARD&&target?w.turn:o.lastRewardTurn;
-   roleBefore=o.role.name();Strategy.Role next=o.role;if(op==Operation.APPOINT_GOVERNOR){if(id==oldGovernor&&next==Strategy.Role.GOVERNOR)next=Strategy.Role.OFFICER;if(target&&next!=Strategy.Role.RULER)next=Strategy.Role.GOVERNOR;}roleAfter=next.name();
+   roleBefore=o.role.name();Strategy.Role next=o.role;if(op==Operation.APPOINT_GOVERNOR){if(id==oldGovernor&&next==Strategy.Role.GOVERNOR)next=Strategy.Role.OFFICER;if(target&&next!=Strategy.Role.RULER&&next!=Strategy.Role.DISTRICT)next=Strategy.Role.GOVERNOR;}roleAfter=next.name();
    remainingTurnsBefore=w.strategy.officerState(o.id).remainingTurns;remainingTurnsAfter=remainingTurnsBefore;
   }
  }

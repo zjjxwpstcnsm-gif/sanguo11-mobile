@@ -212,7 +212,7 @@ public final class Government {
         report+="；俘虏："+(captured.isEmpty()?"无":String.join("、",captured));
         if(!escaped.isEmpty())report+="；逃脱："+String.join("、",escaped);
         w.battleOutcome(report);
-        escortLost(loser,hostile?victor:null);w.units.remove(loser);
+        escortLost(loser,hostile?victor:null);w.units.remove(loser);PcGovernorPolicy.unitRemoved(w,loser.id);
         if(loser instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)loser;
             w.battleOutcome("运输兵装散失："+Arrays.toString(m.equipment)+"；舰船货物散失："+Arrays.toString(m.cargoShips));
             Arrays.fill(m.equipment,0);Arrays.fill(m.cargoShips,0);w.domestic.missions.remove(m);

@@ -18,7 +18,7 @@ final class GovernmentUi {
     private List<World.Officer> rankCandidates(World.City c){List<World.Officer> list=residents(c);list.removeIf(o->o.role==Strategy.Role.RULER||o.unitId>=0||!w.life.present(o.id)||w.strategy.busy(o.id)||w.domestic.busy(o.id));return list;}
     private void actor(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),this::officer,next);}
     void city(World.City c){
-        String[] commands={"军师建议","任命军师","授予官职","免除官职","俘虏处置","赎回己将","召唤武将","城池委任","补给城外部队"};
+        String[] commands={"军师建议","任命军师","授予官职","免除官职","俘虏处置","赎回己将","召唤武将","城池委任","补给城外部队","原军团与太守"};
         UiTheme.dialog(new AlertDialog.Builder(a).setTitle(c.name+" · 军政管理").setItems(commands,(d,n)->{
             switch(n){
                 case 0:info("军师建议",w.government.advice(c.id));break;
@@ -33,9 +33,21 @@ final class GovernmentUi {
                     choose("召唤武将",list,o->o.name+" · "+w.city(o.cityId).name,o->confirm("召唤"+o.name,"从驻城出发前往"+c.name+"，消耗行动力10；使用实际陆路任务，在途不可行动。",()->apply.execute(w,()->w.government.summon(c.id,o.id))));break;}
                 case 7:actor(c,o->choose("委任方针 · "+w.government.policy(c.id).label,Arrays.asList(Government.Policy.values()),p->p.label,p->confirm("调整委任","行动力10。结束旬时，使用剩余行动力和闲将自动执行一项城务。\n内政优先开发；守备优先修复和治理。",()->apply.execute(w,()->w.government.delegate(c.id,o.id,p)))));break;
                 case 8:replenish(c);break;
+                case 9:administration(c);break;
                 default:break;
             }
         }).setNegativeButton("返回",null).show());
+    }
+    private void administration(World.City city){
+        var facts=PcGovernorPolicy.view(w);
+        if(!facts.enabled){info("\u539f\u519b\u56e2\u4e0e\u592a\u5b88","\u6b64\u6863\u672a\u542f\u7528\u539f\u6765\u6e90\u6cbb\u7406\u7b56\u7565\uff0c\u4fdd\u7559\u539f\u6709\u804c\u4f4d\u4e0e\u89c4\u5219\u3002");return;}
+        StringBuilder text=new StringBuilder();Integer nativeArmy=facts.siteArmies.get(city.id);
+        World.Officer governor=w.officer(city.governorId);
+        text.append(city.name).append("\n\u5f53\u524d\u592a\u5b88\uff1a").append(governor==null?"\u65e0":governor.name+" · "+governor.role.label).append("\n\u539f\u751f\u519b\u56e2 ID\uff1a").append(nativeArmy==null?"\u672a\u77e5":nativeArmy);
+        if(facts.unknownSites.contains(city.id))text.append("\n\u539f\u519b\u56e2\u5206\u914d\u672a\u77e5\uff1a\u4f7f\u7528\u5de5\u7a0b\u592a\u5b88\u7b56\u7565");
+        for(var army:facts.armies)if(army.owner==city.owner){World.Officer leader=w.officer(army.leaderOfficerId);text.append("\n\n").append("\u7b2c").append(army.display).append("\u519b\u56e2 · native ID ").append(army.nativeId).append("\n\u5f53\u524d\u9996\u957f\uff1a").append(leader==null?"\u672a\u6620\u5c04 native "+army.leaderNativeId:leader.name+" · "+leader.role.label);}
+        text.append("\n\n\u539f\u519b\u56e2\u884c\u52a8\u9884\u7b97\u4e0e\u59d4\u4efb\u63a7\u5236\u4ecd\u672a\u6838\u5b9e\uff1b\u52a0\u8f7d AP0 \u4e0d\u662f\u5f00\u5c40\u9884\u7b97\u3002");
+        info("\u539f\u519b\u56e2\u4e0e\u592a\u5b88",text.toString());
     }
     private void prisoners(World.City c){
         List<Government.Prisoner> list=new ArrayList<>();for(Government.Prisoner p:w.government.prisoners())if(p.captor==c.owner&&p.cityId==c.id)list.add(p);

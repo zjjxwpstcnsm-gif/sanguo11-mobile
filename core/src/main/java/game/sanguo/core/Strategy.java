@@ -11,7 +11,7 @@ public final class Strategy {
     public static final int DEFAULT_RESERVE=Conscription.RESERVE_CAP, MAX_ENEMY_LOYALTY=60, RECRUIT_RANGE=6;
 
     public enum Role {
-        RULER("君主"), GOVERNOR("太守"), OFFICER("普通武将"), UNAFFILIATED("在野");
+        RULER("君主"), GOVERNOR("太守"), OFFICER("普通武将"), UNAFFILIATED("在野"), DISTRICT("都督");
         public final String label;
         Role(String label) { this.label=label; }
     }
@@ -154,6 +154,7 @@ public final class Strategy {
             case REWARD:
                 Set<Integer> seen=new HashSet<>();for(int id:targets)if(!seen.add(id)||!rewardable(c,w.officer(id)))return new RuleFailure("REWARD_TARGET","targets","选择中有重复、已褒奖、忠诚已满或不在城的武将；未扣款");break;
             case APPOINT_GOVERNOR:
+                if(PcGovernorPolicy.recognized(w))return new RuleFailure("GOVERNOR_AUTOMATIC","targets","\u539f\u6765\u6e90\u9009\u4efb\u7b56\u7565\u6839\u636e\u90fd\u7763\u8eab\u4efd\u3001\u6307\u6325\u3001\u7edf\u7387\u3001\u6b66\u529b\u548c\u529f\u7ee9\u81ea\u52a8\u9009\u4efb\u592a\u5b88\uff1b\u624b\u52a8\u6539\u4efb\u5c1a\u672a\u6838\u5b9e");
                 World.Officer target=w.officer(targets[0]);if(target==null||!w.idle(c).contains(target))return new RuleFailure("GOVERNOR_TARGET","targets","太守须为本城本旬可行动的己方武将");
                 if(c.governorId==target.id)return new RuleFailure("GOVERNOR_UNCHANGED","targets","该武将已经是本城太守");break;
             default:break;
@@ -273,12 +274,12 @@ public final class Strategy {
         if(failure!=null)return w.fail(failure.detail);World.Officer target=w.officer(targetId);
         if(c.governorId>=0)releaseGovernor(c.governorId);
         releaseGovernor(target.id);w.spend(c,o,0);c.governorId=target.id;target.acted=true;
-        if(target.role!=Role.RULER)target.role=Role.GOVERNOR;
+        if(target.role!=Role.RULER&&target.role!=Role.DISTRICT)target.role=Role.GOVERNOR;
         return w.success(target.name+"出任"+c.name+"太守，金粮收入加成"+(target.politics/4)+"%");
     }
     public int governorPolitics(int cityId) {
         World.City c=w.city(cityId);World.Officer o=c==null?null:w.officer(c.governorId);
-        return w.governance.resident(o,c)&&(o.role==Role.GOVERNOR||o.role==Role.RULER)?o.politics:-1;
+        return w.governance.resident(o,c)&&(o.role==Role.GOVERNOR||o.role==Role.RULER||o.role==Role.DISTRICT)?o.politics:-1;
     }
     public int cityIncome(int cityId,int base) {
         World.City c=w.city(cityId);return c==null?0:StrategyRules.income(base,c.order,governorPolitics(cityId));

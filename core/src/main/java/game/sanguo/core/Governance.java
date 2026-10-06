@@ -48,6 +48,10 @@ public final class Governance {
         int[] cities=new int[w.factions.length];for(World.City c:w.cities)if(c.owner>=0&&c.owner<cities.length&&c.kind==World.SiteKind.CITY)cities[c.owner]++;
         for(int side=0;side<cities.length;side++){int previous=grades.getOrDefault(side,0),next=w.pcSourceFrame?previous:Math.max(previous,earned(cities[side]));
             if(next>previous){grades.put(side,next);if(announce)w.note(label(side)+"领有"+cities[side]+"城，君主晋为"+RulerTitles.at(next).label+"；基础指挥"+RulerTitles.at(next).troops);}}
+        if(PcGovernorPolicy.recognized(w)){
+            try{PcGovernorPolicy.reconcile(w,announce);}catch(IOException e){throw new IllegalStateException(e);}
+            return;
+        }
         Set<Integer> away=new HashSet<>();for(Domestic.Mission m:w.domestic.missions)for(int id:m.crew())away.add(id);
         Map<Integer,World.Officer> best=new HashMap<>();Set<Integer> residents=new HashSet<>();
         for(World.Officer o:w.officers){World.City c=w.city(o.cityId);
