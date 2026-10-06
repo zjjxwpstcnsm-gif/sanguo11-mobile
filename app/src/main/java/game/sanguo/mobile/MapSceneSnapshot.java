@@ -146,7 +146,7 @@ final class MapSceneSnapshot {
     final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage,attackTargets;
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving){this(ground,w,selected,moving,null,null);}
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving,StateToken expected,SceneFactsSnapshot input) {
-        SceneFactsSnapshot facts=SceneFactsPresentation.accept(w,expected,input);state=expected;authoritativeSceneFacts=facts!=null;
+        SceneFactsSnapshot facts=SceneFactsPresentation.accept(w.mapId,w.mapRevision,w.terrainRevision,w.scenarioId,w.dataHash,w.turn,w.player,expected,input);state=expected;authoritativeSceneFacts=facts!=null;
         month=facts==null?(w.startMonth-1+w.turn/3)%12+1:facts.month;
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
         for(World.City c:w.cities){Item item=new Item("site:"+c.id,c.name,c.hex,c.kind==World.SiteKind.CITY?0:c.kind==World.SiteKind.PORT?1:2,FactionColors.color(w,c.owner),new SiteVisual(w,c,ground.grid));list.add(item);}

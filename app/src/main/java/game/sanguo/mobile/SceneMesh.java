@@ -37,6 +37,20 @@ final class SceneMesh {
         this.vertices=vertices;this.indices=indices;this.x=x;this.z=z;this.radius=radius;
         float[] heights=heightBounds(vertices);minY=heights[0];maxY=heights[1];
     }
+    /** Unique immutable array payload reachable from these mesh roots. Excludes
+     * object overhead, worker scratch/mailbox, upload buffers and GPU storage. */
+    static long payloadBytes(Collection<SceneMesh> roots){
+        Set<SceneMesh> meshes=Collections.newSetFromMap(new IdentityHashMap<>());
+        Set<Object> arrays=Collections.newSetFromMap(new IdentityHashMap<>());
+        long bytes=0;for(SceneMesh mesh:roots)bytes+=payloadBytes(mesh,meshes,arrays);return bytes;
+    }
+    private static long payloadBytes(SceneMesh mesh,Set<SceneMesh> meshes,Set<Object> arrays){
+        if(mesh==null||!meshes.add(mesh))return 0;
+        long bytes=arrays.add(mesh.vertices)?4L*mesh.vertices.length:0;
+        if(arrays.add(mesh.indices))bytes+=4L*mesh.indices.length;
+        for(float[] stream:new float[][]{mesh.surfaceData,mesh.tangents,mesh.uv})if(stream!=null&&arrays.add(stream))bytes+=4L*stream.length;
+        return bytes+payloadBytes(mesh.grid,meshes,arrays)+payloadBytes(mesh.sourceWater,meshes,arrays)+payloadBytes(mesh.distant,meshes,arrays);
+    }
     private static float[] heightBounds(float[] vertices){
         float low=Float.POSITIVE_INFINITY,high=Float.NEGATIVE_INFINITY;
         for(int i=1;i<vertices.length;i+=7){low=Math.min(low,vertices[i]);high=Math.max(high,vertices[i]);}
@@ -99,11 +113,28 @@ final class SceneMesh {
         // Exact PC positions share one vertex within a chunk. Fixed scratch is
         // reset with the task's builder; no boxed map or cross-window cache.
         long[] pcKeys;int[] pcSlots;
+        // Grid ribbons are unlit position/pigment streams. Adjacent segments
+        // share exactly equal endpoints; preserve raw float bits and colors.
+        int[] ribbonSlots;
         int vertexCount,landCount,waterCount;
         SurfaceBuilder(int maxVertices,int maxIndices){vertices=new float[maxVertices*7];land=new int[maxIndices];}
         // mesh() owns copies of all used elements. One worker may therefore
         // reuse this bounded scratch without sharing published mesh arrays.
-        void reset(){vertexCount=landCount=waterCount=0;if(pcSlots!=null)Arrays.fill(pcSlots,0);}
+        void reset(){vertexCount=landCount=waterCount=0;if(pcSlots!=null)Arrays.fill(pcSlots,0);if(ribbonSlots!=null)Arrays.fill(ribbonSlots,0);}
+        void shareRibbonVertices(){int capacity=1;while(capacity<vertices.length/7*2)capacity<<=1;ribbonSlots=new int[capacity];}
+        int ribbonVertex(float x,float y,float z,int color){
+            int xb=Float.floatToRawIntBits(x),yb=Float.floatToRawIntBits(y),zb=Float.floatToRawIntBits(z);
+            int hash=((xb*31+yb)*31+zb)*31+color;
+            int slot=(hash^(hash>>>16))&(ribbonSlots.length-1);
+            float red=((color>>16)&255)/255f,green=((color>>8)&255)/255f,blue=(color&255)/255f;
+            while(ribbonSlots[slot]!=0){
+                int at=ribbonSlots[slot]-1,n=at*7;
+                if(Float.floatToRawIntBits(vertices[n])==xb&&Float.floatToRawIntBits(vertices[n+1])==yb
+                    &&Float.floatToRawIntBits(vertices[n+2])==zb&&vertices[n+3]==red&&vertices[n+4]==green&&vertices[n+5]==blue)return at;
+                slot=(slot+1)&(ribbonSlots.length-1);
+            }
+            int at=vertexCount;vertex(x,y,z,color);ribbonSlots[slot]=at+1;return at;
+        }
         int pcVertex(float x,float y,float z,int color){
             if(pcSlots==null){pcSlots=new int[16384];pcKeys=new long[16384];}
             long key=((long)Float.floatToRawIntBits(x)<<32)|(Float.floatToRawIntBits(z)&0xffffffffL);
@@ -124,6 +155,10 @@ final class SceneMesh {
         }
         void face(float ax,float ay,float az,float bx,float by,float bz,
                 float cx,float cy,float cz,float dx,float dy,float dz,int color){
+            if(ribbonSlots!=null){
+                int a=ribbonVertex(ax,ay,az,color),b=ribbonVertex(bx,by,bz,color),c=ribbonVertex(cx,cy,cz,color),d=ribbonVertex(dx,dy,dz,color);
+                triangle(false,a,b,c);triangle(false,a,c,d);return;
+            }
             int n=vertexCount;vertex(ax,ay,az,color);vertex(bx,by,bz,color);
             vertex(cx,cy,cz,color);vertex(dx,dy,dz,color);
             triangle(false,n,n+1,n+2);triangle(false,n,n+2,n+3);
@@ -360,7 +395,7 @@ final class SceneMesh {
     }
     private static SurfaceBuilder gridScratch(MapSceneSnapshot.Ground g){
         int faces=16*16*8*(g.pcMap==null?1:2)*2;
-        return new SurfaceBuilder(faces*4,faces*6);
+        SurfaceBuilder builder=new SurfaceBuilder(faces*4,faces*6);builder.shareRibbonVertices();return builder;
     }
     static SceneMesh grid(MapSceneSnapshot.Ground g,int q,int r,SceneMesh bounds,int lod){
         return grid(g,q,r,bounds,lod,gridScratch(g));

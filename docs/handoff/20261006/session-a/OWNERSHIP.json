@@ -122,7 +122,13 @@
     "docs/handoff/20261006/session-a/FIRE_NORMAL_ACCEPTANCE.json",
     "docs/handoff/20261006/session-a/GOVERNOR_INTEGRATION_AUDIT.json",
     "docs/handoff/20261006/session-a/DELTA_BATCH9.json",
-    "app/src/androidTest/java/game/sanguo/mobile/SessionAAttackTaskInstrumentation.java"
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAAttackTaskInstrumentation.java",
+    "docs/handoff/20261006/session-a/GridMemoryParityProbe.java",
+    "docs/handoff/20261006/session-a/run_grid_memory_parity.py",
+    "docs/handoff/20261006/session-a/GRID_MEMORY_PARITY.json",
+    "docs/handoff/20261006/session-a/NORMAL384_FAILURE26.json",
+    "docs/handoff/20261006/session-a/DELTA_BATCH10.json",
+    "docs/handoff/20261006/session-a/DEBATE_INTEGRATION_AUDIT.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

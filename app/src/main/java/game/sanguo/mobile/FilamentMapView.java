@@ -729,8 +729,15 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;float y=snapshot.ground.surface.at(h);return Math.abs(camera.screenX(g.x(h),g.z(h),y)-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.x(h),g.z(h),y)-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
+    private long retainedMeshPayloadBytes(){
+        List<SceneMesh> roots=new ArrayList<>(chunks);roots.addAll(woods);roots.add(backdropSource);
+        for(Collection<GpuMesh> resident:java.util.Arrays.asList(terrain.values(),gridMeshes.values(),vegetation.values(),shapes.values()))for(GpuMesh mesh:resident)roots.add(mesh.source);
+        if(backdrop!=null)roots.add(backdrop.source);for(GpuMesh mesh:effectMeshes)if(mesh!=null)roots.add(mesh.source);
+        return SceneMesh.payloadBytes(roots);
+    }
     String startupReport(){return "first_submit_wall_ms="+firstSubmittedMillis+" first_verified_wall_ms="+firstVerifiedMillis+" resume_verified_wall_ms="+resumeVerifiedMillis+" source="+BuildConfig.SOURCE_REVISION+" profile="+(BuildConfig.UNITY_ENABLED?"unity-opt-in":"native")
         +" javaHeapUsedBytes="+(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())+" javaHeapLimitBytes="+Runtime.getRuntime().maxMemory()+" nativeHeapAllocatedBytes="+android.os.Debug.getNativeHeapAllocatedSize()
+        +" retainedMeshPayloadBytes="+retainedMeshPayloadBytes()+" retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded"
         +" device="+android.os.Build.MODEL+" api="+android.os.Build.VERSION.SDK_INT+" abi="+java.util.Arrays.toString(android.os.Build.SUPPORTED_ABIS)
         +"\nsnapshot="+(snapshot!=null)+" surface="+(swap!=null)+" viewport="+bufferWidth+"x"+bufferHeight
         +" session="+(sceneToken==null?"editor":sceneToken.sessionId+":"+sceneToken.generation+":"+sceneToken.revision)+" assetRevision=1.56.0/R06"

@@ -1,0 +1,138 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "aBefore": "36a5e525",
+  "sourcePaths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeSha256": "446da591356d5a3e5abe8bf5f9b16b4791e5acb630e034469b0faedd4e1c6791",
+      "afterSha256": "f12a974a8901cac89e12174fffbdc78fd085b71599af08716370c57db367a24c",
+      "bytes": 176637
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "c83f8b5a8152bc68825e34bcde691662043d99f1574253b2bca0fdb3580eb811",
+      "afterSha256": "fc2af38305250cda4e063b03eb2aa66e68d7d1274465277410d0e01b80c181c9",
+      "bytes": 153118
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "beforeSha256": "4e81aba99c6af0532464046e5f8315933b8361aac6ed1d54cc5037e25fd1db4f",
+      "afterSha256": "5e9d972a982af8f0a0595444d58b1f6bed8c5b387925beba8caaca76aa1d979d",
+      "bytes": 37960
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "beforeSha256": "5bba6913ebfaea0e297522de5521ff88965414ccb253112108c1fee004056260",
+      "afterSha256": "97311649965c9775f74e52d366d409c56e2c11f369eb61166826a59140f419dd",
+      "bytes": 16737
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFirePosition.java",
+      "beforeSha256": "035ec7c0692df81df3d7ed7f23dcb885300bdd889c74c345e96bac654273bc36",
+      "afterSha256": "139d717fb39616e908add7b7dde31c341f66671a5525ffbc0b0b6481c8d34780",
+      "bytes": 926
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+      "beforeSha256": "c9ace0e123c4213b553bf7b1a7ac882d9083961de06aed441a54bc7c2c443426",
+      "afterSha256": "b256237718cef36598e32009c375a4547ac55fa65dc5c9abd33eb3d9203f8f57",
+      "bytes": 2175
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneFactsPresentation.java",
+      "beforeSha256": "330ec985ed3bf68d8f5b456c045a38e72d15b2a95641bd3eb53995e183c8b6ff",
+      "afterSha256": "351ac23abafb863173023ebd4c4ab5f0d43c9d701cc7b3eb832942c301e45a41",
+      "bytes": 1100
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "beforeSha256": "f60212c8f9dfca66de89864fa15836e4d9010e7241552efda6ac1d3b7258ebff",
+      "afterSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+      "bytes": 33960
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/DEBATE_INTEGRATION_AUDIT.json",
+      "beforeSha256": null,
+      "afterSha256": "a189ac1864081e54afbd142a504566a1487ad24de3c086b65182e5c26487e002",
+      "bytes": 9261
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/GRID_MEMORY_PARITY.json",
+      "beforeSha256": null,
+      "afterSha256": "e9e941d9d371eb4ff168f21302f2c0dbe5b32a1d10c0345fbb50f3db05ea9ddb",
+      "bytes": 11783
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/GridMemoryParityProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "21956f2a47c151d3adaf983093b0c3f4926a65212b0d7b3c43f1febe11cd1559",
+      "bytes": 1874
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/NORMAL384_FAILURE26.json",
+      "beforeSha256": null,
+      "afterSha256": "d0e7c856891b083a9feacfdc64e1286d544bfe945bdeca8740ed6ef7d3cb5753",
+      "bytes": 3952
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/OWNERSHIP.json",
+      "beforeSha256": "a07c202c1dc1dde5e4421f2d2c748878bf4d29617f44048dfc7fd928cc1d9546",
+      "afterSha256": "b9c2378f088486f0096af890054113c1614bbb9685d4fa9a2008cc4625a96e89",
+      "bytes": 7983
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/PROGRESS.md",
+      "beforeSha256": "99fc9e578eb1819c3af51dcd4a6055e484d1df3e2ae710a4373d0e37b4107e3e",
+      "afterSha256": "79975e32f80cc5becfac05bffbfadb0f53ad4522b82caf6eee3d5744b3204a55",
+      "bytes": 3376
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/PcCellFirePositionProbe.java",
+      "beforeSha256": "793fdaa7b0fc168b3338e5c2b7c408f89b514325d54dec6441f8e25b70e26a8f",
+      "afterSha256": "df3eca7fc159d2da323234f79ad0d3fd94b1368f1009514a92f6a5254b1773c1",
+      "bytes": 685
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/SceneFactsPresentationProbe.java",
+      "beforeSha256": "08d2c1e13d49172a8a1c3e2a24fccc7f3eaf6985a1292cf9da693e182259e656",
+      "afterSha256": "ea7e3999520d1d6ea0dcfa6b0747318076fd533cc7fd8f4206562c5b9926a6ed",
+      "bytes": 3971
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/TEST_MATRIX.json",
+      "beforeSha256": "ca2db5384c631871edab890a120d2f8fed59c8c9fa60e35417f2ae55738d5c62",
+      "afterSha256": "a5040430930bafad8ba2475be24ee18d92fcbdf6de4b44b9af12983efbb6a315",
+      "bytes": 3273
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/UNKNOWN.md",
+      "beforeSha256": "cf819b21335a922bfaceaf7271493bf473d90f802e2499f8a968b17abb82aa74",
+      "afterSha256": "115d81ee878f68da8610f331997ad32da247b071c02dd7b21e42749878b82b59",
+      "bytes": 1799
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/run_grid_memory_parity.py",
+      "beforeSha256": null,
+      "afterSha256": "b6752882560adcd32c80283956602dca3b4238f08d43c736cdd8d338de15fab8",
+      "bytes": 3160
+    }
+  ],
+  "gridParityWindows": 28,
+  "positionVectorsByteExact": 40000,
+  "nativeVectorSha256": "d5c0ecf752e1b082e27d5801b1891a6a092811bebc08c3f01a6203bfba4da908",
+  "originalSource10714Exact": true,
+  "oldDirtyGuard4301Exact": true,
+  "old168PinsExact": true,
+  "original4JniExact": true,
+  "pcExecutableExact": true,
+  "architectureStaticPass": true,
+  "gameSession1690Pass": true,
+  "bridgeSessionPass": true,
+  "unityGoldenExistingFailureRetained": true,
+  "ordinary384InstalledFixPass": false,
+  "B27DeltaReceiptIsSeparateAndNotYetImported": true,
+  "noBProductionEdited": true,
+  "conflicts": [],
+  "ARM": false,
+  "goalComplete": false
+}

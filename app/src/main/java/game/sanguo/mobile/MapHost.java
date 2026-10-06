@@ -393,7 +393,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void clearSceneFacts(){sceneFacts=null;sceneState=null;dirty=true;}
     @Override public void setWorld(World w,Hex s,int moving){setWorld(w,s,moving,null,null);}
     void setWorld(World w,Hex s,int moving,StateToken expected,SceneFactsSnapshot facts){
-        SceneFactsSnapshot accepted=SceneFactsPresentation.accept(w,expected,facts);
+        SceneFactsSnapshot accepted=SceneFactsPresentation.accept(w.mapId,w.mapRevision,w.terrainRevision,w.scenarioId,w.dataHash,w.turn,w.player,expected,facts);
         if(!Objects.equals(sceneState,expected)||sceneFacts!=accepted)dirty=true;
         sceneState=expected;sceneFacts=accepted;
         boolean gridChanged=ground!=null&&!ground.matchesGridContext(w,gridForce(w));

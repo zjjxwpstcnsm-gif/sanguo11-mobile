@@ -48,7 +48,7 @@ public final class MainActivity extends Activity {
             });
         }
         legacyView=current.legacyView();world=legacyView.draft;
-        sceneFacts=SceneFactsPresentation.accept(world,legacyView.state,current.sceneFacts());
+        sceneFacts=SceneFactsPresentation.accept(world.mapId,world.mapRevision,world.terrainRevision,world.scenarioId,world.dataHash,world.turn,world.player,legacyView.state,current.sceneFacts());
         PortraitMediaSources.bind(world,legacyView.state,current.officers());
         OfficerPortrait.bindView(this,world);
     }

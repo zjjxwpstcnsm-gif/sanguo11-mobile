@@ -1,0 +1,72 @@
+{
+  "passed": false,
+  "sourceCommit": "8979dae26bcee93f962a86d65725e346badbbba2",
+  "serial": "emulator-5554",
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "apkSha256": "6f987fd08bdd7c77eea99d200993b70f152597e6e3e391b7a6288d4bf0243dbb",
+  "testSha256": "5235d8878d6bab2d543d0a3da10f8bafd1ec9a816cdd423eb4ef20ad0bdcded2",
+  "actualHeapLimitBytes": 402653184,
+  "sourceIndicesComplete": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "failedSourceIndex": 11,
+  "failureStage": "preview zoom; actual OOM precedes test null-spatial failure",
+  "allocationBytes": 641552,
+  "remainingBytes": 82024,
+  "actualStack": [
+    "E MapRenderer: java.lang.OutOfMemoryError: Failed to allocate a 641552 byte allocation with 82024 free bytes and 80KB until OOM, target footprint 402653184, growth limit 402653184",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat java.util.Arrays.copyOf(Arrays.java:3281)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.SceneMesh$SurfaceBuilder.mesh(Unknown Source:31)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.SceneMesh.grid(SourceFile:17)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.SceneMesh.ground(SourceFile:58)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.FilamentMapView.buildMeshes(Unknown Source:267)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.FilamentMapView.$r8$lambda$gMsaeNBovjqBwWITw6ZIHB1EBtM(Unknown Source:0)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.FilamentMapView$$ExternalSyntheticLambda18.build(Unknown Source:25)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.SceneWorkQueue.lambda$submitPhased$3(Unknown Source:6)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.SceneWorkQueue.$r8$lambda$AOLl99lF8Lv66g7xFdmfJdIKduc(Unknown Source:0)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat game.sanguo.mobile.SceneWorkQueue$$ExternalSyntheticLambda1.run(Unknown Source:29)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+    "10-06 21:54:24.097 28563 28563 E MapRenderer: \tat java.lang.Thread.run(Thread.java:919)"
+  ],
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-all-source-26",
+  "evidenceHashes": {
+    "logcat.txt": "8945786638b1e45b43567948b7f36019dbeac830138ebe25644c33446c556c2f",
+    "instrumentation.txt": "1d19212862844095fc3a415042c9bcdf923f765119ec7853464af12d7b702c32",
+    "session.json": "bacb1d12bbd77efcaebb2f4e6a29e2e3f84e0e480ed61992c3f35f480c1e046c",
+    "evidence/memory.csv": "42e4af6a3bef7f50d1957dc675e579bfde75e9fc0c753d5a329b33c6aee1f8ee"
+  },
+  "userArmOriginalStackKnown": false,
+  "wholeGoalComplete": false
+}

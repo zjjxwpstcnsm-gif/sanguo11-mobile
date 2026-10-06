@@ -21,7 +21,10 @@ final class PcCellFireSet {
    if(f.remaining<=0)continue;
    if(f.sourceX==null||f.sourceY==null)throw new IllegalArgumentException("Authoritative fire missing source cell");
    int x=f.sourceX,y=f.sourceY;if(!seen.add(y*200+x))throw new IllegalArgumentException("Duplicate source fire cell");
-   var point=PcCellFirePosition.source(snapshot.ground.pcMap,x,y);total++;
+   if(x<0||y<0||x>=200||y>=200)throw new IllegalArgumentException("Original cell fire source bounds");
+   var map=snapshot.ground.pcMap;int terrain=map.terrain(x,y),fx=PcCellFirePosition.fineX(x),fy=PcCellFirePosition.fineY(x,y);
+   int height=terrain==7||terrain==8?map.coarseWaterByte(fx/4,fy/4):map.heightByte(fx,fy);
+   var point=PcCellFirePosition.source(x,y,terrain,height);total++;
    // No original current-height contract for authored visual overrides yet.
    if(!snapshot.ground.surface.overrides.isEmpty()||cells.size()>=MAX_CELLS)continue;
    cells.add(new Cell(x,y,point));

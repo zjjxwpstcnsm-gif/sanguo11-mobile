@@ -9,15 +9,15 @@
     },
     {
       "item": "palette16",
-      "status": "HOST PASS",
-      "evidence": "13273 checks; 16 source47 slots/9 engineering; all opaque/contrast>=4.5",
-      "next": "new APK menus/map deep surfaces"
+      "status": "HOST AND PACKAGE20 NORMAL PASS",
+      "evidence": "13273 host; package20 16 real sources2729+cold79; current25 not full16",
+      "next": "current combination deep normal pages/ARM"
     },
     {
       "item": "terrain-oom",
-      "status": "HOST FIX VERIFIED",
-      "evidence": "baseline384MiB OOM; retained177286368→60182568B;4 returns passed",
-      "next": "Android Java/native/GPU peaks/all16 preview/Home/rotation/reopen/save"
+      "status": "CURRENT NORMAL384 FAIL",
+      "evidence": "package6f987fd0 source11 zoom actual641552-byte OOM; arrays.copyOf/grid/ground/buildMeshes; full9/3797SHA restored",
+      "next": "exact grid parity/memory reduction then new384/512 installs"
     },
     {
       "item": "terrain-parity",
@@ -27,27 +27,27 @@
     },
     {
       "item": "android-compile",
-      "status": "COMPILE PASS",
-      "evidence": "353 production Java SDK35 +aapt2 resources",
-      "next": "Gradle/dex/R8/sign/new APK install"
+      "status": "FRESH APK BUILT AND INSTALLED",
+      "evidence": "package25d72b47f3 normal fire pass; package26 6f987fd0 actual384 failure",
+      "next": "fresh repaired combination install"
     },
     {
       "item": "fire-state-ui",
-      "status": "SOURCE COMPILE",
-      "evidence": "real FireState positions/remaining static markers; no local expiry/RNG",
-      "next": "normal reachable FIRE/EXTINGUISH/expiry/load/low/pause"
+      "status": "PACKAGE25 NORMAL PASS PARTIAL",
+      "evidence": "real player fire/extinguish/reignite/expiry/low/save/load/cold and fullSaveRNGToken",
+      "next": "pause/rapid switching/all source longflows/ARM"
     },
     {
       "item": "pc-fire-controller",
-      "status": "PENDING",
-      "evidence": "named supplied EXE fire/extinguish callers recorded",
-      "next": "original cell emitter/controller/material/lifetime and chains"
+      "status": "ORIGINAL13 PACKAGE25 NORMAL PASS PARTIAL",
+      "evidence": "native source factory/stop/material/location40000; TCG32MiB121exactframes; nativePSS52410KiB independentpeak",
+      "next": "chains/facilities/PCframebuffer/ARM"
     },
     {
       "item": "identity16",
-      "status": "HOST PASS",
-      "evidence": "10720 exact joins/0 unknown;2892 PNG SHA;current four gaiji",
-      "next": "actual Android all sources/forms/callers"
+      "status": "PACKAGE20 SAVES HOST JOINS PASS",
+      "evidence": "10720 current-source joins/0unknown/2892PNG/695assets",
+      "next": "all actual form/caller pixels/time/lifecycle current APK"
     },
     {
       "item": "dynamic-age",
@@ -85,5 +85,6 @@
       "evidence": "A only/no B WIP merge",
       "next": "A+B completed frozen source→new combo APK→fresh matrix"
     }
-  ]
+  ],
+  "updatedAfter": "normal-all-source-26"
 }
