@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug.apk": "562fabeb23540c0256ab9bcc4282a2a4f2d729805990062c29c46ed2b0e9743a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-4cb8f8cb-direct-music-combination/app-debug-androidTest.apk": "7c677d1b0e0532a65a60bde5a08caaf05817918d2c3f3007e504ff2543c49d30"
+  },
+  "sourceCommit": "4cb8f8cb",
+  "scope": "Same frozen562 game/7c test: actual system projection UID/GAME-only raw capture; temporary thisTEST appopallow restores originaldefault/micfalse;44.1/48k initialize and normalmenu original2238 completefirsttrack/reference correlation unchanged.995 plusfirstaccepted/decodedbytesSHA and wholeSave/RNG/fullStateToken invariant; not normal mapBGM/voice/ARM or originalWindowsexactPCM",
+  "normalMenuChecks": 62,
+  "captures": [
+    {
+      "run": "session_a_music_submission_appop_44_init44100",
+      "rate": 44100,
+      "frames": 126976,
+      "failure": "",
+      "wavSha256": "628116f80b0170427b1aca53bf30418e7fe0e11f3ce65c4ffed3683d42588936",
+      "actualSystemProjectionConsent": true
+    },
+    {
+      "run": "session_a_music_submission_appop_44_init48000",
+      "rate": 48000,
+      "frames": 139264,
+      "failure": "",
+      "wavSha256": "81375ebb5bb0434218e3a13bdf1f8e771a4163d0aa67d05044f5c5d0ebc70a0b",
+      "actualSystemProjectionConsent": true
+    },
+    {
+      "run": "session_a_music_submission_appop_44_menu",
+      "rate": 44100,
+      "frames": 5724160,
+      "failure": "",
+      "wavSha256": "d5f3fec305ae1678aa33cef20f1046294dc1524baac77d6a42d02b8c40e2ae8f",
+      "actualSystemProjectionConsent": true
+    }
+  ],
+  "actualFirstTrack": {
+    "normalMenuOnly": true,
+    "noTestPlaybackDirective": true,
+    "resourceId": 2238,
+    "musicId": 1,
+    "identity": "bf59baf7-bbff-4b93-b7f1-9642537c7636:0:pc-menu-559220",
+    "firstWriteMillis": 179,
+    "loopWaitMillis": 102898,
+    "loops": 1,
+    "originalFirstLoopUnderruns": 0,
+    "originalFirstTrackFrames": 3904512,
+    "firstAcceptedBytes": 15618048,
+    "firstDecodedBytes": 15618048,
+    "firstAcceptedPcmSha256": "c90b72f072a61abbaf910aa2403a596c58590930d2ae43650d105743efecd66e",
+    "firstDecodedPcmSha256": "c90b72f072a61abbaf910aa2403a596c58590930d2ae43650d105743efecd66e",
+    "originalReferencePcmSha256": "437125d290185a3122818abd6035635b92be1bfd564365a6130afe913f21a242",
+    "actualPlaybackHeadAtBoundary": 3933600,
+    "bufferFrames": 16384,
+    "musicGain": 65,
+    "beforeSaveSha256Base64": "glVCabGSC11nuJRdIqVfAlPKt+0upVv1IO9bmzuZ8Kk=",
+    "allSaveRngEqual": true,
+    "allStateTokenEqual": true,
+    "stateSessionId": "bf59baf7-bbff-4b93-b7f1-9642537c7636",
+    "stateGeneration": 0,
+    "stateRevision": 0,
+    "mapBgmBound": false,
+    "armEvidence": false
+  },
+  "wholeMusicGate": {
+    "status": "PASS",
+    "resourceId": 2238,
+    "scope": "Original complete music waveform in actual emulator mix; no original scene binding/ARM speaker claim",
+    "sampleRate": 44100,
+    "correlation": 0.9972379373450883,
+    "seconds": 7.139319727891157,
+    "captureSha256": "d5f3fec305ae1678aa33cef20f1046294dc1524baac77d6a42d02b8c40e2ae8f",
+    "originalReferenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+    "originalOggSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462"
+  },
+  "fixed17ConstantOffsetSamples": 314844,
+  "fixed17LowestCorrelation": 0.9999998661121262,
+  "firstDecodedReferenceByteIdentical": false,
+  "referenceDifference": "Android decoded/acceptedc90 SHA differs originalreference437; no resample/timecorrection/PCM rewrite; actual waveform passes tolerance. OriginalWindows PCM exactness unclaimed.",
+  "mainRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "testRestoration": {
+    "test-internal": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    },
+    "test-external": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    }
+  },
+  "oldTestApkRestored": "4b34497ac430b73f1ed942e172bcee46c89d4782cbd39bde283fa92acc53e27d",
+  "permissionBefore": false,
+  "appOpBefore": "default",
+  "appOpAfter": "RECORD_AUDIO: default; time=+2s100ms ago; duration=-20732d4h45m52s801ms",
+  "appOpDuring": "RECORD_AUDIO: allow; time=+824ms ago; duration=-20732d4h48m0s394ms",
+  "samePackage42Comparison": "42runtimegranted butexplicitdefault nativepermission-1;44same562/7c allow bothinit success. This localpermissioncause verified; old-22 not reproduced or closed.",
+  "previous34WaveFailureRetained": true,
+  "previous34UniqueFailureCauseClosed": false,
+  "mixerAttribution": "Sameintervalcounters measuredbutincludeidle/start/lifecycle; no arbitrary totals or unique audiofailurecause attributed",
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-submission-appop-44",
+  "evidenceSha256": {
+    "session.json": "852a08fcf436b9751f7422bcbe178399fc5054442c4310b1a0e7c30f27265d5a",
+    "instrumentation.txt": "517e2a733edffe8ab996098d5f2e524aae2d15a0bb0c123239c00d71a5711559",
+    "evidence/menu-music.json": "092f1e672fb8377546b05a39d0a461fbe4730ff768901f56c140eb2df68c2c92",
+    "evidence/menu-music-playback-timeline.json": "171579a3d91f3ca1aeb118f4855fb2229eb8124f0c725f8f8326a49e0bcac5de",
+    "whole-music-check.json": "d60f7aa60e02ed06752e02acdd384770722838db5e4ba31d8e0543019b133ec8",
+    "fixed17-timeline.json": "aea292137e9cabce36743bb9d0a671abd32d421dc8a1261184fd94be7345f929",
+    "mixer-timeline-summary.json": "fa101a552c00f795ed61cecaee5da661dfe3b70b5fd09fb25726a45593beb397"
+  },
+  "mapBgmVoice58OrdinaryEventsAccepted": false,
+  "ARM": false,
+  "goalComplete": false
+}
