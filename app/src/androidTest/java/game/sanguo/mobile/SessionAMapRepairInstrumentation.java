@@ -130,7 +130,7 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         check(position[0]>=0,"normal name search contains exact source officer "+nativeId);
         long deadline=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<deadline){
-            TextView[] cell={null};int[] first={0};Rect viewport=new Rect(),candidateBounds=new Rect();boolean[] sufficientlyVisible={false};
+            TextView[] cell={null};int[] first={0};Rect viewport=new Rect(),candidateBounds=new Rect();boolean[] sufficientlyVisible={false},viewportReady={false};
             ui(()->{
                 first[0]=table.list.getFirstVisiblePosition();
                 View found=find(table.list,v->{
@@ -144,10 +144,17 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
                     int[] location=new int[2];found.getLocationOnScreen(location);
                     candidateBounds.set(location[0],location[1],location[0]+found.getWidth(),location[1]+found.getHeight());
                 }
-                check(table.list.getGlobalVisibleRect(viewport)&&viewport.height()>0,"actual filtered roster viewport reachable "+nativeId);
+                viewportReady[0]=table.isAttachedToWindow()&&table.list.isShown()&&table.list.getGlobalVisibleRect(viewport)&&viewport.height()>0;
                 int[] origin=new int[2];table.list.getRootView().getLocationOnScreen(origin);viewport.offset(origin[0],origin[1]);
             });
-            if(cell[0]!=null&&sufficientlyVisible[0])return cell[0];
+            // Normal keyboard/layout changes can temporarily collapse the list.
+            // Observe readiness within the same bounded deadline before swiping;
+            // absence in one UI-thread sample is not permanent unreachability.
+            if(!viewportReady[0]){SystemClock.sleep(100);continue;}
+            if(cell[0]!=null&&sufficientlyVisible[0]){
+                check(true,"actual filtered roster viewport reachable "+nativeId);
+                return cell[0];
+            }
             // Search includes faction/status columns. The exact person can be
             // below the viewport; use a human-reachable ListView swipe, never
             // select a different name or bypass the callback with performClick.
@@ -226,6 +233,7 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
             // visible name/portrait cell rather than the horizontally scrolling row.
             // Metadata/bitmap readiness can outlive a recycled list row. Resolve
             // the current stable-ID cell again immediately before real input.
+            finishPortraitSearch(table);
             TextView touchCell=revealPortrait(table,officer,person.nativeId);
             longPressPortrait(touchCell,person.nativeId);
             ImageView detail=(ImageView)await(v->{if(!(v instanceof ImageView)||!(((ImageView)v).getDrawable() instanceof OfficerPortrait))return false;try{return ((World.Officer)field(((ImageView)v).getDrawable(),"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}});

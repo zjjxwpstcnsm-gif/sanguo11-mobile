@@ -1,0 +1,49 @@
+{
+  "sourceRevision": "2312ac57df976d0c14985ff9410ebb4729fbb5ee",
+  "gameLargeHeap": false,
+  "buildSuccessful": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2312ac57-normal384-combination68/app-debug.apk",
+      "sha256": "b5ec2548eacda2a9272090490e83ac97afb311a4297333c5eb091c6872c38e47",
+      "bytes": 313473760
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2312ac57-normal384-combination68/app-debug-androidTest.apk",
+      "sha256": "c96bc8abb5168c5e64fe147ffa763263a9edde16fac8fad84a2157c8759cc3f3",
+      "bytes": 2610499
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "buildLog": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/build-normal384-current68.log",
+  "buildLogSha256": "dedfed0288955adc7a2b953abe7807d750ece6a973742475c3110fb4735636b0",
+  "actualInstalled": false,
+  "actualOrdinary384Accepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Independently built latest completed military combination ordinary384 regression. Pending normal all16 install/real touch/cold/full restore; no historical scores borrowed."
+}

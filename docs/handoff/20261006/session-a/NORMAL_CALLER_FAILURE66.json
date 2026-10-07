@@ -1,0 +1,37 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-combination66",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug.apk": "4df5e29c724d04a2c39fea31d9e711c32dcf179ccacd490b6b5bbb589f321f17",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug-androidTest.apk": "7abb13fdf92ef984c10bc983c15b30d4f861cab0ad9047af3fbdab8df25fac60"
+  },
+  "passed": false,
+  "coldExecuted": false,
+  "actualFinishedPersons": 0,
+  "firstPersonNativeId": 635,
+  "firstPersonCurrentName": "劉備",
+  "actualChecks": "Source11 real newgame/preview/gestures/complete670 roster membership; first person normal-roster original bitmap identity/year/sharedcache passed; no detail input occurred",
+  "failure": "actual filtered roster viewport reachable635 on immediate second lookup",
+  "failureArtifactSha256": {
+    "FAIL.png": "9385f0fbbebf56711725fa9a78a4ac552cc4cdce54b9e4cec3e589de14a0cde6",
+    "FAIL-actual-text.json": "abe8861e93dbc07d91fde25152f47e7e4f3e6946ff830dd017d3560acf4dab7d",
+    "result.txt": "1788bc548982a08bf34c41272af4c9447f87a9ffdcf10eeea2bc12eca4eb778a"
+  },
+  "observation": "Actual failure screenshot shows keyboard and filtered first-person row; sequential after-screenshot widget facts have different viewport geometry. No confirmed production root; instantaneous viewport absence during resize is not proof permanent row unreachable.",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "next": "Wait for actual attached/visible list viewport instead of immediate assertion; reconfirm normal search action/layout immediately before detail input; fresh independently built/test-installed cohort and all670 rerun required",
+  "automaticNextController": "67 correctly stopped before next device actions after failed66",
+  "wholeGoalComplete": false
+}
