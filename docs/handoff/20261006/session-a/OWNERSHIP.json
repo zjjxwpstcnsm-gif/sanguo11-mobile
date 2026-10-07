@@ -398,7 +398,11 @@
     "docs/handoff/20261006/session-a/REGISTERED_NORMAL_QUEUE182.json",
     "docs/handoff/20261006/session-a/CURRENT_THREAD_OBSERVER183.json",
     "docs/handoff/20261006/session-a/CURRENT_THREAD_CPU_AUDIT184.json",
-    "docs/handoff/20261006/session-a/CURRENT_READABLE_PREFIX185.json"
+    "docs/handoff/20261006/session-a/CURRENT_READABLE_PREFIX185.json",
+    "docs/handoff/20261006/session-a/CURRENT_MILITARY_ACCEPTANCE186.json",
+    "docs/handoff/20261006/session-a/overlay-counters187.json",
+    "docs/handoff/20261006/session-a/widget-readability188.json",
+    "docs/handoff/20261006/session-a/LEGACY39_ACTUAL_INSTALL189.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

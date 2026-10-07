@@ -432,3 +432,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 182 实际完整后继等待器2601已启动，仅等live原39队列1234接受并每原SHA完整恢复后，执行同176三命令/16caller/.995音频/新180普通与176默认fast32/all244/冷完整restore；当前无deviceactions。不是计划即通过，不用旧168军建成绩代替176normal。UNKNOWN已更新真正当前source/export/设备/未知，旧文本保留为历史。
 
 185 新165/168军建实际UI停工/foreground120s两原PNG及各actual-text四文件只读pull，device前后SHA=host全部相同，已视觉查看结果/费用不退/部队/城市/方向/本旬行动与命令。攻击/战法/计略为enabledtrue+viewAlpha.55可点击原因，实际局部solidinkRGB134145154/background274252候选对比4.57514；未误报为全透明/不合格，不新增未经证实生产修复。局部像素候选非所有AA/Canvas/全UI/ARM或原PC像素parity，正常/cold/最终restore尚待。183CPU观察器2908真实运行，当前partial收集，最终冻结需完整restore/observer实际收尾，不把 live样本作根因。
+
+186 当前game931bc/test36f7e8实际Source14军建normal/cold6814→4513/both真实3Dsubmit/auto816052...通过，原9internal(rewrite4)/3797external(rewrite0)每SHA完全恢复，video/native0/11原片finalindexe798fb...，不是新176test分。184CPU133样本/7真实旬、187overlay184row、188widget22capture516row/108solid最低8.52197/408未解析/24disabled均按最终log+APK+restore冻结；长旬compute128849–332515ms仍未解决。176/178/180和B宿主工作干扰/种子不同，不作性能根因或Java/GPU/ARM预算接受。旧98870/98984/98985/2908均真实终止，1234已继续新的原39fullbackup，2601仍只等待genuine39完整接受。
