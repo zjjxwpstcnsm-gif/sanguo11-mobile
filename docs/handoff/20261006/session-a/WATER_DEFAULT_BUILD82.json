@@ -1,0 +1,50 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "ac4d1c33559656968e77517fc8c239a13399d4c2",
+  "gameLargeHeap": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-ac4d1c33-water-default82/app-debug.apk",
+      "bytes": 313476956,
+      "sha256": "7c7db287a208d794f73f74f8fb329094f02934b26b067c5b1cee9635c5d1ef45"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-ac4d1c33-water-default82/app-debug-androidTest.apk",
+      "bytes": 2612435,
+      "sha256": "616010c9b589f902bffac220b1a7dcbc79df287d3a97f6eb4c64ac132625ba12"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "assetsCompared": 5636,
+  "allAssetsByteExactComparedTo2cd": true,
+  "buildLogSha256": "54bae3a825a9975833ba3e8229ec1b65145ef4ee8fc71157159f58371797f301",
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "scope": "Independent fresh default with primitive water builder,10720 voice joins and normal UI scene command-test entry. No old package media/memory/fire/command scores borrowed. Requires actual full-backed install/normal flow/cold/restoration and ARM separately.",
+  "wholeGoalComplete": false
+}
