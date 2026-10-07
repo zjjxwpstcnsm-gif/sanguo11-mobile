@@ -1,0 +1,35 @@
+{
+  "exit": 2,
+  "wallSeconds": 2.013885147,
+  "sourceBeforeAfterExact": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+  },
+  "diagnosticSourceSha256": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "47c6738fad12f5ebbfe19d5030d9b56223e6832a0662e36cf6dbbf5eecc612ce"
+  },
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-capacity-fault231/pc_effect_scene_probe.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-capacity-fault231/host-probe"
+  ],
+  "staticUnicornSha256": "ca7274f6bfce09f7255ac53a4de9f2d292163018056753340d549efbee792835",
+  "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nEXISTING_BLOCK_BYTE_GUARD pc=464c24 bytes=5000008\nNative boundary/budget failure at45a530; FAULT_DETAIL pc=464c24 fault=1 codeBytes=5000008 next=10552e80 allocatedBytes=4533780 allocations=107 timedOut=0\n",
+  "stderrSha256": "722f08299d268be9835352cc4be87550bf6b49b47f438f81258955f36a2118db",
+  "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+  "productionBlockByteGuardObserved": true,
+  "scope": "Host-only native clone adds two logging statements at existing guard boundaries. Same commands as230, same original kernel/scene and existing5M block-byte/5s deadlines. Canonical source and allJNI untouched; no Android128/Java OOM/GPU/ARM proof or increased budget.",
+  "wholeGoalComplete": false
+}

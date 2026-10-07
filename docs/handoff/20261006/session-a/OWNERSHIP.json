@@ -451,7 +451,12 @@
     "docs/handoff/20261006/session-a/CANDIDATE_A_CLOSURE227.json",
     "docs/handoff/20261006/session-a/CANDIDATE_A_CLOSURE227.md",
     "docs/handoff/20261006/session-a/audit_gpu_metric_availability228.py",
-    "docs/handoff/20261006/session-a/GPU_METRIC_AVAILABILITY228.json"
+    "docs/handoff/20261006/session-a/GPU_METRIC_AVAILABILITY228.json",
+    "docs/handoff/20261006/session-a/probe_fire_controller_capacity229.py",
+    "docs/handoff/20261006/session-a/FIRE_CONTROLLER_CAPACITY229.json",
+    "docs/handoff/20261006/session-a/FIRE_CONTROLLER_CAPACITY230.json",
+    "docs/handoff/20261006/session-a/probe_fire_capacity_fault231.py",
+    "docs/handoff/20261006/session-a/FIRE_CAPACITY_FAULT231.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

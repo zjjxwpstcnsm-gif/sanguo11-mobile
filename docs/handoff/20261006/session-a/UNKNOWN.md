@@ -125,3 +125,6 @@ CURRENT157: 145military156 normal/cold/full9+3797restore/9rawvideo accepted, per
 
 
 228 GPU统计后继：当前5554/API29/x86_64、同一实测游戏PID31545，dumpsys meminfo Graphics=0；SurfaceFlinger实际GLES为Android Emulator OpenGL ES Translator / AMD Radeon Pro5300M，全球合成缓冲估算72822.16KB。实际图形经host翻译，guest meminfo零值不能证明零GPU资源；合成缓冲全局数不属于本游戏GPU峰值，不能与Java/native样本相加。只读命令/raw SHA见GPU_METRIC_AVAILABILITY228.json，未新建trace/录屏或动UI/规则。应用归属GPU峰值仍未知，ARM硬件及用户354832真实栈仍缺，不以largeHeap或零统计关闭内存目标。
+
+
+229/230/231原火128容量：独立宿主视觉诊断（128合法cell键、诊断height0、固定camera，无World/rule/RNG注入）原factory128创建成功，首帧45a530更新失败。230使用生产PC_VM_PROBE_BLOCK_BUDGET=1复现，exit2/只16字节ready、无帧。231仅克隆原C加入两处诊断fprintf，仍相同5Mblock-byte/5s预算；原源码/六JNI不改。精确失败pc464c24、codeBytes5000008/fault1/timedOut0，直接命中已有字节预算；已分配guest4533780bytes/107allocations只是这一时点，非Java/native/GPU峰值，不能称JavaOOM。此前128仅cap未验收现有失败证据，13格正常生命周期仍为其原范围，不能借此通过128。下一步调查真实原manager244slot遍历/单controller复杂度与容量边界，保持原资源/controller/绘制顺序/同MT和全局时间；不直接加预算、降MAX_CELLS/永久关闭3D或丢truefire来掩盖。Normal128 Android/ARM/链/性能预算仍不通过。

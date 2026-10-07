@@ -1,0 +1,15 @@
+{
+  "passedTransportAndLifecycle": false,
+  "revision": 229,
+  "productionBlockBudget": false,
+  "exitCode": 2,
+  "requestedVisualControllers": 128,
+  "stdoutBytes": 103896,
+  "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nNative boundary/budget failure at45a530\n",
+  "scope": "First isolated host diagnostic with default native instruction accounting, not production block-byte environment.128 factories created then45a530 boundary failed. No Android/rule/RNG/Java OOM acceptance; preserved, not rerun.",
+  "wholeGoalComplete": false,
+  "stderrSha256": "a59b365a785fe9f39390abeb09d6066e5bc5c91490d7fdd85c35b5335788bf5e",
+  "stdoutSha256": "8033eb396c1d5db275dae6fff596b79439ceeecfece458bc2b86335c04a1ddf3",
+  "initialBlockBudgetExplicitlySet": false,
+  "currentToolShellInheritedBlockBudget": null
+}

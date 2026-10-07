@@ -1,0 +1,20 @@
+{
+  "passedTransportAndLifecycle": false,
+  "revision": 230,
+  "productionBlockBudget": true,
+  "sourceGuards": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/pc-fire-runtime/host/pc-effect-fire-tcg32-probe": "a61663ba50304dce58b01d7ab1a3a314d4129155dd04ecf8adaeec5254f35f61",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-kernel.bin": "2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-fire-scene.bin": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",
+    "/Users/paopao/workspace/sanguo11-mobile/out/pc-visual/v150-native-x86-source-rh-camera-final/commands.bin": "eee7a29a813eb094a3b9d189c096e219b392b65dcf4b265067e8ceb798902176"
+  },
+  "exitCode": 2,
+  "wallSeconds": 0.22839542200000001,
+  "requestedVisualControllers": 128,
+  "stdoutBytes": 16,
+  "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nNative boundary/budget failure at45a530\n",
+  "stderrSha256": "a59b365a785fe9f39390abeb09d6066e5bc5c91490d7fdd85c35b5335788bf5e",
+  "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+  "scope": "Isolated original evaluator128 diagnostic cells, height0. Child boundary failure retained. No Java OOM, World/rule/RNG mutation, Android/GPU/ARM or normal128 acceptance. Production is not modified or weakened.",
+  "wholeGoalComplete": false
+}

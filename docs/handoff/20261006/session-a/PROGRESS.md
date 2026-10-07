@@ -495,3 +495,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 228独立只读GPU指标核查：PID31545前后同一，meminfo Graphics0与实际OpenGL host translator/SurfaceFlinger全局缓冲72900KB量级并存，明确不能记为本应用GPU零占用/峰值。新GPU_METRIC_AVAILABILITY228.json保存原始命令/日志SHA/归属限制，不干预当前Source3正常caller流。Source3已544/670仍partial；原normal/视频/native及audio/heap串行等待进程均实际存活，当前队列不重启。B独立combined61开始物化candidate60+227，仅冻结增量；A不操作5582，不转旧包成绩，不宣称组合已装。
+
+
+原火容量后继229–231：真正执行不可变原controller128独立host输入，factory创建成功但初次更新失败；231诊断克隆证明为5Mblock-byte守卫5000008 at464c24，未触发5s watchdog，不等同JavaOOM。只own工具/回执，规范native/原4新2JNI和current165/176不变；原位置选height0明确诊断，不能代替正常128格或关闭火性能目标。原45a530按244slot顺序调用457a20的原指令窗已只读查看，为后继容量分解调查边界，不推算规则或声称性能修复。Source3实际640/670仍partial，完整冷与保存恢复尚未结束；正在等同一活跃helper/observer，无重启。B独立新组合61-r2据消息完成构建并开始5582完整备份后正常单挑验收，A未核其设备/结果，不沿用或宣布接受。
