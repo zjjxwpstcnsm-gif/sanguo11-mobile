@@ -57,7 +57,9 @@ public class SessionAScenePresentationInstrumentation extends SessionBFieldworks
  }
  @Override protected void pose(Hex target)throws Exception {
   byte[] before=capture();StateToken prior=activity.deploymentState();
-  nav("地图");text("视图");text("定位");settle();
+  // setItems dispatches the real row tap through its ListView; the text cell
+  // itself is not a clickable Button. Use the inherited normal option tap.
+  nav("地图");text("视图");option("定位");settle();
   boolean visible=false;
   for(int attempt=0;attempt<16;attempt++){
    float[] point=(float[])invoke("screenHex",new Class<?>[]{Hex.class},target);

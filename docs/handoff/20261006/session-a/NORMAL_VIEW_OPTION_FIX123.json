@@ -1,0 +1,9 @@
+{
+  "scope": "A instrumentation only: real visible ListView option click, not self-clickable Button lookup; retained normal view focus/pan and fullSaveRngStateToken checks. Fire/attack inherit same A helper. No production/core/B page edits, no direct camera/snapshot/rule injection or weaker deadline.",
+  "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenePresentationInstrumentation.java",
+  "beforeSha256": "4171baf86c721464128fd93dedf1ecf52d08b60ce1c3742dc1e945acf4978744",
+  "afterSha256": "e3952240d18442eebe78fd36eef9a0c87e3f83e9c47905c4958d5d20f6a89c99",
+  "normalInstalledAcceptance": false,
+  "newTestOnlyBuildInstallAndFullRestorePending": true,
+  "wholeGoalComplete": false
+}

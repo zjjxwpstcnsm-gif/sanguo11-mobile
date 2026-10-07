@@ -1,0 +1,55 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-followup117/military-construction-repair",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug-androidTest.apk": "565de46c4d4fec7beabadf4f1a33f856db412151843953dd398cf04c5926e250"
+  },
+  "normalPassed": false,
+  "coldAccepted": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 3,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "workerObservation": {
+    "hostPid": 63934,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-followup117/military-construction-repair/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "videoObservation": {
+    "hostPid": 63933,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-followup117/military-construction-repair/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "13e5d73e36fb5ac7c0a36dc0c793e272ec4429f90162e6405e34f4069d355815",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "failure": "A pose text(\"locate\") requires self-clickable TextView; actual ListView option is visible but click belongs to parent AdapterView",
+  "testPredicateMismatchConfirmed": true,
+  "productionLocatorMissing": false,
+  "sourceEvidence": [
+    "inherited B text requires v.isClickable()",
+    "failure screenshot shows locate option",
+    "A-owned pose calls text instead of existing normal option helper"
+  ],
+  "rawFiles": {
+    "session.json": "8c2853ce43974318d1055df586f889bdc1e7506068ec7c9c8a5015500e312221",
+    "instrumentation.txt": "8766b5d597dda2fbe4f34cfcdda534376541095574fec832ee08f49ea5e10292",
+    "evidence/failed.png": "a412aa61c42ef8e37c0ed2ee8d8499eeb98ae8fb4f6891a5400522782f2b6c8c",
+    "evidence/failed-actual-text.json": "2b89b9faa7ba9c8b4cf516105dedf90fd6798f38894278421c1c6fcac589bd19",
+    "evidence/progress.txt": "b92a5487e3bf0c78626bef7fb762287e4c6508059505765492e8462c64d2ca15"
+  },
+  "followup117Terminal": true,
+  "wholeGoalComplete": false
+}
