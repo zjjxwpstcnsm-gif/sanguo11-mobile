@@ -1,0 +1,38 @@
+{
+  "passed": false,
+  "scope": "Actual ff2832/d87a fullSource11 attempt; clipped native254 reached and correct pixels/purity, native78 input delivery failure, no all670/cold pass.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5a72c163-roster-input-diagnostic/app-debug.apk": "ff2832c0d41f59fa130ae39947dbdf7566b279859fc5b9cf02e327ae356d75c9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-16701df7-portrait-clip-test/app-debug-androidTest.apk": "d87a1f44cea2d520594cb43d47e0e5efaded3d8b466b72748d307d5551e4af7f"
+  },
+  "actualCompletePairs": 9,
+  "expectedOfficers": 670,
+  "failureNativeId": 78,
+  "actualName": "夏侯淵",
+  "spokenNameCorrection": "Prior commentary incorrectly said夏侯惇; actualFAIL screenshot/query is夏侯淵.",
+  "clippedNative254Fixed": true,
+  "failure": "Native78 correct visible original roster image and current detail fact passed, global injected longpress accepted, no subsequent SourceRosterInput touch/longclick/detail entry. Accepted injection is not target delivery. Detached or moved row/coordinate cause pending actual attached-state/screen position evidence; no claim of backend rejection.",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-clip-59",
+  "evidenceSha256": {
+    "session.json": "b51a8eb5c08bcf084811c0e41e1a3924a8d86bd3a77ce0e6e39036ce58f66ff2",
+    "evidence/result.txt": "f479ca648489ae267924dd5eba09941b55bcfc01735d093521d8215f29a174c7",
+    "evidence/FAIL.png": "4404c066ed4d89e632a460a64f28b2a5f1543812e0ef795242dec110fee6dd40",
+    "evidence/FAIL-actual-text.json": "fbd224325f55c5f5590f45a5a82b56de0b6b2dae4f74a79ac8886c2ccb9915ef",
+    "logcat.txt": "7cf81bd7630e87a9c856b456fafdcac37c1dbd28d5075432b225577485e3a6dc"
+  },
+  "completeGoal": false
+}

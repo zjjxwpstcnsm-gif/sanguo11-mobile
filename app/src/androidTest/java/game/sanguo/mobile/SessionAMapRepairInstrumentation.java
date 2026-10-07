@@ -33,9 +33,18 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private View desc(String value){return await(v->value.equals(v.getContentDescription()==null?"":v.getContentDescription().toString()));}
     private void tap(View view){Rect rect=new Rect();ui(()->view.requestRectangleOnScreen(new Rect(0,0,view.getWidth(),view.getHeight()),true));SystemClock.sleep(200);ui(()->{check(view.getGlobalVisibleRect(rect)&&rect.width()>0&&rect.height()>0,"control reachable "+view.getContentDescription());int[] loc=new int[2];view.getRootView().getLocationOnScreen(loc);rect.offset(loc[0],loc[1]);});long down=SystemClock.uptimeMillis();for(int action:new int[]{0,1}){MotionEvent e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,rect.centerX(),rect.centerY(),0);e.setSource(InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(e,true),"pointer accepted");e.recycle();}SystemClock.sleep(200);}
     private void longPressPortrait(TextView cell,int nativeId)throws Exception {
-        Rect rect=new Rect();ui(()->cell.requestRectangleOnScreen(new Rect(0,0,cell.getWidth(),cell.getHeight()),true));
-        SystemClock.sleep(400);
-        ui(()->{check(cell.getGlobalVisibleRect(rect)&&!rect.isEmpty(),"actual source portrait long-press reachable "+nativeId);int[] origin=new int[2];cell.getRootView().getLocationOnScreen(origin);rect.offset(origin[0],origin[1]);});
+        Rect rect=new Rect();
+        // Use the presently attached row and actual screen location; a recycled
+        // TextView can report a local rectangle even after leaving the window.
+        ui(()->{
+            boolean attached=cell.isAttachedToWindow(),focus=cell.getRootView().hasWindowFocus();
+            int[] location=new int[2];cell.getLocationOnScreen(location);
+            Rect clipped=new Rect();boolean visible=cell.getGlobalVisibleRect(clipped);
+            int[] origin=new int[2];cell.getRootView().getLocationOnScreen(origin);clipped.offset(origin[0],origin[1]);
+            rect.set(location[0],location[1],location[0]+cell.getWidth(),location[1]+cell.getHeight());
+            log.append("ACTUAL longpress target native=").append(nativeId).append(" attached=").append(attached).append(" focus=").append(focus).append(" screen=").append(rect.flattenToString()).append(" clipped=").append(clipped.flattenToString()).append(" root=").append(cell.getRootView().getClass().getName()).append('\n');
+            check(attached&&focus&&cell.isShown()&&visible&&rect.intersect(clipped)&&!rect.isEmpty(),"actual attached current portrait long-press reachable "+nativeId);
+        });
         long down=SystemClock.uptimeMillis();MotionEvent event=MotionEvent.obtain(down,down,MotionEvent.ACTION_DOWN,rect.centerX(),rect.centerY(),0);
         event.setSource(InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(event,true),"actual portrait long-press down "+nativeId);event.recycle();
         SystemClock.sleep(ViewConfiguration.getLongPressTimeout()+200);
@@ -161,7 +170,10 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
             ui(()->check(activity.officerSnapshot().officer(id)!=null,"current authoritative detail identity available "+source+":"+person.nativeId));
             // Use the normal page's advertised long-press detail gesture, on its
             // visible name/portrait cell rather than the horizontally scrolling row.
-            longPressPortrait(cell,person.nativeId);
+            // Metadata/bitmap readiness can outlive a recycled list row. Resolve
+            // the current stable-ID cell again immediately before real input.
+            TextView touchCell=revealPortrait(table,officer,person.nativeId);
+            longPressPortrait(touchCell,person.nativeId);
             ImageView detail=(ImageView)await(v->{if(!(v instanceof ImageView)||!(((ImageView)v).getDrawable() instanceof OfficerPortrait))return false;try{return ((World.Officer)field(((ImageView)v).getDrawable(),"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}});
             rows.put(originalPortrait((OfficerPortrait)detail.getDrawable(),visual,officer.id,"normal-detail",person));visited++;
             if(!allPortraitCallers||visited==1||visited==ids.size()||visited%32==0||person.nativeId==184||person.nativeId==229||person.nativeId==249||person.nativeId==616)shot("source-"+source+"-native-"+person.nativeId+"-normal-detail");

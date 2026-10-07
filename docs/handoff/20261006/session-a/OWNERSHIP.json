@@ -208,7 +208,8 @@
     "docs/handoff/20261006/session-a/inspect_native_mp4.py",
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_SCROLL_FAILURE56.json",
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_LONGPRESS_FAILURE57.json",
-    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_SWIPE_OSCILLATION58.json"
+    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_SWIPE_OSCILLATION58.json",
+    "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_TARGET_DELIVERY_FAILURE59.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
