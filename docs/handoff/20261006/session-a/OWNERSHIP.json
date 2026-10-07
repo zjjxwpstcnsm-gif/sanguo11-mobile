@@ -412,7 +412,10 @@
     "docs/handoff/20261006/session-a/REGISTERED_FIRE_PAUSE_PREFIX196.json",
     "docs/handoff/20261006/session-a/REGISTERED_FIRE_ACCEPTANCE197.json",
     "docs/handoff/20261006/session-a/registered-fire-widget-readability198.json",
-    "docs/handoff/20261006/session-a/REGISTERED_ATTACK_ACTUAL_INSTALL199.json"
+    "docs/handoff/20261006/session-a/REGISTERED_ATTACK_ACTUAL_INSTALL199.json",
+    "docs/handoff/20261006/session-a/REGISTERED_ATTACK_ACCEPTANCE200.json",
+    "docs/handoff/20261006/session-a/registered-attack-widget-readability201.json",
+    "docs/handoff/20261006/session-a/REGISTERED_CALLERS_ACTUAL_INSTALL202.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

@@ -1,0 +1,68 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "normalPassed": true,
+  "coldProcess": {
+    "beforePid": "7197",
+    "afterPid": "22961",
+    "beforeProcessEvidence": {
+      "pid": "7197",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "22961",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "2c00d6ad77c420a4853446ea5bc248e1ce4bde3d5fa6f28b7c5be37c9a5d9b9a",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 15152,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "5b59aedb88e6caf597b74984632eca9d61016cf778a683a8563c4550d2440c33",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 15153,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "pssSamples": 121,
+  "peakTotalPssKiB": 472087,
+  "actualComputeMillis": [
+    21584,
+    22986,
+    23195
+  ],
+  "widgetAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-attack-widget-readability201.json",
+  "javaAllocatedPeakUnknown": true,
+  "gpuPeakUnknown": true,
+  "allOriginalNormalSoundAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact176 normal Source0/faction29/native91/deploy/MOVE preview cancel/explicit city attack preview cancel/confirm/multiple fullturns/neutral57 capture/automaticgarrison/originalarmy7/complete save bothRNG read and true cold process both3D plus all originalSHA. Not all sources longturn performance/media/PCpixel/ARM proof."
+}

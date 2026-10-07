@@ -1,0 +1,43 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture",
+  "sessionSha256": "112919624af5b78b17c90ffc452626e1cf9753a184135fd7a19a0776365d91a5",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "counts": {
+    "recordings": 3,
+    "widgetRows": 66,
+    "enabledRows": 66,
+    "unresolvedText": 54,
+    "resolvedSolidText": 12
+  },
+  "minimumResolvedSolidContrast": 8.84973742093998,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/evidence/01-explicit-attack-preview-actual-text.json",
+      "sha256": "92d99e8a013437fe9535cca0c960d77b2c110da504e6c8305b2ee32a2324eb15",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/evidence/01-explicit-attack-preview.png",
+      "screenshotSha256": "1e84c236c36849f2bc57f95724dffac4e7f9457c8b56d7047c7056c84b9a9dfe",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/evidence/02-committed-attack-route-actual-text.json",
+      "sha256": "646dd8aa18f5138d78be82553d8576065e2d9fd3b07ab7e4cf0f22002f38eec3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/evidence/02-committed-attack-route.png",
+      "screenshotSha256": "ceb9039a3f1f468c40b4df75f49297d629dfc6717de12ad74be587a504ee67b3",
+      "widgetRows": 30
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/evidence/03-actual-task-capture-actual-text.json",
+      "sha256": "5af86bc69f4d9ea0ee44cb5e21a15850a43d35764638d9172c99d44053a1f786",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/continuous-attack-capture/evidence/03-actual-task-capture.png",
+      "screenshotSha256": "60b82ddf41df55b5bf898d413b66cc000b7778f59541ca11f24022728e9c2dbf",
+      "widgetRows": 18
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}
