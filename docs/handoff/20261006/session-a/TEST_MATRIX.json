@@ -9,14 +9,14 @@
     },
     {
       "item": "palette16",
-      "status": "OLD68 ALL16/244 NORMAL FORCE PREVIEW PASS; LATEST90 PENDING",
-      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68:16 sources/all244 enabled across47 slots each, source7/14 reported rulers actualopaque/native verified;ACTUAL_SOURCE7_LABEL_PIXELS76 measured partial map label contrast, not global/new90/ARM",
+      "status": "NEW81 ALL16/244 NORMAL FORCE PREVIEW AND PARTIAL SOURCE7 PIXELS PASS;LATEST90 DEEP FLOWS PENDING",
+      "evidence": "WATER_ORDINARY_ALL16_ACCEPTANCE100 all16/all244 enabled normal3D/fullSaveRngToken/cold/restore;NEW_ORDINARY_SOURCE7_COLORS99 actual selected HanXuan/HanSui/TaoQian and fresh partial glyph pixels4.5+,not global/new90/ARM",
       "next": "latest90 all16 normal maps and deep16 command selected/disabled/span/amount/error/direction/completion, ARM"
     },
     {
       "item": "terrain-oom",
       "status": "NEW81 ORDINARY384 ALL16/244 NORMAL COLD RESTORE PASS;BUDGET/ARM OPEN",
-      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68:672 samples peak387688264/402653184B,14.2717MiB headroom, memoryBudgetClosed=false;SOURCE_WATER_ALLOCATION80 host allocation/output proof only;oldb5ec/c96 actual0..6 heapProfile diagnostic installed/live with worker observations, GC trigger>340MiB not unperturbed/source6-only/allocation-stack proof;ORDINARY_PREFIX_DIAGNOSTIC97 old0..6 2121/cold/fullrestore no340trigger/noHprof;new81 exact242/9bac installedverified/noheapdump/noencoder, actualmatrixlive;WATER_ORDINARY_ALL16_ACCEPTANCE100 5152/cold17430→25593/9+3797restored/noHeapDump/noEncoder,679sample peak346235456/402653184 headroom56417728",
+      "evidence": "OLD68 full16/244 peak387688264/402653184,14.27MiB sample reserve;97 old0..6 diagnostic2121/cold/fullrestore no340MiB trigger/noHprof;NEW81 actual242/9bac full5152/16/244/cold17430to25593/9+3797restore,no forcedheapdump/noencoder,679samples peak346235456/402653184 reserve56417728B;SOURCE_WATER_ALLOCATION80 exact-output/hostallocation proof,not unique original354832 stack/GPU/ARM;current90 runtime512MiB and normal source11 stilllive",
       "next": "new81 actual untouched noHeapDump all16/all244/cold/restore/peak;new90 and native/GPU/ARM separately; original user354832 failure stack remains unknown"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST90 INDEPENDENT BUILD AND ACTUAL INSTALLED WHOLE SHA/pmRUNNER VERIFIED; NORMAL LIVE",
+      "status": "LATEST90 INDEPENDENT BUILD/ACTUAL INSTALLED SHA VERIFIED;SOURCE11 OBSERVED512/670 NORMAL LIVE",
       "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90 plus DEFAULT_COMBINATION_INSTALL101:fd88 game25a66e49/test9763ab32 exactdevice readback/runner,6JNI/5636assets/168pins;freshwhole9+3797 guards. New90 Source11 live96/670, no complete normal/cold/restoration yet",
       "next": "actual90 complete backup/install whole SHA/normal/cold/restore, never borrow other APK scores"
     },
@@ -45,14 +45,14 @@
     },
     {
       "item": "identity16",
-      "status": "OLD94 SOURCE11 ALL670 ACCEPTED;NEW90 ACTUAL96/670 LIVE,OTHER15 OPEN",
-      "evidence": "NORMAL_SOURCE11_ACCEPTANCE94:25157 normal checks,670 unique actors/1340 roster-detail pairs/current208year wholeoriginalbitmap source joins, latestfour gaiji8 callers;actualBack/HOME/orientation/save-read/cold10204→8548/rendered and9/3797 restored;ACTUAL_RAW_VIDEO_PREFIX93 original27 parts/38190frames with gaps;101 actualnew90 installed, current96/670/192 normalcaller pairs;103 own3rawparts/4052inputframes, notwholegame",
+      "status": "NEW105 ORIGINAL10720 NATIVE FIELDS/AGE VECTORS PASS;ACTUAL90 SOURCE11 OBSERVED512/670 LIVE,OTHER15 OPEN",
+      "evidence": "PORTRAIT_NATIVE_REFRESH105 all16x670 exact original source records5446/2079 executed deduplicated age slices/32160 compared identity age vectors/64 gaiji/2892PNG hashes,current90 manifestZIP same;cold and normal670 only old94 cohort2cd/1a850;latest90 actual512person pairs1024 pure,not whole/cold/finalrestore acceptance",
       "next": "latest90 ownSource11 and allremaining15 normalcallers;allage/smallformroles/crop/color/fullscreen/time/realvoice/ARM remain"
     },
     {
       "item": "dynamic-age",
-      "status": "HOST PASS",
-      "evidence": "160806 checks/10720 identities/62 selectors/32160 vectors",
+      "status": "LATEST105 ORIGINAL NATIVE LOOKUP VERIFIED;109 DRAW BANKS STATIC,UI ROLES STILL OPEN",
+      "evidence": "105 native all10720 age/selector fields agree;109 original bank templates64x80 and240x240,964smallpairs680different,auto descriptor flag and signed offset branch;4byte call candidates and genericwidget family6 do not prove Android small-role/fullscreen-crop/timing/PC live reachability",
       "next": "ordinary/fullscreen pixels/crop/timing/lifecycle"
     },
     {
@@ -63,8 +63,8 @@
     },
     {
       "item": "music-continuity",
-      "status": "LATEST562 NORMAL MENU WHOLE TRACK PASS AT ORIGINAL0.995 GATE; OTHER MUSIC/ARM OPEN",
-      "evidence": "44actualrawUID/GAME systemprojection130s source2238 correlation0.997237937;17windows constantoffset;accepted/decodedfirstbytes15618048SHA equal;wholeSaveRNGToken/UI62pure;44.1/48init+allmain/test/mic/AppOp restored.42native-1explicitdefault refusal controlledallow fix,old-22 separate",
+      "status": "OLD44 NORMAL MENU WHOLE TRACK PASSED0.995;CURRENT90 AUDIO QUEUED108,NOT ACCEPTED",
+      "evidence": "MUSIC_SUBMISSION_ACCEPTANCE44 old562/7c measured0.997237937 unchanged0.995,not current90;107 actual route/mixer join read-only preflight;108 actual44001 waits10828 full normal16 and commands restoration;original2238 KOVS/current90Ogg/reference WAV fullSHA preflight passed,no new recording or mapBGM/voice/ARM acceptance",
       "next": "normal map scene facts/BGM/whole othertracks/ARM; retain34failedwave and referencePCM mismatch"
     },
     {
@@ -104,6 +104,6 @@
       "next": "90 own normal captures with audit and actual pixels;deep B pages/richtext/money/error/selected/disabled/completion/ARM"
     }
   ],
-  "updatedAfter": "Source11 actual94 whole normal/cold/restoration and old0..6 diagnostic installed,2026-10-07",
-  "updatedCheckpoint": "100 new81 full16/244/5152/cold/fullrestore accepted,53.804MiB sampledheadroom budgetopen;101 latest90 installedSource1196/670/192live;102 complete11170;103 latestraw3parts4052;ARM/mapsound/actualspeaker/crop/originalframes/finalserial open"
+  "updatedAfter": "2026-10-07T09:45:07Z observation:100 new81 full16/244/cold/allrestore accepted,budgetopen;101 current90 observed512/670 pure,normal/cold/restore incomplete;105 latest10720 original native refresh;107 readonly audio route/join;108 live44001 serialized menu audio queue;109 original bank branches and680 different small-pairs,UIroles unknown;all ARM/final serial requirements open",
+  "updatedCheckpoint": "109"
 }

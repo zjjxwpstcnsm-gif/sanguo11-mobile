@@ -1,4 +1,4 @@
-# Session A 当前进度（2026-10-07，组合35后）
+# Session A 当前进度（2026-10-07，最新90实装与109取证后）
 
 目标继续进行，未宣布完整完成。共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059；本隔离目录codex/map-ui-media-repair。完整10714路径、168固定输入、原4JNI守卫继承；原旧目录、PC源和B WIP不改。历史批次文档保留当时状态，当前以各包独立证据为准。
 
@@ -293,3 +293,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 106/107增强自己的AudioPlaybackCapture主机工具：每次真实projection请求前/发出真实system consent后/ready或initial result/最终result都保留独立AudioPolicy、AudioFlinger、MediaProjection、RECORD_AUDIO AppOp与设备uptime，命令逐项主机起止时间/失败unavailable及完整实际APK绑定/SHA，不把顺序读数变成getInputForAttr原子快照或旧-22根因。mixer observer现在显式stop+join后才冻结原JSONL SHA，超时保留错误，不让下一安装拿活动文件SHA当最终。新106实际5554/25a+976包SHA设备重读相等、5只读命令通过；107再实际单AudioFlinger读取/线程join/原文件SHA完成，无MIC/投影/权限或AppOp/UI/保存动作。未来capture hooks及PCM0.995尚未实际复验，不关旧-22。当前90 Source11已352/670正常纯，原录片16段、helper/录屏/native仍live；正常完整/冷/全部原保存恢复待，B HEAD仍895且WIP只读不合。
 
 108最新90整首菜单音频复验队列已提交157c23a9，own host44001/tool session21719实际存活，严格等待producer10828完成并退出。当前check-only正确拒绝未完成的normal batch，没有提前device动作。必须同90全部16来源人物、fast32取消、军建/火/持续攻击3个normal/cold、所有原保存SHA恢复后，才从最后Source15全档核验reuse backup。原2238 KOVS39b0/当前90 ZIP Oggdf5a/reference WAV5a9e现场只读SHA通过，numpy2.3.5可用；后继44100/48000初始化和130秒正常菜单捕获、全Save/RNG/Token纯及game/test文件/权限/AppOp恢复、原PCM整首0.995门均尚待。继承音频finish释放屏障不称自己的真Back/cold，Map90对应接受独立；非mapBGM/voice/旧-22唯一根因/ARM/最终组合。最新90人物已416/670，整轮仍live。本段首次主机写入因stdin编码失败未修改文档，现直接补入；队列代码和运行进程不受影响。
+
+109原FCE绘制bank取证：原EXE30d33前后SHA不变，PE各窗真实raw/RVA映射核验；初始化160原字节的5组8word参数、430aa0/430b70/480350/4802d0/436960原窗保留。bank1/base2400/count4800/cell64×80、bank2/base0/count2400/cell240×240匹配已独立解码FCE布局，family1 index2×face+variant且2/5自动flag选择；family2/variant3用signed descriptor前2字节加160/180，但rect用途/时序/运行可达未知。仅4个text段字节call候选；generic ctor family6直接否定“全部普通默认family1”推断，未盲改Android。当前964非空small pair有680个RGBA不同，清单SHA未动，不能合并形态。当前105复验10720原字段/107只读routejoin/108实存44001队列与109新取证写入矩阵，删去97/81已完结还称live的过时表述，保留历史证据。90真实人物最新观察512/670、1024成对normal/pure，完整源/cold/原保存最终恢复及后续全部目标仍待；mainEF/B895不变，所有运行任务未中断。
