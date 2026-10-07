@@ -263,3 +263,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 清理A唯一TEST_MATRIX中的过期状态：65live/75仅first635或128/旧Source65export等已被现94完整670/cold/9+3797恢复、92完整11156、90新包未装和当前oldordinary诊断替换，保留所有旧包成绩scope，不移给新APK；增加87/88实际Android文字/禁用像素部分覆盖与未解析/富文本缺口。main ef413与B895完成HEAD复核未变。当前0..6诊断已完成Source0全8正常预览/菜单/地图/存读并正做Source1势力预览，未触发或未收尾的GC/堆/恢复不判通过。
 
 95统一exact-cohort完成内存统计可复现工具，对94已结束2cd/1a850实测101 sample、Java峰255726040/536870912B、同sample Java余281144872B；main native allocator/mainPSS/meminfo/child smaps各独立，不加各自峰值，graphics0不当GPU为0，录屏/GC/采样边界明示且memoryBudgetClosed=false。已接未来新MapRepair完整normal/cold/全SHA恢复后的自动统计，finalsession先冻结再hash；当前10868已加载旧helper保持原跑法，其结束后另手动统计，不动态补运行中代码。其他命令runner无phase CSV时仅保留其真实meminfo/child日志，不伪造字段；新81与90仍需各自实装正常全矩阵/冷/恢复/ARM。
+
+96后继新90默认组合的原始录屏接入每次helper（当前10868已加载旧代码不改，parent新81/90各次helper重新读取）；只有FIRE90两包确切SHA/path同且已实装pm验证后启动，实际68/81/74 frozen条件全排除，普通预算不加编码器。Video lockroot/output/5554/APK绑定、partial JSON原地重读、SIGTERM只请求自己host收尾且encoder PID+唯一target核后SIGINT、退出异常停止下一安装。每原片device前/后pullSHA==完整hostSHA才删除自己UUID设备临时片段（不用户资源/存档/库/偏好），host原片保留；93 verifier若已删不伪称设备当前重读，而记录前后拉取真值。当前仅syntax/真实cohort排除检查，实际新90录像/移除/冷恢复收尾尚未发生，普通0..6仍live，budget/ARM/全目标开放。

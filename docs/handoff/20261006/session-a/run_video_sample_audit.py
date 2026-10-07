@@ -52,14 +52,19 @@ def main():
     report = dict(session=str(session), sessionStageAtSnapshot=state['stage'], apks=state['apks'],
                   frozenIndexSha256=hashlib.sha256(raw_index).hexdigest(), requestedParts=args.parts,
                   completeRequestedPrefix=False, records=records, wholeGoalComplete=False,
-                  scope='Only this exact APK cohort completed raw recording prefix. Host/device whole SHA reread; every decoded input sample and original rational PTS. Recording may perturb performance; segment gaps/start omission retained. No normal/cold/fullrestore completion, PC pixel/crop/timing, ARM or newer APK acceptance.')
+                  scope='Only this exact APK cohort completed raw recording prefix. Whole host SHA reread; retained device parts reread now, removed own parts use recorded matching pre/post-pull SHA with current-device reread unavailable. Every decoded input sample and original rational PTS. Recording may perturb performance; segment gaps/start omission retained. No normal/cold/fullrestore completion, PC pixel/crop/timing, ARM or newer APK acceptance.')
     for row in parts:
         path = pathlib.Path(row['path'])
         assert 'error' not in row and sha(path) == row['sha256'] == row['deviceSha256']
         device = row['devicePath']
         assert device.startswith(index['deviceCaptureDirectory']+'/') and device.endswith('.mp4')
-        current = subprocess.check_output([ADB, '-s', 'emulator-5554', 'shell', 'sha256sum', device], text=True, timeout=40).split()[0]
-        assert current == row['sha256']
+        device_now = 'whole-device-sha-reread'
+        if row.get('verifiedDevicePartRemovedAfterPull'):
+            assert row['deviceSha256AfterPull'] == row['sha256']
+            device_now = 'own-device-part-removed-after-matching-pre/post-pull-sha; current-device-reread-unavailable'
+        else:
+            current = subprocess.check_output([ADB, '-s', 'emulator-5554', 'shell', 'sha256sum', device], text=True, timeout=40).split()[0]
+            assert current == row['sha256']
         samples = out/('part-'+str(row['part']).zfill(2)+'-samples.json')
         subprocess.run([str(scanner), str(path), str(samples)], check=True)
         decoded = json.loads(samples.read_text())
@@ -70,6 +75,7 @@ def main():
         assert sha(path) == row['sha256']
         records.append(dict(part=row['part'], video=str(path), sha256=row['sha256'],
                             actualBeginUnix=row['beginUnix'], actualEndUnix=row['endUnix'],
+                            deviceVerification=device_now,
                             decodedFrames=decoded['decodedFrames'], trackTimescale=decoded['originalTrackTimescale'],
                             encodedSamples=encoded[0], encodedDecodedCountsExact=True,
                             samples=str(samples), samplesSha256=sha(samples)))

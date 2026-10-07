@@ -1,0 +1,28 @@
+{
+  "scope": "Future exact frozen90 default cohort only. CLI/syntax and actual receipt exclusions inspected; normal video lifecycle/deletion not yet executed. Current10868 oldordinary helper and loaded parent remain unchanged.",
+  "cohortReceipt": "FIRE_OVERRIDE_DEFAULT_BUILD90.json",
+  "excludedActualFrozenCohorts": [
+    "NORMAL384_COMBINED_BUILD68.json",
+    "WATER_NORMAL384_BUILD81.json",
+    "VOICE_TEST_REFRESH74.json"
+  ],
+  "codeSha256": {
+    "device_session.py": "4b8109b6a939add0137a31dd5fdd0d66140e638520726be5224e0c6419306e37",
+    "observe_flow_video.py": "f6b1e6a149067adfe5b6300a42ae0f1121125d7624a5bacbc6b833206dda31d8",
+    "run_video_sample_audit.py": "a0734b5fe0be563b9ed41f0e317800ceb4cce6f93102b85c17e0c75fc56054b9"
+  },
+  "guards": [
+    "start after exact installed game/test SHA and runner verified",
+    "lock root/output/5554 and exact APK cohort binding",
+    "separate encoder may perturb default measurements; no normal384 recorder",
+    "only own UUID /data/local/tmp segment removed after host/device pre/postpull SHA match; host original retained",
+    "partial receipt JSON reread in place; no forced synthetic timebase",
+    "orderly host stop checks own screenrecord PID and unique target before SIGINT; never game/native worker PID",
+    "observer exit failure/timeouts stop next install after full original app data restore",
+    "raw sample verifier distinguishes current device reread from already verified own temporary removal"
+  ],
+  "actualRecorderLifecycleAccepted": false,
+  "actualTemporarySegmentRemovalExecuted": false,
+  "normal384UnperturbedBudgetAccepted": false,
+  "wholeGoalComplete": false
+}

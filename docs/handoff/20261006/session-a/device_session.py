@@ -163,7 +163,7 @@ def main():
                     except Exception as error: f.write(str(error).encode());f.flush()
                     stop.wait(2)
         observer=threading.Thread(target=observe);observer.start()
-        worker_observer=None;worker_log=None
+        worker_observer=None;worker_log=None;video_observer=None;video_log=None
         log_file=(out/'logcat.txt').open('wb')
         log_process=subprocess.Popen([ADB,'-s','emulator-5554','logcat','-v','threadtime','-T','1'],stdout=log_file,stderr=subprocess.STDOUT)
         try:
@@ -186,6 +186,23 @@ def main():
             registered=run('shell','pm','list','instrumentation').decode();(out/'instrumentation-registered.txt').write_text(registered);expected_component='instrumentation:'+PACKAGE+'.test/game.sanguo.mobile.'+a.runner+' (target='+PACKAGE+')';r['actualRunnerRegistered']=expected_component in registered.splitlines();report_path.write_text(json.dumps(r,indent=2));
             if not r['actualRunnerRegistered']:raise ValueError('Actual requested instrumentation component is not registered for target package')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
+            # User-authorized evidence for the exact frozen default cohort only.
+            # Normal384 and its GC diagnostic never receive encoder pressure.
+            default_receipt=pathlib.Path(__file__).with_name('FIRE_OVERRIDE_DEFAULT_BUILD90.json')
+            default_build=json.loads(default_receipt.read_text())
+            video_requested=(r['apks']=={entry['path']:entry['sha256'] for entry in default_build['apks']}
+                and a.runner in ['SessionAMapRepairInstrumentation','SessionAScenePresentationInstrumentation',
+                                 'SessionAFireFlowInstrumentation','SessionAAttackTaskInstrumentation'])
+            r['exactDefaultVideoRequested']=video_requested
+            report_path.write_text(json.dumps(r,indent=2))
+            if video_requested:
+                video_log=(out/'video-observer-driver.log').open('wb')
+                video_observer=subprocess.Popen([sys.executable,str(pathlib.Path(__file__).with_name('observe_flow_video.py')),
+                    '--session',str(report_path),'--output',str(out/'video'),'--max-parts','80',
+                    '--remove-verified-device-parts'],stdout=video_log,stderr=subprocess.STDOUT)
+                r['videoObservation']={'hostPid':video_observer.pid,'path':str(out/'video/video.json'),
+                    'scope':'Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.'}
+                report_path.write_text(json.dumps(r,indent=2))
             if a.observe_workers:
                 worker_log=(out/'native-workers-driver.log').open('wb')
                 worker_observer=subprocess.Popen([sys.executable,str(pathlib.Path(__file__).with_name('observe_worker_memory.py')),
@@ -266,6 +283,21 @@ def main():
             report_path.write_text(json.dumps(r,indent=2))
             try:restore(out,r)
             finally:
+                video_stop_error=None
+                if video_observer is not None:
+                    # SIGTERM requests orderly stop in our host recorder. It
+                    # checks its own encoder PID/unique target before SIGINT;
+                    # never signals a game/native worker or clears app data.
+                    if video_observer.poll() is None:video_observer.terminate()
+                    try:video_observer.wait(timeout=60)
+                    except subprocess.TimeoutExpired:
+                        r['videoObservation']['orderlyStopTimedOut']=True
+                        report_path.write_text(json.dumps(r,indent=2))
+                        video_stop_error=RuntimeError('Own video recorder did not finish; no next install')
+                    r['videoObservation']['exitCode']=video_observer.returncode
+                    if video_observer.returncode not in (0,None):
+                        video_stop_error=RuntimeError('Own video recording failed; no next install')
+                    video_log.close();report_path.write_text(json.dumps(r,indent=2))
                 if worker_observer is not None:
                     # Stop only our read-only host observer if restoration itself
                     # fails. The device ownership lock and failure remain intact.
@@ -277,6 +309,7 @@ def main():
                         r['workerObservation']['hostObserverStoppedAfterRestoration']=True
                     r['workerObservation']['exitCode']=worker_observer.returncode
                     worker_log.close();report_path.write_text(json.dumps(r,indent=2))
+                if video_stop_error is not None:raise video_stop_error
                 if (a.observe_workers and a.runner=='SessionAMapRepairInstrumentation'
                     and r['stage']=='restored-verified' and r.get('passed')
                     and r.get('coldProcess',{}).get('passed')):
