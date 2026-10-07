@@ -81,6 +81,28 @@ def main():
                 raise ValueError('Diagnostic actual cohort differs')
             report.update(ordinaryDiagnosticWorkflowCompleted=True,
                           ordinaryDiagnosticHprofProduced=(diagnostic/'evidence/high-heap.hprof').is_file())
+            raw_heap = diagnostic/'evidence/high-heap.hprof'
+            if raw_heap.is_file():
+                converter = pathlib.Path('/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/hprof-conv')
+                converted = diagnostic/'post-gc-converted.hprof'
+                heap_report = diagnostic/'post-gc-live-objects.json'
+                if not converter.is_file():
+                    report['ordinaryHeapAnalysis'] = dict(status='converter-unavailable', raw=str(raw_heap), rawSha256=sha(raw_heap))
+                else:
+                    with (diagnostic/'heap-analysis-driver.log').open('w') as log:
+                        subprocess.run([str(converter), str(raw_heap), str(converted)],
+                                       cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+                        subprocess.run([sys.executable, str(HELPER.with_name('inspect_heap.py')),
+                            str(converted), '--output', str(heap_report)],
+                            cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+                    report['ordinaryHeapAnalysis'] = dict(status='post-gc-live-objects-only',
+                        raw=str(raw_heap), rawSha256=sha(raw_heap), converterSha256=sha(converter),
+                        converted=str(converted), convertedSha256=sha(converted),
+                        report=str(heap_report), reportSha256=sha(heap_report),
+                        scope='First actual sample above340MiB requests GC. Trigger phase from actual heap-profile.txt; not necessarily Source6, allocation-stack, unique OOM root, unperturbed peak or memory-budget acceptance.')
+            else:
+                report['ordinaryHeapAnalysis'] = dict(status='threshold-not-reached-or-dump-not-produced',
+                    scope='No live-object diagnostic proof; normal/cold/restoration and memory budget remain distinct.')
             save()
             diagnostic_previous = diagnostic
             different_cohort = True
