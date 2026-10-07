@@ -18,13 +18,25 @@ def run(a):
  runner={'direct':'game.sanguo.mobile.SessionBDebateInstrumentation','search':'game.sanguo.mobile.SessionBDebateInstrumentation','debate':'game.sanguo.mobile.SessionBDebateInstrumentation','capacity':'game.sanguo.mobile.SessionBCapacityInstrumentation','governor':'game.sanguo.mobile.SessionBGovernorInstrumentation','fieldworks':'game.sanguo.mobile.SessionBFieldworksInstrumentation'}[a.runner]
  marker={'direct':'PASS SESSION B DIRECT','search':'PASS SESSION B SEARCH','debate':'PASS SESSION B DEBATE','capacity':'PASS SESSION B CAPACITY','governor':'PASS SESSION B GOVERNOR','fieldworks':'PASS SESSION B FIELDWORKS'}[a.runner]
  if a.serial!='emulator-5582':raise ValueError('B target is5582; no other device authorized by this tool')
+ # Reject an unregistered runner BEFORE device locks, backup or installation.
+ aapt=ROOT/'out/toolchain/android-sdk/build-tools/35.0.0/aapt'
+ manifest=subprocess.run([str(aapt),'dump','xmltree',str(a.test_apk.resolve()),'AndroidManifest.xml'],check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=60).stdout.decode()
+ registrations=[];block=[];level=None
+ for line in manifest.splitlines()+['E: end']:
+  indent=len(line)-len(line.lstrip())
+  if level is not None and 'E: 'in line and indent<=level:
+   registrations.append('\n'.join(block));block=[];level=None
+  if 'E: instrumentation ('in line:level=indent
+  if level is not None:block.append(line)
+ if not any('="'+runner+'"'in row and 'android:name('in row and 'android:targetPackage('in row and '="'+PACKAGE+'"'in row for row in registrations):raise ValueError('Test APK does not register the requested runner/target')
  guard=json.loads(a.source_guard.read_text())
  from session_b_freeze_apk import paths
  def guarded(name):return name.startswith(('app/src/main/','core/src/main/','game-api/src/main/','game-runtime/src/main/','out/pc-native-runtime/','out/session-b/readonly-theme-dependencies/','out/session-b/cache-core-stage/'))or name in ['app/build.gradle','build.gradle','settings.gradle','gradle.properties','version.properties']
  actual_paths={name for name in paths()if guarded(name)}
- if any(name.startswith('out/session-b/cache-core-stage/')for name in guard):
-  stage=ROOT/'out/session-b/cache-core-stage'
-  actual_paths.update(str(p.relative_to(ROOT))for p in stage.rglob('*')if p.is_file())
+ for prefix in ['out/session-b/cache-core-stage/','out/session-b/completed-repair-stage/','out/session-b/completed-repair-stage-v2/','out/session-b/completed-repair-stage-v3/','out/session-b/completed-repair-stage-v4/']:
+  if any(name.startswith(prefix)for name in guard):
+   stage=ROOT/prefix
+   actual_paths.update(str(p.relative_to(ROOT))for p in stage.rglob('*')if p.is_file())
  if actual_paths!=set(guard):raise ValueError('Frozen APK production input path set differs: '+repr(sorted(actual_paths^set(guard))))
  changed=[name for name,digest in guard.items()if sha((ROOT/name).read_bytes())!=digest]
  if changed:raise ValueError('Frozen APK source no longer matches: '+repr(changed))

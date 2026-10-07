@@ -1,0 +1,24 @@
+// Compilation only: exact completed parent plus three B repair overlays.
+// Shared build files, A production paths, bridge and JNI are unchanged.
+gradle.beforeProject { project ->
+    def stage = new File(project.rootDir, 'out/session-b/completed-repair-stage-v4')
+    project.layout.buildDirectory.set(new File(project.rootDir, 'out/session-b/completed-repair-build/' + project.name))
+    project.plugins.withId('java-library') {
+        if (project.name in ['core', 'game-api', 'game-runtime']) {
+            project.sourceSets.main.java.setSrcDirs([new File(stage, project.name + '/src/main/java')])
+            project.sourceSets.main.resources.setSrcDirs([new File(stage, project.name + '/src/main/resources')])
+        }
+    }
+    project.plugins.withId('com.android.application') {
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            if (!new File(stage, 'manifest.json').isFile()) throw new GradleException('Stage completed repair first')
+            def deps = new File(project.rootDir, 'out/session-b/readonly-theme-dependencies')
+            android.sourceSets.main.java.setSrcDirs([new File(stage, 'app/src/main/java'), new File(deps, 'java')])
+            android.sourceSets.main.java.exclude('game/sanguo/mobile/UiTheme.java', 'game/sanguo/mobile/FactionColors.java', 'game/sanguo/mobile/MainActivity.java')
+            android.sourceSets.main.res.setSrcDirs([new File(deps, 'res')])
+            android.sourceSets.androidTest.java.setSrcDirs([new File(stage, 'app/src/androidTest/java'), new File(stage, 'core/src/testFixtures/java')])
+            android.sourceSets.androidTest.java.exclude('game/sanguo/core/battle/**')
+            android.defaultConfig.testInstrumentationRunner = 'game.sanguo.mobile.SessionBFieldworksInstrumentation'
+        }
+    }
+}

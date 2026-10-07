@@ -1,0 +1,104 @@
+{
+  "base": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parent": "aa9bdf6de39b521548b436aeedf81118f82e7ad0",
+  "branch": "codex/rules-content-contest-repair",
+  "delta": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/Fieldworks.java",
+      "beforeSha256": "27afb6d8a0efe50012e21bdadbcfafdf74af6a17183b2f1003b333a68378a93a",
+      "afterSha256": "00b8d157beaa6e9c0248138cf91b79dc460b64f9b363688bad959aa2ccef784c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "beforeSha256": "7c49b5dfaea9367eb5faa11e97b4b92def22efa952bc513e4c77183b33b95673",
+      "afterSha256": "bc94c50bfec10b1dca4ded5db30b86b8238967767d3dba0f8dd8e83512b2d0d8"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBFieldworksTest.java",
+      "beforeSha256": "c2b5d9b94cefa9d866698f8e6e26122720a7b7647c75366a1535b4856fcf6b8c",
+      "afterSha256": "6827039684695a9fd0b5b3e96066f44da66b148da3ed1667dba45d04c7e70a72"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
+      "beforeSha256": "47725ed85e3b4a16b36c9061909136898a0ac36275075aa56e86f8afc69c8bb2",
+      "afterSha256": "276987af6d7f4afffafd5781537747559260cdefc5370ad9f5779e2378064e25"
+    }
+  ],
+  "apks": {
+    "game.sanguo.mobile.dev": "883d1b645deeae949f9912571b10e23c6c4f7f40e3e1ef7862e7d8964eca23fa",
+    "game.sanguo.mobile.dev.test": "ec1a5f516e7513a215b2ec90c07a6d3e8a0f046e12a5278bfb1d51e17a7533ea"
+  },
+  "resultSha256": "d5883a481ae321d8d1560b4bd5fa3b1c63e4890a0ecb93a166ee1f36e73a3178",
+  "actualNormal": true,
+  "actualCold": true,
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "preservedAdditionalFiles": []
+    },
+    "external": {
+      "originalFiles": 772,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "preservedAdditionalFiles": []
+    }
+  },
+  "lockReleased": true,
+  "compiledParentPaths": 588,
+  "duelWipCompiled": false,
+  "fieldworksChecks": 63,
+  "sessionChecks": 1690,
+  "bridgePassed": true,
+  "legacyRows": 36,
+  "legacySha256": "487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2",
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "ignored": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "ignored": true
+    }
+  ],
+  "fixedInputs": 168,
+  "originalStatusSha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "originalDirtyEntries": 609,
+  "completeGoal": false,
+  "platform": "actual emulator-5582 x86_64; ARM/speaker pending",
+  "conflicts": "No A/bridge/Unity/JNI changes; other own Duel/raw-loyalty/item WIP excluded",
+  "sourceArchive": {
+    "fileCount": 11478,
+    "archiveSha256": "8d78881dd102dbb7fecd9810a338f8a9c984b356147d4f7a973f27202eac1ec4",
+    "bytes": 662448154,
+    "everyEntryAndModeReadbackVerified": true,
+    "path": "out/session-b/completed-repair-54-source-v2.tar.gz"
+  },
+  "proofArchive": {
+    "fileCount": 31,
+    "bytes": 13126537,
+    "sha256": "bb7edb132d7368a5c204a827d8406b947d92049c0acd7a122f4c4c3adbd00f62",
+    "originalUserBackupsExcluded": true,
+    "path": "out/session-b/completed-repair-54-proof.tar.gz"
+  },
+  "completedVerifierSha256": "e90f89aba44eea6d7fa373110ce65e541b93c0fa203a663f8279512d9385e515",
+  "earlierArchive": "v1 retained; optional uncompleted items verifier mode excluded in v2"
+}

@@ -148,9 +148,24 @@ public final class Fieldworks {
         War.Structure s=new War.Structure(w.war.nextStructureId++,u.owner,kind,target,0);s.complete=false;s.builder=unit;s.direction=direction;w.war.structures.add(s);advance(s,u);
         return w.success("设置"+kind.label+" · "+(s.complete?"已建成":"施工"+s.hp+"/"+kind.hp+"，后续自动补修"));
     }
+    public Validation repairCheck(int unit,int structure){
+        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return Validation.reject("UNIT_COMMAND","unit",error);
+        War.Structure s=byId(structure);
+        if(s==null)return Validation.reject("STRUCTURE_MISSING","structure","设施已不存在，请重新选择");
+        if(s.owner!=u.owner)return Validation.reject("STRUCTURE_OWNER","structure","只能补修己方设施");
+        if(u.hex.distance(s.hex)!=1)return Validation.reject("TARGET_ADJACENCY","structure","只能补修部队相邻格的设施");
+        if(s.hp>=s.kind.hp)return Validation.reject("STRUCTURE_FULL_HP","structure","设施耐久已满，无需补修");
+        if(s.builder>=0&&s.builder!=unit)return Validation.reject("OTHER_UNIT_BUILDING","structure","设施已有其他部队施工");
+        if(project(unit)!=null&&project(unit)!=s)return Validation.reject("UNIT_BUILDING","unit","本部队正在其他设施施工，请先中止");
+        return Validation.ALLOWED;
+    }
+    public List<War.Structure> repairSites(int unit){
+        List<War.Structure> sites=new ArrayList<>();for(War.Structure s:w.war.structures)if(repairCheck(unit,s.id).allowed())sites.add(s);
+        return Collections.unmodifiableList(sites);
+    }
     public World.Result repair(int unit,int structure){w.reports.prepare();
-        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);War.Structure s=byId(structure);
-        if(s==null||s.owner!=u.owner||u.hex.distance(s.hex)!=1||s.hp>=s.kind.hp||s.builder>=0&&s.builder!=unit||project(unit)!=null&&project(unit)!=s)return w.fail("请选择邻接、受损且无其他部队施工的己方设施");
+        Validation check=repairCheck(unit,structure);if(!check.allowed())return w.fail(check.detail);
+        World.Unit u=w.unit(unit);War.Structure s=byId(structure);
         w.marches.supersede(u);u.acted=true;s.builder=unit;advance(s,u);return w.success("补修"+s.kind.label+" · 耐久"+s.hp+"/"+s.kind.hp);
     }
     public World.Result stop(int unit){w.reports.prepare();

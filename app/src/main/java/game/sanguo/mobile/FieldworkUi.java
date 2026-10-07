@@ -41,8 +41,14 @@ final class FieldworkUi {
         String reason=buildReason(u,k,h,direction);if(reason!=null){info(reason);return;}
         confirm("设置"+k.label,k.effect+"\n消耗携金"+w.fieldworks.buildCost(u.id,k,h)+"与部队本旬行动。\n施工 "+Math.min(k.hp,w.fieldworks.constructionRate(u))+"/"+k.hp+"；未完成时每旬自动补修，占用本部队行动。\n工地 "+h+(w.fieldworks.ball(k)?"，朝向"+h.neighbors().get(direction):""),()->apply.execute(w,()->w.fieldworks.build(u.id,k,h,direction)));
     }
-    void repair(World.Unit u){List<War.Structure> list=new ArrayList<>();for(War.Structure s:w.war.structures())if(s.owner==u.owner&&s.hex.distance(u.hex)==1&&s.hp<s.kind.hp&&(s.builder<0||s.builder==u.id))list.add(s);
-        choose("邻接设施补修",list,s->s.kind.label+" · "+s.hp+"/"+s.kind.hp,s->confirm("补修"+s.kind.label,"本旬修复最多"+w.fieldworks.constructionRate(u)+"耐久，消耗部队行动；后续自动补修。",()->apply.execute(w,()->w.fieldworks.repair(u.id,s.id))));
+    void repair(World.Unit u){List<War.Structure> list=w.fieldworks.repairSites(u.id);
+        if(list.isEmpty()){
+            String error=w.orders.combatError(u);if(error!=null){info(error);return;}
+            StringBuilder reasons=new StringBuilder("当前没有可补修的相邻设施。");
+            for(War.Structure s:w.war.structures())if(s.hex.distance(u.hex)==1){var check=w.fieldworks.repairCheck(u.id,s.id);reasons.append("\n").append(s.kind.label).append(" · ").append(check.detail);}
+            info(reasons.toString());return;
+        }
+        choose("邻接设施补修",list,s->s.kind.label+" · "+s.hp+"/"+s.kind.hp,s->{var check=w.fieldworks.repairCheck(u.id,s.id);if(!check.allowed()){info(check.detail);return;}confirm("补修"+s.kind.label,"本旬修复最多"+w.fieldworks.constructionRate(u)+"耐久，消耗部队行动；后续自动补修。",()->apply.execute(w,()->w.fieldworks.repair(u.id,s.id)));});
     }
     void stop(World.Unit u){confirm("中止施工","保留设施和当前耐久，已付携金不退还，本旬已消耗的行动不会恢复。",()->apply.execute(w,()->w.fieldworks.stop(u.id)));}
     void fund(World.Unit u){List<World.City> cities=w.fieldworks.fundingSites(u.id);

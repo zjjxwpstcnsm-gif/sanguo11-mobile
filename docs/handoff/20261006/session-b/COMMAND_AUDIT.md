@@ -24,3 +24,24 @@
 ## Later completed flow updates
 
 Military17 is completed bounded source14 normal funding/build500/wall300/multipleturn/save/cold, described in MILITARY_BATCH.json. Capacity20 is completed bounded Source0/force28/native58 normal roster13000/once-only stock debit/three turns/fullsave/cold, described in CAPACITY_BATCH.json. These supersede the table earlier pending build16/capacity prototype status, but do not close governor/district/budget/activation or all16-page flow matrix. Repair list/formal admission mismatch still awaits normal-state reproduction.
+
+## 2026-10-07 证据更新与当前版本边界
+
+上表是 build16 时的历史入口审阅，以下更新其已经被后续证据替代的待办；不把不同 APK 批次结果计为当前 APK54 的通过。
+
+|范围|已完成的有界生产批次|当前仍需闭合|
+|---|---|---|
+|军建与携金|APK17，Source14正常新局/出征/城市中心补金取消与双击/土垒300/营垒500/多旬/全保存和冷重开|所有16源、关港与小额、破坏；APK54已通过补修/中止、多旬、冷重开及15+772文件SHA全恢复|
+|军建补修列表|本版2生产文件已统一repairCheck，独立父版本63检查/session1690/冻结bridge通过，旧档36行SHA一致|APK54独立完成实际正常页面、多旬、冷重开及全部15+772文件SHA恢复；未用含Duel WIP的APK50替代|
+|出征容量|454…/APK20，Source0/势力28/native58普通列表13000出征、取消/双击、旬与存取|多源有效人物/三将与设备装备矩阵；不得启用封存27/28候选|
+|军团与太守|451…/APK27，两个势力普通调任、出征、移动夺港、进驻、全保存/冷重开|完整官职/都督/国号统兵/继任/俘虏及所有军团任务|
+|军团AP|833…/APK33，PAP1明确新局、两个势力、正常指令和旬AP/全保存|NPC42–46、完整预算与控制准入；旧策略不得追填新局AP|
+|舌战|2039af…/APK31，普通说服进入人控自然胜败、多旬、模型/双RNG保存与冷重开|全触发/准入/原费用/装备先手/放弃/外交回调；工程standalone金100/AP10仍未知|
+|搜索与登用|d852…/APK38：普通搜索发现/拒绝/可选舌战胜败/冷重开；1b7…/APK39普通独立人物登用成功/失败/原AP20金0/保存；292…/APK40事件Cause修复|无发现/宝物/关系/跨城/其他特殊触发与全部来源；不能移用这些批次验收替代54|
+|原物品|APK46真实普通没收/赏赐/库存及保存冷重开已观察，但源码包含本会话Duel WIP，尚未作为完成批次提交|隐藏/潜在/事件物品、费用与全部效果，独立完成源码/APK批次|
+|完整单挑|原连续模型、支援换将、胜败/俘虏/替换/部队结算、16源亲族矩阵及保存/API原对照仅属WIP|普通新局/人控命令创建、上游行动/费用、原部队战斗数值、终局UI、逃跑/放弃和全部特殊回调、实际APK/旧档正常续行|
+|其余命令|已提交typed预览/正式入口与session/bridge边界检查继续保留|内政/运输/攻击火计/外交/商人生产研究/编辑培养各实际页面、资金军团资源、延迟与保存矩阵仍须逐项验收|
+
+单挑上游原取证新收据明确：目标缓存record+4的attackMask与record+8的strategyMask不同。495170/79cc08气力表及5933a0计略派发不是单挑费用证据。原5a4990相邻敌军16项声明输入准入在气力0/1/10/100都允许bit8，仍不能据此跳过正式扣费与普通流程验证。
+
+所有上述有界结果之外的未知继续保留。Unity U01来源语义失败未改golden，ARM与扬声器未验收。

@@ -37,6 +37,28 @@ public final class SessionBFieldworksTest {
         check(funded.fieldworks.withdraw(f.id,city.id,amount).ok,"arbitrary lawful amount below200 submits");check(f.gold==gold+amount&&funded.city(city.id).gold==stock-amount&&f.acted,"real one-time transfer/action");
         before=bytes(funded);check(!funded.fieldworks.withdraw(f.id,city.id,amount).ok,"second same-turn funding rejected");check(Arrays.equals(before,bytes(funded)),"second funding rejection keeps state/RNG");
         check(Arrays.equals(before,bytes(SaveCodec.decode(before))),"funded source policy complete roundtrip");
+        repairParity(SaveCodec.decode(deployedBytes),unit.id);
         System.out.println("PASS SESSION B FIELDWORKS "+checks+" assertions; normal source/deploy/center movement/funding and full save/bothRNG");
+    }
+    /** Declared damaged structures isolate selection/submission parity. Ordinary
+     * Android repair/abort/damage acceptance remains a separate required flow. */
+    private static void repairParity(World w,int unitId)throws Exception{
+        World.Unit unit=w.unit(unitId);w.orders.reset(unit);
+        List<Hex> sites=w.fieldworks.sites(unitId,War.StructureKind.EARTH_WALL);check(sites.size()>=2,"source geography has two lawful construction targets");
+        War.Structure current=new War.Structure(w.war.nextStructureId++,unit.owner,War.StructureKind.CAMP,sites.get(0),20);
+        War.Structure other=new War.Structure(w.war.nextStructureId++,unit.owner,War.StructureKind.EARTH_WALL,sites.get(1),20);
+        current.complete=false;current.builder=unitId;other.complete=false;w.war.structures.add(current);w.war.structures.add(other);
+        byte[] before=bytes(w);
+        check(w.fieldworks.repairCheck(unitId,current.id).allowed()&&w.fieldworks.repairSites(unitId).contains(current),"own current project remains repairable");
+        check(w.fieldworks.repairCheck(unitId,other.id).code.equals("UNIT_BUILDING")&&!w.fieldworks.repairSites(unitId).contains(other),"other project hidden by exact formal rejection");
+        check(Arrays.equals(before,bytes(w)),"repair visibility leaves wholeWorld/bothRNG unchanged");
+        World.Result rejected=w.fieldworks.repair(unitId,other.id);check(!rejected.ok&&rejected.message.equals(w.fieldworks.repairCheck(unitId,other.id).detail),"actual rejection shares displayed detail");
+        check(Arrays.equals(before,bytes(w)),"rejected other repair bytepure");
+        check(w.fieldworks.stop(unitId).ok&&current.builder<0&&unit.gold==3000&&!unit.acted,"stop releases project without refund or extra action");
+        byte[] stopped=bytes(w);w=SaveCodec.decode(stopped);unit=w.unit(unitId);other=w.fieldworks.byId(other.id);
+        final int otherId=other.id;check(w.fieldworks.repairSites(unitId).stream().anyMatch(s->s.id==otherId),"stopped/load current project no longer hides legal target");
+        int gold=unit.gold,hp=other.hp;check(w.fieldworks.repair(unitId,other.id).ok&&unit.acted&&unit.gold==gold&&other.hp>hp,"formal repair consumes action and increases real durable HP without gold debit");
+        byte[] repaired=bytes(w);check(Arrays.equals(repaired,bytes(SaveCodec.decode(repaired))),"repair fullsourceWorld and bothRNG roundtrip");
+        check(!w.fieldworks.repair(unitId,other.id).ok&&Arrays.equals(repaired,bytes(w)),"same-turn repair duplicate leaves allbytes unchanged");
     }
 }

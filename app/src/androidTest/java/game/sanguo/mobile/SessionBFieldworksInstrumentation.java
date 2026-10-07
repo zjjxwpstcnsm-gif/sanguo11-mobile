@@ -176,6 +176,16 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
             w=SessionProbe.view(activity);War.Structure built=w.war.at(site);
             check(built!=null&&built.builder==id&&!built.complete&&w.unit(id).gold==400&&w.unit(id).acted,"real legal map construction debits500 once, uses action and starts construction");check(activity.deploymentState().revision==revision+1,"double execute commits once");verifySceneFacts("actual-build");shot("04-real-construction");
             byte[] started=capture();Files.write(new File(evidence,"actual-build.sg11").toPath(),started);
+            // Ordinary stop keeps the shell/cargo/action; after a real full
+            // turn, the ordinary repair picker resumes that exact structure.
+            selectUnit(id);unitAction("中止施工");byte[] stopPreview=capture();text("取消");check(Arrays.equals(stopPreview,capture()),"stop confirmation cancel retains fullWorld/bothRNG");
+            selectUnit(id);unitAction("中止施工");long stopRevision=activity.deploymentState().revision;View stopExecute=await(v->v instanceof Button&&"执行".contentEquals(((Button)v).getText()));tap(stopExecute,2);settle();
+            w=SessionProbe.view(activity);built=w.war.at(site);int stoppedHp=built.hp;check(built.builder<0&&!built.complete&&w.unit(id).gold==400&&w.unit(id).acted&&activity.deploymentState().revision==stopRevision+1,"ordinary stop commits once and does not refund/action reset");shot("04a-stopped-shell");
+            advance("stopped-shell-no-progress");w=SessionProbe.view(activity);check(w.war.at(site).hp==stoppedHp&&w.war.at(site).builder<0&&!w.unit(id).acted,"whole stopped turn preserves shell HP and releases next action");
+            selectUnit(id);unitAction("补修军事设施");option("阵 · ");byte[] repairPreview=capture();text("取消");check(Arrays.equals(repairPreview,capture()),"ordinary repair confirmation cancel fullWorld/bothRNG");
+            selectUnit(id);unitAction("补修军事设施");option("阵 · ");long repairRevision=activity.deploymentState().revision;View repairExecute=await(v->v instanceof Button&&"执行".contentEquals(((Button)v).getText()));tap(repairExecute,2);settle();
+            w=SessionProbe.view(activity);built=w.war.at(site);check(built.hp>stoppedHp&&built.builder==id&&!built.complete&&w.unit(id).gold==400&&w.unit(id).acted&&activity.deploymentState().revision==repairRevision+1,"ordinary repair commits HP/action once and resumes same shell without gold debit");shot("04b-resumed-repair");verifySceneFacts("resumed-repair");
+            started=capture();Files.write(new File(evidence,"actual-build.sg11").toPath(),started);
             // Actual save/load UI protects the whole campaign and both RNG streams.
             boolean existedSlot=new File(activity.getFilesDir(),"manual3.sg11").exists();
             nav("菜单");text("保存局面");option("槽位 3");if(existedSlot)text("覆盖存档");settle();
@@ -186,7 +196,7 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
             check(Arrays.equals(started,capture()),"actual load restores unfinished construction and complete world/bothRNG");
             android.app.Instrumentation.ActivityMonitor monitor=addMonitor(MainActivity.class.getName(),null,false);runOnMainSync(activity::recreate);MainActivity resumed=(MainActivity)waitForMonitorWithTimeout(monitor,300000);removeMonitor(monitor);check(resumed!=null,"activity recreation returns a real new activity");activity=resumed;put("activity",activity);settle();check(Arrays.equals(started,capture()),"activity reopen preserves entire restored construction campaign");
             byte[] saved=capture();check(Arrays.equals(saved,SaveCodec.encode(SaveCodec.decode(saved))),"complete production save/RNG canonical roundtrip");
-            result.putString("stream","PASS SESSION B FIELDWORKS normal Source14/new/deploy1000/ordinary-city-stop/fund-cancel-double/city-near-wall/multi-turn/move/empty-selection/cancel/double/camp/build/full-save-load/recreation; cold process and ARM pending\n");
+            result.putString("stream","PASS SESSION B FIELDWORKS normal Source14/new/deploy1000/ordinary-city-stop/fund-cancel-double/city-near-wall/multi-turn/move/empty-selection/cancel/double/camp/build/stop-cancel-double/full-stopped-turn/repair-cancel-double/full-save-load/recreation; cold process and ARM pending\n");
           }
         }catch(Throwable failure){result.putString("stream","FAIL SESSION B FIELDWORKS "+android.util.Log.getStackTraceString(failure));try{shot("failed");}catch(Throwable ignored){}}
         finally{try{if(activity!=null)runOnMainSync(()->activity.finish());settle();}catch(Throwable failure){result.putString("stream",result.getString("stream")+"\nFAIL lifecycle "+failure);}}
