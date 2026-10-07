@@ -310,7 +310,9 @@
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT111.json",
     "docs/handoff/20261006/session-a/NORMAL_DEFAULT_SOURCE11_ACCEPTANCE112.json",
     "docs/handoff/20261006/session-a/DEFAULT_SOURCE11_MEMORY113.json",
-    "docs/handoff/20261006/session-a/FAST_PREVIEW_FAILURE114.json"
+    "docs/handoff/20261006/session-a/FAST_PREVIEW_FAILURE114.json",
+    "docs/handoff/20261006/session-a/PICKER_RELEASE_ORDER115.json",
+    "docs/handoff/20261006/session-a/PICKER_RELEASE_BUILD116.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -17,7 +17,7 @@ final class ScenarioFactionPicker {
     private final MapHost map;private final TextView summary;private final ImageView portrait;
     private final Button start,details;private final List<Button> chips=new ArrayList<>();
     private int selected;
-    private boolean modeChosen,accepted,confirming;
+    private boolean modeChosen,accepted,confirming,previewReleased;
     private IntFunction<String> confirmation;
     private Runnable back;
     private AlertDialog confirmationDialog;
@@ -60,7 +60,9 @@ final class ScenarioFactionPicker {
             textSource.setText("人物文字资料："+officerTextLabel);
         }));root.addView(textSource,new LinearLayout.LayoutParams(-1,a.dp(48)));
         start=a.button("",v->accept(selected));start.setSelected(true);root.addView(start,new LinearLayout.LayoutParams(-1,a.dp(50)));
-        dialog.setContentView(root);dialog.setOnCancelListener(d->{if(back!=null)back.run();});dialog.setOnDismissListener(d->{if(confirmationDialog!=null)confirmationDialog.dismiss();if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}map.criticalFrame(null,0);map.release();});
+        dialog.setContentView(root);
+        dialog.setOnCancelListener(d->{closePreview("cancel");if(back!=null)back.run();});
+        dialog.setOnDismissListener(d->closePreview("dismiss-callback"));
         selected=w.player;for(int i=0;!w.alive(selected)&&i<w.factions.length;i++)selected=i;select(selected);
     }
     private boolean sourceOpening(){return PcScenarioIdentity.DATA_SOURCE.equals(w.dataSource);}
@@ -70,8 +72,19 @@ final class ScenarioFactionPicker {
     ScenarioFactionPicker onBack(Runnable action){back=action;return this;}
     String officerTextSource(){return officerTextSource;}
     String officerTextLabel(){return officerTextLabel;}
-    void dismiss(){dialog.dismiss();}
-    private void goBack(){dialog.dismiss();if(back!=null)back.run();}
+    /** Dialog posts OnDismiss. Its caller can rebuild another large preview
+     * before that message runs, so resource ownership must end at handoff. */
+    private void closePreview(String reason){
+        if(previewReleased)return;
+        long began=android.os.SystemClock.uptimeMillis();
+        android.util.Log.i("PickerLifetime","close begin picker="+System.identityHashCode(this)+" map="+System.identityHashCode(map)+" reason="+reason+" native="+map.is3D());
+        if(confirmationDialog!=null)confirmationDialog.dismiss();
+        if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}
+        map.criticalFrame(null,0);map.release();previewReleased=true;
+        android.util.Log.i("PickerLifetime","close end picker="+System.identityHashCode(this)+" map="+System.identityHashCode(map)+" reason="+reason+" wallMs="+(android.os.SystemClock.uptimeMillis()-began)+" native="+map.is3D());
+    }
+    void dismiss(){closePreview("owner-dismiss");dialog.dismiss();}
+    private void goBack(){closePreview("return");dialog.dismiss();if(back!=null)back.run();}
     private void accept(int side){
         if(accepted||confirming)return;
         if(confirmation==null){commit(side);return;}
@@ -83,7 +96,7 @@ final class ScenarioFactionPicker {
     }
     private void commit(int side){
         if(accepted)return;accepted=true;start.setEnabled(false);
-        boolean spatial=true;dialog.dismiss();a.setNextScenario3D(spatial);choose.accept(side);
+        boolean spatial=true;closePreview("commit");dialog.dismiss();a.setNextScenario3D(spatial);choose.accept(side);
     }
     private void mapFit(){map.post(map::fit);}
     private void tap(Hex h){

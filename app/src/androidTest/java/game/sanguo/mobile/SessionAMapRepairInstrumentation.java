@@ -273,6 +273,10 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
                 check((Integer)field(preview,"activeNativeHosts")<=baseline[0]+1,"fast source adds at most one owned native host");
             }catch(Exception error){throw new IllegalStateException(error);}});
             boolean interrupted=pending[0]>0||assets[0]>0;if(interrupted)pendingCancellations++;
+            log.append("ACTUAL fast preview source=").append(source).append(" cycle=").append(cycle)
+                .append(" mapIdentity=").append(System.identityHashCode(preview))
+                .append(" rendererIdentity=").append(System.identityHashCode(renderer[0]))
+                .append(" pending=").append(pending[0]).append(" assets=").append(assets[0]).append('\n');
             sample("fast-preview-"+source+"-"+cycle+"-before-cancel");long cancelled=SystemClock.uptimeMillis();
             // Touch the actual picker Return while CPU preparation may still run.
             text("返回");retired(preview);text("取消");unchanged(before,prior,"fast real source cancellation "+source+"/"+cycle);

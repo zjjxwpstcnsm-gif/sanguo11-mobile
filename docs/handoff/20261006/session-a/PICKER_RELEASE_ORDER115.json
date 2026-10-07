@@ -1,0 +1,24 @@
+{
+  "scope": "A-owned explicit preview ownership close before Return/cancel/commit/owner handoff, idempotent OnDismiss fallback. Preserve original114 failure and diagnostic identity/timing; no deadline relaxation, fake tap, rule/RNG change, 3D disable or OOM retry.",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "failure114Source": 3,
+  "failure114Cycle": 1,
+  "failure114DeferredReleaseCandidate": true,
+  "uniqueUserOomCauseProven": false,
+  "changes": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "beforeSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12",
+      "afterSha256": "0fa45a934f05aeedbbab540fa5894a1bc0c4ebaca111f162ab3685dca3acf253"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "beforeSha256": "00066e424ed3ae549d4d474c8834736cb3aabf345c2c1fb8d2341e0b92a70fda",
+      "afterSha256": "e946e731e44d1257dd134c33d03a54e8bc13b81b82c850cd6cb23d090f490bc3"
+    }
+  ],
+  "freshBuildInstalledAndNormalAccepted": false,
+  "normal32CancellationPairsPending": true,
+  "source11AndOther15CallerAcceptancePendingForNewPackage": true,
+  "wholeGoalComplete": false
+}
