@@ -327,3 +327,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 125 own64866/tool25848 actualverifiedlive waitingproducer64695,samecase/lock/pairedSHA. Starts from currentmilitary onlyafter itsownnormal/newPIDcold/all9+3797SHArestore/video+workerfinal;then same124 fire/pause/expiry/attack/full670Source11/other15 realcallers. Prior116 fast120 score retained onlyits actualgame/test pair,no automaticnew124 fastclaim. Old117/63890/63933/63934 terminal after122 failure/allrestore;no incompletecase reused asacceptance ordata cleared.
 
 126 当前军建124只读线程CPU观察器host69319已实际运行，绑定游戏8e08/测试10ed及相邻真实progress与PID命令核验；提交时39采样、无不可读样本。当前已经过正常墙完工、停止/补修和保存阶段；部分采样发生在逐旬结束以后，不能用RenderThread/FEngine单次CPU占比解释前台>120秒原因。不发信号/GC/界面或数据更改，顺序读取仍可能影响调度；日志尚未冻结，待case恢复后实际退出/完整SHA收尾。Java/native/GPU预算与ARM、唯一OOM/长旬根因未关闭。
+
+127 整首菜单音频等待器支持确切124冻结两包；实际当前125未完成门已只读拒绝、没有音频capture或设备动作。要求全部16人物和三命令正常/cold/9+3797全SHA恢复及命令observer完整退出；不借116快速取消或旧44音频成绩。原0.995门槛保留，实际capture/路由-22唯一因果/地图BGM/人物voice/ARM仍待。

@@ -21,9 +21,10 @@ def command(pid):
     return r.stdout.strip() if r.returncode==0 else None
 
 
-def normal_batch(batch, apks):
+def normal_batch(batch, apks, require_fast):
     report=json.loads((batch/'batch.json').read_text())
-    if not report.get('fastPreviewAccepted') or not report.get('remainingCallersAccepted') or report.get('error'):
+    assert report['apks']==apks
+    if (require_fast and not report.get('fastPreviewAccepted')) or not report.get('remainingCallersAccepted') or report.get('error'):
         raise ValueError('Actual producer normal batch incomplete or failed')
     commands=report.get('normalCommandResults',[])
     assert {r['name'] for r in commands}=={'military-construction-repair','fire-extinguish-expiry','continuous-attack-capture'}
@@ -34,6 +35,8 @@ def normal_batch(batch, apks):
         assert state['coldProcess']['passed'] and state['coldProcess']['differentPid']
         assert set(state['restoration'])=={'internal','external'}
         assert all(r['exactRegularFileSha'] for r in state['restoration'].values())
+        assert state['workerObservation']['exitCode']==0 and state['videoObservation']['exitCode']==0
+        assert state['videoObservation']['completedOriginalParts']>0 and not state['videoObservation']['captureLimitReachedBeforeRestoration']
     media=json.loads((pathlib.Path(report['remainingBatch'])/'batch.json').read_text())
     assert media['completeAll16NormalCallers'] and media['apks']==apks
     assert set(media['completedSources'])==set(range(16)) and set(media['sessions'])==set(map(str,range(16)))
@@ -48,26 +51,34 @@ def main():
     p.add_argument('--producer-pid',type=int,required=True)
     p.add_argument('--normal-batch',type=pathlib.Path,required=True)
     p.add_argument('--output',type=pathlib.Path,required=True)
+    p.add_argument('--cohort-receipt',type=pathlib.Path,default=HELPER.with_name('FIRE_OVERRIDE_DEFAULT_BUILD90.json'))
     p.add_argument('--check-only',action='store_true')
     a=p.parse_args()
     batch=a.normal_batch.resolve();output=a.output.resolve()
     assert batch.is_relative_to(ROOT/'out/session-a') and output.is_relative_to(ROOT/'out/session-a')
-    build=json.loads(HELPER.with_name('FIRE_OVERRIDE_DEFAULT_BUILD90.json').read_text())
-    assert build['buildSuccessful'] and build['sourceRevision']=='fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77'
+    receipt=a.cohort_receipt.resolve()
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('FIRE_OVERRIDE_DEFAULT_BUILD90.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json')
+    build=json.loads(receipt.read_text())
+    assert build['buildSuccessful'] and build['gameLargeHeap'] is True
+    current124=receipt.name=='NORMAL_VIEW_OPTION_TEST_BUILD124.json'
+    if not current124:assert build['sourceRevision']=='fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77'
     apks={r['path']:r['sha256'] for r in build['apks']}
     assert all(sha(pathlib.Path(path))==digest for path,digest in apks.items())
     if a.check_only:
-        normal_batch(batch,apks)
+        normal_batch(batch,apks,require_fast=not current124)
         print('Actual complete normal batch gate passed; no device action')
         return
     assert a.producer_pid>0 and not output.exists()
     producer=command(a.producer_pid)
-    assert producer and str(ROOT) in producer and 'run_fast_preview_and_remaining_media.py' in producer
+    expected_producer='run_picker_release_followup.py' if current124 else 'run_fast_preview_and_remaining_media.py'
+    assert producer and expected_producer in producer
     assert str(a.normal_batch) in producer
+    if current124:assert str(a.cohort_receipt) in producer
     output.mkdir(parents=True)
     state={'stage':'waiting-for-actual-normal-producer','hostPid':os.getpid(),'producerPid':a.producer_pid,'producerCommand':producer,
-           'normalBatch':str(batch),'apks':apks,'wholeTrackGate':.995,'deviceActionsStarted':False,
-           'scope':'Current90 independent actual normal menu music/PCM/Save-RNG-StateToken/whole file restoration after all16 callers and normal fire/construction/attack. Not mapBGM/voice/old-22 unique cause/ARM/final combined APK acceptance.',
+           'normalBatch':str(batch),'apks':apks,'cohortReceipt':str(receipt),'wholeTrackGate':.995,'deviceActionsStarted':False,
+           'fastPreviewAcceptedForThisPair':False,
+           'scope':'Exact frozen pair independent normal menu music/PCM/Save-RNG-StateToken/whole file restoration after all16 callers and normal fire/construction/attack. Current124 does not borrow116 fast preview score. Not mapBGM/voice/old-22 unique cause/ARM/final combined APK acceptance.',
            'wholeGoalComplete':False}
     def save():
         (output/'queue.json').write_text(json.dumps(state,indent=2)+'\n')
@@ -80,7 +91,7 @@ def main():
             if actual!=producer:raise ValueError('Producer PID identity changed; no device action')
             if time.monotonic()>deadline:raise TimeoutError('Producer still live; queue timeout is not producer failure')
             time.sleep(10)
-        previous=normal_batch(batch,apks)
+        previous=normal_batch(batch,apks,require_fast=not current124)
         reference=ROOT/'out/session-a/music-submission-appop-44/reference'
         manifest=json.loads((reference/'manifest.json').read_text())
         entry=next(r for r in manifest['entries'] if r['resourceId']==2238)
@@ -129,7 +140,7 @@ def main():
         result=json.loads(waveform.read_text());assert result['status']=='PASS' and result['correlation']>=.995
         state.update(stage='actual-menu-waveform-and-restoration-verified',case=str(case),waveform=result,
                      normalMenuFullSaveRngStateTokenPassed=True,menuColdProcessAccepted=False,
-                     menuExitBoundary='Inherited Activity.finish release barrier; real Back/cold proved separately in same90 normal map suite, not claimed for this audio case',
+                     menuExitBoundary='Inherited Activity.finish release barrier; this audio case does not claim real Back/cold acceptance',
                      originalWindowsExactPcm=False,mapBgmVoiceOrArmAccepted=False)
         save()
     except BaseException as error:
