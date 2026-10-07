@@ -31,3 +31,8 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 215 来源标志覆盖后继只读登记
 
 登记 `docs/handoff/20261006/session-a/SOURCE_OPENING_OVERRIDE_READONLY215.json`，冻结B原Header16源证据/配置块27组陈述及未提交策略/DTO/query源SHA。继承211历史未知的后继，不改其旧SHA。仅准备源特定请求与有效life3的摘要边界，不猜默认/禁用/完整开局；不复制、编译、集成B WIP，不打断5554。204既有A路径与完整冻结后才实施边界继续有效。
+
+
+## 216 所选来源预览只读后继
+
+登记 `docs/handoff/20261006/session-a/TARGET_OPENING_PREVIEW_READONLY216.json`，冻结B未提交目标来源预览API/DTO/query/契约源SHA，仅补充204正常切来源草稿的sourceId/Token/choice.value/fixedMenuValue边界。所有savedValue为空，不带入旧局/default；菜单life固定2的原约束与有效life3分开，原禁用像素未知。无session入口仍需完整冻结契约；不改MainActivity/picker、不复制/集成/编译B WIP、不打断5554。

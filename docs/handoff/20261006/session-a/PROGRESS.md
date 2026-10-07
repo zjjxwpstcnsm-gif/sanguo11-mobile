@@ -477,3 +477,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 215：收到B来源标志后继，只读核其完整16Headerreceipt SHA692391c8与策略/DTO/query，逐SHA核对全部16原PC来源文件同等；Source7配置块27组合运行结论明确归B。补充204来源精确请求/有效life3与“原剧本固定”摘要边界，保留默认/原GUI禁用/完整开局/无session接口未知。B完整HEAD仍36f059b4、WIP未复制/编译/集成，Source1当前helper48830继续原正常验收。
+
+
+216：只读核B目标来源preview重载/DTO/query六路径SHA和未提交状态；新增草稿按sourceId+Token重建、所有savedValue=null、原固定菜单2与有效life3分别呈现的后继方案。保留默认/PC禁用像素/无session首局绑定未知，151host检查归B不代Android；A未改Main/picker、未复制/编译/集成WIP，Source1当前helper48830继续。

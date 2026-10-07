@@ -1,0 +1,63 @@
+{
+  "scope": "Read-only A216 successor to211/215. Freeze current B WIP contract/source; no source copy/compile/integration/normal UI/APK acceptance.",
+  "bCompletedHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "bWorktreeStatus": " M game-api/src/main/java/game/sanguo/api/GameApi.java\n M game-runtime/src/main/java/game/sanguo/runtime/GameSession.java\n?? core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java\n?? docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md\n?? game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java\n?? game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java\n",
+  "files": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md",
+      "sha256": "bb4571d673f6bdece2ea927300e65e022e4ad94d0cd52eaf6ce80b6134e311d4",
+      "bytes": 5103
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "sha256": "dda25b05b41af2083e99cfc19be23deea61e3bf1aa4034a9425891a9d5b1b5b6",
+      "bytes": 1703
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java",
+      "sha256": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+      "bytes": 2866
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "sha256": "49266f3da09dc0a191132dd6ddd2e81c8d30ccffdec51e786029db2b5d245da8",
+      "bytes": 30218
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java",
+      "sha256": "17b52c7ab2cccc9efa5ba241c2a3f7932080ad49fa8016c4dc07342e4dd23fb2",
+      "bytes": 2182
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java",
+      "sha256": "28d546b0c48a6a8cf1c3db60010279a9f14b2c4866e57b22c0b48fb93819d94f",
+      "bytes": 4936
+    }
+  ],
+  "api": "GameApi.pcOpeningOptions(scenarioId)",
+  "identity": "currentStateToken + exact previewSourceId + sourceFlag18 original source header provenance",
+  "allTargetPreviewSavedValuesNull": true,
+  "defaultsKnown": false,
+  "verifiedConstraint": "For exact sourceflag1, life.fixedMenuValue=2; other fixedMenuValue=null. Menu constraint is distinct from effective original life3 and not a default.",
+  "bReportedOriginalConstraintReceiptSha256": "157d3641501f3eb0b5cc28235168b62b9543fb2e1a8b607547b797d88dc95a8f",
+  "bReportedExecution": "Source7 full5593e0 base window/full544900 nine drafts. Empty control tree does not prove actual PC disable pixels/children.",
+  "bReportedPreview151Checks": "Existingformat5 World ->16 target previews/repeated reads/invalid target/cancel -> complete oldWorld,bothRNG,StateToken pure. A did not execute or transfer these to Android acceptance.",
+  "plannedAConsumption": [
+    "Request target preview after exact source selection; never import current-session saved options as opening draft.",
+    "Bind immutable draft to previewSourceId plus StateToken and picker generation. Source change rebuilds draft; stale/double callback cannot apply old tuple.",
+    "Unconstrained choices stay unselected. A certified fixedMenuValue supplies only its source constraint, with visible explanation and explicit new-game confirmation; never invent other default or disabled PC pixels.",
+    "Confirm original choice.value, not spinnerposition/ordinal; preserve original menu labels and bytes in evidence.",
+    "Only complete confirmed tuple uses fromMenu then completed4arg factory; effective life3 remains B authoritative provenance, never renderer/option UI rule recomputation.",
+    "Cancel/discard preview does not createWorld/adoptpolicy/changeSave/RNG/StateToken.",
+    "Respect GameSession owner thread and completed API support; unsupported or no-session entry needs explicit completed contract, not a dummy World or invented StateToken."
+  ],
+  "sessionlessGapStillOpen": true,
+  "sessionlessGapEvidence": "GameSession methods require existing open session/state; Snapshot requires nonnull StateToken. A normal initial start can have no session, as recorded211. Static resource-only factory exists in WIP query but normal zero-session binding contract is not yet frozen.",
+  "actualPcDisablePixelsAccepted": false,
+  "implementationStarted": false,
+  "bWipCopied": false,
+  "compiled": false,
+  "deviceActionsStarted": false,
+  "actualNormalOpeningApkAccepted": false,
+  "wholeGoalComplete": false
+}

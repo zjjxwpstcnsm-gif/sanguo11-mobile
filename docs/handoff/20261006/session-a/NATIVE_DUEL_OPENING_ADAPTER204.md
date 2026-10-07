@@ -61,3 +61,10 @@ B原Header16源receipt692391c8与Source7配置块27组合receipt575e8abb给出�
 后继A显示来源覆盖时只能消费完成版精确源事实及同Token投影，不按source ordinal/name重算。life菜单仍0..2，不加第四项；确认摘要区分请求值与经核实“原剧本固定”的有效值。旧缺失事实raw3仍未知。新的automaticOverridesKnown只证明三个单挑设置的来源覆盖，defaultsKnown仍false；Root28/2c、完整出场/年龄/事件和544900菜单设2/按钮禁用等尚未完整核实，A不能据此自动选值或禁用控件。
 
 完整B Native批次仍未冻结，A不实现/拷贝/编译/集成；无session资源目录接口和后继正常16来源新局/存档/真正退出/ARM仍待。211保留当时SHA与未知，215给出后继精确文件和scope。
+
+
+## 216 所选来源预览后继（只读）
+
+B新增`GameApi.pcOpeningOptions(scenarioId)`带当前Token与确切previewSourceId，原sourceFlag18、所有savedValue=null；旧局设置不作为新局默认。原Source7 full5593e0/full544900九draft执行receipt157d3641给出flag1时life菜单fixedMenuValue=2，此为来源约束，不是默认；有效原参数life3与请求菜单2仍区分。空control tree未证实原PC禁用视觉，不将其他21c/220/230字段约束扩接到本API或玩法。
+
+A后继按精确所选来源DTO重建草稿、绑定sourceId/Token/picker generation，确认按choice.value；非约束项保持未选择，已证实的固定值只作为来源约束并在真实确认摘要明确呈现。切源/取消只丢草稿，不能新建World/初始化策略/修改保存或RNG。B151 host preview纯检查不当Android正常入口成绩。当前WIP session方法仍需要已有session/非空Token；首次启动无session的正常绑定契约仍未冻结，不造dummy World/Token。六个B源SHA和M/??状态见216，A不改当前Main/picker、不编译或集成。
