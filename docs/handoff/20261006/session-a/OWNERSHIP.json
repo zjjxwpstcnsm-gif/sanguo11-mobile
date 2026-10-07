@@ -323,7 +323,9 @@
     "docs/handoff/20261006/session-a/MILITARY_LOCATE_FAILURE122.json",
     "docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_FIX123.json",
     "docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_TEST_BUILD124.json",
-    "docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_FOLLOWUP125.json"
+    "docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_FOLLOWUP125.json",
+    "docs/handoff/20261006/session-a/observe_target_cpu.py",
+    "docs/handoff/20261006/session-a/TARGET_CPU_OBSERVER126.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
