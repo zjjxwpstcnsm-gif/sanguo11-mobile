@@ -213,7 +213,8 @@
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_LAYOUT_SHIFT60.json",
     "docs/handoff/20261006/session-a/NORMAL_MEDIA_PARTIAL61.json",
     "docs/handoff/20261006/session-a/run_remaining_normal_media.py",
-    "docs/handoff/20261006/session-a/summarize_actual_ui_text.py"
+    "docs/handoff/20261006/session-a/summarize_actual_ui_text.py",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT61.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

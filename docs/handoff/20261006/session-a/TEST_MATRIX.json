@@ -4,7 +4,7 @@
     {
       "item": "complete-source",
       "status": "CHECKPOINT COMPLETE SHA VERIFIED",
-      "evidence": "8ee37403 archive11068files/902397731B; archiveSHA5ca39633; everyentry and original4/new2JNI exact; later evidence docs outside exact archive",
+      "evidence": "SOURCE_EXPORT_CHECKPOINT61 revision3482 complete11087 paths/902618495bytes archive652755451 SHA9693be179b7171cd97f9cb0746f30f890986e3ade72a88ed36d499d6bafa7e6c every entry/live SHA and original4/new2JNI exact; checkpoint only",
       "next": "final source delta and serial integrated main guard"
     },
     {
@@ -27,8 +27,8 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT ff2832/2ee985 PREPARING61 NORMAL KEYBOARD DIAGNOSTIC",
-      "evidence": "Exact game5a72/ff2832 independently built168/6JNI guarded, previous58/59/60failed and each fullyrestored. Newtesta9875651/2ee985 built/frozen, current61live installation pending; actualstage must be checked.",
+      "status": "CURRENT ff2832/2ee985 INDEPENDENT BUILD AND ACTUAL INSTALL VERIFIED;61 LIVE",
+      "evidence": "Actual frozen game source5a72/testa987; device readback exact SHA and pm runner registered, normal source11 incomplete.",
       "next": "61 actual IME completion+stable layout/all670/normal/cold/fullrestore; no historical b819 result transfer"
     },
     {
@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "41 FOUR GAIJI ALL16 PASS;55 ONE181 NORMAL/COLD PASS;54/56-60 FULL SOURCE11 FAIL;61 PREPARING",
+      "status": "HISTORICAL41 FOUR GAIJI ALL16 AND55 SINGLE181 PASS;CURRENT61 PARTIAL160/670",
       "evidence": "Known historical exact-source joins10720/0unknown/695assets/2892PNG and41 actual128gaiji callers. Latest diagnostic60 fourpairs then404pxsamehold layoutshift; everyfailedrun complete9/3797restore. No partial counts summed as all670.",
-      "next": "61 normal keyboard search completion and observable IME+1000ms stable viewport/root; all670 and remaining15/form/age/fullscreen/ARM still open"
+      "next": "61 whole670/cold/fullrestore then gated remaining15 real menu allpeople; allage/forms/fullscreen/pixelcrop/voice/ARM remain"
     },
     {
       "item": "dynamic-age",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "LATEST a14 HUD52 PASS;SAME b819 FIRE53 LIVE",
-      "evidence": "FrozenB completed only, no WIP; two actualHUD roots repaired, normal/cold actualintermediate→12 once/Saverngtoken pure/restored;244fullforce48 remainsolder376 scope",
-      "next": "53 fire/pause/military/mediaAll16/16pages/latest fullmatrix/ARM/finalserialmain"
+      "status": "HISTORICAL b819 HUD52 AND FIRE53 PASS;CURRENT ff2832 NO COMPLETE NORMAL/COLD MATRIX",
+      "evidence": "CompletedB aa9 objects only; no B WIP. Current ff2832 production diagnostics/new2ee985 IME stable real input;61 partial source11; mainEF/fullbase0e7 unchanged.",
+      "next": "61 fullnormal callers+other15/latest fire/HUD/memory/normalcommands/multiturn/ARM/finalserialmain"
     },
     {
       "item": "search-normal",
@@ -99,5 +99,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "52 actual latest HUD intermediate roll normal+cold+fullrestore PASS;53 sameAPK fire lifecycle live; allnormal media tool unaccepted"
+  "updatedCheckpoint": "61 actual installed ff2832/2ee985 source11 partial160/670; normal/cold/finalrestore incomplete; complete3482 source export verified11087 paths"
 }
