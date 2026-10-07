@@ -8,6 +8,21 @@ import java.util.*;
 
 /** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
 public class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+ @Override protected android.view.View awaitPreparation(java.util.function.Predicate<android.view.View> predicate)throws Exception {
+  long deadline=SystemClock.uptimeMillis()+300000;AssertionError last=null;
+  do{
+   boolean[] idle={false};runOnMainSync(()->{try{
+    UiReadTask read=(UiReadTask)field(activity,"uiReads");
+    idle[0]=read!=null&&field(read,"pending")==null&&field(read,"job")==null;
+   }catch(Exception e){throw new RuntimeException(e);}});
+   // Navigation behind the preparation dialog belongs to the old campaign.
+   // Observe the actual owner callback completion before matching its controls.
+   if(idle[0])try{return await(predicate);}catch(AssertionError failure){if(!failure.toString().contains("visible control timeout"))throw failure;last=failure;}
+   else SystemClock.sleep(100);
+  }while(SystemClock.uptimeMillis()<deadline);
+  if(last!=null)throw last;
+  throw new AssertionError("visible control timeout: normal read preparation did not complete");
+ }
  @Override protected void selectUnit(int id)throws Exception {
   byte[] before=capture();StateToken prior=activity.deploymentState();
   World.Unit unit=SessionProbe.view(activity).unit(id);

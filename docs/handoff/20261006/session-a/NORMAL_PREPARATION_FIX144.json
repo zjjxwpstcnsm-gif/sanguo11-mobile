@@ -1,0 +1,14 @@
+{
+  "changedPath": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenePresentationInstrumentation.java",
+  "beforeSha256": "edd9c25d9d57edd8cd45498320a7a2073ee1bbad0e79c1fe20f67ea415d44108",
+  "afterSha256": "437b0389fad1cdd48b772685586f53b09254a82a4bca222f2c388249ff458e81",
+  "actualFailureReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MILITARY_PREPARATION_FAILURE143.json",
+  "testOnly": true,
+  "normalUiReadPendingAndJobIdleBeforeControlMatch": true,
+  "ownerMainThreadReadOnly": true,
+  "deadlineMillisUnchanged": 300000,
+  "productionOrBChanged": false,
+  "allowsOldBackgroundCampaignAcceptance": false,
+  "actualInstalledAccepted": false,
+  "wholeGoalComplete": false
+}
