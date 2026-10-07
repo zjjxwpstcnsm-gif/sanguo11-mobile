@@ -16,3 +16,8 @@ B当前 PcDuelOptions(life,death,difficulty) 与 PcScenarioCatalog.load(sourceId
 ## 210 正常人物详情技术文案取证
 
 A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只读冻结当前176配对已完成Source11实际人物详情截图、文字记录与完整源码SHA。文本来源为B所有的core Lifecycle；不编辑B源码，不重新构建或打断当前5554测试。将技术实现说明泄漏到正常人物详情作为最终UI未完成项；状态真值仍保留，不猜登场规则。
+
+
+## 211 B后继菜单事实只读准备
+
+登记 `docs/handoff/20261006/session-a/NATIVE_OPENING_MENU_READONLY211.json`，只读核对B未冻结的菜单契约与PcOpeningOptionsSnapshot/GameApi/PcDuelOptions源，补充204的显式三组0..2菜单方案。B完成HEAD仍36f059b4；不复制/集成/编译WIP，不动5554。后继A实现仅沿204已登记MainActivity/ScenarioFactionPicker与其专用测试，待B整批完成冻结；所有默认/Root+18自动覆盖/原GUI开局仍未知。

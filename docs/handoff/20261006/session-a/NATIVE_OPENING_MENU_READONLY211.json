@@ -1,0 +1,107 @@
+{
+  "scope": "Read-only successor to A204/205. B contract statements are attributed; A did not execute the original callbacks/configuration block, compile or integrate WIP.",
+  "bCompletedHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "bWorktreeStatus": " M game-api/src/main/java/game/sanguo/api/GameApi.java\n M game-runtime/src/main/java/game/sanguo/runtime/GameSession.java\n?? core/src/main/java/game/sanguo/core/PcDuelOptions.java\n?? docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md\n?? game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java\n?? game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java\n",
+  "files": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md",
+      "sha256": "7d3e6ad1160bfe0a144eafc220901a4a0aea744b0fcc92c2d006d9f1fa3f900c",
+      "bytes": 2513
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java",
+      "sha256": "6b2f16ee247b1a53758bce1c7bb96914a45e21f7c5c95f05fb8a3cc1d36e737a",
+      "bytes": 1749
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "sha256": "230eec871922d4152fb84efdd4917059a242627b51c1ee77b3d64cfd6d7c4533",
+      "bytes": 1575
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/core/src/main/java/game/sanguo/core/PcDuelOptions.java",
+      "sha256": "444fce16bc89d70ea6ace76aa73fee1991d3f322f9335cfb64838b40af6faa8b",
+      "bytes": 1205
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java",
+      "sha256": "65640845e45d0bccdc209b6a60a75b778bd7b129c900237cc4f1275a0dacc6f3",
+      "bytes": 1180
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "sha256": "39935d982d3c06cf9010b0326698f4ef97e48bea19aa49252c5c586a20c3fd6d",
+      "bytes": 29982
+    }
+  ],
+  "bReportedEvidence": {
+    "exeSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+    "receiptSha256": "ec3aa4c89e4edd0a78f4b7c92031e09ff0f46036f3a52c51034c18f0323539fc",
+    "executed": "545350 nine callbacks;55c9f0 export;4a4354..4a446b configuration write block,27 combinations",
+    "notExecuted": "full4a42d0; real PC GUI/default/full opening"
+  },
+  "menu": {
+    "difficulty": {
+      "values": [
+        0,
+        1,
+        2
+      ],
+      "labels": [
+        "初級",
+        "上級",
+        "超級"
+      ],
+      "uiOffset": "+214",
+      "rootOffset": "+20"
+    },
+    "death": {
+      "values": [
+        0,
+        1,
+        2
+      ],
+      "labels": [
+        "無",
+        "標準",
+        "多"
+      ],
+      "uiOffset": "+218",
+      "rootOffset": "+24"
+    },
+    "life": {
+      "values": [
+        0,
+        1,
+        2
+      ],
+      "labels": [
+        "史實",
+        "長壽",
+        "假想"
+      ],
+      "uiOffset": "+22c",
+      "rootOffset": "+38"
+    }
+  },
+  "internalLife3": "Root+18 flag override; not fourth menu choice; source flag creation/default unknown",
+  "readOnlyApi": "GameApi.pcOpeningOptions() -> PcOpeningOptionsSnapshot; state,immutable groups/choices,source Big5/controlId,optional savedValue; unsupported default.",
+  "defaultsKnown": false,
+  "automaticOverridesKnown": false,
+  "savedValueIsNewGameDefault": false,
+  "plannedAConsumption": [
+    "Keep each choice unselected until explicit human selection; never position0/savedValue as default.",
+    "Use completed API group id and explicit choice.value/label; no ordinal/name/+1 conversion.",
+    "Require current StateToken; reject stale callbacks without touching World/RNG/save.",
+    "Read catalog through an existing valid session; do not construct World merely to obtain menu choices. Unsupported/no-session flow needs completed B entry contract.",
+    "Only confirmed full PC tuple uses PcDuelOptions.fromMenu(life,death,difficulty) then existing4arg factory after B frozen dependency closure.",
+    "Preview/options cancel/source cancel preserve authoritative state and all RNG; closePreview ordering remains.",
+    "rawlife3 remains only existing saved/internal fact; do not add selectable menu item or guess source automatic override."
+  ],
+  "implementationStarted": false,
+  "bWipCopied": false,
+  "compiled": false,
+  "deviceActionsStarted": false,
+  "actualOpeningOrApkAccepted": false,
+  "wholeGoalComplete": false
+}

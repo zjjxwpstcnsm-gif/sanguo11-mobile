@@ -40,3 +40,12 @@ A当前 `chooseScenarioTemplate` 的PC预览使用 `PcScenarioCatalog.preview(id
 从真实菜单进入多个PC来源/多个势力，明确选项并新局；分别覆盖每域合法边界与有意义的组合，验证保存后实际策略事实，而不是复写接口算术测试。真实取消/返回/查看/改势力/重复按钮/旧回调均比较完整Save、全部规则/原流RNG和StateToken；旧31–39/既有新源三参数档与真实39手动读取不由新入口回填或升级。确认后的正常原单挑、自然结算/继承与多旬、手动存读、退出重开/新PID，须在B完成规则后走真实可达按钮验收。
 
 A增量提交后与冻结B生成独立新游戏/测试APK，实际安装核SHA，每次完整备份保存/库/偏好并最终逐SHA恢复；默认大堆及普通堆分别测试，原四JNI/新增二JNI/168固定输入保持守卫。模拟器与ARM证据分开。全媒体、原事件发言者、地图BGM或原PC相机/时序不能由本选项方案宣称完成。
+
+
+## 211 后继菜单事实（2026-10-08，只读）
+
+B未冻结契约已提供原545350九按钮/55c9f0导出/配置写入块27组合的文本和数值映射：difficulty 初級/上級/超級=0/1/2；death 無/標準/多=0/1/2；life 史實/長壽/假想=0/1/2，不加一。先前构造域life0..3只是保存/内部域，原菜单仅0..2；Root+18非零强制life3的来源标志建立链及默认仍未知，不添加第四选项。上述运行结果来自B契约，A未重复执行；未执行完整4a42d0、真实PC GUI或默认开局。
+
+后继完成API `GameApi.pcOpeningOptions()`提供同StateToken、不可变三组choices、原Big5/controlId及可缺省savedValue；defaultsKnown/automaticOverridesKnown=false，savedValue不是新局默认。A从完成API按group id/choice.value消费，不用ordinal/name，不从已保存选项自动选中；只明确确认完整三组后调用`PcDuelOptions.fromMenu`与完成四参工厂。延迟返回必须复核Token和picker生命周期，不为获取菜单建World或重抽RNG。没有活动session/unsupported时的目录读取入口仍需B完成契约，不猜静态替代。
+
+当前B六个相关路径均M/??、完整Native批次未冻结；精确SHA与状态见211。A不实现/编译/复制WIP、不打断5554，原204后继验收与保存/所有RNG/Bridge/Unity/原4JNI边界继续有效。

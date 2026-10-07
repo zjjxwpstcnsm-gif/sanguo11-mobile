@@ -1,5 +1,7 @@
 # 当前未完成与未知（2026-10-08；同176三命令与Source11已全恢复，Source0矩阵运行）
 
+211菜单只读后继：B提供原九按钮/导出/写入块27组合的difficulty/death/life原标签与0..2映射；不是完整4a42d0/原GUI/default开局验证。life3为Root+18内部覆盖，源标志建立链未知，savedValue不作默认。API同Token不可变投影已只读核源，B整批仍未冻结，A未集成/编译/实装；无session/unsupported的菜单目录入口仍待完成契约。
+
 210新正常UI缺口：同176已完整恢复Source11真实司馬伷(native229)详情截图可读，但显示“原登场条件未闭合，保留原状态；不按年份猜测激活”实现说明。来源core Lifecycle.java:47归B，不越权修改；保留真实SOURCE_WAIT状态与规则未知，最终组合应由B完成增量改成玩家文案，并重新正常入口验收。截图/实际文字/源码逐SHA已冻结，不代表全局UI闭合。
 
 当前5554 game931bc/testa37f已注册176配对，209其余15来源矩阵parent31963/helper31991/video32012/native32013正在Source0正常人物入口。完成来源目前只有[11]；Source0最新增量64/670人物、128入口、纯Save/bothRNG/StateToken通过仍是partial，不是其normal/cold/恢复或全16接受。normal7783/audio7789/heap7800继续串行全矩阵，audio/heap无自己的deviceactions。203每次backup和install前复核继承main、注册配对和源；更新会停下并恢复，不装旧包。
