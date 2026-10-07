@@ -260,7 +260,8 @@
     "docs/handoff/20261006/session-a/SourceWaterAllocationProbe.java",
     "docs/handoff/20261006/session-a/run_source_water_allocation.py",
     "docs/handoff/20261006/session-a/SOURCE_WATER_ALLOCATION80.json",
-    "docs/handoff/20261006/session-a/source-water-baseline80.java.txt"
+    "docs/handoff/20261006/session-a/source-water-baseline80.java.txt",
+    "docs/handoff/20261006/session-a/WATER_NORMAL384_BUILD81.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
