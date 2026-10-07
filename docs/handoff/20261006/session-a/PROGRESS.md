@@ -442,3 +442,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 191 1234/6773/6820/6821旧原39已真正结束，2601已启动真实normal7783/audio7789/heap7800三独立child，串行数据门：同176重新正常军建/火/攻击/16caller、.995菜单原曲后新180ordinary与176default两套fast32/all244/冷/原SHA恢复；现normal开始freshfullbackup，audio/heap只waiting无deviceaction。不得把已关闭186旧test分替代当前176流程。
 
 192 同176testa37f/game931bc正常Source14军建七旬/完整存读/活动重建/冷21957→14999/both3Dsubmit/auto4aeb8272...通过，原9internal(rewrite4)/3797external(rewrite0)每SHA恢复、video/native0，录像及memory峰值准确见192。193overlay和194真实widget文本按最终log/APK/restore冻结，不用旧186test36f分，七旬仍有>120秒不宣告性能根因/JavaGPU/ARM预算关闭。原dataowner7828和video7851/native7852均已结束，parent7783自动进入真实fire-extinguish-expiry freshbackup；音频7789/heap7800只等整个正常矩阵。
+
+195 同176火测试已fresh9/3797完整独立backup和每文件SHA核验、当前两APK整SHA及actualrunner verified后真正运行，helper12338/video12421/native12422实际live。真实Source14正常菜单/火计取消确认/暂停/灭火到期/存读/冷新PID/最终偏好和全部SHA恢复仍需实际接受，不借旧135158或fixture分。原192军建8原片闭合、544TOTAL PSS最高493017KiB，7旬compute85709–141642ms，仅此pair，不作Java/GPU或ARM预算关闭。
