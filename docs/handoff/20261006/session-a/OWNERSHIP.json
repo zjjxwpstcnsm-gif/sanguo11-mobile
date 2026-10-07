@@ -250,7 +250,8 @@
     "docs/handoff/20261006/session-a/VOICE_TEST_REFRESH74.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT74.json",
     "docs/handoff/20261006/session-a/inspect_actual_label_pixels.py",
-    "docs/handoff/20261006/session-a/ACTUAL_SOURCE7_LABEL_PIXELS76.json"
+    "docs/handoff/20261006/session-a/ACTUAL_SOURCE7_LABEL_PIXELS76.json",
+    "docs/handoff/20261006/session-a/NORMAL_TOUCH_ENTRY77.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -8,6 +8,72 @@ import java.util.*;
 
 /** Extends frozen B's real menu/commands. Adds read-only actual A rendering/source checks. */
 public class SessionAScenePresentationInstrumentation extends SessionBFieldworksInstrumentation {
+ @Override protected void selectUnit(int id)throws Exception {
+  byte[] before=capture();StateToken prior=activity.deploymentState();
+  World.Unit unit=SessionProbe.view(activity).unit(id);
+  check(unit!=null,"real current unit exists before normal list selection");
+  String commander=SessionProbe.view(activity).officer(unit.officerId).name;
+  nav("全部部队");text("全部");
+  DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
+  tap(table.search);runOnMainSync(()->table.search.setText(commander));
+  runOnMainSync(()->{
+   android.view.inputmethod.InputConnection input=table.search.onCreateInputConnection(new android.view.inputmethod.EditorInfo());
+   if(input==null||!input.performEditorAction(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH))throw new AssertionError("normal unit search action unavailable");
+  });
+  android.view.View[] target={null};long until=SystemClock.uptimeMillis()+120000;
+  while(SystemClock.uptimeMillis()<until){
+   android.graphics.Rect viewport=new android.graphics.Rect();int[] index={-1},first={0};
+   runOnMainSync(()->{
+    first[0]=table.list.getFirstVisiblePosition();
+    for(int i=0;i<table.list.getAdapter().getCount();i++)if(table.list.getAdapter().getItemId(i)==id){index[0]=i;break;}
+    if(!table.list.getGlobalVisibleRect(viewport))return;
+    int[] origin=new int[2];table.list.getRootView().getLocationOnScreen(origin);viewport.offset(origin[0],origin[1]);
+    if(index[0]>=first[0]&&index[0]<first[0]+table.list.getChildCount()){
+     android.view.View row=table.list.getChildAt(index[0]-first[0]);
+     android.view.View cell=row instanceof android.view.ViewGroup?((android.view.ViewGroup)row).getChildAt(0):row;
+     android.graphics.Rect visible=new android.graphics.Rect();
+     if(cell.isAttachedToWindow()&&cell.getGlobalVisibleRect(visible)&&visible.height()>=cell.getHeight()*.8f)target[0]=cell;
+    }
+   });
+   if(target[0]!=null)break;
+   if(!viewport.isEmpty()&&index[0]>=0){
+    float x=viewport.centerX(),start=viewport.top+viewport.height()*(index[0]>=first[0]?.65f:.35f);
+    float dy=viewport.height()*(index[0]>=first[0]?-.35f:.35f);touchDrag(x,start,x,start+dy);
+   }else SystemClock.sleep(150);
+  }
+  check(target[0]!=null,"actual attached source unit row reachable by normal search/scroll id="+id);
+  tap(target[0]);long selectedUntil=SystemClock.uptimeMillis()+20000;boolean[] selected={false};
+  while(SystemClock.uptimeMillis()<selectedUntil){runOnMainSync(()->{try{ClientState ui=(ClientState)field(activity,"ui");selected[0]=ui.selectedUnit==id&&ui.page.equals("map");}catch(Exception e){throw new RuntimeException(e);}});if(selected[0])break;SystemClock.sleep(100);}
+  check(selected[0],"normal real list click selected exact current unit and entered map id="+id);
+  check(Arrays.equals(before,capture())&&prior.equals(activity.deploymentState()),"normal list selection preserves full Save/bothRNG/StateToken");
+ }
+ private void touchDrag(float x,float y,float endX,float endY){
+  long began=SystemClock.uptimeMillis();
+  for(int i=0;i<=12;i++){
+   android.view.MotionEvent event=android.view.MotionEvent.obtain(began,SystemClock.uptimeMillis(),i==0?android.view.MotionEvent.ACTION_DOWN:android.view.MotionEvent.ACTION_MOVE,x+(endX-x)*i/12f,y+(endY-y)*i/12f,0);
+   event.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(event);event.recycle();SystemClock.sleep(35);
+  }
+  android.view.MotionEvent up=android.view.MotionEvent.obtain(began,SystemClock.uptimeMillis(),android.view.MotionEvent.ACTION_UP,endX,endY,0);up.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(up);up.recycle();settle();
+ }
+ @Override protected void pose(Hex target)throws Exception {
+  byte[] before=capture();StateToken prior=activity.deploymentState();
+  nav("地图");text("视图");text("定位");settle();
+  boolean visible=false;
+  for(int attempt=0;attempt<16;attempt++){
+   float[] point=(float[])invoke("screenHex",new Class<?>[]{Hex.class},target);
+   android.graphics.Rect viewport=new android.graphics.Rect();
+   runOnMainSync(()->{try{MapHost map=(MapHost)field(activity,"map");map.getGlobalVisibleRect(viewport);int[] origin=new int[2];map.getRootView().getLocationOnScreen(origin);viewport.offset(origin[0],origin[1]);}catch(Exception e){throw new RuntimeException(e);}});
+   viewport.inset(activity.dp(45),activity.dp(45));
+   visible=!viewport.isEmpty()&&viewport.contains((int)point[0],(int)point[1]);
+   if(visible)break;
+   check(!viewport.isEmpty(),"actual visible map admits normal target pan");
+   float dx=Math.max(-viewport.width()*.25f,Math.min(viewport.width()*.25f,viewport.centerX()-point[0]));
+   float dy=Math.max(-viewport.height()*.25f,Math.min(viewport.height()*.25f,viewport.centerY()-point[1]));
+   touchDrag(viewport.centerX(),viewport.centerY(),viewport.centerX()+dx,viewport.centerY()+dy);
+  }
+  check(visible,"normal selected-object focus and actual map drags expose command target "+target);
+  check(Arrays.equals(before,capture())&&prior.equals(activity.deploymentState()),"normal view focus/pan preserves full Save/bothRNG/StateToken");
+ }
  @Override protected void shot(String label)throws Exception {
   super.shot(label);
   org.json.JSONArray roots=new org.json.JSONArray();Throwable[] failure={null};
