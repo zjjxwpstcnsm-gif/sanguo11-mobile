@@ -11,6 +11,33 @@ import subprocess
 from run_remaining_normal_media import ROOT, sha
 
 
+def schedstat_groups(samples):
+    """Keep same observed PID/TID monotonic segments, not a lifetime proof."""
+    groups=[];current={};errors=[]
+    for index,sample in enumerate(samples):
+        for row in sample.get('strategySchedstat',[]):
+            if 'unavailable' in row:
+                errors.append(dict(sampleIndex=index,targetPid=sample.get('targetPid'),**row));continue
+            if not sample.get('sameTargetPidCommandBeforeAfter'):
+                errors.append(dict(sampleIndex=index,reason='outer target identity unavailable',**row));continue
+            key=sample['targetPid'],row['tid']
+            values=[row[k] for k in ('runtimeNanos','runqueueWaitNanos','timeslices')]
+            assert all(isinstance(v,int) and v>=0 for v in values)
+            observed=dict(sampleIndex=index,**row)
+            prior=current.get(key)
+            if prior is None or any(row[k]<prior['last'][k] for k in ('runtimeNanos','runqueueWaitNanos','timeslices')):
+                group=dict(targetPid=key[0],tid=key[1],first=observed,last=observed,samples=1)
+                groups.append(group);current[key]=group
+            else:
+                prior['last']=observed;prior['samples']+=1
+    for group in groups:
+        first,last=group['first'],group['last']
+        group['hostIntervalSeconds']=last['hostUnixEnd']-first['hostUnixStart']
+        group['delta']={k:last[k]-first[k] for k in ('runtimeNanos','runqueueWaitNanos','timeslices')}
+        group['identityBoundary']='Observed same PID/TID/comm with monotonic counters; no proc starttime, full lifetime or no-TID-reuse proof'
+    return groups,errors
+
+
 def audit(case, observer_pid, output):
     case=case.resolve(); output=output.resolve()
     assert case.is_relative_to(ROOT/'out/session-a') and not output.exists()
@@ -52,7 +79,9 @@ def audit(case, observer_pid, output):
         if match and (not allowed or match[1] in allowed):
             turns.append(dict(pid=match[1],totalMs=int(match[2]),activeMs=int(match[3]),
                 computeMs=int(match[4]),saveMs=int(match[5]),factions=int(match[6]),rawLine=line))
+    scheduling,scheduling_errors=schedstat_groups(samples)
     report=dict(actualCase=str(case),apks=state['apks'],samples=len(samples),observations=observations,
+        strategySchedstatSegments=scheduling,strategySchedstatUnavailable=scheduling_errors,
         unavailableSamples=unavailable,completedTurns=turns,finalLogFrozen=True,observerHostPid=observer_pid,
         normalPassed=state.get('normalPassed'),coldPassed=state.get('coldProcess',{}).get('passed'),
         everyOriginalShaRestored=True,foreground120sStableAccepted=False,uniqueCauseProven=False,

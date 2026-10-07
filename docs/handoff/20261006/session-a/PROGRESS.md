@@ -339,3 +339,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 131 complete新源386c438e，11210文件/904784199inputB逐SHA回读，archive653174310B SHA36041528e1c6e817192c0471750b05298e546c35c67ea3ef9bba727f695a77cb，out/session-a/source-checkpoint-current131-complete/sanguo11-mobile-source.tar.gz。包含完整10714guard/tracked/原4+新2JNI、123触控/125后继/126–130真实证据工具，app生产+androidTest/core/API/runtime/build与实装124源3f7ae逐Git对象无delta，6JNI与116/124确切相同。不是最终全媒体/ARM/串行mainB验收；当前火计已实际成功并Home/减少动画冻结/恢复前缀通过，整轮/cold/fullrestore仍待。
 
 132 新只读host74255在当前124火case实际启动，对top所见strategy-turn逐comm核验读取schedstat累计runtime/runqueueWait/timeslices，退场不可读明确保留。旧69319已结束完整109日志冻结130不变；新原日志独立且未冻结，不发signals/GC/UI/数据操作，调度取证仍可能干扰时序，不能以累计等待确定唯一渲染/核心根因。当前火计/真实Home/减少动画/LOW/灭火前缀passed，正常重燃/到期/冷读/全恢复未接受。
+
+133 冻结审计支持132实际schedstat逐PID/TID单调segment首尾delta，当前真实fire样本核验有连续runtime/runqueue counters；没有proc starttime时明确不称完整线程寿命或无TID复用，不可读/outerPID不稳定单列，拒绝跨线程峰合计和唯一原因。当前观察未结束/日志未冻结，火到期/冷/最终恢复仍待；生产/测试APK源码不变。

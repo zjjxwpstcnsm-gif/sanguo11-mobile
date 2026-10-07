@@ -1,0 +1,42 @@
+{
+  "rawPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/target-threads126.jsonl",
+  "syntaxPassed": true,
+  "currentRawSamples": 24,
+  "actualSchedstatSegments": [
+    {
+      "targetPid": "28711",
+      "tid": "21527",
+      "first": {
+        "sampleIndex": 7,
+        "tid": "21527",
+        "hostUnixStart": 1791374673.504239,
+        "runtimeNanos": 1255508735,
+        "runqueueWaitNanos": 5496757744,
+        "timeslices": 1675,
+        "hostUnixEnd": 1791374674.089536
+      },
+      "last": {
+        "sampleIndex": 23,
+        "tid": "21527",
+        "hostUnixStart": 1791374782.7600582,
+        "runtimeNanos": 20665052484,
+        "runqueueWaitNanos": 78678086866,
+        "timeslices": 22412,
+        "hostUnixEnd": 1791374783.0951838
+      },
+      "samples": 17,
+      "hostIntervalSeconds": 109.59094476699829,
+      "delta": {
+        "runtimeNanos": 19409543749,
+        "runqueueWaitNanos": 73181329122,
+        "timeslices": 20737
+      },
+      "identityBoundary": "Observed same PID/TID/comm with monotonic counters; no proc starttime, full lifetime or no-TID-reuse proof"
+    }
+  ],
+  "actualUnavailable": [],
+  "finalLogFrozen": false,
+  "uniqueCauseProven": false,
+  "scope": "Live exact124 fire actual counters, partial segment only. Runtime and runqueue deltas remain per observed PID/TID and monotonic segment. No sum, complete lifetime or causal attribution.",
+  "wholeGoalComplete": false
+}
