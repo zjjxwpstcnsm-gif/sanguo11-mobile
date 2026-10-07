@@ -241,7 +241,8 @@
     "docs/handoff/20261006/session-a/VOICE_IDENTITY_REFRESH71.json",
     "docs/handoff/20261006/session-a/VOICE_DIRECTIVE_DOMAIN71.json",
     "app/src/main/assets/audio/pc/voice-identities.json",
-    "docs/handoff/20261006/session-a/VoiceDirectiveDomainsProbe.java"
+    "docs/handoff/20261006/session-a/VoiceDirectiveDomainsProbe.java",
+    "docs/handoff/20261006/session-a/VOICE_COMBINED_BUILD72.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

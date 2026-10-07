@@ -21,6 +21,7 @@ import java.util.function.Predicate;
  */
 public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private MainActivity activity; private File output; private int checks;
+    private PcVoiceCatalog voiceMetadata;
     private StringBuilder log=new StringBuilder(), memory=new StringBuilder("phase,javaUsed,javaTotal,javaLimit,nativeAllocated,totalPss,graphicsPss\n");
     private String run,expectedStartupSha; private int begin,end,portraitNative=-1,coldPortraitSource=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers,fastPreviewCancellation;
     @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");fastPreviewCancellation="fastPreview16".equals(args.getString("suite",""));allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));coldPortraitSource=Integer.parseInt(args.getString("coldPortraitSource","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
@@ -118,6 +119,9 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         while(SystemClock.uptimeMillis()<deadline){ui(()->{identity[0]=PortraitMediaSources.source(visual,id);loaded[0]=loader.get(identity[0],year,0,image);});if(identity[0]!=null&&loaded[0]!=null)break;SystemClock.sleep(50);}
         check(identity[0]!=null&&loaded[0]!=null&&loader.error().isEmpty(),"actual original portrait ready "+caller);
         check(saved!=null&&identity[0].officerId==id&&identity[0].nativeId==saved.nativeId&&identity[0].sourceVariant.equals(saved.sourceVariant)&&identity[0].sourcePath.equals(saved.sourcePath)&&identity[0].sourceSha.equals(saved.sourceSha)&&identity[0].recordSha.equals(saved.recordSha),"actual native source portrait join "+caller);
+        int voiceType=voiceMetadata.voiceType(identity[0]);
+        check(voiceType>=0&&identity[0].originalVoiceProfile!=null&&voiceType==identity[0].originalVoiceProfile,
+            "actual original voice type/source metadata join "+caller+"; speaker/event/playback unbound");
         ui(()->{try{check(((World.Officer)field(image,"officer")).id==id&&(Integer)field(image,"sourceYear")==year,"actual caller officer and current year "+caller);check(((java.lang.ref.WeakReference<?>)field(image,"sourceView")).get()==visual,"actual caller uses current presentation view "+caller);PortraitMediaIdentity bound=(PortraitMediaIdentity)field(image,"sourceIdentity");check(bound!=null&&bound.officerId==identity[0].officerId&&bound.nativeId==identity[0].nativeId&&bound.sourceVariant.equals(identity[0].sourceVariant)&&bound.recordSha.equals(identity[0].recordSha)&&field(image,"original")==loader,"actual attached Drawable retains verified identity and shared original loader "+caller);}catch(Exception e){throw new IllegalStateException(e);}});
         PcPortraitCatalog catalog=(PcPortraitCatalog)field(loader,"catalog");PcPortraitCatalog.Image expectedSource=catalog.resolve(identity[0],year,0);check(expectedSource!=null,"verified original current-year asset "+caller);
         Bitmap expected;try(InputStream in=activity.getAssets().open(expectedSource.asset)){BitmapFactory.Options options=new BitmapFactory.Options();options.inScaled=false;expected=BitmapFactory.decodeStream(in,null,options);}
@@ -216,7 +220,11 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
     }
 
     private void normalPortraitRows(int source)throws Exception{
-        byte[] before=capture();StateToken prior=token();World visual=SessionProbe.view(activity);Map<Integer,PcOfficerInfo.Person> sourcePeople=PcOfficerInfo.saved(visual);org.json.JSONArray rows=new org.json.JSONArray();text("清除");DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
+        byte[] before=capture();StateToken prior=token();World visual=SessionProbe.view(activity);Map<Integer,PcOfficerInfo.Person> sourcePeople=PcOfficerInfo.saved(visual);org.json.JSONArray rows=new org.json.JSONArray();
+        if(voiceMetadata==null)voiceMetadata=new PcVoiceCatalog(activity);
+        check(voiceMetadata.identityCount()==10720,"all original16-source voice metadata identities loaded off UI thread");
+        unchanged(before,prior,"normal source voice metadata catalog read");
+        text("清除");DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
         List<Integer> ids=new ArrayList<>();
         if(allPortraitCallers){ids.addAll(sourcePeople.keySet());Collections.sort(ids);ui(()->table.search.setText(""));SystemClock.sleep(400);
             Set<Integer> actual=new HashSet<>();ui(()->{for(int i=0;i<table.list.getAdapter().getCount();i++)actual.add(((World.Officer)table.list.getAdapter().getItem(i)).id);});check(actual.equals(new HashSet<>(ids)),"normal all-officer roster equals complete current saved original identity set "+source);
