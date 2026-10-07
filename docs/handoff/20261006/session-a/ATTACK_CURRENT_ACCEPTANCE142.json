@@ -1,0 +1,112 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-attack139",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0b6bdc6c-normal-target-test139/app-debug-androidTest.apk": "0eee30d994f8feb501d192fc701a25859d02c5a719b462b19f0c50fb54e7ea85"
+  },
+  "normalPassed": true,
+  "coldProcess": {
+    "beforePid": "23544",
+    "afterPid": "9320",
+    "beforeProcessEvidence": {
+      "pid": "23544",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "9320",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "c01eb2b3bae4cf2c22d4bc236cd0c4730c547c525c57f44ada5c6c019c18f407",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 78182,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-attack139/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "b1189828a45f0474cb79ece916af3ed4b1fc879cda2e79717c47a165a17d938f",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 78183,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-attack139/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "verifiedNormalAssertions": [
+    "ordinary selected neutral site retains exact MOVE/TILE without attack inference",
+    "MOVE preview/cancel wholeSave/RNG/token unchanged",
+    "explicit attack task exact neutral CITY/ATTACK pure authority plan",
+    "explicit attack preview/cancel full Save/RNG/token unchanged",
+    "actual multiple whole-turn continuous attack captures neutral port",
+    "actual attack capture automatically garrisons full surviving formation",
+    "actual native army7 administration follows capture and retirement",
+    "normal captured campaign entire save/bothRNG readback"
+  ],
+  "currentSameTargetBeforeAndAfterRealPan": [
+    "actual target admission attempt=0 visible=false exactRay=false target=132,65 screen=[35.3602, 677.3257] actualGroundRay=132,65 minimapBlocked=false commandTargeting=true",
+    "actual target admission attempt=1 visible=true exactRay=true target=132,65 screen=[219.88437, 783.38196] actualGroundRay=132,65 minimapBlocked=false commandTargeting=true",
+    "actual target admission attempt=0 visible=true exactRay=true target=132,65 screen=[219.88437, 783.38196] actualGroundRay=132,65 minimapBlocked=false commandTargeting=true",
+    "actual target admission attempt=0 visible=true exactRay=true target=132,65 screen=[219.88437, 783.38196] actualGroundRay=132,65 minimapBlocked=false commandTargeting=true"
+  ],
+  "old137FalseBranchProven": false,
+  "explicitNeutralAttackAndGarrisonPassed": true,
+  "fullPurePresentationSaveBothRngStateTokenPassed": true,
+  "normalRosterPreentryUsesInheritedHelper": true,
+  "trueBackExitAcceptedInThisCase": false,
+  "exitBoundary": "Activity.finish with native owner destruction/release barrier; no real Back claim for this case",
+  "recognizedExactPidPssSamples": 114,
+  "peakMeminfoPssKiBIndependent": 488233,
+  "javaAllocatorCsvAvailable": false,
+  "allScenariosPerformanceAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "actualOriginalVideoParts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-attack139/video/part01.mp4",
+      "sha256": "1ac1f09fb757e1d65754f443173426d55aed269411920f74566a217185f19b5b",
+      "bytes": 32159353,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-attack139/video/part02.mp4",
+      "sha256": "e69323e42f13ddc668264901241c5bcc057e4f7cd53d6d6f0d4753b23453e27c",
+      "bytes": 16002080,
+      "hostDevicePreAndPostPullShaEqual": true
+    }
+  ],
+  "rawFiles": {
+    "session.json": "ef1e437e81822f1eb43fbcbd12e9aa5c39d5836f5c8060189a59cb6607670855",
+    "instrumentation.txt": "d8d317921045421f33ec412a4129497750f949ddb781437f7c086612272e8b28",
+    "cold-instrumentation.txt": "166b1e804593b2440ba759c21857cca21fbd0f201388a3b586f59c9b3d84615b",
+    "evidence/diagnosis.txt": "c6c2be28e821ca1dbcf926f256dc0e6e3e28df1cba2bddbd500006ac2cc27a94",
+    "evidence/progress.txt": "2393d94183784fcc00ffcd9f31a43021ae2ac45359680bdf8fb30418936e02cb",
+    "evidence/result.txt": "8466b79d52fb9444198ecb4304f0d985522ff5ce1197b7b57c34be6eec29604b",
+    "meminfo-timeline.txt": "104d054e93a0ded60cde6c8326ebe8bae5262da25fc3be364350c53eed265d55",
+    "native-workers.jsonl": "10690ae9e224b68f77d95c70dcba321999e7b827634ba330612ca6a679e85fe6",
+    "video/video.json": "b1189828a45f0474cb79ece916af3ed4b1fc879cda2e79717c47a165a17d938f"
+  },
+  "visuallyInspectedCurrentPng": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-attack139/evidence/03-actual-task-capture.png",
+    "sha256": "65506087fb627e3ce687cf33b70097225969752ecea9e5a6dba185ca93239185",
+    "scope": "Post-capture normal map still only; still does not prove whole PC frame, target model position or all command animation timing"
+  }
+}
