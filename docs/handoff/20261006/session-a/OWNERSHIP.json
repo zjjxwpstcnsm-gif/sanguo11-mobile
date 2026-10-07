@@ -456,7 +456,10 @@
     "docs/handoff/20261006/session-a/FIRE_CONTROLLER_CAPACITY229.json",
     "docs/handoff/20261006/session-a/FIRE_CONTROLLER_CAPACITY230.json",
     "docs/handoff/20261006/session-a/probe_fire_capacity_fault231.py",
-    "docs/handoff/20261006/session-a/FIRE_CAPACITY_FAULT231.json"
+    "docs/handoff/20261006/session-a/FIRE_CAPACITY_FAULT231.json",
+    "docs/handoff/20261006/session-a/REGISTERED_SOURCE03_ACCEPTANCE232.json",
+    "docs/handoff/20261006/session-a/registered-source03-memory233.json",
+    "docs/handoff/20261006/session-a/registered-source03-widget234.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

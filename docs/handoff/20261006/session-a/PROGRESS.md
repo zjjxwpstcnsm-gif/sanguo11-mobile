@@ -498,3 +498,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 原火容量后继229–231：真正执行不可变原controller128独立host输入，factory创建成功但初次更新失败；231诊断克隆证明为5Mblock-byte守卫5000008 at464c24，未触发5s watchdog，不等同JavaOOM。只own工具/回执，规范native/原4新2JNI和current165/176不变；原位置选height0明确诊断，不能代替正常128格或关闭火性能目标。原45a530按244slot顺序调用457a20的原指令窗已只读查看，为后继容量分解调查边界，不推算规则或声称性能修复。Source3实际640/670仍partial，完整冷与保存恢复尚未结束；正在等同一活跃helper/observer，无重启。B独立新组合61-r2据消息完成构建并开始5582完整备份后正常单挑验收，A未核其设备/结果，不沿用或宣布接受。
+
+
+232/233/234同165/176 Source3已独立正常670/1340 caller、25157正常checks/94冷、31545→31025真实新PID/both3D，9内部/3797外部逐SHA恢复。26原录像index8f05842c…，原84300/84330/84331已终止且native/video exit0。采样Java241580272/512MiB/native独立202709488/meminfo总PSS独立528167KiB，不证明GPU或全局预算。实际widget36captures328rows41solidmin8.849737/287未解，Source3 map与司馬伷详情PNG已现场查看深底正文与标签可读；仍含既有B SOURCE_WAIT工程措辞210，A不改B真值文案。实际地图顶部A常驻“美术恢复中/部分演出暂缺”技术提示与浅色云背景的对比需后继A呈现修正，正常标签阴影和原地图保留。Source4 helper1339/video1388/native1389已核活跃，旧Source3路径已恢复删临时设备目录，缺失不判失败。
