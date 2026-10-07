@@ -256,3 +256,5 @@ Latest full own source8979dae2 includes completed finite Gov45173c6c+3b5d9b70, e
 最新生产检查点90（未安装）：源码fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77，`out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk` SHA `25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9`，测试SHA `9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39`。原四/新增两JNI、全部5636assets及包内largeHeap真值守卫见FIRE_OVERRIDE_DEFAULT_BUILD90.json。89为局部原火准入修复，176/16显式主机fixture不代正常Android或ARM；完整源码86早于本生产修复，下一完整源码检查点需包括89/90，不以旧archive冒称最新源码。
 
 最新完整源码92：`out/session-a/source-checkpoint-fire-observers92-complete/sanguo11-mobile-source.tar.gz` SHA `67e26270b7efe8074235cfb61c16b9a7b23cc2e4819f4d7cc37421b4c1f12528`，11156文件逐SHA验证；含89火修复、90APK所有实际生产源码与6JNI同SHA、91后继完整测试工具。SOURCE_EXPORT_CHECKPOINT92.json对应源码62813f634d7c6b5baf6f3f30717b397d3ca98e55；当前未安装的90APK不能借源导出成为正常流程验收通过。
+
+94实际旧2cd/1a850 Source11正常+冷+全恢复已通过：670/1340、25157检查，最新4字形身份共8正常caller原整bitmap一致；冷10204→8548与9/3797每SHA恢复。证据NORMAL_SOURCE11_ACCEPTANCE94.json。只覆盖本旧cohort当前原年份Source11，不能移用90/其它来源/全部形态/原PC裁切时序/声/ARM。后继已进入原ordinary68 0..6 heapProfile诊断，90新组合需串行完整重验。
