@@ -57,7 +57,7 @@ def main():
     batch=a.normal_batch.resolve();output=a.output.resolve()
     assert batch.is_relative_to(ROOT/'out/session-a') and output.is_relative_to(ROOT/'out/session-a')
     receipt=a.cohort_receipt.resolve()
-    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('FIRE_OVERRIDE_DEFAULT_BUILD90.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json')
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('FIRE_OVERRIDE_DEFAULT_BUILD90.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json')
     build=json.loads(receipt.read_text())
     assert build['buildSuccessful'] and build['gameLargeHeap'] is True
     current124=receipt.name!='FIRE_OVERRIDE_DEFAULT_BUILD90.json'

@@ -389,3 +389,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 158 旧145最后已启动火child85746实际正常/cold12693→30832/双方3Dsubmit/auto77b0ef...通过，全9internal(rewrite4)/3797external(rewrite0)原SHA恢复，system animation偏好精确还原，video/native0/完整原片逐host=device前后pullSHA。parent停止没有干扰child正常闭合；旧成绩只旧game8e08/test332a，不迁移新155。87960已实际进入155 freshbackupverification，尚未宣告实装或新性能/窗口/label正确。
 
 159 新155 a988/0da在旧158完整恢复后重新完整9/3797backup与每文件SHA核验，实际两APK安装/device整包SHA读回/runner verified；helper90296/video90339/native90340确实运行，case out/session-a/overlay-admission157/new-military。启动日志已经出现overlayRejectedStaticSkipped>0，但normal/cold/完整恢复/长旬改善仍未验收。前一159台账命令字符串语法错误在任何写入前失败，此次更正；旧8e08/332a分数不迁移。
+
+160/161 新155 a988/0da后继等待器91494/音频91673确实启动，只匹配当前new-military90296的normal/cold/全SHA恢复/observer完成后，再本pair火/攻击/全16正常caller/.995整首音频，当前各自无deviceaction。新日志2743attempt/2348reject/459overlaydraw/2340skipped只是当前视图前缀，不能当完整case/纯性能因果；新第一funding-reset仍达到前台120秒，记录长旬未解决，不用request省略计数代替稳定或ARM。旧145156158分数不迁移。

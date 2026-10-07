@@ -1,0 +1,18 @@
+{
+  "stage": "waiting-for-actual-normal-producer",
+  "hostPid": 91673,
+  "producerPid": 91494,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/run_picker_release_followup.py --producer-pid 90296 --previous-military out/session-a/overlay-admission157/new-military --cohort-receipt docs/handoff/20261006/session-a/OVERLAY_ADMISSION_BUILD155.json --output out/session-a/overlay-followup160",
+  "normalBatch": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-followup160",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk": "a988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk": "0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e"
+  },
+  "cohortReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/OVERLAY_ADMISSION_BUILD155.json",
+  "wholeTrackGate": 0.995,
+  "deviceActionsStarted": false,
+  "fastPreviewAcceptedForThisPair": false,
+  "scope": "Exact frozen pair independent normal menu music/PCM/Save-RNG-StateToken/whole file restoration after all16 callers and normal fire/construction/attack. Current124 does not borrow116 fast preview score. Not mapBGM/voice/old-22 unique cause/ARM/final combined APK acceptance.",
+  "wholeGoalComplete": false,
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-audio161/queue.json"
+}

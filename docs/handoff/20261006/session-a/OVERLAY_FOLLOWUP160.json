@@ -1,0 +1,20 @@
+{
+  "hostPid": 91494,
+  "stage": "waiting-for-current-military",
+  "producerPid": 90296,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py install-test --output /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military --apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk --test-apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk --observe-workers --runner SessionAScenePresentationInstrumentation --fresh-process-reopen",
+  "backupLockOwnerPid": 90276,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk": "a988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk": "0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e"
+  },
+  "initialSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military",
+  "cohortReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/OVERLAY_ADMISSION_BUILD155.json",
+  "fastPreviewAccepted": false,
+  "remainingCallersAccepted": false,
+  "normalCommandResults": [],
+  "scope": "Exact independent frozen game/test pair, own normal/cold/fullrestore then all three commands and16 normal real callers. Starting military or attack is accepted only for this exact pair. Prior116/124 scores remain their tested pairs only; no PCcrop/voice/ARM/final integration claim.",
+  "wholeGoalComplete": false,
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-followup160/batch.json",
+  "normalOrWholeGoalAccepted": false
+}
