@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "CURRENT66 FAILED RESTORED;72 FRESH VOICE/VIEWPORT COMBINATION BUILT NOT INSTALLED",
-      "evidence": "VOICE_COMBINED_BUILD72 includes normal caller source/voice metadata checks and viewport wait. 66 no finishedpair/cold;69 standalone test never installed;73 conditional waits actual68 success/restore",
-      "next": "72 source11 all670/real Back/HOME/cold/restore then same72 fastpreview16 and remaining15 allnormal callers; otherage/forms/fullscreen/voice/ARM open"
+      "status": "NEW2cd/1a850 SOURCE11 ACTUAL NORMAL PERSON LOOP LIVE;FIRST635 DETAIL REACHED",
+      "evidence": "75 independentbackup/installSHA/pmRunner/source11 newgame, first635 normaldetail PNG exists. Full670/cold/finalrestore notyetaccepted;cannotborrow61ff scores",
+      "next": "Complete670/trueBack/GlobalHome/cold/restore;strictall15 later;allage/forms/crop/color/fullscreen/voicecaller/ARM remain"
     },
     {
       "item": "dynamic-age",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "THROUGH66 ALL ORIGINAL9/3797 SHA RESTORED;68 INDEPENDENT BACKUP COMPLETE INSTALLING",
-      "evidence": "65 normal/coldassertions and66failed firstcaller botheverySHArestored;68fresh currenteverySHA9/3797/wholearchiveverified",
-      "next": "68 actualnormal/cold/restoredverified;69 new testactualinstall/wholecurrentall670"
+      "status": "68 FULL NORMAL/COLD AND EVERY ORIGINAL9/3797 SHA RESTORED;75 FRESH ACTUAL2cd/1a850 INSTALLED",
+      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68 actual5152 normal/244previews/newPID29516→6029/restored;75 whole newbackup/currenteverySHA and installeddefault2cd/test1a850 verified",
+      "next": "75 actualall670/normalBack/HOME/cold/restore before separateordinary0..6 heapdiagnostic and exactsamecohortfast/allremaining"
     },
     {
       "item": "arm",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "68 ORDINARY384 ALLFORCES THROUGH SOURCE6 LIVE;72 NEW DEFAULTVOICE COHORT BUILT NOT INSTALLED",
-      "evidence": "68 exactb5ec/c96b actual384;72 exact2cd/d505 compared5636 assets onlyvoiceidentities changes,6JNI exact;noB WIP;70 own waiting hoststopped beforedeviceaction;73 new gate live",
-      "next": "68 complete all16/cold/restore;new72 actual install/allcaller/fast/fire/HUD/fullflow/ARM/finalserial"
+      "status": "68 ORDINARY FUNCTIONAL PASS BUT HEAP BUDGET TIGHT;72 GAME+74 TEST NOW ACTUALLY INSTALLED75",
+      "evidence": "68 whole16/244/trueBack/realGlobalHome/cold/restore;source6 zoom369.73/384MiB14.27headroom budgetnotclosed;actualdefault2cd/1a850 installsverified/no B WIP",
+      "next": "75 complete metadata/normalall670;actualprefixdiagnostic then fast/all15;newA normal unitlist/focus/pan tests source77/78 unaccepted;fire/HUD/ARM/finalserial"
     },
     {
       "item": "search-normal",
@@ -99,5 +99,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "71 source64 voice identities and original type/profile separation fixed;72 independent default build2cd/d505/5636assets/6JNI;68 actualnormal source0–6 continuing;73 new serial gate waiting68 acceptance/restoration"
+  "updatedCheckpoint": "68 functional5152/all16/244preview/trueBack/GlobalHome/cold/fullrestore complete, source6 peak369.73/384MiB budgetopen;75 current2cd/1a850 actualinstallsverified/first635detail;77 normal touch entry source correction notactualaccepted"
 }

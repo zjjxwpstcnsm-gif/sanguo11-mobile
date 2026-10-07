@@ -38,3 +38,5 @@
 71关闭的是64字形语音身份连接缺口与语音类型/action-profile域混淆，非实际发言者/动作caller：10720 source-record/field48与原actor+0x100已核，原音频未动。72新组合仅构建未安装，实际metadata连接/完整人物/火/HUD/内存及ARM仍须新包证据。AppliedEvent originalParentId/speakerOfficerId仍null，地图BGM/真实voice/58和普通事件声继续未知，不能由完整身份清单制造speaker/原phase/随机choice。73等待68真实全源/全势力/cold/完整恢复；70已在设备操作前停下，不再安装旧默认69。
 
 74修正旧VoiceSourceInstrumentation对10656的写死断言，并把metadata与fixture Save纯检查明确标成source/codec诊断，不作为正常caller成绩。新test1a850319已独立构建冻结，仍用新生产game2cd不改游戏逻辑，尚未安装。73自己等待器在任何设备动作前停止；75按显式VOICE_TEST_REFRESH74冻结对，仅普通68全16/cold/fullrestore成功后才新备份实装74完整Source11正常caller及其后fast/all15。不是已通过。
+
+68普通堆全16/244预览与真正Back/HOME/冷/全9/3797恢复功能通过，内存预算仍未闭合：Source6缩放Java369.73/384MiB仅14.27MiB采样余量。后继heap诊断会请求GC、只证明诊断时存活对象，不能拿降低峰值充修复。默认72/74已在75实际安装，完整Source11正常metadata/caller仍live。正常命令旧65等的单位选择/镜头有测试辅助API，不能标成全人类触控；A自身新列表真实点击+定位/pan覆盖尚未实装，B不改。原FCE小图两形态caller用途、圆角/裁切/全屏时序仍无原对应调用证据，bitmap完整相等不替代这些验收。
