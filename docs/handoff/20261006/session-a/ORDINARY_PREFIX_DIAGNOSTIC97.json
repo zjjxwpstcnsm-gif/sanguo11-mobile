@@ -1,0 +1,114 @@
+{
+  "oldActualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic",
+  "oldActualSessionSha256": "e84328c9685720857a2c20bbf121582fb3c7722ca54ff6bf143c45557c9f503e",
+  "oldActualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2312ac57-normal384-combination68/app-debug.apk": "b5ec2548eacda2a9272090490e83ac97afb311a4297333c5eb091c6872c38e47",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2312ac57-normal384-combination68/app-debug-androidTest.apk": "c96bc8abb5168c5e64fe147ffa763263a9edde16fac8fad84a2157c8759cc3f3"
+  },
+  "normalChecks": 2121,
+  "source0To6Proofs": [
+    {
+      "sourceIndex": 0,
+      "enabledPreviews": 8,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-0-faction-previews.json",
+      "sha256": "49f592ba250b91f4785c5bccf8d1873ab367afbde8fc591db1f20f23b5212005"
+    },
+    {
+      "sourceIndex": 1,
+      "enabledPreviews": 19,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-1-faction-previews.json",
+      "sha256": "3f3f37c79401003074d8393a5273424864c10aa9b477dcf96d21c7a68ebefd0b"
+    },
+    {
+      "sourceIndex": 2,
+      "enabledPreviews": 19,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-2-faction-previews.json",
+      "sha256": "86af2e73c1555df9897e2e04f81b4d0673f56906de1f5f70e8d5d618944280cd"
+    },
+    {
+      "sourceIndex": 3,
+      "enabledPreviews": 10,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-3-faction-previews.json",
+      "sha256": "8826ce2645bc6502b1ef6226593ee6d0418c0c3488152a0d6cfa66b0b84e7954"
+    },
+    {
+      "sourceIndex": 4,
+      "enabledPreviews": 12,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-4-faction-previews.json",
+      "sha256": "ec0036ca95c3cca82ef0ae6c5c548d3cf5c7b17f288e7681e77ffe7e95be22d0"
+    },
+    {
+      "sourceIndex": 5,
+      "enabledPreviews": 7,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-5-faction-previews.json",
+      "sha256": "ef91515b41d92fe27a821997f3dfa2e5432e8bfc532852308ddfbf33df08e87a"
+    },
+    {
+      "sourceIndex": 6,
+      "enabledPreviews": 5,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/evidence/source-6-faction-previews.json",
+      "sha256": "3366eb88faa06a0f6b4b638d29000de3cf7fb5acd8ed8d92031fa2c9b056e8bb"
+    }
+  ],
+  "coldProcess": {
+    "beforePid": "13379",
+    "afterPid": "14174",
+    "beforeProcessEvidence": {
+      "pid": "13379",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "14174",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "5ad84bb460e89099dc07d43e6067c9af13fe40caf348833f48a816c1bc849996",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "normalColdFullRestorePassed": true,
+  "workerObserverExitCode": 0,
+  "memoryEvidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary-prefix-source0-to6-heap-diagnostic/memory-evidence97.json",
+  "memoryEvidenceSha256": "c41988ed2745a55f1149edefd01679a0bf7cc81cdaa9e35274aabc0199464c5f",
+  "sampledJavaPeak": {
+    "group": "evidence",
+    "sampleIndex": 173,
+    "phase": "zoom",
+    "javaUsed": 334157832,
+    "javaTotal": 334157832,
+    "javaLimit": 402653184,
+    "nativeAllocated": 164474648,
+    "totalPss": 463784,
+    "graphicsPss": 0
+  },
+  "heapProfileOptionEnabled": true,
+  "actualHprofProduced": false,
+  "actualGcDumpRequested": false,
+  "allocationStackAccepted": false,
+  "new81ActualInstalledSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16",
+  "new81ActualInstalledApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-8eabcc20-water-normal38481/app-debug.apk": "242aaff2e26dd351a6db6384eacf799ce4b2742695dafa5c40e740743222ecc8",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-8eabcc20-water-normal38481/app-debug-androidTest.apk": "9bac691634f3917d125674359f799748be4188a779a3091170e43f995e13c35d"
+  },
+  "new81HeapDumpEnabled": false,
+  "new81VideoRequested": false,
+  "new81AcceptancePassed": false,
+  "scope": "Exact oldb5ec/c96 normal prefix0..6, not whole16/new81/90/ARM. No sample exceeded340MiB and no HPROF was produced: no post-GC object/dominator/stack proof. New81 actually installed with independent backup and whole SHA; only live normal16 started. Independent sampled peaks/GC option/current source histories do not close memory budget.",
+  "memoryBudgetClosed": false,
+  "wholeGoalComplete": false
+}

@@ -15,8 +15,8 @@
     },
     {
       "item": "terrain-oom",
-      "status": "OLD68 FUNCTIONAL ALL16 PASS BUT384MiB BUDGET OPEN; LIVE HIGH-HEAP DIAGNOSTIC",
-      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68:672 samples peak387688264/402653184B,14.2717MiB headroom, memoryBudgetClosed=false;SOURCE_WATER_ALLOCATION80 host allocation/output proof only;oldb5ec/c96 actual0..6 heapProfile diagnostic installed/live with worker observations, GC trigger>340MiB not unperturbed/source6-only/allocation-stack proof",
+      "status": "OLD PREFIX97 NORMAL/COLD/RESTORED, NO HPROF; NEW81 ACTUAL ORDINARY16 LIVE",
+      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68:672 samples peak387688264/402653184B,14.2717MiB headroom, memoryBudgetClosed=false;SOURCE_WATER_ALLOCATION80 host allocation/output proof only;oldb5ec/c96 actual0..6 heapProfile diagnostic installed/live with worker observations, GC trigger>340MiB not unperturbed/source6-only/allocation-stack proof;ORDINARY_PREFIX_DIAGNOSTIC97 old0..6 2121/cold/fullrestore no340trigger/noHprof;new81 exact242/9bac installedverified/noheapdump/noencoder, actualmatrixlive",
       "next": "new81 actual untouched noHeapDump all16/all244/cold/restore/peak;new90 and native/GPU/ARM separately; original user354832 failure stack remains unknown"
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "item": "save-preservation",
-      "status": "OLD68 AND94 NORMAL/COLD ORIGINAL9/3797 FULL SHA RESTORED; DIAGNOSTIC ACTIVE",
+      "status": "94 AND97 NORMAL/COLD/ORIGINAL9+3797 FULL SHA RESTORED;NEW81 ACTIVE",
       "evidence": "94 actual670/1340/25157, trueBack/HOME/cold10204→8548 and9internal/3797external whole SHA exact;oldb5ec/c96 diagnostic reused independently verified whole backup, installedverified/worker cohort recorded;currentrestoration not finished",
       "next": "each next actual diagnostic/81/90 normal/cold/fulloriginalSHA restoration; never data clear"
     },
@@ -81,7 +81,7 @@
     },
     {
       "item": "final-combination",
-      "status": "90 LATESTDEFAULT BUILT NOT INSTALLED;94 OLD SOURCE11 ACCEPTED;OLD PREFIX DIAGNOSTIC LIVE",
+      "status": "90 BUILT NOT INSTALLED;NEW81 ACTUALORDINARY16 LIVE AFTER97 FULL RESTORE",
       "evidence": "90 fd88 game25a66e49/test9763ab32 combineswater80/facility83/localpaintfire89/voice71 with6JNI/5636assets;old2cd94 accepted onlyitsSource11;81 ordinary242aaff2/9bac6916 builtnotinstalled",
       "next": "complete current diagnostic/cold/restore, new81 full16;then90 fullSource11/fast16/normalmilitary-fire-attack/15othercallers;finalB completeobject serial/newmain/ARM/fresh final package"
     },
@@ -105,5 +105,5 @@
     }
   ],
   "updatedAfter": "Source11 actual94 whole normal/cold/restoration and old0..6 diagnostic installed,2026-10-07",
-  "updatedCheckpoint": "94 old2cd/1a850670/1340/25157 cold/fullrestore passed;90 latest25a66e49/9763ab32 builtnotinstalled;81 waterordinary242/9bac pending;oldprefixdiagnostic actuallive;92 complete11156 source/6JNI matched90;wholeGoal false"
+  "updatedCheckpoint": "97 oldprefix0..6 2121/cold13379→14174/restored/noHprof;new81 actual242/9bac noHeapDump/noEncoder all16live;94 oldSource11670/1340 accepted;90 pending;wholeGoal false"
 }
