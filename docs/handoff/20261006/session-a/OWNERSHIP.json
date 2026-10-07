@@ -226,7 +226,9 @@
     "docs/handoff/20261006/session-a/COMBINED_BUILD65.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT65.json",
     "docs/handoff/20261006/session-a/TURN_STACK_OBSERVATION65.json",
-    "docs/handoff/20261006/session-a/MILITARY_NORMAL65_RESULT.json"
+    "docs/handoff/20261006/session-a/MILITARY_NORMAL65_RESULT.json",
+    "docs/handoff/20261006/session-a/MILITARY_MEMORY_VIDEO65.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT66.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

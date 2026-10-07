@@ -1,0 +1,238 @@
+{
+  "cohort": "COMBINED_BUILD65 exact4df5/7abb; actual5554 API29/x86_64; not ARM",
+  "memory": {
+    "heapSamples": 115,
+    "peakJava": {
+      "javaHeapUsedBytes": 233747864,
+      "javaHeapLimitBytes": 536870912,
+      "nativeHeapAllocatedBytes": 146047744,
+      "retainedMeshPayloadBytes": 19194184,
+      "line": "10-07 11:55:46.515 30366 30366 I Sanguo3D: Load progress first_submit_wall_ms=-1 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=565195cade1d6ff86ca6fa839c10dff80acea958 profile=native javaHeapUsedBytes=233747864 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=146047744 retainedMeshPayloadBytes=19194184 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]"
+    },
+    "peakNativeIndependent": {
+      "javaHeapUsedBytes": 171847240,
+      "javaHeapLimitBytes": 536870912,
+      "nativeHeapAllocatedBytes": 177363600,
+      "retainedMeshPayloadBytes": 17185552,
+      "line": "10-07 12:15:29.253 30366 30366 I Sanguo3D: Load progress first_submit_wall_ms=-1 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=565195cade1d6ff86ca6fa839c10dff80acea958 profile=native javaHeapUsedBytes=171847240 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=177363600 retainedMeshPayloadBytes=17185552 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]"
+    },
+    "peakMainPssKiBIndependent": 549748,
+    "meminfoSamples": 477,
+    "childSamples": 484,
+    "childCounts": {
+      "0": 74,
+      "1": 409,
+      "2": 1
+    },
+    "childPeakSameSamplePssKiB": 48597,
+    "childPeakSameSample": {
+      "time": 1791346508.995695,
+      "stage": "installed-verified",
+      "sourceChildren": [
+        {
+          "pid": 7889,
+          "parentPid": 30366,
+          "command": "/data/app/game.sanguo.mobile.dev-b2-e1zlD3h2oNjKTektghA==/lib/x86_64/libpc_effect_fire_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin 2450.0 647.2565 2599.7585 --stream",
+          "KiB": {
+            "Rss": 51092,
+            "Pss": 48597,
+            "Shared_Clean": 2428,
+            "Shared_Dirty": 112,
+            "Private_Clean": 1092,
+            "Private_Dirty": 47460,
+            "Referenced": 51012,
+            "Anonymous": 47460,
+            "LazyFree": 0,
+            "AnonHugePages": 32768,
+            "ShmemPmdMapped": 0,
+            "Shared_Hugetlb": 0,
+            "Private_Hugetlb": 0,
+            "Swap": 0,
+            "SwapPss": 0,
+            "Locked": 0
+          }
+        }
+      ],
+      "scope": "per-child smaps_rollup only, not Java/native allocator bytes or GPU VRAM; independent samples"
+    },
+    "distinctChildPids": [
+      2179,
+      2274,
+      7889,
+      13839,
+      32322
+    ],
+    "gpu": "unknown; no sum of independent peaks",
+    "scope": "Current exact4df5/7abb real military normal/cold diagnostics. Recording and SIGQUIT present, not unperturbed memory/turn or ARM acceptance."
+  },
+  "sampledJavaHeadroomBytes": 303123048,
+  "rawSources": {
+    "actual-memory-summary.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/actual-memory-summary.json",
+      "sha256": "e8f93b929b3f06346f0a7a8780100015cd5f05901fd376b616428148c68f0014"
+    },
+    "native-memory.jsonl": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/native-memory.jsonl",
+      "sha256": "c9b626fbb2af62903bf1aae8ae5741ac1731756d1ac85472aac4dc45750505c3"
+    },
+    "meminfo-timeline.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/meminfo-timeline.txt",
+      "sha256": "e535c4f10a47f640a99224fa0a602761c26dbb148a882c39bc15c49e80d6253c"
+    },
+    "logcat.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/logcat.txt",
+      "sha256": "bc564cfc7c311f056448fd70631dc77cbb7a8af87bc89245bc2fbba258f41f33"
+    },
+    "video/video.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/video.json",
+      "sha256": "fd4f7124c7f5ee504172c4b7c70d8b2bf516997e5e815dfcfac7fc1145d2d391"
+    },
+    "video-inspection/inspection.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video-inspection/inspection.json",
+      "sha256": "81de5bd1d67fac3164a878c45204db354237e0c900876b212e96a5c18f774395"
+    }
+  },
+  "video": {
+    "passed": true,
+    "rawParts": 7,
+    "decodedFrames": 13437,
+    "parts": [
+      {
+        "part": 1,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part01.mp4",
+        "sha256": "4eed4344b6ab86dd35f88a19f7a2ce6bab1de6492ea57b584d12f76f4b2d7bd1",
+        "decodedFrames": 2473,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16186213,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "2fe54ddb3312fb471cd7bd95f7ebd52715048caed519579b8751526917401a5a"
+      },
+      {
+        "part": 2,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part02.mp4",
+        "sha256": "e8dad4d3316de402f2b2f5aef72998ceaea3aa1161cfb043fe82b6f0e5a0148f",
+        "decodedFrames": 2035,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16182249,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "d2a296998c4be6206f2332a93500da9f17f3cb3373fc35b6e107d7a01b6cf116"
+      },
+      {
+        "part": 3,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part03.mp4",
+        "sha256": "d7eb56fdde30f7c5e57741000f2bfb0834c59bc9d8b3fde54a6b132bbd81df3d",
+        "decodedFrames": 1980,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16175369,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "2f2445a2914c724d658385e9e2d75e53f66211b62574131ee811cb651af33b2a"
+      },
+      {
+        "part": 4,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part04.mp4",
+        "sha256": "28e0d682d63e1f2c33ccf35aea15dc16747622696140f10955713a204e66a531",
+        "decodedFrames": 2033,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16187507,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "e3c49fb0b1788c5d3e36d283be0daf35899fe5f296fc97c7d546265276e9b770"
+      },
+      {
+        "part": 5,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part05.mp4",
+        "sha256": "3188504b0cce1911c7fd7211ade959fd8f2b651ca1c00bf9b904e9b705a41039",
+        "decodedFrames": 1831,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16189746,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "1d59ca7ddc38f98f3831ec16d7b0535ac96d4cb7c08e4345e06f112f55caf865"
+      },
+      {
+        "part": 6,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part06.mp4",
+        "sha256": "5d8f0d0e87139349c827f8193b2d36b00bc5f4e49e4d1dc2b8c194505fb8f74f",
+        "decodedFrames": 1912,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 16189552,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "f0b6fd3d7738c2883f8060be2d829eef838e17dbb20aded1afb91482a1f04b06"
+      },
+      {
+        "part": 7,
+        "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/video/part07.mp4",
+        "sha256": "13a986389f75a4a04ed8839a11ece13b2123ca298739bf14b2168ff842bab27c",
+        "decodedFrames": 1173,
+        "frameIndexesContiguous": true,
+        "nativeInputPtsStrictlyIncreasing": true,
+        "inputTimeBase": "1/90000",
+        "firstPts": 0,
+        "lastPts": 12529794,
+        "actualDecodedSizes": [
+          [
+            1080,
+            1920
+          ]
+        ],
+        "sourceFramesUnmodified": true,
+        "decodeLogSha256": "3235af75cac1ffc03c582f46f686e1d1e7cc083f47ea05cc84aa252731f3d3fb"
+      }
+    ],
+    "scope": "Actual raw recording per-part device/host SHA and all input frames/PTS only. No PC pixels, ARM, continuous across part gaps, or unperturbed FPS claim."
+  },
+  "performance": "Actual seven full turns >120sec each; unresolved. SIGQUIT diagnostics and screenrecord present; no causal recording-load control.",
+  "wholeGoalComplete": false
+}
