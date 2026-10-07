@@ -1,0 +1,22 @@
+{
+  "actualSession": "out/session-a/full-normal-media-source11-voice74",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug.apk": "2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fe413552-voice-diagnostic-test74/app-debug-androidTest.apk": "1a8503198e679659bc42ac81a76942e08e13d09c2eeca8200f565c03c66ea972"
+  },
+  "partialLive": true,
+  "sourceIndex": 11,
+  "actualVisitedOfficers": 32,
+  "expectedOfficers": 670,
+  "actualCallerRows": 64,
+  "sourceComplete": false,
+  "originalBitmapRowsPassed": true,
+  "fullSaveRngStateTokenPure": true,
+  "immutableIncrementalProofPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-voice74/live-completed32/source-11-portrait-callers.json",
+  "immutableIncrementalProofSha256": "3e084b6c1267445864a5c9c8e282d2aaddf9993edb60d3b422e3fe34b1f7aa48",
+  "voiceMetadataCheckScope": "Installed test1a850 checks catalog10720 and same saved originalField48/voiceType per normal caller, not speech event/speaker/playback. Full final log pending.",
+  "coldAccepted": false,
+  "restorationPending": true,
+  "armAccepted": false,
+  "wholeGoalComplete": false
+}
