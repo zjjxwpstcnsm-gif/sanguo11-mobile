@@ -20,10 +20,10 @@ def main():
     args = parser.parse_args()
     previous = args.previous_source11.resolve()
     baseline, _ = accepted(previous, 11)
-    build = json.loads(HELPER.with_name('MEDIA_VIEWPORT_TEST_BUILD69.json').read_text())
+    build = json.loads(HELPER.with_name('VOICE_COMBINED_BUILD72.json').read_text())
     frozen = {row['path']: row['sha256'] for row in build['apks']}
     if not build['buildSuccessful'] or frozen != baseline['apks']:
-        raise ValueError('Source11 must use the independently built viewport-repair combination69 cohort')
+        raise ValueError('Source11 must use the independently built voice identity/type combination72 cohort')
     if not all(sha(pathlib.Path(path)) == digest for path, digest in frozen.items()):
         raise ValueError('Frozen combined game/test APK bytes changed')
     game = next(pathlib.Path(p) for p in frozen if pathlib.Path(p).name == 'app-debug.apk')

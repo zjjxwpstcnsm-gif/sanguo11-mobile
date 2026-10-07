@@ -56,7 +56,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source11', type=pathlib.Path, required=True)
     parser.add_argument('--preceding-ordinary', type=pathlib.Path,
-                        help='Require current complete ordinary68 matrix before fresh default69 source11 install')
+                        help='Require current complete ordinary68 matrix before fresh voice72 source11 install')
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     source = args.source11.resolve()
@@ -78,12 +78,12 @@ def main():
             ordinary_accepted(previous)
             if pathlib.Path('/tmp/sanguo11-emulator-5554-session-a.lock').exists():
                 raise ValueError('5554 remains owned; no competing default install')
-            frozen = json.loads(HELPER.with_name('MEDIA_VIEWPORT_TEST_BUILD69.json').read_text())
+            frozen = json.loads(HELPER.with_name('VOICE_COMBINED_BUILD72.json').read_text())
             if not frozen['buildSuccessful']:
-                raise ValueError('Independent viewport69 build missing')
+                raise ValueError('Independent voice72 build missing')
             artifacts = {r['path']: r['sha256'] for r in frozen['apks']}
             if not all(sha(pathlib.Path(p)) == h for p, h in artifacts.items()):
-                raise ValueError('Frozen default69 cohort changed')
+                raise ValueError('Frozen voice72 cohort changed')
             game = next(p for p in artifacts if pathlib.Path(p).name == 'app-debug.apk')
             test = next(p for p in artifacts if pathlib.Path(p).name == 'app-debug-androidTest.apk')
             report.update(stage='ordinary-accepted-fresh-default-source11', apks=artifacts)

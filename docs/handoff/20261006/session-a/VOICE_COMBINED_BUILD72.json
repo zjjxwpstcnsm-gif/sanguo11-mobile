@@ -1,0 +1,55 @@
+{
+  "sourceRevision": "5c09972f6fd3bea3cb41e2621e69158a9185a6e3",
+  "buildSuccessful": true,
+  "gameLargeHeap": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug.apk",
+      "bytes": 313476976,
+      "sha256": "2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug-androidTest.apk",
+      "bytes": 2610639,
+      "sha256": "d50555292b59766af27fe73989e929b8852e80583acd303650db18755f178439"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "assetCountComparedToActual4df5": 5636,
+  "assetChangedPaths": [
+    "assets/audio/pc/voice-identities.json"
+  ],
+  "allOtherAssetBytesExact": true,
+  "allOriginalVoiceOggBytesExact": true,
+  "buildLog": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/build-voice-metadata-combination72.log",
+  "buildLogSha256": "baaea738a4ae2d00e7f80175fd916d9481165f1de04ce74f2cfcab2aa682809d",
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "scope": "Fresh default game/test with source64 voice joins and actor-type/action-profile domain fix plus actual normal-caller metadata verification. Previous package scores not borrowed.",
+  "wholeGoalComplete": false
+}
