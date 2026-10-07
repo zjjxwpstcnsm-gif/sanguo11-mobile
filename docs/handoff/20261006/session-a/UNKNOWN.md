@@ -128,3 +128,6 @@ CURRENT157: 145military156 normal/cold/full9+3797restore/9rawvideo accepted, per
 
 
 229/230/231原火128容量：独立宿主视觉诊断（128合法cell键、诊断height0、固定camera，无World/rule/RNG注入）原factory128创建成功，首帧45a530更新失败。230使用生产PC_VM_PROBE_BLOCK_BUDGET=1复现，exit2/只16字节ready、无帧。231仅克隆原C加入两处诊断fprintf，仍相同5Mblock-byte/5s预算；原源码/六JNI不改。精确失败pc464c24、codeBytes5000008/fault1/timedOut0，直接命中已有字节预算；已分配guest4533780bytes/107allocations只是这一时点，非Java/native/GPU峰值，不能称JavaOOM。此前128仅cap未验收现有失败证据，13格正常生命周期仍为其原范围，不能借此通过128。下一步调查真实原manager244slot遍历/单controller复杂度与容量边界，保持原资源/controller/绘制顺序/同MT和全局时间；不直接加预算、降MAX_CELLS/永久关闭3D或丢truefire来掩盖。Normal128 Android/ARM/链/性能预算仍不通过。
+
+
+236容量矩阵：source-height0/固定camera/生产原5Mbyte预算的独立host，1/13/32控制器均71帧退出0、同clock/packet暂停、全部cell handles停止；最大packet51/90/125，最终仍有原SEFF环境packet26/27/26。初版测试假设全packet归零错误，首个已经exit0子进程及71帧原stdout保留，未重跑；脚本明确记录修正。64/128均创建后首帧exit2，5Mbyte分别5000023/5000008，寄存器/非法ESI只读诊断缺失都保留；不外推最大可用格数、不将32 host作为正常128/位置/性能闭合。后继须分清原资源node callback与实例成本、保持同manager/原排序/视觉MT/时间；不降cap掩盖失败或直接放开budget。

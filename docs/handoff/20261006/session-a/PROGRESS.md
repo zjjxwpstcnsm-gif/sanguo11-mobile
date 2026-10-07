@@ -504,3 +504,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 235后继地图提示：据实际Source3-map PNG23d187d1…，独立stage仅FilamentMapView final Canvas hint去除常驻工程恢复前缀、载入文案改正常“地图载入中”、不透明深底+共享正文色。无新Bitmap/RectF/规则/地图资源/火生命周期改变，前6c01e6f0…后ca197798…，补丁1d97e74c…；单文件与实际app已编译依赖/冻结B JAR编译通过、独立补丁字节SHA读回成功，声明色对比15.584173585但无新Android像素/触控验收。859c85f6冻结own补丁/工具/回执，不改规范生产或227/B61，后继新组合安装仍必须测正常全路径/全SaveRNGToken/完整恢复。当前Source4已真实32/670且纯呈现通过仅partial，helper1339/观察器1388/1389和normal/audio/heap父链均实际存活，不重启；五个来源[11,0,1,2,3]闭合范围仅已记670/1340/current-year原Bitmap等。128原火失败229–231仍开放，不将235或大堆视为修复。
+
+
+236已执行1/13/32/64/128原controller宿主矩阵，在原5Mbyte/5s守卫下1/13/32完成71帧/暂停记录全同与native handle停止，64/128首帧守卫失败。零所有packet不是cellfire停止标准（原SEFF环境仍26/27/26packet），初版测试断言错误及已完成子进程原输出完整保留，修正后只推进未执行case，不重启已完成1-cell child。新C克隆只添加guard寄存器/ESI只读日志，规范C/JNI不动，性能值受host负载限制且非Android/ARM/GPU。此矩阵只缩小后继原callback容量调查，不能借32 host通过代替128目标。当前Source4真实64/670仍partial，所有同一producer/observer及serial等待链存活。
