@@ -1,0 +1,22 @@
+{
+  "buildSuccessful": true,
+  "testSourceRevision": "fe413552d3bec9d27955f345f00bfa7097ed8f3f",
+  "gameSourceRevision": "5c09972f6fd3bea3cb41e2621e69158a9185a6e3",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug.apk",
+      "bytes": 313476976,
+      "sha256": "2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fe413552-voice-diagnostic-test74/app-debug-androidTest.apk",
+      "bytes": 2610747,
+      "sha256": "1a8503198e679659bc42ac81a76942e08e13d09c2eeca8200f565c03c66ea972"
+    }
+  ],
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "buildLogSha256": "311b0f743ffcdf4af2d41fe1b6b5c08a4fa3d6d31fa99b8cd27c15dcc7cadb2f",
+  "scope": "Independently built test refresh for exact same2cd production game. Includes normal caller voice metadata checks plus10720 source-only codec diagnostics; fixture is explicitly not normal game acceptance.",
+  "wholeGoalComplete": false
+}
