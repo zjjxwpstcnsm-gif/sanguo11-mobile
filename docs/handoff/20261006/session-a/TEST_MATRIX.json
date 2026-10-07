@@ -3,8 +3,8 @@
   "rows": [
     {
       "item": "complete-source",
-      "status": "HISTORICAL111 FULL11184 MATCHES OLD90;CURRENT115 APP/117 TOOLS COMMITTED,LATER FULL EXPORT PENDING",
-      "evidence": "SOURCE_EXPORT_CHECKPOINT111:adf9d39a complete11184 files/904359551B/archive653107463B SHAe9762e7401aa8ee5c1bda21b85cb87a63dbcc787744fb5987172553fb99d3f37;allSHA/6JNI exact,all inherited10714 pluslatesttools105/107/108/109/110;production/androidTest/core/API/runtime/config same actualfd88;checkpoint notfinal",
+      "status": "CURRENT118 COMPLETE11192 SOURCE/TOOLS MATCHES ACTUAL116;FINAL ACCEPTED EXPORT PENDING",
+      "evidence": "SOURCE_EXPORT_CHECKPOINT118:ca3fabb7/source63284162 actual116 production+androidTest+core/API/runtime/build raw equal;11192 allSHA/904406051B/archive653121228B SHAaeb0a307cefa2555c6552c8672fc097fff55d22bf3306b3ca43c50cbbea52666;original4/new2JNI matchactual8e08/565;all inherited10714/latesttools through117,no B WIP;checkpoint notfinal and later119 parser absent",
       "next": "final accepted package source/tools/evidence and new complete main/B serial guard"
     },
     {
@@ -105,5 +105,5 @@
     }
   ],
   "updatedAfter": "115 explicit ownership-close-before-handoff committed63284162;116 fresh8e08/565 actualinstalled/5636assets168pins6JNI exact;32 pendingcancel phase passed,normal16/cold/restore stilllive53959/54008/54009;117 own55286 waitsstrictly forcommands/all16 current116 callers. Old90 source11 accepted112,oldfastfailed114 and allrestore preserved,terminated priorjobs. Laterfull sourceexport/newmainB/finalAPK/ARM remainopen",
-  "updatedCheckpoint": "117"
+  "updatedCheckpoint": "118"
 }
