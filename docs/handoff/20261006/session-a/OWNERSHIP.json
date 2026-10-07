@@ -335,7 +335,8 @@
     "docs/handoff/20261006/session-a/MILITARY_CURRENT_TEXT130.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT131.json",
     "docs/handoff/20261006/session-a/FIRE_SCHEDSTAT_OBSERVER132.json",
-    "docs/handoff/20261006/session-a/SCHEDSTAT_AUDITOR133.json"
+    "docs/handoff/20261006/session-a/SCHEDSTAT_AUDITOR133.json",
+    "docs/handoff/20261006/session-a/CURRENT_NORMAL384_BUILD134.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
