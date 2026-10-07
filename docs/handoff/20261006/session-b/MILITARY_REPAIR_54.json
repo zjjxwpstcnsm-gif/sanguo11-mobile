@@ -100,5 +100,6 @@
     "path": "out/session-b/completed-repair-54-proof.tar.gz"
   },
   "completedVerifierSha256": "e90f89aba44eea6d7fa373110ce65e541b93c0fa203a663f8279512d9385e515",
-  "earlierArchive": "v1 retained; optional uncompleted items verifier mode excluded in v2"
+  "earlierArchive": "v1 retained; optional uncompleted items verifier mode excluded in v2",
+  "productionBatchCommit": "c6f966ce378619b5ebfdb1bb3725c6f4c494e4e4"
 }
