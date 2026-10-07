@@ -176,3 +176,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 61当前原始9段已完成native MP4录像独立冻结manifest并全部解码12323帧：frameindex连续、输入PTS严格增加、实际1/90000时基，每段host/deviceSHA同等；未重定时或固定FPS，不判PC像素/原时序/ARM，正常670流程仍未结束。只读当前58条内存CSV阶段快照Java独立最大243442248B/512MiB（zoom）、native独立202080912B、PSS独立414852KiB，Java采样最小余量293428664B；graphics0记未知，不合峰值或当最终内存预算。完整原备份仍由78010正常driver保护，观察和解码不改应用规则/数据/输入。
 
 新增A既有SessionAMapRepairInstrumentation可选fastPreview16分支：真实菜单每来源两次不等待READY即返回/取消，直接观察未完成mesh/asset任务、保持完整Save/RNG/token、检查原native3D而非恢复页、host数恢复、CPU数组和engine释放、epoch前移及两个executor实际终止，再走已有正常16新局/缩放/存读/Home/冷流程。未构造snapshot/直接release/规则命令、未强制GC；只有实际至少观察一次pending取消才可接受，不借静态源码当生命周期证明。此分支尚未构建/安装/运行，不影响61当前已安装2ee985及完整670验收。
+
+快速取消观察代码的renderer generation实际类型为int，复核后更正反射Integer读法，避免Long强转在运行时失败。第一构建88587仍仅准备检查，构建启动后发生这处测试修正，不能将其产物记录为干净6502源码或直接安装；须结束后从更正后的干净提交独立重建再验收。当前61已安装test仍2ee985不受源码或host构建影响。

@@ -236,7 +236,7 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
                 check(renderer[0]!=null&&!(Boolean)field(renderer[0],"released"),"fast preview initialized original3D, not recovery");
                 pending[0]=(Integer)field(renderer[0],"pending");
                 assets[0]=((SceneAssetQueue)field(renderer[0],"assetWork")).pending();
-                verified[0]=(Boolean)field(renderer[0],"outputVerified");generation[0]=(Long)field(renderer[0],"generation");
+                verified[0]=(Boolean)field(renderer[0],"outputVerified");generation[0]=(Integer)field(renderer[0],"generation");
                 check((Integer)field(preview,"activeNativeHosts")<=baseline[0]+1,"fast source adds at most one owned native host");
             }catch(Exception error){throw new IllegalStateException(error);}});
             boolean interrupted=pending[0]>0||assets[0]>0;if(interrupted)pendingCancellations++;
@@ -249,7 +249,7 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
                 closed[0]=(Boolean)field(renderer[0],"released")&&field(renderer[0],"engine")==null
                     &&field(renderer[0],"snapshot")==null&&((List<?>)field(renderer[0],"chunks")).isEmpty()
                     &&((List<?>)field(renderer[0],"woods")).isEmpty()&&(Integer)field(renderer[0],"pending")==0
-                    &&(Long)field(renderer[0],"generation")>generation[0]
+                    &&(Integer)field(renderer[0],"generation")>generation[0]
                     &&(Boolean)field(meshes,"closed")&&meshes.pending()==0&&meshes.waiting()==0
                     &&((java.util.concurrent.ThreadPoolExecutor)field(meshes,"executor")).isTerminated()
                     &&(Boolean)field(decoded,"closed")&&decoded.pending()==0&&decoded.bytes()==0
