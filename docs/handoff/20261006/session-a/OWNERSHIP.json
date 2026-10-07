@@ -391,7 +391,11 @@
     "docs/handoff/20261006/session-a/continue_legacy39_registered.py",
     "docs/handoff/20261006/session-a/LEGACY39_REGISTERED_INSTALL_QUEUE177.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT178.json",
-    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT179.json"
+    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT179.json",
+    "docs/handoff/20261006/session-a/CURRENT_REGISTERED_ORDINARY_BUILD180.json",
+    "docs/handoff/20261006/session-a/CURRENT_REGISTERED_NORMAL_PLAN181.json",
+    "docs/handoff/20261006/session-a/continue_registered_normal.py",
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL_QUEUE182.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
