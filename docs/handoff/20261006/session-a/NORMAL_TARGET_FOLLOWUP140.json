@@ -1,0 +1,16 @@
+{
+  "actualHostPid": 78399,
+  "actualProducerPid": 78162,
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-followup140/batch.json",
+  "stage": "waiting-for-current-attack",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0b6bdc6c-normal-target-test139/app-debug-androidTest.apk": "0eee30d994f8feb501d192fc701a25859d02c5a719b462b19f0c50fb54e7ea85"
+  },
+  "actualNormalSource14MilitaryAndFireMustRerunForNewPair": true,
+  "afterOwnAttackColdAllShaRestoreAndObserverFinal": true,
+  "previous125And71209Terminal": true,
+  "currentAttackNormalAccepted": false,
+  "normalAll16CallersAccepted": false,
+  "wholeGoalComplete": false
+}

@@ -353,3 +353,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 138 A-ownedtest normal pose使用screen实际bounds并扣除panelShell/commandDock/minimap；tile在actualpoint不可接受时先记录surface地形ray/visible/minimap/commandTargeting，仅真实mapdrag，若12dp以下不会把零drag变targettap，最后仍调用原B tile exactray断言并真pointer，前置完整Save/bothRNG/Token纯。没有直接camera/World/API/rule/B文件变化，未降低deadline/断言；具体137旧失败false分支仍未知，新test构建安装/retest必须独立，不借130135旧test10ed成绩。
 
 139 独立test-only默认构建1m12s，源0b6bdc6c、test0eee30d994f8feb501d192fc701a25859d02c5a719b462b19f0c50fb54e7ea85，路径out/session-a/apk-0b6bdc6c-normal-target-test139/app-debug-androidTest.apk。game仍8e08整包逐SHA相同，app生产/core/API/runtime raw源与632无delta/6JNI同，139exactvideo whitelist仅匹配自己冻结两包largeHeaptrue，不影响普通134 exclusion。先完整backup/SHA/test-only实装重跑同Source0攻击；旧130135实测保留各自10ed pair，新139不能借分。
+
+140 当前139 test0eee/game8e08重新完整9/3797备份+archive/SHA核验，test-only实装/device整两APK SHA/runner verified；实际helper78162/video78182/native78183，正常Source0原失败13265现已通过读可见区/真实pan/exact原地形ray/真实pointer，并已到explicitCITY ATTACK preview/取消，normal/cold/最终restore未accepted。实际后继78399等当前attack同pair完整关闭后再跑本pair军建/火/全16人物；不借130135旧test10ed，不启动已终止125/71209/未启动136。真实新ray诊断即将冻结，只称新路径可达，不重建旧137唯一false分支。
