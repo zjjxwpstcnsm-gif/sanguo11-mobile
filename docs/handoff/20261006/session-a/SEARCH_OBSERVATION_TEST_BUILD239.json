@@ -1,0 +1,64 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "0c788b0658e0438b3b242f7e40763c61af9439f5",
+  "gameSourceRevision": "e62f2809e4e6128bd18b863d0ea9f5fca28b9c61",
+  "testSourceRevision": "0c788b0658e0438b3b242f7e40763c61af9439f5",
+  "gameLargeHeap": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk",
+      "sha256": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+      "bytes": 313477288
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk",
+      "bytes": 3089300,
+      "sha256": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "fixedPackagedInputsExact": 168,
+  "legacy39RunnerManifestRegistered": true,
+  "genuine39FixtureSha256": "5d002d3cee6f84700cd5e1292c05b672e8a05e0b547ac7d753f2b7987d5e2f7f",
+  "fixturePackagedByteExact": true,
+  "productionRawSourcesEqualTo165": true,
+  "buildCommand": [
+    "/Users/paopao/.gradle/wrapper/dists/gradle-8.13-bin/5xuhj0ry160q40clulazy9h7d/gradle-8.13/bin/gradle",
+    "--offline",
+    "--no-daemon",
+    ":app:assembleDebugAndroidTest"
+  ],
+  "wallSeconds": 80.35357480699999,
+  "buildLogSha256": "2c7f83707eda7ec59ecc34d2a062c9352cddd10094ed9af8f99078980ca08797",
+  "newTestObservationOnly": true,
+  "defaultNormalPredicateUnchanged": true,
+  "searchDiagnosticFlagDefaultFalse": true,
+  "actualInstalled": false,
+  "scope": "Fresh test-only observation APK, same exact frozen165 game. New optional bounded search-window/focus/layout observations on failure; no waits/retries/predicate or application production changes. Old176 Source0/1/2/3/11 scores do not transfer to new test cohort; fresh normal diagnostic/complete backup/install/cold/restoration required.",
+  "wholeGoalComplete": false
+}

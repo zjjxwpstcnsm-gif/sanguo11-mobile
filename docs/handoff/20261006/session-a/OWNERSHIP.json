@@ -471,7 +471,9 @@
     "docs/handoff/20261006/session-a/SOURCE04_SEARCH_FAILURE238.json",
     "docs/handoff/20261006/session-a/SEARCH_OBSERVATION_TEST_BUILD239.json",
     "docs/handoff/20261006/session-a/build_search_observation_test239.py",
-    "docs/handoff/20261006/session-a/SEARCH_OBSERVATION239.md"
+    "docs/handoff/20261006/session-a/SEARCH_OBSERVATION239.md",
+    "docs/handoff/20261006/session-a/run_search_observation240.py",
+    "docs/handoff/20261006/session-a/SEARCH_OBSERVATION240_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
