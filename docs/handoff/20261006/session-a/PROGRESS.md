@@ -277,3 +277,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 100新81（实装242aaff2/9bac6916）正常5152/16来源47slots各/244enabled全真preview/native3D/全Save-Rng-token纯，地图全图近景/平移重试/实际Home方向/手动存读/真Back确认退出重开、冷17430→25593并两边真实render提交、预期完整auto8afa8140...、9internal（rewrite4）/3797external（rewrite0）全部SHA恢复；worker正常exit0。无主动heapdump/无encoder，679实际采样Java峰346235456/402653184，余56417728B≈53.804MiB，旧68全矩阵余14.272MiB；这是匹配全矩阵的采样证据，不把host88%分配改善或单次短前缀当唯一OOM根因，预算仍false、GPU/ARM未知。自动memory-evidence finalsession绑定SHA一致。parent现进入最新90（25a/976）独立Source11备份安装，不借81地图成绩成90火/军建/媒体，其他全部目标继续。
 
 101最新90组合（fd88生产源码/game25a66e49/test9763ab32）经100全9/3797恢复后独立完整备份核验并实装，pm实际runner及device整APK SHA读回相等；helper29456/video29475/native29476真实启动，Source11新670流程开始，不能借94/100正常成绩。全原始视频绑定此APK，后继host临时移除验证/退出/源case冷/最后原数据恢复等尚待；当前仅5554 API29 x86_64，不ARM。所有原4/新2JNI/固定168源+两包守卫98保持。
+
+101新90已开始正常Source11、29456/29475/29476真实live；首原片part1已完整host/device前后拉取SHA一致、确切新90两包绑定、无capture error，自己的UUID临时设备片段才被移除、host原片保留。这仅首片拉取/临时移除边界成功，normal/cold/fullrestore、recorder最终SIGTERM/退出/全部原片解码还未接受。注册102完整源码，包含93逐全部录片sample工具、95分立内存统计、96录屏与排除普通压力、98固定输入/目录守卫及100新81完整正常接受、101新90实装证明；app生产源码仍fd88同，不改正在运行APK或B WIP。
