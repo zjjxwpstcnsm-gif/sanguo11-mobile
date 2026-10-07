@@ -1,0 +1,42 @@
+{
+  "passed": false,
+  "scope": "New exact ff2832/bcdc diagnostic normalSource11 full670 attempt; no old APK scores. Eight real caller pairs, original gesture dispatch/longclick/detail logs, then actual swipe locator oscillation.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5a72c163-roster-input-diagnostic/app-debug.apk": "ff2832c0d41f59fa130ae39947dbdf7566b279859fc5b9cf02e327ae356d75c9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5a72c163-roster-input-diagnostic/app-debug-androidTest.apk": "bcdc27b861b3ae6f4d6cf6fa1251e116728d466047ea043332f66df483f7f6c3"
+  },
+  "actualCompletedCallerPairs": 8,
+  "expectedOfficers": 670,
+  "failureNativeId": 254,
+  "failureName": "荀彧",
+  "failure": "TargetIndex1 alternates firstVisible1/3 under fixed60percentpage gesture. At firstVisible1 target top is clipped below80percent required visibility; greater-or-equal wrongly scrolls farther down, then reverses. Product list receives inputs and prior detail callbacks enter/show normally. New tool uses measured cell/viewport clipping to choose direction and smaller displacement.",
+  "actualSourceCallbackDiagnostics": {
+    "normalLongclickAndShowNative343Observed": true,
+    "native367OriginalFailureRootClosed": false
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-input-diagnostic-58",
+  "evidenceSha256": {
+    "session.json": "e807f65b7b1712d09d71bba27dbe0379e1e5ee4282c5f9ba58872e42558af72b",
+    "evidence/result.txt": "f3761a037e835bb09b1fd99740cad36421db9ca16fba324a8fa0e7e8b14839f7",
+    "evidence/FAIL.png": "9dcca63814aac541a2c23d21fa2de4e62d24d299b0572452130a4a048e02b476",
+    "evidence/FAIL-actual-text.json": "0c95cad5e848db5f51efd074270f7f0d21068bd2f23d853bf0259adee38fd225",
+    "logcat.txt": "413fe533fe55239ac55dbe03a1384a25f12ade17bc7bf3a94df20956e601b128"
+  },
+  "coldAccepted": false,
+  "wholeSourceAccepted": false,
+  "completeGoal": false
+}

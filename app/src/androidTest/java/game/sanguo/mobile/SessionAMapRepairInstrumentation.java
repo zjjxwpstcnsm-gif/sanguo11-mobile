@@ -104,25 +104,40 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         check(position[0]>=0,"normal name search contains exact source officer "+nativeId);
         long deadline=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<deadline){
-            TextView[] cell={null};int[] first={0};Rect viewport=new Rect();
+            TextView[] cell={null};int[] first={0};Rect viewport=new Rect(),candidateBounds=new Rect();boolean[] sufficientlyVisible={false};
             ui(()->{
                 first[0]=table.list.getFirstVisiblePosition();
                 View found=find(table.list,v->{
                     if(!(v instanceof TextView)||!officer.name.contentEquals(((TextView)v).getText())||!(((TextView)v).getCompoundDrawables()[0] instanceof OfficerPortrait))return false;
-                    Rect visible=new Rect();if(!v.getGlobalVisibleRect(visible)||visible.height()<v.getHeight()*.8f)return false;
+                    Rect visible=new Rect();if(!v.getGlobalVisibleRect(visible)||visible.isEmpty())return false;
                     try{return ((World.Officer)field(((TextView)v).getCompoundDrawables()[0],"officer")).id==officer.id;}catch(Exception e){throw new IllegalStateException(e);}
                 });
-                if(found!=null)cell[0]=(TextView)found;
+                if(found!=null){
+                    cell[0]=(TextView)found;Rect clipped=new Rect();found.getGlobalVisibleRect(clipped);
+                    sufficientlyVisible[0]=clipped.height()>=found.getHeight()*.8f;
+                    int[] location=new int[2];found.getLocationOnScreen(location);
+                    candidateBounds.set(location[0],location[1],location[0]+found.getWidth(),location[1]+found.getHeight());
+                }
                 check(table.list.getGlobalVisibleRect(viewport)&&viewport.height()>0,"actual filtered roster viewport reachable "+nativeId);
                 int[] origin=new int[2];table.list.getRootView().getLocationOnScreen(origin);viewport.offset(origin[0],origin[1]);
             });
-            if(cell[0]!=null)return cell[0];
+            if(cell[0]!=null&&sufficientlyVisible[0])return cell[0];
             // Search includes faction/status columns. The exact person can be
             // below the viewport; use a human-reachable ListView swipe, never
             // select a different name or bypass the callback with performClick.
-            boolean forward=position[0]>=first[0];float x=viewport.centerX();
-            float start=viewport.top+viewport.height()*(forward?.8f:.2f),finish=viewport.top+viewport.height()*(forward?.2f:.8f);
-            log.append("ACTUAL roster swipe native=").append(nativeId).append(" targetIndex=").append(position[0]).append(" firstVisible=").append(first[0]).append(" forward=").append(forward).append('\n');
+            // First-visible can be the desired row while its top is clipped.
+            // Scroll toward its measured missing portion instead of oscillating
+            // a fixed page up/down around that partially visible row.
+            float shift;
+            if(cell[0]!=null&&candidateBounds.top<viewport.top)shift=viewport.top-candidateBounds.top+UiTheme.dp(activity,8);
+            else if(cell[0]!=null&&candidateBounds.bottom>viewport.bottom)shift=viewport.bottom-candidateBounds.bottom-UiTheme.dp(activity,8);
+            else shift=viewport.height()*(position[0]>=first[0]?-.4f:.4f);
+            float limit=viewport.height()*.4f;shift=Math.max(-limit,Math.min(limit,shift));
+            int minimum=ViewConfiguration.get(activity).getScaledTouchSlop()*2;
+            if(Math.abs(shift)<minimum)shift=Math.copySign(minimum,shift);
+            boolean forward=shift<0;float x=viewport.centerX();
+            float start=viewport.top+viewport.height()*(forward?.7f:.3f),finish=start+shift;
+            log.append("ACTUAL roster swipe native=").append(nativeId).append(" targetIndex=").append(position[0]).append(" firstVisible=").append(first[0]).append(" candidate=").append(candidateBounds.flattenToString()).append(" viewport=").append(viewport.flattenToString()).append(" deltaY=").append(shift).append(" forward=").append(forward).append('\n');
             long down=SystemClock.uptimeMillis();pointer(down,MotionEvent.ACTION_DOWN,x,start);
             for(int i=1;i<=10;i++)pointer(down,MotionEvent.ACTION_MOVE,x,start+(finish-start)*i/10f);
             pointer(down,MotionEvent.ACTION_UP,x,finish);SystemClock.sleep(400);
