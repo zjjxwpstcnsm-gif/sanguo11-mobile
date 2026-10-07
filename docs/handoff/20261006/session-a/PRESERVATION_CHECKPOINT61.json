@@ -1,0 +1,81 @@
+{
+  "scope": "Read-only complete inherited-source/original-user/PC/frozenJNI guard while61 continues. No device changes, B WIP read or goal acceptance.",
+  "startedUnix": 1791341546.310848,
+  "guards": [
+    {
+      "manifest": "SOURCE_GUARD.json",
+      "root": "/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile",
+      "count": 10714,
+      "mismatches": [],
+      "head": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+      "expectedHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+      "headMatch": true
+    },
+    {
+      "manifest": "ORIGINAL_GUARD.json",
+      "root": "/Users/paopao/workspace/sanguo11-mobile",
+      "count": 4301,
+      "mismatches": [],
+      "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+      "expectedHead": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+      "headMatch": true
+    }
+  ],
+  "partial": false,
+  "original4Jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "expectedSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "actualSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "expectedSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "actualSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "expectedSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "actualSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "expectedSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "actualSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "pcExeSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "pcExeExpected": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "passed": true,
+  "endedUnix": 1791341565.033529,
+  "completedBGuard": {
+    "scope": "Current guarded225 paths remain exact to already audited54 own bytes; completedB objects remainaa9, not WIP. Preserves separately recorded54 app-test exceptions.",
+    "auditedGuard": "docs/handoff/20261006/session-a/COMPLETED_B_OBJECT_GUARD54.json",
+    "auditedGuardSha256": "c42b082fc2cf4a58e175bb3dd7daa345ebaeaf7ea6092ae5e44616d9d7fa58b5",
+    "guardedPaths": 225,
+    "mismatches": [],
+    "completedCommit": "aa9bdf6de39b521548b436aeedf81118f82e7ad0"
+  },
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "androidGameBridge": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java",
+      "sha256": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08",
+      "match": true,
+      "actualSha256": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+    }
+  ],
+  "additional2Jni": [
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "expectedSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "actualSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "expectedSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "actualSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "wholeGoalComplete": false
+}
