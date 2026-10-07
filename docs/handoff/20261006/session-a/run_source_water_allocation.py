@@ -15,15 +15,22 @@ def main():
     p.add_argument('--output',type=pathlib.Path,required=True)
     p.add_argument('--java',required=True)
     p.add_argument('--javac',required=True)
-    p.add_argument('--common-classes',type=pathlib.Path,
-                   default=ROOT/'out/session-a/grid-memory-parity/common')
-    p.add_argument('--core-classes',type=pathlib.Path,
-                   default=ROOT/'out/session-a/military-repair-host65/classes')
+    p.add_argument('--common-classes',type=pathlib.Path)
+    p.add_argument('--core-classes',type=pathlib.Path)
     args=p.parse_args()
     out=args.output.resolve()
     out.mkdir(parents=True,exist_ok=False)
-    common=args.common_classes.resolve()
-    core=args.core_classes.resolve()
+    if args.common_classes is None:
+        common=out/'common';common.mkdir()
+        names='TileGeometry GridWorldTransform SceneCamera ScenePicking SceneMesh UnitVisual UnitMotion CombatVisual SiteVisual TerrainSurface WaterVisualField TerrainMaterialField MapSceneSnapshot FactionColors SiegeOverlay SceneFactsPresentation'.split()
+        sources=sorted((ROOT/'core/src/main/java').rglob('*.java'))+sorted((ROOT/'game-api/src/main/java').rglob('*.java'))
+        sources += [ROOT/f'app/src/main/java/game/sanguo/mobile/{name}.java' for name in names]
+        source_list=out/'sources.txt';source_list.write_text('\n'.join(map(str,sources))+'\n')
+        subprocess.run([args.javac,'--release','17','-encoding','UTF-8','-d',str(common),'@'+str(source_list)],check=True)
+        core=common
+    else:
+        common=args.common_classes.resolve()
+        core=args.core_classes.resolve() if args.core_classes else common
     results={}
     for stage in ['baseline','current']:
         folder=out/stage;folder.mkdir()
@@ -49,6 +56,7 @@ def main():
         'baselineHostAllocatedBytes':sum(int(r[4]) for r in baseline),
         'currentHostAllocatedBytes':sum(int(r[4]) for r in current),
         'exactFinalFloatBitsIndicesAttributesMetadata':True,'fullSaveRngPure':True,
+        'commonCompiledFromCurrentSource':args.common_classes is None,
         'scope':'Actual host producer allocation counter under384MiB and all16 original-source geometry regions; not Android normal flow, actual Source6 peak improvement, native/GPU or ARM acceptance',
         'actualAndroidAccepted':False,'wholeGoalComplete':False}
     (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')

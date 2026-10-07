@@ -285,5 +285,14 @@
   "hostAllocationReductionFraction": 0.8798697671700891,
   "reproducibilityReportPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-water-allocation80-repro/report.json",
   "reproducibilityReportSha256": "dc3551364ef3eb2e9b5f1601297750fa36fbc706cf7ae9976c8d5d069fe6db2c",
-  "androidSource6TightPeakStillUnresolved": true
+  "androidSource6TightPeakStillUnresolved": true,
+  "freshFullSourceReproduction": {
+    "reportPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-water-allocation80-fresh-source/report.json",
+    "reportSha256": "a0ab4204a791ce8cc81afd13377cf7b04e433fb987ce985ea59443595fec3876",
+    "baselineHostAllocatedBytes": 1176425960,
+    "currentHostAllocatedBytes": 140312744,
+    "exactFinalFloatBitsIndicesAttributesMetadata": true,
+    "commonCompiledFromCurrentSource": true,
+    "scope": "Actual host allocation counters vary with class loading/JIT; compare each run independently. Exact source output hashes remain the gate. Not Android peak/ARM acceptance."
+  }
 }
