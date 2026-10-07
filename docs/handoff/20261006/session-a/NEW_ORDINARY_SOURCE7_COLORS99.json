@@ -1,0 +1,151 @@
+{
+  "actualLiveCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16",
+  "actualInstalledApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-8eabcc20-water-normal38481/app-debug.apk": "242aaff2e26dd351a6db6384eacf799ce4b2742695dafa5c40e740743222ecc8",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-8eabcc20-water-normal38481/app-debug-androidTest.apk": "9bac691634f3917d125674359f799748be4188a779a3091170e43f995e13c35d"
+  },
+  "sourceIndex": 7,
+  "actualEnabledPreviews": 37,
+  "allEnabledActual3DAndOpaqueAlpha": true,
+  "sourceCompleteSaveRngTokenPure": true,
+  "reportedActualSlots": [
+    {
+      "side": 18,
+      "label": "陶謙",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 陶謙 · 城池1 · 武将7",
+      "actual3DVerified": true
+    },
+    {
+      "side": 31,
+      "label": "韓玄",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 韓玄 · 城池1 · 武将4",
+      "actual3DVerified": true
+    },
+    {
+      "side": 41,
+      "label": "韓遂",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 韓遂 · 城池1 · 武将11",
+      "actual3DVerified": true
+    }
+  ],
+  "guardedActualFiles": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16/live-source7-99/source-7-faction-previews.json",
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-a-map/session_a_ordinary384_water_fix_all16/source-7-faction-previews.json",
+      "sha256": "dd91e3903111bcca43c4039fe97857c49be50b6b85c9407e7465e4aad85a6f4f",
+      "completeBeforeAfterHostShaMatch": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16/live-source7-99/source-7-faction-18-preview.png",
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-a-map/session_a_ordinary384_water_fix_all16/source-7-faction-18-preview.png",
+      "sha256": "fbfc90ce9f04d280affab17ef9fc557a6d76bdd2abe9f80be646e5a164a47f14",
+      "completeBeforeAfterHostShaMatch": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16/live-source7-99/source-7-faction-31-preview.png",
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-a-map/session_a_ordinary384_water_fix_all16/source-7-faction-31-preview.png",
+      "sha256": "3ffb5dd40dc152a96082d5bcc5083296d0e958e56e7a4535d0c455bb97659208",
+      "completeBeforeAfterHostShaMatch": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16/live-source7-99/source-7-faction-41-preview.png",
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-a-map/session_a_ordinary384_water_fix_all16/source-7-faction-41-preview.png",
+      "sha256": "d1c2634523c194d1da0cd1e181879a33090ea5c085c89a51444f9f93c44690d0",
+      "completeBeforeAfterHostShaMatch": true
+    }
+  ],
+  "actualPixelEvidence": {
+    "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/ordinary384-water-fix-all16/live-source7-99/source-7-faction-31-preview.png",
+    "screenshotSha256": "3ffb5dd40dc152a96082d5bcc5083296d0e958e56e7a4535d0c455bb97659208",
+    "actualSize": [
+      1080,
+      1920
+    ],
+    "regions": [
+      {
+        "label": "Cao Cao actual unselected label",
+        "box": [
+          480,
+          522,
+          569,
+          560
+        ],
+        "solidInkRgb": [
+          88,
+          128,
+          237
+        ],
+        "solidPlaqueRgb": [
+          18,
+          32,
+          39
+        ],
+        "actualSolidInkPixels": 411,
+        "actualSolidPlaquePixels": 411,
+        "actualSolidContrast": 4.53820494365449,
+        "solidContrastAtLeast4_5": true,
+        "antialiasShadowAndOtherPixels": 2560
+      },
+      {
+        "label": "He Jin actual unselected label",
+        "box": [
+          396,
+          505,
+          477,
+          541
+        ],
+        "solidInkRgb": [
+          88,
+          140,
+          161
+        ],
+        "solidPlaqueRgb": [
+          18,
+          32,
+          39
+        ],
+        "actualSolidInkPixels": 364,
+        "actualSolidPlaquePixels": 679,
+        "actualSolidContrast": 4.502791515781093,
+        "solidContrastAtLeast4_5": true,
+        "antialiasShadowAndOtherPixels": 1873
+      },
+      {
+        "label": "Han Xuan actual selected label",
+        "box": [
+          530,
+          734,
+          610,
+          786
+        ],
+        "solidInkRgb": [
+          255,
+          213,
+          118
+        ],
+        "solidPlaqueRgb": [
+          27,
+          47,
+          55
+        ],
+        "actualSolidInkPixels": 373,
+        "actualSolidPlaquePixels": 1360,
+        "actualSolidContrast": 9.965224885758913,
+        "solidContrastAtLeast4_5": true,
+        "antialiasShadowAndOtherPixels": 2427
+      }
+    ],
+    "scope": "Actual declared screenshot regions and solid glyph/plaque colors only; anti-alias/shadow pixels excluded, not all map labels/Android/PC/ARM readability acceptance",
+    "completeGlobalReadability": false,
+    "wholeGoalComplete": false
+  },
+  "wholeMatrixNormalColdRestorePassed": false,
+  "scope": "Current actually installed81 ordinary384 Source7 only. Real all37 force choices and source3D copied screenshot proof; local three actual solid label pixel regions, not reused old package screenshot/rating. Not latest90/globallabels/deepcommand/richspan/ARM or complete full16 memory/normal/cold/restoration acceptance.",
+  "wholeGoalComplete": false
+}

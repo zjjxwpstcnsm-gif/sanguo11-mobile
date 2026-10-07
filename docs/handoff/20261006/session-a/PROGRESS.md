@@ -271,3 +271,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 新默认录屏收尾追加证据门：host observer exit0不自动代表录片通过，必须非空完成parts、无逐段error、实际APK绑定、全host原MP4当前SHA、device前后pull SHA、未在restore前超cap。失败仅保存已真实normal/cold/全恢复成绩并停止下一安装，不把码流丢失当成功视频；没有改/剪/重定时原片。当前81无recorder，加载中原工具流程不变；新90实际capture尚未开始，门仅py_compile/静态检查，未借旧93成绩。
 
 98新可复现只读保护工具完成：源完整0e7所有10714、用户旧5231所有4301（含应不存在路径）、Bridge6ada与PC exe30d33、原4/新增2JNI全部SHA匹配；168固定输入manifest9b098ef6未变、源码全部匹配，81实装242与90待装25a66两包168项/6JNI逐SHA完全一致。main仍ef413、B完成HEAD895不接WIP；盘71GiB，不删用户资产。当前新81全16无dump/无encoder source0..5已写真实全势力预览，normal/cold/最终恢复/内存预算仍待，不用守卫通过替代流程。
+
+99新81（确切实装242/9bac）的Source7实际37有效势力全预览/native3D/alpha255/完整SaveRngToken纯，陶謙slot18/韓玄31/韓遂41全部selectedsummary真实，三原PNG+完整sourceproof设备前SHA/后SHA/hostSHA等。已人工查看新韓玄png，实际新截图原曹操(88,128,237)/(18,32,39)4.5382、何進(88,140,161)/同底4.50279、选中韓玄(255,213,118)/(27,47,55)9.9652，每region真实glyph/plaque>=30；regions复用已核对位置但像素重算新PNG，不借旧76截图/成绩。不外推全UI/新90/ARM；whole16/冷/最终9+3797恢复/预算待。此前271活采样新峰346235456/402653184、未GC/未录屏，低旧68全16但高最近旧97短prefix334157832，不能以对比单次缩短矩阵宣称修复唯一根因或预算关闭。
