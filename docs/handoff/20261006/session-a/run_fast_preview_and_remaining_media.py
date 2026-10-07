@@ -184,6 +184,38 @@ def main():
         report.update(fastPreviewAccepted=True, fastSession=str(fast.resolve()),
                       actualPendingCancellations=sum(r['actualPendingCancellation'] for r in rows))
         save()
+        # Exercise current production water/facility labels through real command
+        # pages before the remaining media batch. Each run independently restores
+        # every original file. A overrides unit selection and camera approach with
+        # real list taps/focus/gestures. Inherited Activity.finish and auxiliary
+        # source-fire focus remain explicitly narrower than real Back acceptance,
+        # which is proved separately by this same cohort's map suite above.
+        command_previous = fast
+        report['normalCommandResults'] = []
+        for name, runner, extra in [
+                ('military-construction-repair', 'SessionAScenePresentationInstrumentation', []),
+                ('fire-extinguish-expiry', 'SessionAFireFlowInstrumentation', ['--pause-fire']),
+                ('continuous-attack-capture', 'SessionAAttackTaskInstrumentation', [])]:
+            command = args.output/name
+            report.update(activeStage=name, activeCommandSession=str(command.resolve()))
+            save()
+            subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(command),
+                            '--previous', str(command_previous)], cwd=ROOT, check=True)
+            with (command/'driver.log').open('w') as log:
+                subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(command),
+                    '--apk', str(game), '--test-apk', str(fast_test), '--reuse-installed',
+                    '--runner', runner, '--fresh-process-reopen', *extra],
+                    cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+            command_state = json.loads((command/'session.json').read_text())
+            command_restore = command_state.get('restoration', {})
+            if command_state['stage'] != 'restored-verified' or not command_state.get('passed') or not command_state.get('coldProcess', {}).get('passed'):
+                raise ValueError('Latest actual normal command/cold incomplete: '+name)
+            if command_state['apks'] != latest_apks or set(command_restore) != {'internal', 'external'} or not all(row['exactRegularFileSha'] for row in command_restore.values()):
+                raise ValueError('Latest normal command actual package/full restoration missing: '+name)
+            report['normalCommandResults'].append(dict(name=name, session=str(command.resolve()),
+                normalColdRestorationPassed=True, wholeGoalComplete=False))
+            save()
+            command_previous = command
         # Fast-preview and all callers use the same independently built APK pair.
         # Each next source still verifies all files and installed bytes.
         remaining = args.output/'remaining-normal-callers'
