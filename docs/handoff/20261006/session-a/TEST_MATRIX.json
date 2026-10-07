@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "68 ORDINARY FUNCTIONAL PASS BUT HEAP BUDGET TIGHT;72 GAME+74 TEST NOW ACTUALLY INSTALLED75",
-      "evidence": "68 whole16/244/trueBack/realGlobalHome/cold/restore;source6 zoom369.73/384MiB14.27headroom budgetnotclosed;actualdefault2cd/1a850 installsverified/no B WIP",
-      "next": "75 complete metadata/normalall670;actualprefixdiagnostic then fast/all15;newA normal unitlist/focus/pan tests source77/78 unaccepted;fire/HUD/ARM/finalserial"
+      "status": "75 OLD DEFAULT2cd LIVE;81 NEW WATER ORDINARY FIX BUILT NOT INSTALLED",
+      "evidence": "SOURCE_WATER_ALLOCATION80 exact16 output/allrawbits/index/attributes/SaveRng;WATER_NORMAL384_BUILD81 242/9bac independentbuild/5636assets/6JNI;no actualnewpackageacceptance",
+      "next": "75 full670/restore;oldprefixdiagnostic then actualnew81 all16/244/noGC/cold/restore;newwaterdefault/fullmedia/fire/HUD/normalcommands/ARM/finalserial"
     },
     {
       "item": "search-normal",
@@ -99,5 +99,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "68 functional5152/all16/244preview/trueBack/GlobalHome/cold/fullrestore complete, source6 peak369.73/384MiB budgetopen;75 current2cd/1a850 actualinstallsverified/first635detail;77 normal touch entry source correction notactualaccepted"
+  "updatedCheckpoint": "80 exact primitive original-water producer/host allocations87.99% reduction;81 newordinary242/9bac builtnotinstalled;75 actual2cd/1a850 normalcallers128/670 live;68 functional all16/244/cold/restore but14.27MiB budget stillopen"
 }
