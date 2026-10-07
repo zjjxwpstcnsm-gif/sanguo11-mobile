@@ -1,0 +1,13 @@
+{
+  "registeredReceipt": "LEGACY39_REGISTERED_TEST_BUILD176.json",
+  "sourceRevision": "198194b32cf450147fb8632fa6a86e8b673c6625",
+  "expectedMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "currentReadOnlyGuardPassed": true,
+  "unknownCohortRejectedBeforeDeviceAction": true,
+  "newMainMismatchRejectedBeforeDeviceAction": true,
+  "deviceActionsStarted": false,
+  "activeSource11NotInterrupted": true,
+  "scope": "Readonly guard probes; remaining15 installer rechecks inherited main and tracked app/test/core/API/runtime source before backup and again before installation. Loaded current Source11 owner unchanged. Not all ignored/untracked own-source asset audit or actual caller/ARM acceptance.",
+  "wholeGoalComplete": false,
+  "backupOnlyGuardRejectionUsesFullShaRestoreBeforeReleasingOwnLock": true
+}

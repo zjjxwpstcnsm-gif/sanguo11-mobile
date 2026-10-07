@@ -58,6 +58,32 @@ def accepted(session, source):
     return state, proof
 
 
+
+def frozen_caller_cohort(artifacts):
+    names=('FIRE_OVERRIDE_DEFAULT_BUILD90.json','PICKER_RELEASE_BUILD116.json',
+           'NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json',
+           'NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json',
+           'EMPTY_PRESENTATION_BUILD165.json','B_LEGACY39_COMBINED_TEST_BUILD168.json',
+           'LEGACY39_REGISTERED_TEST_BUILD176.json')
+    for name in names:
+        path=HELPER.with_name(name)
+        if not path.is_file():continue
+        build=json.loads(path.read_text())
+        if build.get('buildSuccessful') and {row['path']:row['sha256'] for row in build['apks']}==artifacts:
+            return name,build['sourceRevision']
+    raise ValueError('No registered complete frozen caller cohort; fresh audited receipt required')
+
+
+def guard_caller_source(revision, expected_main):
+    protected=pathlib.Path(json.loads(HELPER.with_name('INHERITANCE.json').read_text())['source'])
+    actual_main=subprocess.check_output(['git','-C',str(protected),'rev-parse','main'],text=True).strip()
+    if actual_main!=expected_main:
+        raise ValueError('New main requires complete inheritance before another source install')
+    changed=subprocess.check_output(['git','diff','--name-only',revision,'--','app/src','app/build.gradle','core','game-api','game-runtime'],cwd=ROOT,text=True).strip()
+    if changed:
+        raise ValueError('Source or tracked WIP changed; fresh complete caller APK cohort required: '+changed)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--previous-source11', type=pathlib.Path, required=True)
@@ -68,11 +94,15 @@ def main():
     previous = args.previous_source11.resolve()
     baseline, _ = accepted(previous, 11)
     artifacts = baseline['apks']
+    cohort_receipt,source_revision=frozen_caller_cohort(artifacts)
+    expected_main=json.loads(HELPER.with_name('INHERITANCE.json').read_text())['main']
+    guard_caller_source(source_revision,expected_main)
     game = next(pathlib.Path(p) for p in artifacts if pathlib.Path(p).name == 'app-debug.apk')
     test = next(pathlib.Path(p) for p in artifacts if pathlib.Path(p).name == 'app-debug-androidTest.apk')
     args.output.mkdir(parents=True, exist_ok=False)
     report = {'scope': 'Real menu/normal original identity roster-detail/current-year pixels/fullSaveRNGStateToken/save/newPID and every original file restoration for each source. Not fullscreen/allage/voice/originalPC timing/GPU/ARM or whole goal completion.',
               'device': 'emulator-5554', 'apks': artifacts,
+              'cohortReceipt':cohort_receipt,'sourceRevision':source_revision,'expectedMain':expected_main,
               'initialSource11Session': str(previous), 'completedSources': [11],
               'sessions': {'11': str(previous)}, 'completeAll16NormalCallers': False,
               'wholeGoalComplete': False, 'testOnlyUpdateFirst': args.test_only_update_first}
@@ -88,8 +118,17 @@ def main():
         save()
         print('Actual normal source '+str(source)+' starting, previous all-files restoration verified', flush=True)
         try:
+            guard_caller_source(source_revision,expected_main)
             subprocess.run([sys.executable, str(HELPER), 'reuse-backup',
                             '--output', str(target), '--previous', str(previous)], cwd=ROOT, check=True)
+            try:
+                guard_caller_source(source_revision,expected_main)
+            except BaseException:
+                # No installation began. Release this own verified backup lock
+                # through the same complete SHA restoration path, never clearing data.
+                subprocess.run([sys.executable,str(HELPER),'restore','--output',str(target)],cwd=ROOT,check=True)
+                report['backupOnlyRestoredAfterSourceGuardRejection']=str(target.resolve())
+                raise
             with (target/'driver.log').open('w') as log:
                 result = subprocess.run([sys.executable, str(HELPER), 'install-test',
                     '--output', str(target), '--apk', str(game), '--test-apk', str(test),

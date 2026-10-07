@@ -454,3 +454,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 200 当前176持续攻击normal Source0 faction29/native91/真出征/MOVE取消/明确城市攻击取消确认/多旬追击/中立57港夺取自动进驻/原army7/完整存读与呈现Save/RNG/Token纯通过，冷7197→22961/both3Dsubmit/auto2c00d6ad...通过，原9internal(rewrite4)/3797external(rewrite0)全部SHA恢复、video/native0/2原片finalindex5b59aedb...，真实compute/PSS准确见200。201widget只当前可解析实测范围，不借旧142或ARM声媒成绩。原15120/15152/15153已真正结束，normal7783进入Source11全人物新fullbackup；audio7789/heap7800只等3命令+全16 caller完整门。
 
 202 当前176全16来源人物普通入口矩阵已实际从Source11开始，fresh9/3797完整独立backup/每SHA核验后两APK整SHA/pmrunner verified；helper16260/video16277/native16278真正live，suite mediaAll16 begin11/end12。全670原人物名册+详情/原bitmap身份和当前年年龄性别形态连接、纯Save/RNG/Token及冷与全恢复尚待，旧112/116 caller分不迁移，年龄边界/原小图裁切/全屏/实际voice/ARM仍独立未知。当前3命令192197200均同176真正常/冷/全SHA闭合；Source11接受后其余15来源，再.995整曲和双堆串行。空间55GiB，没有删除用户资源。
+
+203 只改A其余15来源串行工具，识别确切已注册frozen配对176/source198，每source备份前和安装前再次核完整继承main ef413与tracked app/test/build/core/API/runtime源（含工作区WIP）。若备份后才发现更新，安装未开始，走原fullSHA restore释放自己的backup锁，不清数据；旧Source11 owner16260已加载流程不受改动。当前只读guard正常通过、未知cohort与main不匹配在设备动作前确实拒绝、syntax通过；不是新增PNG/未跟踪资产完整audit或人物正常/cold接受。当前Source11仍live，不能借旧112计数。
