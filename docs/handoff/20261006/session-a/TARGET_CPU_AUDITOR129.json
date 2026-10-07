@@ -1,0 +1,32 @@
+{
+  "syntaxPassed": true,
+  "actualLiveObserverGateRejected": "Observer still live; no frozen log claim",
+  "currentRawSamples": 95,
+  "currentRecognizedThreadRows": 446,
+  "lastParsedRows": [
+    {
+      "name": "HeapTaskDaemon",
+      "cpuPercent": 57.6,
+      "raw": "  657 u0_a146      24   4 5.0G 439M 124M R 57.6  22.0   2:12.68 HeapTaskDaemon  game.sanguo.mobile.dev"
+    },
+    {
+      "name": "FEngine::loop",
+      "cpuPercent": 26.9,
+      "raw": "  757 u0_a146      16  -4 5.0G 440M 124M S 26.9  22.0   7:03.12 FEngine::loop   game.sanguo.mobile.dev"
+    },
+    {
+      "name": "RenderThread",
+      "cpuPercent": 7.6,
+      "raw": "  669 u0_a146      10 -10 5.0G 439M 124M S  7.6  22.0   7:29.40 RenderThread    game.sanguo.mobile.dev"
+    },
+    {
+      "name": "FEngine::loop",
+      "cpuPercent": 0.0,
+      "raw": "  759 u0_a146      12  -8 5.0G 440M 124M S  0.0  22.0   0:12.56 FEngine::loop   game.sanguo.mobile.dev"
+    }
+  ],
+  "actualFinalAuditPassed": false,
+  "deviceActionsStarted": false,
+  "uniqueCauseProven": false,
+  "wholeGoalComplete": false
+}

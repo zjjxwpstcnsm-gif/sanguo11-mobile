@@ -327,7 +327,9 @@
     "docs/handoff/20261006/session-a/observe_target_cpu.py",
     "docs/handoff/20261006/session-a/TARGET_CPU_OBSERVER126.json",
     "docs/handoff/20261006/session-a/CURRENT_MENU_AUDIO_GATE127.json",
-    "docs/handoff/20261006/session-a/CURRENT_MENU_AUDIO_QUEUE128.json"
+    "docs/handoff/20261006/session-a/CURRENT_MENU_AUDIO_QUEUE128.json",
+    "docs/handoff/20261006/session-a/audit_target_cpu.py",
+    "docs/handoff/20261006/session-a/TARGET_CPU_AUDITOR129.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

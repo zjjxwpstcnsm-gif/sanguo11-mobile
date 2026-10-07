@@ -331,3 +331,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 127 整首菜单音频等待器支持确切124冻结两包；实际当前125未完成门已只读拒绝、没有音频capture或设备动作。要求全部16人物和三命令正常/cold/9+3797全SHA恢复及命令observer完整退出；不借116快速取消或旧44音频成绩。原0.995门槛保留，实际capture/路由-22唯一因果/地图BGM/人物voice/ARM仍待。
 
 128 整首音频实际等待器71209已启动，exact124两包/producer64866/正常队列125绑定，当前waiting且deviceActionsStarted=false。首个猜测runtime路径不存在的断言在Popen/log/output创建前失败；改用dependencies工具实际返回的Python路径，不隐藏失败或启动重复作业。只有全部当前正常命令/人物/cold/完整恢复后capture，.995原门槛不改；旧44不迁移。
+
+129 只读CPU日志冻结审计器已用当前真实top表解析strategy-turn/RenderThread/FEngine/HeapTaskDaemon并syntax核验；实际69319仍live，冻结门正确拒绝、未产final报告。只在observer结束与全部原文件恢复后冻结SHA，保留前后台相邻进度与所有不可读记录，不将异步占比/Turn52墙钟或各线程峰和当根因。现有五旬compute87–183秒/save0.25–0.58秒，仍不能宣告ARM/前台长流程性能通过。
