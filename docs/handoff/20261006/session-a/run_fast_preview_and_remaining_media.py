@@ -117,6 +117,39 @@ def main():
             report.update(waterFixActualNormalColdWorkflowCompleted=True, memoryBudgetClosed=False)
             save()
             diagnostic_previous = fixed
+        # The water producer is a production change. Upgrade to its separately
+        # built default and repeat the complete real source11 caller gate rather
+        # than borrowing the earlier2cd package's media results.
+        latest = json.loads(HELPER.with_name('WATER_DEFAULT_BUILD82.json').read_text())
+        latest_apks = {r['path']: r['sha256'] for r in latest['apks']}
+        if not latest['buildSuccessful'] or not all(sha(pathlib.Path(p)) == h for p, h in latest_apks.items()):
+            raise ValueError('Latest independent default water cohort changed')
+        if latest_apks != baseline['apks']:
+            latest_game = next(p for p in latest_apks if pathlib.Path(p).name == 'app-debug.apk')
+            latest_test = next(p for p in latest_apks if pathlib.Path(p).name == 'app-debug-androidTest.apk')
+            latest_source11 = args.output/'latest-default-water-source11'
+            report.update(activeStage='latest-default-water-source11',
+                          earlierSource11Cohort=baseline['apks'], latestDefaultCohort=latest_apks,
+                          latestDefaultSource11Session=str(latest_source11.resolve()))
+            save()
+            subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(latest_source11),
+                            '--previous', str(diagnostic_previous)], cwd=ROOT, check=True)
+            with (latest_source11/'driver.log').open('w') as log:
+                subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(latest_source11),
+                    '--apk', latest_game, '--test-apk', latest_test,
+                    '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'mediaAll16',
+                    '--begin', '11', '--end', '12', '--fresh-process-reopen'],
+                    cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+            baseline, _ = accepted(latest_source11, 11)
+            if baseline['apks'] != latest_apks:
+                raise ValueError('Latest source11 actual installed cohort differs')
+            previous = latest_source11
+            diagnostic_previous = latest_source11
+            game, fast_test = pathlib.Path(latest_game), pathlib.Path(latest_test)
+            different_cohort = False
+            report.update(latestDefaultSource11Accepted=True, finalMediaCohort=latest_apks,
+                          source11AcceptedSession=str(previous))
+            save()
         subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(fast),
                         '--previous', str(diagnostic_previous)], cwd=ROOT, check=True)
         with (fast/'driver.log').open('w') as log:
