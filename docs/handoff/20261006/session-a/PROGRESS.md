@@ -259,3 +259,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 后继旧ordinary68真正常0..6前缀诊断门控现自动在full normal/cold/原全部SHA恢复后用实际SDK hprof-conv及inspect_heap.py分析若已产生的high-heap；原/转换/分析/转换器SHA全部绑定，不装新包前还未发生。核明原test阈值首sample>340MiB触发一次GC dump，旧未扰动68首次超340位于sample173 zoom（非最大Source6 sample271），故转储触发不预标Source6或分配栈；未触发/工具未知保留无证据。live对象/直接owner组不作dominator/唯一泄漏根因，预算仍须新81全16未GC及90/ARM分开。
 
 94当前旧2cd/1a850 Source11完整normal25157通过670唯一人物/1340成对正常list-detail，原整bitmap每caller sameAs、当前原年份[187]及保存source/voiceType metadata，四字形native184/229/249/616分别当前身份156234/844857/598828/850922共8真实caller均等。真实菜单/手势/GlobalHome/方向/手动存读/真正Back确认退出重开，冷PID10204→8548且两边真正渲染提交，预期完整save SHA290d53...，9internal（rewrite4）/3797external（rewrite0）全逐SHA恢复。不是PC小形角色/圆角裁切/全屏/所有年龄/voice发言者/新90或ARM通过。75父87765严格accepted后自动转oldb5ec/c96普通0..6诊断，helper10868/native观察器10922已实际启动，当前新包90仍未安装，不另起并发安装/不接B WIP。
+
+清理A唯一TEST_MATRIX中的过期状态：65live/75仅first635或128/旧Source65export等已被现94完整670/cold/9+3797恢复、92完整11156、90新包未装和当前oldordinary诊断替换，保留所有旧包成绩scope，不移给新APK；增加87/88实际Android文字/禁用像素部分覆盖与未解析/富文本缺口。main ef413与B895完成HEAD复核未变。当前0..6诊断已完成Source0全8正常预览/菜单/地图/存读并正做Source1势力预览，未触发或未收尾的GC/堆/恢复不判通过。

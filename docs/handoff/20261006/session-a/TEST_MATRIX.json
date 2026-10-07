@@ -3,21 +3,21 @@
   "rows": [
     {
       "item": "complete-source",
-      "status": "CHECKPOINT COMPLETE SHA VERIFIED",
-      "evidence": "SOURCE_EXPORT_CHECKPOINT65:20e10f69 complete11104 files/903182768B, archive652842808B SHA52241589893fb384bda45ab16212b15256c2088e8401f6cca37e5d9b3ee97e7b every entry/liveSHA and original4/new2JNI exact; completedB895 only, no WIP; checkpoint only",
-      "next": "final source delta and serial integrated main guard"
+      "status": "LATEST92 COMPLETE SOURCE VERIFIED, MATCHES90 PRODUCTION",
+      "evidence": "SOURCE_EXPORT_CHECKPOINT92:62813f63 complete11156 files/904085816B/archive653032970B SHA67e26270b7efe8074235cfb61c16b9a7b23cc2e4819f4d7cc37421b4c1f12528; all file SHA and6JNI exact to90, app/core/API/build source no delta fromfd88; completedB895 only, no WIP; checkpoint only",
+      "next": "final accepted package source/tools/evidence and new complete main/B serial guard"
     },
     {
       "item": "palette16",
-      "status": "LATEST DEFAULT48 ALL16/EVERY244 NORMAL PREVIEW PASS",
-      "evidence": "16sources752slots/244actualenabled selected/map/summary; source7 reported韓玄/韓遂/陶謙 actualopaque/UI PNGs, no authority mutation",
-      "next": "deep16 command selected/disabled/span/amount/error/direction/completion and ARM"
+      "status": "OLD68 ALL16/244 NORMAL FORCE PREVIEW PASS; LATEST90 PENDING",
+      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68:16 sources/all244 enabled across47 slots each, source7/14 reported rulers actualopaque/native verified;ACTUAL_SOURCE7_LABEL_PIXELS76 measured partial map label contrast, not global/new90/ARM",
+      "next": "latest90 all16 normal maps and deep16 command selected/disabled/span/amount/error/direction/completion, ARM"
     },
     {
       "item": "terrain-oom",
-      "status": "ORDINARY41 MATRIX AND DEFAULT48 EVERYFORCE MATRIX PASS; LONG/ARM OPEN",
-      "evidence": "d760 ordinary384 all16 sampled350859048;376default512 every244 preview+all16 normal5059/cold81/restored,672samples Java472598704/536870912B headroom64272208;native333336856/PSS727616independent;GPU unknown",
-      "next": "latestordinary everyforce/fastpending cancellation/longcommands/ARM, retain actual26 stack and no sole-largeHeap claim"
+      "status": "OLD68 FUNCTIONAL ALL16 PASS BUT384MiB BUDGET OPEN; LIVE HIGH-HEAP DIAGNOSTIC",
+      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68:672 samples peak387688264/402653184B,14.2717MiB headroom, memoryBudgetClosed=false;SOURCE_WATER_ALLOCATION80 host allocation/output proof only;oldb5ec/c96 actual0..6 heapProfile diagnostic installed/live with worker observations, GC trigger>340MiB not unperturbed/source6-only/allocation-stack proof",
+      "next": "new81 actual untouched noHeapDump all16/all244/cold/restore/peak;new90 and native/GPU/ARM separately; original user354832 failure stack remains unknown"
     },
     {
       "item": "terrain-parity",
@@ -27,27 +27,27 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT4df5/7abb FULL COMBINATION INDEPENDENT BUILD/ACTUAL INSTALL SHA/pmRUNNER VERIFIED;65 LIVE",
-      "evidence": "COMBINED_BUILD65 plus actual65 session installed-verified; all6JNI/content gate; host63 semantic only; freshfull9/3797 backup, realfieldworks normal/cold/restore unfinished",
-      "next": "61 actual IME completion+stable layout/all670/normal/cold/fullrestore; no historical b819 result transfer"
+      "status": "LATEST90 INDEPENDENT DEFAULT BUILD VERIFIED, NOT INSTALLED",
+      "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90:fd88f79a game25a66e49/test9763ab32, actualmanifestlargeHeap=true,5636assets byteexactto84/6JNI/content gate;old2cd/1a85094 actualSource11 normal/cold/restored only",
+      "next": "actual90 complete backup/install whole SHA/normal/cold/restore, never borrow other APK scores"
     },
     {
       "item": "fire-state-ui",
-      "status": "LATEST b819/0a35 NORMAL/COLD53 PASS",
+      "status": "HISTORICAL53 BASIC NORMAL FIRE/COLD PASS;LATEST90 PENDING",
       "evidence": "Source14 original13/realglobalHome Activity-map-Filament focus clockfreeze/reducedmotion/LOW/EXTINGUISH/reignite/realexpiry/burningread/newPID; complete9/3797 and animator null restored",
-      "next": "120s foreground turn performance; chains/facilities/original fullframe/GPU/ARM open"
+      "next": "90 actual normal touch fire/expiry/HOME/LOW/fullsave/cold;chains/facility simultaneous states/original frame/GPU/ARM"
     },
     {
       "item": "pc-fire-controller",
       "status": "ORIGINAL13 INSTALLED39 NORMAL/COLD/PAUSE PASS",
-      "evidence": "source factory/stop/material/40000positions/32MiB worker; realHome/reducedmotion/low/extinguish/expiry/newPID39",
-      "next": "latest uploader/cause full fire; chains/facility/original framebuffer/ARM"
+      "evidence": "source factory/stop/material/40000positions/32MiB worker; realHome/reducedmotion/low/extinguish/expiry/newPID39;FIRE_OVERRIDE_ADMISSION89 unrelated paint no longer suppresses unmodified cells,176/16 explicit fixture only, cap128 and ownpaintheight unknown",
+      "next": "90 actual normal fire/native child/GC-free budget;chains/affectedland/manyfires/original framebuffer/ARM"
     },
     {
       "item": "identity16",
-      "status": "NEW2cd/1a850 SOURCE11 ACTUAL NORMAL PERSON LOOP LIVE;FIRST635 DETAIL REACHED",
-      "evidence": "75 independentbackup/installSHA/pmRunner/source11 newgame, first635 normaldetail PNG exists. Full670/cold/finalrestore notyetaccepted;cannotborrow61ff scores",
-      "next": "Complete670/trueBack/GlobalHome/cold/restore;strictall15 later;allage/forms/crop/color/fullscreen/voicecaller/ARM remain"
+      "status": "OLD2cd/1a850 SOURCE11 ALL670 NORMAL/COLD/RESTORE PASS; OTHER15 AND90 PENDING",
+      "evidence": "NORMAL_SOURCE11_ACCEPTANCE94:25157 normal checks,670 unique actors/1340 roster-detail pairs/current208year wholeoriginalbitmap source joins, latestfour gaiji8 callers;actualBack/HOME/orientation/save-read/cold10204→8548/rendered and9/3797 restored;ACTUAL_RAW_VIDEO_PREFIX93 original27 parts/38190frames with gaps",
+      "next": "latest90 ownSource11 and allremaining15 normalcallers;allage/smallformroles/crop/color/fullscreen/time/realvoice/ARM remain"
     },
     {
       "item": "dynamic-age",
@@ -57,9 +57,9 @@
     },
     {
       "item": "map-bgm-voice-event",
-      "status": "10720 VOICE SOURCE JOINS FIXED AND TYPE/PROFILE DOMAIN CORRECTED;REAL CALLERS STILL PENDING",
-      "evidence": "VOICE_IDENTITY_REFRESH71: original16/10720 source-record SHA/64 gaiji additions old10656 rowbytes preserved; field48 equalsactor+0x100 type;VOICE_DIRECTIVE_DOMAIN71 host1704 valid+1704 reject;VOICE_COMBINED_BUILD72 new2cd/d505 built/notinstalled",
-      "next": "Actual new72 normal-source callers metadata check; real committed scene/parent/speaker/profile/choice facts absent, no guessing; mapBGM/58/ordinaryevent sound/ARM remain"
+      "status": "10720 SOURCE VOICE JOINS/TYPE DOMAIN FIXED; REAL SPEECH AND MAP BGM OPEN",
+      "evidence": "VOICE_IDENTITY_REFRESH71 original16/10720 rows with64 gaiji extension preservingold10656;VOICE_DIRECTIVE_DOMAIN71 typed fixture1704valid/1704reject;NORMAL_SOURCE11_ACCEPTANCE94 actualold2cd metadata callers only, not actualaudio/speaker/profile selection",
+      "next": "new90 same-source joins;committed actualscene/parent/speaker/profile/choice missing/no guesses;mapBGM/58/ordinaryevent sounds/ARM"
     },
     {
       "item": "music-continuity",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "68 FULL NORMAL/COLD AND EVERY ORIGINAL9/3797 SHA RESTORED;75 FRESH ACTUAL2cd/1a850 INSTALLED",
-      "evidence": "ORDINARY384_ALL_FACTIONS_ACCEPTANCE68 actual5152 normal/244previews/newPID29516→6029/restored;75 whole newbackup/currenteverySHA and installeddefault2cd/test1a850 verified",
-      "next": "75 actualall670/normalBack/HOME/cold/restore before separateordinary0..6 heapdiagnostic and exactsamecohortfast/allremaining"
+      "status": "OLD68 AND94 NORMAL/COLD ORIGINAL9/3797 FULL SHA RESTORED; DIAGNOSTIC ACTIVE",
+      "evidence": "94 actual670/1340/25157, trueBack/HOME/cold10204→8548 and9internal/3797external whole SHA exact;oldb5ec/c96 diagnostic reused independently verified whole backup, installedverified/worker cohort recorded;currentrestoration not finished",
+      "next": "each next actual diagnostic/81/90 normal/cold/fulloriginalSHA restoration; never data clear"
     },
     {
       "item": "arm",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "75 OLD DEFAULT2cd LIVE;81 NEW WATER ORDINARY FIX BUILT NOT INSTALLED",
-      "evidence": "SOURCE_WATER_ALLOCATION80 exact16 output/allrawbits/index/attributes/SaveRng;WATER_NORMAL384_BUILD81 242/9bac independentbuild/5636assets/6JNI;no actualnewpackageacceptance",
-      "next": "75 full670/restore;oldprefixdiagnostic then actualnew81 all16/244/noGC/cold/restore;newwaterdefault/fullmedia/fire/HUD/normalcommands/ARM/finalserial"
+      "status": "90 LATESTDEFAULT BUILT NOT INSTALLED;94 OLD SOURCE11 ACCEPTED;OLD PREFIX DIAGNOSTIC LIVE",
+      "evidence": "90 fd88 game25a66e49/test9763ab32 combineswater80/facility83/localpaintfire89/voice71 with6JNI/5636assets;old2cd94 accepted onlyitsSource11;81 ordinary242aaff2/9bac6916 builtnotinstalled",
+      "next": "complete current diagnostic/cold/restore, new81 full16;then90 fullSource11/fast16/normalmilitary-fire-attack/15othercallers;finalB completeobject serial/newmain/ARM/fresh final package"
     },
     {
       "item": "search-normal",
@@ -96,8 +96,14 @@
       "status": "LATEST52 REAL INTERMEDIATE/NORMAL/COLD PASS",
       "evidence": "DIRECT_HUD_ACCEPTANCE52; two actual phase cancellation roots, observed normal2/4/6/8/9/10/11→12 and cold2/4/7/9/10/11→12, once-only/fullSaveRNGToken pure/restored",
       "next": "latest fire/pause/silentcancel/zero-net and source SFX broader verification"
+    },
+    {
+      "item": "actual-widget-readability",
+      "status": "OLD68 RECORDED WIDGETS/PARTIAL PIXELS VERIFIED;GLOBAL/LATEST90 OPEN",
+      "evidence": "ACTUAL_WIDGET_READABILITY87:304 captures/4848rows/530disabled/943 resolvedsolid min8.8497;3905 unresolved/no richspans observed. ACTUAL_WIDGET_PIXELS88 disabled4.71564/button11.3351 actual3 regions only",
+      "next": "90 own normal captures with audit and actual pixels;deep B pages/richtext/money/error/selected/disabled/completion/ARM"
     }
   ],
-  "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "80 exact primitive original-water producer/host allocations87.99% reduction;81 newordinary242/9bac builtnotinstalled;75 actual2cd/1a850 normalcallers128/670 live;68 functional all16/244/cold/restore but14.27MiB budget stillopen"
+  "updatedAfter": "Source11 actual94 whole normal/cold/restoration and old0..6 diagnostic installed,2026-10-07",
+  "updatedCheckpoint": "94 old2cd/1a850670/1340/25157 cold/fullrestore passed;90 latest25a66e49/9763ab32 builtnotinstalled;81 waterordinary242/9bac pending;oldprefixdiagnostic actuallive;92 complete11156 source/6JNI matched90;wholeGoal false"
 }
