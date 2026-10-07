@@ -1,3 +1,40 @@
+# 当前交付检查点（2026-10-07，目标未完成）
+
+本段是当前候选、实际验收范围和未完成项的入口；下方旧记录是各自历史包的成绩，不代表当前候选通过。独立分支 `codex/map-ui-media-repair`，完整继承共同基点 `0e7b9bc2df90249a50851baeda58c7d183ea6059`，main仍为 `ef413be3653820dd6449ba7f02aa60bed5b26ef5`。精确工作目录 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile`。原用户工作目录与继承源未改；B完成c6f966ce/89534120已按14路径逐SHA继承，B其它WIP排除。没有合main/推送。
+
+## 当前可安装APK与源码
+
+| 产物 | 确切路径（工作目录内） | SHA256 | 实际范围 |
+|---|---|---|---|
+| 默认largeHeap组合游戏 | `out/session-a/apk-565195ca-military-binder-combination/app-debug.apk` | `4df5e29c724d04a2c39fea31d9e711c32dcf179ccacd490b6b5bbb589f321f17` | 已实装5554，实际Java512MiB；65正常军建/补修/保存读取通过，66完整人物轮失败；不是最终完整接受包 |
+| 普通堆组合游戏 | `out/session-a/apk-2312ac57-normal384-combination68/app-debug.apk` | `b5ec2548eacda2a9272090490e83ac97afb311a4297333c5eb091c6872c38e47` | 68已实装5554，实际Java384MiB；16来源全可选势力/缩放/真正Back/HOME/存读/冷/恢复仍运行 |
+| 普通堆68测试 | `out/session-a/apk-2312ac57-normal384-combination68/app-debug-androidTest.apk` | `c96bc8abb5168c5e64fe147ffa763263a9edde16fac8fad84a2157c8759cc3f3` | 实际pm注册和已装整包SHA一致；不是游戏发行内容 |
+| 修正人物viewport69测试 | `out/session-a/apk-ea486543-media-viewport-test69/app-debug-androidTest.apk` | `2711dd0cc98c3e60420978f7956e2cb27e68cf326bdf4e74a27ec6d4a5bb0ca0` | 独立构建，尚未安装；须与上述默认4df5游戏新鲜备份安装复验 |
+| 完整源码检查点27c4bc71 | `out/session-a/source-checkpoint-27c4-host-cold-cohort66/sanguo11-mobile-source.tar.gz` | `4f08f7ba1564121bb7afc71733cbb13986f1d6c3359dffdcd8f44e8712f1cbe6` | 11107文件/903203429源字节，每个SHA与6JNI已核；包括全部继承固定/未跟踪输入，排除Git/独立缓存/设备备份；后继69测试须下一完整导出，不称最新最终源码 |
+
+以上为universal开发签名APK，含arm64-v8a与x86_64。ARM没有连接设备、没有安装/长流程/原用户OOM堆与分配栈证据，不能由包含ABI推断ARM验收。桌面81GiB余量已实际核查；没有删除用户资源。
+
+## 当前证据与结果
+
+- `MILITARY_REPAIR_INTEGRATION65.json`：14完成B路径逐SHA/2生产路径准入修复、5713资源与6JNI、Bridge冻结守卫；未合B WIP或发生路径冲突。`COMBINED_BUILD65.json`与`NORMAL384_COMBINED_BUILD68.json`分别记录真实独立构建，不沿用旧包SHA。
+- `MILITARY_NORMAL65_RESULT.json`：真实Source14新局/部署携金/正常补金/土垒/营垒/停止与整旬不增长/无重复扣金补修/后续三整旬完工/完整存读与重建通过。原host将冷首帧当进程PID条件而整体失败，保留原passed=false；独立AM真实30366→13854，cold自动/手动完整Save-RNG断言通过，但冷首帧未接受，不等于整体cold渲染通过。
+- `MILITARY_MEMORY_VIDEO65.json`：115个Java采样最高233747864/536870912B；native独立最高177363600B、主PSS独立最高549748KiB、484子进程采样同次PSS最高48597KiB。互不相加，GPU未知。7原始MP4/13437实际输入帧全部解码、PTS/每片设备主机SHA通过；不称原PC像素/连续片间无缺口/无录屏干扰性能/ARM。
+- `TURN_STACK_OBSERVATION65.json`：超过120秒正常旬时真实ART策略线程先后进入AI routes/fireAt与source身份格式化链；实际runqueue等待明显高于CPU。模拟器QEMU GL同步、录屏争用只是取证候选；三次SIGQUIT影响时序，缺控制对照，不能宣称唯一性能根因或改B规则。
+- `NORMAL_CALLER_FAILURE66.json`：全670真实列表membership通过，首人物635劉備列表原完整位图/来源/年份通过，但第二次viewport瞬时不可见失败，0完整caller pair/无cold；全9内部/3797外部原文件每SHA恢复。真实IME/布局变化观察不足以证明生产根因。69测试保留检查、改为有期限等待与再次正常搜索稳定；未安装，不借61旧包670成绩。
+- `PRESERVATION_CHECKPOINT69.json`：原继承10714路径、原旧用户4301含缺失路径、PC EXE、原4JNI、Bridge字节全等；main未变。每次设备安装由 `device_session.py` 核完整独立备份、已安装整包SHA/runner、finally全树恢复SHA，不清数据。
+
+## 接下来的真实验收
+
+等待当前68真实全16/全可选势力、正常缩放/取消重试、Home/方向/存读/真正Back退出、新PID与原全树SHA恢复；缺任项保留失败，不把恢复页或无OOM当通过。之后默认4df5+独立69测试完整Source11全部670正常caller、同token/Save/RNG、真正退出与cold；严格成功才启动同精确组合fastPreview16实际未完成准备取消及其余15来源全caller。旧67因66失败已在门控停止，无下一设备动作。
+
+当前默认包还必须重新完成火/HUD/建设/移动/多旬/退出重开全流程和新鲜媒体验收。原格子火13资源/控制器与基本正常生命周期已有历史原包证据；全连锁、设施各状态原完整演出、MOD、高度override、多火格上限和中间演出帧token仍未闭合。原地图BGM、真实人物voice、58及普通事件声缺实际已提交原caller/parent/speaker/profile/scene事实，不能从名字/ordinal/成功或RNG猜测。保留33技巧/1取消/49与78以及九种明确工程合成标识。原音乐2238旧44批整首0.995门槛通过，但不能借给当前包/地图BGM/ARM，旧−22唯一原因仍未知。
+
+最终还须接B其它已完成且冻结的规则增量、继承任何新完成main后由最终串行集成重新构建安装组合包、全要求矩阵与ARM长流程。全目标尚未完成。逐批计划/增量/验收/未知均在本session，公共台账未并写。
+
+---
+
+# 历史交付与验收记录（只适用于各自精确包）
+
 # 最新61准备：真实按住期间布局位移404px，原文件已恢复
 
 60 ff2832/8fb5全Source11尝试完成4人后失败。目标附着/焦点真实有效，但前一人物同次按住的ListView触点Y从68到−336，布局移动404px，下一諸葛亮289指针没有到达列表。原9/3797全部SHA已恢复。61仅修改A测试：通过已存在的正常键盘搜索动作收起IME/失焦，直接观察IME窗口和1000ms稳定viewport/root位置后真实落指；保持完整670和正常存读/冷流程，不改产品或规则。键盘具体因果和全部caller仍待本轮直接证据。
