@@ -1,0 +1,22 @@
+{
+  "scope": "Actual own queued host process waiting for specific live producer10828; no premature device actions. Normal prerequisite rejection and original2238/current90/reference SHA preflight passed. Future capture/PCM/restore unaccepted.",
+  "hostPid": 44001,
+  "hostCommand": "44001 00:15 Ss   /Users/paopao/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 docs/handoff/20261006/session-a/continue_latest_menu_audio.py --producer-pid 10828 --normal-batch out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers --output out/session-a/latest-menu-audio108",
+  "queuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/latest-menu-audio108/queue.json",
+  "queueInitialSha256": "955a24a2f8e769fdb764342e9598cbb68a5fcc24678091d712dcdafe82620b54",
+  "producerPid": 10828,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/run_fast_preview_and_remaining_media.py --previous-source11 /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-voice74 --cohort-receipt /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/VOICE_TEST_REFRESH74.json --output out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "wholeTrackGate": 0.995,
+  "dependencyPython": "/Users/paopao/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "numpyVersion": "2.3.5",
+  "incompleteNormalBatchGateRejected": true,
+  "originalResourceAndCurrentApkReferenceReadOnlyShaPassed": true,
+  "deviceActionsStarted": false,
+  "menuColdProcessAcceptancePlanned": false,
+  "mapBgmVoiceOrArmAccepted": false,
+  "wholeGoalComplete": false
+}
