@@ -207,3 +207,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 收到B已观察施工提示请求仅只读，不发送无授权消息、不接B54单挑/物品WIP：A MainActivity提示仅在同完整SceneFacts/legacy/session StateToken builderUnitId匹配时显示正在施工/补修；只有acted时只写本旬已行动，不自动解释攻击或承诺下旬行军，不改规则/RNG。生产文案改动要求新游戏APK独立构建/实装及新全流程，不能借ff2832的670或旧41/48成绩。
 
 为61单帧菜单/地图重叠观察补下一APK只读诊断：截图后记录实际Main ui.page、panel请求/tag/alpha/尺寸、MapHost和native panelRight/Bottom及camera尺寸；明确为相邻时刻主Activity事实，预览dialog不混为同一像素帧。结合新触控导航目标状态断言定位是否错页或裁切时序，不凭截图猜改生产渲染或修成永久关闭3D。所有纯Save/RNG/StateToken检查仍保留。
+
+B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SHA全部精确，14唯一增量路径当前逐SHA等完成Git对象，无冲突，不读/复制WIP；2生产只Fieldworks/FieldworkUi统一补修可见、复核与执行。对3482完整源码清单所有app assets/res/core资源/6JNI重验SHA，冻结Bridge6ada精确。已停止仅A缓存的64旧B组合构建（70386 exit1），不用其产物；新65组合须独立构建实装并正常军建/媒体/内存/真实退出确认/冷/全文件恢复，不借61或B883d实装成绩。

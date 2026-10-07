@@ -1,0 +1,105 @@
+{
+  "scope": "Exact completed B military repair plus successor docs serial import; no B workingtree/WIP copying. Whole new combined APK must independently build/install/normal/cold/restore.",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "sourceParent": "aa9bdf6de39b521548b436aeedf81118f82e7ad0",
+  "sourceProductionCommit": "c6f966ce378619b5ebfdb1bb3725c6f4c494e4e4",
+  "sourceDocumentCommit": "89534120e46e488136db0e661270757d9c4a4c50",
+  "importProductionCommit": "07b00d1d",
+  "importDocumentCommit": "95c5a187",
+  "uniqueCompletedPaths": 14,
+  "rows": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBFieldworksInstrumentation.java",
+      "beforeSha256": "47725ed85e3b4a16b36c9061909136898a0ac36275075aa56e86f8afc69c8bb2",
+      "afterSha256": "276987af6d7f4afffafd5781537747559260cdefc5370ad9f5779e2378064e25",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "beforeSha256": "7c49b5dfaea9367eb5faa11e97b4b92def22efa952bc513e4c77183b33b95673",
+      "afterSha256": "bc94c50bfec10b1dca4ded5db30b86b8238967767d3dba0f8dd8e83512b2d0d8",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Fieldworks.java",
+      "beforeSha256": "27afb6d8a0efe50012e21bdadbcfafdf74af6a17183b2f1003b333a68378a93a",
+      "afterSha256": "00b8d157beaa6e9c0248138cf91b79dc460b64f9b363688bad959aa2ccef784c",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SessionBFieldworksTest.java",
+      "beforeSha256": "c2b5d9b94cefa9d866698f8e6e26122720a7b7647c75366a1535b4856fcf6b8c",
+      "afterSha256": "6827039684695a9fd0b5b3e96066f44da66b148da3ed1667dba45d04c7e70a72",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/A_MILITARY_ACTION_HINT_REQUEST.md",
+      "beforeSha256": null,
+      "afterSha256": "127f3352e4f483e9322e392cc8dbe35f1210c0f211fe5a2a2b4fcc6ede6a31e9",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMMAND_AUDIT.md",
+      "beforeSha256": "fec30fd261a90e29b57155acb37facbaf993171b2fe26274529dffb056e06b8a",
+      "afterSha256": "2ecd9c891abf11aec1874229ba3e09fed96fa63094db05f14f3d9ddd7bf19611",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/MILITARY_REPAIR_54.json",
+      "beforeSha256": null,
+      "afterSha256": "bf1da9b66f33a3824ad66169c51a2998d676edfcf144f452bcb52d20455a9390",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/MILITARY_REPAIR_54.md",
+      "beforeSha256": null,
+      "afterSha256": "1da4fc7826f2d2abb5a0660e5c8f5c426c3346b7e92cd17d25a12d1c76686606",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/OWNERSHIP.md",
+      "beforeSha256": "811d2f9819bf64e5da5e91162de2bafc4209dd9e9a54a49c34c12b1639d28d0e",
+      "afterSha256": "452923369188cafeec8e66f24d1597cbaa1d5a67f3c6c9206c409fbd278c0cdf",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/completed-repair.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "29df3f6e95a35e02a51819797fe955ee5e37fc002573a3524e46a6402ad7ae56",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "tools/content/session_b_archive_completed_repair.py",
+      "beforeSha256": null,
+      "afterSha256": "fc8576637a1d6c27eb981d4e543e99863fb37944410c1209d7350cc85c1bdc26",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "tools/content/session_b_freeze_completed_repair.py",
+      "beforeSha256": null,
+      "afterSha256": "647d3520c18f46d814472622f237202a19726790334274fcfc22b148e7255aed",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "tools/content/session_b_stage_completed_repair.py",
+      "beforeSha256": null,
+      "afterSha256": "8ca0ea40dbcf1fd77d67dedef0cc4f457e232a98e91e59cde9d1d909f9a5c573",
+      "exactCompletedBObject": true
+    },
+    {
+      "path": "tools/content/session_b_verify_fieldworks_ui.py",
+      "beforeSha256": "8ddf391d724a1535300136f351c07c8176d6829c36ac88b2f688486d6624ea92",
+      "afterSha256": "e90f89aba44eea6d7fa373110ce65e541b93c0fa203a663f8279512d9385e515",
+      "exactCompletedBObject": true
+    }
+  ],
+  "conflicts": [],
+  "BWorkingTreeReadOrCopied": false,
+  "allInheritedAssetsResourcesAnd6JniRevalidated": 5713,
+  "resourceReferenceCheckpoint": "3482eb048d034babab80b1d45b382f089b5b251d",
+  "resourceMismatches": [],
+  "frozenAndroidGameBridgeSha256": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08",
+  "newCombinedApkAccepted": false,
+  "fullSource11PriorGameAcceptanceBorrowed": false,
+  "wholeGoalComplete": false
+}
