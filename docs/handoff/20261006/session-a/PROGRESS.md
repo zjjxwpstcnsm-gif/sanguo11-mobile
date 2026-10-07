@@ -148,3 +148,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 60源99aabc1c只改A实际落指目标的可见/附着与screen坐标诊断，独立test构建和完整新鲜备份已启动；游戏仍5a72/ff2832，不改规则/World，不伪造snapshot。59原9/3797已全部恢复，旧7786/34658观察器确认终端结束。
 
 60 target/source99aabc1c独立测试构建成功，完整备份9/3797每SHA核实完成后实际install-test启动。driver及native/video句柄需由本轮工具实际结果续读；仍同game5a72/ff2832，只更新test，不借先前b819或ff2832部分成绩。完整670/其余15来源/正常Cold/最后全文件恢复尚待，原派生推断不当实际根因。
+
+60确切新testSHA8fb5e13990984e280124946aa4c5abc5ec39f739d451c1e5764d45af4cf68525/2606855B，实际输入目标诊断driver72146/native40742/video9552确认live，当前阶段以session.json为准；续读这3具体句柄，不重启或覆盖下一包。全部原备份与5554 A锁保留，normal/cold/最终SHA恢复未完成不判通过。
