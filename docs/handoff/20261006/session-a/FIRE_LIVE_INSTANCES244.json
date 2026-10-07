@@ -1,0 +1,2747 @@
+{
+  "sourceBeforeAfterExact": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+  },
+  "cases": [
+    {
+      "cells": 32,
+      "exit": 0,
+      "factory": [
+        {
+          "x": "150",
+          "y": "80",
+          "handle": "1050f5e0",
+          "generation": "1050f5e0"
+        },
+        {
+          "x": "150",
+          "y": "81",
+          "handle": "10113020",
+          "generation": "10113020"
+        },
+        {
+          "x": "150",
+          "y": "82",
+          "handle": "101131e0",
+          "generation": "101131e0"
+        },
+        {
+          "x": "150",
+          "y": "83",
+          "handle": "10113420",
+          "generation": "10113420"
+        },
+        {
+          "x": "150",
+          "y": "84",
+          "handle": "101135e0",
+          "generation": "101135e0"
+        },
+        {
+          "x": "150",
+          "y": "85",
+          "handle": "10113820",
+          "generation": "10113820"
+        },
+        {
+          "x": "150",
+          "y": "86",
+          "handle": "101139e0",
+          "generation": "101139e0"
+        },
+        {
+          "x": "150",
+          "y": "87",
+          "handle": "10113c20",
+          "generation": "10113c20"
+        },
+        {
+          "x": "150",
+          "y": "88",
+          "handle": "10113de0",
+          "generation": "10113de0"
+        },
+        {
+          "x": "150",
+          "y": "89",
+          "handle": "10114020",
+          "generation": "10114020"
+        },
+        {
+          "x": "150",
+          "y": "90",
+          "handle": "101141e0",
+          "generation": "101141e0"
+        },
+        {
+          "x": "150",
+          "y": "91",
+          "handle": "10114420",
+          "generation": "10114420"
+        },
+        {
+          "x": "150",
+          "y": "92",
+          "handle": "101145e0",
+          "generation": "101145e0"
+        },
+        {
+          "x": "150",
+          "y": "93",
+          "handle": "10114820",
+          "generation": "10114820"
+        },
+        {
+          "x": "150",
+          "y": "94",
+          "handle": "101149e0",
+          "generation": "101149e0"
+        },
+        {
+          "x": "150",
+          "y": "95",
+          "handle": "10114c20",
+          "generation": "10114c20"
+        },
+        {
+          "x": "151",
+          "y": "80",
+          "handle": "10114de0",
+          "generation": "10114de0"
+        },
+        {
+          "x": "151",
+          "y": "81",
+          "handle": "10115020",
+          "generation": "10115020"
+        },
+        {
+          "x": "151",
+          "y": "82",
+          "handle": "101151e0",
+          "generation": "101151e0"
+        },
+        {
+          "x": "151",
+          "y": "83",
+          "handle": "10115420",
+          "generation": "10115420"
+        },
+        {
+          "x": "151",
+          "y": "84",
+          "handle": "101155e0",
+          "generation": "101155e0"
+        },
+        {
+          "x": "151",
+          "y": "85",
+          "handle": "10115820",
+          "generation": "10115820"
+        },
+        {
+          "x": "151",
+          "y": "86",
+          "handle": "101159e0",
+          "generation": "101159e0"
+        },
+        {
+          "x": "151",
+          "y": "87",
+          "handle": "10115c20",
+          "generation": "10115c20"
+        },
+        {
+          "x": "151",
+          "y": "88",
+          "handle": "10115de0",
+          "generation": "10115de0"
+        },
+        {
+          "x": "151",
+          "y": "89",
+          "handle": "10116020",
+          "generation": "10116020"
+        },
+        {
+          "x": "151",
+          "y": "90",
+          "handle": "101161e0",
+          "generation": "101161e0"
+        },
+        {
+          "x": "151",
+          "y": "91",
+          "handle": "10116420",
+          "generation": "10116420"
+        },
+        {
+          "x": "151",
+          "y": "92",
+          "handle": "101165e0",
+          "generation": "101165e0"
+        },
+        {
+          "x": "151",
+          "y": "93",
+          "handle": "10116820",
+          "generation": "10116820"
+        },
+        {
+          "x": "151",
+          "y": "94",
+          "handle": "101169e0",
+          "generation": "101169e0"
+        },
+        {
+          "x": "151",
+          "y": "95",
+          "handle": "10116c20",
+          "generation": "10116c20"
+        }
+      ],
+      "calls": [
+        {
+          "emitter": "1050ac00",
+          "instance": "1050f5e0",
+          "return": "4609d4",
+          "bytesBefore": "317310"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101131e0",
+          "return": "4609d4",
+          "bytesBefore": "319986"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113020",
+          "return": "4609d4",
+          "bytesBefore": "322617"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101135e0",
+          "return": "4609d4",
+          "bytesBefore": "325293"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113420",
+          "return": "4609d4",
+          "bytesBefore": "327924"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101139e0",
+          "return": "4609d4",
+          "bytesBefore": "330600"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113820",
+          "return": "4609d4",
+          "bytesBefore": "333231"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113de0",
+          "return": "4609d4",
+          "bytesBefore": "335907"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113c20",
+          "return": "4609d4",
+          "bytesBefore": "338538"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101141e0",
+          "return": "4609d4",
+          "bytesBefore": "341561"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114020",
+          "return": "4609d4",
+          "bytesBefore": "344192"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101145e0",
+          "return": "4609d4",
+          "bytesBefore": "347215"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114420",
+          "return": "4609d4",
+          "bytesBefore": "350193"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101149e0",
+          "return": "4609d4",
+          "bytesBefore": "353216"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114820",
+          "return": "4609d4",
+          "bytesBefore": "355847"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114de0",
+          "return": "4609d4",
+          "bytesBefore": "358523"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114c20",
+          "return": "4609d4",
+          "bytesBefore": "361154"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101151e0",
+          "return": "4609d4",
+          "bytesBefore": "363830"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115020",
+          "return": "4609d4",
+          "bytesBefore": "366461"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101155e0",
+          "return": "4609d4",
+          "bytesBefore": "369137"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115420",
+          "return": "4609d4",
+          "bytesBefore": "371768"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101159e0",
+          "return": "4609d4",
+          "bytesBefore": "374444"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115820",
+          "return": "4609d4",
+          "bytesBefore": "377075"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115de0",
+          "return": "4609d4",
+          "bytesBefore": "379751"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115c20",
+          "return": "4609d4",
+          "bytesBefore": "382382"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101161e0",
+          "return": "4609d4",
+          "bytesBefore": "385058"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116020",
+          "return": "4609d4",
+          "bytesBefore": "387689"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101165e0",
+          "return": "4609d4",
+          "bytesBefore": "390365"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116420",
+          "return": "4609d4",
+          "bytesBefore": "393343"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101169e0",
+          "return": "4609d4",
+          "bytesBefore": "396366"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116820",
+          "return": "4609d4",
+          "bytesBefore": "398997"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116c20",
+          "return": "4609d4",
+          "bytesBefore": "401673"
+        }
+      ],
+      "factoryHandleEqualObservedInstanceCount": 32,
+      "stderrSha256": "54c37f6d93abe1db1b1c6146108bce3852b45157d9b610b8c6b8d17e0431b28a",
+      "stdoutSha256": "41be5d05270d4efe3452ad9b4c80f947c7ab0832d426934d37b1ee7e46efb237"
+    },
+    {
+      "cells": 64,
+      "exit": 2,
+      "factory": [
+        {
+          "x": "150",
+          "y": "80",
+          "handle": "1050f5e0",
+          "generation": "1050f5e0"
+        },
+        {
+          "x": "150",
+          "y": "81",
+          "handle": "10113020",
+          "generation": "10113020"
+        },
+        {
+          "x": "150",
+          "y": "82",
+          "handle": "101131e0",
+          "generation": "101131e0"
+        },
+        {
+          "x": "150",
+          "y": "83",
+          "handle": "10113420",
+          "generation": "10113420"
+        },
+        {
+          "x": "150",
+          "y": "84",
+          "handle": "101135e0",
+          "generation": "101135e0"
+        },
+        {
+          "x": "150",
+          "y": "85",
+          "handle": "10113820",
+          "generation": "10113820"
+        },
+        {
+          "x": "150",
+          "y": "86",
+          "handle": "101139e0",
+          "generation": "101139e0"
+        },
+        {
+          "x": "150",
+          "y": "87",
+          "handle": "10113c20",
+          "generation": "10113c20"
+        },
+        {
+          "x": "150",
+          "y": "88",
+          "handle": "10113de0",
+          "generation": "10113de0"
+        },
+        {
+          "x": "150",
+          "y": "89",
+          "handle": "10114020",
+          "generation": "10114020"
+        },
+        {
+          "x": "150",
+          "y": "90",
+          "handle": "101141e0",
+          "generation": "101141e0"
+        },
+        {
+          "x": "150",
+          "y": "91",
+          "handle": "10114420",
+          "generation": "10114420"
+        },
+        {
+          "x": "150",
+          "y": "92",
+          "handle": "101145e0",
+          "generation": "101145e0"
+        },
+        {
+          "x": "150",
+          "y": "93",
+          "handle": "10114820",
+          "generation": "10114820"
+        },
+        {
+          "x": "150",
+          "y": "94",
+          "handle": "101149e0",
+          "generation": "101149e0"
+        },
+        {
+          "x": "150",
+          "y": "95",
+          "handle": "10114c20",
+          "generation": "10114c20"
+        },
+        {
+          "x": "151",
+          "y": "80",
+          "handle": "10114de0",
+          "generation": "10114de0"
+        },
+        {
+          "x": "151",
+          "y": "81",
+          "handle": "10115020",
+          "generation": "10115020"
+        },
+        {
+          "x": "151",
+          "y": "82",
+          "handle": "101151e0",
+          "generation": "101151e0"
+        },
+        {
+          "x": "151",
+          "y": "83",
+          "handle": "10115420",
+          "generation": "10115420"
+        },
+        {
+          "x": "151",
+          "y": "84",
+          "handle": "101155e0",
+          "generation": "101155e0"
+        },
+        {
+          "x": "151",
+          "y": "85",
+          "handle": "10115820",
+          "generation": "10115820"
+        },
+        {
+          "x": "151",
+          "y": "86",
+          "handle": "101159e0",
+          "generation": "101159e0"
+        },
+        {
+          "x": "151",
+          "y": "87",
+          "handle": "10115c20",
+          "generation": "10115c20"
+        },
+        {
+          "x": "151",
+          "y": "88",
+          "handle": "10115de0",
+          "generation": "10115de0"
+        },
+        {
+          "x": "151",
+          "y": "89",
+          "handle": "10116020",
+          "generation": "10116020"
+        },
+        {
+          "x": "151",
+          "y": "90",
+          "handle": "101161e0",
+          "generation": "101161e0"
+        },
+        {
+          "x": "151",
+          "y": "91",
+          "handle": "10116420",
+          "generation": "10116420"
+        },
+        {
+          "x": "151",
+          "y": "92",
+          "handle": "101165e0",
+          "generation": "101165e0"
+        },
+        {
+          "x": "151",
+          "y": "93",
+          "handle": "10116820",
+          "generation": "10116820"
+        },
+        {
+          "x": "151",
+          "y": "94",
+          "handle": "101169e0",
+          "generation": "101169e0"
+        },
+        {
+          "x": "151",
+          "y": "95",
+          "handle": "10116c20",
+          "generation": "10116c20"
+        },
+        {
+          "x": "152",
+          "y": "80",
+          "handle": "10116de0",
+          "generation": "10116de0"
+        },
+        {
+          "x": "152",
+          "y": "81",
+          "handle": "10117020",
+          "generation": "10117020"
+        },
+        {
+          "x": "152",
+          "y": "82",
+          "handle": "101171e0",
+          "generation": "101171e0"
+        },
+        {
+          "x": "152",
+          "y": "83",
+          "handle": "10117420",
+          "generation": "10117420"
+        },
+        {
+          "x": "152",
+          "y": "84",
+          "handle": "101175e0",
+          "generation": "101175e0"
+        },
+        {
+          "x": "152",
+          "y": "85",
+          "handle": "10117820",
+          "generation": "10117820"
+        },
+        {
+          "x": "152",
+          "y": "86",
+          "handle": "101179e0",
+          "generation": "101179e0"
+        },
+        {
+          "x": "152",
+          "y": "87",
+          "handle": "10117c20",
+          "generation": "10117c20"
+        },
+        {
+          "x": "152",
+          "y": "88",
+          "handle": "10117de0",
+          "generation": "10117de0"
+        },
+        {
+          "x": "152",
+          "y": "89",
+          "handle": "10118020",
+          "generation": "10118020"
+        },
+        {
+          "x": "152",
+          "y": "90",
+          "handle": "101181e0",
+          "generation": "101181e0"
+        },
+        {
+          "x": "152",
+          "y": "91",
+          "handle": "10118420",
+          "generation": "10118420"
+        },
+        {
+          "x": "152",
+          "y": "92",
+          "handle": "101185e0",
+          "generation": "101185e0"
+        },
+        {
+          "x": "152",
+          "y": "93",
+          "handle": "10118820",
+          "generation": "10118820"
+        },
+        {
+          "x": "152",
+          "y": "94",
+          "handle": "101189e0",
+          "generation": "101189e0"
+        },
+        {
+          "x": "152",
+          "y": "95",
+          "handle": "10118c20",
+          "generation": "10118c20"
+        },
+        {
+          "x": "153",
+          "y": "80",
+          "handle": "10118de0",
+          "generation": "10118de0"
+        },
+        {
+          "x": "153",
+          "y": "81",
+          "handle": "10119020",
+          "generation": "10119020"
+        },
+        {
+          "x": "153",
+          "y": "82",
+          "handle": "101191e0",
+          "generation": "101191e0"
+        },
+        {
+          "x": "153",
+          "y": "83",
+          "handle": "10119420",
+          "generation": "10119420"
+        },
+        {
+          "x": "153",
+          "y": "84",
+          "handle": "101195e0",
+          "generation": "101195e0"
+        },
+        {
+          "x": "153",
+          "y": "85",
+          "handle": "10119820",
+          "generation": "10119820"
+        },
+        {
+          "x": "153",
+          "y": "86",
+          "handle": "101199e0",
+          "generation": "101199e0"
+        },
+        {
+          "x": "153",
+          "y": "87",
+          "handle": "10119c20",
+          "generation": "10119c20"
+        },
+        {
+          "x": "153",
+          "y": "88",
+          "handle": "10119de0",
+          "generation": "10119de0"
+        },
+        {
+          "x": "153",
+          "y": "89",
+          "handle": "1011a020",
+          "generation": "1011a020"
+        },
+        {
+          "x": "153",
+          "y": "90",
+          "handle": "1011a1e0",
+          "generation": "1011a1e0"
+        },
+        {
+          "x": "153",
+          "y": "91",
+          "handle": "1011a420",
+          "generation": "1011a420"
+        },
+        {
+          "x": "153",
+          "y": "92",
+          "handle": "1011a5e0",
+          "generation": "1011a5e0"
+        },
+        {
+          "x": "153",
+          "y": "93",
+          "handle": "1011a820",
+          "generation": "1011a820"
+        },
+        {
+          "x": "153",
+          "y": "94",
+          "handle": "1011a9e0",
+          "generation": "1011a9e0"
+        },
+        {
+          "x": "153",
+          "y": "95",
+          "handle": "1011ac20",
+          "generation": "1011ac20"
+        }
+      ],
+      "calls": [
+        {
+          "emitter": "1050ac00",
+          "instance": "1050f5e0",
+          "return": "4609d4",
+          "bytesBefore": "323306"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101131e0",
+          "return": "4609d4",
+          "bytesBefore": "325982"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113020",
+          "return": "4609d4",
+          "bytesBefore": "328613"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101135e0",
+          "return": "4609d4",
+          "bytesBefore": "331289"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113420",
+          "return": "4609d4",
+          "bytesBefore": "333920"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101139e0",
+          "return": "4609d4",
+          "bytesBefore": "336596"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113820",
+          "return": "4609d4",
+          "bytesBefore": "339227"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113de0",
+          "return": "4609d4",
+          "bytesBefore": "341903"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113c20",
+          "return": "4609d4",
+          "bytesBefore": "344534"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101141e0",
+          "return": "4609d4",
+          "bytesBefore": "347557"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114020",
+          "return": "4609d4",
+          "bytesBefore": "350188"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101145e0",
+          "return": "4609d4",
+          "bytesBefore": "353211"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114420",
+          "return": "4609d4",
+          "bytesBefore": "356189"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101149e0",
+          "return": "4609d4",
+          "bytesBefore": "359212"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114820",
+          "return": "4609d4",
+          "bytesBefore": "361843"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114de0",
+          "return": "4609d4",
+          "bytesBefore": "364519"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114c20",
+          "return": "4609d4",
+          "bytesBefore": "367150"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101151e0",
+          "return": "4609d4",
+          "bytesBefore": "369826"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115020",
+          "return": "4609d4",
+          "bytesBefore": "372457"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101155e0",
+          "return": "4609d4",
+          "bytesBefore": "375133"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115420",
+          "return": "4609d4",
+          "bytesBefore": "377764"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101159e0",
+          "return": "4609d4",
+          "bytesBefore": "380440"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115820",
+          "return": "4609d4",
+          "bytesBefore": "383071"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115de0",
+          "return": "4609d4",
+          "bytesBefore": "385747"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115c20",
+          "return": "4609d4",
+          "bytesBefore": "388378"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101161e0",
+          "return": "4609d4",
+          "bytesBefore": "391054"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116020",
+          "return": "4609d4",
+          "bytesBefore": "393685"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101165e0",
+          "return": "4609d4",
+          "bytesBefore": "396361"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116420",
+          "return": "4609d4",
+          "bytesBefore": "399339"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101169e0",
+          "return": "4609d4",
+          "bytesBefore": "402362"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116820",
+          "return": "4609d4",
+          "bytesBefore": "404993"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116de0",
+          "return": "4609d4",
+          "bytesBefore": "407669"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116c20",
+          "return": "4609d4",
+          "bytesBefore": "410300"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101171e0",
+          "return": "4609d4",
+          "bytesBefore": "412976"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117020",
+          "return": "4609d4",
+          "bytesBefore": "415607"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101175e0",
+          "return": "4609d4",
+          "bytesBefore": "418283"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117420",
+          "return": "4609d4",
+          "bytesBefore": "420914"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101179e0",
+          "return": "4609d4",
+          "bytesBefore": "423590"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117820",
+          "return": "4609d4",
+          "bytesBefore": "426221"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117de0",
+          "return": "4609d4",
+          "bytesBefore": "428897"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117c20",
+          "return": "4609d4",
+          "bytesBefore": "431875"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101181e0",
+          "return": "4609d4",
+          "bytesBefore": "434551"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118020",
+          "return": "4609d4",
+          "bytesBefore": "437182"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101185e0",
+          "return": "4609d4",
+          "bytesBefore": "439858"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118420",
+          "return": "4609d4",
+          "bytesBefore": "442489"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101189e0",
+          "return": "4609d4",
+          "bytesBefore": "445165"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118820",
+          "return": "4609d4",
+          "bytesBefore": "447796"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118de0",
+          "return": "4609d4",
+          "bytesBefore": "450472"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118c20",
+          "return": "4609d4",
+          "bytesBefore": "453103"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101191e0",
+          "return": "4609d4",
+          "bytesBefore": "456126"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119020",
+          "return": "4609d4",
+          "bytesBefore": "458757"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101195e0",
+          "return": "4609d4",
+          "bytesBefore": "461433"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119420",
+          "return": "4609d4",
+          "bytesBefore": "464064"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101199e0",
+          "return": "4609d4",
+          "bytesBefore": "466740"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119820",
+          "return": "4609d4",
+          "bytesBefore": "469371"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119de0",
+          "return": "4609d4",
+          "bytesBefore": "472047"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119c20",
+          "return": "4609d4",
+          "bytesBefore": "474678"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a1e0",
+          "return": "4609d4",
+          "bytesBefore": "477354"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a020",
+          "return": "4609d4",
+          "bytesBefore": "479985"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a5e0",
+          "return": "4609d4",
+          "bytesBefore": "482661"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a420",
+          "return": "4609d4",
+          "bytesBefore": "485292"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a9e0",
+          "return": "4609d4",
+          "bytesBefore": "487968"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a820",
+          "return": "4609d4",
+          "bytesBefore": "490599"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011ac20",
+          "return": "4609d4",
+          "bytesBefore": "493622"
+        }
+      ],
+      "factoryHandleEqualObservedInstanceCount": 64,
+      "stderrSha256": "09d4ecd1545b18086370a3a50a773a4dc3e2b82a966b65640c768b34e90d66d6",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    },
+    {
+      "cells": 128,
+      "exit": 2,
+      "factory": [
+        {
+          "x": "150",
+          "y": "80",
+          "handle": "1050f5e0",
+          "generation": "1050f5e0"
+        },
+        {
+          "x": "150",
+          "y": "81",
+          "handle": "10113020",
+          "generation": "10113020"
+        },
+        {
+          "x": "150",
+          "y": "82",
+          "handle": "101131e0",
+          "generation": "101131e0"
+        },
+        {
+          "x": "150",
+          "y": "83",
+          "handle": "10113420",
+          "generation": "10113420"
+        },
+        {
+          "x": "150",
+          "y": "84",
+          "handle": "101135e0",
+          "generation": "101135e0"
+        },
+        {
+          "x": "150",
+          "y": "85",
+          "handle": "10113820",
+          "generation": "10113820"
+        },
+        {
+          "x": "150",
+          "y": "86",
+          "handle": "101139e0",
+          "generation": "101139e0"
+        },
+        {
+          "x": "150",
+          "y": "87",
+          "handle": "10113c20",
+          "generation": "10113c20"
+        },
+        {
+          "x": "150",
+          "y": "88",
+          "handle": "10113de0",
+          "generation": "10113de0"
+        },
+        {
+          "x": "150",
+          "y": "89",
+          "handle": "10114020",
+          "generation": "10114020"
+        },
+        {
+          "x": "150",
+          "y": "90",
+          "handle": "101141e0",
+          "generation": "101141e0"
+        },
+        {
+          "x": "150",
+          "y": "91",
+          "handle": "10114420",
+          "generation": "10114420"
+        },
+        {
+          "x": "150",
+          "y": "92",
+          "handle": "101145e0",
+          "generation": "101145e0"
+        },
+        {
+          "x": "150",
+          "y": "93",
+          "handle": "10114820",
+          "generation": "10114820"
+        },
+        {
+          "x": "150",
+          "y": "94",
+          "handle": "101149e0",
+          "generation": "101149e0"
+        },
+        {
+          "x": "150",
+          "y": "95",
+          "handle": "10114c20",
+          "generation": "10114c20"
+        },
+        {
+          "x": "151",
+          "y": "80",
+          "handle": "10114de0",
+          "generation": "10114de0"
+        },
+        {
+          "x": "151",
+          "y": "81",
+          "handle": "10115020",
+          "generation": "10115020"
+        },
+        {
+          "x": "151",
+          "y": "82",
+          "handle": "101151e0",
+          "generation": "101151e0"
+        },
+        {
+          "x": "151",
+          "y": "83",
+          "handle": "10115420",
+          "generation": "10115420"
+        },
+        {
+          "x": "151",
+          "y": "84",
+          "handle": "101155e0",
+          "generation": "101155e0"
+        },
+        {
+          "x": "151",
+          "y": "85",
+          "handle": "10115820",
+          "generation": "10115820"
+        },
+        {
+          "x": "151",
+          "y": "86",
+          "handle": "101159e0",
+          "generation": "101159e0"
+        },
+        {
+          "x": "151",
+          "y": "87",
+          "handle": "10115c20",
+          "generation": "10115c20"
+        },
+        {
+          "x": "151",
+          "y": "88",
+          "handle": "10115de0",
+          "generation": "10115de0"
+        },
+        {
+          "x": "151",
+          "y": "89",
+          "handle": "10116020",
+          "generation": "10116020"
+        },
+        {
+          "x": "151",
+          "y": "90",
+          "handle": "101161e0",
+          "generation": "101161e0"
+        },
+        {
+          "x": "151",
+          "y": "91",
+          "handle": "10116420",
+          "generation": "10116420"
+        },
+        {
+          "x": "151",
+          "y": "92",
+          "handle": "101165e0",
+          "generation": "101165e0"
+        },
+        {
+          "x": "151",
+          "y": "93",
+          "handle": "10116820",
+          "generation": "10116820"
+        },
+        {
+          "x": "151",
+          "y": "94",
+          "handle": "101169e0",
+          "generation": "101169e0"
+        },
+        {
+          "x": "151",
+          "y": "95",
+          "handle": "10116c20",
+          "generation": "10116c20"
+        },
+        {
+          "x": "152",
+          "y": "80",
+          "handle": "10116de0",
+          "generation": "10116de0"
+        },
+        {
+          "x": "152",
+          "y": "81",
+          "handle": "10117020",
+          "generation": "10117020"
+        },
+        {
+          "x": "152",
+          "y": "82",
+          "handle": "101171e0",
+          "generation": "101171e0"
+        },
+        {
+          "x": "152",
+          "y": "83",
+          "handle": "10117420",
+          "generation": "10117420"
+        },
+        {
+          "x": "152",
+          "y": "84",
+          "handle": "101175e0",
+          "generation": "101175e0"
+        },
+        {
+          "x": "152",
+          "y": "85",
+          "handle": "10117820",
+          "generation": "10117820"
+        },
+        {
+          "x": "152",
+          "y": "86",
+          "handle": "101179e0",
+          "generation": "101179e0"
+        },
+        {
+          "x": "152",
+          "y": "87",
+          "handle": "10117c20",
+          "generation": "10117c20"
+        },
+        {
+          "x": "152",
+          "y": "88",
+          "handle": "10117de0",
+          "generation": "10117de0"
+        },
+        {
+          "x": "152",
+          "y": "89",
+          "handle": "10118020",
+          "generation": "10118020"
+        },
+        {
+          "x": "152",
+          "y": "90",
+          "handle": "101181e0",
+          "generation": "101181e0"
+        },
+        {
+          "x": "152",
+          "y": "91",
+          "handle": "10118420",
+          "generation": "10118420"
+        },
+        {
+          "x": "152",
+          "y": "92",
+          "handle": "101185e0",
+          "generation": "101185e0"
+        },
+        {
+          "x": "152",
+          "y": "93",
+          "handle": "10118820",
+          "generation": "10118820"
+        },
+        {
+          "x": "152",
+          "y": "94",
+          "handle": "101189e0",
+          "generation": "101189e0"
+        },
+        {
+          "x": "152",
+          "y": "95",
+          "handle": "10118c20",
+          "generation": "10118c20"
+        },
+        {
+          "x": "153",
+          "y": "80",
+          "handle": "10118de0",
+          "generation": "10118de0"
+        },
+        {
+          "x": "153",
+          "y": "81",
+          "handle": "10119020",
+          "generation": "10119020"
+        },
+        {
+          "x": "153",
+          "y": "82",
+          "handle": "101191e0",
+          "generation": "101191e0"
+        },
+        {
+          "x": "153",
+          "y": "83",
+          "handle": "10119420",
+          "generation": "10119420"
+        },
+        {
+          "x": "153",
+          "y": "84",
+          "handle": "101195e0",
+          "generation": "101195e0"
+        },
+        {
+          "x": "153",
+          "y": "85",
+          "handle": "10119820",
+          "generation": "10119820"
+        },
+        {
+          "x": "153",
+          "y": "86",
+          "handle": "101199e0",
+          "generation": "101199e0"
+        },
+        {
+          "x": "153",
+          "y": "87",
+          "handle": "10119c20",
+          "generation": "10119c20"
+        },
+        {
+          "x": "153",
+          "y": "88",
+          "handle": "10119de0",
+          "generation": "10119de0"
+        },
+        {
+          "x": "153",
+          "y": "89",
+          "handle": "1011a020",
+          "generation": "1011a020"
+        },
+        {
+          "x": "153",
+          "y": "90",
+          "handle": "1011a1e0",
+          "generation": "1011a1e0"
+        },
+        {
+          "x": "153",
+          "y": "91",
+          "handle": "1011a420",
+          "generation": "1011a420"
+        },
+        {
+          "x": "153",
+          "y": "92",
+          "handle": "1011a5e0",
+          "generation": "1011a5e0"
+        },
+        {
+          "x": "153",
+          "y": "93",
+          "handle": "1011a820",
+          "generation": "1011a820"
+        },
+        {
+          "x": "153",
+          "y": "94",
+          "handle": "1011a9e0",
+          "generation": "1011a9e0"
+        },
+        {
+          "x": "153",
+          "y": "95",
+          "handle": "1011ac20",
+          "generation": "1011ac20"
+        },
+        {
+          "x": "154",
+          "y": "80",
+          "handle": "1011ade0",
+          "generation": "1011ade0"
+        },
+        {
+          "x": "154",
+          "y": "81",
+          "handle": "1011b020",
+          "generation": "1011b020"
+        },
+        {
+          "x": "154",
+          "y": "82",
+          "handle": "1011b1e0",
+          "generation": "1011b1e0"
+        },
+        {
+          "x": "154",
+          "y": "83",
+          "handle": "1011b420",
+          "generation": "1011b420"
+        },
+        {
+          "x": "154",
+          "y": "84",
+          "handle": "1011b5e0",
+          "generation": "1011b5e0"
+        },
+        {
+          "x": "154",
+          "y": "85",
+          "handle": "1011b820",
+          "generation": "1011b820"
+        },
+        {
+          "x": "154",
+          "y": "86",
+          "handle": "1011b9e0",
+          "generation": "1011b9e0"
+        },
+        {
+          "x": "154",
+          "y": "87",
+          "handle": "1011bc20",
+          "generation": "1011bc20"
+        },
+        {
+          "x": "154",
+          "y": "88",
+          "handle": "1011bde0",
+          "generation": "1011bde0"
+        },
+        {
+          "x": "154",
+          "y": "89",
+          "handle": "1011c020",
+          "generation": "1011c020"
+        },
+        {
+          "x": "154",
+          "y": "90",
+          "handle": "1011c1e0",
+          "generation": "1011c1e0"
+        },
+        {
+          "x": "154",
+          "y": "91",
+          "handle": "1011c420",
+          "generation": "1011c420"
+        },
+        {
+          "x": "154",
+          "y": "92",
+          "handle": "1011c5e0",
+          "generation": "1011c5e0"
+        },
+        {
+          "x": "154",
+          "y": "93",
+          "handle": "1011c820",
+          "generation": "1011c820"
+        },
+        {
+          "x": "154",
+          "y": "94",
+          "handle": "1011c9e0",
+          "generation": "1011c9e0"
+        },
+        {
+          "x": "154",
+          "y": "95",
+          "handle": "1011cc20",
+          "generation": "1011cc20"
+        },
+        {
+          "x": "155",
+          "y": "80",
+          "handle": "1011cde0",
+          "generation": "1011cde0"
+        },
+        {
+          "x": "155",
+          "y": "81",
+          "handle": "1011d020",
+          "generation": "1011d020"
+        },
+        {
+          "x": "155",
+          "y": "82",
+          "handle": "1011d1e0",
+          "generation": "1011d1e0"
+        },
+        {
+          "x": "155",
+          "y": "83",
+          "handle": "1011d420",
+          "generation": "1011d420"
+        },
+        {
+          "x": "155",
+          "y": "84",
+          "handle": "1011d5e0",
+          "generation": "1011d5e0"
+        },
+        {
+          "x": "155",
+          "y": "85",
+          "handle": "1011d820",
+          "generation": "1011d820"
+        },
+        {
+          "x": "155",
+          "y": "86",
+          "handle": "1011d9e0",
+          "generation": "1011d9e0"
+        },
+        {
+          "x": "155",
+          "y": "87",
+          "handle": "1011dc20",
+          "generation": "1011dc20"
+        },
+        {
+          "x": "155",
+          "y": "88",
+          "handle": "1011dde0",
+          "generation": "1011dde0"
+        },
+        {
+          "x": "155",
+          "y": "89",
+          "handle": "1011e020",
+          "generation": "1011e020"
+        },
+        {
+          "x": "155",
+          "y": "90",
+          "handle": "1011e1e0",
+          "generation": "1011e1e0"
+        },
+        {
+          "x": "155",
+          "y": "91",
+          "handle": "1011e420",
+          "generation": "1011e420"
+        },
+        {
+          "x": "155",
+          "y": "92",
+          "handle": "1011e5e0",
+          "generation": "1011e5e0"
+        },
+        {
+          "x": "155",
+          "y": "93",
+          "handle": "1011e820",
+          "generation": "1011e820"
+        },
+        {
+          "x": "155",
+          "y": "94",
+          "handle": "1011e9e0",
+          "generation": "1011e9e0"
+        },
+        {
+          "x": "155",
+          "y": "95",
+          "handle": "1011ec20",
+          "generation": "1011ec20"
+        },
+        {
+          "x": "156",
+          "y": "80",
+          "handle": "1011ede0",
+          "generation": "1011ede0"
+        },
+        {
+          "x": "156",
+          "y": "81",
+          "handle": "1011f020",
+          "generation": "1011f020"
+        },
+        {
+          "x": "156",
+          "y": "82",
+          "handle": "1011f1e0",
+          "generation": "1011f1e0"
+        },
+        {
+          "x": "156",
+          "y": "83",
+          "handle": "1011f420",
+          "generation": "1011f420"
+        },
+        {
+          "x": "156",
+          "y": "84",
+          "handle": "1011f5e0",
+          "generation": "1011f5e0"
+        },
+        {
+          "x": "156",
+          "y": "85",
+          "handle": "1011f820",
+          "generation": "1011f820"
+        },
+        {
+          "x": "156",
+          "y": "86",
+          "handle": "1011f9e0",
+          "generation": "1011f9e0"
+        },
+        {
+          "x": "156",
+          "y": "87",
+          "handle": "1011fc20",
+          "generation": "1011fc20"
+        },
+        {
+          "x": "156",
+          "y": "88",
+          "handle": "1011fde0",
+          "generation": "1011fde0"
+        },
+        {
+          "x": "156",
+          "y": "89",
+          "handle": "10120020",
+          "generation": "10120020"
+        },
+        {
+          "x": "156",
+          "y": "90",
+          "handle": "101201e0",
+          "generation": "101201e0"
+        },
+        {
+          "x": "156",
+          "y": "91",
+          "handle": "10120420",
+          "generation": "10120420"
+        },
+        {
+          "x": "156",
+          "y": "92",
+          "handle": "101205e0",
+          "generation": "101205e0"
+        },
+        {
+          "x": "156",
+          "y": "93",
+          "handle": "10120820",
+          "generation": "10120820"
+        },
+        {
+          "x": "156",
+          "y": "94",
+          "handle": "101209e0",
+          "generation": "101209e0"
+        },
+        {
+          "x": "156",
+          "y": "95",
+          "handle": "10120c20",
+          "generation": "10120c20"
+        },
+        {
+          "x": "157",
+          "y": "80",
+          "handle": "10120de0",
+          "generation": "10120de0"
+        },
+        {
+          "x": "157",
+          "y": "81",
+          "handle": "10121020",
+          "generation": "10121020"
+        },
+        {
+          "x": "157",
+          "y": "82",
+          "handle": "101211e0",
+          "generation": "101211e0"
+        },
+        {
+          "x": "157",
+          "y": "83",
+          "handle": "10121420",
+          "generation": "10121420"
+        },
+        {
+          "x": "157",
+          "y": "84",
+          "handle": "101215e0",
+          "generation": "101215e0"
+        },
+        {
+          "x": "157",
+          "y": "85",
+          "handle": "10121820",
+          "generation": "10121820"
+        },
+        {
+          "x": "157",
+          "y": "86",
+          "handle": "101219e0",
+          "generation": "101219e0"
+        },
+        {
+          "x": "157",
+          "y": "87",
+          "handle": "10121c20",
+          "generation": "10121c20"
+        },
+        {
+          "x": "157",
+          "y": "88",
+          "handle": "10121de0",
+          "generation": "10121de0"
+        },
+        {
+          "x": "157",
+          "y": "89",
+          "handle": "10122020",
+          "generation": "10122020"
+        },
+        {
+          "x": "157",
+          "y": "90",
+          "handle": "101221e0",
+          "generation": "101221e0"
+        },
+        {
+          "x": "157",
+          "y": "91",
+          "handle": "10122420",
+          "generation": "10122420"
+        },
+        {
+          "x": "157",
+          "y": "92",
+          "handle": "101225e0",
+          "generation": "101225e0"
+        },
+        {
+          "x": "157",
+          "y": "93",
+          "handle": "10122820",
+          "generation": "10122820"
+        },
+        {
+          "x": "157",
+          "y": "94",
+          "handle": "101229e0",
+          "generation": "101229e0"
+        },
+        {
+          "x": "157",
+          "y": "95",
+          "handle": "10122c20",
+          "generation": "10122c20"
+        }
+      ],
+      "calls": [
+        {
+          "emitter": "1050ac00",
+          "instance": "1050f5e0",
+          "return": "4609d4",
+          "bytesBefore": "299754"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101131e0",
+          "return": "4609d4",
+          "bytesBefore": "302430"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113020",
+          "return": "4609d4",
+          "bytesBefore": "305061"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101135e0",
+          "return": "4609d4",
+          "bytesBefore": "307737"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113420",
+          "return": "4609d4",
+          "bytesBefore": "310368"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101139e0",
+          "return": "4609d4",
+          "bytesBefore": "313044"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113820",
+          "return": "4609d4",
+          "bytesBefore": "315675"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113de0",
+          "return": "4609d4",
+          "bytesBefore": "318351"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10113c20",
+          "return": "4609d4",
+          "bytesBefore": "320982"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101141e0",
+          "return": "4609d4",
+          "bytesBefore": "324005"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114020",
+          "return": "4609d4",
+          "bytesBefore": "326636"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101145e0",
+          "return": "4609d4",
+          "bytesBefore": "329659"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114420",
+          "return": "4609d4",
+          "bytesBefore": "332637"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101149e0",
+          "return": "4609d4",
+          "bytesBefore": "335660"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114820",
+          "return": "4609d4",
+          "bytesBefore": "338291"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114de0",
+          "return": "4609d4",
+          "bytesBefore": "340967"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10114c20",
+          "return": "4609d4",
+          "bytesBefore": "343598"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101151e0",
+          "return": "4609d4",
+          "bytesBefore": "346274"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115020",
+          "return": "4609d4",
+          "bytesBefore": "348905"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101155e0",
+          "return": "4609d4",
+          "bytesBefore": "351581"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115420",
+          "return": "4609d4",
+          "bytesBefore": "354212"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101159e0",
+          "return": "4609d4",
+          "bytesBefore": "356888"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115820",
+          "return": "4609d4",
+          "bytesBefore": "359519"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115de0",
+          "return": "4609d4",
+          "bytesBefore": "362195"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10115c20",
+          "return": "4609d4",
+          "bytesBefore": "364826"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101161e0",
+          "return": "4609d4",
+          "bytesBefore": "367502"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116020",
+          "return": "4609d4",
+          "bytesBefore": "370133"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101165e0",
+          "return": "4609d4",
+          "bytesBefore": "372809"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116420",
+          "return": "4609d4",
+          "bytesBefore": "375787"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101169e0",
+          "return": "4609d4",
+          "bytesBefore": "378810"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116820",
+          "return": "4609d4",
+          "bytesBefore": "381441"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116de0",
+          "return": "4609d4",
+          "bytesBefore": "384117"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10116c20",
+          "return": "4609d4",
+          "bytesBefore": "386748"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101171e0",
+          "return": "4609d4",
+          "bytesBefore": "389424"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117020",
+          "return": "4609d4",
+          "bytesBefore": "392055"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101175e0",
+          "return": "4609d4",
+          "bytesBefore": "394731"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117420",
+          "return": "4609d4",
+          "bytesBefore": "397362"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101179e0",
+          "return": "4609d4",
+          "bytesBefore": "400038"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117820",
+          "return": "4609d4",
+          "bytesBefore": "402669"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117de0",
+          "return": "4609d4",
+          "bytesBefore": "405345"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10117c20",
+          "return": "4609d4",
+          "bytesBefore": "408323"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101181e0",
+          "return": "4609d4",
+          "bytesBefore": "410999"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118020",
+          "return": "4609d4",
+          "bytesBefore": "413630"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101185e0",
+          "return": "4609d4",
+          "bytesBefore": "416306"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118420",
+          "return": "4609d4",
+          "bytesBefore": "418937"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101189e0",
+          "return": "4609d4",
+          "bytesBefore": "421613"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118820",
+          "return": "4609d4",
+          "bytesBefore": "424244"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118de0",
+          "return": "4609d4",
+          "bytesBefore": "426920"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10118c20",
+          "return": "4609d4",
+          "bytesBefore": "429551"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101191e0",
+          "return": "4609d4",
+          "bytesBefore": "432574"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119020",
+          "return": "4609d4",
+          "bytesBefore": "435205"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101195e0",
+          "return": "4609d4",
+          "bytesBefore": "437881"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119420",
+          "return": "4609d4",
+          "bytesBefore": "440512"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101199e0",
+          "return": "4609d4",
+          "bytesBefore": "443188"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119820",
+          "return": "4609d4",
+          "bytesBefore": "445819"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119de0",
+          "return": "4609d4",
+          "bytesBefore": "448495"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10119c20",
+          "return": "4609d4",
+          "bytesBefore": "451126"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a1e0",
+          "return": "4609d4",
+          "bytesBefore": "453802"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a020",
+          "return": "4609d4",
+          "bytesBefore": "456433"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a5e0",
+          "return": "4609d4",
+          "bytesBefore": "459109"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a420",
+          "return": "4609d4",
+          "bytesBefore": "461740"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a9e0",
+          "return": "4609d4",
+          "bytesBefore": "464416"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011a820",
+          "return": "4609d4",
+          "bytesBefore": "467047"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011ade0",
+          "return": "4609d4",
+          "bytesBefore": "470070"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011ac20",
+          "return": "4609d4",
+          "bytesBefore": "472701"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011b1e0",
+          "return": "4609d4",
+          "bytesBefore": "475377"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011b020",
+          "return": "4609d4",
+          "bytesBefore": "478008"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011b5e0",
+          "return": "4609d4",
+          "bytesBefore": "480684"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011b420",
+          "return": "4609d4",
+          "bytesBefore": "483315"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011b9e0",
+          "return": "4609d4",
+          "bytesBefore": "485991"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011b820",
+          "return": "4609d4",
+          "bytesBefore": "488622"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011bde0",
+          "return": "4609d4",
+          "bytesBefore": "491298"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011bc20",
+          "return": "4609d4",
+          "bytesBefore": "493929"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011c1e0",
+          "return": "4609d4",
+          "bytesBefore": "496605"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011c020",
+          "return": "4609d4",
+          "bytesBefore": "499236"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011c5e0",
+          "return": "4609d4",
+          "bytesBefore": "501912"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011c420",
+          "return": "4609d4",
+          "bytesBefore": "504543"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011c9e0",
+          "return": "4609d4",
+          "bytesBefore": "507219"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011c820",
+          "return": "4609d4",
+          "bytesBefore": "509850"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011cde0",
+          "return": "4609d4",
+          "bytesBefore": "512526"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011cc20",
+          "return": "4609d4",
+          "bytesBefore": "515157"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011d1e0",
+          "return": "4609d4",
+          "bytesBefore": "517833"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011d020",
+          "return": "4609d4",
+          "bytesBefore": "520464"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011d5e0",
+          "return": "4609d4",
+          "bytesBefore": "523140"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011d420",
+          "return": "4609d4",
+          "bytesBefore": "525771"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011d9e0",
+          "return": "4609d4",
+          "bytesBefore": "528447"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011d820",
+          "return": "4609d4",
+          "bytesBefore": "531078"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011dde0",
+          "return": "4609d4",
+          "bytesBefore": "533754"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011dc20",
+          "return": "4609d4",
+          "bytesBefore": "536385"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011e1e0",
+          "return": "4609d4",
+          "bytesBefore": "539061"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011e020",
+          "return": "4609d4",
+          "bytesBefore": "541692"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011e5e0",
+          "return": "4609d4",
+          "bytesBefore": "544368"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011e420",
+          "return": "4609d4",
+          "bytesBefore": "546999"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011e9e0",
+          "return": "4609d4",
+          "bytesBefore": "549675"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011e820",
+          "return": "4609d4",
+          "bytesBefore": "552306"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011ede0",
+          "return": "4609d4",
+          "bytesBefore": "554982"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011ec20",
+          "return": "4609d4",
+          "bytesBefore": "557613"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011f1e0",
+          "return": "4609d4",
+          "bytesBefore": "560289"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011f020",
+          "return": "4609d4",
+          "bytesBefore": "562920"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011f5e0",
+          "return": "4609d4",
+          "bytesBefore": "565596"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011f420",
+          "return": "4609d4",
+          "bytesBefore": "568227"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011f9e0",
+          "return": "4609d4",
+          "bytesBefore": "570903"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011f820",
+          "return": "4609d4",
+          "bytesBefore": "573534"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011fde0",
+          "return": "4609d4",
+          "bytesBefore": "576210"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "1011fc20",
+          "return": "4609d4",
+          "bytesBefore": "578841"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101201e0",
+          "return": "4609d4",
+          "bytesBefore": "581517"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10120020",
+          "return": "4609d4",
+          "bytesBefore": "584148"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101205e0",
+          "return": "4609d4",
+          "bytesBefore": "586824"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10120420",
+          "return": "4609d4",
+          "bytesBefore": "589455"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101209e0",
+          "return": "4609d4",
+          "bytesBefore": "592131"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10120820",
+          "return": "4609d4",
+          "bytesBefore": "595109"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10120de0",
+          "return": "4609d4",
+          "bytesBefore": "597785"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10120c20",
+          "return": "4609d4",
+          "bytesBefore": "600763"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101211e0",
+          "return": "4609d4",
+          "bytesBefore": "603439"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10121020",
+          "return": "4609d4",
+          "bytesBefore": "606070"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101215e0",
+          "return": "4609d4",
+          "bytesBefore": "608746"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10121420",
+          "return": "4609d4",
+          "bytesBefore": "611377"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101219e0",
+          "return": "4609d4",
+          "bytesBefore": "614053"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10121820",
+          "return": "4609d4",
+          "bytesBefore": "616684"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10121de0",
+          "return": "4609d4",
+          "bytesBefore": "619360"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10121c20",
+          "return": "4609d4",
+          "bytesBefore": "622338"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101221e0",
+          "return": "4609d4",
+          "bytesBefore": "625361"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10122020",
+          "return": "4609d4",
+          "bytesBefore": "627992"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101225e0",
+          "return": "4609d4",
+          "bytesBefore": "630668"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10122420",
+          "return": "4609d4",
+          "bytesBefore": "633299"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "101229e0",
+          "return": "4609d4",
+          "bytesBefore": "635975"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10122820",
+          "return": "4609d4",
+          "bytesBefore": "638606"
+        },
+        {
+          "emitter": "1050ac00",
+          "instance": "10122c20",
+          "return": "4609d4",
+          "bytesBefore": "641629"
+        }
+      ],
+      "factoryHandleEqualObservedInstanceCount": 128,
+      "stderrSha256": "1e469736f6753e06337c06c8725b675067cfcbb4e6a61c44402323c2863505e8",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    }
+  ],
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-live-instances244/pc_effect_scene_probe.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-live-instances244/host-probe"
+  ],
+  "scope": "Host-only logging of original factory13 return handle/generation and original45ca40 instance callback within exact effect13 template. Same first32/64/128 diagnostic inputs and5Mbyte/5s budget. Raw handles/addresses not asserted core officer/cell identity without observed join; no reset/increase/PC memory/production/JNI/RNG changes or Android acceptance.",
+  "wholeGoalComplete": false
+}

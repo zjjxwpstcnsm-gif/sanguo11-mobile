@@ -1,0 +1,39 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r7-acceptance-v1",
+  "frozenResultsSha256": "2fdadc5f85920ce8701e06b8f912265f5941981b744b51c7339eac30f5c232a9",
+  "prePostRestoredPrefs": [
+    {
+      "archive": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r7-acceptance-v1/internal-before.tar",
+      "member": "./shared_prefs/map-renderer.xml",
+      "sha256": "8176d95e098a10bfa25ade2796cfe1e847687dc68421383b36d58f8e74781f9c",
+      "nativeFailure": true,
+      "nativeSession": true,
+      "lastFailureRecorded": false,
+      "lastFailureTimeRecorded": false
+    },
+    {
+      "archive": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r7-acceptance-v1/internal-post-test.tar",
+      "member": "./shared_prefs/map-renderer.xml",
+      "sha256": "60ff8aea8b6e4c2065f1e8338561b9a9acafe3c64d14418782708d68342ec8c4",
+      "nativeFailure": false,
+      "nativeSession": true,
+      "lastFailureRecorded": false,
+      "lastFailureTimeRecorded": false
+    },
+    {
+      "archive": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r7-acceptance-v1/internal-restored.tar",
+      "member": "./shared_prefs/map-renderer.xml",
+      "sha256": "8176d95e098a10bfa25ade2796cfe1e847687dc68421383b36d58f8e74781f9c",
+      "nativeFailure": true,
+      "nativeSession": true,
+      "lastFailureRecorded": false,
+      "lastFailureTimeRecorded": false
+    }
+  ],
+  "observedOldGuardBeforeRun": true,
+  "newRendererFailureProven": false,
+  "observedManualRetry": true,
+  "sourceMapHostSha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+  "scope": "Read-only B completed failedr7 archive provenance: guard true existed in exact original backup, false after actual retry, identical true restored. Retry page therefore cannot by itself prove a new renderer/OOM failure, and recovery cannot prove normal stability. A/B production/devices/save untouched; no B result or APK acceptance transferred.",
+  "wholeGoalComplete": false
+}

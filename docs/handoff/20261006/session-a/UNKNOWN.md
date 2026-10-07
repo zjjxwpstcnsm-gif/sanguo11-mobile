@@ -131,3 +131,6 @@ CURRENT157: 145military156 normal/cold/full9+3797restore/9rawvideo accepted, per
 
 
 236容量矩阵：source-height0/固定camera/生产原5Mbyte预算的独立host，1/13/32控制器均71帧退出0、同clock/packet暂停、全部cell handles停止；最大packet51/90/125，最终仍有原SEFF环境packet26/27/26。初版测试假设全packet归零错误，首个已经exit0子进程及71帧原stdout保留，未重跑；脚本明确记录修正。64/128均创建后首帧exit2，5Mbyte分别5000023/5000008，寄存器/非法ESI只读诊断缺失都保留；不外推最大可用格数、不将32 host作为正常128/位置/性能闭合。后继须分清原资源node callback与实例成本、保持同manager/原排序/视觉MT/时间；不降cap掩盖失败或直接放开budget。
+
+
+246预算原型把64/128宿主固定输入跨过原5M守卫，源码新增A独立wrapper且小场景record/time字节同，已知限制必须保留：预算工程每32句柄5M/顶20M，128样本实际19569502接近顶、nativeupdate229.28ms不是性能达标；真实地形/相机/frustum/长时切换/128合法正常Android火/ARM仍待，六JNI未变、未装本原型。Source4旧176搜索失败238没有足够焦点/窗口元数据判根因；239新测试只观察且正常242已越69/128人，可能时序掩盖，不能宣布产品修复。新API当前组合B61各种retry与测试crash/gesture状态单列，不移旧成绩。247已证明r7恢复页源于原备份guard true，而非单凭页面就可判新失败；任何实际栈仍须原时点日志。

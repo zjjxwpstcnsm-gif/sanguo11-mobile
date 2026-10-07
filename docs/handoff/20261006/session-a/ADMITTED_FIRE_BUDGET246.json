@@ -1,0 +1,3343 @@
+{
+  "sourceBeforeAfterExact": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc",
+    "session_a_cell_fire_budget_worker.c": "6c53fc66f099384e6a014014c88ce5316249f1435c3c8779275c4dbec0d0338e"
+  },
+  "candidateWorker": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/content/native/session_a_cell_fire_budget_worker.c",
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/content/native/session_a_cell_fire_budget_worker.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/admitted-fire-budget246/host-probe"
+  ],
+  "cases": [
+    {
+      "controllers": 1,
+      "exit": 0,
+      "framesCompleted": 71,
+      "framesRequested": 71,
+      "wallSeconds": 2.293007364,
+      "smallCaseSourceRecordAndTimeExact": true,
+      "semanticSha256": "ad9c090844eefc304c1dd4214c10a4fbd55e7ada8ada75591ff674ebf7c9dd79",
+      "maximumPackets": 51,
+      "maximumObservedCallBytes": 1095343,
+      "quotaHighwater": 1,
+      "quotaBytes": 5000000,
+      "maximumNativeEvaluatorMs": {
+        "updateMs": 13.779000282287598,
+        "drawMs": 2.8930001258850098,
+        "geometryMs": 4.145999908447266
+      },
+      "frames": [
+        {
+          "serial": 1,
+          "packets": 5,
+          "elapsed": 0.10000000149011612,
+          "updateMs": 13.779000282287598,
+          "drawMs": 2.385999917984009,
+          "geometryMs": 4.145999908447266,
+          "packetSha256": "d98256550f833216c5449258081d247b2091d544f4590e94f2e7edf5cee3cff7"
+        },
+        {
+          "serial": 2,
+          "packets": 7,
+          "elapsed": 0.20000000298023224,
+          "updateMs": 5.5920000076293945,
+          "drawMs": 0.7980000376701355,
+          "geometryMs": 2.7269999980926514,
+          "packetSha256": "417061ba2bbd100341c88e552a11880706ed26938bc63d272a3086f49eb6b317"
+        },
+        {
+          "serial": 3,
+          "packets": 8,
+          "elapsed": 0.30000001192092896,
+          "updateMs": 5.492000102996826,
+          "drawMs": 0.8350000381469727,
+          "geometryMs": 2.677000045776367,
+          "packetSha256": "bbac284a722702e3a5c889e4d7d324d80dcc5fe3b1be5d65365c9d56edee6a8d"
+        },
+        {
+          "serial": 4,
+          "packets": 17,
+          "elapsed": 0.4000000059604645,
+          "updateMs": 5.947999954223633,
+          "drawMs": 0.9199999570846558,
+          "geometryMs": 2.8320000171661377,
+          "packetSha256": "506f38ebd31780e0dc7c3d266d9f556218a1cc993c3379b97f65c7a3e8c232d7"
+        },
+        {
+          "serial": 5,
+          "packets": 21,
+          "elapsed": 0.5,
+          "updateMs": 5.3429999351501465,
+          "drawMs": 1.003999948501587,
+          "geometryMs": 3.132999897003174,
+          "packetSha256": "d1869a99f3b9596f73e70f40dbc27308feac9bbba8df1a600cd8404d308e2485"
+        },
+        {
+          "serial": 6,
+          "packets": 23,
+          "elapsed": 0.6000000238418579,
+          "updateMs": 4.873000144958496,
+          "drawMs": 0.9919999837875366,
+          "geometryMs": 3.0950000286102295,
+          "packetSha256": "d3ba7fa36f5b68b9c9ba3a3f3b8bb8f0cf16f629eaf820e1bdcf536075acd04d"
+        },
+        {
+          "serial": 7,
+          "packets": 30,
+          "elapsed": 0.7000000476837158,
+          "updateMs": 6.007999897003174,
+          "drawMs": 1.2030000686645508,
+          "geometryMs": 3.062999963760376,
+          "packetSha256": "7dda908d8cccb65a621bd488a99818aa7125f1aebea53876fdf3053ef0b70c5e"
+        },
+        {
+          "serial": 8,
+          "packets": 32,
+          "elapsed": 0.8000000715255737,
+          "updateMs": 6.294000148773193,
+          "drawMs": 1.1239999532699585,
+          "geometryMs": 3.11899995803833,
+          "packetSha256": "86d2919b96781e4243b94046064a3bbf4ebfd321d1a3fde2a2a3934b25512e53"
+        },
+        {
+          "serial": 9,
+          "packets": 32,
+          "elapsed": 0.9000000953674316,
+          "updateMs": 5.60699987411499,
+          "drawMs": 1.1050000190734863,
+          "geometryMs": 3.0269999504089355,
+          "packetSha256": "8f5af6eb865324229373e5c4f4bc99559a04215ae5ed35536c814feb123462d5"
+        },
+        {
+          "serial": 10,
+          "packets": 40,
+          "elapsed": 1.0000001192092896,
+          "updateMs": 7.991000175476074,
+          "drawMs": 1.5230000019073486,
+          "geometryMs": 3.4839999675750732,
+          "packetSha256": "31a67f74bf694e0204f5d07c9085c31692a6b75e689dadac7629db13754494d6"
+        },
+        {
+          "serial": 11,
+          "packets": 39,
+          "elapsed": 1.1000001430511475,
+          "updateMs": 5.990000247955322,
+          "drawMs": 1.249000072479248,
+          "geometryMs": 3.5369999408721924,
+          "packetSha256": "1d79e980805aeb8e2bafe4ad2ab83269b66db4bc635b01c2a120db9dd9f6c59a"
+        },
+        {
+          "serial": 12,
+          "packets": 39,
+          "elapsed": 1.2000001668930054,
+          "updateMs": 6.130000114440918,
+          "drawMs": 1.24399995803833,
+          "geometryMs": 3.4679999351501465,
+          "packetSha256": "2a134c6c937e0db4cdebdcc3037ad4e89cb0e9f45a88a835a9582b7bec7f596f"
+        },
+        {
+          "serial": 13,
+          "packets": 39,
+          "elapsed": 1.3000001907348633,
+          "updateMs": 7.808000087738037,
+          "drawMs": 1.6829999685287476,
+          "geometryMs": 3.1989998817443848,
+          "packetSha256": "4878288fd0f2cace94e5f103df5388fdee7d804d6dd73fb4dffcadca94b9cdb4"
+        },
+        {
+          "serial": 14,
+          "packets": 40,
+          "elapsed": 1.4000002145767212,
+          "updateMs": 7.89300012588501,
+          "drawMs": 1.3459999561309814,
+          "geometryMs": 3.193000078201294,
+          "packetSha256": "ade0fb1a2ca604bb6939393e9b1372711f57ac6a67d3191195d6489b1fc6ad39"
+        },
+        {
+          "serial": 15,
+          "packets": 41,
+          "elapsed": 1.500000238418579,
+          "updateMs": 7.039000034332275,
+          "drawMs": 1.524999976158142,
+          "geometryMs": 3.444999933242798,
+          "packetSha256": "606db4dad64ddc71e34e79ded8d129b19809d1af9569c0f6d7147479c94d7619"
+        },
+        {
+          "serial": 16,
+          "packets": 37,
+          "elapsed": 1.600000262260437,
+          "updateMs": 6.953000068664551,
+          "drawMs": 1.3760000467300415,
+          "geometryMs": 3.259999990463257,
+          "packetSha256": "169fbb5ac3d263651c0e1fb3cb59004165bd9fb03ce82eaa32af35447e858a90"
+        },
+        {
+          "serial": 17,
+          "packets": 41,
+          "elapsed": 1.700000286102295,
+          "updateMs": 9.031000137329102,
+          "drawMs": 1.4509999752044678,
+          "geometryMs": 3.4619998931884766,
+          "packetSha256": "9985a150c4958d815da88ef1dddc76010b5842dc23128d2dc6403c94b18112fc"
+        },
+        {
+          "serial": 18,
+          "packets": 43,
+          "elapsed": 1.8000003099441528,
+          "updateMs": 7.882999897003174,
+          "drawMs": 1.4499999284744263,
+          "geometryMs": 3.375,
+          "packetSha256": "26882ac87b427c431b2bd379608b83301ba32e95b36c0bd461bcfad19da1a665"
+        },
+        {
+          "serial": 19,
+          "packets": 43,
+          "elapsed": 1.9000003337860107,
+          "updateMs": 7.739999771118164,
+          "drawMs": 1.531000018119812,
+          "geometryMs": 3.1649999618530273,
+          "packetSha256": "036e09b156d447f778d1fb588d73e1e32e626b8bb1a23f41627913f695f54331"
+        },
+        {
+          "serial": 20,
+          "packets": 51,
+          "elapsed": 2.000000238418579,
+          "updateMs": 9.95300006866455,
+          "drawMs": 1.6010000705718994,
+          "geometryMs": 4.093999862670898,
+          "packetSha256": "bc77b5a53dc13a0e4ce9dfdc8e59f5811acdf6fdda54e5ef4b7f12d7c3bcb091"
+        },
+        {
+          "serial": 21,
+          "packets": 49,
+          "elapsed": 2.1000001430511475,
+          "updateMs": 7.961999893188477,
+          "drawMs": 1.6999999284744263,
+          "geometryMs": 3.684999942779541,
+          "packetSha256": "5313e0f83efd394395bb0d2529de53d769cbff1b946d37acea7f3813f2c67b47"
+        },
+        {
+          "serial": 22,
+          "packets": 48,
+          "elapsed": 2.200000047683716,
+          "updateMs": 7.944000244140625,
+          "drawMs": 1.5770000219345093,
+          "geometryMs": 3.260999917984009,
+          "packetSha256": "3a46169fb523b70c33d6126bcf0755c2ca09ff542dfb3d26070b4aa1520b3242"
+        },
+        {
+          "serial": 23,
+          "packets": 47,
+          "elapsed": 2.299999952316284,
+          "updateMs": 7.645999908447266,
+          "drawMs": 1.715000033378601,
+          "geometryMs": 3.299999952316284,
+          "packetSha256": "9babfdcf447b996527d8b94b0fe7ce57418ee4ef31221c14a7f617ebef89ad2c"
+        },
+        {
+          "serial": 24,
+          "packets": 48,
+          "elapsed": 2.3999998569488525,
+          "updateMs": 9.109000205993652,
+          "drawMs": 1.75,
+          "geometryMs": 3.2360000610351562,
+          "packetSha256": "1f5b8b9175632858fdb615f7759e18cd5f5f6bcf67fbef6bce363383b658ad51"
+        },
+        {
+          "serial": 25,
+          "packets": 46,
+          "elapsed": 2.499999761581421,
+          "updateMs": 8.963000297546387,
+          "drawMs": 1.8259999752044678,
+          "geometryMs": 3.240999937057495,
+          "packetSha256": "a113f3864d43a4a7ce9638fab6cf3d3b23c5cb0d492386799879955f2c1a1302"
+        },
+        {
+          "serial": 26,
+          "packets": 42,
+          "elapsed": 2.5999996662139893,
+          "updateMs": 9.267000198364258,
+          "drawMs": 1.8029999732971191,
+          "geometryMs": 3.4809999465942383,
+          "packetSha256": "0d2585df284c4d72004306b34473259df8e04b0349d5ad981cf480913858dfbf"
+        },
+        {
+          "serial": 27,
+          "packets": 43,
+          "elapsed": 2.6999995708465576,
+          "updateMs": 8.597999572753906,
+          "drawMs": 2.125,
+          "geometryMs": 3.240000009536743,
+          "packetSha256": "23758b9bbf08ab63a6157ed38b9c907110619aef430756edb7dd6a25a843c1a1"
+        },
+        {
+          "serial": 28,
+          "packets": 42,
+          "elapsed": 2.799999475479126,
+          "updateMs": 9.144000053405762,
+          "drawMs": 1.6160000562667847,
+          "geometryMs": 3.324000120162964,
+          "packetSha256": "1718679b3bd0234a3569fa810333e4b1560959138317ba151ec611830c232f72"
+        },
+        {
+          "serial": 29,
+          "packets": 43,
+          "elapsed": 2.8999993801116943,
+          "updateMs": 10.706999778747559,
+          "drawMs": 1.597000002861023,
+          "geometryMs": 3.753999948501587,
+          "packetSha256": "8c1ea8b6bf9f75da8be20d77f25bd8453727779e9429f26704d48c74a271d8d1"
+        },
+        {
+          "serial": 30,
+          "packets": 48,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 11.642000198364258,
+          "drawMs": 1.8410000801086426,
+          "geometryMs": 3.805000066757202,
+          "packetSha256": "a8c1da5f9147b73c7054fff56803ccab684df40616552d2c148e8acb60e14652"
+        },
+        {
+          "serial": 31,
+          "packets": 48,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 0.00100000761449337,
+          "drawMs": 1.8050000667572021,
+          "geometryMs": 0.7829999923706055,
+          "packetSha256": "a8c1da5f9147b73c7054fff56803ccab684df40616552d2c148e8acb60e14652"
+        },
+        {
+          "serial": 32,
+          "packets": 35,
+          "elapsed": 3.099999189376831,
+          "updateMs": 8.270000457763672,
+          "drawMs": 1.6130000352859497,
+          "geometryMs": 3.1410000324249268,
+          "packetSha256": "e55acda09701482afdde08dadab6e34ecb89ab6060454a130fe1f17eaec8811a"
+        },
+        {
+          "serial": 33,
+          "packets": 34,
+          "elapsed": 3.1999990940093994,
+          "updateMs": 7.992000102996826,
+          "drawMs": 1.5550000667572021,
+          "geometryMs": 3.447000026702881,
+          "packetSha256": "6dc939d4838e9c3fbbae1d900e2d03e8dd6b9cde89f41549bed757ccd14d764d"
+        },
+        {
+          "serial": 34,
+          "packets": 32,
+          "elapsed": 3.2999989986419678,
+          "updateMs": 7.504000186920166,
+          "drawMs": 1.553999900817871,
+          "geometryMs": 3.0429999828338623,
+          "packetSha256": "3d4b903f07a3ba4e388878bb12830c8508d691af63d8f274340d75d525b33f67"
+        },
+        {
+          "serial": 35,
+          "packets": 32,
+          "elapsed": 3.399998903274536,
+          "updateMs": 10.074999809265137,
+          "drawMs": 1.593999981880188,
+          "geometryMs": 3.0480000972747803,
+          "packetSha256": "849e6dd159c7f6d1115a2c06b86dc00f15ec174eb701aa811eb5de4dd603470f"
+        },
+        {
+          "serial": 36,
+          "packets": 33,
+          "elapsed": 3.4999988079071045,
+          "updateMs": 8.020999908447266,
+          "drawMs": 1.5709999799728394,
+          "geometryMs": 2.996000051498413,
+          "packetSha256": "ea10d6b8434d7a1a15a1d13f63931a9b362d13e6c43e01f7a8023accca7133f2"
+        },
+        {
+          "serial": 37,
+          "packets": 32,
+          "elapsed": 3.599998712539673,
+          "updateMs": 7.783999919891357,
+          "drawMs": 1.628000020980835,
+          "geometryMs": 3.3310000896453857,
+          "packetSha256": "76e6900bd17f2f85dfecc20d7d7597b6e0391add951731a9ff08ae6ffda11bff"
+        },
+        {
+          "serial": 38,
+          "packets": 31,
+          "elapsed": 3.699998617172241,
+          "updateMs": 8.37600040435791,
+          "drawMs": 1.5670000314712524,
+          "geometryMs": 3.510999917984009,
+          "packetSha256": "486d6b17eddb063bdc2ff6ff5fb08e533ffba86a6b9e98de34e661952cb53a79"
+        },
+        {
+          "serial": 39,
+          "packets": 30,
+          "elapsed": 3.7999985218048096,
+          "updateMs": 11.088000297546387,
+          "drawMs": 1.628000020980835,
+          "geometryMs": 3.072999954223633,
+          "packetSha256": "c0045ed8018cd292a10a8d780e7f6aad0a0d8e68605391966103de62a1ace796"
+        },
+        {
+          "serial": 40,
+          "packets": 29,
+          "elapsed": 3.899998426437378,
+          "updateMs": 8.140000343322754,
+          "drawMs": 1.7450000047683716,
+          "geometryMs": 3.1760001182556152,
+          "packetSha256": "b22134709677743cb72608b7238c7dec725a505d37dddfb7041c795818afe91d"
+        },
+        {
+          "serial": 41,
+          "packets": 28,
+          "elapsed": 3.9999983310699463,
+          "updateMs": 10.407999992370605,
+          "drawMs": 1.8040000200271606,
+          "geometryMs": 3.069000005722046,
+          "packetSha256": "184ba7c3c391b0db9dde33624d9a327375c24a7b8877796550bba62c10023d66"
+        },
+        {
+          "serial": 42,
+          "packets": 27,
+          "elapsed": 4.099998474121094,
+          "updateMs": 9.163999557495117,
+          "drawMs": 1.6920000314712524,
+          "geometryMs": 2.9600000381469727,
+          "packetSha256": "6ead6c904428b991b848ec1660a836c60452fb2b3389d1c4ff94568c6b0be060"
+        },
+        {
+          "serial": 43,
+          "packets": 26,
+          "elapsed": 4.199998378753662,
+          "updateMs": 9.479000091552734,
+          "drawMs": 2.1410000324249268,
+          "geometryMs": 2.9489998817443848,
+          "packetSha256": "f34ab1d340290e2f61cc2037277a3db0209c6a7fa5fa03896d7ede25f7421a54"
+        },
+        {
+          "serial": 44,
+          "packets": 26,
+          "elapsed": 4.2999982833862305,
+          "updateMs": 9.196000099182129,
+          "drawMs": 2.1710000038146973,
+          "geometryMs": 3.9830000400543213,
+          "packetSha256": "db1f8c63eacf0b5ca26bf558ea22aee5dd0a8a2f2b073f5bc9b88c908205d89f"
+        },
+        {
+          "serial": 45,
+          "packets": 26,
+          "elapsed": 4.399998188018799,
+          "updateMs": 9.315999984741211,
+          "drawMs": 1.6700000762939453,
+          "geometryMs": 2.937999963760376,
+          "packetSha256": "5f97b7760a523631bd6c82f9e6c57ca31b02ef8e344ea2452c260d25348d3087"
+        },
+        {
+          "serial": 46,
+          "packets": 27,
+          "elapsed": 4.499998092651367,
+          "updateMs": 8.878999710083008,
+          "drawMs": 1.6619999408721924,
+          "geometryMs": 2.871999979019165,
+          "packetSha256": "d83ff0106bb85705cb65ab0689986c829271884e2c94b407307811d2a4ba06b8"
+        },
+        {
+          "serial": 47,
+          "packets": 26,
+          "elapsed": 4.5999979972839355,
+          "updateMs": 8.354000091552734,
+          "drawMs": 1.652999997138977,
+          "geometryMs": 2.3450000286102295,
+          "packetSha256": "828912297626e3733a17a39349468d8dd38fb314f19cc8cc046019a7f7b08fe9"
+        },
+        {
+          "serial": 48,
+          "packets": 26,
+          "elapsed": 4.699997901916504,
+          "updateMs": 8.732000350952148,
+          "drawMs": 1.7620000839233398,
+          "geometryMs": 2.7119998931884766,
+          "packetSha256": "948fc509e1d3fbccd0c7f7ec1505fdda80b42e844ac3218157e3e8f9c2db7c7f"
+        },
+        {
+          "serial": 49,
+          "packets": 25,
+          "elapsed": 4.799997806549072,
+          "updateMs": 8.76200008392334,
+          "drawMs": 1.8650000095367432,
+          "geometryMs": 3.1500000953674316,
+          "packetSha256": "c7e4ec83cc00f166bfef1155b7b69d3e6fc4616ad1b724c58c8998ddb537678d"
+        },
+        {
+          "serial": 50,
+          "packets": 25,
+          "elapsed": 4.899997711181641,
+          "updateMs": 9.520999908447266,
+          "drawMs": 1.930999994277954,
+          "geometryMs": 2.569000005722046,
+          "packetSha256": "2f52739006ec04da7537d2a20e993e6e4a76726adb453684a292ecbd40ce30f6"
+        },
+        {
+          "serial": 51,
+          "packets": 26,
+          "elapsed": 4.999997615814209,
+          "updateMs": 12.668000221252441,
+          "drawMs": 1.7529999017715454,
+          "geometryMs": 2.4210000038146973,
+          "packetSha256": "0dcf2fd671aa0baa717682e856ac625b9b7555866849948f56b17bb6f19a5e80"
+        },
+        {
+          "serial": 52,
+          "packets": 25,
+          "elapsed": 5.099997520446777,
+          "updateMs": 11.420999526977539,
+          "drawMs": 1.906000018119812,
+          "geometryMs": 2.7750000953674316,
+          "packetSha256": "3c487b66f06e6e8afb47feac8141a28aabc585ca5f3a924fb1cf17c4a2af39f7"
+        },
+        {
+          "serial": 53,
+          "packets": 25,
+          "elapsed": 5.199997425079346,
+          "updateMs": 9.769000053405762,
+          "drawMs": 1.7919999361038208,
+          "geometryMs": 2.372999906539917,
+          "packetSha256": "db87766e820da59efc11fadd87c6093f2f8243d590ea54988523fc5f905d6152"
+        },
+        {
+          "serial": 54,
+          "packets": 25,
+          "elapsed": 5.299997329711914,
+          "updateMs": 9.807000160217285,
+          "drawMs": 1.774999976158142,
+          "geometryMs": 2.5160000324249268,
+          "packetSha256": "ab7d04b9b29701e8f820567b02df0b2f15012d3c8d437e769a69a4bfe2310090"
+        },
+        {
+          "serial": 55,
+          "packets": 25,
+          "elapsed": 5.399997234344482,
+          "updateMs": 10.892000198364258,
+          "drawMs": 1.9519999027252197,
+          "geometryMs": 2.638000011444092,
+          "packetSha256": "494f3d72662560f35aee864b4fe3efd6a50f5734459e7ac648ba7251949abdba"
+        },
+        {
+          "serial": 56,
+          "packets": 27,
+          "elapsed": 5.499997138977051,
+          "updateMs": 11.288000106811523,
+          "drawMs": 2.0339999198913574,
+          "geometryMs": 2.446000099182129,
+          "packetSha256": "b255b013bc335a7c19dcfddf6af5af224d96c36a3bf2ea54a678b3a04dd9ffd3"
+        },
+        {
+          "serial": 57,
+          "packets": 26,
+          "elapsed": 5.599997043609619,
+          "updateMs": 9.98799991607666,
+          "drawMs": 1.8730000257492065,
+          "geometryMs": 2.7339999675750732,
+          "packetSha256": "c62149ef71920e47f1593749d5339e0e9aefef86285f6a83f5c91d1081e2d6b4"
+        },
+        {
+          "serial": 58,
+          "packets": 25,
+          "elapsed": 5.6999969482421875,
+          "updateMs": 10.496000289916992,
+          "drawMs": 2.61299991607666,
+          "geometryMs": 2.6040000915527344,
+          "packetSha256": "3558866944138c3f593a366188cbaa0de11239aa46fd256e43cdf46baf55af3c"
+        },
+        {
+          "serial": 59,
+          "packets": 25,
+          "elapsed": 5.799996852874756,
+          "updateMs": 9.5649995803833,
+          "drawMs": 1.8560000658035278,
+          "geometryMs": 2.3970000743865967,
+          "packetSha256": "3f2a30c8b8f9272538b82c632a38f7e369602263d437364e175fc0610f87f382"
+        },
+        {
+          "serial": 60,
+          "packets": 24,
+          "elapsed": 5.899996757507324,
+          "updateMs": 10.921000480651855,
+          "drawMs": 2.174999952316284,
+          "geometryMs": 2.506999969482422,
+          "packetSha256": "5eb7f08f1e5a424cdffe02efcd8fc93a3086eb793f1f68e6397d4fed1e322e63"
+        },
+        {
+          "serial": 61,
+          "packets": 26,
+          "elapsed": 5.999996662139893,
+          "updateMs": 12.045000076293945,
+          "drawMs": 2.049999952316284,
+          "geometryMs": 2.564000129699707,
+          "packetSha256": "37414c6991e3f9adac409418c87361390a0a15ec590796d72cc809144c734666"
+        },
+        {
+          "serial": 62,
+          "packets": 25,
+          "elapsed": 6.099996566772461,
+          "updateMs": 10.46399974822998,
+          "drawMs": 1.99399995803833,
+          "geometryMs": 2.3289999961853027,
+          "packetSha256": "26c05dc330974c413e882dd62b1014fcf1254e10e4f8148e7a88c33d709bb2be"
+        },
+        {
+          "serial": 63,
+          "packets": 25,
+          "elapsed": 6.199996471405029,
+          "updateMs": 10.144000053405762,
+          "drawMs": 1.8960000276565552,
+          "geometryMs": 2.3480000495910645,
+          "packetSha256": "71908e43d193bbc67c5e9e76be16910fc3c8998f9aacec39e23c0b9b621dc2f9"
+        },
+        {
+          "serial": 64,
+          "packets": 25,
+          "elapsed": 6.299996376037598,
+          "updateMs": 11.470000267028809,
+          "drawMs": 2.8930001258850098,
+          "geometryMs": 2.8350000381469727,
+          "packetSha256": "0ae0a5ba519a536498561862512d99485b7f9763583df40197120b52bf096854"
+        },
+        {
+          "serial": 65,
+          "packets": 25,
+          "elapsed": 6.399996280670166,
+          "updateMs": 10.824999809265137,
+          "drawMs": 1.9470000267028809,
+          "geometryMs": 2.309000015258789,
+          "packetSha256": "f8eb49a5346fbe00894479a3cefeb06f6c41068462eba62843be71c13bd4dfb6"
+        },
+        {
+          "serial": 66,
+          "packets": 27,
+          "elapsed": 6.499996185302734,
+          "updateMs": 10.621999740600586,
+          "drawMs": 2.063999891281128,
+          "geometryMs": 2.3570001125335693,
+          "packetSha256": "391b6862f4bfc85e1375049e80647c0da58faa1ef2c50409fbc071c7366d59e1"
+        },
+        {
+          "serial": 67,
+          "packets": 25,
+          "elapsed": 6.599996089935303,
+          "updateMs": 10.95199966430664,
+          "drawMs": 2.109999895095825,
+          "geometryMs": 2.38100004196167,
+          "packetSha256": "67350af7ec678e399b1ea2e6f68d27c9730d589bf6d1c137d1657b6749fa8432"
+        },
+        {
+          "serial": 68,
+          "packets": 24,
+          "elapsed": 6.699995994567871,
+          "updateMs": 12.265000343322754,
+          "drawMs": 2.1110000610351562,
+          "geometryMs": 2.299999952316284,
+          "packetSha256": "061f7adda2134458b78a9c9f33052e71b24dc72f298659af40fce29a99dda603"
+        },
+        {
+          "serial": 69,
+          "packets": 24,
+          "elapsed": 6.7999958992004395,
+          "updateMs": 10.642999649047852,
+          "drawMs": 1.996999979019165,
+          "geometryMs": 2.2950000762939453,
+          "packetSha256": "96cbfea5e6149b1842c638a20fea52fac3494a6555ec23c1e3ee01b332669b06"
+        },
+        {
+          "serial": 70,
+          "packets": 24,
+          "elapsed": 6.899995803833008,
+          "updateMs": 10.894999504089355,
+          "drawMs": 2.1470000743865967,
+          "geometryMs": 2.5490000247955322,
+          "packetSha256": "bc690c86a10db359bf1ec912c71fcb6ce3965e7866c4a32ff0e1100029ab1183"
+        },
+        {
+          "serial": 71,
+          "packets": 26,
+          "elapsed": 6.999995708465576,
+          "updateMs": 13.623000144958496,
+          "drawMs": 2.0869998931884766,
+          "geometryMs": 2.4720001220703125,
+          "packetSha256": "b72f2b8c4ac559be590a1ec7e3deb2a2628a13cefb7a7151f7ac2ddf6ad71a05"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=1 created=1 stopped=0 totalCreated=1 totalStopped=0\nPC_CELL_ADMISSION active=1 highwater=1 limit=5000000\nPC_FIRE_SYNC serial=32 active=0 created=0 stopped=1 totalCreated=1 totalStopped=1\nPC_CELL_BUDGET_PEAK bytes=1095343 highwater=1 limit=5000000\n",
+      "stderrSha256": "25f7a091d68496fe6b560b75824dcbdde502711e22b54c79bcdac4fc82ed7a51",
+      "stdoutSha256": "1734fa3187b1bbe6ba4b4b81a280bcfa5ff1e3f275006e4deaa2fdb399b99ad5",
+      "pauseExact": true
+    },
+    {
+      "controllers": 13,
+      "exit": 0,
+      "framesCompleted": 71,
+      "framesRequested": 71,
+      "wallSeconds": 1.5966362450000005,
+      "smallCaseSourceRecordAndTimeExact": true,
+      "semanticSha256": "c7971685832b2b141cbf75c27dc08608556846005ffa464b210a76d4eab3bdb2",
+      "maximumPackets": 90,
+      "maximumObservedCallBytes": 2408984,
+      "quotaHighwater": 13,
+      "quotaBytes": 5000000,
+      "maximumNativeEvaluatorMs": {
+        "updateMs": 28.718000411987305,
+        "drawMs": 3.758000135421753,
+        "geometryMs": 5.35099983215332
+      },
+      "frames": [
+        {
+          "serial": 1,
+          "packets": 11,
+          "elapsed": 0.10000000149011612,
+          "updateMs": 24.250999450683594,
+          "drawMs": 2.7070000171661377,
+          "geometryMs": 4.61299991607666,
+          "packetSha256": "1945c788c7790be0f3c904446bf3637c09c67b48080cef18ec7b6a0b2bcf8c12"
+        },
+        {
+          "serial": 2,
+          "packets": 13,
+          "elapsed": 0.20000000298023224,
+          "updateMs": 9.17199993133545,
+          "drawMs": 1.3300000429153442,
+          "geometryMs": 3.000999927520752,
+          "packetSha256": "d0e9be24f86a73358f7dfd256b1239fbcafecbcee27da425e565817605d75975"
+        },
+        {
+          "serial": 3,
+          "packets": 16,
+          "elapsed": 0.30000001192092896,
+          "updateMs": 11.319000244140625,
+          "drawMs": 1.3790000677108765,
+          "geometryMs": 3.129999876022339,
+          "packetSha256": "68f2cc424fc06fce931314aa4ae1b6df53dd6cc6df87702b9215af6265defcc1"
+        },
+        {
+          "serial": 4,
+          "packets": 30,
+          "elapsed": 0.4000000059604645,
+          "updateMs": 16.496999740600586,
+          "drawMs": 1.7179999351501465,
+          "geometryMs": 3.128000020980835,
+          "packetSha256": "2b5c6567cb41f3b16c914ead0a649f905bbf853156948b844d20df28815158ab"
+        },
+        {
+          "serial": 5,
+          "packets": 39,
+          "elapsed": 0.5,
+          "updateMs": 14.239999771118164,
+          "drawMs": 1.9019999504089355,
+          "geometryMs": 3.2839999198913574,
+          "packetSha256": "f13e983acafd0c1fb916cf8264174edc93e0d3d476bbe8cc60b977a815ea8daf"
+        },
+        {
+          "serial": 6,
+          "packets": 48,
+          "elapsed": 0.6000000238418579,
+          "updateMs": 15.182000160217285,
+          "drawMs": 2.430000066757202,
+          "geometryMs": 3.815999984741211,
+          "packetSha256": "7cec574b6c3fc19730713373aee4ed3d689e946eaa4d245dc18c1a973b282a0c"
+        },
+        {
+          "serial": 7,
+          "packets": 59,
+          "elapsed": 0.7000000476837158,
+          "updateMs": 18.17099952697754,
+          "drawMs": 2.615000009536743,
+          "geometryMs": 3.697000026702881,
+          "packetSha256": "a87b7ea0adba87c6cbf6c040861a0971946d9ef5857a33d40ea3725ded6ee76f"
+        },
+        {
+          "serial": 8,
+          "packets": 66,
+          "elapsed": 0.8000000715255737,
+          "updateMs": 17.73699951171875,
+          "drawMs": 2.7739999294281006,
+          "geometryMs": 3.6069998741149902,
+          "packetSha256": "b0d9de3e26b0443d72161b4305b9d139a704d85d12220308d91715beb2cbfa07"
+        },
+        {
+          "serial": 9,
+          "packets": 67,
+          "elapsed": 0.9000000953674316,
+          "updateMs": 14.411999702453613,
+          "drawMs": 2.572000026702881,
+          "geometryMs": 3.7260000705718994,
+          "packetSha256": "a364ecdcc1c16e247583c35eff3ee019b3d5afb72a89a8d9f13b70c3e09d591e"
+        },
+        {
+          "serial": 10,
+          "packets": 81,
+          "elapsed": 1.0000001192092896,
+          "updateMs": 22.91200065612793,
+          "drawMs": 3.056999921798706,
+          "geometryMs": 3.8269999027252197,
+          "packetSha256": "2fc7b484d4e780a28e05a5808832c29cb9ab3e86bd0ef237c9aa5575f989b43a"
+        },
+        {
+          "serial": 11,
+          "packets": 78,
+          "elapsed": 1.1000001430511475,
+          "updateMs": 16.809999465942383,
+          "drawMs": 3.0290000438690186,
+          "geometryMs": 4.015999794006348,
+          "packetSha256": "50477b8c5d6f72328aa47c842c79f72851cfc96ffd00c0288faf6e422f809abe"
+        },
+        {
+          "serial": 12,
+          "packets": 75,
+          "elapsed": 1.2000001668930054,
+          "updateMs": 18.459999084472656,
+          "drawMs": 3.758000135421753,
+          "geometryMs": 4.495999813079834,
+          "packetSha256": "de78d0cdf98ba7f2aae11f25514e279421cc2ff501857352c015502bc6d1af9a"
+        },
+        {
+          "serial": 13,
+          "packets": 74,
+          "elapsed": 1.3000001907348633,
+          "updateMs": 18.781999588012695,
+          "drawMs": 3.078000068664551,
+          "geometryMs": 5.35099983215332,
+          "packetSha256": "ecc85a591df68973137318af87c8445074dd84bd405714aa83fc14fdd90b8003"
+        },
+        {
+          "serial": 14,
+          "packets": 81,
+          "elapsed": 1.4000002145767212,
+          "updateMs": 22.9950008392334,
+          "drawMs": 3.385999917984009,
+          "geometryMs": 4.257999897003174,
+          "packetSha256": "7e8714a6525c33ddba5d61ec11eaec9cfa1e433b405f5c17493e0780de87963e"
+        },
+        {
+          "serial": 15,
+          "packets": 84,
+          "elapsed": 1.500000238418579,
+          "updateMs": 25.020999908447266,
+          "drawMs": 3.2019999027252197,
+          "geometryMs": 4.005000114440918,
+          "packetSha256": "745cee15332bf00057bd3f55645cc259c6e0185bc7a4cc5ac715e48a2cb23b06"
+        },
+        {
+          "serial": 16,
+          "packets": 67,
+          "elapsed": 1.600000262260437,
+          "updateMs": 18.924999237060547,
+          "drawMs": 2.8550000190734863,
+          "geometryMs": 3.7200000286102295,
+          "packetSha256": "3653eb349de5efe38f4f4c6a14b24cf8a541af192ef6c8af94613da85be9d5a5"
+        },
+        {
+          "serial": 17,
+          "packets": 73,
+          "elapsed": 1.700000286102295,
+          "updateMs": 25.062000274658203,
+          "drawMs": 3.174999952316284,
+          "geometryMs": 3.86899995803833,
+          "packetSha256": "e3d8ddd0ec3bff52e30e85bb57b75b8c5a832372c7bf2346ae92dda9d00a6962"
+        },
+        {
+          "serial": 18,
+          "packets": 77,
+          "elapsed": 1.8000003099441528,
+          "updateMs": 20.590999603271484,
+          "drawMs": 3.3440001010894775,
+          "geometryMs": 3.942000150680542,
+          "packetSha256": "398d9147320849d896b33b9870f83e1fb63f9617145b4dbb7409fed709d3241d"
+        },
+        {
+          "serial": 19,
+          "packets": 76,
+          "elapsed": 1.9000003337860107,
+          "updateMs": 19.356000900268555,
+          "drawMs": 3.3989999294281006,
+          "geometryMs": 3.7890000343322754,
+          "packetSha256": "3b06acfa72177aea7f94214e87de75eaf7f3092c3062845299e320456b0220bb"
+        },
+        {
+          "serial": 20,
+          "packets": 88,
+          "elapsed": 2.000000238418579,
+          "updateMs": 28.697999954223633,
+          "drawMs": 3.555999994277954,
+          "geometryMs": 4.045000076293945,
+          "packetSha256": "c38b676c4dcb740e1fe85ecf127ec7915bde726c5f2e648b9a4d58ce1a422dc0"
+        },
+        {
+          "serial": 21,
+          "packets": 90,
+          "elapsed": 2.1000001430511475,
+          "updateMs": 22.268999099731445,
+          "drawMs": 3.622999906539917,
+          "geometryMs": 4.146999835968018,
+          "packetSha256": "726272f04b92020d247eb9e6523145334e8957ae648ab126d0e4ea4bdb80262b"
+        },
+        {
+          "serial": 22,
+          "packets": 83,
+          "elapsed": 2.200000047683716,
+          "updateMs": 19.707000732421875,
+          "drawMs": 3.6740000247955322,
+          "geometryMs": 3.933000087738037,
+          "packetSha256": "c9885706852edbed7481dffc445de02e10ba4be5a8ab5d43844daec03dce56b3"
+        },
+        {
+          "serial": 23,
+          "packets": 83,
+          "elapsed": 2.299999952316284,
+          "updateMs": 18.483999252319336,
+          "drawMs": 3.5789999961853027,
+          "geometryMs": 3.865999937057495,
+          "packetSha256": "e7cabf9f7f4ddbc01668d9da3bde75bb161dfb815539e684b12bfa94804d5dd7"
+        },
+        {
+          "serial": 24,
+          "packets": 85,
+          "elapsed": 2.3999998569488525,
+          "updateMs": 21.707000732421875,
+          "drawMs": 3.438999891281128,
+          "geometryMs": 4.105000019073486,
+          "packetSha256": "3286330655ca39d39acf892c5852098d4a3f2816b8dd38a32ec67eda0d0a1b72"
+        },
+        {
+          "serial": 25,
+          "packets": 81,
+          "elapsed": 2.499999761581421,
+          "updateMs": 19.670000076293945,
+          "drawMs": 3.2860000133514404,
+          "geometryMs": 3.8500001430511475,
+          "packetSha256": "8b15d4fb84ed806b26b5990a6ee6d775e3f4432befed74277e7b9af0e9fdf586"
+        },
+        {
+          "serial": 26,
+          "packets": 77,
+          "elapsed": 2.5999996662139893,
+          "updateMs": 19.485000610351562,
+          "drawMs": 3.1519999504089355,
+          "geometryMs": 3.7980000972747803,
+          "packetSha256": "722ef60ef1dbd040fdde14a0f62849f58f3362721e07cf812547f154d5ba278f"
+        },
+        {
+          "serial": 27,
+          "packets": 76,
+          "elapsed": 2.6999995708465576,
+          "updateMs": 22.73200035095215,
+          "drawMs": 3.2089998722076416,
+          "geometryMs": 3.861999988555908,
+          "packetSha256": "8fab7eb7b2d6b06e4b47b8246b5fdb57b5c74dc4844bcd1dbc0f7cb3585a6411"
+        },
+        {
+          "serial": 28,
+          "packets": 74,
+          "elapsed": 2.799999475479126,
+          "updateMs": 21.24799919128418,
+          "drawMs": 3.1730000972747803,
+          "geometryMs": 3.815999984741211,
+          "packetSha256": "4de4787a5d1ef10d82cb83bb1d45e858f0e7909ed95114a4584ff641d0574448"
+        },
+        {
+          "serial": 29,
+          "packets": 74,
+          "elapsed": 2.8999993801116943,
+          "updateMs": 19.163999557495117,
+          "drawMs": 3.0940001010894775,
+          "geometryMs": 3.7920000553131104,
+          "packetSha256": "eeba48ad4913323c1026f3952c8d7a5862cb55f4a8377513956a2708de5a1b77"
+        },
+        {
+          "serial": 30,
+          "packets": 84,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 28.718000411987305,
+          "drawMs": 3.559000015258789,
+          "geometryMs": 3.9539999961853027,
+          "packetSha256": "a97c2ba6651253286f0e9f5b3ce2c9c59c5aa0b7a85774bd69dc79384940ca84"
+        },
+        {
+          "serial": 31,
+          "packets": 84,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 0.00100000761449337,
+          "drawMs": 3.5169999599456787,
+          "geometryMs": 1.2790000438690186,
+          "packetSha256": "a97c2ba6651253286f0e9f5b3ce2c9c59c5aa0b7a85774bd69dc79384940ca84"
+        },
+        {
+          "serial": 32,
+          "packets": 51,
+          "elapsed": 3.099999189376831,
+          "updateMs": 13.086999893188477,
+          "drawMs": 2.447999954223633,
+          "geometryMs": 3.3610000610351562,
+          "packetSha256": "6b5b4e486c2813da57f2073cbf7ec9e180b82f42d1b255ba638a82ae1ee75088"
+        },
+        {
+          "serial": 33,
+          "packets": 49,
+          "elapsed": 3.1999990940093994,
+          "updateMs": 11.854999542236328,
+          "drawMs": 2.428999900817871,
+          "geometryMs": 3.359999895095825,
+          "packetSha256": "a85802a4dd7a511db56cc62161830ac3fc3324bd3107e59f9660e746f81ccb72"
+        },
+        {
+          "serial": 34,
+          "packets": 48,
+          "elapsed": 3.2999989986419678,
+          "updateMs": 11.402999877929688,
+          "drawMs": 2.3289999961853027,
+          "geometryMs": 3.375,
+          "packetSha256": "e5afd5886b25946d63276248076cf1f13943ba30b46d0e88a830e84f1ceafc27"
+        },
+        {
+          "serial": 35,
+          "packets": 48,
+          "elapsed": 3.399998903274536,
+          "updateMs": 14.348999977111816,
+          "drawMs": 2.759999990463257,
+          "geometryMs": 3.430000066757202,
+          "packetSha256": "52205ea16b05c7bec8bf873c1c16d425f6fd1e4bffbf16d9e2f2d98d23a18ab9"
+        },
+        {
+          "serial": 36,
+          "packets": 47,
+          "elapsed": 3.4999988079071045,
+          "updateMs": 12.246000289916992,
+          "drawMs": 2.430999994277954,
+          "geometryMs": 3.421999931335449,
+          "packetSha256": "21d6881d44b9e64a656942c361c6e8f3cae38bb560bb227b606754d28a4fe6e1"
+        },
+        {
+          "serial": 37,
+          "packets": 45,
+          "elapsed": 3.599998712539673,
+          "updateMs": 12.293000221252441,
+          "drawMs": 2.4720001220703125,
+          "geometryMs": 3.9059998989105225,
+          "packetSha256": "0631daeb472cf745834a13885902423cac21b995b7666979168f2fa7998106a9"
+        },
+        {
+          "serial": 38,
+          "packets": 44,
+          "elapsed": 3.699998617172241,
+          "updateMs": 11.835000038146973,
+          "drawMs": 2.2039999961853027,
+          "geometryMs": 3.305999994277954,
+          "packetSha256": "4c035c6fda04905dd82ed21aa4fa06ac9a6b3a2053dd77b8bd27ae1826745130"
+        },
+        {
+          "serial": 39,
+          "packets": 39,
+          "elapsed": 3.7999985218048096,
+          "updateMs": 13.21399974822998,
+          "drawMs": 2.115000009536743,
+          "geometryMs": 3.4140000343322754,
+          "packetSha256": "b2c67f1caadd998bf2ffe9402d169b04bf94b6205455322c6db6478175308c7c"
+        },
+        {
+          "serial": 40,
+          "packets": 35,
+          "elapsed": 3.899998426437378,
+          "updateMs": 10.947999954223633,
+          "drawMs": 2.0820000171661377,
+          "geometryMs": 3.203000068664551,
+          "packetSha256": "775efad7b1c00dd11cab5655b1b3b62cfec8b1d187c2c1d8fab90405bb71a83e"
+        },
+        {
+          "serial": 41,
+          "packets": 35,
+          "elapsed": 3.9999983310699463,
+          "updateMs": 12.987000465393066,
+          "drawMs": 2.0450000762939453,
+          "geometryMs": 3.3570001125335693,
+          "packetSha256": "4597357d34eedd180e7ec638e3a9f9eeb32b68a9b5d3978584237faccbecf9ee"
+        },
+        {
+          "serial": 42,
+          "packets": 31,
+          "elapsed": 4.099998474121094,
+          "updateMs": 10.005999565124512,
+          "drawMs": 1.999000072479248,
+          "geometryMs": 3.3310000896453857,
+          "packetSha256": "866c100a0dab9b4a78298452bfe0951bb8b8692aa537d3388bbcacea6cddce2e"
+        },
+        {
+          "serial": 43,
+          "packets": 29,
+          "elapsed": 4.199998378753662,
+          "updateMs": 10.064000129699707,
+          "drawMs": 2.2929999828338623,
+          "geometryMs": 3.7279999256134033,
+          "packetSha256": "657d020b572f1b0b895ed521c768fb79cd1f311b0d458e6e5b0664f376dd396b"
+        },
+        {
+          "serial": 44,
+          "packets": 28,
+          "elapsed": 4.2999982833862305,
+          "updateMs": 9.315999984741211,
+          "drawMs": 1.7970000505447388,
+          "geometryMs": 3.0149998664855957,
+          "packetSha256": "009846c60655c7984577922f3542af9a447c65a10b7d10506b8969e01d2b1252"
+        },
+        {
+          "serial": 45,
+          "packets": 28,
+          "elapsed": 4.399998188018799,
+          "updateMs": 10.644000053405762,
+          "drawMs": 1.8799999952316284,
+          "geometryMs": 3.0989999771118164,
+          "packetSha256": "246934512d15cbf96c1840b9654770ddc2b104f7409f1e7e87cd57eb10dab1ef"
+        },
+        {
+          "serial": 46,
+          "packets": 27,
+          "elapsed": 4.499998092651367,
+          "updateMs": 9.321999549865723,
+          "drawMs": 1.8170000314712524,
+          "geometryMs": 3.3889999389648438,
+          "packetSha256": "47830482fdab084e8df95842d55d230b3176496bac8c7fac473c4efb94150a72"
+        },
+        {
+          "serial": 47,
+          "packets": 26,
+          "elapsed": 4.5999979972839355,
+          "updateMs": 9.78600025177002,
+          "drawMs": 1.843999981880188,
+          "geometryMs": 2.559000015258789,
+          "packetSha256": "b8db386107c95d141ca3b4fb606d0ae3a7aec4dbf10dd93186c508d52c3c7d83"
+        },
+        {
+          "serial": 48,
+          "packets": 25,
+          "elapsed": 4.699997901916504,
+          "updateMs": 10.14799976348877,
+          "drawMs": 1.6420000791549683,
+          "geometryMs": 2.4129998683929443,
+          "packetSha256": "194f28d1fbd99b26e4efe734b2e43482feee86405d603ecb4358126bf5b12c1d"
+        },
+        {
+          "serial": 49,
+          "packets": 25,
+          "elapsed": 4.799997806549072,
+          "updateMs": 8.810999870300293,
+          "drawMs": 1.7710000276565552,
+          "geometryMs": 2.372999906539917,
+          "packetSha256": "d2a495aadf49efb0990fb966a0d0632f6b2d2fa95656893589298f075302359b"
+        },
+        {
+          "serial": 50,
+          "packets": 25,
+          "elapsed": 4.899997711181641,
+          "updateMs": 8.352999687194824,
+          "drawMs": 1.6059999465942383,
+          "geometryMs": 2.375999927520752,
+          "packetSha256": "91ba952b6c80898207d045deb0bb8bec4ea6274aff0d673537fd7b90b83d88c9"
+        },
+        {
+          "serial": 51,
+          "packets": 27,
+          "elapsed": 4.999997615814209,
+          "updateMs": 13.02299976348877,
+          "drawMs": 2.0799999237060547,
+          "geometryMs": 2.5269999504089355,
+          "packetSha256": "a1da487bf205e61663fd2e50e979854170de52412f5049702dda3952f786833c"
+        },
+        {
+          "serial": 52,
+          "packets": 26,
+          "elapsed": 5.099997520446777,
+          "updateMs": 13.144000053405762,
+          "drawMs": 2.2320001125335693,
+          "geometryMs": 2.4639999866485596,
+          "packetSha256": "fec829d71700416473755931112839a847e5965f9f130653deffaa6ea27f6246"
+        },
+        {
+          "serial": 53,
+          "packets": 25,
+          "elapsed": 5.199997425079346,
+          "updateMs": 10.263999938964844,
+          "drawMs": 1.8880000114440918,
+          "geometryMs": 2.4749999046325684,
+          "packetSha256": "51c22e9d01659a76db86a2cd09f16dac485faa8f2c68ed4ba16d85d46b2e0b81"
+        },
+        {
+          "serial": 54,
+          "packets": 25,
+          "elapsed": 5.299997329711914,
+          "updateMs": 10.723999977111816,
+          "drawMs": 2.0350000858306885,
+          "geometryMs": 2.7209999561309814,
+          "packetSha256": "8f5089135e24088001637d0b5a7db2e67e349e6d6b63aa0edcbe453e2a7b9aa3"
+        },
+        {
+          "serial": 55,
+          "packets": 25,
+          "elapsed": 5.399997234344482,
+          "updateMs": 11.76099967956543,
+          "drawMs": 1.9670000076293945,
+          "geometryMs": 2.4010000228881836,
+          "packetSha256": "ea1c3f178d39e419f1d3e0ef54b78388311c4b9774e3d2634ca290fda84e8ad0"
+        },
+        {
+          "serial": 56,
+          "packets": 26,
+          "elapsed": 5.499997138977051,
+          "updateMs": 11.515000343322754,
+          "drawMs": 2.800999879837036,
+          "geometryMs": 2.7139999866485596,
+          "packetSha256": "0d3023b1cda4d13534d1de0028fdb26707436b6beee56be59d46e90946710b37"
+        },
+        {
+          "serial": 57,
+          "packets": 25,
+          "elapsed": 5.599997043609619,
+          "updateMs": 10.3100004196167,
+          "drawMs": 1.9160000085830688,
+          "geometryMs": 2.384000062942505,
+          "packetSha256": "bce1a1fab891afe24ae51415683e348bac6e82c7e4a27cdfdb99654e04ac8956"
+        },
+        {
+          "serial": 58,
+          "packets": 25,
+          "elapsed": 5.6999969482421875,
+          "updateMs": 10.932999610900879,
+          "drawMs": 2.0269999504089355,
+          "geometryMs": 2.7019999027252197,
+          "packetSha256": "6e185a704a7e713ab62ef2ec949a3160b066bdfb84ed8f01b1600b493ef9a2b9"
+        },
+        {
+          "serial": 59,
+          "packets": 25,
+          "elapsed": 5.799996852874756,
+          "updateMs": 10.803000450134277,
+          "drawMs": 2.5820000171661377,
+          "geometryMs": 2.687000036239624,
+          "packetSha256": "a04918add7d0edcb862d137033381ff070c6b7c28bf56c3404ff518321ebc18b"
+        },
+        {
+          "serial": 60,
+          "packets": 25,
+          "elapsed": 5.899996757507324,
+          "updateMs": 11.913000106811523,
+          "drawMs": 2.1050000190734863,
+          "geometryMs": 2.4819998741149902,
+          "packetSha256": "91cfe5b5b1841eb3af71c5559493529908895c5a0c6a19e635bd470ca67f04e1"
+        },
+        {
+          "serial": 61,
+          "packets": 26,
+          "elapsed": 5.999996662139893,
+          "updateMs": 12.456000328063965,
+          "drawMs": 2.059000015258789,
+          "geometryMs": 2.4040000438690186,
+          "packetSha256": "e6cb973c528e450913e5d2db1141795efab8d1e31ce80b48f8016daa186d3f0d"
+        },
+        {
+          "serial": 62,
+          "packets": 25,
+          "elapsed": 6.099996566772461,
+          "updateMs": 10.482000350952148,
+          "drawMs": 2.131999969482422,
+          "geometryMs": 2.5250000953674316,
+          "packetSha256": "cc947f3cdb3085239c97b5f48cdce67d864b56270096fbe755994a9654687be5"
+        },
+        {
+          "serial": 63,
+          "packets": 25,
+          "elapsed": 6.199996471405029,
+          "updateMs": 11.600000381469727,
+          "drawMs": 2.002000093460083,
+          "geometryMs": 2.4820001125335693,
+          "packetSha256": "0499213c1f8780639b72d32388156b036b17ec574d586af12fa40dd4b81704a4"
+        },
+        {
+          "serial": 64,
+          "packets": 25,
+          "elapsed": 6.299996376037598,
+          "updateMs": 13.16100025177002,
+          "drawMs": 2.263000011444092,
+          "geometryMs": 2.5230000019073486,
+          "packetSha256": "538fccf76b84cb39986ad5e6ced93d88a221b4ca3d5957cd71df19b03df32eef"
+        },
+        {
+          "serial": 65,
+          "packets": 24,
+          "elapsed": 6.399996280670166,
+          "updateMs": 11.472000122070312,
+          "drawMs": 2.072000026702881,
+          "geometryMs": 2.809000015258789,
+          "packetSha256": "a2bdb0b4d40af1d3a41b829cdd6465e802e2bda5b94faf6e675fbd69feb04763"
+        },
+        {
+          "serial": 66,
+          "packets": 26,
+          "elapsed": 6.499996185302734,
+          "updateMs": 11.5,
+          "drawMs": 2.4670000076293945,
+          "geometryMs": 2.631999969482422,
+          "packetSha256": "da246386005f27c8ad49d8c2fd256c814804ae2bf86dad9bb095e4e6e01b3b49"
+        },
+        {
+          "serial": 67,
+          "packets": 25,
+          "elapsed": 6.599996089935303,
+          "updateMs": 11.314000129699707,
+          "drawMs": 2.0380001068115234,
+          "geometryMs": 2.3989999294281006,
+          "packetSha256": "0df68d8e25389d78433a33bf1808f889c37daf0e7f2c9238c0eaa8d7048f52ea"
+        },
+        {
+          "serial": 68,
+          "packets": 25,
+          "elapsed": 6.699995994567871,
+          "updateMs": 12.642000198364258,
+          "drawMs": 2.2839999198913574,
+          "geometryMs": 2.6080000400543213,
+          "packetSha256": "590c46fb914eadd008a583edcaef83efee01ce56cb6168359c3d20dca3375b12"
+        },
+        {
+          "serial": 69,
+          "packets": 25,
+          "elapsed": 6.7999958992004395,
+          "updateMs": 11.109000205993652,
+          "drawMs": 2.129999876022339,
+          "geometryMs": 2.3940000534057617,
+          "packetSha256": "46a25ba09c346b80cc21252255361fb73ad947dff44d42bbe6fc365fca16079a"
+        },
+        {
+          "serial": 70,
+          "packets": 25,
+          "elapsed": 6.899995803833008,
+          "updateMs": 11.60200023651123,
+          "drawMs": 2.063999891281128,
+          "geometryMs": 2.374000072479248,
+          "packetSha256": "a9a10af32058d9593e952c09dcd0aeba9dc7c25e09c24873e9b5b57f4c263543"
+        },
+        {
+          "serial": 71,
+          "packets": 27,
+          "elapsed": 6.999995708465576,
+          "updateMs": 13.829000473022461,
+          "drawMs": 2.1649999618530273,
+          "geometryMs": 2.4119999408721924,
+          "packetSha256": "5e2e7c1264208c0dd3e95e258383968984e731ecb7483bb7f1dab537d7f49afb"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=13 created=13 stopped=0 totalCreated=13 totalStopped=0\nPC_CELL_ADMISSION active=13 highwater=13 limit=5000000\nPC_FIRE_SYNC serial=32 active=0 created=0 stopped=13 totalCreated=13 totalStopped=13\nPC_CELL_BUDGET_PEAK bytes=2408984 highwater=13 limit=5000000\n",
+      "stderrSha256": "e270ef19940f851b908796f370eec727562cd4c0821f0486218735f0fb1eb3c3",
+      "stdoutSha256": "924e75dca24c6fa2028064e1ee361d60350dbfaad48f477836c2a2ab39f090ed",
+      "pauseExact": true
+    },
+    {
+      "controllers": 32,
+      "exit": 0,
+      "framesCompleted": 71,
+      "framesRequested": 71,
+      "wallSeconds": 2.6434861980000006,
+      "smallCaseSourceRecordAndTimeExact": true,
+      "semanticSha256": "d5fb339fe59093036c7406792ab9efe75156dd3f9eb81655a9154ae0dcc8712f",
+      "maximumPackets": 125,
+      "maximumObservedCallBytes": 4766947,
+      "quotaHighwater": 32,
+      "quotaBytes": 5000000,
+      "maximumNativeEvaluatorMs": {
+        "updateMs": 87.56300354003906,
+        "drawMs": 39.22700119018555,
+        "geometryMs": 10.052000045776367
+      },
+      "frames": [
+        {
+          "serial": 1,
+          "packets": 17,
+          "elapsed": 0.10000000149011612,
+          "updateMs": 51.03200149536133,
+          "drawMs": 4.421999931335449,
+          "geometryMs": 4.6479997634887695,
+          "packetSha256": "02c0f8c3e25139907509ec67ee80e0abf3f17f36c5e21af6d3aee7e6a86584a3"
+        },
+        {
+          "serial": 2,
+          "packets": 19,
+          "elapsed": 0.20000000298023224,
+          "updateMs": 17.736000061035156,
+          "drawMs": 1.944000005722046,
+          "geometryMs": 2.996999979019165,
+          "packetSha256": "9269d18a9b19bb65c26ee962fce453160e1a19fc2a8184d468f54212f289a9ff"
+        },
+        {
+          "serial": 3,
+          "packets": 23,
+          "elapsed": 0.30000001192092896,
+          "updateMs": 21.69099998474121,
+          "drawMs": 2.6570000648498535,
+          "geometryMs": 3.742000102996826,
+          "packetSha256": "bbac514df6adcb7194d87942395a67efbd5603c1d018fb49157e0414dbd504e0"
+        },
+        {
+          "serial": 4,
+          "packets": 41,
+          "elapsed": 0.4000000059604645,
+          "updateMs": 39.220001220703125,
+          "drawMs": 3.0290000438690186,
+          "geometryMs": 3.5839998722076416,
+          "packetSha256": "7711287689e176578d0033f2b0186bd8e1d785280d2be41d0a539f2473f198b5"
+        },
+        {
+          "serial": 5,
+          "packets": 51,
+          "elapsed": 0.5,
+          "updateMs": 30.44300079345703,
+          "drawMs": 3.7339999675750732,
+          "geometryMs": 4.769000053405762,
+          "packetSha256": "26ccca838aeb5ac87e95b6d016cfd14bc438501edfa8547f56fc09dd95fda6f3"
+        },
+        {
+          "serial": 6,
+          "packets": 64,
+          "elapsed": 0.6000000238418579,
+          "updateMs": 40.47600173950195,
+          "drawMs": 6.623000144958496,
+          "geometryMs": 4.366000175476074,
+          "packetSha256": "b93c8846af16c0a02f5d12999b943d51d441004332a7e8799b2f40bb81498186"
+        },
+        {
+          "serial": 7,
+          "packets": 80,
+          "elapsed": 0.7000000476837158,
+          "updateMs": 75.02400207519531,
+          "drawMs": 8.378000259399414,
+          "geometryMs": 8.055999755859375,
+          "packetSha256": "7137dae92c1b3992c155d29c7cb1c5384f97d8dd959ef38d4a6b74a69d137467"
+        },
+        {
+          "serial": 8,
+          "packets": 89,
+          "elapsed": 0.8000000715255737,
+          "updateMs": 58.57099914550781,
+          "drawMs": 5.958000183105469,
+          "geometryMs": 4.401000022888184,
+          "packetSha256": "bc2b8dec310568b3e8444404389e646c8706dc162d7f6905f794c0c65e89e58c"
+        },
+        {
+          "serial": 9,
+          "packets": 92,
+          "elapsed": 0.9000000953674316,
+          "updateMs": 30.429000854492188,
+          "drawMs": 4.953000068664551,
+          "geometryMs": 4.139999866485596,
+          "packetSha256": "9a3a467a4f243314156c6ebff7fe19b8ba835851395cb6e68519ba7d8ee888e4"
+        },
+        {
+          "serial": 10,
+          "packets": 113,
+          "elapsed": 1.0000001192092896,
+          "updateMs": 50.98099899291992,
+          "drawMs": 6.678999900817871,
+          "geometryMs": 10.052000045776367,
+          "packetSha256": "3f5b2463250722f81a254d44875534113e0eb74e166e4ff85a03b239325916c8"
+        },
+        {
+          "serial": 11,
+          "packets": 108,
+          "elapsed": 1.1000001430511475,
+          "updateMs": 61.62200164794922,
+          "drawMs": 5.934000015258789,
+          "geometryMs": 4.333000183105469,
+          "packetSha256": "16ba630fbea366bc444f52c022920c429f56dadd396407833e2b371cc79ad5cd"
+        },
+        {
+          "serial": 12,
+          "packets": 103,
+          "elapsed": 1.2000001668930054,
+          "updateMs": 38.13800048828125,
+          "drawMs": 6.320000171661377,
+          "geometryMs": 4.815000057220459,
+          "packetSha256": "cd67456ca8e44141a6d78906c39ddf76f02009ddbf4686a5bb9603fdbabf50f4"
+        },
+        {
+          "serial": 13,
+          "packets": 104,
+          "elapsed": 1.3000001907348633,
+          "updateMs": 38.35300064086914,
+          "drawMs": 8.336000442504883,
+          "geometryMs": 8.673999786376953,
+          "packetSha256": "b597af139579f7de27e998a069481b8eb2dad72ccf46544d2de613c9f345f107"
+        },
+        {
+          "serial": 14,
+          "packets": 111,
+          "elapsed": 1.4000002145767212,
+          "updateMs": 87.56300354003906,
+          "drawMs": 7.181000232696533,
+          "geometryMs": 4.965000152587891,
+          "packetSha256": "0922a21c16a9d141395bff00ae09ec52cba441b78fb2dd6645d39dd8c12b5bb9"
+        },
+        {
+          "serial": 15,
+          "packets": 109,
+          "elapsed": 1.500000238418579,
+          "updateMs": 44.06999969482422,
+          "drawMs": 5.7870001792907715,
+          "geometryMs": 4.354000091552734,
+          "packetSha256": "1e7066b378d2461e6972bc5c63111b63177197dec8b2ac25380faa581272e501"
+        },
+        {
+          "serial": 16,
+          "packets": 88,
+          "elapsed": 1.600000262260437,
+          "updateMs": 38.15399932861328,
+          "drawMs": 5.26800012588501,
+          "geometryMs": 4.058000087738037,
+          "packetSha256": "c0b5c78e58a2b936f57e67c782df598a06de3ec505a9042edf9810393d8616b8"
+        },
+        {
+          "serial": 17,
+          "packets": 95,
+          "elapsed": 1.700000286102295,
+          "updateMs": 52.816001892089844,
+          "drawMs": 5.605000019073486,
+          "geometryMs": 4.716000080108643,
+          "packetSha256": "fa48043a0cbcbb67d5a5193c4cfc6590212b7a27e590131ff6dd8dbcce87c0b0"
+        },
+        {
+          "serial": 18,
+          "packets": 98,
+          "elapsed": 1.8000003099441528,
+          "updateMs": 41.775001525878906,
+          "drawMs": 5.613999843597412,
+          "geometryMs": 4.303999900817871,
+          "packetSha256": "f42d3322150086bda704488ae585df13e0dc98e98a55e2a5460ecbe1dac78160"
+        },
+        {
+          "serial": 19,
+          "packets": 108,
+          "elapsed": 1.9000003337860107,
+          "updateMs": 38.944000244140625,
+          "drawMs": 5.682000160217285,
+          "geometryMs": 4.348999977111816,
+          "packetSha256": "128ba9e751b91683c92342c8ef3007e0035af72563dd099b2dc76b82518d0006"
+        },
+        {
+          "serial": 20,
+          "packets": 124,
+          "elapsed": 2.000000238418579,
+          "updateMs": 58.1510009765625,
+          "drawMs": 6.533999919891357,
+          "geometryMs": 4.63700008392334,
+          "packetSha256": "95d488d999d5a0a4a137f8f00a8f1bae6837c538ba8790a75840f5bcde6803f9"
+        },
+        {
+          "serial": 21,
+          "packets": 125,
+          "elapsed": 2.1000001430511475,
+          "updateMs": 42.058998107910156,
+          "drawMs": 6.480000019073486,
+          "geometryMs": 4.434000015258789,
+          "packetSha256": "b932804a6072605d185843309a032effd9c4a0230d0032d1f8e83e3747341de2"
+        },
+        {
+          "serial": 22,
+          "packets": 119,
+          "elapsed": 2.200000047683716,
+          "updateMs": 37.654998779296875,
+          "drawMs": 6.2860002517700195,
+          "geometryMs": 4.482999801635742,
+          "packetSha256": "e5c52300576aa5c9399c9f076172784520ece75ce4319cb80e340f4c9bd6977a"
+        },
+        {
+          "serial": 23,
+          "packets": 119,
+          "elapsed": 2.299999952316284,
+          "updateMs": 36.125999450683594,
+          "drawMs": 6.150000095367432,
+          "geometryMs": 4.5,
+          "packetSha256": "fb8a8ff0c6555826ece8e1279363d27f2db3ecebc971a9e1d65407b653781bf7"
+        },
+        {
+          "serial": 24,
+          "packets": 124,
+          "elapsed": 2.3999998569488525,
+          "updateMs": 44.130001068115234,
+          "drawMs": 6.283999919891357,
+          "geometryMs": 4.71999979019165,
+          "packetSha256": "51f827497760681f79742375ad328fb40b2052a2095b5ed08bee7c88b743bcfb"
+        },
+        {
+          "serial": 25,
+          "packets": 114,
+          "elapsed": 2.499999761581421,
+          "updateMs": 39.66299819946289,
+          "drawMs": 5.790999889373779,
+          "geometryMs": 4.453999996185303,
+          "packetSha256": "350b24ac3aac2dc3bc9068e0336afc605fd1889aa53f6934ab4c7cebbaecfa01"
+        },
+        {
+          "serial": 26,
+          "packets": 108,
+          "elapsed": 2.5999996662139893,
+          "updateMs": 37.3489990234375,
+          "drawMs": 6.434999942779541,
+          "geometryMs": 5.815999984741211,
+          "packetSha256": "dc00ee70d5fff10b0d12f79bcc193c6bf60855e502cef2a5560f034c60af727d"
+        },
+        {
+          "serial": 27,
+          "packets": 105,
+          "elapsed": 2.6999995708465576,
+          "updateMs": 56.03300094604492,
+          "drawMs": 6.498000144958496,
+          "geometryMs": 4.865000247955322,
+          "packetSha256": "debe5e8d4d43eca349be253de63df5eea35baa31b5df23114b406848dfe4466a"
+        },
+        {
+          "serial": 28,
+          "packets": 97,
+          "elapsed": 2.799999475479126,
+          "updateMs": 45.388999938964844,
+          "drawMs": 5.586999893188477,
+          "geometryMs": 4.675000190734863,
+          "packetSha256": "8aa93a6a44588ce8a16b503f595a50bc07a74c6d19435bdc0929e7e90ab563f0"
+        },
+        {
+          "serial": 29,
+          "packets": 94,
+          "elapsed": 2.8999993801116943,
+          "updateMs": 40.71200180053711,
+          "drawMs": 5.474999904632568,
+          "geometryMs": 4.7179999351501465,
+          "packetSha256": "19face2503d7228be56532c3c3c6c0fef6c240351f18be6d9b5656f27dfff1a3"
+        },
+        {
+          "serial": 30,
+          "packets": 109,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 61.64899826049805,
+          "drawMs": 6.651000022888184,
+          "geometryMs": 5.707000255584717,
+          "packetSha256": "289a18bbf097129f4ac7496799327e3035b0dec498e93a8ab549b3f9c083bb31"
+        },
+        {
+          "serial": 31,
+          "packets": 109,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 0.00200001522898674,
+          "drawMs": 7.01200008392334,
+          "geometryMs": 1.6929999589920044,
+          "packetSha256": "289a18bbf097129f4ac7496799327e3035b0dec498e93a8ab549b3f9c083bb31"
+        },
+        {
+          "serial": 32,
+          "packets": 62,
+          "elapsed": 3.099999189376831,
+          "updateMs": 21.667999267578125,
+          "drawMs": 4.635000228881836,
+          "geometryMs": 3.6529998779296875,
+          "packetSha256": "ecb2cb90f9f71fae2d78dc582b904491e523d7db0bdc90bd5e86a7453fa1bf91"
+        },
+        {
+          "serial": 33,
+          "packets": 60,
+          "elapsed": 3.1999990940093994,
+          "updateMs": 18.698999404907227,
+          "drawMs": 3.5450000762939453,
+          "geometryMs": 4.210999965667725,
+          "packetSha256": "2cd0dfcce88164cc8ebe144825eb5e48c08144b4840983c7ecc29c5aa666fdb8"
+        },
+        {
+          "serial": 34,
+          "packets": 60,
+          "elapsed": 3.2999989986419678,
+          "updateMs": 18.64699935913086,
+          "drawMs": 3.496000051498413,
+          "geometryMs": 3.498000144958496,
+          "packetSha256": "29e567e9fa3da0d65048063269cea4c3129252559508e9eee57e0c77db86c8df"
+        },
+        {
+          "serial": 35,
+          "packets": 60,
+          "elapsed": 3.399998903274536,
+          "updateMs": 19.493999481201172,
+          "drawMs": 3.5409998893737793,
+          "geometryMs": 3.877000093460083,
+          "packetSha256": "7286ab2f684f871ace910a9cf968ec2a6679130b8aee5685ed0dc0d2bee64221"
+        },
+        {
+          "serial": 36,
+          "packets": 55,
+          "elapsed": 3.4999988079071045,
+          "updateMs": 17.615999221801758,
+          "drawMs": 3.246999979019165,
+          "geometryMs": 4.309000015258789,
+          "packetSha256": "6bd61a81140ce25ebf43db49de0902ffbd0fa6a7fe7aaaf178945690a312ff21"
+        },
+        {
+          "serial": 37,
+          "packets": 54,
+          "elapsed": 3.599998712539673,
+          "updateMs": 16.392000198364258,
+          "drawMs": 3.0360000133514404,
+          "geometryMs": 3.5440001487731934,
+          "packetSha256": "1408ae9842e1f6874005846fa5de01cb31d9a066323663da41ae02a6b44d5c60"
+        },
+        {
+          "serial": 38,
+          "packets": 50,
+          "elapsed": 3.699998617172241,
+          "updateMs": 14.975000381469727,
+          "drawMs": 2.828000068664551,
+          "geometryMs": 3.3499999046325684,
+          "packetSha256": "f64ef3a282c95342bd71ad424b40911923fe02eae89c82d5ac838e59191126d9"
+        },
+        {
+          "serial": 39,
+          "packets": 43,
+          "elapsed": 3.7999985218048096,
+          "updateMs": 15.211000442504883,
+          "drawMs": 2.6559998989105225,
+          "geometryMs": 3.243000030517578,
+          "packetSha256": "4f878938472b1eb17436aaea667f5265ab6852eba8942f7cc6267b37ba8bcda9"
+        },
+        {
+          "serial": 40,
+          "packets": 41,
+          "elapsed": 3.899998426437378,
+          "updateMs": 13.416000366210938,
+          "drawMs": 2.4700000286102295,
+          "geometryMs": 3.302999973297119,
+          "packetSha256": "11aa8933149d20c864c9078f22b63b675e2a1dd94153af66a4532d0ffa9d8950"
+        },
+        {
+          "serial": 41,
+          "packets": 39,
+          "elapsed": 3.9999983310699463,
+          "updateMs": 14.972000122070312,
+          "drawMs": 2.3429999351501465,
+          "geometryMs": 3.2799999713897705,
+          "packetSha256": "2d722c86c19d8b477ba3a6a1833992489d7b3998e41b4f8afcd19934cb467da8"
+        },
+        {
+          "serial": 42,
+          "packets": 36,
+          "elapsed": 4.099998474121094,
+          "updateMs": 11.484999656677246,
+          "drawMs": 2.13700008392334,
+          "geometryMs": 3.2330000400543213,
+          "packetSha256": "47fac86a267f844c440f96e27d9bea581d47dd23822c92c030c0e71671727ed7"
+        },
+        {
+          "serial": 43,
+          "packets": 30,
+          "elapsed": 4.199998378753662,
+          "updateMs": 10.793999671936035,
+          "drawMs": 2.0350000858306885,
+          "geometryMs": 3.128999948501587,
+          "packetSha256": "a9559d9f64078210e6bc09ab6d7b9f0f21c56b09e721151a11ab5370f1a2f17e"
+        },
+        {
+          "serial": 44,
+          "packets": 30,
+          "elapsed": 4.2999982833862305,
+          "updateMs": 10.114999771118164,
+          "drawMs": 1.9470000267028809,
+          "geometryMs": 3.118000030517578,
+          "packetSha256": "8e88a806df66cd44ea324ba096524019eb9e60d4d516722d86712970064d409d"
+        },
+        {
+          "serial": 45,
+          "packets": 30,
+          "elapsed": 4.399998188018799,
+          "updateMs": 10.560999870300293,
+          "drawMs": 1.9300000667572021,
+          "geometryMs": 3.046999931335449,
+          "packetSha256": "bcd6ccc896aa091ff89208cd6efcd6a13209e7386abc2fa8bc672f98c50da2c9"
+        },
+        {
+          "serial": 46,
+          "packets": 26,
+          "elapsed": 4.499998092651367,
+          "updateMs": 9.946999549865723,
+          "drawMs": 1.7200000286102295,
+          "geometryMs": 2.9790000915527344,
+          "packetSha256": "9cadf59b59cb1cd36cc9d99839b904c4e5a02c4170c56e0aa625d1989f1cec35"
+        },
+        {
+          "serial": 47,
+          "packets": 25,
+          "elapsed": 4.5999979972839355,
+          "updateMs": 9.085000038146973,
+          "drawMs": 1.6690000295639038,
+          "geometryMs": 2.3399999141693115,
+          "packetSha256": "3683e8a09f5546a1859e2a0b21ecf6ed927365df90334834eb457a3b77b5feeb"
+        },
+        {
+          "serial": 48,
+          "packets": 25,
+          "elapsed": 4.699997901916504,
+          "updateMs": 8.75100040435791,
+          "drawMs": 1.6380000114440918,
+          "geometryMs": 2.3439998626708984,
+          "packetSha256": "85d816025edf4f2db1786c79f35ed8495bdd8440622f75d41f10659a5ce8ceb8"
+        },
+        {
+          "serial": 49,
+          "packets": 25,
+          "elapsed": 4.799997806549072,
+          "updateMs": 8.552000045776367,
+          "drawMs": 1.6430000066757202,
+          "geometryMs": 2.369999885559082,
+          "packetSha256": "eac7d8042af5c1388759103e6ee07913b526218d444a2b43992b5734f55eef04"
+        },
+        {
+          "serial": 50,
+          "packets": 25,
+          "elapsed": 4.899997711181641,
+          "updateMs": 46.66400146484375,
+          "drawMs": 4.070000171661377,
+          "geometryMs": 2.627000093460083,
+          "packetSha256": "2b1cc03b460689969668df063930ad195e59a3233fcd5b38c226eeef804edea6"
+        },
+        {
+          "serial": 51,
+          "packets": 26,
+          "elapsed": 4.999997615814209,
+          "updateMs": 25.38800048828125,
+          "drawMs": 39.22700119018555,
+          "geometryMs": 6.704999923706055,
+          "packetSha256": "479dff4a80648a4f8f8b14758c8a528b708b69180e61d601548770b7ea177774"
+        },
+        {
+          "serial": 52,
+          "packets": 25,
+          "elapsed": 5.099997520446777,
+          "updateMs": 19.224000930786133,
+          "drawMs": 1.875999927520752,
+          "geometryMs": 2.3970000743865967,
+          "packetSha256": "6d680e418859c6aec94397c781c201a74ae58facea5b3c87db25fbebc4570515"
+        },
+        {
+          "serial": 53,
+          "packets": 25,
+          "elapsed": 5.199997425079346,
+          "updateMs": 10.168999671936035,
+          "drawMs": 1.8589999675750732,
+          "geometryMs": 2.4739999771118164,
+          "packetSha256": "954612c9f45b43b3b2402cc5a3819e03e7773d9ee00f2d2ec3e53eafaa7e2d65"
+        },
+        {
+          "serial": 54,
+          "packets": 25,
+          "elapsed": 5.299997329711914,
+          "updateMs": 9.593999862670898,
+          "drawMs": 1.840000033378601,
+          "geometryMs": 2.493000030517578,
+          "packetSha256": "30c931071d64515698fccd30b6d5a1cc4a5fca3777166d2403da6ae5cc65f5eb"
+        },
+        {
+          "serial": 55,
+          "packets": 25,
+          "elapsed": 5.399997234344482,
+          "updateMs": 11.697999954223633,
+          "drawMs": 1.8919999599456787,
+          "geometryMs": 2.3980000019073486,
+          "packetSha256": "2556bfe7da4d25acc71855a31ff6ef197e7b1b437deb6d27db81ab33e37487bd"
+        },
+        {
+          "serial": 56,
+          "packets": 27,
+          "elapsed": 5.499997138977051,
+          "updateMs": 11.14900016784668,
+          "drawMs": 1.940999984741211,
+          "geometryMs": 2.440000057220459,
+          "packetSha256": "79d0e9fceb9c6a5483ee0262004ea895d69d46d0091eff84882ea09121dd72f2"
+        },
+        {
+          "serial": 57,
+          "packets": 26,
+          "elapsed": 5.599997043609619,
+          "updateMs": 10.880999565124512,
+          "drawMs": 2.055999994277954,
+          "geometryMs": 2.631999969482422,
+          "packetSha256": "370424657781a52ba82b1a054878cf6cf3eca829be5ec2f2faf627e5a789184b"
+        },
+        {
+          "serial": 58,
+          "packets": 25,
+          "elapsed": 5.6999969482421875,
+          "updateMs": 10.491000175476074,
+          "drawMs": 1.9390000104904175,
+          "geometryMs": 2.371000051498413,
+          "packetSha256": "53c549b086c6c74bf2e7773e14ef398d43b27d0ff621356717d3bebd1c79cc46"
+        },
+        {
+          "serial": 59,
+          "packets": 25,
+          "elapsed": 5.799996852874756,
+          "updateMs": 9.930999755859375,
+          "drawMs": 1.8899999856948853,
+          "geometryMs": 2.36299991607666,
+          "packetSha256": "8e41b1089391389b07ef522e8268610185a4e77e869dc811f7c870e5bd9601a9"
+        },
+        {
+          "serial": 60,
+          "packets": 25,
+          "elapsed": 5.899996757507324,
+          "updateMs": 11.276000022888184,
+          "drawMs": 2.009000062942505,
+          "geometryMs": 2.427000045776367,
+          "packetSha256": "891dd894c890c0fcde3ab00c3d5eb1dacb0f1ddf0ec4d672e8c7aa4192f122d7"
+        },
+        {
+          "serial": 61,
+          "packets": 26,
+          "elapsed": 5.999996662139893,
+          "updateMs": 13.23900032043457,
+          "drawMs": 2.0149998664855957,
+          "geometryMs": 2.4570000171661377,
+          "packetSha256": "cd3849120783f54ce36150efab26908c5854531e9334fc8d84285d8a830848f7"
+        },
+        {
+          "serial": 62,
+          "packets": 25,
+          "elapsed": 6.099996566772461,
+          "updateMs": 10.548999786376953,
+          "drawMs": 2.006999969482422,
+          "geometryMs": 2.4099998474121094,
+          "packetSha256": "920420f3268b9e39c5a1ebfbce585f0e731f51103c8e4dce531dbf17b1b7f3ff"
+        },
+        {
+          "serial": 63,
+          "packets": 25,
+          "elapsed": 6.199996471405029,
+          "updateMs": 10.958999633789062,
+          "drawMs": 2.0350000858306885,
+          "geometryMs": 2.4059998989105225,
+          "packetSha256": "b399a609b42fbccfd836c01107b192eb395b6666fa1e9a0c49ed5e0cfcb9ef08"
+        },
+        {
+          "serial": 64,
+          "packets": 25,
+          "elapsed": 6.299996376037598,
+          "updateMs": 12.23799991607666,
+          "drawMs": 2.05400013923645,
+          "geometryMs": 2.3570001125335693,
+          "packetSha256": "40871072e15c26e5a9e6012e42326286ab5c73f6fcc10cc9e62458bd21da3179"
+        },
+        {
+          "serial": 65,
+          "packets": 25,
+          "elapsed": 6.399996280670166,
+          "updateMs": 11.644000053405762,
+          "drawMs": 2.0230000019073486,
+          "geometryMs": 2.3959999084472656,
+          "packetSha256": "a9887ba812e6ff719f4d87eea567a367be93c7ce3d3b3fc5ccd5746d9c3cfb88"
+        },
+        {
+          "serial": 66,
+          "packets": 26,
+          "elapsed": 6.499996185302734,
+          "updateMs": 11.824999809265137,
+          "drawMs": 2.062999963760376,
+          "geometryMs": 2.740000009536743,
+          "packetSha256": "4dfda01d35ae5c26b8f7e444cb14c17119bd4677674e84eedcd60c64dfa20afc"
+        },
+        {
+          "serial": 67,
+          "packets": 25,
+          "elapsed": 6.599996089935303,
+          "updateMs": 11.717000007629395,
+          "drawMs": 3.565999984741211,
+          "geometryMs": 2.4560000896453857,
+          "packetSha256": "d50d990cf73a69cd9f9c16667cebb825348a184a4bb8bda888f37ada5316afb2"
+        },
+        {
+          "serial": 68,
+          "packets": 24,
+          "elapsed": 6.699995994567871,
+          "updateMs": 13.847000122070312,
+          "drawMs": 2.0510001182556152,
+          "geometryMs": 2.5290000438690186,
+          "packetSha256": "484602403034e028f60f31ae18d0eb1d9c5e990e66f55fe87d7269d21fad0580"
+        },
+        {
+          "serial": 69,
+          "packets": 24,
+          "elapsed": 6.7999958992004395,
+          "updateMs": 11.10099983215332,
+          "drawMs": 2.052999973297119,
+          "geometryMs": 2.9579999446868896,
+          "packetSha256": "ee35aae653640d9d8b904bd323e25c3d6a15d2f13e954b9a6accc2c1a94081d7"
+        },
+        {
+          "serial": 70,
+          "packets": 24,
+          "elapsed": 6.899995803833008,
+          "updateMs": 11.442000389099121,
+          "drawMs": 2.3959999084472656,
+          "geometryMs": 2.3889999389648438,
+          "packetSha256": "7631ffece4dc29e404932f2472ec215bc73815d6ad291e52d95ad9ba57e53484"
+        },
+        {
+          "serial": 71,
+          "packets": 26,
+          "elapsed": 6.999995708465576,
+          "updateMs": 13.914999961853027,
+          "drawMs": 2.2309999465942383,
+          "geometryMs": 2.453000068664551,
+          "packetSha256": "1f3ae7aba8c4655d2a7595294cb25eeabaf33059420990d22ca35bd268818046"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=32 created=32 stopped=0 totalCreated=32 totalStopped=0\nPC_CELL_ADMISSION active=32 highwater=32 limit=5000000\nPC_FIRE_SYNC serial=32 active=0 created=0 stopped=32 totalCreated=32 totalStopped=32\nPC_CELL_BUDGET_PEAK bytes=4766947 highwater=32 limit=5000000\n",
+      "stderrSha256": "8888b0778822c3a81b63018c33eb9a74ef7e93a421a70be6eace4be326d19d7f",
+      "stdoutSha256": "e5fbc28dc200053e0ba67bb26f74e5b83dadf5a128066b66c37378cbe4a5b542",
+      "pauseExact": true
+    },
+    {
+      "controllers": 64,
+      "exit": 0,
+      "framesCompleted": 71,
+      "framesRequested": 71,
+      "wallSeconds": 3.6069878810000002,
+      "smallCaseSourceRecordAndTimeExact": null,
+      "semanticSha256": "98aac636a26f7099f8118ee930474d7daedf6070c5fec3e2635458240d7ca3b0",
+      "maximumPackets": 161,
+      "maximumObservedCallBytes": 9185124,
+      "quotaHighwater": 64,
+      "quotaBytes": 10000000,
+      "maximumNativeEvaluatorMs": {
+        "updateMs": 112.10800170898438,
+        "drawMs": 12.062000274658203,
+        "geometryMs": 5.380000114440918
+      },
+      "frames": [
+        {
+          "serial": 1,
+          "packets": 21,
+          "elapsed": 0.10000000149011612,
+          "updateMs": 76.40699768066406,
+          "drawMs": 5.1539998054504395,
+          "geometryMs": 4.226999759674072,
+          "packetSha256": "7dbb5480d4768f1a581bdf99a95fb5f221509d2d6ec3756bceacdaf114326dd9"
+        },
+        {
+          "serial": 2,
+          "packets": 24,
+          "elapsed": 0.20000000298023224,
+          "updateMs": 26.128000259399414,
+          "drawMs": 3.0290000438690186,
+          "geometryMs": 3.114000082015991,
+          "packetSha256": "899789883c505328628322cf112970fa3f703729dd92d25ec03a748c7f167ee8"
+        },
+        {
+          "serial": 3,
+          "packets": 28,
+          "elapsed": 0.30000001192092896,
+          "updateMs": 34.04499816894531,
+          "drawMs": 3.5809998512268066,
+          "geometryMs": 3.927999973297119,
+          "packetSha256": "a19d0367bab1f1ec2f8997e58660205b075ea0a3ac768b7e29d2bc63559094e3"
+        },
+        {
+          "serial": 4,
+          "packets": 51,
+          "elapsed": 0.4000000059604645,
+          "updateMs": 66.00299835205078,
+          "drawMs": 5.184999942779541,
+          "geometryMs": 3.825000047683716,
+          "packetSha256": "2abc6bcc6a2c47541d82dba438cdcac275b13f3624cf4bbb278476de1fa1afb7"
+        },
+        {
+          "serial": 5,
+          "packets": 62,
+          "elapsed": 0.5,
+          "updateMs": 51.79600143432617,
+          "drawMs": 5.896999835968018,
+          "geometryMs": 3.811000108718872,
+          "packetSha256": "4bb1dcf2c7417e62a13adf25c74423540c8e8739ebde7e3d636638e52a248409"
+        },
+        {
+          "serial": 6,
+          "packets": 74,
+          "elapsed": 0.6000000238418579,
+          "updateMs": 56.45100021362305,
+          "drawMs": 6.551000118255615,
+          "geometryMs": 3.9000000953674316,
+          "packetSha256": "d4b2b6b729c8d5974ad2883532c3e7aea113218479de19d460670c53de273714"
+        },
+        {
+          "serial": 7,
+          "packets": 93,
+          "elapsed": 0.7000000476837158,
+          "updateMs": 74.03399658203125,
+          "drawMs": 7.827000141143799,
+          "geometryMs": 4.230999946594238,
+          "packetSha256": "114fa35216e2808c3a90937c2dab7cdd9108e4bcad4ce2297fac13e096c5d978"
+        },
+        {
+          "serial": 8,
+          "packets": 103,
+          "elapsed": 0.8000000715255737,
+          "updateMs": 69.56300354003906,
+          "drawMs": 8.767000198364258,
+          "geometryMs": 4.308000087738037,
+          "packetSha256": "d62fb6ab19158b6797fc9c991f6447dbbf0ca766251a86d742a3bc77690cd2ec"
+        },
+        {
+          "serial": 9,
+          "packets": 108,
+          "elapsed": 0.9000000953674316,
+          "updateMs": 54.500999450683594,
+          "drawMs": 8.66100025177002,
+          "geometryMs": 4.52400016784668,
+          "packetSha256": "70bdff5213df4f2913307aeadec72f510ff2178878ed11c9c3661fb0fbe64511"
+        },
+        {
+          "serial": 10,
+          "packets": 133,
+          "elapsed": 1.0000001192092896,
+          "updateMs": 95.02200317382812,
+          "drawMs": 10.414999961853027,
+          "geometryMs": 4.748000144958496,
+          "packetSha256": "5081b188c6ac7c56a5b0767561abe312b9135acc631581864c023932c2111683"
+        },
+        {
+          "serial": 11,
+          "packets": 130,
+          "elapsed": 1.1000001430511475,
+          "updateMs": 64.49600219726562,
+          "drawMs": 10.663999557495117,
+          "geometryMs": 4.619999885559082,
+          "packetSha256": "753fbbd766351a8edfee86586b72b2620a3bc455c2cf969210157eae2bc938c7"
+        },
+        {
+          "serial": 12,
+          "packets": 131,
+          "elapsed": 1.2000001668930054,
+          "updateMs": 63.939998626708984,
+          "drawMs": 10.392999649047852,
+          "geometryMs": 4.7170000076293945,
+          "packetSha256": "584b1dd3bbc4650b444d779bc93e63cf56ad93ac4335de6d21848295bba21410"
+        },
+        {
+          "serial": 13,
+          "packets": 128,
+          "elapsed": 1.3000001907348633,
+          "updateMs": 64.6989974975586,
+          "drawMs": 9.621999740600586,
+          "geometryMs": 4.557000160217285,
+          "packetSha256": "268dea3a507c434f83110a7b748310a16806ec245326cbb4fcd2870ca1869fb0"
+        },
+        {
+          "serial": 14,
+          "packets": 143,
+          "elapsed": 1.4000002145767212,
+          "updateMs": 91.47699737548828,
+          "drawMs": 10.550999641418457,
+          "geometryMs": 4.882999897003174,
+          "packetSha256": "48da60cd6526bc6a7bc781da3a8de4a0f861c7600cea424cbc40dfc2b8c40d3d"
+        },
+        {
+          "serial": 15,
+          "packets": 136,
+          "elapsed": 1.500000238418579,
+          "updateMs": 81.94400024414062,
+          "drawMs": 10.27400016784668,
+          "geometryMs": 4.895999908447266,
+          "packetSha256": "8dd1f28f9d6d2d7c310edc0849b0ff9ff959486bea4c58bf53f828af3e204e63"
+        },
+        {
+          "serial": 16,
+          "packets": 117,
+          "elapsed": 1.600000262260437,
+          "updateMs": 69.52200317382812,
+          "drawMs": 8.798999786376953,
+          "geometryMs": 4.505000114440918,
+          "packetSha256": "aae4640a58a614d33bb7884fb7a25a367677d0f77ee8c7fcbb2f62d9d9b8d4cb"
+        },
+        {
+          "serial": 17,
+          "packets": 126,
+          "elapsed": 1.700000286102295,
+          "updateMs": 98.27300262451172,
+          "drawMs": 9.984000205993652,
+          "geometryMs": 4.8470001220703125,
+          "packetSha256": "dc4b7d339c1f31ab8395c207366fe82f73e111c7fc27a9e8099400f6371c3184"
+        },
+        {
+          "serial": 18,
+          "packets": 122,
+          "elapsed": 1.8000003099441528,
+          "updateMs": 77.16200256347656,
+          "drawMs": 10.123000144958496,
+          "geometryMs": 4.750999927520752,
+          "packetSha256": "7500e1c622852a002549a846a38be8e997cc444cb7e47e41a9a5824d63eb4013"
+        },
+        {
+          "serial": 19,
+          "packets": 126,
+          "elapsed": 1.9000003337860107,
+          "updateMs": 70.4749984741211,
+          "drawMs": 10.213000297546387,
+          "geometryMs": 4.869999885559082,
+          "packetSha256": "4734547d59b3c91c5db1161a7144040bad718ef344eb069d0413e03665f7d825"
+        },
+        {
+          "serial": 20,
+          "packets": 155,
+          "elapsed": 2.000000238418579,
+          "updateMs": 112.10800170898438,
+          "drawMs": 12.062000274658203,
+          "geometryMs": 5.380000114440918,
+          "packetSha256": "24685188d12e2fe07b73c8ad48daeed68762657545ccd7fb030ea0a6bb99bbe4"
+        },
+        {
+          "serial": 21,
+          "packets": 154,
+          "elapsed": 2.1000001430511475,
+          "updateMs": 80.08799743652344,
+          "drawMs": 11.690999984741211,
+          "geometryMs": 5.197000026702881,
+          "packetSha256": "61de79665f2dea37e60d4050208e3e5b93631526dcbac05df0c4f0b729a2f988"
+        },
+        {
+          "serial": 22,
+          "packets": 147,
+          "elapsed": 2.200000047683716,
+          "updateMs": 69.98100280761719,
+          "drawMs": 11.274999618530273,
+          "geometryMs": 4.961999893188477,
+          "packetSha256": "25007994fac2ab728bed0b2cd444fe4f73090faebb50680b22b731fadd7aa7d5"
+        },
+        {
+          "serial": 23,
+          "packets": 151,
+          "elapsed": 2.299999952316284,
+          "updateMs": 67.24099731445312,
+          "drawMs": 10.986000061035156,
+          "geometryMs": 5.186999797821045,
+          "packetSha256": "d91927c54d07b32f776aec0af967ef347f1b358effaa7c50f2683e4ea2d79a75"
+        },
+        {
+          "serial": 24,
+          "packets": 161,
+          "elapsed": 2.3999998569488525,
+          "updateMs": 83.54199981689453,
+          "drawMs": 11.321999549865723,
+          "geometryMs": 5.281000137329102,
+          "packetSha256": "43656c400bdf5385121d01be7597caed10003a36ce2b9874c43f0bdc0a58cd13"
+        },
+        {
+          "serial": 25,
+          "packets": 138,
+          "elapsed": 2.499999761581421,
+          "updateMs": 71.31999969482422,
+          "drawMs": 10.187999725341797,
+          "geometryMs": 4.9679999351501465,
+          "packetSha256": "80d7c3ea9334228272c2dc4cd65bdf9ae84f6ff6cd3741581384b77078d427e1"
+        },
+        {
+          "serial": 26,
+          "packets": 136,
+          "elapsed": 2.5999996662139893,
+          "updateMs": 65.2760009765625,
+          "drawMs": 9.842000007629395,
+          "geometryMs": 5.126999855041504,
+          "packetSha256": "5d2c3a88d3c75e254719792bf286e0c0ad3fac2e780b572ca0fe873afa3d2c43"
+        },
+        {
+          "serial": 27,
+          "packets": 143,
+          "elapsed": 2.6999995708465576,
+          "updateMs": 85.59100341796875,
+          "drawMs": 10.197999954223633,
+          "geometryMs": 5.026000022888184,
+          "packetSha256": "74191bbaed0479d49c6cdd92010c836135bd9905e90062ee8c183c2e133f0324"
+        },
+        {
+          "serial": 28,
+          "packets": 140,
+          "elapsed": 2.799999475479126,
+          "updateMs": 78.82099914550781,
+          "drawMs": 10.055000305175781,
+          "geometryMs": 5.211999893188477,
+          "packetSha256": "69b9965fb0d1f43e685f39b3fedb04b981de3b0a9c7887c344470ad04e1d7ebe"
+        },
+        {
+          "serial": 29,
+          "packets": 131,
+          "elapsed": 2.8999993801116943,
+          "updateMs": 73.20800018310547,
+          "drawMs": 9.543999671936035,
+          "geometryMs": 4.885000228881836,
+          "packetSha256": "d005307a1796d05108f171548efb734220ac0d0d089e4514f5124fec30e3ff0f"
+        },
+        {
+          "serial": 30,
+          "packets": 151,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 109.48600006103516,
+          "drawMs": 11.140999794006348,
+          "geometryMs": 5.119999885559082,
+          "packetSha256": "86f59048b0b9337aa334db0350e3f5886712ebdd19c42ed87a261fecbec12441"
+        },
+        {
+          "serial": 31,
+          "packets": 151,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 0.00100000761449337,
+          "drawMs": 11.187000274658203,
+          "geometryMs": 2.3450000286102295,
+          "packetSha256": "86f59048b0b9337aa334db0350e3f5886712ebdd19c42ed87a261fecbec12441"
+        },
+        {
+          "serial": 32,
+          "packets": 79,
+          "elapsed": 3.099999189376831,
+          "updateMs": 36.36899948120117,
+          "drawMs": 6.389999866485596,
+          "geometryMs": 3.8989999294281006,
+          "packetSha256": "4e7ad5a63bf71e8358083730916eb5c9cd99066a3abfe0be41ac04cc0f21613e"
+        },
+        {
+          "serial": 33,
+          "packets": 74,
+          "elapsed": 3.1999990940093994,
+          "updateMs": 28.86400032043457,
+          "drawMs": 5.7789998054504395,
+          "geometryMs": 3.8559999465942383,
+          "packetSha256": "70f11aab58b70854a7d8ae1c30a91166d25f8b1dccaa405112cda8f1ac7bb91a"
+        },
+        {
+          "serial": 34,
+          "packets": 75,
+          "elapsed": 3.2999989986419678,
+          "updateMs": 28.305999755859375,
+          "drawMs": 5.438000202178955,
+          "geometryMs": 3.8470001220703125,
+          "packetSha256": "a24a2b17403dc0cf699e86ab8d4bef45db76199743074111f58b92ef77a20842"
+        },
+        {
+          "serial": 35,
+          "packets": 76,
+          "elapsed": 3.399998903274536,
+          "updateMs": 29.413000106811523,
+          "drawMs": 5.571000099182129,
+          "geometryMs": 4.621999740600586,
+          "packetSha256": "61764c9266644910cf879b881ad7187e8eaada1d0f8438d81978f490b670a59f"
+        },
+        {
+          "serial": 36,
+          "packets": 68,
+          "elapsed": 3.4999988079071045,
+          "updateMs": 27.301000595092773,
+          "drawMs": 5.164999961853027,
+          "geometryMs": 3.7939999103546143,
+          "packetSha256": "7d0f8bfbf8dcd8422c420fea2ff8ed7a7b287aa530ba4b254e1d318f4542e3d7"
+        },
+        {
+          "serial": 37,
+          "packets": 64,
+          "elapsed": 3.599998712539673,
+          "updateMs": 25.0,
+          "drawMs": 4.629000186920166,
+          "geometryMs": 3.984999895095825,
+          "packetSha256": "d18d8c0360ce84257f4f895f3306c4a47090803377d49f10411ba36e9713052a"
+        },
+        {
+          "serial": 38,
+          "packets": 63,
+          "elapsed": 3.699998617172241,
+          "updateMs": 24.131999969482422,
+          "drawMs": 4.291999816894531,
+          "geometryMs": 3.7330000400543213,
+          "packetSha256": "d54e84408380e8adfcdd5be39ea7e5d62af429d3aea88e433600c0a2e2192574"
+        },
+        {
+          "serial": 39,
+          "packets": 58,
+          "elapsed": 3.7999985218048096,
+          "updateMs": 24.343000411987305,
+          "drawMs": 4.006999969482422,
+          "geometryMs": 3.6410000324249268,
+          "packetSha256": "c272b2088ba908eb2b27f30c28ff45e505cf5ffa0cb9cb9e8e6fc873d701cc7e"
+        },
+        {
+          "serial": 40,
+          "packets": 41,
+          "elapsed": 3.899998426437378,
+          "updateMs": 19.839000701904297,
+          "drawMs": 3.436000108718872,
+          "geometryMs": 3.388000011444092,
+          "packetSha256": "bdb812ceb9b7c87dde3fed5ec35437a13b00c80716d219c392d7439741d41722"
+        },
+        {
+          "serial": 41,
+          "packets": 39,
+          "elapsed": 3.9999983310699463,
+          "updateMs": 19.770000457763672,
+          "drawMs": 3.060999870300293,
+          "geometryMs": 3.390000104904175,
+          "packetSha256": "55918f23cb44854509765376f3766cbeff1af53ae3cd5889ec73d0ea11ae5fe2"
+        },
+        {
+          "serial": 42,
+          "packets": 38,
+          "elapsed": 4.099998474121094,
+          "updateMs": 15.204999923706055,
+          "drawMs": 2.815999984741211,
+          "geometryMs": 3.3369998931884766,
+          "packetSha256": "0e2f21addf5633f72918c32e861b8a3189b02ec4af9b7f4b496f49a0295c4ee3"
+        },
+        {
+          "serial": 43,
+          "packets": 34,
+          "elapsed": 4.199998378753662,
+          "updateMs": 13.274999618530273,
+          "drawMs": 2.504999876022339,
+          "geometryMs": 3.240999937057495,
+          "packetSha256": "aec1aa51d897a391a12c1f234daacdd2c44d9adaa5164b708ad4f364b87638c1"
+        },
+        {
+          "serial": 44,
+          "packets": 32,
+          "elapsed": 4.2999982833862305,
+          "updateMs": 12.286999702453613,
+          "drawMs": 2.4089999198913574,
+          "geometryMs": 3.378999948501587,
+          "packetSha256": "f1dcba698db86c2d3479bd62234a6b0416927e67c77bcb73cfe6edbccaeca855"
+        },
+        {
+          "serial": 45,
+          "packets": 32,
+          "elapsed": 4.399998188018799,
+          "updateMs": 13.152000427246094,
+          "drawMs": 2.6640000343322754,
+          "geometryMs": 3.319999933242798,
+          "packetSha256": "46695266a6c62f067de7f7e4dda9b4d35cec976e44417a7d663d03d16318b121"
+        },
+        {
+          "serial": 46,
+          "packets": 26,
+          "elapsed": 4.499998092651367,
+          "updateMs": 12.51099967956543,
+          "drawMs": 1.909000039100647,
+          "geometryMs": 3.1589999198913574,
+          "packetSha256": "49db08bd1782bcd438e9d1976a833066df438ec7cc64d4265b8e054b3ea6c75d"
+        },
+        {
+          "serial": 47,
+          "packets": 25,
+          "elapsed": 4.5999979972839355,
+          "updateMs": 10.119999885559082,
+          "drawMs": 1.9850000143051147,
+          "geometryMs": 2.6419999599456787,
+          "packetSha256": "00b389cd92b3dc963120a46d32508fbf7019e22d5b1da49bf722741a726b5f0c"
+        },
+        {
+          "serial": 48,
+          "packets": 25,
+          "elapsed": 4.699997901916504,
+          "updateMs": 9.395999908447266,
+          "drawMs": 1.722000002861023,
+          "geometryMs": 2.4670000076293945,
+          "packetSha256": "8af29766a9a26a1372c1b252c67ca2b20de8713294a788e0006e5ef9869a44d0"
+        },
+        {
+          "serial": 49,
+          "packets": 25,
+          "elapsed": 4.799997806549072,
+          "updateMs": 8.940999984741211,
+          "drawMs": 1.7369999885559082,
+          "geometryMs": 2.7109999656677246,
+          "packetSha256": "6bc98263ba0e90505675065fa85aae4ad7b73ed19345cbd5b65dc69a0f1f27d4"
+        },
+        {
+          "serial": 50,
+          "packets": 24,
+          "elapsed": 4.899997711181641,
+          "updateMs": 9.024999618530273,
+          "drawMs": 1.7330000400543213,
+          "geometryMs": 2.622999906539917,
+          "packetSha256": "a8b4ddf4412e603660039f49a894531aff2b5cf368ae383e661598d40a2d1253"
+        },
+        {
+          "serial": 51,
+          "packets": 26,
+          "elapsed": 4.999997615814209,
+          "updateMs": 13.005999565124512,
+          "drawMs": 1.8209999799728394,
+          "geometryMs": 2.694999933242798,
+          "packetSha256": "143e80bce0f395689625382295b4cd8070777901b0cd7dfb1c44cc0321624c3d"
+        },
+        {
+          "serial": 52,
+          "packets": 25,
+          "elapsed": 5.099997520446777,
+          "updateMs": 12.251999855041504,
+          "drawMs": 1.9539999961853027,
+          "geometryMs": 2.821000099182129,
+          "packetSha256": "722d8511b11111aaafea9b08a4aaca006d556c9e393b7bb357930f69de416985"
+        },
+        {
+          "serial": 53,
+          "packets": 25,
+          "elapsed": 5.199997425079346,
+          "updateMs": 10.371999740600586,
+          "drawMs": 1.9160000085830688,
+          "geometryMs": 2.450000047683716,
+          "packetSha256": "31f14b21fb63dbc8b3d87ef58131e4cc9e2b894a5f96def0ac89df17f6833739"
+        },
+        {
+          "serial": 54,
+          "packets": 24,
+          "elapsed": 5.299997329711914,
+          "updateMs": 10.206999778747559,
+          "drawMs": 1.9199999570846558,
+          "geometryMs": 2.7009999752044678,
+          "packetSha256": "45c19eb395649c9f476aaf234031761d5b923cd791cad0b670181c7b5094bbc3"
+        },
+        {
+          "serial": 55,
+          "packets": 24,
+          "elapsed": 5.399997234344482,
+          "updateMs": 11.795000076293945,
+          "drawMs": 1.9900000095367432,
+          "geometryMs": 2.48799991607666,
+          "packetSha256": "27f2611a0a3655cb3b42f38f940ad400f7017ff4fdd599b9acf7c74454c685ad"
+        },
+        {
+          "serial": 56,
+          "packets": 26,
+          "elapsed": 5.499997138977051,
+          "updateMs": 11.890999794006348,
+          "drawMs": 2.0390000343322754,
+          "geometryMs": 2.627000093460083,
+          "packetSha256": "76daf04bde9ffa997ce59469e08971f9cac0777f74c6d10afdff029509363867"
+        },
+        {
+          "serial": 57,
+          "packets": 25,
+          "elapsed": 5.599997043609619,
+          "updateMs": 10.727999687194824,
+          "drawMs": 1.997999906539917,
+          "geometryMs": 2.4779999256134033,
+          "packetSha256": "79d98ef3039aac715c10d431fd5df120cd33074e992b89d2eafb846812b9086f"
+        },
+        {
+          "serial": 58,
+          "packets": 25,
+          "elapsed": 5.6999969482421875,
+          "updateMs": 11.942000389099121,
+          "drawMs": 2.1410000324249268,
+          "geometryMs": 2.6489999294281006,
+          "packetSha256": "6e56cf7c6a464110e8980c51401f0cc6845bd29e8c67769bd8c761bffa9d05b9"
+        },
+        {
+          "serial": 59,
+          "packets": 25,
+          "elapsed": 5.799996852874756,
+          "updateMs": 10.746000289916992,
+          "drawMs": 1.99399995803833,
+          "geometryMs": 2.5339999198913574,
+          "packetSha256": "9bc1a5821c959789ea08d8b7c70e3e81432e69ea388a2c663505e60235a2f789"
+        },
+        {
+          "serial": 60,
+          "packets": 25,
+          "elapsed": 5.899996757507324,
+          "updateMs": 11.619000434875488,
+          "drawMs": 2.0409998893737793,
+          "geometryMs": 2.490000009536743,
+          "packetSha256": "31789b5d39ae653c75f0de79ec9cebf0e3521f5ca4afad0002af79d080c66858"
+        },
+        {
+          "serial": 61,
+          "packets": 27,
+          "elapsed": 5.999996662139893,
+          "updateMs": 12.991000175476074,
+          "drawMs": 2.114000082015991,
+          "geometryMs": 2.5260000228881836,
+          "packetSha256": "66631e8dd372d337ac75466cb1bebff78130b54dc3ef35473f336e5459788219"
+        },
+        {
+          "serial": 62,
+          "packets": 25,
+          "elapsed": 6.099996566772461,
+          "updateMs": 12.008000373840332,
+          "drawMs": 2.0859999656677246,
+          "geometryMs": 2.496000051498413,
+          "packetSha256": "a17779ece03b2fc5a34f0231145785de0e9c2997189a7c3e374b59c4243cf5f7"
+        },
+        {
+          "serial": 63,
+          "packets": 25,
+          "elapsed": 6.199996471405029,
+          "updateMs": 11.680000305175781,
+          "drawMs": 2.111999988555908,
+          "geometryMs": 2.494999885559082,
+          "packetSha256": "9168a39b6c5c324d16462f3abb165101abdc92150114ee5eef82fb97af1280a8"
+        },
+        {
+          "serial": 64,
+          "packets": 25,
+          "elapsed": 6.299996376037598,
+          "updateMs": 13.03499984741211,
+          "drawMs": 2.140000104904175,
+          "geometryMs": 2.5980000495910645,
+          "packetSha256": "539d50f95ce1c8dc1ca47fdc1ebbcd45ce4f4645ba6d04988c596e0bd6d5df7d"
+        },
+        {
+          "serial": 65,
+          "packets": 25,
+          "elapsed": 6.399996280670166,
+          "updateMs": 12.053999900817871,
+          "drawMs": 2.1440000534057617,
+          "geometryMs": 2.50600004196167,
+          "packetSha256": "6521ccff6e7eb0159c2025ed113df42184fa2ab23afa237e1b22dd27f41ed82c"
+        },
+        {
+          "serial": 66,
+          "packets": 27,
+          "elapsed": 6.499996185302734,
+          "updateMs": 11.526000022888184,
+          "drawMs": 2.1050000190734863,
+          "geometryMs": 2.6640000343322754,
+          "packetSha256": "4a27a9b1f6a46b38e9c0b2a8ac51a01b6efb420a1d2a3d1f3e2089e99bc44e55"
+        },
+        {
+          "serial": 67,
+          "packets": 26,
+          "elapsed": 6.599996089935303,
+          "updateMs": 11.555000305175781,
+          "drawMs": 2.1010000705718994,
+          "geometryMs": 2.489000082015991,
+          "packetSha256": "9d0ce1f198f0e9eb280c313865a86696e134330ad25e3c263bb538b7a7d7cd9f"
+        },
+        {
+          "serial": 68,
+          "packets": 25,
+          "elapsed": 6.699995994567871,
+          "updateMs": 13.196999549865723,
+          "drawMs": 2.178999900817871,
+          "geometryMs": 2.499000072479248,
+          "packetSha256": "06f73c374567db613cdaec86480ab6e5a38af769abb6134fe6fffe863e2e61b1"
+        },
+        {
+          "serial": 69,
+          "packets": 25,
+          "elapsed": 6.7999958992004395,
+          "updateMs": 11.743000030517578,
+          "drawMs": 2.1570000648498535,
+          "geometryMs": 2.5,
+          "packetSha256": "b81f14ccfd550fbda26eda7f82c0f5b606135e793424adbce4199f13607dd062"
+        },
+        {
+          "serial": 70,
+          "packets": 24,
+          "elapsed": 6.899995803833008,
+          "updateMs": 11.769000053405762,
+          "drawMs": 2.13700008392334,
+          "geometryMs": 2.5299999713897705,
+          "packetSha256": "8905ecb5445599870eca30d4fabea9d127c87a6f0ae66b1f6181470f97721af8"
+        },
+        {
+          "serial": 71,
+          "packets": 26,
+          "elapsed": 6.999995708465576,
+          "updateMs": 13.699999809265137,
+          "drawMs": 2.2039999961853027,
+          "geometryMs": 2.565000057220459,
+          "packetSha256": "ab6bb533aa7b2bfa93fb4c4f0aa2df748c41549f900d7385877b3c8699a9d2c6"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=64 created=64 stopped=0 totalCreated=64 totalStopped=0\nPC_CELL_ADMISSION active=64 highwater=64 limit=10000000\nPC_FIRE_SYNC serial=32 active=0 created=0 stopped=64 totalCreated=64 totalStopped=64\nPC_CELL_BUDGET_PEAK bytes=9185124 highwater=64 limit=10000000\n",
+      "stderrSha256": "b491a0b2ef3970939e0c1c5a0d63df6630c0706e5119304c6f616c2347b51cd4",
+      "stdoutSha256": "eaf713ac7f41e07a2fe1c5771d9707185d1745217226c8b42809a7ac58aeb78b",
+      "pauseExact": true
+    },
+    {
+      "controllers": 128,
+      "exit": 0,
+      "framesCompleted": 71,
+      "framesRequested": 71,
+      "wallSeconds": 6.260010063999999,
+      "smallCaseSourceRecordAndTimeExact": null,
+      "semanticSha256": "548171c71659dde7e2f9312668e54eee502b0af7dc41d395f7215aaae85c97df",
+      "maximumPackets": 156,
+      "maximumObservedCallBytes": 19569502,
+      "quotaHighwater": 128,
+      "quotaBytes": 20000000,
+      "maximumNativeEvaluatorMs": {
+        "updateMs": 229.27999877929688,
+        "drawMs": 22.229000091552734,
+        "geometryMs": 7.379000186920166
+      },
+      "frames": [
+        {
+          "serial": 1,
+          "packets": 22,
+          "elapsed": 0.10000000149011612,
+          "updateMs": 146.24200439453125,
+          "drawMs": 7.343999862670898,
+          "geometryMs": 4.359000205993652,
+          "packetSha256": "f4846345db80a3bdbaa33df7e06a2bfa80fbdb873dc2529c5c44ab16327ab7b6"
+        },
+        {
+          "serial": 2,
+          "packets": 24,
+          "elapsed": 0.20000000298023224,
+          "updateMs": 47.803001403808594,
+          "drawMs": 5.732999801635742,
+          "geometryMs": 3.6700000762939453,
+          "packetSha256": "d4ac25ef6ed4356e9c640b22fdce5fd07a43497e3cd3a6907ac8d54b2c2246b0"
+        },
+        {
+          "serial": 3,
+          "packets": 28,
+          "elapsed": 0.30000001192092896,
+          "updateMs": 65.41699981689453,
+          "drawMs": 6.513999938964844,
+          "geometryMs": 3.2910001277923584,
+          "packetSha256": "a9f686bc0a95f1fa725038e4a257dd10028c53d079f811321f0d29ddd68c5940"
+        },
+        {
+          "serial": 4,
+          "packets": 51,
+          "elapsed": 0.4000000059604645,
+          "updateMs": 130.9810028076172,
+          "drawMs": 9.657999992370605,
+          "geometryMs": 3.6519999504089355,
+          "packetSha256": "263b0adcbcd5c790dbd242436879ebe279677f994f0002d0d4fb3b5696f559f7"
+        },
+        {
+          "serial": 5,
+          "packets": 62,
+          "elapsed": 0.5,
+          "updateMs": 100.72599792480469,
+          "drawMs": 10.777000427246094,
+          "geometryMs": 3.816999912261963,
+          "packetSha256": "674565fa5bae34b61d898473ace6ac20c94ec9cc355b38de8c3b3001478e1401"
+        },
+        {
+          "serial": 6,
+          "packets": 72,
+          "elapsed": 0.6000000238418579,
+          "updateMs": 112.20099639892578,
+          "drawMs": 12.357999801635742,
+          "geometryMs": 4.083000183105469,
+          "packetSha256": "f910b9012ddeeda14a98645fd3e443b5c72392b74e2dd0d42970d3b2070bad09"
+        },
+        {
+          "serial": 7,
+          "packets": 93,
+          "elapsed": 0.7000000476837158,
+          "updateMs": 148.1529998779297,
+          "drawMs": 14.782999992370605,
+          "geometryMs": 4.3429999351501465,
+          "packetSha256": "d4dda294271d8239b2162094383efd0cbd46915a38b6f87b195cbbf35b1512dd"
+        },
+        {
+          "serial": 8,
+          "packets": 104,
+          "elapsed": 0.8000000715255737,
+          "updateMs": 139.33399963378906,
+          "drawMs": 16.888999938964844,
+          "geometryMs": 4.461999893188477,
+          "packetSha256": "755e5009325f11ff5e953d7f0a8ceac943e7f1f5ab889ac38535d7fdbd5e55d3"
+        },
+        {
+          "serial": 9,
+          "packets": 107,
+          "elapsed": 0.9000000953674316,
+          "updateMs": 109.4219970703125,
+          "drawMs": 17.71500015258789,
+          "geometryMs": 4.4730000495910645,
+          "packetSha256": "6296e67db76b978c2a8399267ddb95d478605fe7523f68d764f1bd1016b54b1d"
+        },
+        {
+          "serial": 10,
+          "packets": 133,
+          "elapsed": 1.0000001192092896,
+          "updateMs": 191.61500549316406,
+          "drawMs": 19.468000411987305,
+          "geometryMs": 5.011000156402588,
+          "packetSha256": "e6a9a795d10c140a8b2cf79afb358b86e52b20e2ad85148c894c77d9d1cd1963"
+        },
+        {
+          "serial": 11,
+          "packets": 132,
+          "elapsed": 1.1000001430511475,
+          "updateMs": 123.83100128173828,
+          "drawMs": 19.024999618530273,
+          "geometryMs": 4.876999855041504,
+          "packetSha256": "20f084485460924205318f2c674813e1495b7b318488feb47d29125c584ba81d"
+        },
+        {
+          "serial": 12,
+          "packets": 128,
+          "elapsed": 1.2000001668930054,
+          "updateMs": 126.33499908447266,
+          "drawMs": 20.150999069213867,
+          "geometryMs": 4.788000106811523,
+          "packetSha256": "ff178c4574cc1517fb4bc388e0dcd278929df6719c9b896594150195670de037"
+        },
+        {
+          "serial": 13,
+          "packets": 133,
+          "elapsed": 1.3000001907348633,
+          "updateMs": 124.71800231933594,
+          "drawMs": 18.476999282836914,
+          "geometryMs": 4.827000141143799,
+          "packetSha256": "623bc208fcdaf1287e8892433598dede56a706c98df9a5df7061c468a289467a"
+        },
+        {
+          "serial": 14,
+          "packets": 142,
+          "elapsed": 1.4000002145767212,
+          "updateMs": 187.28599548339844,
+          "drawMs": 20.142000198364258,
+          "geometryMs": 5.049000263214111,
+          "packetSha256": "4f6806f9483fd5f94887c5f8468924b387dfedef347326e80f73ed85e5d7a8a5"
+        },
+        {
+          "serial": 15,
+          "packets": 135,
+          "elapsed": 1.500000238418579,
+          "updateMs": 162.02699279785156,
+          "drawMs": 19.475000381469727,
+          "geometryMs": 4.938000202178955,
+          "packetSha256": "cb7b5ddc56d737f87ab3f0d1cc5969ccd033ce0a2bc189bc5db491d406ff2cbe"
+        },
+        {
+          "serial": 16,
+          "packets": 113,
+          "elapsed": 1.600000262260437,
+          "updateMs": 136.25900268554688,
+          "drawMs": 16.805999755859375,
+          "geometryMs": 4.564000129699707,
+          "packetSha256": "67c31414da2e9c73e56f42a7af01571a99ac76b4d0832d9e205f5375f6e0a64f"
+        },
+        {
+          "serial": 17,
+          "packets": 118,
+          "elapsed": 1.700000286102295,
+          "updateMs": 194.6790008544922,
+          "drawMs": 22.052000045776367,
+          "geometryMs": 7.379000186920166,
+          "packetSha256": "87060427b54e9bbf4dc1ec7fbefa602c68769f8d7100594cf74e598e45dd2ff3"
+        },
+        {
+          "serial": 18,
+          "packets": 119,
+          "elapsed": 1.8000003099441528,
+          "updateMs": 173.16400146484375,
+          "drawMs": 18.506999969482422,
+          "geometryMs": 4.849999904632568,
+          "packetSha256": "ed87d7237d3e5fb33b9db0ce32305a041576063e33d148b066ffc5d1a19cb521"
+        },
+        {
+          "serial": 19,
+          "packets": 122,
+          "elapsed": 1.9000003337860107,
+          "updateMs": 136.1179962158203,
+          "drawMs": 18.753999710083008,
+          "geometryMs": 4.845000267028809,
+          "packetSha256": "17715bf5dcc661935b966d04f5d99fab1691798940f10352f6e7460cc046922b"
+        },
+        {
+          "serial": 20,
+          "packets": 150,
+          "elapsed": 2.000000238418579,
+          "updateMs": 229.27999877929688,
+          "drawMs": 21.84600067138672,
+          "geometryMs": 5.429999828338623,
+          "packetSha256": "d67a37046d2b3c98cb84ca243081c29107e0ec2a88ea251ea99e439318b9596a"
+        },
+        {
+          "serial": 21,
+          "packets": 152,
+          "elapsed": 2.1000001430511475,
+          "updateMs": 191.93699645996094,
+          "drawMs": 22.229000091552734,
+          "geometryMs": 5.3460001945495605,
+          "packetSha256": "fa30fe91d08073c8a64785b659c14b9d58a3efafe5534f312df27da08b165b9c"
+        },
+        {
+          "serial": 22,
+          "packets": 150,
+          "elapsed": 2.200000047683716,
+          "updateMs": 136.02699279785156,
+          "drawMs": 21.16900062561035,
+          "geometryMs": 5.739999771118164,
+          "packetSha256": "a8059c0db282926f6326147b587b023ae5e3666efd936249ce19213e14aea063"
+        },
+        {
+          "serial": 23,
+          "packets": 153,
+          "elapsed": 2.299999952316284,
+          "updateMs": 131.57400512695312,
+          "drawMs": 20.31399917602539,
+          "geometryMs": 5.2230000495910645,
+          "packetSha256": "940dbefdcc788d1ebf2483e2b0fa6066e4fb63f407b53d368e278c3602746b8c"
+        },
+        {
+          "serial": 24,
+          "packets": 156,
+          "elapsed": 2.3999998569488525,
+          "updateMs": 160.39199829101562,
+          "drawMs": 21.229999542236328,
+          "geometryMs": 5.208000183105469,
+          "packetSha256": "e1b448a4cbe80a506f411284d0e35def1cc9e7b0f3462f75fea2fa6fc51a4b5e"
+        },
+        {
+          "serial": 25,
+          "packets": 142,
+          "elapsed": 2.499999761581421,
+          "updateMs": 137.8979949951172,
+          "drawMs": 19.190000534057617,
+          "geometryMs": 5.270999908447266,
+          "packetSha256": "a5f141fca808121c91bd160039702c7208247398d9c5210eac4e34407545e172"
+        },
+        {
+          "serial": 26,
+          "packets": 132,
+          "elapsed": 2.5999996662139893,
+          "updateMs": 123.23100280761719,
+          "drawMs": 17.37700080871582,
+          "geometryMs": 4.900000095367432,
+          "packetSha256": "0be8f15d92523e309ffeeefae140b91e8be1b5cddbcb499d0fe283a9592f4924"
+        },
+        {
+          "serial": 27,
+          "packets": 132,
+          "elapsed": 2.6999995708465576,
+          "updateMs": 162.0659942626953,
+          "drawMs": 17.76799964904785,
+          "geometryMs": 4.866000175476074,
+          "packetSha256": "dd5b7327d6c291ba52bc31628cca87e707099ef15ca317887de8280b49bef0f7"
+        },
+        {
+          "serial": 28,
+          "packets": 136,
+          "elapsed": 2.799999475479126,
+          "updateMs": 147.677001953125,
+          "drawMs": 17.81800079345703,
+          "geometryMs": 5.021999835968018,
+          "packetSha256": "a413b57f74a8febd9ef299eb4a4c9dd16e8b8697ffbd3c47cda251648c349414"
+        },
+        {
+          "serial": 29,
+          "packets": 133,
+          "elapsed": 2.8999993801116943,
+          "updateMs": 132.7550048828125,
+          "drawMs": 17.34600067138672,
+          "geometryMs": 5.170000076293945,
+          "packetSha256": "bb2bf8ca7568b761647d4c21c569d1cd8aad806ad15d816c646bc526e820a602"
+        },
+        {
+          "serial": 30,
+          "packets": 152,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 211.52200317382812,
+          "drawMs": 21.29800033569336,
+          "geometryMs": 5.320000171661377,
+          "packetSha256": "027c4473a275224248eccf354526a8cc1a700a96c5e21afe8d9aab07d4bb6ef3"
+        },
+        {
+          "serial": 31,
+          "packets": 152,
+          "elapsed": 2.9999992847442627,
+          "updateMs": 0.00200001522898674,
+          "drawMs": 21.134000778198242,
+          "geometryMs": 2.8980000019073486,
+          "packetSha256": "027c4473a275224248eccf354526a8cc1a700a96c5e21afe8d9aab07d4bb6ef3"
+        },
+        {
+          "serial": 32,
+          "packets": 76,
+          "elapsed": 3.099999189376831,
+          "updateMs": 68.85099792480469,
+          "drawMs": 10.263999938964844,
+          "geometryMs": 3.8929998874664307,
+          "packetSha256": "2a11036f07435ad29a99caaa716d1d95d35889f694120c911e8a3b74fd6b5552"
+        },
+        {
+          "serial": 33,
+          "packets": 73,
+          "elapsed": 3.1999990940093994,
+          "updateMs": 49.909000396728516,
+          "drawMs": 9.675999641418457,
+          "geometryMs": 3.861999988555908,
+          "packetSha256": "0db00f949f60b9a0a0f941b7c1b673d79a0f045facf0881e3ea3644ce3633dbf"
+        },
+        {
+          "serial": 34,
+          "packets": 73,
+          "elapsed": 3.2999989986419678,
+          "updateMs": 47.40999984741211,
+          "drawMs": 9.411999702453613,
+          "geometryMs": 3.811000108718872,
+          "packetSha256": "c1588825ec3badc236663827ad058e75986845e9fbdd0f1c061e8d42b3284291"
+        },
+        {
+          "serial": 35,
+          "packets": 76,
+          "elapsed": 3.399998903274536,
+          "updateMs": 49.63800048828125,
+          "drawMs": 9.22700023651123,
+          "geometryMs": 4.000999927520752,
+          "packetSha256": "69d6fb16641a6c4f82c6dde7bf8a5c143b66274b049fab7416593ed3006cf4bc"
+        },
+        {
+          "serial": 36,
+          "packets": 71,
+          "elapsed": 3.4999988079071045,
+          "updateMs": 45.66899871826172,
+          "drawMs": 8.279999732971191,
+          "geometryMs": 3.8350000381469727,
+          "packetSha256": "f4aee07fd2a66bfa784315aec55c74388b16be3613455571640b014aca189975"
+        },
+        {
+          "serial": 37,
+          "packets": 71,
+          "elapsed": 3.599998712539673,
+          "updateMs": 41.56700134277344,
+          "drawMs": 7.613999843597412,
+          "geometryMs": 3.8350000381469727,
+          "packetSha256": "01bcb4fd57a1f89ec48e04a86ff1ba7808161396d226e55cb3ac1808977f70ea"
+        },
+        {
+          "serial": 38,
+          "packets": 66,
+          "elapsed": 3.699998617172241,
+          "updateMs": 37.972999572753906,
+          "drawMs": 6.881999969482422,
+          "geometryMs": 3.753000020980835,
+          "packetSha256": "b23146d6987643f8cbb1ef014ef974db7654376a483614b2baa19f857306a687"
+        },
+        {
+          "serial": 39,
+          "packets": 61,
+          "elapsed": 3.7999985218048096,
+          "updateMs": 35.387001037597656,
+          "drawMs": 7.175000190734863,
+          "geometryMs": 4.063000202178955,
+          "packetSha256": "8a8a913e74c1448c5520638b7e64ef0c56b7bc3d111bba7f1f7762b3327ce5c3"
+        },
+        {
+          "serial": 40,
+          "packets": 56,
+          "elapsed": 3.899998426437378,
+          "updateMs": 31.632999420166016,
+          "drawMs": 5.46999979019165,
+          "geometryMs": 3.7009999752044678,
+          "packetSha256": "7de95c964121240cb521bded4b1f09f88d1d9e968319fcb7f84c64f492075474"
+        },
+        {
+          "serial": 41,
+          "packets": 47,
+          "elapsed": 3.9999983310699463,
+          "updateMs": 29.56999969482422,
+          "drawMs": 4.511000156402588,
+          "geometryMs": 3.509000062942505,
+          "packetSha256": "be93d76e1a069d8e4bec22e001e3c66a28e63fcf94de117a8290774f0b9f4427"
+        },
+        {
+          "serial": 42,
+          "packets": 38,
+          "elapsed": 4.099998474121094,
+          "updateMs": 21.483999252319336,
+          "drawMs": 3.996000051498413,
+          "geometryMs": 3.444000005722046,
+          "packetSha256": "55054afac0e566529646b69637b63694098c0bd4ef6c6f386fb483ec56557d2f"
+        },
+        {
+          "serial": 43,
+          "packets": 34,
+          "elapsed": 4.199998378753662,
+          "updateMs": 17.687000274658203,
+          "drawMs": 3.1679999828338623,
+          "geometryMs": 3.450000047683716,
+          "packetSha256": "082852b8fb88a9e82ef95f8ffff6fffd52834f65a89fb6cdcce1f15b0a912296"
+        },
+        {
+          "serial": 44,
+          "packets": 33,
+          "elapsed": 4.2999982833862305,
+          "updateMs": 15.869999885559082,
+          "drawMs": 2.8529999256134033,
+          "geometryMs": 3.305000066757202,
+          "packetSha256": "c576ac2494a60c7f2d757aa19390df6498ea27320fdffc68c3cf6c386776e072"
+        },
+        {
+          "serial": 45,
+          "packets": 33,
+          "elapsed": 4.399998188018799,
+          "updateMs": 16.5049991607666,
+          "drawMs": 2.9049999713897705,
+          "geometryMs": 3.246000051498413,
+          "packetSha256": "304237f9fafc6530fd5862f1725c313ba650e4f06c091634696b918db339a128"
+        },
+        {
+          "serial": 46,
+          "packets": 27,
+          "elapsed": 4.499998092651367,
+          "updateMs": 14.920000076293945,
+          "drawMs": 2.203000068664551,
+          "geometryMs": 3.434999942779541,
+          "packetSha256": "526ac095dda4e286674eeb342ba24881e607488b22e984f292468ed3cac84551"
+        },
+        {
+          "serial": 47,
+          "packets": 25,
+          "elapsed": 4.5999979972839355,
+          "updateMs": 13.541999816894531,
+          "drawMs": 2.2909998893737793,
+          "geometryMs": 2.4779999256134033,
+          "packetSha256": "deb3202496b92d7c7075f76fde19ab479318ca9f6d95b7ca6645562526c9f4bc"
+        },
+        {
+          "serial": 48,
+          "packets": 25,
+          "elapsed": 4.699997901916504,
+          "updateMs": 9.420000076293945,
+          "drawMs": 1.7400000095367432,
+          "geometryMs": 2.6419999599456787,
+          "packetSha256": "e91c375ec43b8360a33b815f686b5fe3b8480ee2b905561b62f18497b4d8167e"
+        },
+        {
+          "serial": 49,
+          "packets": 24,
+          "elapsed": 4.799997806549072,
+          "updateMs": 8.838000297546387,
+          "drawMs": 1.850000023841858,
+          "geometryMs": 2.499000072479248,
+          "packetSha256": "1aeff55ee68e86a2c76f702630561bf8c39ddf1cc755ce1ddfa1d4487c1418c8"
+        },
+        {
+          "serial": 50,
+          "packets": 24,
+          "elapsed": 4.899997711181641,
+          "updateMs": 8.9399995803833,
+          "drawMs": 1.7070000171661377,
+          "geometryMs": 2.5460000038146973,
+          "packetSha256": "33d7023cbbda7fa869d7f397ff678ecd64c2bf9d04161dcb9fe8a319459f7eae"
+        },
+        {
+          "serial": 51,
+          "packets": 26,
+          "elapsed": 4.999997615814209,
+          "updateMs": 12.760000228881836,
+          "drawMs": 1.875999927520752,
+          "geometryMs": 2.6489999294281006,
+          "packetSha256": "1b45c0959613a39ac77613aef8fc99fd0f6190213b562b9b5202e46917bafe11"
+        },
+        {
+          "serial": 52,
+          "packets": 25,
+          "elapsed": 5.099997520446777,
+          "updateMs": 13.16100025177002,
+          "drawMs": 2.0220000743865967,
+          "geometryMs": 2.5880000591278076,
+          "packetSha256": "3e15ab9605ca30ae830117f711b058b8df6e74a6bcf30ac7a1a59b1eb145fc9e"
+        },
+        {
+          "serial": 53,
+          "packets": 25,
+          "elapsed": 5.199997425079346,
+          "updateMs": 11.359999656677246,
+          "drawMs": 1.9789999723434448,
+          "geometryMs": 2.4839999675750732,
+          "packetSha256": "f00dd3a5df6ceb8cb5dd5b8aaf2840206c43eb5b58128c50771e21dab53e47ba"
+        },
+        {
+          "serial": 54,
+          "packets": 25,
+          "elapsed": 5.299997329711914,
+          "updateMs": 10.017000198364258,
+          "drawMs": 2.178999900817871,
+          "geometryMs": 2.4630000591278076,
+          "packetSha256": "85627426c873ee5002c638baeb72421e0636e37b4dab12c3a1e35dab478941ad"
+        },
+        {
+          "serial": 55,
+          "packets": 25,
+          "elapsed": 5.399997234344482,
+          "updateMs": 12.329999923706055,
+          "drawMs": 2.009000062942505,
+          "geometryMs": 2.572000026702881,
+          "packetSha256": "5fdba3ca611ea05cdf828410c8db136fba8db6191e533ffa9380345073d62c43"
+        },
+        {
+          "serial": 56,
+          "packets": 27,
+          "elapsed": 5.499997138977051,
+          "updateMs": 12.388999938964844,
+          "drawMs": 2.053999900817871,
+          "geometryMs": 2.5360000133514404,
+          "packetSha256": "646998fc8c73f1c4ab2479e3485c6fcb749d11c2977369c220b0b4adfe271b59"
+        },
+        {
+          "serial": 57,
+          "packets": 26,
+          "elapsed": 5.599997043609619,
+          "updateMs": 11.107000350952148,
+          "drawMs": 2.13100004196167,
+          "geometryMs": 2.5899999141693115,
+          "packetSha256": "47dcee34dc5cf96449355117a0b64a97ab843bf9501561545affbb98ab769652"
+        },
+        {
+          "serial": 58,
+          "packets": 24,
+          "elapsed": 5.6999969482421875,
+          "updateMs": 11.435999870300293,
+          "drawMs": 2.0490000247955322,
+          "geometryMs": 2.5929999351501465,
+          "packetSha256": "ef66a2edf5676bf080c4c566c09966ced7116035536cdf613dc18ccebb3b9ee0"
+        },
+        {
+          "serial": 59,
+          "packets": 24,
+          "elapsed": 5.799996852874756,
+          "updateMs": 11.73900032043457,
+          "drawMs": 2.052000045776367,
+          "geometryMs": 2.684999942779541,
+          "packetSha256": "c024f34d9b72ba16e664955035c97a32ecb550bd12b37784f3bbe59efb3d330e"
+        },
+        {
+          "serial": 60,
+          "packets": 24,
+          "elapsed": 5.899996757507324,
+          "updateMs": 12.310999870300293,
+          "drawMs": 2.1019999980926514,
+          "geometryMs": 2.4800000190734863,
+          "packetSha256": "591a7002ae3892258d30f140986cd628fcb217433da08073120b4c8c733e5cd9"
+        },
+        {
+          "serial": 61,
+          "packets": 26,
+          "elapsed": 5.999996662139893,
+          "updateMs": 13.12399959564209,
+          "drawMs": 2.177000045776367,
+          "geometryMs": 2.5249998569488525,
+          "packetSha256": "0b821a53955731aa1ed82fed3d19ac36e01e76eae7c89a4491495902744e76da"
+        },
+        {
+          "serial": 62,
+          "packets": 25,
+          "elapsed": 6.099996566772461,
+          "updateMs": 11.118000030517578,
+          "drawMs": 2.0940001010894775,
+          "geometryMs": 2.5840001106262207,
+          "packetSha256": "861fc498446f1a5727c3658179a2eb69caac34e28ab9c9498392f91b3405a41d"
+        },
+        {
+          "serial": 63,
+          "packets": 25,
+          "elapsed": 6.199996471405029,
+          "updateMs": 11.531000137329102,
+          "drawMs": 2.0799999237060547,
+          "geometryMs": 2.5510001182556152,
+          "packetSha256": "7c713ab6d597f76086d2eae323d6fa862fcdac929679e2708503c47523f33e4d"
+        },
+        {
+          "serial": 64,
+          "packets": 25,
+          "elapsed": 6.299996376037598,
+          "updateMs": 14.932000160217285,
+          "drawMs": 2.249000072479248,
+          "geometryMs": 2.7790000438690186,
+          "packetSha256": "1837a972e0061edca7e60222626ff5800ffdbc134d00178521e9a83e5861114e"
+        },
+        {
+          "serial": 65,
+          "packets": 25,
+          "elapsed": 6.399996280670166,
+          "updateMs": 12.010000228881836,
+          "drawMs": 2.190999984741211,
+          "geometryMs": 2.5329999923706055,
+          "packetSha256": "044e24ea5d57fca34a3ac1aeec4c8db3b530581f4de4384bb28132ee90013820"
+        },
+        {
+          "serial": 66,
+          "packets": 27,
+          "elapsed": 6.499996185302734,
+          "updateMs": 11.626999855041504,
+          "drawMs": 2.4100000858306885,
+          "geometryMs": 2.5220000743865967,
+          "packetSha256": "0f44c6612d2dc7132323d1f9d02fd9739376814086a6a031dc35e4b79f1034ef"
+        },
+        {
+          "serial": 67,
+          "packets": 25,
+          "elapsed": 6.599996089935303,
+          "updateMs": 11.180000305175781,
+          "drawMs": 2.1429998874664307,
+          "geometryMs": 2.745000123977661,
+          "packetSha256": "8f85a8743fe355e21774d89b8de2d4f938676fdbcfae19cf3a6d8671fbea4231"
+        },
+        {
+          "serial": 68,
+          "packets": 25,
+          "elapsed": 6.699995994567871,
+          "updateMs": 13.619000434875488,
+          "drawMs": 2.2019999027252197,
+          "geometryMs": 2.6059999465942383,
+          "packetSha256": "40dc6a01b17acb2c2f0accab7ff852a56bff445ee51bed1cbd5066d67fe8f2ad"
+        },
+        {
+          "serial": 69,
+          "packets": 25,
+          "elapsed": 6.7999958992004395,
+          "updateMs": 11.78600025177002,
+          "drawMs": 2.432999849319458,
+          "geometryMs": 2.4700000286102295,
+          "packetSha256": "3b597e142956ffad8ecf64777d59e62f7632a146cffa0cba7efdf61a8fc646e5"
+        },
+        {
+          "serial": 70,
+          "packets": 25,
+          "elapsed": 6.899995803833008,
+          "updateMs": 11.484999656677246,
+          "drawMs": 2.196000099182129,
+          "geometryMs": 2.496000051498413,
+          "packetSha256": "6fca0b82a7f713d3ad1e345da9ba714405c364db4971769dd68982dfa678551b"
+        },
+        {
+          "serial": 71,
+          "packets": 27,
+          "elapsed": 6.999995708465576,
+          "updateMs": 13.998000144958496,
+          "drawMs": 2.2309999465942383,
+          "geometryMs": 2.513000011444092,
+          "packetSha256": "75afa842b2485fd760f627d71cd9312f7a984d6a096d024dd3ff09d409ba294f"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nPC_CELL_ADMISSION active=128 highwater=128 limit=20000000\nPC_FIRE_SYNC serial=32 active=0 created=0 stopped=128 totalCreated=128 totalStopped=128\nPC_CELL_BUDGET_PEAK bytes=19569502 highwater=128 limit=20000000\n",
+      "stderrSha256": "fd4a54b0fc28f1868121691650ba9c2d46e4851c3f16ae9213a38aa60ede809b",
+      "stdoutSha256": "57bc0d3ba60af5867a4f1018346bc58699fd2e0a428a7cfff10533dcb80cbc65",
+      "pauseExact": true
+    }
+  ],
+  "scope": "Host-only candidate: max20M per-native-call block-byte quota derived from verified admitted controller highwater in32-cell batches, original5s/Java6s/guest16MiB/TCG32MiB/packet32768 remain. Same original objects/resources/order/visualRNG/time/protocol, exact source records compared1/13/32. Diagnostic height0/recorded camera, no Android/ARM/GPU/normal128 performance acceptance. Current original4/additional2JNI not rebuilt or changed; not an approved production fix or uniqueJavaOOM claim.",
+  "wholeGoalComplete": false
+}

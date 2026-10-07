@@ -507,3 +507,8 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 236已执行1/13/32/64/128原controller宿主矩阵，在原5Mbyte/5s守卫下1/13/32完成71帧/暂停记录全同与native handle停止，64/128首帧守卫失败。零所有packet不是cellfire停止标准（原SEFF环境仍26/27/26packet），初版测试断言错误及已完成子进程原输出完整保留，修正后只推进未执行case，不重启已完成1-cell child。新C克隆只添加guard寄存器/ESI只读日志，规范C/JNI不动，性能值受host负载限制且非Android/ARM/GPU。此矩阵只缩小后继原callback容量调查，不能借32 host通过代替128目标。当前Source4真实64/670仍partial，所有同一producer/observer及serial等待链存活。
+
+
+239/240/242后继：观察测试c689e103…独立构建80s、runner/签名/原39夹具与同165游戏168资源/六JNI核SHA。240启动参数reuse-installed错误被设备test APK SHA守卫拒绝，未运行instrumentation；9/3797原SHA零改写恢复，旧窗口/root因不判修复。d7685125修正仅test-only-update，242全档/库/偏好重新备份后实际安装旧game931bc+新testc689、已装完整SHA/runner核对并录像/native观察器启动；正常Source4已128/670，helper5024/video5061/native5062同句柄存活。未复现69尚不等于根因修复，条件/动作/超时/重试都未放宽，旧176其余5来源成绩不移用。原182所有parent音频/双堆已真实终止，后继不能称仍等待live。
+
+237/241/243/244/245原火深查：原effect13模板单node；child数组单一；真实factory32/64/128返回opaque句柄与原45ca40 callback实例地址全数对应。245原460a2f分支未触发的空记录保留，不能当根因。246独立A wrapper只读include B两原C，不改它们，按实际source_fire_sync已验证句柄highwater每32个5M工程block-byte预算、最高20M，原native5s/Java6s/guest16M/TCG32M/32768packet不变。Host同236命令1/13/32原record/time字节完全同，64/12871帧退出0、暂停clock/packet同/停止native句柄；128最大call19569502/20M、229.28msupdate，余量不足以闭合长时/真实相机/Android/ARM/FPS，当前原4/新增2JNI/APK不改。新预算不是PC规则，也不是JavaOOM修复或吞异常重试。247只读B r7 tar：用户原mapRenderer guard true先已存在，重试后false、最终8176d95e…SHA恢复true，不能把这次页面当新Renderer/OOM根因，仍不能用恢复宣布稳定。

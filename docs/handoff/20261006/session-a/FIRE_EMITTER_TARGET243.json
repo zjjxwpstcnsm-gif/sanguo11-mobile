@@ -1,0 +1,269 @@
+{
+  "sourceBeforeAfter": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+  },
+  "cases": [
+    {
+      "cells": 32,
+      "exit": 0,
+      "calls": [
+        {
+          "owner": "1050ac00",
+          "table": "795290",
+          "target": "460870",
+          "rawKindWord": "3",
+          "rawPool": "1050f5c0",
+          "bytesBefore": "312424"
+        },
+        {
+          "owner": "1050d040",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "1050f7b0",
+          "bytesBefore": "404354"
+        },
+        {
+          "owner": "1050d600",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "1050fe20",
+          "bytesBefore": "404505"
+        },
+        {
+          "owner": "1050da30",
+          "table": "795200",
+          "target": "45d3a0",
+          "rawKindWord": "1",
+          "rawPool": "10511dd0",
+          "bytesBefore": "404656"
+        },
+        {
+          "owner": "1050de90",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512280",
+          "bytesBefore": "404807"
+        },
+        {
+          "owner": "1050e1a0",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512410",
+          "bytesBefore": "404958"
+        },
+        {
+          "owner": "1050e710",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512a40",
+          "bytesBefore": "405109"
+        },
+        {
+          "owner": "1050ea70",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512b30",
+          "bytesBefore": "405260"
+        },
+        {
+          "owner": "1050f020",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "105132e0",
+          "bytesBefore": "405411"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=32 created=32 stopped=0 totalCreated=32 totalStopped=0\nORIGINAL_EMITTER owner=1050ac00 table=795290 target=460870 rawKindWord=3 rawPool=1050f5c0 bytesBefore=312424\nORIGINAL_EMITTER owner=1050d040 table=795248 target=45d870 rawKindWord=2 rawPool=1050f7b0 bytesBefore=404354\nORIGINAL_EMITTER owner=1050d600 table=795248 target=45d870 rawKindWord=2 rawPool=1050fe20 bytesBefore=404505\nORIGINAL_EMITTER owner=1050da30 table=795200 target=45d3a0 rawKindWord=1 rawPool=10511dd0 bytesBefore=404656\nORIGINAL_EMITTER owner=1050de90 table=795248 target=45d870 rawKindWord=2 rawPool=10512280 bytesBefore=404807\nORIGINAL_EMITTER owner=1050e1a0 table=795248 target=45d870 rawKindWord=2 rawPool=10512410 bytesBefore=404958\nORIGINAL_EMITTER owner=1050e710 table=795248 target=45d870 rawKindWord=2 rawPool=10512a40 bytesBefore=405109\nORIGINAL_EMITTER owner=1050ea70 table=795248 target=45d870 rawKindWord=2 rawPool=10512b30 bytesBefore=405260\nORIGINAL_EMITTER owner=1050f020 table=795248 target=45d870 rawKindWord=2 rawPool=105132e0 bytesBefore=405411\n",
+      "stderrSha256": "c09fb34216caaf97efcb7ed293ab8ed36b5013a8480a8b398d2b823aae527d7d",
+      "stdoutSha256": "604496182e23f709f846208db86c9d474415d640a27464b23450cadd4b0032c9"
+    },
+    {
+      "cells": 64,
+      "exit": 2,
+      "calls": [
+        {
+          "owner": "1050ac00",
+          "table": "795290",
+          "target": "460870",
+          "rawKindWord": "3",
+          "rawPool": "1050f5c0",
+          "bytesBefore": "315652"
+        },
+        {
+          "owner": "1050d040",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "1050f7b0",
+          "bytesBefore": "496303"
+        },
+        {
+          "owner": "1050d600",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "1050fe20",
+          "bytesBefore": "496454"
+        },
+        {
+          "owner": "1050da30",
+          "table": "795200",
+          "target": "45d3a0",
+          "rawKindWord": "1",
+          "rawPool": "10511dd0",
+          "bytesBefore": "496605"
+        },
+        {
+          "owner": "1050de90",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512280",
+          "bytesBefore": "496756"
+        },
+        {
+          "owner": "1050e1a0",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512410",
+          "bytesBefore": "496907"
+        },
+        {
+          "owner": "1050e710",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512a40",
+          "bytesBefore": "497058"
+        },
+        {
+          "owner": "1050ea70",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512b30",
+          "bytesBefore": "497209"
+        },
+        {
+          "owner": "1050f020",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "105132e0",
+          "bytesBefore": "497360"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=64 created=64 stopped=0 totalCreated=64 totalStopped=0\nORIGINAL_EMITTER owner=1050ac00 table=795290 target=460870 rawKindWord=3 rawPool=1050f5c0 bytesBefore=315652\nORIGINAL_EMITTER owner=1050d040 table=795248 target=45d870 rawKindWord=2 rawPool=1050f7b0 bytesBefore=496303\nORIGINAL_EMITTER owner=1050d600 table=795248 target=45d870 rawKindWord=2 rawPool=1050fe20 bytesBefore=496454\nORIGINAL_EMITTER owner=1050da30 table=795200 target=45d3a0 rawKindWord=1 rawPool=10511dd0 bytesBefore=496605\nORIGINAL_EMITTER owner=1050de90 table=795248 target=45d870 rawKindWord=2 rawPool=10512280 bytesBefore=496756\nORIGINAL_EMITTER owner=1050e1a0 table=795248 target=45d870 rawKindWord=2 rawPool=10512410 bytesBefore=496907\nORIGINAL_EMITTER owner=1050e710 table=795248 target=45d870 rawKindWord=2 rawPool=10512a40 bytesBefore=497058\nORIGINAL_EMITTER owner=1050ea70 table=795248 target=45d870 rawKindWord=2 rawPool=10512b30 bytesBefore=497209\nORIGINAL_EMITTER owner=1050f020 table=795248 target=45d870 rawKindWord=2 rawPool=105132e0 bytesBefore=497360\nNative boundary/budget failure at45a530\n",
+      "stderrSha256": "b03ff53238ebf2fd274c52c7297578c707de4a8cdaec98485a4a7d4f522582eb",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    },
+    {
+      "cells": 128,
+      "exit": 2,
+      "calls": [
+        {
+          "owner": "1050ac00",
+          "table": "795290",
+          "target": "460870",
+          "rawKindWord": "3",
+          "rawPool": "1050f5c0",
+          "bytesBefore": "286564"
+        },
+        {
+          "owner": "1050d040",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "1050f7b0",
+          "bytesBefore": "644310"
+        },
+        {
+          "owner": "1050d600",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "1050fe20",
+          "bytesBefore": "644461"
+        },
+        {
+          "owner": "1050da30",
+          "table": "795200",
+          "target": "45d3a0",
+          "rawKindWord": "1",
+          "rawPool": "10511dd0",
+          "bytesBefore": "644612"
+        },
+        {
+          "owner": "1050de90",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512280",
+          "bytesBefore": "644763"
+        },
+        {
+          "owner": "1050e1a0",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512410",
+          "bytesBefore": "644914"
+        },
+        {
+          "owner": "1050e710",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512a40",
+          "bytesBefore": "645065"
+        },
+        {
+          "owner": "1050ea70",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "10512b30",
+          "bytesBefore": "645216"
+        },
+        {
+          "owner": "1050f020",
+          "table": "795248",
+          "target": "45d870",
+          "rawKindWord": "2",
+          "rawPool": "105132e0",
+          "bytesBefore": "645367"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nORIGINAL_EMITTER owner=1050ac00 table=795290 target=460870 rawKindWord=3 rawPool=1050f5c0 bytesBefore=286564\nORIGINAL_EMITTER owner=1050d040 table=795248 target=45d870 rawKindWord=2 rawPool=1050f7b0 bytesBefore=644310\nORIGINAL_EMITTER owner=1050d600 table=795248 target=45d870 rawKindWord=2 rawPool=1050fe20 bytesBefore=644461\nORIGINAL_EMITTER owner=1050da30 table=795200 target=45d3a0 rawKindWord=1 rawPool=10511dd0 bytesBefore=644612\nORIGINAL_EMITTER owner=1050de90 table=795248 target=45d870 rawKindWord=2 rawPool=10512280 bytesBefore=644763\nORIGINAL_EMITTER owner=1050e1a0 table=795248 target=45d870 rawKindWord=2 rawPool=10512410 bytesBefore=644914\nORIGINAL_EMITTER owner=1050e710 table=795248 target=45d870 rawKindWord=2 rawPool=10512a40 bytesBefore=645065\nORIGINAL_EMITTER owner=1050ea70 table=795248 target=45d870 rawKindWord=2 rawPool=10512b30 bytesBefore=645216\nORIGINAL_EMITTER owner=1050f020 table=795248 target=45d870 rawKindWord=2 rawPool=105132e0 bytesBefore=645367\nNative boundary/budget failure at45a530\n",
+      "stderrSha256": "c2f6bd71dbfbc3afbf1af6834cf83faac85bc3c70774e8de5b6a664de73dd90c",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    }
+  ],
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-emitter-target243/pc_effect_scene_probe.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-emitter-target243/host-probe"
+  ],
+  "scope": "Host-only logging before original emitter virtual call45b805, scoped by original parent effect13 node; raw fields carry no assumed Android/core semantics. Same first32/64/128 admitted visual input, same5Mbyte/5s limits. No production/JNI/PC memory/RNG/budget changes or Android acceptance.",
+  "wholeGoalComplete": false
+}
