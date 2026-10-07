@@ -154,6 +154,43 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         throw new AssertionError("Actual source portrait row not reachable after real swipes native="+nativeId+" name="+officer.name);
     }
 
+    private void finishPortraitSearch(DataTable<?> table)throws Exception {
+        boolean[] accepted={false};
+        ui(()->{
+            android.view.inputmethod.EditorInfo info=new android.view.inputmethod.EditorInfo();
+            android.view.inputmethod.InputConnection connection=table.search.onCreateInputConnection(info);
+            accepted[0]=connection!=null&&connection.performEditorAction(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);
+        });
+        check(accepted[0],"normal keyboard search action accepted");
+        android.accessibilityservice.AccessibilityServiceInfo original=getUiAutomation().getServiceInfo();
+        android.accessibilityservice.AccessibilityServiceInfo observed=getUiAutomation().getServiceInfo();
+        observed.flags|=android.accessibilityservice.AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
+        getUiAutomation().setServiceInfo(observed);
+        long deadline=SystemClock.uptimeMillis()+15000,stableSince=0;String last="";
+        try{
+            while(SystemClock.uptimeMillis()<deadline){
+                boolean ime=false;
+                for(android.view.accessibility.AccessibilityWindowInfo window:getUiAutomation().getWindows()){
+                    if(window.getType()==android.view.accessibility.AccessibilityWindowInfo.TYPE_INPUT_METHOD)ime=true;
+                    window.recycle();
+                }
+                String[] layout={null};boolean[] focused={true};
+                ui(()->{
+                    Rect frame=new Rect(),viewport=new Rect();table.getRootView().getWindowVisibleDisplayFrame(frame);table.list.getGlobalVisibleRect(viewport);
+                    int[] origin=new int[2];table.getRootView().getLocationOnScreen(origin);
+                    layout[0]=frame.flattenToString()+"/"+viewport.flattenToString()+"/"+origin[0]+","+origin[1];focused[0]=table.search.hasFocus();
+                });
+                long now=SystemClock.uptimeMillis();
+                if(!ime&&!focused[0]&&layout[0].equals(last)){
+                    if(stableSince==0)stableSince=now;
+                    if(now-stableSince>=1000){log.append("ACTUAL search settled ime=false focus=false layout=").append(layout[0]).append(" quietMs=").append(now-stableSince).append('\n');return;}
+                }else stableSince=0;
+                last=layout[0];SystemClock.sleep(100);
+            }
+            throw new AssertionError("Normal search keyboard/layout did not settle after actual editor action");
+        }finally{getUiAutomation().setServiceInfo(original);}
+    }
+
     private void normalPortraitRows(int source)throws Exception{
         byte[] before=capture();StateToken prior=token();World visual=SessionProbe.view(activity);Map<Integer,PcOfficerInfo.Person> sourcePeople=PcOfficerInfo.saved(visual);org.json.JSONArray rows=new org.json.JSONArray();text("清除");DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
         List<Integer> ids=new ArrayList<>();
@@ -164,7 +201,7 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         int visited=0;
         for(int id:ids){
             var person=sourcePeople.get(id);World.Officer officer=visual.officer(id);check(officer!=null,"source native officer exists "+person.nativeId);
-            tap(table.search);ui(()->table.search.setText(officer.name));sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);SystemClock.sleep(400);
+            tap(table.search);ui(()->table.search.setText(officer.name));finishPortraitSearch(table);
             TextView cell=revealPortrait(table,officer,person.nativeId);
             OfficerPortrait rowImage=(OfficerPortrait)cell.getCompoundDrawables()[0];rows.put(originalPortrait(rowImage,visual,officer.id,"normal-roster",person));
             ui(()->check(activity.officerSnapshot().officer(id)!=null,"current authoritative detail identity available "+source+":"+person.nativeId));

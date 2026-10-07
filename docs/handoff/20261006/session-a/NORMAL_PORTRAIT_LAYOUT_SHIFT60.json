@@ -1,0 +1,46 @@
+{
+  "passed": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5a72c163-roster-input-diagnostic/app-debug.apk": "ff2832c0d41f59fa130ae39947dbdf7566b279859fc5b9cf02e327ae356d75c9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-99aabc1c-portrait-target-test/app-debug-androidTest.apk": "8fb5e13990984e280124946aa4c5abc5ec39f739d451c1e5764d45af4cf68525"
+  },
+  "actualCompletePairs": 4,
+  "expectedOfficers": 670,
+  "failureNativeId": 289,
+  "actualName": "諸葛亮",
+  "actualEvidence": {
+    "targetAttachedAndFocused": true,
+    "targetScreenRect": "47 958 383 1095",
+    "priorSameHoldListLocalYDown": 68.0,
+    "priorSameHoldListLocalYUp": -336.0,
+    "observedLayoutDeltaPixels": 404,
+    "priorNative395ShortclickInsteadOfLong": true,
+    "nextNative289ListDispatchAbsentAfterPriorDetail": true
+  },
+  "finding": "Target is attached, but actual ListView coordinates moved404px during prior same hold. Next cached screen pointer missed ListView. Existing DataTable normal keyboard search action hidesIME and clearsfocus; old test usedBack with400ms instead. Next real editor action plus observed IME disappearance and1000ms unchanged viewport/root position will test this layout race without changing product/rules. Keyboard contribution remains to prove with direct next IME observations.",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-target-60",
+  "evidenceSha256": {
+    "session.json": "8ee7059368105f8d3689ddcf19dfc0ca3e88ef024a27ccf42d6703e842521b5e",
+    "evidence/result.txt": "2e76b76be32da738cb9d37272701accae8be099e99972332031437fb93ae5544",
+    "evidence/FAIL.png": "7b6136261fbf5899c7a3935585909df26079bfca2d793b3dff72432b7b69b184",
+    "evidence/FAIL-actual-text.json": "0e2c2158c1f91d29c1b37ec056251b655e686ff17b91522b740f920b84131ee2",
+    "logcat.txt": "a708a82cc93c7c96258eb227c0d43cdbd6307a826a6d9f04f4683ccae5efe5ba"
+  },
+  "coldAccepted": false,
+  "wholeSourceAccepted": false,
+  "completeGoal": false
+}

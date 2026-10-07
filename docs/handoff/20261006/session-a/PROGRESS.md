@@ -150,3 +150,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 60 target/source99aabc1c独立测试构建成功，完整备份9/3797每SHA核实完成后实际install-test启动。driver及native/video句柄需由本轮工具实际结果续读；仍同game5a72/ff2832，只更新test，不借先前b819或ff2832部分成绩。完整670/其余15来源/正常Cold/最后全文件恢复尚待，原派生推断不当实际根因。
 
 60确切新testSHA8fb5e13990984e280124946aa4c5abc5ec39f739d451c1e5764d45af4cf68525/2606855B，实际输入目标诊断driver72146/native40742/video9552确认live，当前阶段以session.json为准；续读这3具体句柄，不重启或覆盖下一包。全部原备份与5554 A锁保留，normal/cold/最终SHA恢复未完成不判通过。
+
+60整体FAIL并全9/3797SHA恢复：4人列表/详情完结，native289諸葛亮附着/焦点/screen47,958—383,1095正常却无ListView输入；前一native395同次hold DOWN localY68、UP−336（404px布局位移），随后短触回调而非预期longclick。现有DataTable正常IME_SEARCH已有hideSoftInput/clearFocus；原test用Back+400ms未观察IME。下一测试使用真实InputConnection键盘搜索动作、观察IME窗口消失/搜索失焦与root/viewport连续1000ms不变再落指，保留80%可见/稳定ID/全670目标。不改产品/规则/World，键盘因果要经下一直接IME观测再接受。
