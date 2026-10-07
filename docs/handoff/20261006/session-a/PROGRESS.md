@@ -205,3 +205,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 
 61终端失败并原9/3797全SHA恢复：完整670、1340实际roster/detail全部原bitmap与全Save-RNG-token纯，正常文件写出PASS23141；finish时把完整日志放Bundle导致parcel2830188bytes/TransactionTooLargeException，PID3555，非JavaOOM或玩法崩溃，无cold成绩。修测试只通过Binder简短PASS/FAIL+checks+完整文件路径，所有完整检查/日志仍保留文件、未降门槛或跳人物。另记录真实重开截图地图标签/选框显示在菜单上，未取得精确页面与裁切事实，不猜根因；新test触控导航后只读检查ui.page确实是目标页面，防止ready同地图掩盖导航未到。
 收到B已观察施工提示请求仅只读，不发送无授权消息、不接B54单挑/物品WIP：A MainActivity提示仅在同完整SceneFacts/legacy/session StateToken builderUnitId匹配时显示正在施工/补修；只有acted时只写本旬已行动，不自动解释攻击或承诺下旬行军，不改规则/RNG。生产文案改动要求新游戏APK独立构建/实装及新全流程，不能借ff2832的670或旧41/48成绩。
+
+为61单帧菜单/地图重叠观察补下一APK只读诊断：截图后记录实际Main ui.page、panel请求/tag/alpha/尺寸、MapHost和native panelRight/Bottom及camera尺寸；明确为相邻时刻主Activity事实，预览dialog不混为同一像素帧。结合新触控导航目标状态断言定位是否错页或裁切时序，不凭截图猜改生产渲染或修成永久关闭3D。所有纯Save/RNG/StateToken检查仍保留。

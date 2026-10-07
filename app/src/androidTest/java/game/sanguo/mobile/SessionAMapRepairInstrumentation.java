@@ -71,16 +71,28 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         try(FileOutputStream stream=new FileOutputStream(new File(output,name+".png"))){
             bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
         }finally{bitmap.recycle();}
-        org.json.JSONArray roots=new org.json.JSONArray();Throwable[] failure={null};
+        org.json.JSONArray roots=new org.json.JSONArray();org.json.JSONObject owner=new org.json.JSONObject();Throwable[] failure={null};
         ui(()->{
             try{
                 for(View root:WindowInspector.getGlobalWindowViews())
                     if(root.isShown()&&root.hasWindowFocus())roots.put(SessionAUiReadabilityAudit.collect(root));
+                // Associated owner facts only: screenshot and this UI-thread
+                // observation are sequential, never claim an atomic pixel frame.
+                ClientState actual=(ClientState)field(activity,"ui");View shell=(View)field(activity,"panelShell");MapHost main=(MapHost)field(activity,"map");
+                owner.put("scope","Main Activity owner after screenshot; current focused dialog may be a separate preview; not atomic pixel-frame facts")
+                    .put("observedUptimeMillis",SystemClock.uptimeMillis()).put("page",actual.page).put("panelRequested",actual.panelVisible)
+                    .put("panelTag",shell.getTag()).put("panelVisibility",shell.getVisibility()).put("panelAlpha",shell.getAlpha())
+                    .put("panelWidth",shell.getWidth()).put("panelHeight",shell.getHeight()).put("mapWidth",main.getWidth()).put("mapHeight",main.getHeight())
+                    .put("hostPanelRight",field(main,"panelRight")).put("hostPanelBottom",field(main,"panelBottom"));
+                FilamentMapView nativeView=(FilamentMapView)field(main,"spatial");
+                if(nativeView!=null){SceneCamera camera=(SceneCamera)field(nativeView,"camera");owner.put("cameraWidth",camera.width).put("cameraHeight",camera.height)
+                    .put("nativePanelRight",field(nativeView,"panelRight")).put("nativePanelBottom",field(nativeView,"panelBottom"));}
+
             }catch(Throwable error){failure[0]=error;}
         });
         if(failure[0]!=null)throw new IllegalStateException("Actual normal map/media text inventory",failure[0]);
         Files.write(new File(output,name+"-actual-text.json").toPath(),new org.json.JSONObject()
-            .put("normalScreenshot",name+".png").put("focusedRoots",roots).toString(2).getBytes("UTF-8"));
+            .put("normalScreenshot",name+".png").put("focusedRoots",roots).put("mainOwnerAfterScreenshot",owner).toString(2).getBytes("UTF-8"));
     }
     private void pointer(long down,int action,float...xy){MotionEvent.PointerProperties[] p=new MotionEvent.PointerProperties[xy.length/2];MotionEvent.PointerCoords[] c=new MotionEvent.PointerCoords[p.length];for(int i=0;i<p.length;i++){p[i]=new MotionEvent.PointerProperties();p[i].id=i;p[i].toolType=MotionEvent.TOOL_TYPE_FINGER;c[i]=new MotionEvent.PointerCoords();c[i].x=xy[2*i];c[i].y=xy[2*i+1];c[i].pressure=1;c[i].size=1;}MotionEvent e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,p.length,p,c,0,0,1,1,0,0,InputDevice.SOURCE_TOUCHSCREEN,0);if(!getUiAutomation().injectInputEvent(e,true))throw new AssertionError("Gesture rejected");e.recycle();SystemClock.sleep(35);}
     private void zoom(MapHost host)throws Exception{Rect r=new Rect();ui(()->{host.getGlobalVisibleRect(r);int[] loc=new int[2];host.getRootView().getLocationOnScreen(loc);r.offset(loc[0],loc[1]);});float before=span(host);int resource=activity.getResources().getIdentifier("config_minScalingSpan","dimen","android");int minimum=Build.VERSION.SDK_INT>=29?ViewConfiguration.get(activity).getScaledMinimumScalingSpan():activity.getResources().getDimensionPixelSize(resource);float x=r.centerX(),y=r.top+r.height()*.42f,start=Math.max(r.width()*.14f,minimum*.55f),target=Math.min(r.width()*.44f,start*2),last=start;check(target>start,"real gesture crosses minimum scaling span "+minimum);long down=SystemClock.uptimeMillis();pointer(down,0,x-start,y);pointer(down,5|(1<<8),x-start,y,x+start,y);for(int i=1;i<=12;i++){last=start+(target-start)*i/12f;pointer(down,2,x-last,y,x+last,y);}pointer(down,6|(1<<8),x-last,y,x+last,y);pointer(down,1,x-last,y);SystemClock.sleep(350);float after=span(host);check(after<before*.95f,"actual gesture changes camera span "+before+" -> "+after);sample("zoom");}
