@@ -243,3 +243,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 86完整源码检查点已导出：源码67a360dbfbaafcc58e5522e6d01d7573448b7f38，11145文件全部SHA回读一致，archive SHA f64001fbe307dc577e9898168be3736bca2893f36cd8f0e0ffe0ac4b52fe4b1f，路径 /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-facility86-complete/sanguo11-mobile-source.tar.gz，原4/新增2JNI全部等。包含83设施修复/84冻结组合/正常命令后继门控；不含Git数据库/缓存/用户设备备份，非全目标接受或ARM完成。
 
 87实际Android文字元数据审计：精确旧ordinary68 b5ec/c96整包SHA、终端normal/cold/原9/3797恢复前提成立，304份正常截图/JSON各SHA链接，4848实际显示widget、4318enabled/530disabled；943纯不透明背景可算，重算最小对比8.84973742093998且无低4.5/透明/黑字，3905渐变图片或未解析背景保留未知；本批无实际富文本span覆盖、Canvas地图另依76局部像素，不宣称全球或新84/ARM通过。新增只读可复现工具audit_actual_widget_readability.py，并接84后继fast16和军建/火/攻击各自终端新包录制审计；已知alpha/solid对比失败止步，背景未知不转PASS。本轮当前75 normalcaller416/670仍live，未装84。
+
+88补87未解析背景的实际像素证据：原ordinary68 Source6/faction12公孫恭真实预览截图（同b5ec/c96整包，原PNG不改）已人工查看；禁用固定人物资料2256实色glyph、禁用槽9 1146glyph，灰(129,144,159)/底(24,38,50)各对比4.71564159091055，详情入口(229,237,245)/(33,49,59)11.33512909517。每声明region至少30实色glyph和底像素，anti-alias/阴影除外；regions可复现脚本输入与截图SHA写ACTUAL_WIDGET_PIXELS88，不外推其余3905或全部UI/new84/ARM。

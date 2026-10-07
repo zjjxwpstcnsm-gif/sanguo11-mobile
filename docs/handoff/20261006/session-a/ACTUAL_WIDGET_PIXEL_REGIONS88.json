@@ -1,0 +1,59 @@
+[
+  {
+    "label": "Source6 selected faction panel normal disabled fixed-person-data text",
+    "box": [
+      100,
+      1550,
+      980,
+      1615
+    ],
+    "solidInkRgb": [
+      129,
+      144,
+      159
+    ],
+    "solidPlaqueRgb": [
+      24,
+      38,
+      50
+    ]
+  },
+  {
+    "label": "Source6 actual disabled unenabled-faction-slot9 text",
+    "box": [
+      150,
+      1305,
+      330,
+      1360
+    ],
+    "solidInkRgb": [
+      129,
+      144,
+      159
+    ],
+    "solidPlaqueRgb": [
+      24,
+      38,
+      50
+    ]
+  },
+  {
+    "label": "Source6 normal faction-detail/technique entry button",
+    "box": [
+      400,
+      1148,
+      710,
+      1220
+    ],
+    "solidInkRgb": [
+      229,
+      237,
+      245
+    ],
+    "solidPlaqueRgb": [
+      33,
+      49,
+      59
+    ]
+  }
+]

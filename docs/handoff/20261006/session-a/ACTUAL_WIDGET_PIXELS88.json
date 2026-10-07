@@ -1,0 +1,85 @@
+{
+  "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-12-preview.png",
+  "screenshotSha256": "424e88eb5ea333c06dd2257f30dbf3dd9a9477f5875a87c149d69dd6e50ac2da",
+  "actualSize": [
+    1080,
+    1920
+  ],
+  "regions": [
+    {
+      "label": "Source6 selected faction panel normal disabled fixed-person-data text",
+      "box": [
+        100,
+        1550,
+        980,
+        1615
+      ],
+      "solidInkRgb": [
+        129,
+        144,
+        159
+      ],
+      "solidPlaqueRgb": [
+        24,
+        38,
+        50
+      ],
+      "actualSolidInkPixels": 2256,
+      "actualSolidPlaquePixels": 51579,
+      "actualSolidContrast": 4.71564159091055,
+      "solidContrastAtLeast4_5": true,
+      "antialiasShadowAndOtherPixels": 3365
+    },
+    {
+      "label": "Source6 actual disabled unenabled-faction-slot9 text",
+      "box": [
+        150,
+        1305,
+        330,
+        1360
+      ],
+      "solidInkRgb": [
+        129,
+        144,
+        159
+      ],
+      "solidPlaqueRgb": [
+        24,
+        38,
+        50
+      ],
+      "actualSolidInkPixels": 1146,
+      "actualSolidPlaquePixels": 7494,
+      "actualSolidContrast": 4.71564159091055,
+      "solidContrastAtLeast4_5": true,
+      "antialiasShadowAndOtherPixels": 1260
+    },
+    {
+      "label": "Source6 normal faction-detail/technique entry button",
+      "box": [
+        400,
+        1148,
+        710,
+        1220
+      ],
+      "solidInkRgb": [
+        229,
+        237,
+        245
+      ],
+      "solidPlaqueRgb": [
+        33,
+        49,
+        59
+      ],
+      "actualSolidInkPixels": 1571,
+      "actualSolidPlaquePixels": 18632,
+      "actualSolidContrast": 11.33512909517,
+      "solidContrastAtLeast4_5": true,
+      "antialiasShadowAndOtherPixels": 2117
+    }
+  ],
+  "scope": "Actual declared screenshot regions and solid glyph/plaque colors only; anti-alias/shadow pixels excluded, not all map labels/Android/PC/ARM readability acceptance",
+  "completeGlobalReadability": false,
+  "wholeGoalComplete": false
+}
