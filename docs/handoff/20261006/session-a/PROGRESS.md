@@ -376,3 +376,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 151 当前所有app Java lexical pcMap/sourceVisuals/sourceMapWidth/Height逐pathSHA/原行重新列出，七条状态门手工review，lexical不是完整语义验收。纠正“无fullscene DTO必然空原火”的推断：MapHost.publish fallback是真实session.state，Filament非权威visual snapshot只同token保留已接收火集合，新session/generation或token不匹配清除。实际已查看旧135 foreground120s原PNG，46%压缩演示时橙火/1旬标签仍在；绑定原8e08/10ed，不迁移当前145，不当逐帧/中间完整facts/全链/128/GPU/ARM通过。旧all-map override发现已被89局部guard替代；B原声parent/speaker仍null只读确认，不按actor/name/ordinal猜配音。
 
 152 当前145真实live Sanguo3D日志有overlay40226/begin40157/rejected33608/accepted6549/submitted6540，源doFrame末尾无论原生admission均overlay.invalidate。记录同cohort原行及live快照SHA，提示拒绝帧重复覆盖层绘制/CPU调度候选，非唯一长旬/用户OOM根因。暂未改生产，以后优化须保留camera/显式状态变化/Window backing recovery，并新包正常动态验证；当前case与队列继续，不借绿fixture或ARM声明。
+
+153 两次旧waiting/producer阶段预检均在signals前拒绝，实际军建已正常/cold/全恢复并启动旧145火helper85746；此次精确核实parent80625/sourcecase和child命令后仅SIGTERM自己的调度parent，不给child/device/native信号，让火helper独立完成恢复。首次git-add因尚无153receipt失败；编译命令已启动但源码未提交，该构建仅诊断，不作交付，新干净提交后重建。下游147/150需核terminal及无deviceactions。
+154 A Filament生产省去相机未变/无显式状态变化的原生拒绝帧重复overlay请求；每accepted帧仍invalidate，camera精确stamp一变化就invalidate，所有原setter/snapshot/replay dirty保留，诊断拒绝帧1秒刷新，WindowSurfaceRecovery.changed与原native动画/水/火/时钟/FPS不改。新增actualreport拒绝静态省略/camera计数，非规则/largeHeap/3D关闭修复；新包实装验收与窗口/手势/效果/长旬证据仍待，不能迁移旧145。

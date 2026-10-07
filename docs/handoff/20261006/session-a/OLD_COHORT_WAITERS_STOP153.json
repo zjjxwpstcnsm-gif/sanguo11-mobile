@@ -1,0 +1,13 @@
+{
+  "actualStoppedHostPid": 80625,
+  "actualCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/run_picker_release_followup.py --producer-pid 80403 --previous-military out/session-a/normal-preparation-military145 --cohort-receipt docs/handoff/20261006/session-a/NORMAL_PREPARATION_BUILD145.json --output out/session-a/normal-preparation-followup146",
+  "stageBefore": "fire-extinguish-expiry",
+  "currentChildPid": 85746,
+  "currentChildCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py install-test --output /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-followup146/fire-extinguish-expiry --apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk --test-apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk --reuse-installed --observe-workers --runner SessionAFireFlowInstrumentation --fresh-process-reopen --pause-fire",
+  "currentChildAndRestorationKeptRunning": true,
+  "currentMilitaryAlreadyRestored": true,
+  "deviceOrNativeSignalsSent": false,
+  "preflightAttempts": "Both earlier stopped before signals as military advanced from installed to cold then restored/fire scheduling",
+  "reason": "Stop only own scheduling parent; existing fire helper independently finishes normal/cold/full restoration. Avoid further old media runs after new production code.",
+  "wholeGoalComplete": false
+}

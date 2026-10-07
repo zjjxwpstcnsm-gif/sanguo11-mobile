@@ -1,0 +1,18 @@
+{
+  "changedPath": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+  "beforeSha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+  "afterSha256": "ffbbac70987a429c10aa222f464f8565afd3c52384eb0a4d21d936c9629a3c1c",
+  "actualFindingReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/REJECTED_FRAME_OVERLAY_FINDING152.json",
+  "onlyRejectsIdenticalOverlayRequestOnRejectedNativeFrame": true,
+  "exactCameraStamp": true,
+  "explicitSetterSnapshotReplayInvalidationsRetained": true,
+  "allAdmittedNativeFrameOverlaysStillRequested": true,
+  "diagnosticsRejectedRefreshMaxIntervalMillis": 1000,
+  "windowBackingRecoveryStillRequested": true,
+  "nativeRenderEffectsClocksAndFpsUnchanged": true,
+  "largeHeapOrRulesChanged": false,
+  "coreApiRuntimeBridgeUnityJniChanged": false,
+  "actualNewApkAccepted": false,
+  "uniqueLongTurnOrUserOomCauseProven": false,
+  "wholeGoalComplete": false
+}

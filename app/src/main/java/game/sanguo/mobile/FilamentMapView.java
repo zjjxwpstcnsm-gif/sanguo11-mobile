@@ -23,6 +23,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final SceneFrameMetrics frameMetrics=new SceneFrameMetrics();
     private final SceneVisibilityStamp visibilityStamp=new SceneVisibilityStamp();
     private final SceneVisibilityStamp objectVisibilityStamp=new SceneVisibilityStamp();
+    private final SceneVisibilityStamp overlayCameraStamp=new SceneVisibilityStamp();
+    private long overlayRejectedStaticSkipped,overlayCameraRedraws,lastOverlayDiagnostics;
     private boolean terrainVisibilityDirty=true;
     private long terrainVisibilityPasses,terrainVisibilitySkips;
     private static final long MESH_UPLOAD_BUDGET_NANOS=2_000_000L;
@@ -747,7 +749,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
         +" gridForce="+(snapshot==null?-1:snapshot.ground.gridForce)+" gridDifficultMarch="+(snapshot!=null&&snapshot.ground.gridDifficultMarch)
         +" gridGpuChunks="+gridMeshes.size()+" gridUploads="+gridUploads+" gridMode=depth-tested-batches"
-        +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
+        +" overlayDraws="+overlay.draws+overlayAdmissionReport()+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
         +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs="+(MESH_UPLOAD_BUDGET_NANOS/1e6)
         +" workerDeliveries="+meshWork.delivered()+" workerBackpressureWallMs="+meshWork.backpressureNanos()/1e6
         +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" gpuPreparationFrames="+gpuPreparationFrames+" lifetimeSubmissions="+renderedFrames+" surfaceCopies="+outputCopies
@@ -883,16 +885,23 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             }
             long now=android.os.SystemClock.uptimeMillis();
             if(!outputVerified&&now-lastWorkLog>=1000){lastWorkLog=now;android.util.Log.i("Sanguo3D","Load progress "+startupReport());}
-            // HWUI labels/progress and the next opportunity remain live even when
-            // the separate Filament Surface cannot accept another frame.
-            // Keep Android's Window/Surface composition live independently of
-            // native admission, including short original screen presentations.
-            overlay.invalidate();WindowSurfaceRecovery.changed(this);schedule();
+            // A rejected native frame did not animate units or upload objects.
+            // Keep camera changes responsive; setters/replay/snapshots already
+            // invalidate their changed overlays independently of native admission.
+            boolean cameraChanged=!overlayCameraStamp.matches(camera);
+            if(admitted||cameraChanged||(diagnostics&&now-lastOverlayDiagnostics>=1000)){
+                if(cameraChanged)overlayCameraRedraws++;
+                overlayCameraStamp.set(camera);lastOverlayDiagnostics=now;overlay.invalidate();
+            }else overlayRejectedStaticSkipped++;
+            // Backing-Surface recovery still observes the Window even without
+            // repainting an identical overlay at every rejected opportunity.
+            WindowSurfaceRecovery.changed(this);schedule();
             cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
         }catch(RuntimeException|LinkageError|OutOfMemoryError e){cancelFrame();failure.accept(e);}
         finally{frameMetrics.record(System.nanoTime()-cpuStart,android.os.Debug.threadCpuTimeNanos()-threadStart,beginWall,lastMeshUploadNanos,renderWall,admitted);android.os.Trace.endSection();}
     }
     String frameSamples(){return frameMetrics.csv();}
+    String overlayAdmissionReport(){return " overlayRejectedStaticSkipped="+overlayRejectedStaticSkipped+" overlayCameraRedraws="+overlayCameraRedraws;}
     private void animatePcMapEffects(float dt){
         if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}
         // Source startup shares no work with the initial terrain/texture/pose
