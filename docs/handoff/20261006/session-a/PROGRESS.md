@@ -155,4 +155,6 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 
 61测试源码a9875651独立构建与完整新鲜备份已启动，游戏仍精确5a72/ff2832；原60整体失败全SHA恢复，40742/9552观察器已终端。新IME/布局观测未安装或证明根因，不得借4人、旧b819或过往单人通过。
 
-61独立test构建成功并完整新鲜备份通过后实际安装开始：测试源a9875651af...以实际冻结build.json完整SHA为准；实际新test已冻结在out/session-a/apk-a9875651-portrait-ime-test，游戏仍5a72/ff2832，仅测试正常IME完成与位置稳定观察。driver/native/video具体句柄由本轮工具续读；没有旧b819成绩移用、没有Snapshot/Rule/RNG构造或跳过人物，全670/其他15源仍需实证。
+61独立test构建成功并完整新鲜备份通过后实际安装开始：测试源a98756510dd23ce7b508aee113dba43f70a6a9db；实际新test已冻结在out/session-a/apk-a9875651-portrait-ime-test，游戏仍5a72/ff2832，仅测试正常IME完成与位置稳定观察。driver/native/video具体句柄由本轮工具续读；没有旧b819成绩移用、没有Snapshot/Rule/RNG构造或跳过人物，全670/其他15源仍需实证。
+
+61确切testSHA2ee985c641966617266623f893f4a116a865218cc6094ba3323d4c0d1fff1f76/2607443B，driver78010/native26106/video82680实际启动且需续读此3句柄，不重启或覆盖下一包；独占5554锁和完整9/3797备份保留。当前是否安装/normal/cold/restore以session.json实际终端状态为准，尚未接受整轮。
