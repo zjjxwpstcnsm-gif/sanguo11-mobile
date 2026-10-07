@@ -16,6 +16,25 @@ def sha(path):
     return digest.hexdigest()
 
 
+def meminfo_samples(raw, allowed_pids):
+    """API29 TOTAL and newer TOTAL PSS, only known actual target PIDs."""
+    samples = []
+    for block in re.split(r'(?m)^\s*SAMPLE ', raw)[1:]:
+        pid = re.search(r'\*\* MEMINFO in pid (\d+) \[game\.sanguo\.mobile\.dev\] \*\*', block)
+        if pid is None or pid.group(1) not in allowed_pids:
+            continue
+        summary = re.findall(r'(?m)^\s*(?:TOTAL PSS:|TOTAL:)\s*(\d+)', block)
+        table = re.findall(r'(?m)^\s*TOTAL\s+(\d+)\s+\d+\s+\d+\s+\d+', block)
+        values = {int(value) for value in summary + table}
+        if not values:
+            continue
+        assert len(values) == 1, 'Actual meminfo table/summary PSS disagree'
+        timestamp = re.match(r'(\d+(?:\.\d+)?)\s', block)
+        samples.append(dict(pid=pid.group(1), pssKiB=values.pop(),
+                            hostUnix=float(timestamp.group(1)) if timestamp else None))
+    return samples
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--session', type=pathlib.Path, required=True)
@@ -45,8 +64,12 @@ def main():
     pss = max(samples, key=lambda row: row['totalPss'])
     timeline = base/'meminfo-timeline.txt'
     timeline_values = []
+    timeline_samples = []
     if timeline.is_file():
-        timeline_values = [int(value) for value in re.findall(r'TOTAL PSS:\s*(\d+)', timeline.read_text(errors='replace'))]
+        cold = state['coldProcess']
+        timeline_samples = meminfo_samples(timeline.read_text(errors='replace'),
+                                          {str(cold['beforePid']), str(cold['afterPid'])})
+        timeline_values = [row['pssKiB'] for row in timeline_samples]
         files.append(dict(path=str(timeline), sha256=sha(timeline)))
     children, unavailable = [], []
     child_path = base/'native-workers.jsonl'
@@ -71,6 +94,8 @@ def main():
         peakJavaSample=java, sampledJavaHeadroomAtPeakBytes=java['javaLimit']-java['javaUsed'],
         peakNativeAllocatorSampleIndependent=native, peakInstrumentationPssSampleIndependent=pss,
         peakMeminfoPssKiBIndependent=max(timeline_values) if timeline_values else None,
+        recognizedExactPidMeminfoSamples=len(timeline_samples),
+        peakMeminfoObservationIndependent=max(timeline_samples, key=lambda row:row['pssKiB']) if timeline_samples else None,
         sourceChildObservationBatches=len(children), sourceChildPeakBatchIndependent=child_peak,
         sourceChildReadErrors=unavailable, graphicsPssReportedValues=sorted({row['graphicsPss'] for row in samples}),
         gpu='Not established. Android reported graphicsPss, including zero, is not proof of GPU VRAM usage.',

@@ -1,6 +1,6 @@
 # 当前未完成与未知（2026-10-07；最新90实际Source11正常流程运行）
 
-当前事实以100/101/103/105/107/108/109/110/111及TEST_MATRIX为准：81普通384包已真实16来源/244势力/5152正常、冷17430→25593、原9+3797全部SHA恢复；采样679点Java346235456/402653184B，余56417728B，预算未闭合。新90默认game25a66e49/test9763ab32已经独立全备份实装、整包device SHA/pmrunner验证；本次观察Source11已640/670人、1280列表/详情入口完成，整源/冷/全部原数据恢复未完成，不移用旧2cd94全670成绩。111完整11184文件包含最新110以前工具证据，生产及测试源码/6JNI与实际90同源；102是历史导出。103仅新包原3段4052帧，不是整轮电影或PC真值。105当前10720身份原指令复验通过；107/110只读声音路由与线程收尾预检，108实际44001等待队列均不代表录音已通过。
+当前事实以100/101/103/105/107/108/109/110/111及TEST_MATRIX为准：81普通384包已真实16来源/244势力/5152正常、冷17430→25593、原9+3797全部SHA恢复；采样679点Java346235456/402653184B，余56417728B，预算未闭合。新90默认game25a66e49/test9763ab32已经独立全备份实装、整包device SHA/pmrunner验证；112当前90 Source11已完成670/1340入口/25157检查、冷29538到10897及原9+3797全部SHA恢复，两个observer退出且34原录片SHA冻结；其余15及深命令未完成，不移用旧2cd94成绩。111完整11184文件包含最新110以前工具证据，生产及测试源码/6JNI与实际90同源；102是历史导出。103仅新包原3段4052帧，不是整轮电影或PC真值。105当前10720身份原指令复验通过；107/110只读声音路由与线程收尾预检，108实际44001等待队列均不代表录音已通过。
 
 当前仍需完成：新90全670及其它15来源、fast16真实未完成准备取消/多Host释放、正常军建补修/火灭火到期/持续攻击、多旬/存读/真正退出冷与每包全恢复；原全部年龄/大小形态caller与PC普通/全屏裁切色彩时序；地图BGM与真实人物voice的场景/原parent/speaker/profile/choice及58/普通事件声；GPU和ARM真机长流程；B后继完整提交与新main串行组合再验收。当前没有ARM设备，原用户354832失败分配栈仍未知。原0.995整首门槛、33技巧/1取消/49之78、9工程合成身份均保留。
 
@@ -65,3 +65,5 @@
 109原绘制bank参数与分支只读取证通过：64×80/base2400/4800和240×240/base0/2400参数对应原FCE small-pair/large布局，family1存在双形态索引与自动flag选择，family2/variant3读两个signed descriptor bytes并加160/180。964非空小图对有680对不同，不能并成一种。通用widget构造family6不能证明全部普通头像默认family1；4个字节call候选不是运行可达或普通列表/详情用途证明。原裁切/界面大小形态/全屏时序仍待，不按该参数表盲改Android。
 
 110: background route observer actually joined in readonly5554 preflight, begin returned0.001434447s; future normal PCM/projection initialization and old-22 cause remain unaccepted. Post-consent diagnostic commands no longer synchronously consume the130s recording window. Original .995 threshold unchanged; background observations remain sequential and can perturb scheduling.
+
+113 current90 source11 actual telemetry finalized, API29 TOTAL parsing corrected with exactPIDs and2363 original observations;Java244029736/512MiB,native202993072B,meminfoPSS517783KiB peaks independent. Recorder perturbs performance, one disappearing childPID read error retained, graphics0 is not GPU VRAM0. Memory budget and ARM remain open.
