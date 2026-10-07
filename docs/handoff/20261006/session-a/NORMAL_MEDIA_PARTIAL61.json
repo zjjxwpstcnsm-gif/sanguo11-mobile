@@ -180,5 +180,52 @@
       "fullSaveRngStateTokenPure": true,
       "allRawBitmapRowsPass": true
     }
-  ]
+  ],
+  "actualPartialMemorySnapshot": {
+    "report": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/live-memory-160/capture.json",
+    "reportSha256": "4042a372fa61d86839ddf4c07194b3d41e9ce6d53eac283c790bc71a81ae0a21",
+    "scope": "Read-only point-in-time live CSV; no HPROF/GC or final accepted peak",
+    "partialLive": true,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/live-memory-160/memory.csv",
+    "sha256": "0e7b7ae01c55910a50839a0d89a1a67239b6e09ea3270ac1f0f73a35d6e28953",
+    "normalComplete": false,
+    "coldComplete": false,
+    "restorationComplete": false,
+    "sampleCount": 58,
+    "independentSampleMaxima": {
+      "javaUsed": {
+        "value": 243442248,
+        "phase": "zoom",
+        "unit": "bytes"
+      },
+      "nativeAllocated": {
+        "value": 202080912,
+        "phase": "ready",
+        "unit": "bytes"
+      },
+      "totalPss": {
+        "value": 414852,
+        "phase": "ready",
+        "unit": "KiB"
+      }
+    },
+    "javaHeapLimitBytes": [
+      536870912
+    ],
+    "graphicsPssZeroMeansUnknown": true,
+    "sampledJavaHeadroomBytes": 293428664
+  },
+  "actualPartialNativeVideoInspection": {
+    "report": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/video-inspection-parts01-09/inspection.json",
+    "reportSha256": "eafdd184d855b4096a866084055544c5eae840497c1e0aa481bcbc02beb7ea96",
+    "rawParts": 9,
+    "decodedFrames": 12323,
+    "allFramesIndexContiguous": true,
+    "allInputPtsStrictlyIncreasing": true,
+    "inputTimebase": "1/90000",
+    "rawDeviceHostShaEqual": true,
+    "normalRunComplete": false,
+    "originalPcPixelTimingAccepted": false,
+    "armAccepted": false
+  }
 }
