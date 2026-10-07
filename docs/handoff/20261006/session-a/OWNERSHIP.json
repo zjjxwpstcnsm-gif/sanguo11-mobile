@@ -279,7 +279,10 @@
     "docs/handoff/20261006/session-a/FIRE_OVERRIDE_DEFAULT_BUILD90.json",
     "docs/handoff/20261006/session-a/cell-fire-admission-baseline89.java.txt",
     "docs/handoff/20261006/session-a/OBSERVER_AUTOMATION91.json",
-    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT92.json"
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT92.json",
+    "docs/handoff/20261006/session-a/verify_recorded_samples.swift",
+    "docs/handoff/20261006/session-a/run_video_sample_audit.py",
+    "docs/handoff/20261006/session-a/ACTUAL_RAW_VIDEO_PREFIX93.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
