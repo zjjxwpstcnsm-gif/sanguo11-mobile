@@ -391,3 +391,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 159 新155 a988/0da在旧158完整恢复后重新完整9/3797backup与每文件SHA核验，实际两APK安装/device整包SHA读回/runner verified；helper90296/video90339/native90340确实运行，case out/session-a/overlay-admission157/new-military。启动日志已经出现overlayRejectedStaticSkipped>0，但normal/cold/完整恢复/长旬改善仍未验收。前一159台账命令字符串语法错误在任何写入前失败，此次更正；旧8e08/332a分数不迁移。
 
 160/161 新155 a988/0da后继等待器91494/音频91673确实启动，只匹配当前new-military90296的normal/cold/全SHA恢复/observer完成后，再本pair火/攻击/全16正常caller/.995整首音频，当前各自无deviceaction。新日志2743attempt/2348reject/459overlaydraw/2340skipped只是当前视图前缀，不能当完整case/纯性能因果；新第一funding-reset仍达到前台120秒，记录长旬未解决，不用request省略计数代替稳定或ARM。旧145156158分数不迁移。
+
+162 新owner-counter冻结审计器已解析当前a988/0da真实PID2578日志，严格target mainPID/token-generation单调segment，记录无rendererID与异步HWUI关系限制。实际livecase冻结门拒绝/未生成final报告；syntax与真实行解析通过，不以省去请求计数替代正常/cold/全恢复/窗口/手势/效果/性能/JavaGPU预算接受。

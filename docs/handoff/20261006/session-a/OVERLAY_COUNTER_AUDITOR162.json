@@ -1,0 +1,17 @@
+{
+  "syntaxPassed": true,
+  "actualLiveCaseGateRejected": true,
+  "rawLiveRowsParsed": 57,
+  "rawLiveSegments": 3,
+  "lastActualCounters": {
+    "beginAttempts": 11753,
+    "beginSkipped": 10452,
+    "gpuPreparationFrames": 1301,
+    "lifetimeSubmissions": 1288,
+    "overlayDraws": 5787,
+    "overlayRejectedStaticSkipped": 10444,
+    "overlayCameraRedraws": 38
+  },
+  "finalCounterAuditAccepted": false,
+  "wholeGoalComplete": false
+}
