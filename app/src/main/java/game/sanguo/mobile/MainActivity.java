@@ -1114,7 +1114,9 @@ public final class MainActivity extends Activity {
     OfficerSnapshot officerSnapshot(){return gameHost.session().officers();}
     ContestSnapshot contestSnapshot(){return gameHost.session().contest();}
     void officerDetail(World.Officer o){
-        OfficerSnapshot.Officer facts=officerSnapshot().officer(o.id);if(facts==null)return;
+        OfficerSnapshot.Officer facts=officerSnapshot().officer(o.id);
+        android.util.Log.i("SourceRosterInput","detail entered officer="+o.id+" presentFact="+(facts!=null)+" native="+(facts==null||facts.source==null?-1:facts.source.nativeId));
+        if(facts==null)return;
         List<Integer> current=facts.current;
         String stats="统率 "+current.get(0)+"    武力 "+current.get(1)+"\n智力 "+current.get(2)+"    政治 "+current.get(3)+"\n魅力 "+current.get(4);
         if(!facts.base.isEmpty())stats+="\n基础（统武智政魅）："+facts.base+"\n经验（统武智政魅）："+facts.experience;
@@ -1144,7 +1146,7 @@ public final class MainActivity extends Activity {
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
         if(world.government.captive(o.id))h=world.government.location(world.government.prisoner(o.id));
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
-        final Hex target=h;if(target!=null)d.setPositiveButton("地图定位",(dialog,n)->selectAndFocus(target));d.show();
+        final Hex target=h;if(target!=null)d.setPositiveButton("地图定位",(dialog,n)->selectAndFocus(target));AlertDialog shown=d.show();android.util.Log.i("SourceRosterInput","detail shown officer="+o.id+" showing="+shown.isShowing());
     }
     private interface OfficerChoice {void choose(World.Officer officer);}
     private interface WeaponChoice {void choose(World.Weapon weapon);}

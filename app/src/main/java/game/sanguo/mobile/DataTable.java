@@ -61,7 +61,15 @@ final class DataTable<T> extends LinearLayout {
             }
         };grid.setOrientation(VERTICAL);horizontal.addView(grid,new HorizontalScrollView.LayoutParams(-1,-1));
         header=new LinearLayout(a);header.setBackgroundColor(0xff263b44);grid.addView(header,new LayoutParams(-1,dp(48)));
-        list=new ListView(a);list.setPadding(0,0,0,0);list.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);list.setDivider(new ColorDrawable(0xff2a3b43));list.setDividerHeight(dp(1));list.setFastScrollEnabled(true);list.setContentDescription("概览列表");list.setCacheColorHint(0);list.setScrollingCacheEnabled(false);grid.addView(list,new LayoutParams(-1,0,1));
+        list=new ListView(a){
+            @Override public boolean dispatchTouchEvent(MotionEvent event){
+                boolean trace=event.getActionMasked()==MotionEvent.ACTION_DOWN||event.getActionMasked()==MotionEvent.ACTION_UP||event.getActionMasked()==MotionEvent.ACTION_CANCEL;
+                if(trace)android.util.Log.i("SourceRosterInput","touch action="+event.getActionMasked()+" x="+event.getX()+" y="+event.getY()+" down="+event.getDownTime()+" time="+event.getEventTime()+" first="+getFirstVisiblePosition()+" focus="+hasWindowFocus()+" enabled="+isEnabled());
+                boolean handled=super.dispatchTouchEvent(event);
+                if(trace)android.util.Log.i("SourceRosterInput","touch handled="+handled+" pressed="+isPressed());
+                return handled;
+            }
+        };list.setPadding(0,0,0,0);list.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);list.setDivider(new ColorDrawable(0xff2a3b43));list.setDividerHeight(dp(1));list.setFastScrollEnabled(true);list.setContentDescription("概览列表");list.setCacheColorHint(0);list.setScrollingCacheEnabled(false);grid.addView(list,new LayoutParams(-1,0,1));
         adapter=new BaseAdapter(){
             public int getCount(){return shown.size();}public T getItem(int i){return shown.get(i);}public long getItemId(int i){return key.applyAsLong(getItem(i));}public boolean hasStableIds(){return true;}
             public View getView(int i,View reuse,ViewGroup parent){
@@ -77,8 +85,8 @@ final class DataTable<T> extends LinearLayout {
                 row.setContentDescription((row.isActivated()?"已选 · ":"")+summary.apply(item));return row;
             }
         };
-        list.setEmptyView(empty);list.setAdapter(adapter);list.setOnItemClickListener((p,v,i,id)->{if(i<shown.size())select.accept(shown.get(i));});
-        list.setOnItemLongClickListener((p,v,i,id)->{if(i<shown.size()){v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);detail.accept(shown.get(i));}return true;});
+        list.setEmptyView(empty);list.setAdapter(adapter);list.setOnItemClickListener((p,v,i,id)->{android.util.Log.i("SourceRosterInput","click index="+i+" itemId="+id+" shown="+shown.size()+" first="+list.getFirstVisiblePosition());if(i<shown.size())select.accept(shown.get(i));});
+        list.setOnItemLongClickListener((p,v,i,id)->{android.util.Log.i("SourceRosterInput","longclick index="+i+" itemId="+id+" shown="+shown.size()+" first="+list.getFirstVisiblePosition());if(i<shown.size()){v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);detail.accept(shown.get(i));}return true;});
         horizontal.addOnLayoutChangeListener((v,l,t,right,b,ol,ot,or,ob)->{
             int viewport=right-l-horizontal.getPaddingLeft()-horizontal.getPaddingRight();
             if(viewport>0&&contentWidth!=viewport){contentWidth=viewport;rebuildColumns(viewport);}

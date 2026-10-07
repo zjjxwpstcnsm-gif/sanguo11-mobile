@@ -1,0 +1,52 @@
+{
+  "passed": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a14ebe55-direct-hud-completion-fix/app-debug.apk": "b8192478146d950273c4bd3d3c7020e4fb24fe31a4a1b4fce4af7a67f0fb54a6",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-86dfdda3-portrait-swipe-test/app-debug-androidTest.apk": "b2f51143de8a932854809b4bcfe2bbd6c449ad9450f488704ef382b0aa13cf7f"
+  },
+  "actualCompletedCallerPairs": 12,
+  "completedNativeIds": [
+    635,
+    98,
+    432,
+    395,
+    289,
+    185,
+    343,
+    85,
+    254,
+    78,
+    439,
+    63
+  ],
+  "expectedSourceOfficers": 670,
+  "actualCaoCaoViewportFixProven": true,
+  "failureNativeId": 367,
+  "failureName": "孫權",
+  "failure": "Visible exact roster image/current authoritative detail fact and physical longpress down/up accepted, detail ImageView absent120s. Neither product callback nor gesture failure cause yet proved; next exact game diagnostic records real ListView input and MainActivity detail callbacks without changing logic.",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "coldAccepted": false,
+  "wholeSourceAccepted": false,
+  "evidencePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-scroll-57",
+  "evidenceSha256": {
+    "session.json": "2ec4bb8cdd7d0a677d94fa31b5809ace8e9a21c74da3f65b13a27c8e324eefdd",
+    "evidence/result.txt": "a9a7d48696e00e3e4387184755eb28d9898dec7bf3e52fd34be3f7c832bc9c04",
+    "evidence/FAIL.png": "6b246e5e16d208f4c2a8103b4fd1c7017e60a8726409a94e16b82a9d0d127417",
+    "evidence/FAIL-actual-text.json": "92f9aee110d2852979e4870d9f1e6ee45f7b185bae5955cea36a86109ee88145",
+    "logcat.txt": "71ec9d995c02fd39906fad4e4049cbd9becbf48b2df3664c485110af01575d53"
+  },
+  "completeGoal": false
+}
