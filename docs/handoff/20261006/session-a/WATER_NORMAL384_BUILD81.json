@@ -1,0 +1,50 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "8eabcc2006c60b161972376e92f267e27c9572d3",
+  "gameLargeHeap": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-8eabcc20-water-normal38481/app-debug.apk",
+      "bytes": 313476932,
+      "sha256": "242aaff2e26dd351a6db6384eacf799ce4b2742695dafa5c40e740743222ecc8"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-8eabcc20-water-normal38481/app-debug-androidTest.apk",
+      "bytes": 2612435,
+      "sha256": "9bac691634f3917d125674359f799748be4188a779a3091170e43f995e13c35d"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "all5636AssetsExactComparedTo2cd": true,
+  "assetsCompared": 5636,
+  "buildLogSha256": "b11c7bbf94a768227c14a933262a06abebaa0c0598ed3bf9dc804db107923fc3",
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "scope": "Fresh ordinary384 game/test with exact primitive source-water producer plus current voice joins and A normal-list/focus/pan test path. Actual old68 peak369.73 not borrowed as new result; must fresh install/normal all16/source6 zoom/cold/full restore.",
+  "wholeGoalComplete": false
+}
