@@ -351,7 +351,11 @@
     "docs/handoff/20261006/session-a/ATTACK_CURRENT_TEXT142.json",
     "docs/handoff/20261006/session-a/MILITARY_PREPARATION_FAILURE143.json",
     "docs/handoff/20261006/session-a/NORMAL_PREPARATION_FIX144.json",
-    "docs/handoff/20261006/session-a/NORMAL_PREPARATION_BUILD145.json"
+    "docs/handoff/20261006/session-a/NORMAL_PREPARATION_BUILD145.json",
+    "docs/handoff/20261006/session-a/NORMAL_PREPARATION_FOLLOWUP146.json",
+    "docs/handoff/20261006/session-a/NORMAL_PREPARATION_AUDIO_QUEUE147.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT148.json",
+    "docs/handoff/20261006/session-a/NORMAL_PREPARATION_ORDINARY149.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -363,3 +363,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 143 当前139军建刚开始正常Source14新局便失败：exactSource14断言时失败原PNG实际仍有“正在建立新局…”/背景旧250定制campaign。继承awaitPreparation只catch可见control timeout，导航底层可见时可提前返回，未等待UiReadTask pending/job关闭；此轮没有开始军建命令。不当生产开局失败或140仍live。9internal(rewrite2)/3797external(rewrite0)全SHA恢复、video/native0/1原片SHA精确；79418/79478/79479/78399/78632均终止。增加A仅read pending/job idle barrier，不改B/生产/超时/规则，重新独立test实装与全部affectedflow。
 
 144 A-only awaitPreparation在原300000ms期限内先通过主线程只读观察实际UiReadTask pending/job皆null，再匹配真实焦点控件，ready.accept回调与runOnMainSync串行。没有取消任务/改dialog/直接World/增加deadline/降低exactSource断言，不编辑B。新test必须重新构建安装，139142攻击成绩仍只其旧pair，不能自动迁移新pair。
+
+145 独立test-only构建1m33s，源26ec2c7d/test332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23；game8e08整包/生产/core/API/runtime/6JNI未变。145exact录像与normal/audio whitelist只匹配冻结两包，三工具syntax实际通过。前一台账追加命令字符串语法错误在任何写入前失败，此次纠正；不影响已冻结构建或backup。143全SHA恢复后freshbackup/test-onlyinstall同Source14，139142旧成绩不迁移，普通134旧test未安装待新源重建。
