@@ -26,3 +26,8 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 212–214 Source0当前176完整实际验收
 
 登记212 acceptance、213 memory、214 widget三个确切A路径；只消费已restored-verified的当前source-00、normal/cold全原文件SHA、确切176配对和退出0观察器原文件。每峰值独立、未解析背景/全屏/全部年龄/voice/GPU/ARM明确未知。旧31991/32012/32013终止不重启，Source1继续原parent31963下的新实际helper，不改设备数据或源码。
+
+
+## 215 来源标志覆盖后继只读登记
+
+登记 `docs/handoff/20261006/session-a/SOURCE_OPENING_OVERRIDE_READONLY215.json`，冻结B原Header16源证据/配置块27组陈述及未提交策略/DTO/query源SHA。继承211历史未知的后继，不改其旧SHA。仅准备源特定请求与有效life3的摘要边界，不猜默认/禁用/完整开局；不复制、编译、集成B WIP，不打断5554。204既有A路径与完整冻结后才实施边界继续有效。

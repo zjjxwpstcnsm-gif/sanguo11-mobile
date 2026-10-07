@@ -474,3 +474,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 212–214：当前176 Source0全部670/1340真实正常名册详情、完整原bitmap绑定和Save/allRNG/Token纯通过；normal25157/cold94、10845→10434/both3D提交，原9内部/3797外部每SHA完全恢复，video/native0/27原片，旧31991/32012/32013终止。101点Java峰242017320/512MiB，GPU/预算仍未知；widget36图312行、41实色min8.8497与271未解析/2disabled明确分开。矩阵完成[11,0]、Source1/helper48830正在实际运行；全16/.995整曲/普通180+默认176fast32/all244与ARM/最终组合仍未完成。
+
+
+215：收到B来源标志后继，只读核其完整16Headerreceipt SHA692391c8与策略/DTO/query，逐SHA核对全部16原PC来源文件同等；Source7配置块27组合运行结论明确归B。补充204来源精确请求/有效life3与“原剧本固定”摘要边界，保留默认/原GUI禁用/完整开局/无session接口未知。B完整HEAD仍36f059b4、WIP未复制/编译/集成，Source1当前helper48830继续原正常验收。

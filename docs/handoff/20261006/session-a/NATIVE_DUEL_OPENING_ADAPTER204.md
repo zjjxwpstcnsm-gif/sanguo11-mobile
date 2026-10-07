@@ -52,3 +52,12 @@ B未冻结契约已提供原545350九按钮/55c9f0导出/配置写入块27组合
 
 
 211入口补核：A当前MainActivity.java:125–145只复用existing session或可读auto；world为空直接showStartScreen，正常“新建游戏”仍可触达scenarioPicker与chooseScenarioTemplate。因此首次启动/不可读auto恢复入口的session为空是实际代码路径，session-only新API不足以提供其菜单目录。后继B完成契约需无session且纯资源读取的目录入口，A不先建World或借预览session初始化策略/RNG；本次只核代码，未另跑Android首次启动成绩。Main源码SHA在211记录。
+
+
+## 215 来源覆盖后继（只读，覆盖211对应旧未知）
+
+B原Header16源receipt692391c8与Source7配置块27组合receipt575e8abb给出原Root18文件标志：Scen007/013/014=1、其余0。A已将16原PC来源文件逐SHA与该执行receipt行独立核对同等；未重复原Header/按钮/导出/配置执行，不称完整4a42d0或PC GUI开局。B四参WIP新namespace保存请求/来源/header/flag并将有效life3写PDU3；三参和没有该namespace的旧档不回填、不升级。
+
+后继A显示来源覆盖时只能消费完成版精确源事实及同Token投影，不按source ordinal/name重算。life菜单仍0..2，不加第四项；确认摘要区分请求值与经核实“原剧本固定”的有效值。旧缺失事实raw3仍未知。新的automaticOverridesKnown只证明三个单挑设置的来源覆盖，defaultsKnown仍false；Root28/2c、完整出场/年龄/事件和544900菜单设2/按钮禁用等尚未完整核实，A不能据此自动选值或禁用控件。
+
+完整B Native批次仍未冻结，A不实现/拷贝/编译/集成；无session资源目录接口和后继正常16来源新局/存档/真正退出/ARM仍待。211保留当时SHA与未知，215给出后继精确文件和scope。

@@ -1,0 +1,199 @@
+{
+  "scope": "A read-only successor215 to historical211. A verified all16 supplied PC file SHA against B original-loader receipt; A did not repeat original native header/callback/config execution. No B WIP copy/compile/integration or APK acceptance.",
+  "bCompletedHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "bWorktreeStatus": " M core/src/main/java/game/sanguo/core/PcScenarioCatalog.java\n?? core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java\n?? docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md\n?? docs/handoff/20261006/session-b/SOURCE_OPENING_OVERRIDE_STRATEGY.md\n?? game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java\n?? game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java\n",
+  "files": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md",
+      "sha256": "0c6bee4f01af39f786adee3f7f9ede4dfdf3855a8cfd678f6eca7c42ea12a0fb",
+      "bytes": 3646
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/SOURCE_OPENING_OVERRIDE_STRATEGY.md",
+      "sha256": "e7a046a7c7b18919d7962c1c8475edb5ed377e2aad89b3b3c7431d60ab8b7dd5",
+      "bytes": 1393
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/source-flag-header-v1.json",
+      "sha256": "692391c85748e5da8d9ac1ae390ecf8e649ca2ba320ca4042048f929af57d3a0",
+      "bytes": 31365
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java",
+      "sha256": "dca1fd1218f862979747dc7a997230893dbcab6020e4ed94f4d527374c6ab431",
+      "bytes": 2241
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java",
+      "sha256": "7380253d853811ca815e5f9baf1bc57469e96c4da1bd92076b197c2b3d8d1372",
+      "bytes": 1315
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java",
+      "sha256": "a16bfff7eea5c363287a7352466e431a360f6185613aa0b14c089f276f9b66cc",
+      "bytes": 4521
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+      "sha256": "03c05a74085e3fe392fa2f67ff0dda14276267c6af659017d26e03f37498efb5",
+      "bytes": 8689
+    }
+  ],
+  "originalFileIdentityReadback": [
+    {
+      "sourceId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "855761bb94a97379fe374c31618b1203eb942ca280615bbae48ba4f15301f194"
+    },
+    {
+      "sourceId": "pc-scen001-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "adbc5e203fec49bc2402a90c96f5ea17d4e914cec6c1c8c9627b4a62a2221f13"
+    },
+    {
+      "sourceId": "pc-scen002-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "98a0760be9119232c8b37d997f94112a3b36bf4a08d65caa94a5f553ab1f363a"
+    },
+    {
+      "sourceId": "pc-scen003-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "20c1b397bd8b34051d4b41de4e45db6e56957bc4e402ebac9a283dee1a27240f"
+    },
+    {
+      "sourceId": "pc-scen004-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "64b8af296c3737f0d1598e1f42d9fa576b6183643671fad4da2f1fbe25afcb10"
+    },
+    {
+      "sourceId": "pc-scen005-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "14bcc0b6b24470b81e87cec43994b779ca65a0cc3aa63d67d2b44273db4355df"
+    },
+    {
+      "sourceId": "pc-scen006-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "f1a240fbc70604777e9fb88f8e6147dc3598ab24509e8f53bc97af7a4b658e39"
+    },
+    {
+      "sourceId": "pc-scen007-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "flag18InBExecutedLoaderReceipt": 1,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "06d72968a9120f60b98525899765c25e07dd5fd34ccc662a6f4f70bb251f2f2a"
+    },
+    {
+      "sourceId": "pc-scen008-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "d3133e15c072f26e60068efdb54069d7c87bd772d8913e9b5efc2b7bfe03db03"
+    },
+    {
+      "sourceId": "pc-scen009-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "f235e74d6f7405553b993cda6bdb40d2b4be08b5b40b9106fbff02fb4e89e166"
+    },
+    {
+      "sourceId": "pc-scen010-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "ec2d35b7e0f47a88d41df16f66f969c83c91e9f84ccc7de01727dd4d23e591e1"
+    },
+    {
+      "sourceId": "pc-scen011-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "8a765683f4bd42b6c33177ec86317710bffeae6895a8aaa9fba00aa1583f1bf8"
+    },
+    {
+      "sourceId": "pc-scen012-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "f43b04377a3f867eb2f2e97fda30b613125924081d463ab6a5a6135e04733302"
+    },
+    {
+      "sourceId": "pc-scen013-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "flag18InBExecutedLoaderReceipt": 1,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "94b40a88f33fa29a3cb9627df7bc112c12a2402b3cb07c38274506f232ab47d1"
+    },
+    {
+      "sourceId": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "flag18InBExecutedLoaderReceipt": 1,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "b0432b0a846a811f3fcda3e556836d88767572ab631a70056ad087bed6432924"
+    },
+    {
+      "sourceId": "pc-scen015-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "pcPath": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "flag18InBExecutedLoaderReceipt": 0,
+      "headerOffsetInBLoader": 16183,
+      "headerSha256InBLoader": "8d170b59e27af7002a8aa7f8f27262d15e8a981464d3b4a50f35aea39b7fadf1"
+    }
+  ],
+  "bExecutedHeaderReceiptSha256": "692391c85748e5da8d9ac1ae390ecf8e649ca2ba320ca4042048f929af57d3a0",
+  "bReportedConfigurationReceiptSha256": "575e8abb1aa47226a8792ae3ffa301cb6681ef2e7826ecc8cb185282600dbf07",
+  "bReportedProvenance": "Header483120/43b060 reads16190..16193 intoRoot18; nonzero Scen007/013/014; Source7 original button/export and configuration write-block27 combinations makes effective life3 while difficulty/death retain requests. Not full4a42d0/realPC GUI.",
+  "sourceKey": "full scenario/source/shared/header/EXE SHA identity; not guessed filename ordinal",
+  "plannedAConsumption": [
+    "Use only completed frozen source-specific facts; sameStateToken remains required.",
+    "Explicit menu life request remains0..2; internal effective3 is not fourth choice.",
+    "Show known source life override as 原剧本固定 only when exact provenance fact is present; preserve requested and effective distinction.",
+    "Never infer sourceFlag18 from source index/name.",
+    "No saved/new default assumption; do not guess disable/reselect behavior from helper544900.",
+    "Missing old namespace/PDU3 raw3 remains unknown; no query/decode backfill or strategy upgrade.",
+    "Normal first-launch no-session catalog still needs completed resource-only entry."
+  ],
+  "menuDomains": [
+    0,
+    1,
+    2
+  ],
+  "defaultsKnown": false,
+  "automaticOverrideEvidenceScope": "Only these three native duel setting effects, source-header rooted; not Root28/2c/fullage/appearance/events/lifecycle/startup.",
+  "old3ParamAnd31to39UnchangedRequired": true,
+  "implementationStarted": false,
+  "bWipCopied": false,
+  "compiled": false,
+  "deviceActionsStarted": false,
+  "actualOpeningOrApkAccepted": false,
+  "wholeGoalComplete": false
+}
