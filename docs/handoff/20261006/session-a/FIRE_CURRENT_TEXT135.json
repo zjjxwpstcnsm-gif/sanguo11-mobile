@@ -1,0 +1,121 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry",
+  "sessionSha256": "1e60bd0f94a870c69a5e88d1f59aa5df5176a09b1184bae62b909d8bee3cac8f",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "counts": {
+    "recordings": 14,
+    "widgetRows": 271,
+    "enabledRows": 265,
+    "unresolvedText": 203,
+    "resolvedSolidText": 68,
+    "disabledRows": 6
+  },
+  "minimumResolvedSolidContrast": 8.52197412987157,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/cold-evidence/a-original-fire-cold-fire-manual-actual-text.json",
+      "sha256": "628965b273cf305506db57c0117ce229b06f8c6eaf5a0807e1fa80a1de85e9b7",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/cold-evidence/a-original-fire-cold-fire-manual.png",
+      "screenshotSha256": "d1cd0f965a0fe445e699a3b44d6051b7b0cf92b0328cacb49519eba4528b9c4c",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/cold-evidence/a-original-fire-cold-fire-restored-actual-text.json",
+      "sha256": "446c442bbcb368ff6e73655d2f8290018c9c633264380eaca2705586f8e5a0f4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/cold-evidence/a-original-fire-cold-fire-restored.png",
+      "screenshotSha256": "4f64755046f2af72b8db7cc796bbddd03fc2a166ef3ee97fe0f78805a45acacd",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/01-player-fire-actual-text.json",
+      "sha256": "9438faf342d2429b56cf2e6a03731f4cf5608f0da27834e16bb9f126d82a4f9b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/01-player-fire.png",
+      "screenshotSha256": "dd907638a80d82c234f1e7f871d96b702b30086352086525e23212fef0603986",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/02-low-quality-fire-actual-text.json",
+      "sha256": "849a241c6645b9de8a7e3b4db11c257b16f63c505e12ca38411a3e96943a420d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/02-low-quality-fire.png",
+      "screenshotSha256": "4e8a09413b1ee614b6ae5ba243bf04c2335c61798d190ba097e0572f1acf31df",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/03-player-extinguished-actual-text.json",
+      "sha256": "ef81f84807a9ac889707655e7a25d7fd66827972bbc7c2b45f3f6a56a868434e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/03-player-extinguished.png",
+      "screenshotSha256": "d6c817f4e5a583ff318318aab7454a896080a039f4eb3705a7b6c1e82cb363ee",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/04-real-reignite-actual-text.json",
+      "sha256": "e18e13ed781d10861d7ea1c308e575d8b3e749b307844f557271dab85846332c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/04-real-reignite.png",
+      "screenshotSha256": "e9ac40012be52dcccef7af20433f501efc4c1d1267fc752b5a30e7dd7e90aba2",
+      "widgetRows": 19
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/05-real-expired-actual-text.json",
+      "sha256": "de2581ea779ce0fb93b5af674a559deac0efb1bfed20b840ae44c9289a6180da",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/05-real-expired.png",
+      "screenshotSha256": "90759b1efb81d97ea7c9db684ef77e64ed8352a1043bf21e17dde3148e6e7cc6",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/06-real-burning-readback-actual-text.json",
+      "sha256": "3462ce6bfce0a7b06d6e638c0f7bc8b1601f03aa869b6503ccc0f271abd82e84",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/06-real-burning-readback.png",
+      "screenshotSha256": "e3803cb2bddf4acf1424ab407e7a35953a7bc556e893b87b76e843571c1d66aa",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/a-original-fire-actual-player-fire-build-actual-text.json",
+      "sha256": "d68d9158a0c6472d4079b6abf96d9200ffaf96723832869b12215717fb1c3446",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/a-original-fire-actual-player-fire-build.png",
+      "screenshotSha256": "aadcbb1f91efdb753e736549169dd3c21ed5c295f20fe614b4e512def6b7ac39",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/pause-home-restored-fire-actual-text.json",
+      "sha256": "5236682dde072e91ace5e3707266c574bffd6013644918086c4856e24c979530",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/pause-home-restored-fire.png",
+      "screenshotSha256": "71b1c336bdf9747530d9d8711892970c634bd7a9b5cf4cc4e872133ca85715bd",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/pause-reduced-motion-real-fire-actual-text.json",
+      "sha256": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/pause-reduced-motion-real-fire.png",
+      "screenshotSha256": "bdebb0b37188465ccc94d68de50d83234b414438ccab2a13f1867f0c39fcf4bd",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/pause-resumed-original-fire-actual-text.json",
+      "sha256": "7199edd009eedd3fb75ddee01451240e6b3798b06f2d4083f3a872dae4b8af3f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/pause-resumed-original-fire.png",
+      "screenshotSha256": "dd7b3f72b46eb79260f3ddf3bda08a9df94557d09ad39c76f84d328e62f84043",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/turn-real-fire-expiry-0-foreground120s-actual-text.json",
+      "sha256": "1ba6cd50991f14638f5f62f28f02e630d1034285e6c7c3ea82e70f79c2bffeaf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/turn-real-fire-expiry-0-foreground120s.png",
+      "screenshotSha256": "23f238af809a3e1b5f92238d91370e8e5e542b318490300477b5cc8417afce19",
+      "widgetRows": 19
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/turn-real-fire-expiry-1-foreground120s-actual-text.json",
+      "sha256": "aedde30e3c446d89c37872b0ae8dfe45a0d7593186e6974f876613c38fb272a0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/turn-real-fire-expiry-1-foreground120s.png",
+      "screenshotSha256": "3932f158258c80cb10e190a83852e76b212e9bce135142c9542a780a13fd3703",
+      "widgetRows": 18
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}

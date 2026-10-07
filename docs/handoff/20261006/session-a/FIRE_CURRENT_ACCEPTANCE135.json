@@ -1,0 +1,132 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "normalPassed": true,
+  "coldProcess": {
+    "beforePid": "28711",
+    "afterPid": "13025",
+    "beforeProcessEvidence": {
+      "pid": "28711",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "13025",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "d95c91c73e5b7b203dedabbb8aad4ce6a005503b870bad3042c451cd4424c0ed",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "workerObservation": {
+    "hostPid": 73140,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "videoObservation": {
+    "hostPid": 73139,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 5,
+    "finalIndexSha256": "b156486bc2e6f0ea43381aeb0020b6009097d9234434b5e31548bdd004f77b8b",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "rawOriginalVideoParts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/video/part01.mp4",
+      "sha256": "a0c7ca62d7483dc4d199f21124c3b6ed6144d2e929ea38318f61884e9af5c693",
+      "bytes": 22878493,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporaryDeviceSegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/video/part02.mp4",
+      "sha256": "35ef00d8a0fa09d25c0abd9d4be05a172624c198a443c08121d45c2b9ce20acc",
+      "bytes": 28911976,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporaryDeviceSegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/video/part03.mp4",
+      "sha256": "6bd9f1e3aca7a9ee8f7588d915e46b06298196faf98ed3bbf263c5a90ebed708",
+      "bytes": 30107105,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporaryDeviceSegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/video/part04.mp4",
+      "sha256": "a4a601e00f5e77f3c8a47e0284fd381b846ac7fbac32ac9653de016c56423024",
+      "bytes": 22245125,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporaryDeviceSegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/video/part05.mp4",
+      "sha256": "a6cc83e0e8138c100db305a1cc2ad7f85d133713cd67c9d8047eb7f70eecab68",
+      "bytes": 20657569,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporaryDeviceSegmentRemoved": true
+    }
+  ],
+  "verifiedNormalAssertions": [
+    "actual player normal fire success reported in B state, no injected burning",
+    "real Home stops existing native fire visual clock",
+    "real original fire clock remains frozen with reduced motion",
+    "actual animation preference/enabled state restored exactly",
+    "actual player extinguish updates B state",
+    "real B full-turn expiry removes burning",
+    "normal burning load exact full Save/RNG"
+  ],
+  "readabilityReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/FIRE_CURRENT_TEXT135.json",
+  "cpuReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/FIRE_CURRENT_CPU135.json",
+  "exactPidPssSamples": 328,
+  "peakMeminfoPssKiBIndependent": 494885,
+  "javaAllocatorCsvAvailable": false,
+  "actualSystemAnimationPreferenceRestored": true,
+  "initialRosterSelectionHasInheritedHelper": true,
+  "fireTargetUsesRealMenuLocatorAndPan": true,
+  "allHumanExactFlowClaim": false,
+  "trueBackExitAcceptedInThisCase": false,
+  "exitBoundary": "Actual Activity.finish/destruction/native host release barrier, not real Back confirmation",
+  "foreground120sStableAccepted": false,
+  "hostBuild134OverlapsCapture": true,
+  "uniqueLongTurnOrUserOomCauseProven": false,
+  "allFireChainsAndFacilityControllersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "rawFiles": {
+    "session.json": "1e60bd0f94a870c69a5e88d1f59aa5df5176a09b1184bae62b909d8bee3cac8f",
+    "instrumentation.txt": "af471d9d7c4f228afb0721756afbb4c9ebbcccf46d536d1e4cf43226ce4f06a8",
+    "cold-instrumentation.txt": "94c43d7ea0d00fd69b53a4188c7ec434a7e2f2a835013b44e1b4739b6a8cd24d",
+    "evidence/progress.txt": "054089f669eb2910957b677f652a7b7f9fe56fdf373904e7cd50843ce862bcff",
+    "evidence/result.txt": "740a618a08b64bc1c70bde93e1262758f742303182d85da97d7a789ece48c7d8",
+    "meminfo-timeline.txt": "46f0b2f343b2521c3a80adf271f4253da8c33670c360268de1f607eecf8651fb",
+    "native-workers.jsonl": "0ee2d4e19ed94d16ffbc0041c7856f7d028e817b7ad87412d27b84f7da0e5b15",
+    "video/video.json": "b156486bc2e6f0ea43381aeb0020b6009097d9234434b5e31548bdd004f77b8b"
+  },
+  "visuallyInspectedCurrentPng": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/01-player-fire.png",
+    "sha256": "dd907638a80d82c234f1e7f871d96b702b30086352086525e23212fef0603986",
+    "scope": "Original orange fire output and remaining2-turn state label visible; still image is not full original PC raster/timing equivalence"
+  }
+}
