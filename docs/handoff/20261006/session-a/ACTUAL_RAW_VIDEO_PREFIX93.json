@@ -1,0 +1,213 @@
+{
+  "actualReportPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-voice74/raw-video-prefix93/report.json",
+  "actualReportSha256": "718c09402f03895e688e52685733b772e59f1629c0a4592f7d0194cd7747626c",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug.apk": "2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fe413552-voice-diagnostic-test74/app-debug-androidTest.apk": "1a8503198e679659bc42ac81a76942e08e13d09c2eeca8200f565c03c66ea972"
+  },
+  "completedRawParts": 27,
+  "decodedFrames": 38190,
+  "allContainerEncodedDecodedCountsExact": [
+    {
+      "part": 1,
+      "encodedSamples": 1686,
+      "decodedFrames": 1686,
+      "exact": true
+    },
+    {
+      "part": 2,
+      "encodedSamples": 1746,
+      "decodedFrames": 1746,
+      "exact": true
+    },
+    {
+      "part": 3,
+      "encodedSamples": 1675,
+      "decodedFrames": 1675,
+      "exact": true
+    },
+    {
+      "part": 4,
+      "encodedSamples": 1749,
+      "decodedFrames": 1749,
+      "exact": true
+    },
+    {
+      "part": 5,
+      "encodedSamples": 1745,
+      "decodedFrames": 1745,
+      "exact": true
+    },
+    {
+      "part": 6,
+      "encodedSamples": 1587,
+      "decodedFrames": 1587,
+      "exact": true
+    },
+    {
+      "part": 7,
+      "encodedSamples": 1418,
+      "decodedFrames": 1418,
+      "exact": true
+    },
+    {
+      "part": 8,
+      "encodedSamples": 1197,
+      "decodedFrames": 1197,
+      "exact": true
+    },
+    {
+      "part": 9,
+      "encodedSamples": 1525,
+      "decodedFrames": 1525,
+      "exact": true
+    },
+    {
+      "part": 10,
+      "encodedSamples": 1673,
+      "decodedFrames": 1673,
+      "exact": true
+    },
+    {
+      "part": 11,
+      "encodedSamples": 681,
+      "decodedFrames": 681,
+      "exact": true
+    },
+    {
+      "part": 12,
+      "encodedSamples": 1512,
+      "decodedFrames": 1512,
+      "exact": true
+    },
+    {
+      "part": 13,
+      "encodedSamples": 1155,
+      "decodedFrames": 1155,
+      "exact": true
+    },
+    {
+      "part": 14,
+      "encodedSamples": 1587,
+      "decodedFrames": 1587,
+      "exact": true
+    },
+    {
+      "part": 15,
+      "encodedSamples": 1343,
+      "decodedFrames": 1343,
+      "exact": true
+    },
+    {
+      "part": 16,
+      "encodedSamples": 1410,
+      "decodedFrames": 1410,
+      "exact": true
+    },
+    {
+      "part": 17,
+      "encodedSamples": 759,
+      "decodedFrames": 759,
+      "exact": true
+    },
+    {
+      "part": 18,
+      "encodedSamples": 1693,
+      "decodedFrames": 1693,
+      "exact": true
+    },
+    {
+      "part": 19,
+      "encodedSamples": 945,
+      "decodedFrames": 945,
+      "exact": true
+    },
+    {
+      "part": 20,
+      "encodedSamples": 1339,
+      "decodedFrames": 1339,
+      "exact": true
+    },
+    {
+      "part": 21,
+      "encodedSamples": 1476,
+      "decodedFrames": 1476,
+      "exact": true
+    },
+    {
+      "part": 22,
+      "encodedSamples": 1353,
+      "decodedFrames": 1353,
+      "exact": true
+    },
+    {
+      "part": 23,
+      "encodedSamples": 1424,
+      "decodedFrames": 1424,
+      "exact": true
+    },
+    {
+      "part": 24,
+      "encodedSamples": 1125,
+      "decodedFrames": 1125,
+      "exact": true
+    },
+    {
+      "part": 25,
+      "encodedSamples": 1013,
+      "decodedFrames": 1013,
+      "exact": true
+    },
+    {
+      "part": 26,
+      "encodedSamples": 1721,
+      "decodedFrames": 1721,
+      "exact": true
+    },
+    {
+      "part": 27,
+      "encodedSamples": 1653,
+      "decodedFrames": 1653,
+      "exact": true
+    }
+  ],
+  "actualPtsTimescales": [
+    90000
+  ],
+  "segmentHostGapsSeconds": [
+    0.770953893661499,
+    0.8330211639404297,
+    0.8810386657714844,
+    0.955549955368042,
+    0.702225923538208,
+    0.7602431774139404,
+    3.1711878776550293,
+    0.5516548156738281,
+    0.736638069152832,
+    1.44252610206604,
+    1.081413745880127,
+    1.2976601123809814,
+    0.6806950569152832,
+    0.7341601848602295,
+    0.7132718563079834,
+    0.7690930366516113,
+    0.6540100574493408,
+    0.8128347396850586,
+    0.9200420379638672,
+    0.8698940277099609,
+    1.1231648921966553,
+    0.8412642478942871,
+    1.7951560020446777,
+    2.4478819370269775,
+    0.5182130336761475,
+    0.6521408557891846
+  ],
+  "firstRecordedUnix": 1791350766.191693,
+  "lastRecordedUnix": 1791355706.597986,
+  "sourceMp4Edited": false,
+  "playbackFrameRateAssigned": false,
+  "actualSessionStillRunning": true,
+  "normalColdFullRestoreAccepted": false,
+  "scope": "Exact old2cd/1a850 Source11 normal caller recording completed prefix only, captured after install/start. Whole original device/host SHA reread and unchanged, every38190 decoded sample/indices/original rational PTS verified, encoded stsz counts exact. Segment gaps and missed startup retained; encoder/host decode may affect performance. Not whole flow completion, new90/PC normal or full-screen pixel/crop/color/timing/voice/speaker/ARM acceptance.",
+  "wholeGoalComplete": false
+}

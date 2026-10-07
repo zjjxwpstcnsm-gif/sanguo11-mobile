@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import pathlib
+import runpy
 import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[4]
@@ -45,6 +46,9 @@ def main():
         subprocess.run(['swiftc', '-O', str(OWN/'verify_recorded_samples.swift'), '-o', str(scanner)],
                        stdout=log, stderr=subprocess.STDOUT, check=True)
     records = []
+    # Read the preserved container parser without executing its CLI or edits.
+    # Its historical default purpose text is not evidence for this recording.
+    inspect = runpy.run_path(str(ROOT/'tools/content/inspect_mp4_evidence.py'))['inspect']
     report = dict(session=str(session), sessionStageAtSnapshot=state['stage'], apks=state['apks'],
                   frozenIndexSha256=hashlib.sha256(raw_index).hexdigest(), requestedParts=args.parts,
                   completeRequestedPrefix=False, records=records, wholeGoalComplete=False,
@@ -60,10 +64,14 @@ def main():
         subprocess.run([str(scanner), str(path), str(samples)], check=True)
         decoded = json.loads(samples.read_text())
         assert decoded['allSamplesDecoded'] and decoded['timestampsStrictlyIncreasing']
+        container = inspect(path)
+        encoded = [entry['samples'] for entry in container['boxes'] if 'samples' in entry]
+        assert len(encoded) == 1 and encoded[0] == decoded['decodedFrames']
         assert sha(path) == row['sha256']
         records.append(dict(part=row['part'], video=str(path), sha256=row['sha256'],
                             actualBeginUnix=row['beginUnix'], actualEndUnix=row['endUnix'],
                             decodedFrames=decoded['decodedFrames'], trackTimescale=decoded['originalTrackTimescale'],
+                            encodedSamples=encoded[0], encodedDecodedCountsExact=True,
                             samples=str(samples), samplesSha256=sha(samples)))
         (out/'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n')
     report.update(completeRequestedPrefix=True, decodedFrames=sum(row['decodedFrames'] for row in records),
