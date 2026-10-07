@@ -26,3 +26,5 @@
 60附着/当前stableID核查未关闭输入失败：仅4人完结，前一同hold ListView坐标差404px，目标289諸葛亮虽attached/focused仍落指未到列表。全部原文件恢复。61用原正常IME_SEARCH handler/直接IME窗口与稳定位置观测，不靠Back+固定400ms，不改UI布局/规则；原因待验证。全部670/15其它来源/新ff2832完整火/HUD/内存/ARM/最终组合仍待。
 
 61当前实际已完成160/670正常人物列表/详情成对检查，仍sourceComplete=false，尚未完成冷及最终恢复，不借历史b819等包成绩。当前包9张实际界面及关联文字只读取回逐SHA同等：110行中27实色对比度无低于4.5，83背景未解析；选中5/禁用1。真实袁熙详情截图文字可读、原头像显示，但圆角裁切与原PC全屏/时序/所有年龄形态仍不以bitmap.sameAs替代验收。当前3482源码检查点完整11087路径逐SHA及6JNI同等，非最终目标交付。
+
+正常退出路径补核：现有52/53及当前61等测试的Activity.finish()/reopen只证明生命周期重建，未经过MainActivity.onBackPressed的退出确认/save(auto)/gameHost.exit路径；不得把其标成正常退出确认通过。后继A测试改为真实返回键→可见退出确认→实际执行按钮→Activity销毁/主机session关闭/MapHost释放/auto全Save-RNG同等，再启动正常地图；尚未构建安装。Home后台观察也先缓存前台MapHost再发送真实GlobalHome，避免失焦后用focused-root定位器再找后台控件。当前61已安装2ee985照原流程继续，不能动态修补或冒称新路径通过。

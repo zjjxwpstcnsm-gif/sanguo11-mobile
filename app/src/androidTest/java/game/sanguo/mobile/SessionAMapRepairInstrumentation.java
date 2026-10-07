@@ -270,6 +270,22 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         check(rows.length()==2*(end-begin)&&pendingCancellations>0,"actual requested rapid cancellations include observed unfinished CPU work");
     }
 
+    private void exitThroughBackConfirmation(byte[] expected)throws Exception {
+        MapHost exiting=host(false);MainActivity original=activity;boolean[] confirm={false};
+        for(int attempt=0;attempt<8&&!confirm[0];attempt++){
+            sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);SystemClock.sleep(300);
+            ui(()->{for(View root:WindowInspector.getGlobalWindowViews())if(root.hasWindowFocus()
+                &&find(root,v->v instanceof TextView&&((TextView)v).getText().toString().startsWith("退出游戏？当前局面将自动保存。"))!=null){confirm[0]=true;break;}});
+        }
+        check(confirm[0],"actual Android Back reaches normal auto-save exit confirmation");
+        check(Arrays.equals(expected,capture()),"exit prompt keeps complete Save/RNG before human-confirmable action");
+        shot("normal-exit-confirmation");text("执行");boolean[] ended={false};long deadline=SystemClock.uptimeMillis()+30000;
+        while(SystemClock.uptimeMillis()<deadline){ui(()->ended[0]=original.isDestroyed()
+            &&((GameApplication)original.getApplication()).host().session()==null);if(ended[0])break;SystemClock.sleep(50);}
+        check(ended[0],"normal Back/confirmation closes Activity and actual native session");retired(exiting);
+        check(Arrays.equals(expected,Files.readAllBytes(new File(original.getFilesDir(),"auto.sg11").toPath())),"normal exit auto-save exact complete Save/RNG bytes");
+    }
+
     private void retired(MapHost host)throws Exception{long began=SystemClock.uptimeMillis(),deadline=began+12000;boolean[] done={false};String[] state={null};while(SystemClock.uptimeMillis()<deadline){ui(()->{try{done[0]=(Boolean)field(host,"released")&&field(host,"spatial")==null&&field(host,"world")==null&&field(host,"ground")==null;state[0]="released="+field(host,"released")+" engineClosed="+(field(host,"spatial")==null)+" worldClosed="+(field(host,"world")==null)+" groundClosed="+(field(host,"ground")==null);}catch(Exception e){throw new IllegalStateException(e);}});if(done[0])break;SystemClock.sleep(50);}check(done[0],"dismissed preview releases engine, detachedWorld and ground in "+(SystemClock.uptimeMillis()-began)+"ms "+state[0]);}
     @Override public void onStart(){Bundle result=new Bundle();try{
         output=new File(getTargetContext().getExternalFilesDir("session-a-map"),run);check(output.mkdirs(),"fresh evidence directory");ActivityManager manager=(ActivityManager)getTargetContext().getSystemService(android.content.Context.ACTIVITY_SERVICE);ActivityManager.MemoryInfo budget=new ActivityManager.MemoryInfo();manager.getMemoryInfo(budget);Files.write(new File(output,"heap-budget.txt").toPath(),("normalMiB="+manager.getMemoryClass()+" largeMiB="+manager.getLargeMemoryClass()+" actualBytes="+Runtime.getRuntime().maxMemory()+" deviceRamBytes="+budget.totalMem+" largeHeap="+((getTargetContext().getApplicationInfo().flags&android.content.pm.ApplicationInfo.FLAG_LARGE_HEAP)!=0)+"\n").getBytes("UTF-8"));activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));nav("地图");ready(host(false));sample("startup");if(!expectedStartupSha.isEmpty()){StringBuilder hash=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(capture()))hash.append(String.format(java.util.Locale.ROOT,"%02x",b&255));check(expectedStartupSha.equals(hash.toString()),"fresh process loads exact previously saved complete Save/RNG SHA "+expectedStartupSha);}
@@ -290,14 +306,14 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
             check(SessionProbe.view(activity).scenarioId.equals(sources.get(coldPortraitSource).identity.scenarioId),"targeted cold scenario matches exact normal source");
             nav("武将");normalPortraitRows(coldPortraitSource);nav("地图");ready(host(false));sample("cold-original-portrait-"+portraitNative);
         }
-        byte[] state=capture();StateToken prior=token();
+        byte[] state=capture();StateToken prior=token();MapHost backgroundHost=host(false);
         check(getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HOME),"system global Home accepted");
-        MapHost backgroundHost=host(false);long backgroundDeadline=SystemClock.uptimeMillis()+10000;boolean[] background={false};
+        long backgroundDeadline=SystemClock.uptimeMillis()+10000;boolean[] background={false};
         while(SystemClock.uptimeMillis()<backgroundDeadline){ui(()->{try{FilamentMapView view=(FilamentMapView)field(backgroundHost,"spatial");background[0]=!(Boolean)field(backgroundHost,"resumed")&&view!=null&&!(Boolean)field(view,"resumed")&&!activity.hasWindowFocus();}catch(Exception e){throw new IllegalStateException(e);}});if(background[0])break;SystemClock.sleep(50);}
         check(background[0],"actual system Home pauses Activity/map/Filament and removes focus");SystemClock.sleep(800);getTargetContext().startActivity(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));SystemClock.sleep(1000);ready(host(false));unchanged(state,prior,"actual Home/resume");shot("resumed");
         text("视图");text("屏幕方向");text("横屏");SystemClock.sleep(1200);ready(host(false));check(Arrays.equals(state,capture()),"real orientation menu keeps complete Save/RNG");shot("landscape");text("视图");text("屏幕方向");text("竖屏");SystemClock.sleep(1200);ready(host(false));check(Arrays.equals(state,capture()),"portrait keeps complete Save/RNG");
         nav("菜单");text("保存局面");text("槽位 3");text("覆盖存档");long saveDeadline=SystemClock.uptimeMillis()+120000;File slot=new File(activity.getFilesDir(),"manual3.sg11");while(SystemClock.uptimeMillis()<saveDeadline){ui(()->{});if(slot.isFile()&&Arrays.equals(state,Files.readAllBytes(slot.toPath())))break;SystemClock.sleep(100);}check(slot.isFile()&&Arrays.equals(state,Files.readAllBytes(slot.toPath())),"normal save exact complete bytes after owner confirmation finishes");StateToken loadPrior=token();text("读取存档");text("槽位 3");text("读取存档");long loaded=SystemClock.uptimeMillis()+120000;while(loadPrior.equals(token())&&SystemClock.uptimeMillis()<loaded)SystemClock.sleep(100);check(!loadPrior.equals(token())&&Arrays.equals(state,capture()),"normal load replaces session and keeps complete Save/RNG");nav("地图");ready(host(false));
-        ui(()->activity.finish());SystemClock.sleep(1000);activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));nav("地图");ready(host(false));check(Arrays.equals(state,capture()),"normal exit/reopen exact complete Save/RNG");shot("reopened");
+        exitThroughBackConfirmation(state);SystemClock.sleep(1000);activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));nav("地图");ready(host(false));check(Arrays.equals(state,capture()),"normal exit/reopen exact complete Save/RNG");shot("reopened");
         result.putString("stream","SESSION_A_MAP PASS "+checks+" checks\n"+log);
     }catch(Throwable error){result.putString("stream","SESSION_A_MAP FAIL "+LogTrace(error)+"\n"+log);try{shot("FAIL");}catch(Throwable ignored){}}
     finally{try{Files.write(new File(output,"result.txt").toPath(),result.getString("stream").getBytes("UTF-8"));}catch(Throwable ignored){}}
