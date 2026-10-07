@@ -1,0 +1,55 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-04",
+  "sessionSha256": "53376471ed6ca47ec9a5e213d0fd0b438c57334861a35fd159ab3b15aab95734",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "actualFailedAssertion": "SESSION_A_MAP FAIL java.lang.AssertionError: Normal search keyboard/layout did not settle after actual editor action",
+  "lastSuccessfulNativePairInLog": 68,
+  "nativeIdAtFailure": 69,
+  "actualFrozenCheckpointOfficers": 64,
+  "actualFrozenCallerRows": 128,
+  "sourceComplete": false,
+  "coldAccepted": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 1388,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-04/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 5,
+    "finalIndexSha256": "3279cb3e5eab4a8105a4d8b8e15bfa3952f8343472eccdd195f0018d6b80a656",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 1389,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-04/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "terminalPids": [
+    1339,
+    1388,
+    1389
+  ],
+  "proofSha256": "6f049d4fe050908ca2c3eaaf1b13713e7066bf43bc1ba1c65baa490caec05465",
+  "resultSha256": "e96923090c8d71d117f01c8dee31a3965c2e14f52bcec12e0b39af6797470d41",
+  "actualFailScreenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-04/evidence/FAIL.png",
+  "actualFailScreenshotSha256": "5e889733bebd0c2dac4e63a82604bda45f179087933b3c1cfe3a3a3ca6fb02d6",
+  "scope": "Actual installed165/176 normalSource4 interrupted at search69: no OOM or search focus/IME/layout root cause claimed. Screenshot shows filtered樂進 row and hidden keyboard, but does not establish focus/accessibility-window/geometry criteria. Full original9/3797 restored, observers exit0, all parent queues stopped before audio/heap device action; retain failed evidence.",
+  "wholeGoalComplete": false
+}

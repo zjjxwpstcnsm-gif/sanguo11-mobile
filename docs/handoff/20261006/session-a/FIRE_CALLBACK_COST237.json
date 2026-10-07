@@ -1,0 +1,179 @@
+{
+  "sourceBeforeAfterExact": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+  },
+  "diagnosticSourceSha256": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "3db6dcb9e7ff200255c725671fc68107bfd773a9c082e2e3e066d650e85c1534"
+  },
+  "staticUnicornSha256": "ca7274f6bfce09f7255ac53a4de9f2d292163018056753340d549efbee792835",
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-callback-cost237/pc_effect_scene_probe.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-callback-cost237/host-probe"
+  ],
+  "originalCallbackAddress": "0x457a93",
+  "cases": [
+    {
+      "cells": 32,
+      "exit": 0,
+      "callbacks": [
+        {
+          "root": "10000000",
+          "node": "10504420",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "387"
+        },
+        {
+          "root": "10000100",
+          "node": "10507620",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "110749"
+        },
+        {
+          "root": "10000200",
+          "node": "1050a770",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "310839"
+        },
+        {
+          "root": "10000300",
+          "node": "10513920",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "2921820"
+        },
+        {
+          "root": "10000400",
+          "node": "10519b80",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "2930536"
+        },
+        {
+          "root": "10000500",
+          "node": "1051e550",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "2936774"
+        },
+        {
+          "root": "10000600",
+          "node": "10534890",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "2944099"
+        },
+        {
+          "root": "10000700",
+          "node": "1053b230",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "2950639"
+        },
+        {
+          "root": "10000800",
+          "node": "105504a0",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "2958888"
+        }
+      ],
+      "lastCallbackBeforeFailure": null,
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=32 created=32 stopped=0 totalCreated=32 totalStopped=0\nNODE_CALL root=10000000 node=10504420 target=46d5a0 declaredNodes=1 bytesBefore=387\nNODE_CALL root=10000100 node=10507620 target=46d5a0 declaredNodes=1 bytesBefore=110749\nNODE_CALL root=10000200 node=1050a770 target=46d5a0 declaredNodes=1 bytesBefore=310839\nNODE_CALL root=10000300 node=10513920 target=46d5a0 declaredNodes=1 bytesBefore=2921820\nNODE_CALL root=10000400 node=10519b80 target=46d5a0 declaredNodes=1 bytesBefore=2930536\nNODE_CALL root=10000500 node=1051e550 target=46d5a0 declaredNodes=1 bytesBefore=2936774\nNODE_CALL root=10000600 node=10534890 target=46d5a0 declaredNodes=1 bytesBefore=2944099\nNODE_CALL root=10000700 node=1053b230 target=46d5a0 declaredNodes=1 bytesBefore=2950639\nNODE_CALL root=10000800 node=105504a0 target=46d5a0 declaredNodes=1 bytesBefore=2958888\n",
+      "stderrSha256": "dfcc5971b15b71f3a4e83f874c5bdc853f87ccf5393eb14bc9e251c3e70ff661",
+      "stdoutSha256": "67a33b72b965c641a9a96c5cf0d47478b0f3cdb21f6d84a390fcb85906691b5c"
+    },
+    {
+      "cells": 64,
+      "exit": 2,
+      "callbacks": [
+        {
+          "root": "10000000",
+          "node": "10504420",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "387"
+        },
+        {
+          "root": "10000100",
+          "node": "10507620",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "110749"
+        },
+        {
+          "root": "10000200",
+          "node": "1050a770",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "314067"
+        }
+      ],
+      "lastCallbackBeforeFailure": {
+        "root": "10000200",
+        "node": "1050a770",
+        "target": "46d5a0",
+        "declaredNodes": "1",
+        "bytesBefore": "314067"
+      },
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=64 created=64 stopped=0 totalCreated=64 totalStopped=0\nNODE_CALL root=10000000 node=10504420 target=46d5a0 declaredNodes=1 bytesBefore=387\nNODE_CALL root=10000100 node=10507620 target=46d5a0 declaredNodes=1 bytesBefore=110749\nNODE_CALL root=10000200 node=1050a770 target=46d5a0 declaredNodes=1 bytesBefore=314067\nEXISTING_BLOCK_BYTE_GUARD pc=714685 bytes=5000023\nNative boundary/budget failure at45a530\n",
+      "stderrSha256": "c4d233598ec6d95bf55d3280261f6b3db91ea5da2804acde7165072a79c22b06",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    },
+    {
+      "cells": 128,
+      "exit": 2,
+      "callbacks": [
+        {
+          "root": "10000000",
+          "node": "10504420",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "387"
+        },
+        {
+          "root": "10000100",
+          "node": "10507620",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "110749"
+        },
+        {
+          "root": "10000200",
+          "node": "1050a770",
+          "target": "46d5a0",
+          "declaredNodes": "1",
+          "bytesBefore": "284979"
+        }
+      ],
+      "lastCallbackBeforeFailure": {
+        "root": "10000200",
+        "node": "1050a770",
+        "target": "46d5a0",
+        "declaredNodes": "1",
+        "bytesBefore": "284979"
+      },
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nNODE_CALL root=10000000 node=10504420 target=46d5a0 declaredNodes=1 bytesBefore=387\nNODE_CALL root=10000100 node=10507620 target=46d5a0 declaredNodes=1 bytesBefore=110749\nNODE_CALL root=10000200 node=1050a770 target=46d5a0 declaredNodes=1 bytesBefore=284979\nEXISTING_BLOCK_BYTE_GUARD pc=464c24 bytes=5000008\nNative boundary/budget failure at45a530\n",
+      "stderrSha256": "9412d2fa0d02bd0870bba51adbc5d813ee68960aa7e6e499ebf34fb6da56d649",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    }
+  ],
+  "scope": "Host-only original manager node-update observation at32/64/128, first update, unchanged5Mbyte/5s limits. Original callback register/PC memory reads and C logging only; no reset/increased budgets/patch to original VM. Canonical code/JNI/currentAPK/World/save/ruleRNG unchanged. No Android/ARM/GPU/performance acceptance.",
+  "wholeGoalComplete": false
+}

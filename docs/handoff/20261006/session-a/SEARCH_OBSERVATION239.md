@@ -1,0 +1,7 @@
+# 第4来源实际失败后的只读窗口观察239
+
+165/176真实Source4完成检查点64人/128成对入口，日志最后完整pair为native68，搜索69樂進时“正常键盘/布局未稳定”断言失败。实际FAIL截图显示键盘已隐、过滤樂進一行可见，但不证明焦点或AccessibilityWindow/每次布局条件；没有OOM证据。5原录像及全部原9/3797最终SHA恢复、旧helper1339/video1388/native1389和父队列终止，见SOURCE04_SEARCH_FAILURE238.json。后续音频/双堆没有设备动作，不重启旧队列或借局部视图算来源完成。
+
+239只改既有A专用测试及device_session可选参数。`searchDiagnostics`默认false，开启时记录原15000ms循环中的实际窗口id/type/bounds/active/focus、search/root焦点、IME是否active/acceptingText、现有两块布局矩形与stableSince。最多200观测，仅失败写独立JSON/原结果日志。原动作、1000ms稳定条件/15000ms截止、无重试/不直接隐藏键盘/不改变应用源码或规则。device_session的`--search-diagnostics`仅接受单一来源mediaAll16，备份/安装/最终完整恢复逻辑保留。
+
+先独立构建239观察测试APK，对同165生产游戏实际完整备份/安装，正常Source4流程复现以判明焦点、键盘窗口或几何哪个条件失败。只读观测可能影响时序，不把未复现等同根因修复；若实际问题需产品改动，形成确切A生产增量、新游戏APK及正常流程回归。当前不猜DataTable焦点修复，不放宽检查/吞异常。旧176五个完成来源只属于旧配对，不转给新测试或新组合。

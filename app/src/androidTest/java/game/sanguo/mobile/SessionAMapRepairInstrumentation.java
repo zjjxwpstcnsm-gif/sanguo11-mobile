@@ -23,8 +23,8 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private MainActivity activity; private File output; private int checks;
     private PcVoiceCatalog voiceMetadata;
     private StringBuilder log=new StringBuilder(), memory=new StringBuilder("phase,javaUsed,javaTotal,javaLimit,nativeAllocated,totalPss,graphicsPss\n");
-    private String run,expectedStartupSha; private int begin,end,portraitNative=-1,coldPortraitSource=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers,fastPreviewCancellation;
-    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");fastPreviewCancellation="fastPreview16".equals(args.getString("suite",""));allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));coldPortraitSource=Integer.parseInt(args.getString("coldPortraitSource","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
+    private String run,expectedStartupSha; private int begin,end,portraitNative=-1,coldPortraitSource=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers,fastPreviewCancellation,searchDiagnostics;
+    @Override public void onCreate(Bundle args){super.onCreate(args);searchDiagnostics="true".equals(args.getString("searchDiagnostics","false"));expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");fastPreviewCancellation="fastPreview16".equals(args.getString("suite",""));allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));coldPortraitSource=Integer.parseInt(args.getString("coldPortraitSource","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);if(a instanceof MainActivity)activity=(MainActivity)a;}
     private void check(boolean condition,String message){checks++;log.append(condition?"PASS ":"FAIL ").append(message).append('\n');if(!condition)throw new AssertionError(message);}
     private void ui(Runnable work){Throwable[] error={null};runOnMainSync(()->{try{work.run();}catch(Throwable e){error[0]=e;}});if(error[0]!=null)throw new AssertionError(error[0]);}
@@ -195,25 +195,38 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         observed.flags|=android.accessibilityservice.AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
         getUiAutomation().setServiceInfo(observed);
         long deadline=SystemClock.uptimeMillis()+15000,stableSince=0;String last="";
+        org.json.JSONArray observations=searchDiagnostics?new org.json.JSONArray():null;
         try{
             while(SystemClock.uptimeMillis()<deadline){
-                boolean ime=false;
+                boolean ime=false;org.json.JSONArray windows=searchDiagnostics?new org.json.JSONArray():null;
                 for(android.view.accessibility.AccessibilityWindowInfo window:getUiAutomation().getWindows()){
                     if(window.getType()==android.view.accessibility.AccessibilityWindowInfo.TYPE_INPUT_METHOD)ime=true;
+                    if(searchDiagnostics){Rect bounds=new Rect();window.getBoundsInScreen(bounds);windows.put(new org.json.JSONObject().put("id",window.getId()).put("type",window.getType()).put("active",window.isActive()).put("focused",window.isFocused()).put("bounds",bounds.flattenToString()));}
                     window.recycle();
                 }
+                final Map<String,Object> details=searchDiagnostics?new LinkedHashMap<>():null;
                 String[] layout={null};boolean[] focused={true};
                 ui(()->{
                     Rect frame=new Rect(),viewport=new Rect();table.getRootView().getWindowVisibleDisplayFrame(frame);table.list.getGlobalVisibleRect(viewport);
                     int[] origin=new int[2];table.getRootView().getLocationOnScreen(origin);
                     layout[0]=frame.flattenToString()+"/"+viewport.flattenToString()+"/"+origin[0]+","+origin[1];focused[0]=table.search.hasFocus();
+                    if(searchDiagnostics){
+                        android.view.inputmethod.InputMethodManager keyboard=(android.view.inputmethod.InputMethodManager)activity.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+                        View focus=table.getRootView().findFocus();details.put("query",table.search.getText().toString());details.put("searchFocused",focused[0]);details.put("searchWindowFocus",table.search.hasWindowFocus());details.put("rootWindowFocus",table.getRootView().hasWindowFocus());details.put("focusOwner",focus==null?"":focus.getClass().getName());details.put("imeActiveForSearch",keyboard!=null&&keyboard.isActive(table.search));details.put("acceptingText",keyboard!=null&&keyboard.isAcceptingText());details.put("rootLayoutRequested",table.getRootView().isLayoutRequested());
+                    }
                 });
                 long now=SystemClock.uptimeMillis();
                 if(!ime&&!focused[0]&&layout[0].equals(last)){
                     if(stableSince==0)stableSince=now;
                     if(now-stableSince>=1000){log.append("ACTUAL search settled ime=false focus=false layout=").append(layout[0]).append(" quietMs=").append(now-stableSince).append('\n');return;}
                 }else stableSince=0;
+                if(searchDiagnostics&&observations.length()<200)observations.put(new org.json.JSONObject(details).put("uptimeMillis",now).put("anyImeWindow",ime).put("layout",layout[0]).put("stableSince",stableSince).put("windows",windows));
                 last=layout[0];SystemClock.sleep(100);
+            }
+            if(searchDiagnostics){
+                org.json.JSONObject evidence=new org.json.JSONObject().put("unchangedPredicate","no IME window, search unfocused, same measured layout for1000ms within15000ms").put("observations",observations);
+                Files.write(new File(output,"search-layout-failure-"+SystemClock.uptimeMillis()+".json").toPath(),evidence.toString(2).getBytes("UTF-8"));
+                log.append("ACTUAL failed search observations ").append(observations.toString()).append('\n');
             }
             throw new AssertionError("Normal search keyboard/layout did not settle after actual editor action");
         }finally{getUiAutomation().setServiceInfo(original);}

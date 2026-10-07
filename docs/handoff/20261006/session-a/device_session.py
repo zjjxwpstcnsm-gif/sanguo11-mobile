@@ -74,11 +74,13 @@ def main():
     p.add_argument('--pause-fire',action='store_true')
     p.add_argument('--fresh-process-reopen',action='store_true')
     p.add_argument('--portrait-native',type=int,default=-1)
+    p.add_argument('--search-diagnostics',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
     if a.menu_music and (a.runner!='UiUxInstrumentation' or a.suite!='audio'):raise ValueError('Menu music requires the real UiUx audio runner')
     if a.audio_capture_rate and not a.menu_music:raise ValueError('Actual music capture needs the normal menu flow')
     if a.pause_fire and a.runner!='SessionAFireFlowInstrumentation':raise ValueError('Fire pause requires real Fire flow runner')
     if a.portrait_native>=0 and (a.runner!='SessionAMapRepairInstrumentation' or a.suite!='mediaAll16' or int(a.end)!=int(a.begin)+1):raise ValueError('Targeted native portrait requires exactly one actual normal source')
+    if a.search_diagnostics and (a.runner!='SessionAMapRepairInstrumentation' or a.suite!='mediaAll16' or int(a.end)!=int(a.begin)+1):raise ValueError('Search observations require one normal media source')
     out = a.output.resolve(); report_path = out/'session.json'
     if a.mode=='reuse-backup':
         # Reuse only a COMPLETE byte archive whose entire current file set is
@@ -227,7 +229,7 @@ def main():
                 music_capture=capture_support.start(out,r,a.audio_capture_rate,run_id+'_menu',130)
                 if not music_capture['ready']:raise ValueError('Normal menu capture did not initialize')
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and a.suite in ['factions16','mediaAll16','fastPreview16'] else 3600)
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','searchDiagnostics','true' if a.search_diagnostics else 'false','-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and a.suite in ['factions16','mediaAll16','fastPreview16'] else 3600)
             if a.audio_capture_rate:capture_support.collect(out,r,music_capture,30)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION A ATTACK normal' in r['testOutput'] or 'PASS SESSION A SEARCH ordinary' in r['testOutput'] or 'PASS SESSION A DIRECT normal' in r['testOutput'] or 'PASS SESSION A ARMY normal' in r['testOutput'] or 'PASS SESSION A DEBATE ordinary' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput'] or 'PASS SESSION B LEGACY39 genuine' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
