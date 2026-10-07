@@ -1,0 +1,10 @@
+{
+  "manifestBeforeSha256": "e8a1bf6903a6ec7eff2f8456f5cc5d81ab74be4f8e4074cb37b9100d66ac17c0",
+  "manifestAfterSha256": "f188a6e90b688e22f96f8c39570d52a648da07e12f49e5485a34470940661d3d",
+  "helperBeforeSha256": "e03919b951d5221bc683507d6715b0239124055206163c8764e0a06740b836c9",
+  "helperAfterSha256": "dc5d41b1657498a0b9fe2c774e2ebea032d9588b8822062bfd5b2573044293a9",
+  "exactOriginalRunnerAndFixtureUnchanged": true,
+  "change": "Register exact completed B runner and select its genuine evidence folder/mid-save/warm-cold PASS markers in A driver",
+  "normalOrColdScoreTransferred": false,
+  "wholeGoalComplete": false
+}

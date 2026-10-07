@@ -108,4 +108,5 @@
     <instrumentation android:name="game.sanguo.mobile.SessionAArmyBudgetInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.SessionASearchPresentationInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.SessionADirectRecruitmentPresentationInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.SessionBLegacy39Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>

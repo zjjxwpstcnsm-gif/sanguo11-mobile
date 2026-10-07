@@ -1,0 +1,20 @@
+{
+  "stoppedOwnWaiters": [
+    {
+      "pid": 99889,
+      "command": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/run_picker_release_followup.py --producer-pid 98870 --previous-military out/session-a/b-combined169/new-military --cohort-receipt docs/handoff/20261006/session-a/B_LEGACY39_COMBINED_TEST_BUILD168.json --output out/session-a/b-combined-followup172",
+      "stage": "waiting-for-current-military",
+      "deviceActionsStarted": false
+    },
+    {
+      "pid": 99924,
+      "command": "/Users/paopao/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/continue_latest_menu_audio.py --producer-pid 99889 --normal-batch out/session-a/b-combined-followup172 --cohort-receipt docs/handoff/20261006/session-a/B_LEGACY39_COMBINED_TEST_BUILD168.json --output out/session-a/b-combined-audio173",
+      "stage": "waiting-for-actual-normal-producer",
+      "deviceActionsStarted": false
+    }
+  ],
+  "activeDataOwner": 98870,
+  "dataOwnerNotSignalled": true,
+  "reason": "Registered legacy39 successor test required; no old pair scores transferred",
+  "wholeGoalComplete": false
+}

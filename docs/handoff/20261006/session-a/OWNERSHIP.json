@@ -384,7 +384,10 @@
     "docs/handoff/20261006/session-a/widget-readability170.json",
     "docs/handoff/20261006/session-a/B_COMBINED_ACTUAL_INSTALL171.json",
     "docs/handoff/20261006/session-a/B_COMBINED_FOLLOWUP172.json",
-    "docs/handoff/20261006/session-a/B_COMBINED_AUDIO_QUEUE173.json"
+    "docs/handoff/20261006/session-a/B_COMBINED_AUDIO_QUEUE173.json",
+    "docs/handoff/20261006/session-a/LEGACY39_REGISTRATION174.json",
+    "docs/handoff/20261006/session-a/B_COMBINED_WAITERS_STOP175.json",
+    "docs/handoff/20261006/session-a/LEGACY39_REGISTERED_TEST_BUILD176.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

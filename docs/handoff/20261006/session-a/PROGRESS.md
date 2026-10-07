@@ -414,3 +414,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 171 最新game931bc/test36f7e8组合已真正fresh9/3797备份核验安装/两整APK SHA读回/runnerverified，helper98870/video98984/native98985正常Source14军建实跑。当前只实装不normal/cold/全restore accepted；新包新增空演出幂等修复与B39完成测试，不借旧155/B5582成绩。主main仍ef413/完整source0e7未变，空间52GiB。用户支持大堆，当前已启用largeHeap=true，设备配置ordinary384/large512；总RAM不等于Java额度，仍测实际资源与生命周期。前一台账脚本UTF8解析失败在任何写入前，已加显式编码纠正。
 
 172/173 实际新组合后继99889仅等待helper98870正常/cold/每SHA恢复/observer收尾，再同931bc/36f7e8跑火/攻击/全部16真实caller；音频99924只等此完整正常门，.995整首原源阈值保留，当前两等待器均无deviceactions。普通384回归/原39续行/ARM仍需独立验收，旧声/内存成绩不迁移。A调度tools只补新168冻结cohort whitelist，语法通过，未改APK/规则。
+
+174/175 发现原168仅含B39 class/真实fixture，正常A测试Manifest尚无运行器注册；B专用init.gradle以defaultConfig单独注册，不能直接挪其改源构建。A已加精确原runner测试清单注册及驱动真实legacy39 evidence/mid-save/warm-cold PASS处理，B测试/夹具字节不改。精确确认99889/99924只waiting且无动作后停止自己的下游队列；当前98870军建数据owner不动，完整normal/cold/restore继续。需要独立新test包，不能把168称实际B39可启动或继承B5582分。
