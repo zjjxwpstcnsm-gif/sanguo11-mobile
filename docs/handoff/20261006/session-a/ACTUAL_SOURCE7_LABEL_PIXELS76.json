@@ -1,0 +1,85 @@
+{
+  "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-31-preview.png",
+  "screenshotSha256": "1ff0686956e3498bbd45c086b5cf64469a47cb72b639cb936f15baac4c941fb6",
+  "actualSize": [
+    1080,
+    1920
+  ],
+  "regions": [
+    {
+      "label": "Cao Cao actual unselected label",
+      "box": [
+        480,
+        522,
+        569,
+        560
+      ],
+      "solidInkRgb": [
+        88,
+        128,
+        237
+      ],
+      "solidPlaqueRgb": [
+        18,
+        32,
+        39
+      ],
+      "actualSolidInkPixels": 411,
+      "actualSolidPlaquePixels": 411,
+      "actualSolidContrast": 4.53820494365449,
+      "solidContrastAtLeast4_5": true,
+      "antialiasShadowAndOtherPixels": 2560
+    },
+    {
+      "label": "He Jin actual unselected label",
+      "box": [
+        396,
+        505,
+        477,
+        541
+      ],
+      "solidInkRgb": [
+        88,
+        140,
+        161
+      ],
+      "solidPlaqueRgb": [
+        18,
+        32,
+        39
+      ],
+      "actualSolidInkPixels": 364,
+      "actualSolidPlaquePixels": 679,
+      "actualSolidContrast": 4.502791515781093,
+      "solidContrastAtLeast4_5": true,
+      "antialiasShadowAndOtherPixels": 1873
+    },
+    {
+      "label": "Han Xuan actual selected label",
+      "box": [
+        530,
+        734,
+        610,
+        786
+      ],
+      "solidInkRgb": [
+        255,
+        213,
+        118
+      ],
+      "solidPlaqueRgb": [
+        27,
+        47,
+        55
+      ],
+      "actualSolidInkPixels": 373,
+      "actualSolidPlaquePixels": 1360,
+      "actualSolidContrast": 9.965224885758913,
+      "solidContrastAtLeast4_5": true,
+      "antialiasShadowAndOtherPixels": 2427
+    }
+  ],
+  "scope": "Actual declared screenshot regions and solid glyph/plaque colors only; anti-alias/shadow pixels excluded, not all map labels/Android/PC/ARM readability acceptance",
+  "completeGlobalReadability": false,
+  "wholeGoalComplete": false
+}
