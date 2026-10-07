@@ -36,3 +36,8 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 216 所选来源预览只读后继
 
 登记 `docs/handoff/20261006/session-a/TARGET_OPENING_PREVIEW_READONLY216.json`，冻结B未提交目标来源预览API/DTO/query/契约源SHA，仅补充204正常切来源草稿的sourceId/Token/choice.value/fixedMenuValue边界。所有savedValue为空，不带入旧局/default；菜单life固定2的原约束与有效life3分开，原禁用像素未知。无session入口仍需完整冻结契约；不改MainActivity/picker、不复制/集成/编译B WIP、不打断5554。
+
+
+## 217–219 Source1完整实际验收与可复现审计
+
+登记217 acceptance、218 memory、219 widget与`audit_completed_normal_source.py`确切A路径。新工具只消费真实已完成normal/cold/both3D/fullSHArestore/确切APK与退出0观察器证据，拒绝未完成来源，不操作设备/生成snapshot。Java/native/PSS峰值独立，未解析背景/原普通裁切/年龄全屏/voice/GPU/ARM继续未知。旧48830/48877/48878终止不重启，Source2在原队列继续，不改生产源或设备数据。

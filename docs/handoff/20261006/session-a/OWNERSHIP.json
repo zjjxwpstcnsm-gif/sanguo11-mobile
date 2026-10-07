@@ -430,7 +430,11 @@
     "docs/handoff/20261006/session-a/registered-source00-memory213.json",
     "docs/handoff/20261006/session-a/registered-source00-widget214.json",
     "docs/handoff/20261006/session-a/SOURCE_OPENING_OVERRIDE_READONLY215.json",
-    "docs/handoff/20261006/session-a/TARGET_OPENING_PREVIEW_READONLY216.json"
+    "docs/handoff/20261006/session-a/TARGET_OPENING_PREVIEW_READONLY216.json",
+    "docs/handoff/20261006/session-a/audit_completed_normal_source.py",
+    "docs/handoff/20261006/session-a/REGISTERED_SOURCE01_ACCEPTANCE217.json",
+    "docs/handoff/20261006/session-a/registered-source01-memory218.json",
+    "docs/handoff/20261006/session-a/registered-source01-widget219.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

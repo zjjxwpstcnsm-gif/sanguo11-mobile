@@ -1,0 +1,80 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-01",
+  "actualSessionSha256": "2d1abf30b235d2375145597747f2fab2a2fc37f2a618b08c456abdee72d070fc",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "cohortReceipt": "LEGACY39_REGISTERED_TEST_BUILD176.json",
+  "frozenTestSourceRevision": "198194b32cf450147fb8632fa6a86e8b673c6625",
+  "sourceIndex": 1,
+  "actualOfficers": 670,
+  "actualRosterDetailPairs": 1340,
+  "everyUniqueOfficerHasBothRealCallers": true,
+  "originalCompleteBitmapSameAsAllRows": true,
+  "fullSaveBothRngStateTokenPure": true,
+  "normalChecks": 25157,
+  "coldChecks": 94,
+  "coldProcess": {
+    "beforePid": "14906",
+    "afterPid": "21254",
+    "beforeProcessEvidence": {
+      "pid": "14906",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "21254",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "cbbc1db1918aaadd8bc842d6b5e7c6022c95e8d1c47f46151437e388c13ec974",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 48877,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-01/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 27,
+    "finalIndexSha256": "aa8a5409e6c6f835a057a158aefdb10ae808ed04ef16162d12a9ac66d182edf4",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 48878,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-01/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "terminatedOriginalHostPids": [
+    48830,
+    48877,
+    48878
+  ],
+  "proofPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-01/evidence/source-1-portrait-callers.json",
+  "proofSha256": "90f5c741a627f7db2613d94082643fbfeaa66019cfea21556ce4a4f7f408b802",
+  "memoryAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-source01-memory218.json",
+  "memoryAuditSha256": "9bed4f20f1bc2faf53a9168a475d6eb72543ddb62d8e1b8ab49f38aa1d190e87",
+  "widgetAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-source01-widget219.json",
+  "widgetAuditSha256": "5c2407c4ccb4471ac1657620e4f7bd9d8ef6591607849ab681909380012ad097",
+  "all16NormalCallersAccepted": false,
+  "allAgeBoundarySmallCropFullscreenVoiceAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Only this exact independently installed cohort and source: complete original roster/detail identities/current-year age/sex/source-form/full bitmap binding, complete presentation Save/allRNG/StateToken purity, normal menu/save/trueBack/newPID/both3D/every originalSHA. Does not prove original small-family crop/UI pixels/all ages/fullscreen/real voice/mapBGM/GPU/ARM or other sources."
+}
