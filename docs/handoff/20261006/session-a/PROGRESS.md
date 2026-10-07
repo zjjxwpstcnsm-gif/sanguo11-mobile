@@ -144,3 +144,7 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 59当前ff2832/d87a实际installed-verified/pm组件声明通过，driver18778/native7786/video34658仍live。当前矩阵纠正过期54/53进行描述为58失败已完整恢复/59真实全670继续；旧b819 HUD/火、普通堆41全16、默认48全force历史成绩保持对应确切包，不移用到新诊断游戏。未使用部分个人计数相加冒称全部。
 
 59 Source11再次FAIL并全9/3797SHA恢复：9人完整列表/详情、荀彧254按遮挡高度实际滑动原像素和全Save-RNG-token纯通过；下一native78实际夏侯淵（此前口述夏侯惇纠正）正确原列表图/当前详情事实/全局longpress注入接受，却无随后ListView DOWN/UP/longclick/Main详情entry。不能把注入成功当目标收到，未判规则或后端原因。A测试在真实落指前重找当前稳定ID可见行、检查attached/focus、记录真实屏幕及clip坐标，不改回调或造snapshot；下一实际诊断核查，全部670/其余15来源不减少。
+
+60源99aabc1c只改A实际落指目标的可见/附着与screen坐标诊断，独立test构建和完整新鲜备份已启动；游戏仍5a72/ff2832，不改规则/World，不伪造snapshot。59原9/3797已全部恢复，旧7786/34658观察器确认终端结束。
+
+60 target/source99aabc1c独立测试构建成功，完整备份9/3797每SHA核实完成后实际install-test启动。driver及native/video句柄需由本轮工具实际结果续读；仍同game5a72/ff2832，只更新test，不借先前b819或ff2832部分成绩。完整670/其余15来源/正常Cold/最后全文件恢复尚待，原派生推断不当实际根因。
