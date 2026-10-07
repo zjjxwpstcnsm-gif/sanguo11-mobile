@@ -1,0 +1,17 @@
+{
+  "actualHostPid": 74255,
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry",
+  "rawLog": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/target-threads126.jsonl",
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "readOnly": true,
+  "noSignalsGcUiOrDataChanges": true,
+  "currentSampleCount": 3,
+  "lastStrategySchedstat": [],
+  "finalLogFrozen": false,
+  "uniqueCauseProven": false,
+  "scope": "Per-thread proc schedstat cumulative runtime/runqueue wait/timeslices after top; comm rechecked before/after. Sequential and scheduling may be perturbed. Not Java allocation or unique game performance cause.",
+  "wholeGoalComplete": false
+}

@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import pathlib
+import re
 import subprocess
 import time
 from device_session import ROOT, ADB, PACKAGE, digest
@@ -39,6 +40,20 @@ def main():
                 before=read('shell','cat','/proc/'+raw+'/cmdline');assert before.split('\0')[0]==PACKAGE
                 sample['progressBefore']=read('shell','tail','-12','/sdcard/Android/data/'+PACKAGE+'/files/session-b/fieldworks/progress.txt')
                 sample['topThreads']=read('shell','top','-H','-b','-n','1','-p',raw)
+                sample['strategySchedstat']=[]
+                for line in sample['topThreads'].splitlines():
+                    if not re.search(r'\bstrategy-turn\s+'+re.escape(PACKAGE)+r'\s*$',line):continue
+                    tid=line.split()[0];assert tid.isdigit()
+                    task='/proc/'+raw+'/task/'+tid
+                    row=dict(tid=tid,hostUnixStart=time.time())
+                    try:
+                        assert read('shell','cat',task+'/comm').strip()=='strategy-turn'
+                        values=read('shell','cat',task+'/schedstat').split()
+                        assert len(values)==3 and all(v.isdigit() for v in values)
+                        row.update(runtimeNanos=int(values[0]),runqueueWaitNanos=int(values[1]),timeslices=int(values[2]))
+                        assert read('shell','cat',task+'/comm').strip()=='strategy-turn'
+                    except Exception as error:row['unavailable']=repr(error)
+                    row['hostUnixEnd']=time.time();sample['strategySchedstat'].append(row)
                 assert read('shell','cat','/proc/'+raw+'/cmdline')==before
                 sample['sameTargetPidCommandBeforeAfter']=True
                 sample['progressAfter']=read('shell','tail','-12','/sdcard/Android/data/'+PACKAGE+'/files/session-b/fieldworks/progress.txt')
