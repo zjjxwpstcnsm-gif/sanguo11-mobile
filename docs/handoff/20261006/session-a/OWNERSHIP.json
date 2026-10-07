@@ -253,7 +253,9 @@
     "docs/handoff/20261006/session-a/ACTUAL_SOURCE7_LABEL_PIXELS76.json",
     "docs/handoff/20261006/session-a/NORMAL_TOUCH_ENTRY77.md",
     "docs/handoff/20261006/session-a/ORDINARY384_ALL_FACTIONS_ACCEPTANCE68.json",
-    "docs/handoff/20261006/session-a/NORMAL_TOUCH_TEST_BUILD78.json"
+    "docs/handoff/20261006/session-a/NORMAL_TOUCH_TEST_BUILD78.json",
+    "docs/handoff/20261006/session-a/inspect_original_portrait_caller_candidates.py",
+    "docs/handoff/20261006/session-a/PORTRAIT_CALLER_CANDIDATES79.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
