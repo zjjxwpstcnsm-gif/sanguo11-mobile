@@ -218,7 +218,8 @@
     "docs/handoff/20261006/session-a/FAST_PREVIEW_BUILD62.json",
     "docs/handoff/20261006/session-a/run_fast_preview_and_remaining_media.py",
     "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT61.json",
-    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_MINUS22_SOURCE_BOUNDARY.json"
+    "docs/handoff/20261006/session-a/AUDIO_CAPTURE_MINUS22_SOURCE_BOUNDARY.json",
+    "docs/handoff/20261006/session-a/NATIVE_MEMORY_PARTIAL61.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

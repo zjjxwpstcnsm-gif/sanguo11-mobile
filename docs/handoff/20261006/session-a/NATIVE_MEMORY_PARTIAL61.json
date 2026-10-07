@@ -1,0 +1,112 @@
+{
+  "scope": "Actual5554 original native source effect child /proc smaps_rollup complete-line prefix while61 continues. Not Java/native allocator/GPU or completed all16/ARM/goal acceptance. Child PSS only is summed within one actual same-time sample; other maxima must not be added.",
+  "partialLive": true,
+  "sourceComplete": false,
+  "rawObserverSnapshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/actual-native-memory-partial.jsonl",
+  "sha256": "74bda409a5a397b65bfb5c38535c19c1737e0ae5728acbc21ed88e8891f21464",
+  "sampleCount": 1257,
+  "firstUnix": 1791338604.423059,
+  "lastUnix": 1791342209.0909498,
+  "sourceChildCountDistribution": {
+    "0": 65,
+    "1": 1151,
+    "2": 41
+  },
+  "maximumSimultaneousObservedSourceChildren": 2,
+  "distinctSourceChildPids": [
+    4636,
+    9926,
+    12209,
+    17534
+  ],
+  "peakSameObservationChildrenPssKiB": 54644,
+  "peakActualSample": {
+    "time": 1791339134.06754,
+    "stage": "installed-verified",
+    "sourceChildren": [
+      {
+        "pid": 4636,
+        "parentPid": 3555,
+        "command": "/data/app/game.sanguo.mobile.dev-LXdP63-zZDWi1cEI-yVJ3w==/lib/x86_64/libpc_effect_fire_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin 774.4833 627.4234 3638.0996 --stream",
+        "KiB": {
+          "Rss": 17732,
+          "Pss": 14571,
+          "Shared_Clean": 3620,
+          "Shared_Dirty": 112,
+          "Private_Clean": 40,
+          "Private_Dirty": 13960,
+          "Referenced": 17232,
+          "Anonymous": 13960,
+          "LazyFree": 0,
+          "AnonHugePages": 0,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      },
+      {
+        "pid": 12209,
+        "parentPid": 3555,
+        "command": "/data/app/game.sanguo.mobile.dev-LXdP63-zZDWi1cEI-yVJ3w==/lib/x86_64/libpc_effect_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae-source-scene.bin 2599.073 5344.7393 6296.0186 --stream",
+        "KiB": {
+          "Rss": 43084,
+          "Pss": 40073,
+          "Shared_Clean": 3464,
+          "Shared_Dirty": 112,
+          "Private_Clean": 44,
+          "Private_Dirty": 39464,
+          "Referenced": 43032,
+          "Anonymous": 39464,
+          "LazyFree": 0,
+          "AnonHugePages": 24576,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      }
+    ],
+    "scope": "per-child smaps_rollup only, not Java/native allocator bytes or GPU VRAM; independent samples"
+  },
+  "lastActualSample": {
+    "time": 1791342209.0909498,
+    "stage": "installed-verified",
+    "sourceChildren": [
+      {
+        "pid": 17534,
+        "parentPid": 3555,
+        "command": "/data/app/game.sanguo.mobile.dev-LXdP63-zZDWi1cEI-yVJ3w==/lib/x86_64/libpc_effect_fire_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin 2734.4832 627.4234 2578.0999 --stream",
+        "KiB": {
+          "Rss": 54768,
+          "Pss": 52234,
+          "Shared_Clean": 2480,
+          "Shared_Dirty": 112,
+          "Private_Clean": 1084,
+          "Private_Dirty": 51092,
+          "Referenced": 54468,
+          "Anonymous": 51092,
+          "LazyFree": 0,
+          "AnonHugePages": 45056,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      }
+    ],
+    "scope": "per-child smaps_rollup only, not Java/native allocator bytes or GPU VRAM; independent samples"
+  },
+  "readUnavailableSamples": 0,
+  "exactCancellationExitLatencyProven": false,
+  "coldAndFinalRestoreAccepted": false,
+  "gpuAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false
+}
