@@ -1,0 +1,70 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-fast16-116",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug-androidTest.apk": "565de46c4d4fec7beabadf4f1a33f856db412151843953dd398cf04c5926e250"
+  },
+  "normalChecks": 3610,
+  "actualSources16NormalMenusGestures": true,
+  "actualPendingCancellation32OwnersAndWorkersClosed": true,
+  "oldFailedSource3Cycle1NowClosed": true,
+  "fullSaveRngStateTokenPure": true,
+  "coldProcess": {
+    "beforePid": "23912",
+    "afterPid": "21656",
+    "beforeProcessEvidence": {
+      "pid": "23912",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "21656",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "ce64b0b0aece193fdec62d5e87f212fe377fbc3bb294c55376fe5e0a657c6320",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualOriginalVideoParts": 17,
+  "videoObservation": {
+    "hostPid": 54008,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-fast16-116/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 17,
+    "finalIndexSha256": "b4568fa0a4dd98769da56b7dfe138319146101389916f841d9e1bd14a508845e",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 54009,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-fast16-116/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "ownerBindingsAuditSha256": "6d21e9052e0a3f74b6f1cabbe793df73fb0fe3d9cf864a32bae32b7c7846246b",
+  "rawFiles": {
+    "session.json": "fda6fee9b0da1164ea58819ef6f76d087ca4e1dd735a633dec901249abcd60e9",
+    "instrumentation.txt": "6134a2cbd3ce2e0020f3bc5511e99c0a5995ba62807e11f8e714cf2598527c32",
+    "cold-instrumentation.txt": "affe2dd22cda2dd8804fc1cf2891926dc0b71b62e140525f7944784e45a5c476",
+    "evidence/result.txt": "3950ed32fa820e91f89bda640ecca0102b4a28694242dcdd86adf891461e9bd2",
+    "video/video.json": "b4568fa0a4dd98769da56b7dfe138319146101389916f841d9e1bd14a508845e",
+    "memory-evidence.json": "7c497b989fa29a61e0621b95e7d4f79d25179951bc8f24a8073b546b9acf6567"
+  },
+  "scope": "Actual independently installed116 full32 real unfinished-preview cancellations plus16 default-force newgames/fit-near/pan/retry/Home/orientation/save-read/trueBack exit-reopen/newPID3D/every originalSHArestore and raw video closure. Not all244 forces/whole10720 callers/deep command effects/current music/unique original354832OOM root/GPU/ARM/final merged acceptance.",
+  "wholeGoalComplete": false
+}

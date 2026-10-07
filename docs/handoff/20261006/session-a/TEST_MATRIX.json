@@ -16,7 +16,7 @@
     {
       "item": "terrain-oom",
       "status": "NEW81 ORDINARY384 ALL16/244 NORMAL COLD RESTORE PASS;BUDGET/ARM OPEN",
-      "evidence": "OLD68 full16/244 peak387688264/402653184,14.27MiB sample reserve;97 old0..6 diagnostic2121/cold/fullrestore no340MiB trigger/noHprof;NEW81 actual242/9bac full5152/16/244/cold17430to25593/9+3797restore,no forcedheapdump/noencoder,679samples peak346235456/402653184 reserve56417728B;SOURCE_WATER_ALLOCATION80 exact-output/hostallocation proof,not unique original354832 stack/GPU/ARM;current90 runtime512MiB and normal source11 stilllive;DEFAULT_SOURCE11_MEMORY113 current90 fullSource11 accepted/cold/restored,101samples Java244029736/536870912,2363exactPIDmeminfo PSS517783KiB,native independent202993072,recorder present,budgetfalse",
+      "evidence": "OLD68 full16/244 peak387688264/402653184,14.27MiB sample reserve;97 old0..6 diagnostic2121/cold/fullrestore no340MiB trigger/noHprof;NEW81 actual242/9bac full5152/16/244/cold17430to25593/9+3797restore,no forcedheapdump/noencoder,679samples peak346235456/402653184 reserve56417728B;SOURCE_WATER_ALLOCATION80 exact-output/hostallocation proof,not unique original354832 stack/GPU/ARM;current90 runtime512MiB and normal source11 stilllive;DEFAULT_SOURCE11_MEMORY113 current90 fullSource11 accepted/cold/restored,101samples Java244029736/536870912,2363exactPIDmeminfo PSS517783KiB,native independent202993072,recorder present,budgetfalse;current116120 rapid32/normal16/cold/restoreaccepted,121 actual484samples Java312592344/536870912,reserve224278568B,native independent285900104B,meminfo562589KiB,recording present,GPU/ARM/budgetopen",
       "next": "new81 actual untouched noHeapDump all16/all244/cold/restore/peak;new90 and native/GPU/ARM separately; original user354832 failure stack remains unknown"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT116 FRESH BUILD/ACTUAL INSTALL SHA/32CANCEL PHASE PASS;FULLNORMAL LIVE",
+      "status": "CURRENT116 FULL32CANCEL/16NORMAL/COLD/FULLRESTORE/OBSERVER FINAL ACCEPTED120",
       "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90 plus DEFAULT_COMBINATION_INSTALL101:fd88 game25a66e49/test9763ab32 exactdevice readback/runner,6JNI/5636assets/168pins;freshwhole9+3797 guards. New90 Source11 live96/670, no complete normal/cold/restoration yet",
       "next": "actual90 complete backup/install whole SHA/normal/cold/restore, never borrow other APK scores"
     },
@@ -69,8 +69,8 @@
     },
     {
       "item": "save-preservation",
-      "status": "OLD114 FAILURE ALL9+3797RESTORED;CURRENT116 FULLBACKUP GUARD LIVE,FINALRESTORE PENDING",
-      "evidence": "112 source11 original9internal/rewrite4 and3797external/rewrite0 all finalSHA equal,cold actual expected autoSHA;no data clear;current next fast16 independently reverified complete backup/actual25a976bytes,not accepted yet",
+      "status": "CURRENT116 ALL9+3797SHA RESTORED120;NEXT MILITARY INDEPENDENTFULLBACKUP LIVE",
+      "evidence": "120 actual116 fast32+normal16+trueBack/home/save/cold23912to21656,both3Dfirstsubmit,original9/rewrite4 and3797/rewrite0 allSHArestored;17originalrecordedparts bothdevice/hostSHA andobservers exit0;current nextmilitary fullbackup/current116wholeSHA guarded,notyetaccepted",
       "next": "each next actual diagnostic/81/90 normal/cold/fulloriginalSHA restoration; never data clear"
     },
     {
@@ -81,7 +81,7 @@
     },
     {
       "item": "final-combination",
-      "status": "CURRENT116 32/32CANCEL PHASE PURE/CLOSED;FULLNORMAL/COLD/RESTORE LIVE;COMMANDS/ALLCALLERS117 QUEUED;FINALMAINB/ARM OPEN",
+      "status": "CURRENT116 FULLFAST32/NORMAL16/COLD/RESTORE ACCEPTED120;MILITARY/FIRE/ATTACK/CALLERS/ARM/FINALMAINB OPEN",
       "evidence": "100 new81 actual242/9bac all16/244/5152/cold/fullrestore, budgetopen. 101 new90 actual25a/976 installed exact, combineswater80/facility83/localfire89/voice71;Source1196/670live, no borrowed scores",
       "next": "complete current diagnostic/cold/restore, new81 full16;then90 fullSource11/fast16/normalmilitary-fire-attack/15othercallers;finalB completeobject serial/newmain/ARM/fresh final package"
     },
@@ -104,6 +104,6 @@
       "next": "90 own normal captures with audit and actual pixels;deep B pages/richtext/money/error/selected/disabled/completion/ARM"
     }
   ],
-  "updatedAfter": "115 explicit ownership-close-before-handoff committed63284162;116 fresh8e08/565 actualinstalled/5636assets168pins6JNI exact;32 pendingcancel phase passed,normal16/cold/restore stilllive53959/54008/54009;117 own55286 waitsstrictly forcommands/all16 current116 callers. Old90 source11 accepted112,oldfastfailed114 and allrestore preserved,terminated priorjobs. Laterfull sourceexport/newmainB/finalAPK/ARM remainopen",
-  "updatedCheckpoint": "118"
+  "updatedAfter": "119 ownerIDs/sourcecycles/32close logs bound;120 current116 full32 realpendingcancel/16defaultsource normal3610/cold23912to21656/both3Dsubmission/all9+3797SHArestore/17rawvideo/allobservers final;121 independent Java/native/mainPSS/childsamples budgetfalse;117 actual55286 nextmilitary installedverified withown63933/63934 observers;newall244/all10720/PCroles/voice/GPU/ARM/finalmainB remainopen",
+  "updatedCheckpoint": "121"
 }

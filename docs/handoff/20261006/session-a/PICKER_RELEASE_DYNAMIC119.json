@@ -1,0 +1,861 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-fast16-116",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug-androidTest.apk": "565de46c4d4fec7beabadf4f1a33f856db412151843953dd398cf04c5926e250"
+  },
+  "normalColdFullRestorationPassed": true,
+  "normalPid": "23912",
+  "bindings": [
+    {
+      "sourceIndex": 0,
+      "cycle": 0,
+      "mapIdentity": "30547434",
+      "rendererIdentity": "28061366",
+      "pendingAtObservation": 55,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4463,
+      "cancelToBothWorkersClosedMs": 5902,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "233649883",
+          "rawLine": "10-07 18:34:36.521 23912 23912 I PickerLifetime: close begin picker=233649883 map=30547434 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "233649883",
+          "wallMs": 4463,
+          "rawLine": "10-07 18:34:40.983 23912 23912 I PickerLifetime: close end picker=233649883 map=30547434 reason=return wallMs=4463 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 0,
+      "cycle": 1,
+      "mapIdentity": "168519144",
+      "rendererIdentity": "203749524",
+      "pendingAtObservation": 56,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 3958,
+      "cancelToBothWorkersClosedMs": 6028,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "118908510",
+          "rawLine": "10-07 18:34:56.854 23912 23912 I PickerLifetime: close begin picker=118908510 map=168519144 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "118908510",
+          "wallMs": 3958,
+          "rawLine": "10-07 18:35:00.813 23912 23912 I PickerLifetime: close end picker=118908510 map=168519144 reason=return wallMs=3958 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 1,
+      "cycle": 0,
+      "mapIdentity": "256751928",
+      "rendererIdentity": "12660964",
+      "pendingAtObservation": 50,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2603,
+      "cancelToBothWorkersClosedMs": 3637,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "147719565",
+          "rawLine": "10-07 18:35:10.648 23912 23912 I PickerLifetime: close begin picker=147719565 map=256751928 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "147719565",
+          "wallMs": 2603,
+          "rawLine": "10-07 18:35:13.229 23912 23912 I PickerLifetime: close end picker=147719565 map=256751928 reason=return wallMs=2603 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 1,
+      "cycle": 1,
+      "mapIdentity": "32100335",
+      "rendererIdentity": "112032779",
+      "pendingAtObservation": 63,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 3575,
+      "cancelToBothWorkersClosedMs": 4637,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "123140035",
+          "rawLine": "10-07 18:35:22.101 23912 23912 I PickerLifetime: close begin picker=123140035 map=32100335 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "123140035",
+          "wallMs": 3575,
+          "rawLine": "10-07 18:35:25.677 23912 23912 I PickerLifetime: close end picker=123140035 map=32100335 reason=return wallMs=3575 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 2,
+      "cycle": 0,
+      "mapIdentity": "235092597",
+      "rendererIdentity": "56232177",
+      "pendingAtObservation": 59,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 3363,
+      "cancelToBothWorkersClosedMs": 4380,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "208770878",
+          "rawLine": "10-07 18:35:34.061 23912 23912 I PickerLifetime: close begin picker=208770878 map=235092597 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "208770878",
+          "wallMs": 3363,
+          "rawLine": "10-07 18:35:37.423 23912 23912 I PickerLifetime: close end picker=208770878 map=235092597 reason=return wallMs=3363 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 2,
+      "cycle": 1,
+      "mapIdentity": "231899928",
+      "rendererIdentity": "49854660",
+      "pendingAtObservation": 56,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 1325,
+      "cancelToBothWorkersClosedMs": 3074,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "122485142",
+          "rawLine": "10-07 18:35:45.970 23912 23912 I PickerLifetime: close begin picker=122485142 map=231899928 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "122485142",
+          "wallMs": 1325,
+          "rawLine": "10-07 18:35:47.295 23912 23912 I PickerLifetime: close end picker=122485142 map=231899928 reason=return wallMs=1325 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 3,
+      "cycle": 0,
+      "mapIdentity": "168179809",
+      "rendererIdentity": "118290845",
+      "pendingAtObservation": 56,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 3172,
+      "cancelToBothWorkersClosedMs": 4158,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "81768220",
+          "rawLine": "10-07 18:35:55.313 23912 23912 I PickerLifetime: close begin picker=81768220 map=168179809 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "81768220",
+          "wallMs": 3172,
+          "rawLine": "10-07 18:35:58.485 23912 23912 I PickerLifetime: close end picker=81768220 map=168179809 reason=return wallMs=3172 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 3,
+      "cycle": 1,
+      "mapIdentity": "93400511",
+      "rendererIdentity": "255125211",
+      "pendingAtObservation": 55,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4718,
+      "cancelToBothWorkersClosedMs": 5927,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "207477714",
+          "rawLine": "10-07 18:36:06.884 23912 23912 I PickerLifetime: close begin picker=207477714 map=93400511 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "207477714",
+          "wallMs": 4718,
+          "rawLine": "10-07 18:36:11.602 23912 23912 I PickerLifetime: close end picker=207477714 map=93400511 reason=return wallMs=4718 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 4,
+      "cycle": 0,
+      "mapIdentity": "268177975",
+      "rendererIdentity": "41261779",
+      "pendingAtObservation": 48,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2814,
+      "cancelToBothWorkersClosedMs": 4719,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "421682",
+          "rawLine": "10-07 18:36:21.491 23912 23912 I PickerLifetime: close begin picker=421682 map=268177975 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "421682",
+          "wallMs": 2814,
+          "rawLine": "10-07 18:36:24.304 23912 23912 I PickerLifetime: close end picker=421682 map=268177975 reason=return wallMs=2814 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 4,
+      "cycle": 1,
+      "mapIdentity": "195427720",
+      "rendererIdentity": "107047476",
+      "pendingAtObservation": 48,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4084,
+      "cancelToBothWorkersClosedMs": 5178,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "142325221",
+          "rawLine": "10-07 18:36:33.939 23912 23912 I PickerLifetime: close begin picker=142325221 map=195427720 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "142325221",
+          "wallMs": 4084,
+          "rawLine": "10-07 18:36:38.023 23912 23912 I PickerLifetime: close end picker=142325221 map=195427720 reason=return wallMs=4084 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 5,
+      "cycle": 0,
+      "mapIdentity": "135054235",
+      "rendererIdentity": "65666679",
+      "pendingAtObservation": 55,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2573,
+      "cancelToBothWorkersClosedMs": 4484,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "206896823",
+          "rawLine": "10-07 18:36:48.371 23912 23912 I PickerLifetime: close begin picker=206896823 map=135054235 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "206896823",
+          "wallMs": 2573,
+          "rawLine": "10-07 18:36:50.944 23912 23912 I PickerLifetime: close end picker=206896823 map=135054235 reason=return wallMs=2573 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 5,
+      "cycle": 1,
+      "mapIdentity": "83471958",
+      "rendererIdentity": "41572834",
+      "pendingAtObservation": 56,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4221,
+      "cancelToBothWorkersClosedMs": 5264,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "197993190",
+          "rawLine": "10-07 18:37:00.362 23912 23912 I PickerLifetime: close begin picker=197993190 map=83471958 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "197993190",
+          "wallMs": 4221,
+          "rawLine": "10-07 18:37:04.582 23912 23912 I PickerLifetime: close end picker=197993190 map=83471958 reason=return wallMs=4221 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 6,
+      "cycle": 0,
+      "mapIdentity": "108109922",
+      "rendererIdentity": "13459630",
+      "pendingAtObservation": 59,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 5616,
+      "cancelToBothWorkersClosedMs": 6708,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "160787709",
+          "rawLine": "10-07 18:37:14.425 23912 23912 I PickerLifetime: close begin picker=160787709 map=108109922 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "160787709",
+          "wallMs": 5616,
+          "rawLine": "10-07 18:37:20.041 23912 23912 I PickerLifetime: close end picker=160787709 map=108109922 reason=return wallMs=5616 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 6,
+      "cycle": 1,
+      "mapIdentity": "257318313",
+      "rendererIdentity": "59648869",
+      "pendingAtObservation": 61,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4010,
+      "cancelToBothWorkersClosedMs": 5084,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "244262203",
+          "rawLine": "10-07 18:37:28.702 23912 23912 I PickerLifetime: close begin picker=244262203 map=257318313 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "244262203",
+          "wallMs": 4010,
+          "rawLine": "10-07 18:37:32.711 23912 23912 I PickerLifetime: close end picker=244262203 map=257318313 reason=return wallMs=4010 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 7,
+      "cycle": 0,
+      "mapIdentity": "19546983",
+      "rendererIdentity": "135114499",
+      "pendingAtObservation": 61,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 3940,
+      "cancelToBothWorkersClosedMs": 5164,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "115188273",
+          "rawLine": "10-07 18:37:42.088 23912 23912 I PickerLifetime: close begin picker=115188273 map=19546983 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "115188273",
+          "wallMs": 3940,
+          "rawLine": "10-07 18:37:46.029 23912 23912 I PickerLifetime: close end picker=115188273 map=19546983 reason=return wallMs=3940 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 7,
+      "cycle": 1,
+      "mapIdentity": "124903997",
+      "rendererIdentity": "127886649",
+      "pendingAtObservation": 48,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4509,
+      "cancelToBothWorkersClosedMs": 5576,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "182735639",
+          "rawLine": "10-07 18:37:56.728 23912 23912 I PickerLifetime: close begin picker=182735639 map=124903997 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "182735639",
+          "wallMs": 4509,
+          "rawLine": "10-07 18:38:01.238 23912 23912 I PickerLifetime: close end picker=182735639 map=124903997 reason=return wallMs=4509 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 8,
+      "cycle": 0,
+      "mapIdentity": "207041466",
+      "rendererIdentity": "221565318",
+      "pendingAtObservation": 54,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4811,
+      "cancelToBothWorkersClosedMs": 5889,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "183693277",
+          "rawLine": "10-07 18:38:10.949 23912 23912 I PickerLifetime: close begin picker=183693277 map=207041466 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "183693277",
+          "wallMs": 4811,
+          "rawLine": "10-07 18:38:15.761 23912 23912 I PickerLifetime: close end picker=183693277 map=207041466 reason=return wallMs=4811 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 8,
+      "cycle": 1,
+      "mapIdentity": "79427448",
+      "rendererIdentity": "58004260",
+      "pendingAtObservation": 58,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2709,
+      "cancelToBothWorkersClosedMs": 3726,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "113381027",
+          "rawLine": "10-07 18:38:24.964 23912 23912 I PickerLifetime: close begin picker=113381027 map=79427448 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "113381027",
+          "wallMs": 2709,
+          "rawLine": "10-07 18:38:27.672 23912 23912 I PickerLifetime: close end picker=113381027 map=79427448 reason=return wallMs=2709 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 9,
+      "cycle": 0,
+      "mapIdentity": "169549506",
+      "rendererIdentity": "184575246",
+      "pendingAtObservation": 59,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2594,
+      "cancelToBothWorkersClosedMs": 3709,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "52141529",
+          "rawLine": "10-07 18:38:37.346 23912 23912 I PickerLifetime: close begin picker=52141529 map=169549506 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "52141529",
+          "wallMs": 2594,
+          "rawLine": "10-07 18:38:39.939 23912 23912 I PickerLifetime: close end picker=52141529 map=169549506 reason=return wallMs=2594 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 9,
+      "cycle": 1,
+      "mapIdentity": "156865168",
+      "rendererIdentity": "74270652",
+      "pendingAtObservation": 48,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4386,
+      "cancelToBothWorkersClosedMs": 5463,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "93221359",
+          "rawLine": "10-07 18:38:49.542 23912 23912 I PickerLifetime: close begin picker=93221359 map=156865168 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "93221359",
+          "wallMs": 4386,
+          "rawLine": "10-07 18:38:53.929 23912 23912 I PickerLifetime: close end picker=93221359 map=156865168 reason=return wallMs=4386 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 10,
+      "cycle": 0,
+      "mapIdentity": "110941755",
+      "rendererIdentity": "75012887",
+      "pendingAtObservation": 53,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2527,
+      "cancelToBothWorkersClosedMs": 3579,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "125334829",
+          "rawLine": "10-07 18:39:03.607 23912 23912 I PickerLifetime: close begin picker=125334829 map=110941755 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "125334829",
+          "wallMs": 2527,
+          "rawLine": "10-07 18:39:06.134 23912 23912 I PickerLifetime: close end picker=125334829 map=110941755 reason=return wallMs=2527 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 10,
+      "cycle": 1,
+      "mapIdentity": "199734489",
+      "rendererIdentity": "244696469",
+      "pendingAtObservation": 49,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4307,
+      "cancelToBothWorkersClosedMs": 5356,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "6438003",
+          "rawLine": "10-07 18:39:15.300 23912 23912 I PickerLifetime: close begin picker=6438003 map=199734489 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "6438003",
+          "wallMs": 4307,
+          "rawLine": "10-07 18:39:19.605 23912 23912 I PickerLifetime: close end picker=6438003 map=199734489 reason=return wallMs=4307 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 11,
+      "cycle": 0,
+      "mapIdentity": "229391470",
+      "rendererIdentity": "258191738",
+      "pendingAtObservation": 52,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2819,
+      "cancelToBothWorkersClosedMs": 3893,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "89631729",
+          "rawLine": "10-07 18:39:29.437 23912 23912 I PickerLifetime: close begin picker=89631729 map=229391470 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "89631729",
+          "wallMs": 2819,
+          "rawLine": "10-07 18:39:32.255 23912 23912 I PickerLifetime: close end picker=89631729 map=229391470 reason=return wallMs=2819 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 11,
+      "cycle": 1,
+      "mapIdentity": "254575236",
+      "rendererIdentity": "70337264",
+      "pendingAtObservation": 49,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2548,
+      "cancelToBothWorkersClosedMs": 3614,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "98063063",
+          "rawLine": "10-07 18:39:41.462 23912 23912 I PickerLifetime: close begin picker=98063063 map=254575236 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "98063063",
+          "wallMs": 2548,
+          "rawLine": "10-07 18:39:44.010 23912 23912 I PickerLifetime: close end picker=98063063 map=254575236 reason=return wallMs=2548 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 12,
+      "cycle": 0,
+      "mapIdentity": "178481829",
+      "rendererIdentity": "50662433",
+      "pendingAtObservation": 60,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4517,
+      "cancelToBothWorkersClosedMs": 5710,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "172050931",
+          "rawLine": "10-07 18:39:52.945 23912 23912 I PickerLifetime: close begin picker=172050931 map=178481829 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "172050931",
+          "wallMs": 4517,
+          "rawLine": "10-07 18:39:57.461 23912 23912 I PickerLifetime: close end picker=172050931 map=178481829 reason=return wallMs=4517 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 12,
+      "cycle": 1,
+      "mapIdentity": "218231969",
+      "rendererIdentity": "94910941",
+      "pendingAtObservation": 51,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 2648,
+      "cancelToBothWorkersClosedMs": 3747,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "199132529",
+          "rawLine": "10-07 18:40:06.978 23912 23912 I PickerLifetime: close begin picker=199132529 map=218231969 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "199132529",
+          "wallMs": 2648,
+          "rawLine": "10-07 18:40:09.626 23912 23912 I PickerLifetime: close end picker=199132529 map=218231969 reason=return wallMs=2648 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 13,
+      "cycle": 0,
+      "mapIdentity": "192334340",
+      "rendererIdentity": "194544240",
+      "pendingAtObservation": 60,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 1631,
+      "cancelToBothWorkersClosedMs": 3615,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "15451342",
+          "rawLine": "10-07 18:40:20.473 23912 23912 I PickerLifetime: close begin picker=15451342 map=192334340 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "15451342",
+          "wallMs": 1631,
+          "rawLine": "10-07 18:40:22.103 23912 23912 I PickerLifetime: close end picker=15451342 map=192334340 reason=return wallMs=1631 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 13,
+      "cycle": 1,
+      "mapIdentity": "45228485",
+      "rendererIdentity": "60298561",
+      "pendingAtObservation": 59,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4492,
+      "cancelToBothWorkersClosedMs": 5545,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "149775844",
+          "rawLine": "10-07 18:40:31.078 23912 23912 I PickerLifetime: close begin picker=149775844 map=45228485 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "149775844",
+          "wallMs": 4492,
+          "rawLine": "10-07 18:40:35.570 23912 23912 I PickerLifetime: close end picker=149775844 map=45228485 reason=return wallMs=4492 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 14,
+      "cycle": 0,
+      "mapIdentity": "157318240",
+      "rendererIdentity": "230751884",
+      "pendingAtObservation": 62,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4201,
+      "cancelToBothWorkersClosedMs": 5320,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "41880794",
+          "rawLine": "10-07 18:40:45.380 23912 23912 I PickerLifetime: close begin picker=41880794 map=157318240 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "41880794",
+          "wallMs": 4201,
+          "rawLine": "10-07 18:40:49.580 23912 23912 I PickerLifetime: close end picker=41880794 map=157318240 reason=return wallMs=4201 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 14,
+      "cycle": 1,
+      "mapIdentity": "247686454",
+      "rendererIdentity": "64528066",
+      "pendingAtObservation": 56,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 4649,
+      "cancelToBothWorkersClosedMs": 5799,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "4246936",
+          "rawLine": "10-07 18:40:59.759 23912 23912 I PickerLifetime: close begin picker=4246936 map=247686454 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "4246936",
+          "wallMs": 4649,
+          "rawLine": "10-07 18:41:04.408 23912 23912 I PickerLifetime: close end picker=4246936 map=247686454 reason=return wallMs=4649 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 15,
+      "cycle": 0,
+      "mapIdentity": "34826531",
+      "rendererIdentity": "195654783",
+      "pendingAtObservation": 54,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 5043,
+      "cancelToBothWorkersClosedMs": 6189,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "65188188",
+          "rawLine": "10-07 18:41:14.779 23912 23912 I PickerLifetime: close begin picker=65188188 map=34826531 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "65188188",
+          "wallMs": 5043,
+          "rawLine": "10-07 18:41:19.823 23912 23912 I PickerLifetime: close end picker=65188188 map=34826531 reason=return wallMs=5043 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    },
+    {
+      "sourceIndex": 15,
+      "cycle": 1,
+      "mapIdentity": "6877431",
+      "rendererIdentity": "78751123",
+      "pendingAtObservation": 61,
+      "assetsAtObservation": 0,
+      "actualPendingCancellation": true,
+      "sourceNativeCloseWallMs": 5072,
+      "cancelToBothWorkersClosedMs": 6160,
+      "actualOwnerCloseLogLines": [
+        {
+          "kind": "begin",
+          "pickerIdentity": "91603898",
+          "rawLine": "10-07 18:41:30.804 23912 23912 I PickerLifetime: close begin picker=91603898 map=6877431 reason=return native=true"
+        },
+        {
+          "kind": "end",
+          "pickerIdentity": "91603898",
+          "wallMs": 5072,
+          "rawLine": "10-07 18:41:35.877 23912 23912 I PickerLifetime: close end picker=91603898 map=6877431 reason=return wallMs=5072 native=false"
+        }
+      ],
+      "fullSaveRngStateTokenPure": true,
+      "bothWorkersAndOwnersClosed": true
+    }
+  ],
+  "actualBound32ClosePairs": 32,
+  "originalFailedSource3Cycle1NowClosed": true,
+  "nativeCloseWallMs": {
+    "min": 1325,
+    "max": 5616,
+    "median": 3984.0
+  },
+  "actualPendingCancellationPairs": 32,
+  "rawFiles": {
+    "session.json": "fda6fee9b0da1164ea58819ef6f76d087ca4e1dd735a633dec901249abcd60e9",
+    "evidence/result.txt": "3950ed32fa820e91f89bda640ecca0102b4a28694242dcdd86adf891461e9bd2",
+    "evidence/fast-preview-cancellation.json": "48d0de31cb19a888c2d3a1356d4ed150af6721bc4125152f7ca0a1a5c0996af6",
+    "logcat.txt": "97ac537eef35d26c87064175c81d24b9c81130606fa91b5f0e48515b21911047"
+  },
+  "scope": "Actual exact116 main-thread owner identities and Return close begin/end, full32 cancel/normal16/cold/every-file restore. Includes source3-cycle1 old114 trigger. Camera/output/art parity, unperturbed timing, allocation stack, unique userOOM cause and ARM are not inferred.",
+  "gpuBudgetAccepted": false,
+  "uniqueUserOomCauseProven": false,
+  "wholeGoalComplete": false
+}

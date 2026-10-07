@@ -317,7 +317,9 @@
     "docs/handoff/20261006/session-a/PICKER_RELEASE_FOLLOWUP117.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT118.json",
     "docs/handoff/20261006/session-a/audit_picker_release_logs.py",
-    "docs/handoff/20261006/session-a/PICKER_RELEASE_DYNAMIC119.json"
+    "docs/handoff/20261006/session-a/PICKER_RELEASE_DYNAMIC119.json",
+    "docs/handoff/20261006/session-a/PICKER_RELEASE_ACCEPTANCE120.json",
+    "docs/handoff/20261006/session-a/PICKER_RELEASE_MEMORY121.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
