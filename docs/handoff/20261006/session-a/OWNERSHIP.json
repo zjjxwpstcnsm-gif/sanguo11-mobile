@@ -223,7 +223,8 @@
     "docs/handoff/20261006/session-a/FAST_PREVIEW_BUILD63.json",
     "docs/handoff/20261006/session-a/NORMAL_MEDIA_BINDER_FAILURE61.json",
     "docs/handoff/20261006/session-a/MILITARY_REPAIR_INTEGRATION65.json",
-    "docs/handoff/20261006/session-a/COMBINED_BUILD65.json"
+    "docs/handoff/20261006/session-a/COMBINED_BUILD65.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT65.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

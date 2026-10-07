@@ -4,7 +4,7 @@
     {
       "item": "complete-source",
       "status": "CHECKPOINT COMPLETE SHA VERIFIED",
-      "evidence": "SOURCE_EXPORT_CHECKPOINT61 revision3482 complete11087 paths/902618495bytes archive652755451 SHA9693be179b7171cd97f9cb0746f30f890986e3ade72a88ed36d499d6bafa7e6c every entry/live SHA and original4/new2JNI exact; checkpoint only",
+      "evidence": "SOURCE_EXPORT_CHECKPOINT65:20e10f69 complete11104 files/903182768B, archive652842808B SHA52241589893fb384bda45ab16212b15256c2088e8401f6cca37e5d9b3ee97e7b every entry/liveSHA and original4/new2JNI exact; completedB895 only, no WIP; checkpoint only",
       "next": "final source delta and serial integrated main guard"
     },
     {
@@ -27,8 +27,8 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT ff2832/2ee985 INDEPENDENT BUILD AND ACTUAL INSTALL VERIFIED;61 LIVE",
-      "evidence": "Actual frozen game source5a72/testa987; device readback exact SHA and pm runner registered, normal source11 incomplete.",
+      "status": "CURRENT4df5/7abb FULL COMBINATION INDEPENDENT BUILD/ACTUAL INSTALL SHA/pmRUNNER VERIFIED;65 LIVE",
+      "evidence": "COMBINED_BUILD65 plus actual65 session installed-verified; all6JNI/content gate; host63 semantic only; freshfull9/3797 backup, realfieldworks normal/cold/restore unfinished",
       "next": "61 actual IME completion+stable layout/all670/normal/cold/fullrestore; no historical b819 result transfer"
     },
     {
@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "HISTORICAL41 FOUR GAIJI ALL16 AND55 SINGLE181 PASS;CURRENT61 PARTIAL160/670",
-      "evidence": "Known historical exact-source joins10720/0unknown/695assets/2892PNG and41 actual128gaiji callers. Latest diagnostic60 fourpairs then404pxsamehold layoutshift; everyfailedrun complete9/3797restore. No partial counts summed as all670.",
-      "next": "61 whole670/cold/fullrestore then gated remaining15 real menu allpeople; allage/forms/fullscreen/pixelcrop/voice/ARM remain"
+      "status": "61 ALL670 NORMAL ROSTER/DETAIL PASS, TERMINAL BINDER CRASH/NO COLD;NEW4df5 UNTESTED",
+      "evidence": "NORMAL_MEDIA_BINDER_FAILURE61 exactff2832/2ee985 complete1340 raworiginalbitmap/currentyear/fullSaveRNGToken; normalfilePASS23141 but terminal2830188 bytes crashed; restore9/3797; not newgame4df5 or actualBack exit",
+      "next": "Fresh4df5 fullsource11/all16 callers with compactterminal/nav/actualBack/cold/restore; allage/form/fullscreen/crop/voice/ARM remain"
     },
     {
       "item": "dynamic-age",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "52 THROUGH60 EXACT ORIGINAL9/3797 RESTORED;61 GUARDED LIVE",
-      "evidence": "Each full baseline/currentSHA/archive guard and final everyoriginalSHA.60 internal/external restored exact;61 backupverified independentarchive/currenteveryfileSHA before install; no clearData.",
-      "next": "61 normal/cold and final alloriginalSHA readback; livebackup not completion"
+      "status": "THROUGH61 ORIGINAL9/3797 EXACT RESTORED;65 FRESH FULL BACKUP AND INSTALL LIVE",
+      "evidence": "61 terminalfailed but all9/3797 restored exact;65 currenteveryfile/independentarchive verified before new4df5/7abb install; no clearData",
+      "next": "65 actualnormal/cold/final everyoriginalSHA"
     },
     {
       "item": "arm",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "HISTORICAL b819 HUD52 AND FIRE53 PASS;CURRENT ff2832 NO COMPLETE NORMAL/COLD MATRIX",
-      "evidence": "CompletedB aa9 objects only; no B WIP. Current ff2832 production diagnostics/new2ee985 IME stable real input;61 partial source11; mainEF/fullbase0e7 unchanged.",
-      "next": "61 fullnormal callers+other15/latest fire/HUD/memory/normalcommands/multiturn/ARM/finalserialmain"
+      "status": "COMPLETED B MILITARY c6+895 EXACT IMPORT, FRESH4df5/7abb INSTALLED65 LIVE",
+      "evidence": "MILITARY_REPAIR_INTEGRATION65 exact14paths2production/5713resource6JNI/Bridge; sameToken constructionhint; terminalIPCbounded; no B WIP",
+      "next": "65 ordinary military repair/hints/multiturn/cold/restoration then newestall16 UI/media/heap/fire/actualexit and ARM; finalserialmain"
     },
     {
       "item": "search-normal",
@@ -99,5 +99,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "61 actual installed ff2832/2ee985 source11 partial160/670; normal/cold/finalrestore incomplete; complete3482 source export verified11087 paths"
+  "updatedCheckpoint": "61 all670 normal diskPASS23141 but Binder2830188 transport crash/no cold/fullrestore;65 fresh4df5/7abb actual installed military repair live; complete20e source export verified11104"
 }
