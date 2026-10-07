@@ -239,3 +239,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 84后继验收门控补军建补修、火计灭火到期/真实Home/低画质、持续攻击入城三套正常命令，每套相同冻结84两包/独立全备份复用逐SHA/实装字节验证/冷新PID/原数据恢复。主机仅py_compile，未执行新包。A normal列表触控与定位手势override已在84test；继承Activity.finish及verifySceneFacts辅助fire selectAndFocus范围明示，不伪称全部真实Back/全部纯触控。真实Back全路径由同84 map/fast套另验收；未知设施多状态原演出、ARM及voice speaker等仍开放。当前75正常352/670仍live，未重装。
 
 85全量只读守卫重新校验完成：完整继承10714路径、用户旧目录4301路径（含应缺失路径）、原4JNI、Bridge和PC exe全部逐SHA同原值；main ef413与源完整0e7及B895提交未改变。保留全部用户dirty，不接B WIP。注册86完整源码检查点，含83设施标签和84新包/正常命令串行门控，导出不包含用户设备备份或共享构建缓存。75实际正常人物已384/670，不按partial宣告完成。
+
+86完整源码检查点已导出：源码67a360dbfbaafcc58e5522e6d01d7573448b7f38，11145文件全部SHA回读一致，archive SHA f64001fbe307dc577e9898168be3736bca2893f36cd8f0e0ffe0ac4b52fe4b1f，路径 /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-facility86-complete/sanguo11-mobile-source.tar.gz，原4/新增2JNI全部等。包含83设施修复/84冻结组合/正常命令后继门控；不含Git数据库/缓存/用户设备备份，非全目标接受或ARM完成。
