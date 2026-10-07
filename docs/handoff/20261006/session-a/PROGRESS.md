@@ -219,3 +219,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 65土垒真实整旬已触发120s标记，最终161795ms（helper background=true为Home键尝试，不证明真实后台）。84357诊断终端captures0，空observationError为AssertionError：marker计算SHA7af、读取host398、完成后deviceaedf三者不同，PNG压缩仍写入时捕获，保护停在SIGQUIT之前。原失败PNG和report全保留，不当成功栈。工具改等待完整PNG/IEND并前SHA/后SHA/hostSHA三等、记录尝试与异常类型后才SIGQUIT；只对后续真实新marker启动独立诊断，不追溯已经完成的整旬或猜规则/渲染根因，不重启主93249。
 
 120s诊断修复后独立retry句柄23718实际live，仅等启动后新完整marker；旧84357已终端captures0/未SIGQUIT，原失败PNG、SHA差异与report保留。当前93249仍live且已完成土垒首个161795ms整旬，正在后续整旬；不以helper background=true键尝试当真实后台，也不把队列/观察器错误判游戏停工。军建补修/cold/最后全SHA恢复未终端。
+
+65 actualretry23718成功取得SIGQUIT3次、实际ART trace14/16均PID30366/strategyTid26803，完整PNG前后hostSHA三等，记录采样对时序的影响。样本1在CampaignAi.routes/War.fireAt，样本3在PcScenarioIdentity.saved/variant String.format→PcGovernorPolicy.source→PcArmyActionPolicy.failure→Government.appointAiRank，不是同位置停滞；两trace线程runtime增4.280045435秒、runqueueWait增20.181615467秒。FEngine在模拟器QemuPipe/glBindBufferRange，cpuinfo是重复旧滚动窗并含录屏codec大负载，不当即时成对采样或ARM GPU结论；唯一瓶颈未证。A不改B core/API，后续须分离录屏/图形争用与规则重复解析，纯规则/RNG语义不能因加速改写。当前93249仍live，normal/cold/恢复未终端。

@@ -1,0 +1,113 @@
+{
+  "scope": "Actual normal Source14 wall-action-reset >120s ART SIGQUIT samples; perturbs timing. Same30366/26803 threads verified. Stack samples locate observed work, not unique bottleneck/ARM or full goal completion.",
+  "report": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/actual-turn-timeout-diagnostic-retry/report.json",
+  "reportSha256": "b3e9e237aa31343e60793f356edc93dc22df17eec4a85598427b40859ce4f84f",
+  "actualTrigger": {
+    "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/turn-wall-action-reset-foreground120s.png",
+    "modifiedUnix": 1791345827,
+    "systemHomeVerifiedByMarker": false,
+    "copyAttempts": [
+      {
+        "beforeSha256": "7a56ba3bc69c9d32c5550e0809a6c4155678a9e9da1d0fdc12a442a801df53e1",
+        "afterSha256": "1cf030906d3cb4ff5a747e333c24e3ad4fc44d11a57ddc58a6ead32b4b1c28ae",
+        "hostSha256": "1cf030906d3cb4ff5a747e333c24e3ad4fc44d11a57ddc58a6ead32b4b1c28ae",
+        "bytes": 1362816,
+        "completePngEnd": true
+      },
+      {
+        "beforeSha256": "1cf030906d3cb4ff5a747e333c24e3ad4fc44d11a57ddc58a6ead32b4b1c28ae",
+        "afterSha256": "1cf030906d3cb4ff5a747e333c24e3ad4fc44d11a57ddc58a6ead32b4b1c28ae",
+        "hostSha256": "1cf030906d3cb4ff5a747e333c24e3ad4fc44d11a57ddc58a6ead32b4b1c28ae",
+        "bytes": 1362816,
+        "completePngEnd": true
+      }
+    ],
+    "sha256": "1cf030906d3cb4ff5a747e333c24e3ad4fc44d11a57ddc58a6ead32b4b1c28ae",
+    "completePngHostDeviceShaEqual": true
+  },
+  "samples": [
+    {
+      "sample": "sample-1",
+      "actualTargetPid": 30366,
+      "tracePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/actual-turn-timeout-diagnostic-retry/sample-1/trace_14",
+      "sha256": "67dd9c4587051d2be54d9940cfee7f9b4dcee8990022771da836638ffbe5b9ff",
+      "traceHeader": "----- pid 30366 at 2026-10-07 12:03:57 -----",
+      "strategyThreadTid": 26803,
+      "strategySchedstatNs": {
+        "runtime": 20659587061,
+        "runqueueWait": 96182531335,
+        "timeslices": 21042
+      },
+      "strategyFrames": [
+        "java.util.ArrayList$Itr.next(ArrayList.java:859)",
+        "game.sanguo.core.War.fireAt(SourceFile:-1)",
+        "game.sanguo.core.CampaignAi.routes(SourceFile:49)",
+        "game.sanguo.core.CampaignAi.routes(SourceFile:5)",
+        "game.sanguo.core.CampaignAi.objective(SourceFile:-1)",
+        "game.sanguo.core.CampaignAi.stepUnit(SourceFile:-1)",
+        "game.sanguo.core.CampaignAi.runUnit(SourceFile:-1)",
+        "game.sanguo.core.CampaignAi.runUnits(SourceFile:-1)",
+        "game.sanguo.core.World.runAi(SourceFile:-1)",
+        "game.sanguo.core.World.nextTurn(SourceFile:18)",
+        "game.sanguo.mobile.TurnWork.lambda$start$3(SourceFile:-1)",
+        "game.sanguo.mobile.TurnWork.$r8$lambda$mj0uMRonRX_Sl8TNgk7L0NEvAao(SourceFile:-1)",
+        "game.sanguo.mobile.TurnWork$$ExternalSyntheticLambda4.run(SourceFile:-1)",
+        "java.lang.Thread.run(Thread.java:919)"
+      ]
+    },
+    {
+      "sample": "sample-3",
+      "actualTargetPid": 30366,
+      "tracePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/actual-turn-timeout-diagnostic-retry/sample-3/trace_16",
+      "sha256": "ffb58e28fdd8f03aad70186e0f5d19c7e2ec1995a5f573017e2850064b5c4b20",
+      "traceHeader": "----- pid 30366 at 2026-10-07 12:04:27 -----",
+      "strategyThreadTid": 26803,
+      "strategySchedstatNs": {
+        "runtime": 24939632496,
+        "runqueueWait": 116364146802,
+        "timeslices": 24267
+      },
+      "strategyFrames": [
+        "java.text.DecimalFormatSymbols.maybeStripMarkers(DecimalFormatSymbols.java:742)",
+        "java.text.DecimalFormatSymbols.initialize(DecimalFormatSymbols.java:687)",
+        "java.text.DecimalFormatSymbols.<init>(DecimalFormatSymbols.java:102)",
+        "java.text.DecimalFormatSymbols.getInstance(DecimalFormatSymbols.java:156)",
+        "java.util.Formatter.getZero(Formatter.java:2287)",
+        "java.util.Formatter.<init>(Formatter.java:1896)",
+        "java.util.Formatter.<init>(Formatter.java:1951)",
+        "java.lang.String.format(String.java:2911)",
+        "game.sanguo.core.PcScenarioIdentity.variant(SourceFile:-1)",
+        "game.sanguo.core.PcScenarioIdentity$Source.<init>(SourceFile:-1)",
+        "game.sanguo.core.PcScenarioIdentity.saved(SourceFile:-1)",
+        "game.sanguo.core.PcGovernorPolicy.source(SourceFile:-1)",
+        "game.sanguo.core.PcArmyActionPolicy.failure(SourceFile:2)",
+        "game.sanguo.core.World.cityFailure(SourceFile:9)",
+        "game.sanguo.core.World.cityError(SourceFile:-1)",
+        "game.sanguo.core.Government.appointmentError(SourceFile:-1)",
+        "game.sanguo.core.Government.appointAiRank(SourceFile:-1)",
+        "game.sanguo.core.Government.runAi(SourceFile:-1)",
+        "game.sanguo.core.World.runAi(SourceFile:-1)",
+        "game.sanguo.core.World.nextTurn(SourceFile:18)",
+        "game.sanguo.mobile.TurnWork.lambda$start$3(SourceFile:-1)",
+        "game.sanguo.mobile.TurnWork.$r8$lambda$mj0uMRonRX_Sl8TNgk7L0NEvAao(SourceFile:-1)",
+        "game.sanguo.mobile.TurnWork$$ExternalSyntheticLambda4.run(SourceFile:-1)",
+        "java.lang.Thread.run(Thread.java:919)"
+      ]
+    }
+  ],
+  "sameStrategyThread": true,
+  "sampleDeltaStrategyCpuNs": 4280045435,
+  "sampleDeltaStrategyRunqueueWaitNs": 20181615467,
+  "runqueueWaitOverRuntime": 4.715280660799808,
+  "schedstatDefinition": "https://docs.kernel.org/scheduler/sched-stats.html#proc-pid-schedstat",
+  "sample1ObservedWork": "CampaignAi routes/fireAt search",
+  "sample3ObservedWork": "PcScenarioIdentity saved/source formatting via original army budget and governor rank admission during Government.runAi",
+  "nativeGraphicsObserved": "FEngine glBindBufferRange through emulator QemuPipeStream/glGetError; no claim about native ARM GPU cost",
+  "cpuinfoBoundary": "dumpsyscpuinfo rolling older window repeated acrosssamples; cannot count it as immediate paired CPU samples",
+  "recorderContentionCandidate": true,
+  "uniqueCauseProven": false,
+  "BFilesModified": false,
+  "userFilesOrRngModifiedByDiagnostic": false,
+  "normalFlowFinalPassed": false,
+  "wholeGoalComplete": false
+}
