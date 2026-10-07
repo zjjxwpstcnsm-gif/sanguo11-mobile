@@ -7,6 +7,7 @@ import device_session as ds
 TEST=ds.PACKAGE+'.test';SERVICE='game.sanguo.mobile.SessionAAudioCaptureService';ACTIVITY='game.sanguo.mobile.SessionAAudioCaptureActivity'
 def shell(command):return ds.run('shell',command).decode().strip()
 _MIXER_MONITORS={}
+_INPUT_ROUTE_MONITORS={}
 def observe_input_route(out,r,record,phase):
  """Sequential shell observations, never proof of an atomic native route."""
  if not re.fullmatch('[A-Za-z0-9_-]{1,64}',phase):raise ValueError('Route observation phase')
@@ -30,6 +31,28 @@ def observe_input_route(out,r,record,phase):
  rows.append({'phase':phase,'path':str(path),'sha256':ds.digest(path),
               'unavailable':[name for name in commands if 'unavailable' in sample[name]]})
  return sample
+def begin_input_route_observation(out,r,record,phase):
+ """Never spend the raw PCM window waiting for five diagnostic shell calls."""
+ if record['run'] in _INPUT_ROUTE_MONITORS:raise ValueError('Own route observer already active')
+ record.setdefault('inputRouteObservations',[])
+ record['inputRouteObserverRequestedHostUnix']=time.time()
+ record['inputRouteObserverErrors']=[]
+ record['inputRouteObserverJoined']=False
+ def observe():
+  try:observe_input_route(out,r,record,phase)
+  except BaseException as error:record['inputRouteObserverErrors'].append(repr(error))
+ thread=threading.Thread(target=observe,name='session-a-input-route-observation',daemon=True)
+ _INPUT_ROUTE_MONITORS[record['run']]=thread;thread.start()
+def end_input_route_observation(record):
+ thread=_INPUT_ROUTE_MONITORS.get(record['run'])
+ if thread is not None:
+  # Five sequential calls have ten-second individual timeouts. Freeze the
+  # record only after the sole own observer is done; never accept live hashes.
+  thread.join(timeout=55)
+  if thread.is_alive():raise RuntimeError('Own input-route observer still writing; retain evidence')
+  _INPUT_ROUTE_MONITORS.pop(record['run'],None)
+  record['inputRouteObserverJoined']=True
+  if record['inputRouteObserverErrors']:raise RuntimeError('Own input-route observation failed: '+repr(record['inputRouteObserverErrors']))
 def begin_mixer_measurement(out,record):
  path=out/('mixer-'+record['run']+'.jsonl');stop=threading.Event()
  record['mixerMeasurementPath']=str(path);record['mixerMeasurementScope']='read-only dumpsys AudioFlinger every5s, counters cumulative; only time-local changes eligible for attribution; no PCM rewrite/threshold change'
@@ -95,12 +118,12 @@ def start(out,r,rate,run,seconds):
    record['consentNode']=node.attrib;ds.run('shell','input','tap',str((bounds[0]+bounds[2])//2),str((bounds[1]+bounds[3])//2));record['consentFromObservedSystemUi']=True;save(out,r);break
   time.sleep(1)
  if not record['consentFromObservedSystemUi']:raise ValueError('Actual system MediaProjection consent button not observed')
- observe_input_route(out,r,record,'after-consent-sent');save(out,r)
+ begin_input_route_observation(out,r,record,'after-consent-background');save(out,r)
  end=time.monotonic()+20
  while time.monotonic()<end:
   ready=shell('cat '+shlex.quote(path+'/ready.json')+' 2>/dev/null || true');result=shell('cat '+shlex.quote(path+'/result.json')+' 2>/dev/null || true')
-  if result:record['result']=json.loads(result);observe_input_route(out,r,record,'initial-result-observed');save(out,r);return record
-  if ready:record['ready']=True;record['readyData']=json.loads(ready);observe_input_route(out,r,record,'ready-receipt-observed');begin_mixer_measurement(out,record);save(out,r);return record
+  if result:record['result']=json.loads(result);record['initialResultObservedHostUnix']=time.time();save(out,r);return record
+  if ready:record['ready']=True;record['readyData']=json.loads(ready);record['readyReceiptObservedHostUnix']=time.time();begin_mixer_measurement(out,record);save(out,r);return record
   time.sleep(.3)
  raise ValueError('No initialized capture or failure receipt')
 def collect(out,r,record,timeout=20):
@@ -108,7 +131,7 @@ def collect(out,r,record,timeout=20):
  while time.monotonic()<end:
   raw=shell('cat '+shlex.quote(path+'/result.json')+' 2>/dev/null || true')
   if raw:
-   end_mixer_measurement(record);record['result']=json.loads(raw);observe_input_route(out,r,record,'final-result-observed');dest=out/('audio-'+record['run']);ds.run('pull',path,str(dest));record['hostPath']=str(dest);save(out,r)
+   end_mixer_measurement(record);record['result']=json.loads(raw);end_input_route_observation(record);observe_input_route(out,r,record,'final-result-observed');dest=out/('audio-'+record['run']);ds.run('pull',path,str(dest));record['hostPath']=str(dest);save(out,r)
    until=time.monotonic()+10
    while SERVICE in shell('dumpsys activity services '+TEST) and time.monotonic()<until:time.sleep(.5)
    if SERVICE in shell('dumpsys activity services '+TEST):raise ValueError('Actual previous capture service not yet stopped')
@@ -122,6 +145,7 @@ def stop_and_restore(out,r):
  else:c['serviceAlreadyStoppedAtRollback']=True;save(out,r)
  for record in c['captures']:
   end_mixer_measurement(record)
+  end_input_route_observation(record)
   if 'hostPath' not in record:
    try:collect(out,r,record,20)
    except Exception as error:record['collectionError']=str(error);save(out,r)

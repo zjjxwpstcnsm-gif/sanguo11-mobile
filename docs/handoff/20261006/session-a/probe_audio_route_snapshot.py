@@ -14,6 +14,7 @@ def main():
     p.add_argument('--session',type=pathlib.Path,required=True)
     p.add_argument('--output',type=pathlib.Path,required=True)
     p.add_argument('--receipt',type=pathlib.Path,required=True)
+    p.add_argument('--background',action='store_true')
     a=p.parse_args()
     session=a.session.resolve(); state=json.loads((session/'session.json').read_text())
     assert state['root']==str(ds.ROOT) and state['serial']=='emulator-5554'
@@ -27,7 +28,15 @@ def main():
         assert capture.shell('sha256sum '+shlex.quote(remote)).split()[0]==digest
     a.output.mkdir(parents=True)
     record={'run':'session_a_route_preflight106'}
-    sample=capture.observe_input_route(a.output,state,record,'preflight-no-capture')
+    if a.background:
+        began=time.monotonic()
+        capture.begin_input_route_observation(a.output,state,record,'preflight-background-no-capture')
+        begin_return_seconds=time.monotonic()-began
+        capture.end_input_route_observation(record)
+        sample=json.loads(pathlib.Path(record['inputRouteObservations'][0]['path']).read_text())
+        assert record['inputRouteObserverJoined'] and not record['inputRouteObserverErrors']
+    else:
+        sample=capture.observe_input_route(a.output,state,record,'preflight-no-capture')
     assert not any(row['unavailable'] for row in record['inputRouteObservations'])
     assert all(sample[name]['text'].strip() for name in ('audioPolicy','audioFlinger','mediaProjection','recordAppOp','deviceUptime'))
     mixer={'run':'session_a_mixer_preflight107','seconds':1}
@@ -48,6 +57,10 @@ def main():
         supportToolSha256=ds.digest(pathlib.Path(capture.__file__)),
         sourceSession=str(session), actualSnapshotCommandsPassed=True,
         actualReadOnlyMixerObserverJoined=True,mixerObservation=mixer,mixerSampleCount=len(rows))
+    if a.background:
+        result.update(actualBackgroundRouteObserverJoined=True,
+                      routeBeginReturnedSeconds=begin_return_seconds,
+                      backgroundScope='Actual read-only native service dumps in own joined host thread; no PCM input/projection initialization or playback window accepted')
     a.receipt.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 

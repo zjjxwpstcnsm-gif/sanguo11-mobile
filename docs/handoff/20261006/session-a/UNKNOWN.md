@@ -63,3 +63,5 @@
 108最新90整首菜单音频复验已有真实44001等待器，normal整批未成就拒绝，当前未操作device。未来实际录音/PCM0.995/原game+test每文件/AppOp恢复仍待，不借44旧0.997成绩。菜单音频继承finish barrier不能证明其自身真Back/cold或地图BGM、实际voice、旧-22因果、ARM。
 
 109原绘制bank参数与分支只读取证通过：64×80/base2400/4800和240×240/base0/2400参数对应原FCE small-pair/large布局，family1存在双形态索引与自动flag选择，family2/variant3读两个signed descriptor bytes并加160/180。964非空小图对有680对不同，不能并成一种。通用widget构造family6不能证明全部普通头像默认family1；4个字节call候选不是运行可达或普通列表/详情用途证明。原裁切/界面大小形态/全屏时序仍待，不按该参数表盲改Android。
+
+110: background route observer actually joined in readonly5554 preflight, begin returned0.001434447s; future normal PCM/projection initialization and old-22 cause remain unaccepted. Post-consent diagnostic commands no longer synchronously consume the130s recording window. Original .995 threshold unchanged; background observations remain sequential and can perturb scheduling.

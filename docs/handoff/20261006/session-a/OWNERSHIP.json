@@ -305,7 +305,8 @@
     "docs/handoff/20261006/session-a/continue_latest_menu_audio.py",
     "docs/handoff/20261006/session-a/LATEST_MENU_AUDIO_QUEUE108.json",
     "docs/handoff/20261006/session-a/inspect_original_fce_draw_banks.py",
-    "docs/handoff/20261006/session-a/PORTRAIT_FCE_DRAW_BANK109.json"
+    "docs/handoff/20261006/session-a/PORTRAIT_FCE_DRAW_BANK109.json",
+    "docs/handoff/20261006/session-a/AUDIO_ROUTE_ASYNC110.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

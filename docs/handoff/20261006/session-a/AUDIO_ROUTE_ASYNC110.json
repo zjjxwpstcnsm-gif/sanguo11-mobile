@@ -1,0 +1,36 @@
+{
+  "scope": "Actual exclusive5554 current APK pair readback and read-only route observer preflight. No permission/AppOp, playback, projection, input creation, UI or saves changed.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "routeObservations": [
+    {
+      "phase": "preflight-background-no-capture",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/audio-route-async110/input-route-session_a_route_preflight106-0-preflight-background-no-capture.json",
+      "sha256": "e1db34dfe52a2599b0794390edcec067ed6f57db88fcb832178ef0724f7ed882",
+      "unavailable": []
+    }
+  ],
+  "captureStarted": false,
+  "inputCreationFailureReproduced": false,
+  "oldMinus22CauseClosed": false,
+  "futureCaptureHooksDynamicallyAccepted": false,
+  "wholeGoalComplete": false,
+  "supportToolSha256": "ed62e619671b9fade979cdbcc4efc454a3cec763fc92f2df13bb6c42b46e0b0c",
+  "sourceSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11",
+  "actualSnapshotCommandsPassed": true,
+  "actualReadOnlyMixerObserverJoined": true,
+  "mixerObservation": {
+    "run": "session_a_mixer_preflight107",
+    "seconds": 1,
+    "mixerMeasurementPath": "out/session-a/audio-route-async110/mixer-session_a_mixer_preflight107.jsonl",
+    "mixerMeasurementScope": "read-only dumpsys AudioFlinger every5s, counters cumulative; only time-local changes eligible for attribution; no PCM rewrite/threshold change",
+    "mixerMeasurementSha256": "9add06f3cd81f29a092baa9cf7497225eba17c83b2930a257dd877096d232de4",
+    "mixerObserverJoined": true
+  },
+  "mixerSampleCount": 1,
+  "actualBackgroundRouteObserverJoined": true,
+  "routeBeginReturnedSeconds": 0.0014344470109790564,
+  "backgroundScope": "Actual read-only native service dumps in own joined host thread; no PCM input/projection initialization or playback window accepted"
+}
