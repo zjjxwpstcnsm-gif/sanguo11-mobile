@@ -283,3 +283,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 102最新完整源工具导出：源码167b9c46944c032813f36de5c661e5d6c51cd20b，11170文件逐SHA回读，archive SHA 54aa36acc238e42ad03209d04f31455c2282563bff81f6030aa9edd2e619c381，路径 /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current102-complete/sanguo11-mobile-source.tar.gz；全部10714继承guard+tracked+原4/新增2JNI包含，6JNI与实际90标签SHA精确。app生产+androidTest/core/API/构建配置与实际90源码fd88逐Git对象无delta，含完整最新93/95/96/98工具、100新普通全16接受及101新90实装证据；不包含Git/build/Gradle/SDK或用户设备备份。新90 Source11/670仍正常运行，不能用导出成为全媒体或ARM验收。
 
 103最新真实90组合（25a/976）前三完成原MP4逐全部4052帧AV解码/真实indices/PTS严格递增、实际timescale[90000]，原stsz encoded逐段==decoded且host原SHA不变，三片已在device pre/post-pullSHA与host等后仅移除自己UUID临时片段，故当前device重读不可用声明而非借旧93。这是当前新包自己的录片前缀，不宣告Source11全670/cold/原数据最终恢复或PC原裁切色彩/全屏/声音/ARM。B线程只读compact状态仍做规则原对照、complete Git HEAD895未变，没发送未经授权消息、不接WIP。当前新Source11首32人/64实际正常pairs已达，全部仍live。
+
+当前摘要同步：UNKNOWN首部不再把61/ff或81未装当当前；保留全部历史原失败/原包scope，当前100新普通全矩阵接受/101新90实装96/670运行/102全源11170/103新原片3段分开，完整媒体、深命令/火/设施、中间StateToken、GPU/ARM、B新完整冻结/最新main最后串行包仍开放。TEST_MATRIX实际安装与源码项更新，不移用旧包证据。

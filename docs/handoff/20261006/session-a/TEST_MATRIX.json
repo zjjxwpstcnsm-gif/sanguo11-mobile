@@ -3,8 +3,8 @@
   "rows": [
     {
       "item": "complete-source",
-      "status": "LATEST92 COMPLETE SOURCE VERIFIED, MATCHES90 PRODUCTION",
-      "evidence": "SOURCE_EXPORT_CHECKPOINT92:62813f63 complete11156 files/904085816B/archive653032970B SHA67e26270b7efe8074235cfb61c16b9a7b23cc2e4819f4d7cc37421b4c1f12528; all file SHA and6JNI exact to90, app/core/API/build source no delta fromfd88; completedB895 only, no WIP; checkpoint only",
+      "status": "LATEST102 COMPLETE11170 SOURCE/TOOLS VERIFIED,MATCHES ACTUAL90",
+      "evidence": "SOURCE_EXPORT_CHECKPOINT102:167b9c46 complete11170 files/904179310B/archive653061486B SHA54aa36acc238e42ad03209d04f31455c2282563bff81f6030aa9edd2e619c381;allSHA and6JNI exact,production/androidTest/core/API/config same actualfd88,completedB895 only,noWIP;checkpoint notfinal",
       "next": "final accepted package source/tools/evidence and new complete main/B serial guard"
     },
     {
@@ -27,8 +27,8 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST90 INDEPENDENT DEFAULT BUILD VERIFIED, NOT INSTALLED",
-      "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90:fd88f79a game25a66e49/test9763ab32, actualmanifestlargeHeap=true,5636assets byteexactto84/6JNI/content gate;old2cd/1a85094 actualSource11 normal/cold/restored only",
+      "status": "LATEST90 INDEPENDENT BUILD AND ACTUAL INSTALLED WHOLE SHA/pmRUNNER VERIFIED; NORMAL LIVE",
+      "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90 plus DEFAULT_COMBINATION_INSTALL101:fd88 game25a66e49/test9763ab32 exactdevice readback/runner,6JNI/5636assets/168pins;freshwhole9+3797 guards. New90 Source11 live96/670, no complete normal/cold/restoration yet",
       "next": "actual90 complete backup/install whole SHA/normal/cold/restore, never borrow other APK scores"
     },
     {
@@ -45,8 +45,8 @@
     },
     {
       "item": "identity16",
-      "status": "OLD2cd/1a850 SOURCE11 ALL670 NORMAL/COLD/RESTORE PASS; OTHER15 AND90 PENDING",
-      "evidence": "NORMAL_SOURCE11_ACCEPTANCE94:25157 normal checks,670 unique actors/1340 roster-detail pairs/current208year wholeoriginalbitmap source joins, latestfour gaiji8 callers;actualBack/HOME/orientation/save-read/cold10204→8548/rendered and9/3797 restored;ACTUAL_RAW_VIDEO_PREFIX93 original27 parts/38190frames with gaps",
+      "status": "OLD94 SOURCE11 ALL670 ACCEPTED;NEW90 ACTUAL96/670 LIVE,OTHER15 OPEN",
+      "evidence": "NORMAL_SOURCE11_ACCEPTANCE94:25157 normal checks,670 unique actors/1340 roster-detail pairs/current208year wholeoriginalbitmap source joins, latestfour gaiji8 callers;actualBack/HOME/orientation/save-read/cold10204→8548/rendered and9/3797 restored;ACTUAL_RAW_VIDEO_PREFIX93 original27 parts/38190frames with gaps;101 actualnew90 installed, current96/670/192 normalcaller pairs;103 own3rawparts/4052inputframes, notwholegame",
       "next": "latest90 ownSource11 and allremaining15 normalcallers;allage/smallformroles/crop/color/fullscreen/time/realvoice/ARM remain"
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "item": "save-preservation",
-      "status": "94/97/100 NORMAL COLD ORIGINAL9+3797 FULL SHA RESTORED;90 PREPARING",
+      "status": "94/97/100 FULL ORIGINAL9+3797 SHA RESTORED;101 NEW90 FULLGUARDED INSTALL LIVE",
       "evidence": "94 actual670/1340/25157, trueBack/HOME/cold10204→8548 and9internal/3797external whole SHA exact;oldb5ec/c96 diagnostic reused independently verified whole backup, installedverified/worker cohort recorded;currentrestoration not finished",
       "next": "each next actual diagnostic/81/90 normal/cold/fulloriginalSHA restoration; never data clear"
     },
@@ -81,8 +81,8 @@
     },
     {
       "item": "final-combination",
-      "status": "81 FULL ORDINARY MATRIX ACCEPTED;LATEST90 SOURCE11 BACKUP/INSTALL STARTED",
-      "evidence": "90 fd88 game25a66e49/test9763ab32 combineswater80/facility83/localpaintfire89/voice71 with6JNI/5636assets;old2cd94 accepted onlyitsSource11;81 ordinary242aaff2/9bac6916 builtnotinstalled",
+      "status": "81 FULLORDINARY ACCEPTED;LATEST90 ACTUALLY INSTALLED SOURCE11 LIVE",
+      "evidence": "100 new81 actual242/9bac all16/244/5152/cold/fullrestore, budgetopen. 101 new90 actual25a/976 installed exact, combineswater80/facility83/localfire89/voice71;Source1196/670live, no borrowed scores",
       "next": "complete current diagnostic/cold/restore, new81 full16;then90 fullSource11/fast16/normalmilitary-fire-attack/15othercallers;finalB completeobject serial/newmain/ARM/fresh final package"
     },
     {
@@ -105,5 +105,5 @@
     }
   ],
   "updatedAfter": "Source11 actual94 whole normal/cold/restoration and old0..6 diagnostic installed,2026-10-07",
-  "updatedCheckpoint": "100 new81 actualall16/244/5152/cold/fullrestore;679samples Java330.20/384MiB and53.804MiBheadroom, budgetnotclosed;latest90 Source11 independently installing,othergoals open"
+  "updatedCheckpoint": "100 new81 full16/244/5152/cold/fullrestore accepted,53.804MiB sampledheadroom budgetopen;101 latest90 installedSource1196/670/192live;102 complete11170;103 latestraw3parts4052;ARM/mapsound/actualspeaker/crop/originalframes/finalserial open"
 }
