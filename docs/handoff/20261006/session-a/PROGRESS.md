@@ -160,3 +160,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 61确切testSHA2ee985c641966617266623f893f4a116a865218cc6094ba3323d4c0d1fff1f76/2607443B，driver78010/native26106/video82680实际启动且需续读此3句柄，不重启或覆盖下一包；独占5554锁和完整9/3797备份保留。当前是否安装/normal/cold/restore以session.json实际终端状态为准，尚未接受整轮。
 
 61 driver78010仍确认live、当前preinstall archive/currentguard阶段（backup-verified），未出现新失败或新实装成绩；矩阵更新最新60失败/恢复与61准备的实际包范围，原媒体四字形/身份旧数不误转新包或相加，完整目标不缩小。
+
+61产生真实部分回执32/670（完整sourceComplete=false）：正常列表/详情当前187年/原全部bitmap/身份/每次全Save-RNG-StateToken纯，先前失败native289諸葛亮、254荀彧、78夏侯淵、367孫權四人各两入口原像素均通过，host/device部分JSON逐SHA同等。正常IME_SEARCH+IME消失/失焦/1000ms布局稳定观察已实际执行，但完整670、冷与最终恢复仍未接受；driver78010/native26106/video82680继续live，不能重新安装、合B WIP或借单人/部分成绩。
