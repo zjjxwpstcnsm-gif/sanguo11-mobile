@@ -62,6 +62,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--previous-source11', type=pathlib.Path, required=True)
     parser.add_argument('--output', type=pathlib.Path, required=True)
+    parser.add_argument('--test-only-update-first', action='store_true',
+                        help='After an independently completed fast-preview suite, restore the original frozen test cohort through a fully backed up actual source0 install')
     args = parser.parse_args()
     previous = args.previous_source11.resolve()
     baseline, _ = accepted(previous, 11)
@@ -73,7 +75,7 @@ def main():
               'device': 'emulator-5554', 'apks': artifacts,
               'initialSource11Session': str(previous), 'completedSources': [11],
               'sessions': {'11': str(previous)}, 'completeAll16NormalCallers': False,
-              'wholeGoalComplete': False}
+              'wholeGoalComplete': False, 'testOnlyUpdateFirst': args.test_only_update_first}
     record = args.output/'batch.json'
 
     def save():
@@ -91,7 +93,8 @@ def main():
             with (target/'driver.log').open('w') as log:
                 result = subprocess.run([sys.executable, str(HELPER), 'install-test',
                     '--output', str(target), '--apk', str(game), '--test-apk', str(test),
-                    '--reuse-installed', '--runner', 'SessionAMapRepairInstrumentation',
+                    *(['--test-only-update'] if args.test_only_update_first and source == 0 else ['--reuse-installed']),
+                    '--runner', 'SessionAMapRepairInstrumentation',
                     '--suite', 'mediaAll16', '--begin', str(source), '--end', str(source+1),
                     '--fresh-process-reopen'], cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
             actual, proof = accepted(target, source)
