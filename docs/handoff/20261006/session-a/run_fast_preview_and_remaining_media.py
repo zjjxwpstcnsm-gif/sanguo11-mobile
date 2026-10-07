@@ -117,18 +117,18 @@ def main():
             report.update(waterFixActualNormalColdWorkflowCompleted=True, memoryBudgetClosed=False)
             save()
             diagnostic_previous = fixed
-        # The water producer is a production change. Upgrade to its separately
-        # built default and repeat the complete real source11 caller gate rather
-        # than borrowing the earlier2cd package's media results.
-        latest = json.loads(HELPER.with_name('WATER_DEFAULT_BUILD82.json').read_text())
+        # Water allocation and facility status labels are production changes.
+        # Use the separately frozen latest default and repeat all real callers;
+        # earlier installed package results cannot be transferred.
+        latest = json.loads(HELPER.with_name('FACILITY_DEFAULT_BUILD84.json').read_text())
         latest_apks = {r['path']: r['sha256'] for r in latest['apks']}
         if not latest['buildSuccessful'] or not all(sha(pathlib.Path(p)) == h for p, h in latest_apks.items()):
-            raise ValueError('Latest independent default water cohort changed')
+            raise ValueError('Latest independent default water/facility cohort changed')
         if latest_apks != baseline['apks']:
             latest_game = next(p for p in latest_apks if pathlib.Path(p).name == 'app-debug.apk')
             latest_test = next(p for p in latest_apks if pathlib.Path(p).name == 'app-debug-androidTest.apk')
-            latest_source11 = args.output/'latest-default-water-source11'
-            report.update(activeStage='latest-default-water-source11',
+            latest_source11 = args.output/'latest-default-water-facility-source11'
+            report.update(activeStage='latest-default-water-facility-source11',
                           earlierSource11Cohort=baseline['apks'], latestDefaultCohort=latest_apks,
                           latestDefaultSource11Session=str(latest_source11.resolve()))
             save()
