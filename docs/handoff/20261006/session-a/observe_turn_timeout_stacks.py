@@ -75,11 +75,30 @@ def main():
                 continue
             timestamp, marker = sorted(fresh)[0]
             report['trigger'] = {'devicePath': marker, 'modifiedUnix': timestamp,
-                                 'sha256': shell('sha256sum '+shlex.quote(marker)).split()[0],
-                                 'systemHomeVerifiedByMarker': False}
+                                 'systemHomeVerifiedByMarker': False, 'copyAttempts': []}
             marker_file = args.output/'actual-foreground120s.png'
-            marker_file.write_bytes(adb('exec-out', 'cat', marker))
-            assert digest(marker_file) == report['trigger']['sha256']
+            copied = False
+            copy_deadline = time.monotonic()+30
+            while time.monotonic() < copy_deadline:
+                if state() == 'restored-verified':
+                    break
+                before_hash = shell('sha256sum '+shlex.quote(marker)).split()[0]
+                raw = adb('exec-out', 'cat', marker)
+                after_hash = shell('sha256sum '+shlex.quote(marker)).split()[0]
+                host_hash = hashlib.sha256(raw).hexdigest()
+                png_complete = raw.startswith(b'\x89PNG\r\n\x1a\n') and raw.endswith(b'\x00\x00\x00\x00IEND\xaeB\x60\x82')
+                report['trigger']['copyAttempts'].append({'beforeSha256': before_hash,
+                    'afterSha256': after_hash, 'hostSha256': host_hash,
+                    'bytes': len(raw), 'completePngEnd': png_complete})
+                if png_complete and before_hash == after_hash == host_hash:
+                    marker_file.write_bytes(raw)
+                    report['trigger']['sha256'] = host_hash
+                    report['trigger']['completePngHostDeviceShaEqual'] = True
+                    copied = True
+                    break
+                time.sleep(1)
+            if not copied:
+                raise ValueError('Fresh marker did not finish a complete stable PNG copy before diagnostic; no SIGQUIT sent')
             pid = own_process()
             for index in range(3):
                 if state() == 'restored-verified' or own_process() != pid:
@@ -116,7 +135,7 @@ def main():
                 time.sleep(2)
             break
     except Exception as error:
-        report['observationError'] = str(error)
+        report['observationError'] = type(error).__name__+': '+repr(error)
     report['endedUnix'] = time.time()
     report['actualTriggerObserved'] = report['trigger'] is not None
     report['causeProven'] = False
