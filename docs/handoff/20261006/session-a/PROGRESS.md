@@ -426,3 +426,7 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 178 最新完整source37c3cd25归档完成，逐文件回读全部通过，含154/164生产优化、B39完成原test/fixture和174注册/驱动、176build/177串行队列及179全守卫。准确archive/SHA/fileCount见SOURCE_EXPORT_CHECKPOINT178.json，app/test/core/API/runtime raw源与176源198194b3相同，game生产raw仍与165e62一致。无B WIP/Git/cache/build/SDK/device用户备份；当前169动态仍未全部闭合，压缩干扰记录，不以归档宣布全目标/ARM通过。
 
 181 当前176同pair完整验收串行计划已实现：原39真实normal/cold/finished精确+全数据restore后，再新176军建/火/攻击/全部16 caller/.995整首菜单原声→独立新180普通384与176默认512两套fast32/all244/cold/完整restore。A followup新增completed-legacy严格入口，每次正常case前核main与trackedWIP/source；heap同样去掉HEAD参数以防未提交源绕过。只tool/计划变化，无B/core/API/production改变，原39owner1234/当前98870未中断。普通180正在独立build，宿主负载干扰当前169继续如实记录；未安装不称回归通过。
+
+180 新普通堆同修复/注册原39测试独立build2m41s成功，源f58aff64，gameb9747addade121653a21043646acfc71b266941858d11c518492e4bdd262c384/test62546caac33eccbedf61900c682f06f3ca38114ef1cda2fc9dd58e30a7c0c0fe，准确路径apk-f58aff64-registered-ordinary180。二进制largeHeap=false、原39runner注册/fixtureSHA5d002d...精确，5636assets逐字节同default165、168pins/6JNI精确。尚未安装，不借旧81/134/149普通成绩，宿主build干扰169说明保留。
+
+182 实际完整后继等待器2601已启动，仅等live原39队列1234接受并每原SHA完整恢复后，执行同176三命令/16caller/.995音频/新180普通与176默认fast32/all244/冷完整restore；当前无deviceactions。不是计划即通过，不用旧168军建成绩代替176normal。UNKNOWN已更新真正当前source/export/设备/未知，旧文本保留为历史。

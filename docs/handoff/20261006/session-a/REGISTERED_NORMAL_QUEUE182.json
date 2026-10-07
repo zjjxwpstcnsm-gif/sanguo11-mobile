@@ -1,0 +1,12 @@
+{
+  "hostPid": 2601,
+  "stage": "waiting-for-genuine39-owner",
+  "producerPid": 1234,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/continue_legacy39_registered.py --producer-pid 98870 --previous-case out/session-a/b-combined169/new-military --output out/session-a/legacy39-registered177",
+  "legacyQueue": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/legacy39-registered177",
+  "deviceActionsStarted": false,
+  "childJobs": [],
+  "wholeGoalComplete": false,
+  "scope": "Exact176 whole normal command/all16 caller/menu track gate and fresh180 ordinary/default heap stress. Child jobs serially gate full restored prior proof; no fabricated world or previous pair scores.",
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/queue.json"
+}
