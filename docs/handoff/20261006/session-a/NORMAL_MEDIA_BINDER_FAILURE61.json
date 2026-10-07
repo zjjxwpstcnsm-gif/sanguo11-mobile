@@ -1,0 +1,47 @@
+{
+  "scope": "Actual all670 normal-source callers completed and full normal checks written, but test terminal Binder delivery crashed; no cold/full-run acceptance. Not original phone354832 OOM, gameplay crash or whole goal completion.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5a72c163-roster-input-diagnostic/app-debug.apk": "ff2832c0d41f59fa130ae39947dbdf7566b279859fc5b9cf02e327ae356d75c9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-a9875651-portrait-ime-test/app-debug-androidTest.apk": "2ee985c641966617266623f893f4a116a865218cc6094ba3323d4c0d1fff1f76"
+  },
+  "actualSource": 11,
+  "actualVisitedOfficers": 670,
+  "actualNormalCallerRows": 1340,
+  "sourceComplete": true,
+  "allNormalPixelsSameAs": true,
+  "fullSaveRngStateTokenPure": true,
+  "normalDiskResultPrefix": "SESSION_A_MAP PASS 23141 checks",
+  "normalDiskResultPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/evidence/result.txt",
+  "normalDiskResultBytes": 1424037,
+  "normalDiskResultSha256": "2bca43a4d8bfe632dba37fc3e28f27df4c7f029dcae089be56c8a4a633f533c6",
+  "crash": "RuntimeException caused by TransactionTooLargeException in ActivityThread.finishInstrumentation/Instrumentation.finish; parcel2830188bytes",
+  "actualFatalPid": 3555,
+  "actualFatalDateTime": "2026-10-07 11:36:08",
+  "javaOomThisFailure": false,
+  "normalTerminalAccepted": false,
+  "coldProcessAccepted": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "fullOriginalFilesRestored": true,
+  "testFix": "Keep full original log in file; Binder terminal sends only PASS/FAIL/checkcount/exact evidence path. No threshold/check/person skips.",
+  "exitScope": "Old test only Activity.finish/recreate; new normal Back confirmation separately required.",
+  "reopenMenuScreenshotObservation": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/actual-after-normal670.png",
+    "sha256": "8841a565769b6e03d1ab373999f859dfa497270f1b96464860f4ac2138f363f0",
+    "observed": "Map labels/selection appear over military menu in a single real post-reopen frame. Navigation destination and exact panel occlusion/layout facts not captured; root/duration unproven. New test asserts actual navigation page after touched target.",
+    "rootCauseClosed": false
+  },
+  "wholeGoalComplete": false
+}

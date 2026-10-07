@@ -1042,6 +1042,16 @@ public final class MainActivity extends Activity {
         new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
         new CityCommand("生产兵装 · 查看设施次数与费用",()->armyUi().basicProduction(c))
     );}
+    private String unitActionHint(World.Unit unit){
+        if(!unit.acted)return "底栏选择行军、攻击、战法；点空地或本队取消选中";
+        // acted alone is no committed attack/cause fact. Admit ongoing building
+        // responsibility only from the same current complete authority token.
+        if(sceneFacts!=null&&sceneFacts.available&&legacyView!=null&&gameHost.session()!=null
+            &&sceneFacts.state.equals(legacyView.state)&&sceneFacts.state.equals(gameHost.session().state()))
+            for(SceneFactsSnapshot.Military project:sceneFacts.military)
+                if(project.builderUnitId==unit.id)return "本旬已行动 · 正在施工/补修，可中止施工";
+        return "本旬已行动";
+    }
     private void showUnit(World.Unit u){
         if(u.owner==world.player&&!world.gameOver()){
             for(World.City base:world.cities)if(base.owner==u.owner&&(world.army.canEnterSite(u,u.hex,base)||base.kind==World.SiteKind.CITY&&SiteFootprint.distance(base,u.hex)<=1)){
@@ -1078,7 +1088,7 @@ public final class MainActivity extends Activity {
         action("编队特技",v->warUi().skills(u));
         line("伤兵 "+u.wounded+" · 行军终点为己方据点时立即归队",13,gold);
         Districts.District district=world.districts.unit(u.id);if(district!=null)line("所属军团："+district.name()+" · 自动指挥",13,gold);
-        if(u.owner==world.player){line(u.acted?"本旬已行动，攻击后不能再移动 · 可安排下旬行军":"底栏选择行军、攻击、战法；点空地或本队取消选中",14,paper);
+        if(u.owner==world.player){line(unitActionHint(u),14,paper);
             if(u.march!=null)line(world.marches.describe(u),14,gold);
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
             if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("部队战法详情",v->showTactics(u));

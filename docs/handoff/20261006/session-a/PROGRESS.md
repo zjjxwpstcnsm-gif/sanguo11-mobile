@@ -202,3 +202,6 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 后继normal生命周期测试修正实际路径边界：旧直接Activity.finish未跑Back退出确认，新代码用真实KEYCODE_BACK找到正常确认，实际触控执行后观察主机关闭/MapHost释放和auto完整保存，再正常启动。纯只读观察，不直接gameHost.exit、不改规则、RNG、保存或生产路径。Home前缓存前台MapHost再发GlobalHome，避免焦点已丢时再找focused根的异步定位窗口。当前2ee985/c3旧fast包的退出成绩保持较窄边界；新test须独立重建冻结/安装，不能移用144541f9旧包成绩。
 
 真实Back退出test0db89a72独立构建成功2m41s，确切新APK/SHA见FAST_PREVIEW_BUILD63；后继快速取消controller只接63新test，旧62/144541f9产物与证据保留、不借成绩。63尚未安装；当前61已到640/670，原2ee985 finish/recreate语义仍照原运行。原24段全部解码34620帧，host/device原SHA相同、索引连续/PTS严格增加/实际1/90000，原帧不改；视频续接失败间隔保留，不能当整轮无间断影片或PC原时序/ARM。
+
+61终端失败并原9/3797全SHA恢复：完整670、1340实际roster/detail全部原bitmap与全Save-RNG-token纯，正常文件写出PASS23141；finish时把完整日志放Bundle导致parcel2830188bytes/TransactionTooLargeException，PID3555，非JavaOOM或玩法崩溃，无cold成绩。修测试只通过Binder简短PASS/FAIL+checks+完整文件路径，所有完整检查/日志仍保留文件、未降门槛或跳人物。另记录真实重开截图地图标签/选框显示在菜单上，未取得精确页面与裁切事实，不猜根因；新test触控导航后只读检查ui.page确实是目标页面，防止ready同地图掩盖导航未到。
+收到B已观察施工提示请求仅只读，不发送无授权消息、不接B54单挑/物品WIP：A MainActivity提示仅在同完整SceneFacts/legacy/session StateToken builderUnitId匹配时显示正在施工/补修；只有acted时只写本旬已行动，不自动解释攻击或承诺下旬行军，不改规则/RNG。生产文案改动要求新游戏APK独立构建/实装及新全流程，不能借ff2832的670或旧41/48成绩。

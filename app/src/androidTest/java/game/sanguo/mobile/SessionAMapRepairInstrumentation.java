@@ -52,7 +52,12 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         event.setSource(InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(event,true),"actual portrait long-press up "+nativeId);event.recycle();SystemClock.sleep(400);
     }
     private void text(String s){tap(await(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)&&(v.isClickable()||v.getParent() instanceof AdapterView)));}
-    private void nav(String page){tap(await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航")));tap(desc("导航 · "+page));}
+    private void nav(String page){
+        tap(await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航")));tap(desc("导航 · "+page));
+        String expected=page.equals("地图")?"map":page.equals("武将")?"officers":page.equals("菜单")?"menu":null;
+        if(expected==null)throw new IllegalArgumentException("Unexamined navigation target "+page);
+        ui(()->{try{check(expected.equals(((ClientState)field(activity,"ui")).page),"actual navigation page matches touched target "+page);}catch(Exception error){throw new IllegalStateException(error);}});
+    }
     private byte[] capture(){byte[][] bytes={null};ui(()->{try{bytes[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new IllegalStateException(e);}});return bytes[0];}
     private StateToken token(){StateToken[] t={null};ui(()->t[0]=activity.deploymentState());return t[0];}
     private void unchanged(byte[] save,StateToken token,String phase){check(Arrays.equals(save,capture()),phase+" complete Save/RNG byte equal");check(token.equals(token()),phase+" full StateToken equal");}
@@ -317,7 +322,11 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         result.putString("stream","SESSION_A_MAP PASS "+checks+" checks\n"+log);
     }catch(Throwable error){result.putString("stream","SESSION_A_MAP FAIL "+LogTrace(error)+"\n"+log);try{shot("FAIL");}catch(Throwable ignored){}}
     finally{try{Files.write(new File(output,"result.txt").toPath(),result.getString("stream").getBytes("UTF-8"));}catch(Throwable ignored){}}
-    finish(result.getString("stream").startsWith("SESSION_A_MAP PASS")?Activity.RESULT_OK:Activity.RESULT_CANCELED,result);}
+    // Binder is a bounded status channel. The complete log remains in result.txt;
+    // sending every per-officer check made the670-person normal result exceed2MB.
+    boolean passed=result.getString("stream").startsWith("SESSION_A_MAP PASS");Bundle terminal=new Bundle();
+    terminal.putString("stream","SESSION_A_MAP "+(passed?"PASS ":"FAIL ")+checks+" checks; full evidence: "+new File(output,"result.txt").getAbsolutePath()+"\n");
+    finish(passed?Activity.RESULT_OK:Activity.RESULT_CANCELED,terminal);}
     private void collect(View v,List<Button> result){if(v instanceof Button&&v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("选择势力 ·"))result.add((Button)v);if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++)collect(((ViewGroup)v).getChildAt(i),result);}
     private String LogTrace(Throwable error){return android.util.Log.getStackTraceString(error);}
 }
