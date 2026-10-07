@@ -436,3 +436,7 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 186 当前game931bc/test36f7e8实际Source14军建normal/cold6814→4513/both真实3Dsubmit/auto816052...通过，原9internal(rewrite4)/3797external(rewrite0)每SHA完全恢复，video/native0/11原片finalindexe798fb...，不是新176test分。184CPU133样本/7真实旬、187overlay184row、188widget22capture516row/108solid最低8.52197/408未解析/24disabled均按最终log+APK+restore冻结；长旬compute128849–332515ms仍未解决。176/178/180和B宿主工作干扰/种子不同，不作性能根因或Java/GPU/ARM预算接受。旧98870/98984/98985/2908均真实终止，1234已继续新的原39fullbackup，2601仍只等待genuine39完整接受。
 
 189 原39完整注册176新testa37f/game931bc真正fresh9/3797全backup核验后test-onlyinstall/两包整SHA读回/实际pm原runner注册已核实；helper6773/video6820/native6821实际live，normal/cold/fullrestore尚未接受，不能借B5582/168分。当前1234parent运行该case，2601仍只等真实39完整接受，前186数据owner及三个observer均终止，不重启。
+
+190 当前176原39真实normal/cold7362→16039/both3Dsubmit/expectedmid9d987609...通过，暖/冷finished全Save/bothRNG字节SHA相同，原9internal(rewrite3)/3797external(rewrite0)每SHA完全恢复、video/native0，原B测试/fixture不改。真实菜单读取/采用策略取消与确认保留完整模型RNG/人物出牌/自然终局/暖冷各3旬/手动存读完整接受，只此范围，原准入/认输/外交/完整NativeDuel/原声/ARM未借分。
+
+191 1234/6773/6820/6821旧原39已真正结束，2601已启动真实normal7783/audio7789/heap7800三独立child，串行数据门：同176重新正常军建/火/攻击/16caller、.995菜单原曲后新180ordinary与176default两套fast32/all244/冷/原SHA恢复；现normal开始freshfullbackup，audio/heap只waiting无deviceaction。不得把已关闭186旧test分替代当前176流程。

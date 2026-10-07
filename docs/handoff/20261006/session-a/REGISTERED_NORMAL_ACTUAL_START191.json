@@ -1,0 +1,71 @@
+{
+  "hostPid": 2601,
+  "stage": "children-running-with-serial-gates",
+  "producerPid": 1234,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/continue_legacy39_registered.py --producer-pid 98870 --previous-case out/session-a/b-combined169/new-military --output out/session-a/legacy39-registered177",
+  "legacyQueue": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/legacy39-registered177",
+  "deviceActionsStarted": true,
+  "childJobs": [
+    {
+      "name": "normal",
+      "pid": 7783,
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/run_picker_release_followup.py",
+        "--completed-legacy",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/legacy39-registered177/genuine39",
+        "--cohort-receipt",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/LEGACY39_REGISTERED_TEST_BUILD176.json",
+        "--output",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal"
+      ]
+    },
+    {
+      "name": "audio",
+      "pid": 7789,
+      "command": [
+        "/Users/paopao/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/continue_latest_menu_audio.py",
+        "--producer-pid",
+        "7783",
+        "--normal-batch",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal",
+        "--cohort-receipt",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/LEGACY39_REGISTERED_TEST_BUILD176.json",
+        "--output",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/audio"
+      ]
+    },
+    {
+      "name": "heap",
+      "pid": 7800,
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/run_current_heap_regression.py",
+        "--producer-pid",
+        "7789",
+        "--audio-queue",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/audio",
+        "--normal-batch",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal",
+        "--ordinary-receipt",
+        "CURRENT_REGISTERED_ORDINARY_BUILD180.json",
+        "--default-receipt",
+        "LEGACY39_REGISTERED_TEST_BUILD176.json",
+        "--output",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/heap"
+      ]
+    }
+  ],
+  "wholeGoalComplete": false,
+  "scope": "Exact176 whole normal command/all16 caller/menu track gate and fresh180 ordinary/default heap stress. Child jobs serially gate full restored prior proof; no fabricated world or previous pair scores.",
+  "genuine39Accepted": true,
+  "normalBatch": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal",
+  "audioQueue": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/audio",
+  "heapBatch": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/heap",
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/queue.json",
+  "previousGenuine39Accepted": true,
+  "normalPassed": false,
+  "audioAccepted": false,
+  "bothHeapsAccepted": false
+}
