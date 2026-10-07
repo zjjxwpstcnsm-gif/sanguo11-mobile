@@ -1,0 +1,143 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk": "332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23"
+  },
+  "normalPassed": true,
+  "coldProcess": {
+    "beforePid": "15542",
+    "afterPid": "9815",
+    "beforeProcessEvidence": {
+      "pid": "15542",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "9815",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "8bc3f8ee18482d9df12c7b509e74ddf1df675a4fa8eaa6853e777a4ea9eee1e2",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 80451,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 9,
+    "finalIndexSha256": "c2e930afbd0b0f71dd2cd83f7c20af3295646951f59a05db3d5f638f45b89e65",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 80452,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "rawOriginalVideoParts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part01.mp4",
+      "sha256": "6b396b92c28a990e48953443694431d06a267531a84338b4cda6561c01c581f1",
+      "bytes": 20905947,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part02.mp4",
+      "sha256": "db0d08d7eef2f8ce7718cb1086ca8f293d1698c98241477c069e0001876a1ef4",
+      "bytes": 21839687,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part03.mp4",
+      "sha256": "871e4796dd30cb3c4a1ab4ff19a1112f2c2b186399f5032d99a28fcfe7f62ddd",
+      "bytes": 33414322,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part04.mp4",
+      "sha256": "830123708f0dfd706c22d7cc5cbef743b4a71afd34cdcee5ecad5cc1725332f4",
+      "bytes": 28671054,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part05.mp4",
+      "sha256": "dbc442862fbc0193b6cfae845d5fc798ea85d527f284f66a4b1db060acb2c756",
+      "bytes": 29186298,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part06.mp4",
+      "sha256": "0c420f5a87443e10fcbfeed57f807511dcce06ff0824ff776ac411436b7a5062",
+      "bytes": 30303322,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part07.mp4",
+      "sha256": "7435938c4ddf9cedacf8a122e12f4b96e686275500fec9b757eb17af453ee55d",
+      "bytes": 30652586,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part08.mp4",
+      "sha256": "033e19de7bfa6d75a3f3725ddeff0e4e8eb66df68047746bd0cc353c3e509683",
+      "bytes": 26546957,
+      "hostDevicePreAndPostPullShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145/video/part09.mp4",
+      "sha256": "ea5fea8bc187aee88867b06e4caadecfdbf223053d9b1235cc20b591b24fc9c6",
+      "bytes": 43942,
+      "hostDevicePreAndPostPullShaEqual": true
+    }
+  ],
+  "actualNormalSource14PreparationPassed": true,
+  "normalMilitaryFundingBuildStopRepairCompletionSaveLoadPassed": true,
+  "preparationFailure143ResolvedForThisPair": true,
+  "rawTurnProfiles": [
+    "10-07 20:53:49.024 15542 15542 I Turn52  : TURN_END totalMs=164064 activeMs=163766 computeMs=162092 saveMs=271 factions=47",
+    "10-07 20:56:42.976 15542 15542 I Turn52  : TURN_END totalMs=121039 activeMs=120880 computeMs=119063 saveMs=292 factions=47",
+    "10-07 20:59:09.108 15542 15542 I Turn52  : TURN_END totalMs=140737 activeMs=140528 computeMs=138436 saveMs=431 factions=47",
+    "10-07 21:03:40.210 15542 15542 I Turn52  : TURN_END totalMs=125369 activeMs=125048 computeMs=123040 saveMs=426 factions=47",
+    "10-07 21:06:24.166 15542 15542 I Turn52  : TURN_END totalMs=97359 activeMs=97068 computeMs=94867 saveMs=458 factions=47",
+    "10-07 21:08:10.036 15542 15542 I Turn52  : TURN_END totalMs=100247 activeMs=99940 computeMs=97478 saveMs=536 factions=47",
+    "10-07 21:09:58.911 15542 15542 I Turn52  : TURN_END totalMs=103190 activeMs=102800 computeMs=100355 saveMs=570 factions=47"
+  ],
+  "foreground120sStableAccepted": false,
+  "javaAllocatorCsvAvailable": false,
+  "recognizedExactPidPssSamples": 570,
+  "peakMeminfoPssKiBIndependent": 520031,
+  "hostExport148AndBuild149Overlap": true,
+  "trueBackExitAcceptedInThisCase": false,
+  "initialRosterSelectionHasInheritedHelper": true,
+  "exitBoundary": "Actual Activity.finish destruction/native release barrier, not real Back confirmation",
+  "armAccepted": false,
+  "newOverlayProduction154Accepted": false,
+  "wholeGoalComplete": false,
+  "rawFiles": {
+    "session.json": "66a44c2acbc295762685e616c01223018ba1f51aa44fddc5c35c451f40262f08",
+    "instrumentation.txt": "3f2de2d3eb4be8682a50e8719e7ef399d895ee76990433e97c18f87c6f43c1bf",
+    "cold-instrumentation.txt": "e227351c5c47701cba9c4bcfe8244fb80d2045e732bcc2b24dabe1cc205055f3",
+    "evidence/progress.txt": "f511ec6eee284570c2a3688548d35fc78f61cf52eb382e2ebe7dec8de61bb3c8",
+    "evidence/result.txt": "21f158f21b437f9db3c201cbe3f6ba9f035395ee5b68e919a662eb8cc0317466",
+    "meminfo-timeline.txt": "051d89bed7ef2f6bbe820a0455cadecff5edd5f55f39d10dc2d29f9f8668e7bc",
+    "native-workers.jsonl": "48d81b214dedfb148160a5d5f0387f37de0c96e62b755df1357d1b7de69e9697",
+    "video/video.json": "c2e930afbd0b0f71dd2cd83f7c20af3295646951f59a05db3d5f638f45b89e65"
+  }
+}

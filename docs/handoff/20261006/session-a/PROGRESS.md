@@ -379,3 +379,7 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 153 两次旧waiting/producer阶段预检均在signals前拒绝，实际军建已正常/cold/全恢复并启动旧145火helper85746；此次精确核实parent80625/sourcecase和child命令后仅SIGTERM自己的调度parent，不给child/device/native信号，让火helper独立完成恢复。首次git-add因尚无153receipt失败；编译命令已启动但源码未提交，该构建仅诊断，不作交付，新干净提交后重建。下游147/150需核terminal及无deviceactions。
 154 A Filament生产省去相机未变/无显式状态变化的原生拒绝帧重复overlay请求；每accepted帧仍invalidate，camera精确stamp一变化就invalidate，所有原setter/snapshot/replay dirty保留，诊断拒绝帧1秒刷新，WindowSurfaceRecovery.changed与原native动画/水/火/时钟/FPS不改。新增actualreport拒绝静态省略/camera计数，非规则/largeHeap/3D关闭修复；新包实装验收与窗口/手势/效果/长旬证据仍待，不能迁移旧145。
+
+156 旧145 game8e08/test332a完整军建+read-pending/job准备屏障正常通过，冷15542→9815/bothactual3Dsubmit/expectedauto8bc3f8...通过，9internal(rewrite4)/3797external(rewrite0)全SHA恢复、video/native0/9原片device前后pull与hostSHA等，finalindexc2e930af...。Source14新局异步竞态143在本pair已实测越过，其他金额/墙/阵/停止/补修/完工/存读真实通过；性能仍有前台120秒失败，归档148/build149干扰明示。本pair16文本captures374rows/74solid最低8.52197pass/300未解析/9disabled，不全UI。新154生产省绘制还未装，不借156分。实际153parent80625/14780686/15081358均终止，audio/heap无deviceactions；旧145火child85746继续其独立全恢复。
+
+155 clean提交3f80c9e2独立构建2m41s，gamea988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83/test0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e，路径out/session-a/apk-3f80c9e2-overlay-admission-default155。实际largeHeap=true/5636assets逐字节同145/168pins/6JNI逐SHA。首未提交构建2m24s保留独立APK/log/BuildConfig7c7诊断，不作为交付；本cleanBuildConfig3f80已验证。新155尚未实装/动态接受，不能借旧156/135/142成绩；旧145火child85746已实际启动，必须等自己的完整正常/cold/全数据恢复后新包安装。

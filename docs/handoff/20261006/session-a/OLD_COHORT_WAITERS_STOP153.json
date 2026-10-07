@@ -9,5 +9,11 @@
   "deviceOrNativeSignalsSent": false,
   "preflightAttempts": "Both earlier stopped before signals as military advanced from installed to cold then restored/fire scheduling",
   "reason": "Stop only own scheduling parent; existing fire helper independently finishes normal/cold/full restoration. Avoid further old media runs after new production code.",
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "ownSchedulerAndDownstreamActuallyTerminal": true,
+  "audio147AndHeap150DeviceActionsStarted": false,
+  "downstreamTerminalStages": {
+    "normal-preparation-audio147/queue.json": "stopped-retain-actual-evidence",
+    "current-heap150/batch.json": "stopped-retain-actual-evidence"
+  }
 }
