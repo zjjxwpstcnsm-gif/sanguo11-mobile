@@ -57,10 +57,10 @@ def main():
     batch=a.normal_batch.resolve();output=a.output.resolve()
     assert batch.is_relative_to(ROOT/'out/session-a') and output.is_relative_to(ROOT/'out/session-a')
     receipt=a.cohort_receipt.resolve()
-    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('FIRE_OVERRIDE_DEFAULT_BUILD90.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json')
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('FIRE_OVERRIDE_DEFAULT_BUILD90.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json')
     build=json.loads(receipt.read_text())
     assert build['buildSuccessful'] and build['gameLargeHeap'] is True
-    current124=receipt.name=='NORMAL_VIEW_OPTION_TEST_BUILD124.json'
+    current124=receipt.name!='FIRE_OVERRIDE_DEFAULT_BUILD90.json'
     if not current124:assert build['sourceRevision']=='fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77'
     apks={r['path']:r['sha256'] for r in build['apks']}
     assert all(sha(pathlib.Path(path))==digest for path,digest in apks.items())

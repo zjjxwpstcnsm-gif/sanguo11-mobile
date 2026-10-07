@@ -35,12 +35,13 @@ def main():
     initial=p.add_mutually_exclusive_group(required=True)
     initial.add_argument('--previous-fast',type=pathlib.Path)
     initial.add_argument('--previous-military',type=pathlib.Path)
+    initial.add_argument('--previous-attack',type=pathlib.Path)
     p.add_argument('--cohort-receipt',type=pathlib.Path,default=HELPER.with_name('PICKER_RELEASE_BUILD116.json'))
     p.add_argument('--output',type=pathlib.Path,required=True)
-    a=p.parse_args();initial_case=a.previous_fast or a.previous_military;previous=initial_case.resolve();out=a.output.resolve()
+    a=p.parse_args();initial_case=a.previous_fast or a.previous_military or a.previous_attack;previous=initial_case.resolve();out=a.output.resolve()
     assert previous.is_relative_to(ROOT/'out/session-a') and out.is_relative_to(ROOT/'out/session-a') and not out.exists()
     receipt=a.cohort_receipt.resolve()
-    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json')
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json')
     b=json.loads(receipt.read_text())
     assert b['buildSuccessful'] and b['gameLargeHeap'] is True
     apks={row['path']:row['sha256'] for row in b['apks']};assert all(sha(pathlib.Path(p))==h for p,h in apks.items())
@@ -53,9 +54,9 @@ def main():
     assert live['root']==str(ROOT) and live['serial']=='emulator-5554' and live['apks']==apks
     assert live['stage'] in ('installed-verified','cold-process-running','restored-verified')
     out.mkdir(parents=True)
-    report=dict(hostPid=os.getpid(),stage='waiting-for-current-military' if a.previous_military else 'waiting-for-current116-fast16',producerPid=a.producer_pid,producerCommand=producer,backupLockOwnerPid=lock['pid'],
+    report=dict(hostPid=os.getpid(),stage='waiting-for-current-attack' if a.previous_attack else 'waiting-for-current-military' if a.previous_military else 'waiting-for-current116-fast16',producerPid=a.producer_pid,producerCommand=producer,backupLockOwnerPid=lock['pid'],
         apks=apks,initialSession=str(previous),cohortReceipt=str(receipt),fastPreviewAccepted=False,remainingCallersAccepted=False,
-        normalCommandResults=[],scope='Exact independent frozen game/test pair, actual normal/cold/fullrestore then commands and all16 normal real callers. New test124 starts from its own military acceptance; prior116 fast score stays its tested pair only. No borrowed90/PCcrop/voice/ARM/final integration acceptance.',wholeGoalComplete=False)
+        normalCommandResults=[],scope='Exact independent frozen game/test pair, own normal/cold/fullrestore then all three commands and16 normal real callers. Starting military or attack is accepted only for this exact pair. Prior116/124 scores remain their tested pairs only; no PCcrop/voice/ARM/final integration claim.',wholeGoalComplete=False)
     def save():
         (out/'batch.json').write_text(json.dumps(report,indent=2)+'\n')
     save()
@@ -76,8 +77,9 @@ def main():
             assert any(r['actualPendingCancellation'] for r in rows)
             report.update(fastPreviewAccepted=True,fastSession=str(previous),stage='current116-fast16-accepted')
         else:
-            report['normalCommandResults'].append(dict(name='military-construction-repair',session=str(previous),normalColdRestorationPassed=True))
-            report.update(stage='current-military-accepted',militaryAccepted=True)
+            name='continuous-attack-capture' if a.previous_attack else 'military-construction-repair'
+            report['normalCommandResults'].append(dict(name=name,session=str(previous),normalColdRestorationPassed=True))
+            report.update(stage='current-attack-accepted' if a.previous_attack else 'current-military-accepted')
         save()
         game=next(p for p in apks if pathlib.Path(p).name=='app-debug.apk');test=next(p for p in apks if pathlib.Path(p).name=='app-debug-androidTest.apk')
         def run_case(name,runner,extra):
@@ -91,6 +93,7 @@ def main():
             ('fire-extinguish-expiry','SessionAFireFlowInstrumentation',['--pause-fire']),
             ('continuous-attack-capture','SessionAAttackTaskInstrumentation',[])]:
             if a.previous_military and name=='military-construction-repair':continue
+            if a.previous_attack and name=='continuous-attack-capture':continue
             previous=run_case(name,runner,extra)
             report['normalCommandResults'].append(dict(name=name,session=str(previous),normalColdRestorationPassed=True));save()
         previous=run_case('source11-normal-callers','SessionAMapRepairInstrumentation',['--suite','mediaAll16','--begin','11','--end','12'])
