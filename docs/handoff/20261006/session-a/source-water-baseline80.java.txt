@@ -335,41 +335,28 @@ final class SceneMesh {
      * animation. One owner chunk per quad center, independent of hex parity.
      * UV1 carries immutable source phase/period, COLOR retains source alpha. */
     private static SceneMesh sourceWater(MapSceneSnapshot.Ground g,int q,int r,SceneMesh owner){
+        List<Float> vertices=new ArrayList<>(),stream=new ArrayList<>();List<Integer> indices=new ArrayList<>();
         float originX=PcMap.ORIGIN*.25f+g.sourceOriginX,originZ=PcMap.ORIGIN*.25f+g.sourceOriginY;
         int left=Math.max(0,(int)Math.floor(owner.x-owner.radius+originX)-1),right=Math.min(255,(int)Math.ceil(owner.x+owner.radius+originX)+1);
         int top=Math.max(0,(int)Math.floor(owner.z-owner.radius+originZ)-1),bottom=Math.min(255,(int)Math.ceil(owner.z+owner.radius+originZ)+1);
-        if(left>right||top>bottom)return null;
-        // Keep original x/y admission order. A bounded packed-cell scratch
-        // avoids boxing60 floats and6 indices per admitted original quad.
-        int[] quads=new int[(right-left+1)*(bottom-top+1)];int count=0;
         for(int x=left;x<=right;x++)for(int y=top;y<=bottom;y++){
             if(g.pcMap.coarseWaterByte(x,y)==0)continue;
             float wx=x-originX,wz=y-originZ;Hex cell=g.grid.cell(wx+.5f,wz+.5f);
             if(q<0){if(g.valid(cell))continue;}
             else if(cell.q<q||cell.q>=q+16||cell.r<r||cell.r>=r+16)continue;
-            quads[count++]=(x<<8)|y;
-        }
-        if(count==0)return null;
-        float[] vertices=new float[count*28],stream=new float[count*32];int[] indices=new int[count*6];
-        for(int quad=0;quad<count;quad++){
-            int x=quads[quad]>>>8,y=quads[quad]&255;
-            float wx=x-originX,wz=y-originZ;
-            int first=quad*4,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);
+            int first=vertices.size()/7,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);
             float level=g.pcMap.coarseWaterPlane(x,y);
             for(int corner=0;corner<4;corner++){
                 int dx=corner&1,dz=corner>>1;
-                int v=(first+corner)*7,s=(first+corner)*8;
-                vertices[v]=wx+dx;vertices[v+1]=level;vertices[v+2]=wz+dz;
-                vertices[v+3]=vertices[v+4]=vertices[v+5]=1f;vertices[v+6]=(mask&(1<<corner))!=0?1f:32/255f;
-                stream[s]=dx+2f*sheet;stream[s+1]=(float)dz;stream[s+5]=1f;
-                stream[s+6]=(float)g.pcMap.coarseWaterPhase(x,y);stream[s+7]=(float)g.pcMap.coarseWaterPeriod(x,y);
+                Collections.addAll(vertices,wx+dx,level,wz+dz,1f,1f,1f,(mask&(1<<corner))!=0?1f:32/255f);
+                Collections.addAll(stream,dx+2f*sheet,(float)dz,0f,0f,0f,1f,(float)g.pcMap.coarseWaterPhase(x,y),(float)g.pcMap.coarseWaterPeriod(x,y));
             }
-            int i=quad*6;indices[i]=first;indices[i+1]=first+1;indices[i+2]=first+2;
-            indices[i+3]=first+2;indices[i+4]=first+1;indices[i+5]=first+3;
+            Collections.addAll(indices,first,first+1,first+2,first+2,first+1,first+3);
         }
+        if(indices.isEmpty())return null;
         SceneMesh result=new SceneMesh(vertices,indices,owner.x,owner.z,owner.radius+1);
         result.pcWater=true;result.chunkQ=q;result.chunkR=r;
-        result.surfaceData=stream;
+        result.surfaceData=new float[stream.size()];for(int i=0;i<stream.size();i++)result.surfaceData[i]=stream.get(i);
         return result;
     }
     /** Clip the original land triangles against their authored face water plane.

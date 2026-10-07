@@ -1,0 +1,289 @@
+{
+  "passed": true,
+  "sourceCount": 16,
+  "results": {
+    "baseline": {
+      "sourceSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+      "logSha256": "62fc308fde68ce019c908f9b9e35e7169ac0ceff7c59caab7d301d81143e85ba",
+      "rows": [
+        [
+          "0",
+          "392",
+          "212",
+          "7189512",
+          "75247944",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "1",
+          "392",
+          "212",
+          "7189512",
+          "75220552",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "2",
+          "392",
+          "212",
+          "7189512",
+          "75137848",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "3",
+          "392",
+          "212",
+          "7189512",
+          "74307496",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "4",
+          "392",
+          "212",
+          "7189512",
+          "74293840",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "5",
+          "392",
+          "212",
+          "7189512",
+          "73023040",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "6",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "7",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "8",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "9",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "10",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "11",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "12",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "13",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "14",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "15",
+          "392",
+          "212",
+          "7189512",
+          "73022968",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ]
+      ]
+    },
+    "current": {
+      "sourceSha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+      "logSha256": "287a699ef970b6bea2a73dbef0260a7b2b88a5b240ff39758e6960a1bd1fb2c2",
+      "rows": [
+        [
+          "0",
+          "392",
+          "212",
+          "7189512",
+          "10622120",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "1",
+          "392",
+          "212",
+          "7189512",
+          "9921840",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "2",
+          "392",
+          "212",
+          "7189512",
+          "9919440",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "3",
+          "392",
+          "212",
+          "7189512",
+          "9874152",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "4",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "5",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "6",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "7",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "8",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "9",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "10",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "11",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "12",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "13",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "14",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ],
+        [
+          "15",
+          "392",
+          "212",
+          "7189512",
+          "8425920",
+          "c1e33d8cf3086504b9b8705e2b1eeaeb8d58ad99a88a21c82bf1c8f5601e1fd9"
+        ]
+      ]
+    }
+  },
+  "baselineHostAllocatedBytes": 1177460400,
+  "currentHostAllocatedBytes": 141448592,
+  "exactFinalFloatBitsIndicesAttributesMetadata": true,
+  "fullSaveRngPure": true,
+  "scope": "Actual host producer allocation counter under384MiB and all16 original-source geometry regions; not Android normal flow, actual Source6 peak improvement, native/GPU or ARM acceptance",
+  "actualAndroidAccepted": false,
+  "wholeGoalComplete": false,
+  "baselineSourceFile": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/source-water-baseline80.java.txt",
+  "baselineSourceSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+  "producerBeforeSha256": "885c73a2c87f40b3ba76ab1f872c375885083b91718761baef3c11c33bb79563",
+  "producerAfterSha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+  "hostAllocationReductionFraction": 0.8798697671700891,
+  "reproducibilityReportPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-water-allocation80-repro/report.json",
+  "reproducibilityReportSha256": "dc3551364ef3eb2e9b5f1601297750fa36fbc706cf7ae9976c8d5d069fe6db2c",
+  "androidSource6TightPeakStillUnresolved": true
+}

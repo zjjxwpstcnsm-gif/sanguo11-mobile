@@ -256,7 +256,11 @@
     "docs/handoff/20261006/session-a/NORMAL_TOUCH_TEST_BUILD78.json",
     "docs/handoff/20261006/session-a/inspect_original_portrait_caller_candidates.py",
     "docs/handoff/20261006/session-a/PORTRAIT_CALLER_CANDIDATES79.json",
-    "docs/handoff/20261006/session-a/ACTUAL_NORMAL_MEDIA_PARTIAL75.json"
+    "docs/handoff/20261006/session-a/ACTUAL_NORMAL_MEDIA_PARTIAL75.json",
+    "docs/handoff/20261006/session-a/SourceWaterAllocationProbe.java",
+    "docs/handoff/20261006/session-a/run_source_water_allocation.py",
+    "docs/handoff/20261006/session-a/SOURCE_WATER_ALLOCATION80.json",
+    "docs/handoff/20261006/session-a/source-water-baseline80.java.txt"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
