@@ -68,7 +68,7 @@ def main():
             with (diagnostic/'driver.log').open('w') as log:
                 subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(diagnostic),
                     '--apk', ordinary_game, '--test-apk', ordinary_test,
-                    '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'factions16',
+                    '--observe-workers', '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'factions16',
                     '--begin', '0', '--end', '7', '--heap-profile', '--fresh-process-reopen'],
                     cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
             result = json.loads((diagnostic/'session.json').read_text())
@@ -101,7 +101,7 @@ def main():
             with (fixed/'driver.log').open('w') as log:
                 subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(fixed),
                     '--apk', fixed_game, '--test-apk', fixed_test,
-                    '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'factions16',
+                    '--observe-workers', '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'factions16',
                     '--begin', '0', '--end', '16', '--fresh-process-reopen'],
                     cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
             fixed_state = json.loads((fixed/'session.json').read_text())
@@ -137,7 +137,7 @@ def main():
             with (latest_source11/'driver.log').open('w') as log:
                 subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(latest_source11),
                     '--apk', latest_game, '--test-apk', latest_test,
-                    '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'mediaAll16',
+                    '--observe-workers', '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'mediaAll16',
                     '--begin', '11', '--end', '12', '--fresh-process-reopen'],
                     cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
             baseline, _ = accepted(latest_source11, 11)
@@ -156,7 +156,7 @@ def main():
             subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(fast),
                 '--apk', str(game), '--test-apk', str(fast_test),
                 *([] if different_cohort else ['--reuse-installed']),
-                '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'fastPreview16',
+                '--observe-workers', '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'fastPreview16',
                 '--begin', '0', '--end', '16', '--fresh-process-reopen'], cwd=ROOT,
                 stdout=log, stderr=subprocess.STDOUT, check=True)
         state = json.loads((fast/'session.json').read_text())
@@ -218,7 +218,7 @@ def main():
             with (command/'driver.log').open('w') as log:
                 subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(command),
                     '--apk', str(game), '--test-apk', str(fast_test), '--reuse-installed',
-                    '--runner', runner, '--fresh-process-reopen', *extra],
+                    '--observe-workers', '--runner', runner, '--fresh-process-reopen', *extra],
                     cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
             command_state = json.loads((command/'session.json').read_text())
             command_restore = command_state.get('restoration', {})

@@ -1,0 +1,15 @@
+{
+  "actualReadOnlyProbePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-voice74/native-worker-observer91-probe.jsonl",
+  "probeSha256": "79a0ab3b5d4fdcba8054c5afa5695dae93f88d63fc71f2d49d5b73effc90dcfe",
+  "samples": 3,
+  "childSamples": 3,
+  "actualProbeApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug.apk": "2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fe413552-voice-diagnostic-test74/app-debug-androidTest.apk": "1a8503198e679659bc42ac81a76942e08e13d09c2eeca8200f565c03c66ea972"
+  },
+  "actualExclusiveOwnerChecked": true,
+  "partialReceiptJsonRetriesInPlace": true,
+  "latestNormalInstallLifecycleAccepted": false,
+  "scope": "Short actual read-only new observer probe against still-running old2cd/1a850 cohort. Future helper starts after exact install verification and joins read-only host observer after full restore. Probe is not new90 memory/normal acceptance, native allocator bytes, GPU, ARM or an unperturbed peak.",
+  "wholeGoalComplete": false
+}

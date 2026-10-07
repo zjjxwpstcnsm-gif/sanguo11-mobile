@@ -94,7 +94,7 @@ def main():
                 result = subprocess.run([sys.executable, str(HELPER), 'install-test',
                     '--output', str(target), '--apk', str(game), '--test-apk', str(test),
                     *(['--test-only-update'] if args.test_only_update_first and source == 0 else ['--reuse-installed']),
-                    '--runner', 'SessionAMapRepairInstrumentation',
+                    '--observe-workers', '--runner', 'SessionAMapRepairInstrumentation',
                     '--suite', 'mediaAll16', '--begin', str(source), '--end', str(source+1),
                     '--fresh-process-reopen'], cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
             actual, proof = accepted(target, source)

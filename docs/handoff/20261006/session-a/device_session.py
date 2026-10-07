@@ -5,7 +5,7 @@ No data clear. Backup covers the whole private and external application trees.
 Restoration removes only regular files added during this exclusive session,
 extracts the original archive, and reads every regular file SHA back.
 """
-import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading, re
+import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[4]
 ADB = '/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb'
@@ -68,6 +68,7 @@ def main():
     p.add_argument('--reuse-installed',action='store_true')
     p.add_argument('--test-only-update',action='store_true')
     p.add_argument('--heap-profile',action='store_true')
+    p.add_argument('--observe-workers',action='store_true')
     p.add_argument('--menu-music',action='store_true')
     p.add_argument('--audio-capture-rate',type=int,choices=[44100,48000])
     p.add_argument('--pause-fire',action='store_true')
@@ -162,6 +163,7 @@ def main():
                     except Exception as error: f.write(str(error).encode());f.flush()
                     stop.wait(2)
         observer=threading.Thread(target=observe);observer.start()
+        worker_observer=None;worker_log=None
         log_file=(out/'logcat.txt').open('wb')
         log_process=subprocess.Popen([ADB,'-s','emulator-5554','logcat','-v','threadtime','-T','1'],stdout=log_file,stderr=subprocess.STDOUT)
         try:
@@ -184,6 +186,14 @@ def main():
             registered=run('shell','pm','list','instrumentation').decode();(out/'instrumentation-registered.txt').write_text(registered);expected_component='instrumentation:'+PACKAGE+'.test/game.sanguo.mobile.'+a.runner+' (target='+PACKAGE+')';r['actualRunnerRegistered']=expected_component in registered.splitlines();report_path.write_text(json.dumps(r,indent=2));
             if not r['actualRunnerRegistered']:raise ValueError('Actual requested instrumentation component is not registered for target package')
             r['stage']='installed-verified'; report_path.write_text(json.dumps(r,indent=2))
+            if a.observe_workers:
+                worker_log=(out/'native-workers-driver.log').open('wb')
+                worker_observer=subprocess.Popen([sys.executable,str(pathlib.Path(__file__).with_name('observe_worker_memory.py')),
+                    '--session',str(report_path),'--output',str(out/'native-workers.jsonl'),'--max-seconds','14400'],
+                    stdout=worker_log,stderr=subprocess.STDOUT)
+                r['workerObservation']={'hostPid':worker_observer.pid,'path':str(out/'native-workers.jsonl'),
+                    'scope':'Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance'}
+                report_path.write_text(json.dumps(r,indent=2))
             if a.audio_capture_rate:
                 for capture_rate in [44100,48000]:
                     trial=capture_support.start(out,r,capture_rate,run_id+'_init'+str(capture_rate),3)
@@ -253,7 +263,20 @@ def main():
                 try:capture_support.stop_and_restore(out,r)
                 except Exception as error:capture_restore_error=error;r['audioCaptureRestoreError']=str(error)
             stop.set();observer.join(40);log_process.terminate();log_process.wait(30);log_file.close()
-            report_path.write_text(json.dumps(r,indent=2)); restore(out,r)
+            report_path.write_text(json.dumps(r,indent=2))
+            try:restore(out,r)
+            finally:
+                if worker_observer is not None:
+                    # Stop only our read-only host observer if restoration itself
+                    # fails. The device ownership lock and failure remain intact.
+                    if r['stage']!='restored-verified' and worker_observer.poll() is None:
+                        worker_observer.terminate()
+                    try:worker_observer.wait(timeout=40)
+                    except subprocess.TimeoutExpired:
+                        worker_observer.terminate();worker_observer.wait(timeout=10)
+                        r['workerObservation']['hostObserverStoppedAfterRestoration']=True
+                    r['workerObservation']['exitCode']=worker_observer.returncode
+                    worker_log.close();report_path.write_text(json.dumps(r,indent=2))
             if capture_restore_error is not None:
                 LOCK.mkdir();(LOCK/'owner.json').write_text(json.dumps({'root':str(ROOT),'output':str(out),'pid':os.getpid(),'purpose':'A optional capture/motion state restore incomplete; main full SHA restored'}))
                 raise capture_restore_error
