@@ -22,8 +22,8 @@ import java.util.function.Predicate;
 public final class SessionAMapRepairInstrumentation extends Instrumentation {
     private MainActivity activity; private File output; private int checks;
     private StringBuilder log=new StringBuilder(), memory=new StringBuilder("phase,javaUsed,javaTotal,javaLimit,nativeAllocated,totalPss,graphicsPss\n");
-    private String run,expectedStartupSha; private int begin,end,portraitNative=-1,coldPortraitSource=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers;
-    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));coldPortraitSource=Integer.parseInt(args.getString("coldPortraitSource","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
+    private String run,expectedStartupSha; private int begin,end,portraitNative=-1,coldPortraitSource=-1; private boolean heapProfile,heapDumped,portraitPixels,allFactionPreviews,allPortraitCallers,fastPreviewCancellation;
+    @Override public void onCreate(Bundle args){super.onCreate(args);expectedStartupSha=args.getString("expectedStartupSha","");if(!expectedStartupSha.isEmpty()&&!expectedStartupSha.matches("[0-9a-f]{64}"))throw new IllegalArgumentException("Invalid expected save SHA");fastPreviewCancellation="fastPreview16".equals(args.getString("suite",""));allFactionPreviews="factions16".equals(args.getString("suite",""));allPortraitCallers="mediaAll16".equals(args.getString("suite",""));portraitPixels="media16".equals(args.getString("suite",""))||allPortraitCallers;heapProfile="true".equals(args.getString("heapProfile","false"));run=args.getString("run","session_a_map");begin=Integer.parseInt(args.getString("begin","0"));end=Integer.parseInt(args.getString("end","16"));portraitNative=Integer.parseInt(args.getString("portraitNative","-1"));coldPortraitSource=Integer.parseInt(args.getString("coldPortraitSource","-1"));if(!run.matches("[A-Za-z0-9_-]+"))throw new IllegalArgumentException();start();}
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);if(a instanceof MainActivity)activity=(MainActivity)a;}
     private void check(boolean condition,String message){checks++;log.append(condition?"PASS ":"FAIL ").append(message).append('\n');if(!condition)throw new AssertionError(message);}
     private void ui(Runnable work){Throwable[] error={null};runOnMainSync(()->{try{work.run();}catch(Throwable e){error[0]=e;}});if(error[0]!=null)throw new AssertionError(error[0]);}
@@ -222,10 +222,58 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         ui(()->table.search.setText(""));check(rows.length()==ids.size()*2,"every requested original normal roster/detail caller proven "+source);
     }
 
+    /** Real menu cancellation before READY; no constructed scene or direct lifecycle call. */
+    private void fastCancelPreviews(List<PcScenarioCatalog.Source> sources)throws Exception {
+        byte[] before=capture();StateToken prior=token();int[] baseline={0};
+        MapHost main=host(false);ui(()->{try{baseline[0]=(Integer)field(main,"activeNativeHosts");}catch(Exception error){throw new IllegalStateException(error);}});
+        org.json.JSONArray rows=new org.json.JSONArray();int pendingCancellations=0;
+        for(int source=begin;source<end;source++)for(int cycle=0;cycle<2;cycle++){
+            nav("菜单");text("新游戏 / 选择势力");
+            tap(desc("选择PC来源剧本 "+sources.get(source).identity.path));
+            MapHost preview=host(true);FilamentMapView[] renderer={null};int[] pending={0},assets={0};boolean[] verified={false};long[] generation={0};
+            ui(()->{try{
+                renderer[0]=(FilamentMapView)field(preview,"spatial");
+                check(renderer[0]!=null&&!(Boolean)field(renderer[0],"released"),"fast preview initialized original3D, not recovery");
+                pending[0]=(Integer)field(renderer[0],"pending");
+                assets[0]=((SceneAssetQueue)field(renderer[0],"assetWork")).pending();
+                verified[0]=(Boolean)field(renderer[0],"outputVerified");generation[0]=(Long)field(renderer[0],"generation");
+                check((Integer)field(preview,"activeNativeHosts")<=baseline[0]+1,"fast source adds at most one owned native host");
+            }catch(Exception error){throw new IllegalStateException(error);}});
+            boolean interrupted=pending[0]>0||assets[0]>0;if(interrupted)pendingCancellations++;
+            sample("fast-preview-"+source+"-"+cycle+"-before-cancel");long cancelled=SystemClock.uptimeMillis();
+            // Touch the actual picker Return while CPU preparation may still run.
+            text("返回");retired(preview);text("取消");unchanged(before,prior,"fast real source cancellation "+source+"/"+cycle);
+            boolean[] closed={false};long deadline=SystemClock.uptimeMillis()+30000;
+            while(SystemClock.uptimeMillis()<deadline){ui(()->{try{
+                SceneWorkQueue<?> meshes=(SceneWorkQueue<?>)field(renderer[0],"meshWork");SceneAssetQueue decoded=(SceneAssetQueue)field(renderer[0],"assetWork");
+                closed[0]=(Boolean)field(renderer[0],"released")&&field(renderer[0],"engine")==null
+                    &&field(renderer[0],"snapshot")==null&&((List<?>)field(renderer[0],"chunks")).isEmpty()
+                    &&((List<?>)field(renderer[0],"woods")).isEmpty()&&(Integer)field(renderer[0],"pending")==0
+                    &&(Long)field(renderer[0],"generation")>generation[0]
+                    &&(Boolean)field(meshes,"closed")&&meshes.pending()==0&&meshes.waiting()==0
+                    &&((java.util.concurrent.ThreadPoolExecutor)field(meshes,"executor")).isTerminated()
+                    &&(Boolean)field(decoded,"closed")&&decoded.pending()==0&&decoded.bytes()==0
+                    &&((java.util.concurrent.ThreadPoolExecutor)field(decoded,"executor")).isTerminated()
+                    &&(Integer)field(preview,"activeNativeHosts")==baseline[0];
+            }catch(Exception error){throw new IllegalStateException(error);}});if(closed[0])break;SystemClock.sleep(50);}
+            check(closed[0],"fast cancelled renderer releases CPU/GPU owners and both workers terminate "+source+"/"+cycle);
+            sample("fast-preview-"+source+"-"+cycle+"-closed");
+            rows.put(new org.json.JSONObject().put("sourceIndex",source).put("cycle",cycle).put("pendingAtObservation",pending[0])
+                .put("assetsAtObservation",assets[0]).put("outputVerifiedBeforeCancel",verified[0]).put("actualPendingCancellation",interrupted)
+                .put("cancelToWorkersClosedMs",SystemClock.uptimeMillis()-cancelled).put("mainNativeHostBaseline",baseline[0])
+                .put("completeSaveRngStateTokenPure",true).put("closedWorkersAndOwners",closed[0]));
+            Files.write(new File(output,"fast-preview-cancellation.json").toPath(),new org.json.JSONObject()
+                .put("scope","Actual normal menu/Return/cancel before waiting READY; subsequent same-source/new-source retries and normal newgame below. No invented scene or forced GC.")
+                .put("rows",rows).put("requestedSources",end-begin).put("actualPendingCancellationCount",pendingCancellations)
+                .put("complete",source==end-1&&cycle==1).put("normalMatrixAndColdAndRestoreAccepted",false).toString(2).getBytes("UTF-8"));
+        }
+        check(rows.length()==2*(end-begin)&&pendingCancellations>0,"actual requested rapid cancellations include observed unfinished CPU work");
+    }
+
     private void retired(MapHost host)throws Exception{long began=SystemClock.uptimeMillis(),deadline=began+12000;boolean[] done={false};String[] state={null};while(SystemClock.uptimeMillis()<deadline){ui(()->{try{done[0]=(Boolean)field(host,"released")&&field(host,"spatial")==null&&field(host,"world")==null&&field(host,"ground")==null;state[0]="released="+field(host,"released")+" engineClosed="+(field(host,"spatial")==null)+" worldClosed="+(field(host,"world")==null)+" groundClosed="+(field(host,"ground")==null);}catch(Exception e){throw new IllegalStateException(e);}});if(done[0])break;SystemClock.sleep(50);}check(done[0],"dismissed preview releases engine, detachedWorld and ground in "+(SystemClock.uptimeMillis()-began)+"ms "+state[0]);}
     @Override public void onStart(){Bundle result=new Bundle();try{
         output=new File(getTargetContext().getExternalFilesDir("session-a-map"),run);check(output.mkdirs(),"fresh evidence directory");ActivityManager manager=(ActivityManager)getTargetContext().getSystemService(android.content.Context.ACTIVITY_SERVICE);ActivityManager.MemoryInfo budget=new ActivityManager.MemoryInfo();manager.getMemoryInfo(budget);Files.write(new File(output,"heap-budget.txt").toPath(),("normalMiB="+manager.getMemoryClass()+" largeMiB="+manager.getLargeMemoryClass()+" actualBytes="+Runtime.getRuntime().maxMemory()+" deviceRamBytes="+budget.totalMem+" largeHeap="+((getTargetContext().getApplicationInfo().flags&android.content.pm.ApplicationInfo.FLAG_LARGE_HEAP)!=0)+"\n").getBytes("UTF-8"));activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));nav("地图");ready(host(false));sample("startup");if(!expectedStartupSha.isEmpty()){StringBuilder hash=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(capture()))hash.append(String.format(java.util.Locale.ROOT,"%02x",b&255));check(expectedStartupSha.equals(hash.toString()),"fresh process loads exact previously saved complete Save/RNG SHA "+expectedStartupSha);}
-        List<PcScenarioCatalog.Source> sources=PcScenarioCatalog.all();check(sources.size()==16,"all16 installed sources");
+        List<PcScenarioCatalog.Source> sources=PcScenarioCatalog.all();check(sources.size()==16,"all16 installed sources");if(fastPreviewCancellation)fastCancelPreviews(sources);
         for(int index=begin;index<end;index++){
             byte[] before=capture();StateToken prior=token();nav("菜单");text("新游戏 / 选择势力");PcScenarioCatalog.Source source=sources.get(index);tap(desc("选择PC来源剧本 "+source.identity.path));MapHost preview=host(true);ready(preview);unchanged(before,prior,"source preview "+index);
             if(index==begin||allFactionPreviews){text("返回");retired(preview);text("取消");unchanged(before,prior,"actual preview and source cancel");nav("菜单");text("新游戏 / 选择势力");tap(desc("选择PC来源剧本 "+source.identity.path));preview=host(true);ready(preview);unchanged(before,prior,"cancel/retry");}

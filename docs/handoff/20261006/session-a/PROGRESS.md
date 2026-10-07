@@ -174,3 +174,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 完整当前源码检查点3482导出并回读逐SHA成功：11087文件902618495B，archive652755451B/SHA9693be179b7171cd97f9cb0746f30f890986e3ade72a88ed36d499d6bafa7e6c，原4/新增2JNI精确。61实时160/670；只读取回9张正常截图及文字关联18文件逐SHA同等，110行27已知实色对比度无透明/低对比，83背景未知，选中5/禁用1。实际查看袁熙未登场详情文字和原头像可见，不作全部像素裁切/年龄/全屏或完整源通过。更新矩阵旧53live/61preparing过期描述，保留全部历史失败与当前未完成边界。完整源/main/B完成HEAD和旧目录HEAD只读核实仍0e7/EF/aa9/523；ADB仍仅x86模拟器。
 
 61当前原始9段已完成native MP4录像独立冻结manifest并全部解码12323帧：frameindex连续、输入PTS严格增加、实际1/90000时基，每段host/deviceSHA同等；未重定时或固定FPS，不判PC像素/原时序/ARM，正常670流程仍未结束。只读当前58条内存CSV阶段快照Java独立最大243442248B/512MiB（zoom）、native独立202080912B、PSS独立414852KiB，Java采样最小余量293428664B；graphics0记未知，不合峰值或当最终内存预算。完整原备份仍由78010正常driver保护，观察和解码不改应用规则/数据/输入。
+
+新增A既有SessionAMapRepairInstrumentation可选fastPreview16分支：真实菜单每来源两次不等待READY即返回/取消，直接观察未完成mesh/asset任务、保持完整Save/RNG/token、检查原native3D而非恢复页、host数恢复、CPU数组和engine释放、epoch前移及两个executor实际终止，再走已有正常16新局/缩放/存读/Home/冷流程。未构造snapshot/直接release/规则命令、未强制GC；只有实际至少观察一次pending取消才可接受，不借静态源码当生命周期证明。此分支尚未构建/安装/运行，不影响61当前已安装2ee985及完整670验收。
