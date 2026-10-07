@@ -5,7 +5,8 @@ Video encoder runs in a separate process. Memory samples are recorded independen
 import argparse,hashlib,json,pathlib,re,shlex,subprocess,time
 ADB='/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb'
 ROOT=pathlib.Path(__file__).resolve().parents[4]
-p=argparse.ArgumentParser();p.add_argument('--session',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--session',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,required=True);p.add_argument('--max-parts',type=int,default=24);a=p.parse_args()
+if not 1<=a.max_parts<=240:raise ValueError('Raw recording part limit must be1..240')
 session=a.session.resolve();own=json.loads(pathlib.Path('/tmp/sanguo11-emulator-5554-session-a.lock/owner.json').read_text())
 assert own['root']==str(ROOT) and own['output']==str(session.parent)
 name=session.parent.name.replace('-','_');assert re.fullmatch('[a-zA-Z0-9_]+',name)
@@ -14,7 +15,7 @@ def shell(cmd):return adb('shell',cmd,text=True).strip()
 def state():return json.loads(session.read_text())['stage']
 a.output.mkdir(parents=True,exist_ok=False);device='/data/local/tmp/session_a_video_'+name;shell('mkdir '+shlex.quote(device));report={'scope':'actual exclusive normal UI recording; separate encoder process, no app data/config changes; not ARM/PC pixel oracle','session':str(session),'parts':[]}
 with (a.output/'recording.jsonl').open('x') as log:
- for index in range(24):
+ for index in range(a.max_parts):
   while state() in ['backup','backup-verified','installing']:
    time.sleep(2)
   if state()=='restored-verified':break

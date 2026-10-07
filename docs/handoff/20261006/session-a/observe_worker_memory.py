@@ -4,10 +4,11 @@ import argparse,json,pathlib,subprocess,time,re
 ADB='/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb'
 def source_child(command):return any(name in command for name in ['libpc_effect_worker.so','libpc_effect_fire_worker.so'])
 def shell(*args):return subprocess.check_output([ADB,'-s','emulator-5554','shell',*args],timeout=20,text=True)
-p=argparse.ArgumentParser();p.add_argument('--session',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--session',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,required=True);p.add_argument('--max-seconds',type=int,default=4500);a=p.parse_args()
+if not 1<=a.max_seconds<=43200:raise ValueError('Observation duration must be1..43200 seconds')
 a.output.parent.mkdir(parents=True,exist_ok=True);started=time.monotonic()
 with a.output.open('x') as out:
- while time.monotonic()-started<4500:
+ while time.monotonic()-started<a.max_seconds:
   state=json.loads(a.session.read_text())
   if state['stage']=='restored-verified':break
   record={'time':time.time(),'stage':state['stage'],'sourceChildren':[],'scope':'per-child smaps_rollup only, not Java/native allocator bytes or GPU VRAM; independent samples'}
