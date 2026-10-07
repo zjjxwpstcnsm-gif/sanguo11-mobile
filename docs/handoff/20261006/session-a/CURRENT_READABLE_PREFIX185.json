@@ -1,0 +1,114 @@
+{
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-04e3994b-b-legacy39-combined-test168/app-debug-androidTest.apk": "36f7e8e5a4e8b1d638f5cd9c149945c55dcf800beb96f7abb404856ebb4158b4"
+  },
+  "rawFiles": [
+    {
+      "remote": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/04a-stopped-shell.png",
+      "host": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/live-readable-prefix185/04a-stopped-shell.png",
+      "sha256": "c093e241afc1d3f501531f2dbe2e5b6391e6c87e669b17e5c5fab294002ab623",
+      "deviceShaBefore": "c093e241afc1d3f501531f2dbe2e5b6391e6c87e669b17e5c5fab294002ab623",
+      "deviceShaAfter": "c093e241afc1d3f501531f2dbe2e5b6391e6c87e669b17e5c5fab294002ab623"
+    },
+    {
+      "remote": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/04a-stopped-shell-actual-text.json",
+      "host": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/live-readable-prefix185/04a-stopped-shell-actual-text.json",
+      "sha256": "d5d98429f41b9c0dd8205b63b724fbf26dded99b41d3e852e16b840d7da7c8d3",
+      "deviceShaBefore": "d5d98429f41b9c0dd8205b63b724fbf26dded99b41d3e852e16b840d7da7c8d3",
+      "deviceShaAfter": "d5d98429f41b9c0dd8205b63b724fbf26dded99b41d3e852e16b840d7da7c8d3"
+    },
+    {
+      "remote": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/turn-stopped-shell-no-progress-foreground120s.png",
+      "host": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/live-readable-prefix185/turn-stopped-shell-no-progress-foreground120s.png",
+      "sha256": "636aee1d5dbd2f2b76d49335258fc6c6bb70d68483e52d7f26a1e544386385e4",
+      "deviceShaBefore": "636aee1d5dbd2f2b76d49335258fc6c6bb70d68483e52d7f26a1e544386385e4",
+      "deviceShaAfter": "636aee1d5dbd2f2b76d49335258fc6c6bb70d68483e52d7f26a1e544386385e4"
+    },
+    {
+      "remote": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/turn-stopped-shell-no-progress-foreground120s-actual-text.json",
+      "host": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/live-readable-prefix185/turn-stopped-shell-no-progress-foreground120s-actual-text.json",
+      "sha256": "ddcac909a4c0271e914d925080e70122091ad052aef8bacfa7fc26d19f07c833",
+      "deviceShaBefore": "ddcac909a4c0271e914d925080e70122091ad052aef8bacfa7fc26d19f07c833",
+      "deviceShaAfter": "ddcac909a4c0271e914d925080e70122091ad052aef8bacfa7fc26d19f07c833"
+    }
+  ],
+  "manifestPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/live-readable-prefix185/manifest.json",
+  "manifestSha256": "1aa7eb0ac5f70beca8a16beb37adb395dce36008f0ef75947c735a7fd61fc615",
+  "visualInspection": [
+    "04a-stopped-shell normal stop result/cost-not-refunded/state labels/buttons visible",
+    "foreground120s Source14 city/unit/faction map labels retained during real compressed turn; UI82percent and remaining-zero visible"
+  ],
+  "partialPixelCandidates": [
+    {
+      "label": "attack",
+      "region": [
+        260,
+        1105,
+        323,
+        1150
+      ],
+      "dominantInkRGB": [
+        134,
+        145,
+        154
+      ],
+      "inkPixelCount": 258,
+      "mostCommonBackgroundRGB": [
+        27,
+        42,
+        52
+      ],
+      "backgroundPixelCount": 1304,
+      "candidateContrast": 4.575143884506787
+    },
+    {
+      "label": "tactics",
+      "region": [
+        427,
+        1105,
+        489,
+        1150
+      ],
+      "dominantInkRGB": [
+        134,
+        145,
+        154
+      ],
+      "inkPixelCount": 220,
+      "mostCommonBackgroundRGB": [
+        27,
+        42,
+        52
+      ],
+      "backgroundPixelCount": 1261,
+      "candidateContrast": 4.575143884506787
+    },
+    {
+      "label": "plots",
+      "region": [
+        593,
+        1105,
+        655,
+        1150
+      ],
+      "dominantInkRGB": [
+        134,
+        145,
+        154
+      ],
+      "inkPixelCount": 255,
+      "mostCommonBackgroundRGB": [
+        27,
+        42,
+        52
+      ],
+      "backgroundPixelCount": 1179,
+      "candidateContrast": 4.575143884506787
+    }
+  ],
+  "actualWidgetViewAlpha": 0.550000011920929,
+  "actualButtonsEnabled": true,
+  "scope": "Live true normal screenshots from exact165/168 cohort; four raw files device pre/post and host SHA equal. Manually bounded solid ink/background candidates in3 dimmed still-enabled controls, not all glyph AA pixels/canvas labels/full screen or global UI/ARM/PC pixel parity. No command/model/save mutation during readonly pull. Full normal/cold/restore still pending.",
+  "wholeGoalComplete": false
+}

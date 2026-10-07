@@ -430,3 +430,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 180 新普通堆同修复/注册原39测试独立build2m41s成功，源f58aff64，gameb9747addade121653a21043646acfc71b266941858d11c518492e4bdd262c384/test62546caac33eccbedf61900c682f06f3ca38114ef1cda2fc9dd58e30a7c0c0fe，准确路径apk-f58aff64-registered-ordinary180。二进制largeHeap=false、原39runner注册/fixtureSHA5d002d...精确，5636assets逐字节同default165、168pins/6JNI精确。尚未安装，不借旧81/134/149普通成绩，宿主build干扰169说明保留。
 
 182 实际完整后继等待器2601已启动，仅等live原39队列1234接受并每原SHA完整恢复后，执行同176三命令/16caller/.995音频/新180普通与176默认fast32/all244/冷完整restore；当前无deviceactions。不是计划即通过，不用旧168军建成绩代替176normal。UNKNOWN已更新真正当前source/export/设备/未知，旧文本保留为历史。
+
+185 新165/168军建实际UI停工/foreground120s两原PNG及各actual-text四文件只读pull，device前后SHA=host全部相同，已视觉查看结果/费用不退/部队/城市/方向/本旬行动与命令。攻击/战法/计略为enabledtrue+viewAlpha.55可点击原因，实际局部solidinkRGB134145154/background274252候选对比4.57514；未误报为全透明/不合格，不新增未经证实生产修复。局部像素候选非所有AA/Canvas/全UI/ARM或原PC像素parity，正常/cold/最终restore尚待。183CPU观察器2908真实运行，当前partial收集，最终冻结需完整restore/observer实际收尾，不把 live样本作根因。
