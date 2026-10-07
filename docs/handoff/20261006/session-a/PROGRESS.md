@@ -489,3 +489,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 221–223：当前176 Source2全部670人物/1340真实名册详情、完整bitmap绑定及Save/allRNG/Token纯通过；normal25157/cold94、26047→26690/both3D、原9/3797每SHA完全恢复、28原片/video与native0，旧66467/66484/66485真正终止。101采样Java峰274033976/512MiB，GPU/预算仍未闭合；widget36图310行，41实色min8.8497/269未解析/1disabled。既有可复现审计器冻结221不改测试或游戏；Source3/helper84300/video84330/native84331实际运行，矩阵完成[11,0,1,2]，全16/音频/双堆/ARM与最终B组合仍未完成。
+
+
+2026-10-08 后继224/225/227：对B不可变candidate60依赖做独立A Main/picker选项适配，196overlay/612未变B依赖及三冻结JAR/两页逐SHA核验，全部app Java/AAPT资源编译exit0，补丁独立应用逐字节读回。真实选项tag/步骤见224，显式draft/来源约束/fromMenu/一次seed/四参工厂/真实Token或首次无session目录绑定；没有修改当前规范生产或安装新组合。源225完整11330文件653951588B归档逐SHA回读，SHA05a6c153…，含224及截至223证据/原4新2JNI。227最终A-only37路径补齐B原始Main与其旧主题编译子集两种前态，34候选前态从固定tar验证，合成清单与已编译stage5810app文件同SHA；226历史遗漏原始主题前态已明确保留和替代。完成提交925748c6/7299267d/01b725ed，只own docs/tools，main与规范A生产不变。当前Source3真实480/670人物仅partial，normal/audio/heap串行producer与记录器继续；未算来源完成，音频/双堆未执行，整个目标及ARM仍待。

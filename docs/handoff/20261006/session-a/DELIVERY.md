@@ -8,7 +8,9 @@
 
 同生产修复普通384回归包已独立构建、尚未安装：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-f58aff64-registered-ordinary180/app-debug.apk`，SHA `b9747addade121653a21043646acfc71b266941858d11c518492e4bdd262c384`，配test SHA `62546caac33eccbedf61900c682f06f3ca38114ef1cda2fc9dd58e30a7c0c0fe`。二进制largeHeap=false、5636资产/168固定输入/六JNI精确。注册后176整正常军建/火/攻击/16来源人物、.995整首菜单曲、普通与默认fast32/all244/cold/全数据恢复由182真实队列串行，不把build/计划当接受。
 
-最新完整源码快照：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current178-complete/sanguo11-mobile-source.tar.gz`，source `37c3cd2586c219afc3a026616d527f0fd8930921`，11277文件全部逐SHA回读，653818475B，SHA `9f59bedf25523217e1a64ecd5e6d8d163182fc79607859c4cb710d7f99fb6b4c`。含全部继承/未跟踪原输入/原4及新增2JNI、164生产优化/B原39测试和注册、176构建工具；不含其后181/182调度及186/189实测回执，当前完整工作目录和Git完成提交保留后继增量，最终交付须再生成包含最终验收的完整快照。无Git缓存、Gradle/build/SDK或用户设备备份打入源码包。
+最新完整源码快照：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current225-complete/sanguo11-mobile-source.tar.gz`，source `925748c6139b66a799e59de509c47151b00d8acb`，11330文件全部逐SHA回读，653951588B，SHA `05a6c153f576089e13971e09488cff1273521c7e359b1b815d6eef5f4cbe3b7f`。含完整继承/未跟踪/原4及新增2JNI、当前165规范生产/176注册测试、182与203调度、截至223正常来源证据、224独立选项补丁/工具。未包含226/227后继台账；当前完整工作目录和Git提交保留后继。无Git数据库、Gradle/build/SDK或设备备份。225仍是当前规范生产加stage补丁，未安装新选项。
+
+新局适配已在独立stage224针对B candidate60冻结JAR及两页编译通过，196Boverlay与612未变依赖逐SHA一致；当前规范Main/picker、5554游戏/test及媒体队列不变。串行组合**使用CANDIDATE_A_CLOSURE227.json及其37路径A-only冻结包**，完整SHA/两种B精确前态/构建与真实控件步骤见227/224。226只保留历史前态核查，227补齐候选原始源与外部主题编译子集差异；合成候选源+227与已编译stage全部5810app文件逐SHA一致。尚无新组合APK或Android选项/单挑成绩，不合B活动WIP，不把编译当功能闭合。
 
 仍未完成：当前176全部正常矩阵和双堆新包、地图BGM真实场景/原parent/实际speaker/voice/58及普通事件声、原普通/全屏像素裁切色彩时序与全部年龄/形态caller、全火链/全部设施控制器/128火格预算、Java/native/GPU峰值与用户354832分配栈、B其余正式规则完成增量的最终串行组合、ARM真机安装长流程。原33技巧/1取消/49之78、9工程合成身份和.995门保留。179已重新核验保护源10714/用户原目录4301、168固定输入和六JNI/Bridge/PCexe。模拟器功能局部通过不能宣布全目标完成或替代ARM。
 
