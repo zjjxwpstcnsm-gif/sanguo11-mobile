@@ -1,0 +1,40 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "revision": "6bf0d6e2c3def38827bdb0001228554401fd8bfa",
+  "branch": "codex/map-ui-media-repair",
+  "fileCount": 11229,
+  "bytes": 905046230,
+  "scope": "tracked plus every inherited SOURCE_GUARD file and original4/new2 JNI, no Git database/Gradle/build/SDK/device backups; checkpoint not final whole-goal or ARM acceptance",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current148-complete/sanguo11-mobile-source.tar.gz",
+  "archiveBytes": 653212881,
+  "archiveSha256": "a9526b9511b50c31fff43af7292032d288acc145106b93bc6bb6bc7d3b5e7c2a",
+  "verifiedEveryFileSha": 11229,
+  "original4AndNew2Jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gitDatabaseIncluded": false,
+  "deviceBackupsIncluded": false,
+  "overallGoalComplete": false,
+  "actual145RawProductionTestCoreApiRuntimeBuildConfigSourcesEqual": true,
+  "comparisonTestSourceRevision": "26ec2c7daec4c7815b5bbb9da5691e297d5af607",
+  "actual145FrozenApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk",
+      "sha256": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+      "bytes": 313477112
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk",
+      "sha256": "332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23",
+      "bytes": 2614087
+    }
+  ],
+  "allSixJniExactToActual145": true,
+  "toolsAndEvidenceThrough145Included": true,
+  "liveFollowup146Audio147ReceiptsNotInArchive": true
+}

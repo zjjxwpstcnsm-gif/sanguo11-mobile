@@ -365,3 +365,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 144 A-only awaitPreparation在原300000ms期限内先通过主线程只读观察实际UiReadTask pending/job皆null，再匹配真实焦点控件，ready.accept回调与runOnMainSync串行。没有取消任务/改dialog/直接World/增加deadline/降低exactSource断言，不编辑B。新test必须重新构建安装，139142攻击成绩仍只其旧pair，不能自动迁移新pair。
 
 145 独立test-only构建1m33s，源26ec2c7d/test332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23；game8e08整包/生产/core/API/runtime/6JNI未变。145exact录像与normal/audio whitelist只匹配冻结两包，三工具syntax实际通过。前一台账追加命令字符串语法错误在任何写入前失败，此次纠正；不影响已冻结构建或backup。143全SHA恢复后freshbackup/test-onlyinstall同Source14，139142旧成绩不迁移，普通134旧test未安装待新源重建。
+
+146/147 新145 game8e08/test332a完成fresh9/3797全备份与device整SHA/runner验证实装，helper80403/video80451/native80452实际live；后继80625仅同145正常军建/cold/完整恢复后串行火/攻击/全16人物，audio80686等全部接受后实capt .995，无旧139142或旧音频成绩迁移。
+148 complete当前6bf0d6e2新源11229文件/905046230inputB逐SHA回读，archive653212881B SHA a9526b9511b50c31fff43af7292032d288acc145106b93bc6bb6bc7d3b5e7c2a，out/session-a/source-checkpoint-current148-complete/sanguo11-mobile-source.tar.gz。完整10714guard/tracked/6JNI与145确切同、app生产/test/core/API/runtime/build raw源与145test源26ec无delta；含144准备屏障/145工具及旧失败/142攻击真实成绩，不含归档完成以后146147动态receipt。不称全部正常/ARM/最终组合接受；host归档及149build并行会干扰性能。
