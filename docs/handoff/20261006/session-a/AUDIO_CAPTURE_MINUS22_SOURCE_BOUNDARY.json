@@ -1,0 +1,90 @@
+{
+  "scope": "Read-only historical native-22 source/build/transaction boundary, not reproduction or unique root cause closure. No5582 operation, installation, old WIP import, new PCM edit or lowered gate.",
+  "historicalPins": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/manifest.json",
+      "sha256": "c55d965b77059a645c27ff99f89b16854bf17241fe66eecc534742b62968fbf8",
+      "bytes": 624
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/menu-android-mix-installed-32-r1/results.json",
+      "sha256": "72c99b45f9fb729c6338efe0235e16b2473a433cf59b4e9188bacbe938100a8c",
+      "bytes": 20717
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/menu-android-mix-installed-32-r1/android-capture/transaction.json",
+      "sha256": "777aea65abbb4d4e83e3218ed3e1fb5a1b89013607e43215f0eb2b4b05d7edc2",
+      "bytes": 898
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-capture-startup-32-r1-logcat.txt",
+      "sha256": "a5b35fa541332921b7b9fb64091ad69f0d789a14a6ada37925fa393300dc3334",
+      "bytes": 955
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-capture-native-32-r1-logcat.txt",
+      "sha256": "b1324f4f24d055f0cf47abf013ab8a060bfa64779da888406c0675de6f268c3b",
+      "bytes": 406
+    }
+  ],
+  "actualOldBuildSourceCommit": "abead229eff933ca2b6363c33f37cd00ae2132ee",
+  "oldCaptureServiceGitObjectSha256": "3262e9482c5fbbb793942e7f7de210ea9852d3ff9ea4b2ab755647fdbfcda89a",
+  "oldNativeDevice": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.fingerprint": "google/sdk_gphone_x86_64/generic_x86_64:10/QSR1.211112.011/13135432:userdebug/dev-keys"
+  },
+  "current5554Fingerprint": "google/sdk_gphone_x86_64/generic_x86_64:10/QSR1.211112.011/13135432:userdebug/dev-keys",
+  "oldInstalledApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug.apk",
+      "bytes": 308021668,
+      "sha256": "bd9d1fe96a01fab1404cfc67140192680d7e2768efac25eb38eef71cf2b5d7b2"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug-androidTest.apk",
+      "bytes": 2085259,
+      "sha256": "96d6fc53c255619e5b2414743d0c05e3e902f501e494f4360aa29208221d657a"
+    }
+  ],
+  "oldCurrentNativeConfiguration": {
+    "sampleRate": 44100,
+    "channels": 2,
+    "encoding": "PCM16",
+    "filter": "actual target UID and USAGE_GAME",
+    "bufferBytes": "max(getMinBufferSize,65536)",
+    "matchCurrentSource44100Configuration": true,
+    "configurationIdentityNotRuntimeRouteIdentity": true
+  },
+  "oldBefore": {
+    "runtimeRecordPermissionGranted": false,
+    "appOp": "No operations.\nDefault mode: allow\n",
+    "targetUid": 10146,
+    "actualSystemConsentControl": {
+      "package": "com.android.systemui",
+      "bounds": "[758,1252][978,1378]"
+    }
+  },
+  "oldFailedBeforeNormalMusicInstrumentation": true,
+  "nativeFailure": "AudioFlinger createRecord getInputForAttr -22 -> AudioRecord creation uninitialized; no normal captured mix",
+  "later44100SuccessfulInit": {
+    "run": "session_a_music_submission_appop_44_init44100",
+    "rate": 44100,
+    "frames": 126976,
+    "failure": "",
+    "wavSha256": "628116f80b0170427b1aca53bf30418e7fe0e11f3ce65c4ffed3683d42588936",
+    "actualSystemProjectionConsent": true
+  },
+  "oldErrorDifferentFrom42PermissionMinus1": true,
+  "provenUniqueCause": false,
+  "sampleRate44100AloneCauseProven": false,
+  "missingOldRuntimeEvidence": [
+    "AudioPolicy selected input/profile/mix registration at getInputForAttr failure",
+    "actual permission/AppOp decision inside that native call",
+    "MediaProjection lifetime and registered mixing identity during failure"
+  ],
+  "nextActualDiagnostic": "Future own fresh fully backed up capture should retain full AudioPolicy/AudioFlinger/native logs and route registration before/during AudioRecord creation, both raw44100/48000 initialization; do not touch B5582 or claim old cause from later device success.",
+  "wholeTrackGate": 0.995,
+  "oldFailureRetained": true,
+  "wholeGoalComplete": false
+}
