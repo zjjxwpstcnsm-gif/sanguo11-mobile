@@ -237,3 +237,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 84默认largeHeap组合源码c3680ed5独立构建成功3m，game0c344856/313476956B、test3aa92ba2/2612495B，全5636assets与82逐字节等、原4/新增2JNI逐SHA一致、production内容门PASS。包含水面primitive优化、10720 voice metadata和83设施独立work/damage/fire状态文字；未安装、不借旧包接受成绩。5554正在75旧2cd/1a850实际Source11正常人物流程，当前352/670完成704配对，尚未cold/最终恢复。后继串行controller仅完整成功与全SHA恢复后诊断旧普通堆、新81普通堆全16，随后实装84重新Source11/fast16/剩余15；82已构建未装保持独立历史。普通384未扰动峰值余14.27MiB，largeHeap已默认true且实际模拟器512MiB，但不是OOM唯一修复或ARM额度推断。
 
 84后继验收门控补军建补修、火计灭火到期/真实Home/低画质、持续攻击入城三套正常命令，每套相同冻结84两包/独立全备份复用逐SHA/实装字节验证/冷新PID/原数据恢复。主机仅py_compile，未执行新包。A normal列表触控与定位手势override已在84test；继承Activity.finish及verifySceneFacts辅助fire selectAndFocus范围明示，不伪称全部真实Back/全部纯触控。真实Back全路径由同84 map/fast套另验收；未知设施多状态原演出、ARM及voice speaker等仍开放。当前75正常352/670仍live，未重装。
+
+85全量只读守卫重新校验完成：完整继承10714路径、用户旧目录4301路径（含应缺失路径）、原4JNI、Bridge和PC exe全部逐SHA同原值；main ef413与源完整0e7及B895提交未改变。保留全部用户dirty，不接B WIP。注册86完整源码检查点，含83设施标签和84新包/正常命令串行门控，导出不包含用户设备备份或共享构建缓存。75实际正常人物已384/670，不按partial宣告完成。

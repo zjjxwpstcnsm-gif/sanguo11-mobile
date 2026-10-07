@@ -266,7 +266,9 @@
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT82.json",
     "app/src/test/java/game/sanguo/mobile/SceneFacilityStateTest.java",
     "docs/handoff/20261006/session-a/FACILITY_STATE_LABEL83.json",
-    "docs/handoff/20261006/session-a/FACILITY_DEFAULT_BUILD84.json"
+    "docs/handoff/20261006/session-a/FACILITY_DEFAULT_BUILD84.json",
+    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT85.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT86.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
