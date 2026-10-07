@@ -48,10 +48,12 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--producer-pid',type=int,required=True)
     p.add_argument('--audio-queue',type=pathlib.Path,required=True)
     p.add_argument('--normal-batch',type=pathlib.Path,required=True)
+    p.add_argument('--ordinary-receipt',default='CURRENT_NORMAL384_BUILD134.json',choices=['CURRENT_NORMAL384_BUILD134.json','NORMAL_PREPARATION_ORDINARY149.json'])
+    p.add_argument('--default-receipt',default='NORMAL_VIEW_OPTION_TEST_BUILD124.json',choices=['NORMAL_VIEW_OPTION_TEST_BUILD124.json','NORMAL_PREPARATION_BUILD145.json'])
     p.add_argument('--output',type=pathlib.Path,required=True);a=p.parse_args()
     queue=a.audio_queue.resolve();batch=a.normal_batch.resolve();out=a.output.resolve()
     assert all(x.is_relative_to(ROOT/'out/session-a') for x in (queue,batch,out)) and not out.exists()
-    ordinary,ordinary_apks=frozen('CURRENT_NORMAL384_BUILD134.json');default,default_apks=frozen('NORMAL_VIEW_OPTION_TEST_BUILD124.json')
+    ordinary,ordinary_apks=frozen(a.ordinary_receipt);default,default_apks=frozen(a.default_receipt)
     assert ordinary['gameLargeHeap'] is False and default['gameLargeHeap'] is True
     producer=command(a.producer_pid)
     assert producer and 'continue_latest_menu_audio.py' in producer and str(a.audio_queue) in producer
@@ -62,6 +64,7 @@ def main():
     out.mkdir(parents=True)
     report=dict(hostPid=os.getpid(),stage='waiting-for-current-default-normal-audio',producerPid=a.producer_pid,
         producerCommand=producer,ordinaryApks=ordinary_apks,defaultApks=default_apks,mainAtQueueStart=expected_main,
+        ordinaryReceipt=a.ordinary_receipt,defaultReceipt=a.default_receipt,
         sourceAtQueueStart=expected_local,audioAccepted=False,deviceActionsStarted=False,
         ordinaryFastAccepted=False,ordinaryAll244Accepted=False,defaultFastAccepted=False,defaultAll244Accepted=False,
         scope='Exact frozen independent ordinary and default fast32 plus all16/244, each normal/newPID/fullSHArestore. No forcedGC/ordinaryencoder, no previous81 or116 score transfer, no ARM/finalintegration claim.',wholeGoalComplete=False)

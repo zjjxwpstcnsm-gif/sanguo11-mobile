@@ -1,0 +1,27 @@
+{
+  "hostPid": 81358,
+  "stage": "waiting-for-current-default-normal-audio",
+  "producerPid": 80686,
+  "producerCommand": "/Users/paopao/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 docs/handoff/20261006/session-a/continue_latest_menu_audio.py --producer-pid 80625 --normal-batch out/session-a/normal-preparation-followup146 --cohort-receipt docs/handoff/20261006/session-a/NORMAL_PREPARATION_BUILD145.json --output out/session-a/normal-preparation-audio147",
+  "ordinaryApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-b0dfff90-current-normal384134/app-debug.apk": "d30990d749cd999d5eff440ed3d7b6e6b1325680ea0094fbaf50d2e391bd19c2",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-6bf0d6e2-preparation-normal384-test149/app-debug-androidTest.apk": "313f76f546100f8ba29731e8231b0f945cec6d15dc9d05a97500976da38db66f"
+  },
+  "defaultApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk": "332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23"
+  },
+  "mainAtQueueStart": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "ordinaryReceipt": "NORMAL_PREPARATION_ORDINARY149.json",
+  "defaultReceipt": "NORMAL_PREPARATION_BUILD145.json",
+  "sourceAtQueueStart": "baef0cab6289055507b32a19fd8e50221e196122",
+  "audioAccepted": false,
+  "deviceActionsStarted": false,
+  "ordinaryFastAccepted": false,
+  "ordinaryAll244Accepted": false,
+  "defaultFastAccepted": false,
+  "defaultAll244Accepted": false,
+  "scope": "Exact frozen independent ordinary and default fast32 plus all16/244, each normal/newPID/fullSHArestore. No forcedGC/ordinaryencoder, no previous81 or116 score transfer, no ARM/finalintegration claim.",
+  "wholeGoalComplete": false,
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/current-heap150/batch.json"
+}
