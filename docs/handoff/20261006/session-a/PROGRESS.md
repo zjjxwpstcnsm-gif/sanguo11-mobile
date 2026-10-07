@@ -152,3 +152,7 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 60确切新testSHA8fb5e13990984e280124946aa4c5abc5ec39f739d451c1e5764d45af4cf68525/2606855B，实际输入目标诊断driver72146/native40742/video9552确认live，当前阶段以session.json为准；续读这3具体句柄，不重启或覆盖下一包。全部原备份与5554 A锁保留，normal/cold/最终SHA恢复未完成不判通过。
 
 60整体FAIL并全9/3797SHA恢复：4人列表/详情完结，native289諸葛亮附着/焦点/screen47,958—383,1095正常却无ListView输入；前一native395同次hold DOWN localY68、UP−336（404px布局位移），随后短触回调而非预期longclick。现有DataTable正常IME_SEARCH已有hideSoftInput/clearFocus；原test用Back+400ms未观察IME。下一测试使用真实InputConnection键盘搜索动作、观察IME窗口消失/搜索失焦与root/viewport连续1000ms不变再落指，保留80%可见/稳定ID/全670目标。不改产品/规则/World，键盘因果要经下一直接IME观测再接受。
+
+61测试源码a9875651独立构建与完整新鲜备份已启动，游戏仍精确5a72/ff2832；原60整体失败全SHA恢复，40742/9552观察器已终端。新IME/布局观测未安装或证明根因，不得借4人、旧b819或过往单人通过。
+
+61独立test构建成功并完整新鲜备份通过后实际安装开始：测试源a9875651af...以实际冻结build.json完整SHA为准；实际新test已冻结在out/session-a/apk-a9875651-portrait-ime-test，游戏仍5a72/ff2832，仅测试正常IME完成与位置稳定观察。driver/native/video具体句柄由本轮工具续读；没有旧b819成绩移用、没有Snapshot/Rule/RNG构造或跳过人物，全670/其他15源仍需实证。
