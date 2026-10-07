@@ -231,7 +231,8 @@
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT66.json",
     "docs/handoff/20261006/session-a/continue_combined_acceptance.py",
     "docs/handoff/20261006/session-a/NORMAL384_COMBINED_BUILD68.json",
-    "docs/handoff/20261006/session-a/NORMAL_CALLER_FAILURE66.json"
+    "docs/handoff/20261006/session-a/NORMAL_CALLER_FAILURE66.json",
+    "docs/handoff/20261006/session-a/MEDIA_VIEWPORT_TEST_BUILD69.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -1,0 +1,25 @@
+{
+  "testSourceRevision": "ea4865435ee53a9c4202e6006df1b6f822beeb61",
+  "gameSourceRevision": "565195cade1d6ff86ca6fa839c10dff80acea958",
+  "buildSuccessful": true,
+  "buildLogSha256": "c3511a111d2f2512456915e1bf7d3d8b7627c7e5e358cb84de312262557fa7bb",
+  "testApk": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-ea486543-media-viewport-test69/app-debug-androidTest.apk",
+  "testApkSha256": "2711dd0cc98c3e60420978f7956e2cb27e68cf326bdf4e74a27ec6d4a5bb0ca0",
+  "testApkBytes": 2610571,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug.apk",
+      "bytes": 313473756,
+      "sha256": "4df5e29c724d04a2c39fea31d9e711c32dcf179ccacd490b6b5bbb589f321f17"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-ea486543-media-viewport-test69/app-debug-androidTest.apk",
+      "sha256": "2711dd0cc98c3e60420978f7956e2cb27e68cf326bdf4e74a27ec6d4a5bb0ca0",
+      "bytes": 2610571
+    }
+  ],
+  "actualInstalled": false,
+  "actualAccepted": false,
+  "scope": "Independently built viewport-wait and repeat normal-search test only. No new production fix; target exact existing4df5 production. Must independently full backup/install/verify all670/cold/restore.",
+  "wholeGoalComplete": false
+}
