@@ -1,0 +1,24 @@
+{
+  "actualLiveCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-military145",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk": "332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23"
+  },
+  "actualRawLogLine": "10-07 21:06:35.363 15542 15542 I Sanguo3D: snapshot=true surface=true viewport=1080x1027 session=0389df15-1e06-4532-bd03-0e2e82230e56:1:14 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=21997984 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=40 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=14 cpuChunks=36 pending=0 submitted=6540 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=40226 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=83 workerBackpressureWallMs=3936.133 frameCallbacks=40176 beginAttempts=40157 beginSkipped=33608 gpuPreparationFrames=6549 lifetimeSubmissions=6540 surfaceCopies=70 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE",
+  "values": {
+    "overlayDraws": 40226,
+    "beginAttempts": 40157,
+    "beginSkipped": 33608,
+    "gpuPreparationFrames": 6549,
+    "lifetimeSubmissions": 6540
+  },
+  "rawLogSnapshotSha256": "36d1c7683b9d8687f7590c8dfa9f10239c6c35bfb71cb334028b2787d1db9a2e",
+  "rawLogStillLive": true,
+  "productionSourcePath": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+  "sourceSha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+  "unconditionalOverlayInvalidationAfterBeginFrameFalse": true,
+  "uniqueLongTurnOrUserOomCauseProven": false,
+  "proposedScope": "Keep explicit UI changes and camera updates live; avoid identical overlay repaint only on native rejected frames. Must verify Window backing recovery and gestures/effects with fresh production APK, not reuse current145 scores.",
+  "productionFixImplemented": false,
+  "wholeGoalComplete": false
+}
