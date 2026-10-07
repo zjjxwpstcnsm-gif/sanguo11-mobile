@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "CURRENT66 FIRST ROSTER PASS THEN VIEWPORT FAILURE;ALL DATA RESTORED;69 NEW TEST BUILT NOT INSTALLED",
-      "evidence": "NORMAL_CALLER_FAILURE66 actual first635 normal roster original bitmap/source/year; no detail; IME/viewport transient observation;0 finishedpairs. MEDIA_VIEWPORT_TEST_BUILD69 independently built2711 test with wait/reconfirmation, game4df5 unchanged",
-      "next": "Current ordinary384 all244 force matrix68 then fresh69 full670/actualBack/HOME/cold/fullrestore/all16; no old61 scores borrowed"
+      "status": "CURRENT66 FAILED RESTORED;72 FRESH VOICE/VIEWPORT COMBINATION BUILT NOT INSTALLED",
+      "evidence": "VOICE_COMBINED_BUILD72 includes normal caller source/voice metadata checks and viewport wait. 66 no finishedpair/cold;69 standalone test never installed;73 conditional waits actual68 success/restore",
+      "next": "72 source11 all670/real Back/HOME/cold/restore then same72 fastpreview16 and remaining15 allnormal callers; otherage/forms/fullscreen/voice/ARM open"
     },
     {
       "item": "dynamic-age",
@@ -57,9 +57,9 @@
     },
     {
       "item": "map-bgm-voice-event",
-      "status": "PENDING ORIGINAL FACT PRODUCER",
-      "evidence": "current AppliedEventSnapshot originalParentId/speakerOfficerId=null; unknown originalSpeechCaller/originalEventParent; SceneFacts sourceVoice metadata is provenance only",
-      "next": "completed B token/caller/scene/profile facts; no guessing"
+      "status": "10720 VOICE SOURCE JOINS FIXED AND TYPE/PROFILE DOMAIN CORRECTED;REAL CALLERS STILL PENDING",
+      "evidence": "VOICE_IDENTITY_REFRESH71: original16/10720 source-record SHA/64 gaiji additions old10656 rowbytes preserved; field48 equalsactor+0x100 type;VOICE_DIRECTIVE_DOMAIN71 host1704 valid+1704 reject;VOICE_COMBINED_BUILD72 new2cd/d505 built/notinstalled",
+      "next": "Actual new72 normal-source callers metadata check; real committed scene/parent/speaker/profile/choice facts absent, no guessing; mapBGM/58/ordinaryevent sound/ARM remain"
     },
     {
       "item": "music-continuity",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "4df5 MILITARY NORMAL PASS;66 MEDIA FAILED;68 NEW NORMAL384 REAL MATRIX RUNNING",
-      "evidence": "MILITARY_NORMAL65_RESULT;NORMAL_CALLER_FAILURE66;NORMAL384_COMBINED_BUILD68;MEDIA_VIEWPORT_TEST_BUILD69;completedB14paths preserved;no WIP",
-      "next": "68 ordinary384 all16/allforce/gestures/cold/restore;69 currentdefaultmedia all670 then all16/fast/fire/HUD/ARM/finalserial"
+      "status": "68 ORDINARY384 ALLFORCES THROUGH SOURCE6 LIVE;72 NEW DEFAULTVOICE COHORT BUILT NOT INSTALLED",
+      "evidence": "68 exactb5ec/c96b actual384;72 exact2cd/d505 compared5636 assets onlyvoiceidentities changes,6JNI exact;noB WIP;70 own waiting hoststopped beforedeviceaction;73 new gate live",
+      "next": "68 complete all16/cold/restore;new72 actual install/allcaller/fast/fire/HUD/fullflow/ARM/finalserial"
     },
     {
       "item": "search-normal",
@@ -99,5 +99,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "65 military actualnormal/coldassertions/restore audited;66 firstcaller failure restored;68 ordinary384/allforce installing;69 new test independentlybuilt notinstalled;PRESERVATION69 original10714/old4301/PC/4JNI/Bridge exact"
+  "updatedCheckpoint": "71 source64 voice identities and original type/profile separation fixed;72 independent default build2cd/d505/5636assets/6JNI;68 actualnormal source0–6 continuing;73 new serial gate waiting68 acceptance/restoration"
 }

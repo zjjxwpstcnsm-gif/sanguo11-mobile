@@ -34,3 +34,5 @@
 后继实际65已结束并全9/3797SHA恢复：正常军建/停止/补修/完工/保存读取通过；冷断言通过且Android实际启动新PID13854，原host误要求冷首帧提交而判失败。MILITARY_NORMAL65_RESULT保留原passed=false、独立进程证据与renderReady未知；66重新实际全部670人物/真实Back退出/GlobalHome/冷/完整恢复仍进行，不能标新包媒体通过。65七个实际旬121921–176851ms仍未闭合性能；SIGQUIT期间实际strategy-turn先后在routes/fireAt与PcScenarioIdentity格式化链，runqueuewait较CPU高，QEMU GL同步与录屏争用仅候选，不能改B规则或宣称单一根因。
 
 66整批失败/无cold/0完成caller pair，全部原数据已恢复；首635列表原位图通过不能替代详情正常入口。69新测试仅修复瞬时viewport立即断言与再次正常搜索稳定，尚未实际安装。68当前最新完成规则组合普通384/全16全势力真实矩阵正在安装运行，未通过；不得用旧384/默认512成绩。下一轮人物需默认4df5+新test2711独立备份安装与全670复验，再启动其余来源；旧67已在失败门控停止。
+
+71关闭的是64字形语音身份连接缺口与语音类型/action-profile域混淆，非实际发言者/动作caller：10720 source-record/field48与原actor+0x100已核，原音频未动。72新组合仅构建未安装，实际metadata连接/完整人物/火/HUD/内存及ARM仍须新包证据。AppliedEvent originalParentId/speakerOfficerId仍null，地图BGM/真实voice/58和普通事件声继续未知，不能由完整身份清单制造speaker/原phase/随机choice。73等待68真实全源/全势力/cold/完整恢复；70已在设备操作前停下，不再安装旧默认69。
