@@ -1,0 +1,26 @@
+{
+  "actualHostPid": 55286,
+  "actualHostCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/run_picker_release_followup.py --producer-pid 53959 --previous-fast out/session-a/picker-release-fast16-116 --output out/session-a/picker-release-followup117",
+  "producerPid": 53959,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/device_session.py install-test --output out/session-a/picker-release-fast16-116 --apk out/session-a/apk-63284162-picker-release-default116/app-debug.apk --test-apk out/session-a/apk-63284162-picker-release-default116/app-debug-androidTest.apk --observe-workers --runner SessionAMapRepairInstrumentation --suite fastPreview16 --begin 0 --end 16 --fresh-process-reopen",
+  "backupLockOwnerPid": 53882,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug-androidTest.apk": "565de46c4d4fec7beabadf4f1a33f856db412151843953dd398cf04c5926e250"
+  },
+  "batchPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/picker-release-followup117/batch.json",
+  "initialBatchSha256": "24bc9292ebb2423ec2d03294943ee90b9336482ccad0b0abacd9f8fe2e0abdc6",
+  "stage": "waiting-for-current116-fast16",
+  "deviceActionsStartedByFollowup": false,
+  "normal32All16CurrentPackageAndColdAndAllRestorationGate": true,
+  "followingPlan": [
+    "military construction repair",
+    "fire extinguish expiry and pause",
+    "continuous attack capture",
+    "new116 whole source11 670 callers",
+    "new116 remaining15 whole normal callers"
+  ],
+  "noOld90AcceptanceTransferred": true,
+  "initialBackupPidVersusInstallPidGuardRejectionBeforeDeviceAction": true,
+  "wholeGoalComplete": false
+}
