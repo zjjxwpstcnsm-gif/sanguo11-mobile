@@ -1,6 +1,6 @@
 # 当前交付检查点（2026-10-07，目标未完成）
 
-当前后继：`VOICE_COMBINED_BUILD72.json` 新game `2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22` 与test `d50555292b59766af27fe73989e929b8852e80583acd303650db18755f178439` 位于 `out/session-a/apk-5c09972f-voice-metadata-combination72/`；独立构建成功，未安装。64字形语音来源连接已补齐到10720，保存field48已核为原人物voiceType，修复与动作profile错比较；5636资产中仅voice-identities改变，原声音与6JNI保持。不能借下表旧4df5的成绩。普通68仍在运行，旧70等待器在任何设备操作前停止；73仅68成功并完整恢复才实装新72正常人物/fast/all16流程。后继完整源码导出还需包含这次生产变更，旧298b归档范围保留。
+当前后继：`VOICE_COMBINED_BUILD72.json` 新game `2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22` 与72旧test `d50555292b59766af27fe73989e929b8852e80583acd303650db18755f178439` 位于 `out/session-a/apk-5c09972f-voice-metadata-combination72/`；独立构建成功，未安装。64字形语音来源连接已补齐到10720，保存field48已核为原人物voiceType，修复与动作profile错比较；5636资产中仅voice-identities改变，原声音与6JNI保持。不能借下表旧4df5的成绩。普通68仍在运行，旧70等待器在任何设备操作前停止；后继75仅68成功并完整恢复才实装新72游戏与独立74测试（`VOICE_TEST_REFRESH74.json`，test SHA `1a8503198e679659bc42ac81a76942e08e13d09c2eeca8200f565c03c66ea972`，路径 `out/session-a/apk-fe413552-voice-diagnostic-test74/app-debug-androidTest.apk`），完成正常人物/fast/all16流程；73自己等待器因测试计数补核在设备动作前停止。74校验10720而非旧10656，明确source-only解码fixture不等于正常caller。后继完整源码导出还需包含这次生产变更，旧298b归档范围保留。
 
 本段是当前候选、实际验收范围和未完成项的入口；下方旧记录是各自历史包的成绩，不代表当前候选通过。独立分支 `codex/map-ui-media-repair`，完整继承共同基点 `0e7b9bc2df90249a50851baeda58c7d183ea6059`，main仍为 `ef413be3653820dd6449ba7f02aa60bed5b26ef5`。精确工作目录 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile`。原用户工作目录与继承源未改；B完成c6f966ce/89534120已按14路径逐SHA继承，B其它WIP排除。没有合main/推送。
 
