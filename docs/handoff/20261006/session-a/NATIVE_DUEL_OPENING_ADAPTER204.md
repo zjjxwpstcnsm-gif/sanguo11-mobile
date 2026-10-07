@@ -49,3 +49,6 @@ B未冻结契约已提供原545350九按钮/55c9f0导出/配置写入块27组合
 后继完成API `GameApi.pcOpeningOptions()`提供同StateToken、不可变三组choices、原Big5/controlId及可缺省savedValue；defaultsKnown/automaticOverridesKnown=false，savedValue不是新局默认。A从完成API按group id/choice.value消费，不用ordinal/name，不从已保存选项自动选中；只明确确认完整三组后调用`PcDuelOptions.fromMenu`与完成四参工厂。延迟返回必须复核Token和picker生命周期，不为获取菜单建World或重抽RNG。没有活动session/unsupported时的目录读取入口仍需B完成契约，不猜静态替代。
 
 当前B六个相关路径均M/??、完整Native批次未冻结；精确SHA与状态见211。A不实现/编译/复制WIP、不打断5554，原204后继验收与保存/所有RNG/Bridge/Unity/原4JNI边界继续有效。
+
+
+211入口补核：A当前MainActivity.java:125–145只复用existing session或可读auto；world为空直接showStartScreen，正常“新建游戏”仍可触达scenarioPicker与chooseScenarioTemplate。因此首次启动/不可读auto恢复入口的session为空是实际代码路径，session-only新API不足以提供其菜单目录。后继B完成契约需无session且纯资源读取的目录入口，A不先建World或借预览session初始化策略/RNG；本次只核代码，未另跑Android首次启动成绩。Main源码SHA在211记录。

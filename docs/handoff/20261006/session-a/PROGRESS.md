@@ -468,3 +468,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 211：收到B只读后继菜单契约，核对未冻结Snapshot/API/Options/query源与实际M/??状态，冻结六路径SHA并补充204菜单0..2/Big5原标签/同Token投影方案。life3内部覆盖、源标志建立、默认、无session目录入口和真实原GUI开局仍未知；不实现、复制、集成或编译B WIP，不动当前5554。
+
+
+211补核：当前A MainActivity首次启动/world为空时仍有正常新建按钮，session-only选项API的缺口可由现有代码证明；已冻结MainSHA/入口行号与范围。不以源码可达替代实际首次启动验收，不造World取得选项，等待B完整资源目录契约。

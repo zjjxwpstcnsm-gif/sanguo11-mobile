@@ -103,5 +103,21 @@
   "compiled": false,
   "deviceActionsStarted": false,
   "actualOpeningOrApkAccepted": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "aNormalEntryEvidence": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/java/game/sanguo/mobile/MainActivity.java",
+    "sha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+    "lines": [
+      125,
+      130,
+      132,
+      137,
+      140,
+      145,
+      1297
+    ],
+    "finding": "onCreate only reuses current session or a readable autosave. If world is null it calls showStartScreen, whose normal New Game button invokes scenarioPicker. Normal first launch/unreadable-save entry may have no gameHost.session. chooseScenarioTemplate can prepare preview and picker from this state.",
+    "scope": "Code-reachable first-launch/recovery path; no new Android run or UI acceptance claim.",
+    "remainingContract": "Completed menu resource catalog must be accessible without a session, World creation, policy adoption or RNG. Session saved values remain separate and not defaults."
+  }
 }
