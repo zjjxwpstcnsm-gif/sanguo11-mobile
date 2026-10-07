@@ -1,0 +1,152 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "gameSource": "63284162a92e050a0a45ec31ca333701a17e6c29",
+  "testSource": "3f7ae877",
+  "normalPassed": true,
+  "coldProcess": {
+    "beforePid": "644",
+    "afterPid": "25768",
+    "beforeProcessEvidence": {
+      "pid": "644",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "25768",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "ed441bbe238e92d7a83b3d8d7ea715ddad87086cd831b7b1608f508b7038a118",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 64745,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 8,
+    "finalIndexSha256": "e6a2c57155ead6b1a7c37afe2268e87bd1d70faa64a7fab45984b17083464eb0",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 64746,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "readabilityReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MILITARY_CURRENT_TEXT130.json",
+  "cpuReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MILITARY_CURRENT_CPU130.json",
+  "actualNormalMilitaryFlowPassed": true,
+  "foreground120sStableAccepted": false,
+  "trueBackExitAcceptedInThisCase": false,
+  "exitBoundary": "Frozen B Activity.finish plus A destruction/native owner release barrier; no real Back claim for this case",
+  "actualSource14NormalMenu": true,
+  "normalUnitSelectionAndLocatorTouch": true,
+  "auxiliaryFireFocusHasTestHelper": true,
+  "initialRosterPreentryHasInheritedHelper": true,
+  "allHumanExactFlowClaim": false,
+  "javaAllocatorTelemetryAvailable": false,
+  "recognizedExactPidMeminfoSamples": 552,
+  "peakMeminfoPssKiBIndependent": 544055,
+  "gpuVramUnknown": true,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "rawFiles": {
+    "session.json": "983adb74421cacc22ac63c9ed44a7fa5e2048402bb2714f07beb9365b37470b3",
+    "instrumentation.txt": "3f2de2d3eb4be8682a50e8719e7ef399d895ee76990433e97c18f87c6f43c1bf",
+    "cold-instrumentation.txt": "e227351c5c47701cba9c4bcfe8244fb80d2045e732bcc2b24dabe1cc205055f3",
+    "evidence/progress.txt": "65865566a5c3ed09b8736e580e4af1252b9b57f2eb8f7ba9d7b3748730b81eac",
+    "evidence/result.txt": "21f158f21b437f9db3c201cbe3f6ba9f035395ee5b68e919a662eb8cc0317466",
+    "meminfo-timeline.txt": "bdf626407a26585e7f207dbabbcbb31542925f998657e519efb4fde4b6c9d099",
+    "native-workers.jsonl": "d94a6cf70c6066e8362d3a397066a9b0b8d70d8bd22ee3b005c19ecd5b0c752d",
+    "video/video.json": "e6a2c57155ead6b1a7c37afe2268e87bd1d70faa64a7fab45984b17083464eb0"
+  },
+  "rawOriginalVideoParts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part01.mp4",
+      "sha256": "f7c2c324211d23893070bc7c083d881fe346c2d2c2dabb6c0b04b08d57ac9a79",
+      "bytes": 23432820,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part02.mp4",
+      "sha256": "4a355b8b91d6ae5ea1db78d06ba80dc9b26a43400804a20ed1980f999478678d",
+      "bytes": 26715824,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part03.mp4",
+      "sha256": "571929e1930f5a6da9433512984242fe6525bcaf70e3eab498812226a026b56e",
+      "bytes": 29116662,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part04.mp4",
+      "sha256": "35fdd0f7da0cd3585e4e0987de7fa8174e452e88c46e309076c4a411bf0b0b5c",
+      "bytes": 29454393,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part05.mp4",
+      "sha256": "534ed8a64ce819d3d000fe83863ad3a2d71a1318990ec6c5f7a25f988a1900d5",
+      "bytes": 31679172,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part06.mp4",
+      "sha256": "ec07e4ffb8d563bc1b4e0d93f7f2b5be59966bf3841a7f18b0690c0fc395acf1",
+      "bytes": 27716392,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part07.mp4",
+      "sha256": "b640b24bfa6b33e9cf63587b85a3e5fa4dc616ca8a0241d750209f290ee4d7cb",
+      "bytes": 29708800,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/video/part08.mp4",
+      "sha256": "67502045d79409eacd23d0a316e34a6c13e73316bea32cc27ae3a70e979a8c59",
+      "bytes": 21906853,
+      "devicePreAndPostPullShaEqual": true,
+      "ownTemporarySegmentRemoved": true
+    }
+  ],
+  "visuallyInspectedScreenshots": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04b-resumed-repair.png",
+      "sha256": "b1a9f4bf35c83c89dcfc116c2ec9c926618762ae4da9f3fc6f528c4ba88b84d6"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/05-completed.png",
+      "sha256": "eb18aac8e5d8c8bbc20aa517c20780f027463ea413bcfa3deeb1e96698c09f8b"
+    }
+  ],
+  "visualScope": "Actual labels readable in viewed screens; resumed-repair panel is scrolled/clipped and map canvas hidden by panel. Completed map shows fire1-turn marker; no exact PC frame/particle claim from still."
+}

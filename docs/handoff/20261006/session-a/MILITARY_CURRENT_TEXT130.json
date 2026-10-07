@@ -1,0 +1,142 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124",
+  "sessionSha256": "983adb74421cacc22ac63c9ed44a7fa5e2048402bb2714f07beb9365b37470b3",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "counts": {
+    "recordings": 17,
+    "widgetRows": 392,
+    "enabledRows": 380,
+    "unresolvedText": 312,
+    "resolvedSolidText": 80,
+    "disabledRows": 12
+  },
+  "minimumResolvedSolidContrast": 8.52197412987157,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/cold-evidence/01-cold-process-resume-actual-text.json",
+      "sha256": "eb29759fe2974eb78621664818359a86ae5ade8084eb7cde1933c8ab37c72ce1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/cold-evidence/01-cold-process-resume.png",
+      "screenshotSha256": "eb7346374e3b844a9b1fc4ce7caa81534eb6ef80f819c29617f3e2b192c9821e",
+      "widgetRows": 25
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/cold-evidence/a-original-fire-cold-restored-actual-text.json",
+      "sha256": "8053d42000caa61cf8488944646eae9dfae1bbd001f288c3aa33916ddf01e077",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/cold-evidence/a-original-fire-cold-restored.png",
+      "screenshotSha256": "1a09665915bb4676611a24a7f0a1f544edde8c86ecaec83e7be3fcbc261700e4",
+      "widgetRows": 25
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/01-source-new-game-actual-text.json",
+      "sha256": "492729d18231cbf9725dad8897a3a08b60477ae8af07415daffdd51caa73a53c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/01-source-new-game.png",
+      "screenshotSha256": "246bf022553db91edb60aca5689714fada609c8e77eed52c611cc524135385c9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/02-initial-build-targets-actual-text.json",
+      "sha256": "5e3aa501305e246ba15d90dd68d2bd71793deb2e5f2d7302d81430bab42ee5f1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/02-initial-build-targets.png",
+      "screenshotSha256": "e1a45a24cccea1e0a76e62b07e57451ffe461f3be1df0590f655364282679a20",
+      "widgetRows": 2
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/02a-city-center-funding-actual-text.json",
+      "sha256": "b054e75cc62c7e2d2486101d3b88f076b2ab669127370050d6ca477d43d73c4f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/02a-city-center-funding.png",
+      "screenshotSha256": "e507283a3dd9315982009fbc4026566eb40613496bd184a1475547b2e07d69b7",
+      "widgetRows": 36
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/02b-city-near-wall-actual-text.json",
+      "sha256": "aece65e99077a176d2fc5d4dc534bfd228f3f91b0baab6a28d5b9748b34d3974",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/02b-city-near-wall.png",
+      "screenshotSha256": "c0ed4f2345ead0b7da0a0d0b3661491f29c3ab43a4ea62fb43506928d5da7c3c",
+      "widgetRows": 27
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/03-legal-confirm-actual-text.json",
+      "sha256": "106b6c8abd74ff42c66aa1289842378a44aaa34f74c4833ba691990a110f8f2c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/03-legal-confirm.png",
+      "screenshotSha256": "319bfaa2d2627bcd83ce2b22c99fce9f28ea0476c74de6c1fec60e18fa2946d7",
+      "widgetRows": 4
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04-real-construction-actual-text.json",
+      "sha256": "aedeaff446d1d76d470ff11d8ae80e5140cc1425730bfcdf57240deec2990d46",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04-real-construction.png",
+      "screenshotSha256": "96dc680950c63b033ad0f2a695d5c8e44570ed752ad45753c0457207036bdf7a",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04a-stopped-shell-actual-text.json",
+      "sha256": "d5d98429f41b9c0dd8205b63b724fbf26dded99b41d3e852e16b840d7da7c8d3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04a-stopped-shell.png",
+      "screenshotSha256": "75efe31560c17868f93e347e8e6737e1baeacc32f1fdd3a9e719c70f3131f254",
+      "widgetRows": 36
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04b-resumed-repair-actual-text.json",
+      "sha256": "c05774cbde56220c0b517b40b35c89ab337092dff2646606cfc8788fa9f06cc4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/04b-resumed-repair.png",
+      "screenshotSha256": "b1a9f4bf35c83c89dcfc116c2ec9c926618762ae4da9f3fc6f528c4ba88b84d6",
+      "widgetRows": 36
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/05-completed-actual-text.json",
+      "sha256": "ed5780f944f5dc2af96b3d84f2bce2d27764f08a8a67ef90bca8698fe11a376d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/05-completed.png",
+      "screenshotSha256": "eb18aac8e5d8c8bbc20aa517c20780f027463ea413bcfa3deeb1e96698c09f8b",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/a-original-fire-actual-build-actual-text.json",
+      "sha256": "62ec70ea3591760408d018e7f2353a7bb3ff2cd160f5fb171c3e03aee1557f10",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/a-original-fire-actual-build.png",
+      "screenshotSha256": "2f821e758da094c51eb430021f69f7e8cbc1245e4d615f1b5c073e6b301a0562",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/a-original-fire-resumed-repair-actual-text.json",
+      "sha256": "32fa5ab0e0dda10267e72dafadebf2ff53a230a0eb295a640139e467282938ae",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/a-original-fire-resumed-repair.png",
+      "screenshotSha256": "44c7a4a1968a58d6d1eb001cc30cdc3c7109a90a0550638daac200170d280946",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-camp-construction-0-foreground120s-actual-text.json",
+      "sha256": "8c3120f75c680b034abf1988fd735ca5f17ec5efddad6462805c3c02c27cb415",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-camp-construction-0-foreground120s.png",
+      "screenshotSha256": "7c1fb6649cd84cd4c951dc21a77dbfb30c21a050ba656c62305a6d8e8f4b100a",
+      "widgetRows": 18
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-funding-reset-foreground120s-actual-text.json",
+      "sha256": "e733cc09df89bfd3c95d348ab824a713f3a6ea1843696adfb2ea800b1ab79f6c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-funding-reset-foreground120s.png",
+      "screenshotSha256": "ad2398783b8328a0c525aae3d821147a46dd000e5608e39029412dee6b92e79d",
+      "widgetRows": 27
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-wall-action-reset-foreground120s-actual-text.json",
+      "sha256": "0b1c89b7f2c4c2801e5de8e6c8b0d0471ab1de5c9e5eaca41a5b56f79d760012",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-wall-action-reset-foreground120s.png",
+      "screenshotSha256": "1e5f00dc6f7994efa25b2cbaec9cf5f34691030f29000ea98f4b42edddb6115e",
+      "widgetRows": 26
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-wall-construction-foreground120s-actual-text.json",
+      "sha256": "af1386cdb1ebbbfc6301efa890cce86c5fa9e47b34c06ea35a08d29d7e29ab6c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-military124/evidence/turn-wall-construction-foreground120s.png",
+      "screenshotSha256": "757b515836d5d21b8e4d710a9aa1950822ac6c4598d91558311876c715574406",
+      "widgetRows": 27
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}

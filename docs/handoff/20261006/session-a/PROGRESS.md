@@ -333,3 +333,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 128 整首音频实际等待器71209已启动，exact124两包/producer64866/正常队列125绑定，当前waiting且deviceActionsStarted=false。首个猜测runtime路径不存在的断言在Popen/log/output创建前失败；改用dependencies工具实际返回的Python路径，不隐藏失败或启动重复作业。只有全部当前正常命令/人物/cold/完整恢复后capture，.995原门槛不改；旧44不迁移。
 
 129 只读CPU日志冻结审计器已用当前真实top表解析strategy-turn/RenderThread/FEngine/HeapTaskDaemon并syntax核验；实际69319仍live，冻结门正确拒绝、未产final报告。只在observer结束与全部原文件恢复后冻结SHA，保留前后台相邻进度与所有不可读记录，不将异步占比/Turn52墙钟或各线程峰和当根因。现有五旬compute87–183秒/save0.25–0.58秒，仍不能宣告ARM/前台长流程性能通过。
+
+130 current124军建正常菜单/部署/真实stableID列表+定位pan/城内追加资金/墙/阵/停止取消双击/补修/7旬/手动存读/Activity重建通过，冷644→25768及双方3D首submit/expectedauto ed441b...通过；9internal(rewrite4)/3797external(rewrite0)全SHA恢复，video/native退出0，8原片整SHA=device前后pullSHA，finalindex e6a2c571...。冻结109CPU采样/7旬compute80.424–183.115秒、save252–575ms，foreground>120秒4次仍待修复；552exactPID PSS样本峰544055KiB，没有本case Java allocatorCSV，不造峰值。17实际focused文字392行，80solid最低8.52197通过、312背景未解析/12disabled，不称全UI。实际查看补修与完成PNG，source火1旬marker可见但不能以静图宣称原粒子PC帧；继承preentry/auxfirefocus/Activity.finish边界明确。125已实际接下一火case，非全目标/ARM完成。

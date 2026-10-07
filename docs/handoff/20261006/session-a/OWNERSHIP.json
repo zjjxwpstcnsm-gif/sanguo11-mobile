@@ -329,7 +329,10 @@
     "docs/handoff/20261006/session-a/CURRENT_MENU_AUDIO_GATE127.json",
     "docs/handoff/20261006/session-a/CURRENT_MENU_AUDIO_QUEUE128.json",
     "docs/handoff/20261006/session-a/audit_target_cpu.py",
-    "docs/handoff/20261006/session-a/TARGET_CPU_AUDITOR129.json"
+    "docs/handoff/20261006/session-a/TARGET_CPU_AUDITOR129.json",
+    "docs/handoff/20261006/session-a/MILITARY_CURRENT_ACCEPTANCE130.json",
+    "docs/handoff/20261006/session-a/MILITARY_CURRENT_CPU130.json",
+    "docs/handoff/20261006/session-a/MILITARY_CURRENT_TEXT130.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
