@@ -424,3 +424,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 179 新只读完整保护审计通过：完整source0e7/10714、用户旧HEAD52315/4301守卫均精确、168固定输入manifest9b098ef...不变、原4+新2JNI/Bridge/只读PCexe原SHA同，main仍ef413。不是新游戏/UI/性能/ARM分。准备178完整source后继export，期间不编辑tracked/HEAD，输出ignored；压缩对当前169主机性能干扰记录。
 
 178 最新完整source37c3cd25归档完成，逐文件回读全部通过，含154/164生产优化、B39完成原test/fixture和174注册/驱动、176build/177串行队列及179全守卫。准确archive/SHA/fileCount见SOURCE_EXPORT_CHECKPOINT178.json，app/test/core/API/runtime raw源与176源198194b3相同，game生产raw仍与165e62一致。无B WIP/Git/cache/build/SDK/device用户备份；当前169动态仍未全部闭合，压缩干扰记录，不以归档宣布全目标/ARM通过。
+
+181 当前176同pair完整验收串行计划已实现：原39真实normal/cold/finished精确+全数据restore后，再新176军建/火/攻击/全部16 caller/.995整首菜单原声→独立新180普通384与176默认512两套fast32/all244/cold/完整restore。A followup新增completed-legacy严格入口，每次正常case前核main与trackedWIP/source；heap同样去掉HEAD参数以防未提交源绕过。只tool/计划变化，无B/core/API/production改变，原39owner1234/当前98870未中断。普通180正在独立build，宿主负载干扰当前169继续如实记录；未安装不称回归通过。

@@ -1,0 +1,20 @@
+{
+  "defaultReceipt": "LEGACY39_REGISTERED_TEST_BUILD176.json",
+  "ordinaryReceipt": "CURRENT_REGISTERED_ORDINARY_BUILD180.json",
+  "dependency": "Live1234 must finish genuine39 normal/cold/full restoration before same176 entire normal matrix",
+  "required": [
+    "genuine39",
+    "military-construction-repair",
+    "fire-extinguish-expiry",
+    "continuous-attack-capture",
+    "all16-normal-callers",
+    "whole-menu-music-correlation-0.995",
+    "ordinary-fast32-all244",
+    "default-fast32-all244"
+  ],
+  "fullShaRestoreEveryInstall": true,
+  "noOldPairScoreTransfer": true,
+  "deviceActionsStarted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false
+}

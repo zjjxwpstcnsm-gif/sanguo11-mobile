@@ -48,8 +48,8 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--producer-pid',type=int,required=True)
     p.add_argument('--audio-queue',type=pathlib.Path,required=True)
     p.add_argument('--normal-batch',type=pathlib.Path,required=True)
-    p.add_argument('--ordinary-receipt',default='CURRENT_NORMAL384_BUILD134.json',choices=['CURRENT_NORMAL384_BUILD134.json','NORMAL_PREPARATION_ORDINARY149.json'])
-    p.add_argument('--default-receipt',default='NORMAL_VIEW_OPTION_TEST_BUILD124.json',choices=['NORMAL_VIEW_OPTION_TEST_BUILD124.json','NORMAL_PREPARATION_BUILD145.json'])
+    p.add_argument('--ordinary-receipt',default='CURRENT_NORMAL384_BUILD134.json',choices=['CURRENT_NORMAL384_BUILD134.json','NORMAL_PREPARATION_ORDINARY149.json','CURRENT_REGISTERED_ORDINARY_BUILD180.json'])
+    p.add_argument('--default-receipt',default='NORMAL_VIEW_OPTION_TEST_BUILD124.json',choices=['NORMAL_VIEW_OPTION_TEST_BUILD124.json','NORMAL_PREPARATION_BUILD145.json','LEGACY39_REGISTERED_TEST_BUILD176.json'])
     p.add_argument('--output',type=pathlib.Path,required=True);a=p.parse_args()
     queue=a.audio_queue.resolve();batch=a.normal_batch.resolve();out=a.output.resolve()
     assert all(x.is_relative_to(ROOT/'out/session-a') for x in (queue,batch,out)) and not out.exists()
@@ -88,11 +88,11 @@ def main():
             audioTerminalStage=audio['stage'],audioError=audio.get('error'))
         assert subprocess.check_output(['git','-C',str(protected),'rev-parse','main'],text=True).strip()==expected_main,'New main requires complete inheritance before installing this frozen queue'
         for prefix in ('app/src','app/build.gradle','core','game-api','game-runtime'):
-            assert not subprocess.check_output(['git','diff','--name-only',ordinary['sourceRevision'],'HEAD','--',prefix],cwd=ROOT).strip(),'New source requires fresh cohort; no stale install'
+            assert not subprocess.check_output(['git','diff','--name-only',ordinary['sourceRevision'],'--',prefix],cwd=ROOT).strip(),'New source requires fresh cohort; no stale install'
         def run_case(name,apks,suite,reuse):
             nonlocal previous
             assert subprocess.check_output(['git','-C',str(protected),'rev-parse','main'],text=True).strip()==expected_main,'New main appeared; no stale install'
-            assert not subprocess.check_output(['git','diff','--name-only',ordinary['sourceRevision'],'HEAD','--','app/src','app/build.gradle','core','game-api','game-runtime'],cwd=ROOT).strip(),'New source appeared; fresh build required'
+            assert not subprocess.check_output(['git','diff','--name-only',ordinary['sourceRevision'],'--','app/src','app/build.gradle','core','game-api','game-runtime'],cwd=ROOT).strip(),'New source appeared; fresh build required'
             target=out/name;report.update(stage=name,activeSession=str(target));save()
             subprocess.run([sys.executable,str(HELPER),'reuse-backup','--output',str(target),'--previous',str(previous)],cwd=ROOT,check=True)
             report['deviceActionsStarted']=True;save()

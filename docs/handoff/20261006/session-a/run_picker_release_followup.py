@@ -31,30 +31,43 @@ def restored(case,apks):
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('--producer-pid',type=int,required=True)
+    p.add_argument('--producer-pid',type=int)
     initial=p.add_mutually_exclusive_group(required=True)
     initial.add_argument('--previous-fast',type=pathlib.Path)
     initial.add_argument('--previous-military',type=pathlib.Path)
     initial.add_argument('--previous-attack',type=pathlib.Path)
+    initial.add_argument('--completed-legacy',type=pathlib.Path)
     p.add_argument('--cohort-receipt',type=pathlib.Path,default=HELPER.with_name('PICKER_RELEASE_BUILD116.json'))
     p.add_argument('--output',type=pathlib.Path,required=True)
-    a=p.parse_args();initial_case=a.previous_fast or a.previous_military or a.previous_attack;previous=initial_case.resolve();out=a.output.resolve()
+    a=p.parse_args();initial_case=a.previous_fast or a.previous_military or a.previous_attack or a.completed_legacy;previous=initial_case.resolve();out=a.output.resolve()
     assert previous.is_relative_to(ROOT/'out/session-a') and out.is_relative_to(ROOT/'out/session-a') and not out.exists()
     receipt=a.cohort_receipt.resolve()
-    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json','B_LEGACY39_COMBINED_TEST_BUILD168.json')
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json','B_LEGACY39_COMBINED_TEST_BUILD168.json','LEGACY39_REGISTERED_TEST_BUILD176.json')
     b=json.loads(receipt.read_text())
     assert b['buildSuccessful'] and b['gameLargeHeap'] is True
     apks={row['path']:row['sha256'] for row in b['apks']};assert all(sha(pathlib.Path(p))==h for p,h in apks.items())
-    producer=command(a.producer_pid);assert producer and 'device_session.py install-test' in producer and str(initial_case) in producer
-    lock=json.loads(pathlib.Path('/tmp/sanguo11-emulator-5554-session-a.lock/owner.json').read_text())
-    # reuse-backup owns the same case lock, then a separate install-test
-    # process continues it. The saved backup PID is not its live test PID.
-    assert lock['root']==str(ROOT) and lock['output']==str(previous)
     live=json.loads((previous/'session.json').read_text())
     assert live['root']==str(ROOT) and live['serial']=='emulator-5554' and live['apks']==apks
-    assert live['stage'] in ('installed-verified','cold-process-running','restored-verified')
+    if a.completed_legacy:
+        assert a.producer_pid is None
+        restored(previous,apks)
+        assert 'PASS SESSION B LEGACY39 genuine' in live['testOutput']
+        assert sha(previous/'evidence/finished.sg11')==sha(previous/'cold-evidence/finished.sg11')
+        producer=None;lock={'pid':None}
+    else:
+        assert a.producer_pid is not None
+        producer=command(a.producer_pid)
+        assert producer and 'device_session.py install-test' in producer and str(initial_case) in producer
+        lock=json.loads(pathlib.Path('/tmp/sanguo11-emulator-5554-session-a.lock/owner.json').read_text())
+        assert lock['root']==str(ROOT) and lock['output']==str(previous)
+        assert live['stage'] in ('installed-verified','cold-process-running','restored-verified')
+    expected_main=subprocess.check_output(['git','-C','/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile','rev-parse','main'],text=True).strip()
+    def frozen_source():
+        assert subprocess.check_output(['git','-C','/Users/paopao/.codex/worktrees/scenario-main-closeout/sanguo11-mobile','rev-parse','main'],text=True).strip()==expected_main,'New main requires full inheritance'
+        assert not subprocess.check_output(['git','diff','--name-only',b['sourceRevision'],'--','app/src','app/build.gradle','core','game-api','game-runtime'],cwd=ROOT).strip(),'Source/WIP changed; fresh cohort required'
+    frozen_source()
     out.mkdir(parents=True)
-    report=dict(hostPid=os.getpid(),stage='waiting-for-current-attack' if a.previous_attack else 'waiting-for-current-military' if a.previous_military else 'waiting-for-current116-fast16',producerPid=a.producer_pid,producerCommand=producer,backupLockOwnerPid=lock['pid'],
+    report=dict(hostPid=os.getpid(),stage='completed-genuine39-ready' if a.completed_legacy else 'waiting-for-current-attack' if a.previous_attack else 'waiting-for-current-military' if a.previous_military else 'waiting-for-current116-fast16',producerPid=a.producer_pid,producerCommand=producer,backupLockOwnerPid=lock['pid'],
         apks=apks,initialSession=str(previous),cohortReceipt=str(receipt),fastPreviewAccepted=False,remainingCallersAccepted=False,
         normalCommandResults=[],scope='Exact independent frozen game/test pair, own normal/cold/fullrestore then all three commands and16 normal real callers. Starting military or attack is accepted only for this exact pair. Prior116/124 scores remain their tested pairs only; no PCcrop/voice/ARM/final integration claim.',wholeGoalComplete=False)
     def save():
@@ -62,7 +75,7 @@ def main():
     save()
     try:
         deadline=time.monotonic()+8*3600
-        while True:
+        while not a.completed_legacy:
             current=command(a.producer_pid)
             if current is None:break
             assert current==producer,'Producer PID reused; do not touch device'
@@ -76,13 +89,14 @@ def main():
             assert all(r['closedWorkersAndOwners'] and r['completeSaveRngStateTokenPure'] for r in rows)
             assert any(r['actualPendingCancellation'] for r in rows)
             report.update(fastPreviewAccepted=True,fastSession=str(previous),stage='current116-fast16-accepted')
-        else:
+        elif not a.completed_legacy:
             name='continuous-attack-capture' if a.previous_attack else 'military-construction-repair'
             report['normalCommandResults'].append(dict(name=name,session=str(previous),normalColdRestorationPassed=True))
             report.update(stage='current-attack-accepted' if a.previous_attack else 'current-military-accepted')
         save()
         game=next(p for p in apks if pathlib.Path(p).name=='app-debug.apk');test=next(p for p in apks if pathlib.Path(p).name=='app-debug-androidTest.apk')
         def run_case(name,runner,extra):
+            frozen_source()
             case=out/name;report.update(stage=name,activeStage=name,activeSession=str(case));save()
             subprocess.run([sys.executable,str(HELPER),'reuse-backup','--output',str(case),'--previous',str(previous)],cwd=ROOT,check=True)
             with (case/'driver.log').open('w') as log:
