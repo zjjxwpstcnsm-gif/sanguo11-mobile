@@ -1,0 +1,66 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11",
+  "actualInstalledApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "rawReport": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/raw-video-prefix103/report.json",
+  "rawReportSha256": "2c0f6a57c7f78c03d3b7dc04e72fc03fd9c6a72d4ac82035c3228715e40c77f2",
+  "completedOriginalParts": 3,
+  "everyDecodedFrameCount": 4052,
+  "originalPtsTimescales": [
+    90000
+  ],
+  "encodedDecodedCountsExact": true,
+  "segmentHostGapsSeconds": [
+    1.990332841873169,
+    1.4408671855926514
+  ],
+  "allRecords": [
+    {
+      "part": 1,
+      "video": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/video/part01.mp4",
+      "sha256": "711c6a71dc18a2580212db0d36ccf7f01e0ac56fca2b045632bc7763e099afe0",
+      "actualBeginUnix": 1791361704.339814,
+      "actualEndUnix": 1791361888.112523,
+      "deviceVerification": "own-device-part-removed-after-matching-pre/post-pull-sha; current-device-reread-unavailable",
+      "decodedFrames": 1267,
+      "trackTimescale": 90000,
+      "encodedSamples": 1267,
+      "encodedDecodedCountsExact": true,
+      "samples": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/raw-video-prefix103/part-01-samples.json",
+      "samplesSha256": "35537e14d7099dd210bfac87db54ca8c477dc73331c9b855b0e947a612e56422"
+    },
+    {
+      "part": 2,
+      "video": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/video/part02.mp4",
+      "sha256": "40aa143e6cf10ba60a3676e07a7c93a71ee05575f5f022fd7c10c087265d8255",
+      "actualBeginUnix": 1791361890.102856,
+      "actualEndUnix": 1791362072.191017,
+      "deviceVerification": "own-device-part-removed-after-matching-pre/post-pull-sha; current-device-reread-unavailable",
+      "decodedFrames": 1376,
+      "trackTimescale": 90000,
+      "encodedSamples": 1376,
+      "encodedDecodedCountsExact": true,
+      "samples": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/raw-video-prefix103/part-02-samples.json",
+      "samplesSha256": "15415e43085a7315a924661651888d1d5d96bae6a5cd56ec430fe1c7b6d9f048"
+    },
+    {
+      "part": 3,
+      "video": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/video/part03.mp4",
+      "sha256": "54f125e7dca6cee30e72462e1d72e8f201ec47afb102f1f3a3f54b2bf5cf2636",
+      "actualBeginUnix": 1791362073.631884,
+      "actualEndUnix": 1791362255.865891,
+      "deviceVerification": "own-device-part-removed-after-matching-pre/post-pull-sha; current-device-reread-unavailable",
+      "decodedFrames": 1409,
+      "trackTimescale": 90000,
+      "encodedSamples": 1409,
+      "encodedDecodedCountsExact": true,
+      "samples": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/raw-video-prefix103/part-03-samples.json",
+      "samplesSha256": "316cc5adc51410a97e1a583782167fb20c1e3aec568a4631201b3c4a5d4743da"
+    }
+  ],
+  "normalColdFinalRestorationPassed": false,
+  "scope": "Latest independently installed90 original completed first3 raw segments only, not earlier94/93 transferred. Host original full SHA and encoded/decoded counts/each real rational PTS exact, own device UUID parts removed only with recorded matching pre/postpull SHA. Current-device reread unavailable for removed parts. Startup/segment gaps/encoder+host processing perturbation retained; not whole normal workflow, sourcePC crop/color/time/fullscreen/voice/speaker or ARM acceptance.",
+  "wholeGoalComplete": false
+}

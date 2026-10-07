@@ -293,7 +293,8 @@
     "docs/handoff/20261006/session-a/NEW_ORDINARY_SOURCE7_COLORS99.json",
     "docs/handoff/20261006/session-a/WATER_ORDINARY_ALL16_ACCEPTANCE100.json",
     "docs/handoff/20261006/session-a/DEFAULT_COMBINATION_INSTALL101.json",
-    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT102.json"
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT102.json",
+    "docs/handoff/20261006/session-a/DEFAULT_RAW_VIDEO_PREFIX103.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
