@@ -1,0 +1,17 @@
+--- a/app/src/main/java/game/sanguo/mobile/FilamentMapView.java
++++ b/app/src/main/java/game/sanguo/mobile/FilamentMapView.java
+@@ -1954,7 +1954,13 @@
+                 p.setColor(selected?0xffffd576:item.textColor);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
+             }
+             drawSourceFireState(c,occupied);p.setTextSize(font);
+-            p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?"原版美术恢复中 · 部分演出暂缺 | ":"")+((pending>0)?"3D 地形装载中… · 请稍候":(draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转")),12,24*getResources().getDisplayMetrics().density,p);
++            String hint=pending>0?"地图载入中… · 请稍候":draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转";
++            float hintY=24*getResources().getDisplayMetrics().density;
++            float hintRight=Math.max(12,Math.min(getWidth()-8,12+p.measureText(hint)+pad));
++            // The map can be bright terrain/cloud pixels. An opaque HUD strip
++            // gives the instruction stable contrast without changing the map.
++            p.setColor(0xff0e1b24);c.drawRoundRect(8,hintY-font-pad,hintRight,hintY+pad,pad,pad,p);
++            p.setColor(UiTheme.TEXT);c.save();c.clipRect(12,hintY-font-pad,hintRight,hintY+pad);c.drawText(hint,12,hintY,p);c.restore();
+             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
+             drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();
+         }
