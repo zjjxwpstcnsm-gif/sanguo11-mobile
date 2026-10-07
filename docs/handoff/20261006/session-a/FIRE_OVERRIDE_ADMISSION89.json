@@ -1,0 +1,32 @@
+{
+  "productionPath": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+  "beforeSha256": "b256237718cef36598e32009c375a4547ac55fa65dc5c9abd33eb3d9203f8f57",
+  "afterSha256": "ee12175db6088b1878e0305d6781e235352b74ab89b14cc93c60d92a00fd4d44",
+  "beforeFixture": {
+    "exitCode": 1,
+    "passed": false,
+    "result": "Exception in thread \"main\" java.lang.AssertionError: unrelated height does not suppress all original fires\n\tat game.sanguo.mobile.CellFireAdmissionProbe.check(CellFireAdmissionProbe.java:11)\n\tat game.sanguo.mobile.CellFireAdmissionProbe.main(CellFireAdmissionProbe.java:45)\n",
+    "scope": "Explicit detached fire fixtures / fresh full core+API and pure A source; no normal game fire creation, Android presentation, current-height original controller proof or ARM acceptance.",
+    "actualAndroidAccepted": false,
+    "wholeGoalComplete": false
+  },
+  "afterFixture": {
+    "exitCode": 0,
+    "passed": true,
+    "result": "PASS explicit source fire admission fixture: 176 checks / 16 original sources; normal Android/rules/ARM not accepted\n",
+    "scope": "Explicit detached fire fixtures / fresh full core+API and pure A source; no normal game fire creation, Android presentation, current-height original controller proof or ARM acceptance.",
+    "actualAndroidAccepted": false,
+    "wholeGoalComplete": false
+  },
+  "beforeBaselinePath": "docs/handoff/20261006/session-a/cell-fire-admission-baseline89.java.txt",
+  "baselineSha256": "b256237718cef36598e32009c375a4547ac55fa65dc5c9abd33eb3d9203f8f57",
+  "terrainSurfaceSha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+  "originalPositionSha256": "139d717fb39616e908add7b7dde31c341f66671a5525ffbc0b0b6481c8d34780",
+  "change": "Unrelated height edits no longer suppress every source fire. Only corresponding painted non-water cell retains unknown current-height guard; water paint is ignored by actual TerrainSurface. Full StateToken and original raw position bytes unchanged; MAX_CELLS128 unchanged.",
+  "normalDefaultReachability": "Normal original source has no authored overrides. Fixture deliberately sets transient visualMap while retaining PC ground; not evidence that ordinary original newgames reach this override state or that original reported fire loss had this sole root cause.",
+  "rulesRngChanged": false,
+  "originalArtAssetsChanged": false,
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "wholeGoalComplete": false
+}

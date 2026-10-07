@@ -272,7 +272,12 @@
     "docs/handoff/20261006/session-a/audit_actual_widget_readability.py",
     "docs/handoff/20261006/session-a/ACTUAL_WIDGET_READABILITY87.json",
     "docs/handoff/20261006/session-a/ACTUAL_WIDGET_PIXEL_REGIONS88.json",
-    "docs/handoff/20261006/session-a/ACTUAL_WIDGET_PIXELS88.json"
+    "docs/handoff/20261006/session-a/ACTUAL_WIDGET_PIXELS88.json",
+    "docs/handoff/20261006/session-a/CellFireAdmissionProbe.java",
+    "docs/handoff/20261006/session-a/run_fire_admission_audit.py",
+    "docs/handoff/20261006/session-a/FIRE_OVERRIDE_ADMISSION89.json",
+    "docs/handoff/20261006/session-a/FIRE_OVERRIDE_DEFAULT_BUILD90.json",
+    "docs/handoff/20261006/session-a/cell-fire-admission-baseline89.java.txt"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

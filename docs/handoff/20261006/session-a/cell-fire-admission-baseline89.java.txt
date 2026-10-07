@@ -25,12 +25,8 @@ final class PcCellFireSet {
    var map=snapshot.ground.pcMap;int terrain=map.terrain(x,y),fx=PcCellFirePosition.fineX(x),fy=PcCellFirePosition.fineY(x,y);
    int height=terrain==7||terrain==8?map.coarseWaterByte(fx/4,fy/4):map.heightByte(fx,fy);
    var point=PcCellFirePosition.source(x,y,terrain,height);total++;
-   // The surface applies paint only to the matching non-water cell. A distant
-   // edit cannot invalidate this cell's unchanged original native position.
-   // Its own painted land height still lacks an original controller contract;
-   // retain that local guard rather than inventing a source height conversion.
-   var surface=snapshot.ground.surface;
-   if(surface.overrides.containsKey(f.hex)&&!surface.water(f.hex)||cells.size()>=MAX_CELLS)continue;
+   // No original current-height contract for authored visual overrides yet.
+   if(!snapshot.ground.surface.overrides.isEmpty()||cells.size()>=MAX_CELLS)continue;
    cells.add(new Cell(x,y,point));
   }
   return new PcCellFireSet(expected,cells,total);
