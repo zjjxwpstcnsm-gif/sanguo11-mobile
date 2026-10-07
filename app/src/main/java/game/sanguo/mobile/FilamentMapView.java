@@ -1930,7 +1930,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     first=selected?u.commander+" · "+u.equipment:(showCommanders?u.commander:u.equipment)+(showUnitBars?" · "+shownTroops:"");
                     first=u.identity()+" · "+first;
                     if(selected)second=shownTroops+"兵 · 气"+u.energy+(u.status==War.Status.NORMAL?"":" · "+u.status.label)+(u.burning>0?" · 起火":"");
-                }else if(item.facility!=null&&!selected){MapSceneSnapshot.FacilityState f=item.facility;first=item.label+(f.level>0?" Lv"+f.level:"")+(f.burning?" · 火":!f.complete?" · 建":"");}
+                }else if(item.facility!=null&&!selected){MapSceneSnapshot.FacilityState f=item.facility;first=item.label+(f.level>0?" Lv"+f.level:"");second=f.compactStatus();}
                 float width=p.measureText(first);if(second!=null)width=Math.max(width,p.measureText(second));
                 float x=camera.screenX(object.motion.x,object.motion.z,object.y+1)-width/2,y=camera.screenY(object.motion.x,object.motion.z,object.y+1);
                 x=Math.max(pad,Math.min(camera.width-width-pad,x));

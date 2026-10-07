@@ -128,8 +128,17 @@ final class MapSceneSnapshot {
         }
         String status(){
             return (level>0?" Lv"+level:"")+(upgradeTo>0?" → Lv"+upgradeTo:"")
-                +(!complete?(upgradeTo>0?" 升级中":" 建造中")+(remaining>0?"("+remaining+"旬)":""):"")
+                +workStatus()+(remaining>0?"("+remaining+"旬)":"")
                 +(hp<maxHp?" 耐久"+hp+"/"+maxHp:"")+(burning?" 起火":"");
+        }
+        private String workStatus(){
+            if(type.startsWith("military/"))return builderUnitId>=0?(complete?" 补修中":" 施工/补修中"):!complete?" 未完成":"";
+            return !complete?(upgradeTo>0?" 升级中":" 建造中"):"";
+        }
+        /** Independent copied facts, not a fire/construction either-or marker. */
+        String compactStatus(){
+            String state=workStatus().trim();if(state.isEmpty()&&complete)state="完成";
+            return state+(hp<maxHp?" "+hp+"/"+maxHp:"")+(burning?" · 火":"");
         }
     }
     static final class FireState {
@@ -160,11 +169,11 @@ final class MapSceneSnapshot {
             World.City home=w.city(f.cityId);int owner=home==null?-1:home.owner;
             list.add(new Item("domestic:"+f.id,f.kind.label,f.hex,4,FactionColors.color(w,owner),
                 new FacilityState("domestic/"+f.kind.name(),owner,f.level,f.upgradeTo,f.hp,f.maxHp(),
-                    f.remaining,0,f.remaining==0,w.war.fireAt(f.hex)!=null)));
+                    f.remaining,0,f.remaining==0,w.war.fireAt(f.hex)!=null,-1,f.builderId)));
         }
         for(War.Structure s:w.war.structures())list.add(new Item("structure:"+s.id,s.kind.label,s.hex,5,FactionColors.color(w,s.owner),
             new FacilityState("military/"+s.kind.name(),s.owner,0,0,s.hp,s.kind.hp,0,s.direction,
-                s.complete,w.war.fireAt(s.hex)!=null)));
+                s.complete,w.war.fireAt(s.hex)!=null,s.builder,-1)));
         }else{
             for(SceneFactsSnapshot.Domestic f:facts.domestic){
                 Hex hex=new Hex(f.cell.q,f.cell.r);Domestic.Kind kind=Domestic.Kind.valueOf(f.kind);

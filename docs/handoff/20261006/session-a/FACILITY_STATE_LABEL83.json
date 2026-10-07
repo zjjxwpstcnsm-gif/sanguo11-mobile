@@ -1,0 +1,23 @@
+{
+  "hostResult": "PASS facility snapshot: 138 assertions; 30 actual types; detached live state verified (asset coverage tested separately)",
+  "hostResultPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/facility-state-label83/result.txt",
+  "hostResultSha256": "d45c1852e8d8bc7b821d4e2322e63c9930e1c2404c15c2db1666262e0bad8137",
+  "delta": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "beforeSha256": "97311649965c9775f74e52d366d409c56e2c11f369eb61166826a59140f419dd",
+      "afterSha256": "d8d4468a7bbd88f971bc668361a0866a58a381c0d3bd26cd77d3204a2deffecd"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeSha256": "1848f57ec52aa92da8f00081a3cf2541dc883361b073b27a3078473a33828cd2",
+      "afterSha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474"
+    }
+  ],
+  "scope": "Copied builder/complete/hp/fire facts and A text layout only. Simultaneous compact status no longer either-or; unfinished unassigned military shell no active-construction claim. Explicit detached fixture is not normal Android gameplay or original asset animation acceptance.",
+  "rulesRngChanged": false,
+  "originalArtAssetsChanged": false,
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "wholeGoalComplete": false
+}

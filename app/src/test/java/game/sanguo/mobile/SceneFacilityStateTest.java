@@ -35,6 +35,7 @@ public final class SceneFacilityStateTest {
         check(!changed.facility.complete&&changed.facility.upgradeTo==2&&changed.facility.remaining==2,"upgrade in progress");
         check(changed.facility.burning&&changed.facility.hp==340,"fire and damage synchronise");
         check(changed.displayLabel().contains("起火")&&changed.displayLabel().contains("340/1000"),"production label exposes status");
+        check(changed.facility.compactStatus().contains("升级中")&&changed.facility.compactStatus().contains("340/1000")&&changed.facility.compactStatus().contains("火"),"compact label retains simultaneous upgrade/durability/fire facts");
         check(original.facility.hp==1000&&!original.facility.burning&&original.facility.complete,"old snapshot immutable");
         check(original.shapeKey().equals(changed.shapeKey()),"status changes do not expand shared mesh cache");
         f.remaining=0;f.upgradeTo=0;f.level=2;f.hp=f.maxHp();SceneFacilityFixture.extinguish(w);
@@ -47,6 +48,13 @@ public final class SceneFacilityStateTest {
         War.Structure s=w.war.structures().get(0);key="structure:"+s.id;s.kind=War.StructureKind.FORTRESS;s.complete=false;s.hp=210;s.direction=4;
         changed=item(snapshot(w,g,s.hex),key);
         check(changed.facility.type.equals("military/FORTRESS")&&!changed.facility.complete&&changed.facility.direction==4&&changed.facility.hp==210,"military upgrade and direction synchronise");
+        check(changed.facility.builderUnitId==s.builder&&changed.facility.status().contains("未完成")&&!changed.facility.status().contains("建造中"),"unassigned unfinished military shell never claims active construction");
+        s.builder=42;changed=item(snapshot(w,g,s.hex),key);
+        check(changed.facility.builderUnitId==42&&changed.facility.compactStatus().contains("施工/补修中"),"copied active military builder produces work marker");
+        s.complete=true;changed=item(snapshot(w,g,s.hex),key);
+        check(changed.facility.compactStatus().contains("补修中")&&changed.facility.compactStatus().contains("210/"),"complete damaged active repair remains visible");
+        s.builder=-1;s.hp=s.kind.hp;changed=item(snapshot(w,g,s.hex),key);
+        check(changed.facility.compactStatus().equals("完成"),"complete full durability with no builder has explicit completed marker");
         SceneFacilityFixture.remove(w,s);check(item(snapshot(w,g,null),key)==null,"deleted structure disappears");
         check(g.matches(w),"facility changes reuse static terrain");
         System.out.println("PASS facility snapshot: "+checks+" assertions; "+types.size()+" actual types; detached live state verified (asset coverage tested separately)");
