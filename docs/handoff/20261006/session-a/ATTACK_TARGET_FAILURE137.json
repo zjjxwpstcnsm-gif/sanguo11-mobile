@@ -1,0 +1,56 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/continuous-attack-capture",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "normalPassed": false,
+  "coldAccepted": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 3,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 76631,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/continuous-attack-capture/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 1,
+    "finalIndexSha256": "32d582a6626e8fded40a40efc7b5622844c3e263a892631178ee74b7b123b42e",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 76633,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/continuous-attack-capture/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "failure": "exact real3D target ray 132,65 before the initial MOVE target pointer",
+  "noTargetPointerInjectedAfterFailedAssertion": true,
+  "confirmedTestCoverageGap": "A pose checks full MapHost rectangle; it ignores current panelShell/commandDock occlusion and minimap rejection used by inherited routePoint",
+  "specificFalseRayCauseProven": false,
+  "productionPickingBugProven": false,
+  "normalAttackOutcomeReached": false,
+  "followup125Terminal": true,
+  "audio128TerminalWithoutCapture": true,
+  "heapQueue136NotStarted": true,
+  "rawFiles": {
+    "session.json": "c038a38d973e0bc147e84f980dada63fdf2cc46bfaf65d754e95d0ee4b508902",
+    "instrumentation.txt": "c42594373033813651a2c1702530ea7b942c225d903f09c4c17d54cdbbedc718",
+    "evidence/progress.txt": "ba8198271312fc8e7eb97d8eab31db07f16eeef60b338af53f062da07ea0ced1",
+    "evidence/failed.png": "cd160169fa00c69caa09b9165104c32df0797d6f984ba081c1cb3fea15eef8f7",
+    "evidence/failed-actual-text.json": "b4741acde5ee0b891cfd3e2055b8eb65cf638151342b59db3fe24bcad9e5435b",
+    "video/video.json": "32d582a6626e8fded40a40efc7b5622844c3e263a892631178ee74b7b123b42e"
+  },
+  "wholeGoalComplete": false
+}
