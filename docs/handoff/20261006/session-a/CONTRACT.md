@@ -21,3 +21,8 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 211 B后继菜单事实只读准备
 
 登记 `docs/handoff/20261006/session-a/NATIVE_OPENING_MENU_READONLY211.json`，只读核对B未冻结的菜单契约与PcOpeningOptionsSnapshot/GameApi/PcDuelOptions源，补充204的显式三组0..2菜单方案。B完成HEAD仍36f059b4；不复制/集成/编译WIP，不动5554。后继A实现仅沿204已登记MainActivity/ScenarioFactionPicker与其专用测试，待B整批完成冻结；所有默认/Root+18自动覆盖/原GUI开局仍未知。
+
+
+## 212–214 Source0当前176完整实际验收
+
+登记212 acceptance、213 memory、214 widget三个确切A路径；只消费已restored-verified的当前source-00、normal/cold全原文件SHA、确切176配对和退出0观察器原文件。每峰值独立、未解析背景/全屏/全部年龄/voice/GPU/ARM明确未知。旧31991/32012/32013终止不重启，Source1继续原parent31963下的新实际helper，不改设备数据或源码。

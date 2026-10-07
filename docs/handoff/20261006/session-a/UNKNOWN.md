@@ -1,10 +1,10 @@
-# 当前未完成与未知（2026-10-08；同176三命令与Source11已全恢复，Source0矩阵运行）
+# 当前未完成与未知（2026-10-08；同176三命令及Source11/0已全恢复，Source1矩阵运行）
 
 211菜单只读后继：B提供原九按钮/导出/写入块27组合的difficulty/death/life原标签与0..2映射；不是完整4a42d0/原GUI/default开局验证。life3为Root+18内部覆盖，源标志建立链未知，savedValue不作默认。API同Token不可变投影已只读核源，B整批仍未冻结，A未集成/编译/实装；无session/unsupported的菜单目录入口仍待完成契约。
 
 210新正常UI缺口：同176已完整恢复Source11真实司馬伷(native229)详情截图可读，但显示“原登场条件未闭合，保留原状态；不按年份猜测激活”实现说明。来源core Lifecycle.java:47归B，不越权修改；保留真实SOURCE_WAIT状态与规则未知，最终组合应由B完成增量改成玩家文案，并重新正常入口验收。截图/实际文字/源码逐SHA已冻结，不代表全局UI闭合。
 
-当前5554 game931bc/testa37f已注册176配对，209其余15来源矩阵parent31963/helper31991/video32012/native32013正在Source0正常人物入口。完成来源目前只有[11]；Source0最新增量64/670人物、128入口、纯Save/bothRNG/StateToken通过仍是partial，不是其normal/cold/恢复或全16接受。normal7783/audio7789/heap7800继续串行全矩阵，audio/heap无自己的deviceactions。203每次backup和install前复核继承main、注册配对和源；更新会停下并恢复，不装旧包。
+当前5554 game931bc/testa37f已注册176配对，212已闭合Source0全部670人物/1340真实入口、normal25157/冷94、不同PID10845→10434/both3Dsubmit和原9internal/3797external全SHA恢复；27原录像/video与native0退出，旧helper31991/video32012/native32013真正结束，不重启。213采样101点Java最高242017320/536870912B，GPU/预算仍未闭合；214只41实色对比最低8.8497、271背景未解析，非全UI或ARM接受。已完成来源[11,0]，parent31963真实接Source1/helper48830，Source1全入口/冷/恢复尚未完成。normal7783/audio7789/heap7800继续串行，audio/heap无自己的deviceactions。203每次backup和install前复核main/注册源；更新会停下并恢复，不装旧包。
 
 206 Source11同176全部670原人物1340实际正常名册/详情caller和完整bitmap身份/当年年龄性别形态连接、normal25157/冷94、新PID26301→6210/both3Dsubmit/完整保存RNG纯通过；原9internal/3797external每SHA完全恢复、video/native0/27原片。旧helper16260/video16277/native16278均真正结束，不重启。207内存101样本Java最高240093808/536870912B，采样余量296777104B；native/PSS峰值独立、GPU采样0仍不可得、memoryBudgetClosed=false。208只当前widget已解析范围，不是所有年龄边界/原小图裁切/全屏/实际voice/PC像素或ARM接受。
 

@@ -1,0 +1,80 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00",
+  "actualSessionSha256": "fd8649e2ba88df31d973874918fa1ca6aa98319f871534aa8001b4b7e0638b43",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "sourceIndex": 0,
+  "actualOfficers": 670,
+  "actualRosterDetailPairs": 1340,
+  "everyUniqueOfficerHasBothRealCallers": true,
+  "originalCompleteBitmapSameAsAllRows": true,
+  "fullSaveBothRngStateTokenPure": true,
+  "normalChecks": 25157,
+  "coldChecks": 94,
+  "coldProcess": {
+    "beforePid": "10845",
+    "afterPid": "10434",
+    "beforeProcessEvidence": {
+      "pid": "10845",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "10434",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "b61e0bf14c215aff6e4b5ef3d84f10a89da7d338b1b532a4113fa299f36e82c3",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 32012,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 27,
+    "finalIndexSha256": "f64ecb09f28a56148c3cc1195b802dde5a38d8702816c81c53dbc40d341cf12d",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 32013,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "terminatedHostPids": [
+    31991,
+    32012,
+    32013
+  ],
+  "proofPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/evidence/source-0-portrait-callers.json",
+  "proofSha256": "7630eca8b968981254d539a72a8b074f2034d8771ba7c2bb8e09d4fcd3dcb1d4",
+  "memoryAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-source00-memory213.json",
+  "widgetAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-source00-widget214.json",
+  "completedSourceIndicesOnSame176Cohort": [
+    11,
+    0
+  ],
+  "all16NormalCallersAccepted": false,
+  "allAgeBoundarySmallCropFullscreenVoiceAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact176 whole actual normal Source0 original670 officer roster/detail identity/current-year age/sex/source-form/full bitmap binding, full presentation Save/allRNG/StateToken purity, normal menus/save/trueBack/newPID/both3D/every originalSHA/27rawvideo. Does not prove original ordinary small-family crop/UI pixels/all age boundaries/fullscreen/real speaker/mapBGM/GPU/ARM or remaining14 sources."
+}

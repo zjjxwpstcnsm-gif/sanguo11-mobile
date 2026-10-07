@@ -1,0 +1,140 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00",
+  "actualSessionSha256": "fd8649e2ba88df31d973874918fa1ca6aa98319f871534aa8001b4b7e0638b43",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "normalColdFullRestorationPassed": true,
+  "heapProfileDiagnostic": false,
+  "samples": 101,
+  "limitsBytes": [
+    536870912
+  ],
+  "peakJavaSample": {
+    "group": "evidence",
+    "sampleIndex": 27,
+    "phase": "zoom",
+    "javaUsed": 242017320,
+    "javaTotal": 243571600,
+    "javaLimit": 536870912,
+    "nativeAllocated": 136594352,
+    "totalPss": 394878,
+    "graphicsPss": 0
+  },
+  "sampledJavaHeadroomAtPeakBytes": 294853592,
+  "peakNativeAllocatorSampleIndependent": {
+    "group": "evidence",
+    "sampleIndex": 3,
+    "phase": "ready",
+    "javaUsed": 199836808,
+    "javaTotal": 199836808,
+    "javaLimit": 536870912,
+    "nativeAllocated": 203454504,
+    "totalPss": 415475,
+    "graphicsPss": 0
+  },
+  "peakInstrumentationPssSampleIndependent": {
+    "group": "evidence",
+    "sampleIndex": 2,
+    "phase": "ready",
+    "javaUsed": 192203664,
+    "javaTotal": 192203664,
+    "javaLimit": 536870912,
+    "nativeAllocated": 202892456,
+    "totalPss": 417323,
+    "graphicsPss": 0
+  },
+  "peakMeminfoPssKiBIndependent": 477508,
+  "recognizedExactPidMeminfoSamples": 2074,
+  "peakMeminfoObservationIndependent": {
+    "pid": "10845",
+    "pssKiB": 477508,
+    "hostUnix": 1791393945.605454
+  },
+  "sourceChildObservationBatches": 1920,
+  "sourceChildPeakBatchIndependent": {
+    "sampleIndex": 70,
+    "time": 1791394094.080576,
+    "sourceChildren": [
+      {
+        "pid": 11245,
+        "parentPid": 10845,
+        "command": "/data/app/game.sanguo.mobile.dev-Xfq91iVGCtGL2jKnVCm_JA==/lib/x86_64/libpc_effect_fire_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin 774.4833 627.4234 3638.0996 --stream",
+        "KiB": {
+          "Rss": 18616,
+          "Pss": 15640,
+          "Shared_Clean": 3416,
+          "Shared_Dirty": 112,
+          "Private_Clean": 64,
+          "Private_Dirty": 15024,
+          "Referenced": 16644,
+          "Anonymous": 15024,
+          "LazyFree": 0,
+          "AnonHugePages": 2048,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      },
+      {
+        "pid": 15559,
+        "parentPid": 10845,
+        "command": "/data/app/game.sanguo.mobile.dev-Xfq91iVGCtGL2jKnVCm_JA==/lib/x86_64/libpc_effect_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae-source-scene.bin 2599.073 5344.7393 6296.0186 --stream",
+        "KiB": {
+          "Rss": 49480,
+          "Pss": 46418,
+          "Shared_Clean": 3516,
+          "Shared_Dirty": 112,
+          "Private_Clean": 68,
+          "Private_Dirty": 45784,
+          "Referenced": 49260,
+          "Anonymous": 45784,
+          "LazyFree": 0,
+          "AnonHugePages": 32768,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      }
+    ],
+    "batchChildPssKiB": 62058
+  },
+  "sourceChildReadErrors": [
+    {
+      "sampleIndex": 71,
+      "reason": "Command '['/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb', '-s', 'emulator-5554', 'shell', 'cat', '/proc/15559/cmdline']' returned non-zero exit status 1."
+    }
+  ],
+  "graphicsPssReportedValues": [
+    0
+  ],
+  "gpu": "Not established. Android reported graphicsPss, including zero, is not proof of GPU VRAM usage.",
+  "rawFiles": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/evidence/memory.csv",
+      "sha256": "9397ea17c2dc3fec2993b76cdb48e0f8b3830704d50c217e30968241894bae20"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/cold-evidence/memory.csv",
+      "sha256": "552154806a7a2791e3e76d2ded59eee7285dd1b3c46039093aa7b1240553baf5"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/meminfo-timeline.txt",
+      "sha256": "6f55cb59b201d743645c7f5a2154156c6774f156787ff34499ddb3c91f2aeb03"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-00/native-workers.jsonl",
+      "sha256": "e0e62e0df885b24d9d792f42b297e02191dce112583b173605259dfaf2a25830"
+    }
+  ],
+  "memoryBudgetClosed": false,
+  "wholeGoalComplete": false,
+  "scope": "Only exact-cohort completed sampled telemetry. CSV allocator/Java/mainPSS, local meminfo and source-child smaps are independent observations. Child batch reads are sequential, not synchronized with main peaks. No sum of independent peaks, allocation stack, dominator/leak attribution, untouched peak when recording/GC present, ARM or newer APK acceptance. Budget remains open pending required full stress and device evidence."
+}
