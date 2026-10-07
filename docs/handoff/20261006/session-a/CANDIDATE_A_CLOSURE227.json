@@ -1,0 +1,367 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completedASourceRevision": "925748c6139b66a799e59de509c47151b00d8acb",
+  "completedASourceArchive": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current225-complete/sanguo11-mobile-source.tar.gz",
+  "completedASourceArchiveSha256": "05a6c153f576089e13971e09488cff1273521c7e359b1b815d6eef5f4cbe3b7f",
+  "bCandidateReportSha256": "a8a61bd12deb88fcdc69033d801e2c2e6a12c03f8f1869a1e838ef3e7fe1b324",
+  "overlayPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/candidate-a-closure227/a-production-closure.tar.gz",
+  "overlaySha256": "fa81f88a31224cd71d7b448d30a7937bbbca290f88e5b68c7931c31bc1852dcb",
+  "paths": [
+    {
+      "path": "app/build.gradle",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "1673b0987cd498eb4bef9c09a2b9f926a047f5312a25c710fb0f6785b0566a78",
+      "candidateCompileBeforeSha256": "1673b0987cd498eb4bef9c09a2b9f926a047f5312a25c710fb0f6785b0566a78",
+      "canonicalCompletedSha256": "950621288dc981478a73c941cde0b00a5cd0e49a73cf0aeecdde10ca11b4dfdb",
+      "afterSha256": "950621288dc981478a73c941cde0b00a5cd0e49a73cf0aeecdde10ca11b4dfdb",
+      "bytes": 6113
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "c6049f6fa607324c84fe50804ae2f69f3674d15e490b18a0ffa19a739e3e7f75",
+      "candidateCompileBeforeSha256": "c6049f6fa607324c84fe50804ae2f69f3674d15e490b18a0ffa19a739e3e7f75",
+      "canonicalCompletedSha256": "595fa2230b0f23398620beabf60de7ba3cbd261ea4f6307fd5df5f5e2f7fcd6c",
+      "afterSha256": "595fa2230b0f23398620beabf60de7ba3cbd261ea4f6307fd5df5f5e2f7fcd6c",
+      "bytes": 988
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/quad-add.filamat",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "0adff6b5f46acacce7e5466448c288ef3d5b3359e059e8e59dd30664b5777a2c",
+      "afterSha256": "0adff6b5f46acacce7e5466448c288ef3d5b3359e059e8e59dd30664b5777a2c",
+      "bytes": 26364
+    },
+    {
+      "path": "app/src/main/assets/3d/pc-effects/source-fire-scene.bin",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",
+      "afterSha256": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",
+      "bytes": 158192
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/voice-identities.json",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "7040353c2f6df9b60ad1f060699d031e124d7879567965cef45659ce2735a003",
+      "candidateCompileBeforeSha256": "7040353c2f6df9b60ad1f060699d031e124d7879567965cef45659ce2735a003",
+      "canonicalCompletedSha256": "cee06ff16624248152c6546dd8e29210e6598e37462b50466155eab85240f21c",
+      "afterSha256": "cee06ff16624248152c6546dd8e29210e6598e37462b50466155eab85240f21c",
+      "bytes": 4544845
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DataTable.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+      "candidateCompileBeforeSha256": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+      "canonicalCompletedSha256": "8175cca4456deba8012c4bdbe76dab50d21978c71a3b4e8dc78f2915297e288c",
+      "afterSha256": "8175cca4456deba8012c4bdbe76dab50d21978c71a3b4e8dc78f2915297e288c",
+      "bytes": 24377
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/EditorUi.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+      "candidateCompileBeforeSha256": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+      "canonicalCompletedSha256": "da8628c45e920dfc53c3c05ea902a23e6fece2e3dba6987430907545da845aba",
+      "afterSha256": "da8628c45e920dfc53c3c05ea902a23e6fece2e3dba6987430907545da845aba",
+      "bytes": 12318
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FactionColors.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "1de01cf2b8bfb86b628dcfc847582909fc3842bc8e5c98f15421546cef502d30",
+      "candidateCompileBeforeSha256": "542014754033b774fa44ce41613eb7a0d43112d06a9f85061686d76b53460119",
+      "canonicalCompletedSha256": "542014754033b774fa44ce41613eb7a0d43112d06a9f85061686d76b53460119",
+      "afterSha256": "542014754033b774fa44ce41613eb7a0d43112d06a9f85061686d76b53460119",
+      "bytes": 6502
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "185c3979c4fb2e9bf5f35d19ed8a0e579b83b22959ce6f0a7a9b87fbc932f71a",
+      "candidateCompileBeforeSha256": "185c3979c4fb2e9bf5f35d19ed8a0e579b83b22959ce6f0a7a9b87fbc932f71a",
+      "canonicalCompletedSha256": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+      "afterSha256": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+      "bytes": 177325
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GameApplication.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "63710e43bec9d3b66fd66f37dd8d7c703811fd28e5058934a5267d1ca060182f",
+      "candidateCompileBeforeSha256": "63710e43bec9d3b66fd66f37dd8d7c703811fd28e5058934a5267d1ca060182f",
+      "canonicalCompletedSha256": "bd63c8d8b09925ebdb4ad62792f2c156916d8d9ce8f6757e65c73f747d9aabff",
+      "afterSha256": "bd63c8d8b09925ebdb4ad62792f2c156916d8d9ce8f6757e65c73f747d9aabff",
+      "bytes": 1064
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+      "candidateCompileBeforeSha256": "fc1ed192a256be306dcd6aa292958af17e4f822232f788981702f993b7a45de5",
+      "canonicalCompletedSha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+      "afterSha256": "8d6c2b753e877e5e1f33312b554747cb2a8a7a4e0aaebf69d4a75420aac1780d",
+      "bytes": 157032
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+      "candidateCompileBeforeSha256": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+      "canonicalCompletedSha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "afterSha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "bytes": 39026
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapProjectionQuery.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "6ed9aaab333558fe9f6440aa2ff11baa0523b66579320f7506e2e4adaa565131",
+      "candidateCompileBeforeSha256": "6ed9aaab333558fe9f6440aa2ff11baa0523b66579320f7506e2e4adaa565131",
+      "canonicalCompletedSha256": "09672849dfe5e206bb37727a586fd9360b5094301ceb0494fb6ba9a41a27dd11",
+      "afterSha256": "09672849dfe5e206bb37727a586fd9360b5094301ceb0494fb6ba9a41a27dd11",
+      "bytes": 2227
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+      "candidateCompileBeforeSha256": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+      "canonicalCompletedSha256": "d8d4468a7bbd88f971bc668361a0866a58a381c0d3bd26cd77d3204a2deffecd",
+      "afterSha256": "d8d4468a7bbd88f971bc668361a0866a58a381c0d3bd26cd77d3204a2deffecd",
+      "bytes": 17277
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFirePosition.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "139d717fb39616e908add7b7dde31c341f66671a5525ffbc0b0b6481c8d34780",
+      "afterSha256": "139d717fb39616e908add7b7dde31c341f66671a5525ffbc0b0b6481c8d34780",
+      "bytes": 926
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "ee12175db6088b1878e0305d6781e235352b74ab89b14cc93c60d92a00fd4d44",
+      "afterSha256": "ee12175db6088b1878e0305d6781e235352b74ab89b14cc93c60d92a00fd4d44",
+      "bytes": 2468
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcEffectProcess.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "f9dffb5168662958c488f8d6d7585ef6b06c0880bbfae91a0144bdd4905eb8d1",
+      "candidateCompileBeforeSha256": "f9dffb5168662958c488f8d6d7585ef6b06c0880bbfae91a0144bdd4905eb8d1",
+      "canonicalCompletedSha256": "a34f05c315520eba7ffa4c3982cacdfeb5094f862ab0df75a04b1b677b379655",
+      "afterSha256": "a34f05c315520eba7ffa4c3982cacdfeb5094f862ab0df75a04b1b677b379655",
+      "bytes": 14857
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "c3d05ad7abf214d3624e89fcb260e2c8cd020b3852709482ff147d93f97f5852",
+      "candidateCompileBeforeSha256": "c3d05ad7abf214d3624e89fcb260e2c8cd020b3852709482ff147d93f97f5852",
+      "canonicalCompletedSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
+      "afterSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
+      "bytes": 13232
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "3e444226f65224f48fe285881b528fdd606937adc7d5d7fb344d9b7fcc52e97b",
+      "candidateCompileBeforeSha256": "3e444226f65224f48fe285881b528fdd606937adc7d5d7fb344d9b7fcc52e97b",
+      "canonicalCompletedSha256": "aac85b82fa97f0b9d7ca78495317ba3d900a89b73e8d10b88ec79fd138f1557e",
+      "afterSha256": "aac85b82fa97f0b9d7ca78495317ba3d900a89b73e8d10b88ec79fd138f1557e",
+      "bytes": 11676
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceCatalog.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "a8442ba7e278b4e780206c553da9ae6cbd2d7630e3bfc3837419aa3c7dcd46a4",
+      "candidateCompileBeforeSha256": "a8442ba7e278b4e780206c553da9ae6cbd2d7630e3bfc3837419aa3c7dcd46a4",
+      "canonicalCompletedSha256": "15d0340f3ea6f810906c1be800e5bee267381c1561aac43d1bc71090a11b124b",
+      "afterSha256": "15d0340f3ea6f810906c1be800e5bee267381c1561aac43d1bc71090a11b124b",
+      "bytes": 6069
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "7a7d876c06f05f91b553838c70ad3a059b1c168e9bebe822551faf0d19bb6aa1",
+      "candidateCompileBeforeSha256": "7a7d876c06f05f91b553838c70ad3a059b1c168e9bebe822551faf0d19bb6aa1",
+      "canonicalCompletedSha256": "d5a601aea75c62e3c769abc1f5dea31a1b08291329257b1ec95da003d9a56d54",
+      "afterSha256": "d5a601aea75c62e3c769abc1f5dea31a1b08291329257b1ec95da003d9a56d54",
+      "bytes": 3366
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaIdentity.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126",
+      "candidateCompileBeforeSha256": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126",
+      "canonicalCompletedSha256": "ce5e2f5c614ee67947dc751f6116a0dda1fd495379c1970c030bcd0754545cc3",
+      "afterSha256": "ce5e2f5c614ee67947dc751f6116a0dda1fd495379c1970c030bcd0754545cc3",
+      "bytes": 1649
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaSources.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "c687d224e1c7f7c27b113bdbd910022b1bcc88bc9edae40e2d6b0845e41dc516",
+      "candidateCompileBeforeSha256": "c687d224e1c7f7c27b113bdbd910022b1bcc88bc9edae40e2d6b0845e41dc516",
+      "canonicalCompletedSha256": "efbae49ad3a5325e210fa172795afc1bd8748431205d5bb87fe5254f16b52f24",
+      "afterSha256": "efbae49ad3a5325e210fa172795afc1bd8748431205d5bb87fe5254f16b52f24",
+      "bytes": 4345
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12",
+      "candidateCompileBeforeSha256": "20c6fa13316645636795c67d1d379cfd73d328307ea475fe0cbba18df5eb0b12",
+      "canonicalCompletedSha256": "0fa45a934f05aeedbbab540fa5894a1bc0c4ebaca111f162ab3685dca3acf253",
+      "afterSha256": "f28c0972d789023b1a33fa633ec8e43f6d07d82d517cea5ed975c0c2efcbdc38",
+      "bytes": 15781
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneFactsPresentation.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "351ac23abafb863173023ebd4c4ab5f0d43c9d701cc7b3eb832942c301e45a41",
+      "afterSha256": "351ac23abafb863173023ebd4c4ab5f0d43c9d701cc7b3eb832942c301e45a41",
+      "bytes": 1100
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58",
+      "candidateCompileBeforeSha256": "a4922ecc7a6fcdb44fb0e17c455ce70a6d54d029cc31adb1db30859ab3e5ff58",
+      "canonicalCompletedSha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+      "afterSha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+      "bytes": 34553
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TechniqueFactQueue.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "bf29d72528a8734ddc39965a443c1095ce26f2862a0f445677e474b13fb9c393",
+      "candidateCompileBeforeSha256": "bf29d72528a8734ddc39965a443c1095ce26f2862a0f445677e474b13fb9c393",
+      "canonicalCompletedSha256": "1d89ec4b6f68040eda898ed511b53517a9c9188830d125c70488d37e9fda0aa0",
+      "afterSha256": "1d89ec4b6f68040eda898ed511b53517a9c9188830d125c70488d37e9fda0aa0",
+      "bytes": 5864
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TechniquePointsHud.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "4b7f02da26611f4a723333e0f42789183792897275bff7a74d0ce13ed83afea9",
+      "candidateCompileBeforeSha256": "4b7f02da26611f4a723333e0f42789183792897275bff7a74d0ce13ed83afea9",
+      "canonicalCompletedSha256": "59ae92332b4e93aa67130834728469377e4d11afce4ca2ccf9f691303f7fbd20",
+      "afterSha256": "59ae92332b4e93aa67130834728469377e4d11afce4ca2ccf9f691303f7fbd20",
+      "bytes": 7632
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "91c3d9403815ab39ae11ee9f0af5d1a159f6d9308807e3b89f40699ee4a40f32",
+      "candidateCompileBeforeSha256": "91c3d9403815ab39ae11ee9f0af5d1a159f6d9308807e3b89f40699ee4a40f32",
+      "canonicalCompletedSha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+      "afterSha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+      "bytes": 10132
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "9d13abadd7c3a57e489f2f1b0184b81a20ce1684a880075ef8dc1206ae7522fd",
+      "candidateCompileBeforeSha256": "9d13abadd7c3a57e489f2f1b0184b81a20ce1684a880075ef8dc1206ae7522fd",
+      "canonicalCompletedSha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea",
+      "afterSha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea",
+      "bytes": 5797
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/UiTheme.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "3ffed703800dcf0ba242c74541d1b7fa35a02b3c50eacd75dc013d3cefd4ca21",
+      "candidateCompileBeforeSha256": "0a15523b3ddac296f9ea3e9f542e7f91f7bf06835fcb1d0946b35b7a39c3de32",
+      "canonicalCompletedSha256": "0a15523b3ddac296f9ea3e9f542e7f91f7bf06835fcb1d0946b35b7a39c3de32",
+      "afterSha256": "0a15523b3ddac296f9ea3e9f542e7f91f7bf06835fcb1d0946b35b7a39c3de32",
+      "bytes": 8042
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VerifiedMaterial.java",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "0d83e6aee0d7d6225e71202ffc0e4aedd11d42355aeaabcfd10d51efc9eeed2b",
+      "candidateCompileBeforeSha256": "0d83e6aee0d7d6225e71202ffc0e4aedd11d42355aeaabcfd10d51efc9eeed2b",
+      "canonicalCompletedSha256": "6a930a3c16968a5e5b8438bc62d87f8568e976c36343a389ac498e070afc902a",
+      "afterSha256": "6a930a3c16968a5e5b8438bc62d87f8568e976c36343a389ac498e070afc902a",
+      "bytes": 4656
+    },
+    {
+      "path": "app/src/main/res/color/readable_secondary_text.xml",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": "5607fe3a336fad08ac75d30ff163b8ef5125a60d95042e1c5d1ec97624f4cb79",
+      "canonicalCompletedSha256": "5607fe3a336fad08ac75d30ff163b8ef5125a60d95042e1c5d1ec97624f4cb79",
+      "afterSha256": "5607fe3a336fad08ac75d30ff163b8ef5125a60d95042e1c5d1ec97624f4cb79",
+      "bytes": 158
+    },
+    {
+      "path": "app/src/main/res/color/readable_text.xml",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": "a50f0699365f4c52cb5ced5a333a93339c906eb83889148da8fd3c807c124606",
+      "canonicalCompletedSha256": "a50f0699365f4c52cb5ced5a333a93339c906eb83889148da8fd3c807c124606",
+      "afterSha256": "a50f0699365f4c52cb5ced5a333a93339c906eb83889148da8fd3c807c124606",
+      "bytes": 225
+    },
+    {
+      "path": "app/src/main/res/values/styles.xml",
+      "owner": "A",
+      "candidateSourceBeforeSha256": "be47efccb136b25ab40a92d96e527b12d1eb6575c3937b1b28d1026774badd2d",
+      "candidateCompileBeforeSha256": "5c27fae6c5ad72719e3dba96819d816490d310b20d526109a641d32deb7e6a27",
+      "canonicalCompletedSha256": "5c27fae6c5ad72719e3dba96819d816490d310b20d526109a641d32deb7e6a27",
+      "afterSha256": "5c27fae6c5ad72719e3dba96819d816490d310b20d526109a641d32deb7e6a27",
+      "bytes": 1610
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "afterSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "bytes": 38712
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "owner": "A",
+      "candidateSourceBeforeSha256": null,
+      "candidateCompileBeforeSha256": null,
+      "canonicalCompletedSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "afterSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "bytes": 37776
+    }
+  ],
+  "candidateBeforeVerified": 34,
+  "includesBProduction": false,
+  "includesRootGradleBridgeUnityOriginal4Jni": false,
+  "original4JniPreserved": "see export.json",
+  "scope": "Completed A production prerequisite closure plus 224 staged Main/picker adapter; no B WIP. No new APK/install or dynamic acceptance.",
+  "conflicts": [
+    "Candidate original Main and frozen theme-subset Main have distinct before SHA; require either exact before, use frozen A after only once, do not reapply old readonly-theme subset."
+  ],
+  "installed": false,
+  "wholeGoalComplete": false,
+  "mergedManifestEqualsCompiledStageAppFiles": 5810,
+  "supersedes": 226,
+  "supersededReason": "226 compared effective compiled theme only; 227 also carries exact original-source theme predecessors, so source archive integration cannot retain old theme files.",
+  "sharedFrozenInputsExact": {
+    "build.gradle": "6890efa07ab0063bcbdf50cc89686d90bddd1d02af5e5ada6d499d8c3e9b6aa8",
+    "settings.gradle": "a90435fdc499ab0c0e139bc0466e5e50b9eaf62c4b3dedc6fc7aa24c932cd8cc",
+    "gradle.properties": "9c3f670d96063611123987d7bd902f8a898990b5ced332d56a050f4dbe8a3d3c",
+    "scripts/test-ui-models.sh": "123da0656ed98d8fac7e914533d9e10402453a74af2e47e70f048d53102b5d2b",
+    "scripts/verify-map-release.py": "f81ee3af87d5d60cb8d9381a6cfab1a2e6b767f62fd566c0e4306cb1811c2196",
+    "scripts/verify-candidate-source.py": "abd57d33cd9c590e48378d83192ac3fd5a77ae73bc2ca68e761e7ab9f985c89f",
+    "tools/content/map-release-manifest.json": "9b098ef631ddbb62bbadabf897e7377fb6b25e6b50e2fd0fe32c71fc697a5fd4",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  }
+}

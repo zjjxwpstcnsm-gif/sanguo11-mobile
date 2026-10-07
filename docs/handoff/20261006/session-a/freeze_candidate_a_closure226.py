@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Freeze only completed A production prerequisites plus staged two-file adapter."""
 from pathlib import Path
-import json,hashlib,tarfile,io,subprocess
-ROOT=Path(__file__).resolve().parents[4];DOC=ROOT/'docs/handoff/20261006/session-a';OUT=ROOT/'out/session-a/candidate-a-closure226'
+import json,hashlib,tarfile,io,subprocess,argparse
+ROOT=Path(__file__).resolve().parents[4];DOC=ROOT/'docs/handoff/20261006/session-a'
 B=Path('/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60')
 def sha(p):
     h=hashlib.sha256()
@@ -10,6 +10,8 @@ def sha(p):
         for x in iter(lambda:f.read(1048576),b''):h.update(x)
     return h.hexdigest()
 def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--revision',type=int,choices=[226,227],default=227);args=parser.parse_args()
+    OUT=ROOT/f'out/session-a/candidate-a-closure{args.revision}'
     assert not OUT.exists()
     assert not subprocess.check_output(['git','diff','--name-only','HEAD','--','app','core','game-api','game-runtime'],cwd=ROOT).strip()
     assert sha(B/'frozen-report.json')=='a8a61bd12deb88fcdc69033d801e2c2e6a12c03f8f1869a1e838ef3e7fe1b324'
@@ -34,7 +36,7 @@ def main():
         staged=ROOT/'out/session-a/native-opening-stage224'/path
         p=staged if path.endswith(('/MainActivity.java','/ScenarioFactionPicker.java')) else ROOT/path
         digest=sha(p);base=bf.get(path);compiled=effective.get(path,base)
-        if compiled and compiled['sha256']==digest:continue
+        if base and compiled and base['sha256']==digest and compiled['sha256']==digest:continue
         rows.append(dict(path=path,owner='A',candidateSourceBeforeSha256=base['sha256'] if base else None,
                          candidateCompileBeforeSha256=compiled['sha256'] if compiled else None,canonicalCompletedSha256=x['sha256'],afterSha256=digest,bytes=p.stat().st_size))
         contents[path]=p.read_bytes();canonical.append(path)
@@ -63,6 +65,6 @@ def main():
             'original4JniPreserved':a.get('original4AndNew2Jni','see export.json'),
             'scope':'Completed A production prerequisite closure plus 224 staged Main/picker adapter; no B WIP. No new APK/install or dynamic acceptance.',
             'conflicts':['Candidate original Main and frozen theme-subset Main have distinct before SHA; require either exact before, use frozen A after only once, do not reapply old readonly-theme subset.'],'installed':False,'wholeGoalComplete':False}
-    (DOC/'CANDIDATE_A_CLOSURE226.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    (DOC/f'CANDIDATE_A_CLOSURE{args.revision}.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'overlay':str(archive),'sha':report['overlaySha256'],'paths':len(rows),'verifiedBefore':len(verified),'files':[x['path'] for x in rows]},ensure_ascii=False))
 if __name__=='__main__':main()
