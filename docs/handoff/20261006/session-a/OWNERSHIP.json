@@ -356,7 +356,8 @@
     "docs/handoff/20261006/session-a/NORMAL_PREPARATION_AUDIO_QUEUE147.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT148.json",
     "docs/handoff/20261006/session-a/NORMAL_PREPARATION_ORDINARY149.json",
-    "docs/handoff/20261006/session-a/CURRENT_HEAP_QUEUE150.json"
+    "docs/handoff/20261006/session-a/CURRENT_HEAP_QUEUE150.json",
+    "docs/handoff/20261006/session-a/SOURCE_STATE_GATE_REVIEW151.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

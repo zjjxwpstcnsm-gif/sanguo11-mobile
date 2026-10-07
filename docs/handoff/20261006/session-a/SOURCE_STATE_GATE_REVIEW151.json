@@ -1,0 +1,687 @@
+{
+  "sourceRevision": "cae115db8f001aa8a549c66ea3222a5fedf8ee08",
+  "lexicalInventory": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+      "matches": [
+        {
+          "line": 85,
+          "raw": "    private PcMapEffects pcMapEffects;"
+        },
+        {
+          "line": 350,
+          "raw": "        if(snapshot==null||snapshot.ground.pcMap==null)return;"
+        },
+        {
+          "line": 397,
+          "raw": "        if(pcGroundMaterial==null||snapshot==null||snapshot.ground.pcMap==null)return;"
+        },
+        {
+          "line": 407,
+          "raw": "        return snapshot!=null&&snapshot.ground.pcMap!=null&&pcGroundMaterial!=null?pcGroundMaterial.getDefaultInstance():(overview?overviewGroundMaterial:groundMaterial).getDefaultInstance();"
+        },
+        {
+          "line": 615,
+          "raw": "        if(terrainChanged&&pcMapEffects!=null)closePcMapEffects();"
+        },
+        {
+          "line": 620,
+          "raw": "        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||next.ground.pcMap!=null&&scenerySeasonChanged||!excluded.equals(woodExcluded);"
+        },
+        {
+          "line": 650,
+          "raw": "        if(ground.pcMap!=null){"
+        },
+        {
+          "line": 682,
+          "raw": "            +\" sceneryWallMs=\"+(ground.pcMap!=null?sourceForestWall:done-forestStarted)/1e6+\" sceneryCpuMs=\"+(ground.pcMap!=null?sourceForestCpu:android.os.Debug.threadCpuTimeNanos()-forestCpu)/1e6+\" groundDeliveryBackpressureWallMs=\"+(forestStarted-groundDone)/1e6"
+        },
+        {
+          "line": 780,
+          "raw": "            \" source_effects=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-SEFF-map-quads/source-critical-first/other-combat-pending\":\"legacy-compatible\")+(pcMapEffects==null?\" pc_map_fx=closed\":pcMapEffects.report())+(pcPresentations==null?\" pc_presentation=closed\":pcPresentations.report())+(presentationStage==null?\"\":presentationStage.report())+\" pc_map=\"+(snapshot!=null&&snapshot.ground.pcMap!=null)+\" pc_scenery=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-943-objects\":\"legacy-compatible\")+\" pc_sites=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source\":\"legacy-compatible\")+\" pc_units=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-rig-14-models-75-clips/event-mapping-provisional\":\"legacy-compatible\")+\" pc_season=\"+pcSeason+\" pc_texture_bytes=\"+pcBytes+"
+        },
+        {
+          "line": 851,
+          "raw": "                    if(snapshot!=null&&snapshot.ground.pcMap!=null){"
+        },
+        {
+          "line": 897,
+          "raw": "        if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}"
+        },
+        {
+          "line": 901,
+          "raw": "        if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;"
+        },
+        {
+          "line": 903,
+          "raw": "        if(pcMapEffects!=null&&pcMapEffects.fireScene!=(fires!=null))closePcMapEffects();"
+        },
+        {
+          "line": 904,
+          "raw": "        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene,fires!=null);"
+        },
+        {
+          "line": 909,
+          "raw": "        pcMapEffects.frame(dt,sourceCamera,snapshot.ground.sourceOriginX,snapshot.ground.sourceOriginY,fires);"
+        },
+        {
+          "line": 911,
+          "raw": "    private void closePcMapEffects(){if(pcMapEffects!=null){pcMapEffects.close();pcMapEffects=null;}}"
+        },
+        {
+          "line": 1113,
+          "raw": "        final PcUnits.Selection nativeUnit=item.unit!=null&&assetGround.pcMap!=null?pcUnits.idle(item.unit):null;"
+        },
+        {
+          "line": 1118,
+          "raw": "        if(assetGround.pcMap!=null&&nativeUnit==null&&nativeSite==null&&!nativeFacility){"
+        },
+        {
+          "line": 1149,
+          "raw": "            if(assetGround.pcMap!=null)throw new IllegalStateException(\"Original PC asset unavailable: \"+key+\": \"+error);"
+        },
+        {
+          "line": 1205,
+          "raw": "        if(snapshot!=null&&snapshot.ground.pcMap!=null)return \"\";"
+        },
+        {
+          "line": 1276,
+          "raw": "        if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}"
+        },
+        {
+          "line": 1289,
+          "raw": "        if(snapshot.ground.pcMap!=null){clearEffects();return;}"
+        },
+        {
+          "line": 1357,
+          "raw": "        camera.perspective=snapshot!=null&&snapshot.ground.pcMap!=null;"
+        },
+        {
+          "line": 1497,
+          "raw": "            if(snapshot.ground.pcMap==null&&(item.site!=null||item.unit!=null&&!shape.source.pcUnit||item.facility!=null&&!(shape.source.pcDam&&item.facility.owner<0))){String key=\"flag:\"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flagShape.references++;flag=EntityManager.get().create();flagShape.build(flag);}"
+        },
+        {
+          "line": 1834,
+          "raw": "            if(snapshot.ground.pcMap==null)return;"
+        },
+        {
+          "line": 1945,
+          "raw": "            p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?\"\u539f\u7248\u7f8e\u672f\u6062\u590d\u4e2d \u00b7 \u90e8\u5206\u6f14\u51fa\u6682\u7f3a | \":\"\")+((pending>0)?\"3D \u5730\u5f62\u88c5\u8f7d\u4e2d\u2026 \u00b7 \u8bf7\u7a0d\u5019\":(draggingUnit?(dragPlan==null?\"\u79fb\u51fa\u8303\u56f4 \u00b7 \u677e\u624b\u53d6\u6d88\":\"\u677e\u624b\u79fb\u52a8 \u00b7 \u6d88\u8017\"+dragPlan.cost):editorGrid?\"\u7f16\u8f91\u7f51\u683c\u4e34\u65f6\u663e\u793a \u00b7 \u4e0d\u4fee\u6539\u6e38\u620f\u7f51\u683c\u8bbe\u7f6e\":\"\u957f\u6309\u5df1\u65b9\u9009\u4e2d\u90e8\u961f\u62d6\u52a8 \u00b7 \u53cc\u6307\u7f29\u653e/\u65cb\u8f6c\")),12,24*getResources().getDisplayMetrics().density,p);"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+      "matches": [
+        {
+          "line": 375,
+          "raw": "        if(NationalMap.ID.equals(world.mapId)&&world.sourceMapWidth==200&&world.customMapId.isEmpty())"
+        },
+        {
+          "line": 1189,
+          "raw": "        if(map!=null&&map.sourceVisuals())return;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "sha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "matches": [
+        {
+          "line": 120,
+          "raw": "        int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;"
+        },
+        {
+          "line": 123,
+          "raw": "        if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+\":critical\",SoundEffects.Cue.CRITICAL);"
+        },
+        {
+          "line": 139,
+          "raw": "                if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null&&(!sourceVisuals()||PcPresentationPlan.tacticSound(event)<0))sounds().event(\"journal:\"+event.id+\":critical\",SoundEffects.Cue.CRITICAL);}"
+        },
+        {
+          "line": 145,
+          "raw": "        commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?originalCriticalDuration(e):0),e->sourceVisuals()?originalCriticalDuration(e):0);"
+        },
+        {
+          "line": 149,
+          "raw": "        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}"
+        },
+        {
+          "line": 151,
+          "raw": "        if(sourceVisuals())setCriticalSkip(this::cancelCommandEffects);"
+        },
+        {
+          "line": 154,
+          "raw": "        return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();"
+        },
+        {
+          "line": 156,
+          "raw": "    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}"
+        },
+        {
+          "line": 160,
+          "raw": "    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}"
+        },
+        {
+          "line": 161,
+          "raw": "    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}"
+        },
+        {
+          "line": 162,
+          "raw": "    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}"
+        },
+        {
+          "line": 164,
+          "raw": "        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}"
+        },
+        {
+          "line": 206,
+          "raw": "        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){"
+        },
+        {
+          "line": 229,
+          "raw": "        TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);"
+        },
+        {
+          "line": 459,
+          "raw": "    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapRaster.java",
+      "sha256": "1a940ce1319596daa54d5406f9ca17f85201d9e1c0369301fdad6d4b9ec409be",
+      "matches": [
+        {
+          "line": 16,
+          "raw": "        world=w;offset=w.sourceMapWidth>0?(w.height-1)/2:0;"
+        },
+        {
+          "line": 18,
+          "raw": "        else if(w.sourceMapWidth>0){width=2*w.sourceColumns()+(w.sourceRows()>1?1:0);height=2*w.sourceRows();}"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "sha256": "d8d4468a7bbd88f971bc668361a0866a58a381c0d3bd26cd77d3204a2deffecd",
+      "matches": [
+        {
+          "line": 22,
+          "raw": "        final boolean originalNational; final PcMap pcMap;"
+        },
+        {
+          "line": 24,
+          "raw": "        final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;"
+        },
+        {
+          "line": 28,
+          "raw": "            originalNational=NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty();"
+        },
+        {
+          "line": 29,
+          "raw": "            pcMap=NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty()&&w.columnStaggered?PcMap.get():null;"
+        },
+        {
+          "line": 30,
+          "raw": "            width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);"
+        },
+        {
+          "line": 51,
+          "raw": "            SourceGridCoord local=grid.staggered?MapCoordinates.sourceColumn(h,sourceMapWidth):sourceMapWidth>0?MapCoordinates.sourceCoord(h,height):new SourceGridCoord(h.q,h.r);"
+        },
+        {
+          "line": 57,
+          "raw": "            originalNational=old.originalNational;pcMap=old.pcMap;width=old.width;height=old.height;"
+        },
+        {
+          "line": 58,
+          "raw": "            sourceMapWidth=old.sourceMapWidth;sourceOriginX=old.sourceOriginX;sourceOriginY=old.sourceOriginY;"
+        },
+        {
+          "line": 76,
+          "raw": "            if(originalNational!=(NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty()))return false;"
+        },
+        {
+          "line": 77,
+          "raw": "            if(sourceMapWidth!=w.sourceMapWidth||sourceOriginX!=w.sourceOriginX||sourceOriginY!=w.sourceOriginY)return false;"
+        },
+        {
+          "line": 80,
+          "raw": "            if(mapSeed!=31*w.mapId.hashCode()+w.mapRevision||width!=w.width||height!=w.height||grid.staggered!=w.columnStaggered||grid.offset!=(w.sourceMapWidth>0?(w.height-1)/2:0))return false;"
+        },
+        {
+          "line": 196,
+          "raw": "        if(g.pcMap==null)return Collections.emptyMap();"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+      "sha256": "ee12175db6088b1878e0305d6781e235352b74ab89b14cc93c60d92a00fd4d44",
+      "matches": [
+        {
+          "line": 16,
+          "raw": "  if(snapshot==null||!snapshot.authoritativeSceneFacts||snapshot.state==null||expected==null||!expected.equals(snapshot.state)||snapshot.ground.pcMap==null)return null;"
+        },
+        {
+          "line": 25,
+          "raw": "   var map=snapshot.ground.pcMap;int terrain=map.terrain(x,y),fx=PcCellFirePosition.fineX(x),fy=PcCellFirePosition.fineY(x,y);"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
+      "sha256": "c556d4abc96dcb41fec071999c366eba3c736ed4bfdbe417778852d7c349f26c",
+      "matches": [
+        {
+          "line": 39,
+          "raw": "        if(g.pcMap==null)return Collections.emptyList();List<Hex> anchors=new ArrayList<>();"
+        },
+        {
+          "line": 44,
+          "raw": "        if(g.pcMap==null)return Collections.emptyList();int quarter=PcFacilities.quarter(month),size=window.span<14?8:16;"
+        },
+        {
+          "line": 77,
+          "raw": "            int start=g.pcMap.heightByte(ix,iz);"
+        },
+        {
+          "line": 79,
+          "raw": "                int dx=STEPS[direction][0],dz=STEPS[direction][1],end=g.pcMap.heightByte(ix+dx,iz+dz);"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcConstructibleWalls.java",
+      "sha256": "efaf36d88305009aded5c6695f5aa8520b4000fcfc16716823c4f3e19c8a8afc",
+      "matches": [
+        {
+          "line": 17,
+          "raw": "        int kind=PcFacilities.kind(item.facility);if(g.pcMap==null||kind!=17&&kind!=28)return null;"
+        },
+        {
+          "line": 22,
+          "raw": "            g.pcMap.vertex(ix,iz),SOURCE_YAW[SOURCE_DIRECTION[Math.floorMod(item.facility.direction,6)]]);"
+        },
+        {
+          "line": 34,
+          "raw": "            int dx=STEPS[k][0],dz=STEPS[k][1];float rise=(g.pcMap.heightByte(p.ix+dx,p.iz+dz)-g.pcMap.heightByte(p.ix,p.iz))*game.sanguo.core.PcMap.SCALE;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcDams.java",
+      "sha256": "353504206d9aa9ad929e65f159aeffb5de5b3c30d42b5b68c8775ebf1186c90d",
+      "matches": [
+        {
+          "line": 33,
+          "raw": "        if(g.pcMap==null||item.facility==null||!item.facility.type.equals(\"military/DAM\"))return null;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilities.java",
+      "sha256": "1b163f19768cb09a912165363ab269232f309fcef56063de2c677d6cab76d928",
+      "matches": [
+        {
+          "line": 84,
+          "raw": "    boolean supports(MapSceneSnapshot.Ground ground,MapSceneSnapshot.Item item){return ground.pcMap!=null&&bindings.containsKey(kind(item.facility));}"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java",
+      "sha256": "3dcee8e7a0dfa89d38f52b0ab795fc874664bbc9e0b71812f81c4e4b941f5b3b",
+      "matches": [
+        {
+          "line": 29,
+          "raw": "    static boolean supports(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){return g.pcMap!=null&&item.facility!=null&&item.facility.complete&&item.facility.type.equals(\"military/CATAPULT_TOWER\");}"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcScenery.java",
+      "sha256": "9fc5f5520fdf3406f7537012e6b647a66001937e7c0a40f3f33815f2117ee234",
+      "matches": [
+        {
+          "line": 64,
+          "raw": "        if(g.pcMap==null)return Collections.emptyList();"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcSites.java",
+      "sha256": "ca4758f74b016f081cdcd0319ad2dec2738b432fe9f4ab29e8abe83575221b1a",
+      "matches": [
+        {
+          "line": 47,
+          "raw": "        if(g.pcMap==null||item.site==null)return null;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneCamera.java",
+      "sha256": "27708d282b488fc64828e77d60c5874783a0ca85dbe96418db6fcfaf8e5c4efa",
+      "matches": [
+        {
+          "line": 58,
+          "raw": "        heightLimit=ground.pcMap==null?TerrainSurface.MAX_HEIGHT:game.sanguo.core.PcMap.MAX_HEIGHT;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "sha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+      "matches": [
+        {
+          "line": 189,
+          "raw": "        if(g.pcMap!=null)return null; // Source scenery is streamed with the same quarter-grid as playable terrain."
+        },
+        {
+          "line": 203,
+          "raw": "            b.vertex(minX+q*step,g.pcMap==null?-.04f:g.surface.pcLandHeight(minX+q*step,minZ+r*step)-.015f,minZ+r*step,0xffffffff);"
+        },
+        {
+          "line": 208,
+          "raw": "        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;"
+        },
+        {
+          "line": 209,
+          "raw": "        if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);"
+        },
+        {
+          "line": 255,
+          "raw": "        int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;"
+        },
+        {
+          "line": 266,
+          "raw": "            fingerprint=(fingerprint^(g.pcMap==null?0:64))*1099511628211L;"
+        },
+        {
+          "line": 283,
+          "raw": "            if(scratch==null){int cells=g.pcMap==null?Math.min(16,g.width)*Math.min(16,g.height):16*16;scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}"
+        },
+        {
+          "line": 287,
+          "raw": "                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);"
+        },
+        {
+          "line": 289,
+          "raw": "                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);"
+        },
+        {
+          "line": 290,
+          "raw": "                if(g.pcMap!=null){"
+        },
+        {
+          "line": 309,
+          "raw": "                m.pcGround=g.pcMap!=null;"
+        },
+        {
+          "line": 312,
+          "raw": "                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);"
+        },
+        {
+          "line": 313,
+          "raw": "                fine.pcGround=g.pcMap!=null;"
+        },
+        {
+          "line": 314,
+          "raw": "                if(lod==0&&g.pcMap==null)fine=detail(fine,g);"
+        },
+        {
+          "line": 322,
+          "raw": "                if(g.pcMap!=null)fine.sourceWater=sourceWater(g,q,r,fine);"
+        },
+        {
+          "line": 346,
+          "raw": "            if(g.pcMap.coarseWaterByte(x,y)==0)continue;"
+        },
+        {
+          "line": 357,
+          "raw": "            int first=quad*4,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);"
+        },
+        {
+          "line": 358,
+          "raw": "            float level=g.pcMap.coarseWaterPlane(x,y);"
+        },
+        {
+          "line": 365,
+          "raw": "                stream[s+6]=(float)g.pcMap.coarseWaterPhase(x,y);stream[s+7]=(float)g.pcMap.coarseWaterPeriod(x,y);"
+        },
+        {
+          "line": 410,
+          "raw": "        int faces=16*16*8*(g.pcMap==null?1:2)*2;"
+        },
+        {
+          "line": 429,
+          "raw": "                int segments=g.pcMap==null?1:2;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "sha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+      "matches": [
+        {
+          "line": 12,
+          "raw": "    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.pcMap==null?ground.waterField():null;}"
+        },
+        {
+          "line": 17,
+          "raw": "        if(ground.pcMap!=null){"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "sha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+      "matches": [
+        {
+          "line": 51,
+          "raw": "        if(ground.pcMap!=null)return pcHeight(ground.grid.x(h),ground.grid.z(h));"
+        },
+        {
+          "line": 67,
+          "raw": "        float height=ground.pcMap.height(x+ground.sourceOriginX,z+ground.sourceOriginY);"
+        },
+        {
+          "line": 74,
+          "raw": "    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}"
+        },
+        {
+          "line": 75,
+          "raw": "    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}"
+        },
+        {
+          "line": 77,
+          "raw": "        if(ground.pcMap!=null)return pcHeight(x,z);"
+        },
+        {
+          "line": 132,
+          "raw": "        if(ground.pcMap!=null)return pcHeight(x,z);"
+        },
+        {
+          "line": 152,
+          "raw": "        if(ground.pcMap!=null)return pcRayHeight(camera,sx,sy);"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "sha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea",
+      "matches": [
+        {
+          "line": 53,
+          "raw": "                    if(map.sourceVisuals()&&!map.criticalSubmitted()){last=now-elapsed;map.postOnAnimation(tick);return;}"
+        },
+        {
+          "line": 55,
+          "raw": "                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
+      "sha256": "f49190c7987814ba90cb15e078eebbc4aeeef780ea841dff8698b195d54455a1",
+      "matches": [
+        {
+          "line": 49,
+          "raw": "        if(g.pcMap!=null)throw new IllegalStateException(\"PC map requires source scenery; legacy placement rejected\");"
+        },
+        {
+          "line": 65,
+          "raw": "            hash=(hash^g.sourceMapWidth)*1099511628211L;"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "sha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f",
+      "matches": [
+        {
+          "line": 12,
+          "raw": "    WaterVisualField(MapSceneSnapshot.Ground ground){this.ground=ground;flows=ground.pcMap==null?null:new Samples();distances=ground.pcMap==null?null:new Samples();}"
+        },
+        {
+          "line": 105,
+          "raw": "        float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}"
+        },
+        {
+          "line": 106,
+          "raw": "        float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}"
+        },
+        {
+          "line": 147,
+          "raw": "            if(g.pcMap!=null){"
+        }
+      ]
+    }
+  ],
+  "lexicalMatchCount": 110,
+  "manualStateGateReviews": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "sha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "line": 425,
+      "raw": "        else if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}",
+      "context": [
+        "        android.content.Context app=getContext().getApplicationContext();",
+        "        if(sceneState!=null)spatial.sceneIdentity(sceneState);",
+        "        else if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}",
+        "        if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){",
+        "            if(ground==null||!ground.matchesTerrain(world))ground=new MapSceneSnapshot.Ground(world,gridForce());"
+      ],
+      "finding": "A replay without full scene DTO still uses real current session StateToken; no manufactured intermediate token",
+      "fullAndroidOriginalParityAccepted": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+      "line": 617,
+      "raw": "        else if(acceptedCellFires!=null&&(sceneToken==null||!acceptedCellFires.state.equals(sceneToken)))acceptedCellFires=null;",
+      "context": [
+        "        if(terrainChanged&&pcMapEffects!=null)closePcMapEffects();",
+        "        if(next.authoritativeSceneFacts)acceptedCellFires=PcCellFireSet.from(next,sceneToken);",
+        "        else if(acceptedCellFires!=null&&(sceneToken==null||!acceptedCellFires.state.equals(sceneToken)))acceptedCellFires=null;",
+        "        snapshot=next;terrainVisibilityDirty=true;",
+        "        if(pendingFit)fit();"
+      ],
+      "finding": "Non-authoritative visual snapshot retains already-admitted immutable cell fires only while real token matches",
+      "fullAndroidOriginalParityAccepted": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+      "line": 1289,
+      "raw": "        if(snapshot.ground.pcMap!=null){clearEffects();return;}",
+      "context": [
+        "        // Keep the immutable gameplay journal and source unit/rig animation.",
+        "        // Unrecovered PC emitters must not fall through to mobile approximations.",
+        "        if(snapshot.ground.pcMap!=null){clearEffects();return;}",
+        "        combat.detail(quality==SceneQuality.LOW||thermal.constrained?0:quality==SceneQuality.MEDIUM?1:2);",
+        "        combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);"
+      ],
+      "finding": "Compatibility particles suppressed; separate source native fire path exists, no fallthrough original-source claim",
+      "fullAndroidOriginalParityAccepted": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+      "line": 902,
+      "raw": "        PcCellFireSet fires=acceptedCellFires!=null&&sceneToken!=null&&acceptedCellFires.state.equals(sceneToken)?acceptedCellFires:null;",
+      "context": [
+        "        // scene starts; deadlines stay bounded instead of competing with GC.",
+        "        if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;",
+        "        PcCellFireSet fires=acceptedCellFires!=null&&sceneToken!=null&&acceptedCellFires.state.equals(sceneToken)?acceptedCellFires:null;",
+        "        if(pcMapEffects!=null&&pcMapEffects.fireScene!=(fires!=null))closePcMapEffects();",
+        "        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene,fires!=null);"
+      ],
+      "finding": "Every native frame requires acceptedFire token == real sceneToken",
+      "fullAndroidOriginalParityAccepted": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+      "sha256": "ee12175db6088b1878e0305d6781e235352b74ab89b14cc93c60d92a00fd4d44",
+      "line": 33,
+      "raw": "   if(surface.overrides.containsKey(f.hex)&&!surface.water(f.hex)||cells.size()>=MAX_CELLS)continue;",
+      "context": [
+        "   // retain that local guard rather than inventing a source height conversion.",
+        "   var surface=snapshot.ground.surface;",
+        "   if(surface.overrides.containsKey(f.hex)&&!surface.water(f.hex)||cells.size()>=MAX_CELLS)continue;",
+        "   cells.add(new Cell(x,y,point));",
+        "  }"
+      ],
+      "finding": "Only matching painted non-water cell and MAX128 suppress native particle admission; all-map old finding superseded, labels remain",
+      "fullAndroidOriginalParityAccepted": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "b2a871ab13ee73b792c3eb69b72c2be0f5ab9bf53c8f446849a7b82e7a183474",
+      "line": 55,
+      "raw": "        if(sceneToken!=null&&(!sceneToken.sessionId.equals(token.sessionId)||sceneToken.generation!=token.generation)){",
+      "context": [
+        "    void sceneIdentity(game.sanguo.api.StateToken token){",
+        "        meshWork.owner();",
+        "        if(sceneToken!=null&&(!sceneToken.sessionId.equals(token.sessionId)||sceneToken.generation!=token.generation)){",
+        "            closePcMapEffects();acceptedCellFires=null;closePcPresentations();",
+        "            cancelUnitDrag();"
+      ],
+      "finding": "New session/generation clears native effects and admitted fires",
+      "fullAndroidOriginalParityAccepted": false
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/AppliedEventSnapshot.java",
+      "sha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "line": 45,
+      "raw": "        this.state=Objects.requireNonNull(state);this.id=id;this.journalId=journalId;this.sequence=sequence;this.kind=kind;this.sourceKey=sourceKey;this.sourceType=sourceType;this.committedParentId=committedParentId;this.actorUnitId=actorUnitId;this.owner=owner;this.actorOfficerId=actorOfficerId;this.criticalOfficerId=criticalOfficerId;this.criticalYear=criticalYear;this.start=start;this.target=target;this.label=label;this.message=message;this.path=List.copyOf(path);this.changes=List.copyOf(changes);this.plots=List.copyOf(plots);this.pointWrites=List.copyOf(pointWrites);this.originalParentId=null;this.speakerOfficerId=null;this.unknown=List.of(\"originalSpeechCaller\",\"originalEventParent\");",
+      "context": [
+        "    public final List<Plot> plots;public final List<PointWrite> pointWrites;public final List<String> unknown;",
+        "    public AppliedEventSnapshot(StateToken state,String id,long journalId,long sequence,String kind,String sourceKey,String sourceType,String committedParentId,int actorUnitId,int owner,Integer actorOfficerId,Integer criticalOfficerId,Integer criticalYear,SceneFactsSnapshot.Cell start,SceneFactsSnapshot.Cell target,String label,String message,List<SceneFactsSnapshot.Cell> path,List<Change> changes,List<Plot> plots,List<PointWrite> pointWrites){",
+        "        this.state=Objects.requireNonNull(state);this.id=id;this.journalId=journalId;this.sequence=sequence;this.kind=kind;this.sourceKey=sourceKey;this.sourceType=sourceType;this.committedParentId=committedParentId;this.actorUnitId=actorUnitId;this.owner=owner;this.actorOfficerId=actorOfficerId;this.criticalOfficerId=criticalOfficerId;this.criticalYear=criticalYear;this.start=start;this.target=target;this.label=label;this.message=message;this.path=List.copyOf(path);this.changes=List.copyOf(changes);this.plots=List.copyOf(plots);this.pointWrites=List.copyOf(pointWrites);this.originalParentId=null;this.speakerOfficerId=null;this.unknown=List.of(\"originalSpeechCaller\",\"originalEventParent\");",
+        "    }",
+        "}"
+      ],
+      "finding": "Readonly B original voice parent and true speaker still explicitly unknown; no name/ordinal action mapping allowed",
+      "fullAndroidOriginalParityAccepted": false
+    }
+  ],
+  "semanticCompletenessProven": false,
+  "historicalActualForegroundStill": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/fire-extinguish-expiry/evidence/turn-real-fire-expiry-1-foreground120s.png",
+    "sha256": "3932f158258c80cb10e190a83852e76b212e9bce135142c9542a780a13fd3703",
+    "apks": {
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+      "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+    },
+    "observed": "Orange fire and remaining1-turn plaque visible during 46percent/compressed actual turn; no every-frame/token diagnostic or current145 score transfer"
+  },
+  "intermediateFullSceneFactsStillUnknown": true,
+  "originalVoiceParentSpeakerStillUnknown": true,
+  "allOriginalFireChainsAndOver128StillUnknown": true,
+  "wholeGoalComplete": false
+}
