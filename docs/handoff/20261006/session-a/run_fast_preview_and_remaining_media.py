@@ -84,6 +84,39 @@ def main():
             save()
             diagnostic_previous = diagnostic
             different_cohort = True
+            # The independently built primitive-water fix needs its own actual
+            # untouched ordinary384 matrix. Do not use the diagnostic's postGC
+            # numbers, the old68 functional pass or host allocation reduction.
+            fixed_build = json.loads(HELPER.with_name('WATER_NORMAL384_BUILD81.json').read_text())
+            fixed_apks = {r['path']: r['sha256'] for r in fixed_build['apks']}
+            if not fixed_build['buildSuccessful'] or not all(sha(pathlib.Path(p)) == h for p, h in fixed_apks.items()):
+                raise ValueError('Independent ordinary water-fix cohort changed')
+            fixed_game = next(p for p in fixed_apks if pathlib.Path(p).name == 'app-debug.apk')
+            fixed_test = next(p for p in fixed_apks if pathlib.Path(p).name == 'app-debug-androidTest.apk')
+            fixed = args.output/'ordinary384-water-fix-all16'
+            report.update(activeStage='ordinary384-water-fix-all16', waterFixActualSession=str(fixed.resolve()))
+            save()
+            subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(fixed),
+                            '--previous', str(diagnostic)], cwd=ROOT, check=True)
+            with (fixed/'driver.log').open('w') as log:
+                subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(fixed),
+                    '--apk', fixed_game, '--test-apk', fixed_test,
+                    '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'factions16',
+                    '--begin', '0', '--end', '16', '--fresh-process-reopen'],
+                    cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+            fixed_state = json.loads((fixed/'session.json').read_text())
+            fixed_restore = fixed_state.get('restoration', {})
+            if fixed_state['stage'] != 'restored-verified' or not fixed_state.get('passed') or not fixed_state.get('coldProcess', {}).get('passed'):
+                raise ValueError('New ordinary water-fix normal/cold acceptance incomplete')
+            if fixed_state['apks'] != fixed_apks or set(fixed_restore) != {'internal', 'external'} or not all(r['exactRegularFileSha'] for r in fixed_restore.values()):
+                raise ValueError('New ordinary water-fix exact install/full restoration missing')
+            for source in range(16):
+                p = json.loads((fixed/'evidence'/('source-'+str(source)+'-faction-previews.json')).read_text())
+                if p['sourceIndex'] != source or not p['noAuthorityMutation'] or not all(r.get('actual3DVerified') for r in p['slots'] if r['enabled']):
+                    raise ValueError('New ordinary water-fix actual source/faction coverage missing')
+            report.update(waterFixActualNormalColdWorkflowCompleted=True, memoryBudgetClosed=False)
+            save()
+            diagnostic_previous = fixed
         subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(fast),
                         '--previous', str(diagnostic_previous)], cwd=ROOT, check=True)
         with (fast/'driver.log').open('w') as log:
