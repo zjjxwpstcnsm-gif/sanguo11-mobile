@@ -402,7 +402,9 @@
     "docs/handoff/20261006/session-a/CURRENT_MILITARY_ACCEPTANCE186.json",
     "docs/handoff/20261006/session-a/overlay-counters187.json",
     "docs/handoff/20261006/session-a/widget-readability188.json",
-    "docs/handoff/20261006/session-a/LEGACY39_ACTUAL_INSTALL189.json"
+    "docs/handoff/20261006/session-a/LEGACY39_ACTUAL_INSTALL189.json",
+    "docs/handoff/20261006/session-a/LEGACY39_CURRENT_ACCEPTANCE190.json",
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL_ACTUAL_START191.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
