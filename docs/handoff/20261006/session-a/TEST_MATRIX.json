@@ -3,7 +3,7 @@
   "rows": [
     {
       "item": "complete-source",
-      "status": "LATEST111 COMPLETE11184 SOURCE/TOOLS VERIFIED,MATCHES ACTUAL90",
+      "status": "HISTORICAL111 FULL11184 MATCHES OLD90;CURRENT115 APP/117 TOOLS COMMITTED,LATER FULL EXPORT PENDING",
       "evidence": "SOURCE_EXPORT_CHECKPOINT111:adf9d39a complete11184 files/904359551B/archive653107463B SHAe9762e7401aa8ee5c1bda21b85cb87a63dbcc787744fb5987172553fb99d3f37;allSHA/6JNI exact,all inherited10714 pluslatesttools105/107/108/109/110;production/androidTest/core/API/runtime/config same actualfd88;checkpoint notfinal",
       "next": "final accepted package source/tools/evidence and new complete main/B serial guard"
     },
@@ -27,7 +27,7 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT90 ACTUAL SOURCE11 FULL NORMAL/COLD/RESTORE/OBSERVER FINAL ACCEPTED112;NEXT FAST16 LIVE",
+      "status": "CURRENT116 FRESH BUILD/ACTUAL INSTALL SHA/32CANCEL PHASE PASS;FULLNORMAL LIVE",
       "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90 plus DEFAULT_COMBINATION_INSTALL101:fd88 game25a66e49/test9763ab32 exactdevice readback/runner,6JNI/5636assets/168pins;freshwhole9+3797 guards. New90 Source11 live96/670, no complete normal/cold/restoration yet",
       "next": "actual90 complete backup/install whole SHA/normal/cold/restore, never borrow other APK scores"
     },
@@ -45,7 +45,7 @@
     },
     {
       "item": "identity16",
-      "status": "CURRENT90 SOURCE11 ALL670 NORMAL/COLD/FULLRESTORE ACCEPTED112;OTHER15 PENDING",
+      "status": "OLD90 SOURCE11 ALL670 ACCEPTED112;CURRENT116 ALL16 CALLERS QUEUED117,NOT TRANSFERRED",
       "evidence": "NORMAL_DEFAULT_SOURCE11_ACCEPTANCE112 actual25a/976:25157/670/1340/currentyear/full originalbitmap/savedvoiceTYPE/pureSaveRngToken;4gaiji8callers;realHome/orientation/manual3save-read/trueBackexit-reopen/cold29538to10897/both3Dfirstsubmit/9+3797allSHArestore;34originalvideoSHAs andobservers exit0. Native10720/age fields105 separate;not source smallroles/fullscreen/realvoice/ARM",
       "next": "latest90 ownSource11 and allremaining15 normalcallers;allage/smallformroles/crop/color/fullscreen/time/realvoice/ARM remain"
     },
@@ -69,7 +69,7 @@
     },
     {
       "item": "save-preservation",
-      "status": "CURRENT90 SOURCE11 FULL9+3797SHA RESTORED112;NEXT FAST16 INDEPENDENTGUARD LIVE",
+      "status": "OLD114 FAILURE ALL9+3797RESTORED;CURRENT116 FULLBACKUP GUARD LIVE,FINALRESTORE PENDING",
       "evidence": "112 source11 original9internal/rewrite4 and3797external/rewrite0 all finalSHA equal,cold actual expected autoSHA;no data clear;current next fast16 independently reverified complete backup/actual25a976bytes,not accepted yet",
       "next": "each next actual diagnostic/81/90 normal/cold/fulloriginalSHA restoration; never data clear"
     },
@@ -81,7 +81,7 @@
     },
     {
       "item": "final-combination",
-      "status": "CURRENT90 SOURCE11 ACCEPTED112;FAST16 LIVE,COMMANDS/OTHER15/B LATEST/MAIN FINAL SERIAL OPEN",
+      "status": "CURRENT116 32/32CANCEL PHASE PURE/CLOSED;FULLNORMAL/COLD/RESTORE LIVE;COMMANDS/ALLCALLERS117 QUEUED;FINALMAINB/ARM OPEN",
       "evidence": "100 new81 actual242/9bac all16/244/5152/cold/fullrestore, budgetopen. 101 new90 actual25a/976 installed exact, combineswater80/facility83/localfire89/voice71;Source1196/670live, no borrowed scores",
       "next": "complete current diagnostic/cold/restore, new81 full16;then90 fullSource11/fast16/normalmilitary-fire-attack/15othercallers;finalB completeobject serial/newmain/ARM/fresh final package"
     },
@@ -104,6 +104,6 @@
       "next": "90 own normal captures with audit and actual pixels;deep B pages/richtext/money/error/selected/disabled/completion/ARM"
     }
   ],
-  "updatedAfter": "112 actual current90 source11 full670/1340/25157,cold29538to10897,original9+3797allSHArestore,34rawvideo/allobservers finalized;113 actual native/Java/exactPID API29 meminfo independent telemetry;next fast16 same frozen90 live;source111 complete11184;other15/commands/voices/crop/ARM/B complete/main final serial remain open",
-  "updatedCheckpoint": "113"
+  "updatedAfter": "115 explicit ownership-close-before-handoff committed63284162;116 fresh8e08/565 actualinstalled/5636assets168pins6JNI exact;32 pendingcancel phase passed,normal16/cold/restore stilllive53959/54008/54009;117 own55286 waitsstrictly forcommands/all16 current116 callers. Old90 source11 accepted112,oldfastfailed114 and allrestore preserved,terminated priorjobs. Laterfull sourceexport/newmainB/finalAPK/ARM remainopen",
+  "updatedCheckpoint": "117"
 }

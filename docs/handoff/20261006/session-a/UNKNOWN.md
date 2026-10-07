@@ -1,4 +1,7 @@
-# 当前未完成与未知（2026-10-07；最新90实际Source11正常流程运行）
+# 当前未完成与未知（2026-10-07；最新116实际快速取消与正常16流程运行）
+
+CURRENT116: actual installed game8e08f39e/test565de46c/source63284162,full9+3797 backup/wholeAPKreadback/runner verified. New32/32 real pending cancellations allowners/queues closed and fullSaveRngStateToken pure;normal16/newPIDcold/finaloriginalrestore notaccepted yet. Helpers53959/54008/54009 and own followup55286 verified live. Old90 fullSource11 accepted112 and failedfast114 remain package-specific;old10828/44001 terminal. Source111 archive contains old90 production and latesttools through110;current115 picker production and117 tools require later full checkpoint. No ARM/whole-goal/finalmainB acceptance.
+
 
 当前事实以100/101/103/105/107/108/109/110/111及TEST_MATRIX为准：81普通384包已真实16来源/244势力/5152正常、冷17430→25593、原9+3797全部SHA恢复；采样679点Java346235456/402653184B，余56417728B，预算未闭合。新90默认game25a66e49/test9763ab32已经独立全备份实装、整包device SHA/pmrunner验证；112当前90 Source11已完成670/1340入口/25157检查、冷29538到10897及原9+3797全部SHA恢复，两个observer退出且34原录片SHA冻结；其余15及深命令未完成，不移用旧2cd94成绩。111完整11184文件包含最新110以前工具证据，生产及测试源码/6JNI与实际90同源；102是历史导出。103仅新包原3段4052帧，不是整轮电影或PC真值。105当前10720身份原指令复验通过；107/110只读声音路由与线程收尾预检，108实际44001等待队列均不代表录音已通过。
 
