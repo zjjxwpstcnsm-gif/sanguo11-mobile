@@ -86,5 +86,18 @@
   "nextActualDiagnostic": "Future own fresh fully backed up capture should retain full AudioPolicy/AudioFlinger/native logs and route registration before/during AudioRecord creation, both raw44100/48000 initialization; do not touch B5582 or claim old cause from later device success.",
   "wholeTrackGate": 0.995,
   "oldFailureRetained": true,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "historicalInstalledGameShaMatchesFreeze": true,
+  "historicalInstalledTestShaMatchesFreeze": true,
+  "oldApkCurrentFilesAvailable": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug.apk",
+      "existsNow": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/android-mix-build-32/frozen/app-debug-androidTest.apk",
+      "existsNow": true
+    }
+  ],
+  "historicalApkEvidenceBoundary": "Original installed readback recorded in historical results and frozen manifest, not current raw APK rehash or renewed install; exact source is linked from original manifest."
 }
