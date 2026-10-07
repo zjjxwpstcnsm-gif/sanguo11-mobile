@@ -247,7 +247,8 @@
     "docs/handoff/20261006/session-a/ORDINARY384_SOURCE7_COLORS68.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT72.json",
     "app/src/androidTest/java/game/sanguo/mobile/VoiceSourceInstrumentation.java",
-    "docs/handoff/20261006/session-a/VOICE_TEST_REFRESH74.json"
+    "docs/handoff/20261006/session-a/VOICE_TEST_REFRESH74.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT74.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
