@@ -285,3 +285,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 103最新真实90组合（25a/976）前三完成原MP4逐全部4052帧AV解码/真实indices/PTS严格递增、实际timescale[90000]，原stsz encoded逐段==decoded且host原SHA不变，三片已在device pre/post-pullSHA与host等后仅移除自己UUID临时片段，故当前device重读不可用声明而非借旧93。这是当前新包自己的录片前缀，不宣告Source11全670/cold/原数据最终恢复或PC原裁切色彩/全屏/声音/ARM。B线程只读compact状态仍做规则原对照、complete Git HEAD895未变，没发送未经授权消息、不接WIP。当前新Source11首32人/64实际正常pairs已达，全部仍live。
 
 当前摘要同步：UNKNOWN首部不再把61/ff或81未装当当前；保留全部历史原失败/原包scope，当前100新普通全矩阵接受/101新90实装96/670运行/102全源11170/103新原片3段分开，完整媒体、深命令/火/设施、中间StateToken、GPU/ARM、B新完整冻结/最新main最后串行包仍开放。TEST_MATRIX实际安装与源码项更新，不移用旧包证据。
+
+104只读原PC头像绘制wrapper确证：EXE30d33原SHA前后同，Capstone5.0.7解码584e80/589780/443790/588de0四窗保留原字节和每窗SHA；443790六字节b830367900c3返回793630，64原字节为4×4单位矩阵，588e0b复制16dwords。589780转发arg1/matrix/literal1/arg2，literal1不能证明FCE小图组1，动态slot+0x83仍不证明普通/全屏角色、裁切色彩时序或vtable运行可达。未更改app或原PC文件，normal小图绑定/fullscreen验收仍false。最新90同一实装Source11已224/670、448列表详情真实pairs，纯Save-RNG-Token为true但sourceComplete=false；29456/29475/29476继续live，原片已13完成段，不以此称整轮cold/最终恢复通过。

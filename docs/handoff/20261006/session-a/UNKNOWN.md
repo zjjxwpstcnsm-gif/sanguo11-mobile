@@ -53,3 +53,5 @@
 80关闭原水面生产器临时boxing路径，仅主机输出逐位/实际分配对照通过；Source6 Android369.73/384MiB紧余量仍待新81实测，不能以87.99%主机分配降幅当手机峰值同比下降。81新ordinary game242/test9bac仅构建未安装。当前default2cd/1a850正常人物仍在75；新80默认包与最新全组合、GPU/ARM尚待。A正常list选择/定位/pan测试源也包括于81，实际Scene/Fire/Attack仍未复验，不借B辅助旧65成绩。
 
 89补全图height override条件的精确修复：不再让未改变高度格子的原火被任意远处编辑屏蔽；water高度覆写实际surface忽略，故不屏蔽。覆写land本格仍不猜原控制器高度，marker/真实火事实保留；128 cap未改变。176/16显式fixture通过，不是正常Android可达/原用户缺火根因/原高度演出闭合。现普通原来源无覆写，具体正常override入口仍未证明；新包必须独立实装火/军建/媒体接受。
+
+104原头像wrapper只读确证4×4单位矩阵和16dword复制；字面量1不是已证明FCE组，仍缺原普通/全屏UI用途、输出rect/crop/color/lifecycle及动态vtable调用可达证据。不能由该矩阵证据给Android小头像或全屏补猜绑定。
