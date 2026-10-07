@@ -297,6 +297,27 @@ def main():
                     r['videoObservation']['exitCode']=video_observer.returncode
                     if video_observer.returncode not in (0,None):
                         video_stop_error=RuntimeError('Own video recording failed; no next install')
+                    if video_observer.returncode==0:
+                        try:
+                            video_path=out/'video/video.json'
+                            video_result=json.loads(video_path.read_text())
+                            if video_result['apks']!=r['apks'] or not video_result['parts']:
+                                raise ValueError('Missing exact-cohort recorded parts')
+                            for part in video_result['parts']:
+                                if 'error' in part or part['sha256']!=part['deviceSha256']:
+                                    raise ValueError('Original recorded part capture/SHA failed')
+                                if digest(pathlib.Path(part['path']))!=part['sha256']:
+                                    raise ValueError('Original host recorded part changed')
+                                if part.get('verifiedDevicePartRemovedAfterPull') and part['deviceSha256AfterPull']!=part['sha256']:
+                                    raise ValueError('Own temporary removal lacked exact post-pull SHA')
+                            r['videoObservation']['completedOriginalParts']=len(video_result['parts'])
+                            r['videoObservation']['finalIndexSha256']=digest(video_path)
+                            r['videoObservation']['captureLimitReachedBeforeRestoration']=video_result['captureLimitReachedBeforeRestoration']
+                            if video_result['captureLimitReachedBeforeRestoration']:
+                                raise ValueError('Recorder reached its cap before actual restoration')
+                        except Exception as error:
+                            r['videoObservation']['verificationError']=repr(error)
+                            video_stop_error=RuntimeError('Raw video evidence incomplete; no next install')
                     video_log.close();report_path.write_text(json.dumps(r,indent=2))
                 if worker_observer is not None:
                     # Stop only our read-only host observer if restoration itself
