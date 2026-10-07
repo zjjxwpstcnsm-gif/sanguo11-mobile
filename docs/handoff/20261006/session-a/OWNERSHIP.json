@@ -408,7 +408,8 @@
     "docs/handoff/20261006/session-a/REGISTERED_MILITARY_ACCEPTANCE192.json",
     "docs/handoff/20261006/session-a/registered-overlay-counters193.json",
     "docs/handoff/20261006/session-a/registered-widget-readability194.json",
-    "docs/handoff/20261006/session-a/REGISTERED_FIRE_ACTUAL_INSTALL195.json"
+    "docs/handoff/20261006/session-a/REGISTERED_FIRE_ACTUAL_INSTALL195.json",
+    "docs/handoff/20261006/session-a/REGISTERED_FIRE_PAUSE_PREFIX196.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

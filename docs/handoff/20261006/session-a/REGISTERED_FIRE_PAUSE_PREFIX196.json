@@ -1,0 +1,40 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/fire-extinguish-expiry",
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "files": [
+    {
+      "host": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/fire-extinguish-expiry/live-fire-prefix196/pause-reduced-motion-real-fire.png",
+      "remote": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/pause-reduced-motion-real-fire.png",
+      "sha256": "7154198cb4a9e5a9817218a9945997a54ef421e13a3734335cba6bdb2ebd06b7",
+      "deviceBefore": "7154198cb4a9e5a9817218a9945997a54ef421e13a3734335cba6bdb2ebd06b7",
+      "deviceAfter": "7154198cb4a9e5a9817218a9945997a54ef421e13a3734335cba6bdb2ebd06b7"
+    },
+    {
+      "host": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/fire-extinguish-expiry/live-fire-prefix196/pause-reduced-motion-real-fire-actual-text.json",
+      "remote": "/sdcard/Android/data/game.sanguo.mobile.dev/files/session-b/fieldworks/pause-reduced-motion-real-fire-actual-text.json",
+      "sha256": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693",
+      "deviceBefore": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693",
+      "deviceAfter": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693"
+    }
+  ],
+  "visuallyViewed": true,
+  "visualFacts": [
+    "Actual original resource flame visible at current true B fire cell",
+    "Remaining lifetime plaque reads \u706b \u00b7 2\u65ec during reduced motion",
+    "Actual result message and unit name are readable; recorded Unicode is \u8340\u5f67"
+  ],
+  "typedNameStrings": [
+    "\u7ed3\u679c \u00b7 \u70b9\u6b64\u5c55\u5f00\n\u8340\u5f67\u65bd\u5c55\u706b\u8ba1",
+    "\u8340\u5f67 \u00b7 5000"
+  ],
+  "originalFireClockFrozen": true,
+  "wholeSaveBothRngStateTokenPureFromActualTest": true,
+  "animationPreferenceRestoredExactlyFromActualTest": true,
+  "livePrefixOnly": true,
+  "normalColdAndFinalRestorationAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact current176 normal player fire, no injected burning; pause image and widget file each pre/post-device/hostSHA match. Paused actual native flame/lifetime visual proof only, not whole lifecycle/all fire chain/PCpixel parity/ARM; final normal/cold/restoration pending."
+}
