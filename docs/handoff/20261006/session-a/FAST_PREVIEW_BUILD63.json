@@ -1,0 +1,15 @@
+{
+  "scope": "Independent actual menu pending-preview tests plus true Android Back/normal exit-confirmation/autosave/native-host closure; test-only, not installed or accepted. Current61 installed2ee985 continues its original narrower finish/recreate lifecycle.",
+  "testSourceRevision": "0db89a72a3749017105f8fbae0173fbe63a84a07",
+  "testApk": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0db89a72-fast-normal-exit-test/app-debug-androidTest.apk",
+  "testApkBytes": 2609291,
+  "testApkSha256": "7af88d600757fce793c0cbe61b98f1f919ec9150dcecb26bb509eb6bea208142",
+  "buildLog": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/build-test-fast-normal-exit-63.log",
+  "buildLogSha256": "7b0f893f31988e21c29bbcb04024a9d857ddc8198f2f621eac0fd7c538bfe2fc",
+  "buildSuccessful": true,
+  "actualExitConfirmationAccepted": false,
+  "installed": false,
+  "fastPendingLifecycleAccepted": false,
+  "priorUnusedTestBuildRetained": "FAST_PREVIEW_BUILD62.json/144541f9",
+  "wholeGoalComplete": false
+}

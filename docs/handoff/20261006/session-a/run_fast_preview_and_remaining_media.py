@@ -20,7 +20,7 @@ def main():
     args = parser.parse_args()
     previous = args.previous_source11.resolve()
     baseline, _ = accepted(previous, 11)
-    build = json.loads(HELPER.with_name('FAST_PREVIEW_BUILD62.json').read_text())
+    build = json.loads(HELPER.with_name('FAST_PREVIEW_BUILD63.json').read_text())
     fast_test = pathlib.Path(build['testApk'])
     if not build['buildSuccessful'] or sha(fast_test) != build['testApkSha256']:
         raise ValueError('Independently built frozen fast-preview test required')

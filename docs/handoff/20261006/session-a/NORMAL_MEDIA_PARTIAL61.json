@@ -282,5 +282,19 @@
     "normalRunComplete": false,
     "originalPcPixelTimingAccepted": false,
     "armAccepted": false
-  }
+  },
+  "actualCompletedOriginalVideoInspection": {
+    "scope": "Original first24 raw parts only; later tail separate, directory-collision recording gap retained, not full continuous movie/PC time/ARM.",
+    "report": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/video-inspection-full24/inspection.json",
+    "reportSha256": "2b7816f5c273746a99d7fb3a32518b516c519a3eeee0dafd1350c0e63fa35896",
+    "rawParts": 24,
+    "decodedFrames": 34620,
+    "everyRawPartDeviceHostShaEqual": true,
+    "allInputPtsStrictlyIncreasing": true,
+    "allFrameIndexesContiguous": true,
+    "inputTimebase": "1/90000",
+    "sourceFramesUnmodified": true,
+    "entireNormalColdAndRestorationAccepted": false
+  },
+  "existingTestExitBoundary": "Activity.finish/recreate only; true Android Back/save/host.exit confirmation requires new independently installed63."
 }
