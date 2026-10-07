@@ -363,7 +363,9 @@
     "docs/handoff/20261006/session-a/REJECTED_FRAME_OVERLAY_FIX154.json",
     "docs/handoff/20261006/session-a/OVERLAY_ADMISSION_BUILD155.json",
     "docs/handoff/20261006/session-a/MILITARY_PREPARATION_ACCEPTANCE156.json",
-    "docs/handoff/20261006/session-a/MILITARY_PREPARATION_TEXT156.json"
+    "docs/handoff/20261006/session-a/MILITARY_PREPARATION_TEXT156.json",
+    "docs/handoff/20261006/session-a/continue_overlay_admission.py",
+    "docs/handoff/20261006/session-a/OVERLAY_ADMISSION_INSTALL_QUEUE157.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

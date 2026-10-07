@@ -1,0 +1,19 @@
+{
+  "hostPid": 87960,
+  "stage": "waiting-for-old-fire-owner",
+  "producerPid": 85746,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py install-test --output /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-followup146/fire-extinguish-expiry --apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk --test-apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk --reuse-installed --observe-workers --runner SessionAFireFlowInstrumentation --fresh-process-reopen --pause-fire",
+  "previousFire": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-preparation-followup146/fire-extinguish-expiry",
+  "oldApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-26ec2c7d-normal-preparation-test145/app-debug-androidTest.apk": "332a7d2cb9f89c5ddc1bcb1734ce95f2640f2ed8175487902f39ecb09f5cab23"
+  },
+  "newApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk": "a988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk": "0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e"
+  },
+  "deviceActionsStarted": false,
+  "scope": "New independently built production overlay fix. No old145/156 acceptance transferred; first actual fresh Source14 military normal/cold/fullrestore verifies affected UI and latency. Whole matrices follow separately.",
+  "wholeGoalComplete": false,
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/queue.json"
+}

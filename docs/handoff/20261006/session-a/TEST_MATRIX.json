@@ -114,5 +114,8 @@
   "currentPreparation145Pair": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/NORMAL_PREPARATION_BUILD145.json",
   "currentSource148": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT148.json",
   "currentOrdinary149BuildOnly": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/NORMAL_PREPARATION_ORDINARY149.json",
-  "currentHeap150Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/CURRENT_HEAP_QUEUE150.json"
+  "currentHeap150Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/CURRENT_HEAP_QUEUE150.json",
+  "latestProductionOverlay155BuiltOnly": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/OVERLAY_ADMISSION_BUILD155.json",
+  "currentMilitary156Old145Pair": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MILITARY_PREPARATION_ACCEPTANCE156.json",
+  "currentOverlay157Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/OVERLAY_ADMISSION_INSTALL_QUEUE157.json"
 }
