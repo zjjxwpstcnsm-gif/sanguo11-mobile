@@ -1,6 +1,10 @@
-# 当前未完成与未知（2026-10-07；原39暖冷190已全恢复，同176完整正常矩阵运行）
+# 当前未完成与未知（2026-10-08；同176三命令已全恢复，人物矩阵运行）
 
-当前5554是game931bc/testa37f已注册176配对。190原39真正normal/cold7362→16039/both3Dsubmit通过，暖/冷各三旬finished完整Save/bothRNG SHA相同，原9internal/3797external全SHA恢复、录像2原片/native0。原1234/6773/6820/6821已结束，不重启。191真实normal7783已开始同176全部正常軍建/火/攻击/16caller；audio7789/heap7800只等待完整正常/原声门，无自己的deviceactions。当前normal尚未通过，不能把186旧test分或190旧存档分覆盖其他矩阵。
+当前5554 game931bc/testa37f已注册176配对，Source11人物矩阵helper16260/video16277/native16278实际运行；最新增量416/670人物、832真实名册/详情入口，完整Save/bothRNG/StateToken纯持续通过，仍是partial不是整轮/冷/最终恢复。normal7783随后继续其余15来源，audio7789/heap7800只串行等待完整三命令+16caller门，无自己的设备动作。203其余来源每次backup与install前复核继承main/确切注册配对/源码；出现变动先完整恢复不装旧包。
+
+同176真实正常军建192/原火197/持续攻击200均独立normal/cold/both真实3Dsubmit/原9internal与3797external全SHA恢复完成。军建cold21957→14999/8原片、火cold17783→2839/5原片/动画偏好精确恢复、攻击cold7197→22961/2原片，全部video/native0退出。原dataowner7828/12338/15120及各observer已结束，不重启。多旬实际预算仍有>120秒；所有PSS都只是主进程TOTAL PSS，不当Java/native/GPU同步峰值或完整ARM证据。
+
+190真实39暖/冷完整存档与RNG结果SHA相同/原文件全恢复仍是该准确测试范围。当前B完成HEAD仍36f059b4；新增Native/API/ContestUi批次未完成未提交，不合WIP。204/205已在A契约登记明确新局选项的MainActivity/ScenarioFactionPicker精确适配方案，原GUI默认与文本映射/原PC启动RNG待B核实；未实现/编译，旧三参、旧档、预览、取消和全部RNG不变。Source11当前不受此前期准备影响。
 
 186已冻结同game931bc/旧test36f7e8真正Source14军建七旬/完整存读/活动重建/不同PID6814→4513冷恢复/both3Dsubmit通过，原9/3797全部SHA恢复、录像11段与native0；旧98870/98984/98985/2908均终止。700点主进程TOTAL PSS最高515873KiB不是Java峰值，7旬compute128849–332515ms仍不满足前台120秒，宿主176/178/180/B负载与种子差异不作受控优化因果。184线程133观察/187owner-counter184row/188widget516row中的108solid与408未解析明确分开。
 

@@ -1,4 +1,4 @@
-# 当前交付检查点（2026-10-07；全目标未完成）
+# 当前交付检查点（2026-10-08；全目标未完成）
 
 共同完整继承基点 `0e7b9bc2df90249a50851baeda58c7d183ea6059`，受保护 main 仍为 `ef413be3653820dd6449ba7f02aa60bed5b26ef5`；A 独立目录 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile`、分支 `codex/map-ui-media-repair`。完成的 B 后继仅到 `36f059b452f8fc5712747425a37fecbfee3ddd01` 的确切 Git blobs，未合 B WIP。原目录、PC、Bridge/Unity/root Gradle及原4JNI没有改写。
 
@@ -11,6 +11,13 @@
 最新完整源码快照：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current178-complete/sanguo11-mobile-source.tar.gz`，source `37c3cd2586c219afc3a026616d527f0fd8930921`，11277文件全部逐SHA回读，653818475B，SHA `9f59bedf25523217e1a64ecd5e6d8d163182fc79607859c4cb710d7f99fb6b4c`。含全部继承/未跟踪原输入/原4及新增2JNI、164生产优化/B原39测试和注册、176构建工具；不含其后181/182调度及186/189实测回执，当前完整工作目录和Git完成提交保留后继增量，最终交付须再生成包含最终验收的完整快照。无Git缓存、Gradle/build/SDK或用户设备备份打入源码包。
 
 仍未完成：当前176全部正常矩阵和双堆新包、地图BGM真实场景/原parent/实际speaker/voice/58及普通事件声、原普通/全屏像素裁切色彩时序与全部年龄/形态caller、全火链/全部设施控制器/128火格预算、Java/native/GPU峰值与用户354832分配栈、B其余正式规则完成增量的最终串行组合、ARM真机安装长流程。原33技巧/1取消/49之78、9工程合成身份和.995门保留。179已重新核验保护源10714/用户原目录4301、168固定输入和六JNI/Bridge/PCexe。模拟器功能局部通过不能宣布全目标完成或替代ARM。
+
+## 当前176实际闭合与后继（2026-10-08）
+
+192/197/200已在同一game931bc/testa37f上各自完成真实正常军建、格子火生命周期和持续攻击/夺取/进驻，分别独立冷启动并恢复全部9内部/3797外部SHA；录像8/5/2原片，各video/native观察器0收尾。真实39的190暖冷完整结果仍同SHA。Source11全部人物矩阵202现仍运行，增量416/670人物和832入口只是partial，不能代替670/cold/恢复或其余15来源。音频与新普通180/default176双堆实际验收尚待，长旬性能/完整火链/真实voice与地图BGM/原裁切年龄边界全屏/GPU/ARM缺口保持。
+
+203其余15来源串行安装工具已复核每次backup及install前的继承main与确切源；当前protected main ef413/完整source0e7、B完成36f059b4未变。204/205仅登记B未完成原单挑新局options的精确A方案和只读取证，不复制WIP，不猜GUI默认和文字，不改三参/旧档/预览/取消/RNG或打断矩阵；A实现与新组合APK须等完整B冻结源。新工具及192–205回执在当前完整目录和A完成Git提交，旧178归档仍是其准确37c3cd25检查点，最终完整交付需生成最终后继快照。
+
 
 ---
 
