@@ -32,14 +32,19 @@ def restored(case,apks):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--producer-pid',type=int,required=True)
-    p.add_argument('--previous-fast',type=pathlib.Path,required=True)
+    initial=p.add_mutually_exclusive_group(required=True)
+    initial.add_argument('--previous-fast',type=pathlib.Path)
+    initial.add_argument('--previous-military',type=pathlib.Path)
+    p.add_argument('--cohort-receipt',type=pathlib.Path,default=HELPER.with_name('PICKER_RELEASE_BUILD116.json'))
     p.add_argument('--output',type=pathlib.Path,required=True)
-    a=p.parse_args();previous=a.previous_fast.resolve();out=a.output.resolve()
+    a=p.parse_args();initial_case=a.previous_fast or a.previous_military;previous=initial_case.resolve();out=a.output.resolve()
     assert previous.is_relative_to(ROOT/'out/session-a') and out.is_relative_to(ROOT/'out/session-a') and not out.exists()
-    b=json.loads(HELPER.with_name('PICKER_RELEASE_BUILD116.json').read_text())
+    receipt=a.cohort_receipt.resolve()
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json')
+    b=json.loads(receipt.read_text())
     assert b['buildSuccessful'] and b['gameLargeHeap'] is True
     apks={row['path']:row['sha256'] for row in b['apks']};assert all(sha(pathlib.Path(p))==h for p,h in apks.items())
-    producer=command(a.producer_pid);assert producer and 'device_session.py install-test' in producer and str(a.previous_fast) in producer
+    producer=command(a.producer_pid);assert producer and 'device_session.py install-test' in producer and str(initial_case) in producer
     lock=json.loads(pathlib.Path('/tmp/sanguo11-emulator-5554-session-a.lock/owner.json').read_text())
     # reuse-backup owns the same case lock, then a separate install-test
     # process continues it. The saved backup PID is not its live test PID.
@@ -48,9 +53,9 @@ def main():
     assert live['root']==str(ROOT) and live['serial']=='emulator-5554' and live['apks']==apks
     assert live['stage'] in ('installed-verified','cold-process-running','restored-verified')
     out.mkdir(parents=True)
-    report=dict(hostPid=os.getpid(),stage='waiting-for-current116-fast16',producerPid=a.producer_pid,producerCommand=producer,backupLockOwnerPid=lock['pid'],
-        apks=apks,fastSession=str(previous),fastPreviewAccepted=False,remainingCallersAccepted=False,
-        normalCommandResults=[],scope='Actual current116 fast32 cancellations/normal16/cold/fullrestore then commands and all16 normal real callers. No borrowed90/PCcrop/voice/ARM/final integration acceptance.',wholeGoalComplete=False)
+    report=dict(hostPid=os.getpid(),stage='waiting-for-current-military' if a.previous_military else 'waiting-for-current116-fast16',producerPid=a.producer_pid,producerCommand=producer,backupLockOwnerPid=lock['pid'],
+        apks=apks,initialSession=str(previous),cohortReceipt=str(receipt),fastPreviewAccepted=False,remainingCallersAccepted=False,
+        normalCommandResults=[],scope='Exact independent frozen game/test pair, actual normal/cold/fullrestore then commands and all16 normal real callers. New test124 starts from its own military acceptance; prior116 fast score stays its tested pair only. No borrowed90/PCcrop/voice/ARM/final integration acceptance.',wholeGoalComplete=False)
     def save():
         (out/'batch.json').write_text(json.dumps(report,indent=2)+'\n')
     save()
@@ -63,12 +68,17 @@ def main():
             if time.monotonic()>deadline:raise TimeoutError('Live producer observation timed out, not terminal proof')
             time.sleep(10)
         restored(previous,apks)
-        proof=json.loads((previous/'evidence/fast-preview-cancellation.json').read_text())
-        rows=proof['rows'];assert proof['complete'] and len(rows)==32
-        assert {(r['sourceIndex'],r['cycle']) for r in rows}=={(s,c) for s in range(16) for c in range(2)}
-        assert all(r['closedWorkersAndOwners'] and r['completeSaveRngStateTokenPure'] for r in rows)
-        assert any(r['actualPendingCancellation'] for r in rows)
-        report.update(fastPreviewAccepted=True,stage='current116-fast16-accepted');save()
+        if a.previous_fast:
+            proof=json.loads((previous/'evidence/fast-preview-cancellation.json').read_text())
+            rows=proof['rows'];assert proof['complete'] and len(rows)==32
+            assert {(r['sourceIndex'],r['cycle']) for r in rows}=={(s,c) for s in range(16) for c in range(2)}
+            assert all(r['closedWorkersAndOwners'] and r['completeSaveRngStateTokenPure'] for r in rows)
+            assert any(r['actualPendingCancellation'] for r in rows)
+            report.update(fastPreviewAccepted=True,fastSession=str(previous),stage='current116-fast16-accepted')
+        else:
+            report['normalCommandResults'].append(dict(name='military-construction-repair',session=str(previous),normalColdRestorationPassed=True))
+            report.update(stage='current-military-accepted',militaryAccepted=True)
+        save()
         game=next(p for p in apks if pathlib.Path(p).name=='app-debug.apk');test=next(p for p in apks if pathlib.Path(p).name=='app-debug-androidTest.apk')
         def run_case(name,runner,extra):
             case=out/name;report.update(stage=name,activeStage=name,activeSession=str(case));save()
@@ -80,6 +90,7 @@ def main():
         for name,runner,extra in [('military-construction-repair','SessionAScenePresentationInstrumentation',[]),
             ('fire-extinguish-expiry','SessionAFireFlowInstrumentation',['--pause-fire']),
             ('continuous-attack-capture','SessionAAttackTaskInstrumentation',[])]:
+            if a.previous_military and name=='military-construction-repair':continue
             previous=run_case(name,runner,extra)
             report['normalCommandResults'].append(dict(name=name,session=str(previous),normalColdRestorationPassed=True));save()
         previous=run_case('source11-normal-callers','SessionAMapRepairInstrumentation',['--suite','mediaAll16','--begin','11','--end','12'])

@@ -3,7 +3,7 @@
   "rows": [
     {
       "item": "complete-source",
-      "status": "CURRENT118 COMPLETE11192 SOURCE/TOOLS MATCHES ACTUAL116;FINAL ACCEPTED EXPORT PENDING",
+      "status": "118 FULLSOURCE MATCHES UNCHANGED GAME116;123 TEST/125 TOOLS LATER CHECKPOINT PENDING",
       "evidence": "SOURCE_EXPORT_CHECKPOINT118:ca3fabb7/source63284162 actual116 production+androidTest+core/API/runtime/build raw equal;11192 allSHA/904406051B/archive653121228B SHAaeb0a307cefa2555c6552c8672fc097fff55d22bf3306b3ca43c50cbbea52666;original4/new2JNI matchactual8e08/565;all inherited10714/latesttools through117,no B WIP;checkpoint notfinal and later119 parser absent",
       "next": "final accepted package source/tools/evidence and new complete main/B serial guard"
     },
@@ -27,7 +27,7 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT116 FULL32CANCEL/16NORMAL/COLD/FULLRESTORE/OBSERVER FINAL ACCEPTED120",
+      "status": "CURRENT GAME8e08 +NEWTEST10ed INDEPENDENTBUILD/ACTUALTESTONLYINSTALL SHA VERIFIED;MILITARY LIVE",
       "evidence": "FIRE_OVERRIDE_DEFAULT_BUILD90 plus DEFAULT_COMBINATION_INSTALL101:fd88 game25a66e49/test9763ab32 exactdevice readback/runner,6JNI/5636assets/168pins;freshwhole9+3797 guards. New90 Source11 live96/670, no complete normal/cold/restoration yet",
       "next": "actual90 complete backup/install whole SHA/normal/cold/restore, never borrow other APK scores"
     },
@@ -69,7 +69,7 @@
     },
     {
       "item": "save-preservation",
-      "status": "CURRENT116 ALL9+3797SHA RESTORED120;NEXT MILITARY INDEPENDENTFULLBACKUP LIVE",
+      "status": "122 FAILURE ORIGINAL9+3797 ALLSHA RESTORED;124 FRESH FULLBACKUP/INSTALL GUARD LIVE,FINALRESTORE PENDING",
       "evidence": "120 actual116 fast32+normal16+trueBack/home/save/cold23912to21656,both3Dfirstsubmit,original9/rewrite4 and3797/rewrite0 allSHArestored;17originalrecordedparts bothdevice/hostSHA andobservers exit0;current nextmilitary fullbackup/current116wholeSHA guarded,notyetaccepted",
       "next": "each next actual diagnostic/81/90 normal/cold/fulloriginalSHA restoration; never data clear"
     },
@@ -81,7 +81,7 @@
     },
     {
       "item": "final-combination",
-      "status": "CURRENT116 FULLFAST32/NORMAL16/COLD/RESTORE ACCEPTED120;MILITARY/FIRE/ATTACK/CALLERS/ARM/FINALMAINB OPEN",
+      "status": "116 FAST120 ACCEPTED;124 CURRENT MILITARY NEW OPTION TEST LIVE;122 FAILEDLOCATOR/ALLRESTORE RETAINED;125 FIRE/ATTACK/CALLERS QUEUED",
       "evidence": "100 new81 actual242/9bac all16/244/5152/cold/fullrestore, budgetopen. 101 new90 actual25a/976 installed exact, combineswater80/facility83/localfire89/voice71;Source1196/670live, no borrowed scores",
       "next": "complete current diagnostic/cold/restore, new81 full16;then90 fullSource11/fast16/normalmilitary-fire-attack/15othercallers;finalB completeobject serial/newmain/ARM/fresh final package"
     },
@@ -104,6 +104,6 @@
       "next": "90 own normal captures with audit and actual pixels;deep B pages/richtext/money/error/selected/disabled/completion/ARM"
     }
   ],
-  "updatedAfter": "119 ownerIDs/sourcecycles/32close logs bound;120 current116 full32 realpendingcancel/16defaultsource normal3610/cold23912to21656/both3Dsubmission/all9+3797SHArestore/17rawvideo/allobservers final;121 independent Java/native/mainPSS/childsamples budgetfalse;117 actual55286 nextmilitary installedverified withown63933/63934 observers;newall244/all10720/PCroles/voice/GPU/ARM/finalmainB remainopen",
-  "updatedCheckpoint": "121"
+  "updatedAfter": "122 military actualListView locator predicatefailed,all9+3797restored andtwoobservers finalized;123 A testoptiontap fixonly;124 samegame8e08/newtest10ed independenttestbuild1m7s/fullbackup/deviceSHArunnerverified,current64695/64745/64746 military live;125 own64866 waitsstrictbefore fire/attack/all16 currentcallers;old116fast120 scope preserved,not transferred;ARM/finalmainB/export open",
+  "updatedCheckpoint": "125"
 }

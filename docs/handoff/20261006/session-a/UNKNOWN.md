@@ -1,5 +1,8 @@
 # 当前未完成与未知（2026-10-07；最新116快速取消整批已接受、军建正常流程运行）
 
+CURRENT124: game8e08/source632 unchanged;independentnewtest10ed/source3f7ae fixes A self-clickable locator mismatch for actual ListView option. Original122 military failure/all9+3797SHArestore/2rawvideo preserved;old55286/63890/63933/63934 terminal. New64695/64745/64746 andown64866 followupverifiedlive,normalmilitary/cold/finalrestore unaccepted. Afterfullcurrentcase guards,125 queuesfire/attack/newall16 normalcallers;no116 fastscoretransfer. Current118 fullsource productionmatchesgame8e08 butnew123 test/125 tools requirelater checkpoint;ARM/finalmainB/wholegoal stillopen.
+
+
 CURRENT116: actual installed game8e08f39e/test565de46c/source63284162,full9+3797 backup/wholeAPKreadback/runner verified. 119/120 new32/32 real pending cancellations allowners/queues closed and fullSaveRngStateToken pure,normal16/3610/newPIDcold23912to21656/original9+3797allSHArestore and17rawvideo/bothobservers exit0 accepted. Helpers53959/54008/54009 terminal;followup55286 nowcurrent116military normal withvideo63933/native63934 live. Old90 fullSource11 accepted112 and failedfast114 remain package-specific;old10828/44001 terminal. Source118 archive contains current116 production/test code and tools through117,11192files/allSHA/6JNI verified;later119 owner-log parser not included yet. Source111 is historical old90. No ARM/whole-goal/finalmainB acceptance.
 
 

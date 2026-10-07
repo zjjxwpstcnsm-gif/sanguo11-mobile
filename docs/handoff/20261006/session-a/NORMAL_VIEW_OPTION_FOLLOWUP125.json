@@ -1,0 +1,24 @@
+{
+  "actualHostPid": 64866,
+  "actualHostCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/run_picker_release_followup.py --producer-pid 64695 --previous-military out/session-a/normal-view-option-military124 --cohort-receipt docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_TEST_BUILD124.json --output out/session-a/normal-view-option-followup125",
+  "producerPid": 64695,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/device_session.py install-test --output out/session-a/normal-view-option-military124 --apk out/session-a/apk-63284162-picker-release-default116/app-debug.apk --test-apk out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk --test-only-update --observe-workers --runner SessionAScenePresentationInstrumentation --fresh-process-reopen",
+  "backupLockOwnerPid": 64610,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "batchPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125/batch.json",
+  "initialBatchSha256": "faadcfea04ba25d136064844173ee40b61b3fe439df66080de69304b9199ece7",
+  "stage": "waiting-for-current-military",
+  "followingPlan": [
+    "current124 military normal/cold/fullrestore required",
+    "current124 fire extinguish expiry pause",
+    "current124 continuous attack capture",
+    "current124 whole670 source11 callers",
+    "current124 other15 all normal callers"
+  ],
+  "previous116FastScoreNotTransferred": true,
+  "deviceActionsStartedByFollowup": false,
+  "wholeGoalComplete": false
+}
