@@ -117,18 +117,18 @@ def main():
             report.update(waterFixActualNormalColdWorkflowCompleted=True, memoryBudgetClosed=False)
             save()
             diagnostic_previous = fixed
-        # Water allocation and facility status labels are production changes.
+        # Water allocation, facility labels and local fire admission are production changes.
         # Use the separately frozen latest default and repeat all real callers;
         # earlier installed package results cannot be transferred.
-        latest = json.loads(HELPER.with_name('FACILITY_DEFAULT_BUILD84.json').read_text())
+        latest = json.loads(HELPER.with_name('FIRE_OVERRIDE_DEFAULT_BUILD90.json').read_text())
         latest_apks = {r['path']: r['sha256'] for r in latest['apks']}
         if not latest['buildSuccessful'] or not all(sha(pathlib.Path(p)) == h for p, h in latest_apks.items()):
             raise ValueError('Latest independent default water/facility cohort changed')
         if latest_apks != baseline['apks']:
             latest_game = next(p for p in latest_apks if pathlib.Path(p).name == 'app-debug.apk')
             latest_test = next(p for p in latest_apks if pathlib.Path(p).name == 'app-debug-androidTest.apk')
-            latest_source11 = args.output/'latest-default-water-facility-source11'
-            report.update(activeStage='latest-default-water-facility-source11',
+            latest_source11 = args.output/'latest-default-water-facility-fire-source11'
+            report.update(activeStage='latest-default-water-facility-fire-source11',
                           earlierSource11Cohort=baseline['apks'], latestDefaultCohort=latest_apks,
                           latestDefaultSource11Session=str(latest_source11.resolve()))
             save()

@@ -252,3 +252,5 @@ Latest full own source8979dae2 includes completed finite Gov45173c6c+3b5d9b70, e
 57最新b819/b2f511全Source11失败已完整原文件恢复：12人完结，曹操343真实滑动/原列表详情像素及全Save-RNG-token纯已实证；孫權367长按后无详情120秒，触摸或回调根因未明，无冷成绩。58新游戏诊断仅记录A DataTable实际输入/回调和MainActivity详情进入/show，保持原逻辑，需新包独立安装验收；不把此变更或单人55的通过移用为全部人物稳定。
 
 2026-10-07新默认检查点84（尚未安装）：`out/session-a/apk-c3680ed5-facility-default84/app-debug.apk` SHA `0c344856a813e7743dc8d13e7122651584801c83d0ced69a7bb76694a696c122`，测试SHA `3aa92ba234e1d714c3b1faff686b7ccf936537462fd092a92db3fb76d6165e27`。完整守卫见FACILITY_DEFAULT_BUILD84.json。默认largeHeap=true；设施状态与水面优化要求本包独立正常路径接受，75当前旧包仍运行，不能按构建成功声明整体交付。
+
+最新生产检查点90（未安装）：源码fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77，`out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk` SHA `25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9`，测试SHA `9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39`。原四/新增两JNI、全部5636assets及包内largeHeap真值守卫见FIRE_OVERRIDE_DEFAULT_BUILD90.json。89为局部原火准入修复，176/16显式主机fixture不代正常Android或ARM；完整源码86早于本生产修复，下一完整源码检查点需包括89/90，不以旧archive冒称最新源码。

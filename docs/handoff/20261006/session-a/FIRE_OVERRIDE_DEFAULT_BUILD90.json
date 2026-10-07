@@ -1,0 +1,52 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77",
+  "gameLargeHeap": true,
+  "actualPackagedLargeHeap": "A: android:largeHeap(0x0101035a)=(type 0x12)0xffffffff",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk",
+      "bytes": 313476940,
+      "sha256": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk",
+      "bytes": 2612487,
+      "sha256": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "assetsCompared": 5636,
+  "allAssetsByteExactComparedTo84": true,
+  "buildLogSha256": "1504622a5e01046d9a2e4d83e6d932ac9f0320045d265da446e01cd147532c30",
+  "productionContentGate": "PASS: production scenarios packaged; nine test scenarios, Demo and isolated battle engine absent.",
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "scope": "Independent default combining source water allocation, facility labels and local painted-land source-fire admission. Old84/82/75 Android scores not inherited. All actual normal flow, cold/full restore, native/GPU and ARM gates still required.",
+  "wholeGoalComplete": false
+}

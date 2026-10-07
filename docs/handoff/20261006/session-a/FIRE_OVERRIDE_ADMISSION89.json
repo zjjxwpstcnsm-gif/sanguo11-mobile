@@ -28,5 +28,8 @@
   "originalArtAssetsChanged": false,
   "actualInstalled": false,
   "actualAndroidAccepted": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "gitlessPreservedBaselineReproduced": true,
+  "gitlessBaselineReportPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-override-admission89-preserved-baseline/report.json",
+  "gitlessBaselineReportSha256": "61064812c8b2279c529f66cda5de53d23d22a596f1428366a680eb15d7bbe3c8"
 }
