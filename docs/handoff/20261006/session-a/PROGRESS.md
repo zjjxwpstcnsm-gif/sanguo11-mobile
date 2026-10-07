@@ -452,3 +452,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 199 同176当前持续攻击任务已fresh9/3797完整backup/每文件SHA验证和整两包实际SHA/runner verified后运行，helper15120/video15152/native15153真实live。正常出征/MOVE取消/明确攻击预览取消确认/持续追击夺取进驻/存读与冷/原SHA恢复尚待，不借旧142test0eee分。197火已330TOTAL PSS样本最高518301KiB、3旬compute82634/172324/155881ms，system animation原null已精确恢复true；Java/GPU峰值与长旬性能不闭合。audio7789/heap7800继续仅等待完整三命令+16caller门。
 
 200 当前176持续攻击normal Source0 faction29/native91/真出征/MOVE取消/明确城市攻击取消确认/多旬追击/中立57港夺取自动进驻/原army7/完整存读与呈现Save/RNG/Token纯通过，冷7197→22961/both3Dsubmit/auto2c00d6ad...通过，原9internal(rewrite4)/3797external(rewrite0)全部SHA恢复、video/native0/2原片finalindex5b59aedb...，真实compute/PSS准确见200。201widget只当前可解析实测范围，不借旧142或ARM声媒成绩。原15120/15152/15153已真正结束，normal7783进入Source11全人物新fullbackup；audio7789/heap7800只等3命令+全16 caller完整门。
+
+202 当前176全16来源人物普通入口矩阵已实际从Source11开始，fresh9/3797完整独立backup/每SHA核验后两APK整SHA/pmrunner verified；helper16260/video16277/native16278真正live，suite mediaAll16 begin11/end12。全670原人物名册+详情/原bitmap身份和当前年年龄性别形态连接、纯Save/RNG/Token及冷与全恢复尚待，旧112/116 caller分不迁移，年龄边界/原小图裁切/全屏/实际voice/ARM仍独立未知。当前3命令192197200均同176真正常/冷/全SHA闭合；Source11接受后其余15来源，再.995整曲和双堆串行。空间55GiB，没有删除用户资源。

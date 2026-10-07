@@ -1,0 +1,27 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers",
+  "helperPid": 16260,
+  "command": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py install-test --output /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers --apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk --test-apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk --reuse-installed --observe-workers --runner SessionAMapRepairInstrumentation --fresh-process-reopen --suite mediaAll16 --begin 11 --end 12",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "actualRunnerRegistered": true,
+  "freshEveryFileShaVerification": true,
+  "exactDefaultVideoRequested": true,
+  "videoObserver": 16277,
+  "nativeObserver": 16278,
+  "sourceIndex": 11,
+  "normalCallerMatrixAccepted": false,
+  "coldAccepted": false,
+  "fullRestorationAccepted": false,
+  "all16CallersAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact current176 actual normal menu Source11/original officer roster+detail image/identity/current year age/sex/source form binding and full Save RNG StateToken purity begun after all3 commands closed. All670 and cold pending; no old112 caller score, boundary age/fullscreen/original voice or ARM transfer."
+}
