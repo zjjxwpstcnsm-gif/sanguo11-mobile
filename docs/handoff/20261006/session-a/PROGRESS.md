@@ -194,3 +194,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 61原生效果子进程只读阶段采样冻结完整JSONL行前缀和SHA，具体数量以NATIVE_MEMORY_PARTIAL61为准；目前最多同时2个、当前1个、不同PID4个，同一次采样child PSS合计峰54644KiB，0读取错误。只在同实际采样合计child PSS，不与Java/native parent独立峰值相加；此段不证明各取消精确退出延迟、最终cold/恢复、所有16源长循环或GPU/ARM。正常driver78010确认继续live，原备份/安装包未变。
 
 61主78010与原native26106/录像82680均由句柄确认仍live。原观察Python精确PID55872/55874经ps核实后，为该同一session建立等待进程实际退出的续接观察：host句柄95645/84317，独立out native-memory-tail.jsonl/video-tail；旧进程仍live时不重复采集。续接仅只读子进程内存/原始screenrecord，不重启游戏/测试、不安装、不改数据/偏好或B5582；若61先restored-verified则无需新观察器。当前continuation.json阶段waiting-exact-old-process，不能把排队当已经采集或验收完成。
+
+原native26106与视频82680实际终端exit0，主78010仍live；排队native95645已经续接同一PID3555的真实子进程smaps。视频续接84317实际子进程exit1：旧工具以session名固定remote目录，mkdir因旧目录存在失败，未新录/覆盖任何原24段；host排队进程exit0不代表内部observer通过，保留continuation.json子exit1。修复既有视频工具每次新uuid目录，不用mkdir-p复用或覆盖原part01；将新鲜video-tail-retry另启同一live61录像，不重启游戏/安装/清数据。此次续接间隔不能宣传全时连续视频。
