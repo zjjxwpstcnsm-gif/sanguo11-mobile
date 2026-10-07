@@ -1,0 +1,23 @@
+{
+  "scope": "Real menu/normal original identity roster-detail/current-year pixels/fullSaveRNGStateToken/save/newPID and every original file restoration for each source. Not fullscreen/allage/voice/originalPC timing/GPU/ARM or whole goal completion.",
+  "device": "emulator-5554",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "cohortReceipt": "LEGACY39_REGISTERED_TEST_BUILD176.json",
+  "sourceRevision": "198194b32cf450147fb8632fa6a86e8b673c6625",
+  "expectedMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "initialSource11Session": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers",
+  "completedSources": [
+    11
+  ],
+  "sessions": {
+    "11": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers"
+  },
+  "completeAll16NormalCallers": false,
+  "wholeGoalComplete": false,
+  "testOnlyUpdateFirst": false,
+  "activeSource": 0,
+  "actualBatchPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/batch.json"
+}

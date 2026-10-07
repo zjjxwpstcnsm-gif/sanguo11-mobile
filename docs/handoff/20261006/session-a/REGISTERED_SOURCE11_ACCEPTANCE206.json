@@ -1,0 +1,70 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "sourceIndex": 11,
+  "actualOfficers": 670,
+  "actualRosterDetailPairs": 1340,
+  "everyUniqueOfficerHasBothRealCallers": true,
+  "originalCompleteBitmapSameAsAllRows": true,
+  "fullSaveBothRngStateTokenPure": true,
+  "normalChecks": 25157,
+  "coldChecks": 94,
+  "coldProcess": {
+    "beforePid": "26301",
+    "afterPid": "6210",
+    "beforeProcessEvidence": {
+      "pid": "26301",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "6210",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "33436c9701f999e2397283253bbc705052b6ff18154a3284baa723e905c21e4e",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 16277,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 27,
+    "finalIndexSha256": "a98807938aba2ba421e5ad3fd6757bcb2138d56c9503dd60cdbcdd17aec644c6",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 16278,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "proofPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers/evidence/source-11-portrait-callers.json",
+  "proofSha256": "5daabe533c10061db7f5a5f30dee6d326e5adfbd2d31a02a6a24383e3b4dadf2",
+  "memoryAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-source11-memory207.json",
+  "widgetAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/registered-source11-widget208.json",
+  "all16NormalCallersAccepted": false,
+  "allAgeBoundarySmallCropFullscreenVoiceAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact176 whole actual normal Source11 original670 officer roster/detail identity/current-year age/sex/source-form/full bitmap binding, full presentation Save/RNG/StateToken purity, normal menus/save/reopen and newPID/both3D/every originalSHA/27rawvideo. Does not prove original ordinary small-family crop/UI pixels/all age boundaries/fullscreen/real speaker/mapBGM/ARM or other15 sources."
+}
