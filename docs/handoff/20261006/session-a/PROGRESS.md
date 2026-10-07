@@ -269,3 +269,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 97旧b5ec/c96真正常0..6前缀2121/实际所有启用势力全部3D和全Save-RNG-Token纯，正常完整7源/真实HomeBack存读与冷13379→14174/render提交/9+3797全SHA恢复，worker observer正常exit0。实测290采样Java峰334157832/402653184B；无sample超340MiB/无high-heap，故GC dump未触发，不造堆对象/分配栈/Source6峰根因，不借缩短前缀低峰宣称旧68全16问题已消失。parent顺序全备份核验实装新81 242aaff2/9bac6916/实际整包SHA、heapProfile=false/recording=false，helper16202/native16226 live，全16完整矩阵与冷/恢复待。新90仍未安装，源0e7/mainEF/B895无rollback或WIP。
 
 新默认录屏收尾追加证据门：host observer exit0不自动代表录片通过，必须非空完成parts、无逐段error、实际APK绑定、全host原MP4当前SHA、device前后pull SHA、未在restore前超cap。失败仅保存已真实normal/cold/全恢复成绩并停止下一安装，不把码流丢失当成功视频；没有改/剪/重定时原片。当前81无recorder，加载中原工具流程不变；新90实际capture尚未开始，门仅py_compile/静态检查，未借旧93成绩。
+
+98新可复现只读保护工具完成：源完整0e7所有10714、用户旧5231所有4301（含应不存在路径）、Bridge6ada与PC exe30d33、原4/新增2JNI全部SHA匹配；168固定输入manifest9b098ef6未变、源码全部匹配，81实装242与90待装25a66两包168项/6JNI逐SHA完全一致。main仍ef413、B完成HEAD895不接WIP；盘71GiB，不删用户资产。当前新81全16无dump/无encoder source0..5已写真实全势力预览，normal/cold/最终恢复/内存预算仍待，不用守卫通过替代流程。

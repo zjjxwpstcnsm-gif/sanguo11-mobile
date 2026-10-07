@@ -287,7 +287,9 @@
     "docs/handoff/20261006/session-a/audit_session_memory.py",
     "docs/handoff/20261006/session-a/SOURCE11_MEMORY_EVIDENCE95.json",
     "docs/handoff/20261006/session-a/DEFAULT_VIDEO_LIFECYCLE96.json",
-    "docs/handoff/20261006/session-a/ORDINARY_PREFIX_DIAGNOSTIC97.json"
+    "docs/handoff/20261006/session-a/ORDINARY_PREFIX_DIAGNOSTIC97.json",
+    "docs/handoff/20261006/session-a/verify_preserved_inputs.py",
+    "docs/handoff/20261006/session-a/PRESERVATION_FIXED_INPUTS98.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
