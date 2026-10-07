@@ -221,3 +221,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 120s诊断修复后独立retry句柄23718实际live，仅等启动后新完整marker；旧84357已终端captures0/未SIGQUIT，原失败PNG、SHA差异与report保留。当前93249仍live且已完成土垒首个161795ms整旬，正在后续整旬；不以helper background=true键尝试当真实后台，也不把队列/观察器错误判游戏停工。军建补修/cold/最后全SHA恢复未终端。
 
 65 actualretry23718成功取得SIGQUIT3次、实际ART trace14/16均PID30366/strategyTid26803，完整PNG前后hostSHA三等，记录采样对时序的影响。样本1在CampaignAi.routes/War.fireAt，样本3在PcScenarioIdentity.saved/variant String.format→PcGovernorPolicy.source→PcArmyActionPolicy.failure→Government.appointAiRank，不是同位置停滞；两trace线程runtime增4.280045435秒、runqueueWait增20.181615467秒。FEngine在模拟器QemuPipe/glBindBufferRange，cpuinfo是重复旧滚动窗并含录屏codec大负载，不当即时成对采样或ARM GPU结论；唯一瓶颈未证。A不改B core/API，后续须分离录屏/图形争用与规则重复解析，纯规则/RNG语义不能因加速改写。当前93249仍live，normal/cold/恢复未终端。
+
+65当前4df5/7abb已正常完成Source14新局/补金/城近土垒/营垒停止/整旬不增长/无再扣金补修/三个整旬后完工/全保存读取与Activity重建。真实施工文案截图已取回SHA；cold完整自动恢复/手动读取断言通过，AM实际30366→13854，但原driver要求冷首帧PID而失败，历史失败记录保留，独立读证不改为整体通过。原9/3797全部SHA已恢复。旬耗时121921–176851ms，录屏及三次SIGQUIT影响时序；尚无编码负载控制对照。修复host独立以准确包AM启动记录判进程身份，渲染首帧另记。66同4df5/7abb已完整新备份并重新开始Source11全部670正常caller/真正Back退出/GlobalHome/存读/新PID检查，尚未验收；fastpreview后继控制器改用同独立组合65的游戏/测试完整冻结SHA，不能借未安装63或旧61成绩。

@@ -30,3 +30,5 @@
 正常退出路径补核：现有52/53及当前61等测试的Activity.finish()/reopen只证明生命周期重建，未经过MainActivity.onBackPressed的退出确认/save(auto)/gameHost.exit路径；不得把其标成正常退出确认通过。后继A测试改为真实返回键→可见退出确认→实际执行按钮→Activity销毁/主机session关闭/MapHost释放/auto全Save-RNG同等，再启动正常地图；尚未构建安装。Home后台观察也先缓存前台MapHost再发送真实GlobalHome，避免失焦后用focused-root定位器再找后台控件。当前61已安装2ee985照原流程继续，不能动态修补或冒称新路径通过。
 
 61全670与正常文件PASS23141已达，但最终Binder日志2830188字节导致Instrumentation.finish TransactionTooLargeException，整轮失败且全部原文件SHA已恢复、cold未执行。新测试保留完整文件日志，仅返回短状态，未降低检查。真实重开截图有菜单与地图标签/选框重叠观察，页面/裁切数值及持续性未捕获，需新鲜正常流程精确定位。A已响应B施工文案：同完整StateToken builder匹配才显示施工/补修，acted未知原因不称攻击；新生产包必须重建实装，不能借旧ff2832媒体和内存成绩。
+
+后继实际65已结束并全9/3797SHA恢复：正常军建/停止/补修/完工/保存读取通过；冷断言通过且Android实际启动新PID13854，原host误要求冷首帧提交而判失败。MILITARY_NORMAL65_RESULT保留原passed=false、独立进程证据与renderReady未知；66重新实际全部670人物/真实Back退出/GlobalHome/冷/完整恢复仍进行，不能标新包媒体通过。65七个实际旬121921–176851ms仍未闭合性能；SIGQUIT期间实际strategy-turn先后在routes/fireAt与PcScenarioIdentity格式化链，runqueuewait较CPU高，QEMU GL同步与录屏争用仅候选，不能改B规则或宣称单一根因。

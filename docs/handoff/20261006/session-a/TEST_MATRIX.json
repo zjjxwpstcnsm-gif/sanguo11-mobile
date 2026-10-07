@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "61 ALL670 NORMAL ROSTER/DETAIL PASS, TERMINAL BINDER CRASH/NO COLD;NEW4df5 UNTESTED",
-      "evidence": "NORMAL_MEDIA_BINDER_FAILURE61 exactff2832/2ee985 complete1340 raworiginalbitmap/currentyear/fullSaveRNGToken; normalfilePASS23141 but terminal2830188 bytes crashed; restore9/3797; not newgame4df5 or actualBack exit",
-      "next": "Fresh4df5 fullsource11/all16 callers with compactterminal/nav/actualBack/cold/restore; allage/form/fullscreen/crop/voice/ARM remain"
+      "status": "61 ALL670 NORMAL PASS TERMINAL BINDER FAILED;CURRENT4df5/7abb FULL SOURCE11 66 LIVE",
+      "evidence": "66 current exact independently built same combo normal roster/detail all670; compact terminal/actual Back/nav diagnostics not yet accepted",
+      "next": "66 normal/cold/restore then strict all remaining15; allage/forms/fullscreen/crop/voice/ARM open"
     },
     {
       "item": "dynamic-age",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "THROUGH61 ORIGINAL9/3797 EXACT RESTORED;65 FRESH FULL BACKUP AND INSTALL LIVE",
-      "evidence": "61 terminalfailed but all9/3797 restored exact;65 currenteveryfile/independentarchive verified before new4df5/7abb install; no clearData",
-      "next": "65 actualnormal/cold/final everyoriginalSHA"
+      "status": "65 EVERY ORIGINAL9/3797 SHA RESTORED;66 FRESH COMPLETE BACKUP VERIFIED",
+      "evidence": "MILITARY_NORMAL65_RESULT exact all original data restored after normal completion/cold assertions; failed original PID gate retained;66 independent archives/current all SHA verified",
+      "next": "66 actual media all670/normal Back/cold/restore then remaining15 source actual callers"
     },
     {
       "item": "arm",
@@ -81,9 +81,9 @@
     },
     {
       "item": "final-combination",
-      "status": "COMPLETED B MILITARY c6+895 EXACT IMPORT, FRESH4df5/7abb INSTALLED65 LIVE",
-      "evidence": "MILITARY_REPAIR_INTEGRATION65 exact14paths2production/5713resource6JNI/Bridge; sameToken constructionhint; terminalIPCbounded; no B WIP",
-      "next": "65 ordinary military repair/hints/multiturn/cold/restoration then newestall16 UI/media/heap/fire/actualexit and ARM; finalserialmain"
+      "status": "4df5/7abb NORMAL MILITARY PASS;COLD ASSERTIONS PASS BUT ORIGINAL PID DRIVER FAILED;66 LIVE",
+      "evidence": "MILITARY_NORMAL65_RESULT: actual repair/hint/stop/three construction turns to completion/save/read/recreate; exact AM distinct30366→13854; cold no first submission; original failed unchanged; all9/3797 restored",
+      "next": "Current66 complete normal caller/actual Back/HOME/cold then all16/fastpreview/fire/HUD/384/ARM/finalserial"
     },
     {
       "item": "search-normal",
@@ -99,5 +99,5 @@
     }
   ],
   "updatedAfter": "completed41/44 and45backup,2026-10-07",
-  "updatedCheckpoint": "61 all670 normal diskPASS23141 but Binder2830188 transport crash/no cold/fullrestore;65 fresh4df5/7abb actual installed military repair live; complete20e source export verified11104"
+  "updatedCheckpoint": "65 normal military complete/cold assertions+distinct AM PID but historical driver failure;all original9/3797 restored;66 current combo source11 normal media live"
 }

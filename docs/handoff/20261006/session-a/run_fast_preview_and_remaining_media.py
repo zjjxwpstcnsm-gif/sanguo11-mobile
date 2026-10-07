@@ -20,11 +20,14 @@ def main():
     args = parser.parse_args()
     previous = args.previous_source11.resolve()
     baseline, _ = accepted(previous, 11)
-    build = json.loads(HELPER.with_name('FAST_PREVIEW_BUILD63.json').read_text())
-    fast_test = pathlib.Path(build['testApk'])
-    if not build['buildSuccessful'] or sha(fast_test) != build['testApkSha256']:
-        raise ValueError('Independently built frozen fast-preview test required')
-    game = next(pathlib.Path(p) for p in baseline['apks'] if pathlib.Path(p).name == 'app-debug.apk')
+    build = json.loads(HELPER.with_name('COMBINED_BUILD65.json').read_text())
+    frozen = {row['path']: row['sha256'] for row in build['apks']}
+    if not build['buildSuccessful'] or frozen != baseline['apks']:
+        raise ValueError('Source11 must use the independently built complete combination65 cohort')
+    if not all(sha(pathlib.Path(path)) == digest for path, digest in frozen.items()):
+        raise ValueError('Frozen combined game/test APK bytes changed')
+    game = next(pathlib.Path(p) for p in frozen if pathlib.Path(p).name == 'app-debug.apk')
+    fast_test = next(pathlib.Path(p) for p in frozen if pathlib.Path(p).name == 'app-debug-androidTest.apk')
     args.output.mkdir(parents=True, exist_ok=False)
     fast = args.output/'fast-preview16'
     report = {'scope': 'Actual pending-preview cancellation, real16 normal newgames/gestures/cold/restore, then same original media test cohort all remaining normal callers. Not ARM/PC fullscreen/voice/whole-goal acceptance.',
@@ -40,7 +43,7 @@ def main():
                         '--previous', str(previous)], cwd=ROOT, check=True)
         with (fast/'driver.log').open('w') as log:
             subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(fast),
-                '--apk', str(game), '--test-apk', str(fast_test), '--test-only-update',
+                '--apk', str(game), '--test-apk', str(fast_test), '--reuse-installed',
                 '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'fastPreview16',
                 '--begin', '0', '--end', '16', '--fresh-process-reopen'], cwd=ROOT,
                 stdout=log, stderr=subprocess.STDOUT, check=True)
@@ -69,12 +72,11 @@ def main():
         report.update(fastPreviewAccepted=True, fastSession=str(fast.resolve()),
                       actualPendingCancellations=sum(r['actualPendingCancellation'] for r in rows))
         save()
-        # Source0 backs up every original file before re-installing the original
-        # media test bytes. Later15 results therefore use source11's exact cohort.
+        # Fast-preview and all callers use the same independently built APK pair.
+        # Each next source still verifies all files and installed bytes.
         remaining = args.output/'remaining-normal-callers'
         subprocess.run([sys.executable, str(HELPER.with_name('run_remaining_normal_media.py')),
-            '--previous-source11', str(previous), '--output', str(remaining),
-            '--test-only-update-first'], cwd=ROOT, check=True)
+            '--previous-source11', str(previous), '--output', str(remaining)], cwd=ROOT, check=True)
         media = json.loads((remaining/'batch.json').read_text())
         if not media['completeAll16NormalCallers'] or media['apks'] != baseline['apks']:
             raise ValueError('Remaining original media cohort incomplete')
