@@ -225,6 +225,15 @@
         }
       ],
       "coldAndFinalRestorationAccepted": false
+    },
+    {
+      "actualVisitedOfficers": 320,
+      "sourceComplete": false,
+      "rows": 640,
+      "hostPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/actual-partial-callers-320.json",
+      "hostDeviceSha256": "f0d11169e1ddf76cdbd1dfc75b9f91c6d691fad46be67a0bbb5cfb7ba0208119",
+      "fullSaveRngStateTokenPure": true,
+      "coldAndFinalRestorationAccepted": false
     }
   ],
   "actualPartialMemorySnapshot": {

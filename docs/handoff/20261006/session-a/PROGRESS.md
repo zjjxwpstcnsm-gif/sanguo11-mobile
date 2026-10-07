@@ -184,3 +184,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 串行控制工具run_fast_preview_and_remaining_media.py已预登记后编写：必须先接受61 source11全670正常/新PID冷/9与3797原文件SHA恢复；随后独立完整备份安装144541f9快速取消test，真实16来源×2次取消/worker释放+正常16新局/缩放/存读/冷/完整恢复全部通过才进入其余15来源原正常头像工具。第一来源0在完整备份后明确重装原2ee985测试包，恢复与61完全相同的游戏/测试cohort；各来源不相加冒称不同包通过。Python语法/help通过；对当前61 live实际执行前置校验拒绝，未建输出目录、未安装或改变设备。新工具未运行任何后继验收，原PC/GPU/ARM和媒体缺口仍待。
 
 61继续运行时只读完整保护核查通过：继承源10714、旧目录4301含缺席路径全部原SHA/HEAD一致，PC EXE30d33与原4/新增2JNI精确；54审计的225路径当前SHA未变，B完成Git HEAD仍aa9，main仍EF，冻结AndroidGameBridge对照54路径和SHA精确。临时核查先因错误root键、汇总先因错误Bridge目录在记录前停止；依据实际source/directory schema及既有Bridge guard路径重跑后才保存通过，不改任何原目录。当前normal/cold/最终数据恢复未终端，此保护核查不作为功能或ARM验收。
+
+61实时320/670阶段回执取回逐SHA与设备同等，640条实际正常roster/detail完整原bitmap/身份/当前187年与全Save-RNG-StateToken纯；每个历史快照保留独立路径不覆盖，sourceComplete=false，冷和最后全SHA恢复未接受。78010当前live，原备份/锁保留，5554新快速包尚未安装。
