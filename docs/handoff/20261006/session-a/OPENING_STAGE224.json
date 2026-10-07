@@ -1,0 +1,43 @@
+{
+  "scope": "A-only staged app compilation against immutable candidate60 JARs and two frozen B pages; not full source inheritance, integration, APK or install",
+  "root": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+  "stage": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224",
+  "aHead": "9ab4a3d61bd5e6db2f89ff7c787ee1481105a211",
+  "bReportSha": "a8a61bd12deb88fcdc69033d801e2c2e6a12c03f8f1869a1e838ef3e7fe1b324",
+  "overlaySha": "d747461bf82d92105447b8ae7e7dba08e8ae4f8dbd9d9db29da1940b0e9b2ca4",
+  "verifiedOverlayPaths": 196,
+  "verifiedUnchangedBDependencies": 612,
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/core.jar",
+      "bytes": 12807766,
+      "sha256": "6e9ba3c121f49ced2907022e5d7d5b389481a7d3ea79a1091e367b7248d562a1"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/game-api.jar",
+      "bytes": 84606,
+      "sha256": "9f634ca25e0699a05eb13550df996ece702b134ea454b994c60792db772f20cb"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/game-runtime.jar",
+      "bytes": 72893,
+      "sha256": "131f9897bb022d949efc146ca2d19bc9768e4658c86409577cb93d5feae89401"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/app-debug.apk",
+      "bytes": 314924682,
+      "sha256": "b2257c00e8dacca195c212e1907034b170d0eceec559038f40df74065abdbebb"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/app-debug-androidTest.apk",
+      "bytes": 3040428,
+      "sha256": "64450935a7fb9e94b6a58d650af4d2f5b6807ac13b9ccebaa8f41bc817fa6104"
+    }
+  ],
+  "aBefore": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+    "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java": "0fa45a934f05aeedbbab540fa5894a1bc0c4ebaca111f162ab3685dca3acf253"
+  },
+  "conflicts": [],
+  "installed": false
+}

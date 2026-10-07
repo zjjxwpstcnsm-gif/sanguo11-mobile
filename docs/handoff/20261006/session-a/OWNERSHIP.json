@@ -438,7 +438,13 @@
     "docs/handoff/20261006/session-a/FIRST_LAUNCH_OPTIONS_READONLY220.json",
     "docs/handoff/20261006/session-a/REGISTERED_SOURCE02_ACCEPTANCE221.json",
     "docs/handoff/20261006/session-a/registered-source02-memory222.json",
-    "docs/handoff/20261006/session-a/registered-source02-widget223.json"
+    "docs/handoff/20261006/session-a/registered-source02-widget223.json",
+    "docs/handoff/20261006/session-a/prepare_opening_stage224.py",
+    "docs/handoff/20261006/session-a/OPENING_STAGE224.json",
+    "docs/handoff/20261006/session-a/OPENING_STAGE224.md",
+    "docs/handoff/20261006/session-a/OPENING_ADAPTER224.patch",
+    "docs/handoff/20261006/session-a/OPENING_ADAPTER224.json",
+    "docs/handoff/20261006/session-a/build_opening_stage224.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
