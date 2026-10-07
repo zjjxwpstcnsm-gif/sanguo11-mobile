@@ -55,6 +55,53 @@ public class SessionAScenePresentationInstrumentation extends SessionBFieldworks
   }
   android.view.MotionEvent up=android.view.MotionEvent.obtain(began,SystemClock.uptimeMillis(),android.view.MotionEvent.ACTION_UP,endX,endY,0);up.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(up);up.recycle();settle();
  }
+ private android.graphics.Rect freeMapRect()throws Exception {
+  android.graphics.Rect free=new android.graphics.Rect();
+  runOnMainSync(()->{try{
+   MapHost host=(MapHost)field(activity,"map");int[] at=new int[2];host.getLocationOnScreen(at);
+   free.set(at[0],at[1],at[0]+host.getWidth(),at[1]+host.getHeight());int margin=activity.dp(45);free.inset(margin,margin);
+   for(String name:new String[]{"panelShell","commandDock"}){
+    android.view.View panel=(android.view.View)field(activity,name);if(!panel.isShown())continue;
+    panel.getLocationOnScreen(at);android.graphics.Rect bounds=new android.graphics.Rect(at[0]-margin,at[1]-margin,at[0]+panel.getWidth()+margin,at[1]+panel.getHeight()+margin);
+    if(!android.graphics.Rect.intersects(free,bounds))continue;
+    if(panel.getWidth()<host.getWidth()*.7f&&bounds.left>free.left)free.right=Math.min(free.right,bounds.left);
+    else free.bottom=Math.min(free.bottom,bounds.top);
+   }
+   FilamentMapView view=(FilamentMapView)field(host,"spatial");
+   if(view!=null&&(Boolean)field(host,"navigatorShown")){
+    android.graphics.RectF mini=new android.graphics.RectF((android.graphics.RectF)field(field(view,"overlay"),"miniRect"));view.getLocationOnScreen(at);mini.offset(at[0],at[1]);
+    if(mini.contains(free.centerX(),free.centerY()))free.right=Math.min(free.right,(int)mini.left-margin);
+   }
+  }catch(Exception e){throw new RuntimeException(e);}});return free;
+ }
+ private String targetDiagnostic(Hex target,float[] point)throws Exception {
+  String[] diagnostic={""};runOnMainSync(()->{try{
+   MapHost host=(MapHost)field(activity,"map");FilamentMapView view=(FilamentMapView)field(host,"spatial");MapSceneSnapshot snapshot=(MapSceneSnapshot)field(view,"snapshot");
+   int[] origin=new int[2];view.getLocationOnScreen(origin);float x=point[0]-origin[0],y=point[1]-origin[1];
+   android.graphics.RectF mini=(android.graphics.RectF)field(field(view,"overlay"),"miniRect");
+   diagnostic[0]="target="+target+" screen="+java.util.Arrays.toString(point)+" actualGroundRay="+snapshot.ground.surface.pick(view.camera,x,y)
+    +" minimapBlocked="+((Boolean)field(host,"navigatorShown")&&mini.contains(x,y))+" commandTargeting="+field(view,"commandTargeting");
+  }catch(Exception e){throw new RuntimeException(e);}});return diagnostic[0];
+ }
+ @Override protected void tile(Hex target)throws Exception {
+  byte[] before=capture();StateToken prior=activity.deploymentState();boolean admitted=false;
+  for(int attempt=0;attempt<16;attempt++){
+   float[] point=(float[])invoke("screenHex",new Class<?>[]{Hex.class},target);
+   boolean visible=(Boolean)invoke("visibleMapPoint",new Class<?>[]{float[].class},point);
+   admitted=(Boolean)invoke("routePoint",new Class<?>[]{Hex.class,float[].class},target,point);
+   note("actual target admission attempt="+attempt+" visible="+visible+" exactRay="+admitted+" "+targetDiagnostic(target,point));
+   if(admitted)break;
+   android.graphics.Rect free=freeMapRect();check(!free.isEmpty(),"normal target adjustment has unoccluded map drag area");
+   float dx=Math.max(-free.width()*.25f,Math.min(free.width()*.25f,free.centerX()-point[0]));
+   float dy=Math.max(-free.height()*.25f,Math.min(free.height()*.25f,free.centerY()-point[1]));
+   // A zero-length drag would be a target tap. Never inject it on a failed ray.
+   check(Math.hypot(dx,dy)>activity.dp(12),"target cannot be admitted by normal pan; preserve exact ray failure evidence");
+   touchDrag(free.centerX(),free.centerY(),free.centerX()+dx,free.centerY()+dy);
+  }
+  check(java.util.Arrays.equals(before,capture())&&prior.equals(activity.deploymentState()),"normal pre-target pan preserves full Save/bothRNG/StateToken");
+  check(admitted,"normal pan admits exact target before actual pointer "+target);
+  super.tile(target);
+ }
  @Override protected void pose(Hex target)throws Exception {
   byte[] before=capture();StateToken prior=activity.deploymentState();
   // setItems dispatches the real row tap through its ListView; the text cell
@@ -63,10 +110,8 @@ public class SessionAScenePresentationInstrumentation extends SessionBFieldworks
   boolean visible=false;
   for(int attempt=0;attempt<16;attempt++){
    float[] point=(float[])invoke("screenHex",new Class<?>[]{Hex.class},target);
-   android.graphics.Rect viewport=new android.graphics.Rect();
-   runOnMainSync(()->{try{MapHost map=(MapHost)field(activity,"map");map.getGlobalVisibleRect(viewport);int[] origin=new int[2];map.getRootView().getLocationOnScreen(origin);viewport.offset(origin[0],origin[1]);}catch(Exception e){throw new RuntimeException(e);}});
-   viewport.inset(activity.dp(45),activity.dp(45));
-   visible=!viewport.isEmpty()&&viewport.contains((int)point[0],(int)point[1]);
+   android.graphics.Rect viewport=freeMapRect();
+   visible=!viewport.isEmpty()&&viewport.contains((int)point[0],(int)point[1])&&(Boolean)invoke("visibleMapPoint",new Class<?>[]{float[].class},point);
    if(visible)break;
    check(!viewport.isEmpty(),"actual visible map admits normal target pan");
    float dx=Math.max(-viewport.width()*.25f,Math.min(viewport.width()*.25f,viewport.centerX()-point[0]));

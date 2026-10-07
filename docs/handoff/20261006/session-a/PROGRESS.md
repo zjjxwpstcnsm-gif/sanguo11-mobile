@@ -349,3 +349,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 136 普通/默认各独立32快退+244势力+cold/全恢复串行工具完成syntax，main/source每次设备动作前检查，声音波形失败仅在目标/测试数据与AppOp完整恢复后允许独立内存工作且不称音乐通过。当前125攻击实际失败、71209终止，实failedbatch门正确拒绝，队列未启动/ordinary134未装；先诊断实际射线/遮挡失败并新测试独立安装，不能假装仍等待live或借已终止PID自动restart。
 
 137 actual124 attack失败在Source0/faction29/native91部署/正常unitlist/定位pan/按行军以后、目标13265真正pointer之前的exact地形ray检查。失败PNG已查看，不能因端口文字可见就证明目标点未被其他面板/小地图/地形遮挡；现A pose仅MapHost矩形的检查确实比原routePoint条件弱，具体false分支缺当时诊断，不称生产pick根因已定。9internal(rewrite3)/3797external(rewrite0)全部SHA恢复、video/native0/1原片device前后pull和hostSHA精确，125/71209均实际终止，未跑新人物/音频/136。后继增加只读actualprojection/ray/overlay诊断与正常pan，保留原exactray gate，不直接setCamera/造snapshot/改B或规则。
+
+138 A-ownedtest normal pose使用screen实际bounds并扣除panelShell/commandDock/minimap；tile在actualpoint不可接受时先记录surface地形ray/visible/minimap/commandTargeting，仅真实mapdrag，若12dp以下不会把零drag变targettap，最后仍调用原B tile exactray断言并真pointer，前置完整Save/bothRNG/Token纯。没有直接camera/World/API/rule/B文件变化，未降低deadline/断言；具体137旧失败false分支仍未知，新test构建安装/retest必须独立，不借130135旧test10ed成绩。

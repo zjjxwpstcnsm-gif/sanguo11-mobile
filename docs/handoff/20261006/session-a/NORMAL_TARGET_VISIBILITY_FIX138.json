@@ -1,0 +1,24 @@
+{
+  "actualFailureReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/ATTACK_TARGET_FAILURE137.json",
+  "changedPath": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenePresentationInstrumentation.java",
+  "beforeSha256": "e3952240d18442eebe78fd36eef9a0c87e3f83e9c47905c4958d5d20f6a89c99",
+  "afterSha256": "edd9c25d9d57edd8cd45498320a7a2073ee1bbad0e79c1fe20f67ea415d44108",
+  "productionChanges": false,
+  "bCoreApiRuntimeChanged": false,
+  "usesActualPointerDrag": true,
+  "usesDirectCameraSetter": false,
+  "relaxesExactRayGate": false,
+  "readonlyDiagnostics": [
+    "actual projection",
+    "surface ground ray",
+    "minimap exclusion",
+    "panelShell/commandDock screen bounds",
+    "current commandTargeting"
+  ],
+  "avoidsZeroDistanceDragTargetTap": true,
+  "fullSaveBothRngStateTokenCheckedBeforePointer": true,
+  "actualInstalledAccepted": false,
+  "unique137RootProven": false,
+  "scope": "A test pretarget visibility/pan gap fixed and diagnostics added; actual failure branch not reconstructed from old still. New independent test installation required, previous130/135 scopes retained onlytested pair.",
+  "wholeGoalComplete": false
+}
