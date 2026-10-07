@@ -46,3 +46,8 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 220 首次开局无session目录后继只读准备
 
 登记 `docs/handoff/20261006/session-a/FIRST_LAUNCH_OPTIONS_READONLY220.json`，核对B未冻结独立PcNewGameOptionsSnapshot/static资源目录入口/策略/guard的精确SHA，补齐204的无session草稿身份与generation绑定。保留既有nonnullToken会话API，首次入口不造World/Token；不复制/编译/集成WIP、不改Main/picker或打断5554。B host536/编译不计Android正常首局成绩，最终实施等完整冻结。
+
+
+## 221–223 Source2当前176完整验收
+
+登记221 acceptance、222 memory、223 widget确切A路径，只消费实际已restored-verified来源2的normal/cold/both3D/everySHA/确切APK与退出0观察器证据，经既有可复现审计器冻结。各峰值独立，GPU/全局预算/未解析背景/原裁切年龄全屏/voice/ARM继续未知。旧66467/66484/66485结束不重启；Source3继续原parent31963下的实际helper84300，生产源与设备数据不改。

@@ -486,3 +486,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 220：只读核B首次无session纯目录/独立DTO五源与guard1a3a8595完全同SHA，补充204双事实域/source身份+generation与零新World/Token草稿方案。旧会话nonnullToken保留；B536host及25旬未触发普通单挑记录不转Android通过。当前B整批未冻结/无新版APK，A生产源、Bridge/Unity/原4JNI与5554队列不动。
+
+
+221–223：当前176 Source2全部670人物/1340真实名册详情、完整bitmap绑定及Save/allRNG/Token纯通过；normal25157/cold94、26047→26690/both3D、原9/3797每SHA完全恢复、28原片/video与native0，旧66467/66484/66485真正终止。101采样Java峰274033976/512MiB，GPU/预算仍未闭合；widget36图310行，41实色min8.8497/269未解析/1disabled。既有可复现审计器冻结221不改测试或游戏；Source3/helper84300/video84330/native84331实际运行，矩阵完成[11,0,1,2]，全16/音频/双堆/ARM与最终B组合仍未完成。
