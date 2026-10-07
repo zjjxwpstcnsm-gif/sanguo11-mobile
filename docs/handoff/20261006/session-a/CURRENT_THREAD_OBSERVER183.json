@@ -1,0 +1,15 @@
+{
+  "hostPid": 2908,
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military",
+  "command": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/observe_target_cpu.py --session /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/session.json --output /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/target-threads126.jsonl --max-seconds 3600",
+  "output": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military/target-threads126.jsonl",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-04e3994b-b-legacy39-combined-test168/app-debug-androidTest.apk": "36f7e8e5a4e8b1d638f5cd9c149945c55dcf800beb96f7abb404856ebb4158b4"
+  },
+  "samplesAtReceipt": 8,
+  "readOnly": true,
+  "deviceMutationOrGc": false,
+  "scope": "Exact current target PID/cmdline verified surrounding thread snapshots and monotonic strategy schedstat. Partial from current third turn onwards, not unique CPU/allocation cause or no-contamination controlled benchmark.",
+  "wholeGoalComplete": false
+}

@@ -395,7 +395,9 @@
     "docs/handoff/20261006/session-a/CURRENT_REGISTERED_ORDINARY_BUILD180.json",
     "docs/handoff/20261006/session-a/CURRENT_REGISTERED_NORMAL_PLAN181.json",
     "docs/handoff/20261006/session-a/continue_registered_normal.py",
-    "docs/handoff/20261006/session-a/REGISTERED_NORMAL_QUEUE182.json"
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL_QUEUE182.json",
+    "docs/handoff/20261006/session-a/CURRENT_THREAD_OBSERVER183.json",
+    "docs/handoff/20261006/session-a/CURRENT_THREAD_CPU_AUDIT184.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
