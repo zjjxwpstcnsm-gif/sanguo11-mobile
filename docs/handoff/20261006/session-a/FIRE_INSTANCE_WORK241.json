@@ -1,0 +1,102 @@
+{
+  "originalSourceBeforeAfter": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+  },
+  "originalEffect13TemplateRoot": "HEAP+0x200 from verified9-template packed scene order8/9/13/16/17/18/19/20/23",
+  "cases": [
+    {
+      "cells": 32,
+      "exit": 0,
+      "observations": [
+        {
+          "call": "46d4a7",
+          "driver": "1050a800",
+          "count": "1",
+          "index": "0",
+          "owner": "1050a850",
+          "bytesBefore": "310892"
+        },
+        {
+          "call": "46d4e7",
+          "driver": "1050a800",
+          "count": "1",
+          "index": "0",
+          "owner": "1050ac00",
+          "bytesBefore": "312400"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=32 created=32 stopped=0 totalCreated=32 totalStopped=0\nORIGINAL_CHILD_LOOP call=46d4a7 driver=1050a800 count=1 index=0 owner=1050a850 bytesBefore=310892\nORIGINAL_CHILD_LOOP call=46d4e7 driver=1050a800 count=1 index=0 owner=1050ac00 bytesBefore=312400\n",
+      "stderrSha256": "e2731fc65c7b620912598383fa78a2233dee5f1dc5039231ab71547fbdd86da1",
+      "stdoutSha256": "aa1ee86a4b6c648bb771f22d1a484cb27190846ee14887a17a03d97a55a5013d"
+    },
+    {
+      "cells": 64,
+      "exit": 2,
+      "observations": [
+        {
+          "call": "46d4a7",
+          "driver": "1050a800",
+          "count": "1",
+          "index": "0",
+          "owner": "1050a850",
+          "bytesBefore": "314120"
+        },
+        {
+          "call": "46d4e7",
+          "driver": "1050a800",
+          "count": "1",
+          "index": "0",
+          "owner": "1050ac00",
+          "bytesBefore": "315628"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=64 created=64 stopped=0 totalCreated=64 totalStopped=0\nORIGINAL_CHILD_LOOP call=46d4a7 driver=1050a800 count=1 index=0 owner=1050a850 bytesBefore=314120\nORIGINAL_CHILD_LOOP call=46d4e7 driver=1050a800 count=1 index=0 owner=1050ac00 bytesBefore=315628\nEXISTING_BLOCK_BYTE_GUARD pc=714685 bytes=5000023\nNative boundary/budget failure at45a530\n",
+      "stderrSha256": "0bc1dae40daad95cbf9af8481e774647a836c7e66210014e6296156b9a677467",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    },
+    {
+      "cells": 128,
+      "exit": 2,
+      "observations": [
+        {
+          "call": "46d4a7",
+          "driver": "1050a800",
+          "count": "1",
+          "index": "0",
+          "owner": "1050a850",
+          "bytesBefore": "285032"
+        },
+        {
+          "call": "46d4e7",
+          "driver": "1050a800",
+          "count": "1",
+          "index": "0",
+          "owner": "1050ac00",
+          "bytesBefore": "286540"
+        }
+      ],
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nORIGINAL_CHILD_LOOP call=46d4a7 driver=1050a800 count=1 index=0 owner=1050a850 bytesBefore=285032\nORIGINAL_CHILD_LOOP call=46d4e7 driver=1050a800 count=1 index=0 owner=1050ac00 bytesBefore=286540\nEXISTING_BLOCK_BYTE_GUARD pc=464c24 bytes=5000008\nNative boundary/budget failure at45a530\n",
+      "stderrSha256": "a8c2d0296cb9914a50c7c081b60feee1b792b94d9181f1ccfcc766ed277463cd",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e"
+    }
+  ],
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-instance-work241/pc_effect_scene_probe.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-instance-work241/host-probe"
+  ],
+  "scope": "Host-only logging at actual original46d400 three child-loop calls, scoped by actual457a93 parent to the verified effect13 template. Unchanged5Mbyte/5s budget; no source VM writes/reset/scaled budget or canonical/JNI/World/rule/RNG changes. Counts describe original loop shape, not assumed Android field semantics or normal128 acceptance.",
+  "wholeGoalComplete": false
+}

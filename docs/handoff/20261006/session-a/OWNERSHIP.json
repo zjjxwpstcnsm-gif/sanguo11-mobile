@@ -473,7 +473,11 @@
     "docs/handoff/20261006/session-a/build_search_observation_test239.py",
     "docs/handoff/20261006/session-a/SEARCH_OBSERVATION239.md",
     "docs/handoff/20261006/session-a/run_search_observation240.py",
-    "docs/handoff/20261006/session-a/SEARCH_OBSERVATION240_LAUNCH.json"
+    "docs/handoff/20261006/session-a/SEARCH_OBSERVATION240_LAUNCH.json",
+    "docs/handoff/20261006/session-a/observe_fire_instance_work241.py",
+    "docs/handoff/20261006/session-a/FIRE_INSTANCE_WORK241.json",
+    "docs/handoff/20261006/session-a/SEARCH_OBSERVATION242_LAUNCH.json",
+    "docs/handoff/20261006/session-a/INSTALL_GUARD_FAILURE240.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

@@ -193,7 +193,7 @@ def main():
             default_receipt=pathlib.Path(__file__).with_name('FIRE_OVERRIDE_DEFAULT_BUILD90.json')
             default_build=json.loads(default_receipt.read_text())
             default_pairs=[{entry['path']:entry['sha256'] for entry in default_build['apks']}]
-            for release_name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json','EMPTY_PRESENTATION_BUILD165.json','B_LEGACY39_COMBINED_TEST_BUILD168.json','LEGACY39_REGISTERED_TEST_BUILD176.json'):
+            for release_name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json','EMPTY_PRESENTATION_BUILD165.json','B_LEGACY39_COMBINED_TEST_BUILD168.json','LEGACY39_REGISTERED_TEST_BUILD176.json','SEARCH_OBSERVATION_TEST_BUILD239.json'):
                 release_receipt=pathlib.Path(__file__).with_name(release_name)
                 if release_receipt.is_file():
                     release_build=json.loads(release_receipt.read_text())
