@@ -1,6 +1,8 @@
-# 当前未完成与未知（2026-10-08；同176三命令已全恢复，人物矩阵运行）
+# 当前未完成与未知（2026-10-08；同176三命令与Source11已全恢复，Source0矩阵运行）
 
-当前5554 game931bc/testa37f已注册176配对，Source11人物矩阵helper16260/video16277/native16278实际运行；最新增量416/670人物、832真实名册/详情入口，完整Save/bothRNG/StateToken纯持续通过，仍是partial不是整轮/冷/最终恢复。normal7783随后继续其余15来源，audio7789/heap7800只串行等待完整三命令+16caller门，无自己的设备动作。203其余来源每次backup与install前复核继承main/确切注册配对/源码；出现变动先完整恢复不装旧包。
+当前5554 game931bc/testa37f已注册176配对，209其余15来源矩阵parent31963/helper31991/video32012/native32013正在Source0正常人物入口。完成来源目前只有[11]；Source0最新增量64/670人物、128入口、纯Save/bothRNG/StateToken通过仍是partial，不是其normal/cold/恢复或全16接受。normal7783/audio7789/heap7800继续串行全矩阵，audio/heap无自己的deviceactions。203每次backup和install前复核继承main、注册配对和源；更新会停下并恢复，不装旧包。
+
+206 Source11同176全部670原人物1340实际正常名册/详情caller和完整bitmap身份/当年年龄性别形态连接、normal25157/冷94、新PID26301→6210/both3Dsubmit/完整保存RNG纯通过；原9internal/3797external每SHA完全恢复、video/native0/27原片。旧helper16260/video16277/native16278均真正结束，不重启。207内存101样本Java最高240093808/536870912B，采样余量296777104B；native/PSS峰值独立、GPU采样0仍不可得、memoryBudgetClosed=false。208只当前widget已解析范围，不是所有年龄边界/原小图裁切/全屏/实际voice/PC像素或ARM接受。
 
 同176真实正常军建192/原火197/持续攻击200均独立normal/cold/both真实3Dsubmit/原9internal与3797external全SHA恢复完成。军建cold21957→14999/8原片、火cold17783→2839/5原片/动画偏好精确恢复、攻击cold7197→22961/2原片，全部video/native0退出。原dataowner7828/12338/15120及各observer已结束，不重启。多旬实际预算仍有>120秒；所有PSS都只是主进程TOTAL PSS，不当Java/native/GPU同步峰值或完整ARM证据。
 
