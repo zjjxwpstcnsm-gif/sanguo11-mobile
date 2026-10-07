@@ -1,0 +1,53 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-followup140/military-construction-repair",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0b6bdc6c-normal-target-test139/app-debug-androidTest.apk": "0eee30d994f8feb501d192fc701a25859d02c5a719b462b19f0c50fb54e7ea85"
+  },
+  "normalPassed": false,
+  "coldAccepted": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 79478,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-followup140/military-construction-repair/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 1,
+    "finalIndexSha256": "84a45ab730881d69aef667430f71ff298e7a957cde381ef62e6d36fac0a5c696",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 79479,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-target-followup140/military-construction-repair/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "failure": "normal menu creates exact Source14 campaign asserted while normal newgame UiReadTask pending",
+  "actualFailureScreenshotShowsNewGamePreparation": true,
+  "backgroundOldCustomCampaignStillVisible": true,
+  "inheritedAwaitPreparationCanAcceptBackgroundNavigation": true,
+  "noBuildMilitaryCommandReached": true,
+  "followup140AndAudio141Terminal": true,
+  "rawFiles": {
+    "session.json": "8341fe2c4a03e9578a166a6e4d4cb907209653f5f7c56affcf396391450e229b",
+    "instrumentation.txt": "92583daf8a75587f60b16c29e153d6875da9512a46756b6d12016056071500f6",
+    "evidence/failed.png": "28dc18a4477a90cfa2be53326a99b0850385a6fb53964f4c42d4587828fdaf91",
+    "evidence/progress.txt": "39b265b00f039c61250667f6204b7cecaae3c0d5eb9bb477f31579cdba0365f0",
+    "evidence/result.txt": "1c6775c5c4d1b945b710cf264ce4fef7cd6024a0fbff5b12a08fa32d20027c7a",
+    "video/video.json": "84a45ab730881d69aef667430f71ff298e7a957cde381ef62e6d36fac0a5c696"
+  },
+  "wholeGoalComplete": false
+}
