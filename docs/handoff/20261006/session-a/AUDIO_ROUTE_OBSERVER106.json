@@ -1,0 +1,23 @@
+{
+  "scope": "Actual exclusive5554 current APK pair readback and read-only route observer preflight. No permission/AppOp, playback, projection, input creation, UI or saves changed.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "routeObservations": [
+    {
+      "phase": "preflight-no-capture",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/audio-route-preflight106/input-route-session_a_route_preflight106-0-preflight-no-capture.json",
+      "sha256": "6e707d493fee56425d8d4af1c49052c1602c490e758d677dad8dede3e884eaee",
+      "unavailable": []
+    }
+  ],
+  "captureStarted": false,
+  "inputCreationFailureReproduced": false,
+  "oldMinus22CauseClosed": false,
+  "futureCaptureHooksDynamicallyAccepted": false,
+  "wholeGoalComplete": false,
+  "supportToolSha256": "6a4cc9c7c3b501e0737825b4f9934b475df46d612df84e40e7fb23a2a417bddd",
+  "sourceSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11",
+  "actualSnapshotCommandsPassed": true
+}

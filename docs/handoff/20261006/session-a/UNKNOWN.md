@@ -57,3 +57,5 @@
 104原头像wrapper只读确证4×4单位矩阵和16dword复制；字面量1不是已证明FCE组，仍缺原普通/全屏UI用途、输出rect/crop/color/lifecycle及动态vtable调用可达证据。不能由该矩阵证据给Android小头像或全屏补猜绑定。
 
 105当前10720身份重新原生指令复验全部同源字段/原PNG通过；16×670和64特殊字形不沿用旧计数。只读视觉切片2079去重年龄执行/32160向量比较不等于Android各年龄正常可达或PC大小形态UI caller用途，仍不关闭圆角裁切/原全屏色彩时序/实际speaker voice/ARM。
+
+106/107只读路由/observer join实际预检通过，新增capture阶段快照尚未实际录音。旧-22失败时的selected profile/mix/MediaProjection与原权限判决仍无法由当前设备成功或静态同参数证明；新顺序快照不是原子调用状态，命令影响时序也须如实保留。整首0.995未降低，当前latest90新的完整音乐PCM接受仍待。

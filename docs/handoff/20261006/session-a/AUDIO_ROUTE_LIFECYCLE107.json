@@ -1,0 +1,33 @@
+{
+  "scope": "Actual exclusive5554 current APK pair readback and read-only route observer preflight. No permission/AppOp, playback, projection, input creation, UI or saves changed.",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "routeObservations": [
+    {
+      "phase": "preflight-no-capture",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/audio-route-lifecycle107/input-route-session_a_route_preflight106-0-preflight-no-capture.json",
+      "sha256": "256aa4d689e60cb766c1a74e04b45348133337820941480b990a2c8915245c46",
+      "unavailable": []
+    }
+  ],
+  "captureStarted": false,
+  "inputCreationFailureReproduced": false,
+  "oldMinus22CauseClosed": false,
+  "futureCaptureHooksDynamicallyAccepted": false,
+  "wholeGoalComplete": false,
+  "supportToolSha256": "6a4cc9c7c3b501e0737825b4f9934b475df46d612df84e40e7fb23a2a417bddd",
+  "sourceSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11",
+  "actualSnapshotCommandsPassed": true,
+  "actualReadOnlyMixerObserverJoined": true,
+  "mixerObservation": {
+    "run": "session_a_mixer_preflight107",
+    "seconds": 1,
+    "mixerMeasurementPath": "out/session-a/audio-route-lifecycle107/mixer-session_a_mixer_preflight107.jsonl",
+    "mixerMeasurementScope": "read-only dumpsys AudioFlinger every5s, counters cumulative; only time-local changes eligible for attribution; no PCM rewrite/threshold change",
+    "mixerMeasurementSha256": "b299d3031a8f70a26185601f053e95b113b9aac03120e1832cc7d261812ca3cf",
+    "mixerObserverJoined": true
+  },
+  "mixerSampleCount": 1
+}

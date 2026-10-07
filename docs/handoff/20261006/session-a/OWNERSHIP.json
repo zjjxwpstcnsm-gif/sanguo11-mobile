@@ -298,7 +298,10 @@
     "docs/handoff/20261006/session-a/inspect_portrait_draw_wrapper.py",
     "docs/handoff/20261006/session-a/PORTRAIT_DRAW_WRAPPER104.json",
     "docs/handoff/20261006/session-a/run_latest_portrait_native_audit.py",
-    "docs/handoff/20261006/session-a/PORTRAIT_NATIVE_REFRESH105.json"
+    "docs/handoff/20261006/session-a/PORTRAIT_NATIVE_REFRESH105.json",
+    "docs/handoff/20261006/session-a/probe_audio_route_snapshot.py",
+    "docs/handoff/20261006/session-a/AUDIO_ROUTE_OBSERVER106.json",
+    "docs/handoff/20261006/session-a/AUDIO_ROUTE_LIFECYCLE107.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

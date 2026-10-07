@@ -7,8 +7,31 @@ import device_session as ds
 TEST=ds.PACKAGE+'.test';SERVICE='game.sanguo.mobile.SessionAAudioCaptureService';ACTIVITY='game.sanguo.mobile.SessionAAudioCaptureActivity'
 def shell(command):return ds.run('shell',command).decode().strip()
 _MIXER_MONITORS={}
+def observe_input_route(out,r,record,phase):
+ """Sequential shell observations, never proof of an atomic native route."""
+ if not re.fullmatch('[A-Za-z0-9_-]{1,64}',phase):raise ValueError('Route observation phase')
+ out=pathlib.Path(out).resolve()
+ if not out.is_relative_to(ds.ROOT/'out/session-a'):raise ValueError('Owned route evidence required')
+ if r.get('root')!=str(ds.ROOT) or r.get('serial')!='emulator-5554':raise ValueError('Route observation cohort/owner')
+ rows=record.setdefault('inputRouteObservations',[])
+ path=out/('input-route-'+record['run']+'-'+str(len(rows))+'-'+phase+'.json')
+ sample={'phase':phase,'observedHostUnixStart':time.time(),'apks':r['apks'],
+         'scope':'Read-only sequential AudioPolicy/AudioFlinger/projection/permission observations. Not atomic getInputForAttr-call state, capture/playback parity, old-22 reproduction or unique cause.'}
+ commands={'deviceUptime':'cat /proc/uptime','audioPolicy':'dumpsys media.audio_policy',
+           'audioFlinger':'dumpsys media.audio_flinger','mediaProjection':'dumpsys media_projection',
+           'recordAppOp':'appops get '+TEST+' RECORD_AUDIO'}
+ for name,command in commands.items():
+  began=time.time()
+  try:value={'text':ds.run('shell',command,timeout=10).decode(errors='replace')}
+  except Exception as error:value={'unavailable':str(error)}
+  sample[name]={'hostUnixStart':began,'hostUnixEnd':time.time(),**value}
+ sample['observedHostUnixEnd']=time.time()
+ with path.open('x') as f:json.dump(sample,f,indent=2)
+ rows.append({'phase':phase,'path':str(path),'sha256':ds.digest(path),
+              'unavailable':[name for name in commands if 'unavailable' in sample[name]]})
+ return sample
 def begin_mixer_measurement(out,record):
- path=out/('mixer-'+record['run']+'.jsonl');stop=threading.Event();_MIXER_MONITORS[record['run']]=stop
+ path=out/('mixer-'+record['run']+'.jsonl');stop=threading.Event()
  record['mixerMeasurementPath']=str(path);record['mixerMeasurementScope']='read-only dumpsys AudioFlinger every5s, counters cumulative; only time-local changes eligible for attribution; no PCM rewrite/threshold change'
  def measure():
   began=time.monotonic()
@@ -20,10 +43,16 @@ def begin_mixer_measurement(out,record):
      sample['audioFlinger']=ds.run('shell','dumpsys media.audio_flinger',timeout=15).decode()
     except Exception as e:sample['unavailable']=str(e)
     f.write(json.dumps(sample)+'\n');f.flush();stop.wait(5)
- threading.Thread(target=measure,name='session-a-mixer-measurement',daemon=True).start()
+ thread=threading.Thread(target=measure,name='session-a-mixer-measurement',daemon=True)
+ _MIXER_MONITORS[record['run']]=(stop,thread);thread.start()
 def end_mixer_measurement(record):
- stop=_MIXER_MONITORS.pop(record['run'],None)
- if stop is not None:stop.set()
+ monitor=_MIXER_MONITORS.get(record['run'])
+ if monitor is not None:
+  stop,thread=monitor;stop.set();thread.join(timeout=20)
+  if thread.is_alive():raise RuntimeError('Own mixer observer still writing; retain evidence and inspect restoration')
+  _MIXER_MONITORS.pop(record['run'],None)
+  path=pathlib.Path(record['mixerMeasurementPath']);record['mixerMeasurementSha256']=ds.digest(path)
+  record['mixerObserverJoined']=True
 
 def save(out,r): (out/'session.json').write_text(json.dumps(r,indent=2))
 def prepare(out,r):
@@ -51,6 +80,7 @@ def start(out,r,rate,run,seconds):
  c=r['audioCapture'];c['appOpBeforeThisCapture']=shell('appops get '+TEST+' RECORD_AUDIO');shell('appops set '+TEST+' RECORD_AUDIO allow');c['appOpDuring']=shell('appops get '+TEST+' RECORD_AUDIO');assert re.search(r'RECORD_AUDIO:\s*allow',c['appOpDuring']);c['permissionDuring']=shell('dumpsys package '+TEST);assert re.search(r'android.permission.RECORD_AUDIO: granted=true',c['permissionDuring'])
  path='/sdcard/Android/data/'+TEST+'/files/session-a-game-mix/'+run
  record={'run':run,'rate':rate,'seconds':seconds,'devicePath':path,'ready':False,'consentFromObservedSystemUi':False};c['captures'].append(record);save(out,r)
+ observe_input_route(out,r,record,'before-projection-request');save(out,r)
  shell('am start -n '+TEST+'/'+ACTIVITY+' --es run '+run+' --ei seconds '+str(seconds)+' --ei sampleRate '+str(rate))
  end=time.monotonic()+30
  while time.monotonic()<end:
@@ -65,11 +95,12 @@ def start(out,r,rate,run,seconds):
    record['consentNode']=node.attrib;ds.run('shell','input','tap',str((bounds[0]+bounds[2])//2),str((bounds[1]+bounds[3])//2));record['consentFromObservedSystemUi']=True;save(out,r);break
   time.sleep(1)
  if not record['consentFromObservedSystemUi']:raise ValueError('Actual system MediaProjection consent button not observed')
+ observe_input_route(out,r,record,'after-consent-sent');save(out,r)
  end=time.monotonic()+20
  while time.monotonic()<end:
   ready=shell('cat '+shlex.quote(path+'/ready.json')+' 2>/dev/null || true');result=shell('cat '+shlex.quote(path+'/result.json')+' 2>/dev/null || true')
-  if result:record['result']=json.loads(result);save(out,r);return record
-  if ready:record['ready']=True;record['readyData']=json.loads(ready);begin_mixer_measurement(out,record);save(out,r);return record
+  if result:record['result']=json.loads(result);observe_input_route(out,r,record,'initial-result-observed');save(out,r);return record
+  if ready:record['ready']=True;record['readyData']=json.loads(ready);observe_input_route(out,r,record,'ready-receipt-observed');begin_mixer_measurement(out,record);save(out,r);return record
   time.sleep(.3)
  raise ValueError('No initialized capture or failure receipt')
 def collect(out,r,record,timeout=20):
@@ -77,7 +108,7 @@ def collect(out,r,record,timeout=20):
  while time.monotonic()<end:
   raw=shell('cat '+shlex.quote(path+'/result.json')+' 2>/dev/null || true')
   if raw:
-   end_mixer_measurement(record);record['result']=json.loads(raw);dest=out/('audio-'+record['run']);ds.run('pull',path,str(dest));record['hostPath']=str(dest);save(out,r)
+   end_mixer_measurement(record);record['result']=json.loads(raw);observe_input_route(out,r,record,'final-result-observed');dest=out/('audio-'+record['run']);ds.run('pull',path,str(dest));record['hostPath']=str(dest);save(out,r)
    until=time.monotonic()+10
    while SERVICE in shell('dumpsys activity services '+TEST) and time.monotonic()<until:time.sleep(.5)
    if SERVICE in shell('dumpsys activity services '+TEST):raise ValueError('Actual previous capture service not yet stopped')
