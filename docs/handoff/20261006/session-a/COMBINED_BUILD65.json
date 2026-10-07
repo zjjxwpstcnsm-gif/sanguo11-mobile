@@ -1,0 +1,78 @@
+{
+  "sourceRevision": "565195cade1d6ff86ca6fa839c10dff80acea958",
+  "buildSuccessful": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug.apk",
+      "bytes": 313473756,
+      "sha256": "4df5e29c724d04a2c39fea31d9e711c32dcf179ccacd490b6b5bbb589f321f17"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug-androidTest.apk",
+      "bytes": 2610499,
+      "sha256": "7abb13fdf92ef984c10bc983c15b30d4f861cab0ad9047af3fbdab8df25fac60"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "installed": false,
+  "actualNewCombinedAccepted": false,
+  "buildLog": "out/session-a/build-military-binder-combination-65.log",
+  "buildLogSha256": "8996aec7587a0dcea7adddd7d104a7d5aa092b7095922ce03c9217ac9ad68d3f",
+  "productionContentGate": "PASS original production scenarios and no nine tests/Demo/isolated battle classes",
+  "hostMilitarySemantics": {
+    "scope": "Actual completed-B host semantic test only; declared damaged fixture does not replace real Android repair/stop/multiturn/cold/restore.",
+    "sourceRevisionAtCompile": "565195cade1d6ff86ca6fa839c10dff80acea958",
+    "commands": [
+      [
+        "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/javac",
+        "--release",
+        "17",
+        "-encoding",
+        "UTF-8",
+        "-d",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/military-repair-host65/classes",
+        "@/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/military-repair-host65/sources.txt"
+      ],
+      [
+        "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/military-repair-host65/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/core/src/main/resources",
+        "game.sanguo.core.SessionBFieldworksTest"
+      ]
+    ],
+    "exitCodes": [
+      0,
+      0
+    ],
+    "passed": true,
+    "actualAndroidAccepted": false
+  },
+  "hostMilitarySemanticChecks": 63,
+  "wholeGoalComplete": false
+}

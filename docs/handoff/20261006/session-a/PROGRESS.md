@@ -209,3 +209,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 为61单帧菜单/地图重叠观察补下一APK只读诊断：截图后记录实际Main ui.page、panel请求/tag/alpha/尺寸、MapHost和native panelRight/Bottom及camera尺寸；明确为相邻时刻主Activity事实，预览dialog不混为同一像素帧。结合新触控导航目标状态断言定位是否错页或裁切时序，不凭截图猜改生产渲染或修成永久关闭3D。所有纯Save/RNG/StateToken检查仍保留。
 
 B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SHA全部精确，14唯一增量路径当前逐SHA等完成Git对象，无冲突，不读/复制WIP；2生产只Fieldworks/FieldworkUi统一补修可见、复核与执行。对3482完整源码清单所有app assets/res/core资源/6JNI重验SHA，冻结Bridge6ada精确。已停止仅A缓存的64旧B组合构建（70386 exit1），不用其产物；新65组合须独立构建实装并正常军建/媒体/内存/真实退出确认/冷/全文件恢复，不借61或B883d实装成绩。
+
+新65组合565195ca独立构建成功1m26s并冻结：游戏4df5e29c/313473756B，test7abb13fd/2610499B，原4/新2JNI包内全部逐SHA同等，production内容门通过，不含9测试/Demo/isolatedbattle。已完成B补修主机63断言通过，只是语义夹具不代正常Android。完整新鲜9/3797备份正在96153中逐SHA/独立clone校核，未安装或接受；后续先实际Source14军建/补修/施工提示/多旬/保存/冷，再所有新包媒体与内存，不借ff2832全670或B54成绩。
