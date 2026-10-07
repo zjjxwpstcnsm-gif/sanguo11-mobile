@@ -1,0 +1,26 @@
+{
+  "beforeSha256": "7040353c2f6df9b60ad1f060699d031e124d7879567965cef45659ce2735a003",
+  "afterSha256": "cee06ff16624248152c6546dd8e29210e6598e37462b50466155eab85240f21c",
+  "existingRowsByteEquivalent": true,
+  "existingIdentityRows": 10656,
+  "identityRows": 10720,
+  "addedRows": 64,
+  "actualOriginalSourceFiles": 16,
+  "original152ByteRecordsShaVerified": 10720,
+  "savedField48EqualsOriginalVoiceType": 10720,
+  "portraitManifestSha256": "c9571f25150eedbf70105a616b00324764de91ddcc330bb69c66e6c404dc0aa8",
+  "sourceFieldsSha256": "a48afc56d096ec63391633023b7ccb3b87a87693025ea0c900cf900a55140c52",
+  "supplementalIdentityAuthority": {
+    "commit": "443c4782",
+    "metadataSha256": "c27674acd55a3da3223a04ac7046ed2d2bbd1d0485b47393132d7ecf8a9f7b59",
+    "nativePortraitReportSha256": "e371b1457539b7acac22b3dc813fce0ff48f30b8d7eb89487098e7a3fe6a39f9",
+    "runtimeIdsPreserved": true,
+    "legacySourceMissingRemainsUnknown": true
+  },
+  "originalOggModified": false,
+  "scope": "Exact source/voice type metadata only; no Android caller, actual speaker, action profile, voice playback, MOD activation or ARM acceptance",
+  "wholeGoalComplete": false,
+  "actualStagedAssetSha256": "cee06ff16624248152c6546dd8e29210e6598e37462b50466155eab85240f21c",
+  "actualAndroidAccepted": false,
+  "sourceProbeJavaSha256": "2c70a06fc81442ba1ebd460d19df32aa9c12391a2e5254e157a765754f591ff4"
+}

@@ -1,0 +1,27 @@
+{
+  "wholeGoalComplete": false,
+  "actualAndroidAccepted": false,
+  "rawDomainEvidence": "All10720 same source identity/path/source SHA/152-byte original record SHA and savedfield48 exactly equal original native actor+0x100 voiceType0..7, unlike action profile0..70. Original scalar DTO name preserved; no API/Bridge changes.",
+  "sourceFieldRows": 10720,
+  "hostAdapterResult": "PASS explicit voice domain admission accepted=1704 mismatchesRejected=1704; original event/speaker/playback and Android acceptance not claimed",
+  "hostAdapterScope": "Explicit adapter fixture acceptance1704/rejection1704; not actual speaker/event/voice playback or Android/ARM acceptance",
+  "delta": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java",
+      "beforeSha256": "798b3976ff1cdac9333eb816ea362cfbc9942b128640b9eff95ba5f76a63749f",
+      "afterSha256": "d5a601aea75c62e3c769abc1f5dea31a1b08291329257b1ec95da003d9a56d54"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceCatalog.java",
+      "beforeSha256": "a8442ba7e278b4e780206c553da9ae6cbd2d7630e3bfc3837419aa3c7dcd46a4",
+      "afterSha256": "15d0340f3ea6f810906c1be800e5bee267381c1561aac43d1bc71090a11b124b"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/voice-identities.json",
+      "beforeSha256": "7040353c2f6df9b60ad1f060699d031e124d7879567965cef45659ce2735a003",
+      "afterSha256": "cee06ff16624248152c6546dd8e29210e6598e37462b50466155eab85240f21c"
+    }
+  ],
+  "pendingController70": "Own waiting host83192 stopped before device action for next new APK cohort; current ordinary68 driver remains live",
+  "unknown": "Actual speech caller/committed event parent/phase/speaker choice absent; no guessing or rule RNG"
+}

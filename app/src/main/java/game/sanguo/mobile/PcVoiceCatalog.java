@@ -58,7 +58,11 @@ final class PcVoiceCatalog {
             if(root.getInt("schema")!=1||!root.getString("sourceExecutableSha256").equals(PcVoicePolicy.SOURCE_EXECUTABLE_SHA256)||!root.getString("voiceTypeFieldOffsetHex").equals("0x100"))throw new IOException("Unexamined actor voice field");
             Map<String,Person> identities=new LinkedHashMap<>();rows=root.getJSONArray("identities");
             for(int i=0;i<rows.length();i++){Person p=new Person(rows.getJSONObject(i));if(identities.put(p.identity.key(),p)!=null)throw new IOException("Duplicate voice identity");}
-            if(identities.size()!=10656)throw new IOException("Incomplete approved voice identities");people=Collections.unmodifiableMap(identities);
+            JSONObject supplemental=root.getJSONObject("supplementalIdentityAuthority");
+            if(!supplemental.getString("metadataSha256").equals("c27674acd55a3da3223a04ac7046ed2d2bbd1d0485b47393132d7ecf8a9f7b59")
+                ||!supplemental.getString("nativePortraitReportSha256").equals("e371b1457539b7acac22b3dc813fce0ff48f30b8d7eb89487098e7a3fe6a39f9")
+                ||!supplemental.getBoolean("runtimeIdsPreserved")||!supplemental.getBoolean("legacySourceMissingRemainsUnknown")
+                ||identities.size()!=10720)throw new IOException("Incomplete approved voice identities/provenance");people=Collections.unmodifiableMap(identities);
         }catch(IOException e){throw e;}catch(Exception e){throw new IOException("Original voice catalog",e);}
     }
     Voice voice(int nativeVoiceId,boolean alternateRaw){if(nativeVoiceId<0||nativeVoiceId>1000)return null;return voices.get(nativeVoiceId+(alternateRaw&&nativeVoiceId>=5?996:0));}

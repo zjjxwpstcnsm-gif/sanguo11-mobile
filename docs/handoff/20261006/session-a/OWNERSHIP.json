@@ -235,7 +235,13 @@
     "docs/handoff/20261006/session-a/MEDIA_VIEWPORT_TEST_BUILD69.json",
     "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT69.json",
     "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT69.json",
-    "docs/handoff/20261006/session-a/ORDINARY384_PARTIAL_SOURCE0_68.json"
+    "docs/handoff/20261006/session-a/ORDINARY384_PARTIAL_SOURCE0_68.json",
+    "docs/handoff/20261006/session-a/VoiceSourceMetadataProbe.java",
+    "docs/handoff/20261006/session-a/extend_voice_identity_catalog.py",
+    "docs/handoff/20261006/session-a/VOICE_IDENTITY_REFRESH71.json",
+    "docs/handoff/20261006/session-a/VOICE_DIRECTIVE_DOMAIN71.json",
+    "app/src/main/assets/audio/pc/voice-identities.json",
+    "docs/handoff/20261006/session-a/VoiceDirectiveDomainsProbe.java"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
