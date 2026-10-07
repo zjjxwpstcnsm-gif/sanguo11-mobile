@@ -1,0 +1,15 @@
+{
+  "scope": "Independently built test-only actual normal pending-preview cancellation branch; not installed/normal/cold/restoration acceptance. Existing installed game remains ff2832 source5a72 and installed test2ee985 while61 continues.",
+  "testSourceRevision": "c3eb742a14e2e3e083a2dffe743638891eda6394",
+  "testApk": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-c3eb742a-fast-preview-test/app-debug-androidTest.apk",
+  "testApkBytes": 2608911,
+  "testApkSha256": "144541f99b85ce11579c22643a9db1284cf229f8b959d67a3bb8d1ddcc0b9081",
+  "buildLog": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/build-test-fast-preview-c3eb742a-62.log",
+  "buildLogSha256": "710e500303098d470efd926930d7ca150c0a58ece669ed8c3dec146056d340f5",
+  "buildSuccessful": true,
+  "installed": false,
+  "fastPendingLifecycleAccepted": false,
+  "firstMixedSourceBuildDiscarded": true,
+  "onlyOwnGradleCacheDaemonStopped": true,
+  "wholeGoalComplete": false
+}
