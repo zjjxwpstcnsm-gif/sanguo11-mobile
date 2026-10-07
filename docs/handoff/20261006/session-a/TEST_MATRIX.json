@@ -27,9 +27,9 @@
     },
     {
       "item": "android-compile",
-      "status": "LATEST b819/0a35 INSTALLED52 HUD AND53 FIRE NORMAL/COLD PASS",
-      "evidence": "a14 actualAPK SHAs/pm components; original168/6JNI;52 normal1497/cold1403;53 normal1489/cold2725; each newPID/full9/3797 restore",
-      "next": "54 fullnormalmedia Source11 ongoing; other15/commands/latestfull16/ARM pending"
+      "status": "CURRENT ff2832/d87a INSTALLED59 DIAGNOSTIC NORMAL RUNNING",
+      "evidence": "source5a72 gameff2832 independent build/install/deviceSHA;168pinned/6JNI exact/no testscenarios. Newtest16701/d87a installedregistered;58 failed/restored,59 not accepted. b81952/53 remain historical exact package scores.",
+      "next": "59 all670 normal/cold/fullrestore; then latestcommands/all16/fire/heap/ARM and finalserial combined APK"
     },
     {
       "item": "fire-state-ui",
@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "41 FOUR GAIJI ALL16 PASS;55 NATIVE181 NORMAL/COLD PASS;54 AND56 FULL SOURCE11 FAIL",
-      "evidence": "Latest identityjoin10720/0unknown/695normalassets/2892PNG SHA and41 actual128 roster/detail caller pixels. Currentb819/0a35 actualSource11 membership670 and194 complete pairs, native181 rosterpassed but short touch detail timeout120s; no cold; full9/3797 restored.",
-      "next": "57 exact real filtered ListView swipe full670 retry; all other15/fullscreen/forms/age/54shorttouch cause/ARM open"
+      "status": "41 FOUR GAIJI ALL16 PASS;55 NATIVE181 NORMAL/COLD PASS;54/56/57/58 FULL SOURCE11 FAIL;59 RUNNING",
+      "evidence": "Latest historical joins10720/0unknown/695normalassets/2892PNG;41 actual128 caller pixels. b81954 partial194,55 one181 normal/cold,57 twelve/CaoCao real swipe;ff2832 58 eight then measured254 clipped-row oscillation; allfailedruns restored, no partial sums treated all670.",
+      "next": "59 complete670 measured clipping swipe/normal pure pixels/cold/restore, then other15/fullscreen/forms/age/54shorttouch and57SunQuan causes/ARM"
     },
     {
       "item": "dynamic-age",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "52 EXACT RESTORED;53 GUARDED LIVE",
-      "evidence": "52 full9internal/3797external finalSHA same;53 freshcompletearchive/currentSHA guard prior reuseverified actualsameAPK",
-      "next": "53 normal/cold/finalrestore/systemanimationrestore"
+      "status": "52 THROUGH58 EXACT ORIGINAL9/3797 RESTORED;59 GUARDED LIVE",
+      "evidence": "Each independently verified full backup/currentSHAs and final9internal/3797external originals;53 animator null restored.59 freshcurrent everyfileSHA and independentarchives before exact test update; no clearData.",
+      "next": "59 normal/cold/finaleverySHA restoration; do not claim live restore"
     },
     {
       "item": "arm",
