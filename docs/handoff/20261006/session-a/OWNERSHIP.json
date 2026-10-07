@@ -378,7 +378,13 @@
     "docs/handoff/20261006/session-a/EMPTY_PRESENTATION_INSTALL_QUEUE166.json",
     "docs/handoff/20261006/session-a/B_COMPLETED_LEGACY39_IMPORT167.json",
     "docs/handoff/20261006/session-a/B_LEGACY39_COMBINED_TEST_BUILD168.json",
-    "docs/handoff/20261006/session-a/B_COMBINED_INSTALL_QUEUE169.json"
+    "docs/handoff/20261006/session-a/B_COMBINED_INSTALL_QUEUE169.json",
+    "docs/handoff/20261006/session-a/OVERLAY_CURRENT_ACCEPTANCE170.json",
+    "docs/handoff/20261006/session-a/overlay-counters170.json",
+    "docs/handoff/20261006/session-a/widget-readability170.json",
+    "docs/handoff/20261006/session-a/B_COMBINED_ACTUAL_INSTALL171.json",
+    "docs/handoff/20261006/session-a/B_COMBINED_FOLLOWUP172.json",
+    "docs/handoff/20261006/session-a/B_COMBINED_AUDIO_QUEUE173.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

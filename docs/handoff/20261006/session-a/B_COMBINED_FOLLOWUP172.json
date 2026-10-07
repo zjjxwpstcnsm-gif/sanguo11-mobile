@@ -1,0 +1,19 @@
+{
+  "hostPid": 99889,
+  "stage": "waiting-for-current-military",
+  "producerPid": 98870,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py install-test --output /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military --apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk --test-apk /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-04e3994b-b-legacy39-combined-test168/app-debug-androidTest.apk --observe-workers --runner SessionAScenePresentationInstrumentation --fresh-process-reopen",
+  "backupLockOwnerPid": 98835,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-04e3994b-b-legacy39-combined-test168/app-debug-androidTest.apk": "36f7e8e5a4e8b1d638f5cd9c149945c55dcf800beb96f7abb404856ebb4158b4"
+  },
+  "initialSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined169/new-military",
+  "cohortReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/B_LEGACY39_COMBINED_TEST_BUILD168.json",
+  "fastPreviewAccepted": false,
+  "remainingCallersAccepted": false,
+  "normalCommandResults": [],
+  "scope": "Exact independent frozen game/test pair, own normal/cold/fullrestore then all three commands and16 normal real callers. Starting military or attack is accepted only for this exact pair. Prior116/124 scores remain their tested pairs only; no PCcrop/voice/ARM/final integration claim.",
+  "wholeGoalComplete": false,
+  "actualBatchPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/b-combined-followup172/batch.json"
+}

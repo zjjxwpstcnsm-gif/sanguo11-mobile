@@ -1,0 +1,69 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk": "a988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk": "0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e"
+  },
+  "normalPassed": true,
+  "coldProcess": {
+    "beforePid": "2578",
+    "afterPid": "3766",
+    "beforeProcessEvidence": {
+      "pid": "2578",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "3766",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "664832a22dc42db0ba8c6f168394be810dc39a686ff998e8a34bbfd34c3cc3b6",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 90339,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 19,
+    "finalIndexSha256": "6c34124b2b609ee5bf0304d532f073b0aa221cf18c495a408538e24393993c23",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 90340,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "counterAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/overlay-counters170.json",
+  "widgetAudit": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/widget-readability170.json",
+  "pssSamples": 973,
+  "peakTotalPssKiB": 532957,
+  "foregroundLatencyAccepted": false,
+  "hostBuildInterference": [
+    "165",
+    "168"
+  ],
+  "javaAllocatorPeakUnknown": true,
+  "gpuPeakUnknown": true,
+  "uniqueUserOomCauseProven": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact155 military normal/cold/data restoration only. Seven source14 compute durations 196778-589567ms; different scenario seed and overlapping host builds do not prove overlay optimization latency cause."
+}

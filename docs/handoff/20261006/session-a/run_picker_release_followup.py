@@ -41,7 +41,7 @@ def main():
     a=p.parse_args();initial_case=a.previous_fast or a.previous_military or a.previous_attack;previous=initial_case.resolve();out=a.output.resolve()
     assert previous.is_relative_to(ROOT/'out/session-a') and out.is_relative_to(ROOT/'out/session-a') and not out.exists()
     receipt=a.cohort_receipt.resolve()
-    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json')
+    assert receipt.parent==HELPER.parent.resolve() and receipt.name in ('PICKER_RELEASE_BUILD116.json','NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json','NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json','B_LEGACY39_COMBINED_TEST_BUILD168.json')
     b=json.loads(receipt.read_text())
     assert b['buildSuccessful'] and b['gameLargeHeap'] is True
     apks={row['path']:row['sha256'] for row in b['apks']};assert all(sha(pathlib.Path(p))==h for p,h in apks.items())

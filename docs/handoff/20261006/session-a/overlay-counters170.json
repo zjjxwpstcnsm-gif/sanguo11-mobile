@@ -1,0 +1,367 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk": "a988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk": "0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e"
+  },
+  "observedCounterRows": 193,
+  "counterSegments": [
+    {
+      "pid": "2578",
+      "sessionId": "f3aad745-2df6-44a1-96d4-41092a3cb6a9",
+      "generation": 0,
+      "first": {
+        "pid": "2578",
+        "sessionId": "f3aad745-2df6-44a1-96d4-41092a3cb6a9",
+        "generation": 0,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 1,
+          "beginSkipped": 0,
+          "gpuPreparationFrames": 1,
+          "lifetimeSubmissions": 0,
+          "overlayDraws": 1,
+          "overlayRejectedStaticSkipped": 0,
+          "overlayCameraRedraws": 0
+        },
+        "rawLine": "10-07 21:39:37.678  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1060 session=f3aad745-2df6-44a1-96d4-41092a3cb6a9:0:0 assetRevision=1.56.0/R06 asset_pending=2 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842113:0 environmentCpuChunks=41 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=0 pending=22 submitted=0 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=1 overlayRejectedStaticSkipped=0 overlayCameraRedraws=0 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=1 meshUploadCpuMs=33.927 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=1 workerBackpressureWallMs=321.737 frameCallbacks=1 beginAttempts=1 beginSkipped=0 gpuPreparationFrames=1 lifetimeSubmissions=0 surfaceCopies=0 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "2578",
+        "sessionId": "f3aad745-2df6-44a1-96d4-41092a3cb6a9",
+        "generation": 0,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 174,
+          "beginSkipped": 158,
+          "gpuPreparationFrames": 16,
+          "lifetimeSubmissions": 3,
+          "overlayDraws": 20,
+          "overlayRejectedStaticSkipped": 158,
+          "overlayCameraRedraws": 2
+        },
+        "rawLine": "10-07 21:40:15.102  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1186 session=f3aad745-2df6-44a1-96d4-41092a3cb6a9:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=105556 terrain_all_coarse=false mapVisualKey=471842113:0 environmentCpuChunks=41 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=28 pending=0 submitted=3 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=20 overlayRejectedStaticSkipped=158 overlayCameraRedraws=2 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=6 workerBackpressureWallMs=867.295 frameCallbacks=174 beginAttempts=174 beginSkipped=158 gpuPreparationFrames=16 lifetimeSubmissions=3 surfaceCopies=1 output=RESUME_WAITING_SURFACE"
+      },
+      "samples": 9,
+      "deltas": {
+        "beginAttempts": 173,
+        "beginSkipped": 158,
+        "gpuPreparationFrames": 15,
+        "lifetimeSubmissions": 3,
+        "overlayDraws": 19,
+        "overlayRejectedStaticSkipped": 158,
+        "overlayCameraRedraws": 2
+      },
+      "rendererIdentityProven": false
+    },
+    {
+      "pid": "2578",
+      "sessionId": "f3aad745-2df6-44a1-96d4-41092a3cb6a9",
+      "generation": 0,
+      "first": {
+        "pid": "2578",
+        "sessionId": "f3aad745-2df6-44a1-96d4-41092a3cb6a9",
+        "generation": 0,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 1,
+          "beginSkipped": 0,
+          "gpuPreparationFrames": 1,
+          "lifetimeSubmissions": 0,
+          "overlayDraws": 1,
+          "overlayRejectedStaticSkipped": 0,
+          "overlayCameraRedraws": 0
+        },
+        "rawLine": "10-07 21:40:16.390  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1028x589 session=f3aad745-2df6-44a1-96d4-41092a3cb6a9:0:0 assetRevision=1.56.0/R06 asset_pending=9 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=55 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=0 pending=55 submitted=0 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=1 overlayRejectedStaticSkipped=0 overlayCameraRedraws=0 territoryBuilds=1 territoryBuildMs=1005.641 meshUploads=1 meshUploadCpuMs=2.439 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=1 workerBackpressureWallMs=887.602 frameCallbacks=1 beginAttempts=1 beginSkipped=0 gpuPreparationFrames=1 lifetimeSubmissions=0 surfaceCopies=0 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "2578",
+        "sessionId": "f3aad745-2df6-44a1-96d4-41092a3cb6a9",
+        "generation": 0,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 141,
+          "beginSkipped": 139,
+          "gpuPreparationFrames": 2,
+          "lifetimeSubmissions": 0,
+          "overlayDraws": 4,
+          "overlayRejectedStaticSkipped": 138,
+          "overlayCameraRedraws": 1
+        },
+        "rawLine": "10-07 21:40:20.543  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1028x589 session=f3aad745-2df6-44a1-96d4-41092a3cb6a9:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=398492 terrain_all_coarse=true mapVisualKey=471842114:0 environmentCpuChunks=55 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=136 pending=189 submitted=0 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=4 overlayRejectedStaticSkipped=138 overlayCameraRedraws=1 territoryBuilds=1 territoryBuildMs=1005.641 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=19 workerBackpressureWallMs=2082.36 frameCallbacks=142 beginAttempts=141 beginSkipped=139 gpuPreparationFrames=2 lifetimeSubmissions=0 surfaceCopies=0 output=RESUME_WAITING_SURFACE"
+      },
+      "samples": 5,
+      "deltas": {
+        "beginAttempts": 140,
+        "beginSkipped": 139,
+        "gpuPreparationFrames": 1,
+        "lifetimeSubmissions": 0,
+        "overlayDraws": 3,
+        "overlayRejectedStaticSkipped": 138,
+        "overlayCameraRedraws": 1
+      },
+      "rendererIdentityProven": false
+    },
+    {
+      "pid": "2578",
+      "sessionId": "90b37cf9-4f1a-433c-be4b-b6fb4c3885c4",
+      "generation": 1,
+      "first": {
+        "pid": "2578",
+        "sessionId": "90b37cf9-4f1a-433c-be4b-b6fb4c3885c4",
+        "generation": 1,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 175,
+          "beginSkipped": 158,
+          "gpuPreparationFrames": 17,
+          "lifetimeSubmissions": 4,
+          "overlayDraws": 23,
+          "overlayRejectedStaticSkipped": 158,
+          "overlayCameraRedraws": 2
+        },
+        "rawLine": "10-07 21:40:35.877  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1206 session=90b37cf9-4f1a-433c-be4b-b6fb4c3885c4:1:0 assetRevision=1.56.0/R06 asset_pending=6 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=44 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=3 cpuChunks=0 pending=1 submitted=4 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=23 overlayRejectedStaticSkipped=158 overlayCameraRedraws=2 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=7 workerBackpressureWallMs=1924.282 frameCallbacks=175 beginAttempts=175 beginSkipped=158 gpuPreparationFrames=17 lifetimeSubmissions=4 surfaceCopies=1 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "2578",
+        "sessionId": "90b37cf9-4f1a-433c-be4b-b6fb4c3885c4",
+        "generation": 1,
+        "revision": 16,
+        "counters": {
+          "beginAttempts": 69148,
+          "beginSkipped": 61132,
+          "gpuPreparationFrames": 8016,
+          "lifetimeSubmissions": 8003,
+          "overlayDraws": 37543,
+          "overlayRejectedStaticSkipped": 61124,
+          "overlayCameraRedraws": 98
+        },
+        "rawLine": "10-07 22:32:43.836  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1266 session=90b37cf9-4f1a-433c-be4b-b6fb4c3885c4:1:16 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=21917020 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=35 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=16 cpuChunks=30 pending=0 submitted=8003 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=3 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=37543 overlayRejectedStaticSkipped=61124 overlayCameraRedraws=98 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=91 workerBackpressureWallMs=6644.682 frameCallbacks=69179 beginAttempts=69148 beginSkipped=61132 gpuPreparationFrames=8016 lifetimeSubmissions=8003 surfaceCopies=75 output=RESUME_WAITING_SURFACE"
+      },
+      "samples": 158,
+      "deltas": {
+        "beginAttempts": 68973,
+        "beginSkipped": 60974,
+        "gpuPreparationFrames": 7999,
+        "lifetimeSubmissions": 7999,
+        "overlayDraws": 37520,
+        "overlayRejectedStaticSkipped": 60966,
+        "overlayCameraRedraws": 96
+      },
+      "rendererIdentityProven": false
+    },
+    {
+      "pid": "2578",
+      "sessionId": "afbd8411-e786-4487-8cb2-a71c6beae064",
+      "generation": 2,
+      "first": {
+        "pid": "2578",
+        "sessionId": "afbd8411-e786-4487-8cb2-a71c6beae064",
+        "generation": 2,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 69149,
+          "beginSkipped": 61132,
+          "gpuPreparationFrames": 8017,
+          "lifetimeSubmissions": 8004,
+          "overlayDraws": 37546,
+          "overlayRejectedStaticSkipped": 61124,
+          "overlayCameraRedraws": 98
+        },
+        "rawLine": "10-07 22:32:51.440  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=afbd8411-e786-4487-8cb2-a71c6beae064:2:0 assetRevision=1.56.0/R06 asset_pending=22 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=35 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=18 cpuChunks=0 pending=1 submitted=8004 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=37546 overlayRejectedStaticSkipped=61124 overlayCameraRedraws=98 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=6 meshUploadCpuMs=1.428 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=92 workerBackpressureWallMs=7306.439 frameCallbacks=69180 beginAttempts=69149 beginSkipped=61132 gpuPreparationFrames=8017 lifetimeSubmissions=8004 surfaceCopies=75 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "2578",
+        "sessionId": "afbd8411-e786-4487-8cb2-a71c6beae064",
+        "generation": 2,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 69155,
+          "beginSkipped": 61135,
+          "gpuPreparationFrames": 8020,
+          "lifetimeSubmissions": 8007,
+          "overlayDraws": 37549,
+          "overlayRejectedStaticSkipped": 61127,
+          "overlayCameraRedraws": 99
+        },
+        "rawLine": "10-07 22:32:52.642  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=afbd8411-e786-4487-8cb2-a71c6beae064:2:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=945064 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=47 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=18 cpuChunks=0 pending=16 submitted=8007 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=37549 overlayRejectedStaticSkipped=61127 overlayCameraRedraws=99 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=6 meshUploadCpuMs=2.116 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=93 workerBackpressureWallMs=7460.569 frameCallbacks=69186 beginAttempts=69155 beginSkipped=61135 gpuPreparationFrames=8020 lifetimeSubmissions=8007 surfaceCopies=75 output=RESUME_WAITING_SURFACE"
+      },
+      "samples": 2,
+      "deltas": {
+        "beginAttempts": 6,
+        "beginSkipped": 3,
+        "gpuPreparationFrames": 3,
+        "lifetimeSubmissions": 3,
+        "overlayDraws": 3,
+        "overlayRejectedStaticSkipped": 3,
+        "overlayCameraRedraws": 1
+      },
+      "rendererIdentityProven": false
+    },
+    {
+      "pid": "2578",
+      "sessionId": "afbd8411-e786-4487-8cb2-a71c6beae064",
+      "generation": 2,
+      "first": {
+        "pid": "2578",
+        "sessionId": "afbd8411-e786-4487-8cb2-a71c6beae064",
+        "generation": 2,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 1,
+          "beginSkipped": 0,
+          "gpuPreparationFrames": 1,
+          "lifetimeSubmissions": 0,
+          "overlayDraws": 1,
+          "overlayRejectedStaticSkipped": 0,
+          "overlayCameraRedraws": 0
+        },
+        "rawLine": "10-07 22:33:03.347  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=afbd8411-e786-4487-8cb2-a71c6beae064:2:0 assetRevision=1.56.0/R06 asset_pending=22 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=45 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=0 pending=23 submitted=0 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=1 overlayRejectedStaticSkipped=0 overlayCameraRedraws=0 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=1 meshUploadCpuMs=4.719 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=1 workerBackpressureWallMs=585.949 frameCallbacks=1 beginAttempts=1 beginSkipped=0 gpuPreparationFrames=1 lifetimeSubmissions=0 surfaceCopies=0 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "2578",
+        "sessionId": "afbd8411-e786-4487-8cb2-a71c6beae064",
+        "generation": 2,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 4,
+          "beginSkipped": 2,
+          "gpuPreparationFrames": 2,
+          "lifetimeSubmissions": 0,
+          "overlayDraws": 3,
+          "overlayRejectedStaticSkipped": 1,
+          "overlayCameraRedraws": 1
+        },
+        "rawLine": "10-07 22:33:06.460  2578  2578 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=afbd8411-e786-4487-8cb2-a71c6beae064:2:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=945064 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=45 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=24 pending=33 submitted=0 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=3 overlayRejectedStaticSkipped=1 overlayCameraRedraws=1 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=3056.449 frameCallbacks=4 beginAttempts=4 beginSkipped=2 gpuPreparationFrames=2 lifetimeSubmissions=0 surfaceCopies=0 output=RESUME_WAITING_SURFACE"
+      },
+      "samples": 3,
+      "deltas": {
+        "beginAttempts": 3,
+        "beginSkipped": 2,
+        "gpuPreparationFrames": 1,
+        "lifetimeSubmissions": 0,
+        "overlayDraws": 2,
+        "overlayRejectedStaticSkipped": 1,
+        "overlayCameraRedraws": 1
+      },
+      "rendererIdentityProven": false
+    },
+    {
+      "pid": "3766",
+      "sessionId": "946e1f46-d031-43b6-9e62-ed750bcffe10",
+      "generation": 0,
+      "first": {
+        "pid": "3766",
+        "sessionId": "946e1f46-d031-43b6-9e62-ed750bcffe10",
+        "generation": 0,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 1,
+          "beginSkipped": 0,
+          "gpuPreparationFrames": 1,
+          "lifetimeSubmissions": 0,
+          "overlayDraws": 1,
+          "overlayRejectedStaticSkipped": 0,
+          "overlayCameraRedraws": 0
+        },
+        "rawLine": "10-07 22:33:26.095  3766  3766 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=946e1f46-d031-43b6-9e62-ed750bcffe10:0:0 assetRevision=1.56.0/R06 asset_pending=22 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=45 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=0 pending=23 submitted=0 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=1 overlayRejectedStaticSkipped=0 overlayCameraRedraws=0 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=1 meshUploadCpuMs=13.41 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=1 workerBackpressureWallMs=2045.301 frameCallbacks=1 beginAttempts=1 beginSkipped=0 gpuPreparationFrames=1 lifetimeSubmissions=0 surfaceCopies=0 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "3766",
+        "sessionId": "946e1f46-d031-43b6-9e62-ed750bcffe10",
+        "generation": 0,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 889,
+          "beginSkipped": 805,
+          "gpuPreparationFrames": 84,
+          "lifetimeSubmissions": 62,
+          "overlayDraws": 89,
+          "overlayRejectedStaticSkipped": 805,
+          "overlayCameraRedraws": 3
+        },
+        "rawLine": "10-07 22:33:58.656  3766  3766 I Sanguo3D: snapshot=true surface=true viewport=1080x1332 session=946e1f46-d031-43b6-9e62-ed750bcffe10:0:0 assetRevision=1.56.0/R06 asset_pending=1 asset_cpu_bytes=8857536 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=35 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=1 cpuChunks=30 pending=0 submitted=62 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=89 overlayRejectedStaticSkipped=805 overlayCameraRedraws=3 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=11 workerBackpressureWallMs=4367.103 frameCallbacks=889 beginAttempts=889 beginSkipped=805 gpuPreparationFrames=84 lifetimeSubmissions=62 surfaceCopies=2 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE"
+      },
+      "samples": 14,
+      "deltas": {
+        "beginAttempts": 888,
+        "beginSkipped": 805,
+        "gpuPreparationFrames": 83,
+        "lifetimeSubmissions": 62,
+        "overlayDraws": 88,
+        "overlayRejectedStaticSkipped": 805,
+        "overlayCameraRedraws": 3
+      },
+      "rendererIdentityProven": false
+    },
+    {
+      "pid": "3766",
+      "sessionId": "744a1ba9-0628-436b-b6b7-f84cf80adc97",
+      "generation": 1,
+      "first": {
+        "pid": "3766",
+        "sessionId": "744a1ba9-0628-436b-b6b7-f84cf80adc97",
+        "generation": 1,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 974,
+          "beginSkipped": 881,
+          "gpuPreparationFrames": 93,
+          "lifetimeSubmissions": 71,
+          "overlayDraws": 99,
+          "overlayRejectedStaticSkipped": 881,
+          "overlayCameraRedraws": 3
+        },
+        "rawLine": "10-07 22:34:13.430  3766  3766 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=744a1ba9-0628-436b-b6b7-f84cf80adc97:1:0 assetRevision=1.56.0/R06 asset_pending=22 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=35 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=3 cpuChunks=0 pending=1 submitted=71 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=99 overlayRejectedStaticSkipped=881 overlayCameraRedraws=3 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=6 meshUploadCpuMs=0.961 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=12 workerBackpressureWallMs=4673.013 frameCallbacks=974 beginAttempts=974 beginSkipped=881 gpuPreparationFrames=93 lifetimeSubmissions=71 surfaceCopies=2 output=RESUME_WAITING_SURFACE"
+      },
+      "last": {
+        "pid": "3766",
+        "sessionId": "744a1ba9-0628-436b-b6b7-f84cf80adc97",
+        "generation": 1,
+        "revision": 0,
+        "counters": {
+          "beginAttempts": 988,
+          "beginSkipped": 891,
+          "gpuPreparationFrames": 97,
+          "lifetimeSubmissions": 75,
+          "overlayDraws": 103,
+          "overlayRejectedStaticSkipped": 891,
+          "overlayCameraRedraws": 4
+        },
+        "rawLine": "10-07 22:34:14.481  3766  3766 I Sanguo3D: snapshot=true surface=true viewport=1080x1080 session=744a1ba9-0628-436b-b6b7-f84cf80adc97:1:0 assetRevision=1.56.0/R06 asset_pending=1 asset_cpu_bytes=945064 terrain_all_coarse=false mapVisualKey=471842114:0 environmentCpuChunks=47 environmentMode=source-alpha-paint-or-legacy-merged meshGeneration=3 cpuChunks=8 pending=8 submitted=75 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=false shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=2 gridForce=0 gridDifficultMarch=false gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=103 overlayRejectedStaticSkipped=891 overlayCameraRedraws=4 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=1 meshUploadCpuMs=2.622 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=14 workerBackpressureWallMs=4748.637 frameCallbacks=988 beginAttempts=988 beginSkipped=891 gpuPreparationFrames=97 lifetimeSubmissions=75 surfaceCopies=2 output=RESUME_WAITING_SURFACE"
+      },
+      "samples": 2,
+      "deltas": {
+        "beginAttempts": 14,
+        "beginSkipped": 10,
+        "gpuPreparationFrames": 4,
+        "lifetimeSubmissions": 4,
+        "overlayDraws": 4,
+        "overlayRejectedStaticSkipped": 10,
+        "overlayCameraRedraws": 1
+      },
+      "rendererIdentityProven": false
+    }
+  ],
+  "rejectedOverlayRequestsActuallySkipped": true,
+  "normalColdAndEveryOriginalShaRestored": true,
+  "turnProfiles": [
+    "10-07 21:48:29.013  2578  2578 I Turn52  : TURN_END totalMs=299405 activeMs=298918 computeMs=295576 saveMs=444 factions=47",
+    "10-07 21:57:43.573  2578  2578 I Turn52  : TURN_END totalMs=483015 activeMs=482607 computeMs=480094 saveMs=421 factions=47",
+    "10-07 22:05:31.491  2578  2578 I Turn52  : TURN_END totalMs=461717 activeMs=461346 computeMs=458989 saveMs=458 factions=47",
+    "10-07 22:11:40.199  2578  2578 I Turn52  : TURN_END totalMs=226260 activeMs=225833 computeMs=221878 saveMs=609 factions=47",
+    "10-07 22:18:54.980  2578  2578 I Turn52  : TURN_END totalMs=341490 activeMs=340908 computeMs=333357 saveMs=1117 factions=47",
+    "10-07 22:29:02.821  2578  2578 I Turn52  : TURN_END totalMs=597265 activeMs=596146 computeMs=589567 saveMs=1426 factions=47",
+    "10-07 22:32:32.413  2578  2578 I Turn52  : TURN_END totalMs=201532 activeMs=200542 computeMs=196778 saveMs=1295 factions=47"
+  ],
+  "rawFiles": {
+    "session.json": "556cc3f445eeed317aabb1ff998c88c67bcf8aadc2305f122e4b4e80102fc990",
+    "logcat.txt": "335029e5cbf8190cf1dadf991aab4d0fe9f5b0e9f6a9ca0d2ae30113216f1038",
+    "evidence/result.txt": "21f158f21b437f9db3c201cbe3f6ba9f035395ee5b68e919a662eb8cc0317466"
+  },
+  "scope": "Same actual target PID/token-generation monotonic segments only, not unique renderer identity, synchronized Native/HWUI frames, controlled old/new A/B, Java allocation/GPU/unique long-turn root or ARM. Functional correctness still requires actual screenshots/gesture/state/effect evidence.",
+  "uniqueCauseProven": false,
+  "foregroundLatencyAccepted": false,
+  "memoryBudgetClosed": false,
+  "wholeGoalComplete": false
+}

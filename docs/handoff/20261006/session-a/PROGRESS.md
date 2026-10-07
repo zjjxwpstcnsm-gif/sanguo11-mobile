@@ -408,3 +408,9 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 168 B最新完成36f059b4(9paths仅测试/真实夹具/工具)与当前A源独立test-only构建5m48s，实际BuildConfig源04e3994b，游戏仍独立165的931bc整包SHA不变/生产raw源与e62一致，新test另冻结。真实39原档SHA5d002d...在APK asset逐字节核验，非伪造snapshot/versionhead。尚未实装，不借B5582 58/59或A旧包成绩；15590296当前性能case仍自己的a988/0da，宿主编译干扰记录。
 
 169 真正继承B完成测试的安装等待器97949已启动，绑定旧155military90296/a9880da→新完整game931bc/test36f7e8，当前waiting无动作，旧16694678确实在任何设备动作前停止。只有旧case每文件完整恢复与observer收尾后freshbackup安装组合，失败旧case仍失败但完整数据安全可做新修正实测；新168自身需正常/cold/全恢复/原39续行/全部矩阵。不是B WIP规则集成或原声/ARM完成。155性能仍反复120秒，宿主165/168构建干扰明确。
+
+170 155实际军建normal/cold2578→3766/both3Dsubmit/expectedauto664832...均通过，9internal(rewrite4)/3797external(rewrite0)最终全SHA恢复，video/native0，19原录像/finalindex6c34124b...。193真实counter rows已冻结；20文本captures453rows/96solid最低8.52197/357未解析/21disabled，不称全局像素通过。7旬compute196778–589567ms，长旬性能仍失败，165/168宿主构建重叠/新局seed不同，不作优化因果或Java/GPU/ARM预算关闭。
+
+171 最新game931bc/test36f7e8组合已真正fresh9/3797备份核验安装/两整APK SHA读回/runnerverified，helper98870/video98984/native98985正常Source14军建实跑。当前只实装不normal/cold/全restore accepted；新包新增空演出幂等修复与B39完成测试，不借旧155/B5582成绩。主main仍ef413/完整source0e7未变，空间52GiB。用户支持大堆，当前已启用largeHeap=true，设备配置ordinary384/large512；总RAM不等于Java额度，仍测实际资源与生命周期。前一台账脚本UTF8解析失败在任何写入前，已加显式编码纠正。
+
+172/173 实际新组合后继99889仅等待helper98870正常/cold/每SHA恢复/observer收尾，再同931bc/36f7e8跑火/攻击/全部16真实caller；音频99924只等此完整正常门，.995整首原源阈值保留，当前两等待器均无deviceactions。普通384回归/原39续行/ARM仍需独立验收，旧声/内存成绩不迁移。A调度tools只补新168冻结cohort whitelist，语法通过，未改APK/规则。
