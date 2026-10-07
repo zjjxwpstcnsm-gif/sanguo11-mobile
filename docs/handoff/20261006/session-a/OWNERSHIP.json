@@ -211,7 +211,8 @@
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_SWIPE_OSCILLATION58.json",
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_TARGET_DELIVERY_FAILURE59.json",
     "docs/handoff/20261006/session-a/NORMAL_PORTRAIT_LAYOUT_SHIFT60.json",
-    "docs/handoff/20261006/session-a/NORMAL_MEDIA_PARTIAL61.json"
+    "docs/handoff/20261006/session-a/NORMAL_MEDIA_PARTIAL61.json",
+    "docs/handoff/20261006/session-a/run_remaining_normal_media.py"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"
