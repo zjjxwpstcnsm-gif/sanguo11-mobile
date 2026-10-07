@@ -1,0 +1,74 @@
+{
+  "scope": "A read-only successor220 to211/216 sessionless design gap. B WIP files match provided guard; A did not run host536/compile or install. No WIP copy/integration/production mutation.",
+  "bCompletedHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "bWorktreeStatus": " M game-runtime/src/main/java/game/sanguo/runtime/GameSession.java\n?? docs/handoff/20261006/session-b/FIRST_LAUNCH_OPTIONS_STRATEGY.md\n?? game-api/src/main/java/game/sanguo/api/PcNewGameOptionsSnapshot.java\n?? game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java\n?? game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java\n",
+  "bGuard": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/FIRST_LAUNCH_OPTIONS_GUARDS.json",
+    "sha256": "1a3a8595b6421a107907e526550e085549edaed82d9eb254471755e7e195a31a",
+    "complete": false,
+    "committedNativeBatch": false,
+    "currentApk": null
+  },
+  "files": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/PcNewGameOptionsSnapshot.java",
+      "sha256": "f2ba21a16ed34e879f7703f5b863c01d618bfb29a8bec5f53ff485427191738d",
+      "bytes": 1498,
+      "guardSha256": "f2ba21a16ed34e879f7703f5b863c01d618bfb29a8bec5f53ff485427191738d",
+      "matchesGuard": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java",
+      "sha256": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+      "bytes": 2866,
+      "guardSha256": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+      "matchesGuard": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "sha256": "451e916720db32aee5dbedf8477eef719fc85f6ec7ca7a5f6055483e4c98d856",
+      "bytes": 30467,
+      "guardSha256": "451e916720db32aee5dbedf8477eef719fc85f6ec7ca7a5f6055483e4c98d856",
+      "matchesGuard": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java",
+      "sha256": "8b404d585fcb283459d9c27fbf2aaee2cbc9398e7c986ee54a33be82fda36512",
+      "bytes": 2981,
+      "guardSha256": "8b404d585fcb283459d9c27fbf2aaee2cbc9398e7c986ee54a33be82fda36512",
+      "matchesGuard": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/FIRST_LAUNCH_OPTIONS_STRATEGY.md",
+      "sha256": "6bcecb6b5beceae5bf6c136383e8745c982f99c4a7bc212f77a6a2eda75f0422",
+      "bytes": 4495,
+      "guardSha256": "6bcecb6b5beceae5bf6c136383e8745c982f99c4a7bc212f77a6a2eda75f0422",
+      "matchesGuard": true
+    }
+  ],
+  "api": "static GameSession.previewNewSourceOptions(String scenarioId) -> PcNewGameOptionsSnapshot",
+  "firstLaunchProjection": "Exact scenarioId/sourcePath/sourceSha/sharedSha/sourceVariant/sourceUnknown/exe/menu receipt + original groups/header constraints; no session/World/StateToken arguments, defaults or saved settings.",
+  "oldSameStateApiNonnullTokenPreserved": true,
+  "defaultsKnown": false,
+  "automaticOverridesScope": "Only verified difficulty/death/life source-header effects; not full startup/lifecycle/events/GUI defaults.",
+  "sourceFixedConstraint": "flag1 life.fixedMenuValue=2; effective original life3 is distinct; not fourth menu option or new default.",
+  "plannedABinding": [
+    "With no session, read static resource-only catalog through existing async UI read mechanism; do not instantiate World/session/dummyToken.",
+    "Bind draft to exact scenarioId/sourceSha/sharedSha/sourceVariant plus picker generation and activity lifecycle.",
+    "When an existing world/session is present, preserve real current StateToken/revision admission using existing API; do not make it nullable.",
+    "Source changes discard/rebuild source-bound draft; stale/double callbacks cannot apply old tuple.",
+    "Keep unconstrained groups unselected; fixedMenuValue is only a proven source constraint, with explicit confirmation.",
+    "Confirm choice.value -> fromMenu -> completed4arg factory only after B frozen full dependency closure.",
+    "Cancel merely discards draft and preserves saved files/authoritative World/allRNG; first launch has no authority to capture and must prove zero created session as well as every prior file SHA.",
+    "Do not upgrade old3arg/31–39/PDU policies or change Bridge/Unity/original4JNI."
+  ],
+  "bReportedHostScope": "536 independent first-process/all16/immutable/busyformat5/genuine39 purity checks; existing439/151/session1690 regression and Android compile. These are B reports, not A Android normal-first-launch acceptance.",
+  "ordinaryDuelTriggerStillUnaccepted": "B reports original-stock three-officer deployment continued25 turns; original3percent/0percent offers rejected and ordinary battle defeated unit. Preserved save is not normal native duel or newAPK acceptance.",
+  "sessionlessDesignGapAddressedInBWip": true,
+  "aImplementationStarted": false,
+  "bWipCopied": false,
+  "compiled": false,
+  "deviceActionsStarted": false,
+  "actualNormalFirstLaunchApkAccepted": false,
+  "wholeGoalComplete": false
+}

@@ -41,3 +41,8 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 217–219 Source1完整实际验收与可复现审计
 
 登记217 acceptance、218 memory、219 widget与`audit_completed_normal_source.py`确切A路径。新工具只消费真实已完成normal/cold/both3D/fullSHArestore/确切APK与退出0观察器证据，拒绝未完成来源，不操作设备/生成snapshot。Java/native/PSS峰值独立，未解析背景/原普通裁切/年龄全屏/voice/GPU/ARM继续未知。旧48830/48877/48878终止不重启，Source2在原队列继续，不改生产源或设备数据。
+
+
+## 220 首次开局无session目录后继只读准备
+
+登记 `docs/handoff/20261006/session-a/FIRST_LAUNCH_OPTIONS_READONLY220.json`，核对B未冻结独立PcNewGameOptionsSnapshot/static资源目录入口/策略/guard的精确SHA，补齐204的无session草稿身份与generation绑定。保留既有nonnullToken会话API，首次入口不造World/Token；不复制/编译/集成WIP、不改Main/picker或打断5554。B host536/编译不计Android正常首局成绩，最终实施等完整冻结。

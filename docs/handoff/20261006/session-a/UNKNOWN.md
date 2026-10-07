@@ -1,5 +1,7 @@
 # 当前未完成与未知（2026-10-08；同176三命令及Source11/0/1已全恢复，Source2矩阵运行）
 
+220补齐211/216无session设计缺口：B独立无Token/已存值/default的PcNewGameOptionsSnapshot与static纯目录入口，五源与guard1a3a8595逐SHA核同。A首次草稿将绑定source身份/SHA/Shared/variant和generation，旧会话nonnullToken不改；B536host/编译未当Android成绩，整批未冻结，A未复制/编译/集成/实装。真实首次菜单、原GUI/启动规则、普通部署触发单挑、ARM与组合包仍待。
+
 216继承所选来源纯预览后继：B提供exactpreviewSourceId/当前Token、三组savedValue=null与原flag1时life.fixedMenuValue=2约束；不能当默认、旧局设置或原PC控件禁用像素。B151 host preview纯检查未转Android成绩；完整B冻结、正常Main/picker、无session绑定契约、完整原GUI/新局/APK与ARM仍待。
 
 215覆盖211的Root18来源旧未知：B原Header16源/Source7配置块27组证明非零只Scen007/013/014，有效life3保留难度/战死输入；A独立核对16原PC文件SHA，未重复原指令执行。默认、完整PC GUI/4a42d0、菜单禁用/选2行为、Root28/2c/完整开局/全部规则仍未知。B策略/DTO/query均未冻结；A未复制、编译、集成或实装，不给旧三参/31–39/PDU3缺失namespace档回填策略。

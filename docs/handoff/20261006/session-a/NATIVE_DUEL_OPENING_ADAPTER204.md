@@ -68,3 +68,12 @@ B原Header16源receipt692391c8与Source7配置块27组合receipt575e8abb给出�
 B新增`GameApi.pcOpeningOptions(scenarioId)`带当前Token与确切previewSourceId，原sourceFlag18、所有savedValue=null；旧局设置不作为新局默认。原Source7 full5593e0/full544900九draft执行receipt157d3641给出flag1时life菜单fixedMenuValue=2，此为来源约束，不是默认；有效原参数life3与请求菜单2仍区分。空control tree未证实原PC禁用视觉，不将其他21c/220/230字段约束扩接到本API或玩法。
 
 A后继按精确所选来源DTO重建草稿、绑定sourceId/Token/picker generation，确认按choice.value；非约束项保持未选择，已证实的固定值只作为来源约束并在真实确认摘要明确呈现。切源/取消只丢草稿，不能新建World/初始化策略/修改保存或RNG。B151 host preview纯检查不当Android正常入口成绩。当前WIP session方法仍需要已有session/非空Token；首次启动无session的正常绑定契约仍未冻结，不造dummy World/Token。六个B源SHA和M/??状态见216，A不改当前Main/picker、不编译或集成。
+
+
+## 220 首次无session目录后继（只读，补齐211/216设计缺口）
+
+B独立`PcNewGameOptionsSnapshot`与static `GameSession.previewNewSourceOptions(String scenarioId)`只投影确切id/path/sourceSHA/Shared/variant/unknown、原菜单/header约束，无session/World/Token/已存值/default。旧PcOpeningOptionsSnapshot非空Token要求保留；A核五个WIP源与guard1a3a8595逐SHA同等，未运行B536host/编译/实装。
+
+A首次入口沿现有异步UI读取机制取纯目录事实，草稿绑定确切source身份/SHA/Shared/variant及picker generation、Activity生命周期；不得创建dummy World/session/Token。有现存战役时维持真实同StateToken/revision准入，两种事实域不混为可空Token。切源丢旧草稿，非约束项保持未选，flag1菜单life2只是已证实约束，确认按choice.value交完成fromMenu/四参工厂。首次取消需同时证明零创建session和全部原文件SHA不变；有战役时追加完整World/全部RNG/Token纯检查。
+
+设计缺口在B WIP中已补齐，实际Main/picker与首次正常菜单仍未实施；等完整B冻结源，现有A唯一生产路径与后继专用测试范围不扩大。B原库存三将部署25旬记录的原3%/0%应战拒绝与普通战斗击破不是正常单挑或新APK通过，不改变全部源/媒体/ARM/最终组合未完成状态。

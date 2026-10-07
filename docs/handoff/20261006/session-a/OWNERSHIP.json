@@ -434,7 +434,8 @@
     "docs/handoff/20261006/session-a/audit_completed_normal_source.py",
     "docs/handoff/20261006/session-a/REGISTERED_SOURCE01_ACCEPTANCE217.json",
     "docs/handoff/20261006/session-a/registered-source01-memory218.json",
-    "docs/handoff/20261006/session-a/registered-source01-widget219.json"
+    "docs/handoff/20261006/session-a/registered-source01-widget219.json",
+    "docs/handoff/20261006/session-a/FIRST_LAUNCH_OPTIONS_READONLY220.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
