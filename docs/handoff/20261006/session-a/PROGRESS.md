@@ -192,3 +192,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 旧capture-22只读取证补核：原frozen manifest实际构建提交abead229（非后继实验HEAD28fb），其service Git对象与原32-r1事务/原始Native日志逐SHA固定；旧5582与当前5554均API29/x86_64及同fingerprint，但不等于当时音频路由/权限决策状态相同。原44100/stereoPCM16/UID+GAME/min65536 builder配置与现A44100形态一致，44实际44100init成功，不能把44100本身或Ogg解码当旧-22唯一原因。原创建阶段−22、42权限−1与后续整曲连续性分别保留；缺旧AudioPolicy输入/profile/mix与投影生命周期决定性日志，未关闭根因或操作B5582。
 
 61原生效果子进程只读阶段采样冻结完整JSONL行前缀和SHA，具体数量以NATIVE_MEMORY_PARTIAL61为准；目前最多同时2个、当前1个、不同PID4个，同一次采样child PSS合计峰54644KiB，0读取错误。只在同实际采样合计child PSS，不与Java/native parent独立峰值相加；此段不证明各取消精确退出延迟、最终cold/恢复、所有16源长循环或GPU/ARM。正常driver78010确认继续live，原备份/安装包未变。
+
+61主78010与原native26106/录像82680均由句柄确认仍live。原观察Python精确PID55872/55874经ps核实后，为该同一session建立等待进程实际退出的续接观察：host句柄95645/84317，独立out native-memory-tail.jsonl/video-tail；旧进程仍live时不重复采集。续接仅只读子进程内存/原始screenrecord，不重启游戏/测试、不安装、不改数据/偏好或B5582；若61先restored-verified则无需新观察器。当前continuation.json阶段waiting-exact-old-process，不能把排队当已经采集或验收完成。
