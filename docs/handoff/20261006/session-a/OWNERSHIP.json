@@ -233,7 +233,9 @@
     "docs/handoff/20261006/session-a/NORMAL384_COMBINED_BUILD68.json",
     "docs/handoff/20261006/session-a/NORMAL_CALLER_FAILURE66.json",
     "docs/handoff/20261006/session-a/MEDIA_VIEWPORT_TEST_BUILD69.json",
-    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT69.json"
+    "docs/handoff/20261006/session-a/PRESERVATION_CHECKPOINT69.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT69.json",
+    "docs/handoff/20261006/session-a/ORDINARY384_PARTIAL_SOURCE0_68.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

@@ -10,7 +10,7 @@
 | 普通堆组合游戏 | `out/session-a/apk-2312ac57-normal384-combination68/app-debug.apk` | `b5ec2548eacda2a9272090490e83ac97afb311a4297333c5eb091c6872c38e47` | 68已实装5554，实际Java384MiB；16来源全可选势力/缩放/真正Back/HOME/存读/冷/恢复仍运行 |
 | 普通堆68测试 | `out/session-a/apk-2312ac57-normal384-combination68/app-debug-androidTest.apk` | `c96bc8abb5168c5e64fe147ffa763263a9edde16fac8fad84a2157c8759cc3f3` | 实际pm注册和已装整包SHA一致；不是游戏发行内容 |
 | 修正人物viewport69测试 | `out/session-a/apk-ea486543-media-viewport-test69/app-debug-androidTest.apk` | `2711dd0cc98c3e60420978f7956e2cb27e68cf326bdf4e74a27ec6d4a5bb0ca0` | 独立构建，尚未安装；须与上述默认4df5游戏新鲜备份安装复验 |
-| 完整源码检查点27c4bc71 | `out/session-a/source-checkpoint-27c4-host-cold-cohort66/sanguo11-mobile-source.tar.gz` | `4f08f7ba1564121bb7afc71733cbb13986f1d6c3359dffdcd8f44e8712f1cbe6` | 11107文件/903203429源字节，每个SHA与6JNI已核；包括全部继承固定/未跟踪输入，排除Git/独立缓存/设备备份；后继69测试须下一完整导出，不称最新最终源码 |
+| 完整源码检查点298b322f | `out/session-a/source-checkpoint-298b-current-viewport69/sanguo11-mobile-source.tar.gz` | `18f91471e0f7db192d50c715cdd2976db67836a16dc9c1f2d11a33db9d5b2fb7` | 11114文件/903234871源字节，每个SHA与6JNI已核；包括全部继承固定/未跟踪输入及69测试修正，排除Git/独立缓存/设备备份；检查点非最终目标源码 |
 
 以上为universal开发签名APK，含arm64-v8a与x86_64。ARM没有连接设备、没有安装/长流程/原用户OOM堆与分配栈证据，不能由包含ABI推断ARM验收。桌面81GiB余量已实际核查；没有删除用户资源。
 

@@ -1,0 +1,49 @@
+{
+  "actualSession": "out/session-a/ordinary384-all-factions-combination68",
+  "partialLive": true,
+  "sourceIndex": 0,
+  "slots": 47,
+  "actualEnabledCount": 8,
+  "noAuthorityMutation": true,
+  "actualNormalSource0CompleteStatus": "SESSION_A source 0 normal flow complete",
+  "actualObservedJavaLimitBytes": 402653184,
+  "artifacts": {
+    "source-0-faction-previews.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source0/source-0-faction-previews.json",
+      "sha256": "49f592ba250b91f4785c5bccf8d1873ab367afbde8fc591db1f20f23b5212005"
+    },
+    "source-0-map.png": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source0/source-0-map.png",
+      "sha256": "acbe5230ce385ae4ad52f7c28f2905538f7dbf0ea316684d779e3c34e5f7cca6"
+    },
+    "source-0-map-actual-text.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source0/source-0-map-actual-text.json",
+      "sha256": "f2620bef5d481fd7d6a228295f426400026e65bd4ac72d0ed1fe7b8801939e09"
+    }
+  },
+  "mapOwnerAfterScreenshot": {
+    "scope": "Main Activity owner after screenshot; current focused dialog may be a separate preview; not atomic pixel-frame facts",
+    "observedUptimeMillis": 73777698,
+    "page": "map",
+    "panelRequested": false,
+    "panelTag": false,
+    "panelVisibility": 8,
+    "panelAlpha": 1,
+    "panelWidth": 1038,
+    "panelHeight": 519,
+    "mapWidth": 1080,
+    "mapHeight": 1206,
+    "hostPanelRight": 0,
+    "hostPanelBottom": 0,
+    "cameraWidth": 1080,
+    "cameraHeight": 1206,
+    "nativePanelRight": 0,
+    "nativePanelBottom": 0
+  },
+  "screenshotInspected": true,
+  "all16Accepted": false,
+  "coldAccepted": false,
+  "fullRestorationStillPending": true,
+  "gpuMemory": "unknown",
+  "wholeGoalComplete": false
+}

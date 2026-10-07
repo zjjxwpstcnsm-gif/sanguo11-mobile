@@ -1,0 +1,27 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "revision": "298b322f97ea2c8b4fdd67b0dfddf17001845e7c",
+  "branch": "codex/map-ui-media-repair",
+  "fileCount": 11114,
+  "bytes": 903234871,
+  "scope": "tracked plus every inherited SOURCE_GUARD file and original4/new2 JNI, no Git database/Gradle/build/SDK/device backups; checkpoint not final whole-goal or ARM acceptance",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-298b-current-viewport69/sanguo11-mobile-source.tar.gz",
+  "archiveBytes": 652865080,
+  "archiveSha256": "18f91471e0f7db192d50c715cdd2976db67836a16dc9c1f2d11a33db9d5b2fb7",
+  "verifiedEveryFileSha": 11114,
+  "original4AndNew2Jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gitDatabaseIncluded": false,
+  "deviceBackupsIncluded": false,
+  "overallGoalComplete": false,
+  "exportReceiptPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-298b-current-viewport69/export.json",
+  "exportReceiptSha256": "aebd3d1f3fe77ac67b484fa38ac40e5d92d427542d80d030d5e447fecb2601b2",
+  "fileManifestPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-298b-current-viewport69/source-files.json",
+  "fileManifestSha256": "0fb5561bde4f72efbea0612fd25ac11893a1ff185f51a306ddb5d36155f5d32e"
+}
