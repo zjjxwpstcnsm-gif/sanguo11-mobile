@@ -420,3 +420,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 176 注册后独立test构建2m30s成功，BuildConfig源198194b3、新test3088556B/SHAa37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a，独立冻结out/session-a/apk-198194b3-legacy39-registered-test176。二进制Manifest真正含原B39runner/classes.dex含class、2139833B真实夹具SHA5d002d...精确；game931bc/生产e62/6JNI未变，尚未安装。宿主编译与169长旬重叠，不作无干扰性能比较。
 
 177 实际串行等待器1234仅绑定live军建98870，等它normal或失败范围保留+冷/全9/3797数据恢复+observer完整收尾，先核main/原源无delta，再freshfullbackup/test-only实装176，按原B genuine39普通路径与独立冷重复/两finished档SHA相等验收。当前无deviceaction，不修改原B测试/夹具或WIP。旧172/173等待器已终止无动作，不restart；完整人物/原声/普通堆仍待新176正常序列。
+
+179 新只读完整保护审计通过：完整source0e7/10714、用户旧HEAD52315/4301守卫均精确、168固定输入manifest9b098ef...不变、原4+新2JNI/Bridge/只读PCexe原SHA同，main仍ef413。不是新游戏/UI/性能/ARM分。准备178完整source后继export，期间不编辑tracked/HEAD，输出ignored；压缩对当前169主机性能干扰记录。
