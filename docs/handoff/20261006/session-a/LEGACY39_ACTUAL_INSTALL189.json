@@ -1,0 +1,25 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/legacy39-registered177/genuine39",
+  "helperPid": 6773,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "device": {
+    "ro.build.version.sdk": "29",
+    "ro.product.cpu.abi": "x86_64",
+    "dalvik.vm.heapsize": "512m",
+    "dalvik.vm.heapgrowthlimit": "384m"
+  },
+  "actualRunnerRegistered": true,
+  "exactDefaultVideoRequested": true,
+  "videoObserver": 6820,
+  "nativeObserver": 6821,
+  "freshEveryFileShaVerification": true,
+  "actualTestOnlyInstall": true,
+  "normalAccepted": false,
+  "coldAccepted": false,
+  "restorationAccepted": false,
+  "wholeGoalComplete": false,
+  "scope": "Exact176 registered original B39 runner actually installed after186 fullclose, now true normal genuine fixture continuation. Not old B58/59 or168 score transfer."
+}
