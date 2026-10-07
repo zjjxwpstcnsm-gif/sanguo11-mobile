@@ -1,0 +1,42 @@
+{
+  "observedBCompleteHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "observedBUnfinishedFiles": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/CONTRACT.md",
+      "observedSha256": "b7fbdee8018d64f9925ee99e288671de1297679bcc3ca2a31fc9a3db25b5cabe"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/core/src/main/java/game/sanguo/core/PcDuelOptions.java",
+      "observedSha256": "793bb1b123e6eeea31338a3378faaa31059050bcafb33524e87b19e35dbc495b"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+      "observedSha256": "7cf98d1a8110cfc9b21f9299b570b94a8b8b454958089e770d45561fc8302a07"
+    }
+  ],
+  "observedBStatus": [
+    " M core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+    " M docs/handoff/20261006/session-b/CONTRACT.md",
+    "?? core/src/main/java/game/sanguo/core/PcDuelOptions.java"
+  ],
+  "ownProductionFilesUnchanged": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "sha256": "0fa45a934f05aeedbbab540fa5894a1bc0c4ebaca111f162ab3685dca3acf253"
+    }
+  ],
+  "ownOptionsClassAbsent": true,
+  "onlyPlanAndContractWritten": true,
+  "bWipCopiedOrIntegrated": false,
+  "oldLoadOrSavePolicyChanged": false,
+  "guiDefaultsAndTextMappingUnknown": true,
+  "originalStartupRngUnknown": true,
+  "currentDeviceMatrixInterrupted": false,
+  "plannedAdapter": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/NATIVE_DUEL_OPENING_ADAPTER204.md",
+  "scope": "Readonly precursor requested by B; no completion/freeze/API/Android acceptance transferred from unfinished Native batch. A source implementation and fresh APK await exact complete B delivery.",
+  "wholeGoalComplete": false
+}

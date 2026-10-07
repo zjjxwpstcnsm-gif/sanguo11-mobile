@@ -416,7 +416,10 @@
     "docs/handoff/20261006/session-a/REGISTERED_ATTACK_ACCEPTANCE200.json",
     "docs/handoff/20261006/session-a/registered-attack-widget-readability201.json",
     "docs/handoff/20261006/session-a/REGISTERED_CALLERS_ACTUAL_INSTALL202.json",
-    "docs/handoff/20261006/session-a/REMAINING_CALLER_SOURCE_GUARD203.json"
+    "docs/handoff/20261006/session-a/REMAINING_CALLER_SOURCE_GUARD203.json",
+    "docs/handoff/20261006/session-a/NATIVE_DUEL_OPENING_ADAPTER204.md",
+    "docs/handoff/20261006/session-a/NATIVE_DUEL_OPENING_READONLY205.json",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionANativeDuelOpeningInstrumentation.java"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
