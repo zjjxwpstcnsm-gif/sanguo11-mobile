@@ -1,0 +1,22 @@
+{
+  "buildSuccessful": true,
+  "testSourceRevision": "cf5047a24fce26bbdd8cc50f7a134c5cfb41ea5f",
+  "gameSourceRevision": "5c09972f6fd3bea3cb41e2621e69158a9185a6e3",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-5c09972f-voice-metadata-combination72/app-debug.apk",
+      "bytes": 313476976,
+      "sha256": "2cd199aac8eb89ddebab00ea7d390cf601758ff905d1ccfc77f37aae22f4bf22"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-cf5047a2-normal-touch-test78/app-debug-androidTest.apk",
+      "bytes": 2612463,
+      "sha256": "de9830ac07d51b56ec838ca50723e14ba60b38f956362179054d8eb21982676e"
+    }
+  ],
+  "buildLogSha256": "de4a4014e474137a71b1ca4787bfc355e8a01f002aa9b02579f50caa9cf4140a",
+  "actualInstalled": false,
+  "actualAccepted": false,
+  "scope": "Fresh test only: A Scene/Fire/Attack actual list click and normal focus/pan replace direct unit selection/camera setup. Current75/74 remains separate and is not dynamically patched. Requires independent backed install and normal command/cold/full restore.",
+  "wholeGoalComplete": false
+}
