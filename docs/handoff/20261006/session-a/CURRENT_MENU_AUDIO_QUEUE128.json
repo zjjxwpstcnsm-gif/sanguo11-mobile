@@ -1,0 +1,20 @@
+{
+  "stage": "waiting-for-actual-normal-producer",
+  "hostPid": 71209,
+  "producerPid": 64866,
+  "producerCommand": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python docs/handoff/20261006/session-a/run_picker_release_followup.py --producer-pid 64695 --previous-military out/session-a/normal-view-option-military124 --cohort-receipt docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_TEST_BUILD124.json --output out/session-a/normal-view-option-followup125",
+  "normalBatch": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/normal-view-option-followup125",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-63284162-picker-release-default116/app-debug.apk": "8e08f39eb1fa9787b1ccec9bbc7027ea441f48813748a2ddcd5746bb5a55bb4b",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f7ae877-normal-view-option-test124/app-debug-androidTest.apk": "10ed4b16ebc1683bfbd4a855e76bddbc6b50eb433c3be4876e1efbd291d9792d"
+  },
+  "cohortReceipt": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/NORMAL_VIEW_OPTION_TEST_BUILD124.json",
+  "wholeTrackGate": 0.995,
+  "deviceActionsStarted": false,
+  "fastPreviewAcceptedForThisPair": false,
+  "scope": "Exact frozen pair independent normal menu music/PCM/Save-RNG-StateToken/whole file restoration after all16 callers and normal fire/construction/attack. Current124 does not borrow116 fast preview score. Not mapBGM/voice/old-22 unique cause/ARM/final combined APK acceptance.",
+  "wholeGoalComplete": false,
+  "actualQueuePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/current-menu-audio128/queue.json",
+  "queueSha256AtLaunch": "d71cbf878df3862874156f8a5c55a615f77f17242c34c3a62694f419df8659eb",
+  "initialExecutableAttempt": "Unverified /Applications path assertion failed before Popen/log/output creation; actual runtime path discovered with workspace dependency tool"
+}

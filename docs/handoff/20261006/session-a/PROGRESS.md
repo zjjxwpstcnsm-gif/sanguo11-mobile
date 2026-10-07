@@ -329,3 +329,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 126 当前军建124只读线程CPU观察器host69319已实际运行，绑定游戏8e08/测试10ed及相邻真实progress与PID命令核验；提交时39采样、无不可读样本。当前已经过正常墙完工、停止/补修和保存阶段；部分采样发生在逐旬结束以后，不能用RenderThread/FEngine单次CPU占比解释前台>120秒原因。不发信号/GC/界面或数据更改，顺序读取仍可能影响调度；日志尚未冻结，待case恢复后实际退出/完整SHA收尾。Java/native/GPU预算与ARM、唯一OOM/长旬根因未关闭。
 
 127 整首菜单音频等待器支持确切124冻结两包；实际当前125未完成门已只读拒绝、没有音频capture或设备动作。要求全部16人物和三命令正常/cold/9+3797全SHA恢复及命令observer完整退出；不借116快速取消或旧44音频成绩。原0.995门槛保留，实际capture/路由-22唯一因果/地图BGM/人物voice/ARM仍待。
+
+128 整首音频实际等待器71209已启动，exact124两包/producer64866/正常队列125绑定，当前waiting且deviceActionsStarted=false。首个猜测runtime路径不存在的断言在Popen/log/output创建前失败；改用dependencies工具实际返回的Python路径，不隐藏失败或启动重复作业。只有全部当前正常命令/人物/cold/完整恢复后capture，.995原门槛不改；旧44不迁移。
