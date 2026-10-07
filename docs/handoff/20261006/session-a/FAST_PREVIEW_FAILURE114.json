@@ -1,0 +1,56 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/fast-preview16",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "failedChecks": 205,
+  "completedCancellationPairs": 7,
+  "failedSource": 3,
+  "failedCycle": 1,
+  "failedAssertion": "retired MapHost all four owners remain false after15315ms",
+  "failureScreenshotObserved": "Source chooser visible after real Return; preview release not completed at assertion",
+  "productOrTestRootCauseProven": false,
+  "coldAccepted": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 1,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 51763,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/fast-preview16/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "04d6878e9a1f3675c1619b49acf4ff11943e39a06edeec68bcafe6e125eb8362",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 51764,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/fast-preview16/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "producer10828Terminal": true,
+  "audio44001TerminalWithoutCapture": true,
+  "rawSha256": {
+    "session.json": "8c2ce24ea910d6a43322f4e45106dbb1fa87b79b14c53e5ede833d4b103332ff",
+    "evidence/result.txt": "5981b783bc2a1e76402df1927040ede1446879ada16f872105c14496ff52907f",
+    "evidence/FAIL.png": "5291b1a6a68c6b1db7a40f434be536bed1c6432d92fc89ba15c3d7964e6f0df8",
+    "evidence/FAIL-actual-text.json": "8b8710185a09e96d80168fc891cb4ba8d3e2c24f067c46ee6515ca2a9a9fa001",
+    "evidence/fast-preview-cancellation.json": "56168017f5510483337a776d248d5ac4a996a1c896fcf22808835e7e4f204d3d",
+    "video/video.json": "04d6878e9a1f3675c1619b49acf4ff11943e39a06edeec68bcafe6e125eb8362"
+  },
+  "next": "Inspect Return/dismiss callback ordering and heavy source chooser rebuilding; capture actual release timing before deciding product versus test change. Fresh APK/install and whole32 cancellation pairs required after changes.",
+  "wholeGoalComplete": false
+}
