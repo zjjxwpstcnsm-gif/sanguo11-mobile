@@ -168,3 +168,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 61实时64/670部分回执已在不同原始文件路径只读取回并逐SHA与设备同等，保留首32快照及其SHA不覆盖。全部128实际roster/detail原bitmap行/当前年份/身份与完整Save-RNG-token纯，sourceComplete=false；78010/26106/82680继续live。剩余15来源脚本前置条件为实际完整source11+冷+最终everySHA，当前拒绝已实证，不提前运行或借部分结果。
 
 新增只读summarize_actual_ui_text.py，登记A所有权后编写，Python语法通过。实际汇总55历史正常/冷入口截图关联文字178行：41行有实色背景可计算对比度、137行背景尚未解析；0透明文字/视图、0已知实色低于4.5，含11选中与1禁用行。此为历史b819包且只覆盖实际widget，不接受为当前ff2832、地图Canvas、全部页面或全局可读性通过。61实际已到128/670、256个列表/详情行，仍sourceComplete=false，正常/冷/最终恢复未终端；不重装、不提前启动其余15源。
+
+再次核实用户可增Java堆建议已落实：app默认gameLargeHeap=true，GameApplication记录normal/large class与实际maxMemory；5554历史实际384→512MiB，不能以整机8/12/16GB推固定额度。修正RESUME历史“不添加largeHeap”未标后继导致的当前说明冲突；不修改生产包、不影响61正在进行的完整真实流程。
