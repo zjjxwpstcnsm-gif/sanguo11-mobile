@@ -1,0 +1,108 @@
+{
+  "sourceRevision": "565195cade1d6ff86ca6fa839c10dff80acea958",
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug.apk": "4df5e29c724d04a2c39fea31d9e711c32dcf179ccacd490b6b5bbb589f321f17",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-565195ca-military-binder-combination/app-debug-androidTest.apk": "7abb13fdf92ef984c10bc983c15b30d4f861cab0ad9047af3fbdab8df25fac60"
+  },
+  "normalAssertionsPassed": true,
+  "originalDriverPassed": false,
+  "originalDriverFailure": "No actual second-process PID evidence: required first render submission although real cold target launched and assertions completed before rendering. Original result retained failed.",
+  "coldIndependentReadOnlyAudit": {
+    "before": {
+      "pid": "30366",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "after": {
+      "pid": "13854",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": false
+    },
+    "result": "PASS SESSION B FIELDWORKS COLD actual new-process auto-resume/manual-load complete world and bothRNG; ARM pending",
+    "assertionsPassed": true,
+    "renderReadinessAccepted": false
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "artifacts": {
+    "session.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/session.json",
+      "sha256": "88082596af20d12433ab12607b31e92ae703fbf0f18ae04bfe11db035a875f60"
+    },
+    "logcat.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/logcat.txt",
+      "sha256": "bc564cfc7c311f056448fd70631dc77cbb7a8af87bc89245bc2fbba258f41f33"
+    },
+    "instrumentation.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/instrumentation.txt",
+      "sha256": "3f2de2d3eb4be8682a50e8719e7ef399d895ee76990433e97c18f87c6f43c1bf"
+    },
+    "cold-instrumentation.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/cold-instrumentation.txt",
+      "sha256": "e227351c5c47701cba9c4bcfe8244fb80d2045e732bcc2b24dabe1cc205055f3"
+    },
+    "evidence/02a-city-center-funding.png": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/evidence/02a-city-center-funding.png",
+      "sha256": "469ee9980adc3131cf9750d39ea4765feeaacc8ce3ab4225c588a203ad24b458"
+    },
+    "evidence/04b-resumed-repair.png": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/evidence/04b-resumed-repair.png",
+      "sha256": "c634889990261420f554a3d3e2b349e23a179e0423b28cb61c04e797c6b6add2"
+    },
+    "evidence/05-completed.png": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/evidence/05-completed.png",
+      "sha256": "16dd918dbdc832539a87a097bd977a2fb8f9f53f7ee9bdb5548682eeab0ba847"
+    },
+    "evidence/scene-facts-resumed-repair.json": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/evidence/scene-facts-resumed-repair.json",
+      "sha256": "17e9a41efa54104dfc95120c18e17298cce0195cabce9e6fb3da460296a3ba7c"
+    },
+    "evidence/progress.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/evidence/progress.txt",
+      "sha256": "4a2c19b88cb3091ca0cb220d2dd6edef6745e8647b9db3196d1aa40db3c8f1f5"
+    },
+    "evidence/diagnosis.txt": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-military-repair-normal65/evidence/diagnosis.txt",
+      "sha256": "b640f2d14ade01b661ef0c005ac951601838795c3e164d43ad8064b0058c1bfe"
+    }
+  },
+  "hints": {
+    "funding": "本旬已行动",
+    "actualRepair": "本旬已行动 · 正在施工/补修，可中止施工",
+    "repairScreenshotObserved": true,
+    "actualTokenFacilityAssertions": "Committed B runner compares every military fact hp/complete/builderUnitId/direction and exact state token against current world, and preserves full Save/both RNG. Summary scene JSON only records counts/token, not per-facility fields."
+  },
+  "normalWorkflow": "Actual Source14/new/deploy1000/funding cancel-double/wall/move/camp/stop cancel-double/full stopped turn/repair cancel-double/multi-turn completion/save-load/recreation",
+  "longTurnElapsedMs": [
+    121921,
+    161795,
+    176851,
+    126291,
+    150080,
+    133765,
+    133973
+  ],
+  "timingLimits": [
+    "Screen recording present",
+    "Three SIGQUIT diagnostics during wall-action-reset",
+    "Inherited KEYCODE_HOME background=true does not independently prove real system Home/background",
+    "No controlled recording-load experiment"
+  ],
+  "javaOomObserved": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "next": "Correct host process evidence separately from render readiness, rerun fresh normal media and true normal Back/HOME flow with current exact APK; retain failed driver65 without changing historical pass flag."
+}

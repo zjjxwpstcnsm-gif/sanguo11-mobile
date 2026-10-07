@@ -50,6 +50,16 @@ def device_manifest(tree):
         result[name.removeprefix('./')] = sha
     return result
 
+def target_process_evidence(log):
+    """Actual Android launch evidence, independent of renderer readiness."""
+    launches = re.findall(r'ActivityManager: Start proc (\d+):' + re.escape(PACKAGE) + r'/[^\s]+ for added application ' + re.escape(PACKAGE) + r'(?:\n|$)', log)
+    if not launches:
+        raise ValueError('No exact target instrumentation process launch evidence')
+    pid = launches[-1]
+    submissions = re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission', log)
+    return {'pid': pid, 'source': 'ActivityManager exact package instrumentation launch',
+            'rendererFirstSubmissionObserved': pid in submissions}
+
 def main():
     p = argparse.ArgumentParser(); p.add_argument('mode', choices=['backup','reuse-backup','install-test','restore'])
     p.add_argument('--output', type=pathlib.Path, required=True)
@@ -199,14 +209,14 @@ def main():
                     expected_file='actual-source.sg11' if b_folder in ['capacity','governor'] else 'actual-mid.sg11' if b_folder in ['debate','search','direct'] else 'actual-build.sg11'
                     expected_build=run('shell','sha256sum','/sdcard/Android/data/'+PACKAGE+'/files/session-b/'+b_folder+'/'+expected_file).decode().split()[0]
                     if expected_build!=expected:raise ValueError('B actual build and normal autosave differ')
-                # Android ends the target when instrumentation finishes. Use
-                # its actual previously recorded frame-submission PID, not pidof
-                # after process death. Preserve first-phase evidence above.
+                # Instrumentation may finish before a cold renderer submits.
+                # Process identity comes from the exact Android target launch;
+                # render submission is retained as a separate observation.
                 prior_log=(out/'logcat.txt').read_text(errors='replace')
-                previous_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',prior_log)
-                if not previous_pids:raise ValueError('No actual first-process PID evidence')
-                old_pid=previous_pids[-1];cold_log_offset=len(prior_log)
-                r['coldProcess']={'beforePid':old_pid,'expectedStartupSaveSha256':expected,'passed':False}
+                old_evidence=target_process_evidence(prior_log)
+                old_pid=old_evidence['pid'];cold_log_offset=len(prior_log)
+                r['coldProcess']={'beforePid':old_pid,'beforeProcessEvidence':old_evidence,
+                                  'expectedStartupSaveSha256':expected,'passed':False}
                 report_path.write_text(json.dumps(r,indent=2))
                 run('shell','am','force-stop',PACKAGE)
                 with (out/'cold-instrumentation.txt').open('wb') as f:
@@ -214,11 +224,19 @@ def main():
                 cold=(out/'cold-instrumentation.txt').read_text()
                 cold_relative='session-b/'+b_folder+'-cold' if b_runner else 'session-a-map/'+run_id+'_cold'
                 run('pull','/sdcard/Android/data/'+PACKAGE+'/files/'+cold_relative,str(out/'cold-evidence'))
-                after_log=(out/'logcat.txt').read_text(errors='replace')[cold_log_offset:]
-                new_pids=re.findall(r'\s(\d+)\s+\d+\s+I Sanguo3D: First submission',after_log)
-                if not new_pids:raise ValueError('No actual second-process PID evidence')
-                new_pid=new_pids[-1]
-                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else ('PASS SESSION A FIRE COLD' if a.runner=='SessionAFireFlowInstrumentation' else ('PASS SESSION A DIRECT COLD' if b_folder=='direct' else 'PASS SESSION A SEARCH COLD' if b_folder=='search' else 'PASS SESSION A ATTACK COLD' if a.runner=='SessionAAttackTaskInstrumentation' else 'PASS SESSION A DEBATE COLD' if b_folder=='debate' else 'PASS SESSION A ARMY COLD' if b_folder=='governor' else 'PASS SESSION B FIELDWORKS COLD'))) in cold) and 'FAIL' not in cold and old_pid!=new_pid}
+                # The logcat reader is asynchronous: briefly await its launch
+                # record without requiring an unrelated frame submission.
+                deadline=time.monotonic()+5
+                while True:
+                    after_log=(out/'logcat.txt').read_text(errors='replace')[cold_log_offset:]
+                    try:
+                        new_evidence=target_process_evidence(after_log)
+                        break
+                    except ValueError:
+                        if time.monotonic()>=deadline:raise
+                        time.sleep(0.1)
+                new_pid=new_evidence['pid']
+                r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'beforeProcessEvidence':old_evidence,'afterProcessEvidence':new_evidence,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else ('PASS SESSION A FIRE COLD' if a.runner=='SessionAFireFlowInstrumentation' else ('PASS SESSION A DIRECT COLD' if b_folder=='direct' else 'PASS SESSION A SEARCH COLD' if b_folder=='search' else 'PASS SESSION A ATTACK COLD' if a.runner=='SessionAAttackTaskInstrumentation' else 'PASS SESSION A DEBATE COLD' if b_folder=='debate' else 'PASS SESSION A ARMY COLD' if b_folder=='governor' else 'PASS SESSION B FIELDWORKS COLD'))) in cold) and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
         finally:
