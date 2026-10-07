@@ -44,11 +44,52 @@ def main():
 
     save()
     try:
+        # Ordinary68 completed functionally but sampled only14.27MiB headroom.
+        # Reproduce its normal0..6 prefix separately with the explicit existing
+        # heap diagnostic. It requests GC: never substitute it for the untouched
+        # ordinary68 peak or claim allocation-stack/unperturbed-budget acceptance.
+        budget = json.loads(HELPER.with_name('ORDINARY384_ALL_FACTIONS_ACCEPTANCE68.json').read_text())
+        diagnostic_previous = previous
+        different_cohort = False
+        if not budget['memoryBudgetClosed']:
+            diagnostic = args.output/'ordinary-prefix-source0-to6-heap-diagnostic'
+            ordinary = json.loads(HELPER.with_name('NORMAL384_COMBINED_BUILD68.json').read_text())
+            ordinary_apks = {row['path']: row['sha256'] for row in ordinary['apks']}
+            if not ordinary['buildSuccessful'] or not all(sha(pathlib.Path(p)) == h for p, h in ordinary_apks.items()):
+                raise ValueError('Frozen ordinary diagnostic cohort changed')
+            ordinary_game = next(p for p in ordinary_apks if pathlib.Path(p).name == 'app-debug.apk')
+            ordinary_test = next(p for p in ordinary_apks if pathlib.Path(p).name == 'app-debug-androidTest.apk')
+            report.update(activeStage='ordinary-prefix-heap-diagnostic',
+                          ordinaryDiagnosticScope='Actual normal source0..6/factions prefix; Debug.dumpHprofData requestsGC, not unperturbed peak or allocation-stack acceptance',
+                          ordinaryDiagnosticSession=str(diagnostic.resolve()), memoryBudgetClosed=False)
+            save()
+            subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(diagnostic),
+                            '--previous', str(previous)], cwd=ROOT, check=True)
+            with (diagnostic/'driver.log').open('w') as log:
+                subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(diagnostic),
+                    '--apk', ordinary_game, '--test-apk', ordinary_test,
+                    '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'factions16',
+                    '--begin', '0', '--end', '7', '--heap-profile', '--fresh-process-reopen'],
+                    cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+            result = json.loads((diagnostic/'session.json').read_text())
+            restore = result.get('restoration', {})
+            if result['stage'] != 'restored-verified' or not result.get('passed') or not result.get('coldProcess', {}).get('passed'):
+                raise ValueError('Actual normal diagnostic prefix/cold incomplete')
+            if set(restore) != {'internal', 'external'} or not all(r['exactRegularFileSha'] for r in restore.values()):
+                raise ValueError('Diagnostic complete original data restoration missing')
+            if result['apks'] != ordinary_apks:
+                raise ValueError('Diagnostic actual cohort differs')
+            report.update(ordinaryDiagnosticWorkflowCompleted=True,
+                          ordinaryDiagnosticHprofProduced=(diagnostic/'evidence/high-heap.hprof').is_file())
+            save()
+            diagnostic_previous = diagnostic
+            different_cohort = True
         subprocess.run([sys.executable, str(HELPER), 'reuse-backup', '--output', str(fast),
-                        '--previous', str(previous)], cwd=ROOT, check=True)
+                        '--previous', str(diagnostic_previous)], cwd=ROOT, check=True)
         with (fast/'driver.log').open('w') as log:
             subprocess.run([sys.executable, str(HELPER), 'install-test', '--output', str(fast),
-                '--apk', str(game), '--test-apk', str(fast_test), '--reuse-installed',
+                '--apk', str(game), '--test-apk', str(fast_test),
+                *([] if different_cohort else ['--reuse-installed']),
                 '--runner', 'SessionAMapRepairInstrumentation', '--suite', 'fastPreview16',
                 '--begin', '0', '--end', '16', '--fresh-process-reopen'], cwd=ROOT,
                 stdout=log, stderr=subprocess.STDOUT, check=True)
