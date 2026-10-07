@@ -492,3 +492,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 2026-10-08 后继224/225/227：对B不可变candidate60依赖做独立A Main/picker选项适配，196overlay/612未变B依赖及三冻结JAR/两页逐SHA核验，全部app Java/AAPT资源编译exit0，补丁独立应用逐字节读回。真实选项tag/步骤见224，显式draft/来源约束/fromMenu/一次seed/四参工厂/真实Token或首次无session目录绑定；没有修改当前规范生产或安装新组合。源225完整11330文件653951588B归档逐SHA回读，SHA05a6c153…，含224及截至223证据/原4新2JNI。227最终A-only37路径补齐B原始Main与其旧主题编译子集两种前态，34候选前态从固定tar验证，合成清单与已编译stage5810app文件同SHA；226历史遗漏原始主题前态已明确保留和替代。完成提交925748c6/7299267d/01b725ed，只own docs/tools，main与规范A生产不变。当前Source3真实480/670人物仅partial，normal/audio/heap串行producer与记录器继续；未算来源完成，音频/双堆未执行，整个目标及ARM仍待。
+
+
+228独立只读GPU指标核查：PID31545前后同一，meminfo Graphics0与实际OpenGL host translator/SurfaceFlinger全局缓冲72900KB量级并存，明确不能记为本应用GPU零占用/峰值。新GPU_METRIC_AVAILABILITY228.json保存原始命令/日志SHA/归属限制，不干预当前Source3正常caller流。Source3已544/670仍partial；原normal/视频/native及audio/heap串行等待进程均实际存活，当前队列不重启。B独立combined61开始物化candidate60+227，仅冻结增量；A不操作5582，不转旧包成绩，不宣称组合已装。

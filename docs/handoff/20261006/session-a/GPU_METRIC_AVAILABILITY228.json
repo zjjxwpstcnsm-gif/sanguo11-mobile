@@ -1,0 +1,75 @@
+{
+  "serial": "emulator-5554",
+  "pid": "31545",
+  "pidBeforeAfterSame": true,
+  "lock": {
+    "root": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile",
+    "pid": 84276,
+    "output": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/remaining-normal-callers/source-03"
+  },
+  "samples": [
+    {
+      "command": [
+        "dumpsys",
+        "meminfo",
+        "31545"
+      ],
+      "exit": 0,
+      "label": "meminfo",
+      "observedUnix": 1791412533.617228,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-metric-availability228/meminfo.txt",
+      "sha256": "1419a2f4013365a0b2f536bc8c1b4347278c77f8ce1476a5e042934e10c832a8"
+    },
+    {
+      "command": [
+        "dumpsys",
+        "SurfaceFlinger"
+      ],
+      "exit": 0,
+      "label": "surfaceflinger",
+      "observedUnix": 1791412533.80963,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-metric-availability228/surfaceflinger.txt",
+      "sha256": "9ccac6e27f4ec34fffebfa6a4f4da26e856840f9cd8fddce011cfbfa83cb4fdc"
+    },
+    {
+      "command": [
+        "getprop",
+        "ro.hardware.egl"
+      ],
+      "exit": 0,
+      "label": "egl_property",
+      "observedUnix": 1791412533.900231,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-metric-availability228/egl_property.txt",
+      "sha256": "21b3bdc8a298e23d17cb2918453001a18140a9f3115252d1c0c75c9b435ae853"
+    },
+    {
+      "command": [
+        "getprop",
+        "ro.hardware.memtrack"
+      ],
+      "exit": 0,
+      "label": "memtrack_property",
+      "observedUnix": 1791412533.9835851,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-metric-availability228/memtrack_property.txt",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    }
+  ],
+  "meminfoRelevant": [
+    "  Native Heap   157905   157816        0      404   178424   173306     5117",
+    "  Dalvik Heap   158603   158560        0       64   141272   135128     6144",
+    "         Native Heap:   157816",
+    "            Graphics:        0"
+  ],
+  "reportedGraphicsKiB": 0,
+  "surfaceFlingerDriverOrBufferLines": [
+    "GLES: Google (ATI Technologies Inc.), Android Emulator OpenGL ES Translator (AMD Radeon Pro 5300M OpenGL Engine), OpenGL ES 3.0 (4.1 ATI-7.1.6)",
+    "RenderEngine supports protected context: 0",
+    "RenderEngine is in protected context: 0",
+    "RenderEngine program cache size for unprotected context: 48",
+    "RenderEngine program cache size for protected context: 0",
+    "RenderEngine last dataspace conversion: (Default) to (Default)",
+    "Total allocated (estimate): 72822.16 KB"
+  ],
+  "appAttributedGpuPeakProven": false,
+  "scope": "Single read-only metric availability sample during live source03 cohort. meminfo mtrack and SurfaceFlinger global compositor buffers cannot establish app Java/native/GPU peak; a reported zero is not absence of GPU allocation. No save/RNG/UI mutation, tracing or additional recording. No ARM claim."
+}
