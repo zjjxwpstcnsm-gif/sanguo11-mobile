@@ -81,3 +81,5 @@ CURRENT116 UPDATE:115 release ordering is built and actually installed8e08/565 w
 126 当前军建124只读线程CPU观察器host69319已实际运行，绑定游戏8e08/测试10ed及相邻真实progress与PID命令核验；提交时39采样、无不可读样本。当前已经过正常墙完工、停止/补修和保存阶段；部分采样发生在逐旬结束以后，不能用RenderThread/FEngine单次CPU占比解释前台>120秒原因。不发信号/GC/界面或数据更改，顺序读取仍可能影响调度；日志尚未冻结，待case恢复后实际退出/完整SHA收尾。Java/native/GPU预算与ARM、唯一OOM/长旬根因未关闭。
 
 CURRENT130: 124 military normal/cold/full9+3797restore/8rawvideo accepted with documented inherited helper/Activity.finish boundaries. CPU109/7turns compute80–183sec, foreground120s failures retained, recording/readback perturbs; no unique cause/GPU/Java allocatorCSV/ARM closure. 17 text captures392rows/80solid pass/312unresolved. 125 nowfire flow,71209 exact124 music waits allcommands/all16. Current full source118 needs123/125–130 successor export; no B WIP/main changes.
+
+CURRENT134: latestfull ordinary game d30990d7/test1ef0dd3a built only, not installed or accepted. Currentdefault124 fire same8e08/10ed remains live. Required newordinary all244/fast cancellation/zoom/cold/fullrestore stillpending, no earlier81 score transfer. Hostbuild overlaps132 schedstat/fire capture, unperturbed latency/rootcause not inferred.

@@ -341,3 +341,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 132 新只读host74255在当前124火case实际启动，对top所见strategy-turn逐comm核验读取schedstat累计runtime/runqueueWait/timeslices，退场不可读明确保留。旧69319已结束完整109日志冻结130不变；新原日志独立且未冻结，不发signals/GC/UI/数据操作，调度取证仍可能干扰时序，不能以累计等待确定唯一渲染/核心根因。当前火计/真实Home/减少动画/LOW/灭火前缀passed，正常重燃/到期/冷读/全恢复未接受。
 
 133 冻结审计支持132实际schedstat逐PID/TID单调segment首尾delta，当前真实fire样本核验有连续runtime/runqueue counters；没有proc starttime时明确不称完整线程寿命或无TID复用，不可读/outerPID不稳定单列，拒绝跨线程峰合计和唯一原因。当前观察未结束/日志未冻结，火到期/冷/最终恢复仍待；生产/测试APK源码不变。
+
+134 普通384最新修复新包在b0dfff90完整源独立Gradle/offline/no-daemon构建1m59s，game d30990d749cd999d5eff440ed3d7b6e6b1325680ea0094fbaf50d2e391bd19c2/test1ef0dd3a432f1a8b7b8448774b250d411b6668dbad81287f4ea81e1f3cbd2fda，路径out/session-a/apk-b0dfff90-current-normal384134。实际manifest largeHeap=false、5636assets与当前124逐字节相同、168pins+6JNI逐SHA；app生产/test/core/API/runtime raw源与实装124源3f7ae无delta，BuildConfig source和manifest不同。仅构建/冻结，尚未安装，不借旧81普通全16/旧116快退/当前124火成绩；当前default8e08/10ed火仍安装运行且性能记录明确host build并行干扰。

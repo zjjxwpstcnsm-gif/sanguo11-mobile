@@ -1,0 +1,55 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "b0dfff90f624bccadf624a83fdd968c2c830a0e5",
+  "gameLargeHeap": false,
+  "manifestActualLargeHeapLine": "A: http://schemas.android.com/apk/res/android:largeHeap(0x0101035a)=false",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-b0dfff90-current-normal384134/app-debug.apk",
+      "bytes": 313477076,
+      "sha256": "d30990d749cd999d5eff440ed3d7b6e6b1325680ea0094fbaf50d2e391bd19c2"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-b0dfff90-current-normal384134/app-debug-androidTest.apk",
+      "bytes": 2612503,
+      "sha256": "1ef0dd3a432f1a8b7b8448774b250d411b6668dbad81287f4ea81e1f3cbd2fda"
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "fixedPackagedInputsExact": 168,
+  "all5636AssetsExactComparedToActual124": true,
+  "assetsCompared": 5636,
+  "rawProductionAndTestSourcesEqualToActual124": true,
+  "actual124ComparisonTestSource": "3f7ae877",
+  "buildLogSha256": "39f8adf41f283f5481f007471034ffe0381605f998e621301411d2d4a6bcd700",
+  "hostBuildOverlapsFireCapture": true,
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "scope": "Fresh ordinary heap current picker-release/fire/facility/water fixes and corrected normal touch test. Current default remains installed until its serial flow/restoration/audio ends; no scores transfer from81/116/124. BuildConfig source and manifest differ, full source files identical.",
+  "wholeGoalComplete": false
+}
