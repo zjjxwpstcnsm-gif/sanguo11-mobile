@@ -1,4 +1,15 @@
-# 当前未完成与未知（2026-10-07；最新116快速取消整批已接受、军建正常流程运行）
+# 当前未完成与未知（2026-10-07；当前145军建实测与146/147/150串行队列）
+
+当前权威状态（以实际进程与每次session.json为准）：默认游戏8e08、测试332a，145已实装并通过Source14异步开局断言，军建正常/cold/最后恢复仍待；80403/80451/80452实际运行。146后继80625等待本pair军建关闭后，重新跑火、攻击及16来源人物；147音频80686等待所有正常流程；150压力81358等待音频收尾与完整恢复，然后分别实装普通149(d309/313f)与默认145做各32快速取消及244势力预览。三个等待器尚无自身设备动作，任何失败、恢复不完整或新main/源码均拒绝旧队列继续。
+
+139攻击142已正常/cold/全9+3797恢复通过，仅其8e08/0eee配对；随后的139军建143在“正在建立新局”时提前读旧局面而失败，原数据全SHA恢复。旧78399/78632已终止。144只改A测试等待实际UiReadTask pending/job关闭；145新测试必须重新验收全部受影响流程，不迁移130/135/142旧包成绩。
+
+最新完整源码检查点148：6bf0d6e2、11229文件全SHA回读、六JNI原值，archive SHA a9526b9511b50c31fff43af7292032d288acc145106b93bc6bb6bc7d3b5e7c2a；raw源与实装145相同，后来的146–150动态收尾文档不在归档中。最新普通149仅独立构建冻结，未装；131为历史检查点。main ef413、B已完成HEAD895仍未变化，WIP不合。
+
+全目标未完成：长旬性能、最新两种堆完整压力/预算、GPU、用户原354832分配栈、全部正常媒体/caller/PC裁切时序、地图BGM/真实speaker voice/58事件声、火链/原完整设施演出、ARM及最终新main+B串行组合包均待；旧成功不得替代新配对范围。
+
+下面保留历史批次原文。其“CURRENT/live/未安装”只表示当时状态，不覆盖上面的当前权威状态；不得据此重启已结束PID或借用旧包成绩。
+
 
 CURRENT124: game8e08/source632 unchanged;independentnewtest10ed/source3f7ae fixes A self-clickable locator mismatch for actual ListView option. Original122 military failure/all9+3797SHArestore/2rawvideo preserved;old55286/63890/63933/63934 terminal. New64695/64745/64746 andown64866 followupverifiedlive,normalmilitary/cold/finalrestore unaccepted. Afterfullcurrentcase guards,125 queuesfire/attack/newall16 normalcallers;no116 fastscoretransfer. Current118 fullsource productionmatchesgame8e08 butnew123 test/125 tools requirelater checkpoint;ARM/finalmainB/wholegoal stillopen.
 
