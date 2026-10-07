@@ -242,7 +242,10 @@
     "docs/handoff/20261006/session-a/VOICE_DIRECTIVE_DOMAIN71.json",
     "app/src/main/assets/audio/pc/voice-identities.json",
     "docs/handoff/20261006/session-a/VoiceDirectiveDomainsProbe.java",
-    "docs/handoff/20261006/session-a/VOICE_COMBINED_BUILD72.json"
+    "docs/handoff/20261006/session-a/VOICE_COMBINED_BUILD72.json",
+    "docs/handoff/20261006/session-a/run_voice_metadata_audit.py",
+    "docs/handoff/20261006/session-a/ORDINARY384_SOURCE7_COLORS68.json",
+    "docs/handoff/20261006/session-a/SOURCE_EXPORT_CHECKPOINT72.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

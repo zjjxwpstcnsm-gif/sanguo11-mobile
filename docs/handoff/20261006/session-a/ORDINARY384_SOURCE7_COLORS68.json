@@ -1,0 +1,75 @@
+{
+  "actualCohort": "b5ec2548/c96bc8ab;ordinary384;API29/x86_64",
+  "sourceIndex": 7,
+  "sourceActualNormalFlowComplete": true,
+  "actualEnabledPreviews": 37,
+  "slots": 47,
+  "specificReportedNames": [
+    {
+      "side": 18,
+      "label": "陶謙",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 陶謙 · 城池1 · 武将7",
+      "actual3DVerified": true
+    },
+    {
+      "side": 31,
+      "label": "韓玄",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 韓玄 · 城池1 · 武将4",
+      "actual3DVerified": true
+    },
+    {
+      "side": 41,
+      "label": "韓遂",
+      "enabled": true,
+      "textArgb": "4293258741",
+      "actualSummary": "已选势力 · 韓遂 · 城池1 · 武将11",
+      "actual3DVerified": true
+    }
+  ],
+  "fullSaveRngStateTokenPure": true,
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-previews.json",
+      "sha256": "dd91e3903111bcca43c4039fe97857c49be50b6b85c9407e7465e4aad85a6f4f",
+      "deviceHostShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-18-preview.png",
+      "sha256": "f515d21cdd84b9828cdc387a0f6be7163bfe60b69a3ab442ca098b0b9bf0fdc6",
+      "deviceHostShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-18-preview-actual-text.json",
+      "sha256": "7d21f12fbb8b650ae4ef7907f0751e2477e22a8eadff7a9efc81e43ccc5faa6f",
+      "deviceHostShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-31-preview.png",
+      "sha256": "1ff0686956e3498bbd45c086b5cf64469a47cb72b639cb936f15baac4c941fb6",
+      "deviceHostShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-31-preview-actual-text.json",
+      "sha256": "4f9eabdf2716b52af662b993618beb9063cb8f6b7ec338432d7b09b587e63055",
+      "deviceHostShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-41-preview.png",
+      "sha256": "bfdec6ed72872df6ffde49cbd5646301fd3b0f09ade3b883072cd33f02fbeea9",
+      "deviceHostShaEqual": true
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-41-preview-actual-text.json",
+      "sha256": "c65faf563c2279d589a18ed0d0fb4941ab609cc66fda97ff766bc752347bb271",
+      "deviceHostShaEqual": true
+    }
+  ],
+  "all16Accepted": false,
+  "coldAccepted": false,
+  "fullRestorePending": true,
+  "wholeGoalComplete": false
+}

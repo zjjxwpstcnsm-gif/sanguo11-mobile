@@ -22,5 +22,9 @@
   "wholeGoalComplete": false,
   "actualStagedAssetSha256": "cee06ff16624248152c6546dd8e29210e6598e37462b50466155eab85240f21c",
   "actualAndroidAccepted": false,
-  "sourceProbeJavaSha256": "2c70a06fc81442ba1ebd460d19df32aa9c12391a2e5254e157a765754f591ff4"
+  "sourceProbeJavaSha256": "2c70a06fc81442ba1ebd460d19df32aa9c12391a2e5254e157a765754f591ff4",
+  "freshFullCoreCompileReproducibility": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/voice-metadata71/reproduced/reproducibility.json",
+  "freshFullCoreCompileReportSha256": "a2b334627dfb56233bdf499dffe4318f35e39e25c4c2d2d8faa9aa7eac39df0f",
+  "freshFullCoreCompileStagedAssetByteEqual": true,
+  "sourceFieldsReproducedByteEqual": true
 }
