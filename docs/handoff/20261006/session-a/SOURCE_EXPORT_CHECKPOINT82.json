@@ -1,0 +1,27 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "revision": "3e23c25442861495d222b2fc4fcb7b2639336c29",
+  "branch": "codex/map-ui-media-repair",
+  "fileCount": 11141,
+  "bytes": 903866152,
+  "scope": "tracked plus every inherited SOURCE_GUARD file and original4/new2 JNI, no Git database/Gradle/build/SDK/device backups; checkpoint not final whole-goal or ARM acceptance",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-water82-complete/sanguo11-mobile-source.tar.gz",
+  "archiveBytes": 652985726,
+  "archiveSha256": "c53741bcd3f943cd89ba1aa3e59f325384d9655bef546994a09cef52c8aff488",
+  "verifiedEveryFileSha": 11141,
+  "original4AndNew2Jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gitDatabaseIncluded": false,
+  "deviceBackupsIncluded": false,
+  "overallGoalComplete": false,
+  "exportReceiptPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-water82-complete/export.json",
+  "exportReceiptSha256": "04e1faf90ba3cfae016863f48da0ed4ef58eb6b901869790239fc2c792214959",
+  "fileManifestPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-water82-complete/source-files.json",
+  "fileManifestSha256": "7241a9058350c8a8c5f8635abcdcd2615be724c692a007251d69e8eab8a23506"
+}
