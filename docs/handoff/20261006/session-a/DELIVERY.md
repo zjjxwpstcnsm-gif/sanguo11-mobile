@@ -1,3 +1,21 @@
+# 当前交付检查点（2026-10-07；全目标未完成）
+
+共同完整继承基点 `0e7b9bc2df90249a50851baeda58c7d183ea6059`，受保护 main 仍为 `ef413be3653820dd6449ba7f02aa60bed5b26ef5`；A 独立目录 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile`、分支 `codex/map-ui-media-repair`。完成的 B 后继仅到 `36f059b452f8fc5712747425a37fecbfee3ddd01` 的确切 Git blobs，未合 B WIP。原目录、PC、Bridge/Unity/root Gradle及原4JNI没有改写。
+
+默认交付候选游戏包：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk`，313477288B，SHA `931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a`，生产源 `e62f2809e4e6128bd18b863d0ea9f5fca28b9c61`。已正常安装5554/API29/x86_64/实际Java512MiB：配旧168测试的Source14军建、七旬、正常存读/活动重建、不同PID6814→4513冷读和实际3D提交通过；全部9内部/3797外部文件最终SHA恢复、11段原录像与native观察器0退出。准确依据 `CURRENT_MILITARY_ACCEPTANCE186.json`，700点主进程TOTAL PSS最高515873KiB，Java分配峰值/GPU预算未闭合，不将PSS当Java堆或相加峰值。七旬compute128849–332515ms，前台120秒性能仍未通过；编译/归档/独立B宿主负载和不同新局种子限制明示，不宣称164优化解决唯一OOM或长旬原因。
+
+当前实际测试配对已更新为已注册原39测试：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk`，3088556B，SHA `a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a`。`LEGACY39_ACTUAL_INSTALL189.json`证明确实安装/整包SHA/实际runner注册；当前helper6773通过原2139833B真实39档的正常菜单读取、明确采用策略取消和确认、人物出牌与自然终局后多旬，冷重复/完整结果SHA及最终恢复尚待。不能把旧168军建或B5582成绩直接转给176。
+
+同生产修复普通384回归包已独立构建、尚未安装：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-f58aff64-registered-ordinary180/app-debug.apk`，SHA `b9747addade121653a21043646acfc71b266941858d11c518492e4bdd262c384`，配test SHA `62546caac33eccbedf61900c682f06f3ca38114ef1cda2fc9dd58e30a7c0c0fe`。二进制largeHeap=false、5636资产/168固定输入/六JNI精确。注册后176整正常军建/火/攻击/16来源人物、.995整首菜单曲、普通与默认fast32/all244/cold/全数据恢复由182真实队列串行，不把build/计划当接受。
+
+最新完整源码快照：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current178-complete/sanguo11-mobile-source.tar.gz`，source `37c3cd2586c219afc3a026616d527f0fd8930921`，11277文件全部逐SHA回读，653818475B，SHA `9f59bedf25523217e1a64ecd5e6d8d163182fc79607859c4cb710d7f99fb6b4c`。含全部继承/未跟踪原输入/原4及新增2JNI、164生产优化/B原39测试和注册、176构建工具；不含其后181/182调度及186/189实测回执，当前完整工作目录和Git完成提交保留后继增量，最终交付须再生成包含最终验收的完整快照。无Git缓存、Gradle/build/SDK或用户设备备份打入源码包。
+
+仍未完成：当前176全部正常矩阵和双堆新包、地图BGM真实场景/原parent/实际speaker/voice/58及普通事件声、原普通/全屏像素裁切色彩时序与全部年龄/形态caller、全火链/全部设施控制器/128火格预算、Java/native/GPU峰值与用户354832分配栈、B其余正式规则完成增量的最终串行组合、ARM真机安装长流程。原33技巧/1取消/49之78、9工程合成身份和.995门保留。179已重新核验保护源10714/用户原目录4301、168固定输入和六JNI/Bridge/PCexe。模拟器功能局部通过不能宣布全目标完成或替代ARM。
+
+---
+
+以下为历史批次交付记录。其“当前/未安装/运行中”仅描述当时状态，不覆盖上面的当前事实，不得重启旧PID或借用旧包成绩。
+
 # 当前交付检查点（2026-10-07，目标未完成）
 
 最新内存生产器候选：`WATER_NORMAL384_BUILD81.json`（source8eabcc20，game `242aaff2e26dd351a6db6384eacf799ce4b2742695dafa5c40e740743222ecc8`、test `9bac691634f3917d125674359f799748be4188a779a3091170e43f995e13c35d`，`out/session-a/apk-8eabcc20-water-normal38481/`）与 `WATER_DEFAULT_BUILD82.json`（sourceac4d1c33，game `7c7db287a208d794f73f74f8fb329094f02934b26b067c5b1cee9635c5d1ef45`、test `616010c9b589f902bffac220b1a7dcbc79df287d3a97f6eb4c64ac132625ba12`，`out/session-a/apk-ac4d1c33-water-default82/`）均已独立构建但未安装。原水面临时Float/Integer列表已改有界primitive数组，16来源所有chunk/外部水面最终raw floatbits/索引/全部流与geometry metadata相同，主机实测分配降低约88%；从当前源码全部重编译也复现。不能据主机分配降幅宣布Android峰值或Source6预算通过。5636 assets与当前2cd、6JNI逐字节保持相同。来源见`SOURCE_WATER_ALLOCATION80.json`及可独立编译的`run_source_water_allocation.py`。
