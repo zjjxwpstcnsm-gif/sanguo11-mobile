@@ -58,8 +58,13 @@ def main():
     parser.add_argument('--preceding-ordinary', type=pathlib.Path,
                         help='Require current complete ordinary68 matrix before fresh voice72 source11 install')
     parser.add_argument('--output', type=pathlib.Path, required=True)
+    parser.add_argument('--cohort-receipt', type=pathlib.Path,
+                        default=HELPER.with_name('VOICE_COMBINED_BUILD72.json'))
     args = parser.parse_args()
     source = args.source11.resolve()
+    receipt = args.cohort_receipt.resolve()
+    if receipt.parent != HELPER.parent.resolve():
+        raise ValueError('Owned frozen cohort receipt required')
     args.output.mkdir(parents=True, exist_ok=False)
     record = args.output/'continuation.json'
     report = {'source11': str(source), 'stage': 'waiting-source11-restoration',
@@ -78,7 +83,7 @@ def main():
             ordinary_accepted(previous)
             if pathlib.Path('/tmp/sanguo11-emulator-5554-session-a.lock').exists():
                 raise ValueError('5554 remains owned; no competing default install')
-            frozen = json.loads(HELPER.with_name('VOICE_COMBINED_BUILD72.json').read_text())
+            frozen = json.loads(receipt.read_text())
             if not frozen['buildSuccessful']:
                 raise ValueError('Independent voice72 build missing')
             artifacts = {r['path']: r['sha256'] for r in frozen['apks']}
@@ -107,6 +112,7 @@ def main():
             subprocess.run([sys.executable,
                 str(HELPER.with_name('run_fast_preview_and_remaining_media.py')),
                 '--previous-source11', str(source),
+                '--cohort-receipt', str(receipt),
                 '--output', str(args.output/'actual-fast-and-callers')],
                 cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
         report['stage'] = 'controller-completed-other-goal-items-open'

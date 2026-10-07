@@ -46,11 +46,11 @@ public final class VoiceSourceInstrumentation extends Instrumentation {
             JSONArray approved=asset("portraits/pc/media-manifest.json").getJSONArray("identities");
             for(int i=0;i<approved.length();i++) {
                 JSONObject row=approved.getJSONObject(i);PortraitMediaIdentity identity=new PortraitMediaIdentity(row.getInt("officerId"),row.getInt("nativeId"),row.getString("sourceVariant"),row.getString("sourcePath"),row.getString("sourceSha256"),row.getString("recordSha256"));
-                check(catalog.voiceType(identity)==row.getInt("voiceTypeRaw"),"exact completed saved identity voice type "+i);
+                check(catalog.voiceType(identity)==row.getInt("voiceTypeRaw"),"exact packaged source identity voice type "+i+"; no normal caller claim");
                 PortraitMediaIdentity wrong=new PortraitMediaIdentity(identity.officerId,identity.nativeId,identity.sourceVariant,identity.sourcePath,identity.sourceSha,"0000000000000000000000000000000000000000000000000000000000000000");
                 check(catalog.voiceType(wrong)==-1,"record mismatch never borrows source voice "+i);
             }
-            check(catalog.identityCount()==10656&&approved.length()==10656&&catalog.voiceType(null)==-1,"all approved joins and unknown source");
+            check(catalog.identityCount()==10720&&approved.length()==10720&&catalog.voiceType(null)==-1,"all16-source approved joins including64 gaiji and unknown source");
             for(int id=0;id<=1000;id++)for(boolean alternate:new boolean[]{false,true}) {
                 PcVoiceCatalog.Voice voice=catalog.voice(id,alternate);
                 check(voice!=null&&voice.resourceId==2287+id+(alternate&&id>=5?996:0),"original native resource IO "+id+"/"+alternate);
@@ -82,7 +82,7 @@ public final class VoiceSourceInstrumentation extends Instrumentation {
             }
             int[] finalResources=sampleResources(start+count);
             check(initialResources!=null&&finalResources[0]<=initialResources[0]+16&&finalResources[1]<=initialResources[1]+16,"no accumulated per-decoder FD/native-thread leak before process exits");
-            runOnMainSync(()->{try{check(Arrays.equals(before[0],session.get().captureSave()),"entire voice catalog/decode preserves complete Save/RNG");}catch(Exception e){throw new IllegalStateException(e);}});
+            runOnMainSync(()->{try{check(Arrays.equals(before[0],session.get().captureSave()),"explicit diagnostic fixture Save/RNG unchanged; normal game not exercised");}catch(Exception e){throw new IllegalStateException(e);}});
             check(directory.delete(),"no own voice cache directory remains");
             check(errors.length()==0&&decodedRows.length()==count,"all requested original samples decoded");
             result.putString("voiceSource","VOICE_SOURCE PASS checks="+checks+" samples="+decodedRows.length()+"; source/codec evidence, no normal playback/timeline parity claim");

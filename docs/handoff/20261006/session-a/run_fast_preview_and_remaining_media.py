@@ -17,13 +17,18 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--previous-source11', type=pathlib.Path, required=True)
     parser.add_argument('--output', type=pathlib.Path, required=True)
+    parser.add_argument('--cohort-receipt', type=pathlib.Path,
+                        default=HELPER.with_name('VOICE_COMBINED_BUILD72.json'))
     args = parser.parse_args()
     previous = args.previous_source11.resolve()
     baseline, _ = accepted(previous, 11)
-    build = json.loads(HELPER.with_name('VOICE_COMBINED_BUILD72.json').read_text())
+    receipt = args.cohort_receipt.resolve()
+    if receipt.parent != HELPER.parent.resolve():
+        raise ValueError('Owned frozen cohort receipt required')
+    build = json.loads(receipt.read_text())
     frozen = {row['path']: row['sha256'] for row in build['apks']}
     if not build['buildSuccessful'] or frozen != baseline['apks']:
-        raise ValueError('Source11 must use the independently built voice identity/type combination72 cohort')
+        raise ValueError('Source11 must use the exact independently built frozen cohort')
     if not all(sha(pathlib.Path(path)) == digest for path, digest in frozen.items()):
         raise ValueError('Frozen combined game/test APK bytes changed')
     game = next(pathlib.Path(p) for p in frozen if pathlib.Path(p).name == 'app-debug.apk')
