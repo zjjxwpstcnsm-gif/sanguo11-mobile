@@ -184,6 +184,20 @@ def main():
         report.update(fastPreviewAccepted=True, fastSession=str(fast.resolve()),
                       actualPendingCancellations=sum(r['actualPendingCancellation'] for r in rows))
         save()
+        def audit_readability(actual_session):
+            widget_report = actual_session/'actual-widget-readability.json'
+            subprocess.run([sys.executable, str(HELPER.with_name('audit_actual_widget_readability.py')),
+                            '--session', str(actual_session), '--output', str(widget_report)],
+                           cwd=ROOT, check=True)
+            widget_state = json.loads(widget_report.read_text())
+            if widget_state['apks'] != latest_apks or not widget_state['resolvedWidgetMetadataPassed']:
+                raise ValueError('Latest actual widget solid contrast/alpha/cohort failure')
+            # Unknown background pixels are retained, never turned into a pass.
+            return dict(path=str(widget_report.resolve()), counts=widget_state['counts'],
+                        scope=widget_state['scope'], wholeGoalComplete=False)
+
+        report['fastActualWidgets'] = audit_readability(fast)
+        save()
         # Exercise current production water/facility labels through real command
         # pages before the remaining media batch. Each run independently restores
         # every original file. A overrides unit selection and camera approach with
@@ -212,8 +226,9 @@ def main():
                 raise ValueError('Latest actual normal command/cold incomplete: '+name)
             if command_state['apks'] != latest_apks or set(command_restore) != {'internal', 'external'} or not all(row['exactRegularFileSha'] for row in command_restore.values()):
                 raise ValueError('Latest normal command actual package/full restoration missing: '+name)
+            widget_evidence = audit_readability(command)
             report['normalCommandResults'].append(dict(name=name, session=str(command.resolve()),
-                normalColdRestorationPassed=True, wholeGoalComplete=False))
+                normalColdRestorationPassed=True, actualWidgets=widget_evidence, wholeGoalComplete=False))
             save()
             command_previous = command
         # Fast-preview and all callers use the same independently built APK pair.

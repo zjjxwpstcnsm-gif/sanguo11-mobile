@@ -241,3 +241,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 85全量只读守卫重新校验完成：完整继承10714路径、用户旧目录4301路径（含应缺失路径）、原4JNI、Bridge和PC exe全部逐SHA同原值；main ef413与源完整0e7及B895提交未改变。保留全部用户dirty，不接B WIP。注册86完整源码检查点，含83设施标签和84新包/正常命令串行门控，导出不包含用户设备备份或共享构建缓存。75实际正常人物已384/670，不按partial宣告完成。
 
 86完整源码检查点已导出：源码67a360dbfbaafcc58e5522e6d01d7573448b7f38，11145文件全部SHA回读一致，archive SHA f64001fbe307dc577e9898168be3736bca2893f36cd8f0e0ffe0ac4b52fe4b1f，路径 /Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-facility86-complete/sanguo11-mobile-source.tar.gz，原4/新增2JNI全部等。包含83设施修复/84冻结组合/正常命令后继门控；不含Git数据库/缓存/用户设备备份，非全目标接受或ARM完成。
+
+87实际Android文字元数据审计：精确旧ordinary68 b5ec/c96整包SHA、终端normal/cold/原9/3797恢复前提成立，304份正常截图/JSON各SHA链接，4848实际显示widget、4318enabled/530disabled；943纯不透明背景可算，重算最小对比8.84973742093998且无低4.5/透明/黑字，3905渐变图片或未解析背景保留未知；本批无实际富文本span覆盖、Canvas地图另依76局部像素，不宣称全球或新84/ARM通过。新增只读可复现工具audit_actual_widget_readability.py，并接84后继fast16和军建/火/攻击各自终端新包录制审计；已知alpha/solid对比失败止步，背景未知不转PASS。本轮当前75 normalcaller416/670仍live，未装84。

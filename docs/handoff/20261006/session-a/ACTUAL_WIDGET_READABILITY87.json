@@ -1,0 +1,2151 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68",
+  "sessionSha256": "cf425641b60a2cc4821982750f08eb04753056978becb70ca4add31c189fecaa",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2312ac57-normal384-combination68/app-debug.apk": "b5ec2548eacda2a9272090490e83ac97afb311a4297333c5eb091c6872c38e47",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-2312ac57-normal384-combination68/app-debug-androidTest.apk": "c96bc8abb5168c5e64fe147ffa763263a9edde16fac8fad84a2157c8759cc3f3"
+  },
+  "counts": {
+    "recordings": 304,
+    "widgetRows": 4848,
+    "enabledRows": 4318,
+    "unresolvedText": 3905,
+    "resolvedSolidText": 943,
+    "disabledRows": 530
+  },
+  "minimumResolvedSolidContrast": 8.84973742093998,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/landscape-actual-text.json",
+      "sha256": "f4306ad8d3545216e6c03aad63a0d055a157c3b5ab68c4e69f6cd4fbd66dbb15",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/landscape.png",
+      "screenshotSha256": "5f18b049e138c6413a8e6d6c51e2d474eef6fcc9921279f10ba6a90b84db38e9",
+      "widgetRows": 19
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "d084ce8cae8cbcb1ae9d53bf5ee16fc8f1bc6d3f71f46015b922ede78233ab87",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/normal-exit-confirmation.png",
+      "screenshotSha256": "62d5dc1dbcff5b5926a64d090ccad7b40771611ccd93c41b69e139ca83b4a769",
+      "widgetRows": 3
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/reopened-actual-text.json",
+      "sha256": "571f7bff2ac891e696437b54ca0e0e2e7ada115400d1b7852ff1d299fc57de7d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/reopened.png",
+      "screenshotSha256": "435bc227b94762b233773219bb0fbfe43967f039f02320274259b5f41470c12e",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/resumed-actual-text.json",
+      "sha256": "629ab406ae9b86616d25f6d93a81aa14620b3773c11cb245b4b4346847be663e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/cold-evidence/resumed.png",
+      "screenshotSha256": "0355bbfad3ca2502a9a2dcdd5523409e6eca15bfccf8dea676fe3dd17b066e03",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/landscape-actual-text.json",
+      "sha256": "f963018edc3159eb0e3d08892fdd36cfb255dadeecd1419a94224004dbe21c9f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/landscape.png",
+      "screenshotSha256": "d6631bfcade13c6648f31d1815cdbf8830a12ce59e6a64736e42941c54a75d83",
+      "widgetRows": 19
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "d66dc3239434a3273e81f0d7d96602db659a75c4bd3f77c462017f73280c238c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/normal-exit-confirmation.png",
+      "screenshotSha256": "381f0aeff8eca3b883545005ca5aca032f8ccbf724c6b5af147687f17c4ec22f",
+      "widgetRows": 3
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/reopened-actual-text.json",
+      "sha256": "90113901b177a634b222ea910c77ed7fe62a262308841d36083d34a3e0af89fa",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/reopened.png",
+      "screenshotSha256": "891d99d60b9a1af4532770374c14d938c0d18263d351aa02d6665c93de4f0552",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/resumed-actual-text.json",
+      "sha256": "834dc71ce1cd7ed754fd315537a7a1f7b46b6a2ca78c75b1c27e7b9482d165fb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/resumed.png",
+      "screenshotSha256": "66f1c840c63903197350512ea0b0bc0b5b750748cd28ef94dc74553bcdc876de",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-11-preview-actual-text.json",
+      "sha256": "08a8b5d6688941710c4cb06210a81bd6fbc370a5d26aeb89ae5c04dc7e82aa47",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-11-preview.png",
+      "screenshotSha256": "5a5869d4f4d0d40055a7bb5d85deaa04f044a61d9a38afff57b498586a512db1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-2-preview-actual-text.json",
+      "sha256": "10b474c7095f44280f5fb8244152310c8581a9bdbb813ffc2215f6feba57c98b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-2-preview.png",
+      "screenshotSha256": "bff654b1f0cd569ae0dca264928e5073e9e8df01c78f3e87e23e750ca8a64221",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-28-preview-actual-text.json",
+      "sha256": "478eca17f45966c55d5e9dc7a43ed84206727c937daaced421a4be06f014b999",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-28-preview.png",
+      "screenshotSha256": "aea10d438296d7c66aa66d3a52751dba45c129978daf3675dfe9384c69b3c9b4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-29-preview-actual-text.json",
+      "sha256": "49042440dc4908e0a432d657e3901cfd9872e4a0e649792288ce22b7fffd64f2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-29-preview.png",
+      "screenshotSha256": "41dddc001426a4d8278733bd0c66bf21eddd5e0d0876503494324f0ca4029e99",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-3-preview-actual-text.json",
+      "sha256": "b85e372b73dc5960ce8ae5cc0dd365af22ce707adc9b65147d273006f09d11c8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-3-preview.png",
+      "screenshotSha256": "9290477d453571d4bcd54c3c21dbf35e24f73e169c367578091edbcb3c67b794",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-30-preview-actual-text.json",
+      "sha256": "ada54559dc774ac0a5e4fce22b01fd511510991491a3f7799c1ac0f7d8573526",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-30-preview.png",
+      "screenshotSha256": "425c584da766dfcf28dffab82e9d42498c0efdd28eced50ae3353129eed7941e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-4-preview-actual-text.json",
+      "sha256": "d03264e2f84221e8375490d5ed98cacc1a70639db3116bcf1be387f1d4a18488",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-4-preview.png",
+      "screenshotSha256": "c48c59f217bc184d121c7e67fe2759e966053a75de4f0469175b5c6f826ab075",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-5-preview-actual-text.json",
+      "sha256": "d1f8fe25103daac1444fb65f5b9faaefe3b8ca3721ee0873bb1485d5a3752af2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-faction-5-preview.png",
+      "screenshotSha256": "813dab247c22f776d3f482b18267b1a1630be31c43e16192320e3b4902b5403e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-map-actual-text.json",
+      "sha256": "f2620bef5d481fd7d6a228295f426400026e65bd4ac72d0ed1fe7b8801939e09",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-map.png",
+      "screenshotSha256": "acbe5230ce385ae4ad52f7c28f2905538f7dbf0ea316684d779e3c34e5f7cca6",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-officers-actual-text.json",
+      "sha256": "a9a2faa925db83533c4d9f07c136ff5dcdc69a66dbea10ab16ba4e62b5470787",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-officers.png",
+      "screenshotSha256": "ca0ccba20fce6be2450b6ca2ef93292221664a03cdff60bd407876d22e9ea083",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-preview-actual-text.json",
+      "sha256": "f626607efb1af0d70dbaeaae30d4cf24f0798b1e11090b93a093053edfbd4818",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-0-preview.png",
+      "screenshotSha256": "6b584ee0a5bc5684f304723d0e469075767c723d316ac72eea085e0b912ee13b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-0-preview-actual-text.json",
+      "sha256": "80615620ba85c1b4d040f469d2b151f1777d9d8f0f905ca5c1eaa48a34e78737",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-0-preview.png",
+      "screenshotSha256": "a4d480411107df0f7f58c529399389932951cc473171f5e58c4ebe5274c13418",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-1-preview-actual-text.json",
+      "sha256": "8237ae3a39b5710389b6aea01ed5074f7f6f2b2a72f043274a42ba151a8773d4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-1-preview.png",
+      "screenshotSha256": "3dc5cb275312c906e95d833273dd9b840834727559bc0ca04d2c9d99550914f1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-11-preview-actual-text.json",
+      "sha256": "c4d4aa22f3536763859fe92f0c686b12aa8faf085990685b26ed8abec46eb527",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-11-preview.png",
+      "screenshotSha256": "925f3264836dfde930a3d242b965d60f564662c4ae48421d4ab788c1fd82ce80",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-12-preview-actual-text.json",
+      "sha256": "46bdcd493d79229074ed4e070ef3fa6204ad145ece306ff49de0081b7cf511d1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-12-preview.png",
+      "screenshotSha256": "6d22a742a63983e6b0e2b9c982076ed73c8ff7bcc1e0109d58e096905a5b4bd1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-13-preview-actual-text.json",
+      "sha256": "647a1a7e03a1e9c7fca81c33d10d6ae6f628ae45edb802134cfcd9bb1ab81479",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-13-preview.png",
+      "screenshotSha256": "6c78a84ff69d48e8527a3c4c598798e60f63028dccf93ebc80f81833894bfa7b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-14-preview-actual-text.json",
+      "sha256": "c3b9addb64b37dc398bd470b8f3e5be68da316fff4118e62bc1bbcb0d32004c5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-14-preview.png",
+      "screenshotSha256": "6176117e919a9fe1e5f290017f3b6408ffebec33c347de3de4306c9e528994ad",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-16-preview-actual-text.json",
+      "sha256": "7611527b7b97f9c4706e010ef2802c5e6ec1b9d449dae608db67d5c277e96b3a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-16-preview.png",
+      "screenshotSha256": "9da28b106729f01ebc0e93bfd630cfe86e89fb23120b0c4e7bb3f0249f7f2c70",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-17-preview-actual-text.json",
+      "sha256": "8f568c9c0bc2d2c4ac9e556eeb84141a93d3b6f3662868e17eec11a9a063a457",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-17-preview.png",
+      "screenshotSha256": "d6fe25f8d06059cfe91a1340aeee39b10b1dc6f42e78cf3aa5d9c78d3b8ddfde",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-18-preview-actual-text.json",
+      "sha256": "bf2f318648fab679162c64e1c429b00f4a5548b25debe245159324697f45a6f3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-18-preview.png",
+      "screenshotSha256": "bca7b01108d6556a77fe21864937fe1539705e3bd7924e18cbea61888729c5e1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-19-preview-actual-text.json",
+      "sha256": "ac5b3dec1c86fca92452eed3d22660de634c1500f80c394436db35ea4b3e84cb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-19-preview.png",
+      "screenshotSha256": "78d7711a4cbed67dd93ae6e6a98a89c7997879a4bc4a6893b39099f1a7e98197",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-2-preview-actual-text.json",
+      "sha256": "dde12eddc190d23748dbef00a1f26532fcd683cd6c33215559e28a858bde6fa2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-2-preview.png",
+      "screenshotSha256": "4a2a5bb84290cd0e67d29fee7846a49a4964e7a0cf74d0ea397277f452d436a1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-20-preview-actual-text.json",
+      "sha256": "8294cea1df782b5e54301c626bf0f7f7b2c459df99a562e92f80998ccfd4908f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-20-preview.png",
+      "screenshotSha256": "4b179e1dac735c48a3a2b573fa3bdcd1323fb02912d295d646cb62b75b091959",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-3-preview-actual-text.json",
+      "sha256": "545b55f53c301a5639a91e3a7728f68fb7623d9e7846d935f4c4985dec902fd1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-3-preview.png",
+      "screenshotSha256": "189a49207a1ecd4a5eb2357482b3f82423ad6cf9b47567955b5f34b2f3c01efb",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-4-preview-actual-text.json",
+      "sha256": "9756f9d0b30a7af9f66bfbe209b18c310de73ab41eb25447425e1fe2bf396712",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-4-preview.png",
+      "screenshotSha256": "7f3d8d411e02ff51471e29323675730d1c8d8341eaafc5d26fe98e6915ec928f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-5-preview-actual-text.json",
+      "sha256": "7583b9f9dd9134c10a29b50085999e0b72e69682cbf4775935dbb9ff78e84794",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-5-preview.png",
+      "screenshotSha256": "054cffbcf77eab4f4efbc7b1aa0743198aa90bffe1119f0b6714ff0336d11659",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-6-preview-actual-text.json",
+      "sha256": "7d83a82360fe8250a4d4b557ba2f71b225078ce9bb8c26db0d71b9ec3277d2a6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-6-preview.png",
+      "screenshotSha256": "94c1bd1ee01d698b24428b876860b6e2fabbb2daf6cf314a3b869931d7668a59",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-7-preview-actual-text.json",
+      "sha256": "a1a720a1efd68232b6e221cf48b0d8ec01021bc98be43ccbed8172e382882afc",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-7-preview.png",
+      "screenshotSha256": "680021d8f0c01f0ebc84476cc8221d00186eaa040a6e6389ff0c1fcdedc45586",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-8-preview-actual-text.json",
+      "sha256": "97f0070555f88f6468ebec83f320b97f712ebc70e881d1f737c3069c3df527e1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-8-preview.png",
+      "screenshotSha256": "e82c4a0a95efc8fbb6391c637646005bf60bd11a2c6f6eadc0815201d0eda842",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-9-preview-actual-text.json",
+      "sha256": "a7578a151657abfcb00d7e75c62e65f20ffa7dfdf0b10eedfa1de377d51a9d99",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-faction-9-preview.png",
+      "screenshotSha256": "9ab7960cb2e9e4ba127dd18f4b3979f61de4d7c56f75e37727600e778532d2a4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-map-actual-text.json",
+      "sha256": "9f4def18186bdbae7ba2729498da0c26dfaca70410c4004d58a908a6f0185460",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-map.png",
+      "screenshotSha256": "67a5f8f46a013cb8233a4d643e10841d09c313db61976e57c799376d48e3056e",
+      "widgetRows": 15
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-officers-actual-text.json",
+      "sha256": "1c96f4db5ad33178f04354be4556da1518f878f84b1ac28066b5dffcb52f659e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-officers.png",
+      "screenshotSha256": "20686b352a8d74ccbfdee2bc090cacda74180424f8a382d6aaba43fd33efd868",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-preview-actual-text.json",
+      "sha256": "313a58ef942824c1b6aeb48dbf7cec1f15f68ae3b7ac131ffcbaf6a49d4b2b12",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-1-preview.png",
+      "screenshotSha256": "cb44eed3184f3ae2454cb05124b4ce03162ef68637e3aaf1712fa798a2ad0940",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-0-preview-actual-text.json",
+      "sha256": "a46a9352d4c7f756dca06977c70e9f4fe3f05a2da2f563c391144eb43c7e27b9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-0-preview.png",
+      "screenshotSha256": "9d8d793fb3ce057640325c6b62b8714d89f33dde56832bba5242c20027c3ba7f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-1-preview-actual-text.json",
+      "sha256": "986033c706e83ac0fb7a279879f8608bd4b05a4499b239b607455df79a787d6e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-1-preview.png",
+      "screenshotSha256": "2237071c48c64b4f0319cc80f914825236112535f5ecc2944d50831ceaf21b50",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-12-preview-actual-text.json",
+      "sha256": "2a8bdf567dbca2ec1d6db82ca4346c1784ebd9054e3260902b6c3a4e09895a00",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-12-preview.png",
+      "screenshotSha256": "0b227a5c0555333dc22c1d919103b9a2d0f2784c439079397b408dbd84e785ac",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-2-preview-actual-text.json",
+      "sha256": "31e14154976ad7bb6a760818482eea1ba1b005e52a5c9a297d15b07253554c40",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-2-preview.png",
+      "screenshotSha256": "061d2967ca37fe2005806ad93fd60052f8b8fd063398be280294467117a00fbf",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-26-preview-actual-text.json",
+      "sha256": "f93b5f8d5a25a5bce1376f35076d266c3f8981c806a05a486634ef8b8583e506",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-faction-26-preview.png",
+      "screenshotSha256": "02d0920375bf445215ff635806bf3655ae9bdd8ccfa32943c99eec5163f9f1cc",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-map-actual-text.json",
+      "sha256": "66eb35517f98a38ec47ee33c6fd35a58c852c017599da5a1613b728f48ad00cc",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-map.png",
+      "screenshotSha256": "65ebfcff329ec6b9dd32523b04322db516da7aa74dffc1d8d898ec10a9b8272b",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-officers-actual-text.json",
+      "sha256": "8de45f193bc41143e99769e09dbe7dc3a085077a3feb2c295f5137540b006ae9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-officers.png",
+      "screenshotSha256": "c09a2c23cb1356401965ad356a2f44a95a82bcb1ffdb2c18d01e8bbd0f237025",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-preview-actual-text.json",
+      "sha256": "c0fd0e37b5da7d3f59270b36c3bc3dd0e60e41502353e958660b8b7d3fba9725",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-10-preview.png",
+      "screenshotSha256": "fec92ff276b482c051f906485d89427874f1a7ad3e96dde99c19db00572b39dc",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-0-preview-actual-text.json",
+      "sha256": "f1990f909966224d625a39a9dba3dbb88ac23fc5bf6da46480bdbf6e664b52ce",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-0-preview.png",
+      "screenshotSha256": "ebb225de5f246174c45dd1761dfec4602ea95a8e2873a99d61eb72a8fd074b00",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-1-preview-actual-text.json",
+      "sha256": "efe8d899ffe88e823f512c90367f9927bffb7dff68ec00a81ea075b1e59ae0b9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-1-preview.png",
+      "screenshotSha256": "cfe495cf390ee234c8b45c0cfcc28cde9d97bf57ae4872aca8b0e7772b0c95fe",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-11-preview-actual-text.json",
+      "sha256": "35f7e376315f6908319a6b10cf9182bf8cfa4f0a5743d3790a8c535247477a87",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-11-preview.png",
+      "screenshotSha256": "4a2dff40ea4f030d9309f79b63b3383ed40287d52f5e58de82094ceca78dbc48",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-16-preview-actual-text.json",
+      "sha256": "e28d2fb5a09fbc14b5e48791c58714a6a689b924fc35c6864c3036fc5472ce92",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-16-preview.png",
+      "screenshotSha256": "d9194e19daabdfd3a04c8e5fcbead61ab815e44cb309d44c0b14a298c1a59bde",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-18-preview-actual-text.json",
+      "sha256": "12b43bc8876ca3c6aa385095f82edffba16b2b492db5fb9c4e97f2070658ecb1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-18-preview.png",
+      "screenshotSha256": "deba6e2158afb33ea9a9548d7e9103a48ecc55ab8eaf681f933364d5551c5811",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-2-preview-actual-text.json",
+      "sha256": "c6794900564856509983d1cc4721f8a4c49482a97759a56f2351a27be2d94b1b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-2-preview.png",
+      "screenshotSha256": "603fb861ca08406f362f9957b9a7f96cf532e8c6155c56b5a87fcfda7881b251",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-21-preview-actual-text.json",
+      "sha256": "c9d0c173c93c87f03b86466bbde6c816328670512178a328ac4edf6db0b4d92f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-21-preview.png",
+      "screenshotSha256": "be9b6eff157d5aeb9c87ec8f1b199563c3a083db069b430eacb7e40f655b21e6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-28-preview-actual-text.json",
+      "sha256": "33314e3ff177307801363e1e27bfe1e2757eb75c06438cc133719f37921a2ae4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-28-preview.png",
+      "screenshotSha256": "5165bf84e7bf741522ed9ce136ffd005d0354145dfcb336b66059aca5eb3119a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-29-preview-actual-text.json",
+      "sha256": "36b65876266b9e6ed5a81e357541f384b1b943ccb4f05fa636bd6936fde1daa6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-29-preview.png",
+      "screenshotSha256": "de8b632675c1577185077f8e6fe5ccf3f960f9dcdfc3bf516d9e0239e1d6a935",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-3-preview-actual-text.json",
+      "sha256": "9bf9bc495d6250b32f387f041a68178fff5eaecb2f091c397d58f8755ffe2e19",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-3-preview.png",
+      "screenshotSha256": "cf6156a9ce06722ec5310b5c8bc8acfd608b8d2122a04f5398f5c42f2c78bda9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-30-preview-actual-text.json",
+      "sha256": "bd02211f7eeb7b2b0c4d32fc090d0943e2ee1507136ef16987b07afbfb02b1f7",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-30-preview.png",
+      "screenshotSha256": "e18a42d0f18ae569390227b4b14a0e08131112809c2114b9e5732875792b34fc",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-35-preview-actual-text.json",
+      "sha256": "9dc2790e20c6f6f93abddac1a447ea1efff0134b65ae5aca0a22c2eeb316589d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-35-preview.png",
+      "screenshotSha256": "60bb556bd89fb1401449847e690f705e8401a11ad89d64f22f434334746611f5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-36-preview-actual-text.json",
+      "sha256": "1bf7d7a24d00ff9623d30061ad92b6112cafbc5333f7386985eb41574db2c6b6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-36-preview.png",
+      "screenshotSha256": "0ede1bbc6cc0fafe72551560221de58bbb046d79e60807a3dcaa0a93a73e200e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-38-preview-actual-text.json",
+      "sha256": "a116d2d9948f2a37d2ecada684a658ebe8f67fd2980d4cf8e32eb13ba7ecb790",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-38-preview.png",
+      "screenshotSha256": "784a46caa672c1c93265bb12bdc6ac3782c982508287378e4246fc4f381cef8d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-39-preview-actual-text.json",
+      "sha256": "d0b3b0d7b232d012e3d22e51f177deea3fd9a5ed8a536930ab1f4caed9d185d6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-39-preview.png",
+      "screenshotSha256": "01af8f18897c7e071f074ee935560aee6c949b671e671ec9b30404082fd313e6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-4-preview-actual-text.json",
+      "sha256": "abd30f429a3a2b1cbf417c2dfed362c167f0a75b21b5b832a5f3728f3774a983",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-4-preview.png",
+      "screenshotSha256": "92fbfc9cf4a8d805974eb01a485dca787d8900e27fdeefe8994c4bc825e4d6af",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-40-preview-actual-text.json",
+      "sha256": "d58679e732391dada75197e10eff5d6e47265803bfae897543cc4e25df84de85",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-40-preview.png",
+      "screenshotSha256": "811660bb1c008c98c62cd869b829f47451a205f63afa7c84635559721a296981",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-41-preview-actual-text.json",
+      "sha256": "c6a4629c5bb68eea72b7333506e348a5b086e36b08b552605928b84bd5a309ba",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-41-preview.png",
+      "screenshotSha256": "a2194658b87662babbd056e2853e8c322056ff6857a80bd1c984a01f6d4fc1da",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-5-preview-actual-text.json",
+      "sha256": "340b4ec6e293652095f6e627feabeae24671cd0e3a6358ea3810cfab47b1f0e3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-5-preview.png",
+      "screenshotSha256": "1af9f4c62c95008394bed653ab7232816cd28824c8820bf77db136e9ae23613b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-6-preview-actual-text.json",
+      "sha256": "58c161a2a11d0af28604917352aea97406c0e8b495b250ce37fd5583428674fb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-6-preview.png",
+      "screenshotSha256": "c43703608269830c2c975794f6e0aa50ad98a960e1a0270860cc8ca7fe6190f5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-8-preview-actual-text.json",
+      "sha256": "bd15d5637598c1fb295718453b7ffebb195d512853f9670fb1012c6f946c3449",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-8-preview.png",
+      "screenshotSha256": "2a6be06b93f16611e9189277d8d569a13a67c503e28b5eed225301f6388154db",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-9-preview-actual-text.json",
+      "sha256": "d07683d823bc6701f1270c13282bf4f9e7b57152767d3aeb7b3676462c63dc8f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-faction-9-preview.png",
+      "screenshotSha256": "677a76ec9780afdf80e25eaeb18ba516f6cc55e6bf5ccf7420a9c5c65640a539",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-map-actual-text.json",
+      "sha256": "a67e3fab00c7842114f880705776ee38fbaf4c47f38f4dbef1edafb90f3529db",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-map.png",
+      "screenshotSha256": "7bb0d973a878d2687408c10711e25263a273e69d2ea70c8325e9035e271927e1",
+      "widgetRows": 15
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-officers-actual-text.json",
+      "sha256": "81461381e34371deb9d28c56f85bb945fd934921eef29823b34a74ee736f0cd1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-officers.png",
+      "screenshotSha256": "ea03198c0b8d09a92c28562cea8c7f06a82a3fa201df61b5ee7d3b43ef4aca23",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-preview-actual-text.json",
+      "sha256": "d048f6ec8576b901e7e98028c9ea52b658e79f675a830578544576e9c978d8a4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-11-preview.png",
+      "screenshotSha256": "ba907da867df3eae8664a9ef8baaa0e29d6bf297e201be7423144cfc730f49d3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-11-preview-actual-text.json",
+      "sha256": "76f85ed3f2a72df17513838e4a05939c24693d3d1bf65d72a933345c9de1d201",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-11-preview.png",
+      "screenshotSha256": "ddd35fbf3a85cee69a220bc1b57f3b576ea87954bb9be850017a94529cfefc0b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-12-preview-actual-text.json",
+      "sha256": "0b009dd9be5783cd5c06dff4af714a3ac3aa5fbc4d9d56965b2669fc83553246",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-12-preview.png",
+      "screenshotSha256": "e01cae72180b6db892e37484e3ec585b9474c1afe02e2ecd64d389d7ef117fa3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-13-preview-actual-text.json",
+      "sha256": "ebe4c54769ab1f02e3b1ee1da33bf9c376168bbc20670f96b9d018103c2853b8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-13-preview.png",
+      "screenshotSha256": "4bc91498423eca7a692e937fca8a6de40a08dbcc09bdf15f02e8d9e24568b62c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-2-preview-actual-text.json",
+      "sha256": "1bef9c704ecaa0ec29b4e25074ffcee21b577155c7e3a1bc80ac323b90139dd7",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-2-preview.png",
+      "screenshotSha256": "dc68d30b37b7ab3eeeb37650f612f624f1b7d62738c9a1b4cf283b838b84dfc9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-20-preview-actual-text.json",
+      "sha256": "0f8d9ee4e292768448fe3608b9788a6ea97d2d084486dfc446d42c53e5e9a326",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-20-preview.png",
+      "screenshotSha256": "ca4c17c42e83331b7fc23de4e9286b12ab30d4c746141f90048ce2e737d4346e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-23-preview-actual-text.json",
+      "sha256": "88b40aedd2916922dea6939aab5d64296bb06bd6cd5fa29652c4e1ff27f78fcf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-23-preview.png",
+      "screenshotSha256": "eabea1399644bd5f3dfb0da6805e5de38b646015cad4b0d7ae59148fd7301c41",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-24-preview-actual-text.json",
+      "sha256": "da27660fc1306923a6e03f88a4500e83b4db02547fa4bef0fa1733b2f14881bd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-24-preview.png",
+      "screenshotSha256": "0b975a452ac9ff1d5f7a45861a302ac2d24d9dd49e96f622f251a5478817015c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-28-preview-actual-text.json",
+      "sha256": "a910ef0ee0d93f130257181d7b8cb881b3868e32cc6ddb2eccc8a3b97a18c147",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-28-preview.png",
+      "screenshotSha256": "255d34c261804844417959a32c53c39094f43a2537106b91f03469e155ce486b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-3-preview-actual-text.json",
+      "sha256": "bbf4e91ccbfe04d9bdf6e77aff5841d25784a3751cd6f3aee1fcf15790198cda",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-3-preview.png",
+      "screenshotSha256": "866e11c188ecaa0959f5e53630036a78a2ef6f20d085fc77bdde2da041382cfa",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-4-preview-actual-text.json",
+      "sha256": "3fd8d341a2bc37d48079461ee2d5b43a4b52db7e942228eed64f83020e207746",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-4-preview.png",
+      "screenshotSha256": "51931a493b82ef63b8d818af773904df836d43a07b90b68c18a92aa44f07512e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-5-preview-actual-text.json",
+      "sha256": "054f4627c9112a33ed5d8d34c6b5d9886fcca1e27f7d21139b195f07318db7fa",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-5-preview.png",
+      "screenshotSha256": "a6c1a8c26150fd88b364311dadf04a829074107e401aee3f827c1e678b617fc6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-6-preview-actual-text.json",
+      "sha256": "886e2ec077bd755b218c1fa6ce1af96ad95d7a0777e51153ebf5a24b921e9bdf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-6-preview.png",
+      "screenshotSha256": "e93099aead68c79ff7c3004fdb1c4693029cab63fcf3f8acc480b50dcc0c991e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-7-preview-actual-text.json",
+      "sha256": "d79bcdc548423731b0ff67d28576dc1d9594fc7ea6fa3fae5deaa2afc705b957",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-7-preview.png",
+      "screenshotSha256": "bb54cd834e6e4222ed6850e185edf4ae907b8b0adf045fda31898cf142e88f30",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-8-preview-actual-text.json",
+      "sha256": "186193835a43b0ff2f8e333d795fd86824cfad4eba7a05275a5542d440a34d30",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-8-preview.png",
+      "screenshotSha256": "37fa8ed535efb1b7e1bbc28dcbbb9e1fd3e00cb552443b822b769fafb7492cb1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-9-preview-actual-text.json",
+      "sha256": "458a1be44f9e73414323d98c37a004dc5f64c6710fff4102e0e6ee8841ba5020",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-faction-9-preview.png",
+      "screenshotSha256": "67b992bd328daf3dc817c3b6ea0356b9521f63a0e84c79c29e818cc3667abf98",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-map-actual-text.json",
+      "sha256": "ab5893b9efe8d8ea5e107c6b454b2b052b843bea4e356495dd15918628bfd730",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-map.png",
+      "screenshotSha256": "2c47bbbce6b6d04c0453f7e4aafb79dd983563a3226e511648b5126ea720e3f0",
+      "widgetRows": 15
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-officers-actual-text.json",
+      "sha256": "1fdf4b90b789e053ec831be8eccb0912cba7806a7499326eed8a87952b176a08",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-officers.png",
+      "screenshotSha256": "ed88284a4e4a5dac1e74ef02410aff82c3dea3984c298761870442185dae2fb2",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-preview-actual-text.json",
+      "sha256": "dfe08a5189299f9b9d6488e8670df32ed5b783d548efcb51c59175a0e2c2a187",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-12-preview.png",
+      "screenshotSha256": "0742e42e9cf7a73d47684b85e076acc148f4fe453108fff944dc73df9d72ac3f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-0-preview-actual-text.json",
+      "sha256": "2bfe2c44844d7fb1381ae28b1810bb143d7467f5c2918a4ae6b6c6faeb66a1f4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-0-preview.png",
+      "screenshotSha256": "bcfaf2cf26431e8d6a50a0f2016ee15c2a6d50dc678f0f9477ea3c0f4acf0a1a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-1-preview-actual-text.json",
+      "sha256": "80ac8971f978f192915951d786c6674a62b2aeae43bca7869d3aa71b681cd098",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-1-preview.png",
+      "screenshotSha256": "b16f92d7191949b7b9ee2f7918aeae5835c32683e980338b45171abe9f2a745a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-10-preview-actual-text.json",
+      "sha256": "9ee999c10b9e0e965b05f84a5fa1c9baf4e4bf33a11d0af318a83ac82127bc5a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-10-preview.png",
+      "screenshotSha256": "d04284ea99225eb4cfc9967597c9a07e536f3389c5c9e1ec5cc44a60d379e80a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-15-preview-actual-text.json",
+      "sha256": "c95e99e06b8b8c81f36b3e5af5b7886875fe917eff98bc534ff9e0ff44c421e1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-15-preview.png",
+      "screenshotSha256": "33c4206c521fca254f32ee048f92b3c58bb9c10e03e54f6a4b21f9c94a83577a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-2-preview-actual-text.json",
+      "sha256": "44d3bde7f5bb4a792aef72f4001e3e1e1d3cd55564259c6d7ab9c25679751fc9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-2-preview.png",
+      "screenshotSha256": "1f49343024c545b9daeae1445bbee1a4ceb66cd9b753c1ed561adcbb1a095af6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-25-preview-actual-text.json",
+      "sha256": "925f72e6d00dc2ef61ca313acb1317613198d2da8f6144e7b18d9ea711bc4a7b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-25-preview.png",
+      "screenshotSha256": "06fa288b74914c2b595f08a05d85df72332c6f5215043f2ff7ba6b8e684fc1bd",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-26-preview-actual-text.json",
+      "sha256": "96582777568bbbf53fb7c3c9b6583fc9c5f768569a723a40d5f6cc5950b4c273",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-26-preview.png",
+      "screenshotSha256": "7c910c556c9686522e9e0461b85e89bedd2fe13e49dbbaf03df26cb42544656f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-3-preview-actual-text.json",
+      "sha256": "6890fcd55ff2a14137b355b8f538824270034dd5952c34c0afde138a70ad6b7e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-3-preview.png",
+      "screenshotSha256": "e429d17803373cd5453a601ba4b324d99a14985ffdc5cea347109bb7061132db",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-31-preview-actual-text.json",
+      "sha256": "cc535b92dc4c86e5f047b61843dded4d6b00fa275ffb174923659fe631caef6a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-31-preview.png",
+      "screenshotSha256": "de07c68f9012b4ff875106f240e4c8579f304b8cda7d337cc44f24b922ebb23a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-32-preview-actual-text.json",
+      "sha256": "da43f8b3a6fded3c7b0733f33074a02b238c32da2896eaa1f003722cadb182bf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-32-preview.png",
+      "screenshotSha256": "6be4ee3211349ab2b698698bcd7eca558a1d8613cf9754a696e6d0dcb93fc188",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-33-preview-actual-text.json",
+      "sha256": "53dbc69a6e2afbfb9845732ee772528476c75c96ae06a459861d7da773b4cbcd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-33-preview.png",
+      "screenshotSha256": "667fad2e69d2342ac935090dd4d3ff8bd95e843a9bcc6a9cc5ad6c7d3b1427b7",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-34-preview-actual-text.json",
+      "sha256": "dc746e67cb2270b9106957020f6e345be5ac7c2e95b38911b37b998171f4e5c3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-34-preview.png",
+      "screenshotSha256": "1309122ce23fb17c42796ede4aa0798254ccb88450fe6743ce3a2abbf9a8a049",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-35-preview-actual-text.json",
+      "sha256": "10288bd655867e313af591a7bb1153b2890b15f7371a831f5c979b064bb3ac46",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-35-preview.png",
+      "screenshotSha256": "6867175942deaac70bead1f9c116688175570a709b0684585403bc1c0a86a0b7",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-36-preview-actual-text.json",
+      "sha256": "a3072db5f9cf211dfb010aa77505ced058236587950296a62708862fd9ca8b50",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-36-preview.png",
+      "screenshotSha256": "68a32586f407464cd401c0869dfb121d77d15aa539dbb1b1c754e5d629b7af26",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-37-preview-actual-text.json",
+      "sha256": "30748eae3f3b296326d5ac2f39dab52aad98f39d40c8d344a21565d6b6b102b7",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-37-preview.png",
+      "screenshotSha256": "5a1ca89eaf9eaf4e92ab42894f162332936ccc6b7133dd3a7c6a71367dd41970",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-38-preview-actual-text.json",
+      "sha256": "eec60cc0ac99e2c5c2e21461edee11a5d69f7766cfde1df7b6553d154314b514",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-38-preview.png",
+      "screenshotSha256": "d11596e1d4149ca5fefbe86d00204e659a0a293a9205de961aaef2bbc866c29f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-39-preview-actual-text.json",
+      "sha256": "0da2789e24406388d3b9305ab0a99991f5dff5ed6ac9f5bf17954507c5023dfa",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-39-preview.png",
+      "screenshotSha256": "cf5b0825203b1bdd5018b9f50200dcdf0e011113847e9b6b66618326a7105a05",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-40-preview-actual-text.json",
+      "sha256": "80428cf4b25689ddb14fb01ab1da0fe61ab934de4aefe0dc329c8c4c87dba6e4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-40-preview.png",
+      "screenshotSha256": "d13ba12bd47a9d8a17de1119aefb49ec682f7c4484cededc6b7376af3843d3a3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-41-preview-actual-text.json",
+      "sha256": "8bc88cfdd14db5a948c04ae70a579580ed7dc2262cbddb98737907c40e13d379",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-41-preview.png",
+      "screenshotSha256": "0e5c71d3cffd8d211fbbc88407a3c74dea1fa01b9322567b08e85854764e0bc0",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-6-preview-actual-text.json",
+      "sha256": "2e8b3942fb4fd2191d96857488cada34c73bebc47a35bec2ed3b920b26dcc05c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-6-preview.png",
+      "screenshotSha256": "c9563d56563bec176ce8ab9087e3c37d7c0ac40c7c4b417796a0a5f0c21396c3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-7-preview-actual-text.json",
+      "sha256": "9b773ca947f1a3b71cc0931842a096f749991ce13a444a9acdb19afca0832f79",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-7-preview.png",
+      "screenshotSha256": "6437521a44d78c4adb05cb3e201da2ab2bd4738d8a271fdedec90be3182f96d3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-8-preview-actual-text.json",
+      "sha256": "3f34f6c7b89680e30e9d4fe6d0ac415744e970f8a7147ed515398a9316c07f3e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-faction-8-preview.png",
+      "screenshotSha256": "97ca35dac2c61a98914a9c215ed155b4707ed3a4c45479fe71a1ca645146e6cd",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-map-actual-text.json",
+      "sha256": "247002d06d3257fa9e635912a8e573e90ce31739a054cda6c986bae29e7e85d0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-map.png",
+      "screenshotSha256": "90fc8474192811f8e714d4e737f2c89fcc516e4f8e4860a5052fb3970a2feeed",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-officers-actual-text.json",
+      "sha256": "a3b32ba7c2b1e80fdd69a7d66630b61c90658902c22227a1a6717c3d77c337c2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-officers.png",
+      "screenshotSha256": "c2d59782e70f5d733363fd362533f8c696d12e9efb28ec0836c8905e81542736",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-preview-actual-text.json",
+      "sha256": "99520153e51d213997b3c421a317fbc50a4b5df751734f61c707b18020b8bfe9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-13-preview.png",
+      "screenshotSha256": "c53b53d951c961d2d1204c4924d25d75665acbed7ec52a598b1d92809c07435e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-0-preview-actual-text.json",
+      "sha256": "1adc51a522ab9c9246efae735a36c68b4bc425bd9f35af1a5c900bc00859fb6e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-0-preview.png",
+      "screenshotSha256": "1f40c395087c9b327eb3c7566847a545f4bb1060ec3ddbb38cd293d8bacfe9ea",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-1-preview-actual-text.json",
+      "sha256": "e6f58f1aece08a44ebbc55616ccf6ca98d7d393fc9e6b27e56e6df100f2f0a04",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-1-preview.png",
+      "screenshotSha256": "de48bb5860c2fc7059e6bce9607fb209d5f76bf2cac68ebf6960ab8f5a64a7f7",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-10-preview-actual-text.json",
+      "sha256": "50367f9741d56a164cc0abf1e69c79360eb173ed99bead182f36d8e5e25e1fc6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-10-preview.png",
+      "screenshotSha256": "de64d57c281a0c2356780b8349720a4ef37abe30838a50e499fb18d8b5acc4d2",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-11-preview-actual-text.json",
+      "sha256": "c37d50f161d3147cc6239b80eeb37b0a73a5e7974c1626c70a50747eef390f02",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-11-preview.png",
+      "screenshotSha256": "e6100bfa81350971090e27a2b844cca2737f6a250594f0671839f1e77d00d632",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-12-preview-actual-text.json",
+      "sha256": "db0bf641f556920a654162c4bec0ac43f5c3b3edce1c7cf901c285a8aec18e03",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-12-preview.png",
+      "screenshotSha256": "f4e8b727a0ced48dfa2a9f2dd5f1671182dda830872cce6cf0c37714f71db245",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-13-preview-actual-text.json",
+      "sha256": "59757bd1bde9ce7d6c7cbdef9ed1d5573ed74999b20c303e36cc8e5870478e1a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-13-preview.png",
+      "screenshotSha256": "893db4debc39458c58fddb71a781a45134aaff4da6b1494d8e6dbc480489f024",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-14-preview-actual-text.json",
+      "sha256": "e70efea798d1fc4e7bdcc7c5f7feb8f4b17e82c56120d4ff2cdf316e15620636",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-14-preview.png",
+      "screenshotSha256": "09e103c69ce07f4e56e0f99b17c2fea9bbcb368b611cbdc514aa6eb1d6e06b06",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-15-preview-actual-text.json",
+      "sha256": "0a5a9c7a75f076b139d1ff1bd86e5219b7fcf8fbe78b36ab336acf0c5ea86a55",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-15-preview.png",
+      "screenshotSha256": "884d2694016c8c891d2d13d423dbd427698bb6970fdc81f9739c6675513ae841",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-16-preview-actual-text.json",
+      "sha256": "d16a8d5cf7491e644784d5479e1b0a3533571134de6dbddc58e9201528fccc79",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-16-preview.png",
+      "screenshotSha256": "8c5e65f8ba62e6ed747777c3377c82f6856d0432822eec2e738f14b83b561f76",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-17-preview-actual-text.json",
+      "sha256": "fcd66fb5e70a36380cf9b454f0ce13f94697f12bb6bc4248daf6d473c2861e93",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-17-preview.png",
+      "screenshotSha256": "9bdeb9c07751e1ee97e76be39c76aa5b488caa7b1edc20c3ea983743d3c85824",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-18-preview-actual-text.json",
+      "sha256": "67a9ac06251032f07630c6e15f79704bdfca053873b560937793f53b2cdcce86",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-18-preview.png",
+      "screenshotSha256": "c42c623e179d0a0fe749ef15560e78eeea772ef81caa0758cef54d71f6aaa4c7",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-19-preview-actual-text.json",
+      "sha256": "72c0105041c9ce88a7085e48242282a48308d9b49d372e9d9e4509d398d34106",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-19-preview.png",
+      "screenshotSha256": "ceb9db2bc7887fc80e7fe35b61bf8ac53694bb6d6bf10527c52cbb87f5534822",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-2-preview-actual-text.json",
+      "sha256": "8e458f42166bc1b4e7be850d6f9da3ce9f60f8b4c95395cd7b354e1ccbe73e0f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-2-preview.png",
+      "screenshotSha256": "f06731632df0f75d71b0a49191a874c10c1c1c67ea182c51ebd528455b9b1dd2",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-20-preview-actual-text.json",
+      "sha256": "445756f994de565ecc724fccc605a9e44b7f43dda45b9ba8e6fc7ad0e3378cdb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-20-preview.png",
+      "screenshotSha256": "070309952b5a972923b750b0e8bd7d95020add08567641339ce8c90102479bb5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-22-preview-actual-text.json",
+      "sha256": "6a749d11388d55980a95b56c62c95765aba46eab697847bf62b060215ad5588c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-22-preview.png",
+      "screenshotSha256": "65df4b1e7c30765f8442f9fb5c4a50ecded75501eb96e3f717d3b50140b7458d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-23-preview-actual-text.json",
+      "sha256": "41ceabcac3a924e400061159fbb18e8cceb0b9b26580d2bb8a0b5f072d3d9782",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-23-preview.png",
+      "screenshotSha256": "6877a84c3558308c338c8ade8f5bfe244d46ebeb1a5c403e72a97e25d24369db",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-24-preview-actual-text.json",
+      "sha256": "1032a88bdeba62cda7419fd9344bc7d83a9d6beac14e1c43e3f0e3b35d9de8b0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-24-preview.png",
+      "screenshotSha256": "e5c7e160f32047c27d23f15e3c1e538dde5c043d025dfde19f80d843dc9618a4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-25-preview-actual-text.json",
+      "sha256": "6b309f698453837eced2a6e57b14419bfa6695d98e03941f43728d8c705a398e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-25-preview.png",
+      "screenshotSha256": "0a5d40ab16fb645c67339ef610bcdd7c66cc20e077ea538ce8c7ce0b2360665e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-26-preview-actual-text.json",
+      "sha256": "2ce2618d0704f826363a38a30262dbb0f37ad5604a335c6699d52d86de1aa257",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-26-preview.png",
+      "screenshotSha256": "565a2f3d5e155d482780e80069c6338bd30a162230b3bc18a0431524f36ed3a4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-27-preview-actual-text.json",
+      "sha256": "21f2eb1582edcc989928575d259070a6e034243478ee59c64d3212966319d8f9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-27-preview.png",
+      "screenshotSha256": "4b5acb458a67f82abb7013548e90f6af322adfbc8500f279a2f0be1dedf6787b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-28-preview-actual-text.json",
+      "sha256": "05e22f0f326df8d131c49b003c7e134d24b7cfcfd18fc730c99ab12ce57b6794",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-28-preview.png",
+      "screenshotSha256": "c70400c945038a33fb219c4db94ed335c818d5070bc451ec325028eeac5aa865",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-29-preview-actual-text.json",
+      "sha256": "6cddafa011e5cd8395522c54dd2b78fb7c63d1886d7333c70732f035602892d6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-29-preview.png",
+      "screenshotSha256": "25d3e54a61d4129aba966a11cfd07a8208cea1ab48fb124fd5a028b2ff46fb4e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-3-preview-actual-text.json",
+      "sha256": "6d9ef219ac21628d47966bce4473a01c16b2547e2846abc6e15c05e1bb7ecd44",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-3-preview.png",
+      "screenshotSha256": "1dfbe25a29168ff642f865305f7468067b2dcd275fa5a3b9ddbe622d2061531f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-31-preview-actual-text.json",
+      "sha256": "ac453607ecc2e831b5d699c358f5712d9ab271d05f9d8e8b2313570e5a071957",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-31-preview.png",
+      "screenshotSha256": "9944ea2a39dd7b03098d43287765cfb524b43ddfe7588d3a73f0cce8a8e2bc5d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-32-preview-actual-text.json",
+      "sha256": "4755b298fc3f481625609100e30ed30c26d67c6f5940a2daa54565911b8bc318",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-32-preview.png",
+      "screenshotSha256": "cf28d9f981101c565ac2523ed65edf0cf617dbdbdfd471ba5573a62a2733ddbc",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-33-preview-actual-text.json",
+      "sha256": "8b782fb24fcf5fc93220f0045ff4e74e5dc1fb58bf9971374e7fda4a146f09b0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-33-preview.png",
+      "screenshotSha256": "9a3d690181bec91dc2327feb89715232abd2bbbaed02335d39e3011d1944f876",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-34-preview-actual-text.json",
+      "sha256": "012313ab70a850d361162f5a73405477387fbce37bafd6f9affdb43dd610cbde",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-34-preview.png",
+      "screenshotSha256": "4eefe399c0bc61a78409d684145cb23e590cf03f588902b58e965ca379ba5018",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-38-preview-actual-text.json",
+      "sha256": "8e9e91fc3082fb9ee06fd5ca5e3bc9e42cdf9f317158749790504979028fba83",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-38-preview.png",
+      "screenshotSha256": "8d1e6e382d74d5e61688f4759b85b201f87befc27d2efeb1b0d50b14f2791ddb",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-39-preview-actual-text.json",
+      "sha256": "29b46e343fd175d3d9d655d831c8e8c9e04f030ed6d8235f5b8d06d54facb012",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-39-preview.png",
+      "screenshotSha256": "79b4032d0b82432aba3cae3024bc261ab144f88b9ffc2f3a2c78f6ea6556ffc4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-4-preview-actual-text.json",
+      "sha256": "f3703e2bde753afc8ac364c9b058a3f675c8b9418236bf922856ddc5eb119260",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-4-preview.png",
+      "screenshotSha256": "3f10b44cb426bdd7e9e75824421e00208a84f55d48b2151cbb18d81ff93cb29d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-40-preview-actual-text.json",
+      "sha256": "a62038408409bcc904cc928ecdbf175e909f0ae9b9639bf3411f25bb4efcb9a5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-40-preview.png",
+      "screenshotSha256": "557d19f03e974a20d66edc0339f2a0727636a38e16bdfc69589af9acd6902978",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-41-preview-actual-text.json",
+      "sha256": "4e9b5daf24af6e3d0f3996af8632ccba19487be69608d3f637c895667001a507",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-41-preview.png",
+      "screenshotSha256": "b31805f32aaf1c3c961635e25d69c2b186d127fb5541a7e1bc52aaf2ae4eb2a8",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-5-preview-actual-text.json",
+      "sha256": "d29218ac30b4e1719858634a7470656ada9d8f5a414f9fb95b62cdf442efbd77",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-5-preview.png",
+      "screenshotSha256": "3db83180d917a67b153b63d26bcfc66b57b0d72bf7044eb9f1fa003556f4aca8",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-6-preview-actual-text.json",
+      "sha256": "3dc774afc075b846cde4bb9de41010eee4b8ade17ddd1db6258005c9dedf446b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-6-preview.png",
+      "screenshotSha256": "243b2358ed942801d399317c30fa70e469fceab91025311fb7ad512e3433be34",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-7-preview-actual-text.json",
+      "sha256": "67e4b88b51109ebbbec8f9fac3c6ba2f2dd2273da4f4a4b33d6d64e26e15afcd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-7-preview.png",
+      "screenshotSha256": "fefa94f103398f19a235bb4a6b5152c46410e3d3ac0b5479e24e8902470604d1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-8-preview-actual-text.json",
+      "sha256": "9178ae6b5fe669020d9971c9843126350a2ad26e3de7230c056153632081de70",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-8-preview.png",
+      "screenshotSha256": "5b31aabe16cc66cd61e4a65bbda654790600ed7b6624ea1c3cdc406dc237696b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-9-preview-actual-text.json",
+      "sha256": "96da4438f5ea60ba528f49f5aea026ccfde36efe3c74038fa448a8ae8d2b37bf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-faction-9-preview.png",
+      "screenshotSha256": "5aa29215eccb1707ca3231d00e3455cc83a7ec2fa6c5835f7eedcbdc46358e69",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-map-actual-text.json",
+      "sha256": "8a318a259b96438df9e2aa70381bd47d8ecd942f43ccdb0d0c8ca0ac12a6343c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-map.png",
+      "screenshotSha256": "60d207b3e00d403ee9118c2ea2c557b6cf1c18ece7b0b021796be9decd8f4ec4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-officers-actual-text.json",
+      "sha256": "b6732b66c211ebedda2b7cd1aa54c259ee7da318b34237373f4c2286968e3115",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-officers.png",
+      "screenshotSha256": "cc277e0cba593d23016d29df7fc47cd30308ea3bb7a8c4980e6ae43868fcd318",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-preview-actual-text.json",
+      "sha256": "335f7b4de91de0bb7d129332afacaa0bd9afd283eb672708410b526b468a8259",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-14-preview.png",
+      "screenshotSha256": "d9050a3b64c083a5ded98a84fe6dfbc8b53e4946aa48676b60b28dc84bb060e1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-faction-2-preview-actual-text.json",
+      "sha256": "a95f7f848c0275ab5da2de37807962fb8cd9246b98452ac9d4d4a1740a1450fb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-faction-2-preview.png",
+      "screenshotSha256": "3e4dedefb051d9a2b7211578fbc0985ecb642d77cc4d97d266b5472d622b4e38",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-faction-3-preview-actual-text.json",
+      "sha256": "0bbffa683ee1358f4ce481a5241a2a4e0e90c6720a9ed4f11585e708a407c52f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-faction-3-preview.png",
+      "screenshotSha256": "503311254c69724e6fcffbb62f14da6285ebdd190f43aa15d1cf1447c5d5146a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-map-actual-text.json",
+      "sha256": "78f3f291f863f946b8a5b793acb9446f474279ae0727acf7337e252a3ad4c704",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-map.png",
+      "screenshotSha256": "15d8ef239eea0ff9f59165782a2c40b146401dbf0a512fb7f7eb692a08e1a6e5",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-officers-actual-text.json",
+      "sha256": "afac5d64b184983cc0f34821ede478fb2aa7ce1bb5fd7c4ed3751fd1dc36b556",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-officers.png",
+      "screenshotSha256": "21ae612c8ba59940e001523818e6dca76ecd935a10cd9d0e94b22d1564162b40",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-preview-actual-text.json",
+      "sha256": "eaed4d76cd3bf961fe04392686e3e5ba8ff7b7dc36d0407d98521aa93cdf6f36",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-15-preview.png",
+      "screenshotSha256": "ca119947eb4c480bdfcd65b3ac615311ca24f34bc762e021e8837a9bdba40548",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-0-preview-actual-text.json",
+      "sha256": "8e7cd7a6e90c10ec26f7772bef28d1cbab629c37ef8bfb72961170f82ee38500",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-0-preview.png",
+      "screenshotSha256": "4a8389f234fd58a09d79f93c49715db5a283d4f65bda6d51db64187bd8d8a3d5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-1-preview-actual-text.json",
+      "sha256": "16a7dcddb961b3f6fb1c2bd99c02a04f34d8c3678c93f639a36f4a13d54d0dbb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-1-preview.png",
+      "screenshotSha256": "4a57dee8847da7d313288cc5ebd05f12a9b9a799e3cb4cd3fb333385ecd069a2",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-10-preview-actual-text.json",
+      "sha256": "87a98ae0e16bbd13ab34d4a6aeee84cffcbe314ba70fe1df003819405eb85f33",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-10-preview.png",
+      "screenshotSha256": "0de8fe8b6578f7b3dcd75cc1e8547cbba820094dd7b7abad0c0c0e53b83d737b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-11-preview-actual-text.json",
+      "sha256": "b01d50ea89f8458e5506280f5020c1521917b790ebd5e7c77f78a45054d2ddd3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-11-preview.png",
+      "screenshotSha256": "1018d1df9f2c3af94b5e0a7f34e7ebfc98641edad87f1600ce8e2685790156ef",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-12-preview-actual-text.json",
+      "sha256": "ea5f1cd82ac704dba1641d26c04e3edc456f692c2ed7a00b4557dbf7f1129e0c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-12-preview.png",
+      "screenshotSha256": "d6ade7050554197a4e57cff59173ba5b202b768f8d5447781066ab7eac361b71",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-16-preview-actual-text.json",
+      "sha256": "cff4f5604da9f0fb311aa2dddfafe0755107c0fe0cc9749002311fa6d51bcdc9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-16-preview.png",
+      "screenshotSha256": "6dc4aa777711bda938e93c019067eae5f26fe7db9ebb6e5d610109952f68ec9d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-18-preview-actual-text.json",
+      "sha256": "c44f457cd1ddf7a9e1b295455d400bb756701cdb543d0e13a9a3dfc65429b1d3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-18-preview.png",
+      "screenshotSha256": "6c1b400da0d788e490506e1c5d87234b0644d1d61ddec44b2e48effd393eb558",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-2-preview-actual-text.json",
+      "sha256": "6ef2d1bab82ea5a592dc3b67c3b2dadfeb60c6a0700b20eb248c113c8926c773",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-2-preview.png",
+      "screenshotSha256": "fb3df4fd8a02791044f8d619652b975bdecb511cd405adeb86ff43c3fdaa91e3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-20-preview-actual-text.json",
+      "sha256": "4c4a2bd04586ca1d632cb6b3348ff22be704b0cb76bce79ac4873b77a10007f4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-20-preview.png",
+      "screenshotSha256": "3e9f8613ada7c0de6d3c8e0bf26d755c7923e6094be8a8321a196deb3db33ec5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-22-preview-actual-text.json",
+      "sha256": "a02b39d61aa2a38485b7923de6258829d6454e595b60a6dcd3496fb593bf98cf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-22-preview.png",
+      "screenshotSha256": "5eac3372bbf80ce32e08d4eee3d167cb2d5e9fa73ef96ca5b861e5436edaf1dc",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-23-preview-actual-text.json",
+      "sha256": "306a5db7a8e2aaa82fc6edeb18ff557e819e2c9a6a66737da2f7a6b42f4d0fe0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-23-preview.png",
+      "screenshotSha256": "39e4efc1f2fdf3fe4771e50c56658410a27e38754fa1d477b4fada52511e0c14",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-24-preview-actual-text.json",
+      "sha256": "5d7e60a645dcc6d898d10db70cb5c81b8718391f1e48781d6f870036e0306c3f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-24-preview.png",
+      "screenshotSha256": "fef490eaebbeb039385dac179f231836f340ad72441c81c77507568017593997",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-3-preview-actual-text.json",
+      "sha256": "ac2e2a64f5dcf5d6cc52bb819bc1da5774e55885657fedb620da755ebc641359",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-3-preview.png",
+      "screenshotSha256": "41cae0766791840bcbdb9cb42ad4e79e93dd702c6328f611bf971f20b78b6cc2",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-4-preview-actual-text.json",
+      "sha256": "b615e5e7267c7bdb895345c24eb28e966d7175114870405d1828babc5ed6b755",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-4-preview.png",
+      "screenshotSha256": "f163dbde9326aaa583b6e074ee83fd996e15a3a7d981e6b37939bc0f4a7ccbfe",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-5-preview-actual-text.json",
+      "sha256": "e6ca58821c85e2df1fccc8499c105f47a657cb514b2a82fa56baa946d8c8a1ee",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-5-preview.png",
+      "screenshotSha256": "fce4b8a0090a273fcf92098f4b20983be17a58636f8a708a981254ca36dfd48f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-6-preview-actual-text.json",
+      "sha256": "ec32b1aa38ce2e5bd045647e1a0eda39a6f5b7a04c3ea9b9868d0617933be37c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-6-preview.png",
+      "screenshotSha256": "0c4e54335f1fb97f051b8313a781862153227866d8b3fa9000a28413e693b5b0",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-7-preview-actual-text.json",
+      "sha256": "a38cbd1b876186f0589360593c6f13b403b1db6c9fe1fb6fa8f3f50150b02858",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-7-preview.png",
+      "screenshotSha256": "379abd10a61232e782fe8789f8a15d64ec2ef94f10364b22a72ce90319365d31",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-8-preview-actual-text.json",
+      "sha256": "1168705952047adaa3c39a862a262ba358c495378e8785a7637ba56f5817f509",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-8-preview.png",
+      "screenshotSha256": "bd9077d82a709c9d70309e191d1b786e3a1b970a8a51b7c6dc7761850f83bbfd",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-9-preview-actual-text.json",
+      "sha256": "799b505f265961d824535c81af0a1fb21d6e4971d606a2e902cb3757e3cacf7f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-faction-9-preview.png",
+      "screenshotSha256": "d38dd692b812484775ff4bc76b95fc34a34b52923c72aba9c570bd7e1de7a617",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-map-actual-text.json",
+      "sha256": "0254d2bcd3d495d30f4c0405d5efa3c4d6dfda9396c22823673a03b4dbda9083",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-map.png",
+      "screenshotSha256": "d492fbf49b265cc29701e8fe725de4af5592bebfdb7d404aada34ac188479c2a",
+      "widgetRows": 15
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-officers-actual-text.json",
+      "sha256": "6d1ef591bcbb16438944cc65ecf992b9124d87426710d9a14b0f67c85aa0f634",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-officers.png",
+      "screenshotSha256": "35fe8d88839c1eda54b290c76b7365e87bdbf6d34eff6e42a498dc98a1d30251",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-preview-actual-text.json",
+      "sha256": "03e3e4a93e99de78a3e2a658fa286665c5458c086ddbc505b98eececf59fc4ea",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-2-preview.png",
+      "screenshotSha256": "cf4cc9ddc6572503a7cd8a00bd152351418b1560bab05989ea4461a1455f26e4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-0-preview-actual-text.json",
+      "sha256": "1518cf0b26616691da6bf437489645e87ac38bffe71e53da44b8df8396219e07",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-0-preview.png",
+      "screenshotSha256": "893957bf668f2ec67be66950ab4ecf93d54995e31dc6a0a4b6a0bdbbe0a96224",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-1-preview-actual-text.json",
+      "sha256": "cb2d1e632effa19444f05a0c0a4cf260e276dbbc1df8a7329071e73d0088221f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-1-preview.png",
+      "screenshotSha256": "02c104deb2d92adfc92985f8ebad61a75e8da6af70e2af7474467f85d31208a1",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-12-preview-actual-text.json",
+      "sha256": "f318d3d38f8a0b13d4fd41e0f2e3b8a28f0ddf8522e0c2b3d145abaf0ba67be3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-12-preview.png",
+      "screenshotSha256": "4eeb874c3987b0ab2bbe1c0c993f84ae83375493004789ee3c8bd6aa3a5f7b4a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-2-preview-actual-text.json",
+      "sha256": "41044c3bb345a45964e7d479b1771a934112e3115c71f3b412ac163ea3947042",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-2-preview.png",
+      "screenshotSha256": "c13344585d71e3b5e14e91087f46b53a81fb96faa1e6f04b872f837fa7babc91",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-25-preview-actual-text.json",
+      "sha256": "ec8c652aeacc9754b1bc9fdfabd4446f52ddc5bd46b7700f4426efc9a91f62f0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-25-preview.png",
+      "screenshotSha256": "828a6ab103ff3d621fd28e331e12743254a07ee9fb92003d1effde174deec814",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-3-preview-actual-text.json",
+      "sha256": "a4049ba439bf2bd384389c6baabbc127071dcbd152c6aaceea1a6dd6cf08e9d4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-3-preview.png",
+      "screenshotSha256": "9f1a9f723f4cdf62235d9a873d1670cc162e36ab490e8c233b271465c4dc9d43",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-4-preview-actual-text.json",
+      "sha256": "9b3dfecdf4111850cf05eca2cf609aafb4b57782f01797d7ebceb289f0f3ca7d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-4-preview.png",
+      "screenshotSha256": "07016b15c433b8a6e80ed9a2be6e32ad32966056408c0a283c5b8e72ff49f53d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-6-preview-actual-text.json",
+      "sha256": "80f170cf7d9f50801ad82c773892da5aefdde283091218a917ecd3f7fa15f9f3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-6-preview.png",
+      "screenshotSha256": "0c7a88660f871e82bcdd78f9143d9ef37ab34486036d8a35a7997869d6ec03f7",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-7-preview-actual-text.json",
+      "sha256": "c1685b55d79e876572bf6c5a527b94b3efb22a8a36bfc0f7bd51f9c5a974523a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-7-preview.png",
+      "screenshotSha256": "3797f2bd99aa6ce1e3cda22d820b80c41c637a70b4f07680a18283ed00ad731c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-9-preview-actual-text.json",
+      "sha256": "0c73f7989cc67f121fcfa4da57aac80a615ac9a8fcdfcd37cb9305de8da18f16",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-faction-9-preview.png",
+      "screenshotSha256": "b7327473e923c6fc4cc19fb0165c1c6d8bc0ee5e68065805a52c365017b882b9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-map-actual-text.json",
+      "sha256": "17e87508ea3f5996537e133e433e1cdbd82a0dcad6c2f91d475daffa5b31eafb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-map.png",
+      "screenshotSha256": "e21f7d181b23a762e8093834e3129360249a9518838ad905a2a6ecdb326fe1c8",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-officers-actual-text.json",
+      "sha256": "3295190075b2211560c9c015919bea5754bc561f81288c305c4cf120bd6e884b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-officers.png",
+      "screenshotSha256": "b44b1250128e97c70a7b6804b2337151bfbccf59220a5f543550f038820591ea",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-preview-actual-text.json",
+      "sha256": "11a7c5e0ecbf2eca6090863784fdb19515c1825ed9c6dab422c0563bfa7294db",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-3-preview.png",
+      "screenshotSha256": "758655fd05dc12155df7d630354f2fad147ff5e6917dbf11c4dbcf95e37e5d83",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-0-preview-actual-text.json",
+      "sha256": "a83bcc3b37ccbe8f11c540951a5562a101796d39a4599700b3c1fc569981d1d5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-0-preview.png",
+      "screenshotSha256": "a7781656a627b7e85013f6cca093d389138180dfa66cce452a143a744ef3949e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-1-preview-actual-text.json",
+      "sha256": "14b9fd3a90e2281ed3d446a53145cdafa41177cb82562fca6f5abfc985a64186",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-1-preview.png",
+      "screenshotSha256": "bb2f4ef080b253e9384f99b5b471d6c4ee449a9057371ef24439b87541f17926",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-12-preview-actual-text.json",
+      "sha256": "c8dae41789c97c3cdd4ff0988d386c5a7165211bf98145701557728455c5045a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-12-preview.png",
+      "screenshotSha256": "256c99775c918d3727005166a61919fe883e43d49eb6039c04aa507aad5cac84",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-2-preview-actual-text.json",
+      "sha256": "096108b2fc809c65a8cb44c98cab587904b513b666f4755984bf460b12efdbb0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-2-preview.png",
+      "screenshotSha256": "2614f83fb24ba112e3024790fe47a3518d8305fc11985144244025c1a189e529",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-3-preview-actual-text.json",
+      "sha256": "9b56ed8cb8842e875665219c4f679c9813c54ba49b07a7c7fa9c753bd778d708",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-3-preview.png",
+      "screenshotSha256": "d8fd60abd5141301ea27a150af4cbe7f8debff198cb06de8ec0f37d49baf6ae2",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-31-preview-actual-text.json",
+      "sha256": "ddc6de819fb7ac58d638757a0fea72579181988db3e46dacd3d9e1cf2c31719c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-31-preview.png",
+      "screenshotSha256": "62614ca00dc57b5fa006d34fa3757a2e66371a3072987794144b056c97c96282",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-32-preview-actual-text.json",
+      "sha256": "0285ad02d27670cab12478de438c51b0aea9fdbe0830346de51c401caad59ccb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-32-preview.png",
+      "screenshotSha256": "44ae24e5b3c8a69e92dc2c3acbc9800a8ed6e1462f995d507262c06bef290634",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-33-preview-actual-text.json",
+      "sha256": "de6258e50082ce4acd961dad3b735807cc1b112fd6071017dfb649aebc51db41",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-33-preview.png",
+      "screenshotSha256": "c52d0b8ad2e46c7b091b99c8e9b55e751e5c7f50875b896d5ea0a66ffc3d79f9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-34-preview-actual-text.json",
+      "sha256": "380d0938440ccf5b9a518280212e410bfe9e51c34bbb32227e4295b6f7474bdb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-34-preview.png",
+      "screenshotSha256": "30129de3b521bdbbaab9989b96d7c2137982856c87b79f42391191557788e49e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-4-preview-actual-text.json",
+      "sha256": "120c36e4c54c805bc354df14cb2e463ecc5aef48e759ebace9b5f6b5181fddbc",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-4-preview.png",
+      "screenshotSha256": "52f713e05f60e1c077f53a1e9823dd8ff6c1d015abf155d5fae9a2995c42ee45",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-6-preview-actual-text.json",
+      "sha256": "47212a559843b7e39a35daeb9eb20cab6a80f0f743792c82dd9abda0d9ae79ab",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-6-preview.png",
+      "screenshotSha256": "7aefd09a3a046144f1c9fd3b863efd5cb987d5d5efe33a4d0bfdd25ed41c74c4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-9-preview-actual-text.json",
+      "sha256": "27e3f1753365d3656fefb3fa8b0d9c65a52fa4fc95fa322bacc4441fd4aa4153",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-faction-9-preview.png",
+      "screenshotSha256": "49c524fdc52a691dc925f296281400a091e7e7798a885bad0ff98d200d76fd30",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-map-actual-text.json",
+      "sha256": "9a73b6e2ff4631fad9fc286d3de114bab91449c8bc67632bfc3cf70f21e06f0b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-map.png",
+      "screenshotSha256": "45c139b85cb40132f6c0da8321590988a16170b7c71d0f16962b1b2f218efd5d",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-officers-actual-text.json",
+      "sha256": "cc1b59acf7db21ce560bd1404984c3d2ef5a13e98e12aaf2761e5b66d7978360",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-officers.png",
+      "screenshotSha256": "f685fccdf59d3dce7eaddda3979f63cfaeb6845ddcc9bfda98cd3f16f301a6f0",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-preview-actual-text.json",
+      "sha256": "5835d55e57c79fad7a830a2ce3952d74d27ffc3ffc2fd8595597d2a6743852f4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-4-preview.png",
+      "screenshotSha256": "64bbdab17dc43d8a02b8f6c313b52ef6301f34094c52e177447347628a2dd089",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-0-preview-actual-text.json",
+      "sha256": "d1bb3c2b396e079f74c2afc63ca160300f481c477d1d0ca77a61ccebfe4c1fdf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-0-preview.png",
+      "screenshotSha256": "16267a6207544aa5749687e4e3acf4c2411360ab93a1223a4ac3a9e4d1eb74a6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-1-preview-actual-text.json",
+      "sha256": "c9003c9163de4296c668850ecfe2d42b363891c083fd4dc5eaa1543559b5b3bf",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-1-preview.png",
+      "screenshotSha256": "e5a54a724689147c25a7ad8bb2ca0f3045f224525ae9c5f85a638d3794eedc02",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-12-preview-actual-text.json",
+      "sha256": "aa14230a9e28d36d8ac53f48a3d46093f26f834724eb5d4bbb91b37bdab9b763",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-12-preview.png",
+      "screenshotSha256": "c3efc4834e52904dd25f3b58ecd171aca2584574fa513f532d7eeb4db3885c6c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-2-preview-actual-text.json",
+      "sha256": "340a2a444af3569c41a5f374041f64a16f3f85c55e6d36515db8de9c1d19a720",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-2-preview.png",
+      "screenshotSha256": "0ff63cc4302adeda6c287959bd4e5e3d87555574ba8fac4f1e8fa0f5f8b9309b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-3-preview-actual-text.json",
+      "sha256": "05690a1b605550e6f9c09d808288f0b1eef0f7a6991334fd2ba36456033b32d6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-3-preview.png",
+      "screenshotSha256": "daf3deddf43bc814ef92109bed841a65832f8d4dd4ee0cd83231c0832cee100a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-4-preview-actual-text.json",
+      "sha256": "01c0f68421872c9c4720a6b59b1b7d970287a90e31ee09462684f82398901f55",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-4-preview.png",
+      "screenshotSha256": "0cd98498512dc1943f70b97b1641fa89872183a95648f9fae1be4171b8ec9c39",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-9-preview-actual-text.json",
+      "sha256": "43a0a538a1b6fba5b93acaa754c1da31f163588311721d3433bcb3b700bfd8d1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-faction-9-preview.png",
+      "screenshotSha256": "aa25b264d52c0ec0ca0e18083c313995bd898447d6afb60f027228b19f40cf2b",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-map-actual-text.json",
+      "sha256": "e0034bc58e214bda842c6e7a7734faef3ed36ce83cd47d6a99d9574763d4b4c2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-map.png",
+      "screenshotSha256": "fc031761f71381ac9e3418d5a703745d46325438b6d06629b85d149f3948186f",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-officers-actual-text.json",
+      "sha256": "6264e2ac325791dcbec3192e316eca2f140fa9bf263fd2d0063913069469d727",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-officers.png",
+      "screenshotSha256": "f8ac7f045ec31d29ebdf428ddfd86446b8c385951ce6ee05da5adb6ec34d4265",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-preview-actual-text.json",
+      "sha256": "6b1a30fe17d8a58c0ccec533c4d64be24d32da64e45db5b80468dc6e272eb8b2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-5-preview.png",
+      "screenshotSha256": "97486e3e91ecfc602443377c9e2a7d701ff575ebf5c49b01d129dad5b491002e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-0-preview-actual-text.json",
+      "sha256": "6a15788696b721280a713493644cc3b29f2c9eb45900c49cf55d32c593fb389a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-0-preview.png",
+      "screenshotSha256": "990a57c48de34a53c34e3ee65aea14f63433bd442b9bcd9277fe31398f8a62ba",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-1-preview-actual-text.json",
+      "sha256": "3e677db815e6bd6754a761f1fe6dd2252b1c816d26024c691c9acc3231fd104f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-1-preview.png",
+      "screenshotSha256": "eaba0d3c4c87ae507d14d3aff21ae968ea35bd0eff68ba18a38b80af125e87da",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-12-preview-actual-text.json",
+      "sha256": "583748ec5f824148ce86ec297576d22ec27f13c1f222edbbbcf4de77e5596dfe",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-12-preview.png",
+      "screenshotSha256": "424e88eb5ea333c06dd2257f30dbf3dd9a9477f5875a87c149d69dd6e50ac2da",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-2-preview-actual-text.json",
+      "sha256": "07b2f2a4f09b63633275f3c3960686c93c5e6582d405860146bcc8ebc3909110",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-2-preview.png",
+      "screenshotSha256": "bffdef0c4643a5fa2d7ccf278a0bce3857815276204258f258897ae0e3fcea3c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-26-preview-actual-text.json",
+      "sha256": "78182b8de958e0ef5b8838e73caf495ef045ec4d4ef4de33aedfb54b08576dbe",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-faction-26-preview.png",
+      "screenshotSha256": "7a3cca645b31bfd1944e82e08461fbe3226436952d60a93cf03c5eda43f2e6ec",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-map-actual-text.json",
+      "sha256": "f48b06ab43eb2de9acc96cf04e8aa56773b2984885b5a0484c8b4f30dd28e851",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-map.png",
+      "screenshotSha256": "b687d607c5525bed100b01c65aa81d917e06c5d8e59f3b8195d675d39f354d83",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-officers-actual-text.json",
+      "sha256": "2c2ce297076f711c9dfa91a03b93a6e16c1487dd1214f7a9db3c3bd44d373633",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-officers.png",
+      "screenshotSha256": "67de4dddd46b48fde1f020ba28a1d98971099e05e126ea050b005935d5473068",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-preview-actual-text.json",
+      "sha256": "c07976bf2eb1fab627d677c21ec3a80af634424c2b61dac4c2f690ce17e80a44",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-6-preview.png",
+      "screenshotSha256": "c94083194905a43deaced8f345adffc0ffe408ee7f976dd75f19b006e4c720ce",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-0-preview-actual-text.json",
+      "sha256": "438166df1e66e545eef6840e580a0f9ec0990d7b8dea41bc82d6a59197f64a08",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-0-preview.png",
+      "screenshotSha256": "d968dfd9a4cc41cd7a51c2095950371793cc099333d6e497a91c079d6bbe7a3d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-1-preview-actual-text.json",
+      "sha256": "21c51d01a5506785b3e2715d5542181a0e89aad43df4be6d11126802fb8138b0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-1-preview.png",
+      "screenshotSha256": "3eadc9f0471e3b8597fcad41270d532ae21213e83073dec01ac50f4ed726b2fb",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-10-preview-actual-text.json",
+      "sha256": "cfd845207907e5e8de4d9581b7384527700539ddb08d82c6f33c50aa608953cd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-10-preview.png",
+      "screenshotSha256": "022807abda2dc19e5e58a84f448214079386ec961e08c553c0232dea53ffd233",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-11-preview-actual-text.json",
+      "sha256": "6d9c5ec5bd91e87a614812cf4ee931f148df163a67c97bdc0c9c42cbdf709506",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-11-preview.png",
+      "screenshotSha256": "86654c68194d8e73e2ab4ffc5d0f73d31eb96a08f773a1fb7f616717f55ce9cd",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-12-preview-actual-text.json",
+      "sha256": "270e35b5932a947cc225709e3a61498f81d72e0986dcc28a96fba00491cf438e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-12-preview.png",
+      "screenshotSha256": "61708239df5115cd5e9d3867dae427926c2a31f90e3b3d7e25db46006b0c1d9a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-13-preview-actual-text.json",
+      "sha256": "cefe473d991bfc26353756128a7ea39df30c70b1715fa567a1c181b821d4be95",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-13-preview.png",
+      "screenshotSha256": "d3892891be39afcd741c7ba0ee9f52127598903f0c9c3a66cc467238dd3eebcf",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-14-preview-actual-text.json",
+      "sha256": "b458744ce8ebb5f6065bf4a25394d5ff19b1a70a4c89cceaae0e233e8b80d52b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-14-preview.png",
+      "screenshotSha256": "051503b90792ef5ec16a2d4ce7312aeb2906c94890f0ded4280b02bca6b944b4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-15-preview-actual-text.json",
+      "sha256": "e71c3f441437f2e70ae971efa447b076146e9048f0bfcb1839eb876b5a19681b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-15-preview.png",
+      "screenshotSha256": "6794749bec2673f97ce2b1f7055b490859286f44e9ba2e27b013178e29c41a44",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-16-preview-actual-text.json",
+      "sha256": "b961b2c84fbbd87a70dbd69d7f6775b40822110706fca9a32bc65734a6ccafdc",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-16-preview.png",
+      "screenshotSha256": "65f0d299772407635824a1d7857c14d350964fd9b8804b9a9693a85149b73f2d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-17-preview-actual-text.json",
+      "sha256": "15cae543365baaaf258086e21a34fd15bb6892c5a748b3f294ad819f05713bd8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-17-preview.png",
+      "screenshotSha256": "819cb4250ce27a8cd1ae092193488118b65bc7b845e5360e28c0cf0384ae3c63",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-18-preview-actual-text.json",
+      "sha256": "7d21f12fbb8b650ae4ef7907f0751e2477e22a8eadff7a9efc81e43ccc5faa6f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-18-preview.png",
+      "screenshotSha256": "f515d21cdd84b9828cdc387a0f6be7163bfe60b69a3ab442ca098b0b9bf0fdc6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-19-preview-actual-text.json",
+      "sha256": "7bc30f0536ca22508647233b96d0379a3b3ed0b22cc4c2992a4ee35e176c7b31",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-19-preview.png",
+      "screenshotSha256": "23f31d8fa5d46e67a80a38cb18f2f2c3dd29c771d479f94edfda9fc36fd224c0",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-2-preview-actual-text.json",
+      "sha256": "c0fd376d84b375561877eb249743eb9ebbb831ff1e10ee8a0830618b3440e7cd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-2-preview.png",
+      "screenshotSha256": "9c312635ce7af47d9961bc03a8b2e6887049a245fa87bc6be946939c4d3509d7",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-20-preview-actual-text.json",
+      "sha256": "40c9cb8c356f0e8a2a3ca70eeceaca11ea2618453756d031cfa83d4324bf7d08",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-20-preview.png",
+      "screenshotSha256": "9c4697c092463cbfa45ec807b8aeefd948bb79bfd87e93acd16bf2d6360d611e",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-22-preview-actual-text.json",
+      "sha256": "1b61d761d6ff2ed4441f496ab91ee1b1587eba1a4c69aaeb3d0482291931ff81",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-22-preview.png",
+      "screenshotSha256": "d457134d48c4f1bff2aa5837581396ba69b729e829d11f63e4734fa64d98abe8",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-23-preview-actual-text.json",
+      "sha256": "6097f10f922c6e9b46c8460e032e62c9c072ef864d03eb62577b776366087543",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-23-preview.png",
+      "screenshotSha256": "8be06ae3d133edbf02853d5d8167436dce09c39d497b12f27cf91adea7371a1a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-24-preview-actual-text.json",
+      "sha256": "5915ae070e09bb8f8fc0fb8924bf9b4bb74a72a8696e68fe1df2c37d84c0441c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-24-preview.png",
+      "screenshotSha256": "b4481ba71e404c9a49912469c57a7015d9a60eac8f29e0e76b7cd63dc06bf6b8",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-25-preview-actual-text.json",
+      "sha256": "31c4b80eeeb8dc9290875e0619911795a8145c394953fcd9e12791dc4bf52667",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-25-preview.png",
+      "screenshotSha256": "8ff3a041d7f5956708e631b68e7e45734fa89705cdd003131b75a7aef3b960e2",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-26-preview-actual-text.json",
+      "sha256": "4932ece6dc8f6c24c6c56c18343acd2ff68f49f85ed80e568da4cb89cdf583d8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-26-preview.png",
+      "screenshotSha256": "03f2deab548540aad0adb99f208eec975e3ae181b64040c7f52cc9c2e487a8ee",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-27-preview-actual-text.json",
+      "sha256": "6d58765ef9325332d2ba9187a79b07fa8e5b0a94c379d30cc802f615bac28bd9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-27-preview.png",
+      "screenshotSha256": "8dc006e768ca09e6787e52956d2c24ac05dd2f5495fcf305d65c04700f86a441",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-28-preview-actual-text.json",
+      "sha256": "1409f956b75dec3396729ced09425dd3b21eb4d692a98408d5b73ce058b0c536",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-28-preview.png",
+      "screenshotSha256": "c22ba8d1581d337bdff141b57def0cb61f9fbc8530b4347ee4b614d68adb4d9c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-29-preview-actual-text.json",
+      "sha256": "96f891981dfa5100c58a69c66be78f4755cb3bb1e605b8c1a280a9107d881797",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-29-preview.png",
+      "screenshotSha256": "fde9652e7d9f0d5a57c4fa13978ca31ba285a3468090ffb8fcf26c5d1dadebda",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-3-preview-actual-text.json",
+      "sha256": "83ab0cbe6188fb84709f7eb166b86b3644677c942f745dc99f3913a4e12ce034",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-3-preview.png",
+      "screenshotSha256": "0b65387269b414a91c5579f82701bb9f59c165f6544b9c8e0da8f0bc3da890e5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-31-preview-actual-text.json",
+      "sha256": "4f9eabdf2716b52af662b993618beb9063cb8f6b7ec338432d7b09b587e63055",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-31-preview.png",
+      "screenshotSha256": "1ff0686956e3498bbd45c086b5cf64469a47cb72b639cb936f15baac4c941fb6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-32-preview-actual-text.json",
+      "sha256": "a98dd1fdeaa06a8b92bfb729b7178427c4f60b068f5cde64dae9a846cc90143c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-32-preview.png",
+      "screenshotSha256": "4f007209377a1a28192fb6cfd78ac557f043082dbb0a25083e2c053af48ed7a8",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-33-preview-actual-text.json",
+      "sha256": "5a7126acfc0d3420370f80422fe34ab3231c451346b79baa1072bae82013483d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-33-preview.png",
+      "screenshotSha256": "e3ae8c8df31ea2851b12074a0e72f263a43671b72c8d41c1bb66d1f8549ada46",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-34-preview-actual-text.json",
+      "sha256": "9405f3a7dc3c2dc5f2fd48e1c27e59d85aab16d94b23c9e7ef63c947de2f4d40",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-34-preview.png",
+      "screenshotSha256": "5baff0a3c972d740787ee37545df32fe868ae46793e77b6a59c038aa2848b8fb",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-38-preview-actual-text.json",
+      "sha256": "6fd70d5dcca817a3ac88a3b00fb819abdcddc945e94670582d157c5f2bd708e5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-38-preview.png",
+      "screenshotSha256": "08a896b7951430a2894d3331fbf0b58968cdb51bcd65eca414c22c0c36f433b8",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-39-preview-actual-text.json",
+      "sha256": "188ecdbc9283f25b60a6f459953f3c7a82234bab95f837a209f6a091f87389c5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-39-preview.png",
+      "screenshotSha256": "2b911b77d4dfa185dbc9aeb0274d071da7433fbfacf059a44faca99fcde5a361",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-4-preview-actual-text.json",
+      "sha256": "12f535218a5fd443c70273cc1709ee1cc5d5e3a1f20f1f63e1909f11c5c7f2f9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-4-preview.png",
+      "screenshotSha256": "957a91896b766a27afde523f6d9b9056e4fde74c48255b01abf563996d922f35",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-40-preview-actual-text.json",
+      "sha256": "af7f13b4a9e72b90e9663d060bc768632c019ad2e306835871f0adb3253caf42",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-40-preview.png",
+      "screenshotSha256": "b7ba15ca819b64e8846e25b3ae5759104c784e977150ec2859c5f5febcfd610a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-41-preview-actual-text.json",
+      "sha256": "c65faf563c2279d589a18ed0d0fb4941ab609cc66fda97ff766bc752347bb271",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-41-preview.png",
+      "screenshotSha256": "bfdec6ed72872df6ffde49cbd5646301fd3b0f09ade3b883072cd33f02fbeea9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-5-preview-actual-text.json",
+      "sha256": "06f3acfecd66236966d01922a595782437ee6247bef8d1702060d1ab46ef50d5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-5-preview.png",
+      "screenshotSha256": "7a4cb0b31460b790b68bc7b2eda184d7d206b4b43fe609349474d6a2ac5b51f9",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-6-preview-actual-text.json",
+      "sha256": "d0e20f84688b4fc586f869c30919074897a4a8d5a8e5a65581e41f4050128723",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-6-preview.png",
+      "screenshotSha256": "836a2707d65b3f1dad9ee72d13a363da8230ce2b732b54f9840b686e9394fc70",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-7-preview-actual-text.json",
+      "sha256": "805d8289b9390f4a12f4a10c9709d0863700afe0a63002885d10045dcae34691",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-7-preview.png",
+      "screenshotSha256": "f5a1e0c50cd87f5c1367a4e56335a34dea0269f77cd6309fd6b0e312e69fdb2f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-8-preview-actual-text.json",
+      "sha256": "6f855a50cf35ac4d160d5823d7b6cde91b96e66930386895bf2b4742b6edbb87",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-8-preview.png",
+      "screenshotSha256": "6925831f86899db5713c194a2a30c06f2c116fb2da89970050201166d9b6e9be",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-9-preview-actual-text.json",
+      "sha256": "84760792f3f88327ada2b33edc1c54eb91716763509c7c04f96477f90c61492e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-faction-9-preview.png",
+      "screenshotSha256": "5f979466b1dbb0d9fc958539c9fb72e6faa8372155cb20acb5403ce38681cba6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-map-actual-text.json",
+      "sha256": "041d981860be83ad0a34c3ecfbe91f07e47ee9226cbb2045eafe33ad7005af90",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-map.png",
+      "screenshotSha256": "11c13428d97acdbd59b9f519eaf84a217244752ddca9d97da162ba41b1dc80a5",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-officers-actual-text.json",
+      "sha256": "e4e5940f0f8cbbb8b7f6f58885ef3e350cba8ede844af54dacfc07ccea3f9a98",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-officers.png",
+      "screenshotSha256": "b212dd0f4c1c44865902788f48227913154ab8ba3c2dcc764f26c7e952eefb72",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-preview-actual-text.json",
+      "sha256": "24289cd046defa3176970b01bab9d165acf24603da5150c419e271da6cc026d7",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-7-preview.png",
+      "screenshotSha256": "84254e8bf5685cffef1f67a74b3c6934ebec1420b4163c54b433f2e1f15daa54",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-0-preview-actual-text.json",
+      "sha256": "c44a2fdc2f30b9b1c3175d36ee057fdb96b578b909416853ced93b62aa97e4ee",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-0-preview.png",
+      "screenshotSha256": "3cfd213a5e871121a303a6fb32b996855af680836e8845adcfffbc05664168c6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-1-preview-actual-text.json",
+      "sha256": "b44a76b14589edc4d83cec0564b54be876bddc5b132eaeed954f4d176d5866fd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-1-preview.png",
+      "screenshotSha256": "d9be1ff371b3b3c4d555611c8391acae0d46b2959150bb010471343a8d37366f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-10-preview-actual-text.json",
+      "sha256": "170ff38cd28b71f35086441e6d0110a9e3dc05c631996295d6445d77df5201a3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-10-preview.png",
+      "screenshotSha256": "a2c44a1031dfe4d814ebff35d6604bc6ce5f8015a9da818d593eb0996fc065be",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-11-preview-actual-text.json",
+      "sha256": "3f5f40f97576f914239afd79dc4f474db647bbd15b2510387c5e409f39355684",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-11-preview.png",
+      "screenshotSha256": "ffd2918629a431efb6a829317af7c7e699ee6fb758d887dec9344dd3669be53a",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-12-preview-actual-text.json",
+      "sha256": "e1c1f6f9434735bb1eb60d82d7c6e3afd01a86650df640400bf26525cfdc5a5f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-12-preview.png",
+      "screenshotSha256": "7dec78df42e4b85e770f4defc78904cb645d06fb554f448890822a4e5f90c19c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-2-preview-actual-text.json",
+      "sha256": "213239d15bb8d894310aa4dd7dd67158889de32e6ed99dd608715b603a1d15e1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-2-preview.png",
+      "screenshotSha256": "0676275b2fce1ea6152fe1df66d9273f08fe5bd71c54dc5667084af47a1f855d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-20-preview-actual-text.json",
+      "sha256": "396b78c4a60aa0c842956eff8982cacefe0c843a13fff277816707c961a573b8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-20-preview.png",
+      "screenshotSha256": "353ec0559a3b2cab394bd0c11101599ca7fa6e2f71b1972ff09cb8a54d662e4f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-25-preview-actual-text.json",
+      "sha256": "6f5902c7e206ae4fb15d7ff73d97233d404a6a86ba0a0389af83d7d64783dfb2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-25-preview.png",
+      "screenshotSha256": "7e5cb1205729ba5bc6ef44c6e4a61e3260ec397f4367744cf304e489a79e9999",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-3-preview-actual-text.json",
+      "sha256": "368ee4269ff80592dc732a5b1268a9fc0ebf2eba4bfb9f63892dd0296dcc9ab8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-3-preview.png",
+      "screenshotSha256": "22414716bfad0848950315a278a345043a3dd2f1bccc754c5b53c8a05afcae12",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-4-preview-actual-text.json",
+      "sha256": "c55bea53086f218be5d2f4ee56010ae303fb244b25359bb6650740ce72f05627",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-4-preview.png",
+      "screenshotSha256": "7dce236c03df2cd9a0ef5ed3b0ea3a60b3da5a4e71dae1ded05e5e925e479d93",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-6-preview-actual-text.json",
+      "sha256": "8e68177db45466eb757a6a1f81af3c8a19b97f4160211807d524950cd7a98336",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-6-preview.png",
+      "screenshotSha256": "3d290b07b976f367fb9839b012792896980a6c1181a38bc32cef14f00d4e91ae",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-7-preview-actual-text.json",
+      "sha256": "2b2a2b105a20c63abc2dc4776ad0ae933a31a813d6e78464fdf23ab1f43922b0",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-7-preview.png",
+      "screenshotSha256": "5c20c7d0e962cef0f567ca40b4bcd35c918dd4c4783e41875777914002610aaf",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-8-preview-actual-text.json",
+      "sha256": "6137ab224498de088c18d592da741f4bd1cf60614bab56656addb2659c7a92c9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-8-preview.png",
+      "screenshotSha256": "5ae08a6d1d80b8e1f7d0f4e226abcc6eb4f048003ba76146791e1af70871737f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-9-preview-actual-text.json",
+      "sha256": "3f4a3d0c94fbc335fb95f56598001610a8469144af76f61ba33eb0d195f7dc1e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-faction-9-preview.png",
+      "screenshotSha256": "756699aa62d871011593d6a6993682dbe35a71e09b1c7226785e3125dc4d10b3",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-map-actual-text.json",
+      "sha256": "dbf956aec48de005f77483dc92fcf3b698106ef69301499a85b946f795c18a56",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-map.png",
+      "screenshotSha256": "5232065d29f0e68d3c6fd9d2a7530d893a0fdcfb34e0308a81c969925671c516",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-officers-actual-text.json",
+      "sha256": "0ce3a161bc0036b7f9e96482f5938042e4dc3dcb966af5c359b20c970b2b7450",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-officers.png",
+      "screenshotSha256": "0c16981d6d6d6176d971c622e87017c31f6d446f7d8477e56cb6e45feb9a6b69",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-preview-actual-text.json",
+      "sha256": "a78f3db38cbb4deb4084e04bfedb3db7f2a83a2a36d70566efe96a0986e91a8e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-8-preview.png",
+      "screenshotSha256": "34c7b3582b007522b1cbafe175566a9ac3cf727718b769309b2e52777c1c8bce",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-0-preview-actual-text.json",
+      "sha256": "153897287e09f2ce43a9511f287dcc38f252d915d927a5bda4289de136b430b6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-0-preview.png",
+      "screenshotSha256": "64d03c3d25194c7c58e7441c121a4fff02fbba8adfc787c6262d984aa468d5cf",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-1-preview-actual-text.json",
+      "sha256": "782c01ec012ef0de25d8d809381a21c84573d6d57f4df099b4cea0ee83a8d774",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-1-preview.png",
+      "screenshotSha256": "cb60fa3232945248fa23fb72cb3871119aedb6a0884a3b1ffbddd2a0a6a4dbac",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-12-preview-actual-text.json",
+      "sha256": "07a5bb54406ccdb3d55252a11397370f494a95df48da4d75f08ecd46c6354ce6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-12-preview.png",
+      "screenshotSha256": "da7ae7cc104f1f671eb89820aadd94686b7fb8afb362edb9e6b3968843bc755c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-2-preview-actual-text.json",
+      "sha256": "93ecfd2019a7c0d9884047b45202d92f1d3e9fd895ae3f38c553bfd0654ea6e5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-2-preview.png",
+      "screenshotSha256": "1acc82b454780a535eccdc47e7dda4227df8406db95f72aea789418827b9c614",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-3-preview-actual-text.json",
+      "sha256": "a49fdb96bcae37ca71c79298c53521c55eb28f3b122aad57d59237d89c7afae9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-3-preview.png",
+      "screenshotSha256": "5febe5c2cb35ba3db7a0b8d6415b9ee7292786f50cc5c0dbd2cac90b93b9032f",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-4-preview-actual-text.json",
+      "sha256": "84e6d2531b82c24d8839ec692486a141e4daabda269fd9e368d65422c6d3ef5e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-4-preview.png",
+      "screenshotSha256": "d5366e0f747d849357f2864d355343b84d95a1ffe959e08e8361121ee89e546c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-40-preview-actual-text.json",
+      "sha256": "61e8fe3aeb9476c111e779dde448e9f5e96feb0a9013626973e3d0df4981e6f8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-40-preview.png",
+      "screenshotSha256": "059c0eb580f88919cfc1ed831bfc1e41f3e248ed34f01a5c81e5186dce0ecc9d",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-6-preview-actual-text.json",
+      "sha256": "b9937c5a1d865258b237df998ba063f74d817e1b68a742b103b0529e36ba50a2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-6-preview.png",
+      "screenshotSha256": "fb313fc7a370307bf26ec39839cdc4e4ffaf6c63b2fdbe10f361449b94078924",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-7-preview-actual-text.json",
+      "sha256": "a9ddfd9357ad30ed677ef589e4335dacd58ce305144d7cfbfbac969a39d267f7",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-7-preview.png",
+      "screenshotSha256": "35c46a171ca1dc3254dab2dc7b36e6b7b73c83b0af76e0a94f171af478536d0c",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-9-preview-actual-text.json",
+      "sha256": "1a600b25369a775b815b32febf601e359b370dd9513c5edd856f50c261547239",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-faction-9-preview.png",
+      "screenshotSha256": "b904fdaea75634353c6ad344b9db629a52e28f84d4a3a20252aa8d6a39104290",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-map-actual-text.json",
+      "sha256": "c328c06b5d230bfedf45e14f926c1cae95baffa45c68e33ef4e0fc1251521336",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-map.png",
+      "screenshotSha256": "2359cedd5bad02cf922e9785282cb7bad006f1c9ad2aa9c6b75bf5161115e2b0",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-officers-actual-text.json",
+      "sha256": "5436268e8afbbc87f617838746ef96d8f1a9e1f197d7259dbf308a64413e3f33",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-officers.png",
+      "screenshotSha256": "69e8086ee0e0dc5de38b22390b3be49b8bda44da0baa7cf4adc936c9db1da057",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-preview-actual-text.json",
+      "sha256": "5189b3d8603f4cc6cb6a012a5871d90b950c36c0888ad061831d515d6bf1546c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/evidence/source-9-preview.png",
+      "screenshotSha256": "c9831c9d76522c2363a0ac7fe704316214ab8f02456c53db4e848bdf435f52b4",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source0/source-0-map-actual-text.json",
+      "sha256": "f2620bef5d481fd7d6a228295f426400026e65bd4ac72d0ed1fe7b8801939e09",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source0/source-0-map.png",
+      "screenshotSha256": "acbe5230ce385ae4ad52f7c28f2905538f7dbf0ea316684d779e3c34e5f7cca6",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-18-preview-actual-text.json",
+      "sha256": "7d21f12fbb8b650ae4ef7907f0751e2477e22a8eadff7a9efc81e43ccc5faa6f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-18-preview.png",
+      "screenshotSha256": "f515d21cdd84b9828cdc387a0f6be7163bfe60b69a3ab442ca098b0b9bf0fdc6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-31-preview-actual-text.json",
+      "sha256": "4f9eabdf2716b52af662b993618beb9063cb8f6b7ec338432d7b09b587e63055",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-31-preview.png",
+      "screenshotSha256": "1ff0686956e3498bbd45c086b5cf64469a47cb72b639cb936f15baac4c941fb6",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-41-preview-actual-text.json",
+      "sha256": "c65faf563c2279d589a18ed0d0fb4941ab609cc66fda97ff766bc752347bb271",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary384-all-factions-combination68/live-source7/source-7-faction-41-preview.png",
+      "screenshotSha256": "bfdec6ed72872df6ffde49cbd5646301fd3b0f09ade3b883072cd33f02fbeea9",
+      "widgetRows": 14
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}
