@@ -190,7 +190,13 @@ def main():
             # Normal384 and its GC diagnostic never receive encoder pressure.
             default_receipt=pathlib.Path(__file__).with_name('FIRE_OVERRIDE_DEFAULT_BUILD90.json')
             default_build=json.loads(default_receipt.read_text())
-            video_requested=(r['apks']=={entry['path']:entry['sha256'] for entry in default_build['apks']}
+            default_pairs=[{entry['path']:entry['sha256'] for entry in default_build['apks']}]
+            release_receipt=pathlib.Path(__file__).with_name('PICKER_RELEASE_BUILD116.json')
+            if release_receipt.is_file():
+                release_build=json.loads(release_receipt.read_text())
+                if release_build['buildSuccessful'] and release_build['gameLargeHeap'] is True:
+                    default_pairs.append({entry['path']:entry['sha256'] for entry in release_build['apks']})
+            video_requested=(r['apks'] in default_pairs
                 and a.runner in ['SessionAMapRepairInstrumentation','SessionAScenePresentationInstrumentation',
                                  'SessionAFireFlowInstrumentation','SessionAAttackTaskInstrumentation'])
             r['exactDefaultVideoRequested']=video_requested
