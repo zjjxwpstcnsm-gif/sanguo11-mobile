@@ -725,8 +725,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
     void pauseEffects(boolean value){if(value&&!effectsPaused)pausedEffectTick=animationTick;effectsPaused=value;}
     void replay(TurnJournal.Event e,float fraction){
+        float nextFraction=CombatVisual.fraction(fraction);
+        if(replay==e&&replayFraction==nextFraction)return;
         if(replay!=e)assetSyncPending=true;
-        replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();overlay.invalidate();schedule();
+        replay=e;replayFraction=nextFraction;if(e==null)clearEffects();overlay.invalidate();schedule();
     }
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;float y=snapshot.ground.surface.at(h);return Math.abs(camera.screenX(g.x(h),g.z(h),y)-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.x(h),g.z(h),y)-camera.height/2f)<camera.height*.6;}
@@ -1283,6 +1285,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
 
     void critical(CriticalHit hit,float phase,android.graphics.drawable.Drawable portrait){
         if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}
+        if(criticalHit==hit&&criticalPhase==phase&&criticalPortrait==portrait)return;
         criticalPortrait=portrait;
         criticalHit=hit;criticalPhase=phase;overlay.invalidate();
     }

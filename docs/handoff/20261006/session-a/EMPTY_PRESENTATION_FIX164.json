@@ -1,0 +1,13 @@
+{
+  "changedPath": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+  "beforeSha256": "ffbbac70987a429c10aa222f464f8565afd3c52384eb0a4d21d936c9629a3c1c",
+  "afterSha256": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+  "skipOnlyUnchangedEventPhaseAndPortraitReferences": true,
+  "normalChangedEventOrPhaseStillInvalidated": true,
+  "clearEffectsStillRunsOnActualTransitionToEmpty": true,
+  "nativeFpsClocksStateTokenRulesRngUnchanged": true,
+  "coreApiRuntimeBridgeUnityJniChanged": false,
+  "new165ActualAccepted": false,
+  "uniqueLongTurnOrUserOomCauseProven": false,
+  "wholeGoalComplete": false
+}

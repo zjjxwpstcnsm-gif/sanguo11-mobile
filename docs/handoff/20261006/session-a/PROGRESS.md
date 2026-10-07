@@ -393,3 +393,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 160/161 新155 a988/0da后继等待器91494/音频91673确实启动，只匹配当前new-military90296的normal/cold/全SHA恢复/observer完成后，再本pair火/攻击/全16正常caller/.995整首音频，当前各自无deviceaction。新日志2743attempt/2348reject/459overlaydraw/2340skipped只是当前视图前缀，不能当完整case/纯性能因果；新第一funding-reset仍达到前台120秒，记录长旬未解决，不用request省略计数代替稳定或ARM。旧145156158分数不迁移。
 
 162 新owner-counter冻结审计器已解析当前a988/0da真实PID2578日志，严格target mainPID/token-generation单调segment，记录无rendererID与异步HWUI关系限制。实际livecase冻结门拒绝/未生成final报告；syntax与真实行解析通过，不以省去请求计数替代正常/cold/全恢复/窗口/手势/效果/性能/JavaGPU预算接受。
+
+163 新155第一funding-resetcompute295576ms，长旬未解决；实际旧计数表overlay5787/admitted1301说明另有显式dirty。源TurnPlayback fastForward每24ms重复null critical/replay，无内容变化仍invalidate，找到第二路径，不声明唯一根因。精确确认旧16091494仍只waiting-new-military与producer90296live后，只停自己调度parent，当前155military/video/native独立完成恢复；161未执行动作需核terminal。
+164 A Filament replay/critical增加同event+归一phase+portrait引用不变时的幂等返回，真实event/phase/portrait变化与从非空到空仍clear+invalidate，nativeFPS/VM/水火/StateToken/规则RNG全不改。两条重复请求路径需新165独立build/install/窗口/手势/效果/同正常长旬验收，不能迁移155计数或145/156成绩。

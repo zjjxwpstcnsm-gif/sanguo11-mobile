@@ -1,0 +1,11 @@
+{
+  "actualStoppedSchedulingHostPid": 91494,
+  "actualProducer90296KeptRunning": true,
+  "noDeviceOrNativeSignals": true,
+  "sourceFinding": "TurnPlayback.fastForward every24ms calls already-empty criticalFrame(null,0) and replayFrame(null,0); Filament setters unconditionally invalidate",
+  "new155FirstTurnComputeMillis": 295576,
+  "new155LongTurnSolved": false,
+  "nextFixRequiresFreshApk": true,
+  "audio161MustInspectTerminalAndNoActions": true,
+  "wholeGoalComplete": false
+}
