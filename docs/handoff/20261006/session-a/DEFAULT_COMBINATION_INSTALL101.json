@@ -1,0 +1,50 @@
+{
+  "actualInstalledCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11",
+  "actualGameAndTest": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug.apk": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-fd88f79a-fire-override-default90/app-debug-androidTest.apk": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39"
+  },
+  "installedDeviceReadbacks": [
+    {
+      "package": "game.sanguo.mobile.dev",
+      "readback": "25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9  /data/app/game.sanguo.mobile.dev-69XrCDLOmIvI-qkqZPns5Q==/base.apk",
+      "readbackFile": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/game.sanguo.mobile.dev-installed.sha256",
+      "readbackFileSha256": "6f9ed677f207171fedcdd29ed5263b7e64f2bd386fe4532a1595d0ff3fcb19be"
+    },
+    {
+      "package": "game.sanguo.mobile.dev.test",
+      "readback": "9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39  /data/app/game.sanguo.mobile.dev.test-mP2ofDXe5LuWUg2SQPNKBQ==/base.apk",
+      "readbackFile": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/game.sanguo.mobile.dev.test-installed.sha256",
+      "readbackFileSha256": "bf49a98b1d0c1aabeec7492d4f37a22d7c0457ba14ce2224604c3ad5a2f7f418"
+    }
+  ],
+  "actualPmRunnerRegistered": true,
+  "backupScope": {
+    "internal": {
+      "files": 9,
+      "archive": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/internal-before.tar",
+      "archiveSha256": "63239a585620c814589ce1903c1c0d24b14cd920071e67bf1547f8fcb70d3b5a"
+    },
+    "external": {
+      "files": 3797,
+      "archive": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/external-before.tar",
+      "archiveSha256": "d4857e3efe079f472d0a333adad08844d18e98dca0d844a570f5fd5e31a98144"
+    }
+  },
+  "sourceRevision": "fd88f79a2cc7a5efcf5942b5d1b9891f7608ec77",
+  "actualInstalled": true,
+  "actualNormalAcceptancePassed": false,
+  "normalColdFinalRestorationPassed": false,
+  "videoObservation": {
+    "hostPid": 29475,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown."
+  },
+  "workerObservation": {
+    "hostPid": 29476,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-ordinary-voice-callers75/actual-fast-and-callers/latest-default-water-facility-fire-source11/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance"
+  },
+  "scope": "Latest actual independent90 install after completed81 whole matrix/restoration. Exclusive5554/API29/x86_64; exact APK SHA and pmRunner. Fresh whole9/3797 original data guards before install, actual Source11 normal caller flow started; normal/cold/video teardown/final restoration/other15/commands/ARM still pending. Old81/94 scores not transferred.",
+  "wholeGoalComplete": false
+}

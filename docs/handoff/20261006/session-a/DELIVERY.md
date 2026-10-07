@@ -258,3 +258,5 @@ Latest full own source8979dae2 includes completed finite Gov45173c6c+3b5d9b70, e
 最新完整源码92：`out/session-a/source-checkpoint-fire-observers92-complete/sanguo11-mobile-source.tar.gz` SHA `67e26270b7efe8074235cfb61c16b9a7b23cc2e4819f4d7cc37421b4c1f12528`，11156文件逐SHA验证；含89火修复、90APK所有实际生产源码与6JNI同SHA、91后继完整测试工具。SOURCE_EXPORT_CHECKPOINT92.json对应源码62813f634d7c6b5baf6f3f30717b397d3ca98e55；当前未安装的90APK不能借源导出成为正常流程验收通过。
 
 94实际旧2cd/1a850 Source11正常+冷+全恢复已通过：670/1340、25157检查，最新4字形身份共8正常caller原整bitmap一致；冷10204→8548与9/3797每SHA恢复。证据NORMAL_SOURCE11_ACCEPTANCE94.json。只覆盖本旧cohort当前原年份Source11，不能移用90/其它来源/全部形态/原PC裁切时序/声/ARM。后继已进入原ordinary68 0..6 heapProfile诊断，90新组合需串行完整重验。
+
+101最新默认组合90已真正实装5554并整包SHA/pmrunner验证：game `25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9`、test `9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39`，证据DEFAULT_COMBINATION_INSTALL101.json。当前仅Source11正常全人物开始，尚非正常全流程接受；旧81全16/244/5152/cold/9+3797恢复记录在WATER_ORDINARY_ALL16_ACCEPTANCE100.json，不移给90。
