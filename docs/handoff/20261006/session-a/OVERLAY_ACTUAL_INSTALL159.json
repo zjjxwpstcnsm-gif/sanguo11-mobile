@@ -1,0 +1,24 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military",
+  "stage": "installed-verified",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug.apk": "a988f9b334724a101c1085d7c3488591786af4746bdc2c54d410efd7c0c21d83",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-3f80c9e2-overlay-admission-default155/app-debug-androidTest.apk": "0da73d61ca45a36a2c59d01f4c4813a442bb3f4f4d8639d3fa80e31933daa35e"
+  },
+  "actualHelperPid": 90296,
+  "videoObserver": {
+    "hostPid": 90339,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown."
+  },
+  "workerObserver": {
+    "hostPid": 90340,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/overlay-admission157/new-military/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance"
+  },
+  "actualRunnerRegistered": true,
+  "actualNormalColdRestorationAccepted": false,
+  "sourceRevision": "3f80c9e205c2387fa855f58ca76fdbc00ad3258b",
+  "noOld145AcceptanceTransferred": true,
+  "wholeGoalComplete": false
+}

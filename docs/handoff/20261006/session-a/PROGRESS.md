@@ -387,3 +387,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 157 新生产155实装等待器87960实际启动，精确绑定oldfire helper85746/其旧145 apks及新155 a988/0da；当前waiting无deviceaction。只在旧fire正常/cold/9+3797全恢复/video+native完整收尾后fresh fullbackup实际装新155 military Source14，所有源不同/任何失败停，窗口/手势/效果/长旬/新heap与caller不得借旧145156。新155 exact录像whitelist已准备，syntax通过；首轮新包接受尚待。
 
 158 旧145最后已启动火child85746实际正常/cold12693→30832/双方3Dsubmit/auto77b0ef...通过，全9internal(rewrite4)/3797external(rewrite0)原SHA恢复，system animation偏好精确还原，video/native0/完整原片逐host=device前后pullSHA。parent停止没有干扰child正常闭合；旧成绩只旧game8e08/test332a，不迁移新155。87960已实际进入155 freshbackupverification，尚未宣告实装或新性能/窗口/label正确。
+
+159 新155 a988/0da在旧158完整恢复后重新完整9/3797backup与每文件SHA核验，实际两APK安装/device整包SHA读回/runner verified；helper90296/video90339/native90340确实运行，case out/session-a/overlay-admission157/new-military。启动日志已经出现overlayRejectedStaticSkipped>0，但normal/cold/完整恢复/长旬改善仍未验收。前一159台账命令字符串语法错误在任何写入前失败，此次更正；旧8e08/332a分数不迁移。
