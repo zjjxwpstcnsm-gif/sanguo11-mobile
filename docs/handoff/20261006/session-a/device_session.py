@@ -277,6 +277,20 @@ def main():
                         r['workerObservation']['hostObserverStoppedAfterRestoration']=True
                     r['workerObservation']['exitCode']=worker_observer.returncode
                     worker_log.close();report_path.write_text(json.dumps(r,indent=2))
+                if (a.observe_workers and a.runner=='SessionAMapRepairInstrumentation'
+                    and r['stage']=='restored-verified' and r.get('passed')
+                    and r.get('coldProcess',{}).get('passed')):
+                    # MapRepair writes actual phase CSVs. Other command runners
+                    # retain their local meminfo/worker logs without fabricating
+                    # missing CSV telemetry. Freeze the final session before the
+                    # memory report hashes it; do not mutate that receipt after.
+                    memory_report=out/'memory-evidence.json'
+                    r['memoryEvidencePath']=str(memory_report)
+                    report_path.write_text(json.dumps(r,indent=2))
+                    with (out/'memory-evidence-driver.log').open('wb') as memory_log:
+                        subprocess.run([sys.executable,str(pathlib.Path(__file__).with_name('audit_session_memory.py')),
+                            '--session',str(out),'--output',str(memory_report)],
+                            stdout=memory_log,stderr=subprocess.STDOUT,check=True)
             if capture_restore_error is not None:
                 LOCK.mkdir();(LOCK/'owner.json').write_text(json.dumps({'root':str(ROOT),'output':str(out),'pid':os.getpid(),'purpose':'A optional capture/motion state restore incomplete; main full SHA restored'}))
                 raise capture_restore_error
