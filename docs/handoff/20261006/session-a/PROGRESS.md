@@ -501,3 +501,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 232/233/234同165/176 Source3已独立正常670/1340 caller、25157正常checks/94冷、31545→31025真实新PID/both3D，9内部/3797外部逐SHA恢复。26原录像index8f05842c…，原84300/84330/84331已终止且native/video exit0。采样Java241580272/512MiB/native独立202709488/meminfo总PSS独立528167KiB，不证明GPU或全局预算。实际widget36captures328rows41solidmin8.849737/287未解，Source3 map与司馬伷详情PNG已现场查看深底正文与标签可读；仍含既有B SOURCE_WAIT工程措辞210，A不改B真值文案。实际地图顶部A常驻“美术恢复中/部分演出暂缺”技术提示与浅色云背景的对比需后继A呈现修正，正常标签阴影和原地图保留。Source4 helper1339/video1388/native1389已核活跃，旧Source3路径已恢复删临时设备目录，缺失不判失败。
+
+
+235后继地图提示：据实际Source3-map PNG23d187d1…，独立stage仅FilamentMapView final Canvas hint去除常驻工程恢复前缀、载入文案改正常“地图载入中”、不透明深底+共享正文色。无新Bitmap/RectF/规则/地图资源/火生命周期改变，前6c01e6f0…后ca197798…，补丁1d97e74c…；单文件与实际app已编译依赖/冻结B JAR编译通过、独立补丁字节SHA读回成功，声明色对比15.584173585但无新Android像素/触控验收。859c85f6冻结own补丁/工具/回执，不改规范生产或227/B61，后继新组合安装仍必须测正常全路径/全SaveRNGToken/完整恢复。当前Source4已真实32/670且纯呈现通过仅partial，helper1339/观察器1388/1389和normal/audio/heap父链均实际存活，不重启；五个来源[11,0,1,2,3]闭合范围仅已记670/1340/current-year原Bitmap等。128原火失败229–231仍开放，不将235或大堆视为修复。

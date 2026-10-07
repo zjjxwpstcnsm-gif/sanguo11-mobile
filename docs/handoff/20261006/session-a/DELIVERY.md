@@ -291,3 +291,10 @@ Latest full own source8979dae2 includes completed finite Gov45173c6c+3b5d9b70, e
 101最新默认组合90已真正实装5554并整包SHA/pmrunner验证：game `25a66e496e0eb97e65f3f1eea96271ec4053a92e60381ed68575ba2e2871cff9`、test `9763ab32b00af7ea5c311b2aae591e6e496fe67556a5cd28d5fa02c3184f1b39`，证据DEFAULT_COMBINATION_INSTALL101.json。当前仅Source11正常全人物开始，尚非正常全流程接受；旧81全16/244/5152/cold/9+3797恢复记录在WATER_ORDINARY_ALL16_ACCEPTANCE100.json，不移给90。
 
 最新完整源码/可复现工具102：`out/session-a/source-checkpoint-current102-complete/sanguo11-mobile-source.tar.gz` SHA `54aa36acc238e42ad03209d04f31455c2282563bff81f6030aa9edd2e619c381`，11170文件逐SHA，源码167b9c46944c032813f36de5c661e5d6c51cd20b；生产及全部androidTest源码/原4+新2JNI与实际安装90包源码fd88精确，其他仅工具/证据后继。SOURCE_EXPORT_CHECKPOINT102.json；全目标仍未闭合，不借源导出作新90完整流程通过。
+
+
+## 228–235 最新边界
+
+228实际guest Graphics0和host OpenGL translator证据不证明GPU0，应用GPU峰仍未知。229/230的128原火host容量首帧失败，231克隆日志精确定位既有5Mblock-byte守卫5000008 at464c24、非5s watchdog/JavaOOM；原源码与六JNI未动。不能把原13格正常成绩扩大为128预算闭合；后继真正容量修复仍需原顺序/同视觉MT/时钟/释放与新包正常路径/ARM证明。
+
+235仅在独立stage改A Canvas正常地图提示，编译与补丁精确读回通过；规范165/176及当前媒体队列不变，尚未新APK安装。后继在227的Filament前态6c01e6f0…上串行应用，准确说明/增量SHA见NORMAL_MAP_HINT_STAGE235.md/json；不拼接旧成绩，不覆盖B61正在执行的包。原完整源225包含到224，当前完整Git/目录另保留227–235后继；最终需再次完整快照而非宣称225包含未曾归档的后继。
