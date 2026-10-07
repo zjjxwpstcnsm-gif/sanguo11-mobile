@@ -119,5 +119,8 @@
   "currentMilitary156Old145Pair": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MILITARY_PREPARATION_ACCEPTANCE156.json",
   "currentOverlay157Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/OVERLAY_ADMISSION_INSTALL_QUEUE157.json",
   "currentEmptyPresentation165BuiltOnly": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/EMPTY_PRESENTATION_BUILD165.json",
-  "currentEmptyPresentation166Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/EMPTY_PRESENTATION_INSTALL_QUEUE166.json"
+  "currentEmptyPresentation166Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/EMPTY_PRESENTATION_INSTALL_QUEUE166.json",
+  "currentBComplete167OnlyTests": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/B_COMPLETED_LEGACY39_IMPORT167.json",
+  "currentCombined168BuiltOnly": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/B_LEGACY39_COMBINED_TEST_BUILD168.json",
+  "currentCombined169Waiting": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/B_COMBINED_INSTALL_QUEUE169.json"
 }

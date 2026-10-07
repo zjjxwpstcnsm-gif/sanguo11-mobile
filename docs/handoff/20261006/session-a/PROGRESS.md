@@ -406,3 +406,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 167继承完成B测试后，166待装test不是完整后继源，不能绕过已有Source/WIPdiff拒绝。精确确认94678仍waiting且无deviceactions、90296原militarylive后仅停自己等待器，旧数据owner不动。生产e62包931仍逐字节有效，但新增B原39夹具/运行器必须独立freshtest构建配对，再新安装；旧B58/59成绩不迁移。
 
 168 B最新完成36f059b4(9paths仅测试/真实夹具/工具)与当前A源独立test-only构建5m48s，实际BuildConfig源04e3994b，游戏仍独立165的931bc整包SHA不变/生产raw源与e62一致，新test另冻结。真实39原档SHA5d002d...在APK asset逐字节核验，非伪造snapshot/versionhead。尚未实装，不借B5582 58/59或A旧包成绩；15590296当前性能case仍自己的a988/0da，宿主编译干扰记录。
+
+169 真正继承B完成测试的安装等待器97949已启动，绑定旧155military90296/a9880da→新完整game931bc/test36f7e8，当前waiting无动作，旧16694678确实在任何设备动作前停止。只有旧case每文件完整恢复与observer收尾后freshbackup安装组合，失败旧case仍失败但完整数据安全可做新修正实测；新168自身需正常/cold/全恢复/原39续行/全部矩阵。不是B WIP规则集成或原声/ARM完成。155性能仍反复120秒，宿主165/168构建干扰明确。

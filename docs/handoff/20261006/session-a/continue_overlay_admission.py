@@ -16,7 +16,7 @@ def main():
     previous_arg=p.add_mutually_exclusive_group(required=True)
     previous_arg.add_argument('--previous-fire',type=pathlib.Path)
     previous_arg.add_argument('--previous-case',type=pathlib.Path)
-    p.add_argument('--cohort-receipt',default='OVERLAY_ADMISSION_BUILD155.json',choices=['OVERLAY_ADMISSION_BUILD155.json','EMPTY_PRESENTATION_BUILD165.json'])
+    p.add_argument('--cohort-receipt',default='OVERLAY_ADMISSION_BUILD155.json',choices=['OVERLAY_ADMISSION_BUILD155.json','EMPTY_PRESENTATION_BUILD165.json','B_LEGACY39_COMBINED_TEST_BUILD168.json'])
     p.add_argument('--output',type=pathlib.Path,required=True)
     a=p.parse_args();previous=(a.previous_case or a.previous_fire).resolve();out=a.output.resolve()
     assert previous.is_relative_to(ROOT/'out/session-a') and out.is_relative_to(ROOT/'out/session-a') and not out.exists()
