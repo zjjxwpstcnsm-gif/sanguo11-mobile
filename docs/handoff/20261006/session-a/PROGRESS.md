@@ -164,3 +164,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 61产生真实部分回执32/670（完整sourceComplete=false）：正常列表/详情当前187年/原全部bitmap/身份/每次全Save-RNG-StateToken纯，先前失败native289諸葛亮、254荀彧、78夏侯淵、367孫權四人各两入口原像素均通过，host/device部分JSON逐SHA同等。正常IME_SEARCH+IME消失/失焦/1000ms布局稳定观察已实际执行，但完整670、冷与最终恢复仍未接受；driver78010/native26106/video82680继续live，不能重新安装、合B WIP或借单人/部分成绩。
 
 剩余15源严格串行复现工具已在A OWNERSHIP登记后编写run_remaining_normal_media.py：须先验61 source11全部唯一officer实际roster/detail成对+原像素/完整状态/新PID冷/9与3797最终SHA恢复及冻结APK SHA，不允许从单人/部分回执启动；每源真实菜单独立备份/正常/存读/冷/恢复，失败停止。Python语法/help通过，实际以当前61部分live调用被正确前置拒绝，未创建输出、未安装或接触新的设备session。此工具尚未实际完成其它来源，不计覆盖成绩。
+
+61实时64/670部分回执已在不同原始文件路径只读取回并逐SHA与设备同等，保留首32快照及其SHA不覆盖。全部128实际roster/detail原bitmap行/当前年份/身份与完整Save-RNG-token纯，sourceComplete=false；78010/26106/82680继续live。剩余15来源脚本前置条件为实际完整source11+冷+最终everySHA，当前拒绝已实证，不提前运行或借部分结果。

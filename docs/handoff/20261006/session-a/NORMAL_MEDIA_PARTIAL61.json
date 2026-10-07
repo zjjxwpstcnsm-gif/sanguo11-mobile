@@ -167,5 +167,18 @@
   "newFullSourceRootCauseClosed": false,
   "coldAccepted": false,
   "restorationFinalAccepted": false,
-  "completeGoal": false
+  "completeGoal": false,
+  "laterLiveMilestones": [
+    {
+      "actualVisitedOfficers": 64,
+      "expectedOfficers": 670,
+      "sourceComplete": false,
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/full-normal-media-source11-ime-61/actual-partial-callers-64.json",
+      "hostSha256": "be3a4d892c9a41564191df6161fc2c847fc76eeb6a96e41977c67d9f9ea81e03",
+      "deviceReadbackSha256": "be3a4d892c9a41564191df6161fc2c847fc76eeb6a96e41977c67d9f9ea81e03",
+      "rows": 128,
+      "fullSaveRngStateTokenPure": true,
+      "allRawBitmapRowsPass": true
+    }
+  ]
 }
