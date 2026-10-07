@@ -211,3 +211,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SHA全部精确，14唯一增量路径当前逐SHA等完成Git对象，无冲突，不读/复制WIP；2生产只Fieldworks/FieldworkUi统一补修可见、复核与执行。对3482完整源码清单所有app assets/res/core资源/6JNI重验SHA，冻结Bridge6ada精确。已停止仅A缓存的64旧B组合构建（70386 exit1），不用其产物；新65组合须独立构建实装并正常军建/媒体/内存/真实退出确认/冷/全文件恢复，不借61或B883d实装成绩。
 
 新65组合565195ca独立构建成功1m26s并冻结：游戏4df5e29c/313473756B，test7abb13fd/2610499B，原4/新2JNI包内全部逐SHA同等，production内容门通过，不含9测试/Demo/isolatedbattle。已完成B补修主机63断言通过，只是语义夹具不代正常Android。完整新鲜9/3797备份正在96153中逐SHA/独立clone校核，未安装或接受；后续先实际Source14军建/补修/施工提示/多旬/保存/冷，再所有新包媒体与内存，不借ff2832全670或B54成绩。
+
+65完整新鲜备份终端verified9/3797后实际安装两包已由install记录Success，当前最终APK读回/pm组件阶段仍须session.json确认。driver93249/native35793/video28762/实际120s超时观察84357已启动，后续仅续读此句柄，不重装、不操作B5582。多旬栈诊断只有实际新foreground120s标记触发且核对目标PID后才SIGQUIT；若触发，时序不能算无干扰性能。全部normal/cold/最后SHA恢复未完成不判通过，新4df5/7abb不借61或B883d成绩。
