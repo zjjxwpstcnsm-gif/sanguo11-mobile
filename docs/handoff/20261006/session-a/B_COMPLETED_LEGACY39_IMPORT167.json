@@ -1,0 +1,72 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "previousCompletedBHead": "89534120e46e488136db0e661270757d9c4a4c50",
+  "newCompletedBHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "completedCodeCommit": "cec503e0dd5c4a5b68806657c9dfade63b10137f",
+  "importMode": "Exact committed Git blobs only; B working tree never read as source or modified",
+  "paths": [
+    {
+      "path": "app/src/androidTest/assets/session-b/legacy39-original.sg11",
+      "beforeSha256": null,
+      "afterSha256": "5d002d3cee6f84700cd5e1292c05b672e8a05e0b547ac7d753f2b7987d5e2f7f",
+      "mode": "100644"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBLegacy39Instrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "5290db2f20f9b3d9cc08d7c6d0acc795e6d72085d3116f9b00efda7800b5341b",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/COMPLETED_LEGACY39.md",
+      "beforeSha256": null,
+      "afterSha256": "98fdea0c116f288acc4895c2412756495cf4737fc4f371d248cd3610dbb4bd34",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/LEGACY39_DELIVERY.json",
+      "beforeSha256": null,
+      "afterSha256": "0bc16c09f7b4f329319f3400901ccd74d437569cc0c4ff21e427063c9726dbbe",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/legacy39-completed.init.gradle",
+      "beforeSha256": null,
+      "afterSha256": "315e16d6aad7a5710863c96f2f9043df5bedd9a427571824b5c55ecc5f0f5c79",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/content/session_b_archive_completed_legacy39.py",
+      "beforeSha256": null,
+      "afterSha256": "87a11b0623ba0b2343de87200fbabe8369b274e24db044501e9a6b87920fb6af",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/content/session_b_freeze_completed_legacy39.py",
+      "beforeSha256": null,
+      "afterSha256": "288410276ca6f12f3db109feae2fe0ef5d196818596759e73e528cd8a205118a",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/content/session_b_stage_completed_legacy39.py",
+      "beforeSha256": null,
+      "afterSha256": "60520fae1d2390a8b74d887caae0adb536d65fb20eb132dd6cb20cb4444e904a",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/content/session_b_verify_legacy39_ui.py",
+      "beforeSha256": null,
+      "afterSha256": "6252bdc68ec1a92032e6503ea1a3a1cce6ce684c82a7c141425db7f29c3b3b4e",
+      "mode": "100644"
+    }
+  ],
+  "productionDelta": [],
+  "androidTestDelta": true,
+  "otherBWipExcluded": true,
+  "bridgeUnityRootGradleOriginalFourJniUnchanged": true,
+  "allSixJniResourceGuardsRemain": true,
+  "conflicts": [],
+  "freshCombinedApkRequiredForThisNewTest": true,
+  "oldB58And59ScoresNotTransferred": true,
+  "wholeGoalComplete": false
+}

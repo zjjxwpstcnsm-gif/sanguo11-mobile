@@ -400,3 +400,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 165 新完整提交e62f2809独立构建4分钟并冻结两APK，实际largeHeap=true/5636assets逐字节同155/168固定输入/6JNI逐SHA；新包尚未安装。155第二wall-construction实际compute480094ms，未解决长旬，165宿主构建与该段重叠，不能作无干扰比较或唯一因果。91494/91673已实际终止且audio无deviceactions，90296继续自己的正常/cold/完整恢复。
 
 166 实际94678等待器绑定当前155military producer90296/其a9880da与新165 931bc/6ffba，当前waiting无deviceactions。只在旧case实际terminal、9+3797每SHA恢复/video+native完整结束后，重新fullbackup装新165军建。旧case若真实失败则仍failed不借cold或normal分，数据安全完整已恢复可做独立新修正测试；新165自身仍要求normal/cold/完整restore。Source/WIP diff拒绝旧cohort，原565/10ed/332a等旧分不迁移。旧91494/91673已终止，155当前长旬不闭合、165构建干扰记录。
+
+167 B完成HEAD更新到36f059b4(cec503e0独立真实39舌战续行测试/夹具+36f文档)，main仍ef413。仅9新增路径逐Gitblob读入own隔离源、mode/SHA逐项相等，生产delta为空，Bridge/Unity/rootGradle/原4+新2JNI不改，B工作区全部NativeDuel/宝物/忠诚/页/规则WIP明确排除且未写。新B fixture2139833/SHA5d002d...真实既有39档，不造版本头；B5582包b457/1afa成绩仅B自己的范围，不能移为A165或组合接受。新test/夹具须后继独立testAPK编译/实装，当前15590296轮次仍其旧frozenpair。
