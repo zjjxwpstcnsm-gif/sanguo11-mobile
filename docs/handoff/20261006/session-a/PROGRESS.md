@@ -440,3 +440,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 190 当前176原39真实normal/cold7362→16039/both3Dsubmit/expectedmid9d987609...通过，暖/冷finished全Save/bothRNG字节SHA相同，原9internal(rewrite3)/3797external(rewrite0)每SHA完全恢复、video/native0，原B测试/fixture不改。真实菜单读取/采用策略取消与确认保留完整模型RNG/人物出牌/自然终局/暖冷各3旬/手动存读完整接受，只此范围，原准入/认输/外交/完整NativeDuel/原声/ARM未借分。
 
 191 1234/6773/6820/6821旧原39已真正结束，2601已启动真实normal7783/audio7789/heap7800三独立child，串行数据门：同176重新正常军建/火/攻击/16caller、.995菜单原曲后新180ordinary与176default两套fast32/all244/冷/原SHA恢复；现normal开始freshfullbackup，audio/heap只waiting无deviceaction。不得把已关闭186旧test分替代当前176流程。
+
+192 同176testa37f/game931bc正常Source14军建七旬/完整存读/活动重建/冷21957→14999/both3Dsubmit/auto4aeb8272...通过，原9internal(rewrite4)/3797external(rewrite0)每SHA恢复、video/native0，录像及memory峰值准确见192。193overlay和194真实widget文本按最终log/APK/restore冻结，不用旧186test36f分，七旬仍有>120秒不宣告性能根因/JavaGPU/ARM预算关闭。原dataowner7828和video7851/native7852均已结束，parent7783自动进入真实fire-extinguish-expiry freshbackup；音频7789/heap7800只等整个正常矩阵。

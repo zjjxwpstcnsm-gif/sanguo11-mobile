@@ -1,0 +1,135 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair",
+  "sessionSha256": "71b909bcedd7a281ebe5db9383851837ba62a702d6a5cad799ef9e96b62e10c6",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "counts": {
+    "recordings": 16,
+    "widgetRows": 374,
+    "enabledRows": 365,
+    "unresolvedText": 300,
+    "resolvedSolidText": 74,
+    "disabledRows": 9
+  },
+  "minimumResolvedSolidContrast": 8.52197412987157,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/cold-evidence/01-cold-process-resume-actual-text.json",
+      "sha256": "eb29759fe2974eb78621664818359a86ae5ade8084eb7cde1933c8ab37c72ce1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/cold-evidence/01-cold-process-resume.png",
+      "screenshotSha256": "c3b5253ba06ccbd49e44c28693c3705e97238d85185f19a992fe3aba8d2a6cc4",
+      "widgetRows": 25
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/cold-evidence/a-original-fire-cold-restored-actual-text.json",
+      "sha256": "8053d42000caa61cf8488944646eae9dfae1bbd001f288c3aa33916ddf01e077",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/cold-evidence/a-original-fire-cold-restored.png",
+      "screenshotSha256": "2871b8e573b28a2a3766fe4bb7a366112d4b63ea64ced92a4ddc60c3d39c6259",
+      "widgetRows": 25
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/01-source-new-game-actual-text.json",
+      "sha256": "492729d18231cbf9725dad8897a3a08b60477ae8af07415daffdd51caa73a53c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/01-source-new-game.png",
+      "screenshotSha256": "8d38722a37ac8b6a3737ecce43e8bc26587a31814310bef860d10df0ed1b3824",
+      "widgetRows": 14
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/02-initial-build-targets-actual-text.json",
+      "sha256": "5e3aa501305e246ba15d90dd68d2bd71793deb2e5f2d7302d81430bab42ee5f1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/02-initial-build-targets.png",
+      "screenshotSha256": "3faaa2cf5e4a6d0b4a08367b9f631916d1f0c2c0d19c3589f9189e0f4672fe86",
+      "widgetRows": 2
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/02a-city-center-funding-actual-text.json",
+      "sha256": "b054e75cc62c7e2d2486101d3b88f076b2ab669127370050d6ca477d43d73c4f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/02a-city-center-funding.png",
+      "screenshotSha256": "c51492a4ebe48ed1e6cf291400bde83186903dac95733f740003e5959e63e5c5",
+      "widgetRows": 36
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/02b-city-near-wall-actual-text.json",
+      "sha256": "aece65e99077a176d2fc5d4dc534bfd228f3f91b0baab6a28d5b9748b34d3974",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/02b-city-near-wall.png",
+      "screenshotSha256": "50d9bb446300c0a0a2ad87be31b62ddad4f36c5a89274a35f05255983537c463",
+      "widgetRows": 27
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/03-legal-confirm-actual-text.json",
+      "sha256": "106b6c8abd74ff42c66aa1289842378a44aaa34f74c4833ba691990a110f8f2c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/03-legal-confirm.png",
+      "screenshotSha256": "9984fd3092fa82eaf5beba2d9e7253fc3473882fbb7f74c15f083d4fce2ff0d7",
+      "widgetRows": 4
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/04-real-construction-actual-text.json",
+      "sha256": "aedeaff446d1d76d470ff11d8ae80e5140cc1425730bfcdf57240deec2990d46",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/04-real-construction.png",
+      "screenshotSha256": "e1e34d059babd08a78b9f4202a9d5699b2243ceb0f7b25ada76778a6417d2825",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/04a-stopped-shell-actual-text.json",
+      "sha256": "d5d98429f41b9c0dd8205b63b724fbf26dded99b41d3e852e16b840d7da7c8d3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/04a-stopped-shell.png",
+      "screenshotSha256": "ceb9ba77a6916139e54d3bd247a2afb1d8afd080edba9432c776608cb00aa83e",
+      "widgetRows": 36
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/04b-resumed-repair-actual-text.json",
+      "sha256": "c05774cbde56220c0b517b40b35c89ab337092dff2646606cfc8788fa9f06cc4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/04b-resumed-repair.png",
+      "screenshotSha256": "42959e8d2b934972c21d75b3f656ab989e857ce53dab5faec146ec11c0039071",
+      "widgetRows": 36
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/05-completed-actual-text.json",
+      "sha256": "ed5780f944f5dc2af96b3d84f2bce2d27764f08a8a67ef90bca8698fe11a376d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/05-completed.png",
+      "screenshotSha256": "c1b26cc84169beadc6fe9a5231ae1c5d00286177590a806290faa97539134325",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/a-original-fire-actual-build-actual-text.json",
+      "sha256": "62ec70ea3591760408d018e7f2353a7bb3ff2cd160f5fb171c3e03aee1557f10",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/a-original-fire-actual-build.png",
+      "screenshotSha256": "814d3a3c0831ed8cbb0fdb2969980dea75ef4144a708746d4d9dd611083c9175",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/a-original-fire-resumed-repair-actual-text.json",
+      "sha256": "32fa5ab0e0dda10267e72dafadebf2ff53a230a0eb295a640139e467282938ae",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/a-original-fire-resumed-repair.png",
+      "screenshotSha256": "1e0d0e3e6a27c42b3bd2b28f5bcf880d136b37c40f7c6654786019b2bd4409ea",
+      "widgetRows": 24
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/turn-stopped-shell-no-progress-foreground120s-actual-text.json",
+      "sha256": "e85477a52154100ad89dd34fefab75b7dd5a1e98ff7569c63db1becf3af9e8e5",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/turn-stopped-shell-no-progress-foreground120s.png",
+      "screenshotSha256": "1f043129ccf7dce4d244bae8afda760dce0c69ec8e004a6078ffc5ae2920ce27",
+      "widgetRows": 27
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/turn-wall-action-reset-foreground120s-actual-text.json",
+      "sha256": "c2a7fedc55b94f948aaf211b638fd008d3f8619a8d0963e3a98407829655a706",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/turn-wall-action-reset-foreground120s.png",
+      "screenshotSha256": "6a3caaaeafa8636ed1a283bc0b26bdfad0aaee3a1313b1761187bbe1218914b1",
+      "widgetRows": 26
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/turn-wall-construction-foreground120s-actual-text.json",
+      "sha256": "eaac423bb7bd9dea3452d740150174da676aad75cbc5b82f94ac5038aaa98a5e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/military-construction-repair/evidence/turn-wall-construction-foreground120s.png",
+      "screenshotSha256": "a1ecb3162a6e58c3f3f049a1ef896711747ad98da9fb1c1e34a607fdc5136c6d",
+      "widgetRows": 27
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}
