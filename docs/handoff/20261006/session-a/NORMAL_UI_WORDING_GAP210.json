@@ -1,0 +1,40 @@
+{
+  "scope": "Read-only actual normal UI wording gap. No production mutation, no B WIP integration, no new APK claim.",
+  "sourceRevision": "f41a0e4e9a0087a24d4c983ab707aa3ed2ddbcb8",
+  "actualAcceptedSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers",
+  "actualSessionSha256": "05df291ec685c524f013a6b7ca3e0a90a2228bb6dec2aaa92fa6d36bcbb3077c",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-198194b3-legacy39-registered-test176/app-debug-androidTest.apk": "a37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a"
+  },
+  "sourceIndex": 11,
+  "nativeOfficerId": 229,
+  "entry": "normal roster advertised long-press -> officer detail",
+  "observedImplementationText": "原登场条件未闭合，保留原状态；不按年份猜测激活",
+  "sourceOwner": "B",
+  "sourcePath": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+  "sourceLine": 47,
+  "facts": "SOURCE_WAIT state remains authoritative; entry condition is unresolved. Do not activate by guessed calendar or hide the true state.",
+  "desiredProductBehavior": "Keep concise player-facing state wording; move restoration/implementation uncertainty to evidence docs. B owner must review semantics and wording in its completed frozen delta.",
+  "screenshotVisuallyInspected": true,
+  "screenshotObservation": "Name, attributes, life-cycle text and Return are readable on dark dialog. This frame shows implementation explanation in the normal detail. No global contrast, original crop or ARM claim.",
+  "files": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers/evidence/source-11-native-229-normal-detail.png",
+      "sha256": "374a986a7373cedd0b0047b75486aadd253d836d8d51e274e560c7601ef7c448",
+      "bytes": 374208
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal182/normal/source11-normal-callers/evidence/source-11-native-229-normal-detail-actual-text.json",
+      "sha256": "8639987adbe6842e608f824b465d1435da31d7ab10c84130c5b6b16ef15ddb07",
+      "bytes": 5055
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "sha256": "3a8cc34ad1a7e6a0cea1677226f7f87a8ea381bcd4ed40300acfe1643901edc0",
+      "bytes": 16840
+    }
+  ],
+  "fixImplemented": false,
+  "wholeGoalComplete": false
+}

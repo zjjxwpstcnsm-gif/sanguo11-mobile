@@ -11,3 +11,8 @@ UiTheme 将提供可读文字/禁用/对话框统一机制，B 自行应用其�
 精确A路径为 MainActivity.java 的普通PC来源新局分发与异步确认、ScenarioFactionPicker.java 的本次选项草稿/确认摘要；后继正常UI测试 SessionANativeDuelOpeningInstrumentation.java 已预登记但未创建。完整方案见 [NATIVE_DUEL_OPENING_ADAPTER204.md](NATIVE_DUEL_OPENING_ADAPTER204.md)，只读取证见 [NATIVE_DUEL_OPENING_READONLY205.json](NATIVE_DUEL_OPENING_READONLY205.json)。
 
 B当前 PcDuelOptions(life,death,difficulty) 与 PcScenarioCatalog.load(sourceId,player,seed,options) 仍未完成未提交；范围0..3/0..2/0..2不等于原GUI默认与文字真值。A不复制WIP、不编译此接口、不改变当前新局/旧档/预览/取消/全部RNG。待B交付完整冻结依赖和默认/文本映射真值后，只有明确PC新局选择调用四参数完成接口，所有未选择/旧三参数与读取保留策略；不推断原PC启动RNG、不新增Bridge/Unity字段。若默认尚未知，UI保留未选择，控件默认position0不算明确选择。当前5554人物/媒体矩阵与串行音频/双堆不受影响。
+
+
+## 210 正常人物详情技术文案取证
+
+A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只读冻结当前176配对已完成Source11实际人物详情截图、文字记录与完整源码SHA。文本来源为B所有的core Lifecycle；不编辑B源码，不重新构建或打断当前5554测试。将技术实现说明泄漏到正常人物详情作为最终UI未完成项；状态真值仍保留，不猜登场规则。
