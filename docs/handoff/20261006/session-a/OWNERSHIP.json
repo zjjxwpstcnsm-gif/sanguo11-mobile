@@ -374,7 +374,8 @@
     "docs/handoff/20261006/session-a/OVERLAY_COUNTER_AUDITOR162.json",
     "docs/handoff/20261006/session-a/EMPTY_PRESENTATION_FINDING163.json",
     "docs/handoff/20261006/session-a/EMPTY_PRESENTATION_FIX164.json",
-    "docs/handoff/20261006/session-a/EMPTY_PRESENTATION_BUILD165.json"
+    "docs/handoff/20261006/session-a/EMPTY_PRESENTATION_BUILD165.json",
+    "docs/handoff/20261006/session-a/EMPTY_PRESENTATION_INSTALL_QUEUE166.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json"

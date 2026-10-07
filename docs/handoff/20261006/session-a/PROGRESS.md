@@ -396,3 +396,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 163 新155第一funding-resetcompute295576ms，长旬未解决；实际旧计数表overlay5787/admitted1301说明另有显式dirty。源TurnPlayback fastForward每24ms重复null critical/replay，无内容变化仍invalidate，找到第二路径，不声明唯一根因。精确确认旧16091494仍只waiting-new-military与producer90296live后，只停自己调度parent，当前155military/video/native独立完成恢复；161未执行动作需核terminal。
 164 A Filament replay/critical增加同event+归一phase+portrait引用不变时的幂等返回，真实event/phase/portrait变化与从非空到空仍clear+invalidate，nativeFPS/VM/水火/StateToken/规则RNG全不改。两条重复请求路径需新165独立build/install/窗口/手势/效果/同正常长旬验收，不能迁移155计数或145/156成绩。
+
+165 新完整提交e62f2809独立构建4分钟并冻结两APK，实际largeHeap=true/5636assets逐字节同155/168固定输入/6JNI逐SHA；新包尚未安装。155第二wall-construction实际compute480094ms，未解决长旬，165宿主构建与该段重叠，不能作无干扰比较或唯一因果。91494/91673已实际终止且audio无deviceactions，90296继续自己的正常/cold/完整恢复。

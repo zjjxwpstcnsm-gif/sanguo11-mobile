@@ -1,0 +1,53 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "e62f2809e4e6128bd18b863d0ea9f5fca28b9c61",
+  "gameLargeHeap": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk",
+      "sha256": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+      "bytes": 313477288
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug-androidTest.apk",
+      "sha256": "6ffba3d6338f5b98b356be3e4a94ddf2da89649befadec9a34e0fd4c16682dd1",
+      "bytes": 2614127
+    }
+  ],
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "all5636AssetsByteExactTo155": true,
+  "assetsCompared": 5636,
+  "fixedPackagedInputsExact": 168,
+  "manifestActualLargeHeapLine": "A: http://schemas.android.com/apk/res/android:largeHeap(0x0101035a)=true",
+  "buildLogSha256": "1e8f525fc957212b5d86cb963c7da7b490ff3134e48d9dd117c260bcf79c17d8",
+  "hostBuildOverlaps155Military": true,
+  "actualInstalled": false,
+  "actualAndroidAccepted": false,
+  "scope": "Fresh committed unchanged-presentation idempotence plus rejected-frame overlay fix, same original assets/6JNI and native clocks. New source must actual install/retest; 155 latency/functional scores never transferred.",
+  "wholeGoalComplete": false
+}

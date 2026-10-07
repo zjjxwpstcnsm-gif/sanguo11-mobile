@@ -7,5 +7,9 @@
   "new155LongTurnSolved": false,
   "nextFixRequiresFreshApk": true,
   "audio161MustInspectTerminalAndNoActions": true,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "scheduler91494AndAudio91673ActuallyTerminal": true,
+  "audio161DeviceActionsStarted": false,
+  "new155SecondTurnComputeMillis": 480094,
+  "new165BuildOverlaps155Case": true
 }
