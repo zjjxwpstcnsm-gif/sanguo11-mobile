@@ -13,7 +13,7 @@ public class SessionAScenePresentationInstrumentation extends SessionBFieldworks
   World.Unit unit=SessionProbe.view(activity).unit(id);
   check(unit!=null,"real current unit exists before normal list selection");
   String commander=SessionProbe.view(activity).officer(unit.officerId).name;
-  nav("全部部队");text("全部");
+  nav("全部部队");tap(await(v->v instanceof android.widget.Button&&"全部".contentEquals(((android.widget.Button)v).getText())));
   DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
   tap(table.search);runOnMainSync(()->table.search.setText(commander));
   runOnMainSync(()->{
