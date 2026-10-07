@@ -416,3 +416,7 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 172/173 实际新组合后继99889仅等待helper98870正常/cold/每SHA恢复/observer收尾，再同931bc/36f7e8跑火/攻击/全部16真实caller；音频99924只等此完整正常门，.995整首原源阈值保留，当前两等待器均无deviceactions。普通384回归/原39续行/ARM仍需独立验收，旧声/内存成绩不迁移。A调度tools只补新168冻结cohort whitelist，语法通过，未改APK/规则。
 
 174/175 发现原168仅含B39 class/真实fixture，正常A测试Manifest尚无运行器注册；B专用init.gradle以defaultConfig单独注册，不能直接挪其改源构建。A已加精确原runner测试清单注册及驱动真实legacy39 evidence/mid-save/warm-cold PASS处理，B测试/夹具字节不改。精确确认99889/99924只waiting且无动作后停止自己的下游队列；当前98870军建数据owner不动，完整normal/cold/restore继续。需要独立新test包，不能把168称实际B39可启动或继承B5582分。
+
+176 注册后独立test构建2m30s成功，BuildConfig源198194b3、新test3088556B/SHAa37f43264c44b0ad1854705f853d2e1e98b83fbde8be5d1a02bf4400a3ab9a9a，独立冻结out/session-a/apk-198194b3-legacy39-registered-test176。二进制Manifest真正含原B39runner/classes.dex含class、2139833B真实夹具SHA5d002d...精确；game931bc/生产e62/6JNI未变，尚未安装。宿主编译与169长旬重叠，不作无干扰性能比较。
+
+177 实际串行等待器1234仅绑定live军建98870，等它normal或失败范围保留+冷/全9/3797数据恢复+observer完整收尾，先核main/原源无delta，再freshfullbackup/test-only实装176，按原B genuine39普通路径与独立冷重复/两finished档SHA相等验收。当前无deviceaction，不修改原B测试/夹具或WIP。旧172/173等待器已终止无动作，不restart；完整人物/原声/普通堆仍待新176正常序列。
