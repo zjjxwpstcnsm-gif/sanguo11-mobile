@@ -368,3 +368,5 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 146/147 新145 game8e08/test332a完成fresh9/3797全备份与device整SHA/runner验证实装，helper80403/video80451/native80452实际live；后继80625仅同145正常军建/cold/完整恢复后串行火/攻击/全16人物，audio80686等全部接受后实capt .995，无旧139142或旧音频成绩迁移。
 148 complete当前6bf0d6e2新源11229文件/905046230inputB逐SHA回读，archive653212881B SHA a9526b9511b50c31fff43af7292032d288acc145106b93bc6bb6bc7d3b5e7c2a，out/session-a/source-checkpoint-current148-complete/sanguo11-mobile-source.tar.gz。完整10714guard/tracked/6JNI与145确切同、app生产/test/core/API/runtime/build raw源与145test源26ec无delta；含144准备屏障/145工具及旧失败/142攻击真实成绩，不含归档完成以后146147动态receipt。不称全部正常/ARM/最终组合接受；host归档及149build并行会干扰性能。
+
+149 独立ordinary test构建1m44s，实际generated BuildConfig源6bf0d6e2/当前144准备屏障+138target源与145一致，冻结out/session-a/apk-6bf0d6e2-preparation-normal384-test149；游戏仍独立134普通d30990d7整包SHA相同/manifest=false，生产/core/API/runtime/6JNI/5636assets/168pins均同。新test SHA 313f76f546100f8ba29731e8231b0f945cec6d15dc9d05a97500976da38db66f，尚未安装不借任何旧普通/默认成绩。hostbuild并行military145记录干扰，不当无干扰性能基准。
