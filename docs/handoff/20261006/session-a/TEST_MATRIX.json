@@ -27,9 +27,9 @@
     },
     {
       "item": "android-compile",
-      "status": "CURRENT ff2832/d87a INSTALLED59 DIAGNOSTIC NORMAL RUNNING",
-      "evidence": "source5a72 gameff2832 independent build/install/deviceSHA;168pinned/6JNI exact/no testscenarios. Newtest16701/d87a installedregistered;58 failed/restored,59 not accepted. b81952/53 remain historical exact package scores.",
-      "next": "59 all670 normal/cold/fullrestore; then latestcommands/all16/fire/heap/ARM and finalserial combined APK"
+      "status": "CURRENT ff2832/2ee985 PREPARING61 NORMAL KEYBOARD DIAGNOSTIC",
+      "evidence": "Exact game5a72/ff2832 independently built168/6JNI guarded, previous58/59/60failed and each fullyrestored. Newtesta9875651/2ee985 built/frozen, current61live installation pending; actualstage must be checked.",
+      "next": "61 actual IME completion+stable layout/all670/normal/cold/fullrestore; no historical b819 result transfer"
     },
     {
       "item": "fire-state-ui",
@@ -45,9 +45,9 @@
     },
     {
       "item": "identity16",
-      "status": "41 FOUR GAIJI ALL16 PASS;55 NATIVE181 NORMAL/COLD PASS;54/56/57/58 FULL SOURCE11 FAIL;59 RUNNING",
-      "evidence": "Latest historical joins10720/0unknown/695normalassets/2892PNG;41 actual128 caller pixels. b81954 partial194,55 one181 normal/cold,57 twelve/CaoCao real swipe;ff2832 58 eight then measured254 clipped-row oscillation; allfailedruns restored, no partial sums treated all670.",
-      "next": "59 complete670 measured clipping swipe/normal pure pixels/cold/restore, then other15/fullscreen/forms/age/54shorttouch and57SunQuan causes/ARM"
+      "status": "41 FOUR GAIJI ALL16 PASS;55 ONE181 NORMAL/COLD PASS;54/56-60 FULL SOURCE11 FAIL;61 PREPARING",
+      "evidence": "Known historical exact-source joins10720/0unknown/695assets/2892PNG and41 actual128gaiji callers. Latest diagnostic60 fourpairs then404pxsamehold layoutshift; everyfailedrun complete9/3797restore. No partial counts summed as all670.",
+      "next": "61 normal keyboard search completion and observable IME+1000ms stable viewport/root; all670 and remaining15/form/age/fullscreen/ARM still open"
     },
     {
       "item": "dynamic-age",
@@ -69,9 +69,9 @@
     },
     {
       "item": "save-preservation",
-      "status": "52 THROUGH58 EXACT ORIGINAL9/3797 RESTORED;59 GUARDED LIVE",
-      "evidence": "Each independently verified full backup/currentSHAs and final9internal/3797external originals;53 animator null restored.59 freshcurrent everyfileSHA and independentarchives before exact test update; no clearData.",
-      "next": "59 normal/cold/finaleverySHA restoration; do not claim live restore"
+      "status": "52 THROUGH60 EXACT ORIGINAL9/3797 RESTORED;61 GUARDED LIVE",
+      "evidence": "Each full baseline/currentSHA/archive guard and final everyoriginalSHA.60 internal/external restored exact;61 backupverified independentarchive/currenteveryfileSHA before install; no clearData.",
+      "next": "61 normal/cold and final alloriginalSHA readback; livebackup not completion"
     },
     {
       "item": "arm",

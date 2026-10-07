@@ -158,3 +158,5 @@ B只串行导入完成冻结增量，逐路径前后SHA审计：军事/容量/ty
 61独立test构建成功并完整新鲜备份通过后实际安装开始：测试源a98756510dd23ce7b508aee113dba43f70a6a9db；实际新test已冻结在out/session-a/apk-a9875651-portrait-ime-test，游戏仍5a72/ff2832，仅测试正常IME完成与位置稳定观察。driver/native/video具体句柄由本轮工具续读；没有旧b819成绩移用、没有Snapshot/Rule/RNG构造或跳过人物，全670/其他15源仍需实证。
 
 61确切testSHA2ee985c641966617266623f893f4a116a865218cc6094ba3323d4c0d1fff1f76/2607443B，driver78010/native26106/video82680实际启动且需续读此3句柄，不重启或覆盖下一包；独占5554锁和完整9/3797备份保留。当前是否安装/normal/cold/restore以session.json实际终端状态为准，尚未接受整轮。
+
+61 driver78010仍确认live、当前preinstall archive/currentguard阶段（backup-verified），未出现新失败或新实装成绩；矩阵更新最新60失败/恢复与61准备的实际包范围，原媒体四字形/身份旧数不误转新包或相加，完整目标不缩小。
