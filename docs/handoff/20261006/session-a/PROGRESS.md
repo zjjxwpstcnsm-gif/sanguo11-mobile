@@ -518,3 +518,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 249长时否定246可交付性：128持续600update/1pause/40stop/restart120/40stop共801请求，仅660帧exit2，重建后20Mbyte守卫20000006触发45a530；准确word/记录/负129/duplicate/height129/coordinate200在frame前拒绝均保留。原型不进JNI、不再扩大额度。停止413470原字节只需1stack参数且清handle+6bit4，本代码调用形状正确，不猜generation遗漏；251新host诊断仅读原pool/instance链条和rawflag/句柄join，当前正在运行。250加强A test ray准入已stage编译/补丁SHA读回通过，规范239/165及B当前包不改。B已读248并撤回输入bug推断，在自身pose增加真实ready门，不需要A生产输入补丁。242当前Source4约336/670仍partial，原Helper5024/5061/5062实际存活，完整恢复未结束。
+
+
+251原列表诊断完成：同249输入132s后同守卫exit2，frame602total0证明停止后的下一update清掉旧128instance，重建total128/joined128且4533780guest累计bytes/107allocations稳定。读的是原46099c..460b21链与rawflag，不改PC/World/RNG。此证据否定“以此就判实例泄漏”，没有关闭其他内存/帧成本或当128 Android通过。5024/5061/5062当前Source4诊断实际约432/670存活，最新整个main核查仍ef413，未回退/复制B WIP。

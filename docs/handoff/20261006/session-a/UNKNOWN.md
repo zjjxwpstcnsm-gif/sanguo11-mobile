@@ -137,3 +137,6 @@ CURRENT157: 145military156 normal/cold/full9+3797restore/9rawvideo accepted, per
 
 
 249覆盖246短测后的状态：20M source-count预算在长时128停止重建时再次失败（660/801），不具有JNI/Android交付资格。不把20M无OOM或短71帧当容量修复，不放大预算；停止函数413470原ABI一参数/清bit4已直接核原字节，具体population与后续CPU量需251原列表只读证据。negative129/duplicate/out-height/out-coordinate拒绝通过仅输入边界，真实正常游戏、原高度/frustum/128性能/ARM仍未接受。
+
+
+251只读原instance列表结果：停止后frame601 rawbit4已清、frame602旧128对象从原链移除(total0)，重建后重新total128/joined128；guest累计分配4533780/107allocations全观测不增。再次同20M守卫失败，所以本例不能凭失败就归为controller实例泄漏；该计数不是Java/native/GPU峰值，其他缓存/全局池/源随机工作量仍需另证。246仍不进JNI。
