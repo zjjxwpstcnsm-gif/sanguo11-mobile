@@ -1,0 +1,92 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "27bc6b6189b048b9e45e23293405c138306f0051",
+  "canonicalBaseRevision": "27bc6b6189b048b9e45e23293405c138306f0051",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parentCandidate": "MEDIA_CANDIDATE_BUILD290.json",
+  "completeInheritedFiles": 11415,
+  "completeCandidateFiles": 11416,
+  "changesFrom290": [
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "beforeSha256": "fe7b940d82bd6afe1419c3cf4d0cd41aab84d55ebca4e03136c89f5eca84f9b3",
+      "afterSha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "beforeSha256": "853cdef9ce9ecd71ff38684bfe47c36c21e6a1c4c975bc29f235a14972f04129",
+      "afterSha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a"
+    },
+    {
+      "path": "tools/content/native/session_a_cell_fire_instruction_worker.c",
+      "beforeSha256": null,
+      "afterSha256": "ea99f4d6268696ca2bbd42e01690203e3f9b8c0b512ad40ad132188ddfb56f8e"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk",
+      "sha256": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
+      "bytes": 313548279
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug-androidTest.apk",
+      "sha256": "1ff042d912f2534b934ef6b95a2d4a4fafc71d4e8ecc9549a032431d99a95779",
+      "bytes": 3090144
+    }
+  ],
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/candidate-inputs.json",
+  "candidateInputManifestSha256": "3b2bb98f1ee4994ecfa5a2a649bcdf37d77e9ecf808c3c2849e3fa494556f794",
+  "fixedPackagedInputsExact": 168,
+  "allPackagedAssetsExact290": 5637,
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "protectedOriginal4": false
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "protectedOriginal4": false
+    }
+  ],
+  "protectedCurrentSixUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gameLargeHeap": true,
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 141.54906148199998,
+  "buildLogSha256": "2c2a8a9b584c5677274e287ffb69009ddf96c19c80d38f95fb88a09b2171b920",
+  "freeBytesBefore": 73121284096,
+  "freeBytesAfter": 71616438272,
+  "actualInstalled": false,
+  "watchdogRootCauseProven": false,
+  "scope": "Full media290 source/resources/tests plus cache-only295 fire ABI pair and corresponding C source. Limits/watchdogs unchanged; original4/current2 frozen. No B Native WIP/Bridge/Unity/rule/save/RNG changes. Host293 timeout remains unresolved; new actual independently installed normal lifecycle/readback/cold/full original SHA restoration needed, no prior scores transferred.",
+  "wholeGoalComplete": false
+}
