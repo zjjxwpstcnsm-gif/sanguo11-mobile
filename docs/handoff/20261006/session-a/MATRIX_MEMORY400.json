@@ -1,0 +1,88 @@
+{
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24"
+  },
+  "normalAndFinalColdAccepted": true,
+  "actualHeapBudget": "normalMiB=384 largeMiB=512 actualBytes=536870912 deviceRamBytes=2089222144 largeHeap=true",
+  "actualColumns": {
+    "evidence": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/matrix-redo392/evidence/memory.csv",
+      "sha256": "caf8640a5bbc01afd8b464704698a7bcf2e3f7c76f1fe288d51617930d5317f8",
+      "samples": 413,
+      "heapLimitsBytes": [
+        536870912
+      ],
+      "independentColumnMaxima": {
+        "javaUsed": 302887112,
+        "javaTotal": 303443208,
+        "nativeAllocated": 268700048,
+        "totalPss": 529852,
+        "graphicsPss": 0
+      },
+      "first": {
+        "phase": "ready",
+        "javaUsed": "48413264",
+        "javaTotal": "48413264",
+        "javaLimit": "536870912",
+        "nativeAllocated": "69685768",
+        "totalPss": "142261",
+        "graphicsPss": "0"
+      },
+      "last": {
+        "phase": "ready",
+        "javaUsed": "126885344",
+        "javaTotal": "126885344",
+        "javaLimit": "536870912",
+        "nativeAllocated": "152295656",
+        "totalPss": "303970",
+        "graphicsPss": "0"
+      }
+    },
+    "cold-evidence": {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/matrix-redo392/cold-evidence/memory.csv",
+      "sha256": "ed5ca2c429309e9bf975f5ca26e03dd8c66f012e44701a596b82252d37245021",
+      "samples": 7,
+      "heapLimitsBytes": [
+        536870912
+      ],
+      "independentColumnMaxima": {
+        "javaUsed": 93707960,
+        "javaTotal": 93707960,
+        "nativeAllocated": 127730864,
+        "totalPss": 238715,
+        "graphicsPss": 0
+      },
+      "first": {
+        "phase": "ready",
+        "javaUsed": "67846440",
+        "javaTotal": "67846440",
+        "javaLimit": "536870912",
+        "nativeAllocated": "68903928",
+        "totalPss": "164441",
+        "graphicsPss": "0"
+      },
+      "last": {
+        "phase": "ready",
+        "javaUsed": "87248840",
+        "javaTotal": "87248840",
+        "javaLimit": "536870912",
+        "nativeAllocated": "127730864",
+        "totalPss": "238715",
+        "graphicsPss": "0"
+      }
+    }
+  },
+  "units": {
+    "javaUsed": "bytes",
+    "javaTotal": "bytes",
+    "nativeAllocated": "bytes",
+    "totalPss": "KiB",
+    "graphicsPss": "KiB"
+  },
+  "maximaMustNotBeAdded": true,
+  "graphicsZeroMeansAccountingUnavailableNotNoGPU": true,
+  "instantaneousPeakKnown": false,
+  "scope": "Only completed392 normal16 and final cold memory.csv checkpoints, independent raw values. No forcedGC or device mutation. Sampling can miss peaks; JavaTotal is committed heap capacity, not separate memory. PSS is not added to Java/native. No ARM or original354832-stack claim, no unique leak/lifecycle release proof.",
+  "wholeGoalComplete": false
+}
