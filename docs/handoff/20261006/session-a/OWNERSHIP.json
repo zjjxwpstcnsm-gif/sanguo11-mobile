@@ -736,7 +736,12 @@
     "docs/handoff/20261006/session-a/run_capture_queue366.py",
     "docs/handoff/20261006/session-a/CAPTURE_QUEUE366_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_capture_queue367.py",
-    "docs/handoff/20261006/session-a/CAPTURE_QUEUE367.json"
+    "docs/handoff/20261006/session-a/CAPTURE_QUEUE367.json",
+    "docs/handoff/20261006/session-a/stage_music_buffer368.py",
+    "docs/handoff/20261006/session-a/MUSIC_BUFFER368.json",
+    "docs/handoff/20261006/session-a/MUSIC_BUFFER368.patch",
+    "docs/handoff/20261006/session-a/build_music_reserve369.py",
+    "docs/handoff/20261006/session-a/MUSIC_RESERVE_BUILD369.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

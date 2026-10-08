@@ -1,0 +1,21 @@
+{
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "beforeSha256": "aac85b82fa97f0b9d7ca78495317ba3d900a89b73e8d10b88ec79fd138f1557e",
+      "afterSha256": "639e9f84daaaa8724656cf33729734e9f4afcc17125d06172471a643dd8868a9",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-buffer368/app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java"
+    }
+  ],
+  "requestedSourceSeconds": 1,
+  "original44100StereoReserveBytesBefore": 65536,
+  "requestedBytesAfter": 176400,
+  "additionalRequestedBytes": 110864,
+  "observedPriorFirstLoopUnderruns": {
+    "342": 145,
+    "349": 0,
+    "358": 61
+  },
+  "scope": "Unbuilt product candidate reserve for real intermittent player starvation. One source-second, actual AudioTrack.bufferFrames must be measured after install. Original codec/PCM/loop/timing/focus/pause/cancel/identity/Save/RNG unchanged. Does not repair capture/mixer scheduling or prove unique cause; zero-underrun349 still failed0.995. Queue366 outcome must precede new product build and new full normal acceptance. Not installed/accepted, canonical source unchanged.",
+  "wholeGoalComplete": false
+}
