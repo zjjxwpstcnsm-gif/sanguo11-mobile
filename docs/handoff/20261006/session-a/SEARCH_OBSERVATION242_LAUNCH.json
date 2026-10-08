@@ -15,7 +15,7 @@
     }
   ],
   "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic",
-  "stage": "single-source-diagnostic-running",
+  "stage": "restored-verified",
   "oldQueuesRestarted": false,
   "wholeGoalComplete": false,
   "command": [
@@ -40,5 +40,8 @@
     "5",
     "--fresh-process-reopen",
     "--search-diagnostics"
-  ]
+  ],
+  "diagnosticPassed": true,
+  "helperExit": 0,
+  "rootCauseFixed": false
 }

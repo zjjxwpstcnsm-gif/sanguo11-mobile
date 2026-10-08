@@ -1,0 +1,140 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic",
+  "actualSessionSha256": "d63fc2109d5577c618a5d20b4b4657f77e1f96d80cda65a69c52b6eb5bfe234b",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
+  },
+  "normalColdFullRestorationPassed": true,
+  "heapProfileDiagnostic": false,
+  "samples": 101,
+  "limitsBytes": [
+    536870912
+  ],
+  "peakJavaSample": {
+    "group": "evidence",
+    "sampleIndex": 20,
+    "phase": "zoom",
+    "javaUsed": 251137952,
+    "javaTotal": 251785232,
+    "javaLimit": 536870912,
+    "nativeAllocated": 139554280,
+    "totalPss": 414443,
+    "graphicsPss": 0
+  },
+  "sampledJavaHeadroomAtPeakBytes": 285732960,
+  "peakNativeAllocatorSampleIndependent": {
+    "group": "evidence",
+    "sampleIndex": 3,
+    "phase": "ready",
+    "javaUsed": 199066992,
+    "javaTotal": 199066992,
+    "javaLimit": 536870912,
+    "nativeAllocated": 204006864,
+    "totalPss": 424261,
+    "graphicsPss": 0
+  },
+  "peakInstrumentationPssSampleIndependent": {
+    "group": "evidence",
+    "sampleIndex": 3,
+    "phase": "ready",
+    "javaUsed": 199066992,
+    "javaTotal": 199066992,
+    "javaLimit": 536870912,
+    "nativeAllocated": 204006864,
+    "totalPss": 424261,
+    "graphicsPss": 0
+  },
+  "peakMeminfoPssKiBIndependent": 509490,
+  "recognizedExactPidMeminfoSamples": 2031,
+  "peakMeminfoObservationIndependent": {
+    "pid": "16370",
+    "pssKiB": 509490,
+    "hostUnix": 1791415420.168798
+  },
+  "sourceChildObservationBatches": 1892,
+  "sourceChildPeakBatchIndependent": {
+    "sampleIndex": 64,
+    "time": 1791415542.747366,
+    "sourceChildren": [
+      {
+        "pid": 16813,
+        "parentPid": 16370,
+        "command": "/data/app/game.sanguo.mobile.dev-Xfq91iVGCtGL2jKnVCm_JA==/lib/x86_64/libpc_effect_fire_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin 774.4833 627.4234 3638.0996 --stream",
+        "KiB": {
+          "Rss": 20288,
+          "Pss": 17303,
+          "Shared_Clean": 3440,
+          "Shared_Dirty": 112,
+          "Private_Clean": 44,
+          "Private_Dirty": 16692,
+          "Referenced": 19840,
+          "Anonymous": 16692,
+          "LazyFree": 0,
+          "AnonHugePages": 4096,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      },
+      {
+        "pid": 21182,
+        "parentPid": 16370,
+        "command": "/data/app/game.sanguo.mobile.dev-Xfq91iVGCtGL2jKnVCm_JA==/lib/x86_64/libpc_effect_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae-source-scene.bin 2599.073 5344.7393 6296.0186 --stream",
+        "KiB": {
+          "Rss": 51344,
+          "Pss": 48294,
+          "Shared_Clean": 3500,
+          "Shared_Dirty": 112,
+          "Private_Clean": 40,
+          "Private_Dirty": 47692,
+          "Referenced": 50468,
+          "Anonymous": 47692,
+          "LazyFree": 0,
+          "AnonHugePages": 30720,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      }
+    ],
+    "batchChildPssKiB": 65597
+  },
+  "sourceChildReadErrors": [
+    {
+      "sampleIndex": 21,
+      "reason": "Command '['/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb', '-s', 'emulator-5554', 'shell', 'cat', '/proc/19424/cmdline']' returned non-zero exit status 1."
+    }
+  ],
+  "graphicsPssReportedValues": [
+    0
+  ],
+  "gpu": "Not established. Android reported graphicsPss, including zero, is not proof of GPU VRAM usage.",
+  "rawFiles": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/memory.csv",
+      "sha256": "83a76fe61e08fc30f921a1e67418e98a13cac5ea0afde66d4b7330d6a13eb449"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/memory.csv",
+      "sha256": "85a5023081a1a3d6fd7eedc8a6cddf470ea0566fb0f52a46dbfa38c6f5638d5d"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/meminfo-timeline.txt",
+      "sha256": "bed6adcc04b7981a05d1dca617da77ee5bbd947a6093d04d6cb68b0946b77b36"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/native-workers.jsonl",
+      "sha256": "9cac5dbc68c109225c8282573cf19ab1ebf7628f1581bbe8b36480dd02c14544"
+    }
+  ],
+  "memoryBudgetClosed": false,
+  "wholeGoalComplete": false,
+  "scope": "Only exact-cohort completed sampled telemetry. CSV allocator/Java/mainPSS, local meminfo and source-child smaps are independent observations. Child batch reads are sequential, not synchronized with main peaks. No sum of independent peaks, allocation stack, dominator/leak attribution, untouched peak when recording/GC present, ARM or newer APK acceptance. Budget remains open pending required full stress and device evidence."
+}

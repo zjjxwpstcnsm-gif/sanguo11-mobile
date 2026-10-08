@@ -519,7 +519,10 @@
     "docs/handoff/20261006/session-a/freeze_presentation_delta261.py",
     "docs/handoff/20261006/session-a/A_PRESENTATION_DELTA261.json",
     "docs/handoff/20261006/session-a/run_registered_caller_followup262.py",
-    "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE262.json"
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE262.json",
+    "docs/handoff/20261006/session-a/REGISTERED_SOURCE04_ACCEPTANCE263.json",
+    "docs/handoff/20261006/session-a/registered-source04-memory264.json",
+    "docs/handoff/20261006/session-a/registered-source04-widget265.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

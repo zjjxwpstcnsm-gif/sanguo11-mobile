@@ -1,0 +1,275 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic",
+  "sessionSha256": "d63fc2109d5577c618a5d20b4b4657f77e1f96d80cda65a69c52b6eb5bfe234b",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
+  },
+  "counts": {
+    "recordings": 36,
+    "widgetRows": 330,
+    "enabledRows": 329,
+    "unresolvedText": 289,
+    "resolvedSolidText": 41,
+    "disabledRows": 1
+  },
+  "minimumResolvedSolidContrast": 8.84973742093998,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/landscape-actual-text.json",
+      "sha256": "0b40bc8769bcd278a8bdef759438947bb9165c605320a72d940fe3d30993582c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/landscape.png",
+      "screenshotSha256": "2db263a82f206845f79ada6febadc6d4aa4b844d6f4dfacc364437e9033f415e",
+      "widgetRows": 19
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "bfb8996a3dd361f298070c94b8ad783ce1fe6e3c4955c687484fad5a3c2de345",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/normal-exit-confirmation.png",
+      "screenshotSha256": "a2393771bc565713de2c73a3edf5fb40bad364489b287ee9f93904d140caab3b",
+      "widgetRows": 3
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/reopened-actual-text.json",
+      "sha256": "916b50da42021091a06f41db2105d3a66adafc4e87eaba4fcd519439496bab70",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/reopened.png",
+      "screenshotSha256": "3c32c0fa19c0eaa17297b209002885fba660f81511bbf753753b6614b63cbd15",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/resumed-actual-text.json",
+      "sha256": "4d79fa0ee470f02fab2b7c8850cfe9c423f3b5fc37912b9c1160aa024c473d6c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/cold-evidence/resumed.png",
+      "screenshotSha256": "77a0ff624e88baf7301c20961007a5eb74469aa27c58fc02c33babb70bf2f471",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/landscape-actual-text.json",
+      "sha256": "dac50c71c6af005c8114982551977cce7d35c8c2367d8bcbc7bb43f50e2a90cb",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/landscape.png",
+      "screenshotSha256": "6fd074f8b7dc0a8f6e448eff40f1a8b7c92c1f9eb276b22a052293cdd3f2c4ac",
+      "widgetRows": 19
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "855d86db545298c673a72df76938062b3c50cd9d54d05d13cfe6a20f0de81d4f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/normal-exit-confirmation.png",
+      "screenshotSha256": "ebadba5a1121f4c0a7589e87228499b8893986b1f791b5e764c1feb1bec483ec",
+      "widgetRows": 3
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/reopened-actual-text.json",
+      "sha256": "866af9c0c2a674e105ca363a0d2156bba5bbb456a611aa06e75d98474ea0b128",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/reopened.png",
+      "screenshotSha256": "8adfc737c1742c9e17751988c3908f9d9f14f7103955fc70e41ff15c053619ba",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/resumed-actual-text.json",
+      "sha256": "2f13d30ddf1a03e26b29298348e42b1a48eeb4ff79b67a9f66ef4e1afa01fa85",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/resumed.png",
+      "screenshotSha256": "a26ddba39ed963fa48ea9448cd6f64fe9bbe1008d4a2f16385e601b6a5823d7a",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-map-actual-text.json",
+      "sha256": "2ae4b6ab7df7698fdc5ba9a819bb5b6053084e87abf63363d5d2b5ee33820c2b",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-map.png",
+      "screenshotSha256": "cd74bf71bd74a7cf9ad1d53b67917a797acf4c2b6765a7cb329877cb450dace6",
+      "widgetRows": 17
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-113-normal-detail-actual-text.json",
+      "sha256": "4b7948da2d973363c5a474cac4d0cf61e37591d289ba9c8f967f24d5f4e82f80",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-113-normal-detail.png",
+      "screenshotSha256": "5fc9b1fa5be3e5a22abea712fd36716719592a393c9d8b9937b58af29314ed6c",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-13-normal-detail-actual-text.json",
+      "sha256": "bee852497c5b0cbba2900ca963500c005c9a556277163047037271cd173f75d1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-13-normal-detail.png",
+      "screenshotSha256": "541ed029b295f8a936ef25b06e67936ad9e2db8d0bc1efd01c768523e6f6e3cf",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-146-normal-detail-actual-text.json",
+      "sha256": "2729018ce2736b35221dce284d94c78ce3a886117dcfc9bd3d32cb6e1a155e61",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-146-normal-detail.png",
+      "screenshotSha256": "539d5c2ff300e6d9f46a0eedc5e41633557b38fcb3943e53447947581bf7e5ef",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-178-normal-detail-actual-text.json",
+      "sha256": "04eb21388780173607586f4d699d36c13c8bbf7785cd100558c036644f2f1eff",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-178-normal-detail.png",
+      "screenshotSha256": "9088b29e23a3675a1e9d8f3a172c6c4dca58d0a0118ab5b44e2dec6a03823b4c",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-184-normal-detail-actual-text.json",
+      "sha256": "9da7436c002b1ed3cb9713dcb29fd7e9199f75917f79efdb67a4fbb90803969c",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-184-normal-detail.png",
+      "screenshotSha256": "1d3c219cdd8768512714d5c7af5fbf7d86814fd5878558bdc60a73a9b7db3abd",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-212-normal-detail-actual-text.json",
+      "sha256": "587c5a402abd92e2bcaea99e3834d25adbf13bc2dcf9af7e54c4ef955a35648d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-212-normal-detail.png",
+      "screenshotSha256": "03bf7777e0ff16e7777780228eb7e78f66086857c4055feaf1380aea9e5e4dac",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-229-normal-detail-actual-text.json",
+      "sha256": "0d3d203fef19c2f937554042bb662550a3a3f3efc8f13756171691b7cf6f04ad",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-229-normal-detail.png",
+      "screenshotSha256": "57b5b8e5804ccc190919a0e10efc851f48cc09abc5a8df2cdaa751ba5f3a196c",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-246-normal-detail-actual-text.json",
+      "sha256": "dc36245258abcc3c607a1ec232c97f5fc4fc0f29936f6a16f5a415f124bdacdd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-246-normal-detail.png",
+      "screenshotSha256": "5f3f4133096c26180bb17252652135b2bf5665bb2d39b20861f3c72970f891dc",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-249-normal-detail-actual-text.json",
+      "sha256": "aa5241dd1fa22ce70becdc3c0e34719121527be66b97247180293e60dfed2771",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-249-normal-detail.png",
+      "screenshotSha256": "d1e7346794fe18e29d748c9c65821e7e82a435457a0088aa31dd7818cc0a58ce",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-280-normal-detail-actual-text.json",
+      "sha256": "439b3a0499f465fd89fce1ed69106560eb0374e323f551eb8326b7daa15b288a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-280-normal-detail.png",
+      "screenshotSha256": "e2afa3ff236d0fcba5cc3e34c4e9a43b19ce3e6547831fb8eac809154515cb81",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-313-normal-detail-actual-text.json",
+      "sha256": "cc91fbf3568e7dabd64bd0996e810b2f59407e7323c6f4af843be4d54e436a91",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-313-normal-detail.png",
+      "screenshotSha256": "bd9603027542472f9d7ad0b61a79a89381020519ddefa327bd802993428e8966",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-346-normal-detail-actual-text.json",
+      "sha256": "1c7f572a974f2786d06ff9dff57e46d7789819b0e47787be7754df1f88b665e3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-346-normal-detail.png",
+      "screenshotSha256": "2f7b2bd4b66b06c7ece6c783b88208aa046d21e84fc94143a000526edc62b335",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-379-normal-detail-actual-text.json",
+      "sha256": "b264e454fe124dbb5d3ef4b96964e0e5a13d291b8a9f255bf656ab74dbd1c269",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-379-normal-detail.png",
+      "screenshotSha256": "9f2ac27dcb57f204e4e782e308012c0e5bb7ff99726a0f5f57d2fddbef41895d",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-413-normal-detail-actual-text.json",
+      "sha256": "8dbbbc0cbf0c4b1826a591ad7d999fd50869e12735e5527ba083b2f8558b0b71",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-413-normal-detail.png",
+      "screenshotSha256": "d7497b6ec204ee4f559edc0fb1777a8b19104ba2ac3b3d9e9079f5470770c73b",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-447-normal-detail-actual-text.json",
+      "sha256": "6688591ff9250521112bafdcb50e467c7c88c6df1c36bf57e6a28f5b1e4c3986",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-447-normal-detail.png",
+      "screenshotSha256": "7d60c817377a75ab251405b758051bf056917a55bfbe6ab6add05211c3135e1c",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-45-normal-detail-actual-text.json",
+      "sha256": "57ea57fcedf7acae6335a2371f8d06927179aa58750880e689bdd8478de05e0e",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-45-normal-detail.png",
+      "screenshotSha256": "f41e3893d6377fa8b6f0b937a353292dd3dc904c9606cf3523473871175c6a1e",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-479-normal-detail-actual-text.json",
+      "sha256": "ffaf7ece73fe2b1416e9b6046666afdd54058aa240d30701fa610d9117f243c1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-479-normal-detail.png",
+      "screenshotSha256": "0a2b81ff8a451c9110f054a562fa82143037b116c9b34538f823e36930f5f1c6",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-511-normal-detail-actual-text.json",
+      "sha256": "034a986f2e6e945dd986b9864ed5fbe27533f1a464ecf1510f18a79f4ad19d31",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-511-normal-detail.png",
+      "screenshotSha256": "581e83df1b49a0d39b15dd9d1fc96985795bab5db0e3ccc837b980e206fe8948",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-543-normal-detail-actual-text.json",
+      "sha256": "645c0fb6def8476c4d6f1b45653d27e2230c5b3c0f1d1b2c719402d64bbb7a35",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-543-normal-detail.png",
+      "screenshotSha256": "37a44fb2d23b685935ea573fa8075f8cac54e784877f90ae73ba76e442792ede",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-575-normal-detail-actual-text.json",
+      "sha256": "06489ca93f378846078793f9e7335ec9032913d9325bbb89f5e417093366dd9f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-575-normal-detail.png",
+      "screenshotSha256": "f1cd023c20a8299f6ec97bb46233661b6f293d1a6e261f42afc0303c25129971",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-607-normal-detail-actual-text.json",
+      "sha256": "3e27f1d496c7954fb10f7f73743266128d5a3ca2fb0e866f336a875d7b1c472a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-607-normal-detail.png",
+      "screenshotSha256": "2a269628c8de42de405a472f98dc5c1594464b97c47ce74b1647f0e5b14537a5",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-616-normal-detail-actual-text.json",
+      "sha256": "bac12388dfd4672a7ec1a27ae438e8b0aacb6e9ed38bb3759e0d52246297a397",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-616-normal-detail.png",
+      "screenshotSha256": "f0fa5ba460144718c90936001fd0730471797dde8db23aa8ed47d58d3f094fc4",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-635-normal-detail-actual-text.json",
+      "sha256": "6f8c25f8e2a27fdf4ca61daeb6fe73dcc15996502faedd04d38908d44f7f031f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-635-normal-detail.png",
+      "screenshotSha256": "b85b9bf50f4fef04ddde9c40f1ef376f1afec39d1435814506bbbfcd5d518082",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-641-normal-detail-actual-text.json",
+      "sha256": "806c6259dbe5056834eebe9a377f460724985cb90ede8021650852b6aaa2f11a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-641-normal-detail.png",
+      "screenshotSha256": "9a48aba6f5e8d93180b659d2b8f7c3046fbb4d1326447ce43150fe69253542c2",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-79-normal-detail-actual-text.json",
+      "sha256": "9aa04b2508c768127728360253f3224ce0530ddb39c649fead40d43705d2550f",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-native-79-normal-detail.png",
+      "screenshotSha256": "ed5f6f0ae2abad404c1c4fab059fbb898a740f039d744985fce1bed1248ebd6e",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-officers-actual-text.json",
+      "sha256": "ca6fbf12535b0794d636d5953c68963f3cf42358e4bd66ac606cbf20cdfd9df2",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-officers.png",
+      "screenshotSha256": "811ebaeb54470b8d461016db715a3b4b3c2f5406b83b3de87bf537729e55403a",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-preview-actual-text.json",
+      "sha256": "ddad03d85e2e36475749bb810711fa6cfda2c8935ff2d6cbe4d4b03c1f04e4dc",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/search-observation242/source04-diagnostic/evidence/source-4-preview.png",
+      "screenshotSha256": "345f078c03513355e92f31cb917dc47f15f6cd80eefaa1ebdafc906163f5a1eb",
+      "widgetRows": 14
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}
