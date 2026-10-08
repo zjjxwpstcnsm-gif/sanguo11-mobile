@@ -527,7 +527,9 @@
     "docs/handoff/20261006/session-a/B_COLD_PRESENTATION_GAP266.json",
     "docs/handoff/20261006/session-a/EVIDENCE_DIRECTORY_COLLISION267.json",
     "docs/handoff/20261006/session-a/run_registered_caller_followup268.py",
-    "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE268.json"
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE268.json",
+    "docs/handoff/20261006/session-a/build_map_fire_upload269.py",
+    "docs/handoff/20261006/session-a/MAP_FIRE_UPLOAD_BUILD269.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
