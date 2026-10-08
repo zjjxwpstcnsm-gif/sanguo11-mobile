@@ -500,7 +500,12 @@
     "docs/handoff/20261006/session-a/probe_fire_population251.py",
     "docs/handoff/20261006/session-a/FIRE_POPULATION251.json",
     "docs/handoff/20261006/session-a/SOURCE_CHECKPOINT252.json",
-    "docs/handoff/20261006/session-a/B_MILITARY_R9_READONLY253.json"
+    "docs/handoff/20261006/session-a/B_MILITARY_R9_READONLY253.json",
+    "docs/handoff/20261006/session-a/probe_instruction_accounting254.py",
+    "docs/handoff/20261006/session-a/INSTRUCTION_ACCOUNTING254.json",
+    "docs/handoff/20261006/session-a/probe_instruction_lifecycle255.py",
+    "docs/handoff/20261006/session-a/INSTRUCTION_LIFECYCLE255.json",
+    "docs/handoff/20261006/session-a/CALLER_COHORT_CONTINUATION256.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

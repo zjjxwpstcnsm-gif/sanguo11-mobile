@@ -524,3 +524,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 252完整源导出：1300d5ae、11384文件、654107167B、SHA d07cd970…，每条源/tar SHA回读一致、原4/新增2JNI逐SHA保持；含新wrapper未启用、长时失败249/列表251、stage250及running242launch检查点，不冒称有后续最终结果。253独立核B f87两验收文档/实际R9结果与冻结report哈希、两个APK整包SHA，以及所有15/772 before/restored tar路径集合/字节SHA同等。没有拷B WIP或融合root源码，只作为R9候选军建范围证据，R10/ARM/完整目标仍未完成。242目前464/670普通case，phase尚未终结，不因其越过旧69/无OOM就称keyboard根因或128容量修复。
+
+
+254/255原火指令核查完成：原byte20M/5s预算未变，Unicorn实际TB icount与size查询无mismatch。长128仍660帧失败、7425589指令峰；660帧原records与clock同249逐字节一致，semantic73594e…，不含host耗时；没有扩大quota或改JNI。短1/32/128第一帧也原record/time完全同。256同包caller后继工具支持已完成任意来源起点，239回执识别正确、当前未完242起点被拒绝，无设备新操作；旧176五来源不能移用。

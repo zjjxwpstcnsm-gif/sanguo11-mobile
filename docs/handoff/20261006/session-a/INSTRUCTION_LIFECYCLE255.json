@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "cells": 128,
+      "exit": 2,
+      "wallSeconds": 138.898362934,
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nPC_CELL_ADMISSION active=128 highwater=128 limit=20000000\nPC_FIRE_SYNC serial=602 active=0 created=0 stopped=128 totalCreated=128 totalStopped=128\nPC_FIRE_SYNC serial=642 active=128 created=128 stopped=0 totalCreated=256 totalStopped=128\nPC_CELL_BLOCK_GUARD pc=457514 bytes=20000006 limit=20000000\nNative boundary/budget failure at45a530\nINSTRUCTION_ACCOUNTING peak=7425589 queries=16844217 mismatches=0\nPC_CELL_BUDGET_PEAK bytes=20000006 highwater=128 limit=20000000\n",
+      "stderrSha256": "b0f9b68f4235812151e7d1ab2c98975513638722ad5ac347d5b4e8d7defaa3ff",
+      "stdoutSha256": "455eb44a9c0690bbba9551557a0fe6ee56462399618cc0a9c8ba5ea20bfcdecc"
+    }
+  ],
+  "sourceBeforeAfter": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc",
+    "session_a_cell_fire_budget_worker.c": "6c53fc66f099384e6a014014c88ce5316249f1435c3c8779275c4dbec0d0338e"
+  },
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-lifecycle255/session_a_cell_fire_budget_worker.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-lifecycle255/host-probe"
+  ],
+  "instructionCacheSlots": 65536,
+  "scope": "Host-only measurement using actual uc_tb.icount/size returned by immutable Unicorn2.1.4 uc_ctl_request_cache. Bounded65536-entry metadata cache. Static code may reuse across calls; mutable adapters/geometry epoch expires every native call. Same249 long128 payload and20M cap retained. Byte quota20M and5s deadline unchanged; mismatch rejects, never guessed counts. Canonical code/JNI/World/RNG unchanged; no Android capacity or performance acceptance.",
+  "wholeGoalComplete": false,
+  "semanticComparison249": {
+    "completedFrames": 660,
+    "recordsAndOriginalClockByteExact": true,
+    "semanticSha256": "73594e628fc5237d39f0b959a4a956f40bbc467dcc9655322f68b8413a8af469",
+    "comparisonExcludesOnlyHostTimingMetrics": true,
+    "transportLifecyclePassed": false
+  }
+}

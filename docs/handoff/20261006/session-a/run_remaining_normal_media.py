@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Strict sequential actual normal-source callers; no fabricated state or skips.
 
-Requires the prior source11 all-person normal/cold/every-file-restoration run.
+Requires a prior all-person normal/cold/every-file-restoration source run.
 Each next source repeats the real menu/scenario/caller/save/reopen path with
 the exact same independently installed game/test bytes. Failed source stops.
 """
@@ -64,7 +64,7 @@ def frozen_caller_cohort(artifacts):
            'NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json',
            'NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json',
            'EMPTY_PRESENTATION_BUILD165.json','B_LEGACY39_COMBINED_TEST_BUILD168.json',
-           'LEGACY39_REGISTERED_TEST_BUILD176.json')
+           'LEGACY39_REGISTERED_TEST_BUILD176.json','SEARCH_OBSERVATION_TEST_BUILD239.json')
     for name in names:
         path=HELPER.with_name(name)
         if not path.is_file():continue
@@ -86,13 +86,26 @@ def guard_caller_source(revision, expected_main):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--previous-source11', type=pathlib.Path, required=True)
+    anchors = parser.add_mutually_exclusive_group(required=True)
+    anchors.add_argument('--previous-source11', type=pathlib.Path)
+    anchors.add_argument('--previous-completed', type=pathlib.Path)
+    parser.add_argument('--initial-source', type=int, choices=range(16),
+                        help='Required with --previous-completed; only this actually completed source is credited')
     parser.add_argument('--output', type=pathlib.Path, required=True)
     parser.add_argument('--test-only-update-first', action='store_true',
-                        help='After an independently completed fast-preview suite, restore the original frozen test cohort through a fully backed up actual source0 install')
+                        help='Restore the frozen test cohort through the first remaining source with complete backup and actual test APK installation')
     args = parser.parse_args()
-    previous = args.previous_source11.resolve()
-    baseline, _ = accepted(previous, 11)
+    if args.previous_source11 is not None:
+        if args.initial_source not in (None, 11):
+            parser.error('--previous-source11 requires source11')
+        initial_source = 11
+        previous = args.previous_source11.resolve()
+    else:
+        if args.initial_source is None:
+            parser.error('--previous-completed requires --initial-source')
+        initial_source = args.initial_source
+        previous = args.previous_completed.resolve()
+    baseline, _ = accepted(previous, initial_source)
     artifacts = baseline['apks']
     cohort_receipt,source_revision=frozen_caller_cohort(artifacts)
     expected_main=json.loads(HELPER.with_name('INHERITANCE.json').read_text())['main']
@@ -103,8 +116,9 @@ def main():
     report = {'scope': 'Real menu/normal original identity roster-detail/current-year pixels/fullSaveRNGStateToken/save/newPID and every original file restoration for each source. Not fullscreen/allage/voice/originalPC timing/GPU/ARM or whole goal completion.',
               'device': 'emulator-5554', 'apks': artifacts,
               'cohortReceipt':cohort_receipt,'sourceRevision':source_revision,'expectedMain':expected_main,
-              'initialSource11Session': str(previous), 'completedSources': [11],
-              'sessions': {'11': str(previous)}, 'completeAll16NormalCallers': False,
+              'initialSource': initial_source, 'initialCompletedSession': str(previous),
+              'completedSources': [initial_source],
+              'sessions': {str(initial_source): str(previous)}, 'completeAll16NormalCallers': False,
               'wholeGoalComplete': False, 'testOnlyUpdateFirst': args.test_only_update_first}
     record = args.output/'batch.json'
 
@@ -112,7 +126,7 @@ def main():
         record.write_text(json.dumps(report, indent=2)+'\n')
 
     save()
-    for source in [*range(11), *range(12, 16)]:
+    for index, source in enumerate(s for s in range(16) if s != initial_source):
         target = args.output/('source-'+str(source).zfill(2))
         report['activeSource'] = source
         save()
@@ -132,7 +146,7 @@ def main():
             with (target/'driver.log').open('w') as log:
                 result = subprocess.run([sys.executable, str(HELPER), 'install-test',
                     '--output', str(target), '--apk', str(game), '--test-apk', str(test),
-                    *(['--test-only-update'] if args.test_only_update_first and source == 0 else ['--reuse-installed']),
+                    *(['--test-only-update'] if args.test_only_update_first and index == 0 else ['--reuse-installed']),
                     '--observe-workers', '--runner', 'SessionAMapRepairInstrumentation',
                     '--suite', 'mediaAll16', '--begin', str(source), '--end', str(source+1),
                     '--fresh-process-reopen'], cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)

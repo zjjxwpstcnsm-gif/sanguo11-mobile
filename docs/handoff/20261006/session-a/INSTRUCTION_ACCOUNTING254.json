@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "cells": 1,
+      "exit": 0,
+      "wallSeconds": 1.412259091,
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=1 created=1 stopped=0 totalCreated=1 totalStopped=0\nPC_CELL_ADMISSION active=1 highwater=1 limit=5000000\nINSTRUCTION_ACCOUNTING peak=153938 queries=11670 mismatches=0\nPC_CELL_BUDGET_PEAK bytes=444027 highwater=1 limit=5000000\n",
+      "stderrSha256": "227a4714761add665b0adac715c958c7788df056f89da2c7a980b632302f8317",
+      "stdoutSha256": "c1fe4934660bfc3f6c85e78ffff8621f8f15b7daf8e34a74c85c0a5eda67d1ea",
+      "firstFrameOriginalRecordsAndTimeExact": true
+    },
+    {
+      "cells": 32,
+      "exit": 0,
+      "wallSeconds": 0.18016893300000003,
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=32 created=32 stopped=0 totalCreated=32 totalStopped=0\nPC_CELL_ADMISSION active=32 highwater=32 limit=5000000\nINSTRUCTION_ACCOUNTING peak=1061501 queries=24978 mismatches=0\nPC_CELL_BUDGET_PEAK bytes=2981980 highwater=32 limit=5000000\n",
+      "stderrSha256": "a72d6de8b6440abbc4c2c382bcf8d8cddfde3c047e5f4ea50a6ada06adcf7194",
+      "stdoutSha256": "09e43bcea5f53d0b582354e5cef9ef0000e03c19801ad2790bf2d3120d6eb13d",
+      "firstFrameOriginalRecordsAndTimeExact": true
+    },
+    {
+      "cells": 128,
+      "exit": 0,
+      "wallSeconds": 0.30878656000000015,
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nPC_CELL_ADMISSION active=128 highwater=128 limit=20000000\nINSTRUCTION_ACCOUNTING peak=4297161 queries=82919 mismatches=0\nPC_CELL_BUDGET_PEAK bytes=11815184 highwater=128 limit=20000000\n",
+      "stderrSha256": "11e0ae4cb423657f40f0b3b50c636f28a608dd42af7733019d00101947f73577",
+      "stdoutSha256": "419098491d82e419a482659150fc097fa0fff8c55e4a55bb6a231f9ed60d049d",
+      "firstFrameOriginalRecordsAndTimeExact": true
+    }
+  ],
+  "sourceBeforeAfter": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc",
+    "session_a_cell_fire_budget_worker.c": "6c53fc66f099384e6a014014c88ce5316249f1435c3c8779275c4dbec0d0338e"
+  },
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-accounting254/session_a_cell_fire_budget_worker.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-accounting254/host-probe"
+  ],
+  "instructionCacheSlots": 8192,
+  "scope": "Host-only measurement using actual uc_tb.icount/size returned by immutable Unicorn2.1.4 uc_ctl_request_cache. Guest static-code cache8192 entries; dynamic adapters/geometry code requery. Byte quota20M and5s deadline unchanged; mismatch rejects, never guessed counts. Canonical code/JNI/World/RNG unchanged; no Android capacity or performance acceptance.",
+  "wholeGoalComplete": false,
+  "accountingQueriesOriginalSemanticsVerifiedSmallAnd128FirstFrame": true
+}
