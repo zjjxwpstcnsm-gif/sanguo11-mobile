@@ -580,3 +580,6 @@ B r15消息更正旧角色诊断：前称captor555实为上阵胜者，当前AI�
 
 
 B后继r16消息原AI actor属于force ruler（原4ad960链），r15 unit leader189不是原正确绑定；277将旧AI实现与新原证据角色明确区分，仍不给speech/voice profile补猜，不导入B新policy/WIP。新286实装正常player火/Home/reduced-motion/lowquality/实际extinguish与pureSaveRNGToken中间检查已过，现场01-player-fire PNG可见原火和深底正常hint（无工程前缀），当前reset-before-reignite whole AI turn >120s截图已产，规则/前台时延目标未闭合，不当OOM或通过。Data43468/video43507/native43508实际仍在运行。
+
+
+288新增只读terminal fire审计，等同286数据owner/observer真正退出、normal/cold+不同PID+原9内部3797外部全SHA恢复才冻结，验证实际269两APK/正常火六生命周期/原录像每SHA及系统动画偏好恢复。只输出实际known PID进程PSS与source child PSS独立样本；Fire runner无Java allocator CSV，明确javaAllocatorPeakBytes=null、GPU未知、budget false，不将Dalvik PSS充Java峰。actual286已真正reset wholeturn完成→同格玩家重燃→正常manual burning save，当前多旬到期仍活跃。用户接受增大Java堆沿用现默认largeHeap，5554实384→512MiB，普通280仍待新队列实际安装，手机物理RAM不用于猜堆额度。

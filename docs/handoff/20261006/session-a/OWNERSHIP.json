@@ -569,7 +569,9 @@
     "docs/handoff/20261006/session-a/run_candidate_fire286.py",
     "docs/handoff/20261006/session-a/CANDIDATE_FIRE286_LAUNCH.json",
     "docs/handoff/20261006/session-a/run_candidate_regression287.py",
-    "docs/handoff/20261006/session-a/CANDIDATE_REGRESSION287_LAUNCH.json"
+    "docs/handoff/20261006/session-a/CANDIDATE_REGRESSION287_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_candidate_fire288.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_FIRE_ACCEPTANCE288.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
