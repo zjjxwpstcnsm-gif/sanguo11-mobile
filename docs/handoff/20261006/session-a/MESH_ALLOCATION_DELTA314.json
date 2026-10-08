@@ -1,0 +1,17 @@
+{
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation314/app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "beforeSha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+      "afterSha256": "ef627a5995af19873aec5bec8c3365c720eea7572f0836267d765dfb9149cc14"
+    }
+  ],
+  "parent": "actual296",
+  "boundedIndexPatterns": 16,
+  "scratchNeverPublished": true,
+  "canonicalChanged": false,
+  "androidAccepted": false,
+  "scope": "A mesh only. Exact topology matches scratch before repeated copy; unknown new patterns copy exact ranges. Same16 bounded immutable cache, geometry, materials, water, grid and rule ownership. Avoid per-cell boxed default Float. Needs raw output/cache/legacy/overrides parity and independent actual APK installation.",
+  "wholeGoalComplete": false
+}

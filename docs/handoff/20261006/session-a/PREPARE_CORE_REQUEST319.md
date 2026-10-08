@@ -1,0 +1,9 @@
+# 剧本准备性能交接（B文件只读，未发送跨线程消息）
+
+共同完整基点0e7b9bc2df90249a50851baeda58c7d183ea6059。A实际296游戏4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb；诊断310测试63a679de5c529dc6a4cceb810d3b477c72620c427440c672080ffc797791b9a3，5554/API29/x86_64/largeHeap512MiB。实际311正常菜单点Scen014，focused预览201320ms、verified3D344327ms，原120s功能门失败；600s只观察，不算修复。完整原9内部/3797外部每SHA恢复，正常取消完整Save/所有RNG/StateToken不变。详细实际逐5s栈在PREPARE_DIAGNOSTIC312.json和out/session-a/prepare-diagnostic-installed311/evidence/prepare-observations.jsonl。
+
+B域准备阶段包括原PcScenarioCatalog/PcScenarioPeople解析，MapCoordinates.normalize的String.matches编译，PcOfficerSources.all GZIP/CRC与原资料解析，PcOfficerInfo.text/read/saved、PcOfficerIdentities.initializeOpening，SaveCodec.validate/World.sourceInside；这些是真实观测到的栈，不是各函数独立时间或分配份额。线程回WAITING后A mesh准备/上传仍独立耗时。进程concurrent GC总时长不能当阻塞停顿，host/emulator调度及录像等扰动仍存在。
+
+请B在自己独占文件范围内对以上真实正常开局路径提供分配/CPU归因，以及保持原数据/全部验证/未知边界的优化候选。优先考察逐记录重复正则编译、字符串字节读取、同一已验证保存扩展的重复解析，以及gzip展开缓冲临时峰；此处仅为代码核查线索，未证明唯一瓶颈。不能削掉身份校验/原四字形连接/来源SHA验证、减少670人或改变原扩展字节，不绕过SaveCodec，不按姓名/ordinal猜新映射。缓存必须有明确固定输入键、上限和失效/生命周期；不污染World/RNG，不将现行catalog回填旧保存。
+
+需要完成冻结增量的确切共同基点、B文件前后SHA、可复现工具和实际正常新局/取消/保存读取/冷启动证据。A只在最终串行时接已完成生产增量，再从完整源生成新组合APK，全16与新包实际验收重跑；不接B Native WIP/不拼接旧包成绩。shared.gradle/Bridge/Unity/原4JNI仍冻结。如果采用包压缩或资源位置修改，先提供具体兼容差分，由最终集成串行处理。A316当前只改SceneMesh临时索引分配，不能解决B域准备阶段；A不修改任何B页面/core/API/runtime。

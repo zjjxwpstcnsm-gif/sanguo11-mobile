@@ -1,0 +1,184 @@
+{
+  "rawParityPassed": true,
+  "hostProducerAllocatedBytesBefore": 552387600,
+  "hostProducerAllocatedBytesAfter": 509196792,
+  "reductionBytes": 43190808,
+  "results": {
+    "before": {
+      "rows": [
+        [
+          "PC",
+          "0",
+          "306",
+          "51008472",
+          "602313d05ee517da3e50cfbb7e34610aa27b56f6457dff4c0b0b7ce17de71677",
+          "95039656"
+        ],
+        [
+          "PC",
+          "1",
+          "16",
+          "5092024",
+          "5f78a696b09965347752e822cf392b6b7035e47ff1ae47b1c7ba7947e7c53719",
+          "11388696"
+        ],
+        [
+          "PC",
+          "2",
+          "16",
+          "2876016",
+          "8a8e0cf14ca1d1086946bc8201ce9b32fc0f1ca04cdc40694b7ea07ae2476ec0",
+          "5658064"
+        ],
+        [
+          "PC",
+          "3",
+          "16",
+          "7075360",
+          "349836c6f5cd9e55ad7da0426abf265027375143baa09c56afb905abb0e91395",
+          "11334952"
+        ],
+        [
+          "PC",
+          "4",
+          "16",
+          "2825328",
+          "e440956cea4580a4a401a70394475b2d956b5d57ac6a59dbed26f3689c5e66d9",
+          "5607184"
+        ],
+        [
+          "legacy",
+          "0",
+          "177",
+          "24771564",
+          "05a298dd5455eb545f4049d32a5e91af7576ba7ef074c931cacd49e2cc0aca96",
+          "110026296"
+        ],
+        [
+          "legacy",
+          "1",
+          "16",
+          "15191872",
+          "8e2cc2c4d23bef8c7b6ded35cb158bf5e255df51c4742c97d4d8a36d40c9f4bc",
+          "141842768"
+        ],
+        [
+          "legacy",
+          "2",
+          "16",
+          "2605056",
+          "be35133bfb072f9683f2d58ed647c8acdad476eb059997e0edffd47ba3da000a",
+          "9941528"
+        ],
+        [
+          "legacy",
+          "3",
+          "16",
+          "16667176",
+          "76b3306f192e4f4126430a1c869060731ee78af46a3a9ef785f26fb3bcdae353",
+          "151772544"
+        ],
+        [
+          "legacy",
+          "4",
+          "16",
+          "2605056",
+          "83a2cb59b69713c3822f3eb510cf0f7bd5fd153e7db856fac5c676f9c20fa6cf",
+          "9775912"
+        ]
+      ],
+      "logSha256": "4089ff823caa61ee5cd57c81c2b05ed4b346c9db691c71c71da27da4c0d53483"
+    },
+    "after": {
+      "rows": [
+        [
+          "PC",
+          "0",
+          "306",
+          "51008472",
+          "602313d05ee517da3e50cfbb7e34610aa27b56f6457dff4c0b0b7ce17de71677",
+          "61944496"
+        ],
+        [
+          "PC",
+          "1",
+          "16",
+          "5092024",
+          "5f78a696b09965347752e822cf392b6b7035e47ff1ae47b1c7ba7947e7c53719",
+          "9618784"
+        ],
+        [
+          "PC",
+          "2",
+          "16",
+          "2876016",
+          "8a8e0cf14ca1d1086946bc8201ce9b32fc0f1ca04cdc40694b7ea07ae2476ec0",
+          "3822416"
+        ],
+        [
+          "PC",
+          "3",
+          "16",
+          "7075360",
+          "349836c6f5cd9e55ad7da0426abf265027375143baa09c56afb905abb0e91395",
+          "9499304"
+        ],
+        [
+          "PC",
+          "4",
+          "16",
+          "2825328",
+          "e440956cea4580a4a401a70394475b2d956b5d57ac6a59dbed26f3689c5e66d9",
+          "3771560"
+        ],
+        [
+          "legacy",
+          "0",
+          "177",
+          "24771564",
+          "05a298dd5455eb545f4049d32a5e91af7576ba7ef074c931cacd49e2cc0aca96",
+          "108175520"
+        ],
+        [
+          "legacy",
+          "1",
+          "16",
+          "15191872",
+          "8e2cc2c4d23bef8c7b6ded35cb158bf5e255df51c4742c97d4d8a36d40c9f4bc",
+          "141614768"
+        ],
+        [
+          "legacy",
+          "2",
+          "16",
+          "2605056",
+          "be35133bfb072f9683f2d58ed647c8acdad476eb059997e0edffd47ba3da000a",
+          "9679384"
+        ],
+        [
+          "legacy",
+          "3",
+          "16",
+          "16667176",
+          "76b3306f192e4f4126430a1c869060731ee78af46a3a9ef785f26fb3bcdae353",
+          "151556792"
+        ],
+        [
+          "legacy",
+          "4",
+          "16",
+          "2605056",
+          "83a2cb59b69713c3822f3eb510cf0f7bd5fd153e7db856fac5c676f9c20fa6cf",
+          "9513768"
+        ]
+      ],
+      "logSha256": "4ed3f85dbf8868d6e05d745035d2867bec279ebca1fcaca30dcfaa8e1ffa96b5"
+    }
+  },
+  "deltaReceiptSha256": "d7363a6021dee18a4cdb7b9a1a8136d5817532717f3c31a5746d4382416afca7",
+  "fullSaveRngPure": true,
+  "publishedArraysImmutableAndCacheReuseExact": true,
+  "androidInstalled": false,
+  "scope": "Exact raw floatbits/index order/streams/fingerprint/chunk bounds/water/grid/LOD for10 actual producer windows, source14 national and repeated near/far, legacy real saved fixture. Actual host ThreadMXBean allocation counters384MiB. Not Android normal paths, device peak/native/GPU, all16 acceptance, ARM or unique OOM root.",
+  "wholeGoalComplete": false
+}

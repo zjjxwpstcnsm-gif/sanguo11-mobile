@@ -1,0 +1,425 @@
+{
+  "hostProducer": {
+    "chunks": 330,
+    "actualThreadAllocatedBytes": 101632072,
+    "retainedMeshArrayBytes": 54515736,
+    "wallNanos": 285044619,
+    "threadCpuNanos": 272129000,
+    "indexedShaderSha256": "273f3c3e9b7dd836a5e2e7e1af1f15ab8b90aafcba1e6220f8e2498f56b19425",
+    "fullSaveRngPure": true
+  },
+  "sources": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/TileGeometry.java",
+      "sha256": "c8f9b8f7d4d0fe15d0e41220e13a109b18844645c2c6f5955380b432978c88ec"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/GridWorldTransform.java",
+      "sha256": "721fc68a564a4d22d562a5de87c20ab50a070795b66a1c48137db25046842f00"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/SceneCamera.java",
+      "sha256": "27708d282b488fc64828e77d60c5874783a0ca85dbe96418db6fcfaf8e5c4efa"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "sha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "sha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "sha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "sha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "sha256": "d8d4468a7bbd88f971bc668361a0866a58a381c0d3bd26cd77d3204a2deffecd"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/FactionColors.java",
+      "sha256": "542014754033b774fa44ce41613eb7a0d43112d06a9f85061686d76b53460119"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/src/main/java/game/sanguo/mobile/SceneFactsPresentation.java",
+      "sha256": "351ac23abafb863173023ebd4c4ab5f0d43c9d701cc7b3eb832942c301e45a41"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MeshParityProbe.java",
+      "sha256": "af47b35ff53da5ecd03f8412f8426629015ff0b1581cf2f60581b0236aadadd2"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/PrepareAllocationProbe313.java",
+      "sha256": "cedc0a64641a762d12542e64579a10a2c4c32c9dba2367c0ef0ecf30b32d5159"
+    }
+  ],
+  "actual311LogSha256": "162c7cd01cd413e91ef4c5961afd5273fdc19303030e3f6588f3c279d113a74f",
+  "actual311GroundRows": [
+    "10-08 12:57:27.526   514  3590 I Sanguo3D: Ground CPU ready chunks=330 ms=43319.34 queueWaitWallMs=515.233 backdropWallMs=0.682 backdropCpuMs=0.932352 groundWallMs=43222.961 groundCpuMs=2544.311098 geometryWallMs=26882.396 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 12:57:27.527   514  3590 I Sanguo3D: Field CPU ready forestChunks=55 totalMs=43320.127 sceneryWallMs=94.888 sceneryCpuMs=13.228752 groundDeliveryBackpressureWallMs=0.713 processGcMs=42860 processAllocatedBytes=160758416 interrupted=false"
+  ],
+  "actual311ProcessGcRows": [
+    {
+      "raw": "10-08 12:52:55.290   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 110481(7430KB) AllocSpace objects, 27(1584KB) LOS objects, 63% free, 3500KB/9644KB, paused 6.133ms total 196.257ms",
+      "pauseMillis": 6.133,
+      "concurrentTotalMillis": 196.257
+    },
+    {
+      "raw": "10-08 12:52:56.252   514   527 I nguo.mobile.de: Background concurrent copying GC freed 381742(6592KB) AllocSpace objects, 3(596KB) LOS objects, 49% free, 3128KB/6256KB, paused 2.509ms total 180.129ms",
+      "pauseMillis": 2.509,
+      "concurrentTotalMillis": 180.129
+    },
+    {
+      "raw": "10-08 12:52:58.077   514   527 I nguo.mobile.de: Background concurrent copying GC freed 41321(1733KB) AllocSpace objects, 34(4308KB) LOS objects, 42% free, 8309KB/14MB, paused 886us total 118.899ms",
+      "pauseMillis": 0.886,
+      "concurrentTotalMillis": 118.899
+    },
+    {
+      "raw": "10-08 12:52:58.570   514   527 I nguo.mobile.de: Background concurrent copying GC freed 14555(461KB) AllocSpace objects, 22(9340KB) LOS objects, 49% free, 5882KB/11MB, paused 882us total 106.048ms",
+      "pauseMillis": 0.882,
+      "concurrentTotalMillis": 106.048
+    },
+    {
+      "raw": "10-08 12:53:00.168   514   527 I nguo.mobile.de: NativeAlloc concurrent copying GC freed 3940(274KB) AllocSpace objects, 27(19MB) LOS objects, 24% free, 18MB/24MB, paused 3.713ms total 208.989ms",
+      "pauseMillis": 3.713,
+      "concurrentTotalMillis": 208.989
+    },
+    {
+      "raw": "10-08 12:53:01.488   514   527 I nguo.mobile.de: Background concurrent copying GC freed 45996(1407KB) AllocSpace objects, 18(476KB) LOS objects, 18% free, 25MB/31MB, paused 2.673ms total 264.829ms",
+      "pauseMillis": 2.673,
+      "concurrentTotalMillis": 264.829
+    },
+    {
+      "raw": "10-08 12:53:04.538   514   527 I nguo.mobile.de: Background concurrent copying GC freed 53665(1290KB) AllocSpace objects, 21(1200KB) LOS objects, 16% free, 30MB/36MB, paused 44.028ms total 991.017ms",
+      "pauseMillis": 44.028,
+      "concurrentTotalMillis": 991.017
+    },
+    {
+      "raw": "10-08 12:53:07.542   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 183308(3495KB) AllocSpace objects, 12(1268KB) LOS objects, 1% free, 35MB/36MB, paused 5.438ms total 1.759s",
+      "pauseMillis": 5.438,
+      "concurrentTotalMillis": 1759.0
+    },
+    {
+      "raw": "10-08 12:53:08.515   514   527 I nguo.mobile.de: Background concurrent copying GC freed 37409(1031KB) AllocSpace objects, 15(2632KB) LOS objects, 15% free, 32MB/38MB, paused 4.147ms total 658.062ms",
+      "pauseMillis": 4.147,
+      "concurrentTotalMillis": 658.062
+    },
+    {
+      "raw": "10-08 12:53:13.396   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 12627(597KB) AllocSpace objects, 13(4276KB) LOS objects, 0% free, 46MB/46MB, paused 8.346ms total 856.082ms",
+      "pauseMillis": 8.346,
+      "concurrentTotalMillis": 856.082
+    },
+    {
+      "raw": "10-08 12:53:16.926   514   527 I nguo.mobile.de: Background concurrent copying GC freed 115444(4029KB) AllocSpace objects, 2(8296KB) LOS objects, 10% free, 50MB/56MB, paused 14.173ms total 3.523s",
+      "pauseMillis": 14.173,
+      "concurrentTotalMillis": 3523.0
+    },
+    {
+      "raw": "10-08 12:53:18.123   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 27965(990KB) AllocSpace objects, 8(4112KB) LOS objects, 0% free, 72MB/72MB, paused 9.290ms total 1.103s",
+      "pauseMillis": 9.29,
+      "concurrentTotalMillis": 1103.0
+    },
+    {
+      "raw": "10-08 12:53:20.434   514   527 I nguo.mobile.de: Background concurrent copying GC freed 226979(8338KB) AllocSpace objects, 5(24MB) LOS objects, 9% free, 55MB/61MB, paused 35.628ms total 2.197s",
+      "pauseMillis": 35.628,
+      "concurrentTotalMillis": 2197.0
+    },
+    {
+      "raw": "10-08 12:53:25.052   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 131959(6218KB) AllocSpace objects, 0(0B) LOS objects, 3% free, 59MB/61MB, paused 2.548ms total 2.649s",
+      "pauseMillis": 2.548,
+      "concurrentTotalMillis": 2649.0
+    },
+    {
+      "raw": "10-08 12:53:31.924   514   527 I nguo.mobile.de: Background concurrent copying GC freed 365181(13MB) AllocSpace objects, 29(9912KB) LOS objects, 12% free, 43MB/49MB, paused 6.324ms total 5.105s",
+      "pauseMillis": 6.324,
+      "concurrentTotalMillis": 5105.0
+    },
+    {
+      "raw": "10-08 12:53:38.796   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 76266(3322KB) AllocSpace objects, 7(2796KB) LOS objects, 7% free, 46MB/49MB, paused 17.043ms total 1.406s",
+      "pauseMillis": 17.043,
+      "concurrentTotalMillis": 1406.0
+    },
+    {
+      "raw": "10-08 12:53:46.240   514   527 I nguo.mobile.de: Background concurrent copying GC freed 180258(6022KB) AllocSpace objects, 17(800KB) LOS objects, 11% free, 47MB/53MB, paused 22.068ms total 6.199s",
+      "pauseMillis": 22.068,
+      "concurrentTotalMillis": 6199.0
+    },
+    {
+      "raw": "10-08 12:53:53.141   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 65124(2062KB) AllocSpace objects, 8(3388KB) LOS objects, 7% free, 49MB/53MB, paused 1.472ms total 908.738ms",
+      "pauseMillis": 1.472,
+      "concurrentTotalMillis": 908.738
+    },
+    {
+      "raw": "10-08 12:54:00.202   514   527 I nguo.mobile.de: Background concurrent copying GC freed 122568(5744KB) AllocSpace objects, 3(1240KB) LOS objects, 10% free, 51MB/57MB, paused 4.777ms total 5.325s",
+      "pauseMillis": 4.777,
+      "concurrentTotalMillis": 5325.0
+    },
+    {
+      "raw": "10-08 12:54:05.633   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 162776(4296KB) AllocSpace objects, 12(1296KB) LOS objects, 2% free, 56MB/57MB, paused 3.469ms total 1.982s",
+      "pauseMillis": 3.469,
+      "concurrentTotalMillis": 1982.0
+    },
+    {
+      "raw": "10-08 12:54:09.338   514   527 I nguo.mobile.de: Background concurrent copying GC freed 66959(2039KB) AllocSpace objects, 14(6576KB) LOS objects, 10% free, 50MB/56MB, paused 12.829ms total 3.040s",
+      "pauseMillis": 12.829,
+      "concurrentTotalMillis": 3040.0
+    },
+    {
+      "raw": "10-08 12:54:15.505   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 7226(319KB) AllocSpace objects, 1(1760KB) LOS objects, 0% free, 59MB/59MB, paused 3.275ms total 700.374ms",
+      "pauseMillis": 3.275,
+      "concurrentTotalMillis": 700.374
+    },
+    {
+      "raw": "10-08 12:54:20.150   514   527 I nguo.mobile.de: Background concurrent copying GC freed 2882(130KB) AllocSpace objects, 2(4400KB) LOS objects, 9% free, 55MB/61MB, paused 34.906ms total 4.616s",
+      "pauseMillis": 34.906,
+      "concurrentTotalMillis": 4616.0
+    },
+    {
+      "raw": "10-08 12:54:30.373   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 10344(431KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 68MB/68MB, paused 29.862ms total 384.269ms",
+      "pauseMillis": 29.862,
+      "concurrentTotalMillis": 384.269
+    },
+    {
+      "raw": "10-08 12:54:34.003   514   527 I nguo.mobile.de: Background concurrent copying GC freed 1901(128KB) AllocSpace objects, 1(7040KB) LOS objects, 8% free, 61MB/67MB, paused 8.744ms total 3.395s",
+      "pauseMillis": 8.744,
+      "concurrentTotalMillis": 3395.0
+    },
+    {
+      "raw": "10-08 12:54:44.536   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 10016(399KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 72MB/72MB, paused 8.253ms total 508.945ms",
+      "pauseMillis": 8.253,
+      "concurrentTotalMillis": 508.945
+    },
+    {
+      "raw": "10-08 12:54:47.143   514   527 I nguo.mobile.de: Background concurrent copying GC freed 25299(1744KB) AllocSpace objects, 1(13MB) LOS objects, 9% free, 60MB/66MB, paused 8.935ms total 2.584s",
+      "pauseMillis": 8.935,
+      "concurrentTotalMillis": 2584.0
+    },
+    {
+      "raw": "10-08 12:54:50.575   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 61822(4804KB) AllocSpace objects, 0(0B) LOS objects, 4% free, 63MB/66MB, paused 10.593ms total 1.640s",
+      "pauseMillis": 10.593,
+      "concurrentTotalMillis": 1640.0
+    },
+    {
+      "raw": "10-08 12:54:54.881   514   527 I nguo.mobile.de: Background concurrent copying GC freed 90782(6410KB) AllocSpace objects, 1(68KB) LOS objects, 8% free, 65MB/71MB, paused 1.199ms total 3.005s",
+      "pauseMillis": 1.199,
+      "concurrentTotalMillis": 3005.0
+    },
+    {
+      "raw": "10-08 12:54:59.562   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 78624(6051KB) AllocSpace objects, 0(0B) LOS objects, 3% free, 69MB/71MB, paused 25.150ms total 2.552s",
+      "pauseMillis": 25.15,
+      "concurrentTotalMillis": 2552.0
+    },
+    {
+      "raw": "10-08 12:55:05.155   514   527 I nguo.mobile.de: Background concurrent copying GC freed 130518(8810KB) AllocSpace objects, 1(68KB) LOS objects, 7% free, 70MB/76MB, paused 4.615ms total 4.033s",
+      "pauseMillis": 4.615,
+      "concurrentTotalMillis": 4033.0000000000005
+    },
+    {
+      "raw": "10-08 12:55:09.581   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 81473(6263KB) AllocSpace objects, 0(0B) LOS objects, 5% free, 71MB/76MB, paused 68.384ms total 1.956s",
+      "pauseMillis": 68.384,
+      "concurrentTotalMillis": 1956.0
+    },
+    {
+      "raw": "10-08 12:55:14.653   514   527 I nguo.mobile.de: Background concurrent copying GC freed 111589(7155KB) AllocSpace objects, 0(0B) LOS objects, 7% free, 74MB/80MB, paused 8.917ms total 3.660s",
+      "pauseMillis": 8.917,
+      "concurrentTotalMillis": 3660.0
+    },
+    {
+      "raw": "10-08 12:55:18.569   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 87935(6773KB) AllocSpace objects, 0(0B) LOS objects, 5% free, 76MB/80MB, paused 4.240ms total 1.765s",
+      "pauseMillis": 4.24,
+      "concurrentTotalMillis": 1765.0
+    },
+    {
+      "raw": "10-08 12:55:22.671   514   527 I nguo.mobile.de: Background concurrent copying GC freed 95820(6382KB) AllocSpace objects, 13(13MB) LOS objects, 8% free, 64MB/70MB, paused 10.629ms total 3.108s",
+      "pauseMillis": 10.629,
+      "concurrentTotalMillis": 3108.0
+    },
+    {
+      "raw": "10-08 12:55:27.252   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 38672(1869KB) AllocSpace objects, 1(848KB) LOS objects, 2% free, 69MB/70MB, paused 19.913ms total 1.010s",
+      "pauseMillis": 19.913,
+      "concurrentTotalMillis": 1010.0
+    },
+    {
+      "raw": "10-08 12:55:31.816   514   527 I nguo.mobile.de: Background concurrent copying GC freed 84465(3740KB) AllocSpace objects, 3(2672KB) LOS objects, 8% free, 68MB/74MB, paused 7.253ms total 3.717s",
+      "pauseMillis": 7.253,
+      "concurrentTotalMillis": 3717.0
+    },
+    {
+      "raw": "10-08 12:55:36.543   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 72366(4633KB) AllocSpace objects, 4(220KB) LOS objects, 0% free, 73MB/74MB, paused 212.098ms total 1.634s",
+      "pauseMillis": 212.098,
+      "concurrentTotalMillis": 1634.0
+    },
+    {
+      "raw": "10-08 12:55:39.805   514   527 I nguo.mobile.de: Background concurrent copying GC freed 88778(4902KB) AllocSpace objects, 17(5984KB) LOS objects, 8% free, 66MB/72MB, paused 42.625ms total 3.210s",
+      "pauseMillis": 42.625,
+      "concurrentTotalMillis": 3210.0
+    },
+    {
+      "raw": "10-08 12:55:44.794   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 16871(1722KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 73MB/73MB, paused 65.211ms total 1.208s",
+      "pauseMillis": 65.211,
+      "concurrentTotalMillis": 1208.0
+    },
+    {
+      "raw": "10-08 12:55:49.034   514   527 I nguo.mobile.de: Background concurrent copying GC freed 109807(5617KB) AllocSpace objects, 4(4352KB) LOS objects, 7% free, 75MB/81MB, paused 6.017ms total 4.043s",
+      "pauseMillis": 6.017,
+      "concurrentTotalMillis": 4043.0
+    },
+    {
+      "raw": "10-08 12:55:53.755   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 193647(4462KB) AllocSpace objects, 10(4424KB) LOS objects, 7% free, 75MB/81MB, paused 3.829ms total 235.230ms",
+      "pauseMillis": 3.829,
+      "concurrentTotalMillis": 235.23
+    },
+    {
+      "raw": "10-08 12:55:54.543   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 69275(4602KB) AllocSpace objects, 2(40KB) LOS objects, 2% free, 79MB/81MB, paused 2.150ms total 351.564ms",
+      "pauseMillis": 2.15,
+      "concurrentTotalMillis": 351.564
+    },
+    {
+      "raw": "10-08 12:55:55.245   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 167810(4295KB) AllocSpace objects, 2(88KB) LOS objects, 3% free, 78MB/81MB, paused 3.079ms total 282.382ms",
+      "pauseMillis": 3.079,
+      "concurrentTotalMillis": 282.382
+    },
+    {
+      "raw": "10-08 12:55:55.750   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 38937(1774KB) AllocSpace objects, 17(3176KB) LOS objects, 2% free, 79MB/81MB, paused 11.929ms total 336.542ms",
+      "pauseMillis": 11.929,
+      "concurrentTotalMillis": 336.542
+    },
+    {
+      "raw": "10-08 12:55:57.453   514   527 I nguo.mobile.de: Background concurrent copying GC freed 132077(7557KB) AllocSpace objects, 6(2064KB) LOS objects, 7% free, 76MB/82MB, paused 11.101ms total 1.418s",
+      "pauseMillis": 11.101,
+      "concurrentTotalMillis": 1418.0
+    },
+    {
+      "raw": "10-08 12:56:01.770   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 125852(7117KB) AllocSpace objects, 3(64KB) LOS objects, 4% free, 78MB/82MB, paused 104.160ms total 2.314s",
+      "pauseMillis": 104.16,
+      "concurrentTotalMillis": 2314.0
+    },
+    {
+      "raw": "10-08 12:56:11.333   514   527 I nguo.mobile.de: Background concurrent copying GC freed 304931(8858KB) AllocSpace objects, 68(11MB) LOS objects, 6% free, 83MB/89MB, paused 43.842ms total 8.009s",
+      "pauseMillis": 43.842,
+      "concurrentTotalMillis": 8009.0
+    },
+    {
+      "raw": "10-08 12:56:14.502   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 15150(498KB) AllocSpace objects, 26(8848KB) LOS objects, 6% free, 81MB/87MB, paused 1.372ms total 1.211s",
+      "pauseMillis": 1.372,
+      "concurrentTotalMillis": 1211.0
+    },
+    {
+      "raw": "10-08 12:56:18.159   514   527 I nguo.mobile.de: Background concurrent copying GC freed 123388(3882KB) AllocSpace objects, 8(5724KB) LOS objects, 6% free, 82MB/88MB, paused 15.250ms total 3.038s",
+      "pauseMillis": 15.25,
+      "concurrentTotalMillis": 3038.0
+    },
+    {
+      "raw": "10-08 12:56:21.068   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 15(31KB) AllocSpace objects, 3(8932KB) LOS objects, 0% free, 89MB/89MB, paused 1.218ms total 359.553ms",
+      "pauseMillis": 1.218,
+      "concurrentTotalMillis": 359.553
+    },
+    {
+      "raw": "10-08 12:56:24.723   514   527 I nguo.mobile.de: Background concurrent copying GC freed 884(105KB) AllocSpace objects, 8(14MB) LOS objects, 6% free, 88MB/94MB, paused 82.642ms total 2.704s",
+      "pauseMillis": 82.642,
+      "concurrentTotalMillis": 2704.0
+    },
+    {
+      "raw": "10-08 12:56:26.487   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 147162(2475KB) AllocSpace objects, 20(2580KB) LOS objects, 0% free, 93MB/94MB, paused 12.283ms total 826.649ms",
+      "pauseMillis": 12.283,
+      "concurrentTotalMillis": 826.649
+    },
+    {
+      "raw": "10-08 12:56:31.554   514   527 I nguo.mobile.de: Background concurrent copying GC freed 1543192(24MB) AllocSpace objects, 1(6256KB) LOS objects, 6% free, 91MB/97MB, paused 64.090ms total 4.886s",
+      "pauseMillis": 64.09,
+      "concurrentTotalMillis": 4886.0
+    },
+    {
+      "raw": "10-08 12:56:36.027   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 198487(5072KB) AllocSpace objects, 9(1136KB) LOS objects, 0% free, 104MB/104MB, paused 31.240ms total 3.383s",
+      "pauseMillis": 31.24,
+      "concurrentTotalMillis": 3383.0
+    },
+    {
+      "raw": "10-08 12:56:48.243   514   527 I nguo.mobile.de: Background concurrent copying GC freed 395310(12MB) AllocSpace objects, 38(2316KB) LOS objects, 3% free, 168MB/174MB, paused 10.805ms total 12.202s",
+      "pauseMillis": 10.805,
+      "concurrentTotalMillis": 12202.0
+    },
+    {
+      "raw": "10-08 12:56:52.010   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 152828(3109KB) AllocSpace objects, 31(52MB) LOS objects, 4% free, 128MB/134MB, paused 113.660ms total 2.784s",
+      "pauseMillis": 113.66,
+      "concurrentTotalMillis": 2784.0
+    },
+    {
+      "raw": "10-08 12:57:21.512   514   527 I nguo.mobile.de: Background concurrent copying GC freed 616993(16MB) AllocSpace objects, 125(11MB) LOS objects, 2% free, 227MB/233MB, paused 174.446ms total 27.967s",
+      "pauseMillis": 174.446,
+      "concurrentTotalMillis": 27967.0
+    },
+    {
+      "raw": "10-08 12:57:34.164   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 746706(19MB) AllocSpace objects, 159(15MB) LOS objects, 0% free, 231MB/233MB, paused 5.701ms total 11.913s",
+      "pauseMillis": 5.701,
+      "concurrentTotalMillis": 11913.0
+    },
+    {
+      "raw": "10-08 12:57:46.972   514   527 I nguo.mobile.de: Background concurrent copying GC freed 571975(19MB) AllocSpace objects, 157(29MB) LOS objects, 2% free, 194MB/200MB, paused 64.957ms total 11.880s",
+      "pauseMillis": 64.957,
+      "concurrentTotalMillis": 11880.0
+    },
+    {
+      "raw": "10-08 12:58:03.849   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 59238(3443KB) AllocSpace objects, 59(3068KB) LOS objects, 3% free, 193MB/199MB, paused 32.631ms total 1.502s",
+      "pauseMillis": 32.631,
+      "concurrentTotalMillis": 1502.0
+    },
+    {
+      "raw": "10-08 12:58:28.838   514   527 I nguo.mobile.de: Background concurrent copying GC freed 1152213(36MB) AllocSpace objects, 67(3484KB) LOS objects, 3% free, 162MB/168MB, paused 112.031ms total 6.462s",
+      "pauseMillis": 112.031,
+      "concurrentTotalMillis": 6462.0
+    },
+    {
+      "raw": "10-08 12:58:48.304   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 58915(3619KB) AllocSpace objects, 53(2564KB) LOS objects, 3% free, 161MB/167MB, paused 23.088ms total 1.477s",
+      "pauseMillis": 23.088,
+      "concurrentTotalMillis": 1477.0
+    },
+    {
+      "raw": "10-08 12:59:11.474   514   527 I nguo.mobile.de: Background concurrent copying GC freed 72522(4330KB) AllocSpace objects, 59(2532KB) LOS objects, 3% free, 161MB/167MB, paused 1.565ms total 3.699s",
+      "pauseMillis": 1.565,
+      "concurrentTotalMillis": 3699.0
+    },
+    {
+      "raw": "10-08 12:59:56.198   514   527 I nguo.mobile.de: Background young concurrent copying GC freed 186715(5268KB) AllocSpace objects, 18(1336KB) LOS objects, 3% free, 162MB/167MB, paused 16.621ms total 1.858s",
+      "pauseMillis": 16.621,
+      "concurrentTotalMillis": 1858.0
+    },
+    {
+      "raw": "10-08 13:00:04.782   514   527 I nguo.mobile.de: Background concurrent copying GC freed 362755(12MB) AllocSpace objects, 1317(75MB) LOS objects, 6% free, 81MB/87MB, paused 70.679ms total 5.859s",
+      "pauseMillis": 70.679,
+      "concurrentTotalMillis": 5859.0
+    }
+  ],
+  "gcConcurrentTotalIsNotPause": true,
+  "androidRootCauseProven": false,
+  "scope": "Exact296 real host CPU source14 mesh producer under384MiB, actual thread allocation and JFR; not normal Android or allocation-stack reproduction. Actual311 GC rows preserve pause separately from concurrent total; no inference that entire42.86s process GC blocked worker. Rendering GPU/native and host scheduling remain separate unknowns.",
+  "wholeGoalComplete": false,
+  "hostJfr": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-allocation313/producer.jfr",
+    "sha256": "22dcef9180f7da0ea38210aa17f45b861cffec98d6969cef1a58c6a2a6f809ca",
+    "producerAllocationSampleCount": 98,
+    "selectedSampleRows": [
+      "startTime = 13:13:17.949\n  objectClass = game.sanguo.core.Hex (classLoader = app)\n  weight = 511.4 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 274\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.955\n  objectClass = int[] (classLoader = bootstrap)\n  weight = 851.7 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.sourceWater(MapSceneSnapshot$Ground, int, int, SceneMesh) line: 353\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 322\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.959\n  objectClass = game.sanguo.core.Hex (classLoader = app)\n  weight = 627.8 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 274\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.961\n  objectClass = java.lang.Float (classLoader = bootstrap)\n  weight = 325.9 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    java.lang.Float.valueOf(float) line: 458\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 276\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.966\n  objectClass = game.sanguo.core.Hex (classLoader = app)\n  weight = 659.5 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 274\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.968\n  objectClass = java.lang.Float (classLoader = bootstrap)\n  weight = 304.6 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    java.lang.Float.valueOf(float) line: 458\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 276\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.973\n  objectClass = game.sanguo.core.Hex (classLoader = app)\n  weight = 659.5 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 274\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.975\n  objectClass = game.sanguo.core.Hex (classLoader = app)\n  weight = 300.6 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 274\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.978\n  objectClass = int[] (classLoader = bootstrap)\n  weight = 626.8 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.sourceWater(MapSceneSnapshot$Ground, int, int, SceneMesh) line: 344\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 322\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.979\n  objectClass = game.sanguo.core.Hex (classLoader = app)\n  weight = 361.8 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 274\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.982\n  objectClass = int[] (classLoader = bootstrap)\n  weight = 626.8 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.sourceWater(MapSceneSnapshot$Ground, int, int, SceneMesh) line: 353\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 322\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.984\n  objectClass = float[] (classLoader = bootstrap)\n  weight = 306.1 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.sourceWater(MapSceneSnapshot$Ground, int, int, SceneMesh) line: 353\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 322\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.988\n  objectClass = float[] (classLoader = bootstrap)\n  weight = 659.6 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.sourceWater(MapSceneSnapshot$Ground, int, int, SceneMesh) line: 353\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 322\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}",
+      "startTime = 13:13:17.990\n  objectClass = float[] (classLoader = bootstrap)\n  weight = 359.8 kB\n  eventThread = \"main\" (javaThreadId = 1)\n  stackTrace = [\n    game.sanguo.mobile.SceneMesh.sourceWater(MapSceneSnapshot$Ground, int, int, SceneMesh) line: 353\n    game.sanguo.mobile.SceneMesh.ground(MapSceneSnapshot$Ground, List, SceneMesh$TerrainWindow, SceneMesh$BuildStats) line: 322\n    game.sanguo.mobile.PrepareAllocationProbe313.main(String[]) line: 17\n  ]\n}"
+    ],
+    "samplingNotExactAllocationCounts": true,
+    "digestAndWorldPreparationSamplesExcluded": true
+  }
+}

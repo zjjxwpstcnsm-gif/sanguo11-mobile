@@ -1,0 +1,8 @@
+{
+  "stage": "waiting-actual316-build-owner-exit",
+  "previousFailedActualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic-installed311",
+  "changedOnlyMeshAllocation": true,
+  "functional120sLimitUnchanged": true,
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false
+}
