@@ -710,3 +710,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 394只读实际369别名/原mesh flags补充：3文件37个具名pcGround/pcWater/pcScenery/pcSite/pcUnit/pcFacility/pcDam/pcWall/pcFacilityRig/nativeBody谓词逐SHA/context，8项bounds/opaque-alpha/旧flag/原season painting/损坏shader/原formation/drag silhouette/原UV审阅。PC跳通用flag/pigment/damage不等于原选择/事实标签/原model姿态消失；原选择overlay/labelHit与source body/texture路线存在但全正常附件/气候/损坏施工/精确PC帧仍未证明。拖动ghost/树林silhouette明确是App操作辅助，不包装原效果。不是任意局部boolean/shader/原native/C#全语义闭合，不改生产/RNG/B WIP或源方法。
 
 395当前369正常fire独立fixture排队，只在392/393全16及最后cold正式通过、全9/3797SHA/原video-worker退出后新freshbackup，核同game811/test3c实际已安装bytes再正常Source14/deploy/cancel/player-fire/暂停Home/低画质/灭火/重燃/完整多旬到期/保存读取/新PID。旧296/299/13格原视频成绩不接入新395；128容量性能、其他火链/全设施/PCM/ARM和B最终组合仍单独待验。当前真实392 Source0/1 normal flow complete，helper84401/原观察器84427-84428继续live，整个目标active，未进入395设备动作。
+
+396新395终态审计工具已登记并只等待：精确game811/test3c、六真实native fire lifecycle节点、完整正常+独立cold/Save双RNG/token、系统动画偏好、9/3797原SHA与原录像各device/host/postpullSHA；任何失败保留、不凭恢复页或无error倒推通过。397完整源导出工具也只排队等395所有原文件恢复及真实owner退出，完整369游戏+385可选test输入覆盖canonical旧9app/nativeC/额外2JNI，当前全部tracked/own docs/tools并逐tar成员SHA和独立inode，原168/4JNI包含，不包含SDK/cache或用户备份，不声称脱GitAPK byte-repro或ARM。当前无新复制/哈希/重编译与设备测试并发，两个工具等待明确case，不能根据receipt单独判进程停。
+
+目前新392实际Source0至4 normal flow complete（不借380旧节点），主helper84401与观察器均live；未16终态/最后cold/完整restore正式通过。现有90具名/37mesh别名源码核查只为源分支审阅，实际全演出/选择/语音/原气候/全caller仍待；音乐only普通设置0.997794通过与默认混合0.511失败分别保留。新main无已完成变动，不合B r25或他会话WIP、不改冻结4JNI，全目标保持active。

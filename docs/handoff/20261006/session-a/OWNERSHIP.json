@@ -794,7 +794,11 @@
     "docs/handoff/20261006/session-a/audit_alias_gates394.py",
     "docs/handoff/20261006/session-a/ALIAS_GATES394.json",
     "docs/handoff/20261006/session-a/run_current_fire395.py",
-    "docs/handoff/20261006/session-a/CURRENT_FIRE395_LAUNCH.json"
+    "docs/handoff/20261006/session-a/CURRENT_FIRE395_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_current_fire396.py",
+    "docs/handoff/20261006/session-a/CURRENT_FIRE396.json",
+    "docs/handoff/20261006/session-a/export_current_source397.py",
+    "docs/handoff/20261006/session-a/CURRENT_SOURCE397.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
