@@ -488,7 +488,9 @@
     "docs/handoff/20261006/session-a/probe_admitted_fire_budget246.py",
     "docs/handoff/20261006/session-a/ADMITTED_FIRE_BUDGET246.json",
     "docs/handoff/20261006/session-a/ADMITTED_FIRE_BUDGET246.md",
-    "docs/handoff/20261006/session-a/B_MAP_GUARD_PROVENANCE247.json"
+    "docs/handoff/20261006/session-a/B_MAP_GUARD_PROVENANCE247.json",
+    "docs/handoff/20261006/session-a/MAP_INPUT_LOADING_GATE248.json",
+    "docs/handoff/20261006/session-a/MAP_INPUT_LOADING_GATE248.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

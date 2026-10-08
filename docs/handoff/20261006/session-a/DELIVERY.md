@@ -298,3 +298,10 @@ Latest full own source8979dae2 includes completed finite Gov45173c6c+3b5d9b70, e
 228实际guest Graphics0和host OpenGL translator证据不证明GPU0，应用GPU峰仍未知。229/230的128原火host容量首帧失败，231克隆日志精确定位既有5Mblock-byte守卫5000008 at464c24、非5s watchdog/JavaOOM；原源码与六JNI未动。不能把原13格正常成绩扩大为128预算闭合；后继真正容量修复仍需原顺序/同视觉MT/时钟/释放与新包正常路径/ARM证明。
 
 235仅在独立stage改A Canvas正常地图提示，编译与补丁精确读回通过；规范165/176及当前媒体队列不变，尚未新APK安装。后继在227的Filament前态6c01e6f0…上串行应用，准确说明/增量SHA见NORMAL_MAP_HINT_STAGE235.md/json；不拼接旧成绩，不覆盖B61正在执行的包。原完整源225包含到224，当前完整Git/目录另保留227–235后继；最终需再次完整快照而非宣称225包含未曾归档的后继。
+
+
+## 238–248 最新执行状态（覆盖旧“182仍等待”当前表述）
+
+176 Source4在native69真实搜索settle断言失败，238保留实际PNG/64人检查点/日志与全9/3797SHA恢复；原normal父链、audio、heap均已终止且后两者未有设备动作。239观察测试APK c689e103…新独立构建，生产game931bc不变/168资源与六JNI/注册/签名/原39夹具核验。240错误reuse模式被已装test SHA守卫拒绝且全文件零改写恢复；242已使用正确test-only-update实际安装SHA核对，正常Source4仅320/670partial，原条件/超时/动作未放宽，观察影响时序仍可能掩盖，尚不宣称根因修复或转旧5来源成绩。
+
+246独立A原火预算wrapper宿主跨过64/128，1/13/32原记录/时间字节同；最高20M计费byte、native5s/Java6s/原内存/packet上限不变。128计费19569502靠近上限且update229ms，不作长时/Android128/FPS/ARM/JavaOOM闭合；额外2JNI未重建或改写。248读取B实际r8地图点击失败截图，确认加载遮罩仍覆盖目标，给同actualhost/curtain消失/真实输出/资源完成的具体正常准入，未改B或产品、不绕遮罩。原完整源225尚无238–248后继；当前目录/Git完整保存，新最终源/APK/全流程仍待。

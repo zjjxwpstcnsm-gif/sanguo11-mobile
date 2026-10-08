@@ -1,0 +1,40 @@
+{
+  "actualFailedBCase": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r8-acceptance-v1",
+  "actualCaseResultSha256": "54dcdf31bdeafe4d3d52a625df847146c656275c64119ab5f4061f8dfe2bb842",
+  "actualApks": {
+    "out/session-b/native-opening-combined61-frozen-r8/app-debug.apk": "6b281c714cda67fb7352ae6b5a4a42ed8adea50d2cee42904724c196165802c1",
+    "out/session-b/native-opening-combined61-frozen-r8/app-debug-androidTest.apk": "a7683d1ba19cba1b25c7eb49001c210befa752060a55cf24da4f0be336252f7b"
+  },
+  "diagnosisSha256": "1b9b4deb37143f9f52c6652b43eb834b573c75659f61d0f1656141aaf65395ad",
+  "images": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r8-acceptance-v1/evidence/native-duel-normal/map-input-106-120-0.png",
+      "sha256": "63a8165bbb79ce5f67b7a429f3df4f787e325e79bfa61229e0b618ae539f6a58"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r8-acceptance-v1/evidence/native-duel-normal/map-input-106-120-1.png",
+      "sha256": "0fb3a71d8c8afa3639ab836ea4880f3c56645d8cdb6b7e7c317c891344731136"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r8-acceptance-v1/evidence/native-duel-normal/map-input-106-120-2.png",
+      "sha256": "4a16262423a56476e4303d91f158f8bcf73f0fc374f4f94d3fe242be8e536f4a"
+    }
+  ],
+  "observedScreenshotContent": "Inspected attempt0: entire map covered by dark loading screen and progress circle with 正在准备3D地图, above live march control dock. Pointer540,1005.5964 is inside loading overlay. No visible terrain at target.",
+  "aSourceSha256": {
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+    "app/src/main/java/game/sanguo/mobile/FilamentMapView.java": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java": "d7ba3f1f1e3fbf065dd62107161cb0726b4bc3f325c83dbc938c4d93a3832c19",
+    "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java": "fd7b1984918ae46453c38d70d21641448b3f66881da5896e467215cfc0391e00"
+  },
+  "uiCausalEvidence": "A MapHost.showLoadingCurtain adds opaque clickable map.loading FrameLayout after spatial; it intentionally intercepts map touch until onVerifiedOutput for exact candidate removes it. Nonnull spatial/snapshot and geometry ray do not establish map interaction readiness. Current routePoint ignores loadingCurtain and defaults true for nullspatial, so it is insufficient input-admission proof.",
+  "requiredReadiness": [
+    "current actual MainActivity map, attached/shown/enabled/windowFocus, spatial not released",
+    "loadingCurtain absent, loadingCovered false, no visible map.loading/map.failure",
+    "outputVerified true, renderedFrames>2, pending0, assetSyncPending false, assetWork.pending0",
+    "after camera pose wait a fresh actual render with settled uploads before viewport/ray/pointer",
+    "real pointer can target only actual visible free map rectangle outside dock/panels/minimap; preserve save/allRNG/fullToken until confirmation"
+  ],
+  "scope": "Read-only actual failedB r8 images and frozen results; no new rule rejection/MapHost bug/OOM inferred, no product or B source edits, no early-loading bypass or direct onTile/move/snapshot. Requires B own normal tester readiness correction and fresh actual installed flow; does not prove it passed. B previous trueguard provenance247 separate.",
+  "wholeGoalComplete": false
+}
