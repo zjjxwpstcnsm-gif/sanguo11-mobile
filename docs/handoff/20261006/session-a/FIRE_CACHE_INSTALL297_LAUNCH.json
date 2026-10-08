@@ -1,0 +1,12 @@
+{
+  "stage": "preparing-complete-backup",
+  "previousFailedCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286",
+  "changedCandidate": "FIRE_CACHE_APK296.json",
+  "previousScoresTransferred": false,
+  "watchdogRootCauseProven": false,
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug-androidTest.apk": "1ff042d912f2534b934ef6b95a2d4a4fafc71d4e8ecc9549a032431d99a95779"
+  }
+}

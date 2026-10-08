@@ -1,0 +1,119 @@
+{
+  "cases": [
+    {
+      "cells": 2,
+      "recordsAndSourceClockByteExact": true,
+      "results": [
+        {
+          "label": "baseline257",
+          "exitCode": 0,
+          "wallSeconds": 17.099374513,
+          "framesCompleted": 801,
+          "instructionPeak": 544194,
+          "metadataQueries": 2593407,
+          "metadataMismatches": 0,
+          "maximumCallMs": {
+            "updateMs": 35.132999420166016,
+            "drawMs": 4.9120001792907715,
+            "geometryMs": 146.04200744628906
+          },
+          "stdoutSha256": "44fe9021fe95330f46216cec454bd85c4b1faf25290c75dc0e90c96118290870",
+          "stderrSha256": "a2996102089588c946ac34bdb74c5d2ad1aedf8a70f8adf156f91e48af15959b",
+          "pauseExact": true
+        },
+        {
+          "label": "four-way294",
+          "exitCode": 0,
+          "wallSeconds": 18.301044753,
+          "framesCompleted": 801,
+          "instructionPeak": 544194,
+          "metadataQueries": 8050,
+          "metadataMismatches": 0,
+          "maximumCallMs": {
+            "updateMs": 30.398000717163086,
+            "drawMs": 5.65500020980835,
+            "geometryMs": 147.33599853515625
+          },
+          "stdoutSha256": "99e13662d42f2ce38bf3ced284bc9655021f31e54037f80103f9e47fd3bf7691",
+          "stderrSha256": "2bf789fa32ec09dcb5de94da4622fdc502fb85e14fa3f21bb2dd0175fc646e53",
+          "pauseExact": true
+        }
+      ],
+      "metadataQueryRatio": 0.003104024937080836,
+      "wallRatio": 1.070275684007413
+    },
+    {
+      "cells": 128,
+      "recordsAndSourceClockByteExact": true,
+      "results": [
+        {
+          "label": "baseline257",
+          "exitCode": 0,
+          "wallSeconds": 129.665545924,
+          "framesCompleted": 801,
+          "instructionPeak": 7466202,
+          "metadataQueries": 19713440,
+          "metadataMismatches": 0,
+          "maximumCallMs": {
+            "updateMs": 263.6390075683594,
+            "drawMs": 26.23699951171875,
+            "geometryMs": 122.37300109863281
+          },
+          "stdoutSha256": "ed87bdf86cea11163a21e34ec9e8f9553207b26a38cd0ae3236c7577cf2fb30b",
+          "stderrSha256": "2edde5ca1795930de626e67c82b0ca858a71752dffa561557d3881f01f64a1a2",
+          "pauseExact": true
+        },
+        {
+          "label": "four-way294",
+          "exitCode": 0,
+          "wallSeconds": 122.07598039600003,
+          "framesCompleted": 801,
+          "instructionPeak": 7466202,
+          "metadataQueries": 8051,
+          "metadataMismatches": 0,
+          "maximumCallMs": {
+            "updateMs": 235.08200073242188,
+            "drawMs": 53.73699951171875,
+            "geometryMs": 121.11399841308594
+          },
+          "stdoutSha256": "076374c67f394ba7c8e85cd3961d48143c3e456f9da3d2e7ca2728f7d881a6c3",
+          "stderrSha256": "ced32b967fe13a221bd50562ce41206586cbd5565e22deb7f8f20a99e2c8d501",
+          "pauseExact": true
+        }
+      ],
+      "metadataQueryRatio": 0.0004084015778068161,
+      "wallRatio": 0.9414681404075652
+    }
+  ],
+  "sourceBeforeUnchanged": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc",
+    "session_a_cell_fire_instruction_worker.c": "435850bcdc505a3ce5397277e0ace178dcff82ef8ed57c137b390947c5a9ae35"
+  },
+  "candidateSource": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache294/session_a_cell_fire_instruction_worker.c",
+  "candidateSourceSha256": "ea99f4d6268696ca2bbd42e01690203e3f9b8c0b512ad40ad132188ddfb56f8e",
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache294/session_a_cell_fire_instruction_worker.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache294/host-probe"
+  ],
+  "instructionCacheSlots": 65536,
+  "extraReplacementBytes": 16384,
+  "native5sAndJava6sUnchanged": true,
+  "guest16MiBTcg32MiBPacket32768AndAdmission128Unchanged": true,
+  "androidWatchdogRootCauseProven": false,
+  "actualInstalled": false,
+  "scope": "Host-only cache associativity/mixed-key experiment; same icount matching and dynamic per-call epoch. Original source instructions/resource/order/clock/visualRNG output compared bytewise2/128 each801 lifecycle frames. No rule World/save/RNG or current JNI/APK rewrite. Actual293 Android timeout was below instruction cap; metadata overhead causal relation remains unknown until actual independent normal APK acceptance.",
+  "wholeGoalComplete": false
+}

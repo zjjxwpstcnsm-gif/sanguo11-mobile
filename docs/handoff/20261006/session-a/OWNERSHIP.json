@@ -583,7 +583,13 @@
     "docs/handoff/20261006/session-a/audit_fire_watchdog_failure293.py",
     "docs/handoff/20261006/session-a/FIRE_WATCHDOG_FAILURE293.json",
     "docs/handoff/20261006/session-a/probe_fire_cache294.py",
-    "docs/handoff/20261006/session-a/FIRE_CACHE_CANDIDATE294.json"
+    "docs/handoff/20261006/session-a/FIRE_CACHE_CANDIDATE294.json",
+    "docs/handoff/20261006/session-a/build_fire_cache_candidate295.py",
+    "docs/handoff/20261006/session-a/FIRE_CACHE_NATIVE_CANDIDATE295.json",
+    "docs/handoff/20261006/session-a/build_fire_cache_apk296.py",
+    "docs/handoff/20261006/session-a/FIRE_CACHE_APK296.json",
+    "docs/handoff/20261006/session-a/run_fire_cache_install297.py",
+    "docs/handoff/20261006/session-a/FIRE_CACHE_INSTALL297_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
