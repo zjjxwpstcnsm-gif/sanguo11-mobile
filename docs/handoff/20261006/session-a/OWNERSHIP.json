@@ -870,7 +870,16 @@
     "docs/handoff/20261006/session-a/MAIN_SOURCE_APPLIED442.json",
     "docs/handoff/20261006/session-a/audit_closeout443.py",
     "docs/handoff/20261006/session-a/CLOSEOUT444.json",
-    "docs/handoff/20261006/session-a/MAIN_CLOSEOUT.md"
+    "docs/handoff/20261006/session-a/MAIN_CLOSEOUT.md",
+    "docs/handoff/20261006/session-a/build_main445.py",
+    "docs/handoff/20261006/session-a/MAIN_BUILD446.json",
+    "docs/handoff/20261006/session-a/MAIN_SYNC_RESULT.json",
+    "out/session-a/main-build445",
+    "docs/handoff/20261006/session-a/run_main447.py",
+    "docs/handoff/20261006/session-a/MAIN447_LAUNCH.json",
+    "out/session-a/main447",
+    "docs/handoff/20261006/session-a/audit_main448.py",
+    "docs/handoff/20261006/session-a/MAIN_ACCEPTANCE449.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

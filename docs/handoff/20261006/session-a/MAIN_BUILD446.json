@@ -1,0 +1,67 @@
+{
+  "sourceRevision": "05236ca41c7795c9fc3030b9c274b7a8a25be262",
+  "sourcePath": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile",
+  "canonicalCandidateInputsVerified": 11357,
+  "jniGuards": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "beforeSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "afterSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "beforeSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "afterSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "beforeSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "afterSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "beforeSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "afterSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "beforeSha256": null,
+      "afterSha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "copiedOnlyWhenMissing": true
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "beforeSha256": null,
+      "afterSha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "copiedOnlyWhenMissing": true
+    }
+  ],
+  "buildExit": 0,
+  "wallSeconds": 184.563819287,
+  "buildLogSha256": "dcb69c3c1ce12bfb61e33b9de8afb52b369fc6613f0dea72ab84875081582753",
+  "buildSuccessful": true,
+  "gameLargeHeap": true,
+  "mainWorkingTreeClean": true,
+  "independentGradleCache": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/gradle-home",
+  "actualInstalled": false,
+  "wholeGoalComplete": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug.apk",
+      "sha256": "fe86851340f82d1c1a054f58ec7fdb144d5a35d42917121b1d61b2842d51b9ce",
+      "bytes": 315088355
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug-androidTest.apk",
+      "sha256": "b43568ba94c6ec81a657ff4b3e27c181659dd310d465f81d94bb14081bd710f2",
+      "bytes": 3151916
+    }
+  ],
+  "fixed168AndSixJniPackagedExact": true,
+  "sourceInputsExactFinalCandidate": true,
+  "scope": "New actual local main05236 build, original4 unchanged and tested A2 added only when absent. Only final source metadata differs from358 candidate; new installed normal/cancel/save/cold/complete restoration must be measured, no old APK scores transferred. Known first-source0 readinessFAIL/media/ARM/all16/native command gaps retained."
+}

@@ -1,0 +1,41 @@
+{
+  "stage": "restored-verified",
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug.apk": "fe86851340f82d1c1a054f58ec7fdb144d5a35d42917121b1d61b2842d51b9ce",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug-androidTest.apk": "b43568ba94c6ec81a657ff4b3e27c181659dd310d465f81d94bb14081bd710f2"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main447",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug-androidTest.apk",
+    "--observe-workers",
+    "--runner",
+    "SessionANativeDuelOpeningInstrumentation",
+    "--fresh-process-reopen"
+  ],
+  "normalColdPassed": true,
+  "helperExit": 0,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "scope": "New main05236 actual APK mandatory explicit normal PC settings source0/source14/cancel/fixed/accept/save/manualread/newprocess/allRNG. No prior16/fire/native-duel/media/ARM scores transferred."
+}

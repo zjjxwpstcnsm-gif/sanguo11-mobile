@@ -1,0 +1,74 @@
+{
+  "requestedTargetResolved": "main",
+  "mainBefore": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "mainCodeCommit": "05236ca41c7795c9fc3030b9c274b7a8a25be262",
+  "mainWorktree": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile",
+  "aBranch": "codex/map-ui-media-repair",
+  "mode": "clean fast-forward, exact completed sources only",
+  "remotePushPerformed": false,
+  "remoteMainObserved": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "remoteAlreadyAncestor": true,
+  "deliveredApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug.apk",
+      "sha256": "fe86851340f82d1c1a054f58ec7fdb144d5a35d42917121b1d61b2842d51b9ce",
+      "bytes": 315088355
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug-androidTest.apk",
+      "sha256": "b43568ba94c6ec81a657ff4b3e27c181659dd310d465f81d94bb14081bd710f2",
+      "bytes": 3151916
+    }
+  ],
+  "actualInstalledMainPackage": true,
+  "acceptance": "MAIN_ACCEPTANCE449.json",
+  "actualCold": {
+    "beforePid": "10033",
+    "afterPid": "18466",
+    "beforeProcessEvidence": {
+      "pid": "10033",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "18466",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "4b95a3dd3c73f43bb134226b23b0181d61d83560e5a868cf87985b7db066c37a",
+    "passed": true
+  },
+  "fullOriginalRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "canonicalCandidateFilesVerified": 11357,
+  "originalFourAndNewTwoJniGuarded": true,
+  "frozenSharedCode": "MAIN_SOURCE_APPLIED442.json finalFrozenPathGuards",
+  "oldWorkspace": {
+    "path": "/Users/paopao/workspace/sanguo11-mobile",
+    "head": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "dirtyPaths": 609,
+    "resetCleanOverwritePerformed": false
+  },
+  "remaining": [
+    "first-source preparation120s failure419/425; not performance fixed",
+    "full16 normal matrix on this final APK not accepted",
+    "ARM/user354832 OOM stack and GPU instantaneous peaks unknown",
+    "full native contests/facilities/fire chains and128 performance unaccepted on final APK",
+    "mapBGM/actual voice/miss58 callers lack committed facts; default mixed original music0.995 gate failed on prior package",
+    "complete original PC pixels/old31-39/all caller and required-rule checks not closed"
+  ],
+  "wholeGoalComplete": false
+}

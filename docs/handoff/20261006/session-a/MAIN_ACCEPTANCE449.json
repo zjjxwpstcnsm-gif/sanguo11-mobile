@@ -1,0 +1,203 @@
+{
+  "actualMain05236Apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug.apk": "fe86851340f82d1c1a054f58ec7fdb144d5a35d42917121b1d61b2842d51b9ce",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug-androidTest.apk": "b43568ba94c6ec81a657ff4b3e27c181659dd310d465f81d94bb14081bd710f2"
+  },
+  "normalSource0Source14AndFinalColdAccepted": true,
+  "actualChecks": {
+    "cancel settings 0": true,
+    "cancel settings 14": true,
+    "accept local settings draft 0": true,
+    "accept local settings draft 14": true,
+    "cancel final new game confirmation 0": true,
+    "cancel final new game confirmation 14": true,
+    "noLegacyFallback": true,
+    "sourceConstraint": true,
+    "noImplicitDefaults": true,
+    "exactNormalSaveRead": true
+  },
+  "actualColdProcess": {
+    "beforePid": "10033",
+    "afterPid": "18466",
+    "beforeProcessEvidence": {
+      "pid": "10033",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "18466",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "4b95a3dd3c73f43bb134226b23b0181d61d83560e5a868cf87985b7db066c37a",
+    "passed": true
+  },
+  "completeOriginalRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "rawVideos": 2,
+  "videoIndexSha256": "24808a52869cf88809311cad1392e5780fb084a6aadc6fb9737c77413ad39555",
+  "sessionSha256": "c9f180d17078cbab000a7e125c4fc107ea5b3a127c43ff0410c8c0a563b9aaa0",
+  "evidenceFiles": [
+    {
+      "path": "evidence/a-presentation-explicit-new-source-0.txt",
+      "sha256": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223",
+      "bytes": 132
+    },
+    {
+      "path": "evidence/a-presentation-explicit-new-source-14.txt",
+      "sha256": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223",
+      "bytes": 132
+    },
+    {
+      "path": "evidence/actual-build.sg11",
+      "sha256": "4b95a3dd3c73f43bb134226b23b0181d61d83560e5a868cf87985b7db066c37a",
+      "bytes": 2866806
+    },
+    {
+      "path": "evidence/diagnosis.txt",
+      "sha256": "5d39a15cd40a9b720121a27f2e3217e07087893fff13d458307a806073a234ce",
+      "bytes": 581
+    },
+    {
+      "path": "evidence/progress.txt",
+      "sha256": "349a2f4a654c7b9b51343fb9a46f4951980e8ced748445a497bc7b0bc6538f11",
+      "bytes": 128484
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "e92165de52a942f277908aeb903089ac96b449d9c6953c12e92d3e06578ed6b1",
+      "bytes": 118
+    },
+    {
+      "path": "evidence/scene-facts-explicit-new-source-0.json",
+      "sha256": "a526b187d4417b03d4ef9aea7e56ecfe0efa178f23d2d139c0aab2055868e81a",
+      "bytes": 306
+    },
+    {
+      "path": "evidence/scene-facts-explicit-new-source-14.json",
+      "sha256": "71bfc1a645e2a92ddb3ef7719eb4343aa35dfa141ab09aaeb31d2efe4e242372",
+      "bytes": 306
+    },
+    {
+      "path": "evidence/source-0-confirmation-actual-text.json",
+      "sha256": "ef2f19e0d2dd32823eb65d50490297c3f989125dcb807ca64e42c4bb3326080f",
+      "bytes": 2757
+    },
+    {
+      "path": "evidence/source-0-confirmation.png",
+      "sha256": "257aaff03ae4810a69ce4a1a18aaf0fe28fc75505bef480151869653f23fc27e",
+      "bytes": 252547
+    },
+    {
+      "path": "evidence/source-0-explicit.sg11",
+      "sha256": "1db148a4234430364c024c0d8a9f470be689df18a6357b0561ee2a7eb5dbe6fb",
+      "bytes": 2815687
+    },
+    {
+      "path": "evidence/source-0-map-actual-text.json",
+      "sha256": "d9cfad573308983134bb4feeb644650657b07412cbf57d95737757ee0b1ace4e",
+      "bytes": 9087
+    },
+    {
+      "path": "evidence/source-0-map.png",
+      "sha256": "be0a19740560453021ee22d28dbd46d8d65eea8d975c78c7891b1ada57708f47",
+      "bytes": 1793953
+    },
+    {
+      "path": "evidence/source-0-settings-actual-text.json",
+      "sha256": "9cc2b0fbf057618acc4ea48986e1e6d41801c4163054cf130dc1c2e4490f547c",
+      "bytes": 9040
+    },
+    {
+      "path": "evidence/source-0-settings.png",
+      "sha256": "48fd49972822e1a90cc89d56d4b6e467625f23374cec25d2a560950b3e7f7c09",
+      "bytes": 168710
+    },
+    {
+      "path": "evidence/source-14-confirmation-actual-text.json",
+      "sha256": "913d6de07456a3b703d3497799e52dfb272f176e7cf01540b193024bda8c18c6",
+      "bytes": 2796
+    },
+    {
+      "path": "evidence/source-14-confirmation.png",
+      "sha256": "70b5016bbbedba2dabb5d0ed283768d5a5b87b55b1f8e0cd9ac5a10d64f6717b",
+      "bytes": 263425
+    },
+    {
+      "path": "evidence/source-14-explicit.sg11",
+      "sha256": "4b95a3dd3c73f43bb134226b23b0181d61d83560e5a868cf87985b7db066c37a",
+      "bytes": 2866806
+    },
+    {
+      "path": "evidence/source-14-map-actual-text.json",
+      "sha256": "23a022d8767a5d48f9ffb88c6f07f1065aef23a2a33e2c61f8ac88e47a3ad047",
+      "bytes": 8010
+    },
+    {
+      "path": "evidence/source-14-map.png",
+      "sha256": "8db5146d01e8882f5fa515dd8abc9d91996c605ac77f4936db91eca6928a17e7",
+      "bytes": 1958938
+    },
+    {
+      "path": "evidence/source-14-settings-actual-text.json",
+      "sha256": "58ab0ade77f386f275dd93e81fec1ce3175b17a580e441d9175d87f5899a65b4",
+      "bytes": 9065
+    },
+    {
+      "path": "evidence/source-14-settings.png",
+      "sha256": "eeea0749fafd07f21a15692f9146e08cc64b042e61f8e0fb48575591fed6b599",
+      "bytes": 177072
+    },
+    {
+      "path": "cold-evidence/a-presentation-cold-explicit-options.txt",
+      "sha256": "e5b80037dc68547f092c03feff851e4b4aa0971daf6692326a7041dffb19a223",
+      "bytes": 132
+    },
+    {
+      "path": "cold-evidence/cold-explicit-options-actual-text.json",
+      "sha256": "960800abfdeb6b90007a8065b9bb1700b5e723870e44a14046966eb0e42d4fcb",
+      "bytes": 8018
+    },
+    {
+      "path": "cold-evidence/cold-explicit-options.png",
+      "sha256": "97dfe7dfadd6279780c88340ab343f5bc8716e62d2938956b68ceab1b4443cde",
+      "bytes": 1958443
+    },
+    {
+      "path": "cold-evidence/diagnosis.txt",
+      "sha256": "965779dbe5cd555db66f9fc3c3857c12bb8d0f0fa1b77d699492196bbf168651",
+      "bytes": 282
+    },
+    {
+      "path": "cold-evidence/progress.txt",
+      "sha256": "66ec75e1b73e18e1033594304048faa525cbecb8d39ebe08daaad6d19cb5d69f",
+      "bytes": 62828
+    },
+    {
+      "path": "cold-evidence/result.txt",
+      "sha256": "6b52194dc937a21b8aea2a21a279ecac049937845c91f1589bfbe1f38ccabf4b",
+      "bytes": 84
+    },
+    {
+      "path": "cold-evidence/scene-facts-cold-explicit-options.json",
+      "sha256": "b9112cf4addc78bddb3f32725ce61593f46f96e0be9989066a32dcc9d9406e5a",
+      "bytes": 306
+    }
+  ],
+  "previous412FailureTransferred": false,
+  "scope": "Actual menu explicit choice/cancel/source fixed constraint/Source0 and14 new/save/read/final Source14 newprocess completeSave/allRNG/Token. Actual option dialog screenshot viewed for text controls. Preview/map entire geometry/pixels, all16/factions/670callers/first no-session/old31-39/ordinary384/real native contests/fire/military/media/ARM/final whole checks remain separate. Source0 settings screenshot was captured while preview map loading; not certified original preview pixels. Old412 thread error and ce83 first-source0 performance419/425FAIL remain. This actual main fe868 candidate no implicit legacy fallback; B media/ARM/all16/native commands remain open.",
+  "wholeGoalComplete": false
+}
