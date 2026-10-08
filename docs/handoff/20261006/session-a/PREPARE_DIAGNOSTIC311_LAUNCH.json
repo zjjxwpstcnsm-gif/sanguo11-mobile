@@ -1,8 +1,29 @@
 {
-  "stage": "waiting-actual310-build-owner-exit",
+  "stage": "restored-verified",
   "previousFailedActualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source14",
   "changedOnlyDiagnosticTest": true,
   "functional120sLimitUnchanged": true,
   "previousScoresTransferred": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test-build310/app-debug-androidTest.apk": "63a679de5c529dc6a4cceb810d3b477c72620c427440c672080ffc797791b9a3"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic-installed311",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test-build310/app-debug-androidTest.apk",
+    "--test-only-update",
+    "--observe-workers",
+    "--runner",
+    "SessionAScenarioPrepareInstrumentation"
+  ],
+  "helperExit": 0,
+  "functionalDiagnosticPassed": false
 }

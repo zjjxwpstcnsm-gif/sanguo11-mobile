@@ -619,7 +619,9 @@
     "docs/handoff/20261006/session-a/build_prepare_test310.py",
     "docs/handoff/20261006/session-a/PREPARE_TEST_BUILD310.json",
     "docs/handoff/20261006/session-a/run_prepare_diagnostic311.py",
-    "docs/handoff/20261006/session-a/PREPARE_DIAGNOSTIC311_LAUNCH.json"
+    "docs/handoff/20261006/session-a/PREPARE_DIAGNOSTIC311_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_prepare_diagnostic312.py",
+    "docs/handoff/20261006/session-a/PREPARE_DIAGNOSTIC312.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
