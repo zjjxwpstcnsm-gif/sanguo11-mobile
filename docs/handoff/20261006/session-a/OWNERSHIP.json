@@ -636,7 +636,8 @@
     "docs/handoff/20261006/session-a/MESH_PREPARE317_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_mesh_prepare318.py",
     "docs/handoff/20261006/session-a/MESH_PREPARE318.json",
-    "docs/handoff/20261006/session-a/PREPARE_CORE_REQUEST319.md"
+    "docs/handoff/20261006/session-a/PREPARE_CORE_REQUEST319.md",
+    "docs/handoff/20261006/session-a/MESH_ALLOCATION314.patch"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

@@ -1,0 +1,51 @@
+--- a/app/src/main/java/game/sanguo/mobile/SceneMesh.java
++++ b/app/src/main/java/game/sanguo/mobile/SceneMesh.java
+@@ -9,8 +9,19 @@
+     // Source quarter-cell topology repeats across every full16x16 chunk.
+     // Share only byte-identical immutable index arrays, bounded to16 patterns.
+     private static final List<int[]> PC_INDEX_PATTERNS=new ArrayList<>();
+-    private static synchronized int[] pcIndices(int[] indices){
+-        for(int[] pattern:PC_INDEX_PATTERNS)if(Arrays.equals(pattern,indices))return pattern;
++    private static synchronized int[] pcIndices(int[] land,int landCount,int[] water,int waterCount){
++        // Compare bounded task scratch before allocating a repeated immutable
++        // topology. Never publish scratch; a miss owns an exact used-range copy.
++        int count=landCount+waterCount;
++        for(int[] pattern:PC_INDEX_PATTERNS){
++            if(pattern.length!=count)continue;
++            int n=0;while(n<landCount&&pattern[n]==land[n])n++;
++            if(n!=landCount)continue;
++            int w=0;while(w<waterCount&&pattern[landCount+w]==water[w])w++;
++            if(w==waterCount)return pattern;
++        }
++        int[] indices=Arrays.copyOf(land,count);
++        if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
+         if(PC_INDEX_PATTERNS.size()<16)PC_INDEX_PATTERNS.add(indices);
+         return indices;
+     }
+@@ -164,9 +175,13 @@
+             triangle(false,n,n+1,n+2);triangle(false,n,n+2,n+3);
+         }
+         SceneMesh mesh(float x,float z,float radius){
+-            int[] indices=Arrays.copyOf(land,landCount+waterCount);
+-            if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
+-            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),pcSlots==null?indices:pcIndices(indices),x,z,radius);
++            int[] indices;
++            if(pcSlots!=null)indices=pcIndices(land,landCount,water,waterCount);
++            else{
++                indices=Arrays.copyOf(land,landCount+waterCount);
++                if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
++            }
++            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),indices,x,z,radius);
+             mesh.landIndexCount=landCount;return mesh;
+         }
+     }
+@@ -273,7 +288,8 @@
+             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
+                 Hex h=new Hex(qq,rr);int value=g.valid(h)?g.terrain[rr*g.width+qq]+(g.bases.contains(h)?64:0):-1;
+                 fingerprint=(fingerprint^value)*1099511628211L;
+-                fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
++                Float override=g.surface.overrides.get(h);
++                fingerprint=(fingerprint^Float.floatToIntBits(override==null?-1f:override))*1099511628211L;
+             }
+             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
+             long geometryStarted=stats==null?0:System.nanoTime();
