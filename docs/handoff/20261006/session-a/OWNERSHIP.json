@@ -490,7 +490,13 @@
     "docs/handoff/20261006/session-a/ADMITTED_FIRE_BUDGET246.md",
     "docs/handoff/20261006/session-a/B_MAP_GUARD_PROVENANCE247.json",
     "docs/handoff/20261006/session-a/MAP_INPUT_LOADING_GATE248.json",
-    "docs/handoff/20261006/session-a/MAP_INPUT_LOADING_GATE248.md"
+    "docs/handoff/20261006/session-a/MAP_INPUT_LOADING_GATE248.md",
+    "docs/handoff/20261006/session-a/probe_fire_budget_lifecycle249.py",
+    "docs/handoff/20261006/session-a/FIRE_BUDGET_LIFECYCLE249.json",
+    "docs/handoff/20261006/session-a/stage_map_ray_guard250.py",
+    "docs/handoff/20261006/session-a/MAP_RAY_GUARD250.patch",
+    "docs/handoff/20261006/session-a/MAP_RAY_GUARD250.json",
+    "docs/handoff/20261006/session-a/MAP_RAY_GUARD250.md"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

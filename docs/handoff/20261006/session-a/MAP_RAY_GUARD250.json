@@ -1,0 +1,31 @@
+{
+  "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+  "owner": "A",
+  "beforeSha256": "fd7b1984918ae46453c38d70d21641448b3f66881da5896e467215cfc0391e00",
+  "afterSha256": "fd2ac8e018d7563c55d68449b25bd0da18d0e7225bc24a0f69ebf6d5c5701db7",
+  "patch": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MAP_RAY_GUARD250.patch",
+  "patchSha256": "8f61af89d2586c725bae1a2e6ce53beb92b7a64d015ef5f7caa5cccbd00c9ad3",
+  "stagePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-ray-guard250/app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+  "compiled": true,
+  "compileCommand": [
+    "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+    "-Xmx512m",
+    "-m",
+    "jdk.compiler/com.sun.tools.javac.Main",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-cp",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/filament.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/build/intermediates/javac/debugAndroidTest/compileDebugAndroidTestJavaWithJavac/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/core.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-api.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-runtime.jar",
+    "-d",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-ray-guard250/classes",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-ray-guard250/app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java"
+  ],
+  "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "patchReadbackExact": true,
+  "canonicalSourceUnchanged": true,
+  "actualInstalled": false,
+  "scope": "Only routePoint admission in independent A test-helper stage. False if nullrenderer/loading/failure/retired/lostfocus/pending uploads/unverified output/fullscreen presentation; then same existing viewport/dock/minimap/ray logic. No rule calls, waits/retries, snapshot injection or loading bypass. Corrects evidence quality identified by actualB r8 loading screenshot248. Current239 diagnostic and B current APK unchanged, fresh test-build/install required.",
+  "wholeGoalComplete": false
+}
