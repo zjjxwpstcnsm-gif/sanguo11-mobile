@@ -568,3 +568,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 283只读完成态审计任务已启动，等待同Source0三实际owner20713/20790/20791终止；仅accepted完整670caller/normal/cold/每原SHA恢复后，才产283 acceptance/284 memory/285 widget。未操作设备、未生成伪snapshot、不转269/280分数；若原case失败则在产通过receipt前拒绝。当前544/670仍partial，272/281/283同句柄在等真实终态。
+
+
+B r15消息更正旧角色诊断：前称captor555实为上阵胜者，当前AI用unit leader189，原上游实参仍待核。277契约撤回未独立证实的旧示例，角色/speaker/profile未知不猜；不以B有限败北规则PASS或背景recovery转A地图/原Arena/媒体成绩，不拷typed忠诚WIP或改B源码。当前Source0仍576/670，same owner/observer实活，无新包安装。
