@@ -1,0 +1,44 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "f8ad7be57df364e549fee9f000956730705e4e41",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completeInheritedFiles": 11416,
+  "completeCandidateFiles": 11417,
+  "changedOnlyDiagnosticTestPaths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "b6f2c743513900ef3ba31d188feb5b2d744f720df5faa7dff23be764a1667682",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic309/app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java"
+    },
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "f188a6e90b688e22f96f8c39570d52a648da07e12f49e5485a34470940661d3d",
+      "afterSha256": "efdd5ba9e5e093e1f650b1f7d351415c94c1806759cd1e0498618ade2adc6f0e",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic309/app/src/androidTest/AndroidManifest.xml"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk",
+      "sha256": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
+      "bytes": 313548279
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test-build310/app-debug-androidTest.apk",
+      "bytes": 3094120,
+      "sha256": "63a679de5c529dc6a4cceb810d3b477c72620c427440c672080ffc797791b9a3"
+    }
+  ],
+  "gameReusedExact296": true,
+  "gameLargeHeap": true,
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test-build310/candidate-inputs.json",
+  "candidateInputManifestSha256": "68bf02f63a51049b427696cf4a5e4cff3ebf63e7fc1363b4c695231cbf6fa3a6",
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 451.233839732,
+  "buildLogSha256": "92c4c477ebe64f607fdb255ef13d886404a881d9b180e1079d8dab253447e6f5",
+  "functional120sThresholdRelaxed": false,
+  "actualInstalled": false,
+  "scope": "Fresh diagnostic test-only APK built against full296 source/resource/JNI inputs; exact previously installed296 game APK bytes reused, not rebuilt/relabeled. New test may have different BuildConfig revision label; product code unchanged. Real source14 loading/UI-read stacks/focused preview/3D timing and cancellation; >120s remains functionalFAIL despite600s observation. Fresh full user backup/test-only install/SHA/restoration still required.",
+  "wholeGoalComplete": false
+}
