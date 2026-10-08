@@ -1,0 +1,33 @@
+{
+  "stage": "actual-running-large-source07",
+  "previous": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-installed297",
+  "largeCohort": "FIRE_CACHE_APK296.json",
+  "ordinaryCohort": "ORDINARY_CACHE_BUILD303.json",
+  "cases": [],
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "activeCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source07",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source07",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug-androidTest.apk",
+    "--reuse-installed",
+    "--observe-workers",
+    "--runner",
+    "SessionAMapRepairInstrumentation",
+    "--suite",
+    "all",
+    "--begin",
+    "7",
+    "--end",
+    "8",
+    "--fresh-process-reopen"
+  ]
+}

@@ -600,7 +600,13 @@
     "docs/handoff/20261006/session-a/compile_fire_memory_sampler301.py",
     "docs/handoff/20261006/session-a/FIRE_MEMORY_COMPILE301.json",
     "docs/handoff/20261006/session-a/audit_b_r16_recovery302.py",
-    "docs/handoff/20261006/session-a/B_R16_RECOVERY_PREFS302.json"
+    "docs/handoff/20261006/session-a/B_R16_RECOVERY_PREFS302.json",
+    "docs/handoff/20261006/session-a/build_ordinary_cache303.py",
+    "docs/handoff/20261006/session-a/ORDINARY_CACHE_BUILD303.json",
+    "docs/handoff/20261006/session-a/run_cache_regression304.py",
+    "docs/handoff/20261006/session-a/CACHE_REGRESSION304_LAUNCH.json",
+    "docs/handoff/20261006/session-a/run_cache_all_callers305.py",
+    "docs/handoff/20261006/session-a/CACHE_ALL_CALLERS305_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

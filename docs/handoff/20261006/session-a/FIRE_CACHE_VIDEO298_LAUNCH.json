@@ -1,5 +1,5 @@
 {
-  "stage": "actual-running",
+  "stage": "terminal",
   "apks": {
     "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
     "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug-androidTest.apk": "1ff042d912f2534b934ef6b95a2d4a4fafc71d4e8ecc9549a032431d99a95779"
@@ -20,5 +20,10 @@
   "reason": "New296 receipt absent from old helper video whitelist; current live test retained without restart. Exact-cohort read-only sidecar starts later and records its actual start time.",
   "scope": "Own fresh UUID /data/local/tmp only; app Save/library/preferences untouched. Capture encoder perturbs performance; no full startup/originalPC/audio/ARM acceptance. Current session.json is never rewritten by this sidecar. Subsequent install must wait this actual observer exit and original every-file SHA restoration.",
   "wholeGoalComplete": false,
-  "hostPid": 49991
+  "hostPid": 49991,
+  "observerExit": 0,
+  "indexPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-installed297/video298/video.json",
+  "indexSha256": "f723b69d8ca4aded8684552cba30017810cd0423b9eee6ff95c30c401b12598f",
+  "actualParts": 7,
+  "endedStage": "restored-verified"
 }

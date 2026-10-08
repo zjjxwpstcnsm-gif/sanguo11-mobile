@@ -1,0 +1,28 @@
+{
+  "compiled": true,
+  "deltaReceipt": "FIRE_MEMORY_SAMPLER300.json",
+  "deltaReceiptSha256": "a35c5251071988802cf3d4d97b80d1d6d6b18fb466ac191dc39101f9b990352a",
+  "command": [
+    "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+    "-Xmx256m",
+    "-m",
+    "jdk.compiler/com.sun.tools.javac.Main",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-cp",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/filament.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/app/build/intermediates/javac/debugAndroidTest/compileDebugAndroidTestJavaWithJavac/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/core/build/classes/java/main:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/game-api/build/classes/java/main:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source/game-runtime/build/classes/java/main",
+    "-d",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-memory-compile301/classes",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-memory-sampler300/app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-memory-sampler300/app/src/androidTest/java/game/sanguo/mobile/SessionAMemorySampler.java"
+  ],
+  "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "actualCurrent297EndedBeforeCompile": true,
+  "current297Passed": true,
+  "canonicalOrInstalledApksChanged": false,
+  "actualSamplerInstalled": false,
+  "scope": "Compile only exact staged instrumentation sampler+fire integration against real296 frozen compiled classes; no actual Runtime sampling/CSV acceptance/new APK/install or rules/save/RNG change. Later independently packaged test cohort, full backup/install/normal source flow/newPID/restoration and parser of consistent sampled rows required.",
+  "wholeGoalComplete": false
+}

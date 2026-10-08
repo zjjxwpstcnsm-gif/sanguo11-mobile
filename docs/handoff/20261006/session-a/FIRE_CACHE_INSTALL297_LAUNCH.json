@@ -1,5 +1,5 @@
 {
-  "stage": "changed-new-apk-actual-normal-fire-running",
+  "stage": "restored-verified",
   "previousFailedCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286",
   "changedCandidate": "FIRE_CACHE_APK296.json",
   "previousScoresTransferred": false,
@@ -25,5 +25,7 @@
     "--fresh-process-reopen",
     "--pause-fire"
   ],
-  "ownBuildActiveAtLaunch": false
+  "ownBuildActiveAtLaunch": false,
+  "normalAndColdPassed": true,
+  "helperExit": 0
 }

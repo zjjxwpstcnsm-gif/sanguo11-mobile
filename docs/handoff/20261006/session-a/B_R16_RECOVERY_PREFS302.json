@@ -1,0 +1,68 @@
+{
+  "sourceAcceptance": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/NATIVE_R16_AI_ACTOR_ACCEPTANCE.json",
+  "sourceAcceptanceSha256": "b5226646a2848013447a3210a972428dd2da2e8268e76e439b26e20f69ffece6",
+  "actualResultsSha256": "6d6b31a2cf773b627c517d2450a7e3270720da34ac99a97caa0d0a667f85f996",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r16/app-debug.apk": "3e6a7f0e5de3fc11ec247f00abaaba72cb7b963f296f00e0a560ec8f100f931a",
+    "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r16/app-debug-androidTest.apk": "41928e32f0c49fad6f8ad0a8d4e6251fc26eeec7c7725e7c264a0c14e98082de"
+  },
+  "fullOriginalTarMemberPathAndShaRestored": {
+    "internal": {
+      "exactRegularPathSetAndSha": true,
+      "files": 15
+    },
+    "external": {
+      "exactRegularPathSetAndSha": true,
+      "files": 772
+    }
+  },
+  "mapRendererPreferences": [
+    {
+      "stage": "before",
+      "sha256": "8176d95e098a10bfa25ade2796cfe1e847687dc68421383b36d58f8e74781f9c",
+      "values": {
+        "nativeFailure": "true",
+        "nativeSession": "true",
+        "facing": "1",
+        "sceneEnabled": "true",
+        "tilt": "55.0",
+        "version": "2",
+        "yaw": "0.0"
+      }
+    },
+    {
+      "stage": "post-test",
+      "sha256": "6770f31bfab5547eea41481facc4b47910b8f4e03ef2b50ca5cb61cb62d194eb",
+      "values": {
+        "nativeFailure": "true",
+        "nativeSession": "true",
+        "facing": "1",
+        "sceneEnabled": "true",
+        "tilt": "55.0",
+        "version": "3",
+        "yaw": "0.0"
+      }
+    },
+    {
+      "stage": "restored",
+      "sha256": "8176d95e098a10bfa25ade2796cfe1e847687dc68421383b36d58f8e74781f9c",
+      "values": {
+        "nativeFailure": "true",
+        "nativeSession": "true",
+        "facing": "1",
+        "sceneEnabled": "true",
+        "tilt": "55.0",
+        "version": "2",
+        "yaw": "0.0"
+      }
+    }
+  ],
+  "frozenMapHostSha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+  "beforeAlreadyHadFailureLatch": true,
+  "newAllocationCrashOrOomProven": false,
+  "normalRetry3DRequiredForPresentationAcceptance": true,
+  "normalRetry3DActuallyAccepted": false,
+  "sourceCodeObservation": "Same exact A MapHost bytes: prior nativeFailure sets process safeMode; automatic start is blocked with recovery page; real retry button enters manual=true; only verified candidate output clears persisted/process failure latch. Do not clear prefs/direct flags for acceptance.",
+  "scope": "Fixed B r16 has finite rule/input/save/15+772 restoration proof; its recovery page starts with inherited true prefs, not independent proof new B APK allocated/crashed/OOM. Normal user Retry3D/actual output/current Token/SaveRNG pure/arena/cold required; not accepted here. No B/source/5582/user data edits, no tool message or WIP merge. AI judgment actor remains distinct from speech/voice.",
+  "wholeGoalComplete": false
+}
