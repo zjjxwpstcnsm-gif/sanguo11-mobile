@@ -1,0 +1,48 @@
+{
+  "stage": "stopped-retain-actual-evidence",
+  "cases": [
+    {
+      "name": "large-menu-pcm",
+      "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24"
+      },
+      "normalPassed": true,
+      "differentPidColdPassed": false,
+      "everyOriginalFileShaRestored": true,
+      "sourceSnapshotOrArithmeticInjected": false
+    }
+  ],
+  "source14FailuresRemainUnresolved": true,
+  "ordinaryHeapAccepted": false,
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "activeCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk",
+    "--observe-workers",
+    "--runner",
+    "UiUxInstrumentation",
+    "--suite",
+    "audio",
+    "--menu-music",
+    "--audio-capture-rate",
+    "44100",
+    "--menu-capture-seconds",
+    "180",
+    "--mixer-observation",
+    "off"
+  ],
+  "error": "",
+  "cleanupNotInferred": true
+}

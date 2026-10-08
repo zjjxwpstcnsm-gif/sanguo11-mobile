@@ -1,0 +1,1635 @@
+{
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24"
+  },
+  "wholeNormalMenuTrackAccepted": false,
+  "launchStage": "stopped-retain-actual-evidence",
+  "gameUiNormalPassed": true,
+  "captures": [
+    {
+      "run": "session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init44100",
+      "rate": 44100,
+      "seconds": 3,
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev.test/files/session-a-game-mix/session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init44100",
+      "ready": true,
+      "consentFromObservedSystemUi": true,
+      "mixerObservationEnabled": false,
+      "inputRouteObservations": [
+        {
+          "phase": "before-projection-request",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init44100-0-before-projection-request.json",
+          "sha256": "c4157d3ee01952eb7d9883b3686dde2cfc8ba1e765e31aaabf84f5af0e238e73",
+          "unavailable": []
+        },
+        {
+          "phase": "after-consent-background",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init44100-1-after-consent-background.json",
+          "sha256": "716f77ccf533a49bf81f702bc5c0ea46ff42bdc92b3f1de702165804d08a5147",
+          "unavailable": []
+        },
+        {
+          "phase": "final-result-observed",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init44100-2-final-result-observed.json",
+          "sha256": "990856dde9ccbca7d05c5573727bcb7a6d38c1514600fc54173a29f9d4ee978e",
+          "unavailable": []
+        }
+      ],
+      "consentNode": {
+        "index": "1",
+        "text": "Start now",
+        "resource-id": "android:id/button1",
+        "class": "android.widget.Button",
+        "package": "com.android.systemui",
+        "content-desc": "",
+        "checkable": "false",
+        "checked": "false",
+        "clickable": "true",
+        "enabled": "true",
+        "focusable": "true",
+        "focused": "false",
+        "scrollable": "false",
+        "long-clickable": "false",
+        "password": "false",
+        "selected": "false",
+        "bounds": "[758,1189][978,1315]"
+      },
+      "inputRouteObserverRequestedHostUnix": 1791453321.5551832,
+      "inputRouteObserverErrors": [],
+      "inputRouteObserverJoined": true,
+      "readyData": {
+        "targetPackage": "game.sanguo.mobile.dev",
+        "targetUid": 10146,
+        "sampleRate": 44100,
+        "channels": 2,
+        "seconds": 3,
+        "beganElapsedNanos": 179298371965356,
+        "onlyUsageGame": true,
+        "microphoneCapture": false,
+        "displayCapture": false
+      },
+      "readyReceiptObservedHostUnix": 1791453322.763938,
+      "mixerMeasurementScope": "Explicit observer isolation: periodic AudioFlinger dumps disabled; PCM/UI/source0.995 unchanged, no fabricated counters/unique cause",
+      "periodicMixerObservationDisabled": true,
+      "result": {
+        "status": "MEASURED_NOT_WAVEFORM_ACCEPTED",
+        "targetPackage": "game.sanguo.mobile.dev",
+        "targetUid": 10146,
+        "bytes": 409600,
+        "frames": 102400,
+        "failure": "",
+        "sampleRate": 44100,
+        "channels": 2,
+        "recordPermissionGranted": true,
+        "projectionStoppedOrCancelled": false,
+        "elapsedNanos": 3092726000,
+        "timestamps": [
+          {
+            "observedElapsedNanos": 179298990247356,
+            "capturedFrames": 2048,
+            "status": 0,
+            "framePosition": 2820,
+            "nanoTime": 179298987699356
+          },
+          {
+            "observedElapsedNanos": 179300008541356,
+            "capturedFrames": 40960,
+            "status": 0,
+            "framePosition": 41360,
+            "nanoTime": 179300007753356
+          },
+          {
+            "observedElapsedNanos": 179301026747356,
+            "capturedFrames": 88064,
+            "status": 0,
+            "framePosition": 88360,
+            "nanoTime": 179301025469356
+          }
+        ],
+        "actualRecorderBufferFrames": 2820,
+        "diskBufferBytes": 524288,
+        "maximumReadNanos": 169317000,
+        "maximumWriteNanos": 1107000,
+        "samplesDroppedOrSynthesized": false,
+        "diskQueueSlots": 64,
+        "diskQueueBytes": 524288,
+        "diskQueueHighWater": 1,
+        "writerBytes": 409600,
+        "wavSha256": "d7953bb310a5f6c527c60bc6e1935682e9e6e505f25915db2bf6f0796cd0b46b",
+        "speakerOrArmEvidence": false
+      },
+      "hostPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/audio-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init44100"
+    },
+    {
+      "run": "session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init48000",
+      "rate": 48000,
+      "seconds": 3,
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev.test/files/session-a-game-mix/session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init48000",
+      "ready": true,
+      "consentFromObservedSystemUi": true,
+      "mixerObservationEnabled": false,
+      "inputRouteObservations": [
+        {
+          "phase": "before-projection-request",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init48000-0-before-projection-request.json",
+          "sha256": "784a61498ad3905b15e70946def0621c4730ec8c683921d0d9c25c3e01cd7e17",
+          "unavailable": []
+        },
+        {
+          "phase": "after-consent-background",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init48000-1-after-consent-background.json",
+          "sha256": "cb7906d6fe0990ceda35e53d83ea8e7c643db78e9f5aa36d8c228df94ea4c816",
+          "unavailable": []
+        },
+        {
+          "phase": "final-result-observed",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init48000-2-final-result-observed.json",
+          "sha256": "095122b93e931900e1f8199da512a887035cd3cf1ce3263553d89d59cf693386",
+          "unavailable": []
+        }
+      ],
+      "consentNode": {
+        "index": "1",
+        "text": "Start now",
+        "resource-id": "android:id/button1",
+        "class": "android.widget.Button",
+        "package": "com.android.systemui",
+        "content-desc": "",
+        "checkable": "false",
+        "checked": "false",
+        "clickable": "true",
+        "enabled": "true",
+        "focusable": "true",
+        "focused": "false",
+        "scrollable": "false",
+        "long-clickable": "false",
+        "password": "false",
+        "selected": "false",
+        "bounds": "[758,1189][978,1315]"
+      },
+      "inputRouteObserverRequestedHostUnix": 1791453329.504262,
+      "inputRouteObserverErrors": [],
+      "inputRouteObserverJoined": true,
+      "readyData": {
+        "targetPackage": "game.sanguo.mobile.dev",
+        "targetUid": 10146,
+        "sampleRate": 48000,
+        "channels": 2,
+        "seconds": 3,
+        "beganElapsedNanos": 179306218126356,
+        "onlyUsageGame": true,
+        "microphoneCapture": false,
+        "displayCapture": false
+      },
+      "readyReceiptObservedHostUnix": 1791453330.8662322,
+      "mixerMeasurementScope": "Explicit observer isolation: periodic AudioFlinger dumps disabled; PCM/UI/source0.995 unchanged, no fabricated counters/unique cause",
+      "periodicMixerObservationDisabled": true,
+      "result": {
+        "status": "MEASURED_NOT_WAVEFORM_ACCEPTED",
+        "targetPackage": "game.sanguo.mobile.dev",
+        "targetUid": 10146,
+        "bytes": 499712,
+        "frames": 124928,
+        "failure": "",
+        "sampleRate": 48000,
+        "channels": 2,
+        "recordPermissionGranted": true,
+        "projectionStoppedOrCancelled": false,
+        "elapsedNanos": 3121074000,
+        "timestamps": [
+          {
+            "observedElapsedNanos": 179306573367356,
+            "capturedFrames": 2048,
+            "status": 0,
+            "framePosition": 2048,
+            "nanoTime": 179306570638356
+          },
+          {
+            "observedElapsedNanos": 179307587678356,
+            "capturedFrames": 40960,
+            "status": 0,
+            "framePosition": 40960,
+            "nanoTime": 179307586062356
+          },
+          {
+            "observedElapsedNanos": 179308623895356,
+            "capturedFrames": 94208,
+            "status": 0,
+            "framePosition": 94208,
+            "nanoTime": 179308623426356
+          }
+        ],
+        "actualRecorderBufferFrames": 3072,
+        "diskBufferBytes": 524288,
+        "maximumReadNanos": 156264000,
+        "maximumWriteNanos": 1663000,
+        "samplesDroppedOrSynthesized": false,
+        "diskQueueSlots": 64,
+        "diskQueueBytes": 524288,
+        "diskQueueHighWater": 1,
+        "writerBytes": 499712,
+        "wavSha256": "ff814c198bd76365be61a531f75d5bb580b14590ac94d894454369b98779b15f",
+        "speakerOrArmEvidence": false
+      },
+      "hostPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/audio-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_init48000"
+    },
+    {
+      "run": "session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_menu",
+      "rate": 44100,
+      "seconds": 180,
+      "devicePath": "/sdcard/Android/data/game.sanguo.mobile.dev.test/files/session-a-game-mix/session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_menu",
+      "ready": true,
+      "consentFromObservedSystemUi": true,
+      "mixerObservationEnabled": false,
+      "inputRouteObservations": [
+        {
+          "phase": "before-projection-request",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_menu-0-before-projection-request.json",
+          "sha256": "6773a22797d0f62f47e8363c3b6692ed7506f9fee877cc785ef8ab81d0e9f703",
+          "unavailable": []
+        },
+        {
+          "phase": "after-consent-background",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_menu-1-after-consent-background.json",
+          "sha256": "f4ffa8604957008b808681fd83290f24bc315d0eb849b78ca60f9cec9629ad23",
+          "unavailable": []
+        },
+        {
+          "phase": "final-result-observed",
+          "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/input-route-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_menu-2-final-result-observed.json",
+          "sha256": "29ada98c46a228d23f0c2cb3683d57ed4c1ea9fd4b58790d19e55aaeb1d45e97",
+          "unavailable": []
+        }
+      ],
+      "consentNode": {
+        "index": "1",
+        "text": "Start now",
+        "resource-id": "android:id/button1",
+        "class": "android.widget.Button",
+        "package": "com.android.systemui",
+        "content-desc": "",
+        "checkable": "false",
+        "checked": "false",
+        "clickable": "true",
+        "enabled": "true",
+        "focusable": "true",
+        "focused": "false",
+        "scrollable": "false",
+        "long-clickable": "false",
+        "password": "false",
+        "selected": "false",
+        "bounds": "[758,1189][978,1315]"
+      },
+      "inputRouteObserverRequestedHostUnix": 1791453336.9804869,
+      "inputRouteObserverErrors": [],
+      "inputRouteObserverJoined": true,
+      "readyData": {
+        "targetPackage": "game.sanguo.mobile.dev",
+        "targetUid": 10146,
+        "sampleRate": 44100,
+        "channels": 2,
+        "seconds": 180,
+        "beganElapsedNanos": 179313753687356,
+        "onlyUsageGame": true,
+        "microphoneCapture": false,
+        "displayCapture": false
+      },
+      "readyReceiptObservedHostUnix": 1791453338.050836,
+      "mixerMeasurementScope": "Explicit observer isolation: periodic AudioFlinger dumps disabled; PCM/UI/source0.995 unchanged, no fabricated counters/unique cause",
+      "periodicMixerObservationDisabled": true,
+      "result": {
+        "status": "MEASURED_NOT_WAVEFORM_ACCEPTED",
+        "targetPackage": "game.sanguo.mobile.dev",
+        "targetUid": 10146,
+        "bytes": 31588352,
+        "frames": 7897088,
+        "failure": "",
+        "sampleRate": 44100,
+        "channels": 2,
+        "recordPermissionGranted": true,
+        "projectionStoppedOrCancelled": false,
+        "elapsedNanos": 180132236000,
+        "timestamps": [
+          {
+            "observedElapsedNanos": 179314099717356,
+            "capturedFrames": 2048,
+            "status": 0,
+            "framePosition": 2820,
+            "nanoTime": 179314095398356
+          },
+          {
+            "observedElapsedNanos": 179315113124356,
+            "capturedFrames": 43008,
+            "status": 0,
+            "framePosition": 43240,
+            "nanoTime": 179315111996356
+          },
+          {
+            "observedElapsedNanos": 179316125715356,
+            "capturedFrames": 90112,
+            "status": 0,
+            "framePosition": 90240,
+            "nanoTime": 179316125279356
+          },
+          {
+            "observedElapsedNanos": 179317128328356,
+            "capturedFrames": 135168,
+            "status": 0,
+            "framePosition": 135360,
+            "nanoTime": 179317127840356
+          },
+          {
+            "observedElapsedNanos": 179318142829356,
+            "capturedFrames": 182272,
+            "status": 0,
+            "framePosition": 182360,
+            "nanoTime": 179318142463356
+          },
+          {
+            "observedElapsedNanos": 179319166472356,
+            "capturedFrames": 227328,
+            "status": 0,
+            "framePosition": 227480,
+            "nanoTime": 179319165754356
+          },
+          {
+            "observedElapsedNanos": 179320189142356,
+            "capturedFrames": 272384,
+            "status": 0,
+            "framePosition": 272600,
+            "nanoTime": 179320187988356
+          },
+          {
+            "observedElapsedNanos": 179321212084356,
+            "capturedFrames": 317440,
+            "status": 0,
+            "framePosition": 317720,
+            "nanoTime": 179321211537356
+          },
+          {
+            "observedElapsedNanos": 179322238493356,
+            "capturedFrames": 362496,
+            "status": 0,
+            "framePosition": 362840,
+            "nanoTime": 179322237274356
+          },
+          {
+            "observedElapsedNanos": 179323276169356,
+            "capturedFrames": 407552,
+            "status": 0,
+            "framePosition": 407960,
+            "nanoTime": 179323274954356
+          },
+          {
+            "observedElapsedNanos": 179324277386356,
+            "capturedFrames": 448512,
+            "status": 0,
+            "framePosition": 449320,
+            "nanoTime": 179324276195356
+          },
+          {
+            "observedElapsedNanos": 179325314980356,
+            "capturedFrames": 483328,
+            "status": 0,
+            "framePosition": 484100,
+            "nanoTime": 179325314098356
+          },
+          {
+            "observedElapsedNanos": 179326365923356,
+            "capturedFrames": 528384,
+            "status": 0,
+            "framePosition": 529220,
+            "nanoTime": 179326364940356
+          },
+          {
+            "observedElapsedNanos": 179327389225356,
+            "capturedFrames": 573440,
+            "status": 0,
+            "framePosition": 574340,
+            "nanoTime": 179327388086356
+          },
+          {
+            "observedElapsedNanos": 179328390471356,
+            "capturedFrames": 618496,
+            "status": 0,
+            "framePosition": 618520,
+            "nanoTime": 179328389718356
+          },
+          {
+            "observedElapsedNanos": 179329413308356,
+            "capturedFrames": 663552,
+            "status": 0,
+            "framePosition": 663640,
+            "nanoTime": 179329412544356
+          },
+          {
+            "observedElapsedNanos": 179330438354356,
+            "capturedFrames": 708608,
+            "status": 0,
+            "framePosition": 708760,
+            "nanoTime": 179330437339356
+          },
+          {
+            "observedElapsedNanos": 179331458180356,
+            "capturedFrames": 753664,
+            "status": 0,
+            "framePosition": 753880,
+            "nanoTime": 179331457580356
+          },
+          {
+            "observedElapsedNanos": 179332483851356,
+            "capturedFrames": 798720,
+            "status": 0,
+            "framePosition": 799000,
+            "nanoTime": 179332481318356
+          },
+          {
+            "observedElapsedNanos": 179333505762356,
+            "capturedFrames": 843776,
+            "status": 0,
+            "framePosition": 844120,
+            "nanoTime": 179333504099356
+          },
+          {
+            "observedElapsedNanos": 179334530675356,
+            "capturedFrames": 888832,
+            "status": 0,
+            "framePosition": 889240,
+            "nanoTime": 179334529159356
+          },
+          {
+            "observedElapsedNanos": 179335552456356,
+            "capturedFrames": 933888,
+            "status": 0,
+            "framePosition": 934360,
+            "nanoTime": 179335550897356
+          },
+          {
+            "observedElapsedNanos": 179336573641356,
+            "capturedFrames": 978944,
+            "status": 0,
+            "framePosition": 979480,
+            "nanoTime": 179336573298356
+          },
+          {
+            "observedElapsedNanos": 179337603751356,
+            "capturedFrames": 1024000,
+            "status": 0,
+            "framePosition": 1024600,
+            "nanoTime": 179337600532356
+          },
+          {
+            "observedElapsedNanos": 179338620941356,
+            "capturedFrames": 1069056,
+            "status": 0,
+            "framePosition": 1069720,
+            "nanoTime": 179338620302356
+          },
+          {
+            "observedElapsedNanos": 179339644402356,
+            "capturedFrames": 1114112,
+            "status": 0,
+            "framePosition": 1114840,
+            "nanoTime": 179339643135356
+          },
+          {
+            "observedElapsedNanos": 179340668767356,
+            "capturedFrames": 1159168,
+            "status": 0,
+            "framePosition": 1159960,
+            "nanoTime": 179340666321356
+          },
+          {
+            "observedElapsedNanos": 179341693500356,
+            "capturedFrames": 1204224,
+            "status": 0,
+            "framePosition": 1205080,
+            "nanoTime": 179341690437356
+          },
+          {
+            "observedElapsedNanos": 179342714779356,
+            "capturedFrames": 1249280,
+            "status": 0,
+            "framePosition": 1250200,
+            "nanoTime": 179342713384356
+          },
+          {
+            "observedElapsedNanos": 179343715258356,
+            "capturedFrames": 1294336,
+            "status": 0,
+            "framePosition": 1294380,
+            "nanoTime": 179343714000356
+          },
+          {
+            "observedElapsedNanos": 179344738970356,
+            "capturedFrames": 1339392,
+            "status": 0,
+            "framePosition": 1339500,
+            "nanoTime": 179344738082356
+          },
+          {
+            "observedElapsedNanos": 179345762637356,
+            "capturedFrames": 1384448,
+            "status": 0,
+            "framePosition": 1384620,
+            "nanoTime": 179345762198356
+          },
+          {
+            "observedElapsedNanos": 179346788795356,
+            "capturedFrames": 1429504,
+            "status": 0,
+            "framePosition": 1429740,
+            "nanoTime": 179346784830356
+          },
+          {
+            "observedElapsedNanos": 179347808613356,
+            "capturedFrames": 1474560,
+            "status": 0,
+            "framePosition": 1474860,
+            "nanoTime": 179347807547356
+          },
+          {
+            "observedElapsedNanos": 179348838526356,
+            "capturedFrames": 1519616,
+            "status": 0,
+            "framePosition": 1519980,
+            "nanoTime": 179348830514356
+          },
+          {
+            "observedElapsedNanos": 179349853123356,
+            "capturedFrames": 1564672,
+            "status": 0,
+            "framePosition": 1565100,
+            "nanoTime": 179349852630356
+          },
+          {
+            "observedElapsedNanos": 179350878476356,
+            "capturedFrames": 1609728,
+            "status": 0,
+            "framePosition": 1610220,
+            "nanoTime": 179350877524356
+          },
+          {
+            "observedElapsedNanos": 179351900491356,
+            "capturedFrames": 1654784,
+            "status": 0,
+            "framePosition": 1655340,
+            "nanoTime": 179351899564356
+          },
+          {
+            "observedElapsedNanos": 179352925226356,
+            "capturedFrames": 1699840,
+            "status": 0,
+            "framePosition": 1700460,
+            "nanoTime": 179352922145356
+          },
+          {
+            "observedElapsedNanos": 179353953683356,
+            "capturedFrames": 1744896,
+            "status": 0,
+            "framePosition": 1745580,
+            "nanoTime": 179353948057356
+          },
+          {
+            "observedElapsedNanos": 179354969820356,
+            "capturedFrames": 1789952,
+            "status": 0,
+            "framePosition": 1790700,
+            "nanoTime": 179354968495356
+          },
+          {
+            "observedElapsedNanos": 179355995303356,
+            "capturedFrames": 1835008,
+            "status": 0,
+            "framePosition": 1835820,
+            "nanoTime": 179355992876356
+          },
+          {
+            "observedElapsedNanos": 179357016211356,
+            "capturedFrames": 1880064,
+            "status": 0,
+            "framePosition": 1880940,
+            "nanoTime": 179357015431356
+          },
+          {
+            "observedElapsedNanos": 179358017741356,
+            "capturedFrames": 1925120,
+            "status": 0,
+            "framePosition": 1925120,
+            "nanoTime": 179358017029356
+          },
+          {
+            "observedElapsedNanos": 179359042265356,
+            "capturedFrames": 1970176,
+            "status": 0,
+            "framePosition": 1970240,
+            "nanoTime": 179359039439356
+          },
+          {
+            "observedElapsedNanos": 179360066065356,
+            "capturedFrames": 2015232,
+            "status": 0,
+            "framePosition": 2015360,
+            "nanoTime": 179360064063356
+          },
+          {
+            "observedElapsedNanos": 179361087185356,
+            "capturedFrames": 2060288,
+            "status": 0,
+            "framePosition": 2060480,
+            "nanoTime": 179361086664356
+          },
+          {
+            "observedElapsedNanos": 179362110122356,
+            "capturedFrames": 2105344,
+            "status": 0,
+            "framePosition": 2105600,
+            "nanoTime": 179362108794356
+          },
+          {
+            "observedElapsedNanos": 179363135333356,
+            "capturedFrames": 2150400,
+            "status": 0,
+            "framePosition": 2150720,
+            "nanoTime": 179363131666356
+          },
+          {
+            "observedElapsedNanos": 179364159614356,
+            "capturedFrames": 2195456,
+            "status": 0,
+            "framePosition": 2195840,
+            "nanoTime": 179364157776356
+          },
+          {
+            "observedElapsedNanos": 179365181714356,
+            "capturedFrames": 2240512,
+            "status": 0,
+            "framePosition": 2240960,
+            "nanoTime": 179365180211356
+          },
+          {
+            "observedElapsedNanos": 179366203325356,
+            "capturedFrames": 2285568,
+            "status": 0,
+            "framePosition": 2286080,
+            "nanoTime": 179366201927356
+          },
+          {
+            "observedElapsedNanos": 179367228211356,
+            "capturedFrames": 2330624,
+            "status": 0,
+            "framePosition": 2331200,
+            "nanoTime": 179367226612356
+          },
+          {
+            "observedElapsedNanos": 179368250340356,
+            "capturedFrames": 2375680,
+            "status": 0,
+            "framePosition": 2376320,
+            "nanoTime": 179368249072356
+          },
+          {
+            "observedElapsedNanos": 179369271930356,
+            "capturedFrames": 2420736,
+            "status": 0,
+            "framePosition": 2421440,
+            "nanoTime": 179369271349356
+          },
+          {
+            "observedElapsedNanos": 179370296329356,
+            "capturedFrames": 2465792,
+            "status": 0,
+            "framePosition": 2466560,
+            "nanoTime": 179370294710356
+          },
+          {
+            "observedElapsedNanos": 179371319556356,
+            "capturedFrames": 2510848,
+            "status": 0,
+            "framePosition": 2511680,
+            "nanoTime": 179371318508356
+          },
+          {
+            "observedElapsedNanos": 179372344933356,
+            "capturedFrames": 2555904,
+            "status": 0,
+            "framePosition": 2556800,
+            "nanoTime": 179372343147356
+          },
+          {
+            "observedElapsedNanos": 179373345096356,
+            "capturedFrames": 2600960,
+            "status": 0,
+            "framePosition": 2600980,
+            "nanoTime": 179373343505356
+          },
+          {
+            "observedElapsedNanos": 179374373002356,
+            "capturedFrames": 2646016,
+            "status": 0,
+            "framePosition": 2646100,
+            "nanoTime": 179374368286356
+          },
+          {
+            "observedElapsedNanos": 179375389732356,
+            "capturedFrames": 2691072,
+            "status": 0,
+            "framePosition": 2691220,
+            "nanoTime": 179375388974356
+          },
+          {
+            "observedElapsedNanos": 179376415621356,
+            "capturedFrames": 2736128,
+            "status": 0,
+            "framePosition": 2736340,
+            "nanoTime": 179376413537356
+          },
+          {
+            "observedElapsedNanos": 179377435900356,
+            "capturedFrames": 2781184,
+            "status": 0,
+            "framePosition": 2781460,
+            "nanoTime": 179377434859356
+          },
+          {
+            "observedElapsedNanos": 179378467878356,
+            "capturedFrames": 2826240,
+            "status": 0,
+            "framePosition": 2826580,
+            "nanoTime": 179378459382356
+          },
+          {
+            "observedElapsedNanos": 179379484343356,
+            "capturedFrames": 2871296,
+            "status": 0,
+            "framePosition": 2871700,
+            "nanoTime": 179379482382356
+          },
+          {
+            "observedElapsedNanos": 179380505445356,
+            "capturedFrames": 2916352,
+            "status": 0,
+            "framePosition": 2916820,
+            "nanoTime": 179380504340356
+          },
+          {
+            "observedElapsedNanos": 179381529388356,
+            "capturedFrames": 2961408,
+            "status": 0,
+            "framePosition": 2961940,
+            "nanoTime": 179381528760356
+          },
+          {
+            "observedElapsedNanos": 179382553523356,
+            "capturedFrames": 3006464,
+            "status": 0,
+            "framePosition": 3007060,
+            "nanoTime": 179382551598356
+          },
+          {
+            "observedElapsedNanos": 179383577055356,
+            "capturedFrames": 3051520,
+            "status": 0,
+            "framePosition": 3052180,
+            "nanoTime": 179383574812356
+          },
+          {
+            "observedElapsedNanos": 179384598696356,
+            "capturedFrames": 3096576,
+            "status": 0,
+            "framePosition": 3097300,
+            "nanoTime": 179384597208356
+          },
+          {
+            "observedElapsedNanos": 179385621121356,
+            "capturedFrames": 3141632,
+            "status": 0,
+            "framePosition": 3142420,
+            "nanoTime": 179385620557356
+          },
+          {
+            "observedElapsedNanos": 179386649016356,
+            "capturedFrames": 3186688,
+            "status": 0,
+            "framePosition": 3187540,
+            "nanoTime": 179386644642356
+          },
+          {
+            "observedElapsedNanos": 179387674839356,
+            "capturedFrames": 3231744,
+            "status": 0,
+            "framePosition": 3232660,
+            "nanoTime": 179387668833356
+          },
+          {
+            "observedElapsedNanos": 179388734680356,
+            "capturedFrames": 3278848,
+            "status": 0,
+            "framePosition": 3279660,
+            "nanoTime": 179388731630356
+          },
+          {
+            "observedElapsedNanos": 179389759501356,
+            "capturedFrames": 3323904,
+            "status": 0,
+            "framePosition": 3324780,
+            "nanoTime": 179389757142356
+          },
+          {
+            "observedElapsedNanos": 179390760739356,
+            "capturedFrames": 3368960,
+            "status": 0,
+            "framePosition": 3368960,
+            "nanoTime": 179390759720356
+          },
+          {
+            "observedElapsedNanos": 179391780684356,
+            "capturedFrames": 3414016,
+            "status": 0,
+            "framePosition": 3414080,
+            "nanoTime": 179391780044356
+          },
+          {
+            "observedElapsedNanos": 179392805634356,
+            "capturedFrames": 3459072,
+            "status": 0,
+            "framePosition": 3459200,
+            "nanoTime": 179392804561356
+          },
+          {
+            "observedElapsedNanos": 179393834828356,
+            "capturedFrames": 3504128,
+            "status": 0,
+            "framePosition": 3504320,
+            "nanoTime": 179393828526356
+          },
+          {
+            "observedElapsedNanos": 179394854502356,
+            "capturedFrames": 3549184,
+            "status": 0,
+            "framePosition": 3549440,
+            "nanoTime": 179394850270356
+          },
+          {
+            "observedElapsedNanos": 179395873289356,
+            "capturedFrames": 3594240,
+            "status": 0,
+            "framePosition": 3594560,
+            "nanoTime": 179395871869356
+          },
+          {
+            "observedElapsedNanos": 179396897199356,
+            "capturedFrames": 3639296,
+            "status": 0,
+            "framePosition": 3639680,
+            "nanoTime": 179396896179356
+          },
+          {
+            "observedElapsedNanos": 179397923885356,
+            "capturedFrames": 3684352,
+            "status": 0,
+            "framePosition": 3683860,
+            "nanoTime": 179397900180356
+          },
+          {
+            "observedElapsedNanos": 179398963140356,
+            "capturedFrames": 3729408,
+            "status": 0,
+            "framePosition": 3729920,
+            "nanoTime": 179398943905356
+          },
+          {
+            "observedElapsedNanos": 179399969877356,
+            "capturedFrames": 3774464,
+            "status": 0,
+            "framePosition": 3775040,
+            "nanoTime": 179399967351356
+          },
+          {
+            "observedElapsedNanos": 179400988853356,
+            "capturedFrames": 3819520,
+            "status": 0,
+            "framePosition": 3820160,
+            "nanoTime": 179400987878356
+          },
+          {
+            "observedElapsedNanos": 179402018329356,
+            "capturedFrames": 3864576,
+            "status": 0,
+            "framePosition": 3865280,
+            "nanoTime": 179402012324356
+          },
+          {
+            "observedElapsedNanos": 179403038465356,
+            "capturedFrames": 3909632,
+            "status": 0,
+            "framePosition": 3910400,
+            "nanoTime": 179403037486356
+          },
+          {
+            "observedElapsedNanos": 179404061478356,
+            "capturedFrames": 3954688,
+            "status": 0,
+            "framePosition": 3955520,
+            "nanoTime": 179404058650356
+          },
+          {
+            "observedElapsedNanos": 179405085369356,
+            "capturedFrames": 3999744,
+            "status": 0,
+            "framePosition": 4000640,
+            "nanoTime": 179405082779356
+          },
+          {
+            "observedElapsedNanos": 179406150351356,
+            "capturedFrames": 4046848,
+            "status": 0,
+            "framePosition": 4047640,
+            "nanoTime": 179406147764356
+          },
+          {
+            "observedElapsedNanos": 179407176594356,
+            "capturedFrames": 4091904,
+            "status": 0,
+            "framePosition": 4092760,
+            "nanoTime": 179407175702356
+          },
+          {
+            "observedElapsedNanos": 179408193809356,
+            "capturedFrames": 4136960,
+            "status": 0,
+            "framePosition": 4137880,
+            "nanoTime": 179408193319356
+          },
+          {
+            "observedElapsedNanos": 179409198359356,
+            "capturedFrames": 4182016,
+            "status": 0,
+            "framePosition": 4182060,
+            "nanoTime": 179409193890356
+          },
+          {
+            "observedElapsedNanos": 179410219239356,
+            "capturedFrames": 4227072,
+            "status": 0,
+            "framePosition": 4227180,
+            "nanoTime": 179410218750356
+          },
+          {
+            "observedElapsedNanos": 179411242565356,
+            "capturedFrames": 4272128,
+            "status": 0,
+            "framePosition": 4272300,
+            "nanoTime": 179411241276356
+          },
+          {
+            "observedElapsedNanos": 179412265899356,
+            "capturedFrames": 4317184,
+            "status": 0,
+            "framePosition": 4317420,
+            "nanoTime": 179412264615356
+          },
+          {
+            "observedElapsedNanos": 179413288798356,
+            "capturedFrames": 4362240,
+            "status": 0,
+            "framePosition": 4362540,
+            "nanoTime": 179413287538356
+          },
+          {
+            "observedElapsedNanos": 179414311865356,
+            "capturedFrames": 4407296,
+            "status": 0,
+            "framePosition": 4407660,
+            "nanoTime": 179414311069356
+          },
+          {
+            "observedElapsedNanos": 179415342600356,
+            "capturedFrames": 4452352,
+            "status": 0,
+            "framePosition": 4452780,
+            "nanoTime": 179415333605356
+          },
+          {
+            "observedElapsedNanos": 179416359608356,
+            "capturedFrames": 4497408,
+            "status": 0,
+            "framePosition": 4497900,
+            "nanoTime": 179416356144356
+          },
+          {
+            "observedElapsedNanos": 179417381875356,
+            "capturedFrames": 4542464,
+            "status": 0,
+            "framePosition": 4543020,
+            "nanoTime": 179417380028356
+          },
+          {
+            "observedElapsedNanos": 179418405031356,
+            "capturedFrames": 4587520,
+            "status": 0,
+            "framePosition": 4588140,
+            "nanoTime": 179418403724356
+          },
+          {
+            "observedElapsedNanos": 179419426778356,
+            "capturedFrames": 4632576,
+            "status": 0,
+            "framePosition": 4633260,
+            "nanoTime": 179419426217356
+          },
+          {
+            "observedElapsedNanos": 179420452603356,
+            "capturedFrames": 4677632,
+            "status": 0,
+            "framePosition": 4678380,
+            "nanoTime": 179420450393356
+          },
+          {
+            "observedElapsedNanos": 179421474703356,
+            "capturedFrames": 4720640,
+            "status": 0,
+            "framePosition": 4720680,
+            "nanoTime": 179421472789356
+          },
+          {
+            "observedElapsedNanos": 179422486415356,
+            "capturedFrames": 4763648,
+            "status": 0,
+            "framePosition": 4763920,
+            "nanoTime": 179422485021356
+          },
+          {
+            "observedElapsedNanos": 179423493626356,
+            "capturedFrames": 4804608,
+            "status": 0,
+            "framePosition": 4805280,
+            "nanoTime": 179423490369356
+          },
+          {
+            "observedElapsedNanos": 179424514829356,
+            "capturedFrames": 4849664,
+            "status": 0,
+            "framePosition": 4850400,
+            "nanoTime": 179424514042356
+          },
+          {
+            "observedElapsedNanos": 179425539672356,
+            "capturedFrames": 4894720,
+            "status": 0,
+            "framePosition": 4895520,
+            "nanoTime": 179425537151356
+          },
+          {
+            "observedElapsedNanos": 179426560423356,
+            "capturedFrames": 4939776,
+            "status": 0,
+            "framePosition": 4940640,
+            "nanoTime": 179426560052356
+          },
+          {
+            "observedElapsedNanos": 179427604130356,
+            "capturedFrames": 4984832,
+            "status": 0,
+            "framePosition": 4985760,
+            "nanoTime": 179427583807356
+          },
+          {
+            "observedElapsedNanos": 179428656310356,
+            "capturedFrames": 5031936,
+            "status": 0,
+            "framePosition": 5032760,
+            "nanoTime": 179428653494356
+          },
+          {
+            "observedElapsedNanos": 179429673466356,
+            "capturedFrames": 5076992,
+            "status": 0,
+            "framePosition": 5077880,
+            "nanoTime": 179429672851356
+          },
+          {
+            "observedElapsedNanos": 179430737704356,
+            "capturedFrames": 5124096,
+            "status": 0,
+            "framePosition": 5124880,
+            "nanoTime": 179430737123356
+          },
+          {
+            "observedElapsedNanos": 179431763991356,
+            "capturedFrames": 5169152,
+            "status": 0,
+            "framePosition": 5170000,
+            "nanoTime": 179431761833356
+          },
+          {
+            "observedElapsedNanos": 179432786039356,
+            "capturedFrames": 5214208,
+            "status": 0,
+            "framePosition": 5215120,
+            "nanoTime": 179432785480356
+          },
+          {
+            "observedElapsedNanos": 179433790565356,
+            "capturedFrames": 5259264,
+            "status": 0,
+            "framePosition": 5259300,
+            "nanoTime": 179433788219356
+          },
+          {
+            "observedElapsedNanos": 179434819521356,
+            "capturedFrames": 5302272,
+            "status": 0,
+            "framePosition": 5302540,
+            "nanoTime": 179434818894356
+          },
+          {
+            "observedElapsedNanos": 179435856150356,
+            "capturedFrames": 5347328,
+            "status": 0,
+            "framePosition": 5347660,
+            "nanoTime": 179435854905356
+          },
+          {
+            "observedElapsedNanos": 179436897743356,
+            "capturedFrames": 5388288,
+            "status": 0,
+            "framePosition": 5389020,
+            "nanoTime": 179436896495356
+          },
+          {
+            "observedElapsedNanos": 179437922013356,
+            "capturedFrames": 5433344,
+            "status": 0,
+            "framePosition": 5434140,
+            "nanoTime": 179437919405356
+          },
+          {
+            "observedElapsedNanos": 179438944625356,
+            "capturedFrames": 5478400,
+            "status": 0,
+            "framePosition": 5479260,
+            "nanoTime": 179438943194356
+          },
+          {
+            "observedElapsedNanos": 179439967811356,
+            "capturedFrames": 5523456,
+            "status": 0,
+            "framePosition": 5524380,
+            "nanoTime": 179439966139356
+          },
+          {
+            "observedElapsedNanos": 179441033561356,
+            "capturedFrames": 5570560,
+            "status": 0,
+            "framePosition": 5571380,
+            "nanoTime": 179441030540356
+          },
+          {
+            "observedElapsedNanos": 179442055292356,
+            "capturedFrames": 5615616,
+            "status": 0,
+            "framePosition": 5616500,
+            "nanoTime": 179442053763356
+          },
+          {
+            "observedElapsedNanos": 179443057428356,
+            "capturedFrames": 5660672,
+            "status": 0,
+            "framePosition": 5660680,
+            "nanoTime": 179443055843356
+          },
+          {
+            "observedElapsedNanos": 179444082590356,
+            "capturedFrames": 5705728,
+            "status": 0,
+            "framePosition": 5705800,
+            "nanoTime": 179444078710356
+          },
+          {
+            "observedElapsedNanos": 179445103566356,
+            "capturedFrames": 5750784,
+            "status": 0,
+            "framePosition": 5750920,
+            "nanoTime": 179445102494356
+          },
+          {
+            "observedElapsedNanos": 179446107573356,
+            "capturedFrames": 5793792,
+            "status": 0,
+            "framePosition": 5794160,
+            "nanoTime": 179446106776356
+          },
+          {
+            "observedElapsedNanos": 179447127850356,
+            "capturedFrames": 5836800,
+            "status": 0,
+            "framePosition": 5837400,
+            "nanoTime": 179447125954356
+          },
+          {
+            "observedElapsedNanos": 179448175410356,
+            "capturedFrames": 5879808,
+            "status": 0,
+            "framePosition": 5880640,
+            "nanoTime": 179448174303356
+          },
+          {
+            "observedElapsedNanos": 179449196324356,
+            "capturedFrames": 5924864,
+            "status": 0,
+            "framePosition": 5925760,
+            "nanoTime": 179449194211356
+          },
+          {
+            "observedElapsedNanos": 179450209118356,
+            "capturedFrames": 5971968,
+            "status": 0,
+            "framePosition": 5972760,
+            "nanoTime": 179450208013356
+          },
+          {
+            "observedElapsedNanos": 179451244599356,
+            "capturedFrames": 6021120,
+            "status": 0,
+            "framePosition": 6021640,
+            "nanoTime": 179451244087356
+          },
+          {
+            "observedElapsedNanos": 179452268115356,
+            "capturedFrames": 6066176,
+            "status": 0,
+            "framePosition": 6066760,
+            "nanoTime": 179452267649356
+          },
+          {
+            "observedElapsedNanos": 179453290642356,
+            "capturedFrames": 6111232,
+            "status": 0,
+            "framePosition": 6111880,
+            "nanoTime": 179453290056356
+          },
+          {
+            "observedElapsedNanos": 179454313635356,
+            "capturedFrames": 6156288,
+            "status": 0,
+            "framePosition": 6157000,
+            "nanoTime": 179454313329356
+          },
+          {
+            "observedElapsedNanos": 179455336683356,
+            "capturedFrames": 6201344,
+            "status": 0,
+            "framePosition": 6202120,
+            "nanoTime": 179455336217356
+          },
+          {
+            "observedElapsedNanos": 179456359466356,
+            "capturedFrames": 6246400,
+            "status": 0,
+            "framePosition": 6247240,
+            "nanoTime": 179456359051356
+          },
+          {
+            "observedElapsedNanos": 179457382219356,
+            "capturedFrames": 6291456,
+            "status": 0,
+            "framePosition": 6292360,
+            "nanoTime": 179457381816356
+          },
+          {
+            "observedElapsedNanos": 179458386028356,
+            "capturedFrames": 6336512,
+            "status": 0,
+            "framePosition": 6336540,
+            "nanoTime": 179458385375356
+          },
+          {
+            "observedElapsedNanos": 179459407288356,
+            "capturedFrames": 6381568,
+            "status": 0,
+            "framePosition": 6381660,
+            "nanoTime": 179459406566356
+          },
+          {
+            "observedElapsedNanos": 179460436354356,
+            "capturedFrames": 6426624,
+            "status": 0,
+            "framePosition": 6426780,
+            "nanoTime": 179460435178356
+          },
+          {
+            "observedElapsedNanos": 179461454947356,
+            "capturedFrames": 6471680,
+            "status": 0,
+            "framePosition": 6471900,
+            "nanoTime": 179461453945356
+          },
+          {
+            "observedElapsedNanos": 179462477133356,
+            "capturedFrames": 6516736,
+            "status": 0,
+            "framePosition": 6517020,
+            "nanoTime": 179462476759356
+          },
+          {
+            "observedElapsedNanos": 179463499685356,
+            "capturedFrames": 6561792,
+            "status": 0,
+            "framePosition": 6562140,
+            "nanoTime": 179463499308356
+          },
+          {
+            "observedElapsedNanos": 179464525022356,
+            "capturedFrames": 6606848,
+            "status": 0,
+            "framePosition": 6607260,
+            "nanoTime": 179464523566356
+          },
+          {
+            "observedElapsedNanos": 179465547856356,
+            "capturedFrames": 6651904,
+            "status": 0,
+            "framePosition": 6652380,
+            "nanoTime": 179465546611356
+          },
+          {
+            "observedElapsedNanos": 179466569287356,
+            "capturedFrames": 6696960,
+            "status": 0,
+            "framePosition": 6697500,
+            "nanoTime": 179466568939356
+          },
+          {
+            "observedElapsedNanos": 179467593227356,
+            "capturedFrames": 6742016,
+            "status": 0,
+            "framePosition": 6742620,
+            "nanoTime": 179467592444356
+          },
+          {
+            "observedElapsedNanos": 179468616082356,
+            "capturedFrames": 6787072,
+            "status": 0,
+            "framePosition": 6787740,
+            "nanoTime": 179468615573356
+          },
+          {
+            "observedElapsedNanos": 179469638437356,
+            "capturedFrames": 6832128,
+            "status": 0,
+            "framePosition": 6832860,
+            "nanoTime": 179469637931356
+          },
+          {
+            "observedElapsedNanos": 179470661885356,
+            "capturedFrames": 6877184,
+            "status": 0,
+            "framePosition": 6877980,
+            "nanoTime": 179470661550356
+          },
+          {
+            "observedElapsedNanos": 179471684937356,
+            "capturedFrames": 6922240,
+            "status": 0,
+            "framePosition": 6923100,
+            "nanoTime": 179471683828356
+          },
+          {
+            "observedElapsedNanos": 179472709466356,
+            "capturedFrames": 6967296,
+            "status": 0,
+            "framePosition": 6968220,
+            "nanoTime": 179472708859356
+          },
+          {
+            "observedElapsedNanos": 179473710427356,
+            "capturedFrames": 7012352,
+            "status": 0,
+            "framePosition": 7012400,
+            "nanoTime": 179473709573356
+          },
+          {
+            "observedElapsedNanos": 179474732929356,
+            "capturedFrames": 7057408,
+            "status": 0,
+            "framePosition": 7057520,
+            "nanoTime": 179474732159356
+          },
+          {
+            "observedElapsedNanos": 179475756967356,
+            "capturedFrames": 7102464,
+            "status": 0,
+            "framePosition": 7102640,
+            "nanoTime": 179475756274356
+          },
+          {
+            "observedElapsedNanos": 179476780180356,
+            "capturedFrames": 7147520,
+            "status": 0,
+            "framePosition": 7147760,
+            "nanoTime": 179476779554356
+          },
+          {
+            "observedElapsedNanos": 179477807056356,
+            "capturedFrames": 7192576,
+            "status": 0,
+            "framePosition": 7192880,
+            "nanoTime": 179477805874356
+          },
+          {
+            "observedElapsedNanos": 179478828347356,
+            "capturedFrames": 7237632,
+            "status": 0,
+            "framePosition": 7238000,
+            "nanoTime": 179478826234356
+          },
+          {
+            "observedElapsedNanos": 179479847810356,
+            "capturedFrames": 7282688,
+            "status": 0,
+            "framePosition": 7283120,
+            "nanoTime": 179479847566356
+          },
+          {
+            "observedElapsedNanos": 179480872024356,
+            "capturedFrames": 7327744,
+            "status": 0,
+            "framePosition": 7328240,
+            "nanoTime": 179480871761356
+          },
+          {
+            "observedElapsedNanos": 179481895736356,
+            "capturedFrames": 7372800,
+            "status": 0,
+            "framePosition": 7373360,
+            "nanoTime": 179481895382356
+          },
+          {
+            "observedElapsedNanos": 179482918550356,
+            "capturedFrames": 7417856,
+            "status": 0,
+            "framePosition": 7418480,
+            "nanoTime": 179482917591356
+          },
+          {
+            "observedElapsedNanos": 179483941667356,
+            "capturedFrames": 7462912,
+            "status": 0,
+            "framePosition": 7463600,
+            "nanoTime": 179483941114356
+          },
+          {
+            "observedElapsedNanos": 179484967957356,
+            "capturedFrames": 7507968,
+            "status": 0,
+            "framePosition": 7508720,
+            "nanoTime": 179484966551356
+          },
+          {
+            "observedElapsedNanos": 179485987763356,
+            "capturedFrames": 7553024,
+            "status": 0,
+            "framePosition": 7553840,
+            "nanoTime": 179485987430356
+          },
+          {
+            "observedElapsedNanos": 179487010844356,
+            "capturedFrames": 7598080,
+            "status": 0,
+            "framePosition": 7598960,
+            "nanoTime": 179487010483356
+          },
+          {
+            "observedElapsedNanos": 179488016211356,
+            "capturedFrames": 7643136,
+            "status": 0,
+            "framePosition": 7643140,
+            "nanoTime": 179488015718356
+          },
+          {
+            "observedElapsedNanos": 179489058993356,
+            "capturedFrames": 7688192,
+            "status": 0,
+            "framePosition": 7688260,
+            "nanoTime": 179489057945356
+          },
+          {
+            "observedElapsedNanos": 179490077307356,
+            "capturedFrames": 7733248,
+            "status": 0,
+            "framePosition": 7733380,
+            "nanoTime": 179490075155356
+          },
+          {
+            "observedElapsedNanos": 179491100750356,
+            "capturedFrames": 7776256,
+            "status": 0,
+            "framePosition": 7776620,
+            "nanoTime": 179491097584356
+          },
+          {
+            "observedElapsedNanos": 179492104586356,
+            "capturedFrames": 7819264,
+            "status": 0,
+            "framePosition": 7819860,
+            "nanoTime": 179492103569356
+          },
+          {
+            "observedElapsedNanos": 179493132878356,
+            "capturedFrames": 7866368,
+            "status": 0,
+            "framePosition": 7866860,
+            "nanoTime": 179493131891356
+          }
+        ],
+        "actualRecorderBufferFrames": 2820,
+        "diskBufferBytes": 524288,
+        "maximumReadNanos": 184258000,
+        "maximumWriteNanos": 47490000,
+        "samplesDroppedOrSynthesized": false,
+        "diskQueueSlots": 64,
+        "diskQueueBytes": 524288,
+        "diskQueueHighWater": 4,
+        "writerBytes": 31588352,
+        "wavSha256": "f2ff3046d23792a79ebec50d4da3ec79a3a3b9a210b1f8eb4f2cb186aeaf7f77",
+        "speakerOrArmEvidence": false
+      },
+      "hostPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/audio-session_a_large_menu_59026238baa844e9bbe5622fcf7bf49e_menu"
+    }
+  ],
+  "waveformResult": null,
+  "actualFullWaveformFailureLog": "Traceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/audio/check_pc_music_mix.py\", line 35, in <module>\n    a=p.parse_args();report=check(a.capture,a.reference,a.resource,a.manifest);a.output.write_text(json.dumps(report,indent=2)+'\\n');print('PASS original music actual PCM correlation=',report['correlation'])\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/audio/check_pc_music_mix.py\", line 30, in check\n    if score<.995:raise AssertionError(('Original complete music waveform not found in actual PCM',score))\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('Original complete music waveform not found in actual PCM', np.float64(0.5112222608998026))\n",
+  "waveformThresholdUnchanged": 0.995,
+  "gameRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "testRestoration": {
+    "test-internal": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    },
+    "test-external": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    }
+  },
+  "recorderBufferRequestedFrames": 88200,
+  "recorderBufferActualFrames": 2820,
+  "requestedBufferIsNotAssumedEffective": true,
+  "testApkRestoredSha256": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14",
+  "recordPermissionRestoredFalse": true,
+  "appOpRestoredDefault": true,
+  "microphoneRestorationReceiptPresent": false,
+  "workerObservation": {
+    "hostPid": 72100,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve378/large-menu-pcm/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "sessionSha256": "e01de4fa06caabadf11db9efdd2f1212a337cdf46fc06bf0fa3ea11e5687d7d7",
+  "wholeWaveformEvidenceSha256": null,
+  "evidenceFiles": [
+    {
+      "path": "evidence/menu-music-playback-timeline.json",
+      "sha256": "b46b00e781b075b1c88f82697d5be93f16e4268392b515947ddbafdc89ef1222",
+      "bytes": 20839
+    },
+    {
+      "path": "evidence/menu-music-playing.png",
+      "sha256": "38fe2fd043bb27b17cc436b9de30071be06854a2f45d8489b85fd797b11f3522",
+      "bytes": 265331
+    },
+    {
+      "path": "evidence/menu-music.json",
+      "sha256": "3f6d684e2d4553798526f9447d047c24e0b6a41fb30dc0178425f64f80d2187d",
+      "bytes": 1047
+    },
+    {
+      "path": "evidence/progress.txt",
+      "sha256": "38260ca12468f3e416b58d7d8b7350637f26644a2e619c6c963e8c07af3f0903",
+      "bytes": 3520
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "26150524a161becf23e2629a5fc7d0a4d51a4ac4c70c26b876a8f9ead00290ce",
+      "bytes": 3540
+    }
+  ],
+  "source14FailuresNotOverridden": true,
+  "scope": "Current exact new369 normal menu original2238 whole wave/continuity0.995 and pureSave/RNG/StateToken if passed; no test playback directive. Full game/test/APK/audio permission/appop/mic restoration required. Not Windows exactPCM/mapBGM/voice/miss/other original event sounds/all16/normalSource14/newWorld/cold/native rules/GPU/ARM/finalB. Old-22 unique cause unresolved.",
+  "wholeGoalComplete": false
+}
