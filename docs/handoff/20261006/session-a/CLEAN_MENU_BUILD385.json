@@ -1,0 +1,38 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "f5ed66bdb60ff9881c93aeba81c170026d044241",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completeInheritedFiles": 11420,
+  "completeCandidateFiles": 11420,
+  "changedOnlyDiagnosticTestPaths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "fd7b1984918ae46453c38d70d21641448b3f66881da5896e467215cfc0391e00",
+      "afterSha256": "ed181f5de959bcd8b9bebbf3f3e4561d24627fd604b622a8a7018c7425591347",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu384/app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+      "sha256": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+      "bytes": 313550179
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu-build385/app-debug-androidTest.apk",
+      "bytes": 3099464,
+      "sha256": "8da93d5b925d04745c8207a7488f8b4ce480ccde459cf634e70d414e9999fc8b"
+    }
+  ],
+  "gameReusedExact369": true,
+  "gameLargeHeap": true,
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu-build385/candidate-inputs.json",
+  "candidateInputManifestSha256": "31057f0ee3019e11c374a29b60d64bab9532edc8ae092187aa27ab6c73fec57c",
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 182.5343570179998,
+  "buildLogSha256": "0a0ee6e64bd0bb2ffa60b0c103bfdf07be66264f4433639030cf752ce5cf35b5",
+  "functional120sThresholdRelaxed": false,
+  "actualInstalled": false,
+  "scope": "Fresh diagnostic test-only APK built against full326 source/resource/JNI inputs; exact previously installed369 game APK bytes reused, not rebuilt/relabeled. New test may have different BuildConfig revision label; product code unchanged. Only optional normal slider-before-music isolation384; original mixed-flow fixture retained; original game811 unchanged, source audio/strict0.995 untouched. Need actual normal full-track capture and complete game/test/APK/permission restoration. Fresh full user backup/test-only install/SHA/restoration still required.",
+  "wholeGoalComplete": false
+}

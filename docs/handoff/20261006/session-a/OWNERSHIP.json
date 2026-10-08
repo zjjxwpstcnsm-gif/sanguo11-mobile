@@ -783,7 +783,14 @@
     "docs/handoff/20261006/session-a/audit_clean_menu388.py",
     "docs/handoff/20261006/session-a/CLEAN_MENU388.json",
     "docs/handoff/20261006/session-a/audit_map_gates389.py",
-    "docs/handoff/20261006/session-a/MAP_GATES389.json"
+    "docs/handoff/20261006/session-a/MAP_GATES389.json",
+    "docs/handoff/20261006/session-a/audit_memory390.py",
+    "docs/handoff/20261006/session-a/MEMORY_LIFETIME390.json",
+    "docs/handoff/20261006/session-a/SUPERVISOR391.json",
+    "docs/handoff/20261006/session-a/run_matrix_redo392.py",
+    "docs/handoff/20261006/session-a/MATRIX_REDO392_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_matrix_redo393.py",
+    "docs/handoff/20261006/session-a/MATRIX_REDO393.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

@@ -696,3 +696,9 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 389实际369源补充source-map核查：每个非注释pcMap/sourceVisuals/sourceMap具名标记共19文件90处，逐SHA与上下文记录；9个明确屏蔽方法已核实际源码：旧火烟/设施overlay/旧暴击闪图与portrait清理、未恢复原对象、原格火admission/facts标签、拒绝旧植被。原13格火路径、设施原体/事实标签与原critical stage分别存在，其他火链/完整设施/原气候0/全caller/voice/fullscreen仍不能借路径存在计通过。不是别名pcGround/pcUnit/局部boolean、shader/C#及所有动态调用的完整语义闭合，scope不声称原124全部完成。首轮旧方法名criticalFrame找不到拒绝；核实际签名void critical并定vegetation buildWindow后成功，没有写生产代码。
 
 当前真实380 Source0至12 normal flow complete，runner/视频/worker仍live，最后3来源/最后新PID/完整restore仍未终态。382数值分析、385独立构建、387新test实装仍只等当前原文件全SHA与owner退出，不因等候超时重启。已完成389属源代码证据，当前整个目标保持active，未验ARM或接B r24 WIP。
+
+380/381真实终态未接受：Source0至15各normal flow complete都在stream，但外层am instrument在3600秒TimeoutExpired中断末尾Home/方向/完整存读/退出重开总流程，没到独立cold，不能把16节点当完整矩阵PASS。旧helper只在正常run返回后pull evidence，finally恢复删了本测试derived目录，实际0个host source.sg11；不存在的PNG/Save日志不补造。原9内部4rewrite/3797外部0rewrite每SHA完整恢复，video/worker均exit0，20原MP4各device/host/postpullSHA同、index64a765ce已冻，实际原error保留。390实际PID11371共1608日志点：Java checkpoint max312187952/536870912B，native独立269143280B、owner mesh arrays66787968B，不相加、不充GPU或250ms/瞬时全峰、不把native上升归leak。未见该log OOM/FATAL但原ARM354832栈/root仍未知。
+
+382数值取证在同380全restore/owner退出后完成：原378完整同一常量offset分数0.5112222608998065，55至89秒local残差0.00036、60秒相关0.99999997/gain约1；15至40秒源/实测energy约4739.96/4741.78但相位低相关（25秒-0.2107）。故仅音量改变不能解释旧失败，界面音效混入不是已证唯一原因，原0.995仍FAIL。385随后完整11420独立构建164秒成功，新test8da93d5b925d04745c8207a7488f8b4ce480ccde459cf634e70d414e9999fc8b，game811逐字节复用，签名/39fixture/6JNI与独立cache/source全守卫；387新fullbackup真实启动，不能计已安装或新的纯音乐通过。
+
+391修未来工具：all/media16多来源外层监督14400秒，与其他多来源suite一致；单来源仍3600、实际各ready/load/command120秒不改，不能宣布低延迟或覆盖380失败。任何中断先pull自己新UUID interrupted-evidence/逐文件SHA，再完整restore，r passed明确false，不拿partial作为cold/PASS。无游戏/规则/PCM改动。392/393同369确切pair新的整个16矩阵排队，只有387全game/test/APK/权限原SHA和owner退出后才能新freshbackup/实际安装/整SHA，然后新16与cold，不能接旧节点为新分数。

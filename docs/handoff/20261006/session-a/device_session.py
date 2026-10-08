@@ -246,7 +246,7 @@ def main():
                 music_capture=capture_support.start(out,r,a.audio_capture_rate,run_id+'_menu',a.menu_capture_seconds)
                 if not music_capture['ready']:raise ValueError('Normal menu capture did not initialize')
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','searchDiagnostics','true' if a.search_diagnostics else 'false','-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','menuCleanWhole','true' if a.clean_menu_music else 'false','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and a.suite in ['factions16','mediaAll16','fastPreview16'] else 3600)
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','searchDiagnostics','true' if a.search_diagnostics else 'false','-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','menuCleanWhole','true' if a.clean_menu_music else 'false','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and (a.suite in ['factions16','mediaAll16','fastPreview16'] or a.suite in ['all','media16'] and int(a.end)-int(a.begin)>1) else 3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION A ATTACK normal' in r['testOutput'] or 'PASS SESSION A SEARCH ordinary' in r['testOutput'] or 'PASS SESSION A DIRECT normal' in r['testOutput'] or 'PASS SESSION A ARMY normal' in r['testOutput'] or 'PASS SESSION A DEBATE ordinary' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput'] or 'PASS SESSION B LEGACY39 genuine' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             b_folder='legacy39' if a.runner=='SessionBLegacy39Instrumentation' else 'direct' if a.runner=='SessionADirectRecruitmentPresentationInstrumentation' else 'search' if a.runner=='SessionASearchPresentationInstrumentation' else 'capacity' if a.runner=='SessionBCapacityInstrumentation' else 'governor' if a.runner=='SessionAArmyBudgetInstrumentation' else 'debate' if a.runner=='SessionADebatePresentationInstrumentation' else 'fieldworks'
@@ -293,6 +293,21 @@ def main():
                 r['coldProcess']={'beforePid':old_pid,'afterPid':new_pid,'beforeProcessEvidence':old_evidence,'afterProcessEvidence':new_evidence,'differentPid':old_pid!=new_pid,'expectedStartupSaveSha256':expected,'passed':('SESSION_A_MAP PASS' in cold if a.runner=='SessionAMapRepairInstrumentation' else ('PASS SESSION B LEGACY39 COLD' if b_folder=='legacy39' else 'PASS SESSION B CAPACITY COLD' if b_folder=='capacity' else ('PASS SESSION A FIRE COLD' if a.runner=='SessionAFireFlowInstrumentation' else ('PASS SESSION A DIRECT COLD' if b_folder=='direct' else 'PASS SESSION A SEARCH COLD' if b_folder=='search' else 'PASS SESSION A ATTACK COLD' if a.runner=='SessionAAttackTaskInstrumentation' else 'PASS SESSION A DEBATE COLD' if b_folder=='debate' else 'PASS SESSION A ARMY COLD' if b_folder=='governor' else 'PASS SESSION B FIELDWORKS COLD'))) in cold) and 'FAIL' not in cold and old_pid!=new_pid}
                 r['passed']=normal_pass and r['coldProcess']['passed']
 
+        except BaseException as interrupted:
+            # Preserve real evidence even when the outer multi-source supervisor
+            # stops before the instrumentation terminal bundle. Never count PASS.
+            r['instrumentationInterrupted']={'type':type(interrupted).__name__,'error':str(interrupted),'passed':False}
+            r['passed']=False
+            if a.runner in ['SessionAMapRepairInstrumentation','UiUxInstrumentation']:
+                folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
+                remote='/sdcard/Android/data/'+PACKAGE+'/files/'+folder+'/'+run_id
+                try:
+                    destination=out/'interrupted-evidence'
+                    run('pull',remote,str(destination),timeout=180)
+                    r['interruptedEvidence']={'path':str(destination),'files':[{'path':str(p.relative_to(destination)),'sha256':digest(p),'bytes':p.stat().st_size} for p in sorted(destination.rglob('*')) if p.is_file()],'scope':'Raw own fresh UUID evidence salvaged before rollback; incomplete runner/cold not accepted'}
+                except Exception as salvage:r['interruptedEvidenceError']=str(salvage)
+            report_path.write_text(json.dumps(r,indent=2))
+            raise
         finally:
             capture_restore_error=None
             if a.pause_fire and 'firePauseSystemAnimationBefore' in r:

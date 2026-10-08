@@ -1,0 +1,43 @@
+{
+  "actualNew369Apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24"
+  },
+  "actualFull16AndFinalColdAccepted": false,
+  "actualSavedNormalSourceFiles": [],
+  "gameRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualColdProcess": null,
+  "wholeMusicGateKeptSeparate": false,
+  "workerObservation": {
+    "hostPid": 72929,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/reserve-map380/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "videoObservation": {
+    "hostPid": 72928,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/reserve-map380/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 20,
+    "finalIndexSha256": "64a765ce8f163e4ab136b0bde7664788870eab7f6d79c415571f73b5eddf76ae",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "evidenceFiles": [],
+  "originalFunctionalThresholdsUnchanged": true,
+  "scope": "Exact new369 actual full16 normal source preview/cancel/newgame/zoom/pan/Home/direction/manualsave/load plus final-source fresh PID if passed. Not each-source670caller/voice/fullscreen/allfactions/ordinary384/commands/multiturn/new fire/complete memory or GPU/ARM/finalB. Source14-first failures remain, matrix warmed sequentially does not override them.",
+  "wholeGoalComplete": false
+}

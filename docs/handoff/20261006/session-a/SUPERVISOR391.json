@@ -1,0 +1,16 @@
+{
+  "path": "docs/handoff/20261006/session-a/device_session.py",
+  "beforeSha256": "cd20d97bca51850c61a8813f29db725c16c2e45a9d531ba47d6d4531a1e7469f",
+  "afterSha256": "c346c93c82177832eff41da76da57c4f9c45e94dcbaf6de989ee0aa4b5669e89",
+  "actual380InterruptedAfterSeconds": 3600,
+  "all16SourceProgressNodesObserved": true,
+  "actual380ColdAccepted": false,
+  "actual380NormalAccepted": false,
+  "newOuterMultiSourceSupervisionSeconds": 14400,
+  "singleSourceDefaultSupervisionSecondsUnchanged": 3600,
+  "allIndividualReadyCommandLoadLimitsUnchanged": true,
+  "salvageFreshUuidEvidenceBeforeRollback": true,
+  "old380EvidenceNotFabricated": true,
+  "scope": "Future supervisor only. Outer all/media16 multi-source budget now equals other multi-source suites, not raising individual normal-ready120s or declaring low latency. Capture interrupted raw source evidence before complete SHA rollback. Actual380 lost generated source files after old restore, remains FAIL/no cold;20 raw videos/progress checkpoints retained. No game/rule/UI/codec/PCM changes.",
+  "wholeGoalComplete": false
+}
