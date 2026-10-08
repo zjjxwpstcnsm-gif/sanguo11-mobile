@@ -1,0 +1,16 @@
+{
+  "approvedChanges": [
+    "app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java"
+  ],
+  "approvedExactClassSha256": "af1c452f0269b89ced5eb45cc81d1d9a729ff7c68a197c9f8bce99878c532dc7",
+  "candidate326ManifestSha256": "8fd5681d31c4f5f20896b509cd0891d56416fd42835251f2e6dbc6113336d6ee",
+  "diagnostic330ManifestSha256": "5548db052be636c9bfb558543e97988769273db28dc5222b92627705d851e9f5",
+  "protectedSixUnchanged": true,
+  "completeSourceMainUnchanged": [
+    "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+    "0e7b9bc2df90249a50851baeda58c7d183ea6059"
+  ],
+  "allOtherTrackedProductionChangesRejected": true,
+  "scope": "Compatibility only: exact single new A class was fully inside built326 and330 input manifests before its Git registration. No content changes accepted, no arbitrary whitelist/guard disable, no B WIP import or actual Android acceptance.",
+  "wholeGoalComplete": false
+}

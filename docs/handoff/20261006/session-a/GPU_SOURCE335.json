@@ -1,0 +1,48 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "canonicalBaseRevision": "af702ecf2cf306a023b26295fa43b5c99eaeae99",
+  "currentDeliveryRevision": "652dc3ab18a17f9d060eb2f638879b66702ce461",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-source335/sanguo11-mobile-gpu-source.tar",
+  "archiveBytes": 933468160,
+  "archiveSha256": "07a897afa6bb0fcd4f279a0512f1b427b9f2f4f07f92721eac90930573add58e",
+  "files": 11555,
+  "everyArchivedFileShaVerified": true,
+  "independentFrozenSourceInodes": true,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-source335/source-files.json",
+  "fileManifestSha256": "24c0b622e0a617f35704456082a27d3b03d16020401fbf0cf6dfce40ab437c0c",
+  "exactCandidateApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk",
+      "sha256": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+      "bytes": 313550155
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-test-build330/app-debug-androidTest.apk",
+      "bytes": 3096452,
+      "sha256": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14"
+    }
+  ],
+  "changesFrom326": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java",
+      "beforeSha256": "b6f2c743513900ef3ba31d188feb5b2d744f720df5faa7dff23be764a1667682",
+      "afterSha256": "d3580760574861497794a949cc0c98ac1fc3b717877c9eae113ec60bf699be50",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-prepare329/app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMemorySampler.java",
+      "beforeSha256": null,
+      "afterSha256": "8e5384a0c7ca412ece660a370c95d92359af378d8b671fe078a5978671eec008",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-prepare329/app/src/androidTest/java/game/sanguo/mobile/SessionAMemorySampler.java"
+    }
+  ],
+  "portableNativeRecipe": "docs/handoff/20261006/session-a/build_portable_cache307.py",
+  "nativeBinariesUnchangedExact295And296": true,
+  "originalFourAndCandidateTwoJniIncluded": true,
+  "fixedBuildInputsIncluded": 168,
+  "containsSdkOrBuildCaches": false,
+  "containsDeviceBackups": false,
+  "archiveUncompressedToReduceCpuLoad": true,
+  "scope": "Complete exact326 game and330 diagnostic test source/resources/native plus current tracked tools/docs and own session files, all independently copied and tar-member SHA readback. New packaged cache source overrides old canonical native source; no B WIP or user device data. Snapshot begins only in observed app-stopped interval; hashing/I/O can still perturb host later, no GPU/FPS proof. SourceRevision fallback outsideGit can change APK digest. Actual327 ordinary Source14 first prepareFAIL;332 first prepareFAIL/second bounded diagnosticPASS. No current normal/cold/fire/all16/ARM/finalB/media acceptance inferred.",
+  "wholeGoalComplete": false
+}

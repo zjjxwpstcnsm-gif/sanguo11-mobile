@@ -1,5 +1,5 @@
 {
-  "stage": "actual-source14-diagnostic-running",
+  "stage": "restored-verified",
   "previousFailedActualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-normal327/source14",
   "changedOnlyDiagnosticTest": true,
   "functional120sLimitUnchanged": true,
@@ -23,5 +23,7 @@
     "--observe-workers",
     "--runner",
     "SessionAScenarioPrepareInstrumentation"
-  ]
+  ],
+  "helperExit": 0,
+  "functionalDiagnosticPassed": false
 }

@@ -1,0 +1,11 @@
+# 333 同新包首次与重选准备的实际证据（B只读交接）
+
+实际游戏326 SHA2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685；只读诊断330测试SHA6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14。5554/API29/x86_64/large512，非ARM。两次均真实菜单Scen014选择，正常返回/取消；没有World/snapshot注入，没有规则/RNG重算。完整332冻结逐5s ui-read/scene-cpu栈、真实renderer字段、250ms allocator CSV、正常图/原视频、完整原9+3797每SHA恢复。
+
+第一轮focused preview152616ms（120s失败）、真实verified >2帧231954ms，renderer-after-host79338ms在120s内；第二轮focused27012ms、真实verified117698ms，renderer-after-host90686ms在120s内。两轮renderer的绑定指标保留原8个mesh/2ms wall预算，资源共享已经在实际渲染出现。只说明本诊断，不能替代正常新局/缩放/存读/冷；原327普通first-host失败、原320second-renderer失败都保留，不借较暖的第二轮作首次性能通过。
+
+首次host之前22个实际观察行的代表栈：2808ms PcScenarioCatalog.readBytes，7871ms NationalMap.attach，12914ms PcContestProfiles.catalog，17989ms PcOfficerInfo.text，23056ms PcContestProfiles.initializeOpening，28137ms PcOfficerSources.all，48456/58598/63602ms PcOfficerInfo.text，73718ms PcOfficerCampaignFacts.boundedBytes，78735ms PcOfficerCampaignFacts.Record，83797ms SaveExtensions.put，88802ms PcCommandCapacityPolicy.references，93830ms PcScenarioPeople.readFields，98886ms PcGovernorPolicy.sources，103893ms PcContestProfiles.saved，108901ms PcDirectRecruitmentPolicy.initializeOpening。采样命中不等于各函数独立CPU时间，整个host时间还含owner回调/界面构造，不能把全部152s归给某一个函数或GZIP。
+
+真实250ms一致性行Java最大292621840B/536870912B；nativeAllocator独立最大204416720B（时间不同），不相加、不是PSS/GPU/整机峰。全部raw一致性位与非原子total/free/after留存；无强制GC/HPROF，采样/栈/录像有扰动，瞬时峰仍未知。无target OOM/FATAL/source-controller停止日志，不能据此回填用户原354832B分配失败栈或ARM预算。
+
+延续319精确B域请求：请B只在自己core/API/runtime路径对实际首次冷开局的反复解析、正则、逐字节读取/身份扩展验证归因并优化，保持所有source SHA/完整670人与4原字形/原保存扩展/原数值/全部验证/旧存档不回填。要求明确缓存输入键/上限/失效、完整Save/RNG不变和独立实际首次normal/cold门。A已完成索引重复分配及同EngineGPU索引共享候选；A不能用放宽原120s、删除资料/校验或提前背景造World来冒充B域修复。没有修改B文件，没有工具发消息，没有导入完整Native候选/WIP。

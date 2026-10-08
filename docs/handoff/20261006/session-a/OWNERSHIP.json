@@ -667,7 +667,17 @@
     "docs/handoff/20261006/session-a/run_repeat_prepare331.py",
     "docs/handoff/20261006/session-a/REPEAT_PREPARE331_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_repeat_prepare332.py",
-    "docs/handoff/20261006/session-a/REPEAT_PREPARE332.json"
+    "docs/handoff/20261006/session-a/REPEAT_PREPARE332.json",
+    "docs/handoff/20261006/session-a/PREPARE_CORE_EVIDENCE333.md",
+    "docs/handoff/20261006/session-a/UPLOAD_PLATFORM334.md",
+    "docs/handoff/20261006/session-a/export_gpu_source335.py",
+    "docs/handoff/20261006/session-a/GPU_SOURCE335.json",
+    "docs/handoff/20261006/session-a/run_gpu_menu336.py",
+    "docs/handoff/20261006/session-a/GPU_MENU336_LAUNCH.json",
+    "docs/handoff/20261006/session-a/guard_gpu_source337.py",
+    "docs/handoff/20261006/session-a/GPU_SOURCE_GUARD337.json",
+    "docs/handoff/20261006/session-a/run_gpu_menu338.py",
+    "docs/handoff/20261006/session-a/GPU_MENU338_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

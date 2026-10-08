@@ -1,0 +1,11 @@
+{
+  "stage": "stopped-retain-actual-evidence",
+  "cases": [],
+  "source14FailuresRemainUnresolved": true,
+  "ordinaryHeapAccepted": false,
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "error": "Source or tracked WIP changed; fresh complete caller APK cohort required: app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java",
+  "cleanupNotInferred": true
+}
