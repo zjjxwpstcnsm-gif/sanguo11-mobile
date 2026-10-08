@@ -1,0 +1,33 @@
+--- a/app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java
++++ b/app/src/androidTest/java/game/sanguo/mobile/SessionBDebateInstrumentation.java
+@@ -6,8 +6,8 @@
+  @Override public void onCreate(Bundle args){searchMode=args!=null&&"search".equals(args.getString("flow"));directMode=args!=null&&"direct".equals(args.getString("flow"));itemMode=args!=null&&"items".equals(args.getString("flow"));legacyMode=args!=null&&"legacy39".equals(args.getString("flow"));super.onCreate(args);}
+  private World.Officer person(World w,int nativeId)throws Exception {for(var p:PcScenarioPeople.saved(w))if(p.nativeId==nativeId)return w.officer(p.officerId);throw new AssertionError("Missing native identity "+nativeId);}
+  private void newSource(int faction)throws Exception {
+-  var source=PcScenarioCatalog.all().get(0);String name=PcScenarioCatalog.preview(source.identity.scenarioId).faction(faction);
+-  nav("菜单");text("新游戏 / 选择势力");revealDescription("选择PC来源剧本 "+source.identity.path);awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("确认开局势力"));revealDescription("选择势力 · "+name);description("确认开局势力");text("开始新局");awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));check(SessionProbe.view(activity).player==faction,"ordinary selected faction "+faction);
++  StateToken previous=activity.deploymentState();var source=PcScenarioCatalog.all().get(0);String name=PcScenarioCatalog.preview(source.identity.scenarioId).faction(faction);
++  nav("菜单");text("新游戏 / 选择势力");revealDescription("选择PC来源剧本 "+source.identity.path);awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("确认开局势力"));revealDescription("选择势力 · "+name);configurePcOpening(source.identity.scenarioId,0,2,0);description("确认开局势力");text("开始新局");awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));long deadline=SystemClock.elapsedRealtime()+300000;boolean fresh=false;while(SystemClock.elapsedRealtime()<deadline){StateToken current=activity.deploymentState();if(!current.sessionId.equals(previous.sessionId)||current.generation!=previous.generation){fresh=true;break;}SystemClock.sleep(100);}check(fresh,"ordinary newgame commits fresh StateToken generation");settle();World opening=SessionProbe.view(activity);check(opening.player==faction&&opening.turn==0&&opening.scenarioId.equals(source.identity.scenarioId)&&!opening.contests.busy(),"ordinary selected fresh faction "+faction);
+  }
+  @Override protected void nav(String name)throws Exception {
+   for(int attempt=0;attempt<3;attempt++){
+@@ -86,7 +86,7 @@
+  private void enterSearch(int actorNative,boolean cancel)throws Exception {
+   World w=SessionProbe.view(activity);World.Officer actor=person(w,actorNative);World.City city=w.city(actor.cityId);byte[]before=capture();int gold=city.gold,ap=w.actionPoints[w.player],merit=w.government.merit(actor.id);focusCity(city);pageAction("武将");pageAction("搜索人才");choosePerson(actor.name);shot(cancel?"search-cancel-preview":"search-preview");
+   if(cancel){text("返回修改");check(Arrays.equals(before,capture()),"ordinary SEARCH preview/cancel entire World/all RNG");text("取消");return;}
+-  text("执行");check(facts().kind==ContestSnapshot.Kind.SEARCH_CHOICE&&facts().phase==1,"ordinary source SEARCH discovered pending recruit choice");w=SessionProbe.view(activity);check(w.city(city.id).gold==gold&&w.actionPoints[w.player]==ap&&w.government.merit(actor.id)==merit&&!w.officer(actor.id).acted,"native first discovery dialogue no gold/AP/merit/action yet");check(facts().speakers.get(1).nativeId==(actorNative==430?590:658),"actual independent original selected native target");shot("normal-discovery-consent");
++  text("执行");check(facts().kind==ContestSnapshot.Kind.SEARCH_CHOICE&&facts().phase==1,"ordinary source SEARCH discovered pending recruit choice");w=SessionProbe.view(activity);note("discovery actor="+actor.id+" city="+city.id+" gold="+gold+"->"+w.city(city.id).gold+" AP="+ap+"->"+w.actionPoints[w.player]+" merit="+merit+"->"+w.government.merit(actor.id)+" acted="+w.officer(actor.id).acted+" turn="+w.turn+" revision="+activity.deploymentState().revision);Files.write(new File(evidence,"discovery-before.sg11").toPath(),before);Files.write(new File(evidence,"discovery-after.sg11").toPath(),capture());check(w.city(city.id).gold==gold&&w.actionPoints[w.player]==ap&&w.government.merit(actor.id)==merit&&!w.officer(actor.id).acted,"native first discovery dialogue no gold/AP/merit/action yet");check(facts().speakers.get(1).nativeId==(actorNative==430?590:658),"actual independent original selected native target");shot("normal-discovery-consent");
+  }
+  private void searchFlow(Bundle result)throws Exception {
+   if(coldMode){byte[]expected=Files.readAllBytes(new File(getTargetContext().getExternalFilesDir("session-b"),"search/actual-mid.sg11").toPath());check(Arrays.equals(expected,capture()),"true cold whole SEARCH native model/all RNG");loadActualFrom(expected);nav("地图");finishDebate(false,"cold-search");result.putString("stream","PASS SESSION B SEARCH COLD normal SEARCH native model/human/terminal/fullturn/fullsave; ARM and unknowns pending\n");return;}
+--- /dev/null
++++ b/docs/handoff/20261006/session-b/native-opening-search-debate61.init.gradle
+@@ -0,0 +1,8 @@
++gradle.beforeProject { project ->
++ project.plugins.withId('com.android.application') {
++  project.extensions.getByName('androidComponents').finalizeDsl { android ->
++   android.defaultConfig.testInstrumentationRunner = 'game.sanguo.mobile.SessionBDebateInstrumentation'
++   android.defaultConfig.buildConfigField 'String', 'SOURCE_REVISION', '"B664c00f4-candidate61-r27+A925748c6-closure227"'
++  }
++ }
++}
