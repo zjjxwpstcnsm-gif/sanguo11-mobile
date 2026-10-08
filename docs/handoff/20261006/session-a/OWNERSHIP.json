@@ -555,7 +555,9 @@
     "docs/handoff/20261006/session-a/audit_source_map_candidate279.py",
     "docs/handoff/20261006/session-a/SOURCE_MAP_CANDIDATE279.json",
     "docs/handoff/20261006/session-a/build_ordinary_candidate280.py",
-    "docs/handoff/20261006/session-a/ORDINARY_CANDIDATE_BUILD280.json"
+    "docs/handoff/20261006/session-a/ORDINARY_CANDIDATE_BUILD280.json",
+    "docs/handoff/20261006/session-a/run_candidate_regression281.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_REGRESSION281_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

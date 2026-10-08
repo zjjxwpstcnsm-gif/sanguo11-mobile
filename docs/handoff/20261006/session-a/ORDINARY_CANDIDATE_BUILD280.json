@@ -1,0 +1,82 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "977fabbbb15eb5ab525ed1ba137b8212b06e3eed",
+  "variantBase": "MAP_FIRE_UPLOAD_BUILD269.json",
+  "candidateBaseRevision": "450c5afed1e05aef04b2d2c05c9c954f36b16131",
+  "sameCandidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/candidate-inputs.json",
+  "sameCandidateInputManifestSha256": "8e639ca5a01b6fae13d1fb1dbe6349c49d49a3931b7b246d85f2fc217c467eda",
+  "copiedEveryInputFileExact": 11414,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary-candidate-build280/app-debug.apk",
+      "bytes": 313480092,
+      "sha256": "690b9192e0f5029d156a0305fad0f28c078c8dc15be4073436635b89972c61a2"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/ordinary-candidate-build280/app-debug-androidTest.apk",
+      "bytes": 3089292,
+      "sha256": "c3a0cd02366d1f74038afb5fd6a4af762648732993540bec4206f2a223b4d2b4"
+    }
+  ],
+  "gameLargeHeap": false,
+  "mergedManifestLargeHeapFalse": true,
+  "allPackagedAssetsByteExact269": 5636,
+  "fixedPackagedInputsExact": 168,
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "853cdef9ce9ecd71ff38684bfe47c36c21e6a1c4c975bc29f235a14972f04129",
+      "protectedOriginal4": false
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "fe7b940d82bd6afe1419c3cf4d0cd41aab84d55ebca4e03136c89f5eca84f9b3",
+      "protectedOriginal4": false
+    }
+  ],
+  "protectedCurrentSixUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "genuine39FixtureSha256": "5d002d3cee6f84700cd5e1292c05b672e8a05e0b547ac7d753f2b7987d5e2f7f",
+  "fixturePackagedByteExact": true,
+  "independentSourceBuildOutGradleCache": true,
+  "buildCommand": [
+    "/Users/paopao/.gradle/wrapper/dists/gradle-8.13-bin/5xuhj0ry160q40clulazy9h7d/gradle-8.13/bin/gradle",
+    "--offline",
+    "--no-daemon",
+    "-PgameLargeHeap=false",
+    ":app:assembleDebug",
+    ":app:assembleDebugAndroidTest"
+  ],
+  "wallSeconds": 252.369102884,
+  "buildLogSha256": "0a98d6d48adbbbcf46fbbe9278e27bc075137c0eff560de0e92ab32c4f050520",
+  "buildRevisionLabelMayDifferFrom269": true,
+  "actualInstalled": false,
+  "scope": "Independent ordinary-heap variant of same actual269 production source/resource/native files. Manifest largeHeap=false and BuildConfig parent revision label may differ. No old180 or new large-heap scores transferred. Current canonical source/current sixJNI unchanged; B WIP excluded. Fresh full backup/install/all16 previews/zoom/normal commands/cold/read/fullSHA and Java-native-GPU/ARM evidence required.",
+  "wholeGoalComplete": false
+}

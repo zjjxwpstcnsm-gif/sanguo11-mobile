@@ -559,3 +559,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 279新269完整app source-map词法marker124行/21文件，全部fingerprint同实际编译candidate-inputs，逐项列8高风险屏蔽与替代路径/限制：旧火→原controller13+真实持续标记，旧scaffold→PcFacilities/PcFacilityRigs原body而非工程替原，旧critical→独立原screen stage，旧flag屏蔽保持原旗/填色未知，128cap/涂改height排除/默认climate0 provisional/冷startup marker与新hint实际像素均未闭合。不是所有marker都semantic分支，不宣称静态list或替代存在等于全局验收；269两APK全SHA再次吻合，无B修改或清guard。
+
+
+280普通堆候选同269完整11414生产/资源/6JNI输入逐SHA、独立source/build/out/GH，实构252s game690b9192…/testc3a0cd02…，manifest false、5636 assets同269、168 pins/原39fixture/同签名均核；BuildConfig revision标签可不同，绝不称同dex或沿旧180。未实装/不沿大堆成绩。281真实串行回归job已启动，仅等待272新包normalFire/cold/每SHA恢复和owner退出，随后SCEN7/14正常菜单缩放/平移/Home/旋转/save/cold、fast32、16来源势力preview/new/cancel、真实菜单整曲PCM0.995+原2238重读/不吞-22、普通384对应流程、最后完整备份重装大堆默认再正常验收。各case全User文件恢复，ordinary清洁内存case不加视频encoder，未算任何待执行case通过；16factions流不等670×16人物/年龄/voice/最终B/ARM，scope不缩。当前旧Source0实际416/670，仅partial，20713/20790/20791活跃。
