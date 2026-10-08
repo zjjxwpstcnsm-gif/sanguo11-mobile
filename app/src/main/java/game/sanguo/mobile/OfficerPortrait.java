@@ -72,18 +72,24 @@ final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target 
     private void oval(Canvas c,float l,float t,float r,float b,int color){fill(color);c.drawOval(l,t,r,b,paint);}
     private void poly(Canvas c,int color,float... xy){path.reset();path.moveTo(xy[0],xy[1]);for(int i=2;i<xy.length;i+=2)path.lineTo(xy[i],xy[i+1]);path.close();fill(color);c.drawPath(path,paint);}
     @Override public void draw(Canvas c){
-        area.set(getBounds());c.save();path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);
+        area.set(getBounds());
         World view=sourceView.get();boolean waiting=sourceEnabled&&view!=null&&PortraitMediaSources.pending(view,this);
         if(sourceEnabled&&view!=null)sourceIdentity=PortraitMediaSources.source(view,officer.id);
         boolean rejected=sourceEnabled&&view!=null&&!PortraitMediaSources.error(view).isEmpty();
         Bitmap atlas=index>=0?atlases[index/16]:null;
         Bitmap pixel=original==null?null:original.get(sourceIdentity,sourceYear,0,this);
+        boolean sourceImage=customImage==null&&pixel!=null;
+        c.save();
+        if(sourceImage)c.clipRect(area);
+        else{path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);}
         if(customImage!=null){fill(Color.WHITE);c.drawBitmap(customImage,null,area,paint);}
         else if(pixel!=null){fill(Color.WHITE);c.drawBitmap(pixel,null,area,paint);}
         else if(sourceIdentity!=null||waiting||rejected){fill(0xff213c40);c.drawRect(area,paint);}
         else if(atlas!=null){int col=index%4,row=(index%16)/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
         else {c.translate(area.left,area.top);c.scale(area.width()/100,area.height()/100);fallback(c);}
-        c.restore();fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);
+        c.restore();
+        if(sourceImage)return; // Verified source pixels have no invented corner mask or overlaid frame.
+        fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);
     }
     private void fallback(Canvas c){
         int[] robes={0xff435e59,0xff6c4645,0xff665c4c,0xff4a536c,0xff666b51,0xff795d41};

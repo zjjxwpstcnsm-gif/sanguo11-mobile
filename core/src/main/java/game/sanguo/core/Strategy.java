@@ -90,8 +90,11 @@ public final class Strategy {
     public int factionRelation(int a,int b) { return relations.getOrDefault(relationKey(a,b),0); }
 
     public boolean busy(int officerId) {
-        World.Officer o=w.officer(officerId); return o!=null&&(o.otherTaskTurns>0||w.government.captive(officerId));
+        World.Officer o=w.officer(officerId); return o!=null&&(o.otherTaskTurns>0||w.government.captive(officerId)||PcDuelRelease.busy(w,officerId));
     }
+    /** Read the existing saved task37 row; duration zero still occupies the
+     * officer until personnel settlement. This query creates no task. */
+    public boolean nativeReturnPending(int officerId) { return PcDuelRelease.busy(w,officerId); }
     public OfficerState officerState(int officerId) {
         World.Officer o=w.officer(officerId);
         if(o==null)throw new IllegalArgumentException("武将不存在");
@@ -102,6 +105,7 @@ public final class Strategy {
         else {
             for(Domestic.Facility f:w.domestic.facilities)if(f.builderId==o.id){activity=Activity.CONSTRUCTION;remaining=f.remaining;break;}
             if(activity==Activity.IDLE)for(Domestic.Mission m:w.domestic.missions)if(m.contains(o.id)){activity=m.transport?Activity.TRANSPORT:Activity.TRANSFER;remaining=w.domestic.eta(m);break;}
+            if(activity==Activity.IDLE&&PcDuelRelease.busy(w,o.id)){activity=Activity.OTHER_TASK;remaining=PcDuelRelease.remaining(w,o.id);}
             if(activity==Activity.IDLE&&o.otherTaskTurns>0){activity=Activity.OTHER_TASK;remaining=o.otherTaskTurns;}
             if(activity==Activity.IDLE){
                 World.City c=w.city(o.cityId);
@@ -272,7 +276,7 @@ public final class Strategy {
     public World.Result rewardOfficers(int cityId,int officerId,int[] targets){w.reports.prepare();
         RuleFailure failure=cityActionFailure(CityActionPlan.Operation.REWARD,cityId,officerId,targets);if(failure!=null)return w.fail(failure.detail);
         long price=cityActionGold(CityActionPlan.Operation.REWARD,targets);World.City c=w.city(cityId);World.Officer actor=w.officer(officerId);
-        w.spend(c,actor,(int)price);for(int id:targets){World.Officer t=w.officer(id);int gain=rewardGain(t);t.loyalty+=gain;t.lastRewardTurn=w.turn;w.note("褒奖"+t.name+"，忠诚+"+gain);}
+        w.spend(c,actor,(int)price);for(int id:targets){World.Officer t=w.officer(id);int gain=rewardGain(t);PcDuelRawLoyalty.invalidate(w,t.id);t.loyalty+=gain;t.lastRewardTurn=w.turn;w.note("褒奖"+t.name+"，忠诚+"+gain);}
         return w.success("批量褒奖"+targets.length+"人，金−"+price+"、行动力−10");
     }
     public World.Result appointGovernor(int cityId,int officerId,int targetId) {w.reports.prepare();
@@ -303,7 +307,7 @@ public final class Strategy {
         for(int side=0;side<w.factions.length;side++) {
             World.Officer first=null;boolean hasRuler=false;
             for(World.Officer o:w.officers)if(o.owner==side){hasRuler|=o.role==Role.RULER;if(first==null||o.id<first.id)first=o;}
-            if(!hasRuler&&first!=null){first.role=Role.RULER;first.loyalty=100;}
+            if(!hasRuler&&first!=null){PcDuelRawLoyalty.invalidate(w,first.id);first.role=Role.RULER;first.loyalty=100;}
         }
         w.governance.reconcile(false);
     }
@@ -338,6 +342,7 @@ public final class Strategy {
         OfficerExperiencePlan.award(w,o,1);w.spend(c,o,TRAIN_COST,cityActionBaseCost(CityActionPlan.Operation.TRAIN),OfficerExperiencePlan.merit(o,1,w.government));c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
     }
     void tick() {
+        try{PcDuelRelease.tick(w);PcRecruitmentBanPolicy.tick(w);}catch(java.io.IOException e){throw new IllegalStateException(e);}
         w.loyalty.tick();
         for(World.Officer o:w.officers) {
             if(o.otherTaskTurns>0&&--o.otherTaskTurns==0){o.otherTask="";o.acted=true;w.note(o.name+"完成战略任务");}

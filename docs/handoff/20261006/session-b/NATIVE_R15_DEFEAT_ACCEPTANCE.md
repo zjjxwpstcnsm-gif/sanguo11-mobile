@@ -1,0 +1,17 @@
+# 普通败北现存战役的明确兼容续行：61-r15有限验收
+
+本批完成原r13实际Android败北保存96bfcc08d64f4c53699a1506ef31c06df571fa418a1c8d32a7046618f2d3778f的普通菜单读取→采用策略取消纯性→双确认只一次→普通保存读取→force-stop冷进程→正常战役结算→三旬→保存读取→第三冷进程完整读取。15内部/772外部原用户文件全部SHA与path-set恢复，锁释放。本批是x86_64/API29，未关闭完整目标。
+
+策略定义见LOYALTY_INPUT_IMPLEMENTATION.md与原getter1024调用v2证据。旧加载不采用、不写可信raw；明确新局或普通终局确认才采用。display0..99且所属未变可求唯一当前表示输入，display100仍拒绝，不证明工程季度mutation是PC原规则。默认旧策略保留原拒绝。普通页面完整操作已经验证，非数据表或VM演练代替。
+
+r15 APK dc78c38c30b13c3295e731727714826fac330bc57f0fb35ebc2d2316cbbcd276，测试APK de2caea3ba729c44d072ec5d2d45395aa16f0f766a1ca58a9ec5c3b1643e239e；11299完整源归档642825212字节SHA 8fc2be03e5fd6896585e795bb669f689634d0a2b8c3c0552626fef6449fbcfde。确切路径、9项生产前后SHA、全部JAR ZIP成员守卫见frozen-report和native-r15-increment-manifest。168固定资源、原4+A2 JNI未变；A/Bridge/Unity无编辑。增量patch需要精确r14预像，不能向旧main或其他WIP强套；全源仍是Native候选，不宣称生产总闭合。
+
+当前JAR通过新策略213、实际失败保存15、GameSession1690、Contest2403、Native DTO243、SaveMapRevision4、Bridge与architecture；真实v39原PDC1人控→终局→三旬→完整冷读取55项通过。全31–39/历史自定义实际APK矩阵仍未完成。
+
+普通败北保持24合415帧；原79次人控，加一次显式采用协议变为inputs80，无新增交锋或重抽。采用与冷终局SHA同13b0323f6309a21d6dadb80e9b4fc08bbc15d5e7cbdfbf17a0253b18309c4cec。即时结算3dbf34655fff298a0043791835729fd790b49ec05373221513819edb497c4db6：503 merit210→220/warXP0→1/base65/loyalty93保留，成为俘虏，部队16移除；获胜上阵555 merit6300→6500/warXP0→10/base67保留，346/189功绩经验不变。三旬后turn21 SHA4605920ab8f41a295acc9fc9d5fd5e735090819eafba0ea7b8daeb42713ff3b7，503忠诚87是后续三旬变化，不能算单挑扣忠诚。
+
+明确更正旧诊断：原raw探针把manager的获胜上阵555命名captor；它并未取实际PcDuelAiDisposition.preview所使用的winner.unit.officerId。实际保存部队25主将是189，当前AI代码使用189/current loyalty99，而555/current97是获胜上阵者。原上游AI回调究竟采用哪个人物仍需原对照，本批不更换AI参数或概率。旧日志原样保留；后继只读probe的actualCaptor也应读作unitLeader，须修正探针称谓后再引用。
+
+只读Host存档差异原失败v1探针完整保留：原Android与JDK编码相差5字节，两版本r14/r15一致；已验证恰为BattleReports gzip OS字节198909(Android00/JDKff)和外层CRC32的16..19四字节，完整解压战报与所有其他World/双RNG字节完全相同。两CRC合法，不改保存策略/golden；设备内保存冷读取保持逐字节原样。证据save-gzip-header-parity-v1.log。
+
+已直接查看采用后与即时结算PNG：正常B文字控件成功，背景仍显示A“上次3D渲染未能完成，请重试地图”。不计原竞技场/地图/媒体/3D稳定性验收，需A处理。原季度raw持续跟踪、模糊100/归属变更、全支持换将装备/自然伤病死亡/君主/原放弃、完整舌战外交准入费用、16源与全部有效人物、ARM/U01绑定仍待完成。

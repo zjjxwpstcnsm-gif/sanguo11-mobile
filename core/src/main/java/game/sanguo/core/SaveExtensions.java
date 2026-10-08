@@ -10,11 +10,16 @@ public final class SaveExtensions {
     private final Map<String,Long> revisions=new HashMap<>();
     public long revision(String key){return revisions.getOrDefault(key,0L);}
     public byte[] get(String namespace){byte[] v=values.get(namespace);return v==null?null:v.clone();}
+    /** Pure admission shared by preview and actual namespace writes. */
+    String putError(String namespace,int bytes){
+        if(namespace==null||!namespace.matches("[A-Za-z][A-Za-z0-9.-]{0,63}"))return "存档扩展命名空间无效";
+        long total=bytes;for(Map.Entry<String,byte[]> e:values.entrySet())if(!e.getKey().equals(namespace))total+=e.getValue().length;
+        return bytes<0||total>MAX_TOTAL||!values.containsKey(namespace)&&values.size()>=32?"存档扩展超过大小限制":null;
+    }
     public void put(String namespace,byte[] value){
         if(namespace==null||!namespace.matches("[A-Za-z][A-Za-z0-9.-]{0,63}"))throw new IllegalArgumentException("存档扩展命名空间无效");
         if(value==null){values.remove(namespace);revisions.put(namespace,revision(namespace)+1);return;}
-        int total=value.length;for(Map.Entry<String,byte[]> e:values.entrySet())if(!e.getKey().equals(namespace))total+=e.getValue().length;
-        if(total>MAX_TOTAL||!values.containsKey(namespace)&&values.size()>=32)throw new IllegalArgumentException("存档扩展超过大小限制");values.put(namespace,value.clone());revisions.put(namespace,revision(namespace)+1);
+        String error=putError(namespace,value.length);if(error!=null)throw new IllegalArgumentException(error);values.put(namespace,value.clone());revisions.put(namespace,revision(namespace)+1);
     }
     void write(DataOutputStream out)throws IOException{
         if(values.isEmpty())return; // Vanilla v31/v32 files retain their exact original representation.

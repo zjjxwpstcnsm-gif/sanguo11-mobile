@@ -1,0 +1,174 @@
+--- a/app/src/main/java/game/sanguo/mobile/ContestUi.java
++++ b/app/src/main/java/game/sanguo/mobile/ContestUi.java
+@@ -97,6 +97,10 @@
+             if(!choice.error.isEmpty())label(panel,choice.error,11,paper);
+         }
+         if(facts.nativeDuel.terminal){
++            if(facts.nativeDuel.loyaltyInputAdoptionAvailable){
++                label(panel,"当前保存仍保留原忠诚策略，可明确采用已核实的唯一输入解析。",12,paper);
++                button(panel,"采用已核实的忠诚输入解析",true,()->confirm("采用忠诚输入解析","显示忠诚低于100时，按原显示函数求唯一原始输入；显示100仍保留未知。人物数值、原对局和随机数不改。这不恢复未记录的PC季度变化。",()->a.executeContest(w,ignored->ContestCommand.adoptNativeLoyaltyInput(facts.state,facts.contestId,facts.revision))));
++            }else if(facts.nativeDuel.loyaltyInputEnabled)label(panel,"已采用忠诚唯一输入解析；显示100的未知原始值仍不推定。",12,paper);
+             var inheritance=facts.nativeDuel.inheritance;
+             if(inheritance!=null){
+                 label(panel,inheritance.selectedHeir<0?"选择本势力继承人":"继承人已选择",16,gold);
+--- a/core/src/main/java/game/sanguo/core/Contests.java
++++ b/core/src/main/java/game/sanguo/core/Contests.java
+@@ -302,6 +302,17 @@
+             PcDuelDeath.validate(w,own,other,dead,killer,duel.naturalHeir?duel.chosenHeir:-1);return null;
+         }catch(java.io.IOException e){return e.getMessage();}
+     }
++    public boolean nativeDuelLoyaltyInputEnabled(){return PcLoyaltyProperty23Policy.enabled(w);}
++    public String nativeDuelLoyaltyAdoptionError(){
++        if(session==null||session.nativeDuel==null||!session.nativeDuel.terminal())return "请先到达原单挑终局";
++        return PcLoyaltyProperty23Policy.adoptionError(w);
++    }
++    public World.Result adoptNativeDuelLoyaltyInput(int id,int revision){w.reports.prepare();
++        String error=currentError(id,revision,true);if(error!=null)return w.fail(error);error=nativeDuelLoyaltyAdoptionError();if(error!=null)return w.fail(error);
++        try{PcLoyaltyProperty23Policy.adopt(w);session.nativeDuel.inputs++;session.revision++;session.nativeDuel.validate(w,session);}
++        catch(java.io.IOException e){return w.fail(e.getMessage());}
++        return w.success("已明确采用忠诚唯一输入解析；原人物值和对局随机数保留，显示100仍保留未知");
++    }
+     public World.Result finishNativeDuel(int id,int revision){w.reports.prepare();
+         String error=currentError(id,revision,true);if(error!=null)return w.fail(error);
+         if(session.nativeDuel==null)return w.fail("当前不是原单挑终局");
+--- a/core/src/main/java/game/sanguo/core/PcDuelCampaignPolicy.java
++++ b/core/src/main/java/game/sanguo/core/PcDuelCampaignPolicy.java
+@@ -17,7 +17,7 @@
+     static PcDuelOptions options(World w)throws IOException{return enabled(w)?read(w).options:null;}
+     private static void write(World w,State s)throws IOException {var source=PcScenarioIdentity.saved(w);var b=new ByteArrayOutputStream();var d=new DataOutputStream(b);d.writeInt(MAGIC);d.writeInt(s.version);d.writeUTF(source.scenarioId);d.writeUTF(source.sha);d.writeUTF(source.sourceVariant);d.writeInt(s.last);if(s.version>=2){d.writeInt(s.options.life);d.writeInt(s.options.death);d.writeInt(s.options.difficulty);d.writeInt(1);}w.extensions.put(NAMESPACE,b.toByteArray());}
+     static void initializeOpening(World w,PcDuelOptions options)throws IOException {
+-        if(options==null||!w.pcSourceFrame||w.turn!=0||w.commandRevision()!=0||w.contests.busy()||w.extensions.get(NAMESPACE)!=null)throw new IOException("原单挑战役策略只可显式创建新局");State s=new State();s.version=3;s.last=-1;s.options=options;write(w,s);read(w);
++        if(options==null||!w.pcSourceFrame||w.turn!=0||w.commandRevision()!=0||w.contests.busy()||w.extensions.get(NAMESPACE)!=null)throw new IOException("原单挑战役策略只可显式创建新局");State s=new State();s.version=3;s.last=-1;s.options=options;write(w,s);read(w);PcLoyaltyProperty23Policy.initializeOpening(w);
+     }
+     static void recordFinished(World w,int id)throws IOException {State s=read(w);if(id<=s.last||id<0||id>=w.contests.nextId)throw new IOException("原单挑终局已结算或编号无效");s.last=id;write(w,s);}
+     static void validate(World w)throws IOException {if(enabled(w)){var s=read(w);if(s.version==3&&PcGovernorPolicy.data(w).format<2)throw new IOException("新单挑策略与当前军团保存版本不同");}}
+--- a/core/src/main/java/game/sanguo/core/PcDuelRawLoyalty.java
++++ b/core/src/main/java/game/sanguo/core/PcDuelRawLoyalty.java
+@@ -21,12 +21,20 @@
+     private static void write(World w,SortedMap<Integer,Row>rows)throws IOException {
+         var source=PcScenarioIdentity.saved(w);if(source==null||rows.size()!=670)throw new IOException("原始忠诚覆盖缺失");var b=new ByteArrayOutputStream();var d=new DataOutputStream(b);d.writeInt(MAGIC);d.writeInt(1);d.writeUTF(PcScenarioIdentity.EXE_SHA);d.writeUTF(source.scenarioId);d.writeUTF(source.sha);d.writeUTF(source.sourceVariant);d.writeInt(rows.size());for(Row r:rows.values()){d.writeInt(r.id);d.writeInt(r.nativeId);d.writeInt(r.owner);d.writeInt(r.display);d.writeByte(r.raw);d.writeBoolean(r.trusted);}w.extensions.put(NAMESPACE,b.toByteArray());
+     }
+-    static int current(World w,int id)throws IOException {Row r=read(w).get(id);if(r==null||!r.trusted)throw new IOException("当前原始忠诚变更尚未核实");return r.raw;}
++    static int current(World w,int id)throws IOException {
++        Row r=read(w).get(id);if(r==null)throw new IOException("当前原始忠诚人物连接缺失");if(r.trusted)return r.raw;
++        if(!PcLoyaltyProperty23Policy.enabled(w))throw new IOException("当前原始忠诚变更尚未核实");
++        PcLoyaltyProperty23Policy.validate(w);var o=w.officer(id);
++        if(o==null||r.owner!=o.owner)throw new IOException("当前归属变更的忠诚输入未核实");
++        // Pure inverse of the declared current display property. Never persist
++        // an inferred byte or restore the old trusted flag; saturated100 rejects.
++        return PcLoyaltyProperty23Policy.uniqueInput(o.loyalty);
++    }
+     /** Call before even a capped/no-op engineering write; raw120 cannot be
+      * assumed unchanged just because the visible value remains100. */
+     static void invalidate(World w,int id){if(!enabled(w))return;try{var rows=read(w);Row r=rows.get(id);if(r!=null&&r.trusted){r.trusted=false;write(w,rows);}}catch(IOException e){throw new IllegalStateException(e);}}
+     /** Called only after an independently verified original raw setter result. */
+     static void originalWrite(World w,int id,int raw)throws IOException {if(!enabled(w))return;if(raw<0||raw>255)throw new IOException("已核实原忠诚写入范围无效");var rows=read(w);var r=rows.get(id);var o=w.officer(id);if(r==null||o==null||o.loyalty!=Math.min(100,raw))throw new IOException("原忠诚写入与当前显示不同");r.raw=raw;r.display=o.loyalty;r.owner=o.owner;r.trusted=true;write(w,rows);}
+-    static void validate(World w)throws IOException {if(enabled(w))read(w);}
++    static void validate(World w)throws IOException {if(enabled(w))read(w);PcLoyaltyProperty23Policy.validate(w);}
+     private PcDuelRawLoyalty(){}
+ }
+--- /dev/null
++++ b/core/src/main/java/game/sanguo/core/PcLoyaltyProperty23Policy.java
+@@ -0,0 +1,42 @@
++package game.sanguo.core;
++
++import java.io.*;
++
++/** Explicit current-property input representation, distinct from trusted raw writes.
++ * Original4c8a8b reads byteAC and returns min(raw,100). Saturated100 remains unknown.
++ * Does not certify inherited engineering season changes as original PC mutations. */
++final class PcLoyaltyProperty23Policy {
++    static final String NAMESPACE="pc-loyalty-property23-input-v1";
++    static final String GETTER_SHA="9ef1697731d3b3de7fb21198781befd8fbd9b08ae9aa60750f6322469493e5b5";
++    static final String RECEIPT_SHA="e35032bad3de497218adea144fe7573584f712a0094ad645725be0ea15dee3dc";
++    private static final int MAGIC=0x504c5031;
++    static boolean enabled(World w){byte[] b=w.extensions.get(NAMESPACE);return b!=null&&b.length>=4&&java.nio.ByteBuffer.wrap(b).getInt()==MAGIC;}
++    static void validate(World w)throws IOException{
++        if(!enabled(w))return;
++        byte[] b=w.extensions.get(NAMESPACE);if(b.length>2048)throw new IOException("忠诚输入解析策略过大");
++        var source=PcScenarioIdentity.saved(w);if(source==null||!PcDuelRawLoyalty.enabled(w))throw new IOException("忠诚输入解析来源缺失");
++        try(var in=new DataInputStream(new ByteArrayInputStream(b))){
++            if(in.readInt()!=MAGIC||in.readInt()!=1||!in.readUTF().equals(PcScenarioIdentity.EXE_SHA)||!in.readUTF().equals(source.scenarioId)||!in.readUTF().equals(source.sha)||!in.readUTF().equals(source.sourceVariant)||in.readInt()!=0x4c8a8b||!in.readUTF().equals(GETTER_SHA)||!in.readUTF().equals(RECEIPT_SHA)||in.available()!=0)throw new IOException("忠诚输入解析的原函数或保存来源不同");
++        }
++    }
++    static String adoptionError(World w){
++        if(w.extensions.get(NAMESPACE)!=null)return enabled(w)?"当前保存已采用忠诚输入解析":"保存已有未知忠诚输入策略，请保留原档";
++        try{PcDuelRawLoyalty.validate(w);if(!PcDuelRawLoyalty.enabled(w)||PcScenarioIdentity.saved(w)==null)return "保存没有原忠诚人物来源，不会自动补填";}
++        catch(IOException e){return e.getMessage();}
++        return null;
++    }
++    static void adopt(World w)throws IOException{
++        String error=adoptionError(w);if(error!=null)throw new IOException(error);var source=PcScenarioIdentity.saved(w);
++        var bytes=new ByteArrayOutputStream();try(var out=new DataOutputStream(bytes)){out.writeInt(MAGIC);out.writeInt(1);out.writeUTF(PcScenarioIdentity.EXE_SHA);out.writeUTF(source.scenarioId);out.writeUTF(source.sha);out.writeUTF(source.sourceVariant);out.writeInt(0x4c8a8b);out.writeUTF(GETTER_SHA);out.writeUTF(RECEIPT_SHA);}
++        w.extensions.put(NAMESPACE,bytes.toByteArray());validate(w);
++    }
++    static void initializeOpening(World w)throws IOException{
++        if(!w.pcSourceFrame||w.turn!=0||w.commandRevision()!=0||w.contests.busy())throw new IOException("忠诚输入解析仅在明确新局启用");adopt(w);
++    }
++    static int uniqueInput(int display)throws IOException{
++        if(display<0||display>100)throw new IOException("当前忠诚显示值超出原属性范围");
++        if(display==100)throw new IOException("忠诚显示100对应原始100至255，不能唯一解析");
++        return display;
++    }
++    private PcLoyaltyProperty23Policy(){}
++}
+--- a/game-api/src/main/java/game/sanguo/api/ContestCommand.java
++++ b/game-api/src/main/java/game/sanguo/api/ContestCommand.java
+@@ -4,7 +4,7 @@
+ 
+ /** Progress only the current contest; no rule callback or mutable world crosses this boundary. */
+ public final class ContestCommand {
+-    public enum Operation { DUEL_MOVE, DEBATE_CARD, RETHINK, FINISH_DEBATE, CONCEDE, ADOPT_NATIVE_SETTLEMENT, SEARCH_CHOICE, FINISH_NATIVE_DUEL, NATIVE_DUEL_INPUT, NATIVE_DUEL_DISPOSITION, START_NATIVE_DUEL, NATIVE_DUEL_HEIR }
++    public enum Operation { DUEL_MOVE, DEBATE_CARD, RETHINK, FINISH_DEBATE, CONCEDE, ADOPT_NATIVE_SETTLEMENT, SEARCH_CHOICE, FINISH_NATIVE_DUEL, NATIVE_DUEL_INPUT, NATIVE_DUEL_DISPOSITION, START_NATIVE_DUEL, NATIVE_DUEL_HEIR, ADOPT_NATIVE_LOYALTY_INPUT }
+     public final Operation operation;
+     public final StateToken expected;
+     public final int contestId,contestRevision,choice;
+@@ -30,5 +30,6 @@
+     public static ContestCommand nativeDuelDisposition(StateToken state,int id,int revision,int officer,int action){return new ContestCommand(Operation.NATIVE_DUEL_DISPOSITION,state,id,revision,officer,null,null,false,action,-1,-1);}
+     public static ContestCommand startNativeDuel(StateToken state,int actorUnit,int targetUnit,int nominee){return new ContestCommand(Operation.START_NATIVE_DUEL,state,actorUnit,targetUnit,nominee,null,null,false);}
+     public static ContestCommand nativeDuelHeir(StateToken state,int id,int revision,int heir){return new ContestCommand(Operation.NATIVE_DUEL_HEIR,state,id,revision,heir,null,null,false);}
++    public static ContestCommand adoptNativeLoyaltyInput(StateToken state,int id,int revision){return new ContestCommand(Operation.ADOPT_NATIVE_LOYALTY_INPUT,state,id,revision,-1,null,null,false);}
+     public static ContestCommand searchChoice(StateToken state,int id,int revision,boolean yes){return new ContestCommand(Operation.SEARCH_CHOICE,state,id,revision,-1,null,null,yes);}
+ }
+--- a/game-api/src/main/java/game/sanguo/api/ContestSnapshot.java
++++ b/game-api/src/main/java/game/sanguo/api/ContestSnapshot.java
+@@ -36,6 +36,8 @@
+     }
+     public static final class NativeDuel {
+         public final String settlementError;
++        public final boolean loyaltyInputEnabled,loyaltyInputAdoptionAvailable;
++        public final String loyaltyInputError;
+         public final PcOpeningOptionsSnapshot openingOptions;
+         public final int roundLimit,frames,inputs,scene,openingSpeechCode;
+         /** Saved command facts; speech code is not an audio/profile ID. */
+@@ -53,7 +55,8 @@
+         public NativeDuel(int limit,int frames,int inputs,boolean waiting,boolean terminal,List<DuelTeam> teams,List<DuelInput> choices,List<DuelDisposition> disposition,boolean ready,int scene,boolean commandBoundary,boolean previousOpponentActed,int openingSpeechCode){this(limit,frames,inputs,waiting,terminal,teams,choices,disposition,ready,scene,commandBoundary,previousOpponentActed,openingSpeechCode,null);}
+         public NativeDuel(int limit,int frames,int inputs,boolean waiting,boolean terminal,List<DuelTeam> teams,List<DuelInput> choices,List<DuelDisposition> disposition,boolean ready,int scene,boolean commandBoundary,boolean previousOpponentActed,int openingSpeechCode,DuelInheritance inheritance){this(limit,frames,inputs,waiting,terminal,teams,choices,disposition,ready,scene,commandBoundary,previousOpponentActed,openingSpeechCode,inheritance,null);}
+         public NativeDuel(int limit,int frames,int inputs,boolean waiting,boolean terminal,List<DuelTeam> teams,List<DuelInput> choices,List<DuelDisposition> disposition,boolean ready,int scene,boolean commandBoundary,boolean previousOpponentActed,int openingSpeechCode,DuelInheritance inheritance,PcOpeningOptionsSnapshot openingOptions){this(limit,frames,inputs,waiting,terminal,teams,choices,disposition,ready,scene,commandBoundary,previousOpponentActed,openingSpeechCode,inheritance,openingOptions,"");}
+-        public NativeDuel(int limit,int frames,int inputs,boolean waiting,boolean terminal,List<DuelTeam> teams,List<DuelInput> choices,List<DuelDisposition> disposition,boolean ready,int scene,boolean commandBoundary,boolean previousOpponentActed,int openingSpeechCode,DuelInheritance inheritance,PcOpeningOptionsSnapshot openingOptions,String settlementError){this.settlementError=settlementError==null?"":settlementError;this.openingOptions=openingOptions;this.inheritance=inheritance;if(scene< -1||scene>2||openingSpeechCode!= -1&&openingSpeechCode!=35&&openingSpeechCode!=36)throw new IllegalArgumentException("Original duel scene/speech code");this.commandBoundary=commandBoundary;this.previousOpponentActed=previousOpponentActed;this.openingSpeechCode=openingSpeechCode;this.scene=scene;roundLimit=limit;this.frames=frames;this.inputs=inputs;waitingInput=waiting;this.terminal=terminal;this.teams=List.copyOf(teams);this.choices=List.copyOf(choices);this.disposition=List.copyOf(disposition);dispositionReady=ready;}
++        public NativeDuel(int limit,int frames,int inputs,boolean waiting,boolean terminal,List<DuelTeam> teams,List<DuelInput> choices,List<DuelDisposition> disposition,boolean ready,int scene,boolean commandBoundary,boolean previousOpponentActed,int openingSpeechCode,DuelInheritance inheritance,PcOpeningOptionsSnapshot openingOptions,String settlementError){this(limit,frames,inputs,waiting,terminal,teams,choices,disposition,ready,scene,commandBoundary,previousOpponentActed,openingSpeechCode,inheritance,openingOptions,settlementError,false,false,"");}
++        public NativeDuel(int limit,int frames,int inputs,boolean waiting,boolean terminal,List<DuelTeam> teams,List<DuelInput> choices,List<DuelDisposition> disposition,boolean ready,int scene,boolean commandBoundary,boolean previousOpponentActed,int openingSpeechCode,DuelInheritance inheritance,PcOpeningOptionsSnapshot openingOptions,String settlementError,boolean loyaltyInputEnabled,boolean loyaltyInputAdoptionAvailable,String loyaltyInputError){this.loyaltyInputEnabled=loyaltyInputEnabled;this.loyaltyInputAdoptionAvailable=loyaltyInputAdoptionAvailable;this.loyaltyInputError=loyaltyInputError==null?"":loyaltyInputError;this.settlementError=settlementError==null?"":settlementError;this.openingOptions=openingOptions;this.inheritance=inheritance;if(scene< -1||scene>2||openingSpeechCode!= -1&&openingSpeechCode!=35&&openingSpeechCode!=36)throw new IllegalArgumentException("Original duel scene/speech code");this.commandBoundary=commandBoundary;this.previousOpponentActed=previousOpponentActed;this.openingSpeechCode=openingSpeechCode;this.scene=scene;roundLimit=limit;this.frames=frames;this.inputs=inputs;waitingInput=waiting;this.terminal=terminal;this.teams=List.copyOf(teams);this.choices=List.copyOf(choices);this.disposition=List.copyOf(disposition);dispositionReady=ready;}
+     }
+     public static final class DuelInheritance {
+         public final int rulerId,selectedHeir;public final List<DuelHeir> candidates;
+--- a/game-runtime/src/main/java/game/sanguo/runtime/GameSession.java
++++ b/game-runtime/src/main/java/game/sanguo/runtime/GameSession.java
+@@ -292,6 +292,7 @@
+                 case FINISH_NATIVE_DUEL:result=contests.finishNativeDuel(command.contestId,command.contestRevision);break;
+                 case NATIVE_DUEL_DISPOSITION:result=contests.nativeDuelDisposition(command.contestId,command.contestRevision,command.choice,command.nativeStance);break;
+                 case NATIVE_DUEL_HEIR:result=contests.nativeDuelHeir(command.contestId,command.contestRevision,command.choice);break;
++                case ADOPT_NATIVE_LOYALTY_INPUT:result=contests.adoptNativeDuelLoyaltyInput(command.contestId,command.contestRevision);break;
+                 case SEARCH_CHOICE:result=contests.searchChoice(command.contestId,command.contestRevision,command.mercy);break;
+                 default:throw new IllegalArgumentException("Contest operation");
+             }
+--- a/game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java
++++ b/game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java
+@@ -28,7 +28,7 @@
+                 List<ContestSnapshot.DuelDisposition> disposition=new ArrayList<>();for(var row:duel.disposition){World.Officer o=w.officer(row.officerId);if(o==null)throw new IllegalStateException("原终局处置人物连接失效");List<String>errors=new ArrayList<>();for(int action=0;action<4;action++){String error=w.contests.nativeDuelDispositionError(row.officerId,action);errors.add(error==null?"":error);}disposition.add(new ContestSnapshot.DuelDisposition(row.officerId,row.nativeId,o.name,row.mask,row.choice,row.error,errors));}
+                 ContestSnapshot.DuelInheritance inheritance=duel.heirRuler<0?null:new ContestSnapshot.DuelInheritance(duel.heirRuler,duel.chosenHeir,w.contests.nativeDuelHeirs().stream().map(h->new ContestSnapshot.DuelHeir(h.officerId,h.nativeId,h.name,h.error)).collect(java.util.stream.Collectors.collectingAndThen(java.util.stream.Collectors.toList(),java.util.Collections::unmodifiableList)));
+                 String settlementError=w.contests.nativeDuelNaturalDeathError();
+-                var facts=new ContestSnapshot.NativeDuel(duel.roundLimit,duel.frames,duel.inputs,duel.waitingInput,duel.terminal,teams,choices,disposition,duel.dispositionReady,duel.scene,duel.commandBoundary,duel.previousOpponentActed,duel.openingSpeechCode,inheritance,PcOpeningOptionsQuery.capture(w,state),settlementError);
++                var facts=new ContestSnapshot.NativeDuel(duel.roundLimit,duel.frames,duel.inputs,duel.waitingInput,duel.terminal,teams,choices,disposition,duel.dispositionReady,duel.scene,duel.commandBoundary,duel.previousOpponentActed,duel.openingSpeechCode,inheritance,PcOpeningOptionsQuery.capture(w,state),settlementError,w.contests.nativeDuelLoyaltyInputEnabled(),duel.terminal&&w.contests.nativeDuelLoyaltyAdoptionError()==null,w.contests.nativeDuelLoyaltyAdoptionError());
+                 String status=inheritance!=null?(inheritance.selectedHeir<0?"请选择本势力继承人，可保存后继续":"继承人已选择，确认战役结算"):duel.terminal?(duel.winner<0?"单挑平手，确认战役结算":duel.winner==0?"我方胜利，确认终局处置与战役结算":"我方败北，确认战役结算"):duel.waitingInput?(duel.phase==5&&duel.sub==3?"选择本合行动方针":duel.phase==5&&duel.sub==4?"选择继续上阵或换将":"选择招式或继续交锋"):"交锋进行中";
+                 return new ContestSnapshot(state,ContestSnapshot.Kind.DUEL,current.id(),current.revision(),duel.phase,duel.sub,duel.round,-1,duel.winner,true,false,false,duel.terminal&&(settlementError==null||settlementError.isEmpty())&&(disposition.isEmpty()||duel.dispositionReady),"单挑","",source.scenarioId,source.sourceVariant,source.sha,status,speakers,List.of(),List.of(),facts);
+             }catch(java.io.IOException e){throw new IllegalStateException(e);}

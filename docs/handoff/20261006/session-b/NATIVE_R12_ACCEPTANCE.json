@@ -1,0 +1,199 @@
+{
+  "scope": "Completed actual x86_64 ordinary native duel win/custody/three-whole-turns/in-battle-and-final cold/save flow of immutable candidate r12; full source release and whole goal remain incomplete",
+  "commonMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "completedFullMain": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "bLatestCompletedTestCommit": "6718fcc405e6a44682ea9f4a51c09e5da54bce19",
+  "sourceBaselineCodeHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "actualSourceId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+  "serial": "emulator-5582",
+  "androidApi": 29,
+  "abi": "x86_64",
+  "actualResultPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1/results.json",
+  "actualResultSha256": "fe749b0532fa0a744dabae8b20ed0da7fff8b2bddc3a888b0f2ae8eb7f06b828",
+  "normalPassed": true,
+  "battleColdPassed": true,
+  "finalColdPassed": true,
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "removedTestFiles": [],
+      "preservedAdditionalFiles": []
+    },
+    "external": {
+      "originalFiles": 772,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "removedTestFiles": [
+        "./files/session-b/native-duel-cold/diagnosis.txt",
+        "./files/session-b/native-duel-cold/final.sg11",
+        "./files/session-b/native-duel-cold/human-terminal.png",
+        "./files/session-b/native-duel-cold/normal-settled.png",
+        "./files/session-b/native-duel-cold/progress.txt",
+        "./files/session-b/native-duel-cold/result.txt",
+        "./files/session-b/native-duel-cold/terminal.sg11",
+        "./files/session-b/native-duel-normal/actual-human-battle.png",
+        "./files/session-b/native-duel-normal/battle.sg11",
+        "./files/session-b/native-duel-normal/campaign-turn-18.sg11",
+        "./files/session-b/native-duel-normal/continue-input.sg11",
+        "./files/session-b/native-duel-normal/diagnosis.txt",
+        "./files/session-b/native-duel-normal/navigation-菜单-0.png",
+        "./files/session-b/native-duel-normal/progress.txt",
+        "./files/session-b/native-duel-normal/result.txt",
+        "./files/session-b/native-duel-terminal-cold/diagnosis.txt",
+        "./files/session-b/native-duel-terminal-cold/progress.txt",
+        "./files/session-b/native-duel-terminal-cold/result.txt"
+      ],
+      "preservedAdditionalFiles": []
+    }
+  },
+  "initialActualTurn18Sha256": "06329224846382ae8cea34988458622ce13f8756c1912ac6f10f9e00e4fb2661",
+  "progenitorActualTurn9Sha256": "c9d219988a317d963da89ad2acd44b2354eb316728abf01ec41f70d837a549b4",
+  "actualHumanInputs": {
+    "firstNormal": 1,
+    "cold": 56,
+    "modelTotal": 57
+  },
+  "actualModelFrames": 318,
+  "actualTerminalRound": 21,
+  "winnerSide": 0,
+  "actor": {
+    "unitId": 16,
+    "officerId": 10503,
+    "nativeId": 503,
+    "name": "裴元紹"
+  },
+  "capturedOpponent": {
+    "unitId": 25,
+    "officerId": 10346,
+    "nativeId": 346,
+    "name": "臧霸",
+    "choice": "HOLD"
+  },
+  "observedEnemyOtherFighters": [
+    {
+      "officerId": 10189,
+      "nativeId": 189,
+      "name": "皇甫嵩"
+    },
+    {
+      "officerId": 10555,
+      "nativeId": 555,
+      "name": "鮑信"
+    }
+  ],
+  "battleInitialTurn": 18,
+  "finalTurnAfterThreeWholeTurns": 21,
+  "outcomeReadbackLogPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/duel-query-check/actual-native-outcome-probe-v1.log",
+  "outcomeReadbackLogSha256": "e41a70d43da07b0477d6611103170bc3990d1ae8cf5547c7554d1efa21b64f8b",
+  "outcomeAttributionBoundary": "The final readback includes three subsequent AI turns; total merit/troop/food changes are not all attributed to duel settlement. Exact immediate settlement save remains supplemental follow-up.",
+  "evidence": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1/evidence/native-duel-normal/battle.sg11",
+      "bytes": 2869191,
+      "sha256": "668b77e99cbed02f6093530f17f0b38bdc2b0e4745a6b2f69ba8a58c0455a2b2"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1/evidence/native-duel-cold/terminal.sg11",
+      "bytes": 2868874,
+      "sha256": "5e2730ea0dcbba4702f5ce6f6bf9b105c2a576a8205c89d8fb7dedb8a73ee0c5"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1/evidence/native-duel-cold/final.sg11",
+      "bytes": 2869753,
+      "sha256": "486473826c7129ead013915f48d06e0c14f71684f721fc222c0fa8590ca716a8"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1/evidence/native-duel-cold/human-terminal.png",
+      "bytes": 167907,
+      "sha256": "d4a64004659d637329fa517a515a10ca4e80ed3bec704bac41e6af02eff9e712"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1/evidence/native-duel-cold/normal-settled.png",
+      "bytes": 188098,
+      "sha256": "86d708ec4b8703f97b7451ee772099d21180b50f7f51d39996ae4418072a9c3f"
+    }
+  ],
+  "frozenReportPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/frozen-report.json",
+  "frozenReportSha256": "b79c559fcc7ccad7fc2c1fb909950905b897f253756a6638878469b4f73efa86",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/core.jar",
+      "bytes": 12809155,
+      "sha256": "c2fabde40e7b5fdd9b216c64f0c127ff47503b8f15b59dcbf30832bc3ab6afd7"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/game-api.jar",
+      "bytes": 84606,
+      "sha256": "3ed3eca9e6be5c854ce921a2df0c11862565eb5d6c31c5160e08147454cd250e"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/game-runtime.jar",
+      "bytes": 73030,
+      "sha256": "e8b3ac12607e880bf240a24442c334e6c1559d270849eced077f65e055fdb62e"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/app-debug.apk",
+      "bytes": 315003364,
+      "sha256": "e16fc4194b0f15d21d7aa3f70edc2e36d26d9accd35dc129b189f589573c08dc"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/app-debug-androidTest.apk",
+      "bytes": 3051760,
+      "sha256": "c96a4e29194dc12587c8a41d13b240f4615fa54bc3c09ce12754be61ea5a6c89"
+    }
+  ],
+  "sourceArchive": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/combined-source.tar.gz",
+    "sha256": "8ef9e497ee0af1577d24a1e109e9316656569f5e86ca4f762b680bdb535d5041",
+    "bytes": 642754301
+  },
+  "fixedResources": 168,
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "apkPath": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "apkPath": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "apkPath": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "apkPath": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "apkPath": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "apkPath": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+    }
+  ],
+  "allOtherUncompressedBJarEntriesExactlyCandidate60": true,
+  "supplementalTestAlignmentCommit": "6718fcc405e6a44682ea9f4a51c09e5da54bce19",
+  "supplementalTestPatchSha256": "fc6d6318b738b4d5db93548b5604fc09faca52b7974094912b4d9bf85212fbb7",
+  "renderingBoundary": "Direct inspection shows A map recovery page behind actual terminal and settled B normal command panels; no original arena/3D stable/voice/GPU acceptance claim. Exact A adaptation/diagnosis request sent.",
+  "fullNativeSourceReleaseCompleted": false,
+  "fullNativeMatrixCompleted": false,
+  "armVerified": false,
+  "wholeGoalComplete": false,
+  "remaining": [
+    "normal loss/concede/escape/player three-support/equipment and all callbacks",
+    "full scenario/officer/content/normal command and old31-39/custom matrices",
+    "A original contest media/actual map cold presentation acceptance",
+    "Unity U01/ARM and final integrated source/APK"
+  ]
+}

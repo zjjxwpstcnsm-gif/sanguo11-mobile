@@ -1,0 +1,51 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "branch": "codex/rules-content-contest-repair",
+  "complete": false,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcRulerSuccession.java": "fb181d4f4707648b7e0b9098d966d0d95adf75a9f57a7f4b5b29a634e9152fef",
+    "core/src/main/java/game/sanguo/core/PcRulerCoronation.java": "7584663454fd76be1f8f3b4bf3a1c38e3e52e90c6cc0adc2d0efdd2233449284",
+    "core/src/main/java/game/sanguo/core/PcDuelCapture.java": "2d710969d32d50a1bcc53d9e69945a641f2cab9080772e72e02c10d2b44b1738",
+    "core/src/test/java/game/sanguo/core/PcRulerCrossArmyTest.java": "e9ca906e194f191f7bc03a70fb4e470c7e5f6dcdb0191a4dfbfee093c53042db",
+    "game-runtime/src/test/java/game/sanguo/core/PcRulerCrossArmySessionTest.java": "c47622f242fee8b560b55de55bd108389c627ac7476209a350c3cb218ed40430",
+    "tools/content/session_b_pc_ruler_cross_army.py": "c6479c0be4e40e9d326b0d09fe0d3b0c061c8eb77ca6c5c0a652eb3af7ccd02d",
+    "tools/content/session_b_pc_duel_succession_source.py": "4f9be58f08a8c28c1cdd2bfd5d5cdb6097a6d12c1ca308e8ec3b9c86e2252902",
+    "out/session-b/ruler-cross-army-source0-v4.json": "bacae46ed8289f0c046f23b5c5df31e178043c96445dd30216ad326b7fff997c",
+    "out/session-b/duel-succession-source-v10.json": "a7e972bfdec804632444060140f52504e2dc7502b7180697958bc7c0aac82a67",
+    "out/session-b/duel-query-check/ruler-cross-army-current-v1.log": "4c9ad563c0265add64d7ef014e8b1ad0ff721b2263a976cb5bfbaaa9095ff2ef",
+    "out/session-b/duel-query-check/ruler-cross-army-current-v2.log": "bab38346c547300518c60c75ee74fc8006437011fca9367b22ac41a5ade73a76",
+    "out/session-b/duel-query-check/ruler-cross-army-current-v3.log": "e44c2d6b58fe0fce6380fcb786ce26f8eb5fba3311635031b78542c0332ff541",
+    "out/session-b/duel-query-check/ruler-cross-army-session-v1.log": "cd65d064f1ba800adaf993273a39142c013a126bf47d332795ef8839fc77278e",
+    "out/session-b/duel-query-check/ruler-cross-army-formal-current-v1.log": "21dd76f23c73310dfe5e0757127f202cb0c7771587036c660f1dbf79eb8ce46a",
+    "out/session-b/duel-query-check/ruler-cross-army-formal-session-v1.log": "3692de42123518bdd851dc33f28651686164173968a38066e41823228f12fc9d",
+    "out/session-b/duel-query-check/ruler-cross-army-same-regression-v1.log": "f9b406be87c56ba5d9fcf29ba034a5d25f3fed44e0dbb8dc778742eed20280d0",
+    "out/session-b/duel-query-check/ruler-cross-army-capture-regression-v1.log": "381ed7b4d8831157b3fbac0d2d1b425e389b59d8fdeaa6bd7d04f1e83a5af78f",
+    "out/session-b/ruler-cross-army-formal-v2.log": "daf310df5a2606def8df97cbefe4f8817774da5eea15266da7d20cc848bb70ce"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "completeInheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completeInheritedSourceClean": true,
+  "checks": [
+    "original completecrosscoronation/worldrestore/RNGpure",
+    "formal896currentfield/87sites/42cities/cold",
+    "formal147typednaturalcapture435/currentAIselect440/human198WIN/EXECUTE/fourwholeturnscold/double",
+    "samearmy686/capturemerge147",
+    "formal8tasks/architecture/168fixed"
+  ],
+  "limits": [
+    "No source commit/newAPK/install/deviceuserdata writes",
+    "No A edits/Bridge/Unity/JNI changes",
+    "Originalbit9semantic unresolved; not bound to action",
+    "Openinggovernor vs completeoriginalstartup differs; no oldsave normalization",
+    "Player inheritance/deployedheir/emptyforce/kinrevenge/swornanchor pending",
+    "Typedcrossunits explicit fixtures; normalmenuAPK stillrequired"
+  ],
+  "ownJobs": "allterminal"
+}

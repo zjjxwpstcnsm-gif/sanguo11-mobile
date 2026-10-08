@@ -1,0 +1,37 @@
+--- a/core/src/test/java/game/sanguo/core/ContestTest.java
++++ b/core/src/test/java/game/sanguo/core/ContestTest.java
+@@ -5,7 +5,7 @@
+ import java.util.*;
+ import java.util.function.Supplier;
+ 
+-/** Rules from the official manual, command atomicity, campaign settlement, corrupt saves and replay. */
++/** Engineering contests: command atomicity, campaign settlement, corrupt saves and replay. */
+ public final class ContestTest {
+     private static int checks;
+     private static void check(boolean ok,String message){checks++;if(!ok)throw new AssertionError(message);}
+@@ -132,13 +132,22 @@
+         }
+         for(int version=1;version<=8;version++){
+             try(InputStream in=ContestTest.class.getResourceAsStream("/legacy-v"+version+".sg11.b64")){
+-                if(in==null)continue;World w=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(!w.contests.busy()&&w.contests.profiles.isEmpty(),"old save gains no invented profiles");check(ByteBuffer.wrap(bytes(w),4,4).getInt()==25,"old save writes v19");
++                if(in==null)continue;
++                byte[] old=Base64.getMimeDecoder().decode(in.readAllBytes()),original=old.clone();
++                check(ByteBuffer.wrap(old,4,4).getInt()<31,"historical fixture is outside supported map-save formats");
++                try{SaveCodec.decode(old);throw new AssertionError("unsupported old map silently migrated");}
++                catch(IOException expected){check(expected.getMessage().contains("旧版本地图"),"explicit V01 old-map rejection");}
++                check(Arrays.equals(original,old),"rejected historical save bytes preserved");
+             }
+         }
+         World w=debate(Debate.Temper.BOLD);w.contests.current().debate().left.hand.add(talk(Debate.Talk.IGNORE));try{bytes(w);throw new AssertionError("oversized hand accepted");}catch(IOException expected){checks++;}
+         World bad=fixture();start(bad);bad.contests.current().duel().leftIndex=9;try{bytes(bad);throw new AssertionError("bad active index accepted");}catch(IOException expected){checks++;}
+-        World injury=fixture();injury.contests.injuries.put(0,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==70,"healthy unrelated deputy contributes half the advantage");injury.contests.injuries.put(1,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==60,"injuries affect army stat");
++        World injury=fixture();injury.contests.injuries.put(0,new Contests.Injury(2,3));
++        int hurtLeader=injury.contests.war(injury.officer(0)),healthyDeputy=injury.contests.war(injury.officer(1)),withDeputy=injury.army.war(injury.unit(1));
++        check(hurtLeader==60&&healthyDeputy==80&&withDeputy>hurtLeader&&withDeputy<healthyDeputy,"healthy unrelated deputy contributes a bounded bonus without hiding leader injury");
++        World injuryCopy=copy(injury);check(injuryCopy.army.war(injuryCopy.unit(1))==withDeputy,"saved injury and relationship contribution resume exactly");
++        injury.contests.injuries.put(1,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==60,"injuries affect army stat");
+         injury.turn=3;injury.contests.tick();check(injury.contests.injuries.isEmpty()&&injury.army.war(injury.unit(1))==80,"injuries recover at saved deadline");bytes(injury);
+     }
+-    public static void main(String[] args)throws Exception{locks();mechanics();cards();fury();settlement();simulations();saveAndCorruption();System.out.println("PASS: "+checks+" contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.");}
++    public static void main(String[] args)throws Exception{locks();mechanics();cards();fury();settlement();simulations();saveAndCorruption();System.out.println("PASS: "+checks+" engineering contest assertions: guard/gear/fury/counters, campaign settlement, locks, stale inputs, explicit V01 pre31 rejection with original bytes preserved and current save-per-round replay.");}
+ }

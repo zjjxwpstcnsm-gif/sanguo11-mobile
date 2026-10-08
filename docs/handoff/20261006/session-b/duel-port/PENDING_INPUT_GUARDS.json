@@ -1,0 +1,97 @@
+{
+  "branch": "codex/rules-content-contest-repair",
+  "base": "89534120e46e488136db0e661270757d9c4a4c50",
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "status": "WIP; not a completed production delivery",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelCampaign.java",
+      "bytes": 19880,
+      "sha256": "ad5bf1a19c5e29e368715b3d6e215001113a99911e0aa296699db1a2132a24e3"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelKernel.java",
+      "bytes": 53596,
+      "sha256": "c2b0a31d7a55a5998313cac3faa7403bb7544039302dbd96575639d03edddf5d"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelAiDisposition.java",
+      "bytes": 6113,
+      "sha256": "0f024272c1f60185e8e571bc114834664f7203dd466956707e1230e83c349e6c"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDuelPendingInputTest.java",
+      "bytes": 1582,
+      "sha256": "1737fe6d9814e8997e02169f8e61e8c1ad453b69767b134c4c9324e96d85ac3a"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDuelCheckpointResumeTest.java",
+      "bytes": 3265,
+      "sha256": "70510a64f577c89c36045ee1b24d2ffa1538403cf2401659eea4159ee5f7b656"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDuelRulerAiSessionTest.java",
+      "bytes": 6600,
+      "sha256": "bd6409b0f5005fe2c4448ac5f7be1af72528120353d8616406bd1aafb981fb2b"
+    },
+    {
+      "path": "tools/content/session_b_pc_duel_pending_input.py",
+      "bytes": 2494,
+      "sha256": "2907082dc149fd8eac64f5c81dd665ce90c51abf1751aebab0c3c276e9d556c2"
+    },
+    {
+      "path": "tools/content/session_b_pc_duel_ruler_context.py",
+      "bytes": 5137,
+      "sha256": "8f08cf6785cca4c537d09d65e90082898c5b683968667289cc0c406aa93bc062"
+    },
+    {
+      "path": "out/session-b/duel-ruler-ai-seed1-nonterminal-v1.sg11",
+      "bytes": 2816918,
+      "sha256": "d13cc26c0b5bd05ec56cfcfb3f1d6264cf769f028ecdb7f9d40fd5d9d30c2b7b"
+    },
+    {
+      "path": "out/session-b/duel-pending-input-source0-v2.json",
+      "bytes": 76772,
+      "sha256": "40ac5f7582bb2fddead6d033d6c72ee153e3db354c76f0eda064dc1c655e5c75"
+    },
+    {
+      "path": "out/session-b/duel-query-check/duel-ruler-ai-session-v4.log",
+      "bytes": 1016,
+      "sha256": "3975efcd9eee8936117235b1dc797a34e603c9d459ea7b493f24d240a1a3abaf"
+    }
+  ],
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "oldDirty": {
+    "bytes": 31896,
+    "sha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
+  },
+  "fixedResources": 168,
+  "apkInstalled": false,
+  "armVerified": false,
+  "limits": [
+    "Source14/16 matrix and normal newmenu/APK native closure pending",
+    "Imperial court/emperor administrative home not bound",
+    "No A/Bridge/Unity/JNI file changes"
+  ]
+}

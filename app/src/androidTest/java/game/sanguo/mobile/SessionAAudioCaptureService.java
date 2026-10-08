@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
+import java.io.BufferedOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.MessageDigest;
@@ -79,7 +80,7 @@ public final class SessionAAudioCaptureService extends Service {
         StringBuilder text=new StringBuilder();for(byte v:digest.digest())text.append(String.format(java.util.Locale.ROOT,"%02x",v&255));return text.toString();
     }
     private void measure(File directory,int uid,int seconds) {
-        AudioRecord audio=null;long bytes=0,began=SystemClock.elapsedRealtimeNanos(),lastStamp=0;String failure="";
+        AudioRecord audio=null;long bytes=0,began=SystemClock.elapsedRealtimeNanos(),lastStamp=0,maxReadNanos=0,maxWriteNanos=0;int actualBufferFrames=0,queueHighWater=0;long writerBytes=0;String failure="";
         JSONArray timestamps=new JSONArray();File wave=new File(directory,"android-mix.wav");
         try {
             android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_AUDIO);
@@ -89,21 +90,23 @@ public final class SessionAAudioCaptureService extends Service {
             if(minimum<=0)throw new IllegalStateException("Unsupported capture format");
             audio=new AudioRecord.Builder().setAudioFormat(new AudioFormat.Builder().setSampleRate(sampleRate)
                 .setChannelMask(AudioFormat.CHANNEL_IN_STEREO).setEncoding(AudioFormat.ENCODING_PCM_16BIT).build())
-                .setAudioPlaybackCaptureConfig(capture).setBufferSizeInBytes(Math.max(minimum,65536)).build();
+                .setAudioPlaybackCaptureConfig(capture).setBufferSizeInBytes(Math.max(minimum,sampleRate*4*2)).build();
             if(audio.getState()!=AudioRecord.STATE_INITIALIZED)throw new IllegalStateException("Record not initialized");
-            recorder=audio;audio.startRecording();
+            actualBufferFrames=audio.getBufferSizeInFrames();recorder=audio;audio.startRecording();
             if(audio.getRecordingState()!=AudioRecord.RECORDSTATE_RECORDING)throw new IllegalStateException("Record not started");
             json(new File(directory,"ready.json"),new JSONObject().put("targetPackage",TARGET).put("targetUid",uid)
                 .put("sampleRate",sampleRate).put("channels",2).put("seconds",seconds).put("beganElapsedNanos",began)
                 .put("onlyUsageGame",true).put("microphoneCapture",false).put("displayCapture",false));
             byte[] buffer=new byte[8192];
-            try(RandomAccessFile out=new RandomAccessFile(wave,"rw")) {
+            try(FileOutputStream file=new FileOutputStream(wave);BufferedOutputStream out=new BufferedOutputStream(file,524288)) {
                 out.write(header(0,sampleRate));
+                SessionAPcmCaptureWriter disk=new SessionAPcmCaptureWriter(out,64,8192);
+                try {
                 while(!cancelled.get()&&SystemClock.elapsedRealtimeNanos()-began<seconds*1000000000L) {
-                    int n=audio.read(buffer,0,buffer.length,AudioRecord.READ_BLOCKING);
+                    long readStart=SystemClock.elapsedRealtimeNanos();int n=audio.read(buffer,0,buffer.length,AudioRecord.READ_BLOCKING);maxReadNanos=Math.max(maxReadNanos,SystemClock.elapsedRealtimeNanos()-readStart);
                     if(n<0){if(cancelled.get())break;throw new IllegalStateException("AudioRecord read error "+n);}
                     if(n%4!=0)throw new IllegalStateException("Incomplete actual stereo frame");
-                    out.write(buffer,0,n);bytes+=n;
+                    long writeStart=SystemClock.elapsedRealtimeNanos();disk.append(buffer,n);maxWriteNanos=Math.max(maxWriteNanos,SystemClock.elapsedRealtimeNanos()-writeStart);bytes+=n;
                     long now=SystemClock.elapsedRealtimeNanos();
                     if(now-lastStamp>=1000000000L) {
                         AudioTimestamp stamp=new AudioTimestamp();int status=audio.getTimestamp(stamp,AudioTimestamp.TIMEBASE_MONOTONIC);
@@ -111,8 +114,11 @@ public final class SessionAAudioCaptureService extends Service {
                             .put("status",status).put("framePosition",stamp.framePosition).put("nanoTime",stamp.nanoTime));lastStamp=now;
                     }
                 }
-                out.seek(0);out.write(header(bytes,sampleRate));out.getFD().sync();
+                } finally {disk.finish();queueHighWater=disk.highWater();writerBytes=disk.writtenBytes();maxWriteNanos=disk.maxWriteNanos();}
+                if(writerBytes!=bytes)throw new IllegalStateException("Capture writer byte count mismatch");
+                out.flush();file.getFD().sync();
             }
+            try(RandomAccessFile metadata=new RandomAccessFile(wave,"rw")){metadata.seek(0);metadata.write(header(bytes,sampleRate));metadata.getFD().sync();}
         } catch(Exception error){failure=error.toString();android.util.Log.e("SessionAAudioCapture","Measurement failed",error);}
         finally {
             boolean interrupted=cancelled.get();
@@ -121,7 +127,7 @@ public final class SessionAAudioCaptureService extends Service {
             try {json(new File(directory,"result.json"),new JSONObject().put("status","MEASURED_NOT_WAVEFORM_ACCEPTED")
                 .put("targetPackage",TARGET).put("targetUid",uid).put("bytes",bytes).put("frames",bytes/4)
                 .put("failure",failure).put("sampleRate",sampleRate).put("channels",2).put("recordPermissionGranted",checkSelfPermission(android.Manifest.permission.RECORD_AUDIO)==android.content.pm.PackageManager.PERMISSION_GRANTED).put("projectionStoppedOrCancelled",interrupted)
-                .put("elapsedNanos",SystemClock.elapsedRealtimeNanos()-began).put("timestamps",timestamps)
+                .put("elapsedNanos",SystemClock.elapsedRealtimeNanos()-began).put("timestamps",timestamps).put("actualRecorderBufferFrames",actualBufferFrames).put("diskBufferBytes",524288).put("maximumReadNanos",maxReadNanos).put("maximumWriteNanos",maxWriteNanos).put("samplesDroppedOrSynthesized",false).put("diskQueueSlots",64).put("diskQueueBytes",524288).put("diskQueueHighWater",queueHighWater).put("writerBytes",writerBytes)
                 .put("wavSha256",wave.exists()?sha(wave):"").put("speakerOrArmEvidence",false));}
             catch(Exception error){android.util.Log.e("SessionAAudioCapture","Retain result failed",error);}
             stopForeground(true);stopSelf();

@@ -1,0 +1,28 @@
+# 自然阵亡君主与原继承：实施前策略
+
+source0实际原君主365/517单人部队、明确菜单0难度/2战死/0寿命，原fresh种子0生成捕获365保留，种子1完整198帧自然生成death517(outcome右slot0=2)，完整4d3340直接4acbe0全零附加参数，不走俘虏或缴获；AI当前君主改109、删除517单位、原RNG773516763保留无兵损抽取。有效receipt12e70314e57c8e4c2fe6a7afada1a8e4e62e6bd971c58237f0b9bd12334ddddb。不是普通出征/GUI；完整human控制和合法choice边界后继正在取证。
+
+当前PDU3/PGO3复用已验证原继承、行政、忠诚、单位、义兄弟及生命周期清理；自然时没有AI俘虏处置或200功绩，携物仍按killer当前势力君主。旧PDU1/2不采用。自然human君主多候选必须先保持活人/单位/资源/RNG完整，显式选择原候选，再一次生产终局；渲染只读。
+
+兼容：新增嵌套PcDuelCampaign格式7仅表示新明确当前策略的自然阵亡human继承待办，沿用format6末尾ruler/heir两字段但语义分开。原1–6读写策略、所有字段和已有pending不升级；format6仍只captured EXECUTE；格式7必须单一败方active outcome2且自然阵亡ruler稳定ID连接匹配、无俘虏处置。只在正常finish生产待办，不由query/decode补建。父Save版本/双RNG/StateToken不改，不追填31–39。无候选/特殊剧情/未知绑定仍保留拒绝。
+
+新增pure预览必须区分“可进入human选择”的第一确认与“选择完成可结算”，不得把缺少heir当永久不能打开页面；原已有继承UI/typed命令复用，无A/Bridge/Unity/JNI编辑。完整Native整批、菜单新局、APK、16源和旧档矩阵仍未完成，不以此宣告整目标。
+
+实施前SHA：
+- core/src/main/java/game/sanguo/core/PcDuelDeath.java f33d53430cbb6ee9f5d60c521f51c19a065f0614ada1730dbf23c8fa4cfef374
+- core/src/main/java/game/sanguo/core/PcDuelExecution.java 4f434ccae8ecc3e2d8a5fd4cad4b9e3c303b337963e6abde96669aa533c94dec
+- core/src/main/java/game/sanguo/core/PcDuelSettlement.java 6b033920c68390a1fc8fc94fc16e486ab9c91b1c4a5b96c060889a117e7d4ca8
+- core/src/main/java/game/sanguo/core/PcDuelCampaign.java 69e19cd17993a1177736333b15a3965889b99e6e84b1f5d30bdbb8118c85cea5
+- core/src/main/java/game/sanguo/core/Contests.java f1378c82fd0cf63b5e22a0ea5686db0405d2173b4291db2af6a8ef455bb483b3
+
+## 当前实施与独立验证
+
+原后继完整callback64e0d0e79d00361206c19241af1a08e5ce1045cff11458da247c6cfd3914d0fd：原198帧AI终局不改，AI继承109；另一个明确在战后将force3设人控的合法588d70输入边界选择14，原候选严格[14,109,313,558]。原生成、排序、登位、死亡全保留，仅既有void588bb0数值显示省略；Windows Direct3D注册表/CPU均未知，使用PE校验的只读OS夹具。AI、人控两份3MiB全World和原RNG恢复。人控输入边界不是原真人战斗或GUI证据。
+
+生产141检查：AI读取真实198帧终局，一次typed战役终局对照原全部参与者与109/14/558的HP、功绩、WAR XP；517死亡、原单人部队删除、winner365无携金粮兵转移、规则RNG773516763及工程RNG保留，完整World冷/三真实全AI旬/去重通过。两次端点导入完全一致74958d8d54241e1a862c59762e01cbbd00de8ef23ce6eb6e9d75809de24adf98。
+
+独立人控生产：声明合法相邻source0原517/365单人部队，完整4参新局菜单0难度/2战死/0寿命，正常typed创建/合法重视斗志输入/AI自行推进；fresh种子43、56次实际输入自然败方outcome2，无HP/角色/原结果改写。第一次终局进入保存格式7选择；未选择不死亡、不改单位/货物/经验/双RNG，候选与原human callback严格相同；选择14、保存重开、正式一次终局、三全AI旬通过。损坏format6伪装/胜方ruler/外势力chosen/捕获重标拒绝；pending冷恢复旧StateToken拒绝。不是普通出征或APK；原198帧AI与当前人控56输入是两项独立证据，不能混称原人控整战对照。
+
+实际未命中结果保留：current-v1种子1真实获胜无阵亡，已结算；v2种子2俘获君主但测试固定拘留被原mask拒绝，未放松生产；v3改为消费同页合法preview，fresh2–9所有真实结果闭合/冷存，未自然死亡；bounded-probe-v1只做fresh0–43生产creator/合法输入发现，成功后current-v4从新局起点完整GameSession重放，发现日志不计正式验收。regression-v1误用既有fixture的stance0，在保留前四项PASS后由本会话终止多余循环，exit143原样保留；v2按独立已验证stance2重跑format6人控389、Session1690、正确Bridge、架构/168全部通过。旧实际format5/39原完整字节兼容在v1已通过，未回填7或来源/新能力策略。
+
+提取独立只读OS适配后持物原回调v7三case与v6收据SHA完全一致ddad0d8380073d2ddf331c9d83b05150da5e2832e5dce39c98545df67ca77468。当前noitem50、held101、capture EXECUTE91均通过。Android编译28tasks54s通过，后继测试编译18s/30s/20s/23s各5tasks。Native整批仍未冻结/提交/安装新APK，完整16源、普通部署触发、其他原回调、旧31–39完整矩阵、ARM/U01等仍未完成。

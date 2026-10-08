@@ -55,7 +55,7 @@ public final class Lifecycle {
         if(state==State.ACTIVE&&old!=null&&(old.state==State.UNAPPEARED||old.state==State.UNDISCOVERED||old.state==State.SOURCE_WAIT))throw new IllegalArgumentException("未登场人物由年初登场结算，不能提前激活");
         if(state==State.ACTIVE&&appearance>year())throw new IllegalArgumentException("已登场人物的登场年不能在未来");
         people.put(officer,new Life(officer,birth,appearance,death,home,state));w.officerAbilities.refresh();
-        if(state==State.UNAPPEARED){o.cityId=-1;o.role=Strategy.Role.UNAFFILIATED;o.loyalty=0;o.acted=true;}
+        if(state==State.UNAPPEARED){PcDuelRawLoyalty.invalidate(w,o.id);o.cityId=-1;o.role=Strategy.Role.UNAFFILIATED;o.loyalty=0;o.acted=true;}
     }
     public World.Result toggle(){w.reports.prepare();if(w.commandsBlocked()||w.active!=w.player||w.gameOver())return w.fail("当前不能更改寿命设置");naturalDeaths=!naturalDeaths;return w.success("自然死亡"+(naturalDeaths?"已开启，仅使用已配置的预计没年":"已关闭；已故武将不会复活"));}
     private int roll(){long z=(randomState+=0x9E3779B97F4A7C15L);z=(z^(z>>>30))*0xBF58476D1CE4E5B9L;z=(z^(z>>>27))*0x94D049BB133111EBL;return (int)(((z^(z>>>31))>>>1)%100);}
@@ -123,7 +123,7 @@ public final class Lifecycle {
     }
     private void crown(int owner,World.Officer o){
         w.strategy.releaseGovernor(o.id);w.government.allegianceChanged(o.id);
-        o.role=Strategy.Role.RULER;o.loyalty=100;
+        PcDuelRawLoyalty.invalidate(w,o.id);o.role=Strategy.Role.RULER;o.loyalty=100;
         w.loyalty.succession(owner,o);w.governance.reconcile(true);
         // Faction identity stays stable for treaties, districts, saves and targeted march orders.
         record(o.name+"继承"+w.faction(owner)+"君主之位");w.districts.cleanup();

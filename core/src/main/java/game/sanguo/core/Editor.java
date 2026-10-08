@@ -77,7 +77,7 @@ public final class Editor {
         World.Officer original=w.officer(id);Template t=new Template(original==null?"?":original.name,stats,aptitude,sex,skill,temper,talkMask);
         return preview((original==null?"武将":original.name)+" · 能力/适性/特技/忠诚/功绩",v->{
             t.validate();World.Officer o=v.officer(id);if(o==null)throw new IllegalArgumentException("武将不存在");range(loyalty,0,100);range(merit,0,1000000);
-            set(o,t);if(o.owner<0&&loyalty!=0)throw new IllegalArgumentException("在野武将忠诚应为0");o.loyalty=loyalty;
+            if(o.loyalty!=loyalty)PcDuelRawLoyalty.invalidate(v,o.id);set(o,t);if(o.owner<0&&loyalty!=0)throw new IllegalArgumentException("在野武将忠诚应为0");o.loyalty=loyalty;
             v.government.merits.put(id,merit);Contests.Profile p=v.contests.profile(id);v.contests.configure(id,new Contests.Profile(temper,talkMask,v.contests.profiles.containsKey(id)?v.contests.profiles.get(id).gearMask:0));
         });
     }

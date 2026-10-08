@@ -1,0 +1,86 @@
+{
+  "exeSHA": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "receiptSHA": "55adce37a51d52fd199dc8eed816a255bca4597a47fb6b185cbf6357984c02a2",
+  "resourceSHA": "1ad67f7ca4fb441a18c56ed9fb9faf8449083db992ff0112a7c4db77e754c7cf",
+  "source": {
+    "activation": "installed-candidate",
+    "date": [
+      184,
+      1,
+      1
+    ],
+    "decodedBoundaries": [
+      90,
+      16183,
+      16194,
+      17760,
+      146960,
+      162702,
+      170010
+    ],
+    "description": "\u6f22\u738b\u671d\u56e0\u5ba6\u5b98\u7684\u5f04\u6b0a\u8207\u5916\u621a\u7684\u5e72\u653f\u800c\u65e5\u6f38\u8150\u6557\u3002\u5728\u5982\u6b64\u6df7\u4e82\u7684\u4e16\u5c40\u4e0b\uff0c\u5927\u8ce2\u826f\u5e2b\u2022\u5f35\u89d2\u7387\u9818\u5176\u4fe1\u5f92\u5011\u63ed\u7aff\u800c\u8d77\uff0c\u53f2\u7a31\u9ec3\u5dfe\u4e4b\u4e82\u3002\u671d\u5ef7\u7686\u7372\u6b64\u5831\u5f8c\uff0c\u4efb\u7687\u540e\u4e4b\u5144\u2022\u4f55\u9032\u70ba\u5927\u5c07\u8ecd\uff0c\u4e26\u51fa\u5175\u8a0e\u4f10\u9ec3\u5dfe\u9ee8\u3002\u800c\u4e82\u4e16\uff0c\u4e5f\u81ea\u6b64\u63ed\u958b\u4e86\u5e8f\u5e55\u3002",
+    "embeddedNativeId": 0,
+    "loadPriority": "unknown",
+    "name": "\u9ec3\u5dfe\u4e4b\u4e82",
+    "origin": "unknown",
+    "scenarioId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "slot": 0,
+    "sourcePath": "Media/scenario/Scen000.s11",
+    "sourceSha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "sourceVariant": "media-scenario-scen000-s11-80d30c5886d0-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "unknown": [
+      "effective_override_chain",
+      "official_or_mod_identity",
+      "startup_events",
+      "complete_initial_world",
+      "selectable_forces"
+    ],
+    "versions": [
+      1,
+      2
+    ]
+  },
+  "nativeDomain": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "rows": [
+    [
+      0,
+      60,
+      60,
+      "8718b0c5cc2959cbfc9432ea7e5a737e34f29e2c14d98fe70be2875e5d12b50a"
+    ],
+    [
+      1,
+      95,
+      95,
+      "a4d49609a54da2811a978b1f2b8bbaa50f8bc907c784f96907416c780b441d0a"
+    ],
+    [
+      2,
+      90,
+      105,
+      "20cbe6f8ab863ce622e15ede9f5073ff020a619736373aaa0007a4df0f966025"
+    ],
+    [
+      3,
+      85,
+      90,
+      "f6b3dbc04ee174fc1f06ff9b18b2d64a52b26bf150ab26c6ea9c029aad2acdd4"
+    ],
+    [
+      4,
+      105,
+      90,
+      "c80f2c953036f8f8e45ac6ecad81b16206101f31c77a7f36b1556e95c0fc1328"
+    ]
+  ],
+  "limits": [
+    "Five land non-siege equipment templates only; full12/effects/water/transport not certified",
+    "Typed current computation not capability activation"
+  ]
+}

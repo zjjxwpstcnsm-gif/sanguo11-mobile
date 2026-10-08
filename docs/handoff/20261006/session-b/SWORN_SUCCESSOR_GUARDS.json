@@ -1,0 +1,66 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "complete": false,
+  "beforePolicySha": "11151e43bee6d2cdae6e8a5b72da35a85fcec31398b099091a3df28236bd2377",
+  "beforeExecutionSha": "bf1da2ad1b60eba74539d25488aee402dbc406a50e9d410ca40e972a2d066539",
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelSwornPolicy.java": "68a086d19b068ae5c4a0f5f55109da7f2a193cf01e0f78ce4e0525ef42bca78a",
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "2db5387519c19d06e94506da86ebb52ac14430b5d5e2877f7796e6a64759ff0f",
+    "core/src/test/java/game/sanguo/core/PcDuelSwornSuccessorPolicyTest.java": "9a0b4566ed45b3c9f8b485c2bdad856de548e39bbe9556b8dcd7e111ee71cff4",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelSwornDoubleBattleSessionTest.java": "525920618462077079d67c2def9ca00d3a0986d8ed84bc836b5415e446f0b7ea",
+    "tools/content/session_b_pc_sworn_successor_death.py": "5ca17300c8725509c20a80341badcff4035421a778116dc171419802d4956d54",
+    "tools/content/session_b_pc_duel_succession_source.py": "60f05c193dc58ded86d451ec18f03faa6bad0f8f1110abea0cdcecce86611053",
+    "tools/content/session_b_inspect_sworn_checkpoint.java": "8d6659fc7bd3a6693a3834cb0800cf9965e5cbd583288a3f32ea59e934e9554a",
+    "out/session-b/sworn-successor-death-source0-v1.json": "bfcc0f6111e2d8a3ab69107fa5ecdfec0151ca9650718afc2fa6178cea3cd427",
+    "out/session-b/sworn-successor-death-source0-current-v1.json": "e961c6ba5d8e62b091074bff4ab4e8e8ea6eb2ddeee2527091125a7bfe9f2867",
+    "out/session-b/duel-succession-source-v16.json": "bb770286598210b35b6e11aca70da51b833bf024ddc8656d72b0195d2119b83f",
+    "out/session-b/sworn-double-battle-fault-v2.sg11": "a06f608382c15e03734a63f1d819908452ea3632c94d5238e76947ba4090d47e",
+    "out/session-b/sworn-double-battle-fault-v3.sg11": "a06f608382c15e03734a63f1d819908452ea3632c94d5238e76947ba4090d47e",
+    "out/session-b/sworn-double-battle-fault-v4.sg11": "485b80be29d5fd9f17d7b1b7324ea80ae4e62a5d2915ed8145a5180834e7dc52",
+    "out/session-b/sworn-double-battle-fault-v4-inspect-v2.json": "b37b859c38006e83ef39768685a01d4bbc9830d9376d7d00a83a15d3ff4037e6",
+    "out/session-b/sworn-double-battle-second-ready-v1.sg11": "ad8981c24741e00c44b709350aea1a94a27909de773f5e7fca9dba44668622a3",
+    "out/session-b/duel-query-check/sworn-successor-current-v1.log": "66b9f2309d11b2a6500103936e408a1d4c1e79125aac8c88b7eea2d8c63d5ee3",
+    "out/session-b/duel-query-check/sworn-successor-regression-v1.log": "b9c763560796c673e1f840efa9ad4adbfd6c4e6ac423e2476e172ecd0becc4c2",
+    "out/session-b/duel-query-check/sworn-successor-architecture-v1.log": "9306b52b27f1a9fe8292fa2939c69fb056f5e9a2cea8ff7c879303426ecd7681",
+    "out/session-b/duel-query-check/sworn-double-battle-compile-v9.log": "aac70f5bd6eaa930c1205fc7413c4a63837c576e725d0bdc742a0b0f76741907",
+    "out/session-b/duel-query-check/sworn-double-battle-session-v1.log": "8d315cbc2112b982fe3e7315214b3a0d09027ab34cec6dd1cddc15f6813f1e2b",
+    "out/session-b/duel-query-check/sworn-double-battle-session-v2.log": "13eb78c51c53dcdab29492f67ede97e3a46a3f0cbad633fc91b7c030ce73da7b",
+    "out/session-b/duel-query-check/sworn-double-battle-session-v3.log": "a3906ccb497fe869d5f604a4df40efcd5fa7fca981bbdd26c5a4d0186eb13014",
+    "out/session-b/duel-query-check/sworn-double-battle-session-v4.log": "1bd0590dccae3bbb80ed35f3c61ec32adbf0bccdabbb9ae3c54d93aa2cebbf73",
+    "out/session-b/duel-query-check/sworn-double-battle-session-v5.log": "a11e569276c1ed2f497332040e3db5e7806e4c9d95ad99e14328c9bf677ee24a",
+    "out/session-b/duel-query-check/sworn-double-battle-session-v6.log": "21a014cb62cb0be8a6dec7f32b1a693db1b70481adb52d00df91b2867beb7098"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "checks": [
+    "6 full original double coronation/cleanup sequences, 1100 records/exe pinned/no numeric callback omitted/wholeWorld+RNG restored",
+    "4141 production projected weighted1 then weighted0/current all670 anchors/all force4 finalraw/ruler150/display100/cold checks",
+    "fresh ordinary6098/survivingruler4087/oldformat5+genuine39/humanselector8/GameSession1690",
+    "formal28tasks core/API/runtime/B AndroidUI and architecture/168 fixed resource checks",
+    "actual seed57 typed377vs614 natural52inputs/playerEXECUTE/currentAI635 then fullAIturn+real3turn task/return continuation",
+    "source355 currentWAR71 vs63570/current legal20chance/natural58input second no-capture terminal completes without forced fate"
+  ],
+  "failedEvidencePreserved": [
+    "compilev1 nonexistent crossmodule fixture/Hex method; v2 checked originalsite exception; v8 effectivelyfinal helper variable, corrected subsequent logs retained",
+    "365WAR90->614WAR36 chance0 seed28..104 naturally refused, exact ownprocess terminated143, no rules weakened",
+    "v2 stale pre-cold StateToken test failure captured terminal checkpoint; v3 blocked menu read same checkpoint SHAa06f6083 unchanged; refreshed-token resume performed genuine continuation",
+    "v4 real AI assigns635 recruitment task remaining3; current fullWorld checkpoint retained/readbytepure; v5 task +return ends naturally byturn4",
+    "v5/v6 natural seed matrices through127 did not achieve double EXECUTE; no result/HP/seed/stat overwrites"
+  ],
+  "limits": [
+    "Two consecutive natural ruler EXECUTE not achieved; ready second-encounter exact checkpoint remains for continuation",
+    "Initial unavailable624 current captivity and encounter units declared fixtures, not normal capture/deployment/menu/APK proof",
+    "Original47a630 virtual getter excludes status6/8 unless override17c; captive status4 can be operative, current original owner/allegiance/override binding still unknown and guarded",
+    "No actual new APK/install/ARM/current native whole-source commit; A menu/options adapter still needed",
+    "Full16-source/current effective extra registry/old31-39/emptyforce/deployedheir/court/UnityU01 broad requirements still incomplete"
+  ],
+  "ownJobs": "all source/build/core/runtime jobs in this turn terminal; last second-battle matrix failed final expectation, no PASS claimed"
+}

@@ -29,7 +29,16 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
     protected void preparedOption(String s)throws Exception{tap(awaitPreparation(v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(s)));}
     protected void text(String s)throws Exception{tap(await(v->v instanceof TextView&&v.isClickable()&&((TextView)v).getText().toString().startsWith(s)));}
     protected void description(String s)throws Exception{tap(await(v->v.isClickable()&&v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith(s)));}
-    protected void nav(String s)throws Exception{description("打开功能导航");description("导航 · "+s);settle();}
+    protected void nav(String s)throws Exception{
+        for(int attempt=0;attempt<3;attempt++){
+            AlertDialog dialog=(AlertDialog)field(activity,"navigationDialog");
+            if(dialog==null||!dialog.isShowing()){View trigger=await(v->v.isEnabled()&&v.isClickable()&&v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));tap(trigger);settle();}
+            dialog=(AlertDialog)field(activity,"navigationDialog");note("nav="+s+" attempt="+attempt+" showing="+(dialog!=null&&dialog.isShowing()));
+            if(dialog!=null&&dialog.isShowing()){revealDescription("导航 · "+s);settle();return;}
+            shot("navigation-"+s+"-"+attempt);
+        }
+        throw new AssertionError("Normal enabled navigation trigger did not open "+s);
+    }
     protected void check(boolean b,String s)throws Exception{invoke("check",new Class<?>[]{boolean.class,String.class},b,s);}
     protected View awaitPreparation(Predicate<View> p)throws Exception{
         long deadline=SystemClock.uptimeMillis()+300000;AssertionError last=null;
@@ -57,10 +66,49 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
         Files.write(new File(evidence,"scene-facts-"+label+".json").toPath(),report.toString(2).getBytes("UTF-8"));
     }
     protected Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
-    protected void pose(Hex h)throws Exception{runOnMainSync(()->{try{MapHost host=(MapHost)field(activity,"map");ClientState ui=(ClientState)field(activity,"ui");ui.page="map";ui.panelVisible=false;activity.refresh();FilamentMapView view=(FilamentMapView)field(host,"spatial");MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");view.camera.x=snap.ground.grid.x(h);view.camera.z=snap.ground.grid.z(h);view.camera.span=9;view.camera.yaw=0;view.camera.tilt=70;view.camera.clampTo(snap.ground);if((Boolean)field(host,"navigatorShown"))host.toggleNavigator();}catch(Exception e){throw new RuntimeException(e);}});settle();}
+    protected void pose(Hex h)throws Exception{
+        byte[] before=capture();var token=activity.deploymentState();Throwable[] error={null};
+        runOnMainSync(()->{try{ClientState ui=(ClientState)field(activity,"ui");ui.page="map";ui.panelVisible=false;activity.refresh();}catch(Throwable t){error[0]=t;}});
+        if(error[0]!=null)throw new AssertionError("presentation refresh failed",error[0]);
+        long began=SystemClock.uptimeMillis(),deadline=began+120000,last=began;boolean retried=false;
+        FilamentMapView[] posed={null};long[] poseFrame={-1};String[] status={"not observed"};
+        while(SystemClock.uptimeMillis()<deadline){
+            boolean[] ready={false};
+            runOnMainSync(()->{try{
+                // refresh/load can replace or release a prior host. Read the
+                // current actual host after refresh, never dereference a null view.
+                MapHost host=(MapHost)field(activity,"map");if(host==null){status[0]="no current host";return;}
+                FilamentMapView view=(FilamentMapView)field(host,"spatial");if(view==null){status[0]="no current spatial";return;}
+                if((Boolean)field(view,"released")){status[0]="current spatial released";return;}
+                MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");if(snap==null||snap.ground==null){status[0]="no current ground";return;}
+                long frames=(Long)field(view,"renderedFrames");
+                if(posed[0]!=view){
+                    view.camera.x=snap.ground.grid.x(h);view.camera.z=snap.ground.grid.z(h);view.camera.span=9;view.camera.yaw=0;view.camera.tilt=70;view.camera.clampTo(snap.ground);
+                    if((Boolean)field(host,"navigatorShown"))host.toggleNavigator();
+                    posed[0]=view;poseFrame[0]=frames;
+                }
+                Object assets=field(view,"assetWork");Method pending=assets.getClass().getDeclaredMethod("pending");pending.setAccessible(true);
+                int assetPending=(Integer)pending.invoke(assets);
+                boolean curtain=field(host,"loadingCurtain")!=null,covered=(Boolean)field(view,"loadingCovered"),verified=(Boolean)field(view,"outputVerified"),sync=(Boolean)field(view,"assetSyncPending");
+                int meshPending=(Integer)field(view,"pending");
+                boolean focused=host.isAttachedToWindow()&&host.isShown()&&host.isEnabled()&&host.hasWindowFocus();
+                boolean visibleOverlay=visible(host,v->"map.loading".equals(v.getTag())||"map.failure".equals(v.getTag()))!=null;
+                status[0]="focus="+focused+" curtain="+curtain+" covered="+covered+" overlay="+visibleOverlay+" verified="+verified+" frames="+frames+" poseFrame="+poseFrame[0]+" meshes="+meshPending+" sync="+sync+" assets="+assetPending;
+                ready[0]=focused&&!curtain&&!covered&&!visibleOverlay&&verified&&frames>2&&frames>=poseFrame[0]+2&&meshPending==0&&!sync&&assetPending==0;
+            }catch(Throwable t){error[0]=t;}});
+            if(error[0]!=null)throw new AssertionError("actual presentation readiness failed",error[0]);
+            if(ready[0]){note("actual visible map admission "+status[0]);check(token.equals(activity.deploymentState())&&Arrays.equals(before,capture()),"camera verified output/current host changes no World/RNG/StateToken");return;}
+            if(!retried){View[] retry={null};runOnMainSync(()->{for(View root:WindowInspector.getGlobalWindowViews())if(root.hasWindowFocus()){retry[0]=visible(root,v->v instanceof Button&&v.isEnabled()&&"重试3D地图".contentEquals(((Button)v).getText()));if(retry[0]!=null)break;}});
+                if(retry[0]!=null){note("actual visible 3D retry after load; no direct map switch");tap(retry[0]);retried=true;}
+            }
+            long now=SystemClock.uptimeMillis();if(now-last>=30000){note("map readiness elapsedMs="+(now-began)+" "+status[0]);last=now;}
+            settle();
+        }
+        note("actual current 3D host not ready after bounded wait; retry="+retried+" "+status[0]);shot("pose-not-ready");throw new AssertionError("Actual 3D map not ready for real coordinate selection: "+status[0]);
+    }
     protected void tile(Hex h)throws Exception{float[] xy=(float[])invoke("screenHex",new Class<?>[]{Hex.class},h);check((Boolean)invoke("routePoint",new Class<?>[]{Hex.class,float[].class},h,xy),"exact real3D target ray "+h);pointer(xy[0],xy[1],1);settle();}
     protected void advance(String label)throws Exception{
-        nav("地图");int turn=SessionProbe.view(activity).turn;text("下一旬");long began=SystemClock.elapsedRealtime();text("执行");
+        nav("地图");int[] initialTurn={-1};runOnMainSync(()->initialTurn[0]=SessionProbe.view(activity).turn);int turn=initialTurn[0];text("下一旬");long began=SystemClock.elapsedRealtime();text("执行");
         long deadline=began+900000,last=began;boolean background=false,skipRequested=false;
         while(field(activity,"turnWork")!=null&&SystemClock.elapsedRealtime()<deadline){
             long now=SystemClock.elapsedRealtime();if(now-last>=30000){note("turn="+label+" elapsedMs="+(now-began)+" background="+background);last=now;}
@@ -74,7 +122,7 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
         }
         if(background){runOnMainSync(()->activity.startActivity(new Intent(activity,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)));await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));settle();}
         note("turn="+label+" finalElapsedMs="+(SystemClock.elapsedRealtime()-began)+" background="+background);
-        check(field(activity,"turnWork")==null&&SessionProbe.view(activity).turn==turn+1,"normal whole turn "+label+" background="+background);
+        boolean[] committed={false};int[] observed={-1};runOnMainSync(()->{try{observed[0]=SessionProbe.view(activity).turn;committed[0]=field(activity,"turnWork")==null&&observed[0]==turn+1;}catch(Exception e){throw new RuntimeException(e);}});note("atomic main-thread completed turn="+observed[0]+" expected="+(turn+1));check(committed[0],"normal whole turn "+label+" background="+background);
     }
     protected void note(String s)throws Exception{Files.write(new File(evidence,"diagnosis.txt").toPath(),(s+"\n").getBytes("UTF-8"),java.nio.file.StandardOpenOption.CREATE,java.nio.file.StandardOpenOption.APPEND);}
     protected View search(View v,Predicate<View> p){if(p.test(v))return v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){View hit=search(((ViewGroup)v).getChildAt(i),p);if(hit!=null)return hit;}return null;}
@@ -89,6 +137,22 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
         runOnMainSync(()->{View hit=search(activity.getWindow().getDecorView(),v->v instanceof Button&&((Button)v).getText().toString().startsWith(label));if(hit!=null)hit.requestRectangleOnScreen(new android.graphics.Rect(0,0,hit.getWidth(),hit.getHeight()),true);});settle();text(label);
     }
     protected void militaryMenu()throws Exception{unitAction("设置军事设施");}
+    /** Current ordinary PC opening requires explicit choices; no guessed
+     * defaults or old three-argument fallback in the new combined APK. */
+    protected void configurePcOpening(String sourceId,int life,int death,int difficulty)throws Exception{
+        var facts=game.sanguo.runtime.GameSession.previewNewSourceOptions(sourceId);
+        byte[] before=capture();var state=activity.deploymentState();tap(tag("pc.opening.options"));
+        for(var group:facts.groups){
+            int requested;
+            switch(group.id){case "life":requested=life;break;case "death":requested=death;break;case "difficulty":requested=difficulty;break;default:throw new AssertionError("unknown opening field "+group.id);}
+            int selected=group.fixedMenuValue==null?requested:group.fixedMenuValue;
+            check(group.choices.stream().anyMatch(c->c.value==selected),"actual menu value in authoritative domain "+group.id);
+            View choice=tag("pc.opening."+group.id+"."+selected);
+            if(group.fixedMenuValue==null)tap(choice);else check(choice.isSelected()&&!choice.isEnabled(),"actual fixed source option "+group.id);
+        }
+        check(state.equals(activity.deploymentState())&&Arrays.equals(before,capture()),"military new-game option preview preserves fullWorld/allRNG/StateToken");
+        tap(tag("pc.opening.confirm"));check(state.equals(activity.deploymentState())&&Arrays.equals(before,capture()),"military confirmed option draft still pure");
+    }
     protected void selectUnit(int id)throws Exception{runOnMainSync(()->activity.selectUnitAndFocus(id));settle();}
     protected int safety(World world,World.Unit builder,Hex tile){
         int nearest=999;
@@ -117,7 +181,7 @@ public class SessionBFieldworksInstrumentation extends UiUxInstrumentation {
             runOnMainSync(()->{for(View root:WindowInspector.getGlobalWindowViews()){
                 View hit=search(root,v->v instanceof Button&&((Button)v).getText().toString().startsWith("曹操"));
                 if(hit!=null)hit.requestRectangleOnScreen(new android.graphics.Rect(0,0,hit.getWidth(),hit.getHeight()),true);
-            }});settle();text("曹操");description("确认开局势力");text("开始新局");
+            }});settle();text("曹操");configurePcOpening(source.identity.scenarioId,0,0,0);description("确认开局势力");text("开始新局");
             awaitPreparation(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));settle();
             World w=SessionProbe.view(activity);check(w.scenarioId.equals(source.identity.scenarioId)&&!Arrays.equals(original,capture()),"normal menu creates exact Source14 campaign");verifySceneFacts("source-new");shot("01-source-new-game");
             World.City city=w.home();World.Officer leader=w.idle(city).stream().max(Comparator.comparingInt(o->o.leadership+o.war)).orElseThrow();nav("地图");description("定位己方据点 "+city.name);text("出征");

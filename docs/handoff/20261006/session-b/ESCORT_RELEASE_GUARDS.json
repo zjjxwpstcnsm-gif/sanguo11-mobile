@@ -1,0 +1,79 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "complete": false,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelEscortRelease.java": "fa0d7ddd0c1355b2bd3150ef654258f2921c3aeb4dd5143b14c1c23c5b34bdab",
+    "core/src/main/java/game/sanguo/core/PcDuelReplacement.java": "724f5c0f8e3d7d77f6d3e5234647f8f7786b5bc0a4a3788894f6f5119ec7eb79",
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "6754717013a2d8f22c4f2010ad1315d77e9de2eaab815d20898e0eddb4a6bbd2",
+    "core/src/main/java/game/sanguo/core/PcDuelSettlement.java": "a31819e786e18dd2cd6b0e8a3c79dd71328f40ecc76e0335fb0176914a4a7b05",
+    "core/src/main/java/game/sanguo/core/PcDuelRelease.java": "ba73c0b9c8c6fb16b16c6846e2208269f84ff423154c70b44361257ba87ed3b0",
+    "core/src/test/java/game/sanguo/core/PcDuelEscortReleaseTest.java": "cfdf405cb61931ec0c3bb2210024e8a654f5574bc36f1526c9089c233127ac3b",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelSwornContinuationSessionTest.java": "e150c3597323868cf95bf963f8b2456fbc9b5015fb8885b9754f4e1aea6f14a1",
+    "tools/content/session_b_pc_escort_unit_removal.py": "e99178d21bbf58b200e670e5523f5530c2946e2d82d166cc3dec47e1f8f661d0",
+    "tools/content/session_b_pc_newgame_option_text.py": "19525c86f880e51525fef01c58db074ffc9ebe6250ab3a4f046a57c05a1416cb",
+    "tools/content/session_b_pc_newgame_options_source.py": "157e2a0ef5bffe7a362d63b9714f4894767c2eacb4149d35bd0c18acc51986a9",
+    "out/session-b/escort-unit-removal-source0-v1.json": "d3ca56d26fb6124b73ee56aa7425f11cf8be4900639122776f1954eaa5ba6954",
+    "out/session-b/escort-unit-removal-source0-foreign-v1.json": "46e7befea0ed7ec3ee4604e26854df2d121c7363626c75f1379f0cc1b96ef7ff",
+    "out/session-b/sworn-continuation-fault-v1.sg11": "00f4b1576156d6162dbd6dbce0f7112c010174365a220be3d6612719a53f4670",
+    "out/session-b/sworn-continuation-fault-v1-inspect.json": "cfedc573a37fedd9b1cef22f5681a1e43e2b6e1277782bf8e5b41b45404b98b4",
+    "out/session-b/newgame-option-text-v1.json": "ff255bca345c73dc4ca5ad259170d161e7e0cf7d4a1ff98eb7d78603d1d4625e",
+    "out/session-b/newgame-options-source-v2.json": "6a414b64cf85a4827d30c768ce264254fe3251f3eb3ed665892e0290d2461c0d",
+    "out/session-b/duel-query-check/escort-release-current-v1.log": "05bc9eeac013d9a61dc98c986bec824234e7a2850e718352c536dff28e52c25e",
+    "out/session-b/duel-query-check/escort-execution-current-v1.log": "a0502d4bb4c5eb132a4d555ec8f047292ab617cccf828d402ad1c651a4e2e965",
+    "out/session-b/duel-query-check/escort-release-compile-v4.log": "f0c3f85b9ed9e0e6d65d36d85f14b4fb7734096266efae69888deaf6cee5af0d",
+    "out/session-b/duel-query-check/escort-release-regression-v1.log": "35395607b4f62f03bd03818bdd8fda2ccd52479f97ad47aed6360013cc0d06a6",
+    "out/session-b/duel-query-check/escort-release-architecture-v1.log": "9306b52b27f1a9fe8292fa2939c69fb056f5e9a2cea8ff7c879303426ecd7681",
+    "out/session-b/duel-query-check/sworn-continuation-session-v1.log": "0f499069f47dea2b5f9d1d4d1ac83edfa10f0f3449e28a1918b299c29e298a43"
+  },
+  "beforeExecutionSha": "2db5387519c19d06e94506da86ebb52ac14430b5d5e2877f7796e6a64759ff0f",
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "checks": [
+    "Full original same/foreign carried355/558 deletion callbacks/1100records/RNG1pure/restored; no numeric/presentation omission",
+    "38 shared production replacement/complete release/captive+own task37 namespace/cold/four complete turns",
+    "40 actual production ruler EXECUTE/current future sworn crown/carriedcaptive task37/cold/four complete turns",
+    "fresh sworn4141/oldformat5+genuine39/GameSession1690/formal28tasks/architecture168",
+    "exact saved second encounter continued with native no-capture terminal then whole actual AI turn:355captive/king635escort, no reset"
+  ],
+  "issuesFixed": [
+    "Nested unit deletion creates captive task37 rows:PcDuelRelease.apply now rereads namespace before adding own releasedofficer, preventing stale-map overwrite",
+    "Shared pure replacement selection and all actual fates validate carried captive return before writing; legacy PDU1/2 keep earlier guard/semantics"
+  ],
+  "coordination": {
+    "aThread": "01a10ecd-4d31-7a81-8e59-f4747feb22ad",
+    "request": "User initial A/B precise adapter request: provided explicit readonly options API; no B WIP copying/compilation/integration requested",
+    "aConfirmedPreparation": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/NATIVE_DUEL_OPENING_ADAPTER204.md",
+    "aReadonlyProof": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/NATIVE_DUEL_OPENING_READONLY205.json"
+  },
+  "optionText": {
+    "exeTables": "8b7e50 difficulty 初級/上級/超級;8b7e68 無/標準/多;8b7ee8 史實/長壽/假想",
+    "limits": "Original GUI field+22c and descriptor controls observed; exact internal enum mapping/default and rawlife3 still pending. Not enabled/imported as defaults."
+  },
+  "limits": [
+    "Current release/die components tested with declared units/capture fixture, not complete normal capture/deployment/menu/APK acceptance",
+    "Exact actual AI continuation defeats355; broad normal double-ruler execution still not achieved, surviving actual heir98 alreadydeployed and crown unit branch remains guarded",
+    "Escorted return scoped proven source0 first-army/currentowned HQ/nonzero duration; absent/unknown/other sources/captured HQ/mergedarmy alternative not guessed",
+    "Full Native batch uncommitted; no actual current APK/install/ARM; old31-39 wholematrix/full16startup/events/effective extra registry/court/emptyforce/UnityU01 remain incomplete"
+  ],
+  "ownJobs": "All local source/build/core/runtime jobs in this turn terminal; continuation failed actual-participant expectation, no pass claimed"
+}

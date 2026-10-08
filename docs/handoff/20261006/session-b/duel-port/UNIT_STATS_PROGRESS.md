@@ -1,0 +1,26 @@
+# 原部队当前数值接入（WIP）
+
+共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059、完成HEAD89534120e46e488136db0e661270757d9c4a4c50；本文件和PcDuelUnitStats为B单挑工作增量，不属于完成军建54。
+
+原496570完整RET496b8b，496b8c其后为跳转表。496dd0调用8个参数：output/crew/当前兵装A8/troops/category8（仅0/1）/status24/terrain7或8标志/当前值flag1。当前输出五属性18..1c、combat1d/1e（对应unitC9/CA），不能用工程Army.attackPower替代。
+
+原495ab0对LEAD/WAR按主将方向sworn/spouse/like，然后副将self-like（当前EXE确实使用自身）、内部root，最后厌恶条件取满/半/三分之一/四分之一；不能把公开father/mother祖先闭包当internalroot。
+496570先对三人全部成对查互相厌恶：有一对则全部五属性只用主将（六适性独立）；没有则LEAD/WAR副将贡献取max，INT/POL/CHAR三人max。
+
+PcDuelUnitStats.currentCrew消费稳定人物/当前base-growth-XP-current/来源内部root-sworn，编辑后的内部关系仍显式未知。没有改全局Army工程算术，也没有改旧存档规则。真实source0两支当前五属性{93,90,79,74,91}/{75,86,64,59,89}与独立原496f40输出相同；完整World/所有已存RNG纯性通过。任意副将厌恶测试属于静态原规则对应检查，后续仍需原动态变更矩阵。
+
+combat纯算术保留x87顺序/存储floatapt系数/status0.4与防御float1/3、condition0.8、scalarfloat0.01、min1以及unsigned byte写入。科技/template/terrain/apt动态绑定尚未完成。原全496570矩阵v1断言失败未分辨纯性/观测数；v2明确category2原函数拒绝导致观测数0。原先把第三参数A8误作terrain、第五category误作weapon属错误。保留v1/v2失败；v3纠正当前兵装0..4、category0/1，120组正在运行。冷缓存改变如有仍逐字段记录，不预设其必然存在。
+
+普通单挑PDU能力仍无新局启用器；原反击/完整应战、死亡/回城/处置、正常菜单部署/人控胜败/存取/多旬/冷重开/实际APK仍未闭合。不能以纯函数语料宣布完整玩法。未写A/桥/Unity/JNI，未安装新APK，不交其他会话WIP。
+
+追加原496160静态证据v12 SHA d024d3b2af9628198bad01910903a516243c4ed6b7e3addc5751d66cb741bac1：A8实际选择兵装，水域terrain7/8时取ship+50或运输类别固定9，陆地取weapon+48或运输固定0。旧文档把A8称地形缓存须以此更正；本轮对所有实际调用参数重新核验而不改原黄金图。
+
+原v3完整120组数值观察已完成，receiptSHA55adce37a51d52fd199dc8eed816a255bca4597a47fb6b185cbf6357984c02a2；World/RNG恢复，所有首次调用cache_changes为空（因此先前推测惰性缓存不是此次失败原因，v2失败由category2导致）。pure combat120原对照全部通过。
+原五个陆上非器械template记录+55/+56已导出资源SHA1ad67f7ca4fb441a18c56ed9fb9faf8449083db992ff0112a7c4db77e754c7cf，manifest保留原source/EXE/receipt/每模板96bytesSHA；两次导入字节一致，工具session_b_export_unit_templates.py可重现。不是12兵装完整catalog。
+当前两组五属性、六适性与combat32/33和30/27均匹配独立原496f40缓存，全World已存双RNG纯性通过。现currentCombat只接受陆上非器械正常部队，原elite技巧事实为显式调用参数，不根据项目名称猜测当前原4811e0；normal自动绑定仍未完成。水军/运输/siege/完整科技/技能变化不得落回工程数据。
+- out/session-b/duel-query-check/unit-stats-v3.log SHA d28946d7d415f6a03c8cdd7d90382acc02961498a1d45607ea058590579ffc0d
+- out/session-b/duel-query-check/unit-crew-v3.log SHA 43c27582c6f748a4a702fef40705a8ddd99db4f16742c0244fa4d4f548ccf358
+
+守卫复核：旧609dirty默认status-z31896bytes SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0；4忽略JNI原SHA一致；完整源HEAD0e7b9bc2df90249a50851baeda58c7d183ea6059且clean。没有重置/覆盖旧目录，也未接A新WIP。
+
+最终当前源码Android编译通过（含latest模板/五属性/六适性/原combat/current应战修正），日志SHA51154e498b8ff424840f852f800b770bca4f350dbe0c56b54ff9bdadba7307c3；168固定构建输入检查通过。本轮所有原取证与主机检查/Android编译均terminal，无待确认进程；没有新APK安装验收，不移用旧54到单挑。

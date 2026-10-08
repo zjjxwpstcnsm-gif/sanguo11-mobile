@@ -1,0 +1,25 @@
+{
+  "scope": "Actual API29 normal adjacent native-duel candidate entry repair only",
+  "actualFailedRun": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r11-acceptance-v1",
+  "actualFailure": "NoSuchMethodError Collectors.toUnmodifiableList in Contests.nativeDuelCandidates",
+  "actualFailureLogSha256": "6cf433676b1eb0571c70efee3fb0042f749d3eec4e75b5d9f3f1fc5e971fed0c",
+  "actualCheckpointSha256": "06329224846382ae8cea34988458622ce13f8756c1912ac6f10f9e00e4fb2661",
+  "productionPath": "core/src/main/java/game/sanguo/core/Contests.java",
+  "beforeSha256": "745a907c2c8f96b0670db9d3b8fdb7b46a1eba2ae6df3da8834c791dae9301d5",
+  "afterSha256": "a4df4c88d7afe0becf1c1839dcf39f60beb9dbf5f9f50178f432fb5e12fe81a5",
+  "sameEncounterOrderValuesAndImmutableNullRejection": true,
+  "beforeHostCandidateOutputSha256": "79ea86f9687fd5c4c05217c6b76a9fc6293a8f4df5b086cdb4d92542fba175aa",
+  "afterFreshHostCandidateOutputSha256": "79ea86f9687fd5c4c05217c6b76a9fc6293a8f4df5b086cdb4d92542fba175aa",
+  "hostOutputsByteIdentical": true,
+  "values": "stable10503/native503/裴元紹/chance100 actual current campaign; original probability semantics unchanged",
+  "otherApi29DirectToUnmodifiableCallsInOwnedProduction": 0,
+  "originalWorldAllRngStateTokenAndInputFilePure": true,
+  "actualR11OriginalUserRestoration": {
+    "internal": 15,
+    "external": 772,
+    "allShaAndPathSetExact": true
+  },
+  "newApkNormalTerminalPassed": false,
+  "armVerified": false,
+  "wholeGoalComplete": false
+}

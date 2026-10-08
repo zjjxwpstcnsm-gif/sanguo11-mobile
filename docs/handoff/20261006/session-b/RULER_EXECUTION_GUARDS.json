@@ -1,0 +1,44 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "complete": false,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcRulerCoronation.java": "9e93e87a21e3986ee715c8b1e37ae10c6564dcf7d64d0c8e6957ab56258bcec9",
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "0de5f50669e72815603f5c55f9d9ff7f3d682de34008928309c09c6ee118a4c8",
+    "core/src/main/java/game/sanguo/core/StrategySave.java": "497ceb1ea47359ea5b605d02edc1ed6a0705a2bc094d88680a65172cdf4f632b",
+    "core/src/test/java/game/sanguo/core/PcRulerExecutionTest.java": "554b674a91d242f8b7856dc5f465b6403419105df445b8935cc8b2435b1ad5b0",
+    "core/src/test/java/game/sanguo/core/PcDuelExecutionTest.java": "4d519d4e27eaeac0f65291f6a2aa7da46d053cd27e9133ea18e3f9fb90be792a",
+    "game-runtime/src/test/java/game/sanguo/core/PcRulerExecutionSessionTest.java": "ed079764fec075f9beb84eb24f0974ae93fd979b224cab4355717ecfd3e0aafb",
+    "out/session-b/duel-query-check/ruler-execution-endpoint-v1.log": "f3ad2c217f82b08e16a4da46ea26b6239229cd62b3cb2eea6879f056367b3c34",
+    "out/session-b/duel-query-check/ruler-execution-endpoint-v2.log": "55f3283642727283f90751634880b1dd69ea6d0e120b145ca14d74963f7df634",
+    "out/session-b/duel-query-check/ruler-execution-endpoint-v4.log": "f9b406be87c56ba5d9fcf29ba034a5d25f3fed44e0dbb8dc778742eed20280d0",
+    "out/session-b/duel-query-check/ruler-execution-session-v1.log": "06331f9f796c284333b5d1431ad6d9289330b316d59b19a0b3eb09e64a94f4e1",
+    "out/session-b/duel-query-check/ruler-execution-session-v2.log": "0641038e7e15f46a68f977911ada3529009f32593495bfd5e7268e9b9fe84577",
+    "out/session-b/duel-query-check/ruler-execution-legacy-v1.log": "cb2ced3b7a01ade975b4fdf5f71445be1a18d4abd478fbb6c040b42c9c8af43d",
+    "out/session-b/duel-query-check/ruler-execution-ordinary-v1.log": "33432e381715cd92edcdc25ea0d7d4e7bf6e15f61df86c6eda1df557254bc434",
+    "out/session-b/duel-query-check/ruler-execution-game-session-v1.log": "847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c",
+    "out/session-b/ruler-execution-formal-v2.log": "7b9c8f2d2ab9c9575d8c163580652024464726b51f86c7e0320bca196d20d18f"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": [
+    "original supported ruler endpoint686 (full670final likes/dislikes)",
+    "typednatural humanEXECUTE seed28/30inputs/117checks/fourwholeturnscold",
+    "legacyPDUabsence ordinaryexecution11",
+    "ordinarySource14realdeployment/AI/opponent/naturalLOSS80inputs/fullterminal/threewholeturnscold",
+    "GameSession1690includinggenuinev33/frozenbridge",
+    "formal8tasks/architecture/168fixed"
+  ],
+  "limits": [
+    "newAPK/actualinstallation not done",
+    "normalMainActivity factory3arg stillnotconfigured; no A path edits",
+    "human inheritance/crossarmy/emptyforce/activeheir/kinrevenge/swornanchor pending",
+    "allNativeWIP remainsuncommitted; no completedsourcebatch declared"
+  ],
+  "ownJobs": "terminal"
+}

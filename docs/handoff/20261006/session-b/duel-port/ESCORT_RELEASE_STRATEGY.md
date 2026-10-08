@@ -1,0 +1,11 @@
+# 押送其他俘虏的原部队删除：实现前策略
+
+原source0完整4a93b0捕355/558、4a5d90删除其原部队，再4a5d90删除押送635单人单位；SHA d3ca56d26fb6124b73ee56aa7425f11cf8be4900639122776f1954eaa5ba6954 /46e7befea0ed7ec3ee4604e26854df2d121c7363626c75f1379f0cc1b96ef7ff，RNG1保持1，1100人物前后/全部原指令不省略/fullWorld恢复。俘虏原status5→3，保留原军团0/1和所属，home从captor2恢复原第一军团驻点8/21，所在地从unit88改origin15，task37三旬。无转押victor0、無最近据点瞬移。
+
+当前PcDuelReplacement删除唯一下阵者时，在明确PDU3/source0且原第一军团/驻点/当前人物连接可证的情况下，通过共享纯计划释放押送人并复用原task37保存/结算。非第一军团、失陷驻点、同地域duration0、额外人物及其他来源继续显式未知；旧PDU1/2及缺失策略保存不新建能力。预览select与正式remove必须检查同一返程计划，原处斩guard仅在此支持范围内移除。原死亡与连续自然战役仍另验收，不能把当前删除回调称全PC/GUI/APK通过。
+
+本轮当前shared release38与完整王处斩40检查通过，两种原所属（孙坚原355祖茂、第三方原558）均按原home/current/army/task37保存并四真实旬完成。新增其他俘虏任务后，原PcDuelRelease.apply捕获的旧rows会覆盖刚写入的任务；已在嵌套删除后重新read同namespace，再加自身返回行，测试同时保留自身与其他俘虏。旧PDU1/2守卫与能力缺失均保留。fresh4141/oldformat5+genuine39/GameSession1690/formal28tasks/arch168通过。
+
+真正来源续行失败保留：ready第二场祖茂355 vs 刘备635自然58输入无捕获终局后，再真实AI旬将祖茂部队击破、俘虏转由刘备押送；孙静仍在场，不能按旧测试假定祖茂保持可用。完整fault-v1.sg11+readpure inspect已保存；没有重置人物/军队/HP/RNG。正常连续两处斩未通过，下一实际王关羽98已在AI unit15领兵，其登位重建仍有原护栏，需要另关。
+
+已按用户原A/B分工向A只读提供MainActivity/picker显式新局options适配请求；A仅登记204/205准备，不复制/集成/编译B WIP。PC原EXE指针表恢复难度/战死/寿命候选原文；实际enum/default与rawlife3 GUI映射未确定，不引入推测默认。详情ESCORT_RELEASE_GUARDS.json，旧源码HEAD36f/main ef413/完整源0e7/old609dirty/4JNI未变，当前Native全批次未提交、没有新APK。

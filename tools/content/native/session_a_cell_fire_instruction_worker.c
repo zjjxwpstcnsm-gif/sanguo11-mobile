@@ -41,18 +41,32 @@ static void observe_admitted_controllers(uc_engine *u,uint64_t address,uint32_t 
 }
 typedef struct {uint64_t pc;uint32_t bytes;uint16_t instructions;uint32_t epoch;} CountCache;
 static CountCache count_cache[65536];
+static uint8_t count_replacement[16384];
+static uint64_t cache_hits,cache_collisions;
 static uint64_t call_instructions,instruction_peak,metadata_queries,metadata_mismatches;
 static uint64_t previous_call_bytes;static uint32_t call_epoch;
 static void report_instruction_accounting(void){
+    fprintf(stderr,"COUNT_CACHE hits=%llu collisions=%llu slots=65536 replacementBytes=16384\n",(unsigned long long)cache_hits,(unsigned long long)cache_collisions);
     fprintf(stderr,"INSTRUCTION_ACCOUNTING peak=%llu queries=%llu mismatches=%llu\n",
         (unsigned long long)instruction_peak,(unsigned long long)metadata_queries,(unsigned long long)metadata_mismatches);
 }
 static void admitted_block_budget(uc_engine *u,uint64_t address,uint32_t size,void *opaque) {
     Machine *m=opaque;
     if(m->executed_code_bytes==0||m->executed_code_bytes<previous_call_bytes){call_instructions=0;call_epoch++;}
-    uint32_t slot=(uint32_t)(((address>>2)^size)&65535);CountCache *entry=&count_cache[slot];
+    uint32_t hash=(uint32_t)address*UINT32_C(0x9e3779b1)^(size*UINT32_C(0x85ebca6b));
+    uint32_t set=(hash^(hash>>16))&16383;
+    CountCache *entry=NULL;
+    for(uint32_t way=0;way<4;way++){
+        CountCache *candidate=&count_cache[set*4+way];
+        if(candidate->pc==address&&candidate->bytes==size){entry=candidate;break;}
+    }
+    if(!entry){
+        uint8_t way=count_replacement[set];entry=&count_cache[set*4+way];
+        count_replacement[set]=(way+1)&3;
+        if(entry->pc)cache_collisions++;
+    }
     uint16_t instructions=0;
-    if(entry->pc==address&&entry->bytes==size&&((address>=0x400000&&address<0x900000)||entry->epoch==call_epoch))instructions=entry->instructions;
+    if(entry->pc==address&&entry->bytes==size&&((address>=0x400000&&address<0x900000)||entry->epoch==call_epoch)){instructions=entry->instructions;cache_hits++;}
     else{
         uc_tb tb={0};uc_err result=uc_ctl_request_cache(u,address,&tb);metadata_queries++;
         if(result!=UC_ERR_OK||tb.pc!=address||tb.size!=size||!tb.icount||tb.icount>size){

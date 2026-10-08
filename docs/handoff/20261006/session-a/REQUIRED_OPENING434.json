@@ -1,0 +1,21 @@
+{
+  "parent": "SERIAL_TEST_BUILD416.json",
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-opening433/candidate-inputs.json",
+  "candidateInputManifestSha256": "17acf0bb4345effcf85fc4c7414d2c176784bbcdc8a415a14c50c7052aa2ab10",
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-opening433/source",
+  "completeCandidateFiles": 12126,
+  "productionChanges": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "beforeSha256": "22067c356d425c459e1c6d1b8a28366b4b420144a4cfd59aa3df065395bdae07",
+      "afterSha256": "74a1e45affa9e0e8b8a7a6728c006a161de98e31d0e15f1584f0e7d31f0ab922",
+      "owner": "A"
+    }
+  ],
+  "patchSha256": "59d59d92c1bc09e09905de83a46aa16dcd4f8e03da4aa4e781cc36bde81d9d9d",
+  "BProductionUnchanged": true,
+  "oldReadsAndThreeArgFactoriesUnchanged": true,
+  "actualInstalled": false,
+  "scope": "Normal PC picker now requires all verified menu choices explicitly adopted, fixed choice selected/locked, no inferred defaults/old engineering fallback from this new UI. A stable tags support frozen B actual touch helpers. Reconstructed/custom openings and old Save/factory APIs unchanged; no World/RNG mutation. New independent game/test build and actual normal/cancel/save/cold/all16/fire/military/native contests/ARM required; oldce83 proofs cannot be transferred.",
+  "wholeGoalComplete": false
+}

@@ -1,0 +1,16 @@
+{
+  "exeSHA": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "receiptSHA": "23b0a9741c0966f96e746f996fbd4d6be2ca0ca949786b60b24cc8ba9ac6a0a1",
+  "resourceSHA": "28239e64d1e8808fd8eda496b6e5c91c809d207fe678db5e22a7afbad89d0f42",
+  "domainsSHA": "c53b2d2d93ebd053bfdc590eeb5ad4d5d11b856818fc6bf72307a655d57dcfbb",
+  "manifestSHA": "c2e8bab45f37cb68f3f6768d41065779877447449a676bdeedd39bd7e1ad9767",
+  "rows": 752,
+  "sources": 16,
+  "forcesPerSource": 47,
+  "techDomain": 36,
+  "limits": [
+    "Exact original serialized actor58 bits and untouched4811e0; not a full postload/event/controller initializer",
+    "47force slots retained; source valid ruler/player activation must remain separate",
+    "No original research fee/delayed completion/ordinary APK claim"
+  ]
+}

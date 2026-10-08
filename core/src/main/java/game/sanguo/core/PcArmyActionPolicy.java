@@ -18,13 +18,13 @@ public final class PcArmyActionPolicy {
   if(in.readInt()!=MAGIC||in.readInt()!=1||source==null||!PcGovernorPolicy.recognized(w))throw new IOException("Original army budget context invalid");State s=new State();s.source=in.readUTF();s.sha=in.readUTF();s.variant=in.readUTF();s.lastTurn=in.readInt();
   if(!s.source.equals(source.scenarioId)||!s.sha.equals(source.sha)||!s.variant.equals(source.sourceVariant)||s.lastTurn<0||s.lastTurn>w.turn)throw new IOException("Original army budget source/turn differs");
   var src=PcGovernorPolicy.source(w);
-  for(int i=0;i<47;i++){s.points[i]=in.readInt();if(s.points[i]< -1||s.points[i]>255||!src.armyOriginalValid.get(i)&&s.points[i]!=0)throw new IOException("Original army budget range/validity differs");}if(in.available()!=0)throw new IOException("Original army budget unknown tail");cache.put(w,new Cached(w,s));return s;
+  for(int i=0;i<47;i++){s.points[i]=in.readInt();if(s.points[i]< -1||s.points[i]>255||(!src.armyOriginalValid.get(i)||PcGovernorPolicy.data(w).mergedArmies.containsKey(i))&&s.points[i]!=0)throw new IOException("Original army budget range/validity differs");}if(in.available()!=0)throw new IOException("Original army budget unknown tail");cache.put(w,new Cached(w,s));return s;
  }
  static void write(World w,State s)throws IOException {ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream d=new DataOutputStream(bytes);d.writeInt(MAGIC);d.writeInt(1);d.writeUTF(s.source);d.writeUTF(s.sha);d.writeUTF(s.variant);d.writeInt(s.lastTurn);for(int v:s.points)d.writeInt(v);w.extensions.put(NAMESPACE,bytes.toByteArray());cache.put(w,new Cached(w,s));}
  static State copy(State prior){State s=new State();s.source=prior.source;s.sha=prior.sha;s.variant=prior.variant;s.lastTurn=prior.lastTurn;System.arraycopy(prior.points,0,s.points,0,47);return s;}
  static int calculate(World w,int army,int current)throws IOException {
   var data=PcGovernorPolicy.data(w);var src=data.source;
-  if(!src.armyOriginalValid.get(army))return 0;int owner=src.armyOwners.get(army);if(owner<0||owner>=42)return -1;
+  if(!src.armyOriginalValid.get(army)||data.mergedArmies.containsKey(army))return 0;int owner=src.armyOwners.get(army);if(owner<0||owner>=42)return -1;
   var person=src.people.get(data.armyLeaders.get(army));World.Officer leader=person==null?null:w.officer(person.id);
   if(leader==null||leader.owner!=owner||!w.life.present(leader.id)||w.government.captive(leader.id))return 0;
   int cities=0,officers=0;
@@ -59,13 +59,14 @@ public final class PcArmyActionPolicy {
  static void editPrimary(World w,int owner,int value){
   if(value<0||value>255)throw new IllegalArgumentException("原第一军团行动力范围0至255");try{int army=primaryArmy(w,owner);if(army<0)throw new IllegalArgumentException("第一军团未知，不能编辑其他军团代替");State s=copy(read(w));s.points[army]=value;write(w,s);mirror(w);}catch(IOException e){throw new IllegalArgumentException(e);}
  }
+ static void clearArmy(World w,int army){if(!enabled(w))return;try{State s=copy(read(w));s.points[army]=0;write(w,s);mirror(w);}catch(IOException e){throw new IllegalStateException(e);}}
  static void clearOwner(World w,int owner){
   if(!enabled(w))return;try{State s=copy(read(w));var source=PcGovernorPolicy.source(w);for(int i=0;i<47;i++)if(source.armyOwners.get(i)==owner)s.points[i]=0;write(w,s);mirror(w);}catch(IOException e){throw new IllegalStateException(e);}
  }
  static RuleFailure failure(World w,World.City city,int cost){return failure(w,city,cost,false);}
  static RuleFailure failure(World w,World.City city,int cost,boolean directRequired){
   if(!enabled(w))return null;if(city==null)return new RuleFailure("CITY_UNAVAILABLE","city","请选择己方据点");int army=cityArmy(w,city.id);try{var src=PcGovernorPolicy.source(w);
-   if(army<0||!src.armyOriginalValid.get(army)||src.armyOwners.get(army)!=city.owner)return new RuleFailure("ORIGINAL_ARMY_UNKNOWN","city","原军团分配未知，不能借用其他军团行动力");
+   if(army<0||!src.armyOriginalValid.get(army)||PcGovernorPolicy.data(w).mergedArmies.containsKey(army)||src.armyOwners.get(army)!=city.owner)return new RuleFailure("ORIGINAL_ARMY_UNKNOWN","city","原军团分配未知，不能借用其他军团行动力");
    if(directRequired&&w.active==w.player&&src.armyDisplays.get(army)!=1)return new RuleFailure("ORIGINAL_ARMY_DELEGATED","city","该据点属于原委任军团，直属命令须由第一军团执行");
    int available=points(w,army);if(available<0)return new RuleFailure("ORIGINAL_ARMY_INPUT_UNKNOWN","city","原军团有效人物或设施输入未闭合");
    return available<cost?new RuleFailure("ACTION_POINTS","army","原军团行动力"+available+"，需要"+cost):null;

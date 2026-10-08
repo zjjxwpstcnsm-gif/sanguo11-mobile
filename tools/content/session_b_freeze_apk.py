@@ -8,6 +8,7 @@ def paths():
  names=set(p.decode()for p in subprocess.check_output(['git','ls-files','-z','--cached','--others','--exclude-standard'],cwd=ROOT).split(b'\0')if p)
  names.update(str(p.relative_to(ROOT))for p in (ROOT/'out/pc-native-runtime/jniLibs').rglob('*')if p.is_file())
  names.update(str(p.relative_to(ROOT))for p in (ROOT/'out/session-b/readonly-theme-dependencies').rglob('*')if p.is_file())
+ names.update(str(p.relative_to(ROOT))for p in (ROOT/'out/session-b/readonly-opening-dependencies61').rglob('*')if p.is_file())
  return sorted(name for name in names if (ROOT/name).is_file())
 def main(a):
  out=ROOT/'out/session-b'/a.label
@@ -23,8 +24,10 @@ def main(a):
  for rel in ['app/build/outputs/apk/debug/app-debug.apk','app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk']:
   source=ROOT/rel;target=frozen/source.name;shutil.copy2(source,target);assert sha(source)==sha(target)
   artifacts.append(dict(path=str(target),bytes=target.stat().st_size,sha256=sha(target)))
- guard={r['path']:r['sha256']for r in report['files']if r['path'].startswith(('app/src/main/','core/src/main/','game-api/src/main/','game-runtime/src/main/','out/pc-native-runtime/','out/session-b/readonly-theme-dependencies/'))or r['path']in ['app/build.gradle','build.gradle','settings.gradle','gradle.properties','version.properties']}
+ guard={r['path']:r['sha256']for r in report['files']if r['path'].startswith(('app/src/main/','core/src/main/','game-api/src/main/','game-runtime/src/main/','out/pc-native-runtime/','out/session-b/readonly-theme-dependencies/','out/session-b/readonly-opening-dependencies61/'))or r['path']in ['app/build.gradle','build.gradle','settings.gradle','gradle.properties','version.properties']}
  (frozen/'source-guard.json').write_text(json.dumps(guard,indent=2)+'\n');report['artifacts']=artifacts;report['inputsUnchanged']=True;report['compiledThemeDependencies']=json.loads((ROOT/'out/session-b/readonly-theme-dependencies/manifest.json').read_text())
+ opening=ROOT/'out/session-b/readonly-opening-dependencies61/manifest.json'
+ if opening.is_file():report['compiledOpeningDependencies']=json.loads(opening.read_text())
  (out/'frozen-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(artifacts,indent=2))
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('mode',choices=['capture','freeze']);p.add_argument('label');a=p.parse_args()

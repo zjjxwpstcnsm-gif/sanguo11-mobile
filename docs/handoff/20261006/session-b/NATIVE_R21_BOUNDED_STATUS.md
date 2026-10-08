@@ -1,0 +1,13 @@
+# r21真实三人单挑败北：有限证据，整体未通过
+
+共同main ef413be3653820dd6449ba7f02aa60bed5b26ef5；最新完整main0e7b9bc2df90249a50851baeda58c7d183ea6059。独立f55b分支codex/rules-content-contest-repair，完成r20证据fe28a6db27eed3e6a39d65a8d27f848c7c19be42。全目标仍active。
+
+只有B验收程序变化，生产core/api/runtime逻辑和A/Bridge/Unity/JNI未改。r21完整11334输入源码archive642874897B、SHA200b1e6c3f3939c378377c0008618e42a09ff10f8d622aba7cf5fbfb7d4c4b79；完整目录/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r21。独立76任务构建/全archiveSHA读回/生产path-set/168固定输入/原4+A2JNI/签名/runner注册通过。游戏APK3fa92fc707f6d4d71cf5616315e5956e793d153219347087753955887c01a841，testf5debecea82fefbfa191428da18d49273f6e42091178f6b6d3b7ed420ba30253，实际安装读回分别相等。只能称候选可安装APK，整体流程未通过。
+
+继承真实r20 failed-campaign8a15fd9e…完整turn19，普通slot3读取，不用Host成功档。两旬普通推进/地图移动到93,112，张飞stable1002/native432对吕布stable10660/native660原应战100%。主将关羽1001/native98，另一副将刘备1000/native635来源连接不猜ID。真实初始battleSHA b81af67a7a940d53061f960d2121b194b0e0240d7bc9affb4843c709b65741ca，手工保存读取后新冷process全World/双RNG精确恢复；106个实际attack/继续按钮，到107协议inputs/36合/581帧自然winner1。terminal a1e304702ef426190d50378e51b52d1647f6a41eb36845967c2720369c35327f，一次普通终局settled474c4cd53bd1efb4236d75c6ca3bacead2955592671fc358fd3a71e2844d71d8。己方兵6000→4200/气100→85/金500保持，刘备从部队离开、后续正常回薊。三人支持参与和主动换将/装备/成功登用并未由这条败北流程全面关闭。
+
+测试随后正常推进到24旬，吕布/侯成当前原单挑体力36/26，候补阈值使对方无合法应战者，两己方候补应战0%。鼓台支援true、兵力factor104、己方injury0，不用放宽规则解决。停止本次自身测试进程，日志Process crashed对应主动结束验收，不是游戏自然崩溃；未继续用0%重复挑战或重抽结果。整体instrumentationPassed=false/passed=false，没有成功登用/最终cold结论。
+
+原15内部/772外部保存、库、偏好全SHA+完整路径集合恢复、无新增遗留、锁释放，无清数据、不占5554。准确结果out/session-b/native-duel-apk61-r21-ji-acceptance-v1/results.json。三份真实terminal/settled/turn24只读探针全canonical World/双RNG冷读、原文件不变通过；第一版诊断字段编译错误未执行，后续set-e/fresh编译已更正round读model0x10而非manager人物ID。有限成绩不扩充到其他保存策略、16源、ARM或原Arena/3D演出。
+
+后继原体力恢复待取证：PcDuelHealthPolicy明确仅写终局体力，没有推断恢复；当前静态原EXE59写候选/128读候选只是位移匹配，包含其他类/栈及整人物复制，不是恢复规则。原48a880可见byte clamp0..100，但调用者、人员旬阶段、量和原实际新局仍要证。不得直接回满/旧档自动追填/猜恢复量。下一工作从完整本机原函数及正常战役保存闭合该缺口，另用合法人控换将/特殊动作寻求正向登用实际流程。

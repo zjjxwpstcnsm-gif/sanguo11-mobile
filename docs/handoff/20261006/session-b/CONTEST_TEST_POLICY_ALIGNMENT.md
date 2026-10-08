@@ -1,0 +1,11 @@
+# 当前工程ContestTest与明确兼容契约对齐
+
+新collector必要检查中，既有ContestTest先失败在legacy-v1..8解码。用完全未修改的frozen-r11同测试新运行也在同点失败，证明非collector变更回归。PC_PARITY_STATUS V01明确只支持31+且<31原文件保留/拒绝；原测试却期待解码并重写v25，且末行声称官方及v8migration，与现契约冲突。没有改存档fixture、SaveCodec、source原值、golden或Unity，改该历史断言为明确旧地图拒绝与入参字节保留。
+
+然后显露旧“无关副将半差贡献”断言：当前Relations已使用既有不同关系分支（本轮不改公式，不把工程关系比例当原PC真值）。伤病测试只核实受伤主将60/健康副将80、有限正向副将贡献与完整保存后同值，双方伤病60及到期80恢复仍精确核查。该测试属于工程Contest模型，去掉原“官方完整还原”措辞；不以此替代Native正常战役。旧两次失败日志保留，新测试2403断言PASS；GameSession1690/Bridge/架构也通过。
+
+该补充B测试改动在r12冻结后完成，因此原r12源包/test文件不覆盖，当前实际APK不变；后续完整源需携带本精确patch或新冻结。
+
+原冻结测试SHA：b18b61fb625a74007a7514464f1104fb10a97a3ce8cd11a66737b4463e316ce1
+后继B测试SHA：256c4c042c74a0138b3f3cfaf58938da9e134ea69f41752d77999d2229614779
+patchSHA：fc6d6318b738b4d5db93548b5604fc09faca52b7974094912b4d9bf85212fbb7

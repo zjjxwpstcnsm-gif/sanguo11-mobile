@@ -1,0 +1,30 @@
+package game.sanguo.core;
+import java.nio.file.*;import java.util.*;import game.sanguo.api.*;import game.sanguo.runtime.GameSession;
+/** Plays only ordinary typed/legacy commands and whole AI turns from a clone
+ * of an exact actual Android campaign. No stat/RNG/HP/outcome/position edits.
+ * Host planning is separate from installed control acceptance. */
+public final class SessionBActualRecruitContinuationProbe{
+ static Path out;static int sequence;
+ static void checkpoint(GameSession game,String label)throws Exception{byte[]b=game.captureSave();World w=SaveCodec.decode(b);byte[]canonical=SaveCodec.encode(w);if(!Arrays.equals(canonical,SaveCodec.encode(SaveCodec.decode(canonical))))throw new AssertionError("canonical whole save cold");Path p=out.resolve(String.format(java.util.Locale.ROOT,"%03d-%s.sg11",sequence++,label));Files.write(p,b);System.out.println("SAVE "+p+" SHA="+PcCommandCapacityPolicy.hex(java.security.MessageDigest.getInstance("SHA-256").digest(b))+" turn="+w.turn);}
+ static void turn(GameSession game)throws Exception{var ticket=game.beginTurn();World next=SaveCodec.decode(ticket.initial());var r=next.nextTurn();if(!r.ok||!game.commitTurn(ticket,next))throw new AssertionError("whole turn "+r.message);checkpoint(game,"turn");game.replace(SaveCodec.decode(game.captureSave()));}
+ static boolean finish(GameSession game)throws Exception{
+  for(int n=0;game.contest().nativeDuel!=null&&!game.contest().nativeDuel.terminal&&n<300;n++){var f=game.contest();var choices=f.nativeDuel.choices.stream().filter(c->c.enabled()&&c.special==-1&&c.replacement==-1).collect(java.util.stream.Collectors.toList());var c=choices.stream().filter(v->v.stance==0).findFirst().orElseGet(()->choices.stream().filter(v->v.stance==-1).findFirst().orElseThrow());var r=game.execute(ContestCommand.nativeDuelInput(f.state,f.contestId,f.revision,c.stance,c.special,c.replacement));if(!r.ok())throw new AssertionError("ordinary human "+r.detail);}
+  var f=game.contest();if(f.nativeDuel==null||!f.nativeDuel.terminal)throw new AssertionError("natural terminal absent");checkpoint(game,"terminal");if(f.nativeDuel.aiActorPolicyAdoptionAvailable){var r=game.execute(ContestCommand.adoptNativeAiActor(f.state,f.contestId,f.revision));if(!r.ok())throw new AssertionError("explicit AI actor "+r.detail);f=game.contest();}
+  var r=game.execute(ContestCommand.finishNativeDuel(f.state,f.contestId,f.revision));if(!r.ok())throw new AssertionError("actual terminal prepare "+r.detail);boolean recruited=false;
+  for(int step=0;game.contest().nativeDuel!=null&&step<20;step++){
+   f=game.contest();var row=f.nativeDuel.disposition.stream().filter(p->p.choice==4).findFirst().orElse(null);
+   if(row!=null){int action=row.enabled(0)?0:row.enabled(1)?1:row.enabled(2)?2:3;System.out.println("PENDING target="+row.officerId+" choose="+action+" errors="+row.actionErrors);r=game.execute(ContestCommand.nativeDuelDisposition(f.state,f.contestId,f.revision,row.officerId,action));if(!r.ok())throw new AssertionError("ordinary fate "+r.detail);System.out.println("RESULT "+r.detail);f=game.contest();if(action==0&&f.nativeDuel.disposition.stream().anyMatch(p->p.officerId==row.officerId&&p.choice==0)){recruited=true;checkpoint(game,"success-pending");}continue;}
+   if(f.nativeDuel.inheritance!=null&&f.nativeDuel.inheritance.selectedHeir<0)throw new AssertionError("Original ruler succession branch requires separate normal menu plan");r=game.execute(ContestCommand.finishNativeDuel(f.state,f.contestId,f.revision));if(!r.ok())throw new AssertionError("once settlement "+r.detail);
+  }
+  if(game.contest().nativeDuel!=null)throw new AssertionError("unsettled fate");checkpoint(game,"settled");if(recruited){World w=SaveCodec.decode(game.captureSave());for(var o:w.officers)if(PcDuelRelease.busy(w,o.id))System.out.println("RETURN stable="+o.id+" native="+PcDuelSourceFacts.saved(w).get(o.id).nativeId+" home="+PcGovernorPolicy.data(w).assignments.get(o.id).home+" duration="+PcDuelRelease.remaining(w,o.id));for(int i=0;i<3;i++)turn(game);System.out.println("PASS actual-world ordinary command successful recruit; Host only, actual APK controls still required");}return recruited;
+ }
+ public static void main(String[]args)throws Exception{
+  byte[]raw=Files.readAllBytes(Path.of(args[0]));if(!PcCommandCapacityPolicy.hex(java.security.MessageDigest.getInstance("SHA-256").digest(raw)).equals("01d80e8ade57899283169e8dabd3cb4625046f4889fb787c25ea3e5858b85cc1"))throw new AssertionError("Exact r18 settled World required");out=Path.of(args[1]);Files.createDirectory(out);
+  try(GameSession game=new GameSession(SaveCodec.decode(raw))){for(int attempt=0;attempt<16;attempt++){
+   World w=SaveCodec.decode(game.captureSave());var own=w.unit(16);if(own==null)throw new AssertionError("Actual army16 lost; preserve natural campaign");System.out.println("TURN="+w.turn+" army16="+own.hex+" troops="+own.troops+" energy="+own.energy+" acted="+own.acted);
+   if(!own.acted&&own.status==War.Status.NORMAL){final var current=own;final var observed=w;var enemy=w.units.stream().filter(u->observed.campaign.hostile(current.owner,u.owner)&&u.status==War.Status.NORMAL&&u.hex.distance(current.hex)==1).sorted(Comparator.comparingInt(u->u.id)).findFirst().orElse(null);
+    if(enemy!=null&&w.contests.duelError(16,enemy.id)==null){var candidates=w.contests.nativeDuelCandidates(16,enemy.id);var nominee=candidates.stream().max(Comparator.comparingInt(c->c.chance)).orElseThrow();System.out.println("CHALLENGE enemy="+enemy.id+" nominee="+nominee.officerId+" responseChance="+nominee.chance);var r=game.execute(ContestCommand.startNativeDuel(game.state(),16,enemy.id,nominee.officerId));if(!r.ok())throw new AssertionError("ordinary challenge "+r.detail);checkpoint(game,"challenge");if(game.contest().nativeDuel!=null&&finish(game)){if(!Arrays.equals(raw,Files.readAllBytes(Path.of(args[0]))))throw new AssertionError("actual source changed");return;}}
+   }turn(game);
+  }throw new AssertionError("No successful ordinary recruit through16 complete turns; no seed/resources/result replacement");}
+ }
+}

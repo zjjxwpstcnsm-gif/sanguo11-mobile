@@ -28,15 +28,11 @@ public final class Supply {
         a.troops-=troops;b.troops+=troops;a.food-=food;b.food+=food;a.acted=true;
         return w.success("向"+w.officer(b.officerId).name+"移交"+troops+"兵、"+food+"粮");
     }
+    public ReplenishmentPlan replenishPlan(int city,int officer,int target,int troops,int food){return new ReplenishmentPlan(w,city,officer,target,troops,food);}
     public World.Result replenish(int city,int officer,int target,int troops,int food){w.reports.prepare();
-        World.City c=w.city(city);World.Officer o=w.officer(officer);World.Unit u=w.unit(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
-        if(w.districts.executing(city)&&!w.districts.city(city).supplyEnabled)return w.fail("军团禁止补给运输");
-        if(w.districts.reserveError(c,0,food,troops)!=null)return w.fail(w.districts.reserveError(c,0,food,troops));
-        if(u==null||u instanceof Domestic.Mission||u.owner!=c.owner||!w.army.canEnterSite(u,u.hex,c))return w.fail("请选择城池相邻的己方部队");
-        if(troops<0||troops>18000||food<0||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
-        int equipment=Army.siegeWeapon(u.weapon)?0:Army.equipmentNeeded(u.weapon,troops);
-        if(c.troops<troops||c.food<food||c.equipment[u.weapon.ordinal()]<equipment||(troops>0&&u.troops>w.government.commandLimit(u.officerId)-troops)||u.food>1000000-food)return w.fail("城内兵粮/兵装不足或部队超过容量");
-        w.spend(c,o,0);c.troops-=troops;c.food-=food;c.equipment[u.weapon.ordinal()]-=equipment;u.troops+=troops;u.food+=food;
+        ReplenishmentPlan plan=replenishPlan(city,officer,target,troops,food);if(!plan.allowed())return w.fail(plan.failure.detail);
+        World.City c=w.city(city);World.Officer o=w.officer(officer);World.Unit u=w.unit(target);
+        w.spend(c,o,0);c.troops-=troops;c.food-=food;c.equipment[u.weapon.ordinal()]-=plan.equipmentCost;u.troops+=troops;u.food+=food;
         return w.success(c.name+"补给"+w.officer(u.officerId).name+"："+troops+"兵、"+food+"粮");
     }
     boolean aiRaid(World.Unit u){for(Domestic.Mission m:new ArrayList<>(w.domestic.missions))if(raidError(u.id,m.id)==null){raid(u.id,m.id);return true;}return false;}

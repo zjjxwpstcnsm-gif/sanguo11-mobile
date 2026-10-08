@@ -39,6 +39,7 @@ public final class Governance {
     /** Standing and locally working officers are residents; expeditions, recruitment and envoys are not. */
     public boolean resident(World.Officer o,World.City c){
         if(o==null||c==null||c.owner<0||o.owner!=c.owner||o.cityId!=c.id||o.unitId>=0||!w.life.present(o.id)||w.government.captive(o.id))return false;
+        if(PcDuelRelease.busy(w,o.id))return false;
         if(o.otherTaskTurns>0&&(o.otherTask.contains("出使")||o.otherTask.contains("外交")||o.otherTask.contains("登用")||o.otherTask.contains("返程")))return false;
         for(Domestic.Mission m:w.domestic.missions)if(m.contains(o.id))return false;
         return true;

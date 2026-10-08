@@ -113,7 +113,10 @@ final class PcMusicStreamPlayer implements AutoCloseable {
             int minimum=AudioTrack.getMinBufferSize(track.sampleRate,AudioFormat.CHANNEL_OUT_STEREO,AudioFormat.ENCODING_PCM_16BIT);if(minimum<=0)throw new IOException("Unsupported original audio format");
             audio=new AudioTrack.Builder().setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build())
                 .setAudioFormat(new AudioFormat.Builder().setEncoding(AudioFormat.ENCODING_PCM_16BIT).setSampleRate(track.sampleRate).setChannelMask(AudioFormat.CHANNEL_OUT_STEREO).build())
-                .setTransferMode(AudioTrack.MODE_STREAM).setBufferSizeInBytes(Math.max(minimum,65536)).build();
+                // Original stereo PCM stays exact. Keep one source-second of bounded
+                // reserve for measured scheduling stalls, rather than only371ms at44.1kHz.
+                .setTransferMode(AudioTrack.MODE_STREAM).setBufferSizeInBytes(Math.max(minimum,
+                    Math.multiplyExact(track.sampleRate,Math.multiplyExact(track.channels,2)))).build();
             if(audio.getState()!=AudioTrack.STATE_INITIALIZED)throw new IOException("AudioTrack not initialized");job.audio=audio;
             job.bufferFrames=audio.getBufferSizeInFrames();
             AudioTrack output=audio;PcVorbisDecoder.Result decoded=PcVorbisDecoder.decode(context,track,pcm,job.cancel,(bytes,length)->write(job,output,bytes,length));

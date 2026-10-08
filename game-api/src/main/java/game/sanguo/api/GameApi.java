@@ -27,5 +27,7 @@ public interface GameApi {
     OfficerSnapshot officers();
     default SceneFactsSnapshot sceneFacts(){return SceneFactsSnapshot.unsupported(state());}
     default ContestSnapshot contest(){return ContestSnapshot.none(state());}
+    default PcOpeningOptionsSnapshot pcOpeningOptions(){return PcOpeningOptionsSnapshot.unsupported(state());}
+    default PcOpeningOptionsSnapshot pcOpeningOptions(String scenarioId){return PcOpeningOptionsSnapshot.unsupported(state());}
     Subscription subscribe(Consumer<GameEvent> listener);
 }

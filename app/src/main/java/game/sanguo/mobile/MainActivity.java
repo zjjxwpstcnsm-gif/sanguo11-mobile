@@ -85,6 +85,7 @@ public final class MainActivity extends Activity {
     private Button selectionButton,expandPanel,closePanel,returnList,territoryToggle,gridToggle;
     private AlertDialog navigationDialog,scenarioDialog;
     private ScenarioFactionPicker factionPicker;
+    private long scenarioChoiceGeneration;
     private AlertDialog confirmationDialog;
     private Hex selected;
     private int moving=-1;
@@ -1295,21 +1296,32 @@ public final class MainActivity extends Activity {
         },error->new AlertDialog.Builder(this).setTitle("自定义地图库读取失败").setMessage(error.getMessage()+"；原文件保留，原版仍可选择。").setPositiveButton("使用原版",(d,n)->chooseScenarioTemplate(id,null)).setNegativeButton("取消",null).show());
     }
     private void chooseScenarioTemplate(String id,MapPatch pinned){
+        final World expected=world;
+        final long revision=expected==null?0:expected.commandRevision();
+        final long choiceGeneration=++scenarioChoiceGeneration;
         uiReads.run("正在读取剧本…",()->{
             World template=id.startsWith("pc-scen")?PcScenarioCatalog.preview(id):pinned==null?ScenarioCatalog.load(id,0):CustomMaps.preview(pinned,id);
             if(pinned!=null)for(CustomMaps.Issue issue:CustomMaps.diagnose(template,pinned,id))if(issue.blocking())throw new IOException(issue.message());
-            return template;
-        },template->{
-            World expected=world;long revision=expected==null?0:expected.commandRevision();
-            factionPicker=new ScenarioFactionPicker(this,template,side->{
-                if(!currentWorld(expected)||(expected!=null&&expected.commandRevision()!=revision)){message("未开始新局","当前局面已变化，请重新选择剧本。");return;}
-                startScenario(template.scenarioId,side,pinned,factionPicker.officerTextSource());
-            })
-                .confirmWith(side->openingInfo(template,side)+"\n人物文字资料："+factionPicker.officerTextLabel()+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。")
-                .onBack(this::scenarioPicker);
-            factionPicker.show();
-        },
-        error->showError("剧本读取失败："+error.getMessage()));
+            PcNewGameOptionsSnapshot options=null;
+            if(id.startsWith("pc-scen")){
+                options=GameSession.previewNewSourceOptions(id);
+                var source=PcScenarioIdentity.saved(template);
+                if(source==null||!source.scenarioId.equals(options.scenarioId)||!source.path.equals(options.sourcePath)||!source.sha.equals(options.sourceSha)||!source.sharedSha.equals(options.sharedSha)||!source.sourceVariant.equals(options.sourceVariant))throw new IOException("新局设置与所选剧本来源不同");
+            }
+            return new Object[]{template,options};
+        },prepared->{
+            if(choiceGeneration!=scenarioChoiceGeneration||!currentWorld(expected)||(expected!=null&&expected.commandRevision()!=revision))return;
+            World template=(World)prepared[0];
+            final ScenarioFactionPicker[] ownPicker=new ScenarioFactionPicker[1];
+            ownPicker[0]=new ScenarioFactionPicker(this,template,side->{
+                if(choiceGeneration!=scenarioChoiceGeneration||!currentWorld(expected)||(expected!=null&&expected.commandRevision()!=revision)){message("未开始新局","当前局面已变化，请重新选择剧本。");return;}
+                ScenarioFactionPicker chosen=ownPicker[0];
+                startScenario(template.scenarioId,side,pinned,chosen.officerTextSource(),chosen.openingOptions());
+            }).openingFacts((PcNewGameOptionsSnapshot)prepared[1])
+                .confirmWith(side->openingInfo(template,side)+"\n人物文字资料："+ownPicker[0].officerTextLabel()+ownPicker[0].openingSummary()+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。")
+                .onBack(()->{scenarioChoiceGeneration++;scenarioPicker();});
+            factionPicker=ownPicker[0];factionPicker.show();
+        },error->showError("剧本读取失败："+error.getMessage()));
     }
 
     private String openingInfo(World w,int side){
@@ -1332,14 +1344,19 @@ public final class MainActivity extends Activity {
         },error->showError("人物资料读取失败："+error.getMessage()));
     }
     private void startScenario(String id,int player,MapPatch pinned,String officerTextSource){
-        World expected=world;
+        startScenario(id,player,pinned,officerTextSource,null);
+    }
+    private void startScenario(String id,int player,MapPatch pinned,String officerTextSource,PcDuelOptions options){
+        World expected=world;long revision=expected==null?0:expected.commandRevision();
+        if(options!=null&&(!id.startsWith("pc-scen")||pinned!=null)){showError("新局设置不适用于所选剧本");return;}
+        final long seed=System.nanoTime();
         uiReads.run("正在建立新局…",()->{
-            World resolved=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());
+            World resolved=options!=null?PcScenarioCatalog.load(id,player,seed,options):pinned==null?ScenarioCatalog.load(id,player,seed):CustomMaps.load(pinned,id,player,seed);
             World next=CustomOfficerSetup.apply(this,resolved);
             if(officerTextSource!=null)PcOfficerSources.attachOpening(next,officerTextSource);
             return next;
         },next->{
-            if(!currentWorld(expected))return;
+            if(!currentWorld(expected)||(expected!=null&&expected.commandRevision()!=revision))return;
             if(!activateWorld(next))return;selectAndFocus(world.home().hex);map.switchMode(nextScenario3D);closePanel();save("auto",false);
         },error->showError("无法开始剧本："+error.getMessage()));
     }

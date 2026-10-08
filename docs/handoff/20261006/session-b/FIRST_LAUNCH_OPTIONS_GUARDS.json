@@ -1,0 +1,124 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "sourceClean": true,
+  "complete": false,
+  "committedNativeBatch": false,
+  "currentApk": null,
+  "files": {
+    "game-api/src/main/java/game/sanguo/api/PcNewGameOptionsSnapshot.java": "f2ba21a16ed34e879f7703f5b863c01d618bfb29a8bec5f53ff485427191738d",
+    "game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+    "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java": "451e916720db32aee5dbedf8477eef719fc85f6ec7ca7a5f6055483e4c98d856",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java": "8b404d585fcb283459d9c27fbf2aaee2cbc9398e7c986ee54a33be82fda36512",
+    "game-runtime/src/test/java/game/sanguo/core/PcNewGameOptionsCatalogTest.java": "80b5365fd33805962d2c83efad83993663fbf9fde9784d679ff41efb94b6c23a",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelNormalDeploymentSessionTest.java": "3630aab1ac2bc70b83898787193bfceb0c78b7b908c89c285bc64aa38967f32a",
+    "docs/handoff/20261006/session-b/FIRST_LAUNCH_OPTIONS_STRATEGY.md": "6bcecb6b5beceae5bf6c136383e8745c982f99c4a7bc212f77a6a2eda75f0422",
+    "docs/handoff/20261006/session-b/NORMAL_DEPLOYED_DUEL.md": "2d3368617567d5a5da37f93df1938d782991cbcac7bc39e4d3cffd46ed323091",
+    "out/session-b/duel-query-check/first-launch-options-compile-v1.log": "cf92e956e72ebb5e293b7f422a077e29a4dd51081a2c89918de0559c3cf9794c",
+    "out/session-b/duel-query-check/first-launch-options-compile-v2.log": "eb52f7098281189e72befc0e2d7c494b544c7894f1e684be678971d25821475e",
+    "out/session-b/duel-query-check/first-launch-options-current-v1.log": "fd334f49a435fe838f45a0bccf1d3f0d0b04a2e3a73c57fe211ef2920f2c0e14",
+    "out/session-b/duel-query-check/first-launch-options-regression-v1.log": "2f13b23fe75af3db7f67f94237e03a680708b8bfb9cfe59af413669a962bb1b3",
+    "out/session-b/duel-query-check/normal-deployed-duel-compile-v1.log": "6daa2ef986f8102494183b26afb39377dfff488f7944ece3c3c160922c89c863",
+    "out/session-b/duel-query-check/normal-deployed-duel-compile-v2.log": "4b2e16df4e57bfce26f0d70c974244e5fdc4a243d81600227c54ebf2e74ffd82",
+    "out/session-b/duel-query-check/normal-deployed-duel-current-v1.log": "6f56a8091aadb06e83def06d21c264330f6642bccca294513aeb4b24f2f82e7b",
+    "out/session-b/duel-query-check/normal-deployed-duel-current-v2.log": "f53fa34a26fa8c4906442e532e43e4a352aa3b04e0a753f572094f42e3a564b0",
+    "out/session-b/normal-deployed-duel-after-deploy-v1.sg11": "31fea5cd910487d785d582898ce4097fb66a9f3ffedacb462c32bb4a0ef89ea9",
+    "out/session-b/normal-deployed-duel-current-v1.sg11": "7d052839d95e5486ae12720e685aa9d5c3ce2cc98ba7bb18cbb93f620ba69a15",
+    "out/session-b/normal-deployed-duel-current-v2.sg11": "8bafff0e2fdcd94aa02c418b447547c602497f904512ff074594c5b69cb9194c"
+  },
+  "compiledClasses": {
+    "game-api/build/classes/java/main/game/sanguo/api/PcNewGameOptionsSnapshot.class": "933b1ff4dfb73f8330e6d3ff31cc6f0d7d01ab5661817d6aa7642c1b2708a65b",
+    "game-runtime/build/classes/java/main/game/sanguo/runtime/GameSession.class": "0476a497ef2f7af4be71bf13f5ea1befaadadb737c0e98f208271990f589fcde",
+    "game-runtime/build/classes/java/main/game/sanguo/runtime/query/PcOpeningOptionsQuery.class": "9eb115ef7df0166d61ba0a24ba33c98f8775bea79d068f92b9da404a73a1cea6",
+    "game-runtime/build/classes/java/test/game/sanguo/core/PcNewGameOptionsCatalogTest.class": "6f49b35e9a994bf0ae4e8a7d6b3bb6b7bc4f1a60719d72a50fa5d46931c5aab0",
+    "game-runtime/build/classes/java/test/game/sanguo/core/PcDuelNormalDeploymentSessionTest.class": "ef820007a89b9af7d6507d9f88883a5c4a91f07c93be6ebbdc4cee14b1217600"
+  },
+  "beforeConfirmed": {
+    "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java": "49266f3da09dc0a191132dd6ddd2e81c8d30ccffdec51e786029db2b5d245da8",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java": "17b52c7ab2cccc9efa5ba241c2a3f7932080ad49fa8016c4dc07342e4dd23fb2"
+  },
+  "unchangedPriorStateDtoSha": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "api": {
+    "entry": "GameSession.previewNewSourceOptions(String scenarioId)",
+    "result": "PcNewGameOptionsSnapshot",
+    "campaignOrStateTokenRequired": false,
+    "sourceIdentityShaAndUnknownPreserved": true,
+    "savedValuesOrDefaults": false,
+    "sourceScope": "verified difficulty/death/life menu and flags only",
+    "firstLaunchChecks": 536,
+    "normalMenuAndApk": false
+  },
+  "regressions": {
+    "currentMenuChecks": 439,
+    "selectedSourceChecks": 151,
+    "actualFormat5AndGenuine39": "PASS independent full-byte baseline",
+    "gameSession": 1690,
+    "bridge": "PASS",
+    "architecture": "PASS",
+    "pinnedInputs": 168
+  },
+  "ordinaryCampaign": {
+    "source": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "player": 28,
+    "nativeLeader": 58,
+    "actualTypedStockDeployment": {
+      "cityId": 20013,
+      "unitId": 1,
+      "deputies": [
+        10440,
+        10509
+      ],
+      "troops": 13000,
+      "food": 52000,
+      "gold": 1000,
+      "weapon": "SWORD"
+    },
+    "fullActualFutureTurns": 25,
+    "turn12ExactContinuation": true,
+    "actualNeighbourChallengeEstimate": [
+      3,
+      0
+    ],
+    "actualChallengeOutcome": "refusal",
+    "unit1FinalOutcome": "destroyed in ordinary field battle at turn25",
+    "acceptedNativeDuel": false,
+    "rngOrResourcesOrUnitsInjected": false,
+    "current12Sha": "7d052839d95e5486ae12720e685aa9d5c3ce2cc98ba7bb18cbb93f620ba69a15",
+    "current25Sha": "8bafff0e2fdcd94aa02c418b447547c602497f904512ff074594c5b69cb9194c",
+    "knownIdentityGap": "actual AI projectID2000 unverified; no guessed native or activation"
+  },
+  "preservedFailures": {
+    "normal-compile-v1": "test lambda capture not final; fixed observer local only",
+    "first-launch-compile-v1": "resumption test local own scope; fixed only fixture, production not loosened",
+    "normal-current-v1": "bounded12 no neighbouring accepted battle; full checkpoint kept",
+    "normal-current-v2": "same campaign natural refusals then own unit destroyed at25; not native battle PASS"
+  },
+  "limits": [
+    "Native batch/source commit/A frozen adapter and actual normal first-launch/menu/new APK remain incomplete",
+    "No ordinary accepted native contest or terminal in25-turn campaign; do not substitute declared fixture141 for it",
+    "All16 actual menu/force/activated-person/opening events/AP/normal contest/old31–39/custom matrix, ARM and Unity U01 remain incomplete",
+    "No A WIP/BridgeJSON/Unity/JNI changes or sealed27/28 activation"
+  ],
+  "allOwnJobsTerminal": true
+}

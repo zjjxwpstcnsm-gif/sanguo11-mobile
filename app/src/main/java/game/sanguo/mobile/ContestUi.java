@@ -21,10 +21,18 @@ final class ContestUi {
     private void info(String title,String text){UiTheme.dialog(new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show());}
     void challenge(World.Unit actor){
         List<World.Unit> targets=new ArrayList<>();for(World.Unit u:w.units)if(w.contests.duelError(actor.id,u.id)==null)targets.add(u);
-        if(targets.isEmpty()){info("单挑","需要相邻的陆上交战部队、正常状态和10气力；器械与水军不能发起。");return;}
+        if(targets.isEmpty()){info("单挑",w.contests.nativeDuelConfigured()?"需要相邻的正常陆上交战部队；请选择可作战的编队。":"需要相邻的陆上交战部队、正常状态和10气力；器械与水军不能发起。");return;}
         String[] labels=new String[targets.size()];for(int i=0;i<labels.length;i++){World.Unit u=targets.get(i);labels[i]=w.officer(u.officerId).name+" · 应战率"+w.contests.acceptance(actor.id,u.id)+"%";}
         UiTheme.dialog(new AlertDialog.Builder(a).setTitle("选择单挑目标").setItems(labels,(d,n)->{
-            World.Unit target=targets.get(n);confirm("发起单挑","消耗10气力和本旬行动；对方可能拒绝。\n当前上阵武将体力归零即败，五十合平手。\n主将败北可能被俘并导致部队解散，副将败北则仅退出编队。",()->apply.execute(w,()->w.contests.challenge(actor.id,target.id)));
+            World.Unit target=targets.get(n);if(w.contests.nativeDuelConfigured()){nativeChallenge(actor,target);return;}confirm("发起单挑","消耗10气力和本旬行动；对方可能拒绝。\n当前上阵武将体力归零即败，五十合平手。\n主将败北可能被俘并导致部队解散，副将败北则仅退出编队。",()->apply.execute(w,()->w.contests.challenge(actor.id,target.id)));
+        }).setNegativeButton("取消",null).show());
+    }
+    private void nativeChallenge(World.Unit actor,World.Unit target){
+        List<Contests.DuelCandidate> candidates;
+        try{candidates=w.contests.nativeDuelCandidates(actor.id,target.id);}catch(IllegalStateException error){info("单挑",error.getMessage());return;}
+        ContestSnapshot current=a.contestSnapshot();String[]labels=new String[candidates.size()];for(int i=0;i<labels.length;i++){var candidate=candidates.get(i);labels[i]=candidate.name+" · 原应战估计"+candidate.chance+"%";}
+        UiTheme.dialog(new AlertDialog.Builder(a).setTitle("选择上阵武将").setItems(labels,(dialog,index)->{
+            int nominee=candidates.get(index).officerId;confirm("发起单挑","消耗发起部队本旬行动，无预付气力；应战方保留已有行动状态。\n拒绝时按原规则结算气力与兵损。\n本新局采用命令聚焦呈现；原相机边界仍待核实。",()->a.executeContest(w,ignored->ContestCommand.startNativeDuel(current.state,actor.id,target.id,nominee)));
         }).setNegativeButton("取消",null).show());
     }
     View view(){
@@ -33,6 +41,7 @@ final class ContestUi {
         if(s==null)return scroll;
         ContestSnapshot facts=a.contestSnapshot();
         if(facts.kind==ContestSnapshot.Kind.SEARCH_CHOICE&&facts.contestId==s.id()&&facts.revision==s.revision())searchChoice(panel,facts);
+        else if(facts.nativeDuel!=null&&facts.contestId==s.id()&&facts.revision==s.revision())nativeDuelFacts(panel,facts);
         else if(facts.nativeRules&&facts.contestId==s.id()&&facts.revision==s.revision())nativeDebate(panel,facts);
         else if(s.isDuel())duel(panel,s);else if(s.debate()!=null)debate(panel,s);
         label(panel,"每次操作后自动保存。可到菜单手动保存、导出，或读取另一局。",11,paper);
@@ -67,6 +76,62 @@ final class ContestUi {
         }
         button(panel,"认输并结束单挑",true,()->confirm("认输","当前上阵武将直接判负，按败北处置；这不是退却。",()->a.executeContest(w,state->ContestCommand.concede(state,id,revision))));
         button(panel,"单挑规则",true,()->info("单挑规则","重视攻击：伤害提高，防御与蓄气较弱。\n重视防御：降低伤害，可格挡和完全防御。\n重视斗志：更快蓄气，可额外获得100斗志。\n重视一击：偶尔重击。\n急所使对手负伤，无双清除强化；暗器与伪退需携物且每场一次，伪退需15合。\n支援者到场后可换将，体力与斗志分别保留。"));
+    }
+    private void nativeDuelFacts(LinearLayout panel,ContestSnapshot facts){
+        label(panel,"单挑 · 第"+facts.round+" / "+facts.nativeDuel.roundLimit+"合",20,gold);
+        for(var team:facts.nativeDuel.teams)for(var f:team.fighters){
+            label(panel,(team.side==0?"我方 ":"对方 ")+f.name+(f.active?" · 上阵":" · 支援"),15,paper);
+            label(panel,"体力 "+f.health+" / 100    斗志 "+f.spirit+" / 300",13,paper);
+            if(f.terminalOutcome==2)label(panel,"阵亡 · 待战役结算",13,gold);
+        }
+        label(panel,facts.status,13,paper);
+        var options=facts.nativeDuel.openingOptions;if(options!=null&&options.state.equals(facts.state)&&options.hasSavedValues())label(panel,options.groups.stream().map(g->g.title+"："+g.savedLabel()).collect(java.util.stream.Collectors.joining(" · ")),12,paper);
+        var specialMenu=facts.phase==3?facts.nativeDuel.choices.stream().filter(c->c.special>=0&&c.enabled()).findFirst().orElse(null):null;
+        if(facts.phase==3&&!facts.nativeDuel.terminal){
+            button(panel,"选择特殊动作",specialMenu!=null,()->{if(specialMenu!=null)a.executeContest(w,ignored->ContestCommand.nativeDuelInput(facts.state,facts.contestId,facts.revision,specialMenu.stance,specialMenu.special,specialMenu.replacement));});
+            if(specialMenu==null)label(panel,"当前没有可用的特殊动作。",12,paper);
+        }
+        for(var choice:facts.nativeDuel.choices){
+            if(facts.phase==3&&choice.special>=0){if(!choice.error.isEmpty())label(panel,choice.label+"："+choice.error,11,paper);continue;}
+            button(panel,choice.label+(choice.cost>0?" · 斗志"+choice.cost:""),choice.enabled(),()->a.executeContest(w,ignored->ContestCommand.nativeDuelInput(facts.state,facts.contestId,facts.revision,choice.stance,choice.special,choice.replacement)));
+            if(!choice.error.isEmpty())label(panel,choice.error,11,paper);
+        }
+        if(facts.nativeDuel.terminal){
+            var recovery=facts.nativeDuel.physicalRecovery;
+            if(recovery!=null&&recovery.enabled)label(panel,"原逐旬体力恢复已采用",12,paper);
+            if(recovery!=null&&recovery.adoptionAvailable)button(panel,"采用原逐旬体力恢复",true,()->confirm("采用原逐旬体力恢复","当前体力、伤病、人物、对局和随机数保持。后续完整旬按原体力+30及伤病上限恢复；已有保存不会自动采用。",()->a.executeContest(w,ignored->ContestCommand.adoptNativePhysicalRecovery(facts.state,facts.contestId,facts.revision))));
+
+            if(facts.nativeDuel.humanActorOfficerId>=0)label(panel,(facts.nativeDuel.humanActorPolicyEnabled?"原登用判定君主 · ":"旧登用判定主将 · ")+facts.nativeDuel.humanActorName,12,paper);
+            if(facts.nativeDuel.humanActorPolicyAdoptionAvailable)button(panel,"采用原人工登用君主绑定",true,()->confirm("采用原人工登用判定","后续单挑人工登用按当前势力君主判定；已核实Source0城市内登用允许零距离归队，任务保留到下一次人员结算。人物数值、部队与驻点、原对局和随机数保留；已有登用尝试或处置选择不重做。",()->a.executeContest(w,ignored->ContestCommand.adoptNativeHumanActor(facts.state,facts.contestId,facts.revision))));
+
+            if(facts.nativeDuel.recruitItemRecipientOfficerId>=0)label(panel,(facts.nativeDuel.recruitItemPolicyEnabled?"原登用宝物接收者 · ":"旧登用宝物接收者 · ")+facts.nativeDuel.recruitItemRecipientName,12,paper);
+            if(facts.nativeDuel.recruitItemPolicyAdoptionAvailable)button(panel,"采用原登用宝物归属",true,()->confirm("采用原登用宝物归属","后续合法登用时，玉玺与铜雀交给当前势力君主，其余宝物由被登用者保留。现有物品、人物、驻点和随机数不变；已作出的尝试或处置不重做。",()->a.executeContest(w,ignored->ContestCommand.adoptNativeRecruitItemRecipient(facts.state,facts.contestId,facts.revision))));
+            if(facts.nativeDuel.aiActorOfficerId>=0)label(panel,(facts.nativeDuel.aiActorPolicyEnabled?"原AI判定君主 · ":"旧AI判定主将 · ")+facts.nativeDuel.aiActorName,12,paper);
+            if(facts.nativeDuel.aiActorPolicyAdoptionAvailable)button(panel,"采用原AI势力君主绑定",true,()->confirm("采用原AI君主判定","这份存档后续的单挑自动处置改由当前势力君主判定。人物数值、原对局和随机数保留；部队驻点仍按部队绑定。已作出的处置不重选。",()->a.executeContest(w,ignored->ContestCommand.adoptNativeAiActor(facts.state,facts.contestId,facts.revision))));
+
+            if(facts.nativeDuel.loyaltyInputAdoptionAvailable){
+                label(panel,"当前保存仍保留原忠诚策略，可明确采用已核实的唯一输入解析。",12,paper);
+                button(panel,"采用已核实的忠诚输入解析",true,()->confirm("采用忠诚输入解析","显示忠诚低于100时，按原显示函数求唯一原始输入；显示100仍保留未知。人物数值、原对局和随机数不改。这不恢复未记录的PC季度变化。",()->a.executeContest(w,ignored->ContestCommand.adoptNativeLoyaltyInput(facts.state,facts.contestId,facts.revision))));
+            }else if(facts.nativeDuel.loyaltyInputEnabled)label(panel,"已采用忠诚唯一输入解析；显示100的未知原始值仍不推定。",12,paper);
+            var inheritance=facts.nativeDuel.inheritance;
+            if(inheritance!=null){
+                label(panel,inheritance.selectedHeir<0?"选择本势力继承人":"继承人已选择",16,gold);
+                label(panel,"确认前保留完整终局，可保存后继续选择。",12,paper);
+                for(var heir:inheritance.candidates){
+                    if(inheritance.selectedHeir<0)button(panel,"继承 · "+heir.name,heir.enabled(),()->confirm("立"+heir.name+"为君主","继承人官职、太守、军团及忠诚按当前规则结算；确认后执行一次。",()->a.executeContest(w,ignored->ContestCommand.nativeDuelHeir(facts.state,facts.contestId,facts.revision,heir.officerId))));
+                    else if(heir.officerId==inheritance.selectedHeir)label(panel,"待登位 · "+heir.name,15,paper);
+                    if(inheritance.selectedHeir<0&&!heir.error.isEmpty())label(panel,heir.name+"："+heir.error,11,paper);
+                }
+            }
+            String[] names={"登用","拘留","释放","处斩"};
+            for(var row:facts.nativeDuel.disposition){
+                label(panel,row.name+" · "+(row.choice==4?"尚未选择":names[row.choice]),15,gold);
+                if(!row.error.isEmpty())label(panel,row.error,11,paper);
+                for(int action=0;action<4;action++){final int selected=action;button(panel,names[action],row.enabled(action),()->a.executeContest(w,ignored->ContestCommand.nativeDuelDisposition(facts.state,facts.contestId,facts.revision,row.officerId,selected)));if(row.choice==4&&!row.actionErrors.get(action).isEmpty())label(panel,names[action]+"："+row.actionErrors.get(action),11,paper);}
+            }
+            if(!facts.nativeDuel.settlementError.isEmpty())label(panel,facts.nativeDuel.settlementError,12,paper);
+            button(panel,facts.nativeDuel.disposition.isEmpty()?"查看战役结果":"确认处置并结算",facts.settlementAvailable,()->a.executeContest(w,ignored->ContestCommand.finishNativeDuel(facts.state,facts.contestId,facts.revision)));
+        }
     }
     private void nativeDebate(LinearLayout panel,ContestSnapshot facts){
         label(panel,"舌战 · 第"+facts.round+"合",20,gold);label(panel,facts.purpose,14,gold);label(panel,w.contests.searchOrigin()?"搜索发现→招揽→可选舌战；金费0，终局一次结算搜索行动力20。原认输、关系特例及完整开局仍待核实。":"原卡牌/数值/登用终局；触发准入、起始费用、认输和外交仍待原链核实",12,paper);

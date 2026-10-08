@@ -1,0 +1,24 @@
+# 原反击与人控候补准入（WIP）
+
+共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059、完成HEAD89534120e46e488136db0e661270757d9c4a4c50。原单挑仍未形成普通APK完成批次。
+
+原58a5e0反击：双方有效兵力至少1000；敌兵>=己兵3倍且差>=6000拒绝；己编队贡献>敌2倍拒绝；敌必须personality3/WAR>=70/physicalHP>=70。概率由原候补评分扣原489090能力后正部/5至少1，native432/660各+10且交叉人物强制100；原函数不使用RNG。独立原180组包含兵力阈值、HP69/70/100、性格2/3与特殊人物，通过全World/RNG纯性，receiptSHA96e600c012ddff1d6a6998b13c9feee6513e0d8d31559c4b2c46bd17ec36d9f2；移植180对照通过。
+
+原58ad60循环敌三将取max反击概率，再调用一次58a8a0应战估计，以maxCounter + response*(100-maxCounter)/100夹0..100。独立原完整18组6当前来源候补×3seed、原C9CA/人物/关系/held/RNG全调用保留，receiptSHA6f2eeff85c2ec84c5269b2d9f911904804be3111a5b732c16eb8ec71ce969ea6。native466确实消耗原RNG23→3031271500，其余所示候补不消耗，不能把“预览”当全局RNG纯getter。
+
+当前完整绑定检查v1发现native558对敌native116反击原6、项目7；原489090实际读+172，为INT，不是POL（4890a0才+173）。静态v14SHA15eb12b5f32e4626d0f6b50097a89016e2e53fe02f9fe46b307341db2e8d1fa5证明。已修currentCounter用intelligence；原counter-probability-v1.json的currentOpponent.politics字段名误标INT，数值/原getter/原TSV不变，保留原receipt不改字节，新工具已改正确字段名。
+
+修正INT后反击匹配，但完整人控候补native558仍有原50/当前49差异（RNG一致）；v2失败保留。原逐阶段observer版本正在取证，不能调golden/硬加1/降低阈值掩盖。当前humanSelection不能宣称整体已通过，更不能启用normalPDU或移用军事54验收。
+
+仍未闭合：完整原反击/应战/人控picker候补差异、原普通行动/费用、ruler/adviser/死亡/登用/释放与原37回城任务、多旬/保存/冷重开/实际APK。框架保存/API/B页已有，但没有新局能力启用器，普通challenge继续继承工程流程。未写A/桥/Unity/JNI；此WIP不作为完成批次交付。
+
+逐阶段原observerv2完成，receiptSHAc9ed7bca4da97913a527c6a0e61e57c26cc56ce5cdd48dd47c3225cbf3df214c。原native558的counter6、response47、factor100、最终50，当前已声明正常剑兵的factor99/response46/最终49。差异来自夹具：原context afterHex兵装+48/船+50为−1，脚本v1/v2没调用4962b0便496f40，496160取−1，496570按无效兵装返回零缓存。不能把v1/v2零cache称已校验普通部队状态。v3新增原4962b0(equipment0,ship0,troops5000)且记录完整当前unit bytes，重新原完整18对照正在运行；没有硬加1或更改原阈值。
+资源读入改为bounded InputStream.read循环，避免新增readNBytes方法依赖；资源字节SHA/schema不变。全16源技巧24305回归通过，Android最终编译通过；设备/ARM仍未验证。
+
+最终v3原完整18组已完成，receiptSHA227924274c58259ce1c35d91382bbc31f6f91264106ec5c92e1ec77e30453899；原当前unit bytes明确兵装0，五属性/六适性/C9CA为此前独立原32/33与30/27。native558真实剑兵最终49，native517为64，先前零缓存才50/65。currentCounter/完整currentHumanSelection18组概率与原RNG全部匹配、全World及已存双RNG纯性通过，没有改规则加1。v1/v2错误前提与原全输出保留。
+反击扣INT修复和正确完整候补链已编译；资源bounded读入全16源24305回归通过；最终Android编译36s成功（没有构建/安装新APK）。本轮原取证与主机测试/编译均exit0/已终止，无待确认等待。
+守卫：4忽略JNI原SHA一致；旧609dirty默认status-z31896bytes SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0。未编辑A/冻结桥/Unity，未交此WIP为完成批次，当前HEAD89534120e46e488136db0e661270757d9c4a4c50不变。
+- out/session-b/duel-query-check/counter-probability.log SHA 2dcc2de2516f0570731ddc3fffffa772b799756ef3dae4aab05dcfe937798a0c
+- out/session-b/duel-query-check/human-selection-v4.log SHA aee0b079cfbf8cb8afb360b3ea82f30de81e6bb5abc4fd87057c320a00ef67cc
+- out/session-b/duel-query-check/counter-resource-compat-source-tech.log SHA 90f5174437f12845c15e73276eea2c32b6d0e123dc44e7156fc28ebee579e117
+- out/session-b/duel-query-check/counter-resource-compat-android-compile.log SHA a7b854f63b554037fb5f37ec71126a0124816d5857da4e4a1e13f42d86378745

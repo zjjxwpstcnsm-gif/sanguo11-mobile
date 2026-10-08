@@ -90,6 +90,14 @@ final class PcScenarioOpening {
         PcDebateCampaignPolicy.initializeOpening(w);
         PcSearchPolicy.initializeOpening(w);
         PcDirectRecruitmentPolicy.initializeOpening(w);
+        PcDuelSourceFacts.initializeOpening(w,source);
+        PcDuelHealthPolicy.initializeOpening(w);
+        PcDuelRuntimeFacts.initializeOpening(w);
+        PcNativeItemPolicy.initializeOpening(w);
+        PcDuelRawLoyalty.initializeOpening(w);
+        PcRecruitmentBanPolicy.initializeOpening(w);
+        PcDuelKinship.initializeOpening(w);
+        PcSourceTechnologyPolicy.initializeOpening(w,source);
         SaveCodec.validate(w);
         w.note("安装来源候选开局："+source.identity.path+"；已导入据点/库存与人物记录，完整原事件和部分规则仍未核实。");return w;
     }

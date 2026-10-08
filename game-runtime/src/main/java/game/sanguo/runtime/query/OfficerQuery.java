@@ -100,7 +100,7 @@ public final class OfficerQuery {
             case UNAPPEARED:return "未登场 · "+w.life.life(o.id).appearance+"年"+(w.life.state(o.id)==Lifecycle.State.SOURCE_WAIT?" · 原条件未核实":"");
             case CAPTIVE:return w.government.status(o.id);
             case CONSTRUCTION:case TRANSFER:case TRANSPORT:return w.domestic.assignment(o.id);
-            case OTHER_TASK:return o.otherTask+" · 剩"+state.remainingTurns+"旬";
+            case OTHER_TASK:return w.strategy.nativeReturnPending(o.id)?state.remainingTurns==0?"归队中 · 等待人员结算":"归队中 · 剩"+state.remainingTurns+"旬":o.otherTask+" · 剩"+state.remainingTurns+"旬";
             case DEPLOYED:{World.Unit u=w.unit(o.unitId);if(u!=null&&u.march!=null)return "行军 → "+w.marches.label(u.march)+(u.march.paused.isEmpty()?"":" · 暂停");return u!=null&&u.acted?"出征 · 已行动":"出征 · 待命";}
             case UNAFFILIATED:return "在野 · 待登用";
             case UNAVAILABLE:return "不可派遣";

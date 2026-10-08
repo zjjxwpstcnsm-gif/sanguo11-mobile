@@ -1,0 +1,7 @@
+# 真实第14旬太守驻留与存档阻断
+
+实现前证据：真实连续战役第13旬sworn-escort-continuation-v2-fault.sg11正常保存；其下一完整AI/global旬返回成功，但袁胤native10/runtime10010被任命到native14/runtime20014，人物当前city16/runtime20016、行政home14、army6。完整World不能通过StrategySave，GameSession.commitTurn拒绝。
+
+原governor-admission-original.json的different_current_location完整4bca30已证明：原440home13/current14时resident=false，拒绝其原都督优先，选择native509；没有重抽RNG。当前reconcile把人物在任意己城驻留当作其行政home驻留，忽略Candidate.current，因此跨城错误任命。修复只令当前驻留位点与行政home相同，并在共享选任明确要求current==nativeSite；不移动人物、不改变任务、不修改原home，不放宽Save，也不引入新的旧档策略。没有governor策略的31–39保持原路径；已拥有该策略的存档在正常选任时修复错位。
+
+回归须使用真实13旬文件推进到14旬，经GameSession一次提交、全World/双RNG/cold，再4真实旬；旧保存原文件守卫、原1392开局选任、既有单挑/押送/旧39/API/architecture分别执行。该修复不建立全原下一旬控制器等价或普通APK证明。

@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "status": "immutable_candidate_frozen_for_A_owned_adapter",
+  "candidateOnly": true,
+  "complete": false,
+  "installed": false,
+  "nativeBatchCommitted": false,
+  "sourceHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "commonMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedFullSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "inputCount": 11247,
+  "inputBytes": 906645666,
+  "frozenReportPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen-report.json",
+  "frozenReportSha": "a8a61bd12deb88fcdc69033d801e2c2e6a12c03f8f1869a1e838ef3e7fe1b324",
+  "inputManifestSha": "522f2a37d758ae234abf1578606823789b33e6e4e721efcef23418b685399563",
+  "sourceArchive": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/candidate-source.tar.gz",
+    "sha256": "34655cdefdd0acf763edf2d6571bc1709577d9ac22af3cc6fc41fc97e010b8ef",
+    "bytes": 643522967
+  },
+  "bOverlayArchive": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/b-overlay.tar.gz",
+    "sha256": "d747461bf82d92105447b8ae7e7dba08e8ae4f8dbd9d9db29da1940b0e9b2ca4",
+    "bytes": 1751371
+  },
+  "bOverlayManifestPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/b-overlay.json",
+  "bOverlayManifestSha": "85637d49ff13ac869b3141e6a398547ebec064fbfd2103eb290fd9dd866d6b6b",
+  "bIncrementalPaths": 196,
+  "aBaselineReadOnlyMatches": {
+    "overlayBeforeOrAfter": 196,
+    "unchangedBDependencyFiles": 612,
+    "conflicts": []
+  },
+  "archiveReadback": {
+    "candidate-source.tar.gz": {
+      "files": 11247,
+      "bytes": 906645666,
+      "allShaExact": true
+    },
+    "b-overlay.tar.gz": {
+      "files": 196,
+      "bytes": 7200657,
+      "allShaExact": true
+    },
+    "candidateOnly": true,
+    "complete": false,
+    "installed": false,
+    "artifactsExact": true
+  },
+  "archiveReadbackSha": "843d963555337c5bfe8709ede934200413144a3b49e3f324abf6ff69be2bc592",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/core.jar",
+      "bytes": 12807766,
+      "sha256": "6e9ba3c121f49ced2907022e5d7d5b389481a7d3ea79a1091e367b7248d562a1"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/game-api.jar",
+      "bytes": 84606,
+      "sha256": "9f634ca25e0699a05eb13550df996ece702b134ea454b994c60792db772f20cb"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/game-runtime.jar",
+      "bytes": 72893,
+      "sha256": "131f9897bb022d949efc146ca2d19bc9768e4658c86409577cb93d5feae89401"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/app-debug.apk",
+      "bytes": 314924682,
+      "sha256": "b2257c00e8dacca195c212e1907034b170d0eceec559038f40df74065abdbebb"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/frozen/app-debug-androidTest.apk",
+      "bytes": 3040428,
+      "sha256": "64450935a7fb9e94b6a58d650af4d2f5b6807ac13b9ccebaa8f41bc817fa6104"
+    }
+  ],
+  "jarExecutableRegression": {
+    "path": "out/session-b/duel-query-check/native-candidate60-jars-regression.log",
+    "sha256": "cca34431e8032f40d1e1b3288555d4d74a2fa13c88a0d13880cb3abcc043cd50",
+    "passed": true,
+    "checks": [
+      "raw58",
+      "actual normal13",
+      "first launch536",
+      "actual format5+39",
+      "session1690",
+      "bridge"
+    ]
+  },
+  "build": {
+    "path": "out/session-b/duel-query-check/native-candidate60-build.log",
+    "sha256": "9a85b2c3a261952fba65f5e1bb46595e296bb049f401bec183dc0f0d3709fed9",
+    "tasks": 76,
+    "seconds": 163,
+    "successful": true
+  },
+  "fixedResources": {
+    "apkPinnedInputs": 168,
+    "apkFourJniExact": true,
+    "sourceJni": {
+      "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "request": {
+    "owner": "A",
+    "productionPaths": [
+      "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java"
+    ],
+    "entry": "GameSession.previewNewSourceOptions(source.identity.scenarioId)",
+    "type": "PcNewGameOptionsSnapshot",
+    "loader": "PcScenarioCatalog.load(id,player,seed,PcDuelOptions.fromMenu(life,death,difficulty))",
+    "policy": "A stages only its own immutable adapter for combination acceptance against this fixed B candidate; no active B tree or other A WIP merge; return exact base/files/before-afterSHA"
+  },
+  "limits": [
+    "No A normal source opening adapter in these APKs, no installed or ARM result",
+    "Candidate has explicit strict unknown branches; not full scenarios/effective people/contest/AP/events or31–39/custom matrix completion",
+    "Original major goal unchanged; only final completed acceptance batches delivered for final integration",
+    "A active media queue not interrupted; B does not edit A-owned files/Bridge/Unity/JNI; no sealed27/28 activation"
+  ]
+}

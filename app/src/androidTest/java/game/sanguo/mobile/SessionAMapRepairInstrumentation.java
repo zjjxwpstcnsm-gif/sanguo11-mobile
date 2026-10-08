@@ -125,8 +125,24 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         ui(()->{try{check(((World.Officer)field(image,"officer")).id==id&&(Integer)field(image,"sourceYear")==year,"actual caller officer and current year "+caller);check(((java.lang.ref.WeakReference<?>)field(image,"sourceView")).get()==visual,"actual caller uses current presentation view "+caller);PortraitMediaIdentity bound=(PortraitMediaIdentity)field(image,"sourceIdentity");check(bound!=null&&bound.officerId==identity[0].officerId&&bound.nativeId==identity[0].nativeId&&bound.sourceVariant.equals(identity[0].sourceVariant)&&bound.recordSha.equals(identity[0].recordSha)&&field(image,"original")==loader,"actual attached Drawable retains verified identity and shared original loader "+caller);}catch(Exception e){throw new IllegalStateException(e);}});
         PcPortraitCatalog catalog=(PcPortraitCatalog)field(loader,"catalog");PcPortraitCatalog.Image expectedSource=catalog.resolve(identity[0],year,0);check(expectedSource!=null,"verified original current-year asset "+caller);
         Bitmap expected;try(InputStream in=activity.getAssets().open(expectedSource.asset)){BitmapFactory.Options options=new BitmapFactory.Options();options.inScaled=false;expected=BitmapFactory.decodeStream(in,null,options);}
-        check(expected!=null&&expected.sameAs(loaded[0]),"actual caller bitmap equals complete packaged original pixels "+caller);expected.recycle();check(loader.bytes()<=16*1024*1024,"actual portrait cache stays within16MiB "+caller);
-        return new org.json.JSONObject().put("caller",caller).put("officerId",id).put("nativeId",identity[0].nativeId).put("currentName",visual.officer(id).name).put("year",year).put("sourceVariant",identity[0].sourceVariant).put("sourcePath",identity[0].sourcePath).put("sourceSha256",identity[0].sourceSha).put("recordSha256",identity[0].recordSha).put("asset",expectedSource.asset).put("pngSha256",expectedSource.pngSha).put("rgbaSha256",expectedSource.rgbaSha).put("faceId",expectedSource.face).put("fullBitmapSameAs",true).put("width",loaded[0].getWidth()).put("height",loaded[0].getHeight());
+        check(expected!=null&&expected.sameAs(loaded[0]),"actual caller bitmap equals complete packaged original pixels "+caller);
+        int[] drawnBounds={0,0};
+        ui(()->{
+            Rect bounds=new Rect(image.getBounds());int width=bounds.width(),height=bounds.height();
+            check(width>0&&height>0&&width<=1024&&height<=1024,"actual attached portrait has bounded drawable dimensions "+caller);
+            drawnBounds[0]=width;drawnBounds[1]=height;
+            Bitmap actual=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888),reference=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
+            try{
+                android.graphics.Canvas canvas=new android.graphics.Canvas(actual);canvas.translate(-bounds.left,-bounds.top);image.draw(canvas);
+                android.graphics.Paint paint=new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG|android.graphics.Paint.FILTER_BITMAP_FLAG);
+                paint.setColor(android.graphics.Color.WHITE);
+                new android.graphics.Canvas(reference).drawBitmap(expected,null,new Rect(0,0,width,height),paint);
+                check(actual.sameAs(reference),"actual attached original Drawable draws full rectangular source pixels without clip/frame "+caller);
+                check(image.getBounds().equals(bounds),"portrait drawing leaves actual caller bounds unchanged "+caller);
+            }finally{actual.recycle();reference.recycle();}
+        });
+        expected.recycle();check(loader.bytes()<=16*1024*1024,"actual portrait cache stays within16MiB "+caller);
+        return new org.json.JSONObject().put("caller",caller).put("officerId",id).put("nativeId",identity[0].nativeId).put("currentName",visual.officer(id).name).put("year",year).put("sourceVariant",identity[0].sourceVariant).put("sourcePath",identity[0].sourcePath).put("sourceSha256",identity[0].sourceSha).put("recordSha256",identity[0].recordSha).put("asset",expectedSource.asset).put("pngSha256",expectedSource.pngSha).put("rgbaSha256",expectedSource.rgbaSha).put("faceId",expectedSource.face).put("fullBitmapSameAs",true).put("attachedDrawableFullRectangleSameAs",true).put("drawnWidth",drawnBounds[0]).put("drawnHeight",drawnBounds[1]).put("drawCheckScope","Actual attached Drawable Canvas at current bounds; not Windows framebuffer/small-family/Screen PixelCopy").put("width",loaded[0].getWidth()).put("height",loaded[0].getHeight());
     }
     private TextView revealPortrait(DataTable<?> table,World.Officer officer,int nativeId)throws Exception {
         int[] position={-1};
@@ -336,6 +352,17 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
         check(Arrays.equals(expected,Files.readAllBytes(new File(original.getFilesDir(),"auto.sg11").toPath())),"normal exit auto-save exact complete Save/RNG bytes");
     }
 
+    private void explicitOpening(String sourceId)throws Exception{
+        byte[] before=capture();StateToken prior=token();
+        tap(await(v->"pc.opening.options".equals(v.getTag())));
+        var facts=game.sanguo.runtime.GameSession.previewNewSourceOptions(sourceId);
+        for(var group:facts.groups){
+            int value=group.fixedMenuValue==null?0:group.fixedMenuValue;
+            View choice=await(v->("pc.opening."+group.id+"."+value).equals(v.getTag()));
+            if(group.fixedMenuValue==null)tap(choice);else check(choice.isSelected()&&!choice.isEnabled(),"fixed original source option locked");
+        }
+        tap(await(v->"pc.opening.confirm".equals(v.getTag())));unchanged(before,prior,"explicit settings are still local draft");
+    }
     private void retired(MapHost host)throws Exception{long began=SystemClock.uptimeMillis(),deadline=began+12000;boolean[] done={false};String[] state={null};while(SystemClock.uptimeMillis()<deadline){ui(()->{try{done[0]=(Boolean)field(host,"released")&&field(host,"spatial")==null&&field(host,"world")==null&&field(host,"ground")==null;state[0]="released="+field(host,"released")+" engineClosed="+(field(host,"spatial")==null)+" worldClosed="+(field(host,"world")==null)+" groundClosed="+(field(host,"ground")==null);}catch(Exception e){throw new IllegalStateException(e);}});if(done[0])break;SystemClock.sleep(50);}check(done[0],"dismissed preview releases engine, detachedWorld and ground in "+(SystemClock.uptimeMillis()-began)+"ms "+state[0]);}
     @Override public void onStart(){Bundle result=new Bundle();try{
         output=new File(getTargetContext().getExternalFilesDir("session-a-map"),run);check(output.mkdirs(),"fresh evidence directory");ActivityManager manager=(ActivityManager)getTargetContext().getSystemService(android.content.Context.ACTIVITY_SERVICE);ActivityManager.MemoryInfo budget=new ActivityManager.MemoryInfo();manager.getMemoryInfo(budget);Files.write(new File(output,"heap-budget.txt").toPath(),("normalMiB="+manager.getMemoryClass()+" largeMiB="+manager.getLargeMemoryClass()+" actualBytes="+Runtime.getRuntime().maxMemory()+" deviceRamBytes="+budget.totalMem+" largeHeap="+((getTargetContext().getApplicationInfo().flags&android.content.pm.ApplicationInfo.FLAG_LARGE_HEAP)!=0)+"\n").getBytes("UTF-8"));activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));nav("地图");ready(host(false));sample("startup");if(!expectedStartupSha.isEmpty()){StringBuilder hash=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(capture()))hash.append(String.format(java.util.Locale.ROOT,"%02x",b&255));check(expectedStartupSha.equals(hash.toString()),"fresh process loads exact previously saved complete Save/RNG SHA "+expectedStartupSha);}
@@ -346,7 +373,7 @@ public final class SessionAMapRepairInstrumentation extends Instrumentation {
             List<Button> chips=new ArrayList<>();ui(()->{for(View root:WindowInspector.getGlobalWindowViews())if(root.hasWindowFocus())collect(root,chips);});check(!chips.isEmpty(),"normal faction chips");for(Button b:chips)check((b.getCurrentTextColor()>>>24)>0&&(b.getCurrentTextColor()&0xffffff)!=0,"faction text has opaque nonzero color "+b.getText());
             Button first=null,last=null;for(Button b:chips)if(b.isEnabled()){if(first==null)first=b;last=b;}if(allFactionPreviews)allFactionPreviews(index,preview,chips,before,prior);tap(last);tap(first);unchanged(before,prior,"faction changes "+index);shot("source-"+index+"-preview");
             for(int cycle=0;cycle<(index==begin?4:1);cycle++){tap(await(v->v instanceof Button&&"全图".contentEquals(((Button)v).getText())));closeView(preview);pan(preview);ready(preview);unchanged(before,prior,"preview gestures "+index+"/"+cycle);}
-            tap(await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("确认开局势力")));text("开始新局");long deadline=SystemClock.uptimeMillis()+120000;while(Arrays.equals(before,capture())&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(100);check(!Arrays.equals(before,capture()),"explicit new game committed "+index);retired(preview);nav("地图");MapHost current=host(false);ready(current);byte[] state=capture();StateToken currentToken=token();World saved=SaveCodec.decode(state);check(saved.scenarioId.equals(source.identity.scenarioId),"new game matches clicked exact source");
+            explicitOpening(source.identity.scenarioId);tap(await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("确认开局势力")));text("开始新局");long deadline=SystemClock.uptimeMillis()+120000;while(Arrays.equals(before,capture())&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(100);check(!Arrays.equals(before,capture()),"explicit new game committed "+index);retired(preview);nav("地图");MapHost current=host(false);ready(current);byte[] state=capture();StateToken currentToken=token();World saved=SaveCodec.decode(state);check(saved.scenarioId.equals(source.identity.scenarioId),"new game matches clicked exact source");
             for(int cycle=0;cycle<2;cycle++){normalFit();closeView(current);pan(current);ready(current);unchanged(state,currentToken,"new game gestures "+index+"/"+cycle);}
             shot("source-"+index+"-map");Files.write(new File(output,"source-"+index+".sg11").toPath(),state);nav("武将");shot("source-"+index+"-officers");if(portraitPixels)normalPortraitRows(index);unchanged(state,currentToken,"normal directory "+index);nav("地图");sample("source-"+index+"-complete");
             Bundle update=new Bundle();update.putString("stream","SESSION_A source "+index+" normal flow complete\n");sendStatus(0,update);

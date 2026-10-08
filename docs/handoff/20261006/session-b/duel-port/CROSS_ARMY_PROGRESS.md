@@ -1,0 +1,15 @@
+# 跨军团登位当前进展
+
+原完整4b78f0→4bd3b0：source0势力28，原君主403/声明有效都督440，明确输入不是AI自动选435。v4receiptSHA bacae46ed8289f0c046f23b5c5df31e178043c96445dd30216ad326b7fff997c；world85字节变化、RNG1不变、完整恢复，无numeric/presentation omission。
+
+城市/关港独立domain记录使用原GROUPS：city ROOT+1d8/stride248、gate61a8/90、port6748/90；属性读取必须另用490d00通用wrapper。v1/v2 wrapperbytes并非城市本体，不能据此声称城市不变；v3城市bytes正确但属性receiver错误，保留。v4二者分离后确认城13/16army6→5、城13governor−1→440、16仍−1。旧军团注销/名单并入第一军团，原继承者保留自身忠诚；old403降为太守2。
+
+生产PcRulerCoronation已实现当前跨军团validate/merge：复用同域归属校验，但不复用被俘合并的统一清太守规则；保留新君主所在城太守，清其余迁移城太守并明确vacancy，army6AP清0、不并入第一军团AP，当前person/site/unit连接及mergedarmies写入。选择从当前候选取得，可保留实际声明的人选；human choice生产协议仍待接入。
+
+当前896检查PASS：原670人物army、势力28原raw忠诚、原实际变化角色/当前受影响角色、87sitearmy、42城市对应变化或保存的当前未变太守、完整World/双RNG/cold。最初100/436角色失败暴露项目开局自动太守与此原加载样本差异；该差异未反向修改旧保存或被假称完整开局。42关卡偏移猜测的失败已保留并改用原getter对照。正式8tasks编译PASS；samearmy686和已有capturemerge147回归PASS。
+
+未知：人员原bit9被489e70置1，其实际玩法含义尚未核实，不映射成行动消耗；开局自动太守差异必须在完整正常PC启动语义取证中闭合；声明居民继承者样本不证明部署继承者4b21b0/任务重建。真实人控继承、无人继承势力解散、亲属/义兄弟回调及普通菜单APK未完成。
+
+当前natural crossarmy session验证在运行：先实际Government.capture435，动态AI选择440；365WAR90对403WAR25的全部seed12..63应战chance0拒绝已记录失败，不修改数值/概率。改选原势力内现存native198WAR20，对403WAR25实际chance28。声明相邻单人部队，不是普通出征或APK，后续自然结果不预设。
+
+自然crossarmy最终PASS：actualcapture435→当前AI选440→原武将198发起（真实chance28）→seed12–14原拒绝/seed15自然56合法输入胜利→处斩403→army6合并5→完整4战役旬+每输入/终局/每旬Save冷读及重复终局拒绝，147检查。没有填写终局HP/结果或修改人物值，仍属声明相邻单位而非普通出征/APK证据。

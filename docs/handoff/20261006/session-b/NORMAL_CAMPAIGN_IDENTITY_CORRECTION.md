@@ -1,0 +1,14 @@
+# 正常战役稳定ID误判纠正
+
+上轮NORMAL_DEPLOYED_DUEL.md/FIRST_LAUNCH_OPTIONS_GUARDS.json/PROGRESS中把实际军队projectID2000称作未核实或未映射NPC，仅依据编号范围，证据不足且判断错误；该说法被本后继明确撤回。不能由runtime ID范围、native数字或姓名猜连接。保留原失败日志/守卫作历史记录，不把错误说法当当前结论。
+
+针对同一实际25旬全World SHA8bafff0e2fdcd94aa02c418b447547c602497f904512ff074594c5b69cb9194c，纯Saved PcDuelSourceFacts与PcContestProfiles重核，无位置/资源/RNG改写：
+- runtime2000 曹操，saved native343，source recordSHA和profile recordSHA均edac14dab5d32640f1221b10ec2f4bb475504f273d6d5a3609ff7397404dad06；当前owner29/LIFE_ACTIVE。
+- runtime2003 夏侯淵，saved native78，两份recordSHA均b0cdb889262248062d772e654d2a5be97ee9fbbb79774eda768ade641c827850；当前owner29/LIFE_ACTIVE，真实AI军队33主将。
+- 其他熟知人物也使用旧稳定runtime1000/2000/3000域并有确切原native/SHA连接，不能按是否>=10000区分原人物/NPC。日志normal-campaign-probe-v2列出全部低稳定ID与原profile/SHA。
+
+第25旬我方unit1已自然被击破；其何儀/張梁/波才都正常回到宛20016，当前非俘虏/无返程待办/闲置，不恢复原军队。原城平原20004目前47547兵/77488粮/10464金/6000槍和6000弩（戟0），裴元紹10503/native503当前officer/60武力/闲置。后继在同一25旬原字节与双RNG上明确正常新编队偏好：裴元紹单将槍3000/粮30000/金1000出征；不搬人、伪造兵/AP、逆转败战或改原应战率。上轮三将剑13000连续拒绝不是原规则错误，不能据此放宽规则。
+
+本纯检查两次读回完整World/双RNG字节不变。这一证据说明这些具体人物已有权威身份连接，不能扩大为全部古代/事件NPC激活或670全有效覆盖、PC实际AI/开局事件证明。现有目标预检可能缺少全编队来源准入仍是代码审查待验证项，不能因本错误推断盲改其规则。
+
+续行第一次部署helper误把equipment数组下标2当戟，STOCK_INSUFFICIENT纯预览正确拒绝，v3日志保留。World.Weapon枚举实为SPEAR/HALBERD/CROSSBOW/CAVALRY/SWORD，后继按正确6000槍库存选SPEAR3000，不加兵装、不改生产或规则；25旬原存档SHA保持。

@@ -47,7 +47,7 @@ def main():
    elif p in guard and amap.get(p,{}).get('sha256')!=guard[p]:retained.append({'path':p,'owner':owners.get(p,'A-or-shared'),'aSha256':amap.get(p,{}).get('sha256'),'bFrozenSha256':guard[p]})
   assert seen==set(bmap)
  # Original shared serialization/Unity/root Gradle stay in A; B must match them.
- forbidden=['game-runtime/src/main/java/game/sanguo/runtime/AndroidGameBridge.java','build.gradle','settings.gradle','gradle.properties']
+ forbidden=['app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java','build.gradle','settings.gradle','gradle.properties']
  for p in forbidden:
   if p in bmap and p in amap:assert bmap[p]['sha256']==amap[p]['sha256'],('Frozen shared conflict',p)
  for p in bmap:

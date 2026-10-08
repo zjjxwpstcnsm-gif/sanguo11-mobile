@@ -236,6 +236,8 @@ public final class Domestic {
         if(!lost.isEmpty())w.note(c.name+"战乱损毁内政设施"+lost.size()+"座："+String.join("、",lost));
         return lost;
     }
+    public int transferActionCost(int officer){return w.cityActionCost(w.officer(officer));}
+    public String transferError(int source,int target,int officer){return dispatchError(source,target,officer,new int[0],false,0,0,0,new int[4],false);}
     public World.Result transfer(int source,int target,int officer){w.reports.prepare();return dispatch(source,target,officer,new int[0],false,0,0,0,new int[4],false,false);}
     public World.Result transport(int source,int target,int officer,int gold,int food,int troops,int[] equipment){w.reports.prepare();return transport(source,target,officer,new int[0],gold,food,troops,equipment,false,false);}
     public World.Result transportSea(int source,int target,int officer,int gold,int food,int troops,int[] equipment){w.reports.prepare();return transport(source,target,officer,new int[0],gold,food,troops,equipment,true,false);}
@@ -303,7 +305,7 @@ public final class Domestic {
         // report only when continuing in memory, diverging from save/load.
         if(ships!=null)for(int i=0;i<2;i++){mission.cargoShips[i]=ships[i];c.ships[i]-=ships[i];}
         for(int id:mission.crew()){World.Officer member=w.officer(id);w.strategy.releaseGovernor(id);member.cityId=-1;member.acted=true;}
-        missions.add(mission);
+        PcGovernorPolicy.departed(w,c);missions.add(mission);
         return w.success(o.name+(cargo?"运送资源":"调动")+"前往"+d.name+(returnOfficers?"；卸货后人员返程":""));
     }
     /** Read-only forecast; numbers are the current command's actual limits, never silent clamping. */

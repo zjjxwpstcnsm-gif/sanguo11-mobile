@@ -1,0 +1,29 @@
+// Sequential frozen A input only. Does not edit either canonical checkout.
+import groovy.json.JsonSlurper
+import java.security.MessageDigest
+
+gradle.beforeProject { project ->
+ project.plugins.withId('com.android.application') {
+  project.extensions.getByName('androidComponents').finalizeDsl { android ->
+   def stage = new File(project.rootDir, 'out/session-b/readonly-opening-dependencies61')
+   def manifestFile = new File(stage, 'manifest.json')
+   if (!manifestFile.isFile()) throw new GradleException('Frozen completed A dependency manifest is required')
+   def manifest = new JsonSlurper().parse(manifestFile)
+   if (manifest.owner != 'A' || !manifest.completeDependencyChainVerified)
+    throw new GradleException('A completed dependency chain has not been verified')
+   manifest.java.each { row ->
+    if (!row.originalPath.startsWith('app/src/main/java/game/sanguo/mobile/') || row.originalPath.contains('..'))
+     throw new GradleException('Invalid A override path')
+    def file = new File(stage, row.stagedPath)
+    if (!file.isFile() || MessageDigest.getInstance('SHA-256').digest(file.bytes).encodeHex().toString() != row.sha256)
+     throw new GradleException('Frozen A override SHA differs: ' + row.originalPath)
+    android.sourceSets.main.java.exclude(row.originalPath.substring('app/src/main/java/'.length()))
+    def priorGenerated = new File(project.rootDir, 'out/session-b/readonly-theme-dependencies/java/' + new File(row.originalPath).name)
+    if (priorGenerated.isFile()) android.sourceSets.main.java.exclude { entry -> entry.file.canonicalPath == priorGenerated.canonicalPath }
+   }
+   // Flat filenames keep per-path exclusions on canonical package folders only.
+   android.sourceSets.main.java.srcDir(new File(stage, 'java'))
+   android.defaultConfig.testInstrumentationRunner = 'game.sanguo.mobile.SessionBNativeDuelInstrumentation'
+  }
+ }
+}

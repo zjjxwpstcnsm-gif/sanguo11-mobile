@@ -27,7 +27,7 @@ final class DomesticUi {
         activity.pickOnMap("设施开发 · 选择开发地",c.hex,sites,h->{activity.cancelMapPick();BuildPicker.open(activity,w,c,h);});
     }
 
-    void transfer(World.City c){destination(c.owner,c.id,d->officer(c,o->confirm("人员调动",o.name+"："+c.name+" → "+d.name+"\n"+w.personnel.description(c.id,d.id)+"\n行动力10；在途期间不可执行其他命令。","出发",()->apply.execute(w,()->w.domestic.transfer(c.id,d.id,o.id)))));}
+    void transfer(World.City c){destination(c.owner,c.id,d->DataTable.choose(activity,w,"人员调动",w.idle(c),o->{String error=w.domestic.transferError(c.id,d.id,o.id);return error==null?"行动力"+w.domestic.transferActionCost(o.id):error;},o->{String error=w.domestic.transferError(c.id,d.id,o.id);if(error!=null){message("无法调动",error);return;}confirm("人员调动",o.name+"："+c.name+" → "+d.name+"\n"+w.personnel.description(c.id,d.id)+"\n本次行动力"+w.domestic.transferActionCost(o.id)+"；在途期间不可执行其他命令。","出发",()->apply.execute(w,()->w.domestic.transfer(c.id,d.id,o.id)));},null));}
     void transport(World.City c){destination(c.owner,c.id,d->cargo(c,d,false));}
     void transportSea(World.City c){destination(c.owner,c.id,d->cargo(c,d,true));}
     void restoreDraft(Bundle draft){World.City c=w.city(draft.getInt("city")),d=w.city(draft.getInt("target"));if(c==null||d==null||c.owner!=w.player||d.owner!=w.player){activity.closeForm();return;}cargo(c,d,draft.getBoolean("sea"));}

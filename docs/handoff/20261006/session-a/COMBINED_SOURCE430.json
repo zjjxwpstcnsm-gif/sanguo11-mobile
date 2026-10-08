@@ -1,0 +1,69 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "snapshotCommit": "f2339b23b4cb0529078a525591aa25563a85a7be",
+  "completedBProduction": "cdd7f949",
+  "aOpeningAdapter": "OPENING_ADAPTER404.patch",
+  "sourceApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk",
+      "sha256": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+      "bytes": 315088059
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/app-debug-androidTest.apk",
+      "sha256": "26801d2fd1e67b4704b8aa2b822f0e45699d05e0f719935fcc823862260ba8df",
+      "bytes": 3151468
+    }
+  ],
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-source429/sanguo11-mobile-combined-source.tar",
+  "archiveBytes": 945305600,
+  "archiveSha256": "2ca00271c31e6824983ee6b83a24f7c306e1a7473e9f6e3186cc77fb5b2c1618",
+  "sourceFiles": 12159,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/combined-source429/source-files.json",
+  "fileManifestSha256": "9d5b34d2f03c693e52151eab08ba0389639a8131b9018b1054ca7c6e82f7fd58",
+  "everyTarMemberShaAndModeVerified": true,
+  "independentInodes": true,
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "bytes": 121016,
+      "mode": 420
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "bytes": 7387104,
+      "mode": 420
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "bytes": 108856,
+      "mode": 420
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "bytes": 7320976,
+      "mode": 420
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "bytes": 41192,
+      "mode": 493
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "bytes": 40128,
+      "mode": 493
+    }
+  ],
+  "fixedBuildInputs": 168,
+  "containsBuildSdkCachesOrDeviceBackups": false,
+  "actualCombinedFireOutcome": true,
+  "scope": "Complete immutable candidate exact ce83/268 game/test source, completed B27 production/resources and A originals/new2JNI plus current reviewed A tools/docs. Whole archive and every member/mode readback. Runtime SOURCE_REVISION metadata b8 is not the full source commit; outside-Git builds may change APK digest. Frozen original4 unchanged; final shared serialization/Unity compatibility still not expanded. Current first-source0 performance419/425 remainsFAIL; actual options420 limitedPASS;428 outcome separate. No B WIP or B28 later tests automatically imported. Full source delivery is not whole-goal, ARM, full media, source pixel or all-rule acceptance.",
+  "wholeGoalComplete": false
+}

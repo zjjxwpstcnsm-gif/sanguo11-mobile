@@ -1,0 +1,19 @@
+# 人工登用判定者：原势力君主，r17候选
+
+原4b2380中4b2653读取collector+4，4b2667调用4afd60(target,collector.actor,mode,0)。原collector由4b2820借4ad960解析force君主构建，与部队主将getter495a40和manager活动者独立。EXE SHA30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb；原4b2380完整1120字节SHAc33c81f08e4fb81a0cd65a00058de1a592c8cecadc9b0efbb1aa3b8160dffff0，原caller源报告5ca7aa606c8869c098729afa1ebcfcf97127920baf38281ee7d0030d46edc205。
+
+原v1切人控在战前改变了控制输入与自然结果，没有触达人控处分，不能使用。v2/v3保持原自然战斗，仅终局观察前声明人控force2；原4b2380收到actor365，但原UI布局/运行10M/50M预算结束。v4声明68e610 UI创建与572840标题省略、4d7d50合法菜单输入0，原掩码15/原4b0140/4b01b0/4afd60/4add50不跳过：实际4afd60实参target558/actor365/mode1。随后提示UI在443976写2000ac失败，原完整回调仍失败；失败receipt SHA9c2db04c806c15b672785ed015b54b4207c7522890b27f2ba6275fd2fd8d3385只支持实参，不支持原GUI或完整后续回调。全部旧失败保留，不删日志或改原概率/RNG。
+
+实际r12普通玩家胜利terminal5e2730…角色：player28张角，unit16主将/上阵10503/native503裴元绍，当前君主10403/native403张角。因此已有人工nativeDuelDisposition使用own.officerId确有原实参差异，不能借r16 AI修复声称人工也闭合。
+
+独立pc-duel-human-force-ruler-v1仅明确四参数新局或正常旧终局主动采用；不自动升级既有PDU3/AI/忠诚/能力/伤病政策。已尝试登用导致mask减少或已经选择处置时不得采用/重抽；未触发旧尝试时采用只写receipt与协议revision，人物、单位、驻点、原数值模型/双RNG保持。AI规则标记独立不偷换，人工判定当前势力君主。新标记当前 namespace28→29，32上限保持。
+
+工具/源取证不替代新正常APK，须原真实r12胜利存档普通读取、两modal取消/确认/双击一次、人工原登用成功或失败、合法后继拘留/释放/处刑、保存冷续行/多旬/最终所有用户SHA恢复。物品类别6/7的接收者与人工完整行政回调有另外原线索，未凭概率判定者推定全部物品/驻点相同，仍需原对照；本批先修复实际有证据的人工概率实参。
+
+同城归队原对照v5 receipt SHA3411fb5aea75ceea7bf5a5cea820e15008e00db60e224bd161c6f5d6077fc8bb。声明Source0 unit1/native558在原CITY8地域，先断言原47a9b0==8，再完整4a8440：army1→0、home21→8、current88(unit1)→8、task-1→37、duration0；598630/59a4b0/599cf0第一次原人员结算后task-1/duration0/current8。原概率/菜单未替换，原3MiB与RNG最终恢复；此对照不是普通PC菜单验收。v1错误army字段假设，v2未部署，v3/v4坐标转置导致实际origin82/parent21，均保留，不能用作同城证明。原47a950按x*200+y读取SHEX，v5工具修正并原getter断言。
+
+原生产validateReturn把duration<=0全部拒绝，实际r12玩家胜利winner16/home11/origin11因此登用按钮不可用。仅新显式人工策略且Source0/PDU3/PGO3、CITY0..41、origin==home放行duration0；未知地域、同父级关港、旧保存策略仍拒绝。PDR1原零时间行读回/下一人员结算能力已存在，不变保存布局。新人工标记额外绑定同城原receipt；普通采用modal明确披露此兼容策略，不自动追填旧档。
+
+Host实际r12原terminal typed续行v2/v3：显式人工+忠诚输入后原判定自然失败，choicePENDING/mask15→14，继而拘留/一次性结算与完整保存冷读回通过16项；没有为了成功重抽。新同城直接原回调测试v3失败因MapJson限32位，而源实参有unsigned值；v4完成显式unsigned-to-int数据解析后发现测试误用无PDU3的三参数来源，保留失败。v5使用明确四参数PDU3并移除人工标记构造旧策略缺失边界，随后主动采用，不作为实际菜单流程。
+
+r17实际APK普通胜利档读取、两策略取消/双击一次、保存/force-stop冷重开、原登用按钮及自然失败mask14、完整保存/读取都通过。但新测试在菜单顶部用text等待底部“继续当前对局”，30秒visible timeout，当前APK整体验收FAIL，不把部分通过算整段通过。已查看原failed.png确为菜单顶部，A正式文件不动；15内部772外部全部SHA与完整path-set恢复，无遗留新增文件，5582锁释放。r18仅将这处改用既有pageButton滚动可见后真实触控，规则/JAR增量不改，独立配对包重新构建安装，不移用r17成绩。原静态读collector+4的确切指令为4b2653（纠正前文4b264d附近地址简称）；原receipt/hash不变。

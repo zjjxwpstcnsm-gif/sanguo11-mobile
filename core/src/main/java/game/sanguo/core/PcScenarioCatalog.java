@@ -65,5 +65,10 @@ public final class PcScenarioCatalog {
     private static byte[] readBytes(InputStream in,int max)throws IOException{ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] buf=new byte[8192];int n;while((n=in.read(buf))!=-1){if(bytes.size()+n>max)throw new IOException("PC剧本目录过大");bytes.write(buf,0,n);}return bytes.toByteArray();}
     public static boolean contains(String id)throws IOException{for(Source s:all())if(s.identity.scenarioId.equals(id))return true;return false;}
     public static World load(String id,int player,long seed)throws IOException{for(Source s:all())if(s.identity.scenarioId.equals(id))return PcScenarioOpening.create(read(s),player,seed);throw new IOException("PC剧本来源不存在");}
+    /** Explicit caller-selected new source strategy; existing load/old saves retain their behavior. */
+    public static World load(String id,int player,long seed,PcDuelOptions options)throws IOException{World w=load(id,player,seed);PcDuelOptions effective=PcSourceOpeningOptions.initialize(w,options);PcDuelCampaignPolicy.initializeOpening(w,effective);PcGovernorPolicy.initializeCurrentArmies(w);
+        // Explicit opt-in deterministic native stream. PC startup RNG remains
+        // unverified; existing three-argument source worlds keep their seed.
+        PcNativeDebatePolicy.setSeed(w,(int)seed);return w;}
     public static World preview(String id)throws IOException{for(Source s:all())if(s.identity.scenarioId.equals(id))return PcScenarioOpening.create(read(s),-1,0);throw new IOException("PC剧本来源不存在");}
 }

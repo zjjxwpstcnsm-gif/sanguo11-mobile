@@ -1,0 +1,78 @@
+{
+  "boundedBatchPassed": true,
+  "completeGoal": false,
+  "commonMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "latestCompleteMain": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "branch": "codex/rules-content-contest-repair",
+  "cwd": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile",
+  "frozenReport": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/frozen-report.json",
+  "sourceArchive": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/combined-source.tar.gz",
+    "sha256": "8fc2be03e5fd6896585e795bb669f689634d0a2b8c3c0552626fef6449fbcfde",
+    "bytes": 642825212
+  },
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/core.jar",
+      "bytes": 12812391,
+      "sha256": "c20412abf13f2f663708b97b1174182f478994171d0da4c0d15e97950fc9a63c"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/game-api.jar",
+      "bytes": 84893,
+      "sha256": "36dda79f955c70d0701def503ef3e64e66abdc2da186f99fc24fc8234e20079f"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/game-runtime.jar",
+      "bytes": 73202,
+      "sha256": "cae6af611364540d8cf26ad18db7315a8dd0ad87f29397001c3f59a203779637"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/app-debug.apk",
+      "bytes": 315005152,
+      "sha256": "dc78c38c30b13c3295e731727714826fac330bc57f0fb35ebc2d2316cbbcd276"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r15/app-debug-androidTest.apk",
+      "bytes": 3053856,
+      "sha256": "de2caea3ba729c44d072ec5d2d45395aa16f0f766a1ca58a9ec5c3b1643e239e"
+    }
+  ],
+  "resultsPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r15-defeat-acceptance-v1/results.json",
+  "resultsSha256": "804c59cac45f9abd6300d2a8cd6a6897542820ee4051669050e28b6d1f7194ca",
+  "actualNormal": true,
+  "actualCold": true,
+  "actualFinalCold": true,
+  "userFileRestoration": {
+    "internal": {
+      "originalFiles": 15,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "preservedAdditionalFiles": []
+    },
+    "external": {
+      "originalFiles": 772,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "preservedAdditionalFiles": []
+    }
+  },
+  "candidateProductionPatchSha256": "c0dea5c86541eea02cbb7a437976339f634776284083d84f2f533fdc3b523b5e",
+  "jniAndFixedResources": "168 resources and original4 plus completed A2 JNI exact",
+  "humanLoss": {
+    "winner": 1,
+    "round": 24,
+    "frames": 415,
+    "originalHumanInputs": 79,
+    "explicitAdoptionProtocolInput": 1,
+    "activeWinnerNative": 555,
+    "unitLeaderAndCurrentAiDispositionActorNative": 189
+  },
+  "unknowns": [
+    "original AI caller actor versus active fighter remains to compare",
+    "raw100 ambiguous and ownership change remain explicit errors",
+    "original quarterly loyalty mutation not verified",
+    "all16 source/full duel and debate/old31-39/custom/ARM incomplete",
+    "viewed screenshots remain A 3D recovery page; no arena/3D acceptance"
+  ]
+}

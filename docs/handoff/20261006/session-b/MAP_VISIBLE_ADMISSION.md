@@ -1,0 +1,12 @@
+# 普通地图实际就绪准入
+
+已直接查看r8真实输入失败截图：目标仍被“正在准备3D地图”遮罩覆盖。此前B pose只等current host/spatial/snapshot存在，虽然避免了已退休host和null崩溃，却跳过真实渲染及遮罩消失边界。故该失败不能推为规则拒绝或Main/MapHost事件错误。
+
+按A只读248契约，在自有SessionBFieldworksInstrumentation.pose补充：当前host attached/shown/enabled/windowFocus、view未释放、loadingCurtain为空、loadingCovered为false、无可见loading/failure、outputVerified、renderedFrames>2、mesh pending0、assetSyncPending false、assetWork.pending0。对同current view只设置一次呈现相机，等待相机后至少两个真实frame；host退休则重新观察。等待恢复为原120秒上限，每30秒写实际状态；允许一次实际可见“重试3D地图”，不手动清遮罩、不设就绪标志、不直接调用onTile或规则移动。全World/全部RNG/完整StateToken在准入前后须相同。
+
+这只修复B正常指针验收的准入缺口；当前军建r9已安装测试字节和完整继承源不变，所有既有失败与冻结产物保留。新测试尚未构建APK或实际运行，不能宣称单挑Android终局完成。精确来源与测试SHA见同名JSON。
+
+独立javac已用当前r9完整A生产class/SDK35/冻结core-api-runtime编译B base与Native runner成功；这是编译验证，尚无新安装流程通过。
+
+
+61-r10真实后继进展：新game95b971dd…/test70b23788…完整15/772备份+安装读回SHA，原c9d21998第9旬实际Android档经普通slot3读取精确恢复，裴元紹503返回濮陽后13000SWORD/40000food/1000gold普通出征unit16/双击扣一次。正常Retry后此门实际观察focus=true/curtain=false/covered=false/overlay=false/outputVerified=true/renderedFrames4/poseFrame0/meshes0/syncfalse/assets0，原106,120同像素第一次实际pointer便到真实确认任务，完整World/RNG/Token预览纯性通过，正式行军与AI战役继续进行。撤销要求A修输入链；不把旧r8早期遮罩点击当产品事件错误。尚未单挑terminal/cold/final用户restore，不能完整通过。

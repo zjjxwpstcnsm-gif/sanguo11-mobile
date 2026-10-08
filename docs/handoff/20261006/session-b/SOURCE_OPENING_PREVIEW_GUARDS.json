@@ -1,0 +1,67 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "complete": false,
+  "committedNativeBatch": false,
+  "currentApk": null,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java": "28d546b0c48a6a8cf1c3db60010279a9f14b2c4866e57b22c0b48fb93819d94f",
+    "game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+    "game-api/src/main/java/game/sanguo/api/GameApi.java": "dda25b05b41af2083e99cfc19be23deea61e3bf1aa4034a9425891a9d5b1b5b6",
+    "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java": "49266f3da09dc0a191132dd6ddd2e81c8d30ccffdec51e786029db2b5d245da8",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java": "17b52c7ab2cccc9efa5ba241c2a3f7932080ad49fa8016c4dc07342e4dd23fb2",
+    "game-runtime/src/test/java/game/sanguo/core/PcSourceOpeningPreviewTest.java": "b3490426c718c216ac41dd9b544e012a7716997489eeec1d585fccaaa29bbf00",
+    "tools/content/session_b_pc_newgame_constraint_callback.py": "f4f53130f21406adc437b71c4882ee7996433b55b329203cc4b636109800952f",
+    "tools/content/session_b_pc_newgame_options_source.py": "0ec4e20397730d023050285a3612429c6c312586254e0a7734113b55355bbfb9",
+    "out/session-b/newgame-options-source-v13.json": "bffc6554a41278728e9a542930bb62633a333476f068239e73ac319160257366",
+    "out/session-b/newgame-constraints-source7-v1.json": "157d3641501f3eb0b5cc28235168b62b9543fb2e1a8b607547b797d88dc95a8f",
+    "out/session-b/duel-query-check/source-opening-preview-compile-v1.log": "cbe31c8f139fc2d7cd10c64f7f6ce6399dc1bc8106bb29ab402bc2de79b7f855",
+    "out/session-b/duel-query-check/source-opening-preview-v1.log": "b99a420640ecb34142a00f860a146ea1d5fba46a18b7e9370afb430a82d8eb0e",
+    "out/session-b/duel-query-check/source-opening-preview-regression-v1.log": "f198652869b187028ee7df843b74ef3bc98a196be730627ae213ddb7c234d5ed"
+  },
+  "beforeConfirmed": {
+    "core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java": "a16bfff7eea5c363287a7352466e431a360f6185613aa0b14c089f276f9b66cc",
+    "game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java": "dca1fd1218f862979747dc7a997230893dbcab6020e4ed94f4d527374c6ab431",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java": "7380253d853811ca815e5f9baf1bc57469e96c4da1bd92076b197c2b3d8d1372"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": {
+    "originalFullSource7Constraints": 9,
+    "currentActualFormat5ToAll16TargetPreview": 151,
+    "currentOptionsFullWorldSave": 439,
+    "currentGameSession": 1690,
+    "actualFormat5Genuine39Canonical": "PASS pre-existing gzipOS/CRC delta retained",
+    "currentBridge": "PASS",
+    "compile": "28 tasks/32s PASS",
+    "architecture": "PASS",
+    "fixedInputs": 168
+  },
+  "api": "GameApi.pcOpeningOptions(scenarioId) with current token/target id/original flag; savedValue null; sourcefixed life2 distinct from default; zero World creation/RNG/policy writes",
+  "limits": [
+    "Original full5593e0 base ctor/full544900 draft constraints but empty control tree; actual child button disabling/GUI pixels/defaults not proven",
+    "Extra21c/220/230 enforced by original helper are recorded but not blindly mapped into further production rules",
+    "A selected-source picker dialog/normal newgame/Native whole batch/sourcecommit/current APK/old31-39 fullmatrix/ARM/U01/full goal incomplete",
+    "A preparation only; no WIP copy/integration/compilation"
+  ],
+  "ownJobs": "all current original/compile/tests/guards terminal"
+}

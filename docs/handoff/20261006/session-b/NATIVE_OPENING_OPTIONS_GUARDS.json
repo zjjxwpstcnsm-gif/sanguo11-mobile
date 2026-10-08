@@ -1,0 +1,110 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "branch": "codex/rules-content-contest-repair",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "complete": false,
+  "committedNativeBatch": false,
+  "currentApk": null,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelMenuOptions.java": "9b4a6f2458454e62812ff4fb22f1ec421581f288ad6dbd67568368db124d4369",
+    "core/src/main/java/game/sanguo/core/PcDuelOptions.java": "444fce16bc89d70ea6ace76aa73fee1991d3f322f9335cfb64838b40af6faa8b",
+    "core/src/main/java/game/sanguo/core/PcDuelKernel.java": "5b0415bae5cdeb02ca46f34349429598f033ba230aa699e77c9fd4a5b3e79b84",
+    "core/src/main/resources/pc-duel/newgame-options.tsv": "9f3378a20f400498c5660dc1f7ea8641600b24054ae4975e31ebeef4fb11a424",
+    "game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java": "6b2f16ee247b1a53758bce1c7bb96914a45e21f7c5c95f05fb8a3cc1d36e737a",
+    "game-api/src/main/java/game/sanguo/api/GameApi.java": "230eec871922d4152fb84efdd4917059a242627b51c1ee77b3d64cfd6d7c4533",
+    "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java": "1d2fed2251273facd40e4cfbd03976ed34a6d06a30bcbcab398e5b46b9f35891",
+    "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java": "39935d982d3c06cf9010b0326698f4ef97e48bea19aa49252c5c586a20c3fd6d",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java": "65640845e45d0bccdc209b6a60a75b778bd7b129c900237cc4f1275a0dacc6f3",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java": "f81bbef6c7e4500c5f897a0adea962c3b8292adb179c97d631b1a60e6b8af835",
+    "game-runtime/src/test/java/game/sanguo/core/PcOpeningOptionsSessionTest.java": "af62e55fe134daa96037dba3d620ed836a5ffd9633f857fd8dc0cff7085c5d39",
+    "app/src/main/java/game/sanguo/mobile/ContestUi.java": "cd45c1c33ebb35fff4710f5c4f7be66a9f69931264872fe245deb8783538b6a3",
+    "tools/content/session_b_pc_newgame_options_source.py": "2a89ef217845c8cb465befc3e312c0b9c191fdb9b298c6e77d958d93a2f6302c",
+    "tools/content/session_b_pc_newgame_option_callback.py": "dc6131e94f9fe75bbbf04563da008aff3cf8aa6d3b2be0e4d756e387661af057",
+    "tools/content/session_b_pack_newgame_options.py": "046ff7665e63a74612e6b267f8b52a42b6c6088b4bfe8d2ca285fa6ddbfd8e3f",
+    "out/session-b/newgame-options-source-v8.json": "698b64900772c6def7ede4baf18f25e64dd78a5674f031dc45bceefbc0185061",
+    "out/session-b/newgame-option-callback-source0-v3.json": "ec3aa4c89e4edd0a78f4b7c92031e09ff0f46036f3a52c51034c18f0323539fc",
+    "out/session-b/duel-query-check/newgame-options-compile-v1.log": "671c520ed157f61ef81a3288c8574bc53dd1b6d2bb06ff77660568c51390ed66",
+    "out/session-b/duel-query-check/newgame-options-session-v1.log": "b17347d925da1624da950aa4e1d4b2debfaddf1b54fbc075702e595f49101493",
+    "out/session-b/duel-query-check/newgame-options-regression-v1.log": "c3c6d76ee1b2471f66a0784665d9be67e5c671068028464c5ec4a68936f902d5",
+    "out/session-b/duel-query-check/newgame-options-bridge-v1.log": "37a0531d5e030dcc834ccb7e44a924e5853bdaa5cff1f43a55cf073cac8aba0d",
+    "out/session-b/duel-query-check/newgame-options-architecture-v1.log": "ed6121390c876c0455e1b190692157f579eeac9831e806f5ab8022f20ccabc78"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": {
+    "originalCallbackMatrix": 27,
+    "currentMenuChoiceFullWorldQuerySave": 439,
+    "currentGameSession": 1690,
+    "actualFormat5AndGenuine39Canonical": "PASS with pre-existing gzipOS/CRC delta retained",
+    "currentBridge": "PASS correct runtime.bridge class; initial wrong-package invocation retained as failure",
+    "architecture": "PASS",
+    "compile": "28 tasks/43s PASS",
+    "fixedInputs": 168,
+    "twoImportSha": "9f3378a20f400498c5660dc1f7ea8641600b24054ae4975e31ebeef4fb11a424"
+  },
+  "normalApi": "GameApi.pcOpeningOptions with StateToken; NativeDuel.openingOptions same-state facts, consumed by B ContestUi; no A edits",
+  "mapping": {
+    "difficulty": {
+      "ui": "214",
+      "root": "20",
+      "values": [
+        "初級",
+        "上級",
+        "超級"
+      ]
+    },
+    "death": {
+      "ui": "218",
+      "root": "24",
+      "values": [
+        "無",
+        "標準",
+        "多"
+      ]
+    },
+    "life": {
+      "ui": "22c",
+      "root": "38",
+      "values": [
+        "史實",
+        "長壽",
+        "假想"
+      ]
+    }
+  },
+  "unknown": [
+    "PC actual normal GUI and defaults",
+    "Sourceflag18 established state by all16 normal source-selection/newgame controllers, automatic rawlife3 override chain",
+    "A normal menu picker/newgame adapter204/205 remains read-only preparation, no B WIP integration",
+    "Native batch/source commit/current APK install/old31-39 complete workflow/ARM/U01/full source/person/contest scope remain incomplete"
+  ],
+  "limits": [
+    "Declared active UI/meta buffers, full original button/manager export, configuration transfer block only; not full4a42d0 startup",
+    "Old formats and raw values never rewritten; internal3 not fourth menu item; snapshot default/override-known false",
+    "Historic ROOT20 life/ROOT38 difficulty comments corrected; runtime naming/construction/save ordering unchanged"
+  ],
+  "ownJobs": "all current original/compile/query/session/bridge/import/guard jobs terminal",
+  "coordination": {
+    "aThread": "01a10ecd-4d31-7a81-8e59-f4747feb22ad",
+    "request": "Read-only successor contract, no WIP copy/integration/compilation or interrupting current A validation"
+  }
+}

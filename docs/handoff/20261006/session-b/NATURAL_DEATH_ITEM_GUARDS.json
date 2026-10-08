@@ -1,0 +1,128 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "complete": false,
+  "committedNativeBatch": false,
+  "currentApk": null,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelDeath.java": "f33d53430cbb6ee9f5d60c521f51c19a065f0614ada1730dbf23c8fa4cfef374",
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "4f434ccae8ecc3e2d8a5fd4cad4b9e3c303b337963e6abde96669aa533c94dec",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelNaturalDeathSessionTest.java": "859e9bf599099f4d5f45fd3e1951bd4c115146bf3f4c86150ab840c6c11d692f",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelNaturalDeathItemSessionTest.java": "39840fa00c8b8f40be1ce7b7fa12a2911bf1ac545fccf2d8955f34a4a7ec8045",
+    "tools/content/session_b_pc_natural_death_item_callback.py": "ce28c60942f8d462e516944d0218bb17e8965f950b857e4c919cc067a7783f77",
+    "tools/content/session_b_pc_duel_upstream_callers.py": "b86aad90d7fa336ac72cf69124fb51da863c524191a198c3266d0e20622639d3",
+    "docs/handoff/20261006/session-b/NATURAL_DUEL_DEATH_STRATEGY.md": "1318f19359905800bd4f3e772348c8c5f69bb6317d2d9ffbbb342c64f4c461a7",
+    "out/session-b/held-death-callsite-source-v1.json": "1ac7f875de9fcc6b2712e5b98851181fcef68a49ba4a8fe1b85332ed122f2bec",
+    "out/session-b/natural-death-items-source0-v6.json": "ddad0d8380073d2ddf331c9d83b05150da5e2832e5dce39c98545df67ca77468",
+    "out/session-b/natural-death-item-pending-v1.sg11": "38d64c24a9ea28d7d5c19f571c27746f1e7150056144d0f2bbdd07c53ebd4f7b",
+    "out/session-b/natural-death-item-finished-v1.sg11": "6bb26a9cbd2132cfb8aa65ccdd5ad083502a7921d99672674934b2ccb147767d",
+    "out/session-b/natural-death-pending-v3.sg11": "65004c79b9a3197da83e73975d6419af4a2ae284b78b9190e73d5a51f10ddfb7",
+    "out/session-b/natural-death-finished-v3.sg11": "985c30de3958ea76acbcfd6995f47329f46df8276e8f88bbc46ba7c8dd734a5c",
+    "out/session-b/duel-query-check/natural-death-item-compile-v1.log": "06d783202bb550da12b67310c0db9e578bf884fc69a6ff60b4e99ce26d743aaa",
+    "out/session-b/duel-query-check/natural-death-item-compile-v2.log": "d1de5b35138ff54535815fe828419a98e42ee7fdf0e29d11af416536441d1560",
+    "out/session-b/duel-query-check/natural-death-item-current-v1.log": "d97961876edf5540543d4b4d55283546605222e834c89d6c902e3f7555a98173",
+    "out/session-b/duel-query-check/natural-death-item-current-v2.log": "e38f279e8283b351f2aa32618fe5088ce995db1c427a5ec6da47fc8cf363fdf7",
+    "out/session-b/duel-query-check/natural-death-item-regression-v1.log": "8dc427b52855a7a403ab26e3216f8c990fb623af16d6fe982929b32ba3d611f9"
+  },
+  "beforeConfirmed": {
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "2f20e98b083b16c06b9b708cfcc62f3617b5e2105110c27c535c6fec534bdf2b",
+    "core/src/main/java/game/sanguo/core/PcDuelDeath.java": "f69a5aa02a17a77ac577752e884e12c1535f1b7a045b09bdd05c18383c6c3a2e",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelNaturalDeathSessionTest.java": "178791a37a6d3dbce495275c525e125b3d31b9466678a1583278e7c471cd943c"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "original": {
+    "fullCallbackCases": 3,
+    "inputHeld": [
+      [],
+      [
+        30
+      ],
+      [
+        0,
+        30
+      ]
+    ],
+    "recipientNativeId": 517,
+    "distinctActiveFighter": 14,
+    "distinctUnitCommander": 558,
+    "ruleRngAfter": 358645160,
+    "wholeWorldAndRngRestored": true,
+    "sourceReceiptSha": "ddad0d8380073d2ddf331c9d83b05150da5e2832e5dce39c98545df67ca77468",
+    "environment": [
+      {
+        "function": "RegOpenKeyA",
+        "returnPc": "0x6bab22",
+        "arguments": [
+          2147483650,
+          8811192,
+          536928796
+        ],
+        "result": 2,
+        "unavailableRegistryKey": "Software\\Microsoft\\Direct3D",
+        "actualWindowsRegistryKnown": false
+      },
+      {
+        "function": "RegOpenKeyA",
+        "returnPc": "0x6bab22",
+        "arguments": [
+          2147483650,
+          8811192,
+          536928796
+        ],
+        "result": 2,
+        "unavailableRegistryKey": "Software\\Microsoft\\Direct3D",
+        "actualWindowsRegistryKnown": false
+      },
+      {
+        "function": "IsProcessorFeaturePresent",
+        "returnPc": "0x6b1fa0",
+        "arguments": [
+          7
+        ],
+        "result": 0,
+        "declaredScalarCPUFeature": 7,
+        "actualWindowsCPUKnown": false
+      }
+    ]
+  },
+  "checks": {
+    "heldTypedOnceTerminalThreeWholeTurnsColdPureQuery": 101,
+    "noItemAndDeclaredPriorPolicy": 50,
+    "capturedExecutionTyped": 91,
+    "actualFormat5Genuine39Compatibility": "PASS existing gzip OS/header CRC delta retained",
+    "GameSession": 1690,
+    "BridgeSession": "PASS",
+    "architecture": "PASS",
+    "fixedInputs": 168,
+    "compile": "28 tasks/26s; fixture-only5 tasks/26s PASS"
+  },
+  "limits": [
+    "Original real657-frame terminal imported; held placements after battle isolate callback, not normal equipped combat/deployment/menu proof",
+    "Actual original Windows registry and CPU unknown; PE-verified read-only unavailable Direct3D registry/scalar CPU fixture, no game rule/popup/result substitution",
+    "Existing examined588bb0 void value display omission remains; actual original GUI pixels/audio not proved",
+    "Natural ruler/district/other-task/unknown current recipient remain guarded; no legacyPDU1/2 adoption or saved strategy upgrade",
+    "Native whole batch sourcecommit/A normal newgame/current APK/full backup restoration/all16 flow/full31-39 matrix/ARM/U01 remain incomplete",
+    "No A WIP/shared ledger/BridgeJSON/Unity/JNI edits"
+  ],
+  "ownJobs": "all original/static inspection/compile/tests terminal"
+}

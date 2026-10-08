@@ -1,0 +1,81 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "complete": false,
+  "sourcePhase": "native sworn death component; whole native batch uncommitted",
+  "baseCommitSha": {
+    "core/src/main/java/game/sanguo/core/PcDuelSwornPolicy.java": null,
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": null,
+    "core/src/main/java/game/sanguo/core/PcDuelRecruitmentAdmission.java": null,
+    "core/src/main/java/game/sanguo/core/PcDuelAiDisposition.java": null,
+    "core/src/main/java/game/sanguo/core/PcDuelBindings.java": null,
+    "core/src/main/java/game/sanguo/core/PcDuelUnitStats.java": null,
+    "core/src/main/java/game/sanguo/core/PcRulerSuccession.java": null,
+    "core/src/main/java/game/sanguo/core/Relations.java": "656b6ac26bf4b50e905b33416737e2d631ec75014c2fe173e61b4fee913b1eb2",
+    "core/src/main/java/game/sanguo/core/SaveCodec.java": "72091fee5ca08bd34911e964d1e7503dd0e214cd2bfbb44b54c371b9a519f452",
+    "core/src/test/java/game/sanguo/core/PcDuelSwornPolicyTest.java": null,
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelSwornSessionTest.java": null,
+    "tools/content/session_b_pc_sworn_death.py": null,
+    "tools/content/session_b_pc_duel_succession_source.py": null,
+    "out/session-b/sworn-death-source0-v1.json": null,
+    "out/session-b/sworn-death-source0-anchors-v1.json": null,
+    "out/session-b/duel-succession-source-v14.json": null
+  },
+  "priorVerifiedExecutionSha": "d7053fe3c1b44b3918abc54150bb742b5fa53f0b4faeb4fc19e00f21a7108faf",
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelSwornPolicy.java": "469d9c194af3091d5450a06cbaf5c11a132cf44e012b09cec52ef7df1d498b53",
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "bf1da2ad1b60eba74539d25488aee402dbc406a50e9d410ca40e972a2d066539",
+    "core/src/main/java/game/sanguo/core/PcDuelRecruitmentAdmission.java": "3d17236e8c85eabe2cdf617fd327fe74557401e99ef43a00097223635f3b31d9",
+    "core/src/main/java/game/sanguo/core/PcDuelAiDisposition.java": "d84cf0292753b793d6e769999973be872ef1f1d01278468d526dd8e6b41a40d0",
+    "core/src/main/java/game/sanguo/core/PcDuelBindings.java": "f24a52f6c5e5db2fd7ce876e048d1a47686f0f357e7266841e96eb75543869d4",
+    "core/src/main/java/game/sanguo/core/PcDuelUnitStats.java": "7c571db2ae7a5d9b67d0382c4cab23d8a768289623f9f6eb9eaae2a495dce89c",
+    "core/src/main/java/game/sanguo/core/PcRulerSuccession.java": "992b42a3b03ab845bdb6a28cdd0b0193224c9f505fe7da990e0f537afff08afd",
+    "core/src/main/java/game/sanguo/core/Relations.java": "24ab15adeb758a57db6423696b3c29e35ae2c79db3d8eb2cf05b9b793749998d",
+    "core/src/main/java/game/sanguo/core/SaveCodec.java": "63f819d43948bc8464dbeff74673c9a866c877cd47016cee8fcd288635ae5b44",
+    "core/src/test/java/game/sanguo/core/PcDuelSwornPolicyTest.java": "167fda0abc09e76b9c7e885d2b3f693914a8841bf37889b00ea3361cb0e92f81",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelSwornSessionTest.java": "5187683c6a39dbcf0af70fcb976e068e29d681b4d5dcc2421449e7f23ac10b55",
+    "tools/content/session_b_pc_sworn_death.py": "6ce244ac60f29736bd89c85d0a4565f3dbe2535556f09f3ac1185fa3abde2a0b",
+    "tools/content/session_b_pc_duel_succession_source.py": "5349b5d67d111991e86561dd1bab4670d3912aeb32b5e5bdcb2480c2f089dc6f",
+    "out/session-b/sworn-death-source0-v1.json": "6ad283ff14c75c8ada9cf02ecd3c2baa960e9745c2b9f0b02fd7e9e990b7ed86",
+    "out/session-b/sworn-death-source0-anchors-v1.json": "14da8b9e89fdbdc88ae8e137f561fa1877c6117a7176c73a5248c3d1c7488faf",
+    "out/session-b/duel-succession-source-v14.json": "0e23a7ce5500cebbb1173f60f6b0ba06b831647c41943aa79076afbe97ad853f",
+    "out/session-b/duel-query-check/sworn-death-current-v1.log": "8f67e0fb4c0eaf74bee09bd2a58f88a3222023cfa0a53d599e87bebecdf29b5b",
+    "out/session-b/duel-query-check/sworn-death-session-v2.log": "ee20a7110fb3065e5dad4e9b575b1a9f5640a5d0acfd71d41c956a8dbdba12c3",
+    "out/session-b/duel-query-check/sworn-death-regression-v1.log": "c18d681f2cd6114ab2e82d97b6b443fa1b278e71ed423a27709b3725f8ee1a51",
+    "out/session-b/duel-query-check/sworn-death-compile-v3.log": "0d8677acc2d53956c3f444ebbd0f02f9f1931c2e047decf3ba6224bb95bfe5ce",
+    "out/session-b/duel-query-check/sworn-death-architecture-v1.log": "9306b52b27f1a9fe8292fa2939c69fb056f5e9a2cea8ff7c879303426ecd7681"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "frozen": {
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "checks": [
+    "9 full original cleanup callbacks/670 mapped anchors perstep; fullWorld restored/nativeRNG pure",
+    "6098 production execution/anchors/oldabsence/cold/edit invalidation checks",
+    "naturaltyped source0 365vs635/seed30/38inputs original capture1/playerEXECUTE/current98anchor/fourwholeturns/cold/double174",
+    "bindings45/recruit2563/coronation28/selector8/parent687/cross896/oldformat5+genuine39 payload compatibility",
+    "formal28tasks/API/runtime/AndroidUI compile/architecture/168resource guards"
+  ],
+  "failedEvidencePreserved": [
+    "sworn-death-compile-v1.log test used nonexistent containsKey API",
+    "sworn-death-session-v1.log test assumed natural terminal must capture; seed28 naturally no fate, v2 preserves actual no-capture terminal"
+  ],
+  "limits": [
+    "Remaining two-person group containing ruler invokes original weighted0 loyalty and remains guarded pending proof",
+    "Human inherited ruler in surviving group also guarded before writes",
+    "Engineering relation changes invalidate touched current anchors; normal save stays readable, original commands reject unverified anchors",
+    "No actual new APK/install; ordinary menu3arg factory/A adapter/full source matrix/ARM incomplete",
+    "Unmapped original activation/group coverage remains unknown;670 mapped comparisons are not full effective registry parity",
+    "Native whole batch still WIP; no isolated source commit or goal completion"
+  ],
+  "ownJobs": "all current sworn tests/build/source callbacks terminal"
+}

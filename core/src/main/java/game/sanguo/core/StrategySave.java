@@ -53,7 +53,7 @@ final class StrategySave {
             bound(c.recruitReserve,0,1_000_000);require(c.governorId>=-1,"太守编号无效");
             if(c.governorId>=0){
                 World.Officer o=w.officer(c.governorId);
-                require(o!=null&&c.owner>=0&&o.owner==c.owner&&o.cityId==c.id&&o.unitId==-1&&governors.add(o.id),"太守位置或所属势力无效");
+                require(o!=null&&c.owner>=0&&o.owner==c.owner&&((o.cityId==c.id&&o.unitId==-1)||PcGovernorPolicy.deployedRulerGovernor(w,o,c))&&governors.add(o.id),"太守位置或所属势力无效");
                 require(o.role==Strategy.Role.GOVERNOR||o.role==Strategy.Role.RULER||o.role==Strategy.Role.DISTRICT,"太守身份不匹配");
             }
         }
@@ -63,7 +63,11 @@ final class StrategySave {
             require((o.otherTaskTurns>0)==!o.otherTask.isEmpty(),"任务名称与剩余旬数不匹配");
             if(o.otherTaskTurns>0)require(o.owner>=0&&o.cityId>=0&&o.unitId==-1&&!w.domestic.busy(o.id),"武将战略任务冲突");
             if(o.role==Strategy.Role.GOVERNOR)require(governors.contains(o.id),"太守缺少任命城池");
-            if(o.role==Strategy.Role.RULER)require(o.owner>=0&&rulers.add(o.owner)&&o.loyalty==100,"君主重复、势力无效或忠诚错误");
+            if(o.role==Strategy.Role.RULER){
+                boolean loyalty=o.loyalty==100;
+                if(!loyalty&&w.pcSourceFrame&&PcDuelCampaignPolicy.enabled(w)&&PcDuelCampaignPolicy.read(w).version==3&&PcDuelRawLoyalty.enabled(w))loyalty=o.loyalty==Math.min(100,PcDuelRawLoyalty.current(w,o.id));
+                require(o.owner>=0&&rulers.add(o.owner)&&loyalty,"君主重复、势力无效或忠诚错误");
+            }
             if(o.owner<0)require(o.role==Strategy.Role.UNAFFILIATED&&(o.cityId>=0||w.government.captive(o.id)||!w.life.present(o.id))&&o.unitId==-1&&o.loyalty==0&&o.otherTaskTurns==0&&!w.domestic.busy(o.id),"在野武将身份或任务错误");
             else require(o.role!=Strategy.Role.UNAFFILIATED,"所属勢力与身份不符");
         }

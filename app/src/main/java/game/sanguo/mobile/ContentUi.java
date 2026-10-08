@@ -6,6 +6,7 @@ import android.text.*;
 import android.view.*;
 import android.widget.*;
 import game.sanguo.core.*;
+import game.sanguo.api.OfficerSnapshot;
 import java.io.IOException;
 import java.util.*;
 
@@ -13,16 +14,19 @@ import java.util.*;
 final class ContentUi {
     private final MainActivity a; private final World w; private final ClientState state;
     private ContentCatalog catalog;
-    private final String[] kinds={"officers","sites","skills","items","scenarios"};
-    private final String[] titles={"武将资料","城关港目录","特技目录","宝物目录","剧本缺口"};
+    private OfficerSnapshot currentOfficers;
+    private final String[] kinds={"officers","catalog-officers","sites","skills","items","scenarios"};
+    private final String[] titles={"本局武将","补充武将资料","城关港目录","特技目录","宝物目录","剧本缺口"};
     ContentUi(MainActivity a,World w,ClientState state){this.a=a;this.w=w;this.state=state;}
     private TextView text(String value,int size){TextView t=a.text(value,size,a.paper);t.setPadding(a.dp(8),a.dp(5),a.dp(8),a.dp(5));return t;}
     View view(){
         LinearLayout host=new LinearLayout(a);host.setOrientation(LinearLayout.VERTICAL);
-        try{catalog=ContentCatalog.get();}catch(IOException e){host.addView(text("资料校验失败："+e.getMessage(),18));return host;}
+        currentOfficers=a.officerSnapshot();
+        if(!a.currentWorld(w)||!currentOfficers.state.equals(a.deploymentState())){host.addView(text("局面已更新，请重新打开资料页面。",18));return host;}
         if(!Arrays.asList(kinds).contains(state.contentKind))state.contentKind="officers";
+        if(!state.contentKind.equals("officers"))try{catalog=ContentCatalog.get();}catch(IOException e){host.addView(text("补充资料校验失败："+e.getMessage(),18));return host;}
         host.addView(text("全国资料 / 核验目录",18));
-        host.addView(text("原安装未核验 · 官方可玩 0",12));
+        host.addView(text("本局武将读取保存的权威字段；补充资料保留独立来源。登记人数不等于有效人物完整覆盖。",12));
         LinearLayout toolbar=new LinearLayout(a);host.addView(toolbar,new LinearLayout.LayoutParams(-1,a.dp(40)));
         toolbar.addView(a.button(titles[Arrays.asList(kinds).indexOf(state.contentKind)],v->new AlertDialog.Builder(a).setTitle("资料分类").setItems(titles,(d,i)->{state.contentKind=kinds[i];state.contentQuery="";state.contentFirstId="";state.contentTop=0;a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(0,-1,1));
         toolbar.addView(a.button("据点分布预览",v->preview()),new LinearLayout.LayoutParams(0,-1,1));
@@ -32,7 +36,8 @@ final class ContentUi {
         TextView empty=text("没有符合条件的资料 · 请清空检索",16);empty.setGravity(Gravity.CENTER);frame.addView(empty,new FrameLayout.LayoutParams(-1,-1));
         ListView list=new ListView(a);list.setContentDescription("资料列表");frame.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(empty);
         final List<String[]> all=new ArrayList<>();
-        if(state.contentKind.equals("officers"))for(ContentCatalog.Officer o:catalog.officers())all.add(new String[]{String.valueOf(o.id),o.name,"统"+o.stat(0)+" 武"+o.stat(1)+" 智"+o.stat(2)+" 政"+o.stat(3)+" 魅"+o.stat(4)+"\n适性 "+o.aptitudeText()+" · "+(o.status.equals("cross-checked")?"双表比对":"待核验"),catalog.alias(o.id)});
+        if(state.contentKind.equals("officers"))for(OfficerSnapshot.Officer o:currentOfficers.officers)all.add(new String[]{String.valueOf(o.id),o.name,CurrentOfficerContent.row(o),CurrentOfficerContent.search(o)});
+        else if(state.contentKind.equals("catalog-officers"))for(ContentCatalog.Officer o:catalog.officers())all.add(new String[]{String.valueOf(o.id),o.name,"统"+o.stat(0)+" 武"+o.stat(1)+" 智"+o.stat(2)+" 政"+o.stat(3)+" 魅"+o.stat(4)+"\n适性 "+o.aptitudeText()+" · "+(o.status.equals("cross-checked")?"双表比对":"待核验"),catalog.alias(o.id)});
         else for(ContentCatalog.Entry e:catalog.rows(state.contentKind))all.add(new String[]{e.id,e.name,subtitle(e),""});
         final List<String[]> shown=new ArrayList<>();
         BaseAdapter adapter=new BaseAdapter(){public int getCount(){return shown.size();}public Object getItem(int p){return shown.get(p);}public long getItemId(int p){return shown.get(p)[0].hashCode();}public boolean hasStableIds(){return true;}
@@ -49,6 +54,10 @@ final class ContentUi {
     private void detail(String id){
         AlertDialog.Builder dialog=new AlertDialog.Builder(a).setNegativeButton("返回",null);
         if(state.contentKind.equals("officers")){
+            if(!a.currentWorld(w)||currentOfficers==null||!currentOfficers.state.equals(a.deploymentState())){UiTheme.dialog(dialog.setTitle("局面已更新").setMessage("请重新打开资料页面，读取当前人物状态。").show());return;}
+            OfficerSnapshot.Officer facts=currentOfficers.officer(Integer.parseInt(id));if(facts==null)return;
+            dialog.setTitle(facts.name).setMessage(CurrentOfficerContent.detail(facts));World.Officer actual=w.officer(facts.id);if(actual!=null)dialog.setPositiveButton("当前武将",(d,n)->a.officerDetail(actual));
+        }else if(state.contentKind.equals("catalog-officers")){
             ContentCatalog.Officer o=catalog.officer(Integer.parseInt(id));String message="项目 ID "+o.id+" / 来源编号 "+o.sourceId+"\n"+status(o.status)+"\n统率 "+o.stat(0)+" / 武力 "+o.stat(1)+" / 智力 "+o.stat(2)+" / 政治 "+o.stat(3)+" / 魅力 "+o.stat(4)+"\n枪、戟、弩、骑、兵器、水军："+o.aptitudeText()+"\n生年 "+o.birth+" / 卒年 "+o.death+" / 登场 "+o.appearance+"\n性格："+ContentProfiles.temper(o).label+" · 来源自然死："+(catalog.profile(o.id).naturalDeath?"是":"否，卒年不作为寿终年")+"\n特技："+catalog.skillName(o.skillId)+"（"+o.skillId+"）\n已解析关系：\n"+ContentProfiles.describe(catalog,o.id)+"\n\n关系原文："+o.relationsRaw+"\n\n资料武将可加入当前局面。关系仅连接本局已存在、编号匹配的人物；同名歧义与外部人物不自动匹配。血缘编号/相性仅作资料保留。\n来源："+catalog.sourceUrl(o.source);
             dialog.setTitle(o.name).setMessage("目标：Windows 繁中 PK 1.1（安装哈希未知）\n"+message);
 
@@ -78,6 +87,7 @@ final class ContentUi {
         }).show());
     }
     private void preview(){
+        if(catalog==null)try{catalog=ContentCatalog.get();}catch(IOException e){UiTheme.dialog(new AlertDialog.Builder(a).setTitle("补充资料无法读取").setMessage(e.getMessage()).setPositiveButton("返回",null).show());return;}
         LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(text("42 城来源 X/Y 分布 · 非六角地图\n45 关港坐标隔离；地形、水系、道路、开发地未知。拖动、双指缩放；点城市查看来源。",13));
         View atlas=new View(a){final Paint p=new Paint(3);float zoom=1,dx,dy,lastX,lastY;boolean moved;
             final ScaleGestureDetector scale=new ScaleGestureDetector(a,new ScaleGestureDetector.SimpleOnScaleGestureListener(){public boolean onScale(ScaleGestureDetector d){float old=zoom;zoom=Math.max(1,Math.min(5,zoom*d.getScaleFactor()));dx=d.getFocusX()-(d.getFocusX()-dx)*zoom/old;dy=d.getFocusY()-(d.getFocusY()-dy)*zoom/old;invalidate();return true;}});

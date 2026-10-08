@@ -1,0 +1,20 @@
+package game.sanguo.core;
+import java.nio.file.*;import java.util.*;
+/** Read-only actual ordinary campaign, including unknown activated actors. */
+public final class PcNormalCampaignProbe {
+ public static void main(String[]args)throws Exception{
+  if(args.length>1){World before=SaveCodec.decode(Files.readAllBytes(Path.of(args[0]))),after=SaveCodec.decode(Files.readAllBytes(Path.of(args[1])));for(int n:new int[]{503,411,669}){var f=PcDuelSourceFacts.saved(before).values().stream().filter(x->x.nativeId==n).findFirst().orElseThrow();System.out.println("ACTUAL_RESULT native="+n+" id="+f.officerId+" merit="+before.government.merit(f.officerId)+" -> "+after.government.merit(f.officerId)+" WARXP="+before.officerAbilities.experience(f.officerId,1)+" -> "+after.officerAbilities.experience(f.officerId,1)+" guided="+PcDebateCampaignRules.guided(before,before.officer(f.officerId))+" guidanceSkill="+before.skills.has(before.officer(f.officerId),Skill.ZHIDAO)+" life="+after.life.state(f.officerId));}return;}
+  byte[]raw=Files.readAllBytes(Path.of(args[0]));World w=SaveCodec.decode(raw);var facts=PcDuelSourceFacts.saved(w);
+  System.out.println("actual turn="+w.turn+" player="+w.player+" over="+w.gameOver()+" strategyRng="+w.strategy.getRandomState()+" nativeRng="+Integer.toUnsignedLong(PcNativeDebatePolicy.seed(w)));
+  for(var c:w.cities)if(c.owner==w.player){System.out.println("CITY "+c.id+" "+c.name+" "+c.hex+" troops="+c.troops+" food="+c.food+" gold="+c.gold+" equipment="+Arrays.toString(c.equipment));for(var o:w.idle(c))System.out.println(" IDLE "+o.id+" "+o.name+" native="+(facts.containsKey(o.id)?facts.get(o.id).nativeId:-1)+" role="+o.role+" war="+o.war+" cap="+w.government.commandLimit(o.id));}
+  for(var o:w.officers)if(o.owner==w.player){var f=facts.get(o.id);System.out.println("PERSON "+o.id+" "+o.name+" native="+(f==null?-1:f.nativeId)+" life="+w.life.state(o.id)+" city="+o.cityId+" unit="+o.unitId+" role="+o.role+" acted="+o.acted+" returning="+PcDuelRelease.busy(w,o.id)+" prisoner="+w.government.captive(o.id));}
+  for(var o:w.officers)if(o.id<10000){var f=facts.get(o.id);var p=PcContestProfiles.saved(w).get(o.id);System.out.println("LOW_STABLE_ID "+o.id+" "+o.name+" native="+(f==null?-1:f.nativeId)+" recordSha="+(f==null?"unknown":f.recordSha)+" profileNative="+(p==null?-1:p.nativeId)+" profileRecordSha="+(p==null?"unknown":p.recordSha)+" owner="+o.owner+" life="+w.life.state(o.id));}
+  for(var u:w.units){var o=w.officer(u.officerId);System.out.println("UNIT "+u.id+" owner="+u.owner+" officer="+o.id+" "+o.name+" sourceBound="+facts.containsKey(o.id)+" deputies="+Arrays.toString(u.deputies)+" at="+u.hex+" troops="+u.troops+" weapon="+u.weapon+" acted="+u.acted+" status="+u.status);}
+  if(w.contests.session!=null&&w.contests.session.nativeDuel!=null){
+   var d=w.contests.session.nativeDuel;System.out.println("ACTUAL_DUEL phase="+d.facts().phase+" sub="+d.facts().sub+" frames="+d.frames+" inputs="+d.inputs+" officers="+Arrays.toString(d.state.officers));
+   var input=new java.io.DataInputStream(new java.io.ByteArrayInputStream(w.extensions.get(PcDuelRawLoyalty.NAMESPACE)));input.readInt();input.readInt();for(int k=0;k<4;k++)input.readUTF();int n=input.readInt();
+   for(int k=0;k<n;k++){int id=input.readInt(),nativeId=input.readInt(),owner=input.readInt(),display=input.readInt(),cachedRaw=input.readUnsignedByte();boolean trusted=input.readBoolean();if(Arrays.stream(d.state.officers).anyMatch(p->p==id))System.out.println("DUEL_LOYALTY id="+id+" native="+nativeId+" name="+w.officer(id).name+" currentOwner="+w.officer(id).owner+" currentDisplay="+w.officer(id).loyalty+" cachedOwner="+owner+" cachedDisplay="+display+" cachedRaw="+cachedRaw+" trusted="+trusted);}
+  }
+  if(!Arrays.equals(raw,SaveCodec.encode(w)))throw new AssertionError("read-only campaign full World/bothRNG changes");System.out.println("PASS actual complete campaign pure "+PcCommandCapacityPolicy.hex(java.security.MessageDigest.getInstance("SHA-256").digest(raw)));
+ }
+}

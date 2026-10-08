@@ -41,14 +41,31 @@ public final class OfficerAbilities {
     void refresh(){if(enabled)for(World.Officer o:w.officers)refresh(o);}
     void refresh(World.Officer o){if(o.abilityProfile!=null)for(int stat=0;stat<5;stat++)raw(o,stat,calculate(o,stat,o.abilityProfile.experience[stat]));}
     private int calculate(World.Officer o,int stat,int experience){
+        if(o.abilityProfile==null)return raw(o,stat);
+        return calculate(o,stat,experience,w.contests.injury(o.id));
+    }
+    /** Original duel getter supplies a model-local injury override. Querying it
+     * must not rewrite the campaign injury, base, experience or current cache. */
+    int currentWithInjury(int officer,int stat,int injury){
+        World.Officer o=w.officer(officer);
+        if(o==null||o.abilityProfile==null||stat<0||stat>4||injury<0||injury>3)
+            throw new IllegalArgumentException("原能力身份、策略或伤病覆盖无效");
+        return calculate(o,stat,o.abilityProfile.experience[stat],injury);
+    }
+    private int calculate(World.Officer o,int stat,int experience,int injury){
+        return calculate(o,stat,experience,injury,w.government.office(o.id));
+    }
+    /** Pure prospective rank80 value for original coronation. */
+    int currentWithoutRank(int officer,int stat){World.Officer o=w.officer(officer);if(o==null||stat<0||stat>4)throw new IllegalArgumentException("原登位人物/能力无效");return calculate(o,stat,experience(officer,stat),w.contests.injury(officer),null);}
+    private int calculate(World.Officer o,int stat,int experience,int injury,Government.Rank rank){
         Profile p=o.abilityProfile;if(p==null)return raw(o,stat);
         Lifecycle.Life life=w.life.life(o.id);int birth=life==null?p.sourceBirth:life.birth;
         int age=PcOfficerAbilityRules.age(w.startYear,w.startMonth,1,w.turn,birth,fixedAge);
-        Government.Rank rank=w.government.office(o.id);World.Officer spouse=w.officer(w.relations.spouse(o.id));
+        World.Officer spouse=w.officer(w.relations.spouse(o.id));
         boolean spouseBonus=spouse!=null&&w.life.abilityPresent(spouse.id)&&(w.skills.has(o,Skill.NEIZHU)||w.skills.has(spouse,Skill.NEIZHU));
         // No curve is invented for an authored/unknown person or unknown birth.
         int curve=birth==0?-1:p.growth[stat];
-        return PcOfficerAbilityRules.current(p.base[stat],curve,age,experience,stat,w.contests.injury(o.id),rank==null?-1:rank.abilityStat,rank==null?0:rank.abilityBonus,spouseBonus,p.special,growthDisabled());
+        return PcOfficerAbilityRules.current(p.base[stat],curve,age,experience,stat,injury,rank==null?-1:rank.abilityStat,rank==null?0:rank.abilityBonus,spouseBonus,p.special,growthDisabled());
     }
     int afterExperience(int officer,int stat,int amount){World.Officer o=w.officer(officer);return calculate(o,stat,experienceAfter(officer,stat,amount));}
     int experienceAfter(int officer,int stat,int amount){World.Officer o=w.officer(officer);if(o.abilityProfile==null)return 0;return Math.max(0,Math.min(3000,o.abilityProfile.experience[stat]+amount));}

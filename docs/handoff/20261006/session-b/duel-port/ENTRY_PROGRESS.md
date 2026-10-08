@@ -1,0 +1,48 @@
+# 原单挑普通命令启动链（B WIP）
+
+共同完整继承基点0e7b9bc2df90249a50851baeda58c7d183ea6059，完成HEAD89534120e46e488136db0e661270757d9c4a4c50。本增量没有普通新局PDU启用器，没有完成APK验收，不作为完成批次交A。
+
+## 已实现的启动输入
+
+PcDuelEntryRules复现原589f70→50de30：指定上阵人物排第一，其他原部队人物按编队原顺序经过589ba0，体力达到80−10×性格且不厌恶上阵人物才能支援。单挑出场队列与实际部队主将/编队不同，不能为了匹配模型改变部队。
+
+修复PcDuelCampaign保存校验：检查以指定上阵人物为首的原有效队列，而不是要求模型与原部队人数和顺序完全一致。缺失/不符来源人物仍拒绝；没有放宽主将所属、现场队伍或稳定ID/nativeID连接。
+
+原18组（双方各3名指定者×native14正常/声明体力49）589f70/50de30全部208字节管理器一致；原完整50c030初始化1436字节模型与RNG也一致，主机198检查通过，fullWorld/扩展/双RNG读取纯。原receipt v1 SHA209be4057a4b0e4deb4b5be71725ee8e224c305d50ab0d2fdac12b8985f027ad，v2 SHA77b76fad244d7c5577b4f8838dbaa42b9422d75bbcf59b6f8a0764087dcbc81f。原VM部队/指定人物/低体力为声明输入；主机使用合法陆格，场景字段由原receipt显式提供。这不是原菜单或普通Android命令触发。
+
+## 应战选择链
+
+PcDuelResponseRules新增原58a7f0：取三名反击候补最高概率，平手保留首名，只调用一次原4721d0概率判断。192组实际原返回人物/RNG一致（9次反击成功），全World/保存双RNG纯；receipt4bc7910d1d9b3a305f4de5914a6031941d0aa62554880d835e1b898858de2713。没有用最大概率代替实际反击结果。
+
+新增正常tactic−1的原58b400第二方AI选择：先反击，失败后完整原应战概率/RNG，再选择原合格最优人物。完整原192组第二选择对照仍在核验；不得把当前实现意图当作通过。
+
+周边加成589a50实际要求native11太鼓台、原完成字段+14非零、同指定武将势力；4843a0扫描参数3和目标点，不能用工程Fieldworks.range(DRUM)=2替代。原构造设施100 owner getter487eb0查询纯（v1 SHA4b776776096fe364a07f32de7f400d00a4c816bbcbc4cc593d2d5a8419f62275）。动态矩阵v2因Unicorn mem_write只接受bytes而非bytearray失败；错误保持，v3已更正工具边界并在运行，不改原判定。
+
+## 未完成的普通闭合
+
+普通challenge仍继承工程10气力/15–90应战率/Duel入口；当前不能把原缓存菜单energy0合法证据当作整个正常命令消耗证明。PDU策略没有新局启用器。还需完整周边绑定/正常双方选择、人控候补API和B页面、原菜单准入/行动/拒绝损失、真实当前force+60与manual army区别、明确原寿命/难度选项保存绑定、终局所有处置/败方AI/放弃回调，以及普通出征→单挑→多旬→全World双RNG存取/冷重开/实际APK。
+
+本轮不把读取剧本后原选项−1称为玩家普通新局设置，不把低体力构造者称为菜单可选者，不为未闭合处分自动改成拘留或释放。
+
+## 后续核验
+
+原force481480设置玩家slot0的新fixture明确得到context[0,−1]/controller[0,1]；36组原全管理器/模型/RNG与当前绑定396检查通过，receipt9f1bbaa1b7b053184f0fecb41ab1acecf0fd6126b6df96c5919b56d86721e8e1。这里是原setter的明确平台输入，仍不是PC新局菜单/AP/事件初始化闭合。
+
+原58b400第二方正常tactic−1选择192组与单独58a7f0 192组合计384组通过（103次返回人物，192组完整第二选择）；receipt8a29c69eed267a387239df4e6dce526631631b756a714213f052f5ecbb2cd614。已接currentOpponent，先最高反击概率一次判定，未反击再原应战/合格最优人，不假设应战后一定选主将。
+
+原DRUM动态v3完整扫描488组通过（完成同势力native11，目标周围ring1..3的36格为正，其余0），receipt a996cf049b3c03cffb2c04f135c6175ad6c5953bb077b7aed15c4993ce93770b；主机MapCoordinates真实转换/Hex距离/当前Structure归属与完成488组一致且fullWorld/双RNG纯。原facility100/grid及对象表绑定均为声明fixture；原判定/扫描/owner getters未略去。currentDrumSupport绑定此规则，currentOpponent新增自动当前DRUM绑定。仍保留工程一般攻击buff范围2，并不借应战范围3证据改攻击buff。
+
+本轮发现开战前58b7d2还可能调用原4721d0(50)选择发言；5a0700读取当前单位属性/地点并经59fe00判定。此随机调用不是可随意删除的展示逻辑；需原地点格网判定/发言条件与真实事件id/voice profile继续闭合，渲染不得额外推进或重抽规则RNG。
+
+GameSession1690项通过；真实继承9旧档36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2保持。Android编译BUILD SUCCESSFUL in1m40s（24任务5执行/19缓存），之后新增DRUM自动绑定仅主机编译/矩阵验证，尚未新APK。所有原探针/主机进程已正常exit0，无设备操作。
+out/session-b/duel-query-check/duel-entry-rules-v3.log SHAb36b70a51615b3ad45e20553c55f15e1abb0e4c7cbede12220d0e3e1558b5965
+out/session-b/duel-query-check/counter-selection-v2.log SHAe6c17a169cd2e082c53031a966ad5a427222699f83e8837c8155c7bb6ccfef2a
+out/session-b/duel-query-check/drum-support-v1.log SHAa05ea37d24fcf603d1a3fa738845825809fadc4cc23dc65f81b781fe8e631cb7
+out/session-b/duel-entry-android-compile-v1.log SHAf726238a36eff93d849befd000b1802af18136c88a90827bb8b7cdd86a8ed0b2
+
+最终守卫复验：verify-map-release.py 168固定资源SHA全部通过；四份忽略JNI与完整继承SHA一致；旧609项default status-z仍31896B/SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0。完整源目录clean/HEAD0e7b9bc2df90249a50851baeda58c7d183ea6059；本分支完成HEAD89534120e46e488136db0e661270757d9c4a4c50未变。diff --check通过。本轮没有新APK安装、存档修改、完成批次提交或跨会话WIP集成。
+
+最新宿主正常流程：来源14真实出征单将自然胜利95输入，三将新局seed2真实拒绝后次旬接受、自然支援/人控换将、206输入平手，均终局后3完整AI旬及全World/双RNG冷读通过。不是Android菜单、安装或16源完整验收。终局处置增加actionErrors，与正式选择共用纯校验，90检查同原因拒绝且不锁入无效保存。旧设置119、编辑/父母当前字段62、通用Session1690与当前Androidcompilev5通过；源固定168/架构/4JNI/旧609 dirty状态保持。
+
+下一步军团捕获不能直接套用普通capture：原source0 Army6 leader440已分别通过居民full4a93b0（SHA4de98cdfaad97a0168e38fa1448b3db94368cdd4183b57cc3a2735e921e9ea25）和显式真实构造器编队/原所在地setter/full捕获+移除（SHA77ed893b560bed74e59887bb294321474ff12aa77def9fc633af8662b39dfb7c）：旧Army6继任436，目标原94从6->5、home13->21、当前驻地87->88、status1->5，RNG1不变，3MiB还原。source0 force28第一军团是5，与captor所属军团不可混淆。原4a93b0在有败方单位时使用败方单位owner->481240(1)的第一军团；无单位其他分支另行明确。先前adviser466旧94=0->0、home8->21、current87->88，不能据此推断94永远保留旧军团或改成胜方军团。
+原完整4be2a0的排序入口4cef90已静态对照现有PcGovernorPolicy.armyEarlier：君主判定/统兵/原官职rank/统率/native指针顺序。4be2a0还含空军团合并、身份/太守改写及全87据点回调，不能仅写继任436；当前DISTRICT显式预览/提交拒绝仍保留，待逐原候选/来源/正常编队终局证明后才接入。Fullgoal活跃未完成，native源码全部未提交WIP，不能交A作完成批次；A新局picker适配和本批实际APK尚未开始，不合A WIP。

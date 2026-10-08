@@ -95,7 +95,7 @@ final class SoundEffects {
     }
     /** Once per committed named tactic phase; no synthesized tactic/critical overlay. */
     void originalTacticEvent(String identity,int sound){
-        if(sound!=49&&sound!=78)throw new IllegalArgumentException("Unverified source tactic ID");
+        if(sound!=49&&sound!=78&&sound!=58)throw new IllegalArgumentException("Unverified source tactic ID");
         if(identity==null||!heard.add(identity))return;while(heard.size()>4096)heard.remove(heard.iterator().next());
         if(effectsPaused||foreground.isEmpty()||muted()||volume()==0||pcTactics==null||!pcTactics.ready()||!focus())return;
         int stream=pcTactics.play(sound,effectGain());if(stream!=0){played++;Log.i("GameAudio","ORIGINAL_TACTIC id="+identity+" soundId="+sound+" stream="+stream+" gain="+effectGain());}

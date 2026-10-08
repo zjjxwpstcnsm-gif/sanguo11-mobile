@@ -1,0 +1,47 @@
+{
+  "exeSha": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source": {
+    "activation": "installed-candidate",
+    "date": [
+      184,
+      1,
+      1
+    ],
+    "decodedBoundaries": [
+      90,
+      16183,
+      16194,
+      17760,
+      146960,
+      162702,
+      170010
+    ],
+    "description": "\u6f22\u738b\u671d\u56e0\u5ba6\u5b98\u7684\u5f04\u6b0a\u8207\u5916\u621a\u7684\u5e72\u653f\u800c\u65e5\u6f38\u8150\u6557\u3002\u5728\u5982\u6b64\u6df7\u4e82\u7684\u4e16\u5c40\u4e0b\uff0c\u5927\u8ce2\u826f\u5e2b\u2022\u5f35\u89d2\u7387\u9818\u5176\u4fe1\u5f92\u5011\u63ed\u7aff\u800c\u8d77\uff0c\u53f2\u7a31\u9ec3\u5dfe\u4e4b\u4e82\u3002\u671d\u5ef7\u7686\u7372\u6b64\u5831\u5f8c\uff0c\u4efb\u7687\u540e\u4e4b\u5144\u2022\u4f55\u9032\u70ba\u5927\u5c07\u8ecd\uff0c\u4e26\u51fa\u5175\u8a0e\u4f10\u9ec3\u5dfe\u9ee8\u3002\u800c\u4e82\u4e16\uff0c\u4e5f\u81ea\u6b64\u63ed\u958b\u4e86\u5e8f\u5e55\u3002",
+    "embeddedNativeId": 0,
+    "loadPriority": "unknown",
+    "name": "\u9ec3\u5dfe\u4e4b\u4e82",
+    "origin": "unknown",
+    "scenarioId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "slot": 0,
+    "sourcePath": "Media/scenario/Scen000.s11",
+    "sourceSha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "sourceVariant": "media-scenario-scen000-s11-80d30c5886d0-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "unknown": [
+      "effective_override_chain",
+      "official_or_mod_identity",
+      "startup_events",
+      "complete_initial_world",
+      "selectable_forces"
+    ],
+    "versions": [
+      1,
+      2
+    ]
+  },
+  "receiptSha": "955258479e3fea376fa87ed6d98cb00cc3a22557d820d9184cb04fa4f6b506cf",
+  "resourceSha": "e8c5633deef89b1058f5560054d7ad84f80a8b5c60a54f7bd37f457a6c36133a",
+  "limits": [
+    "Original source0 initialized city six-neighbor fields and original getter/next-city function; equal distance preserves slot order",
+    "No ordinary task37 turn scheduling/arrival callback or APK claim"
+  ]
+}

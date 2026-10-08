@@ -1,0 +1,234 @@
+# 单挑终局处置接入进度（WIP）
+
+共同继承基点0e7b9bc2df90249a50851baeda58c7d183ea6059；当前完成批次HEAD89534120e46e488136db0e661270757d9c4a4c50。本文件及原单挑源码仍为B工作增量，不属于完成54交付。
+
+## 已接入
+
+- 原4b2380/4b01b0：待处置4，登用0/拘留1/释放2/处斩3；初始mask普通15，君主且有原城市归属12。原4ce2f0只枚举42城市，不以关港替代。
+- 数值战役保存format1没有处置且字节不变；明确format2保存已选/待办人物、stable officerId/nativeId/mask/choice。旧档不自动追填。
+- 终局人控待办不会写体力、伤病、功绩、经验、俘虏或RNG；DTO只读，B页通过显示时StateToken/对局id/revision提交。
+- 新API Operation追加ordinal9，冻结桥、JNI不变。拘留一次性结算路径沿用已核对原数值回调。
+- 校验禁止非终局待办、候选人数/连接不一致，禁止胜方或非败方上阵人物处置。
+
+## 本轮核验
+
+`disposition-android-compile.log` Android编译通过，168固定输入检查通过；不是新APK或设备验收。
+`disposition-full-session.log` GameSession1690检查通过。
+`disposition-legacy.tsv` 9份真实继承旧档36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2与完成基点相同。已有39对局/继任边界仍阻止换旬；31/38/历史自定义Android未闭合。
+`disposition-api-session.log` 86检查通过；`disposition-corrupt-session.log`87检查通过。测试使用原full-command终局语料但显式改变测试human flag，不能称普通人控战役。
+
+## 原释放证据
+
+`out/session-b/duel-release-choice-source0-seed24.json` SHA d8bfe02b1a6eee4746b63013e6a50a7aeea4e3e3f2fe3ebab55b3aa93e13fbae，原全模型/终局4d3340完整数值回调，70字节改变，World/RNG恢复。
+选择2为原AI选择后声明输入，未执行原人控GUI/选择；保留此限制。
+人物558保留owner3/status3，离队至释放原地域city15（非目的地），task37和参数写入、行动位设置、体力最小1；右部队主将改为517、副将14、兵力5000→3500/气力100→85，RNG3726341181→1001697610。原4a9120释放也缴获携物，不能复用工程俘虏释放。
+原4b0f50首先保留原行政驻点，例外才改选军团/势力据点；其余随机候选/原37任务跨旬仍需闭合，不能用最近友城或即时搬城。
+原静态v10 4b0f50仅240字节不完整；v11扩展340，实际ret4b126e（其后int3/下一函数不属于该规则）。4acbe0真正ret4aced5；后续函数不并入死亡规则。
+
+## 未完成与激活边界
+
+生产正常challenge/骑兵触发仍为继承工程Duel，PDU1无新局启用器。释放/登用/处斩完整战役副作用、AI处置、当前原C9/CA绑定、完整应战反击/准入、人控入口、正常多旬/存取/冷重开/APK仍未闭合。选择尚未支持的处置会明确保留完整待办并拒绝正式结算；不回退为另一处置。
+本轮不提交/不交A此WIP为完成批次；已完成军建54包仍独立。
+
+守卫：四份忽略JNI与继承SHA一致；旧609项默认status-z为31896字节/SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0；原目录未写入。完整源目录HEAD0e7b9bc2df90249a50851baeda58c7d183ea6059，未回退。
+
+## 后续原回调完成记录
+
+释放带完整人物前后字段v2 SHA76a8fd8f8eb9eb564c38dfd085f04d658d86eab3f51ade6fe8f4261b3a47e406；70个差异及RNG与先前释放一致。原home+98=21保持，current+9c=88→15是释放原地域；task37目的地getter5ba320明确读取home+98=21。原47b480距离表15→21为3；不能把home覆盖为current或把15当目的地。
+处斩SHA96ee3383a55f6b46aa003823088fd1b8b69635463457a97830f71a029dce2416；72差异，RNG3726341181→1001697610，两者原全World/RNG均恢复。native558状态+a0=3→8，home/current−1，官职+a4=80→−1；败方功绩+ae未增加，非活人不能无条件套用原终局+10。城市21原+80/+84、军团1+38/+3c/+40另有改变，需字段语义与延迟结算确认，不能只改life状态。没有借此启用普通单挑，也不将声明choice输入称作原GUI人控执行。
+明确在编译完成后重验`disposition-corrupt-session-v2.log`87检查通过；此前日志保留。
+
+本轮结尾：已注册原观测进程全部正常exit0，无仍在运行的原回调/主机测试。最新保存87检查日志SHA87123f257f6e70472324fa9176f92389d36a5da3e41c75510829185ad33238f4；Android编译日志SHAe64df18affc611c67996a83a86d41685293afc739814afa4be0518b9896b04d3（新增候选限制仅主机再编译验证，尚未重跑Android）。静态v11原code报告SHA8095b8ace77f8439227bb41b684c2dd08637eae72f076c242fcee578c7442f3b。git diff --check通过。
+
+## 返程规则继续核验（未激活）
+
+原静态v21 SHA bcdcf75e184de8d95d4694d69bfba3f9bea8d7756a71c39519df6f7b7a408f8b，v22 SHA22a7fd322ab0785e31f3ae1f54dc40907a45f6e2927086a6dcc63a5c9ec13df7，v23 SHA7a186c2cbe12fce3c8ed2205b135321d3e703a768893ea4bd3feb202da050d9a。原队列482f20过滤无效/非法task与489120人物124 bit0，未检查duration；599cf0完整人员结算阶段逐原城市六邻接经598d60择距目的地最小者，平手保留槽顺序。中间城重算duration，到原home据点后执行task37 completion并清任务/时长，再原居住行政回调。全局换旬时序/状态重置尚需原对照，不能仅靠局部函数认定普通战役闭合。
+
+原47b480完整边界44×44与原4839f0父级87，共2023项验证通过；资源1851字节SHAff7a1c159d649cf24461b638214dcf07ca97e45fea93477dcbcb156cd6ba670c；主机2023项与实际PC地图来源地域15/home21/duration3通过且World/双RNG只读。首次主机失败因原invalid返回UINT32超出MapJson严格int32，测试读取原receipt时归一化该sentinel，生产解析器不放宽。尚无生产RELEASE任务或普通APK验收。
+
+原邻接/下一城source0核验2016项通过，receipt SHA955258479e3fea376fa87ed6d98cb00cc3a22557d820d9184cb04fa4f6b506cf；路线15→17→19→21。主机与距离合计3787项通过，重复两次导入字节相同；source0原初始化邻接资源SHAe8c5633deef89b1058f5560054d7ad84f80a8b5c60a54f7bd37f457a6c36133a，不泛称全部16源或生产激活。
+
+完整原611帧/4d3340/声明释放choice2后，重复原599cf0五次没有任何World改变，task37/current15/duration3/acted201保持，nativeRNG1001697610不变；receipt dc2dd14e17536c080471994f868aaada099386e8196147e05cbbc47e1b904f7c。这证明单独人员阶段不能推进已经行动的人物。原正常调用者59c421明确先598630清人物行动状态，再59a4b0减duration/外交阶段，再599cf0推进任务。原v25 SHA68fab7502a0969c5c6de8acf0fcf63a78b7fe3c531f520462b99880595e2f2ff与v26 SHAfd4609f11fe9fdad08266dc18083a841687fef99d832e5f9e293fe051e6290ee保留完整清状态函数（598630..598697）。正在以原三段顺序继续完整释放世界，未以局部函数取代战役验收。
+
+Android `personnel-return-android-compile-v1.log` BUILD SUCCESSFUL in34s（24任务4执行/20缓存），验证有界InputStream资源和Java兼容，不作为APK安装或正常战役验收。本轮JNI四SHA与旧609状态SHA重新一致，完整源目录HEAD仍0e7b9bc2df90249a50851baeda58c7d183ea6059且clean；可用磁盘72GiB，无清用户资源。
+
+原顺序重放完成：`duel-release-return-source0-v2.json` SHA5823072e12a8d862abeecdc48b8f466d8277a16675f12fbdf289f344aebdfcbb。611帧原单挑/原4d3340完整数值结算/声明choice2后，四次按598630→59a4b0→599cf0完整阶段运行，人物558的home21/军团1/status3不变；current15/task37/duration3/flags201→17/37/2/201→19/37/1/201→21/−1/0/200；第四次World零改变。前两次World各2字节改变，到达25字节改变（任务清除/行政居住回调），nativeRNG始终1001697610。只略去已核验的588bb0数字显示和5887b0屏幕点fixture，全原数值setter/旅行/任务/行政回调保留；没有执行PC菜单/原日历全局任务，也不是普通Android流程。所有启动进程均exit0，现无原回调或编译进程遗留。
+
+## RELEASE生产WIP与显式兼容策略
+
+B新增PcDuelRelease/PDR1，明确来源绑定source0 identity/SHA/variant，保存stableId/nativeId/home/owner/current/duration；第一次实际支持的释放才建立extension，没有新局/读档追填。未知同名extension拒绝覆盖，旧31–39没有PDR1时不参与busy/tick/save校验，保持旧策略。主机测试35检查通过（v5），API实际终局/处置/双击/旧StateToken/fullWorld两RNG保存88检查通过（v1）；API模型human标志为测试输入，普通creator仍未启用，不是普通人控战役/APK。其他源邻接/失去home后的备用站点/同地域立即抵达/君主都督军师额外回调仍明确拒绝，不转换为拘留。
+
+Strategy busy/显示remaining与Governance resident共同识别PDR1任务；SaveCodec只在完整有效PDR1时允许同原返程穿行外方地域，不放宽普通人物据点归属。Strategy全球人员结算逐原邻接推进，不重抽随机；到home才清任务并调用原行政到达适配。Contests终局允许明确RELEASE选择，PcDuelSettlement先验证完整支持条件再写体力/伤病/携物缴获/离队替换/返程与原功绩经验/兵损RNG，GameSession事务保护保持。
+
+失败记录保留：v1主机未编译异常声明，v2原JSON含uint32超过项目严格int32；仅测试原receipt数值适配，不改生产JSON；v3原VM坐标在项目地图不可通行；v4原返程外国地域暴露SaveCodec普通owner断言，v5仅真实PDR1豁免后完整35项通过。主机站位是同原region15的合法构造陆格，不冒充PC菜单出征。新增normal全局turn/API/query/APK与旧档回归仍需本批次确认。
+
+本轮后验：GameSession1690检查通过；真实继承9份旧档36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2与完成基点完全一致。Android v2编译BUILD SUCCESSFUL in59s，24任务5执行/19缓存；新增返程失陷预写拒绝随后主机重新编译/v6 35检查通过，尚未再跑Android。API88检查源是声明RELEASE完整原终局，仍用测试human标志，不冒充普通入口。原任务失陷到达/初始失去home备用站点未知显式保留，普通换旬完整闭合/新APK尚待完成；没有提交或将WIP发A。
+out/session-b/duel-query-check/duel-release-v6.log SHAddad4da849ff974efd955f4979523045a9262646b50f09b1a4eab764bce95a4a
+out/session-b/duel-query-check/duel-release-api-v1.log SHA068aa3de314e0d6fdd1a39671f508a91b728a58be6b33f5f382b3a96560fbd0d
+out/session-b/duel-query-check/duel-release-regression-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/personnel-return-android-compile-v2.log SHA8ae8c9f9157e20424e13d61a01a7e2102de2c298f57a2b24411eca7c626a3a56
+
+## 普通武将EXECUTE生产接入（WIP）
+
+原4a9120携物缴获后4acbe0普通武将分支已接PcDuelExecution。先原单位同ID替换/删除，再清行政army/home/current，调用生命周期死亡清身份/官职/任务，不走工程单位继任择将或宝物返府。原胜方军队主将受领携物，已故败方不增加功绩/经验。普通终局三种已接处置为拘留/释放/处斩；君主/都督/军师等额外回调与登用仍显式未完成，未改成别的处置。
+
+直接原611帧EXECUTE完整终局receipt96ee3383a55f6b46aa003823088fd1b8b69635463457a97830f71a029dce2416给出native558 status8、army/home/current−1、rank−1、loyalty0、physicalHP1、原单位517/14替换；普通武将11检查通过；正式GameSession选择/冷存取/一次性处置/旧StateToken/完整原奖励兵损RNG88检查通过，释放88检查回归通过。API使用原终局端点和测试human配置，仍不是普通菜单触发或新APK。
+
+本轮校正原差异地址解释：城市记录是root+1d8/stride248，不是拼接的1d8248；实际city21改变的是+34太守−1→109、+c0计数19→18、+c4聚合20be→e4bd。district1改变+38聚合/+3c计数5→4/+40字段12→0，不能将+40直接猜为AP。本轮生产行政通过已经核对的有效人/行政驻点排除和重选规则清除，不盲写聚合缓存或AP。
+
+开战发言的59fe00读取固定全局格网0x44e5878（步长10/256×256），此前可见性解释尚未证实，已改为未知地点格网条件；不能以水面/视野名称代替原数据指针语义。无PC目录、A文件、桥/Unity/JNI修改。
+
+本轮后验：普通武将EXECUTE正式终局88项、原RELEASE回归88项、GameSession1690项通过；真实9旧档36行续行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2与完成基点一致。Android当前新增代码编译BUILD SUCCESSFUL in1m13s（24任务5执行/19缓存）。无新APK或设备操作。仍未启用普通新局PDU策略，原菜单/准入行动费/发言完整随机链、登用/AI处置与君主等回调待闭合；不能将此次API端点证明作为普通战役验收。
+out/session-b/duel-query-check/duel-execution-api-v1.log SHA068aa3de314e0d6fdd1a39671f508a91b728a58be6b33f5f382b3a96560fbd0d
+out/session-b/duel-query-check/duel-execution-release-regression-v1.log SHA068aa3de314e0d6fdd1a39671f508a91b728a58be6b33f5f382b3a96560fbd0d
+out/session-b/duel-query-check/duel-execution-session-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/duel-execution-android-compile-v1.log SHAbe64cb56cf939fa2e431319dee97f320c2f2babadfce7cf7a413d8679994837d
+
+## 招降数值和迁属返程 WIP（20261007，尚未开放正常入口）
+
+原招降候选611帧、原4d3340完整数值回调、声明choice0的receipt ec7861187526ce807e46eef7dbce237ad6292b2a05c6cfbacbfff399d209f5f9；此声明没有执行原人控4afd60准入，不把它当作有效玩家招降。native558军团1→0、home21→8、current88→15、status3保持、rank80、raw忠诚100→85、task37/duration3、败方功绩10。只转移携物native kind6/7到胜方部队主将，其余装备随人物；不是拘留/释放的全部缴获。
+
+独立原4afd60/4af7d0/5c4f80 modes1/2，原source0/native558与365、忠诚0/20/50/80/100/120/150/255、seed0..31，512例完整World纯且RNG恢复。v1 SHA305a745bf8600d569e4a30efda7cca18ff9ef5d9c80019fda73d2e62da0f20d9；v2增加原gap/当前CHAR/honor/关系惩罚输入，SHA274fb1b2fbede4d5af15112872209c70d7493e2612e3fa6712747f76b44ad4fb。原target status3不冒充status5俘虏：此例captiveBonus0、honor3、旧君主gap5、新君主gap61、CHAR91、hash bound5-honor=2。无城mode2仅raw忠诚上限70；非零chance才推进原RNG，chance100仍推进一次。PcDuelRecruitmentRules与原512例概率/honor缩放/结果/RNG3076检查通过，4af7d0关系准入仍是独立必需项。
+
+PcDuelRecruitment原普通在职人物回调与PcDuelRelease共享保存task37，事务前检查当前部队/来源/行政驻点/军团/物品/返程。君主、都督、军师、高忠诚结义/亲爱、同地域即时抵达和其他源邻接仍明确拒绝，不套用普通分支。原回调4a8440明确官职设80，不以工程登用的20+CHAR技巧/200功绩奖励混入单挑；终局奖励仍由原单挑统一计算。当前Contests正式RECRUIT仍保留所选且拒绝完成，直到强制门、当前来源字段与一次性提交全部接入。
+
+原四次598630→59a4b0→599cf0招降返程SHA a85b30bfa7c7ebdcc95f6cba9b763a7e4f715eb1dd0c4f16a1078c2c06d0c298；15→12→9→8，duration3→2→1→0，第三次清task37，第四次无副作用，nativeRNG1001697610保持。完整主机69检查包括原路线、43件明确携物fixture分类转移、拒绝双击、全World保存冷续行；不是普通全旬/APK。membership-v2测试过早读取尚未生成的receipt而失败，日志保留；receipt完成后新v3通过。原装备fixture与原终局source人物字段分别标注，不声称原人物曾同时持有43宝物。
+
+释放共享任务35检查回归通过；GameSession1690检查通过。Android compileDebugJavaWithJavac BUILD SUCCESSFUL in35s（24任务3执行/21缓存），未安装新APK。168固定输入与四JNI SHA保持，旧目录default status-z SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0保持；完整源HEAD0e7b9bc2df90249a50851baeda58c7d183ea6059且clean，磁盘71GiB。没有新完成批次提交或跨会话WIP集成。
+
+后续强制门：原40声明关系/status/mode案例SHA2ad91efc1e44a3c0954f711964c9ec633dc88f8f1aaaa176b015898cc941a218，PcDuelRecruitmentRules.forced保留原顺序并与40例一致。此层接收明确original-valid/force/property75输入，尚未绑定动态当前群组/原58拒绝君主及59月计时；不能用初始immutable字段替代当前怨恨。原48bdf0父/母双向一代条件已完整提取，不等于所有祖先。原4a88a0实际ret4a88dc，4a88e0是下一个函数；早期扩大窗口含此函数的记录只作有界code，不称同一个函数。原4a92c0实际ret4a93a9，后续4a93b0是俘虏函数。
+
+真实9旧档/36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2完成且与基点一致；实际31/38/custom Android仍缺。新Gate类增加后主机编译/40例通过，Android35s编译发生在此Gate输入类增加前，未称覆盖该后增量。各原探针/主机进程已正常完成，无新APK/设备操作/完成提交。
+out/session-b/duel-query-check/duel-recruitment-rules-v1.log SHA04ad8dfa843a9b5e888340315056c7b88f630e9cb1944ccb91bca70869da956b
+out/session-b/duel-query-check/duel-recruitment-gate-v1.log SHA381a7fc3f59cffbddbc9e9c07139ac2b986c1dbc219474a7586597808f424888
+out/session-b/duel-query-check/duel-recruitment-membership-v3.log SHA53fa66b104424655c1a84260ca07304a7876bcfa5f98c2834483305a4600ea50
+out/session-b/duel-query-check/duel-recruitment-release-regression-v1.log SHAddad4da849ff974efd955f4979523045a9262646b50f09b1a4eab764bce95a4a
+out/session-b/duel-query-check/duel-recruitment-session-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/duel-query-check/duel-recruitment-legacy-v1.tsv SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2
+out/session-b/duel-recruitment-android-compile-v1.log SHA1eaa1d055fb96610a9e50e6ce5e631516e7efb06299c289e31459b4a8bc59dff
+
+## 当前招降准入、暂时禁止与一次性保存（20261007 WIP）
+
+完整继承HEAD仍89534120e46e488136db0e661270757d9c4a4c50；完整源目录0e7b9bc2df90249a50851baeda58c7d183ea6059且clean。此增量尚未提交完成批次、未交A集成、没有新APK/设备操作。前一轮为代码和原对照实际进展，本轮继续推进当前人物API，不将函数矩阵当普通战役。
+
+重新核验封存27中的原数据：只读取tar中的state.bin.gz，不采用任何候选Java/页面代码。archive SHA635bb2f3cd3ddcdea62aad5a72981710817cc953d9f8b3b35fc06d2e3c0312d1、decoded ec5d3f35d4796699a4a988c9789b16c7e15bc86da1c37fc2265061aa55b41502、原receipt20ca65baaec63303c680b75a3d1e19abb0931d5a26400506c13ccdf1f5f1eeea。新导出工具按当前manifest逐16 sourceId/SHA/variant、13600条原序列化记录SHA重新与只读PC安装字节连接；只导出58/59拒绝君主/月数和nativeId/recordSHA，全部为载入边界-1/0，不称完整开局事件。两次转换字节一致，resource fcd40647848c6492ab45b5b000eee8f7cbe6679eb5e068ddeb7903a43f8c0d32、4382617B。
+
+原58bb30完整月初函数重新执行，84交情/144状态与月计数case，receipt1cc0caf7931eeeaaace77daa0a0648c8c0fa5041ba11007710e020eddf9e1de4。新增PcRecruitmentBanPolicy/PBN1独立namespace：明确新局才建立670映射人物行，原EXE/来源和native连接守卫，旧缺失/opaque不读当前目录、不追填。任何尚未核实的归属变更使对应禁止状态unknown；只有原独立setter可建立已知当前值。Strategy全局人员阶段仅月界维护原拒绝部分；本人无效不动，禁止对象无效或到期清-1/0。原status5俘虏月数仍是另一个未完成字段，不能将这144条或PBN1称完整58bb30全部字段接入。16来源/144月规则/完整保存/unknown续存10929检查通过。
+
+PcDuelRecruitmentAdmission消费当前君主、所属、相性、魅力、义理、配偶、亲爱厌恶及已保存原raw忠诚；义兄弟原群组与当前关系连接先比对，已变更的原群组编码明确未知。来源0/native558/365原512输入与实际当前人物概率/结果/随机数2563检查通过，World/双RNG只读；原display追加receipt764784ca1ce02b017a96491e571afa05507786a70e6f35f541f3458e0ce3e607证明raw0/20/50/80/100/120/150/255分别显示0/20/50/80/100/100/100/100。PDL1原写入契约扩至原byte0..255，显示要求min(raw,100)，仍仅原已核实setter使用；工程写入不恢复trust。
+
+修复原同父亲绑定区分：PcDuelRecruitment原忠诚现在消费PDB1内部+54，不拿公开父亲替代。source公开父亲2036保留为外部未知，不猜projectId或激活身份；初始project公开父亲为空与原内部引用分别验证。父亲实际编辑若改变所选人物的内部父系语义仍明确未知，不因无关/base编辑拒绝全部人物。此次实际typed拒绝曾暴露外部2036误作为需激活人物；按初始外部未知与内部父系分离修复，失败日志保留。
+
+Contests.nativeDuelDisposition在选择登用时调用当前原准入并拥有一次native RNG；失败是已执行的判定，提交mask清bit0/pending4、更新对局revision和RNG后重新选择，其余World保持；不会以失败返回回滚本次随机。成功选择后只有确认才做迁属/物品/任务/原单挑统一终局。新token重复已选择处置也拒绝，旧token/对局revision仍拒绝。B ContestUi已完成选择按钮禁用；真实错误来自只读DTO而非页面推断。
+
+显式兼容：旧format1/2字节保留，旧format2 choice0从未执行原准入，不能因新版开放招降便当作成功。新成功原准入才写format3/布尔标志；不含成功或非法flag拒绝保存。终局要求此标志；旧已选登用不重抽、不静默改处置，完整待办保留、DTO确认不可用且提供同提交原因。原格式/全模型/RNG16检查通过；typed成功95和失败后释放95检查通过，均含旧未准入choice0预览/提交拒绝、冷读全World、旧/新token重复保护和一次终局。成功测试明确额外raw0/seed0输入，原512 oracle中对应判定为成功；本构造模型来自真实原611帧语料，额外raw/RNG输入不冒充原普通出征战役或完整PC GUI。
+
+当前迁属/43明确持物fixture/原路线/完整保存69检查回归通过；GameSession1690和真实9份旧档36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2与基点相同。真实31/38/custom Android仍未验证。编译v1/v2/v3依次1m30s/27s/38s，各自产物日志边界保留；最新只读DTO改动后的v4正在编译，完成后追加结果。
+
+失败透明保留：current admission-v1在新局自动PBN初始化后再次初始化而拒绝，v2修复测试初始化后2563通过；typed-rejected-v1使用尚未成功编译的旧测试class，88结果不计新招降验证；v2/3为测试恢复API/返回字段编译错误和实际拒绝；v4指明外部2036连接问题，修复后v5=93、加入准入标志及预览一致v7=95。没有用这些旧PASS替代后续增量。
+
+仍须普通challenge/骑兵触发的原准入/费用/行动/地点格网发言RNG、原新局设置与PDU新局启用器、人控完整入口和败方AI全处分，所有普通全旬/存取/冷重开/实际APK。当前自动AI无pending时仍继承拘留路径，不能借人控成功对照称完整AI；君主/都督/军师、其他源归队、同地域即时到达/驻点失陷、动态义兄弟和未覆盖额外人物仍需闭合。PBN不表示官职/关系或俘虏月数全部还原；新当前招降未知保留。下一步优先AI完整终局与普通creator，不停在矩阵和额外表格。
+out/session-b/recruitment-monthly-source0-v1.json.gz SHA1cc0caf7931eeeaaace77daa0a0648c8c0fa5041ba11007710e020eddf9e1de4
+out/session-b/recruitment-bans-export-v1.json SHA601b1a0f3095e7ab5febdaff375bea13c37bd3a92543d6154fb1de0dedf979c0
+out/session-b/duel-recruit-admission-source0-v3.json SHA764784ca1ce02b017a96491e571afa05507786a70e6f35f541f3458e0ce3e607
+out/session-b/duel-query-check/recruitment-ban-v2.log SHA5e5526ae5836718c352a6369e535b1bb141c08263f226d9ca7844293debe8b8a
+out/session-b/duel-query-check/duel-recruitment-admission-v2.log SHAcf2f7f2286901c40a696dd5338e8eae263202c9a6fceb345ac6c473c6991a52f
+out/session-b/duel-query-check/duel-recruitment-success-api-v3.log SHA41c63e8857eb383b6eee7e691c1daf1f701801eb9519585a28c32582572d5937
+out/session-b/duel-query-check/duel-recruitment-rejected-api-v7.log SHA41c63e8857eb383b6eee7e691c1daf1f701801eb9519585a28c32582572d5937
+out/session-b/duel-query-check/duel-recruitment-format3-v1.log SHAe4acf3fd2b798d27a66d221f7f3f46eccd3a8ba31f24ef7946d4095a74c3cdd2
+out/session-b/duel-query-check/duel-recruitment-api-session-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/duel-query-check/duel-recruitment-api-legacy-v1.tsv SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2
+
+最后v4编译完成：BUILD SUCCESSFUL in41s，24任务8执行/16缓存，SHAe0860f6831628b28bf93f974e08ba5f532c1b68ff2283221aea4c10a1ed1687b。当前只读DTO/禁用原因/format3成功准入均在此次编译范围。所有已启动原探针、主机API和编译已正常终态；没有实装新APK、设备保存修改、新完成提交或另一会话WIP合入。168固定输入/四JNI与继承SHA一致，原旧609 status-z保持31896B/SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0；可用磁盘70GiB。
+
+## 自动处分、三类原设置与 AI 等待修复（20261007 WIP）
+
+本轮继续是实际代码与原对照进展；完整目标未完成，HEAD89534120e46e488136db0e661270757d9c4a4c50不变。原完整源目录HEAD0e7b9bc2df90249a50851baeda58c7d183ea6059且clean，旧609目录和4JNI未改。没有新实装APK或A增量合入。
+
+原4b03d0顺序：4adb30强制处分→4afd60招降→4aed40随机处斩→君主释放→4afed0拘留/释放。完整边界重新提取：4adb30实际ret4adbf4，4aed40 ret4aef80，4afed0 ret4b0133；旧短窗口不冒称完整函数。强制处分首先是捕获者对目标的单向厌恶；君主另依赖原force+3c及481910/49cdf0当前位置派生，本轮未将其绑定为当前生产人物事实。普通在职武将通过PcDuelAiDisposition的新策略接入，君主这一额外来源、行政/继任/国号回调仍明确未知，不能称全部AI。
+
+2304组完整原4aed40，对照source0/native558/365，明确当前byte170..174/merit/性格/关系/status/ROOT+24/seed输入，无规则/随机替换，fullWorld逐组纯且末次RNG恢复。receipt f8098639985c1b78c8e69f885573f1b3a619a1706920be2e25ff7bdf1c311d73。原raw义兄弟值直接相等时，包括-1/-1，不进入随机处斩；捕获者配偶/亲爱也不进入。当前能力byte170..174不是base。原功绩分母为2000（最少功绩20000），本人野心、捕获者义理/野心/性格及独立设置参与，非君主先原uniform25再有正chance时percent，君主uniform20分支分别保留。第一次Java误读分母1000使seed24 chance变0、少一次随机，失败日志保留；按完整原乘数/位移修复2000后通过。原raw chance、结果、RNG合计6913项，不能只凭结果和RNG相同声称概率相同。
+
+原4b0e20完整上下文是三参数，本轮首探针漏第三参数误读栈造成UC错误，已保存失败；补真实第三参数0后核实city troop getter，发现+40错误，原城市兵力实际486c80读取+44，失败断言保留，不能借军团+40推城市偏移。v3按完整原getter核验且逐44组fullWorld/RNG纯，receipt f6d90a46651ef38e3e604b1d9a4da30b8ad0da66a9eeab12806c9717626303ec。原当前home8正常mask15列表含已出征native116/365/466，行政驻点与当前位置分开；原49f2a0累加非君主/非俘虏的rankbyte35，81定义与现有权威薪俸全等，例总55。原mask32是status5俘虏，不是特技。普通野战看捕获者行政驻点兵力，条件2*(薪俸总额+50*(当前该点俘虏数+2))<=兵力；0/1/2/4俘虏和11个兵力夹具44组对应当前绑定258检查通过，不能用部队兵力代替行政驻点。
+
+PcDuelAiDisposition.preview为只读World/双RNG上的 detached random plan；当前原厌恶优先、当前招降判定、原随机执行及驻点拘留/释放顺序保持。处分支持当前普通人物；动态原义兄弟编码和无身份额外/自定义驻点人员不静默略去，明确未知。原终局伤病先投影至招降者当前魅力与目标五能力，读model管理器的伤病，不提前写World、不从旧当前缓存作最终判定。人控登用同样使用这项当前魅力投影。新自动方案记录原成功招降标志和原RNG，再由统一终局做完整迁属/俘虏/释放/处斩/兵损/奖励。拘留79、低容量释放80、单向厌恶处斩80、raw0/seed0招降82 typed checks通过，均为明确原终局模型/构造unit和新设置夹具，后两者额外输入分开标明，不能称普通新局/出征/开战/APK。
+
+重要保存修复：年龄寿命ROOT+20、终局/处分战死设置ROOT+24、难度ROOT+38原本被Prototype共用age字段。OriginalSettings新增明确三字段构造，新format4存三种valid/value及独立处置format0/2/3。终局死亡读death，黄忠年龄/临界读life，其他难度读difficulty。历史format1/2/3维持已保存的旧共用行为，字节不升级、不追填、读回仍原格式；334项独立组合与旧保存检查通过。新规则只由明确新构造选择，不把原载入设置-1当玩家菜单选择，PDU生产新局启用器依然没有。
+
+新的AI控制方曾被waitingInput误认所有phase3/5等待节点，advance停在不能提交的假玩家状态。format4现在仅左侧实际人控0才声明等待，纯AI两侧1的advance可直接完整终局；历史1..3策略不静默改变。两侧/右侧人控GUI尚未绑定，原12控制夹具中的空输入/无窗口帧只能核对数值，不强行生成玩家选项。driver先因自动夹具无输入列错误而失败，v3/v4把原无窗口模型逐帧与真正typed输入验证分开，未改任何golden/预期帧。全人控127682、换将67111、新三类设置原连续帧168988项通过，最后含实际一次性AI advance与原最终全模型/manager/RNG对照。混合控制case8在原夹具预算内terminal0保持，不能称12例全部结束；真正纯AI例可完整推进。
+
+GameSession1690通过；真实9旧档/36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2与共同完成基点相同，旧39对局/继任阻断保持。Android v1/v2/v3依次1m11s/42s/26s编译通过，不是APK证据；最后增加raw chance核验方法的v4正在编译。168固定输入/4JNI一致，原旧609 status-z仍618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0，磁盘69GiB。最新手动只改变量名以按原字段/谓词命名，没有将尚未核实的force+3c语义强称已绑定事实。
+
+仍缺完整君主/都督/军师/死亡outcome2、所有源归队例外、实际设置新局菜单、PDU creator、原完整正常challenge费用/行动/拒绝损失/发言地点格网RNG，以及真实普通出征→单挑人控胜败放弃→多旬→全World双RNG存取/退出重开与实际APK。当前严格保留unknown、仅WIP，不提交为完成批次，不向A交未闭合源码。下一步应优先正常creator和完整终局中的真实缺口，不能以这些矩阵宣布目标完成。
+out/session-b/duel-upstream-callers-source-v44.json SHAc18239284b947c3a0d9dd84ca824e3c0aaeb2120f5373fd8cd6dedd15960bf31
+out/session-b/duel-upstream-callers-source-v45.json SHA299b7b2e6ee001b75b056f1adad32ce2cc244fb304d61a9d4f8600c86fa36d59
+out/session-b/duel-upstream-callers-source-v46.json SHA6d3cfbea13b9a700293e1123f89945653a5e8c04176a37dbcc49036af7acfc8e
+out/session-b/duel-upstream-callers-source-v47.json SHA34828ec64cb8f6bdb3fd504a9812ea1a59cd08d1a09fb1b747d2ab8c97f1d64a
+out/session-b/duel-upstream-callers-source-v48.json SHA17d26571a1cf2cf8075f79452ad233f6ebd94bae9c422f61fbde82468d58e640
+out/session-b/duel-ai-disposition-source0-v1.json SHAf8098639985c1b78c8e69f885573f1b3a619a1706920be2e25ff7bdf1c311d73
+out/session-b/duel-ai-retention-source0-v3.json SHAf6d90a46651ef38e3e604b1d9a4da30b8ad0da66a9eeab12806c9717626303ec
+out/session-b/duel-query-check/duel-ai-disposition-rules-v3.log SHA2cfa76b1accd6e9a978e0ee3cc97fe300424446f3ecca5a0992315cc93e09e05
+out/session-b/duel-query-check/duel-ai-retention-v3.log SHAa54e0b3cc62dac9d2f2afd6461263e0de0c1c81b45a1b409258d77e3178c35ad
+out/session-b/duel-query-check/duel-settings-save-v1.log SHA237c81b7c303d9d34d32782075fb5f5979a75a87870abff04eb87c0ff539c180
+out/session-b/duel-query-check/duel-ai-typed-detain-v1.log SHA997bf3fb3761ec2ca5a91507e557ade849da9c25f8d7ec691c9ac3f14b095f72
+out/session-b/duel-query-check/duel-ai-typed-release-v1.log SHA248719b0d1a01e968476ceddc79ef6b8b430bfefaacdf4c5ac3964938918bc5a
+out/session-b/duel-query-check/duel-ai-typed-execute-v1.log SHA248719b0d1a01e968476ceddc79ef6b8b430bfefaacdf4c5ac3964938918bc5a
+out/session-b/duel-query-check/duel-ai-typed-recruit-v1.log SHA65fd1b56ed4c5d300cfbc3d143635c24d6e6217892653eab8c252e8c8d89e6d5
+out/session-b/duel-query-check/duel-settings-human-driver-v1.log SHAa0a04cdd62731bed3777a82809ac88503b9c70d4f48b20ca2820d93355401147
+out/session-b/duel-query-check/duel-settings-swap-driver-v1.log SHA872acd5ae528a485a0c6a27f14ba4cf92b6fa76aa68860aa2e0c2b535dbad4bc
+out/session-b/duel-query-check/duel-settings-ai-driver-v4.log SHAf8b6ad85fbb8d618ea20882ede2021b824e1eaeb568842deb93d8ac571e5e983
+out/session-b/duel-query-check/duel-ai-session-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/duel-query-check/duel-ai-legacy-v1.tsv SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2
+
+最后v4已完成：BUILD SUCCESSFUL in40s，24任务5执行/19缓存，SHA629384b4fcfac8b05658162c9ae758d2dc535b684e22c7501282a3812efc0dbd。所有本轮原探针、typed主机、连续模型、旧档续行和编译进程都已正常终态，无设备操作。最后source guard/diff --check通过，HEAD未改变，增量仍未提交完成批次。
+
+
+本轮继续普通挑战入口边界与编辑后的误阻断（WIP，HEAD仍89534120，未提交完成批次/未安装APK）：
+
+- 原59fe00读取44e5878为3260860+1285012+6；原417120清零/设置这一字节，按相机视锥计算可见粗格。4153c0→417120第三参数0。不是PcMap粗水height7/mask8，也不是火格。原58b640在任何manual、实际可见、候选有效时4721d0(50)后voice35/36。渲染和规则分离仍需显式正常命令策略，不能假装水面/全可见就是PC真值。
+- 新PcDuelCommandRules显式消费可见性输入，严格signed16溢出/trunc÷4、手动发言抽数与拒绝损失；原58b90b..58b942通过真实source单位虚表取兵力，65组troops/seed证明min(5%兵力,300+uniform50)且小兵力也抽数。正常tactic−1拒绝own+10/target−5/扣兵；有效tactic0..31抽cap数但不写这组效果。正常行动/AP仍未闭合，新规则暂未从Contests.challenge启用。
+- 原探针v1重复映射已有renderer页失败，v2Python Unicorn不接受bytearray失败，日志保留；v3修为已有页完整备份/恢复与bytes转换后588视格+65实际兵力边界PASS。工具只执行声明输入/原边界，不能称完整普通原菜单。
+- 修复PcDuelUnitStats/PcDuelBindings/PcDuelKinship的全局editor.edited误拒绝，改核查实际原义兄弟群组/当前父亲或全父母图；当前配偶/亲爱厌恶仍来自现有保存。任一实际公共父母变更明确拒绝旧内部亲族矩阵，未知不重填。母/父外部native身份未映射仍public−1，不启用猜ID。
+- Editor.officer只在忠诚变化时invalidate原raw忠诚；仅base能力编辑保留当前raw忠诚策略。原已未知不恢复。24检查包含16独立source实际公共父母映射、实际Editor preview/apply、Save/cold、读取纯性和父母/义兄弟反向拒绝；只声明getter/编辑链，不声明普通单挑战役完成。
+- 当前编队原cache回归、GameSession1690、9真旧档36行续行SHA487b6343…5cd2、Android编译1m30s/24tasks5exec19cache通过。未安装/WIP未交A，不能转用军建54或旧轮APK。
+- 继承源目录仍clean0e7b9bc2；旧609dirty状态31896B/SHA618527…dd0及4JNI逐SHA保持不变；diff --check通过。后续普通挑战行动占用/可见性显式保存策略、正常新局PDU启用、完整设备流程仍必须推进，目标active未完成。
+
+本轮证据SHA：
+out/session-b/duel-upstream-callers-source-v51.json SHAa6f53ca6d94157e9cfddea2c6782861f3d6db26b99aaa20fe623d4842b7366e9
+out/session-b/duel-upstream-callers-source-v52.json SHA87f9a7e585ef570bbeb67468703260e45eaab57f598e8721db6185177d32eb78
+out/session-b/duel-upstream-callers-source-v53.json SHA0cc9f21e1e26865e75aa5fc8209ed7561c6c5af92e21c05acb550c8c1b5ea865
+out/session-b/duel-upstream-callers-source-v54.json SHAb74ca2f48620abce7edf24a36486e35e26e23b3ae5c99b8b11683b7b35d363ab
+out/session-b/duel-command-boundaries-source0-v3.json SHAcb039cc8e4c6e2e7b23608ae8f5fdaf0b45f0fad5bd81b904778cdc39fb952ac
+out/session-b/duel-query-check/duel-command-boundaries-v1.log SHA6f052e1631e98fdb3749c3e08f28dd697f56ac8ae7b81d1edd87ca297b857002
+out/session-b/duel-query-check/duel-edited-current-facts-v3.log SHA0ba97e2ba897f2ca0313b752f4c69d95ded96196e0a7a8edb639953ea24a4537
+out/session-b/duel-query-check/duel-edited-unit-crew-v1.log SHA43c27582c6f748a4a702fef40705a8ddd99db4f16742c0244fa4d4f548ccf358
+out/session-b/duel-query-check/duel-edited-session-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/duel-query-check/duel-edited-legacy-v1.tsv SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2
+out/session-b/duel-edited-android-compile-v1.log SHAf77643c7980c1fb229640bbe531d74e509c5e70559a16ce9625dabfabedc9035
+
+
+本轮正常命令外围继续：场景、演员行动边界与人控候补RNG（仍WIP，非完整普通玩法交付，HEAD89534120未变）：
+
+1. 原完整589f70 / untouched4843a0 /5899f0/589a30：144组native kind−1/0/1/2/3/4/5/6/11、完工位0/1、ring0..3、目标森林5。scene0仅ring1..2有效native0城市/1关/4砦/5城塞；完工位不参与，阵3/港2不参与；无此据点时目标森林或ring1森林scene2，否则scene1。当前World scene接口消费当前城市/军事设施/地形，已保存model-manager.scene44经PcDuelCampaign.Facts→ContestSnapshot.NativeDuel.scene→ContestQuery传递，旧DTO构造器未知−1兼容。152原场景/当前编写fixture/纯保存读取检查、223 detachedAPI检查通过；普通主入口未激活。
+2. original4952c0读取unit40 bit0；4959a0→472520写入。572860正常命令资格检查bit0=0及status24=0；59c2a0换阶段清bit0；59f570写发起unit及当前UnitRep队员行动位。579c40在实际virtual4c回调返回成功后5a07d0收尾，8a5a70非0有额外清除位路径，未猜其规则标签/实际MOD激活。
+3. 完整5a07d0同位置端点12组ownFlags0/1/0x52/FFFFFFFF×otherFlags0/1/0x24：own仅OR1、other完全保持、nativeRNG不动；存在3名队员365/116/466行动位及一个World header写入，receipt保留原变化地址，不能说全World只有unit一字节。PcDuelCommandRules.consumeActor只标记当前演员和当前编队，不改对方/资金/AP/RNG；队列取代和StateToken由普通命令调用者负责，不在此getter/marker夹带。此helper暂未替换旧工程challenge行为。
+4. 既有完整58b640接受/拒绝receipt逐unit244B再次审计：unit40双方原0均维持0，拒绝目标仅兵力/气力变化，接受额外原俘虏/换将和数值cache变化；不能在新原策略把目标一并标为已行动。PcDuelCampaign新增显式commandBoundary保存format5，保存opponentActed与openingVoice−1/35/36；原格式1–4原字节/原行为保留，不追填。新模型验证右方等于已保存原标志；左方仍必须已预留行动。后续producer必须在创建时登记，不能给已进行的旧模型悄悄加边界。
+5. 保存format5六组flags×voice18检查、独立age/death/difficulty历史334检查，以及actual GameSession typed原捕获终局80检查证明右方未行动可整档冷存取/一次性结算/重复StateToken拒绝并在结算后保持false；此typed611帧终点仍为明确构造fixture，不能改称正常入口。
+6. 58b400 first-human normal调用58af20。完整58af20前缀至58b0f7（UI前）：顺序365/116/466三个有效候补，前两人原概率43/40无抽数，第三原46且抽数一次；seed0→12345、23→3031271500、FFFFFFFF→2482546388。选择365也必须保留第三行抽数，不能只估算选中者。6组actual candidate prefix完整原执行，保留temporary display写入地址、整World/RNG最后恢复；没有GUI/普通出征事实替代。PcDuelResponseRules.currentOwnMenu在独立RNG计算全队ordered概率，查询不写World；完整菜单概率/RNG加原演员/队员行动85检查通过。未来确认须按同一StateToken重算并承接这个RNG，再敌方应战、发言、model初始化；查询/取消不推动World随机数。
+7. 当前GameSession1690、9真旧档36行SHA487b6343…5cd2与前轮字节一致、architecture/source168/diff --check PASS。最后Androidcompile-v2 BUILD SUCCESSFUL30s/24tasks3exec21cache。未安装APK/未操作5582或5554/未交A WIP/未提交完成玩法批次。继承源0e7b9bc2 clean、旧609dirty31896B SHA618527…dd0及4JNI原SHA不变。
+8. 失败说明：第一段format5编辑脚本忘记PythonUTF8编码声明，源码编辑与登记未执行；其后的test文件被shell创建，首次javac失败未运行测试，已立即补准确OWNERSHIP和编码修复。这是本轮一次登记顺序偏差，仅本B test文件，无外部/共享/A/原文件修改，无完成批次混入。后来新编译/实际测试正常通过，未使用旧class假PASS。
+
+必须继续的主要入口连接：普通菜单挑战callback与579c40实际虚表连接仍待证实；新局显式寿命/战死/难度策略、相机可见性承接、first-human选择/取消/重入的完整RNG序、正式PDU producer接Contests.challenge/ArmyUi/正常保存/API/APK；所有ruler/adviser/district/多源返回/死亡终局缺口、真正旧31/38/custom APK矩阵和全goal仍未完成。不要把数值工具或新format5当完成玩法，不合A WIP。下一行动优先接正常producer并完成上述准入/RNG边界，而不是重复已有模型24379等无新增覆盖测试。
+
+本轮确切证据SHA：
+out/session-b/duel-scene-source0-v1.json SHA9e16e7a56774e2b3cbd8cb2ddf33d447c30df3cd7a3e84fb65da285eae2d320d
+out/session-b/duel-action-boundary-source0-v1.json SHA95608d24aef9037445ca2fad4c701f49e815b77b1b8c6102f80c515b4406951f
+out/session-b/duel-manual-menu-source0-v1.json SHA538da9226f79b4a6c28d2eff7c3841a0474ee06f00510bc1fa8db57147619013
+out/session-b/duel-query-check/duel-scene-v1.log SHAed6f4a9d4dd476aaa10040658044ed760e7d8224f6bbcb27022cbbc800385501
+out/session-b/duel-query-check/duel-scene-api-v1.log SHA4b515f8d43551c8fb0c5b37d7db84cb769bfb1e51de36c1ea243f595bf4cc426
+out/session-b/duel-query-check/duel-action-save-v2.log SHA3d8403dff7788eeb4e1519568ad8381fd97f0f8e0ea7f69c2b7ee53806f6dae0
+out/session-b/duel-query-check/duel-opponent-action-typed-v1.log SHA248719b0d1a01e968476ceddc79ef6b8b430bfefaacdf4c5ac3964938918bc5a
+out/session-b/duel-query-check/duel-manual-menu-action-v2.log SHA6968e921a13c802c917947b22f3ee2f50b49c458afd79fde13b606fb3ff39890
+out/session-b/duel-query-check/duel-scene-action-session-v1.log SHA847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c
+out/session-b/duel-query-check/duel-scene-action-legacy-v1.tsv SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2
+out/session-b/duel-scene-action-android-compile-v2.log SHA66a59427132f5a9bc14cab6c890b66f636adeb64a45c1715a0a6f9014c4b0b5d

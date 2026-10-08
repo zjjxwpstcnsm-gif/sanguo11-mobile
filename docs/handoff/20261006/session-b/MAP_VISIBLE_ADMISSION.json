@@ -1,0 +1,36 @@
+{
+  "scope": "B test readiness only; current live r9 and all immutable artifacts unchanged",
+  "aReadonlyContract": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/MAP_INPUT_LOADING_GATE248.md",
+  "aContractSha256": "1ea2ca049a4c1efd5055c38ceed5e9d45a34d7496bee6f1f2e1d972c2c586867",
+  "actualFailedScreenshot": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r8-acceptance-v1/evidence/native-duel-normal/map-input-106-120-0.png",
+  "actualFailedScreenshotSha256": "63a8165bbb79ce5f67b7a429f3df4f787e325e79bfa61229e0b618ae539f6a58",
+  "productionComparisons": {
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": {
+      "a": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "frozenCandidateInput": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9"
+    },
+    "app/src/main/java/game/sanguo/mobile/FilamentMapView.java": {
+      "a": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+      "frozenCandidateInput": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09"
+    }
+  },
+  "newBTesterSha256": "be966e375b61487ec782e026f15f82ac87a13001a425ff09d1bfa09e64d168a1",
+  "androidFlowPassed": false,
+  "normalNativeTerminalPassed": false,
+  "wholeGoalComplete": false,
+  "r10ActualProgress": {
+    "currentReportPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r10-acceptance-v1/results.json",
+    "gameApkSha256": "95b971dd7ad04cca492653b9e777a2c48f9cb7fbccb18ed458abaf320d67c8bb",
+    "testApkSha256": "70b2378876c04d0826ea5e95cce5cc68868784b7c7172162c11613a3eacfdc91",
+    "installedReadbackExact": true,
+    "all15Internal772ExternalBackedUp": true,
+    "actualInputSha256": "c9d219988a317d963da89ad2acd44b2354eb316728abf01ec41f70d837a549b4",
+    "firstPointerNormalMapConfirmPassed": true,
+    "normalMovementReachedActualTarget": true,
+    "afterMovementWholeTurnPassed": true,
+    "actualOutputGate": "focus=true curtain=false covered=false overlay=false verified=true frames=4 poseFrame=0 meshes=0 sync=false assets=0",
+    "productionInputPatchRequiredFromR8": false,
+    "normalNativeTerminalPassed": false,
+    "coldAndOriginalUserRestoreComplete": false
+  }
+}

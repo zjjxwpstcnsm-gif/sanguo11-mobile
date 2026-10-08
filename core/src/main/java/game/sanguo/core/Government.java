@@ -101,7 +101,7 @@ public final class Government {
     public World.Result appointRank(int city,int actor,int target,String rankId){w.reports.prepare();
         String error=appointmentError(city,actor,target,rankId);if(error!=null)return w.fail(error);
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);Rank r=rank(rankId);
-        w.spend(c,o,100);ranks.put(target,rankId);t.acted=true;t.loyalty=Math.min(100,t.loyalty+5);
+        w.spend(c,o,100);ranks.put(target,rankId);t.acted=true;PcDuelRawLoyalty.invalidate(w,t.id);t.loyalty=Math.min(100,t.loyalty+5);
         return w.success(t.name+"受任"+rankId+"，"+commandDescription(target)+"，月俸"+r.salary);
     }
     public World.Result removeRank(int city,int actor,int target){w.reports.prepare();
@@ -150,7 +150,7 @@ public final class Government {
         }
     }
     void allegianceChanged(int officer){
-        PcDirectRecruitmentPolicy.allegianceChanged(w,officer);
+        PcDuelRawLoyalty.invalidate(w,officer);PcRecruitmentBanPolicy.invalidate(w,officer);PcDirectRecruitmentPolicy.allegianceChanged(w,officer);
         ranks.remove(officer);advisors.values().removeIf(id->id==officer);World.Officer o=w.officer(officer);if(o!=null)w.officerAbilities.refresh(o);
     }
     World.City refuge(int owner,Hex from){return w.cities.stream().filter(c->c.owner==owner)

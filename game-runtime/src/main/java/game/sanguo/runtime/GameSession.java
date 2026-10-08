@@ -270,12 +270,14 @@ public final class GameSession implements GameApi, AutoCloseable {
         write();Objects.requireNonNull(command);CommandResult.Error error=invalid(command.expected,false);
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         Contests.Session current=authority.contests.current();
-        if(current==null||current.id()!=command.contestId||current.revision()!=command.contestRevision)
+        if(command.operation==ContestCommand.Operation.START_NATIVE_DUEL){if(current!=null)return failed(CommandResult.Error.RULE_REJECTED,"请先完成当前对局");}
+        else if(current==null||current.id()!=command.contestId||current.revision()!=command.contestRevision)
             return failed(CommandResult.Error.RULE_REJECTED,"对局已变化，请使用当前指令");
         if(authority.life.pending())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
             World candidate=WorldCopies.transactionCopy(authority);Contests contests=candidate.contests;World.Result result;
             switch(command.operation){
+                case START_NATIVE_DUEL:result=contests.nativeDuelChallenge(command.contestId,command.contestRevision,command.choice);break;
                 case DUEL_MOVE:
                     Duel.Stance stance;Duel.Move move;
                     try{stance=Duel.Stance.valueOf(command.stance);move=Duel.Move.valueOf(command.move);}
@@ -286,6 +288,15 @@ public final class GameSession implements GameApi, AutoCloseable {
                 case FINISH_DEBATE:result=contests.finishDebate(command.contestId,command.contestRevision,command.mercy);break;
                 case ADOPT_NATIVE_SETTLEMENT:result=contests.adoptNativeDebateSettlement(command.contestId,command.contestRevision);break;
                 case CONCEDE:result=contests.concede(command.contestId,command.contestRevision);break;
+                case NATIVE_DUEL_INPUT:result=contests.nativeDuelInput(command.contestId,command.contestRevision,command.nativeStance,command.nativeSpecial,command.nativeReplacement);break;
+                case FINISH_NATIVE_DUEL:result=contests.finishNativeDuel(command.contestId,command.contestRevision);break;
+                case NATIVE_DUEL_DISPOSITION:result=contests.nativeDuelDisposition(command.contestId,command.contestRevision,command.choice,command.nativeStance);break;
+                case NATIVE_DUEL_HEIR:result=contests.nativeDuelHeir(command.contestId,command.contestRevision,command.choice);break;
+                case ADOPT_NATIVE_LOYALTY_INPUT:result=contests.adoptNativeDuelLoyaltyInput(command.contestId,command.contestRevision);break;
+                case ADOPT_NATIVE_AI_ACTOR:result=contests.adoptNativeDuelAiActorPolicy(command.contestId,command.contestRevision);break;
+                case ADOPT_NATIVE_PHYSICAL_RECOVERY:result=contests.adoptNativeDuelPhysicalRecovery(command.contestId,command.contestRevision);break;
+                case ADOPT_NATIVE_RECRUIT_ITEM_RECIPIENT:result=contests.adoptNativeDuelRecruitItemPolicy(command.contestId,command.contestRevision);break;
+                case ADOPT_NATIVE_HUMAN_ACTOR:result=contests.adoptNativeDuelHumanActorPolicy(command.contestId,command.contestRevision);break;
                 case SEARCH_CHOICE:result=contests.searchChoice(command.contestId,command.contestRevision,command.mercy);break;
                 default:throw new IllegalArgumentException("Contest operation");
             }
@@ -338,6 +349,10 @@ public final class GameSession implements GameApi, AutoCloseable {
         return game.sanguo.runtime.query.SceneFactsQuery.capture(authority,state());
     }
     @Override public ContestSnapshot contest(){thread();if(closed)throw new IllegalStateException("Session closed");return game.sanguo.runtime.query.ContestQuery.capture(authority,state());}
+    /** First-launch source metadata; requires neither a session nor a fake token. */
+    public static PcNewGameOptionsSnapshot previewNewSourceOptions(String scenarioId){return game.sanguo.runtime.query.PcOpeningOptionsQuery.newGame(scenarioId);}
+    @Override public PcOpeningOptionsSnapshot pcOpeningOptions(){thread();if(closed)throw new IllegalStateException("Session closed");return game.sanguo.runtime.query.PcOpeningOptionsQuery.capture(authority,state());}
+    @Override public PcOpeningOptionsSnapshot pcOpeningOptions(String scenarioId){thread();if(closed)throw new IllegalStateException("Session closed");return game.sanguo.runtime.query.PcOpeningOptionsQuery.preview(scenarioId,state());}
     public TurnTicket beginTurn()throws IOException{
         write();if(busy())throw new IllegalStateException("HOST_BUSY");
         turn=new TurnTicket(state(),captureSave());return turn;

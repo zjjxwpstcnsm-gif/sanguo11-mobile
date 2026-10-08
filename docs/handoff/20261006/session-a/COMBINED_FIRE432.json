@@ -1,0 +1,266 @@
+{
+  "actualCombinedCe83And268Apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/app-debug-androidTest.apk": "26801d2fd1e67b4704b8aa2b822f0e45699d05e0f719935fcc823862260ba8df"
+  },
+  "normalColdCompleteOriginalRestorationAccepted": true,
+  "sixActualLifecycleChecks": {
+    "01-player-fire": true,
+    "02-low-quality-fire": true,
+    "03-player-extinguished": true,
+    "04-real-reignite": true,
+    "05-real-expired": true,
+    "06-real-burning-readback": true
+  },
+  "actualNormalOutput": "PASS SESSION A FIRE normal Source14/deploy-two/cancel/player-fire/low-quality/player-extinguish/reignite/multiple-whole-turns/real-expiry/full-burning-save-read/native13; new process and ARM pending\n\n",
+  "actualColdProcess": {
+    "beforePid": "8297",
+    "afterPid": "26877",
+    "beforeProcessEvidence": {
+      "pid": "8297",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "26877",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "1b36fead3311165a8f6fafc2843dc55a9bb117a3f6435577f83258c64ec4ac9e",
+    "passed": true
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "systemAnimationRestored": true,
+  "rawEffectOomWatchdogLines": [],
+  "videoIndexSha256": "19d7ddf2601c55848bae57df129dc5fef333d17dde0354e20903154a72a7c060",
+  "rawVideoParts": 6,
+  "rawSessionSha256": "079d1843311114bf42ddf9daf26a1f7b85551bff731f79e62f3fa98cf04cff71",
+  "evidenceFiles": [
+    {
+      "path": "evidence/01-player-fire-actual-text.json",
+      "sha256": "9438faf342d2429b56cf2e6a03731f4cf5608f0da27834e16bb9f126d82a4f9b",
+      "bytes": 10214
+    },
+    {
+      "path": "evidence/01-player-fire.png",
+      "sha256": "05b3a00dda3584e489175d7bb69ee218159c336ae7c225a088980ef47bda0fd8",
+      "bytes": 1556106
+    },
+    {
+      "path": "evidence/02-low-quality-fire-actual-text.json",
+      "sha256": "849a241c6645b9de8a7e3b4db11c257b16f63c505e12ca38411a3e96943a420d",
+      "bytes": 10219
+    },
+    {
+      "path": "evidence/02-low-quality-fire.png",
+      "sha256": "9bef1fdde386ac2e9acf23a75ced498da1b9c61552db9e2e7315473c3bf68108",
+      "bytes": 1336200
+    },
+    {
+      "path": "evidence/03-player-extinguished-actual-text.json",
+      "sha256": "ef81f84807a9ac889707655e7a25d7fd66827972bbc7c2b45f3f6a56a868434e",
+      "bytes": 10222
+    },
+    {
+      "path": "evidence/03-player-extinguished.png",
+      "sha256": "f532597529e7dfdbe107867136a2636585a9eb60806cddc873852d78255eec29",
+      "bytes": 1348629
+    },
+    {
+      "path": "evidence/04-real-reignite-actual-text.json",
+      "sha256": "e18e13ed781d10861d7ea1c308e575d8b3e749b307844f557271dab85846332c",
+      "bytes": 10770
+    },
+    {
+      "path": "evidence/04-real-reignite.png",
+      "sha256": "635b6d334e34280fff61116b3acf4410fe75730662db3b880727240dfe670b6e",
+      "bytes": 1279123
+    },
+    {
+      "path": "evidence/05-real-expired-actual-text.json",
+      "sha256": "de2581ea779ce0fb93b5af674a559deac0efb1bfed20b840ae44c9289a6180da",
+      "bytes": 10185
+    },
+    {
+      "path": "evidence/05-real-expired.png",
+      "sha256": "32355f11b9e6b4ad7373b13f8851ec9de969cd19bdd9a3d69572c2ea323d517f",
+      "bytes": 1411491
+    },
+    {
+      "path": "evidence/06-real-burning-readback-actual-text.json",
+      "sha256": "3462ce6bfce0a7b06d6e638c0f7bc8b1601f03aa869b6503ccc0f271abd82e84",
+      "bytes": 9624
+    },
+    {
+      "path": "evidence/06-real-burning-readback.png",
+      "sha256": "360a89061992c7a9968ca055a598cd8801bc99aa4ded5072b90e9487337a4a5a",
+      "bytes": 1507171
+    },
+    {
+      "path": "evidence/a-original-fire-actual-player-fire-build-actual-text.json",
+      "sha256": "d68d9158a0c6472d4079b6abf96d9200ffaf96723832869b12215717fb1c3446",
+      "bytes": 13255
+    },
+    {
+      "path": "evidence/a-original-fire-actual-player-fire-build.png",
+      "sha256": "e47b6e535eea9ebbb52f55773ecb032d223e3456617ccf2f6e45e068ae67c477",
+      "bytes": 983476
+    },
+    {
+      "path": "evidence/a-presentation-actual-player-fire-build.txt",
+      "sha256": "5394a76ebdc149435f8d77c5f258cb7acbc90a14c518ea3bd493986c2fd8cb69",
+      "bytes": 132
+    },
+    {
+      "path": "evidence/actual-build.sg11",
+      "sha256": "1b36fead3311165a8f6fafc2843dc55a9bb117a3f6435577f83258c64ec4ac9e",
+      "bytes": 2882639
+    },
+    {
+      "path": "evidence/burning-save.sg11",
+      "sha256": "1b36fead3311165a8f6fafc2843dc55a9bb117a3f6435577f83258c64ec4ac9e",
+      "bytes": 2882639
+    },
+    {
+      "path": "evidence/diagnosis.txt",
+      "sha256": "eff1c3bc1a5655f8e4b9cf7975c2107b7a1f1f5f3758dbb00d239c4dce77a133",
+      "bytes": 44842
+    },
+    {
+      "path": "evidence/pause-home-restored-fire-actual-text.json",
+      "sha256": "5236682dde072e91ace5e3707266c574bffd6013644918086c4856e24c979530",
+      "bytes": 10224
+    },
+    {
+      "path": "evidence/pause-home-restored-fire.png",
+      "sha256": "075207478f423d444a442e0c12d3dacf794ec963a92c5d35ebb696b275ded7dd",
+      "bytes": 1555167
+    },
+    {
+      "path": "evidence/pause-reduced-motion-real-fire-actual-text.json",
+      "sha256": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693",
+      "bytes": 10230
+    },
+    {
+      "path": "evidence/pause-reduced-motion-real-fire.png",
+      "sha256": "4e576d3fd070bd52ecfbf2aacc54484634a0e8e32c94ea21cc023b83f8f9996c",
+      "bytes": 1555683
+    },
+    {
+      "path": "evidence/pause-resumed-original-fire-actual-text.json",
+      "sha256": "7199edd009eedd3fb75ddee01451240e6b3798b06f2d4083f3a872dae4b8af3f",
+      "bytes": 10227
+    },
+    {
+      "path": "evidence/pause-resumed-original-fire.png",
+      "sha256": "98a2e21eb0f044ce4f318246bf7e894137884f8a8901a090fff0ba9add020147",
+      "bytes": 1557019
+    },
+    {
+      "path": "evidence/progress.txt",
+      "sha256": "069afc1346b10f3b8b0f34a73c1984c884c7238f2d48cdd96f25333e056259c4",
+      "bytes": 78451
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "740a618a08b64bc1c70bde93e1262758f742303182d85da97d7a789ece48c7d8",
+      "bytes": 199
+    },
+    {
+      "path": "evidence/scene-facts-actual-player-fire-build.json",
+      "sha256": "323f60c2deda11fcd8732f3ca586f96ef9452c5c49d092bb0734b28f26d9134a",
+      "bytes": 306
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-0-foreground120s-actual-text.json",
+      "sha256": "01268ebc8da9257f8abca5b8369238da2bb2de5262c7865b700e767207f52e5e",
+      "bytes": 10756
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-0-foreground120s.png",
+      "sha256": "4642c3687313ab88176d12570ebbad3fb60b3cfd321a7f07a9d1e082dd36eb4e",
+      "bytes": 1297890
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-1-foreground120s-actual-text.json",
+      "sha256": "e2b4eaf65084acef7b8ed8afda0eec30405a28f23d8ad852580b69d75bc94f59",
+      "bytes": 10170
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-1-foreground120s.png",
+      "sha256": "bc048b3583d2f79420d97006fa623109e7076a81b58569136be54461fee18fd7",
+      "bytes": 1432523
+    },
+    {
+      "path": "cold-evidence/a-original-fire-cold-fire-manual-actual-text.json",
+      "sha256": "628965b273cf305506db57c0117ce229b06f8c6eaf5a0807e1fa80a1de85e9b7",
+      "bytes": 13247
+    },
+    {
+      "path": "cold-evidence/a-original-fire-cold-fire-manual.png",
+      "sha256": "7650ce013e2b7a4a653fe4a4c3ef82b825b50e698919471079a2d129d3a8a885",
+      "bytes": 982907
+    },
+    {
+      "path": "cold-evidence/a-original-fire-cold-fire-restored-actual-text.json",
+      "sha256": "446c442bbcb368ff6e73655d2f8290018c9c633264380eaca2705586f8e5a0f4",
+      "bytes": 13249
+    },
+    {
+      "path": "cold-evidence/a-original-fire-cold-fire-restored.png",
+      "sha256": "5539ec89ee59db6ab87f72845d01b70073fb35eaf8914b6e65c5361b30a57801",
+      "bytes": 983514
+    },
+    {
+      "path": "cold-evidence/a-presentation-cold-fire-manual.txt",
+      "sha256": "5394a76ebdc149435f8d77c5f258cb7acbc90a14c518ea3bd493986c2fd8cb69",
+      "bytes": 132
+    },
+    {
+      "path": "cold-evidence/a-presentation-cold-fire-restored.txt",
+      "sha256": "5394a76ebdc149435f8d77c5f258cb7acbc90a14c518ea3bd493986c2fd8cb69",
+      "bytes": 132
+    },
+    {
+      "path": "cold-evidence/diagnosis.txt",
+      "sha256": "8ebd797f9c5315ed4a540bb568b77c6b9cc0ac96abc9e0de0342aacdf485f44e",
+      "bytes": 8643
+    },
+    {
+      "path": "cold-evidence/progress.txt",
+      "sha256": "7278385bc88a16f83e563d5abb315fe7828efb61560bc62b00788db3ed12f396",
+      "bytes": 124415
+    },
+    {
+      "path": "cold-evidence/result.txt",
+      "sha256": "bfd60de11dd284860fedceb23b51c1e312caec194a2306a7fe7dd8facc263a48",
+      "bytes": 96
+    },
+    {
+      "path": "cold-evidence/scene-facts-cold-fire-manual.json",
+      "sha256": "37e08ffb4897862ce87eb8ea371e259f3ff42bdb7bbfec3a470c7314ba2ead35",
+      "bytes": 306
+    },
+    {
+      "path": "cold-evidence/scene-facts-cold-fire-restored.json",
+      "sha256": "df407f14edbf52ac578d349d7e1e50be000f88f70fd42e5f850c5345b41d2789",
+      "bytes": 306
+    }
+  ],
+  "scope": "Only fresh combined ce83/268 normal player Source14 fire lifecycle/native13 and new PID/full Save/bothRNG/token purity if passed. Other fire chains/traps/ships/all facilities/128 capacity performance/map BGM/voice/miss58/default mixedPCM/ARM/finalB/instantaneous memory/GPU unknown. Old299 or395 A-only outcome never transferred; current Source0 first preparation419/425FAIL remains separate, failure/recovery not accepted.",
+  "wholeGoalComplete": false
+}

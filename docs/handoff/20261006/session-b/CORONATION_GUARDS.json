@@ -1,0 +1,40 @@
+{
+  "branch": "codex/rules-content-contest-repair",
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "complete": false,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcRulerCoronation.java": "5bfc7886beacaf7f331a17e25546ab8b5526ace568e5e4f334690d1f17b8f88b",
+    "core/src/test/java/game/sanguo/core/PcRulerCoronationLoyaltyTest.java": "caf1f4238fb549f47464679757bb35dbee4a3a8b063100a008ecb2eda6a18e5f",
+    "tools/content/session_b_pc_duel_campaign_probe.py": "f128edf6084d6481d5d4bdedcfec52c2bf9bfd7ba17a776cf2679ffbc78b35df",
+    "tools/content/session_b_pc_duel_succession_source.py": "47626b0e9fb08531ee367f86dda46fb1f7cfe2ef57b8cd570f6614c23b228171",
+    "out/session-b/duel-ruler-execute-source0-v4.json": "223ccf542586f974f0a06a681427c568299e779f4c293d0059343e01f7ea232c",
+    "out/session-b/duel-ruler-execute-source0-v5.json": "cc93585b103488f83782456ad54eece2ec70e85bbbba074cd9164aa9c0681e34",
+    "out/session-b/duel-succession-source-v7.json": "0b171ac188fee93785a8ca9d0816901450a3b785267e7f84e694388506d421da",
+    "out/session-b/duel-query-check/ruler-coronation-loyalty-v1.log": "de06e4ee50150513a262b9b57ad9d2c7793e4d964c55a21a2aea5c9e5cd96ee6",
+    "out/session-b/duel-query-check/ruler-coronation-loyalty-v4.log": "78a45cf4177c383fdebbaf578a9935450d054f0e946c0b8b3646e7268fba103b",
+    "out/session-b/ruler-coronation-formal-v1.log": "4688c1b6d7765a2fe648e34294817dbb6b3d6cdf748adf01ff6ee559afd62753"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": [
+    "original390frames completecallback/131bytes/no omissions/fullworldrestore/nativeRNGunchanged",
+    "current28checks/actualcapturemask/untrustedrawpurefailure/savecold",
+    "formalcore4tasks",
+    "architecture",
+    "168fixedsource"
+  ],
+  "limits": [
+    "No production ruler execution unlock",
+    "No APK build/install in this batch",
+    "Other-army merge/human successor/empty force/death relationship complete callbacks pending",
+    "No A edits/Bridge serialization/Unity/JNI changes",
+    "Existing native WIP not merged/committed as completed batch"
+  ],
+  "jobs": "All own tool/test/build jobs terminal"
+}

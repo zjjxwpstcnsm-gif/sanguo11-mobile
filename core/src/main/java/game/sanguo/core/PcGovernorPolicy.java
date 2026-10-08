@@ -55,7 +55,7 @@ public final class PcGovernorPolicy {
         return src;
     }
     static final class Assignment {int home,army,lastCity;Assignment(int home,int army,int lastCity){this.home=home;this.army=army;this.lastCity=lastCity;}}
-    static final class Data {Source source;long revision,identityRevision,peopleRevision;final SortedMap<Integer,Assignment> assignments=new TreeMap<>();final SortedMap<Integer,Integer> siteArmies=new TreeMap<>(),armyLeaders=new TreeMap<>(),unitArmies=new TreeMap<>();final SortedSet<Integer> unknownSites=new TreeSet<>();}
+    static final class Data {int format=1;Source source;final SortedMap<Integer,Integer> mergedArmies=new TreeMap<>();final SortedSet<Integer> vacantSites=new TreeSet<>();long revision,identityRevision,peopleRevision;final SortedMap<Integer,Assignment> assignments=new TreeMap<>();final SortedMap<Integer,Integer> siteArmies=new TreeMap<>(),armyLeaders=new TreeMap<>(),unitArmies=new TreeMap<>();final SortedSet<Integer> unknownSites=new TreeSet<>();}
     static final Map<World,Data> caches=Collections.synchronizedMap(new WeakHashMap<>());
     static boolean recognized(World w){byte[] raw=w.extensions.get(NAMESPACE);return w.pcSourceFrame&&raw!=null&&raw.length>=4&&java.nio.ByteBuffer.wrap(raw).getInt()==MAGIC;}
     static void initializeOpening(World w)throws IOException {
@@ -72,20 +72,25 @@ public final class PcGovernorPolicy {
         data.armyLeaders.putAll(src.armyLeaders);
         write(w,data);reconcile(w,false);
     }
+    static void initializeCurrentArmies(World w)throws IOException {
+        if(w.turn!=0||w.commandRevision()!=0||w.contests.busy()||PcDuelCampaignPolicy.read(w).version!=3)throw new IOException("Current army strategy requires explicit new game");Data data=data(w);if(data.format!=1)throw new IOException("Current army strategy already selected");data.format=3;write(w,data);
+    }
     static void write(World w,Data data)throws IOException {
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
-        out.writeInt(MAGIC);out.writeInt(1);for(String s:new String[]{data.source.id,data.source.sha,data.source.variant,data.source.shared,PcScenarioIdentity.EXE_SHA,RESOURCE_SHA})PcOfficerInfo.text(out,s);
+        out.writeInt(MAGIC);out.writeInt(data.format);for(String s:new String[]{data.source.id,data.source.sha,data.source.variant,data.source.shared,PcScenarioIdentity.EXE_SHA,RESOURCE_SHA})PcOfficerInfo.text(out,s);
         out.writeInt(data.assignments.size());for(var e:data.assignments.entrySet()){out.writeInt(e.getKey());out.writeInt(e.getValue().home);out.writeInt(e.getValue().army);out.writeInt(e.getValue().lastCity);}
         out.writeInt(data.siteArmies.size());for(var e:data.siteArmies.entrySet()){out.writeInt(e.getKey());out.writeInt(e.getValue());}
         out.writeInt(data.armyLeaders.size());for(var e:data.armyLeaders.entrySet()){out.writeInt(e.getKey());out.writeInt(e.getValue());}
         out.writeInt(data.unitArmies.size());for(var e:data.unitArmies.entrySet()){out.writeInt(e.getKey());out.writeInt(e.getValue());}
         out.writeInt(data.unknownSites.size());for(int id:data.unknownSites)out.writeInt(id);
+        if(data.format>=2){out.writeInt(data.mergedArmies.size());for(var e:data.mergedArmies.entrySet()){out.writeInt(e.getKey());out.writeInt(e.getValue());}}
+        if(data.format==3){out.writeInt(data.vacantSites.size());for(int id:data.vacantSites)out.writeInt(id);}
         w.extensions.put(NAMESPACE,bytes.toByteArray());data.revision=w.extensions.revision(NAMESPACE);data.identityRevision=w.extensions.revision(PcScenarioIdentity.NAMESPACE);data.peopleRevision=w.extensions.revision(PcScenarioPeople.NAMESPACE);caches.put(w,data);
     }
     static Data read(World w)throws IOException {
         Data data=new Data();data.source=source(w);byte[] raw=w.extensions.get(NAMESPACE);
         if(raw==null||raw.length>65536)throw new IOException("Governor policy size differs");
-        DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));if(in.readInt()!=MAGIC||in.readInt()!=1)throw new IOException("Governor policy version differs");
+        DataInputStream in=new DataInputStream(new ByteArrayInputStream(raw));if(in.readInt()!=MAGIC)throw new IOException("Governor policy version differs");data.format=in.readInt();if(data.format<1||data.format>3)throw new IOException("Governor policy version differs");
         for(String s:new String[]{data.source.id,data.source.sha,data.source.variant,data.source.shared,PcScenarioIdentity.EXE_SHA,RESOURCE_SHA})if(!PcOfficerInfo.text(in,300).equals(s))throw new IOException("Governor policy provenance differs");
         int count=PcOfficerInfo.bounded(in.readInt(),0,850),last=-1;
         for(int i=0;i<count;i++){int id=in.readInt(),home=in.readInt(),army=in.readInt(),lastCity=in.readInt();if(id<=last||w.officer(id)==null||home< -1||home>=87||army< -1||army>=47||lastCity< -1||lastCity>=0&&w.city(lastCity)==null)throw new IOException("Governor assignment differs");data.assignments.put(id,new Assignment(home,army,lastCity));last=id;}
@@ -100,6 +105,9 @@ public final class PcGovernorPolicy {
         for(int i=0;i<units;i++){int id=in.readInt(),army=in.readInt();if(id<=last||army< -1||army>=47||w.unit(id)==null)throw new IOException("Governor source unit army differs");data.unitArmies.put(id,army);last=id;}
         int unknown=PcOfficerInfo.bounded(in.readInt(),0,1000);last=-1;
         for(int i=0;i<unknown;i++){int id=in.readInt();if(id<=last||w.city(id)==null)throw new IOException("Governor unknown site assignment differs");data.unknownSites.add(id);last=id;}
+        if(data.format>=2){if(!PcDuelCampaignPolicy.enabled(w)||PcDuelCampaignPolicy.read(w).version!=3)throw new IOException("Current army merges require explicit new-game strategy3");int merged=PcOfficerInfo.bounded(in.readInt(),0,46);int previous=-1;for(int i=0;i<merged;i++){int from=in.readInt(),to=in.readInt();if(from<=previous||from<0||from>=47||to<0||to>=47||from==to||!data.source.armyOriginalValid.get(from)||!data.source.armyOriginalValid.get(to)||data.source.armyDisplays.get(from)<=1||data.source.armyDisplays.get(to)!=1||!Objects.equals(data.source.armyOwners.get(from),data.source.armyOwners.get(to))||data.armyLeaders.get(from)!=-1)throw new IOException("Current army merge source/domain differs");data.mergedArmies.put(from,to);previous=from;}
+            for(var e:data.mergedArmies.entrySet()){if(data.mergedArmies.containsKey(e.getValue()))throw new IOException("Current army merge destination inactive");for(var unit:data.unitArmies.values())if(unit.equals(e.getKey()))throw new IOException("Current unit still belongs to merged army");for(var site:data.siteArmies.values())if(site.equals(e.getKey()))throw new IOException("Current site still belongs to merged army");for(var a:data.assignments.entrySet())if(a.getValue().army==e.getKey()&&w.life.present(a.getKey()))throw new IOException("Current person still belongs to merged army");}}
+        if(data.format==3){int vacant=PcOfficerInfo.bounded(in.readInt(),0,87),prior=-1;for(int i=0;i<vacant;i++){int id=in.readInt();if(id<=prior||!data.source.sites.containsKey(id)||w.city(id).governorId!=-1)throw new IOException("Native moved-site governor vacancy differs");data.vacantSites.add(id);prior=id;}}
         if(in.available()!=0||!data.assignments.keySet().equals(expected))throw new IOException("Governor assignment coverage differs");
         data.revision=w.extensions.revision(NAMESPACE);data.identityRevision=w.extensions.revision(PcScenarioIdentity.NAMESPACE);data.peopleRevision=w.extensions.revision(PcScenarioPeople.NAMESPACE);return data;
     }
@@ -110,9 +118,12 @@ public final class PcGovernorPolicy {
         if(recognized(w))caches.put(w,read(w));
         else for(World.Officer o:w.officers)if(o.role==Strategy.Role.DISTRICT)throw new IOException("District role requires recognized explicit source policy");
     }
+    /** Original4a7990 ->4a7acc/4a7b02 requests an election after a real
+     * departure; a read/turn alone does not replace a migrated-site vacancy. */
+    static void departed(World w,World.City city){if(!recognized(w)||city==null)return;try{Data data=data(w);if(data.vacantSites.remove(city.id))write(w,data);}catch(IOException e){throw new IllegalStateException(e);}}
     static void deployed(World w,World.Unit unit,World.City city){
         if(!recognized(w))return;
-        try{Data data=data(w);int army=data.siteArmies.getOrDefault(city.id,-1);
+        try{Data data=data(w);data.vacantSites.remove(city.id);int army=data.siteArmies.getOrDefault(city.id,-1);
             if(!Objects.equals(data.source.armyOwners.get(army),unit.owner))army=-1;
             for(World.Officer officer:w.army.crew(unit)){Assignment a=data.assignments.get(officer.id);if(a==null||a.army!=army)army=-1;}
             // A template/custom/mixed-army unit remains explicitly unknown.
@@ -155,7 +166,8 @@ public final class PcGovernorPolicy {
             // Captured/new army allocation remains unknown; do not synthesize primary army IDs.
             int army=data.siteArmies.get(site.id);
             if(!Objects.equals(data.source.armyOwners.get(army),officer.owner))return;
-            if(a.home==site.nativeId&&a.army==army&&a.lastCity==city.id)return;
+            if(a.home==site.nativeId&&a.army==army&&a.lastCity==city.id){if(data.vacantSites.remove(city.id))write(w,data);return;}
+            data.vacantSites.remove(city.id);
             int previousArmy=a.army;
             a.home=site.nativeId;a.army=army;a.lastCity=city.id;
             if(previousArmy!=army){reconcileArmy(w,data,previousArmy);reconcileArmy(w,data,army);}
@@ -172,7 +184,7 @@ public final class PcGovernorPolicy {
         if(x.leadership!=y.leadership)return x.leadership>y.leadership;return a.nativeId<b.nativeId;
     }
     static void reconcileArmy(World w,Data data,int army){
-        if(army<0||army>=47)return;
+        if(army<0||army>=47||data.mergedArmies.containsKey(army))return;
         int owner=data.source.armyOwners.get(army);Person best=null;
         for(Person p:data.source.people.values())if(p.id>=0){World.Officer o=w.officer(p.id);Assignment a=data.assignments.get(p.id);
             if(a.army!=army||o.owner!=owner||owner<0||!w.life.present(o.id)||w.government.captive(o.id))continue;
@@ -185,17 +197,25 @@ public final class PcGovernorPolicy {
         }
         if(best!=null){World.Officer officer=w.officer(best.id);if(officer.role!=Strategy.Role.RULER)officer.role=Strategy.Role.DISTRICT;}
     }
+    /** Original4b78f0 may appoint its deployed new ruler at administrative
+     * home. This validates an existing fact; it never appoints on loading. */
+    static boolean deployedRulerGovernor(World w,World.Officer o,World.City c)throws IOException {
+        if(o==null||c==null||!recognized(w)||!PcDuelEscortRelease.current(w)||o.role!=Strategy.Role.RULER||o.owner!=c.owner||o.unitId<0||!w.life.present(o.id)||w.government.captive(o.id))return false;
+        var unit=w.unit(o.unitId);if(unit==null||unit instanceof Domestic.Mission||unit.owner!=o.owner||!w.army.contains(unit,o.id))return false;
+        var data=data(w);var a=data.assignments.get(o.id);var site=data.source.sites.get(c.id);
+        return a!=null&&site!=null&&a.home==site.nativeId&&a.army==PcArmyActionPolicy.primaryArmy(w,o.owner)&&!data.unknownSites.contains(c.id)&&Objects.equals(data.unitArmies.get(unit.id),a.army);
+    }
     /** Source station/army assignment remains independent from appearance-home and delegated AP. */
     static void reconcile(World w,boolean announce)throws IOException {
         Data data=data(w);List<Candidate> candidates=new ArrayList<>();
         for(Person p:data.source.people.values())if(p.id>=0){World.Officer o=w.officer(p.id);Assignment a=data.assignments.get(p.id);World.City city=w.city(o.cityId);Site site=city==null?null:data.source.sites.get(city.id);
-            boolean resident=city!=null&&w.governance.resident(o,city)&&o.otherTaskTurns==0&&!w.domestic.busy(o.id);
+            boolean resident=city!=null&&site!=null&&site.nativeId==a.home&&w.governance.resident(o,city)&&o.otherTaskTurns==0&&!w.domestic.busy(o.id);
             int status=o.role==Strategy.Role.RULER?0:o.role==Strategy.Role.DISTRICT?1:o.role==Strategy.Role.GOVERNOR?2:3;
             candidates.add(new Candidate(p.nativeId,p.id,o.owner,a.home,site==null?-1:site.nativeId,a.army,status,w.government.commandLimit(o.id),o.leadership,o.war,w.government.merit(o.id),w.life.present(o.id)&&o.owner>=0,o.owner>=0&&w.life.present(o.id)&&!w.government.captive(o.id),resident));
         }
         Set<Integer> selected=new HashSet<>();
-        for(Site site:data.source.sites.values()){World.City city=w.city(site.id);Candidate winner=elect(site.nativeId,city.owner,data.siteArmies.get(site.id),candidates);int id=winner==null?-1:winner.officerId;
-            if(data.unknownSites.contains(city.id)){
+        for(Site site:data.source.sites.values()){World.City city=w.city(site.id);Candidate winner=data.vacantSites.contains(city.id)?null:elect(site.nativeId,city.owner,data.siteArmies.get(site.id),candidates);int id=winner==null?-1:winner.officerId;
+            if(data.unknownSites.contains(city.id)&&!data.vacantSites.contains(city.id)){
                 World.Officer legacy=w.officer(city.governorId);if(!w.governance.resident(legacy,city))legacy=null;
                 if(legacy==null)for(World.Officer officer:w.officers)if(w.governance.resident(officer,city)&&(legacy==null||officer.politics>legacy.politics||officer.politics==legacy.politics&&officer.id<legacy.id))legacy=officer;
                 id=legacy==null?-1:legacy.id;
@@ -208,8 +228,9 @@ public final class PcGovernorPolicy {
 
     public static final class ArmyFact {
         public final int nativeId,owner,display,leaderNativeId,leaderOfficerId,openingLeaderNativeId;
-        public final boolean originalValid;
-        ArmyFact(boolean originalValid,int id,int owner,int display,int leader,int runtime,int opening){this.originalValid=originalValid;nativeId=id;this.owner=owner;this.display=display;leaderNativeId=leader;leaderOfficerId=runtime;openingLeaderNativeId=opening;}
+        public final boolean originalValid,currentKnown,currentValid;
+        public final int openingOwner,openingDisplay;
+        ArmyFact(boolean originalValid,int id,int owner,int display,int leader,int runtime,int opening,boolean currentKnown,boolean currentValid,int openingOwner,int openingDisplay){this.currentKnown=currentKnown;this.currentValid=currentValid;this.openingOwner=openingOwner;this.openingDisplay=openingDisplay;this.originalValid=originalValid;nativeId=id;this.owner=owner;this.display=display;leaderNativeId=leader;leaderOfficerId=runtime;openingLeaderNativeId=opening;}
     }
     public static final class View {
         public final boolean enabled;public final List<ArmyFact> armies;
@@ -223,7 +244,7 @@ public final class PcGovernorPolicy {
     public static View view(World w){
         if(!recognized(w))return new View(false,List.of(),Map.of(),Map.of(),Map.of(),Map.of(),Set.of(),Map.of());
         try{Data data=data(w);List<ArmyFact> armies=new ArrayList<>();Map<Integer,Integer> officers=new TreeMap<>(),homes=new TreeMap<>();
-            for(int id=0;id<47;id++){int leader=data.armyLeaders.get(id);Person p=data.source.people.get(leader);armies.add(new ArmyFact(data.source.armyOriginalValid.get(id),id,data.source.armyOwners.get(id),data.source.armyDisplays.get(id),leader,p==null?-1:p.id,data.source.armyLeaders.get(id)));}
+            for(int id=0;id<47;id++){int leader=data.armyLeaders.get(id);Person p=data.source.people.get(leader);boolean merged=data.mergedArmies.containsKey(id);armies.add(new ArmyFact(data.source.armyOriginalValid.get(id),id,merged?-1:data.source.armyOwners.get(id),merged?0:data.source.armyDisplays.get(id),leader,p==null?-1:p.id,data.source.armyLeaders.get(id),data.format>=2,!merged&&data.source.armyOriginalValid.get(id),data.source.armyOwners.get(id),data.source.armyDisplays.get(id)));}
             for(var e:data.assignments.entrySet()){officers.put(e.getKey(),e.getValue().army);homes.put(e.getKey(),e.getValue().home);}
             Map<Integer,Integer> nativeSites=new TreeMap<>();for(Site site:data.source.sites.values())nativeSites.put(site.id,site.nativeId);
             return new View(true,armies,data.siteArmies,data.unitArmies,officers,homes,data.unknownSites,nativeSites);
@@ -245,7 +266,7 @@ public final class PcGovernorPolicy {
         for(Candidate c:input){
             if(!seen.add(c.nativeId))throw new IllegalArgumentException("Duplicate original election identity");
             if(c.allowed&&c.mask15&&c.resident&&c.owner>=0&&c.owner<=41&&c.owner==owner
-                    &&c.home==nativeSite&&c.army==army)candidates.add(c);
+                    &&c.home==nativeSite&&c.current==nativeSite&&c.army==army)candidates.add(c);
         }
         candidates.sort(Comparator.comparingInt(c->c.nativeId));
         Candidate priority=null;for(Candidate c:candidates)if(c.status<=1)priority=c;

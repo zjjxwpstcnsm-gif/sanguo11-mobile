@@ -18,7 +18,7 @@ final class GovernmentUi {
     private List<World.Officer> rankCandidates(World.City c){List<World.Officer> list=residents(c);list.removeIf(o->o.role==Strategy.Role.RULER||o.unitId>=0||!w.life.present(o.id)||w.strategy.busy(o.id)||w.domestic.busy(o.id));return list;}
     private void actor(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),this::officer,next);}
     void city(World.City c){
-        String[] commands={"军师建议","任命军师","授予官职","免除官职","俘虏处置","赎回己将","召唤武将","城池委任","补给城外部队","原军团与太守"};
+        String[] commands={"军师建议","任命军师","授予官职","免除官职","俘虏处置","赎回己将","召唤武将","城池委任","补给城外部队","原军团与太守","军事设施管理"};
         UiTheme.dialog(new AlertDialog.Builder(a).setTitle(c.name+" · 军政管理").setItems(commands,(d,n)->{
             switch(n){
                 case 0:info("军师建议",w.government.advice(c.id));break;
@@ -34,6 +34,7 @@ final class GovernmentUi {
                 case 7:actor(c,o->choose("委任方针 · "+w.government.policy(c.id).label,Arrays.asList(Government.Policy.values()),p->p.label,p->confirm("调整委任","行动力10。结束旬时，使用剩余行动力和闲将自动执行一项城务。\n内政优先开发；守备优先修复和治理。",()->apply.execute(w,()->w.government.delegate(c.id,o.id,p)))));break;
                 case 8:replenish(c);break;
                 case 9:administration(c);break;
+                case 10:new CampaignUi((MainActivity)a,w,apply).structures(c);break;
                 default:break;
             }
         }).setNegativeButton("返回",null).show());
@@ -61,8 +62,22 @@ final class GovernmentUi {
     }
     private void amounts(String title,Consumer<int[]> next){choose(title,Arrays.asList(new int[]{0,1000},new int[]{0,5000},new int[]{1000,1000},new int[]{3000,5000}),v->v[0]+"兵 / "+v[1]+"粮",next);}
     private void replenish(World.City c){
-        List<World.Unit> list=new ArrayList<>();for(World.Unit u:w.units)if(u.owner==c.owner&&w.army.canEnterSite(u,u.hex,c))list.add(u);
-        choose("选择城外部队",list,u->w.officer(u.officerId).name+" · 兵"+u.troops,u->actor(c,o->amounts("补给兵粮",v->confirm("城池补给","消耗城池"+v[0]+"兵、"+v[1]+"粮及对应基础兵装；行动力10。",()->apply.execute(w,()->w.supply.replenish(c.id,o.id,u.id,v[0],v[1]))))));
+        List<World.Unit> list=new ArrayList<>();for(World.Unit u:w.units)if(!(u instanceof Domestic.Mission)&&u.owner==c.owner&&w.army.canEnterSite(u,u.hex,c))list.add(u);
+        choose("选择城外部队",list,u->w.officer(u.officerId).name+" · 兵"+u.troops,u->actor(c,o->replenishmentAmounts(c,o,u)));
+    }
+    private void replenishmentAmounts(World.City c,World.Officer o,World.Unit u){
+        List<ReplenishmentPlan> legal=new ArrayList<>();StringBuilder unavailable=new StringBuilder();
+        for(int[] v:new int[][]{{0,1000},{0,5000},{1000,1000},{3000,5000}}){
+            ReplenishmentPlan p=w.supply.replenishPlan(c.id,o.id,u.id,v[0],v[1]);
+            if(p.allowed())legal.add(p);else unavailable.append(v[0]).append("兵 / ").append(v[1]).append("粮：").append(p.failure.detail).append('\n');
+        }
+        if(legal.isEmpty()){info("无法补给",unavailable.toString());return;}
+        UiTheme.dialog(new AlertDialog.Builder(a).setTitle("补给兵粮").setMessage("据点现有"+c.troops+"兵 / "+c.food+"粮\n"+unavailable)
+            .setPositiveButton("选择可用数量",(d,n)->choose("可用补给数量",legal,p->p.troopsCost+"兵 / "+p.foodCost+"粮",p->confirm("城池补给",
+                "消耗据点"+p.troopsCost+"兵、"+p.foodCost+"粮及"+p.equipmentCost+"份"+p.equipmentLabel+"兵装。\n"+
+                (p.nativeArmyBudget?"所属原军团":"当前势力")+"行动力"+p.actionPointsAvailable+"，消耗"+p.actionPointsCost+"。"+(p.actionPointsCost>0?"执行武将本旬行动。":"保留执行武将当前行动状态。"),
+                ()->apply.execute(w,()->w.supply.replenish(c.id,o.id,u.id,p.troopsCost,p.foodCost)))))
+            .setNegativeButton("取消",null).show());
     }
     void supply(World.Unit u){
         List<World.Unit> list=new ArrayList<>();for(World.Unit b:w.units)if(b.id!=u.id&&b.owner==u.owner&&b.hex.distance(u.hex)==1)list.add(b);

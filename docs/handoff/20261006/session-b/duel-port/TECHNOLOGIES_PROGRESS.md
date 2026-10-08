@@ -1,0 +1,29 @@
+# 原技巧来源与当前部队绑定（WIP）
+
+共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059，完成HEAD89534120e46e488136db0e661270757d9c4a4c50；本轮新增策略尚未实际APK普通流程验收，不属于已完成军建54。
+
+证据发现：原force serializer把+58/+5c各4字节直接读入，原4811e0仅允许native技巧0..35，再通过472590读位。原16源确有非零技巧，例如Source0 nativeForce2有8、Force3有12/13；原新局工程此前漏导入已掌握技巧。v1把块读误当逐字节断言失败保留；v2逐块核验原文件offset/recordSHA/exeSHA并执行原getter。16×47×38=28576查询含−1/36边界通过，actor纯。source presence/controller/events仍独立。
+
+原receipt SHA23b0a9741c0966f96e746f996fbd4d6be2ca0ca949786b60b24cc8ba9ac6a0a1。
+资源source-technologies.tsv SHA28239e64d1e8808fd8eda496b6e5c91c809d207fe678db5e22a7afbad89d0f42，752原势力槽全保留16源/每源47、36技巧，保存记录SHA/来源SHA/variant；两次导出字节相同。
+原shared-rule-catalog原标签3精銳槍兵/7精銳戟兵/11精銳弩兵/15精銳騎兵；其他32个逐原目录与已有Campaign.Tech稳定枚举名显式连接，无新枚举ordinal。
+
+PcSourceTechnologyPolicy只在明确PC新局初始化有效force<42，保留47原槽初始位图为来源证据。Campaign.learned承接当前状态/研究完成，不在读档时重新套初始位。新namespacePST1记录EXE/sourceSHA/variant/47原记录，缺失旧策略不回填，已知损坏来源拒绝。SaveCodec原布局版本不强升级；只追加既有opaque extension。
+
+全16源原位图/currentHas/全WorldRNG保存/清空技巧后冷读不复填/原native3当前更新/旧策略缺失共24305检查通过。v1测试把原FieldworksSave解码后的空EnumSet映射当回填失败，v2改为检查实际掌握集合为空，保留失败，不改旧serializer。GameSession1690检查通过。真实继承9份旧档36行SHA487b6343d13174c0fd57cb93e4923380109124db326e7828b91465ceffa15cd2与完成基点逐字节一致，已有39对局/继任仍在原边界；真实31/38/customAndroid未闭合。
+
+当前PcDuelUnitStats.currentCombat已用PST1/native3/7/11/15取精锐技巧，PcDuelResponseRules.currentResponse新无C9CA外参路径用当前五属性/六适性/原模板/原技巧计算。原全496570精锐位声明输入矩阵仍在运行；不把声明输入当原正常研究。正常PDU capability仍未初始化，不因此把单挑称正常战役闭合。
+
+普通研究费用/前置/多旬完成、完整16菜单新局/武将/事件/外交、正常单挑全部处置/人控/保存/APK仍未完成。本轮未安装新APK/未交A此WIP，不移用旧54到新技巧/单挑。
+
+原完整496570精锐位矩阵完成：120组声明force bits3/7/11/15，原getter、完整属性计算/体力/RNG不替换；receiptSHA55195091aacd4c3294f173539b96475dcb96a3458bf2b1f145a3b4cebf391092，120combat对照通过。原当前template攻防各+10，Source0枪兵由85/88→94/97。原声明位不等于普通研究准入费用多旬闭合。
+当前无外部C9CA应战适配完整对照40/RNG23通过；最终Android编译34s成功。
+编辑边界发现Editor.edited覆盖全部编辑（含仅base变化）而内部关系WIP guard全拒绝；下一阶段须分辨内部父系/义兄弟修改和基础能力修改，不能盲删guard或重推旧档关系。
+- out/session-b/duel-query-check/source-technologies-v2.log SHA 90f5174437f12845c15e73276eea2c32b6d0e123dc44e7156fc28ebee579e117
+- out/session-b/duel-query-check/source-current-response.log SHA a2f5287309e505dcd123462367ddc39a074488c9a96b3de964a368a5c222e758
+- out/session-b/duel-query-check/unit-stats-elite-v1.log SHA d28946d7d415f6a03c8cdd7d90382acc02961498a1d45607ea058590579ffc0d
+- out/session-b/duel-query-check/source-technologies-android-compile-v2.log SHA d05a5f614ea8ee8cf4ea9068fff11fd13a100503f572b7b17eb09569938ca480
+
+最终守卫：4忽略JNI原SHA均一致、旧609dirty默认status-z31896bytes SHA618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0，完整源目录clean/HEAD0e7b9bc2df90249a50851baeda58c7d183ea6059。git diff --check通过。新增策略仍属B未提交工作增量，不能归到完成54或宣称完整还原。
+
+当前PST1/native3保存冷读取值与原全496570的94/97匹配，通过完整World/RNG字节纯性检查；这是声明学习四个前置/编队fixture，不是普通研究流程。日志SHA43c27582c6f748a4a702fef40705a8ddd99db4f16742c0244fa4d4f548ccf358。本轮所有取证、core/session、旧续行和Android编译已终止，无待确认运行任务。

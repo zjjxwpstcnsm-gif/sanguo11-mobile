@@ -1,0 +1,8 @@
+gradle.beforeProject { project ->
+ project.plugins.withId('com.android.application') {
+  project.extensions.getByName('androidComponents').finalizeDsl { android ->
+   android.defaultConfig.testInstrumentationRunner = 'game.sanguo.mobile.SessionBNativeDuelInstrumentation'
+   android.defaultConfig.buildConfigField 'String', 'SOURCE_REVISION', '"B36f059b4-candidate60+A925748c6-closure227"'
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+  "exeSha": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "tableAddress": "0x79b830",
+  "tableSha": "deda8ff7828a2c42df89457adcec1b36df55f7ff78337be347e94698dc6b3e8f",
+  "parentAddress": "0x79c2b0",
+  "parentSha": "d58107371804e85402ef8b2beefcefe26992c7952eb09affe8e8c3fbf5274b55",
+  "resourceSha": "ff7a1c159d649cf24461b638214dcf07ca97e45fea93477dcbcb156cd6ba670c",
+  "limits": [
+    "Original static table and full47b480 getter boundaries; no engineering graph",
+    "Original4839f0 parents87 not native invalid port IDs87..127",
+    "Task37 completion/normal fullTurn and APK remain separate"
+  ],
+  "receiptSha": "4854c0bef36fe0ba4e20ba7abdb094a26fb2b7a832f24230b8417aa5a02be29d"
+}

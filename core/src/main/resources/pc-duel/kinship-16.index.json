@@ -1,0 +1,705 @@
+{
+  "format": "PDK-PACK-1",
+  "exeSha": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceManifestSha": "c2e8bab45f37cb68f3f6768d41065779877447449a676bdeedd39bd7e1ad9767",
+  "sources": [
+    {
+      "sourceIndex": 0,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          184,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u6f22\u738b\u671d\u56e0\u5ba6\u5b98\u7684\u5f04\u6b0a\u8207\u5916\u621a\u7684\u5e72\u653f\u800c\u65e5\u6f38\u8150\u6557\u3002\u5728\u5982\u6b64\u6df7\u4e82\u7684\u4e16\u5c40\u4e0b\uff0c\u5927\u8ce2\u826f\u5e2b\u2022\u5f35\u89d2\u7387\u9818\u5176\u4fe1\u5f92\u5011\u63ed\u7aff\u800c\u8d77\uff0c\u53f2\u7a31\u9ec3\u5dfe\u4e4b\u4e82\u3002\u671d\u5ef7\u7686\u7372\u6b64\u5831\u5f8c\uff0c\u4efb\u7687\u540e\u4e4b\u5144\u2022\u4f55\u9032\u70ba\u5927\u5c07\u8ecd\uff0c\u4e26\u51fa\u5175\u8a0e\u4f10\u9ec3\u5dfe\u9ee8\u3002\u800c\u4e82\u4e16\uff0c\u4e5f\u81ea\u6b64\u63ed\u958b\u4e86\u5e8f\u5e55\u3002",
+        "embeddedNativeId": 0,
+        "loadPriority": "unknown",
+        "name": "\u9ec3\u5dfe\u4e4b\u4e82",
+        "origin": "unknown",
+        "scenarioId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+        "slot": 0,
+        "sourcePath": "Media/scenario/Scen000.s11",
+        "sourceSha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+        "sourceVariant": "media-scenario-scen000-s11-80d30c5886d0-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "d8cf6789d45f96bfbe77269c36e747499bf0e862f63906918b6fe2d9727704ce",
+      "matrixSha": "6ad3529ce0f578a155f849fc4ecd39d4800753daf23e4fa986cd1a26d2f9db7d"
+    },
+    {
+      "sourceIndex": 1,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          190,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u9ec3\u5dfe\u4e4b\u4e82\u96d6\u5df2\u5f2d\u5e73\uff0c\u4f46\u4e16\u5c40\u7684\u6df7\u4e82\u537b\u4f9d\u820a\u3002\u5927\u5c07\u8ecd\u2022\u4f55\u9032\u8207\u5341\u5e38\u4f8d\u7b49\u66fe\u6b0a\u50be\u4e00\u6642\u7684\u6709\u529b\u8005\u5011\u90fd\u9010\u6f38\u5730\u6d88\u901d\uff0c\u5e74\u5e7c\u7684\u7687\u5e1d\u843d\u5165\u4e86\u6709\u66b4\u541b\u4e4b\u7a31\u7684\u8463\u5353\u624b\u88e1\u3002\u8463\u5353\u7684\u6b98\u66b4\u8dcb\u6248\u62db\u81f4\u8af8\u4faf\u5011\u7684\u8af8\u591a\u4e0d\u6eff\u3002\u6700\u5f8c\uff0c\u8af8\u4faf\u5011\u7d44\u6210\u4e86\u4ee5\u8881\u7d39\u53ca\u66f9\u64cd\u7b49\u70ba\u4e2d\u5fc3\u7684\u53cd\u8463\u5353\u806f\u5408\u8ecd\u3002",
+        "embeddedNativeId": 1,
+        "loadPriority": "unknown",
+        "name": "\u53cd\u8463\u5353\u806f\u5408\u8ecd",
+        "origin": "unknown",
+        "scenarioId": "pc-scen001-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+        "slot": 1,
+        "sourcePath": "Media/scenario/SCEN001.S11",
+        "sourceSha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+        "sourceVariant": "media-scenario-scen001-s11-e7c6d9d8979a-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "dd1f499034411e0cddb3cf3a1f3f5b768fdd6fbf3818c82fde33fd2a7a0c9c0d",
+      "matrixSha": "7534ecef8ec5f5355b69cc0e61369fa31baef75054647bf2f0ceb5dcf5d587ff"
+    },
+    {
+      "sourceIndex": 2,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          194,
+          6,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u5442\u5e03\u5f12\u7fa9\u7236\u2022\u8463\u5353\u5f8c\uff0c\u906d\u5230\u674e\u5095\u3001\u90ed\u6c5c\u7b49\u4eba\u7684\u8ffd\u6bba\u800c\u96e2\u958b\u4e86\u90fd\u57ce\u3002\u4e4b\u5f8c\uff0c\u5931\u53bb\u68f2\u8eab\u4e4b\u5730\u7684\u5442\u5e03\u8d81\u66f9\u64cd\u4e0d\u5728\u4e4b\u969b\uff0c\u596a\u4e0b\u4e86\u5157\u5dde\uff0c\u4f7f\u5f97\u4e82\u4e16\u4e4b\u72fc\u8207\u4e82\u4e16\u5978\u96c4\u7684\u5c0d\u6c7a\u5df2\u7121\u53ef\u907f\u514d\u3002\u800c\u5728\u6c5f\u6771\u65b9\u9762\uff0c\u5b6b\u7b56\u4ee5\u7389\u74bd\u5411\u8881\u8853\u501f\u5175\u99ac\uff0c\u96a8\u5f8c\u4fbf\u51fa\u5175\u63da\u5dde\u3002\u81f3\u6b64\uff0c\u4e16\u5c40\u5df2\u9032\u5165\u5230\u7fa4\u96c4\u5272\u64da\u7684\u6642\u4ee3\u4e86\u3002",
+        "embeddedNativeId": 2,
+        "loadPriority": "unknown",
+        "name": "\u7fa4\u96c4\u5272\u64da",
+        "origin": "unknown",
+        "scenarioId": "pc-scen002-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+        "slot": 2,
+        "sourcePath": "Media/scenario/SCEN002.S11",
+        "sourceSha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+        "sourceVariant": "media-scenario-scen002-s11-f755e33c5193-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "61c3adb61b11caca052cbbe7be34b1f8f4fc2d53880af65d268d8cf750c49774",
+      "matrixSha": "7534ecef8ec5f5355b69cc0e61369fa31baef75054647bf2f0ceb5dcf5d587ff"
+    },
+    {
+      "sourceIndex": 3,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          200,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u66f9\u64cd\u64c1\u7acb\u737b\u5e1d\u5f8c\uff0c\u6253\u5012\u4e86\u5442\u5e03\u53ca\u8881\u8853\u7b49\u5f37\u6575\uff0c\u4e26\u9010\u6b65\u652f\u914d\u4e2d\u539f\u4e00\u5e36\u3002\u53e6\u4e00\u65b9\u9762\uff0c\u8881\u7d39\u6253\u5012\u4e86\u516c\u5b6b\u74da\u5f8c\uff0c\u7d71\u4e00\u4e86\u6cb3\u5317\u4e00\u5e36\uff0c\u4e26\u958b\u59cb\u5c07\u77db\u982d\u6307\u5411\u4e86\u4e2d\u539f\u3002\u800c\u6709\u5c0f\u9738\u738b\u4e4b\u7a31\u7684\u5b6b\u7b56\u4e5f\u58d3\u5236\u4e86\u6c5f\u6771\u4e00\u5e36\uff0c\u5c0d\u66f9\u64cd\u5f62\u6210\u4e86\u92d2\u8292\u5728\u80cc\u4e4b\u614b\u52e2\u3002\u81f3\u6b64\uff0c\u5929\u4e0b\u4e4b\u722d\u4fbf\u4ee5\u6b64\u4e09\u4eba\u70ba\u4e2d\u5fc3\u958b\u59cb\u52a0\u901f\u9032\u884c\u4e86\u3002",
+        "embeddedNativeId": 3,
+        "loadPriority": "unknown",
+        "name": "\u5b98\u6e21\u4e4b\u6230",
+        "origin": "unknown",
+        "scenarioId": "pc-scen003-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+        "slot": 3,
+        "sourcePath": "Media/scenario/SCEN003.S11",
+        "sourceSha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+        "sourceVariant": "media-scenario-scen003-s11-3a7c1f24e98c-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "9f076df646bae80b71893bd6ea8d8c48bf169cc39be53f2d2029a9db28e09126",
+      "matrixSha": "7534ecef8ec5f5355b69cc0e61369fa31baef75054647bf2f0ceb5dcf5d587ff"
+    },
+    {
+      "sourceIndex": 4,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          207,
+          9,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u66f9\u64cd\u64ca\u6557\u8881\u7d39\u5f8c\uff0c\u5c07\u6cb3\u5317\u4e00\u5e36\u7d0d\u5165\u4e86\u624b\u4e2d\u3002\u754f\u61fc\u66f9\u64cd\u9032\u72af\u7684\u5289\u8868\u4fbf\u5c07\u5289\u5099\u914d\u7f6e\u65bc\u65b0\u91ce\uff0c\u4ee5\u9632\u66f9\u64cd\u8ecd\u4e4b\u5357\u4e0b\u3002\u6b64\u5916\uff0c\u6c5f\u6771\u7684\u5b6b\u6b0a\u7e7c\u627f\u4e86\u9a5f\u901d\u7684\u5b6b\u7b56\uff0c\u548c\u4ee5\u5468\u745c\u70ba\u9996\u7684\u90e8\u4e0b\u5011\u4e00\u8d77\u62fc\u547d\u5730\u5c07\u52e2\u529b\u7a69\u4f4f\u3002\u800c\u66f9\u64cd\u8ecd\u7684\u5357\u5f81\uff0c\u6b63\u6e96\u5099\u6380\u8d77\u4e00\u5834\u9a5a\u6fe4\u99ed\u6d6a\u3002",
+        "embeddedNativeId": 4,
+        "loadPriority": "unknown",
+        "name": "\u4e09\u9867\u8305\u5eec",
+        "origin": "unknown",
+        "scenarioId": "pc-scen004-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+        "slot": 4,
+        "sourcePath": "Media/scenario/SCEN004.S11",
+        "sourceSha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+        "sourceVariant": "media-scenario-scen004-s11-5220b7b040b1-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "1ec475fba6bb9e5f2d5df1107342f3bc03aaffcc49753683ec29607220b762b5",
+      "matrixSha": "99ca68e5178ea712e61e81ec5d08bf96f228f99f45fc353b334e6c1ea66857ef"
+    },
+    {
+      "sourceIndex": 5,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          211,
+          7,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u8d64\u58c1\u4e00\u6230\u5927\u52dd\u5f8c\uff0c\u5b6b\u6b0a\u5931\u53bb\u4e86\u6700\u5f97\u529b\u7684\u90e8\u4e0b\u2022\u5468\u745c\uff0c\u800c\u5b6b\u5433\u6240\u65e5\u601d\u591c\u76fc\u7684\u4e8c\u5206\u5929\u4e0b\u4e5f\u96a8\u4e4b\u5316\u70ba\u4e86\u6ce1\u5f71\u3002\u5289\u5099\u5f97\u540d\u8ecd\u5e2b\u2022\u8af8\u845b\u4eae\u8207\u9f90\u7d71\u5f8c\uff0c\u65bc\u834a\u5357\u589e\u5f37\u8ecd\u5099\u3002\u800c\u65bc\u8d64\u58c1\u6557\u6230\u7684\u66f9\u64cd\u5247\u518d\u5ea6\u5357\u5f81\uff0c\u4f46\u537b\u88ab\u8a93\u8a00\u70ba\u7236\u5831\u4ec7\u7684\u99ac\u8d85\u7d66\u596a\u4e0b\u4e86\u9577\u5b89\u3002\u5929\u4e0b\u5c40\u52e2\u4f9d\u820a\u6df7\u6c8c\u4e0d\u6e05\u3002",
+        "embeddedNativeId": 5,
+        "loadPriority": "unknown",
+        "name": "\u5289\u5099\u5165\u8700",
+        "origin": "unknown",
+        "scenarioId": "pc-scen005-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+        "slot": 5,
+        "sourcePath": "Media/scenario/SCEN005.S11",
+        "sourceSha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+        "sourceVariant": "media-scenario-scen005-s11-44fa373941df-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "de310f1d2f56f1b8e36a57e15b534b70ad2df9d72247e67f0564a0eac110e3e3",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    },
+    {
+      "sourceIndex": 6,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          225,
+          7,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u5929\u4e0b\u5df2\u4e09\u5206\u70ba\u9b4f\u3001\u5433\u3001\u8700\u3002\u9b4f\u570b\u65b9\u9762\uff0c\u7e7c\u627f\u66f9\u64cd\u7684\u66f9\u4e15\u6ec5\u4e86\u6f22\u738b\u671d\u3002\u5433\u570b\u65b9\u9762\uff0c\u56e0\u540d\u5c07\u2022\u5442\u8499\u7684\u6d3b\u8e8d\u8868\u73fe\u800c\u64f4\u5927\u4e86\u5176\u7248\u5716\u3002\u8700\u570b\u65b9\u9762\uff0c\u5247\u56e0\u834a\u5dde\u88ab\u596a\uff0c\u800c\u4f7f\u5f97\u5289\u5099\u9b31\u9b31\u800c\u7d42\u3002\u96a8\u8457\u5289\u5099\u4e4b\u6b7b\uff0c\u5357\u883b\u7684\u5b5f\u7372\u7b49\u4eba\u63ed\u7aff\u800c\u8d77\u3002\u6b64\u5f8c\uff0c\u8700\u570b\u7684\u547d\u904b\u4fbf\u7531\u7e7c\u627f\u5289\u5099\u7684\u8af8\u845b\u4eae\u4e00\u80a9\u6311\u8d77\u3002",
+        "embeddedNativeId": 6,
+        "loadPriority": "unknown",
+        "name": "\u5357\u883b\u5f81\u4f10",
+        "origin": "unknown",
+        "scenarioId": "pc-scen006-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+        "slot": 6,
+        "sourcePath": "Media/scenario/SCEN006.S11",
+        "sourceSha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+        "sourceVariant": "media-scenario-scen006-s11-eacf362ae1b8-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "5ff8d436be9fbf0c2a10978d449a40f084595340e9d4fa8f5e819c9662a1a3d1",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    },
+    {
+      "sourceIndex": 7,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          251,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u5f9e\u66f9\u64cd\u3001\u5289\u5099\u3001\u5b6b\u5805\u5230\u5f35\u89d2\u3001\u5442\u5e03\u3001\u5b5f\u7372\uff0c\u5168\u541b\u4e3b\u53ca\u5168\u53f2\u5be6\u6b66\u5c07\u6563\u843d\u5728\u5927\u9678\u5404\u5730\u3002\u53f8\u99ac\u61ff\u3001\u6bcb\u4e18\u5109\u7b49\u6c92\u6709\u5728\u5176\u4ed6\u5287\u672c\u4e2d\u767b\u5834\u7684\u541b\u4e3b\u4e5f\u5272\u64da\u8457\u67d0\u5730\u3002\u751f\u6b7f\u5e74\u53ca\u58fd\u547d\u7684\u8a2d\u5b9a\u7686\u70ba\u7121\u6548\u3002\u53ea\u6709\u9010\u4e00\u64ca\u6557\u5f37\u6575\u4e26\u5b58\u6d3b\u5230\u6700\u5f8c\u7684\u4eba\uff0c\u65b9\u53ef\u5f97\u5929\u4e0b\u3002\u80fd\u7a31\u9738\u5982\u6b64\u8d85\u8d8a\u4e16\u4ee3\u7684\u5927\u4e82\u4e16\u7684\u82f1\u96c4\uff0c\u7a76\u7adf\u6703\u662f\u54ea\u4f4d\uff1f",
+        "embeddedNativeId": 7,
+        "loadPriority": "unknown",
+        "name": "\u82f1\u96c4\u96c6\u7d50",
+        "origin": "unknown",
+        "scenarioId": "pc-scen007-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+        "slot": 7,
+        "sourcePath": "Media/scenario/SCEN007.S11",
+        "sourceSha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+        "sourceVariant": "media-scenario-scen007-s11-107674155956-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "d3b5dd0d64dcb183eb5a5763bec76ed928814bfefce1319a5ac6734a5b385f2c",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    },
+    {
+      "sourceIndex": 8,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          198,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u66f9\u64cd\u5728\u64c1\u6234\u737b\u5e1d\uff0c\u64f4\u5927\u4e86\u5176\u7248\u5716\u5f8c\uff0c\u7d42\u65bc\u6c7a\u5b9a\u767c\u5175\u6771\u5f81\u3002\u6b64\u6b21\u8207\u5289\u5099\u806f\u624b\u8a0e\u4f10\u5442\u5e03\u3002\u5c0d\u6b64\uff0c\u5442\u5e03\u8f49\u800c\u8207\u50ed\u7a31\u7687\u5e1d\u7684\u8881\u8853\u806f\u624b\uff0c\u64fa\u51fa\u4e86\u5fb9\u5e95\u6297\u6230\u7684\u614b\u52e2\u3002\u800c\u53e6\u4e00\u65b9\u9762\uff0c\u8881\u7d39\u8207\u516c\u5b6b\u74da\u6b63\u5373\u5c07\u5728\u6cb3\u5317\u5c55\u958b\u6c7a\u6230\u3002\u73fe\u5728\uff0c\u8ced\u4e0a\u5404\u81ea\u7684\u547d\u904b\u4e4b\u6230\uff0c\u6b63\u6e96\u5099\u63ed\u958b\u5e8f\u5e55\u3002",
+        "embeddedNativeId": 8,
+        "loadPriority": "unknown",
+        "name": "\u5442\u5e03\u8a0e\u4f10\u6230",
+        "origin": "unknown",
+        "scenarioId": "pc-scen008-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+        "slot": 8,
+        "sourcePath": "Media/scenario/Scen008.s11",
+        "sourceSha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+        "sourceVariant": "media-scenario-scen008-s11-ecd762837ff1-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "eaec6abc6a22ab3564e6c3b73bfd6c2b28f4624d86a142cc9cabfb26dfdb8b8d",
+      "matrixSha": "7534ecef8ec5f5355b69cc0e61369fa31baef75054647bf2f0ceb5dcf5d587ff"
+    },
+    {
+      "sourceIndex": 9,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          203,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u5b98\u6e21\u4e4b\u6230\u6557\u65bc\u66f9\u64cd\u4e4b\u8881\u7d39\u75c5\u6545\uff0c\u8881\u5bb6\u5373\u5f15\u8d77\u9577\u7537\u4e4b\u8881\u8b5a\u6d3e\u53ca\u4e09\u7537\u4e4b\u8881\u5c1a\u6d3e\u5f8c\u7e7c\u8005\u7d1b\u722d\u3002\u66f9\u64cd\u4ea6\u85c9\u6b64\u6a5f\u6b63\u5f0f\u51fa\u5175\u9032\u653b\u6cb3\u5317\u3002\u53e6\u4e00\u65b9\uff0c\u6557\u65bc\u66f9\u64cd\u4e4b\u5289\u5099\u5c07\u5289\u8868\u5bc4\u653e\uff0c\u99d0\u7d2e\u65b0\u91ce\u3002\u82f1\u5e74\u65e9\u901d\u4e4b\u5b6b\u7b56\u4e4b\u7e7c\u8005\u5b6b\u6b0a\uff0c\u4ea6\u5c0d\u66f9\u64cd\u4e4b\u8209\u5175\u5357\u4e0b\u4e00\u4e8b\u505a\u597d\u9632\u5099\u3002",
+        "embeddedNativeId": 9,
+        "loadPriority": "unknown",
+        "name": "\u8881\u5bb6\u4e4b\u6230",
+        "origin": "unknown",
+        "scenarioId": "pc-scen009-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+        "slot": 9,
+        "sourcePath": "Media/scenario/Scen009.s11",
+        "sourceSha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+        "sourceVariant": "media-scenario-scen009-s11-1cc770c8bdaf-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "e678d83b41212bf55667ce9e33b589d1f509fecf86a918d444979862add6a78e",
+      "matrixSha": "7534ecef8ec5f5355b69cc0e61369fa31baef75054647bf2f0ceb5dcf5d587ff"
+    },
+    {
+      "sourceIndex": 10,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          217,
+          7,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u8207\u5289\u748b\u4e4b\u6230\u4e2d\u5f97\u52e2\u4e4b\u5289\u5099\u9032\u8ecd\u76ca\u5dde\uff0c\u7372\u5f97\u80fd\u8207\u66f9\u64cd\u3001\u5b6b\u6b0a\u5c0d\u6297\u4e4b\u52e2\u529b\u3002\u8a0e\u4f10\u99ac\u8d85\u4e4b\u66f9\u64cd\u4ea6\u9032\u8ecd\u6f22\u4e2d\u3002\u65bc\u76ca\u5dde\u3001\u6f22\u4e2d\u9593\u5169\u8ecd\u4e4b\u6230\u5df2\u7121\u6cd5\u907f\u514d\u3002\u53e6\u4e00\u65b9\uff0c\u5b6b\u6b0a\u81ea\u5289\u5099\u8655\u7372\u5357\u834a\u5dde\u4e4b\u6771\u534a\u90e8\uff0c\u4e00\u511f\u7a31\u9738\u834a\u5dde\u5bbf\u9858\u4e4b\u65e5\u5df2\u76f8\u53bb\u4e0d\u9060\u3002",
+        "embeddedNativeId": 10,
+        "loadPriority": "unknown",
+        "name": "\u6f22\u4e2d\u722d\u596a\u6230",
+        "origin": "unknown",
+        "scenarioId": "pc-scen010-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+        "slot": 10,
+        "sourcePath": "Media/scenario/Scen010.s11",
+        "sourceSha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+        "sourceVariant": "media-scenario-scen010-s11-a73dbe94b608-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "e99da110384de20d53ca59bc2b98288c3e79f90125e1dbba190867b5afc9f382",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    },
+    {
+      "sourceIndex": 11,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          187,
+          4,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u5e73\u5b9a\u9ec3\u5dfe\u4e4b\u4e82\u4e4b\u4f55\u9032\u624b\u63e1\u7d55\u5927\u6b0a\u529b\uff0c\u7e7c\u800c\u7d42\u4ee5\u7687\u5e1d\u81ea\u7a31\u3002\u5176\u8511\u8996\u671d\u5ef7\u6b0a\u5a01\u4e4b\u8209\u6fc0\u6012\u773e\u8af8\u4faf\uff0c\u6545\u65bc\u5404\u81ea\u4e4b\u6545\u91cc\u5bb6\u9109\u8208\u5175\u53cd\u4e82\u3002\u6642\u4ee3\u6f14\u8b8a\u70ba\u7fa4\u96c4\u5272\u64da\u4e4b\u5c40\u9762\u3002\u8d81\u5c40\u52e2\u6df7\u4e82\u4e4b\u4fbf\u9ec3\u5dfe\u4e4b\u6b98\u9ee8\u6372\u571f\u91cd\u4f86\u3002\u65b0\u7687\u5e1d\u6cbb\u4e16\u63ed\u958b\u4e82\u4e16\u821e\u53f0\u4e4b\u7c3e\u5e55\u3002",
+        "embeddedNativeId": 11,
+        "loadPriority": "unknown",
+        "name": "\u4f55\u9032\u5305\u570d\u7db2",
+        "origin": "unknown",
+        "scenarioId": "pc-scen011-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+        "slot": 11,
+        "sourcePath": "Media/scenario/Scen011.s11",
+        "sourceSha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+        "sourceVariant": "media-scenario-scen011-s11-3ee5409f8649-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "1e730e65e9e7eb487725337fbb49e189e34c05e043835d166921cea155a5acb5",
+      "matrixSha": "6ad3529ce0f578a155f849fc4ecd39d4800753daf23e4fa986cd1a26d2f9db7d"
+    },
+    {
+      "sourceIndex": 12,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          191,
+          7,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u70ba\u8a0e\u4f10\u4f54\u671d\u5ef7\u70ba\u5df1\u7269\u4e4b\u8463\u5353\u800c\u767c\u52d5\u7fa4\u8d77\u4e4b\u8af8\u4faf\u9023\u5408\uff0c\u65bc\u5c1a\u672a\u9054\u6210\u76ee\u6a19\u524d\u5373\u544a\u89e3\u6563\u3002\u8af8\u4faf\u4e2d\u5206\u5225\u70ba\u8072\u540d\u986f\u8d6b\u4e4b\u8881\u7d39\u3001\u8881\u8853\u3001\u516c\u5b6b\u74da\u4e09\u6d3e\uff0c\u958b\u59cb\u4e92\u76f8\u9032\u884c\u722d\u9b25\u3002\u4f01\u5716\u6372\u571f\u91cd\u4f86\u4e4b\u8463\u5353\u3002\u672a\u52a0\u5165\u8af8\u4faf\u9023\u5408\u4e4b\u82f1\u96c4\u8c6a\u5091\u3002\u6642\u4ee3\u70ba\u7fa4\u96c4\u5272\u64da\u4e4b\u821e\u53f0\u66f4\u6dfb\u6232\u5287\u8272\u5f69\u3002",
+        "embeddedNativeId": 12,
+        "loadPriority": "unknown",
+        "name": "\u5c40\u52e2\u638c\u63a7\u8005",
+        "origin": "unknown",
+        "scenarioId": "pc-scen012-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+        "slot": 12,
+        "sourcePath": "Media/scenario/Scen012.s11",
+        "sourceSha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+        "sourceVariant": "media-scenario-scen012-s11-89d5af807d70-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "fe664840b6b19543dd72a30088d858826ed1d39f377a8900a96d2c28496f952d",
+      "matrixSha": "7534ecef8ec5f5355b69cc0e61369fa31baef75054647bf2f0ceb5dcf5d587ff"
+    },
+    {
+      "sourceIndex": 13,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          251,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u8c82\u87ec\u3001\u4e8c\u55ac\u59d0\u59b9\u3001\u5b6b\u5c1a\u9999\u2026\u2026\u3002\u70ba\u4e09\u570b\u5fd7\u589e\u6dfb\u9b45\u529b\u8272\u5f69\u4e4b\u5973\u6027\u9663\u5bb9\u96f2\u96c6\u4e00\u5802\uff0c\u70ba\u722d\u596a\u5929\u4e0b\u9738\u6b0a\u4e4b\u5047\u60f3\u5287\u672c\u3002\u8207\u82f1\u96c4\u96c6\u7d50\u4e4b\u5287\u672c\u76f8\u540c\uff0c\u751f\u6b7f\u5e74\u53ca\u58fd\u547d\u4e4b\u8a2d\u5b9a\u7121\u6548\u3002\u7537\u6027\u5fd7\u58eb\u5011\u6240\u7121\u6cd5\u9054\u6210\u4e4b\u7d71\u4e00\u5929\u4e0b\u5922\u60f3\u3001\u5982\u4eca\u6b63\u8a17\u4ed8\u65bc\u5973\u6027\u8c6a\u5091\u5011\u8eab\u4e0a\u3002",
+        "embeddedNativeId": 13,
+        "loadPriority": "unknown",
+        "name": "\u5973\u6d41\u4e4b\u6230",
+        "origin": "unknown",
+        "scenarioId": "pc-scen013-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+        "slot": 13,
+        "sourcePath": "Media/scenario/Scen013.s11",
+        "sourceSha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+        "sourceVariant": "media-scenario-scen013-s11-d5aed0fc93bb-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "f81a88fc14b48cc9eee7acfa4074132df084c60d5f9d048bebbeea8b44ad6863",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    },
+    {
+      "sourceIndex": 14,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          251,
+          1,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u5f9e\u66f9\u64cd\u3001\u5289\u5099\u3001\u5b6b\u5805\u5230\u5f35\u89d2\u3001\u5442\u5e03\u3001\u5b5f\u7372\uff0c\u5168\u541b\u4e3b\u53ca\u5168\u53f2\u5be6\u6b66\u5c07\u6563\u843d\u5728\u5927\u9678\u5404\u5730\u3002\u53f8\u99ac\u61ff\u3001\u6bcb\u4e18\u5109\u7b49\u6c92\u6709\u5728\u5176\u4ed6\u5287\u672c\u4e2d\u767b\u5834\u7684\u541b\u4e3b\u4e5f\u5272\u636e\u8457\u67d0\u5730\u3002\u751f\u6b7f\u5e74\u53ca\u58fd\u547d\u7684\u8a2d\u5b9a\u7686\u70ba\u7121\u6548\u3002\u53ea\u6709\u9010\u4e00\u64ca\u6557\u5f37\u6575\u4e26\u5b58\u6d3b\u5230\u6700\u5f8c\u7684\u4eba\uff0c\u65b9\u53ef\u5f97\u5929\u4e0b\u3002\u80fd\u7a31\u9738\u5982\u6b64\u8d85\u8d8a\u4e16\u4ee3\u7684\u5927\u4e82\u4e16\u7684\u82f1\u96c4\uff0c\u7a76\u7adf\u6703\u662f\u54ea\u4f4d\uff1f",
+        "embeddedNativeId": 14,
+        "loadPriority": "unknown",
+        "name": "\u82f1\u96c4\u96c6\u7d50PK\u65b0\u7248",
+        "origin": "unknown",
+        "scenarioId": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+        "slot": 14,
+        "sourcePath": "Media/scenario/Scen014.S11",
+        "sourceSha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+        "sourceVariant": "media-scenario-scen014-s11-42f8c60769fa-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "68aadb6a172620d3d8def8ca5bf233584117c305d2ad2409b85575e367ce74e7",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    },
+    {
+      "sourceIndex": 15,
+      "source": {
+        "activation": "installed-candidate",
+        "date": [
+          279,
+          3,
+          1
+        ],
+        "decodedBoundaries": [
+          90,
+          16183,
+          16194,
+          17760,
+          146960,
+          162702,
+          170010
+        ],
+        "description": "\u6efe\u6efe\u9577\u6c5f\u6771\u901d\u6c34\uff0c\u6d6a\u82b1\u6dd8\u76e1\u82f1\u96c4\u3002\r\n\u662f\u975e\u6210\u6557\u8f49\u982d\u7a7a\u3002\u9752\u5c71\u4f9d\u820a\u5728\uff0c\u51e0\u5ea6\u5915\u967d\u7d05\u3002 \r\n\u767d\u767c\u6f01\u6a35\u6c5f\u6e1a\u4e0a\uff0c\u6163\u770b\u79cb\u6708\u6625\u98a8\u3002\r\n\u4e00\u58fa\u6fc1\u9152\u559c\u76f8\u9022\u3002\u53e4\u4eca\u591a\u5c11\u4e8b\uff0c\u90fd\u4ed8\u7b11\u8ac7\u4e2d\u3002",
+        "embeddedNativeId": 6,
+        "loadPriority": "unknown",
+        "name": "\u6efe\u6efe\u9577\u6c5f",
+        "origin": "unknown",
+        "scenarioId": "pc-scen015-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+        "slot": 15,
+        "sourcePath": "Media/scenario/Scen015.s11",
+        "sourceSha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+        "sourceVariant": "media-scenario-scen015-s11-1a92ff214a48-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+        "unknown": [
+          "effective_override_chain",
+          "official_or_mod_identity",
+          "startup_events",
+          "complete_initial_world",
+          "selectable_forces"
+        ],
+        "versions": [
+          1,
+          2
+        ]
+      },
+      "receiptSha": "af84a861c0e825ad40c5bfcfb0b1ca5b5df4765361a0595bd9e10df97143e0f8",
+      "matrixSha": "885803dcf9b012dd5337e6c7eca7b89da0e8330b0369655f142e2b2cc3f03732"
+    }
+  ],
+  "decodedSha": "5d064bc867874b1b8a823dcfcdaa92c6c50f2158d9ede68ea97172376c3ef9bf",
+  "packedSha": "3aacd4a9c561a30fe7ecfe137ce141816827d02e399a340da744837806773295",
+  "matrixRows": 10720,
+  "matrixEntries": 7182400,
+  "limits": [
+    "Source identities and variant differences retained independently",
+    "Registered670 identity matrix is not effective officer coverage",
+    "No old save backfill, capability activation or ordinary command/APK proof"
+  ],
+  "completeGoal": false
+}

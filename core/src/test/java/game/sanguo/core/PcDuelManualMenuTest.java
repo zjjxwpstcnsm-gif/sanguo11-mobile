@@ -1,0 +1,18 @@
+package game.sanguo.core;
+import java.nio.file.*;
+import java.util.*;
+public final class PcDuelManualMenuTest {
+    static int checks;static void check(boolean b,String s){checks++;if(!b)throw new AssertionError(s);}
+    static int n(Map<String,Object>r,String key){return ((Number)r.get(key)).intValue();}
+    public static void main(String[]args)throws Exception {
+        String raw=Files.readString(Path.of(args[0]));var numbers=java.util.regex.Pattern.compile("(?<=[\\s:\\[,])\\d{10,}(?=\\s*[,}\\]])").matcher(raw);var receipt=MapJson.object(MapJson.parse(numbers.replaceAll(m->Integer.toString((int)Long.parseLong(m.group()))).getBytes(java.nio.charset.StandardCharsets.UTF_8)));int count=0;
+        for(Object row:MapJson.array(receipt.get("rows"))){var r=MapJson.object(row);boolean manual=Boolean.TRUE.equals(r.get("manualPlayerSlotFixture"));World w=PcScenarioCatalog.load(PcScenarioCatalog.all().get(0).identity.scenarioId,manual?2:-1,23);int[]natives={365,116,466,558,14,517},ids=new int[6];for(int i=0;i<6;i++){final int n=natives[i];ids[i]=PcDuelSourceFacts.saved(w).values().stream().filter(f->f.nativeId==n).findFirst().orElseThrow().officerId;}
+            Hex first=null;outer:for(int q=0;q<w.width;q++)for(int y=0;y<w.height;y++){Hex h=new Hex(q,y),k=new Hex(q+1,y);if(w.inside(k)&&w.cost(h,World.Weapon.SWORD)>0&&w.cost(k,World.Weapon.SWORD)>0&&w.cityAt(h)==null&&w.cityAt(k)==null){first=h;break outer;}}
+            for(int side=0;side<2;side++){var unit=new World.Unit(side+1,w.officer(ids[side*3]).owner,ids[side*3],World.Weapon.SWORD,new Hex(first.q+side,first.r),5000,17000);unit.deputies=new int[]{ids[side*3+1],ids[side*3+2]};w.units.add(unit);for(int i=0;i<3;i++){var o=w.officer(ids[side*3+i]);w.strategy.releaseGovernor(o.id);o.unitId=unit.id;o.cityId=-1;}}w.nextUnitId=3;w.governance.reconcile(false);byte[]before=SaveCodec.encode(w);
+            var random=new PcDuelKernel.Random(n(r,"seed"));var settings=new PcDuelKernel.OriginalSettings(true,0,true,0,true,0);var actual=PcDuelResponseRules.currentOwnMenu(w,w.unit(1),w.unit(2),false,random,settings);var expected=MapJson.array(r.get("candidates"));check(actual.size()==expected.size(),"original actual formation menu count");for(int i=0;i<actual.size();i++){var e=MapJson.object(expected.get(i));check(PcDuelSourceFacts.saved(w).get(actual.get(i).officerId).nativeId==n(e,"native"),"original roster menu order");check(actual.get(i).chance==n(e,"chance"),"original full menu chance case="+count+" slot="+i+" got="+actual.get(i).chance+" expected="+n(e,"chance"));}
+            check(random.state==n(r,"rngAfter"),"all original candidate estimate RNG before selection");check(Arrays.equals(before,SaveCodec.encode(w)),"candidate query World/all saved RNG pure");
+            boolean[]otherActions=new boolean[3];for(int i=0;i<3;i++){otherActions[i]=w.officer(ids[3+i]).acted;w.officer(ids[i]).acted=false;}int[]budget=w.actionPoints.clone();int gold=w.unit(1).gold;long worldRng=w.strategy.getRandomState();int nativeRng=PcNativeDebatePolicy.seed(w);PcDuelCommandRules.consumeActor(w,w.unit(1));check(w.unit(1).acted&&!w.unit(2).acted,"original actor-only unit action");for(int i=0;i<3;i++)check(w.officer(ids[i]).acted&&w.officer(ids[3+i]).acted==otherActions[i],"original actor represented crew-only action");check(Arrays.equals(budget,w.actionPoints)&&gold==w.unit(1).gold&&worldRng==w.strategy.getRandomState()&&nativeRng==PcNativeDebatePolicy.seed(w),"action marker leaves money/AP/all RNG intact");count++;
+        }
+        check(count==6,"all source manual/seed prefix cases");System.out.println("PASS original human nominee menu "+checks+" checks; normal command submit/menu/APK still pending");
+    }
+}

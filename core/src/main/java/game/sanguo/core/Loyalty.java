@@ -43,7 +43,7 @@ public final class Loyalty {
     }
     public int lose(World.Officer o,int amount){
         if(o==null||o.owner<0||protectedLoyalty(o))return 0;
-        int lost=Math.min(o.loyalty,Math.max(0,amount));o.loyalty-=lost;return lost;
+        int lost=Math.min(o.loyalty,Math.max(0,amount));if(lost>0)PcDuelRawLoyalty.invalidate(w,o.id);o.loyalty-=lost;return lost;
     }
     /** Once per actual coronation, not per load. Unknown affinity gets the neutral minimum. */
     void succession(int owner,World.Officer ruler){
@@ -121,7 +121,7 @@ public final class Loyalty {
     }
     private void changeOfficer(World.Officer actor,World.Officer target){
         w.strategy.releaseGovernor(target.id);w.government.allegianceChanged(target.id);
-        target.owner=actor.owner;target.role=Strategy.Role.OFFICER;target.loyalty=Math.min(100,60+actor.charm/10+actor.politics/5);
+        PcDuelRawLoyalty.invalidate(w,target.id);target.owner=actor.owner;target.role=Strategy.Role.OFFICER;target.loyalty=Math.min(100,60+actor.charm/10+actor.politics/5);
         target.lastRewardTurn=-1;target.acted=true;target.otherTask="";target.otherTaskTurns=0;
     }
     /** Atomic allegiance transition. Field commanders retain their actual unit and cargo; a deputy alone does not. */

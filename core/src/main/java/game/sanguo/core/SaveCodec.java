@@ -199,7 +199,7 @@ public final class SaveCodec {
             require(ids.add(o.id)&&o.id>=0,"武将ID重复或无效");require(o.name!=null&&!o.name.isEmpty()&&o.name.length()<=100,"武将名无效");bounded(o.owner,-1,w.factions.length-1);
             bounded(o.leadership,0,100);bounded(o.war,0,100);bounded(o.intelligence,0,100);bounded(o.politics,0,100);bounded(o.charm,0,100);
             require(o.cityId>=-1&&o.unitId>=-1,"武将驻地无效");
-            if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&(o.owner==-1||w.city(o.cityId).owner==o.owner||w.recruitment.returning(o)),"武将城池归属错误");
+            if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&(o.owner==-1||w.city(o.cityId).owner==o.owner||w.recruitment.returning(o)||PcDuelRelease.busy(w,o.id)),"武将城池归属错误");
             if(o.unitId>=0)require(o.cityId==-1&&w.unit(o.unitId)!=null&&w.army.contains(w.unit(o.unitId),o.id),"武将部队引用错误");
         }
         occupied.clear(); // Field occupancy is independent of the site footprint.
@@ -232,10 +232,10 @@ public final class SaveCodec {
         ArmySave.validate(w);
         RulesSave.validate(w);
         GovernmentSave.validate(w);
-        ContestSave.validate(w);PcDebateCampaignPolicy.validate(w);PcSearchPolicy.validate(w);PcDirectRecruitmentPolicy.validate(w);
+        ContestSave.validate(w);PcDebateCampaignPolicy.validate(w);PcDuelCampaignPolicy.validate(w);PcSourceOpeningOptions.validate(w);PcSearchPolicy.validate(w);PcDirectRecruitmentPolicy.validate(w);PcDuelSourceFacts.validate(w);PcDuelHealthPolicy.validate(w);PcDuelRuntimeFacts.validate(w);PcDuelSwornPolicy.validate(w);PcNativeItemPolicy.validate(w);PcDuelKinship.validate(w);PcDuelRawLoyalty.validate(w);PcDuelRelease.validate(w);PcRecruitmentBanPolicy.validate(w);
         AbilitySave.validate(w);
         FieldworksSave.validate(w);
-        PcMilitaryCostPolicy.validate(w);PcCommandCapacityPolicy.validate(w);PcGovernorPolicy.validate(w);PcArmyActionPolicy.validate(w);
+        PcMilitaryCostPolicy.validate(w);PcCommandCapacityPolicy.validate(w);PcGovernorPolicy.validate(w);PcArmyActionPolicy.validate(w);PcSourceTechnologyPolicy.validate(w);
         EstatesSave.validate(w);
         w.marches.validate();
         WorldSystemsSave.validate(w);

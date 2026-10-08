@@ -1,0 +1,1507 @@
+{
+  "noPeopleFixture": true,
+  "noPeopleChanges": [
+    58,
+    114,
+    378,
+    413,
+    436,
+    509
+  ],
+  "declaredOldApFixture": 58,
+  "primaryArmyBeforeHex": "b0bf79001c0000000100000093010000000000001d0000000300000006000000ffffffff00000000fe0700000000000044bf7900c09bee0640cdee06170000004ccdee0624cdee060a00000000000000",
+  "primaryArmyAfterHex": "b0bf79001c0000000100000093010000000000001d0000000300000006000000ffffffff00000000fe0700000000000044bf7900c09bee06dc9cee0618000000e89cee06b49cee060a00000000000000",
+  "peopleBefore": [
+    {
+      "nativeId": 58,
+      "army": 5,
+      "status": 3,
+      "home": 13,
+      "current": 87,
+      "valid": true
+    },
+    {
+      "nativeId": 100,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    },
+    {
+      "nativeId": 112,
+      "army": 5,
+      "status": 3,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 114,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 87,
+      "valid": true
+    },
+    {
+      "nativeId": 139,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 159,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 171,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 241,
+      "army": 5,
+      "status": 3,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 309,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 378,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 16,
+      "valid": true
+    },
+    {
+      "nativeId": 398,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 402,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    },
+    {
+      "nativeId": 403,
+      "army": 5,
+      "status": 0,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 413,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 16,
+      "valid": true
+    },
+    {
+      "nativeId": 435,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 436,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 16,
+      "valid": true
+    },
+    {
+      "nativeId": 440,
+      "army": 6,
+      "status": 1,
+      "home": 13,
+      "current": 87,
+      "valid": true
+    },
+    {
+      "nativeId": 462,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 499,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 503,
+      "army": 5,
+      "status": 3,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 509,
+      "army": 5,
+      "status": 3,
+      "home": 13,
+      "current": 13,
+      "valid": true
+    },
+    {
+      "nativeId": 547,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    },
+    {
+      "nativeId": 639,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 645,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    }
+  ],
+  "peopleAfter": [
+    {
+      "nativeId": 58,
+      "army": 5,
+      "status": 3,
+      "home": 13,
+      "current": 87,
+      "valid": true
+    },
+    {
+      "nativeId": 100,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    },
+    {
+      "nativeId": 112,
+      "army": 5,
+      "status": 3,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 114,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 87,
+      "valid": true
+    },
+    {
+      "nativeId": 139,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 159,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 171,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 241,
+      "army": 5,
+      "status": 3,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 309,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 378,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 16,
+      "valid": true
+    },
+    {
+      "nativeId": 398,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 402,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    },
+    {
+      "nativeId": 403,
+      "army": 5,
+      "status": 0,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 413,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 16,
+      "valid": true
+    },
+    {
+      "nativeId": 435,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 436,
+      "army": 5,
+      "status": 3,
+      "home": 16,
+      "current": 16,
+      "valid": true
+    },
+    {
+      "nativeId": 440,
+      "army": 5,
+      "status": 5,
+      "home": 21,
+      "current": 88,
+      "valid": true
+    },
+    {
+      "nativeId": 462,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 499,
+      "army": 5,
+      "status": 3,
+      "home": 3,
+      "current": 3,
+      "valid": true
+    },
+    {
+      "nativeId": 503,
+      "army": 5,
+      "status": 3,
+      "home": 4,
+      "current": 4,
+      "valid": true
+    },
+    {
+      "nativeId": 509,
+      "army": 5,
+      "status": 3,
+      "home": 13,
+      "current": 13,
+      "valid": true
+    },
+    {
+      "nativeId": 547,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    },
+    {
+      "nativeId": 639,
+      "army": 5,
+      "status": 3,
+      "home": 11,
+      "current": 11,
+      "valid": true
+    },
+    {
+      "nativeId": 645,
+      "army": 5,
+      "status": 3,
+      "home": 9,
+      "current": 9,
+      "valid": true
+    }
+  ],
+  "unitsBeforeHex": [
+    "18cc79000400000000000000b80100003a00000072000000881364000000000000000000ffffffff00000000ffffffffffff0000ffffffffffffffff5000500000000000ffffffffffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "18cc790004000000000000002e0200000e0000006d000000881364000000000000000000ffffffff00000000ffffffffffff0000ffffffffffffffff5100500000000000ffffffffffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  ],
+  "unitsAfterHex": [
+    "18cc79000400000000000000720000003a000000ffffffff881364000000000000000000ffffffff00000000ffffffffffff0000ffffffffffffffff5000500000000000ffffffffffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "18cc790004000000000000002e0200000e0000006d000000881364000000000000000000ffffffff00000000ffffffffffff0000ffffffffffffffff5100500000000000ffffffffffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  ],
+  "citylessFixture": false,
+  "cityChanges": [],
+  "sitesBefore": [
+    {
+      "nativeSite": 0,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 1,
+      "army": 4,
+      "governor": -1
+    },
+    {
+      "nativeSite": 2,
+      "army": 2,
+      "governor": -1
+    },
+    {
+      "nativeSite": 3,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 4,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 5,
+      "army": 9,
+      "governor": -1
+    },
+    {
+      "nativeSite": 6,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 7,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 8,
+      "army": 0,
+      "governor": -1
+    },
+    {
+      "nativeSite": 9,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 10,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 11,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 12,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 13,
+      "army": 6,
+      "governor": -1
+    },
+    {
+      "nativeSite": 14,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 15,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 16,
+      "army": 6,
+      "governor": -1
+    },
+    {
+      "nativeSite": 17,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 18,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 19,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 20,
+      "army": 3,
+      "governor": -1
+    },
+    {
+      "nativeSite": 21,
+      "army": 1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 22,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 23,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 24,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 25,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 26,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 27,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 28,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 29,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 30,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 31,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 32,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 33,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 34,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 35,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 36,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 37,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 38,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 39,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 40,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 41,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 42,
+      "army": 9,
+      "governor": -1
+    },
+    {
+      "nativeSite": 43,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 44,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 45,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 46,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 47,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 48,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 49,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 50,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 51,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 52,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 53,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 54,
+      "army": 9,
+      "governor": -1
+    },
+    {
+      "nativeSite": 55,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 56,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 57,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 58,
+      "army": 0,
+      "governor": -1
+    },
+    {
+      "nativeSite": 59,
+      "army": 0,
+      "governor": -1
+    },
+    {
+      "nativeSite": 60,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 61,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 62,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 63,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 64,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 65,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 66,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 67,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 68,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 69,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 70,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 71,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 72,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 73,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 74,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 75,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 76,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 77,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 78,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 79,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 80,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 81,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 82,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 83,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 84,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 85,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 86,
+      "army": -1,
+      "governor": -1
+    }
+  ],
+  "sitesAfter": [
+    {
+      "nativeSite": 0,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 1,
+      "army": 4,
+      "governor": -1
+    },
+    {
+      "nativeSite": 2,
+      "army": 2,
+      "governor": -1
+    },
+    {
+      "nativeSite": 3,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 4,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 5,
+      "army": 9,
+      "governor": -1
+    },
+    {
+      "nativeSite": 6,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 7,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 8,
+      "army": 0,
+      "governor": -1
+    },
+    {
+      "nativeSite": 9,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 10,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 11,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 12,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 13,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 14,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 15,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 16,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 17,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 18,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 19,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 20,
+      "army": 3,
+      "governor": -1
+    },
+    {
+      "nativeSite": 21,
+      "army": 1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 22,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 23,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 24,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 25,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 26,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 27,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 28,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 29,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 30,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 31,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 32,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 33,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 34,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 35,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 36,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 37,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 38,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 39,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 40,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 41,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 42,
+      "army": 9,
+      "governor": -1
+    },
+    {
+      "nativeSite": 43,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 44,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 45,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 46,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 47,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 48,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 49,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 50,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 51,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 52,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 53,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 54,
+      "army": 9,
+      "governor": -1
+    },
+    {
+      "nativeSite": 55,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 56,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 57,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 58,
+      "army": 0,
+      "governor": -1
+    },
+    {
+      "nativeSite": 59,
+      "army": 0,
+      "governor": -1
+    },
+    {
+      "nativeSite": 60,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 61,
+      "army": 5,
+      "governor": -1
+    },
+    {
+      "nativeSite": 62,
+      "army": 8,
+      "governor": -1
+    },
+    {
+      "nativeSite": 63,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 64,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 65,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 66,
+      "army": 7,
+      "governor": -1
+    },
+    {
+      "nativeSite": 67,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 68,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 69,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 70,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 71,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 72,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 73,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 74,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 75,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 76,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 77,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 78,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 79,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 80,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 81,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 82,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 83,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 84,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 85,
+      "army": -1,
+      "governor": -1
+    },
+    {
+      "nativeSite": 86,
+      "army": -1,
+      "governor": -1
+    }
+  ],
+  "oldOwner": 28,
+  "oldPrimaryArmy": 5,
+  "linkedUnitFixture": true,
+  "source": {
+    "activation": "installed-candidate",
+    "date": [
+      184,
+      1,
+      1
+    ],
+    "decodedBoundaries": [
+      90,
+      16183,
+      16194,
+      17760,
+      146960,
+      162702,
+      170010
+    ],
+    "description": "\u6f22\u738b\u671d\u56e0\u5ba6\u5b98\u7684\u5f04\u6b0a\u8207\u5916\u621a\u7684\u5e72\u653f\u800c\u65e5\u6f38\u8150\u6557\u3002\u5728\u5982\u6b64\u6df7\u4e82\u7684\u4e16\u5c40\u4e0b\uff0c\u5927\u8ce2\u826f\u5e2b\u2022\u5f35\u89d2\u7387\u9818\u5176\u4fe1\u5f92\u5011\u63ed\u7aff\u800c\u8d77\uff0c\u53f2\u7a31\u9ec3\u5dfe\u4e4b\u4e82\u3002\u671d\u5ef7\u7686\u7372\u6b64\u5831\u5f8c\uff0c\u4efb\u7687\u540e\u4e4b\u5144\u2022\u4f55\u9032\u70ba\u5927\u5c07\u8ecd\uff0c\u4e26\u51fa\u5175\u8a0e\u4f10\u9ec3\u5dfe\u9ee8\u3002\u800c\u4e82\u4e16\uff0c\u4e5f\u81ea\u6b64\u63ed\u958b\u4e86\u5e8f\u5e55\u3002",
+    "embeddedNativeId": 0,
+    "loadPriority": "unknown",
+    "name": "\u9ec3\u5dfe\u4e4b\u4e82",
+    "origin": "unknown",
+    "scenarioId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "slot": 0,
+    "sourcePath": "Media/scenario/Scen000.s11",
+    "sourceSha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "sourceVariant": "media-scenario-scen000-s11-80d30c5886d0-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+    "unknown": [
+      "effective_override_chain",
+      "official_or_mod_identity",
+      "startup_events",
+      "complete_initial_world",
+      "selectable_forces"
+    ],
+    "versions": [
+      1,
+      2
+    ]
+  },
+  "geography": {
+    "shexResourceId": 4791,
+    "shexSha": "c726989df91d44c99ea3c3f613d41e7e725c43002a9775dfac2e43516f5c6112",
+    "originalSHEXLoader": "0x484090",
+    "originalSHEXLoaderCodeSha": "da132e631e36ec1f6f9661506554ea136e7d15cf8bef1ffb59e49e1a4e0af16a",
+    "decodedGeographySha": "2d6f6e99328d85c18851f80b9e20c7a7612f56930a6f5fb7e60f82f90e88eff6",
+    "verifiedRegionCells": 40000,
+    "worldAndRngUnchanged": true,
+    "completeOpening": false
+  },
+  "exeSha": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "armyNative": 6,
+  "targetNative": 440,
+  "victorNative": 558,
+  "personBeforeHex": "80c77900b169000000b1e7000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a02000000000000b800000099000000b80000000100000093010000fa070000ffffffffffffffffffffffff01070000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff060000000d000000570000000100000050000000ffffffff7800b0360300000000000000000000000200000002000000000000004e50443450000000040000000400000004000000040000000400000001000000460000000200000001000000040000000200000002000000020000000800000000000000000000000100000000676a4c674b67ffffffffffff000000c80000006400000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000ffffffffffffffff00000000000000004e504434504e5044345000000000000000000000000000000000000000000000",
+  "personAfterHex": "80c77900b169000000b1e7000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a02000000000000b800000099000000b80000000100000093010000fa070000ffffffffffffffffffffffff01070000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0500000015000000580000000500000050000000ffffffff7800b0360300000000000000000000000200000002000000000000004e50443450000000040000000400000004000000040000000400000001000000460000000200000001000000040000000200000002000000020000000800000000000000000000000100000000676a4c674b67ffffffffffff000000c80200006400000000000000000000000000000000000000ffffffff0000000000000000000000000000000000000000ffffffff00000000000000001c000000ffffffff00000000000000004e504434504e5044345000000000000000000000000000000000000000000000",
+  "armyBeforeHex": "b0bf79001c00000002000000b8010000000000001d000000030000000f000000ffffffff00000000fe0700003a00000044bf7900f49cee06f49cee0601000000009dee06b49cee060a00000000000000",
+  "armyAfterHex": "b0bf7900ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffff00000000ff0700000000000044bf790000000000000000000000000000000000000000000a00000000000000",
+  "successorNative": -1,
+  "successorCalls": [
+    {
+      "ecx": "0x799895c",
+      "stackHex": "81974a0044cd2007d4972007000000105819200700000010"
+    }
+  ],
+  "rngBefore": 1,
+  "rngAfter": 1,
+  "changedWorldAddresses": [
+    "0x7203910",
+    "0x7203998",
+    "0x720399c",
+    "0x7203fe8",
+    "0x7204bd4",
+    "0x7204bd8",
+    "0x7204bdc",
+    "0x7204bdd",
+    "0x7204bde",
+    "0x7204bdf",
+    "0x720cd2c",
+    "0x720cd30",
+    "0x720cd34",
+    "0x720cd38",
+    "0x720cd48",
+    "0x720cd49",
+    "0x720cd4a",
+    "0x720cd4b",
+    "0x720cd4c",
+    "0x720cd50",
+    "0x720cd51",
+    "0x720cd52",
+    "0x720cd53",
+    "0x720cd54",
+    "0x720cd55",
+    "0x720cd56",
+    "0x720cd57",
+    "0x720cd58",
+    "0x720cd59",
+    "0x720cd5a",
+    "0x720cd5b",
+    "0x720cd5c",
+    "0x720cd5d",
+    "0x720cd5e",
+    "0x720cd5f",
+    "0x720cd60",
+    "0x720cd61",
+    "0x720cd62",
+    "0x720cd63",
+    "0x720cd6c",
+    "0x720cd78",
+    "0x720cd79",
+    "0x720cd7a",
+    "0x720cd7b",
+    "0x720cd7d",
+    "0x720cd7e",
+    "0x720cd7f",
+    "0x720cd80",
+    "0x720cd84",
+    "0x720cd85",
+    "0x720cd86",
+    "0x720cd87",
+    "0x720cd88",
+    "0x720cd89",
+    "0x720cd8a",
+    "0x720cd8b",
+    "0x720f090",
+    "0x7213548",
+    "0x7213550",
+    "0x72135d9",
+    "0x7218500",
+    "0x7218cc8",
+    "0x7218cd0",
+    "0x7218d59",
+    "0x7232948",
+    "0x72329d9",
+    "0x7235ff8",
+    "0x7236089",
+    "0x72383e8",
+    "0x7238479",
+    "0x7238a28",
+    "0x7238a2c",
+    "0x7238a30",
+    "0x7238a34",
+    "0x7238ab9",
+    "0x7238ad4",
+    "0x7238ad5",
+    "0x7238ad6",
+    "0x7238ad7",
+    "0x7238ad8",
+    "0x7238ad9",
+    "0x7238ada",
+    "0x7238adb",
+    "0x7238adc",
+    "0x7238add",
+    "0x7238ade",
+    "0x7238adf",
+    "0x7238ae0",
+    "0x7238ae1",
+    "0x7238ae2",
+    "0x7238ae3",
+    "0x7238ae4",
+    "0x7238ae5",
+    "0x7238ae6",
+    "0x7238ae7",
+    "0x7238af4",
+    "0x7238af5",
+    "0x7238af6",
+    "0x7238af7",
+    "0x723f5f8",
+    "0x723f689",
+    "0x7244290",
+    "0x736b090",
+    "0x736b091",
+    "0x736b092",
+    "0x736b093",
+    "0x736b094",
+    "0x736b095",
+    "0x736b096",
+    "0x736b097",
+    "0x736b098",
+    "0x736b099",
+    "0x736b09a",
+    "0x736b09b",
+    "0x736b0a0",
+    "0x736b0a1",
+    "0x736b0a2",
+    "0x736b0c4",
+    "0x736b0c5",
+    "0x736b0c6",
+    "0x736b0c7",
+    "0x736b184",
+    "0x736b185",
+    "0x736b186",
+    "0x736b187",
+    "0x736b188",
+    "0x736b189",
+    "0x736b18a",
+    "0x736b18b",
+    "0x736b18c",
+    "0x736b18d",
+    "0x736b18e",
+    "0x736b18f",
+    "0x736b190",
+    "0x736b191",
+    "0x736b192",
+    "0x736b193",
+    "0x736b194",
+    "0x736b195",
+    "0x736b196",
+    "0x736b1b8",
+    "0x736b1b9",
+    "0x736b1ba",
+    "0x736b1bb"
+  ],
+  "limits": [
+    "Actual postload native district commander captured by actual source558 through full4a93b0",
+    "Declared linked original units/full capture+removal, not original deployment/menu/APK",
+    "No original rule/election/getter/RNG substitution"
+  ],
+  "completeGoal": false,
+  "fullSourceWorldAndRngRestored": true
+}

@@ -1,0 +1,24 @@
+{
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-opening433/source",
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-opening433/required-inputs.json",
+  "candidateInputManifestSha256": "84aaa2e1530fb604fe856be70d536db0f75bbd58d6fb4d06b0a6b9e6870620af",
+  "changedOnlyATests": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
+      "beforeSha256": "f785ee8943d509baa0d30a1a1a19ce8f71b150b5718ebc148ef2f7d8a7c9db5f",
+      "afterSha256": "44497e995166a5414f90d66931e589de75e60f1264b0bf3afd3e53d81844dc6f"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "beforeSha256": "97e1603e251f98a4b9af65cbc8ef6cb8e26deb2555d9e719dc0d4f3209e1a9fd",
+      "afterSha256": "4c6870dc841555317e5e1d7492ed9fa19b75a31b8095fc7c6492ed56bcb4fbae"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionANativeDuelOpeningInstrumentation.java",
+      "beforeSha256": "a8ad59e2b1a8905201166b8829e7e24bb9ad219680fafe6ca3cc3c3258905e8f",
+      "afterSha256": "73748498c54ae2d5b1115362b16d0d5280dcd9c8340a99d1ad029b27af2ba829"
+    }
+  ],
+  "scope": "Actual A map and fire fixture now select original values through visible tags, same source-fixed constraints as frozen B helper. Fixture choice0 is explicit test input, never a claimed PC default. Normal opening asserts no legacy fallback by disabled start. Save/RNG/Token pure checks retained, no World injection or acceptance deadline changed.",
+  "wholeGoalComplete": false
+}

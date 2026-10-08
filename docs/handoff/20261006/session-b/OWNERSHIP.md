@@ -3877,3 +3877,2802 @@ Exact complete original test dependency export; read-only parent test tree, mili
 - out/session-b/completed-repair-54-source-v2.tar.gz (B completed source v2 removes uncompleted optional items verifier CLI; v1 retained, original WIP working file preserved, registered before creation)
 
 - out/session-b/completed-repair-54-source-v2-manifest.json (B completed source v2 removes uncompleted optional items verifier CLI; v1 retained, original WIP working file preserved, registered before creation)
+
+- core/src/main/resources/pc-duel/kinship-16.bin.gz (B exact16 original kinship resource fresh-only loader/old-policy compatibility; no old backfill, registered before creation)
+
+- core/src/main/resources/pc-duel/kinship-16.index.json (B exact16 original kinship resource fresh-only loader/old-policy compatibility; no old backfill, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelKinshipOpeningTest.java (B exact16 original kinship resource fresh-only loader/old-policy compatibility; no old backfill, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening.log (B exact16 original kinship resource fresh-only loader/old-policy compatibility; no old backfill, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening-legacy.tsv (B exact16 original kinship resource fresh-only loader/old-policy compatibility; no old backfill, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening-v2.log (B new-source opening against actual duel-kinship-matrix receipts; wrong folder v1 failure retained, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening-v3.log (B original receipt evidence fields preserve fractional timing bytes/SHA; production JSON parser unchanged, failed v2 retained, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v6.json (B complete normal58b640 body and original human candidate58ad60/58ae10 rules; no inferred command cost, registered before creation)
+
+- tools/content/session_b_pc_duel_response_unit_factor.py (B unchanged original58a8a0 troop/C9/CA contribution and checked response port; declared unit boundary inputs, no normal APK claim, registered before creation)
+
+- out/session-b/duel-response-unit-factor-source.json (B unchanged original58a8a0 troop/C9/CA contribution and checked response port; declared unit boundary inputs, no normal APK claim, registered before creation)
+
+- out/session-b/duel-response-unit-factor-source.partial.json (B unchanged original58a8a0 troop/C9/CA contribution and checked response port; declared unit boundary inputs, no normal APK claim, registered before creation)
+
+- out/session-b/native-duel-workbench/response-unit-factor.tsv (B unchanged original58a8a0 troop/C9/CA contribution and checked response port; declared unit boundary inputs, no normal APK claim, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelResponseUnitFactorTest.java (B unchanged original58a8a0 troop/C9/CA contribution and checked response port; declared unit boundary inputs, no normal APK claim, registered before creation)
+
+- out/session-b/duel-query-check/response-unit-factor.log (B unchanged original58a8a0 troop/C9/CA contribution and checked response port; declared unit boundary inputs, no normal APK claim, registered before creation)
+
+- out/session-b/duel-query-check/response-unit-factor-v2.log (B exact unsigned positive4720f0 branch; original stronger-left case rejects absolute-difference interpretation, failed v1 retained, registered before creation)
+
+- tools/content/session_b_pc_duel_crew_strength.py (B unchanged original58a200 current crew/nominee dislike/exact inclusive health threshold contribution; exact source port, no ordinary APK claim, registered before creation)
+
+- out/session-b/duel-crew-strength-source.json (B unchanged original58a200 current crew/nominee dislike/exact inclusive health threshold contribution; exact source port, no ordinary APK claim, registered before creation)
+
+- out/session-b/native-duel-workbench/crew-strength.tsv (B unchanged original58a200 current crew/nominee dislike/exact inclusive health threshold contribution; exact source port, no ordinary APK claim, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelCrewStrengthTest.java (B unchanged original58a200 current crew/nominee dislike/exact inclusive health threshold contribution; exact source port, no ordinary APK claim, registered before creation)
+
+- out/session-b/duel-query-check/crew-strength.log (B unchanged original58a200 current crew/nominee dislike/exact inclusive health threshold contribution; exact source port, no ordinary APK claim, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening-android-compile.log (B current nativeDuel WIP Java/resources compiler compatibility using frozen A input; no APK/install proof, registered before creation)
+
+- out/session-b/duel-query-check/crew-strength-v2.log (B original x87 equality branch proven by health50 personality3 result73; failed strict-threshold interpretation retained, registered before creation)
+
+- out/session-b/duel-ruler-right-seed24.json (B actual original ruler517/owner3 reordered declared crew full battle/capture callback; no role/RNG/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-right-seed24.partial.json (B actual original ruler517/owner3 reordered declared crew full battle/capture callback; no role/RNG/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-right-seed24.failure.json (B actual original ruler517/owner3 reordered declared crew full battle/capture callback; no role/RNG/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-right-seed24.log (B actual original ruler517/owner3 reordered declared crew full battle/capture callback; no role/RNG/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24.json (B original ruler517 single-right-unit full battle/capture callback; no terminal/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24.partial.json (B original ruler517 single-right-unit full battle/capture callback; no terminal/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24.failure.json (B original ruler517 single-right-unit full battle/capture callback; no terminal/outcome replacement, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24.log (B original ruler517 single-right-unit full battle/capture callback; no terminal/outcome replacement, registered before creation)
+
+- out/session-b/duel-response-unit-factor-source-v2.json (B observer-only full58a8a0 intermediate stack/register values for complete current-person response; earlier108 receipt retained, registered before creation)
+
+- out/session-b/native-duel-workbench/response-unit-factor-v2.tsv (B observer-only full58a8a0 intermediate stack/register values for complete current-person response; earlier108 receipt retained, registered before creation)
+
+- out/session-b/duel-response-unit-factor-v2.log (B observer-only full58a8a0 intermediate stack/register values for complete current-person response; earlier108 receipt retained, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v7.json (B original ruler capture-attempt retreat branches4b0e20/4b1950/4a9120 after complete solo battle; no guessed captive rewrite, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v8.json (B original capture disposition human4b2380 versusAI4b03d0 selected by4b27f0; constructor4b0e20 not unconditional escape, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening-session.log (B final current native rules/schema compiler and whole session checks after inclusive health correction; no APK/install proof, registered before creation)
+
+- out/session-b/duel-query-check/kinship-opening-android-compile-v2.log (B final current native rules/schema compiler and whole session checks after inclusive health correction; no APK/install proof, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24-fate.json (B observer-only native AI/human dispatcher and actual1100 disposition array after full battle; earlier81 byte receipt retained, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24-fate.partial.json (B observer-only native AI/human dispatcher and actual1100 disposition array after full battle; earlier81 byte receipt retained, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24-fate.failure.json (B observer-only native AI/human dispatcher and actual1100 disposition array after full battle; earlier81 byte receipt retained, registered before creation)
+
+- out/session-b/duel-ruler-solo-right-seed24-fate.log (B observer-only native AI/human dispatcher and actual1100 disposition array after full battle; earlier81 byte receipt retained, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v9.json (B original human disposition selection and mask updates; exact helpers, registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDuelDisposition.java (B original human pending disposition state/choices/version2 save; old version1 unchanged, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelDispositionTest.java (B original human pending disposition state/choices/version2 save; old version1 unchanged, registered before creation)
+
+- out/session-b/duel-query-check/disposition.log (B original human pending disposition state/choices/version2 save; old version1 unchanged, registered before creation)
+
+- out/session-b/duel-query-check/disposition-terminal-session.log (B existing real terminal corpus plus human pending/fresh-token/stale/saveAPI checks; no ordinary campaign fixture claim, registered before creation)
+
+- out/session-b/duel-query-check/disposition-api-session.log (B existing real terminal corpus plus human pending/fresh-token/stale/saveAPI checks; no ordinary campaign fixture claim, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24.json (B declared valid disposition2 input after original selector; original callback effects retained, not human GUI proof, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24.partial.json (B declared valid disposition2 input after original selector; original callback effects retained, not human GUI proof, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24.failure.json (B declared valid disposition2 input after original selector; original callback effects retained, not human GUI proof, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24.log (B declared valid disposition2 input after original selector; original callback effects retained, not human GUI proof, registered before creation)
+
+- out/session-b/duel-query-check/disposition-android-compile.log (B saved disposition schema/UI/API and old continuation checks; no new APK/install claim, registered before creation)
+
+- out/session-b/duel-query-check/disposition-legacy.tsv (B saved disposition schema/UI/API and old continuation checks; no new APK/install claim, registered before creation)
+
+- out/session-b/duel-query-check/disposition-full-session.log (B saved disposition schema/UI/API and old continuation checks; no new APK/install claim, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24-v2.json (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24-v2.partial.json (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24-v2.failure.json (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-release-choice-source0-seed24-v2.log (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-execute-choice-source0-seed24.json (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-execute-choice-source0-seed24.partial.json (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-execute-choice-source0-seed24.failure.json (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-execute-choice-source0-seed24.log (B original complete callback with declared valid disposition and before/after person facts; no human selector or ordinary menu claim, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v10.json (B original retreat destination selector and execution callback exact code; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v11.json (B retreat selector complete RET4b1278 boundary; v10 bounded240 is incomplete and retained, registered before creation)
+
+- out/session-b/duel-query-check/disposition-corrupt-session.log (B malformed disposition/current loser validation; whole-save rejection, registered before creation)
+
+- out/session-b/duel-query-check/disposition-corrupt-session-v2.log (B explicitly after compiler completion verification; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/DISPOSITION_PROGRESS.md (B pending terminal decisions/source callback progress and exact limits; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelResponseArithmeticTest.java (B original58a8a0 complete post-getter arithmetic versus separate original stage receipts; registered before creation)
+
+- out/session-b/native-duel-workbench/response-arithmetic.tsv (B original58a8a0 complete post-getter arithmetic versus separate original stage receipts; registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic.log (B original58a8a0 complete post-getter arithmetic versus separate original stage receipts; registered before creation)
+
+- tools/content/session_b_pc_duel_response_arithmetic.py (B untouched original probability boundary corpus across actual native persons/personality/status/crew; declared numeric fixtures, registered before creation)
+
+- out/session-b/duel-response-arithmetic-source-v1.json (B untouched original probability boundary corpus across actual native persons/personality/status/crew; declared numeric fixtures, registered before creation)
+
+- out/session-b/native-duel-workbench/response-arithmetic-v1.tsv (B untouched original probability boundary corpus across actual native persons/personality/status/crew; declared numeric fixtures, registered before creation)
+
+- out/session-b/duel-response-arithmetic-source-v1.log (B untouched original probability boundary corpus across actual native persons/personality/status/crew; declared numeric fixtures, registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-v1.log (B untouched original probability boundary corpus across actual native persons/personality/status/crew; declared numeric fixtures, registered before creation)
+
+- out/session-b/duel-query-check/response-opening-current.log (B current held kind4/current ability opening adapter and probability compile; registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-compile.log (B current held kind4/current ability opening adapter and probability compile; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelResponseCurrentOpeningTest.java (B current real source held-kind4/ability/RNG adapter and completeWorld purity; registered before creation)
+
+- out/session-b/duel-response-arithmetic-source-v2.json (B corrected native mem_write bytes type; failed v1 retained; registered before creation)
+
+- out/session-b/native-duel-workbench/response-arithmetic-v2.tsv (B corrected native mem_write bytes type; failed v1 retained; registered before creation)
+
+- out/session-b/duel-response-arithmetic-source-v2.log (B corrected native mem_write bytes type; failed v1 retained; registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-v2.log (B corrected native mem_write bytes type; failed v1 retained; registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-108-v2.log (B final pure probability plus current opening adapter replay; registered before creation)
+
+- out/session-b/duel-response-arithmetic-source-v3.json (B observer-only formation predicate4843a0 return and exact current input; v2 retained, registered before creation)
+
+- out/session-b/native-duel-workbench/response-arithmetic-v3.tsv (B observer-only formation predicate4843a0 return and exact current input; v2 retained, registered before creation)
+
+- out/session-b/duel-response-arithmetic-source-v3.log (B observer-only formation predicate4843a0 return and exact current input; v2 retained, registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-v3.log (B observer-only formation predicate4843a0 return and exact current input; v2 retained, registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-android-compile.log (B current probability arithmetic and saved disposition validation compiler; no APK install claim, registered before creation)
+
+- out/session-b/duel-query-check/response-current-compile.log (B current crew/person/held opening adapter plus zero-RNG early branch; no ordinary current496570 claim, registered before creation)
+
+- out/session-b/duel-query-check/response-current-host-regression.log (B final current probability compilation/opening binding only; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/RESPONSE_PROGRESS.md (B current response arithmetic/provenance/ordinary integration limits, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelResponseCurrentTest.java (B declared source-linked six crew versus original full response getter/pureWorld and saved RNG; registered before creation)
+
+- out/session-b/duel-query-check/response-current.log (B declared source-linked six crew versus original full response getter/pureWorld and saved RNG; registered before creation)
+
+- out/session-b/duel-query-check/response-current-v2.log (B corrected legal declared map placement; save validation unchanged, failure v1 retained, registered before creation)
+
+- out/session-b/duel-query-check/response-current-v3.log (B diagnosing original current getter mismatches before ordinary activation; v2 failure retained, registered before creation)
+
+- out/session-b/duel-query-check/response-current-v4.log (B corrected original stack6 opponent score/stack10 own score, live current getter cross-check; failures retained, registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-108-v4.log (B corrected original stack6 opponent score/stack10 own score, live current getter cross-check; failures retained, registered before creation)
+
+- out/session-b/duel-query-check/response-arithmetic-80-v4.log (B corrected original stack6 opponent score/stack10 own score, live current getter cross-check; failures retained, registered before creation)
+
+- tools/content/session_b_pc_duel_unit_stats.py (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- out/session-b/duel-unit-stats-source-v1.json (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- out/session-b/native-duel-workbench/unit-combat-stats-v1.tsv (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- out/session-b/duel-unit-stats-source-v1.log (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDuelUnitStats.java (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelUnitStatsTest.java (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- out/session-b/duel-query-check/unit-stats.log (B original496570 current crew/aptitude/template/stat formula, original full output independent numeric matrix; registered before creation)
+
+- out/session-b/duel-unit-stats-source-v2.json (B original lazy cache writes recorded then replay purity; v1 assertion retained, registered before creation)
+
+- out/session-b/native-duel-workbench/unit-combat-stats-v2.tsv (B original lazy cache writes recorded then replay purity; v1 assertion retained, registered before creation)
+
+- out/session-b/duel-unit-stats-source-v2.log (B original lazy cache writes recorded then replay purity; v1 assertion retained, registered before creation)
+
+- out/session-b/duel-query-check/unit-stats-v2.log (B original lazy cache writes recorded then replay purity; v1 assertion retained, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelUnitCrewTest.java (B actual source current crew495ab0/496570 with mutation/pureWorld rejection before normal use; registered before creation)
+
+- out/session-b/duel-query-check/unit-crew.log (B actual source current crew495ab0/496570 with mutation/pureWorld rejection before normal use; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/UNIT_STATS_PROGRESS.md (B current native unit statistics progress/current compiler with exact scope; registered before creation)
+
+- out/session-b/duel-query-check/unit-stats-android-compile.log (B current native unit statistics progress/current compiler with exact scope; registered before creation)
+
+- out/session-b/duel-unit-stats-source-v3.json (B corrected original496570 argument3 equipment versus category0/1; invalid categoryv1/v2 retained; registered before creation)
+
+- out/session-b/native-duel-workbench/unit-combat-stats-v3.tsv (B corrected original496570 argument3 equipment versus category0/1; invalid categoryv1/v2 retained; registered before creation)
+
+- out/session-b/duel-unit-stats-source-v3.log (B corrected original496570 argument3 equipment versus category0/1; invalid categoryv1/v2 retained; registered before creation)
+
+- out/session-b/duel-query-check/unit-stats-v3.log (B corrected original496570 argument3 equipment versus category0/1; invalid categoryv1/v2 retained; registered before creation)
+
+- out/session-b/duel-command-source-v12.json (B corrected original496570 argument3 equipment versus category0/1; invalid categoryv1/v2 retained; registered before creation)
+
+- out/session-b/duel-query-check/unit-crew-v2.log (B current six aptitudes separate from any-pair dislike five stat guard; independent original source caches, registered before creation)
+
+- core/src/main/resources/pc-duel/unit-templates.tsv (B source-exe-bound original five land non-siege template records from complete496570 observations; not original full12 catalog, registered before creation)
+
+- core/src/main/resources/pc-duel/unit-templates-source.json (B source-exe-bound original five land non-siege template records from complete496570 observations; not original full12 catalog, registered before creation)
+
+- out/session-b/duel-query-check/unit-crew-v3.log (B source template plus full current C9/CA land adapter versus original caches, explicit originalEliteTech false fixture; registered before creation)
+
+- tools/content/session_b_export_unit_templates.py (B reproducible exact source template/hash manifest export, registered before creation)
+
+- out/session-b/duel-query-check/unit-stats-android-compile-v2.log (B final current land/template/aptitude adapter compiler after complete source matrix; no new APK claim, registered before creation)
+
+- tools/content/session_b_pc_force_technologies.py (B original4811e0 current force bit getter, all16 source serializer force records; source presence not activation, registered before creation)
+
+- out/session-b/force-technologies-source-v1.json (B original4811e0 current force bit getter, all16 source serializer force records; source presence not activation, registered before creation)
+
+- out/session-b/force-technologies-source-v1.log (B original4811e0 current force bit getter, all16 source serializer force records; source presence not activation, registered before creation)
+
+- out/session-b/duel-command-source-v13.json (B original4811e0 current force bit getter, all16 source serializer force records; source presence not activation, registered before creation)
+
+- out/session-b/force-technologies-source-v2.json (B correct original serializer4byte tech blocks58/5c versus byte assumption; failedv1 retained, registered before creation)
+
+- out/session-b/force-technologies-source-v2.log (B correct original serializer4byte tech blocks58/5c versus byte assumption; failedv1 retained, registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcSourceTechnologyPolicy.java (B explicit fresh source force tech36 import/pinned native mapping/saved policy; no old backfill or force activation, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcSourceTechnologyPolicyTest.java (B explicit fresh source force tech36 import/pinned native mapping/saved policy; no old backfill or force activation, registered before creation)
+
+- core/src/main/resources/pc-duel/source-technologies.tsv (B explicit fresh source force tech36 import/pinned native mapping/saved policy; no old backfill or force activation, registered before creation)
+
+- core/src/main/resources/pc-duel/source-technologies-manifest.json (B explicit fresh source force tech36 import/pinned native mapping/saved policy; no old backfill or force activation, registered before creation)
+
+- tools/content/session_b_export_source_technologies.py (B explicit fresh source force tech36 import/pinned native mapping/saved policy; no old backfill or force activation, registered before creation)
+
+- out/session-b/duel-query-check/source-technologies.log (B explicit fresh source force tech36 import/pinned native mapping/saved policy; no old backfill or force activation, registered before creation)
+
+- out/session-b/duel-query-check/source-technologies-legacy.tsv (B explicit new source tech policy final/current and genuine old continuation checks; no old backfill or new APK claim, registered before creation)
+
+- out/session-b/duel-query-check/source-technologies-full-session.log (B explicit new source tech policy final/current and genuine old continuation checks; no old backfill or new APK claim, registered before creation)
+
+- out/session-b/duel-query-check/source-technologies-android-compile.log (B explicit new source tech policy final/current and genuine old continuation checks; no old backfill or new APK claim, registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/TECHNOLOGIES_PROGRESS.md (B explicit new source tech policy final/current and genuine old continuation checks; no old backfill or new APK claim, registered before creation)
+
+- out/session-b/duel-query-check/source-technologies-v2.log (B corrected legacy serializer materializes empty per-force EnumSets; assert no learned values rather than map representation, prior failure retained, registered before creation)
+
+- out/session-b/duel-unit-stats-source-elite-v1.json (B original4811e0 elite bits declared before untouched496570 numeric output; normal research completion not claimed, registered before creation)
+
+- out/session-b/native-duel-workbench/unit-combat-stats-elite-v1.tsv (B original4811e0 elite bits declared before untouched496570 numeric output; normal research completion not claimed, registered before creation)
+
+- out/session-b/duel-unit-stats-source-elite-v1.log (B original4811e0 elite bits declared before untouched496570 numeric output; normal research completion not claimed, registered before creation)
+
+- out/session-b/duel-query-check/unit-stats-elite-v1.log (B original4811e0 elite bits declared before untouched496570 numeric output; normal research completion not claimed, registered before creation)
+
+- out/session-b/duel-query-check/source-current-response.log (B original4811e0 elite bits declared before untouched496570 numeric output; normal research completion not claimed, registered before creation)
+
+- out/session-b/duel-query-check/source-technologies-android-compile-v2.log (B final no-external-C9CA/current source tech adapter compilation; no actual APK claim, registered before creation)
+
+- out/session-b/duel-query-check/unit-crew-source-tech.log (B current PST1/native elite learned state cold-save versus original declared original496570 full result94/97; ordinary research not claimed, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v12.json (B exact original58a5e0 counter body and preceding helpers for normal selection; registered before creation)
+
+- tools/content/session_b_pc_duel_counter_probability.py (B untouched original58a5e0 full counter probability and current source candidate binding; numeric fixtures not normal campaign, registered before creation)
+
+- out/session-b/duel-counter-probability-source-v1.json (B untouched original58a5e0 full counter probability and current source candidate binding; numeric fixtures not normal campaign, registered before creation)
+
+- out/session-b/native-duel-workbench/counter-probability-v1.tsv (B untouched original58a5e0 full counter probability and current source candidate binding; numeric fixtures not normal campaign, registered before creation)
+
+- out/session-b/duel-counter-probability-source-v1.log (B untouched original58a5e0 full counter probability and current source candidate binding; numeric fixtures not normal campaign, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelCounterProbabilityTest.java (B untouched original58a5e0 full counter probability and current source candidate binding; numeric fixtures not normal campaign, registered before creation)
+
+- out/session-b/duel-query-check/counter-probability.log (B untouched original58a5e0 full counter probability and current source candidate binding; numeric fixtures not normal campaign, registered before creation)
+
+- tools/content/session_b_pc_duel_human_selection.py (B unchanged full58ad60/maxcounter/current original caches on linked source six crew; normal GUI/deploy/campaign separate, registered before creation)
+
+- out/session-b/duel-human-selection-source-v1.json (B unchanged full58ad60/maxcounter/current original caches on linked source six crew; normal GUI/deploy/campaign separate, registered before creation)
+
+- out/session-b/native-duel-workbench/human-selection-v1.tsv (B unchanged full58ad60/maxcounter/current original caches on linked source six crew; normal GUI/deploy/campaign separate, registered before creation)
+
+- out/session-b/duel-human-selection-source-v1.log (B unchanged full58ad60/maxcounter/current original caches on linked source six crew; normal GUI/deploy/campaign separate, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelHumanSelectionTest.java (B unchanged full58ad60/maxcounter/current original caches on linked source six crew; normal GUI/deploy/campaign separate, registered before creation)
+
+- out/session-b/duel-query-check/human-selection.log (B unchanged full58ad60/maxcounter/current original caches on linked source six crew; normal GUI/deploy/campaign separate, registered before creation)
+
+- out/session-b/duel-query-check/counter-selection-android-compile.log (B current original counter/player candidate full binding compiler and exact normal-path limits; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/HUMAN_ADMISSION_PROGRESS.md (B current original counter/player candidate full binding compiler and exact normal-path limits; registered before creation)
+
+- out/session-b/duel-command-source-v14.json (B original489090 ability field classification/current counter mismatch6vs7 diagnostic; failedv1 retained, registered before creation)
+
+- out/session-b/duel-query-check/human-selection-v2.log (B original489090 ability field classification/current counter mismatch6vs7 diagnostic; failedv1 retained, registered before creation)
+
+- out/session-b/duel-human-selection-source-v2.json (B readonly original response/counter/factor stages to resolve full player candidate49vs50; earlier failures retained, registered before creation)
+
+- out/session-b/native-duel-workbench/human-selection-v2.tsv (B readonly original response/counter/factor stages to resolve full player candidate49vs50; earlier failures retained, registered before creation)
+
+- out/session-b/duel-human-selection-source-v2.log (B readonly original response/counter/factor stages to resolve full player candidate49vs50; earlier failures retained, registered before creation)
+
+- out/session-b/duel-query-check/human-selection-v3.log (B readonly original response/counter/factor stages to resolve full player candidate49vs50; earlier failures retained, registered before creation)
+
+- out/session-b/duel-query-check/counter-selection-android-compile-v2.log (B readonly original response/counter/factor stages to resolve full player candidate49vs50; earlier failures retained, registered before creation)
+
+- out/session-b/duel-query-check/counter-resource-compat-source-tech.log (B bounded original resource reads using minSdk26-compatible InputStream.read primitives; original SHA/schema/old policy unchanged, registered before creation)
+
+- out/session-b/duel-query-check/counter-resource-compat-android-compile.log (B bounded original resource reads using minSdk26-compatible InputStream.read primitives; original SHA/schema/old policy unchanged, registered before creation)
+
+- out/session-b/duel-human-selection-source-v3.json (B original unit explicit equipment0 native4962b0 before496f40; previous default-1 zero caches not normal source stats, preserved, registered before creation)
+
+- out/session-b/native-duel-workbench/human-selection-v3.tsv (B original unit explicit equipment0 native4962b0 before496f40; previous default-1 zero caches not normal source stats, preserved, registered before creation)
+
+- out/session-b/duel-human-selection-source-v3.log (B original unit explicit equipment0 native4962b0 before496f40; previous default-1 zero caches not normal source stats, preserved, registered before creation)
+
+- out/session-b/duel-query-check/human-selection-v4.log (B original unit explicit equipment0 native4962b0 before496f40; previous default-1 zero caches not normal source stats, preserved, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v13.json (B original return task37 setting4a7410/move4a7990 and unit removal/return helpers, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v14.json (B complete original4a7990 RET4a7b61 and task duration setters/phase, v13 incomplete retained, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v15.json (B original49e4d0 city travel duration/origin47a950, task37 decrement/completion candidate callers; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v16.json (B original49e450/47b480 travel inputs/static return durations and task37 caller inventory, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v17.json (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- tools/content/session_b_pc_personnel_return.py (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- out/session-b/personnel-return-source-v1.json (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- out/session-b/personnel-return-source-v1.log (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- core/src/main/resources/pc-duel/personnel-travel.bin (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- core/src/main/resources/pc-duel/personnel-travel-source.json (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcPersonnelReturnRules.java (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcPersonnelReturnRulesTest.java (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- out/session-b/duel-query-check/personnel-return-rules.log (B exact original47b480 travel table/4839f0 parent and task37 finish phase; no engineering path substitution, registered before creation)
+
+- out/session-b/personnel-return-source-v2.json (B exact mapped World page span7200000..7500000 and actual task37 dispatcher; v1 overread failure retained, registered before creation)
+
+- out/session-b/personnel-return-source-v2.log (B exact mapped World page span7200000..7500000 and actual task37 dispatcher; v1 overread failure retained, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v18.json (B exact mapped World page span7200000..7500000 and actual task37 dispatcher; v1 overread failure retained, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v19.json (B exact task37 switch target/data and reproducible original travel matrix resource export; registered before creation)
+
+- tools/content/session_b_export_personnel_travel.py (B exact task37 switch target/data and reproducible original travel matrix resource export; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v20.json (B full original5ba320 pending-arrival gate and598d60 route boundary; registered before creation)
+
+- out/session-b/duel-query-check/personnel-return-rules-v2.log (B original UINT32 rejection normalized only in host receipt parse; production parser unchanged, task queue exact semantics; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v21.json (B original UINT32 rejection normalized only in host receipt parse; production parser unchanged, task queue exact semantics; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v22.json (B ignored original489120 task queue gate; registered before creation)
+- out/session-b/personnel-route-source-v1.json (B original city neighbors/getter/next-city exhaustive receipt; registered before creation)
+- out/session-b/personnel-route-source-v1.log (B original route probe output)
+- tools/content/session_b_pc_personnel_route.py (B untouched47bc30/598d60 exhaustive source route oracle; registered before creation)
+- out/session-b/duel-upstream-callers-source-v23.json (B original full personnel turn function boundary/acted-reset scheduling; registered before creation)
+- out/session-b/duel-release-return-source0-v1.json (B full original battle release and personnel turn callback receipt; registered before creation)
+- out/session-b/duel-release-return-source0-v1.partial.json (B full original battle release and personnel turn callback receipt; registered before creation)
+- out/session-b/duel-release-return-source0-v1.failure.json (B full original battle release and personnel turn callback receipt; registered before creation)
+- out/session-b/duel-release-return-source0-v1.log (B full original battle release and personnel turn callback receipt; registered before creation)
+- tools/content/session_b_export_personnel_routes.py (B original source0 initialized city route import/host validation; registered before creation)
+- core/src/main/resources/pc-duel/personnel-neighbors.bin (B original source0 initialized city route import/host validation; registered before creation)
+- core/src/main/resources/pc-duel/personnel-neighbors-source.json (B original source0 initialized city route import/host validation; registered before creation)
+- out/session-b/duel-query-check/personnel-route-rules-v1.log (B original source0 initialized city route import/host validation; registered before creation)
+- out/session-b/duel-upstream-callers-source-v24.json (B full599cf0 phase and direct call scheduling candidates; registered before creation)
+- out/session-b/duel-upstream-callers-source-v25.json (B original acted-bit setter complete direct caller candidates and normal tick sequence; registered before creation)
+- out/session-b/duel-release-return-source0-v2.json (B original turn reset/duration/personnel ordered callback receipt; registered before creation)
+- out/session-b/duel-release-return-source0-v2.partial.json (B original turn reset/duration/personnel ordered callback receipt; registered before creation)
+- out/session-b/duel-release-return-source0-v2.failure.json (B original turn reset/duration/personnel ordered callback receipt; registered before creation)
+- out/session-b/duel-release-return-source0-v2.log (B original turn reset/duration/personnel ordered callback receipt; registered before creation)
+- out/session-b/duel-upstream-callers-source-v26.json (B exact598630 complete action-reset callback; registered before creation)
+- out/session-b/personnel-return-android-compile-v1.log (B bounded resources and route Java Android compile; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelRelease.java (B source-bound original task37 save/return/terminal RELEASE integration; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelReleaseTest.java (B full original release/ordered-return endpoint and saved continuation checks; registered before creation)
+- out/session-b/duel-query-check/duel-release-v1.log (B source0 release host check; registered before creation)
+- out/session-b/duel-query-check/duel-release-v2.log (B source0 release host after checked exception fix; registered before creation)
+- out/session-b/duel-query-check/duel-release-v3.log (B source0 release after test-only original uint32 parse adapter; registered before creation)
+- out/session-b/duel-query-check/duel-release-v4.log (B original region15 valid constructed land coordinate; registered before creation)
+- out/session-b/duel-query-check/duel-release-v5.log (B explicit task37 foreign-region save validation; registered before creation)
+- out/session-b/duel-release-endpoint-source0.tsv (B source0 native RELEASE aggregate/API and regression; registered before creation)
+- out/session-b/duel-query-check/duel-release-api-v1.log (B source0 native RELEASE aggregate/API and regression; registered before creation)
+- out/session-b/duel-query-check/duel-release-regression-v1.log (B source0 native RELEASE aggregate/API and regression; registered before creation)
+- out/session-b/duel-query-check/duel-release-legacy-v1.tsv (B source0 native RELEASE aggregate/API and regression; registered before creation)
+- out/session-b/personnel-return-android-compile-v2.log (B source0 native RELEASE aggregate/API and regression; registered before creation)
+- out/session-b/duel-query-check/duel-release-v6.log (B preserved-home prewrite check regression; registered before creation)
+- out/session-b/duel-upstream-callers-source-v27.json (B original field command input589f70/manager50d7a0 and formation predicate source; registered before creation)
+- out/session-b/duel-upstream-callers-source-v28.json (B complete input/copy/nearby-scan and support eligibility; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelEntryRules.java (B original normal entry input/eligible reordered crews/manager binding; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelEntryRulesTest.java (B original normal entry input/eligible reordered crews/manager binding; registered before creation)
+- tools/content/session_b_pc_duel_entry_input.py (B original normal entry input/eligible reordered crews/manager binding; registered before creation)
+- out/session-b/duel-entry-input-source0-v1.json (B original normal entry input/eligible reordered crews/manager binding; registered before creation)
+- out/session-b/duel-entry-input-source0-v1.log (B original normal entry input/eligible reordered crews/manager binding; registered before creation)
+- out/session-b/duel-query-check/duel-entry-rules-v1.log (B original normal entry input/eligible reordered crews/manager binding; registered before creation)
+- out/session-b/duel-query-check/duel-entry-terminal-regression-v1.log (B nomination-order campaign validation regression; registered before creation)
+- out/session-b/duel-upstream-callers-source-v29.json (B original full selection/nearby-scan input and fee-action caller; registered before creation)
+- out/session-b/duel-upstream-callers-source-v30.json (B complete58b400 selector boundary; registered before creation)
+- out/session-b/duel-upstream-callers-source-v31.json (B full counter selector58a7f0; registered before creation)
+- tools/content/session_b_pc_duel_counter_selection.py (B original58a7f0 max first counter and RNG selection; registered before creation)
+- out/session-b/duel-counter-selection-source0-v1.json (B original58a7f0 max first counter and RNG selection; registered before creation)
+- out/session-b/duel-counter-selection-source0-v1.tsv (B original58a7f0 max first counter and RNG selection; registered before creation)
+- out/session-b/duel-counter-selection-source0-v1.log (B original58a7f0 max first counter and RNG selection; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelCounterSelectionTest.java (B original58a7f0 max first counter and RNG selection; registered before creation)
+- out/session-b/duel-query-check/counter-selection-v1.log (B original58a7f0 max first counter and RNG selection; registered before creation)
+- out/session-b/duel-entry-input-source0-v2.json (B original manager to full initializer model/RNG comparison; registered before creation)
+- out/session-b/duel-entry-input-source0-v2.log (B original manager to full initializer model/RNG comparison; registered before creation)
+- out/session-b/duel-query-check/duel-entry-rules-v2.log (B original manager to full initializer model/RNG comparison; registered before creation)
+- out/session-b/duel-upstream-callers-source-v32.json (B grid-building lookup483b20 for original DRUM response scan; registered before creation)
+- tools/content/session_b_pc_duel_drum_probe.py (B original DRUM ownership/complete/grid scan fixture oracle; registered before creation)
+- out/session-b/duel-drum-source-v1.json (B original DRUM ownership/complete/grid scan fixture oracle; registered before creation)
+- out/session-b/duel-drum-source-v1.failure.json (B original DRUM ownership/complete/grid scan fixture oracle; registered before creation)
+- out/session-b/duel-drum-source-v1.log (B original DRUM ownership/complete/grid scan fixture oracle; registered before creation)
+- out/session-b/duel-counter-selection-source0-v2.json (B full normal AI response second selection and counter/response RNG chain; registered before creation)
+- out/session-b/duel-counter-selection-source0-v2.tsv (B full normal AI response second selection and counter/response RNG chain; registered before creation)
+- out/session-b/duel-counter-selection-source0-v2.log (B full normal AI response second selection and counter/response RNG chain; registered before creation)
+- out/session-b/duel-query-check/counter-selection-v2.log (B full normal AI response second selection and counter/response RNG chain; registered before creation)
+- out/session-b/duel-drum-source-v2.json (B original complete DRUM scanned radius/owner matrix on original constructor/grid registry; registered before creation)
+- out/session-b/duel-drum-source-v2.failure.json (B original complete DRUM scanned radius/owner matrix on original constructor/grid registry; registered before creation)
+- out/session-b/duel-drum-source-v2.log (B original complete DRUM scanned radius/owner matrix on original constructor/grid registry; registered before creation)
+- out/session-b/duel-query-check/duel-entry-session-v1.log (B field entry/reordered filtered roster runtime Android and old strategy regression; registered before creation)
+- out/session-b/duel-entry-android-compile-v1.log (B field entry/reordered filtered roster runtime Android and old strategy regression; registered before creation)
+- out/session-b/duel-query-check/duel-entry-legacy-v1.tsv (B field entry/reordered filtered roster runtime Android and old strategy regression; registered before creation)
+- out/session-b/duel-drum-source-v3.json (B original DRUM scan after bytes ctypes input fix; registered before creation)
+- out/session-b/duel-drum-source-v3.failure.json (B original DRUM scan after bytes ctypes input fix; registered before creation)
+- out/session-b/duel-drum-source-v3.log (B original DRUM scan after bytes ctypes input fix; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/ENTRY_PROGRESS.md (B normal challenge start chain/nomination-order/source proof and activation gaps; registered before creation)
+- out/session-b/duel-entry-input-source0-v3.json (B actual original force player slot0 setter/manual controller input/model proof; registered before creation)
+- out/session-b/duel-entry-input-source0-v3.log (B actual original force player slot0 setter/manual controller input/model proof; registered before creation)
+- out/session-b/duel-query-check/duel-entry-rules-v3.log (B actual original force player slot0 setter/manual controller input/model proof; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelDrumSupportTest.java (B actual source DRUM scanner current structure/target/owner/complete binding; registered before creation)
+- out/session-b/duel-query-check/drum-support-v1.log (B actual source DRUM scanner current structure/target/owner/complete binding; registered before creation)
+- out/session-b/duel-upstream-callers-source-v33.json (B prebattle speech gating5a0700 and original RNG-bearing unit display callback; registered before creation)
+- out/session-b/duel-upstream-callers-source-v34.json (B normal challenge action dispatch and speech visibility predicate; registered before creation)
+- out/session-b/duel-upstream-callers-source-v35.json (B original speech predicate grid initializer/writers; registered before creation)
+- out/session-b/duel-upstream-callers-source-v36.json (B postduel command action and raw coarse-mask object anchors; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelExecution.java (B full original nonruler execution/unit replacement/lifecycle/admin terminal integration; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelExecutionTest.java (B full original nonruler execution/unit replacement/lifecycle/admin terminal integration; registered before creation)
+- out/session-b/duel-query-check/duel-execution-v1.log (B full original nonruler execution/unit replacement/lifecycle/admin terminal integration; registered before creation)
+- out/session-b/duel-execution-endpoint-source0.tsv (B original EXECUTE full terminal typed API and compatibility proof; registered before creation)
+- out/session-b/duel-query-check/duel-execution-api-v1.log (B original EXECUTE full terminal typed API and compatibility proof; registered before creation)
+- out/session-b/duel-query-check/duel-execution-release-regression-v1.log (B original EXECUTE full terminal typed API and compatibility proof; registered before creation)
+- out/session-b/duel-query-check/duel-execution-session-v1.log (B original EXECUTE full terminal typed API and compatibility proof; registered before creation)
+- out/session-b/duel-query-check/duel-execution-legacy-v1.tsv (B original EXECUTE full terminal typed API and compatibility proof; registered before creation)
+- out/session-b/duel-execution-android-compile-v1.log (B original EXECUTE full terminal typed API and compatibility proof; registered before creation)
+- out/session-b/duel-upstream-callers-source-v37.json (B original field-captive recruitment eligibility and full terminal callback; registered before creation)
+- out/session-b/duel-recruit-choice-source0-v1.json (B original field-captive recruitment eligibility and full terminal callback; registered before creation)
+- out/session-b/duel-recruit-choice-source0-v1.partial.json (B original field-captive recruitment eligibility and full terminal callback; registered before creation)
+- out/session-b/duel-recruit-choice-source0-v1.failure.json (B original field-captive recruitment eligibility and full terminal callback; registered before creation)
+- out/session-b/duel-recruit-choice-source0-v1.log (B original field-captive recruitment eligibility and full terminal callback; registered before creation)
+- out/session-b/duel-upstream-callers-source-v38.json (B full recruitment membership4a8440/4a88a0 and keep-prisoner context; registered before creation)
+- tools/content/session_b_pc_duel_recruit_admission.py (B original captive-mode recruitment gate/probability/honor/RNG and current source parameters; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v1.json (B original captive-mode recruitment gate/probability/honor/RNG and current source parameters; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v1.tsv (B original captive-mode recruitment gate/probability/honor/RNG and current source parameters; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v1.log (B original captive-mode recruitment gate/probability/honor/RNG and current source parameters; registered before creation)
+- out/session-b/duel-upstream-callers-source-v39.json (B original captive-mode recruitment gate/probability/honor/RNG and current source parameters; registered before creation)
+- out/session-b/duel-upstream-callers-source-v40.json (B native old-ruler family penalty predicate48bdf0 and status488c70; registered before creation)
+- out/session-b/duel-upstream-callers-source-v41.json (B complete recruitment family and forced gate instructions; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v2.json (B original recruitment full numeric caller inputs; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v2.tsv (B original recruitment full numeric caller inputs; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v2.log (B original recruitment full numeric caller inputs; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelRecruitmentRules.java (B original modes1/2 numeric decision with explicit separate forced gate; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelRecruitmentRulesTest.java (B source512 recruitment inputs/results/RNG comparison; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rules-v1.log (B source512 recruitment inputs/results/RNG comparison; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelRecruitment.java (B ordinary serving-officer source0 recruitment membership and task37 callback; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelRecruitmentTest.java (B declared original recruitment endpoint and complete saved return task; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-membership-v1.log (B declared original recruitment endpoint and complete saved return task; registered before creation)
+- out/session-b/duel-recruit-return-source0-v1.json (B original full recruitment terminal then ordered task37 return phases; registered before creation)
+- out/session-b/duel-recruit-return-source0-v1.partial.json (B original full recruitment terminal then ordered task37 return phases; registered before creation)
+- out/session-b/duel-recruit-return-source0-v1.failure.json (B original full recruitment terminal then ordered task37 return phases; registered before creation)
+- out/session-b/duel-recruit-return-source0-v1.log (B original full recruitment terminal then ordered task37 return phases; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-membership-v2.log (B original ordered task37 route and equipment callback verification; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-release-regression-v1.log (B shared task37 release regression; registered before creation)
+- out/session-b/duel-recruitment-android-compile-v1.log (B recruitment callback Android type/build check; registered before creation)
+- out/session-b/duel-upstream-callers-source-v42.json (B recruitment relation-vector and native force membership predicates; registered before creation)
+- tools/content/session_b_pc_duel_recruit_gate.py (B untouched field recruitment forced gate controlled relationship input matrix; registered before creation)
+- out/session-b/duel-recruit-gate-source0-v1.json (B untouched field recruitment forced gate controlled relationship input matrix; registered before creation)
+- out/session-b/duel-recruit-gate-source0-v1.log (B untouched field recruitment forced gate controlled relationship input matrix; registered before creation)
+- out/session-b/duel-upstream-callers-source-v43.json (B original relation-vector property comparator658fb0; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelRecruitmentGateTest.java (B original field-mode forced gate40 inputs/results; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-gate-v1.log (B original field-mode forced gate40 inputs/results; registered before creation)
+- out/session-b/recruitment-monthly-source0-v1.json.gz (B reexecute untouched original monthly refusal/captive counter rules; registered before creation)
+- out/session-b/recruitment-monthly-source0-v1.log (B reexecute untouched original monthly refusal/captive counter rules; registered before creation)
+- tools/content/session_b_export_recruitment_bans.py (B derive explicit initial ban metadata from guarded archived original data, without candidate code adoption; registered before creation)
+- core/src/main/resources/pc-duel/recruitment-bans.tsv (B initial16 source refusal fields/native and record SHA; registered before creation)
+- out/session-b/recruitment-bans-export-v1.json (B original initial refusal metadata provenance and distinct source coverage; registered before creation)
+- core/src/main/java/game/sanguo/core/PcRecruitmentBanPolicy.java (B explicit fresh original refusal state with saved trust and no legacy backfill; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRecruitmentBanPolicyTest.java (B original monthly refusal matrix/full save/legacy boundary; registered before creation)
+- out/session-b/duel-query-check/recruitment-ban-v1.log (B original monthly refusal matrix/full save/legacy boundary; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelRecruitmentAdmission.java (B current original field recruitment gate/probability/one RNG decision binding; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelRecruitmentAdmissionTest.java (B512 actual current-person inputs versus original decision/RNG/full save; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-admission-v1.log (B512 actual current-person inputs versus original decision/RNG/full save; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v3.json (B original raw-loyalty/display getter and current field-mode admission; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v3.tsv (B original raw-loyalty/display getter and current field-mode admission; registered before creation)
+- out/session-b/duel-recruit-admission-source0-v3.log (B original raw-loyalty/display getter and current field-mode admission; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-admission-v2.log (B current fresh ban initializer and512 source decision/RNG adapter; registered before creation)
+- out/session-b/duel-query-check/recruitment-ban-v2.log (B fresh initializer/legacy absence and monthly144 regression; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v1.log (B real typed disposition rejection/current row mask/RNG/save/release terminal; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-api-session-v1.log (B full GameSession after recruitment disposition integration; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-api-legacy-v1.tsv (B genuine full legacy continuation after fresh ban/disposition integration; registered before creation)
+- out/session-b/duel-recruitment-api-android-v1.log (B compile full B UI/API/runtime/core recruitment increment; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v2.log (B compiled typed zero-chance/current row/save/release terminal verification; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v3.log (B actual typed refusal detailed current callback diagnosis; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v4.log (B compiled typed refusal with actual CommandResult detail; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v5.log (B preserved external native parent2036/internal father identity distinction; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-success-api-v1.log (B explicit raw0/seed0 typed successful recruitment/complete campaign terminal and save; registered before creation)
+- out/session-b/duel-recruitment-api-android-v2.log (B current external-parent fix/full recruitment increment Android compile; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-membership-v4.log (B current raw255 and saved refusal policy callback/return regression; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-success-api-v2.log (B explicit saved format3 admission and typed terminal success; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v6.log (B format2 failed recruitment save compatibility and typed terminal; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-format3-v1.log (B actual prior format1/2 bytes and explicit admitted format3/corruption; registered before creation)
+- out/session-b/duel-recruitment-api-android-v3.log (B latest explicit format3/current recruitment increment Android compile; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-success-api-v3.log (B saved successful admission and exact readonly preview/submit agreement; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-rejected-api-v7.log (B historical unadmitted choice visible reason/current rejection/cold terminal; registered before creation)
+- out/session-b/duel-recruitment-api-android-v4.log (B final current B UI/API/core readonly refusal and explicit admission compilation; registered before creation)
+- out/session-b/duel-upstream-callers-source-v44.json (B complete original AI execution chance, force relations and prisoner context; registered before creation)
+- out/session-b/duel-upstream-callers-source-v45.json (B original AI base abilities/national predicate/chance constants; registered before creation)
+- tools/content/session_b_pc_duel_ai_disposition.py (B untouched AI numeric execution and prisoner thresholds with fullWorld/RNG checked; registered before creation)
+- out/session-b/duel-ai-disposition-source0-v1.json (B untouched AI execution predicate current source fixtures; registered before creation)
+- out/session-b/duel-ai-disposition-source0-v1.tsv (B untouched AI execution predicate current source fixtures; registered before creation)
+- out/session-b/duel-ai-disposition-source0-v1.log (B untouched AI execution predicate current source fixtures; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelSettingsSaveTest.java (B independent age/death/difficulty saved values and legacy exact strategy; registered before creation)
+- out/session-b/duel-query-check/duel-settings-save-v1.log (B independent age/death/difficulty saved values and legacy exact strategy; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelAiDispositionRules.java (B original complete AI numeric disposition decision with explicit source inputs; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelAiDispositionRulesTest.java (B untouched original execution probability/return/RNG comparison; registered before creation)
+- out/session-b/duel-query-check/duel-ai-disposition-rules-v1.log (B untouched original execution probability/return/RNG comparison; registered before creation)
+- out/session-b/duel-upstream-callers-source-v46.json (B original AI 472150 versus kernel random function contracts; registered before creation)
+- out/session-b/duel-query-check/duel-ai-disposition-rules-v2.log (B corrected original merit2000 divisor and complete AI result/RNG; registered before creation)
+- tools/content/session_b_pc_duel_ai_retention.py (B original field-unit context/captor-home city detention threshold and exact current roster; registered before creation)
+- out/session-b/duel-ai-retention-source0-v1.json (B original captor-home detention threshold and masks15/32; registered before creation)
+- out/session-b/duel-ai-retention-source0-v1.log (B original captor-home detention threshold and masks15/32; registered before creation)
+- out/session-b/duel-ai-retention-source0-v2.json (B complete original3argument context and checked native troop getter/roster; registered before creation)
+- out/session-b/duel-ai-retention-source0-v2.failure.json (B original context failure exact instruction/memory boundary; registered before creation)
+- out/session-b/duel-ai-retention-source0-v2.log (B complete original3argument context and checked native troop getter/roster; registered before creation)
+- out/session-b/duel-upstream-callers-source-v47.json (B original city troop/roster getter full boundaries after refusal assertion; registered before creation)
+- out/session-b/duel-upstream-callers-source-v48.json (B complete city troop tail and original roster/rank field linkage; registered before creation)
+- out/session-b/duel-ai-retention-source0-v3.json (B source city troop getter based threshold and actual original roster; registered before creation)
+- out/session-b/duel-ai-retention-source0-v3.failure.json (B original context exception preservation; registered before creation)
+- out/session-b/duel-ai-retention-source0-v3.log (B source city troop getter based threshold and actual original roster; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelAiDisposition.java (B current original automatic fate, detached RNG plan and saved explicit new settings; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelAiRetentionTest.java (B current administrative roster/rank salary/prisoner count versus original44 thresholds; registered before creation)
+- out/session-b/duel-query-check/duel-ai-retention-v1.log (B current administrative roster/rank salary/prisoner count versus original44 thresholds; registered before creation)
+- out/session-b/duel-query-check/duel-ai-typed-detain-v1.log (B typed format4 original automatic detention/full campaign save; registered before creation)
+- out/session-b/duel-query-check/duel-ai-typed-release-v1.log (B typed format4 original automatic low-capacity release/full campaign save; registered before creation)
+- out/session-b/duel-query-check/duel-ai-retention-v2.log (B compiled current original44 home detention thresholds; registered before creation)
+- out/session-b/duel-query-check/duel-ai-typed-execute-v1.log (B declared captor dislike source predicate and actual automatic execution terminal; registered before creation)
+- out/session-b/duel-query-check/duel-ai-typed-recruit-v1.log (B declared raw0/seed0 plus format4 actual automatic recruitment terminal; registered before creation)
+- out/session-b/duel-query-check/duel-settings-human-driver-v1.log (B full human original frame/RNG/cold saves with distinct source age/death/difficulty; registered before creation)
+- out/session-b/duel-query-check/duel-settings-swap-driver-v1.log (B full original human replacement frames/RNG/cold saves with explicit format4; registered before creation)
+- out/session-b/duel-query-check/duel-settings-ai-driver-v1.log (B full original automatic model frames/RNG/cold saves with explicit format4; registered before creation)
+- out/session-b/duel-ai-android-compile-v1.log (B current AI/independent saved settings full Android compilation; registered before creation)
+- out/session-b/duel-query-check/duel-ai-session-v1.log (B current full GameSession after explicit settings/automatic disposition; registered before creation)
+- out/session-b/duel-query-check/duel-ai-legacy-v1.tsv (B genuine old whole save/RNG continuation after explicit new format4; registered before creation)
+- out/session-b/duel-query-check/duel-settings-ai-driver-v2.log (B corrected fresh AI input waiting versus original12 null presentation cases; registered before creation)
+- out/session-b/duel-query-check/duel-settings-ai-driver-v3.log (B original12 numeric null presentation cases and true automatic advance; registered before creation)
+- out/session-b/duel-ai-android-compile-v2.log (B latest AI waiting/new saved settings current Android compilation; registered before creation)
+- out/session-b/duel-query-check/duel-settings-ai-driver-v4.log (B original12 frames plus actual one-shot AI advance full model/manager/RNG; registered before creation)
+- out/session-b/duel-query-check/duel-ai-retention-v3.log (B current explicit custom/extra roster guard and original44 retention regression; registered before creation)
+- out/session-b/duel-ai-android-compile-v3.log (B final current extra roster unknown guard/AI/new settings Android compilation; registered before creation)
+- out/session-b/duel-query-check/duel-ai-disposition-rules-v3.log (B full original raw chance plus decision/RNG2304 rows; registered before creation)
+- out/session-b/duel-ai-android-compile-v4.log (B current exact raw chance API and all AI/settings increments Android compilation; registered before creation)
+- out/session-b/duel-upstream-callers-source-v49.json (B original coarse-water setup callers/global instance for speech grid binding; registered before creation)
+- out/session-b/duel-upstream-callers-source-v50.json (B original coarse-water whole initializer singleton context; registered before creation)
+
+- out/session-b/duel-query-check/duel-recruitment-membership-v3.log (B original ordered task37 route/equipment verified after receipt completion; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-session-v1.log (B full GameSession regression after shared return callback change; registered before creation)
+- out/session-b/duel-query-check/duel-recruitment-legacy-v1.tsv (B genuine inherited old saves regression after shared return callback change; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v51.json (B original speech grid singleton/displacement writers, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v52.json (B original word4/word6 grid setters and callers, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v53.json (B original dynamic coarse byte6 loader and renderer layer writers, registered before creation)
+
+- tools/content/session_b_pc_duel_command_boundaries.py (B original challenge visibility and rejection boundary fixtures, registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelCommandRules.java (B original challenge speech/rejection arithmetic, explicit visibility input, registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelCommandRulesTest.java (B original command boundary/RNG comparison, registered before creation)
+- out/session-b/duel-command-boundaries-source0-v1.json (B original source visibility/refusal receipt, registered before creation)
+- out/session-b/duel-command-boundaries-source0-v1.log (B original command boundary execution log, registered before creation)
+- out/session-b/duel-query-check/duel-command-boundaries-v1.log (B original command boundary/RNG port validation, registered before creation)
+
+- out/session-b/duel-command-boundaries-source0-v2.json (B existing original renderer page saved/restored, registered before creation)
+- out/session-b/duel-command-boundaries-source0-v2.log (B source fixture retry without duplicate mapped pages, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelEditedCurrentFactsTest.java (B actual Editor preview/apply/cold save current command facts and relationship guard, registered before creation)
+- out/session-b/duel-query-check/duel-edited-current-facts-v1.log (B edited base/current source bindings regression, registered before creation)
+
+- out/session-b/duel-query-check/duel-edited-current-facts-v2.log (B base edit plus whole parent graph validation, registered before creation)
+
+- out/session-b/duel-command-boundaries-source0-v3.json (B preserved original coarse grid with byte-array conversion, registered before creation)
+- out/session-b/duel-command-boundaries-source0-v3.log (B original boundary retry after Python binding correction, registered before creation)
+
+- out/session-b/duel-query-check/duel-edited-unit-crew-v1.log (B current original crew regression after field-specific edit guard, registered before creation)
+- out/session-b/duel-edited-android-compile-v1.log (B Android compile after saved editor and original command boundaries, registered before creation)
+
+- out/session-b/duel-query-check/duel-edited-session-v1.log (B GameSession regression after field-specific source guard, registered before creation)
+- out/session-b/duel-query-check/duel-edited-legacy-v1.tsv (B genuine inherited old save continuation after field-specific source guard, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v54.json (B original challenge queue UI callback/action scope, registered before creation)
+
+- out/session-b/duel-query-check/duel-edited-current-facts-v3.log (B sixteen distinct original parent bindings plus actual edit/cold continuation, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v55.json (B original normal challenge dispatcher full completion and unit action predicates, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v56.json (B original unit flags/order setters and normal dispatcher callback, registered before creation)
+
+- tools/content/session_b_pc_duel_scene.py (B original full589f70 scene facts and ring/terrain/source fixture verification, registered before creation)
+- out/session-b/duel-scene-source0-v1.json (B original current scene/ring receipt, registered before creation)
+- out/session-b/duel-scene-source0-v1.log (B original scene execution log, registered before creation)
+- out/session-b/duel-scene-source0-v1.failure.json (B preserved source execution failure if any, registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelSceneTest.java (B original scene source/ring and saved world pure comparison, registered before creation)
+- out/session-b/duel-query-check/duel-scene-v1.log (B original scene current binding test, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v57.json (B original unit short setters and human unit command eligibility, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v58.json (B original human field command generic eligibility and unit action bits, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v59.json (B original unit bit0 read/write normal command/reset callers, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v60.json (B original unit acted flag writer and ordinary challenge caller chain, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v61.json (B original normal field-unit acted wrapper callers, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v62.json (B actual ordinary menu callback invokes selected function and unit movement/action completion, registered before creation)
+
+- tools/content/session_b_pc_duel_action_boundary.py (B actual original normal command action marker with same-position endpoint, registered before creation)
+- out/session-b/duel-action-boundary-source0-v1.json (B original full5a07d0 action/World/RNG receipt, registered before creation)
+- out/session-b/duel-action-boundary-source0-v1.log (B original normal action execution log, registered before creation)
+- out/session-b/duel-action-boundary-source0-v1.failure.json (B preservation of original action-boundary failures, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelActionSaveTest.java (B explicit normal command action boundary format5; initial registration script failed encoding before test file creation, corrected immediately, no completed batch)
+- out/session-b/duel-query-check/duel-action-save-v1.log (B opponent action preservation/full saved command facts, registered before creation)
+
+- out/session-b/duel-query-check/duel-scene-api-v1.log (B detached saved native scene/API purity, registered before creation)
+- out/session-b/duel-scene-action-android-compile-v1.log (B source scene/format5 opponent action Android compilation, registered before creation)
+
+- tools/content/session_b_pc_duel_manual_menu.py (B original first human nominee menu prefix, actual roster/chance/RNG, registered before creation)
+- out/session-b/duel-manual-menu-source0-v1.json (B original human candidate prefix before UI presentation, registered before creation)
+- out/session-b/duel-manual-menu-source0-v1.log (B original human candidate execution log, registered before creation)
+- out/session-b/duel-manual-menu-source0-v1.failure.json (B preserve original human prefix failures, registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelManualMenuTest.java (B current normal roster menu ordered chances/detached RNG test, registered before creation)
+- out/session-b/duel-query-check/duel-manual-menu-v1.log (B original human menu RNG and fullWorld purity, registered before creation)
+
+- out/session-b/duel-query-check/duel-scene-action-session-v1.log (B GameSession regression after scene/format5 command metadata, registered before creation)
+- out/session-b/duel-query-check/duel-scene-action-legacy-v1.tsv (B genuine historical World/RNG continuation after scene/format5 metadata, registered before creation)
+- out/session-b/duel-query-check/duel-action-save-v2.log (B strict command metadata consistency plus prior334 save forms, registered before creation)
+
+- out/session-b/duel-query-check/duel-opponent-action-typed-v1.log (B format5 actual whole saved typed campaign preserves opponent action, registered before creation)
+
+- out/session-b/duel-query-check/duel-manual-menu-action-v2.log (B source ordered menu plan and original actor/crew action marker without opponent/resource/RNG changes, registered before creation)
+
+- out/session-b/duel-scene-action-android-compile-v2.log (B latest original actor/crew marker Android compilation, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v63.json (B actual normal challenge vtable pointer/menu callback references, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v64.json (B original candidate challenge callback vtable constructor/base, registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDuelOptions.java (B explicit new-source duel settings and declared command-focus presentation policy, registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelChallenge.java (B normal current source challenge creator/menu/RNG/action/save binding, registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelChallengeSessionTest.java (B actual new creator/input/terminal/save/state-token command tests, declared adjacent deployed unit fixture, registered before creation)
+- out/session-b/duel-query-check/duel-challenge-session-v1.log (B new factory and command creation workflow, registered before creation)
+
+- out/session-b/duel-creator-android-compile-v1.log (B explicit new factory/normal challenge core/API/page compilation, registered before creation)
+- out/session-b/duel-query-check/duel-creator-session-regression-v1.log (B current general typed session regression, registered before creation)
+- out/session-b/duel-query-check/duel-creator-legacy-v1.tsv (B genuine historical World/RNG continuation after opt-in new creator, registered before creation)
+
+- out/session-b/duel-query-check/duel-challenge-session-v2.log (B explicit new constructor native seed follows supplied seed, actual creator acceptance/refusal and full generated inputs, registered before creation)
+
+- out/session-b/duel-creator-android-compile-v2.log (B current creator plus saved options equality validation and opt-in native seed, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v65.json (B original capture military-adviser removal and force callback, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v66.json (B original military adviser clearing getter/setter full instruction evidence, registered before creation)
+- tools/content/session_b_pc_duel_adviser_capture.py (B original actual source365 military adviser capture callback, registered before creation)
+- out/session-b/duel-adviser-capture-source0-v1.json (B full original adviser capture/force/current units receipt, registered before creation)
+- out/session-b/duel-adviser-capture-source0-v1.log (B original military adviser capture execution log, registered before creation)
+- out/session-b/duel-adviser-capture-source0-v1.failure.json (B preserve exact original adviser callback failures, registered before creation)
+
+- out/session-b/duel-query-check/duel-challenge-session-v3.log (B continue same generated defeated-adviser battle after original capture callback proof, registered before creation)
+
+- out/session-b/duel-adviser-capture-source0-v2.json (B actual force property4 adviser466, correcting rejected candidate365, registered before creation)
+- out/session-b/duel-adviser-capture-source0-v2.log (B actual adviser native466 full capture/removal execution log, registered before creation)
+- out/session-b/duel-adviser-capture-source0-v2.failure.json (B preservation of native466 callback failures, registered before creation)
+
+- out/session-b/duel-creator-pending-seed1.sg11 (B generated player-loss/actual military-adviser pending world checkpoint, registered before creation)
+
+- out/session-b/duel-query-check/duel-creator-policy-v2.log (B explicit new-source options / historical v1 and inactive unknown preservation, registered before creation)
+
+- out/session-b/duel-query-check/duel-kinship-terminal-reuse-v1.log (B per-command parent validation/source decoding reuse, preserves all current edits and saved bytes, registered before creation)
+
+- out/session-b/duel-query-check/duel-challenge-session-v4.log (B repeat actual generated creator after current terminal parse reuse, registered before creation)
+- out/session-b/duel-creator-android-compile-v3.log (B current terminal parse reuse Android compile, registered before creation)
+
+- out/session-b/duel-query-check/duel-challenge-retreat-v1.log (B real generated legal retreat request without edited HP/spirit/terminal, registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelOrdinaryEncounterTest.java (B real source new-game typed deployment/ordinary movement/whole AI turns to current hostile adjacent units, no unit/coordinate/state injection, registered before creation)
+- out/session-b/duel-query-check/duel-ordinary-encounter-v1.log (B original source14 ordinary campaign encounter discovery/creator, registered before creation)
+
+- out/session-b/duel-query-check/duel-ordinary-encounter-v2.log (B ordinary deployment retry after compile API correction, v1 class-missing failure retained, registered before creation)
+
+- out/session-b/duel-query-check/duel-ordinary-encounter-v3.log (B actual normal deployment/AI approach/created full battle/terminal/three turns/cold, registered before creation)
+
+- out/session-b/duel-query-check/duel-disposition-preview-v1.log (B real source endpoint pending choice pure shared preview/submit callback admission, registered before creation)
+- out/session-b/duel-creator-android-compile-v4.log (B current disposition action reason/disable + submit shared guard, registered before creation)
+
+- out/session-b/duel-query-check/duel-ordinary-encounter-v4.log (B repeat normal source14 whole campaign with current disposition shared admission, registered before creation)
+
+- out/session-b/duel-query-check/duel-ordinary-crew-v1.log (B normal 3-officer deployment/source14/AI encounter/legal human support swap/full terminal/whole turns, registered before creation)
+
+- out/session-b/duel-query-check/duel-ordinary-crew-v2.log (B ordinary 3-person fresh seed2 after genuine seed1 campaign unit defeat, no state or opponent rewrite, registered before creation)
+
+- tools/content/session_b_pc_duel_district_capture.py (B original full capture actual source district commander/army successor callback, registered before creation)
+- out/session-b/duel-district-capture-source0-v1.json (B actual source district full original capture/army changes receipt, registered before creation)
+- out/session-b/duel-district-capture-source0-v1.failure.json (B original district capture exception/before-state receipt, registered before creation)
+- out/session-b/duel-district-capture-source0-v1.log (B full source district capture original driver log, registered before creation)
+
+- out/session-b/duel-query-check/duel-disposition-session-regression-v1.log (B current pure callback preview/submit/action reasons general session regression, registered before creation)
+- out/session-b/duel-creator-android-compile-v5.log (B current explicit district original-succession guard Android compile, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v67.json (B original district successor4be2a0 bounded disassembly following actual full capture, registered before creation)
+- out/session-b/duel-upstream-callers-source-v67.log (B current original district successor static receipt log, registered before creation)
+
+- out/session-b/duel-district-capture-source0-v2.json (B original actual district commander declared linked unit capture/removal vs resident case, registered before creation)
+- out/session-b/duel-district-capture-source0-v2.failure.json (B original linked district exception before-state receipt, registered before creation)
+- out/session-b/duel-district-capture-source0-v2.log (B original linked district probe log, registered before creation)
+- out/session-b/duel-upstream-callers-source-v68.json (B full bounded district successor and comparator4cef90, registered before creation)
+- out/session-b/duel-upstream-callers-source-v68.log (B district successor full static receipt log, registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelDistrictCaptureTest.java (B source0 linked district/first-army reassignment/succession/current governor/RNG/fullSave, exact original receipt join, registered before creation)
+- out/session-b/duel-query-check/duel-district-capture-core-v1.log (B actual source district supported nonempty callback test, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v69.json (B original army nonempty4b9550 and first-army getter481240 complete bounded inputs, registered before creation)
+- out/session-b/duel-upstream-callers-source-v69.log (B original army admission static log, registered before creation)
+
+- out/session-b/duel-query-check/duel-district-capture-core-v2.log (B source0 supported succession and noCITY same-rule pure refusal, registered before creation)
+
+- out/session-b/duel-district-capture-source0-v3.json (B original full linked district callback/all87 governor/old-force primary/state provenance receipt, registered before creation)
+- out/session-b/duel-district-capture-source0-v3.failure.json (B original full linked district error with before facts, registered before creation)
+- out/session-b/duel-district-capture-source0-v3.log (B original full linked district metadata log, registered before creation)
+
+- out/session-b/duel-query-check/duel-district-capture-common-regression-v1.log (B native ordinary capture after original first-army/nonempty succession integration, registered before creation)
+- out/session-b/duel-query-check/duel-district-capture-session-regression-v1.log (B typed human pending/final/cold callback after district integration, registered before creation)
+- out/session-b/duel-query-check/duel-district-ordinary-source14-v1.log (B reverify normal Source14 complete campaign with current district capture callback, registered before creation)
+
+- core/src/test/resources/pc-duel/district-capture-source0.json (B original full linked capture/all87 site proof fixture sourceSHA d02a04d2, registered before creation)
+- out/session-b/duel-query-check/duel-district-capture-core-v3.log (B original affected-site governor outcomes joined by exact native/runtime site IDs, registered before creation)
+
+- out/session-b/duel-query-check/duel-command-facts-query-v1.log (B saved raw speech/command/action facts API + actual stage/terminal status purity, registered before creation)
+
+- out/session-b/duel-district-capture-source0-cityless-v1.json (B full original controlled city-to-primary then capture/empty-army merge, registered before creation)
+- out/session-b/duel-district-capture-source0-cityless-v1.failure.json (B original empty-army failure trace/full before facts, registered before creation)
+- out/session-b/duel-district-capture-source0-cityless-v1.log (B full original cityless merge log, registered before creation)
+
+- out/session-b/duel-district-android-compile-v1.log (B current district callback/pure speech/action facts/real input labels Android compile, registered before creation)
+
+- out/session-b/duel-district-capture-source0-cityless-v2.json (B original merge with explicit oldAP58, primary record/person/unit before-after, registered before creation)
+- out/session-b/duel-district-capture-source0-cityless-v2.failure.json (B original enriched empty-army error receipt, registered before creation)
+- out/session-b/duel-district-capture-source0-cityless-v2.log (B original enriched army merge log, registered before creation)
+
+- core/src/test/resources/pc-duel/army-merge-source0.json (B full original cityless merge AP58/people/unit/site receipt SHA2512296f, registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelArmyMergeTest.java (B actual typed session capture/merge/native joins/full save/multiturn/current validity/old strategy fence, registered before creation)
+- out/session-b/duel-query-check/duel-army-merge-v1.log (B new explicit current army strategy source0 full callback test, registered before creation)
+
+- out/session-b/duel-query-check/duel-current-army-policy-v1.log (B explicit PDU3/PGO2 / old PDU1-2 andPGO1 preserve/noadoption tests, registered before creation)
+- out/session-b/duel-query-check/duel-current-army-legacy-v1.tsv (B genuine old-save full three-turn/rng/namespace continuation under current army version changes, registered before creation)
+
+- out/session-b/duel-creator-pending-v3-seed1.sg11 (B new explicit PDU3/PGO2 generated pending world; preserves prior v2 checkpoint, registered before creation)
+- out/session-b/duel-query-check/duel-army-merge-v2.log (B added authoritative current/initial army read-only DTO + full source merge continuation, registered before creation)
+- out/session-b/duel-query-check/duel-current-army-challenge-v1.log (B actual new PDU3 generated challenge while preserved PDU2 checkpoint staysbyteexact, registered before creation)
+
+- out/session-b/duel-current-army-android-compile-v1.log (B currentPDU3/PGO2 army merge/current-vs-origin DTO Android compile, registered before creation)
+- out/session-b/duel-query-check/duel-current-army-session-v1.log (B current saved army strategy general Session regression, registered before creation)
+- out/session-b/duel-query-check/duel-current-army-district-v1.log (B prior nonempty/legacy same-rule refusal fixture preservation, registered before creation)
+
+- out/session-b/duel-district-capture-source0-nopeople-v1.json (B full original only-commander army capture/remainingCITY merge transition, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-v1.failure.json (B original nopeople merge error before facts, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-v1.log (B full original nopeople merge log, registered before creation)
+
+- out/session-b/duel-query-check/duel-army-merge-v3.log (B strict invalid-army AP tamper rejection and budget-before-current-state atomic transition, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v70.json (B original governor election direct callers to bound after-merge vacancy lifetime, registered before creation)
+- out/session-b/duel-upstream-callers-source-v70.log (B original governor caller scan log, registered before creation)
+
+- core/src/test/resources/pc-duel/army-merge-nopeople-source0.json (B full original nopeople/remainingCITY migration governor-1 receipt393927bf, registered before creation)
+- out/session-b/duel-creator-pending-pdu3-pgo3-seed1.sg11 (B explicit vacancy-aware new factory checkpoint while oldPGO2 remains intact, registered before creation)
+- out/session-b/duel-query-check/duel-army-merge-cityless-v4.log (B vacancy-aware merge and old policy preservation, registered before creation)
+- out/session-b/duel-query-check/duel-army-merge-nopeople-v1.log (B full original remainingCITY migration governor vacancies/core transaction, registered before creation)
+
+- out/session-b/duel-district-capture-source0-nopeople-phases-v1.json (B original postmerge three ordered personnel phases and governor/army/AP facts, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-phases-v1.failure.json (B ordered original after-merge phase failure/retained completed phases, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-phases-v1.log (B original ordered after-merge phase log, registered before creation)
+
+- out/session-b/duel-query-check/duel-current-army-vacancy-policy-v1.log (B PDU1/2/3+PGO1/2 preserved and freshPGO3 selected options, registered before creation)
+- out/session-b/duel-query-check/duel-current-army-vacancy-challenge-v1.log (B actual generated newPGO3 challenge plus exact priorPGO2 checkpoint preservation, registered before creation)
+
+- out/session-b/duel-district-capture-source0-nopeople-phases-v2.json (B failed ordered-phase exact original function identification, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-phases-v2.failure.json (B original phase function/IP trace preserving failedv1, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-phases-v2.log (B original bounded exact phase failure rerun, registered before creation)
+- out/session-b/duel-current-army-vacancy-android-v1.log (B final current vacancy-awarePGO3/pureSource/currentArmyAPI Android compile, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v71.json (B exact59a4b0 receiver/caller ABI and governor scope, registered before creation)
+- out/session-b/duel-upstream-callers-source-v71.log (B static original turn receiver log, registered before creation)
+
+- out/session-b/duel-district-capture-source0-nopeople-phases-v3.json (B full ordered phases with checked original camera provider constructor, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-phases-v3.failure.json (B retained original phase/camera context failure evidence, registered before creation)
+- out/session-b/duel-district-capture-source0-nopeople-phases-v3.log (B untouched original camera+phase replay log, registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v72.json (B actual turn manager receiver prologue / postmerge source callback scopes, registered before creation)
+- out/session-b/duel-upstream-callers-source-v72.log (B exact turn manager ABI receipt log, registered before creation)
+
+- out/session-b/duel-district-capture-source0-vacancy-departure-v1.json (B original full civilian413 departure restores actual governor callback after merged vacancy, registered before creation)
+- out/session-b/duel-district-capture-source0-vacancy-departure-v1.failure.json (B original departure ABI/error before-state receipt, registered before creation)
+- out/session-b/duel-district-capture-source0-vacancy-departure-v1.log (B original postmerge departure/3phases log, registered before creation)
+
+- core/src/test/resources/pc-duel/army-vacancy-departure-source0.json (B untouched original3phases + full413departure native16->governor436 receipt, registered before creation)
+- out/session-b/duel-query-check/duel-army-vacancy-departure-v1.log (B actual normal civil transfer/pure forecast/once budget/restore native vacancy/save/cold/future turns, registered before creation)
+
+- out/session-b/duel-vacancy-domestic-ui-compile-v1.log (B actual sharedtransferError/APcost rows andconfirm/vacancy dispatch hook Android compile, registered before creation)
+- out/session-b/duel-query-check/duel-vacancy-domestic-session-v1.log (B actual normal transferUI/core rule path general Session regression, registered before creation)
+
+- out/session-b/duel-vacancy-domestic-ui-compile-v2.log (B current shared public transferCost getter after access-error compile correction, registered before creation)
+
+原君主完整释放与原摄像机初始化复核（创建前登记）：
+- out/session-b/duel-ruler-release-camera-source0-v1.json (B original native517 full battle/release/ordered personnel; declared units/selection, no GUI/APK claim)
+- out/session-b/duel-ruler-release-camera-source0-v1.partial.json (B original native517 full battle/release/ordered personnel; declared units/selection, no GUI/APK claim)
+- out/session-b/duel-ruler-release-camera-source0-v1.failure.json (B original native517 full battle/release/ordered personnel; declared units/selection, no GUI/APK claim)
+- out/session-b/duel-ruler-release-camera-source0-v1.log (B original native517 full battle/release/ordered personnel; declared units/selection, no GUI/APK claim)
+
+- core/src/test/java/game/sanguo/core/PcDuelRulerReleaseTest.java (B original native517 ruler release, role/army/home/task and cold continuation; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-v1.log (B source0 original ruler release endpoint and saved continuation; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-v2.log (B ruler release current fullWorld/whole turns and regression; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-regression-v1.log (B ruler release current fullWorld/whole turns and regression; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-architecture-v1.log (B ruler release current fullWorld/whole turns and regression; register before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcDuelRulerTerminalSessionTest.java (B real typed producer/natural human battle/ruler RELEASE/full cold and turns; declared adjacent units, register before creation)
+- out/session-b/duel-query-check/duel-ruler-terminal-session-v1.log (B real typed producer/natural human battle/ruler RELEASE/full cold and turns; declared adjacent units, register before creation)
+- out/session-b/duel-query-check/duel-ruler-terminal-session-v2.log (B alternate legal source116 nomination after genuine twelve refusals, no response/RNG override; register before creation)
+- out/session-b/duel-ruler-release-boundary-guard-v1.json (B current JNI/old dirty/main/exe guards; register before creation)
+- out/session-b/duel-query-check/duel-ruler-terminal-session-v3.log (B declared solo-left365/solo-right517 typed natural duel and actual candidate chances; register before creation)
+- out/session-b/duel-query-check/duel-ruler-terminal-session-v4.log (B declared solo fresh seeds12..63, original response/candidate/menu RNG unchanged; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-v3.log (B explicit PDU3/PGO3 ruler capability and older policy byte-pure refusal; register before creation)
+- out/session-b/duel-query-check/duel-ruler-terminal-session-v5.log (B explicit PDU3/PGO3 ruler capability and older policy byte-pure refusal; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-v4.log (B preserved actual PDU2/PGO1 pending checkpoint ruler refusal and current PDU3/PGO3 continuation; register before creation)
+- out/session-b/duel-query-check/duel-ruler-release-legacy-v1.tsv (B actual inherited legacy full-save continuation after fresh-only ruler guard; register before creation)
+- tools/content/session_b_pc_debate_exit_source.py (B original debate terminal/GUI exit call-site provenance, static candidates only; register before creation)
+- out/session-b/debate-exit-source-v1.json (B original debate terminal/GUI exit call-site provenance, static candidates only; register before creation)
+- out/session-b/debate-exit-source-v1.log (B original debate terminal/GUI exit call-site provenance, static candidates only; register before creation)
+- out/session-b/debate-exit-source-v2.json (B extended original GUI/model termination source candidates, register before creation)
+- out/session-b/debate-exit-source-v2.log (B extended original GUI/model termination source candidates, register before creation)
+- out/session-b/debate-exit-source-v3.json (B original health setter and aligned GUI routine candidates; register before creation)
+- out/session-b/debate-exit-source-v3.log (B original health setter and aligned GUI routine candidates; register before creation)
+- app/src/androidTest/assets/session-b/legacy39-original.sg11 (B genuine original39 checkpoint and current independently built full-source APK/menu/cold acceptance, experimental WIP not completed delivery; register before creation)
+- out/session-b/legacy39-ui-build55 (B genuine original39 checkpoint and current independently built full-source APK/menu/cold acceptance, experimental WIP not completed delivery; register before creation)
+- out/session-b/legacy39-ui-build55.log (B genuine original39 checkpoint and current independently built full-source APK/menu/cold acceptance, experimental WIP not completed delivery; register before creation)
+- out/session-b/legacy39-ui-55 (B genuine original39 checkpoint and current independently built full-source APK/menu/cold acceptance, experimental WIP not completed delivery; register before creation)
+- out/session-b/legacy39-ui-55.log (B frozen build55 complete device backup/install/menu/cold/restoration job; register before creation)
+- out/session-b/legacy39-ui-build56 (B independent rebuild after Android InputStream API harness correction, real39 menu/cold/user restoration; register before creation)
+- out/session-b/legacy39-ui-build56.log (B independent rebuild after Android InputStream API harness correction, real39 menu/cold/user restoration; register before creation)
+- out/session-b/legacy39-ui-56 (B independent rebuild after Android InputStream API harness correction, real39 menu/cold/user restoration; register before creation)
+- out/session-b/legacy39-ui-56.log (B independent rebuild after Android InputStream API harness correction, real39 menu/cold/user restoration; register before creation)
+- out/session-b/legacy39-ui-build57 (B genuine39 ordinary UI retry existing A3D after inherited safe mode, output presence/World-RNG purity/menu/cold/restoration; register before creation)
+- out/session-b/legacy39-ui-build57.log (B genuine39 ordinary UI retry existing A3D after inherited safe mode, output presence/World-RNG purity/menu/cold/restoration; register before creation)
+- out/session-b/legacy39-ui-57 (B genuine39 ordinary UI retry existing A3D after inherited safe mode, output presence/World-RNG purity/menu/cold/restoration; register before creation)
+- out/session-b/legacy39-ui-57.log (B genuine39 ordinary UI retry existing A3D after inherited safe mode, output presence/World-RNG purity/menu/cold/restoration; register before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcDuelArmyMergeTest.java (B runtime-owned GameSession tests/byte-exact fixtures and independent module/bridge/session/construction compilation; register before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcDuelRulerReleaseTest.java (B runtime-owned GameSession tests/byte-exact fixtures and independent module/bridge/session/construction compilation; register before creation)
+- game-runtime/src/test/resources/pc-duel/army-merge-source0.json (B runtime-owned GameSession tests/byte-exact fixtures and independent module/bridge/session/construction compilation; register before creation)
+- game-runtime/src/test/resources/pc-duel/army-merge-nopeople-source0.json (B runtime-owned GameSession tests/byte-exact fixtures and independent module/bridge/session/construction compilation; register before creation)
+- game-runtime/src/test/resources/pc-duel/army-vacancy-departure-source0.json (B runtime-owned GameSession tests/byte-exact fixtures and independent module/bridge/session/construction compilation; register before creation)
+- out/session-b/legacy39-module-verification-v1.log (B runtime-owned GameSession tests/byte-exact fixtures and independent module/bridge/session/construction compilation; register before creation)
+- out/session-b/legacy39-module-verification-v2.log (B runtime fixture-local pointer normalization after improper core test-helper dependency; register before creation)
+- out/session-b/legacy39-runtime-ruler-v1.log (B real Gradle-compiled module classpath/fixture regression and final architecture; register before creation)
+- out/session-b/legacy39-runtime-army-v1.log (B real Gradle-compiled module classpath/fixture regression and final architecture; register before creation)
+- out/session-b/legacy39-final-architecture-v1.log (B real Gradle-compiled module classpath/fixture regression and final architecture; register before creation)
+- docs/handoff/20261006/session-b/LEGACY39_ACCEPTANCE.md (B bounded genuine39 actual menu/3D presence/cold/fullWorld/user restoration and exact remaining gaps; register before creation)
+- app/src/androidTest/java/game/sanguo/mobile/SessionBLegacy39Instrumentation.java (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- tools/content/session_b_stage_completed_legacy39.py (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- tools/content/session_b_freeze_completed_legacy39.py (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- docs/handoff/20261006/session-b/legacy39-completed.init.gradle (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- out/session-b/completed-legacy39-stage (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- out/session-b/completed-legacy39-build (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- out/session-b/legacy39-completed-build58 (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- out/session-b/legacy39-completed-build58.log (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- out/session-b/legacy39-completed-ui58 (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- out/session-b/legacy39-completed-ui58.log (B exact complete89534120 parent plus standalone tested39 runner/asset; excludes allNativeWIP, own build/cache/fullguard/device restoration; register before creation)
+- tools/content/session_b_verify_legacy39_ui.py (B standalone completed39-only backup/install/guard/UI/cold/restoration driver, excludes shared items/Duel WIP; register before creation)
+- out/session-b/legacy39-completed-ui59 (B standalone completed39-only backup/install/guard/UI/cold/restoration driver, excludes shared items/Duel WIP; register before creation)
+- out/session-b/legacy39-completed-ui59.log (B standalone completed39-only backup/install/guard/UI/cold/restoration driver, excludes shared items/Duel WIP; register before creation)
+- tools/content/session_b_archive_completed_legacy39.py (B completed89534120 source/test-only increment/A frozen/JNI/compiler archive; excludes allNativeWIP and user backups; register before creation)
+- docs/handoff/20261006/session-b/COMPLETED_LEGACY39.md (B completed89534120 source/test-only increment/A frozen/JNI/compiler archive; excludes allNativeWIP and user backups; register before creation)
+- out/session-b/completed-legacy39-source.tar.gz (B completed89534120 source/test-only increment/A frozen/JNI/compiler archive; excludes allNativeWIP and user backups; register before creation)
+- out/session-b/completed-legacy39-source-manifest.json (B completed89534120 source/test-only increment/A frozen/JNI/compiler archive; excludes allNativeWIP and user backups; register before creation)
+- out/session-b/completed-legacy39-archive.log (B completed89534120 source/test-only increment/A frozen/JNI/compiler archive; excludes allNativeWIP and user backups; register before creation)
+- docs/handoff/20261006/session-b/LEGACY39_DELIVERY.json (B completed8-path commit/source/APK/restore/source guard delivery; register before creation)
+- out/session-b/legacy39-completed-cec503e0.patch (B completed8-path commit/source/APK/restore/source guard delivery; register before creation)
+- out/session-b/legacy39-delivery-guards.json (B completed8-path commit/source/APK/restore/source guard delivery; register before creation)
+- tools/content/session_b_pc_duel_ruler_context.py (B untouched original49cdf0/481910/force3c/current ruler predicates and source joins, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v1.json (B untouched original49cdf0/481910/force3c/current ruler predicates and source joins, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v1.partial.json (B untouched original49cdf0/481910/force3c/current ruler predicates and source joins, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v1.failure.json (B untouched original49cdf0/481910/force3c/current ruler predicates and source joins, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v1.log (B untouched original49cdf0/481910/force3c/current ruler predicates and source joins, no rule/RNG replacement; register before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcDuelRulerAiSessionTest.java (B typed natural ruler loss/originalAI release/nonimperial bound/currentTitle purity/fullWorld-cold-future turns; register before creation)
+- out/session-b/duel-ruler-ai-session-compile-v1.log (B typed natural ruler loss/originalAI release/nonimperial bound/currentTitle purity/fullWorld-cold-future turns; register before creation)
+- out/session-b/duel-ruler-ai-session-v1.log (B typed natural ruler loss/originalAI release/nonimperial bound/currentTitle purity/fullWorld-cold-future turns; register before creation)
+- out/session-b/duel-ruler-ai-session-compile-v2.log (B corrected typed snapshot winner field/declared source15 both-cell fixture; register before creation)
+- out/session-b/duel-ruler-ai-session-compile-v3.log (B preserves real win/draw instead of forcing loss; normal typed finish/release before fresh seed; register before creation)
+- out/session-b/duel-ruler-ai-session-v2.log (B preserves real win/draw instead of forcing loss; normal typed finish/release before fresh seed; register before creation)
+- out/session-b/duel-ruler-context-source0-v2.json (B full original4adb30 actual ruler/force/control and declared爵位 matrix, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v2.partial.json (B full original4adb30 actual ruler/force/control and declared爵位 matrix, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v2.failure.json (B full original4adb30 actual ruler/force/control and declared爵位 matrix, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-context-source0-v2.log (B full original4adb30 actual ruler/force/control and declared爵位 matrix, no rule/RNG replacement; register before creation)
+- out/session-b/duel-ruler-ai-session-compile-v4.log (B actual300-input stable boundary diagnostic/fullWorld checkpoint; no forced phase/HP/RNG; register before creation)
+- out/session-b/duel-ruler-ai-session-v3.log (B actual300-input stable boundary diagnostic/fullWorld checkpoint; no forced phase/HP/RNG; register before creation)
+- out/session-b/duel-ruler-ai-seed1-nonterminal-v1.sg11 (B actual300-input stable boundary diagnostic/fullWorld checkpoint; no forced phase/HP/RNG; register before creation)
+- game-runtime/src/test/java/game/sanguo/core/SessionBPcDuelCheckpointProbe.java (B actual blocked complete save/model/RNG readonly inspection for original frame differential; register before creation)
+- out/session-b/duel-seed1-cycle-inspect-v1.json (B actual blocked complete save/model/RNG readonly inspection for original frame differential; register before creation)
+- out/session-b/duel-seed1-cycle-inspect-v1.log (B actual blocked complete save/model/RNG readonly inspection for original frame differential; register before creation)
+- out/session-b/duel-seed1-cycle-frame-v1.json (B replay actual blocked checkpoint on detached copy, full native model eachframe and actual current bindings; register before creation)
+- out/session-b/duel-seed1-cycle-frame-v1.log (B replay actual blocked checkpoint on detached copy, full native model eachframe and actual current bindings; register before creation)
+
+### Native duel pending input cycle audit
+- tools/content/session_b_pc_duel_pending_input.py (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- out/session-b/duel-pending-input-source0-v1.json (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- out/session-b/duel-pending-input-source0-v1.log (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelPendingInputTest.java (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcDuelCheckpointResumeTest.java (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- out/session-b/duel-query-check/duel-pending-input-v1.log (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- out/session-b/duel-query-check/duel-checkpoint-resume-v1.log (B original UI handshake and preserved natural round15 cycle continuation; registered before creation)
+- out/session-b/duel-pending-input-source0-v2.json (B original phase5 acknowledgement/no RNG plus actual round15 saved continuation; registered before creation)
+- out/session-b/duel-pending-input-source0-v2.log (B original phase5 acknowledgement/no RNG plus actual round15 saved continuation; registered before creation)
+- out/session-b/duel-query-check/duel-pending-compile-v1.log (B original phase5 acknowledgement/no RNG plus actual round15 saved continuation; registered before creation)
+- out/session-b/duel-query-check/duel-ruler-ai-session-v4.log (B original phase5 acknowledgement/no RNG plus actual round15 saved continuation; registered before creation)
+- out/session-b/duel-query-check/duel-checkpoint-resume-v2.log (B original handshake and exact actual checkpoint regression, registered before creation)
+- out/session-b/duel-query-check/duel-pending-compile-v2.log (B original handshake and exact actual checkpoint regression, registered before creation)
+- docs/handoff/20261006/session-b/duel-port/PENDING_INPUT_CYCLE.md (B original handshake and exact actual checkpoint regression, registered before creation)
+- out/session-b/duel-pending-formal-gradle-v1.log (B formal rebuilt source and original actual checkpoint acceptance, registered before creation)
+- out/session-b/duel-query-check/duel-pending-formal-resume-v1.log (B formal rebuilt source and original actual checkpoint acceptance, registered before creation)
+- out/session-b/duel-query-check/duel-pending-architecture-v1.log (B formal rebuilt source and original actual checkpoint acceptance, registered before creation)
+- out/session-b/native-duel-workbench/pending-input-source-fixtures.tsv (B full original sub2 model-byte oracle comparison, registered before creation)
+- out/session-b/duel-query-check/duel-pending-compile-v3.log (B full original sub2 model-byte oracle comparison, registered before creation)
+- out/session-b/duel-query-check/duel-pending-original-matrix-v1.log (B full original sub2 model-byte oracle comparison, registered before creation)
+- out/session-b/duel-query-check/duel-pending-continuous-v1.log (B unchanged full original frame/Save and formal session regression, registered before creation)
+- out/session-b/duel-query-check/duel-pending-human-continuous-v1.log (B unchanged full original frame/Save and formal session regression, registered before creation)
+- out/session-b/duel-query-check/duel-pending-swap-continuous-v1.log (B unchanged full original frame/Save and formal session regression, registered before creation)
+- out/session-b/duel-query-check/duel-pending-session-test-v1.log (B unchanged full original frame/Save and formal session regression, registered before creation)
+- out/session-b/duel-query-check/duel-pending-session-test-v2.log (B corrected actual GameSessionTest class name; v1 invocation failure preserved, registered before creation)
+- out/session-b/duel-pending-android-compile-v1.log (B current owned source compile/original AI numeric regression; no APK claim, registered before creation)
+- out/session-b/duel-query-check/duel-pending-ai-rule-v1.log (B current owned source compile/original AI numeric regression; no APK claim, registered before creation)
+- docs/handoff/20261006/session-b/duel-port/PENDING_INPUT_GUARDS.json (B current exact source/evidence/JNI/oldDirty guard receipt only; no completed production delivery, registered before creation)
+- tools/content/session_b_pc_duel_court_sources.py (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-sources-v1.log (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-sources-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-00-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-01-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-02-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-03-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-04-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-05-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-06-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-07-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-08-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-09-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-10-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-11-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-12-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-13-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-14-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-court-source-15-v1.json (B full original16-source court reference/current admin site and predicate, no NPC runtime activation; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v1.json (B original natural ruler duel terminal/full execute callback and source succession observation; declared valid execute choice, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v1.partial.json (B original natural ruler duel terminal/full execute callback and source succession observation; declared valid execute choice, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v1.failure.json (B original natural ruler duel terminal/full execute callback and source succession observation; declared valid execute choice, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v1.log (B original natural ruler duel terminal/full execute callback and source succession observation; declared valid execute choice, registered before creation)
+- tools/content/session_b_pc_duel_succession_source.py (B bounded original ruler death/collapse/succession instruction evidence, no production inference activation; registered before creation)
+- out/session-b/duel-succession-source-v1.json (B bounded original ruler death/collapse/succession instruction evidence, no production inference activation; registered before creation)
+- out/session-b/duel-succession-source-v1.log (B bounded original ruler death/collapse/succession instruction evidence, no production inference activation; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v2.json (B exact original dialog constructor73d5b0->4f52d0 plus unchanged numeric execute callback; original v1 provider failure preserved; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v2.partial.json (B exact original dialog constructor73d5b0->4f52d0 plus unchanged numeric execute callback; original v1 provider failure preserved; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v2.failure.json (B exact original dialog constructor73d5b0->4f52d0 plus unchanged numeric execute callback; original v1 provider failure preserved; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v2.log (B exact original dialog constructor73d5b0->4f52d0 plus unchanged numeric execute callback; original v1 provider failure preserved; registered before creation)
+- out/session-b/duel-succession-source-v2.json (B exact original dialog constructor73d5b0->4f52d0 plus unchanged numeric execute callback; original v1 provider failure preserved; registered before creation)
+- out/session-b/duel-succession-source-v2.log (B exact original dialog constructor73d5b0->4f52d0 plus unchanged numeric execute callback; original v1 provider failure preserved; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v3.json (B original UI registry73bdd0->477810 and dialog constructor; prior exact failures retained, no numeric skips; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v3.partial.json (B original UI registry73bdd0->477810 and dialog constructor; prior exact failures retained, no numeric skips; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v3.failure.json (B original UI registry73bdd0->477810 and dialog constructor; prior exact failures retained, no numeric skips; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v3.log (B original UI registry73bdd0->477810 and dialog constructor; prior exact failures retained, no numeric skips; registered before creation)
+- out/session-b/duel-succession-source-v3.json (B original UI registry73bdd0->477810 and dialog constructor; prior exact failures retained, no numeric skips; registered before creation)
+- out/session-b/duel-succession-source-v3.log (B original UI registry73bdd0->477810 and dialog constructor; prior exact failures retained, no numeric skips; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/COURT_EXECUTION_PROGRESS.md (B exact per-source receipts and original dialog failure audit; no production closure claim, registered before creation)
+- out/session-b/duel-succession-source-v4.json (B actual4b9080 ->4b7e70 original successor selector and4b78f0 callback dependency; registered before creation)
+- out/session-b/duel-succession-source-v4.log (B actual4b9080 ->4b7e70 original successor selector and4b78f0 callback dependency; registered before creation)
+- out/session-b/duel-succession-source-v5.json (B original4b5460 full pairwise successor comparator and hardcoded native preference table, no guessed priority; registered before creation)
+- out/session-b/duel-succession-source-v5.log (B original4b5460 full pairwise successor comparator and hardcoded native preference table, no guessed priority; registered before creation)
+- tools/content/session_b_pc_duel_successors.py (B untouched original implicit-EDI force successor query all active source0 rulers; whole world/RNG purity and native identities, registered before creation)
+- out/session-b/duel-successors-source0-v1.json (B untouched original implicit-EDI force successor query all active source0 rulers; whole world/RNG purity and native identities, registered before creation)
+- out/session-b/duel-successors-source0-v1.failure.json (B untouched original implicit-EDI force successor query all active source0 rulers; whole world/RNG purity and native identities, registered before creation)
+- out/session-b/duel-successors-source0-v1.log (B untouched original implicit-EDI force successor query all active source0 rulers; whole world/RNG purity and native identities, registered before creation)
+- out/session-b/duel-successors-source0-v2.json (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- out/session-b/duel-successors-source0-v2.failure.json (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- out/session-b/duel-successors-source0-v2.log (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- core/src/main/java/game/sanguo/core/PcRulerSuccessionRules.java (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerSuccessionRulesTest.java (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-compile-v1.log (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-rules-v1.log (B actual original ruler candidate roster/complete pairwise comparator and portable exact numeric comparison; registered before creation)
+- out/session-b/duel-successors-source0-v3.json (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- out/session-b/duel-successors-source0-v3.failure.json (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- out/session-b/duel-successors-source0-v3.log (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- core/src/main/java/game/sanguo/core/PcRulerSuccession.java (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerSuccessionCurrentTest.java (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- out/session-b/duel-query-check/ruler-succession-current-v1.log (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- out/session-b/duel-query-check/ruler-succession-current-compile-v1.log (B corrected signed native references, full original successor comparator/current-world binding; old fixture failure preserved, registered before creation)
+- out/session-b/duel-successors-source0-v4.json (B original byte getter AL normalized exactly as movzx native caller; prior raw EAX receipt retained; registered before creation)
+- out/session-b/duel-successors-source0-v4.failure.json (B original byte getter AL normalized exactly as movzx native caller; prior raw EAX receipt retained; registered before creation)
+- out/session-b/duel-successors-source0-v4.log (B original byte getter AL normalized exactly as movzx native caller; prior raw EAX receipt retained; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-rules-v2.log (B original byte getter AL normalized exactly as movzx native caller; prior raw EAX receipt retained; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-current-v2.log (B original byte getter AL normalized exactly as movzx native caller; prior raw EAX receipt retained; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-compile-v2.log (B original byte getter AL normalized exactly as movzx native caller; prior raw EAX receipt retained; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-current-v3.log (B final AL-aware original1700 pairs/current capture-masked roster and formal module compilation; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-rules-v3.log (B final AL-aware original1700 pairs/current capture-masked roster and formal module compilation; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-compile-v3.log (B final AL-aware original1700 pairs/current capture-masked roster and formal module compilation; registered before creation)
+- out/session-b/ruler-succession-formal-v1.log (B final AL-aware original1700 pairs/current capture-masked roster and formal module compilation; registered before creation)
+- out/session-b/duel-query-check/ruler-succession-architecture-v1.log (B final AL-aware original1700 pairs/current capture-masked roster and formal module compilation; registered before creation)
+- out/session-b/duel-succession-source-v6.json (B original4a75a0/person owner/role/rawloyalty setters during4b78f0 real coronation; registered before creation)
+- out/session-b/duel-succession-source-v6.log (B original4a75a0/person owner/role/rawloyalty setters during4b78f0 real coronation; registered before creation)
+- tools/content/session_b_pc_loyalty_han.py (B original property49 vs raw108 and complete4a75a0 equal0/1/2 loyalty behavior, no source truth edits; registered before creation)
+- out/session-b/loyalty-han-equality-v1.json (B original property49 vs raw108 and complete4a75a0 equal0/1/2 loyalty behavior, no source truth edits; registered before creation)
+- out/session-b/loyalty-han-equality-v1.log (B original property49 vs raw108 and complete4a75a0 equal0/1/2 loyalty behavior, no source truth edits; registered before creation)
+- docs/handoff/20261006/session-b/HAN_LOYALTY_STRATEGY.md (B original confirmed Han equality fixed via fresh-only PDC2 preserving v1/explicit prototype39 adoption; normal direct commands and whole save compatibility, registered before creation)
+- core/src/test/java/game/sanguo/core/PcHanLoyaltyPolicyTest.java (B original confirmed Han equality fixed via fresh-only PDC2 preserving v1/explicit prototype39 adoption; normal direct commands and whole save compatibility, registered before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcHanLoyaltySessionTest.java (B original confirmed Han equality fixed via fresh-only PDC2 preserving v1/explicit prototype39 adoption; normal direct commands and whole save compatibility, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-compile-v1.log (B original confirmed Han equality fixed via fresh-only PDC2 preserving v1/explicit prototype39 adoption; normal direct commands and whole save compatibility, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-policy-v1.log (B original confirmed Han equality fixed via fresh-only PDC2 preserving v1/explicit prototype39 adoption; normal direct commands and whole save compatibility, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-session-v1.log (B original confirmed Han equality fixed via fresh-only PDC2 preserving v1/explicit prototype39 adoption; normal direct commands and whole save compatibility, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-session-v2.log (B scan real16 source/validforce placements without attribute/position edits; preserve source0 no-applicable-candidate failure, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-compile-v2.log (B scan real16 source/validforce placements without attribute/position edits; preserve source0 no-applicable-candidate failure, registered before creation)
+- out/session-b/han-loyalty-formal-v1.log (B PDC2 fresh-only corrected original Han equality formal module/current API regression; registered before creation)
+- out/session-b/han-loyalty-android-compile-v1.log (B PDC2 fresh-only corrected original Han equality formal module/current API regression; registered before creation)
+- out/session-b/duel-query-check/han-loyalty-formal-policy-v1.log (B PDC2 fresh-only corrected original Han equality formal module/current API regression; registered before creation)
+- out/session-b/duel-query-check/han-loyalty-game-session-v1.log (B PDC2 fresh-only corrected original Han equality formal module/current API regression; registered before creation)
+- out/session-b/duel-query-check/han-loyalty-direct-session-v1.log (B PDC2 actual ordinary direct/debate/full original recruitment endpoint regression; changed equal0/2 source-flow not claimed, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-debate-session-v1.log (B PDC2 actual ordinary direct/debate/full original recruitment endpoint regression; changed equal0/2 source-flow not claimed, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-existing-recruitment-v1.log (B PDC2 actual ordinary direct/debate/full original recruitment endpoint regression; changed equal0/2 source-flow not claimed, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-architecture-v1.log (B PDC2 actual ordinary direct/debate/full original recruitment endpoint regression; changed equal0/2 source-flow not claimed, registered before creation)
+- out/session-b/duel-query-check/han-loyalty-legacy39-continuation-v1.log (B genuine39 original campaign retained PDC1 full human contest continuation/whole turns/cold under current PDC2 code; registered before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcHanLegacy39SessionTest.java (B genuine39 original campaign retained PDC1 full human contest continuation/whole turns/cold under current PDC2 code; registered before creation)
+- out/session-b/duel-query-check/han-legacy39-compile-v1.log (B genuine39 original campaign retained PDC1 full human contest continuation/whole turns/cold under current PDC2 code; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/RULER_CURRENT_BINDING.md (B verified original1700 comparisons/current1039 capture+Save reads, callback gaps and exact evidence; registered before creation)
+- docs/handoff/20261006/session-b/HAN_RULER_GUARDS.json (B exact current source/evidence before-after SHA and frozen inputs; not completed APK/source delivery, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v4.json (B observation-only full original coronation roster/site/army and weighted loyalty entry snapshots; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v4.partial.json (B observation-only full original coronation roster/site/army and weighted loyalty entry snapshots; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v4.failure.json (B observation-only full original coronation roster/site/army and weighted loyalty entry snapshots; registered before creation)
+- out/session-b/duel-ruler-execute-source0-v4.log (B observation-only full original coronation roster/site/army and weighted loyalty entry snapshots; registered before creation)
+- core/src/main/java/game/sanguo/core/PcRulerCoronation.java (B pure current coronation loyalty plan versus full original natural execution; production guard retained pending all administrative writes, registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerCoronationLoyaltyTest.java (B pure current coronation loyalty plan versus full original natural execution; production guard retained pending all administrative writes, registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-compile-v1.log (B pure current coronation loyalty plan versus full original natural execution; production guard retained pending all administrative writes, registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-loyalty-v1.log (B pure current coronation loyalty plan versus full original natural execution; production guard retained pending all administrative writes, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v5.json (B exact temporary departing-ruler weighted setter return before final death clearing; prior wrong exclusion test preserved, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v5.partial.json (B exact temporary departing-ruler weighted setter return before final death clearing; prior wrong exclusion test preserved, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v5.failure.json (B exact temporary departing-ruler weighted setter return before final death clearing; prior wrong exclusion test preserved, registered before creation)
+- out/session-b/duel-ruler-execute-source0-v5.log (B exact temporary departing-ruler weighted setter return before final death clearing; prior wrong exclusion test preserved, registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-loyalty-v2.log (B exact temporary departing-ruler weighted setter return before final death clearing; prior wrong exclusion test preserved, registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-compile-v2.log (B exact temporary departing-ruler weighted setter return before final death clearing; prior wrong exclusion test preserved, registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-compile-v3.log (B full current primary/heir army/home and original temporary raw setter comparison; registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-loyalty-v3.log (B full current primary/heir army/home and original temporary raw setter comparison; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/CORONATION_WRITE_ORDER.md (B full natural callback administrative/loyalty intermediate ordering and explicit production gaps; registered before creation)
+- out/session-b/duel-succession-source-v7.json (B complete bounded death relationship/merit cleanup bodies and setters; registered before creation)
+- out/session-b/duel-succession-source-v7.log (B complete bounded death relationship/merit cleanup bodies and setters; registered before creation)
+- out/session-b/ruler-coronation-formal-v1.log (B current pure coronation plan formal core main/test compilation; registered before creation)
+- out/session-b/duel-query-check/ruler-coronation-loyalty-v4.log (B exact full original4a75a0 weighted setter return/current administrative plan formal tests; registered before creation)
+- docs/handoff/20261006/session-b/CORONATION_GUARDS.json (B exact full callback/current pure plan SHA, frozen JNI/old609dirty guards and pending production scope; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerExecutionTest.java (B original same-army coronation/death cleanup production endpoint and typed natural terminal/cold/whole turns; registered before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcRulerExecutionSessionTest.java (B original same-army coronation/death cleanup production endpoint and typed natural terminal/cold/whole turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-compile-v1.log (B original same-army coronation/death cleanup production endpoint and typed natural terminal/cold/whole turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-endpoint-v1.log (B original same-army coronation/death cleanup production endpoint and typed natural terminal/cold/whole turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-session-v1.log (B original same-army coronation/death cleanup production endpoint and typed natural terminal/cold/whole turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-compile-v2.log (B original raw99 ruler Save invariant scoped to explicitPDU3/trustedraw and historical ordinary execution preserved; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-endpoint-v2.log (B original raw99 ruler Save invariant scoped to explicitPDU3/trustedraw and historical ordinary execution preserved; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-legacy-v1.log (B original raw99 ruler Save invariant scoped to explicitPDU3/trustedraw and historical ordinary execution preserved; registered before creation)
+- out/session-b/ruler-execution-formal-v1.log (B original dead merit0 canonical sparseSave/typed production terminal formal compilation and full turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-endpoint-v3.log (B original dead merit0 canonical sparseSave/typed production terminal formal compilation and full turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-session-v2.log (B original dead merit0 canonical sparseSave/typed production terminal formal compilation and full turns; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-compile-v3.log (B original full670 postdeath relationship arrays and ordinary realdeployment nativebattle regression; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-endpoint-v4.log (B original full670 postdeath relationship arrays and ordinary realdeployment nativebattle regression; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-ordinary-v1.log (B original full670 postdeath relationship arrays and ordinary realdeployment nativebattle regression; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/RULER_EXECUTION_COMPATIBILITY.md (B explicitPDU3 death cleanup and trustedraw ruler Save compatibility; formal/current1690 regression; registered before creation)
+- out/session-b/ruler-execution-formal-v2.log (B explicitPDU3 death cleanup and trustedraw ruler Save compatibility; formal/current1690 regression; registered before creation)
+- out/session-b/duel-query-check/ruler-execution-game-session-v1.log (B explicitPDU3 death cleanup and trustedraw ruler Save compatibility; formal/current1690 regression; registered before creation)
+- docs/handoff/20261006/session-b/RULER_EXECUTION_GUARDS.json (B exact production supported ruler callback/test/source guards with outstanding ordinaryAPK/integration scope; registered before creation)
+- tools/content/session_b_pc_ruler_cross_army.py (B complete original declared valid force28 heir440 coronation acrossarmy6->5 without modifying source numerics; registered before creation)
+- out/session-b/ruler-cross-army-source0-v1.json (B complete original declared valid force28 heir440 coronation acrossarmy6->5 without modifying source numerics; registered before creation)
+- out/session-b/ruler-cross-army-source0-v1.failure.json (B complete original declared valid force28 heir440 coronation acrossarmy6->5 without modifying source numerics; registered before creation)
+- out/session-b/ruler-cross-army-source0-v1.log (B complete original declared valid force28 heir440 coronation acrossarmy6->5 without modifying source numerics; registered before creation)
+- out/session-b/duel-succession-source-v8.json (B complete original declared valid force28 heir440 coronation acrossarmy6->5 without modifying source numerics; registered before creation)
+- out/session-b/duel-succession-source-v8.log (B complete original declared valid force28 heir440 coronation acrossarmy6->5 without modifying source numerics; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerCrossArmyTest.java (B actual declared valid original heir440/army6->5 current bindings and full87sites/670people/budgets/cold matching; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-compile-v1.log (B actual declared valid original heir440/army6->5 current bindings and full87sites/670people/budgets/cold matching; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-current-v1.log (B actual declared valid original heir440/army6->5 current bindings and full87sites/670people/budgets/cold matching; registered before creation)
+- out/session-b/ruler-cross-army-source0-v2.json (B original site virtual getter/governor semantics after direct coronation merge; rawcity bytes alone insufficient, registered before creation)
+- out/session-b/ruler-cross-army-source0-v2.failure.json (B original site virtual getter/governor semantics after direct coronation merge; rawcity bytes alone insufficient, registered before creation)
+- out/session-b/ruler-cross-army-source0-v2.log (B original site virtual getter/governor semantics after direct coronation merge; rawcity bytes alone insufficient, registered before creation)
+- out/session-b/ruler-cross-army-source0-v3.json (B exact original city/gate/port GROUPS addresses; generic490d00 wrapper bytes distinguished from city authority, registered before creation)
+- out/session-b/ruler-cross-army-source0-v3.failure.json (B exact original city/gate/port GROUPS addresses; generic490d00 wrapper bytes distinguished from city authority, registered before creation)
+- out/session-b/ruler-cross-army-source0-v3.log (B exact original city/gate/port GROUPS addresses; generic490d00 wrapper bytes distinguished from city authority, registered before creation)
+- out/session-b/duel-succession-source-v9.json (B original army transfer0x200 flag setter/current action getter semantics prior to binding; registered before creation)
+- out/session-b/duel-succession-source-v9.log (B original army transfer0x200 flag setter/current action getter semantics prior to binding; registered before creation)
+- out/session-b/duel-succession-source-v10.json (B original489e70 and flaggedgetter setter true semantics before action-state binding; registered before creation)
+- out/session-b/duel-succession-source-v10.log (B original489e70 and flaggedgetter setter true semantics before action-state binding; registered before creation)
+- out/session-b/ruler-cross-army-source0-v4.json (B original domain records plus separately typed490d00 wrapper properties, previous rawsites distinction retained; registered before creation)
+- out/session-b/ruler-cross-army-source0-v4.failure.json (B original domain records plus separately typed490d00 wrapper properties, previous rawsites distinction retained; registered before creation)
+- out/session-b/ruler-cross-army-source0-v4.log (B original domain records plus separately typed490d00 wrapper properties, previous rawsites distinction retained; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-compile-v2.log (B originalchanged role endpoints/unchanged current initialpolicy preserved; openinggovernor mismatch explicit not normalized; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-current-v2.log (B originalchanged role endpoints/unchanged current initialpolicy preserved; openinggovernor mismatch explicit not normalized; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-compile-v3.log (B imported governor436 cleared during original merge, changed current/native endpoints vs preserved unrelated currentpolicy; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-current-v3.log (B imported governor436 cleared during original merge, changed current/native endpoints vs preserved unrelated currentpolicy; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-compile-v4.log (B exact original typedcitydomain and genericproperty agree; ports/gates compare proven getters no guessedoffset; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-current-v4.log (B exact original typedcitydomain and genericproperty agree; ports/gates compare proven getters no guessedoffset; registered before creation)
+- out/session-b/ruler-cross-army-formal-v1.log (B exact original typedcitydomain and genericproperty agree; ports/gates compare proven getters no guessedoffset; registered before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcRulerCrossArmySessionTest.java (B actual capture removes435/currentAI chooses440 then natural human battle EXECUTE and original merge/fullturnscold; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-session-compile-v1.log (B actual capture removes435/currentAI chooses440 then natural human battle EXECUTE and original merge/fullturnscold; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-session-v1.log (B actual capture removes435/currentAI chooses440 then natural human battle EXECUTE and original merge/fullturnscold; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-same-regression-v1.log (B samearmy death/existingcapturemerge regression and original currentcrossarmy unknown boundaries; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-capture-regression-v1.log (B samearmy death/existingcapturemerge regression and original currentcrossarmy unknown boundaries; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/CROSS_ARMY_PROGRESS.md (B samearmy death/existingcapturemerge regression and original currentcrossarmy unknown boundaries; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-session-compile-v2.log (B original source198W20 vsruler403W25 legalnominee after source365W90 chance0 genuineallrefusals; no outcome/ability edits; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-session-v2.log (B original source198W20 vsruler403W25 legalnominee after source365W90 chance0 genuineallrefusals; no outcome/ability edits; registered before creation)
+- out/session-b/ruler-cross-army-formal-v2.log (B currentcross production/fullnaturalterminal newformaltestclasses and exactguardrecord; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-formal-current-v1.log (B currentcross production/fullnaturalterminal newformaltestclasses and exactguardrecord; registered before creation)
+- out/session-b/duel-query-check/ruler-cross-army-formal-session-v1.log (B currentcross production/fullnaturalterminal newformaltestclasses and exactguardrecord; registered before creation)
+- docs/handoff/20261006/session-b/CROSS_ARMY_GUARDS.json (B currentcross production/fullnaturalterminal newformaltestclasses and exactguardrecord; registered before creation)
+- tools/content/session_b_pc_ruler_human_selection.py (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- out/session-b/ruler-human-selection-source0-v1.json (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- out/session-b/ruler-human-selection-source0-v1.failure.json (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- out/session-b/ruler-human-selection-source0-v1.log (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerHumanSelectionTest.java (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- game-runtime/src/test/java/game/sanguo/core/PcRulerHumanInheritanceSessionTest.java (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/HUMAN_INHERITANCE_STRATEGY.md (B original human selector fullmask15/currentcandidate declaredUIinput + explicitPDU3 pendingduel heir Save/typedDTO/normalBpage; registered before creation)
+- out/session-b/ruler-human-selection-source0-v2.json (B original human selector assertion diagnostic fullworlddiff and humanpendingSave/API/UI formal compilation; registered before creation)
+- out/session-b/ruler-human-selection-source0-v2.failure.json (B original human selector assertion diagnostic fullworlddiff and humanpendingSave/API/UI formal compilation; registered before creation)
+- out/session-b/ruler-human-selection-source0-v2.log (B original human selector assertion diagnostic fullworlddiff and humanpendingSave/API/UI formal compilation; registered before creation)
+- out/session-b/human-inheritance-formal-v1.log (B original human selector assertion diagnostic fullworlddiff and humanpendingSave/API/UI formal compilation; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-compile-v1.log (B original human selector assertion diagnostic fullworlddiff and humanpendingSave/API/UI formal compilation; registered before creation)
+- out/session-b/ruler-human-selection-source0-v3.json (B original481480 player-slot0 force+60 verified47a690; prior+128not humanflag error retained; registered before creation)
+- out/session-b/ruler-human-selection-source0-v3.failure.json (B original481480 player-slot0 force+60 verified47a690; prior+128not humanflag error retained; registered before creation)
+- out/session-b/ruler-human-selection-source0-v3.log (B original481480 player-slot0 force+60 verified47a690; prior+128not humanflag error retained; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-session-v1.log (B source180 player/618 dislikes180 actualAIforcedEXECUTE humanchoice typed pendingformat6/cold/fullturns; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-session-compile-v1.log (B source180 player/618 dislikes180 actualAIforcedEXECUTE humanchoice typed pendingformat6/cold/fullturns; registered before creation)
+- out/session-b/human-inheritance-formal-v2.log (B source180 player/618 dislikes180 actualAIforcedEXECUTE humanchoice typed pendingformat6/cold/fullturns; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-selector-compile-v1.log (B actualoriginal human roster/currentinput/readonly rank prospective regression and genuine39 formatpreservation; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-selector-v1.log (B actualoriginal human roster/currentinput/readonly rank prospective regression and genuine39 formatpreservation; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-coronation-regression-v1.log (B actualoriginal human roster/currentinput/readonly rank prospective regression and genuine39 formatpreservation; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-cross-regression-v1.log (B actualoriginal human roster/currentinput/readonly rank prospective regression and genuine39 formatpreservation; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-legacy39-v1.log (B actualoriginal human roster/currentinput/readonly rank prospective regression and genuine39 formatpreservation; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-session-v2.log (B actual humanvictoryDETAIN legalchoice after native immediate sameregion RELEASE guard failure retained; original natural outcomes not rewritten; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-session-compile-v2.log (B actual humanvictoryDETAIN legalchoice after native immediate sameregion RELEASE guard failure retained; original natural outcomes not rewritten; registered before creation)
+- out/session-b/human-inheritance-formal-v3.log (B formalmain/API/runtime/test classes first; cachedoldAPI manualcompile failure and stale-run discarded as verification; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-formal-session-v1.log (B formalmain/API/runtime/test classes first; cachedoldAPI manualcompile failure and stale-run discarded as verification; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelHeirSaveCompatibilityTest.java (B genuine oldcommandformat5 checkpoint exactSHA/cold/noinheritbackfill and header39debate exact continuation guard; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-save-compile-v1.log (B genuine oldcommandformat5 checkpoint exactSHA/cold/noinheritbackfill and header39debate exact continuation guard; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-save-v1.log (B genuine oldcommandformat5 checkpoint exactSHA/cold/noinheritbackfill and header39debate exact continuation guard; registered before creation)
+- tools/content/session_b_legacy39_roundtrip.java (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-legacy39-baseline-sources.txt (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-legacy39-baseline-compile.log (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-legacy39-current.sg11 (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-legacy39-baseline.sg11 (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-legacy39-current.log (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-legacy39-baseline.log (B readonlycompleted89534120 producer baseline vscurrent genuine39 wholeWorld byte diagnostic; registered before creation)
+- out/session-b/human-inheritance-formal-v4.log (B independent895baseline samegzipOS/CRC only exactmodelproof, natural legitimate stance2 humanchoice variant no stat/outcome edits; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-save-v2.log (B independent895baseline samegzipOS/CRC only exactmodelproof, natural legitimate stance2 humanchoice variant no stat/outcome edits; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-formal-session-v2.log (B independent895baseline samegzipOS/CRC only exactmodelproof, natural legitimate stance2 humanchoice variant no stat/outcome edits; registered before creation)
+- tools/content/session_b_human_inheritance_cases.java (B actual current original kinship/capture eligibility diagnosis for natural human defeat; no caller/outcome mutation; registered before creation)
+- out/session-b/human-inheritance-cases-compile.log (B actual current original kinship/capture eligibility diagnosis for natural human defeat; no caller/outcome mutation; registered before creation)
+- out/session-b/human-inheritance-cases.log (B actual current original kinship/capture eligibility diagnosis for natural human defeat; no caller/outcome mutation; registered before creation)
+- out/session-b/human-inheritance-formal-v5.log (B natural loser fullmanager outcome diagnostic and normal counterpart regressions after explicit inheritance protocol; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-formal-session-v3.log (B natural loser fullmanager outcome diagnostic and normal counterpart regressions after explicit inheritance protocol; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-game-session-v1.log (B natural loser fullmanager outcome diagnostic and normal counterpart regressions after explicit inheritance protocol; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v1.json (B actualsource ruler493/child133 complete original naturalduel+execution/kinrefusal cleanup; humanprotectedcase not altered; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v1.partial.json (B actualsource ruler493/child133 complete original naturalduel+execution/kinrefusal cleanup; humanprotectedcase not altered; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v1.failure.json (B actualsource ruler493/child133 complete original naturalduel+execution/kinrefusal cleanup; humanprotectedcase not altered; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v1.log (B actualsource ruler493/child133 complete original naturalduel+execution/kinrefusal cleanup; humanprotectedcase not altered; registered before creation)
+- out/session-b/duel-succession-source-v11.json (B original4aa680 helditem enumeration/owner setter actualsemantics and493fixturemetadata freshsourceowner/sha/war; registered before creation)
+- out/session-b/duel-succession-source-v11.log (B original4aa680 helditem enumeration/owner setter actualsemantics and493fixturemetadata freshsourceowner/sha/war; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v2.json (B original4aa680 helditem enumeration/owner setter actualsemantics and493fixturemetadata freshsourceowner/sha/war; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v2.partial.json (B original4aa680 helditem enumeration/owner setter actualsemantics and493fixturemetadata freshsourceowner/sha/war; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v2.failure.json (B original4aa680 helditem enumeration/owner setter actualsemantics and493fixturemetadata freshsourceowner/sha/war; registered before creation)
+- out/session-b/ruler-kin-execute-source0-v2.log (B original4aa680 helditem enumeration/owner setter actualsemantics and493fixturemetadata freshsourceowner/sha/war; registered before creation)
+- core/src/test/java/game/sanguo/core/PcRulerParentExecutionTest.java (B fulloriginal493execution->child133 sourceproof removes unsourcedkinrevenge guard, actualitem0loot/parent/refusal/Save; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-parent-compile-v1.log (B fulloriginal493execution->child133 sourceproof removes unsourcedkinrevenge guard, actualitem0loot/parent/refusal/Save; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-parent-v1.log (B fulloriginal493execution->child133 sourceproof removes unsourcedkinrevenge guard, actualitem0loot/parent/refusal/Save; registered before creation)
+- out/session-b/human-inheritance-formal-v6.log (B fulloriginal493execution->child133 sourceproof removes unsourcedkinrevenge guard, actualitem0loot/parent/refusal/Save; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-parent-compile-v2.log (B compare current stableitem identity after immutable itemreplacement, earlier test reference falsefailure retained; registered before creation)
+- out/session-b/duel-query-check/human-inheritance-parent-v2.log (B compare current stableitem identity after immutable itemreplacement, earlier test reference falsefailure retained; registered before creation)
+- docs/handoff/20261006/session-b/HUMAN_INHERITANCE_GUARDS.json (B exact currentAPI/UI/Save/source/failedlogs/oldbaseline/JNI guards and incompleteAPK/menu scopes; registered before creation)
+- tools/content/session_b_pc_sworn_death.py (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- out/session-b/sworn-death-source0-v1.json (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- out/session-b/sworn-death-source0-v1.failure.json (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- out/session-b/sworn-death-source0-v1.log (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- core/src/main/java/game/sanguo/core/PcDuelSwornPolicy.java (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- core/src/test/java/game/sanguo/core/PcDuelSwornPolicyTest.java (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- docs/handoff/20261006/session-b/duel-port/SWORN_DEATH_STRATEGY.md (B original complete4acae0/4ab9a0 actualsource635group independent/sequential deaths and freshcommand-only currentanchor Save overlay; registered before creation)
+- out/session-b/duel-succession-source-v12.json (B exact original4ab770 sworn successor ordering/48d9a0 rawsetter/4cf500 group roster; registered before creation)
+- out/session-b/duel-succession-source-v12.log (B exact original4ab770 sworn successor ordering/48d9a0 rawsetter/4cf500 group roster; registered before creation)
+- out/session-b/duel-succession-source-v13.json (B original4cf060 age/native tie ordering/current rawanchor overlay/whole1100 sourceafter comparison; registered before creation)
+- out/session-b/duel-succession-source-v13.log (B original4cf060 age/native tie ordering/current rawanchor overlay/whole1100 sourceafter comparison; registered before creation)
+- out/session-b/duel-query-check/sworn-death-compile-v1.log (B original4cf060 age/native tie ordering/current rawanchor overlay/whole1100 sourceafter comparison; registered before creation)
+- out/session-b/duel-query-check/sworn-death-current-v1.log (B original4cf060 age/native tie ordering/current rawanchor overlay/whole1100 sourceafter comparison; registered before creation)
+
+- out/session-b/duel-succession-source-v14.json (B complete original4cf060 comparator through RET; registered before creation)
+
+- out/session-b/duel-succession-source-v14.log (B complete original4cf060 comparator through RET; registered before creation)
+
+- out/session-b/sworn-death-source0-anchors-v1.json (B current sworn cleanup nine original callback anchors/typed campaign; registered before creation)
+
+- out/session-b/duel-query-check/sworn-death-compile-v2.log (B current sworn cleanup nine original callback anchors/typed campaign; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelSwornSessionTest.java (B current sworn cleanup nine original callback anchors/typed campaign; registered before creation)
+
+- out/session-b/duel-query-check/sworn-death-session-v1.log (B current sworn cleanup nine original callback anchors/typed campaign; registered before creation)
+
+- out/session-b/duel-query-check/sworn-death-compile-v3.log (B current sworn cleanup tests/regressions/guards; registered before creation)
+
+- out/session-b/duel-query-check/sworn-death-session-v2.log (B current sworn cleanup tests/regressions/guards; registered before creation)
+
+- out/session-b/duel-query-check/sworn-death-regression-v1.log (B current sworn cleanup tests/regressions/guards; registered before creation)
+
+- out/session-b/duel-query-check/sworn-death-architecture-v1.log (B current sworn cleanup tests/regressions/guards; registered before creation)
+
+- docs/handoff/20261006/session-b/SWORN_DEATH_GUARDS.json (B current sworn cleanup tests/regressions/guards; registered before creation)
+
+- tools/content/session_b_pc_sworn_ruler_death.py (B complete original crown614 to valid sourcegroup member and death loyalty4ab770 callback; registered before creation)
+
+- out/session-b/sworn-ruler-death-source0-v1.json (B complete original crown614 to valid sourcegroup member and death loyalty4ab770 callback; registered before creation)
+
+- out/session-b/sworn-ruler-death-source0-v1.log (B complete original crown614 to valid sourcegroup member and death loyalty4ab770 callback; registered before creation)
+
+- out/session-b/sworn-ruler-death-source0-v1.failure.json (B complete original crown614 to valid sourcegroup member and death loyalty4ab770 callback; registered before creation)
+
+- out/session-b/duel-succession-source-v15.json (B original47a600 registered/47a630 operative guards for sworn loyalty callback; registered before creation)
+
+- out/session-b/duel-succession-source-v15.log (B original47a600 registered/47a630 operative guards for sworn loyalty callback; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelSwornRulerPolicyTest.java (B original current sworn ruler weighted0/maxraw callback and production save; registered before creation)
+
+- out/session-b/sworn-ruler-death-source0-current-v1.json (B original current sworn ruler weighted0/maxraw callback and production save; registered before creation)
+
+- out/session-b/duel-query-check/sworn-ruler-compile-v1.log (B original current sworn ruler weighted0/maxraw callback and production save; registered before creation)
+
+- out/session-b/duel-query-check/sworn-ruler-current-v1.log (B original current sworn ruler weighted0/maxraw callback and production save; registered before creation)
+
+- out/session-b/duel-query-check/sworn-ruler-original-v1.log (B original current sworn ruler weighted0/maxraw callback and production save; registered before creation)
+
+- out/session-b/duel-query-check/sworn-ruler-regression-v1.log (B current surviving ruler group source/production regressions and final SHA guard; registered before creation)
+
+- out/session-b/duel-query-check/sworn-ruler-session-v1.log (B current surviving ruler group source/production regressions and final SHA guard; registered before creation)
+
+- out/session-b/duel-query-check/sworn-ruler-architecture-v1.log (B current surviving ruler group source/production regressions and final SHA guard; registered before creation)
+
+- docs/handoff/20261006/session-b/SWORN_RULER_GUARDS.json (B current surviving ruler group source/production regressions and final SHA guard; registered before creation)
+
+- tools/content/session_b_pc_sworn_successor_death.py (B complete original double-coronation within actual source0 sworn group and postcoronation cleanup order; registered before creation)
+
+- out/session-b/sworn-successor-death-source0-v1.json (B complete original double-coronation within actual source0 sworn group and postcoronation cleanup order; registered before creation)
+
+- out/session-b/sworn-successor-death-source0-v1.log (B complete original double-coronation within actual source0 sworn group and postcoronation cleanup order; registered before creation)
+
+- out/session-b/sworn-successor-death-source0-v1.failure.json (B complete original double-coronation within actual source0 sworn group and postcoronation cleanup order; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/SWORN_SUCCESSOR_STRATEGY.md (B complete original double-coronation within actual source0 sworn group and postcoronation cleanup order; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelSwornSuccessorPolicyTest.java (B projected crown-weighted loyalty then current sworn cleanup before lifecycle, original all670/current/cold; registered before creation)
+
+- out/session-b/sworn-successor-death-source0-current-v1.json (B projected crown-weighted loyalty then current sworn cleanup before lifecycle, original all670/current/cold; registered before creation)
+
+- out/session-b/duel-query-check/sworn-successor-compile-v1.log (B projected crown-weighted loyalty then current sworn cleanup before lifecycle, original all670/current/cold; registered before creation)
+
+- out/session-b/duel-query-check/sworn-successor-current-v1.log (B projected crown-weighted loyalty then current sworn cleanup before lifecycle, original all670/current/cold; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelSwornDoubleBattleSessionTest.java (B two actual typed natural duels separated by whole campaign turn/current AI heir group and allWorld-RNG cold; declared encounters distinguish normaldeployment; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v1.log (B two actual typed natural duels separated by whole campaign turn/current AI heir group and allWorld-RNG cold; declared encounters distinguish normaldeployment; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-session-v1.log (B two actual typed natural duels separated by whole campaign turn/current AI heir group and allWorld-RNG cold; declared encounters distinguish normaldeployment; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v1.sg11 (B two actual typed natural duels separated by whole campaign turn/current AI heir group and allWorld-RNG cold; declared encounters distinguish normaldeployment; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v2.log (B corrected module-local fixture helper/real Hex.neighbors API, failedv1 retained; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v3.log (B throws checked original site lookup and explicit current captured default heir fixture; registered before creation)
+
+- out/session-b/duel-succession-source-v16.json (B original person vtable79c780 virtual4/8 getters4883f0/488430 for registered vs operative state; registered before creation)
+
+- out/session-b/duel-succession-source-v16.log (B original person vtable79c780 virtual4/8 getters4883f0/488430 for registered vs operative state; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v4.log (B real candidate query selects legal first source actor, original365/614chance0 failedmatrix retained; no stats/RNG/outcome substitutions; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-session-v2.log (B real candidate query selects legal first source actor, original365/614chance0 failedmatrix retained; no stats/RNG/outcome substitutions; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v2.sg11 (B real candidate query selects legal first source actor, original365/614chance0 failedmatrix retained; no stats/RNG/outcome substitutions; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v5.log (B resume actual seed49 terminal checkpoint after stale pre-cold token test failure; native model/World/RNG unchanged; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-session-v3.log (B resume actual seed49 terminal checkpoint after stale pre-cold token test failure; native model/World/RNG unchanged; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v3.sg11 (B resume actual seed49 terminal checkpoint after stale pre-cold token test failure; native model/World/RNG unchanged; registered before creation)
+
+- out/session-b/duel-query-check/sworn-successor-regression-v1.log (B current projected succession/sworn full regressions/source and frozen resource SHA; registered before creation)
+
+- out/session-b/duel-query-check/sworn-successor-architecture-v1.log (B current projected succession/sworn full regressions/source and frozen resource SHA; registered before creation)
+
+- docs/handoff/20261006/session-b/SWORN_SUCCESSOR_GUARDS.json (B current projected succession/sworn full regressions/source and frozen resource SHA; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v6.log (B resume exact saved terminal without requerying blocked challenge menu; declared source fixture, failed busy query retained; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-session-v4.log (B resume exact saved terminal without requerying blocked challenge menu; declared source fixture, failed busy query retained; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v4.sg11 (B resume exact saved terminal without requerying blocked challenge menu; declared source fixture, failed busy query retained; registered before creation)
+
+- tools/content/session_b_inspect_sworn_checkpoint.java (B readonly actual whole-turn checkpoint current source people/army/units/tasks for blocked double-battle fixture; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v4-inspect.json (B readonly actual whole-turn checkpoint current source people/army/units/tasks for blocked double-battle fixture; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v4-inspect-v2.json (B readonly saved actual people/AI availability corrected MapJson.bytes API; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v7.log (B actual seed57 after-first-death/full-AI-turn checkpoint continuation, wait real ruler task without clearing it; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-session-v5.log (B actual seed57 after-first-death/full-AI-turn checkpoint continuation, wait real ruler task without clearing it; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v5.sg11 (B actual seed57 after-first-death/full-AI-turn checkpoint continuation, wait real ruler task without clearing it; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v8.log (B actual current second-encounter menu chooses viable near-strength source actor; persists ready full World/RNG, failed natural seed matrix preserved; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-session-v6.log (B actual current second-encounter menu chooses viable near-strength source actor; persists ready full World/RNG, failed natural seed matrix preserved; registered before creation)
+
+- out/session-b/sworn-double-battle-fault-v6.sg11 (B actual current second-encounter menu chooses viable near-strength source actor; persists ready full World/RNG, failed natural seed matrix preserved; registered before creation)
+
+- out/session-b/sworn-double-battle-second-ready-v1.sg11 (B actual current second-encounter menu chooses viable near-strength source actor; persists ready full World/RNG, failed natural seed matrix preserved; registered before creation)
+
+- out/session-b/duel-query-check/sworn-double-battle-compile-v9.log (B corrected effectively-final source reference in second fixture menu, failedv8 retained; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelSwornContinuationSessionTest.java (B exact ready second-encounter fullWorld continuation through ordinary commands/AI turns, no outcome/seed/stat/position resets; registered before creation)
+
+- out/session-b/duel-query-check/sworn-continuation-compile-v1.log (B exact ready second-encounter fullWorld continuation through ordinary commands/AI turns, no outcome/seed/stat/position resets; registered before creation)
+
+- out/session-b/duel-query-check/sworn-continuation-session-v1.log (B exact ready second-encounter fullWorld continuation through ordinary commands/AI turns, no outcome/seed/stat/position resets; registered before creation)
+
+- out/session-b/sworn-continuation-fault-v1.sg11 (B exact ready second-encounter fullWorld continuation through ordinary commands/AI turns, no outcome/seed/stat/position resets; registered before creation)
+
+- out/session-b/sworn-continuation-finished-v1.sg11 (B exact ready second-encounter fullWorld continuation through ordinary commands/AI turns, no outcome/seed/stat/position resets; registered before creation)
+
+- out/session-b/sworn-continuation-fault-v1-inspect.json (B readonly actual continued AI-turn participant outcome, no resets; registered before creation)
+
+- tools/content/session_b_pc_newgame_option_text.py (B original4711c0 message resource option text candidates, exact offsets/source bytes, no enum mapping/default inference; registered before creation)
+
+- out/session-b/newgame-option-text-v1.json (B original4711c0 message resource option text candidates, exact offsets/source bytes, no enum mapping/default inference; registered before creation)
+
+- out/session-b/newgame-option-text-v1.log (B original4711c0 message resource option text candidates, exact offsets/source bytes, no enum mapping/default inference; registered before creation)
+
+- tools/content/session_b_pc_escort_unit_removal.py (B complete original capture355 by current ruler635 then capture cleanup/removal of escort unit with source377 victor; declared units, no result substitution; registered before creation)
+
+- out/session-b/escort-unit-removal-source0-v1.json (B complete original capture355 by current ruler635 then capture cleanup/removal of escort unit with source377 victor; declared units, no result substitution; registered before creation)
+
+- out/session-b/escort-unit-removal-source0-v1.log (B complete original capture355 by current ruler635 then capture cleanup/removal of escort unit with source377 victor; declared units, no result substitution; registered before creation)
+
+- out/session-b/escort-unit-removal-source0-v1.failure.json (B complete original capture355 by current ruler635 then capture cleanup/removal of escort unit with source377 victor; declared units, no result substitution; registered before creation)
+
+- out/session-b/escort-unit-removal-source0-foreign-v1.json (B original escorted foreign558 allegiance versus victor377/escort635 and full removal callback; registered before creation)
+
+- out/session-b/escort-unit-removal-source0-foreign-v1.log (B original escorted foreign558 allegiance versus victor377/escort635 and full removal callback; registered before creation)
+
+- out/session-b/escort-unit-removal-source0-foreign-v1.failure.json (B original escorted foreign558 allegiance versus victor377/escort635 and full removal callback; registered before creation)
+
+- tools/content/session_b_pc_newgame_options_source.py (B original exe option label/pointer tables and exact code references, labels not inferred enum indices/defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v1.json (B original exe option label/pointer tables and exact code references, labels not inferred enum indices/defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v1.log (B original exe option label/pointer tables and exact code references, labels not inferred enum indices/defaults; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDuelEscortRelease.java (B full original355/558 escorted currentunit deletion and native task37 return; current preview/commit/Save with legacy absence unchanged; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelEscortReleaseTest.java (B full original355/558 escorted currentunit deletion and native task37 return; current preview/commit/Save with legacy absence unchanged; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/ESCORT_RELEASE_STRATEGY.md (B full original355/558 escorted currentunit deletion and native task37 return; current preview/commit/Save with legacy absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-compile-v1.log (B full original355/558 escorted currentunit deletion and native task37 return; current preview/commit/Save with legacy absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-current-v1.log (B full original355/558 escorted currentunit deletion and native task37 return; current preview/commit/Save with legacy absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-compile-v2.log (B current original-source escort/task37/legacyguard test compile; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-compile-v3.log (B complete release shared namespace must retain carried-captive task37 rows after nested unit removal; registered before creation)
+
+- out/session-b/duel-query-check/escort-execution-current-v1.log (B current actual carried355/558/full ruler EXECUTE original return + shared prospective crown/Save, not APK proof; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-compile-v4.log (B current actual carried355/558/full ruler EXECUTE original return + shared prospective crown/Save, not APK proof; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-regression-v1.log (B escort original return/shared namespace regression/source and JNI resource guardian, exact limits; registered before creation)
+
+- out/session-b/duel-query-check/escort-release-architecture-v1.log (B escort original return/shared namespace regression/source and JNI resource guardian, exact limits; registered before creation)
+
+- docs/handoff/20261006/session-b/ESCORT_RELEASE_GUARDS.json (B escort original return/shared namespace regression/source and JNI resource guardian, exact limits; registered before creation)
+
+- out/session-b/newgame-options-source-v2.json (B exact option descriptor references/normal chooser functions546080 and5448d0; not assuming enum mapping/defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v2.log (B exact option descriptor references/normal chooser functions546080 and5448d0; not assuming enum mapping/defaults; registered before creation)
+
+- tools/content/session_b_pc_deployed_heir.py (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- out/session-b/deployed-heir-source0-v1.json (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- out/session-b/deployed-heir-source0-v1.log (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- out/session-b/deployed-heir-source0-v1.failure.json (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- out/session-b/deployed-heir-source0-v2.json (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- out/session-b/deployed-heir-source0-v2.log (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- out/session-b/deployed-heir-source0-v2.failure.json (B complete original deployed-heir crown callback and unit/crew cargo changes; declared original formation, no battle/stat/RNG substitution; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcRulerDeployedHeirTest.java (B verified current deployed-heir coronation/reselection/cargo/Save and legacy guards; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/DEPLOYED_HEIR_STRATEGY.md (B verified current deployed-heir coronation/reselection/cargo/Save and legacy guards; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v1.log (B verified current deployed-heir coronation/reselection/cargo/Save and legacy guards; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v1.log (B verified current deployed-heir coronation/reselection/cargo/Save and legacy guards; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-regression-v1.log (B verified current deployed-heir coronation/reselection/cargo/Save and legacy guards; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v2.log (B corrected module-local bounded receipt integer decode compile; registered before creation)
+
+- tools/content/session_b_project_deployed_heir.py (B exact original deployed crown receipt projection for bounded test JSON; raw fullWorld receipt preserved/SHA linked; registered before creation)
+
+- out/session-b/deployed-heir-source0-v1-projection.json (B exact original deployed crown receipt projection for bounded test JSON; raw fullWorld receipt preserved/SHA linked; registered before creation)
+
+- out/session-b/deployed-heir-source0-v2-projection.json (B exact original deployed crown receipt projection for bounded test JSON; raw fullWorld receipt preserved/SHA linked; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v2.log (B exact original deployed crown receipt projection for bounded test JSON; raw fullWorld receipt preserved/SHA linked; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v3.log (B exact original deployed crown receipt projection for bounded test JSON; raw fullWorld receipt preserved/SHA linked; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v4.log (B original seven deployed crown/resource cases and full receipt SHA linked bounded projection; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v3.log (B original seven deployed crown/resource cases and full receipt SHA linked bounded projection; registered before creation)
+
+- out/session-b/deployed-heir-source0-v3.json (B full original deployed crown site governor and administrative identity snapshot; preserve prior Save mismatch as failure; registered before creation)
+
+- out/session-b/deployed-heir-source0-v3.log (B full original deployed crown site governor and administrative identity snapshot; preserve prior Save mismatch as failure; registered before creation)
+
+- out/session-b/deployed-heir-source0-v3.failure.json (B full original deployed crown site governor and administrative identity snapshot; preserve prior Save mismatch as failure; registered before creation)
+
+- out/session-b/deployed-heir-source0-v3-projection.json (B full original deployed crown site governor and administrative identity snapshot; preserve prior Save mismatch as failure; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v5.log (B original deployed administrative governor/save validation and endpoint preservation; historical strategy unchanged; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v4.log (B original deployed administrative governor/save validation and endpoint preservation; historical strategy unchanged; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v6.log (B four savable fixture full flows and three original 20000/120 clamp comparisons; engine Save bound not relaxed; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v5.log (B four savable fixture full flows and three original 20000/120 clamp comparisons; engine Save bound not relaxed; registered before creation)
+
+- docs/handoff/20261006/session-b/DEPLOYED_HEIR_GUARDS.json (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-architecture-v1.log (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v6.log (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v7.log (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/sworn-escort-continuation-v2-finished.sg11 (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/sworn-escort-continuation-v2-fault.sg11 (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/duel-query-check/sworn-escort-continuation-v2.log (B own current deployed crown and exact actual turn5 checkpoint continuation/guards; no A WIP/APK integration; registered before creation)
+
+- out/session-b/sworn-escort-turn14-invalid-v1.json (B exact failed real AI turn governor/save diagnostics and genuine historical scope test, no fabricated policy headers; registered before creation)
+
+- out/session-b/sworn-escort-turn14-invalid-v1.log (B exact failed real AI turn governor/save diagnostics and genuine historical scope test, no fabricated policy headers; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-compile-v8.log (B exact failed real AI turn governor/save diagnostics and genuine historical scope test, no fabricated policy headers; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-current-v7.log (B exact failed real AI turn governor/save diagnostics and genuine historical scope test, no fabricated policy headers; registered before creation)
+
+- out/session-b/duel-query-check/deployed-heir-inspector/game/sanguo/core/session_b_inspect_sworn_checkpoint.class (B original real turn14 governor validation diagnosis, own compiled inspector classloader; registered before creation)
+
+- out/session-b/sworn-escort-turn14-invalid-v2.json (B original real turn14 governor validation diagnosis, own compiled inspector classloader; registered before creation)
+
+- out/session-b/sworn-escort-turn14-invalid-v2.log (B original real turn14 governor validation diagnosis, own compiled inspector classloader; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcGovernorTurnBoundarySessionTest.java (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- docs/handoff/20261006/session-b/duel-port/GOVERNOR_LOCATION_FIX.md (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- out/session-b/duel-query-check/governor-location-compile-v1.log (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- out/session-b/duel-query-check/governor-location-session-v1.log (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- out/session-b/governor-location-turn14-v1.sg11 (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- out/session-b/duel-query-check/governor-location-regression-v1.log (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- out/session-b/duel-query-check/governor-location-architecture-v1.log (B exact real turn14 governor location/Save blocker original resident semantics repair; no A/old fixture mutation; registered before creation)
+
+- out/session-b/newgame-options-source-v3.json (B original normal chooser accept/cancel and precise root option setter reference inspection; no defaults/GUI label mapping inference; registered before creation)
+
+- out/session-b/newgame-options-source-v3.log (B original normal chooser accept/cancel and precise root option setter reference inspection; no defaults/GUI label mapping inference; registered before creation)
+
+- out/session-b/newgame-options-source-v4.json (B original root setting getter/setter and UI field-to-configuration transfer candidates; skipdata labeled static only; registered before creation)
+
+- out/session-b/newgame-options-source-v4.log (B original root setting getter/setter and UI field-to-configuration transfer candidates; skipdata labeled static only; registered before creation)
+
+- out/session-b/newgame-options-source-v5.json (B original normal chooser ROOT-setting caller inspection; exact setter domain versus stored UI indices, not defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v5.log (B original normal chooser ROOT-setting caller inspection; exact setter domain versus stored UI indices, not defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v6.json (B original normal newgame whole option transfer and special source life override branches; exact caller references, no inferred GUI defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v6.log (B original normal newgame whole option transfer and special source life override branches; exact caller references, no inferred GUI defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v7.json (B aligned original newgame option transfer4a42d0/UI export4f28xx, field labels and scenario override dependency; registered before creation)
+
+- out/session-b/newgame-options-source-v7.log (B aligned original newgame option transfer4a42d0/UI export4f28xx, field labels and scenario override dependency; registered before creation)
+
+- out/session-b/newgame-options-source-v8.json (B original option chooser manager export/copy/getters to9414964 and real newgame4a42d0; no labels/default inference; registered before creation)
+
+- out/session-b/newgame-options-source-v8.log (B original option chooser manager export/copy/getters to9414964 and real newgame4a42d0; no labels/default inference; registered before creation)
+
+- tools/content/session_b_pc_newgame_option_callback.py (B original UI button545350/full14-field export55c9f0/newgame option transfer block4a4354; declared UI buffers not GUI or full startup proof; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v1.json (B original UI button545350/full14-field export55c9f0/newgame option transfer block4a4354; declared UI buffers not GUI or full startup proof; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v1.log (B original UI button545350/full14-field export55c9f0/newgame option transfer block4a4354; declared UI buffers not GUI or full startup proof; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v1.failure.json (B original UI button545350/full14-field export55c9f0/newgame option transfer block4a4354; declared UI buffers not GUI or full startup proof; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v2.json (B original option callback declared UI buffer mapping correction; preserve v1 unmapped failure; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v2.log (B original option callback declared UI buffer mapping correction; preserve v1 unmapped failure; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v2.failure.json (B original option callback declared UI buffer mapping correction; preserve v1 unmapped failure; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v3.json (B original active versus inactive option dialog callback and14-field export; declared actual UI gate, not gameplay admission override; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v3.log (B original active versus inactive option dialog callback and14-field export; declared actual UI gate, not gameplay admission override; registered before creation)
+
+- out/session-b/newgame-option-callback-source0-v3.failure.json (B original active versus inactive option dialog callback and14-field export; declared actual UI gate, not gameplay admission override; registered before creation)
+
+- tools/content/session_b_pack_newgame_options.py (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDuelMenuOptions.java (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- core/src/main/resources/pc-duel/newgame-options.tsv (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcOpeningOptionsSessionTest.java (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_CONTRACT.md (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- docs/handoff/20261006/session-b/NATIVE_OPENING_OPTIONS_GUARDS.json (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/newgame-options-import1.tsv (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/newgame-options-import2.tsv (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/duel-query-check/newgame-options-compile-v1.log (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/duel-query-check/newgame-options-session-v1.log (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/duel-query-check/newgame-options-architecture-v1.log (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/duel-query-check/newgame-options-regression-v1.log (B verified original option callbacks/resource/read-only DTO and normal B contest summary/A picker contract; no A file edit/default invention/old Save migration; registered before creation)
+
+- out/session-b/duel-query-check/newgame-options-bridge-v1.log (B current frozen bridge/API compatibility after options query; correct runtime.bridge package; registered before creation)
+
+- out/session-b/newgame-options-source-v9.json (B exact Root18 flag references and potential rooted property setter writes; static candidates no inferred flag semantics/defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v9.log (B exact Root18 flag references and potential rooted property setter writes; static candidates no inferred flag semantics/defaults; registered before creation)
+
+- out/session-b/newgame-options-source-v10.json (B original rooted setters493d00 and normal startup52d800/4a4d00 flag establishment inspection; registered before creation)
+
+- out/session-b/newgame-options-source-v10.log (B original rooted setters493d00 and normal startup52d800/4a4d00 flag establishment inspection; registered before creation)
+
+- out/session-b/newgame-options-source-v11.json (B exact root/profile setter493ef0 receiver callers and normal52dc50 startup flag chain; registered before creation)
+
+- out/session-b/newgame-options-source-v11.log (B exact root/profile setter493ef0 receiver callers and normal52dc50 startup flag chain; registered before creation)
+
+- out/session-b/newgame-options-source-v12.json (B original normal controller55b030 and Root-header/source initialization493580/loader format predicates; no AP/default inference; registered before creation)
+
+- out/session-b/newgame-options-source-v12.log (B original normal controller55b030 and Root-header/source initialization493580/loader format predicates; no AP/default inference; registered before creation)
+
+- tools/content/session_b_pc_source_flag_header.py (B original all16 layered header flag writes and serialized-read provenance; distinguish unread default from source truth; registered before creation)
+
+- out/session-b/source-flag-header-v1.json (B original all16 layered header flag writes and serialized-read provenance; distinguish unread default from source truth; registered before creation)
+
+- out/session-b/source-flag-header-v1.log (B original all16 layered header flag writes and serialized-read provenance; distinguish unread default from source truth; registered before creation)
+
+- out/session-b/newgame-option-callback-source7-v1.json (B original source7 serialized Root18=1 actual option transfer with all27 declared menu choices; no source flag override; registered before creation)
+
+- out/session-b/newgame-option-callback-source7-v1.log (B original source7 serialized Root18=1 actual option transfer with all27 declared menu choices; no source flag override; registered before creation)
+
+- out/session-b/newgame-option-callback-source7-v1.failure.json (B original source7 serialized Root18=1 actual option transfer with all27 declared menu choices; no source flag override; registered before creation)
+
+- tools/content/session_b_pack_source_header_flags.py (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- core/src/main/resources/pc-duel/source-header-flags.tsv (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcSourceOpeningOptionsTest.java (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- docs/handoff/20261006/session-b/SOURCE_OPENING_OVERRIDE_STRATEGY.md (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- docs/handoff/20261006/session-b/SOURCE_OPENING_OVERRIDE_GUARDS.json (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- out/session-b/source-header-flags-import1.tsv (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- out/session-b/source-header-flags-import2.tsv (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-compile-v1.log (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-current-v1.log (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-regression-v1.log (B original16 serialized Root18 flags and explicit fresh-native life override, saved provenance/old absence unchanged; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-compile-v2.log (B proper declared pre-existing strategy fixture without unsupported extension removal; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-compile-v3.log (B new source-specific override facts/old absence/genuine compatibility/UI summary current queries; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-api-v1.log (B new source-specific override facts/old absence/genuine compatibility/UI summary current queries; registered before creation)
+
+- out/session-b/duel-query-check/source-header-options-architecture-v1.log (B new source-specific override facts/old absence/genuine compatibility/UI summary current queries; registered before creation)
+
+- out/session-b/newgame-options-source-v13.json (B full original544900 constraint helper and real control-enable virtual calls; declared control tree, no replacement of predicates; registered before creation)
+
+- out/session-b/newgame-options-source-v13.log (B full original544900 constraint helper and real control-enable virtual calls; declared control tree, no replacement of predicates; registered before creation)
+
+- tools/content/session_b_pc_newgame_constraint_callback.py (B full original544900 constraint helper and real control-enable virtual calls; declared control tree, no replacement of predicates; registered before creation)
+
+- out/session-b/newgame-constraints-source7-v1.json (B full original544900 constraint helper and real control-enable virtual calls; declared control tree, no replacement of predicates; registered before creation)
+
+- out/session-b/newgame-constraints-source7-v1.log (B full original544900 constraint helper and real control-enable virtual calls; declared control tree, no replacement of predicates; registered before creation)
+
+- out/session-b/newgame-constraints-source7-v1.failure.json (B full original544900 constraint helper and real control-enable virtual calls; declared control tree, no replacement of predicates; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcSourceOpeningPreviewTest.java (B selected-source pure menu preview, no World creation/current-save adoption/default invention; registered before creation)
+
+- docs/handoff/20261006/session-b/SOURCE_OPENING_PREVIEW_GUARDS.json (B selected-source pure menu preview, no World creation/current-save adoption/default invention; registered before creation)
+
+- out/session-b/duel-query-check/source-opening-preview-compile-v1.log (B selected-source pure menu preview, no World creation/current-save adoption/default invention; registered before creation)
+
+- out/session-b/duel-query-check/source-opening-preview-v1.log (B selected-source pure menu preview, no World creation/current-save adoption/default invention; registered before creation)
+
+- out/session-b/duel-query-check/source-opening-preview-regression-v1.log (B selected-source pure menu preview, no World creation/current-save adoption/default invention; registered before creation)
+
+- tools/content/session_b_pc_same_region_release.py (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- core/src/test/java/game/sanguo/core/PcDuelSameRegionReleaseTest.java (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- docs/handoff/20261006/session-b/SAME_REGION_RELEASE_STRATEGY.md (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- docs/handoff/20261006/session-b/SAME_REGION_RELEASE_GUARDS.json (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/same-region-release-source0-v1.json (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/same-region-release-source0-v1.failure.json (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/same-region-release-source0-v1.log (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/duel-query-check/same-region-release-compile-v1.log (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/duel-query-check/same-region-release-current-v1.log (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/duel-query-check/same-region-release-regression-v1.log (B original full4b1950 same-region callback/ordered task37 phases and current saved settlement; registered before creation)
+
+- out/session-b/same-region-release-source0-v2.json (B skip original127 unknown map-region sentinel before parent87 lookup; preserve failedv1)
+
+- out/session-b/same-region-release-source0-v2.failure.json (B skip original127 unknown map-region sentinel before parent87 lookup; preserve failedv1)
+
+- out/session-b/same-region-release-source0-v2.log (B skip original127 unknown map-region sentinel before parent87 lookup; preserve failedv1)
+
+- out/session-b/duel-query-check/same-region-release-before-v1.log (B current same-region real blocked route/bounded original callback/typed disposition and full future turns; registered before creation)
+
+- out/session-b/duel-query-check/same-region-release-api-v1.log (B current same-region real blocked route/bounded original callback/typed disposition and full future turns; registered before creation)
+
+- out/session-b/duel-query-check/same-region-release-compile-v2.log (B current same-region real blocked route/bounded original callback/typed disposition and full future turns; registered before creation)
+
+- out/session-b/duel-query-check/same-region-release-architecture-v1.log (B current same-region real blocked route/bounded original callback/typed disposition and full future turns; registered before creation)
+
+- out/session-b/same-region-release-source0-v3.json (B exact observed4b1950 loser/winner/active place descriptor; invalid object-inputv2 retained)
+
+- out/session-b/same-region-release-source0-v3.failure.json (B exact observed4b1950 loser/winner/active place descriptor; invalid object-inputv2 retained)
+
+- out/session-b/same-region-release-source0-v3.log (B exact observed4b1950 loser/winner/active place descriptor; invalid object-inputv2 retained)
+
+- out/session-b/duel-query-check/same-region-release-compile-v3.log (B declared terminal uses actual current saved options/format5 command boundary; failed old endpoint setting mismatch retained)
+
+- out/session-b/duel-query-check/same-region-release-api-v2.log (B declared terminal uses actual current saved options/format5 command boundary; failed old endpoint setting mismatch retained)
+
+- out/session-b/duel-query-check/same-region-release-compile-v4.log (B constrain newly admitted zero task to actual city home/origin; gate/port zero branch remains unknown; final current checks)
+
+- out/session-b/duel-query-check/same-region-release-final-v1.log (B constrain newly admitted zero task to actual city home/origin; gate/port zero branch remains unknown; final current checks)
+
+- game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java (B current OfficerSnapshot text consumes existing task37 fact; no new BridgeJSON/Save/API field, pure same-state query)
+
+- out/session-b/duel-query-check/same-region-release-compile-v5.log (B current OfficerSnapshot text consumes existing task37 fact; no new BridgeJSON/Save/API field, pure same-state query)
+
+- out/session-b/duel-query-check/same-region-release-final-v2.log (B current OfficerSnapshot text consumes existing task37 fact; no new BridgeJSON/Save/API field, pure same-state query)
+
+- tools/content/session_b_pc_natural_duel_death.py (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- out/session-b/natural-duel-death-source0-v1.json (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- out/session-b/natural-duel-death-source0-v1.failure.json (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- out/session-b/natural-duel-death-source0-v1.partial.json (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- out/session-b/natural-duel-death-source0-v1.log (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- docs/handoff/20261006/session-b/NATURAL_DUEL_DEATH_STRATEGY.md (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- docs/handoff/20261006/session-b/NATURAL_DUEL_DEATH_GUARDS.json (B original full battle generates manager outcome2/full4d3340 direct death; source unit/settings/seed explicitly declared, not GUI; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v72.json (B full original4aa680 held-item inheritance branch and direct4acbe0 natural death source; registered before creation)
+
+- out/session-b/duel-upstream-callers-source-v72.log (B full original4aa680 held-item inheritance branch and direct4acbe0 natural death source; registered before creation)
+
+- out/session-b/duel-upstream-natural-death-v1.json (B distinct path; pre-existing source-v72 receipt preserved and rerun refusal recorded)
+
+- out/session-b/duel-upstream-natural-death-v1.log (B distinct path; pre-existing source-v72 receipt preserved and rerun refusal recorded)
+
+- out/session-b/duel-upstream-natural-death-v2.json (B complete tail4aa680 and original489d40/484de0 getter/setter, no inheritance meaning guessed; registered before creation)
+
+- out/session-b/duel-upstream-natural-death-v2.log (B complete tail4aa680 and original489d40/484de0 getter/setter, no inheritance meaning guessed; registered before creation)
+
+- tools/content/session_b_pc_natural_death_item_callback.py (B full original callback from pinned actual natural model; postbattle held-item boundary declared separately, no normal equipment claim; registered before creation)
+
+- out/session-b/natural-death-items-source0-v1.json (B full original callback from pinned actual natural model; postbattle held-item boundary declared separately, no normal equipment claim; registered before creation)
+
+- out/session-b/natural-death-items-source0-v1.failure.json (B full original callback from pinned actual natural model; postbattle held-item boundary declared separately, no normal equipment claim; registered before creation)
+
+- out/session-b/natural-death-items-source0-v1.log (B full original callback from pinned actual natural model; postbattle held-item boundary declared separately, no normal equipment claim; registered before creation)
+
+- out/session-b/natural-death-items-source0-v2.json (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/natural-death-items-source0-v2.failure.json (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/natural-death-items-source0-v2.log (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- core/src/main/java/game/sanguo/core/PcDuelDeath.java (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelNaturalDeathSessionTest.java (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- tools/content/session_b_pack_natural_death_endpoint.py (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/natural-duel-death-endpoint-v1.tsv (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/natural-duel-death-endpoint-v2.tsv (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/duel-query-check/natural-death-compile-v1.log (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/duel-query-check/natural-death-session-v1.log (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/duel-query-check/natural-death-regression-v1.log (B original manager2 direct death/full campaign/query text, explicit old policy boundary, registered before creation)
+
+- out/session-b/natural-death-items-source0-v3.json (B declared larger VM stack/full held callback diagnostic, no GUI/rule omission; registered before creation)
+
+- out/session-b/natural-death-items-source0-v3.failure.json (B declared larger VM stack/full held callback diagnostic, no GUI/rule omission; registered before creation)
+
+- out/session-b/natural-death-items-source0-v3.log (B declared larger VM stack/full held callback diagnostic, no GUI/rule omission; registered before creation)
+
+- out/session-b/duel-upstream-natural-death-v3.json (B original4f6690 presentation boundary effects audit; no unverified omission; registered before creation)
+
+- out/session-b/duel-upstream-natural-death-v3.log (B original4f6690 presentation boundary effects audit; no unverified omission; registered before creation)
+
+- out/session-b/natural-death-pending-v1.sg11 (B pinned actual original natural terminal/current complete World save, not historical fixture, registered before creation)
+
+- out/session-b/natural-death-finished-v1.sg11 (B pinned actual original natural terminal/current complete World save, not historical fixture, registered before creation)
+
+- out/session-b/duel-query-check/natural-death-compile-v2.log (B generated current and explicitly declared valid priorPDU1 fixture, no forged historical save header; registered before creation)
+
+- out/session-b/duel-query-check/natural-death-session-v2.log (B generated current and explicitly declared valid priorPDU1 fixture, no forged historical save header; registered before creation)
+
+- out/session-b/natural-death-pending-v2.sg11 (B generated current and explicitly declared valid priorPDU1 fixture, no forged historical save header; registered before creation)
+
+- out/session-b/natural-death-finished-v2.sg11 (B generated current and explicitly declared valid priorPDU1 fixture, no forged historical save header; registered before creation)
+
+- out/session-b/duel-upstream-natural-death-v4.json (B exact57f9a0 coroutine/85eb60 UI event vtable source for held-branch failure cause, no Rule shim; registered before creation)
+
+- out/session-b/duel-upstream-natural-death-v4.log (B exact57f9a0 coroutine/85eb60 UI event vtable source for held-branch failure cause, no Rule shim; registered before creation)
+
+- out/session-b/natural-death-items-source0-v4.json (B diagnostic stop at first heap-object execution to locate true original callsite; not a callback pass or result substitution)
+
+- out/session-b/natural-death-items-source0-v4.failure.json (B diagnostic stop at first heap-object execution to locate true original callsite; not a callback pass or result substitution)
+
+- out/session-b/natural-death-items-source0-v4.log (B diagnostic stop at first heap-object execution to locate true original callsite; not a callback pass or result substitution)
+
+- out/session-b/duel-query-check/natural-death-capture-regression-v1.log (B current numeric/capture/execution routes after common casualty cleanup refactor, registered before creation)
+
+- out/session-b/natural-death-items-source0-v5.json (B locate known bad data-object execution only; earlier generated JIT entry diagnostic was too broad, no rule/output replacement)
+
+- out/session-b/natural-death-items-source0-v5.failure.json (B locate known bad data-object execution only; earlier generated JIT entry diagnostic was too broad, no rule/output replacement)
+
+- out/session-b/natural-death-items-source0-v5.log (B locate known bad data-object execution only; earlier generated JIT entry diagnostic was too broad, no rule/output replacement)
+
+- out/session-b/held-death-callsite-source-v1.json (B original6bab22 formatting interpreter and9c40000 PE section initialization callsite, registered before creation)
+
+- out/session-b/held-death-callsite-source-v1.log (B original6bab22 formatting interpreter and9c40000 PE section initialization callsite, registered before creation)
+
+- out/session-b/natural-death-items-source0-v6.json (B PE-verified readonly missing Direct3D registry/scalar CPU import environment, unknown actual Windows registry; no numeric/render callback omission; registered before creation)
+
+- out/session-b/natural-death-items-source0-v6.failure.json (B PE-verified readonly missing Direct3D registry/scalar CPU import environment, unknown actual Windows registry; no numeric/render callback omission; registered before creation)
+
+- out/session-b/natural-death-items-source0-v6.log (B PE-verified readonly missing Direct3D registry/scalar CPU import environment, unknown actual Windows registry; no numeric/render callback omission; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelNaturalDeathItemSessionTest.java (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- docs/handoff/20261006/session-b/NATURAL_DEATH_ITEM_GUARDS.json (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/duel-query-check/natural-death-item-compile-v1.log (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/duel-query-check/natural-death-item-current-v1.log (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/duel-query-check/natural-death-item-regression-v1.log (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/natural-death-item-pending-v1.sg11 (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/natural-death-item-finished-v1.sg11 (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/natural-death-pending-v3.sg11 (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/natural-death-finished-v3.sg11 (B full original held callback with PE-correct OS imports/current force ruler recipient, production terminal/Save/whole turns; registered before creation)
+
+- out/session-b/duel-query-check/natural-death-item-compile-v2.log (B test-only JSON uint32 registry argument normalization; original receipt bytes unchanged, registered before creation)
+
+- out/session-b/duel-query-check/natural-death-item-current-v2.log (B test-only JSON uint32 registry argument normalization; original receipt bytes unchanged, registered before creation)
+
+- tools/content/session_b_pc_readonly_render_abi.py (B original solo current source rulers/full generated death2/full callback, PE-verified readonly render ABI environment, registered before creation)
+
+- out/session-b/natural-ruler-battle-source0-v1.json (B original solo current source rulers/full generated death2/full callback, PE-verified readonly render ABI environment, registered before creation)
+
+- out/session-b/natural-ruler-battle-source0-v1.partial.json (B original solo current source rulers/full generated death2/full callback, PE-verified readonly render ABI environment, registered before creation)
+
+- out/session-b/natural-ruler-battle-source0-v1.failure.json (B original solo current source rulers/full generated death2/full callback, PE-verified readonly render ABI environment, registered before creation)
+
+- out/session-b/natural-ruler-battle-source0-v1.log (B original solo current source rulers/full generated death2/full callback, PE-verified readonly render ABI environment, registered before creation)
+
+- tools/content/session_b_pc_natural_ruler_callback.py (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- out/session-b/natural-ruler-callback-source0-v1.json (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- out/session-b/natural-ruler-callback-source0-v1.failure.json (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- out/session-b/natural-ruler-callback-source0-v1.log (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- out/session-b/natural-ruler-callback-before-v1.bin (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- out/session-b/natural-ruler-callback-ai-v1.bin (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- out/session-b/natural-ruler-callback-human-v1.bin (B actual generated king517 death/full original AI and declared valid human successor input/full VM snapshots; registered before creation)
+
+- docs/handoff/20261006/session-b/NATURAL_RULER_STRATEGY.md (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- docs/handoff/20261006/session-b/NATURAL_RULER_GUARDS.json (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- tools/content/session_b_pack_natural_ruler_endpoint.py (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- out/session-b/natural-ruler-endpoint-v1.tsv (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- out/session-b/natural-ruler-endpoint-v2.tsv (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- game-runtime/src/test/java/game/sanguo/core/PcDuelNaturalRulerSessionTest.java (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- out/session-b/duel-query-check/natural-ruler-compile-v1.log (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- out/session-b/duel-query-check/natural-ruler-current-v1.log (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+- out/session-b/duel-query-check/natural-ruler-regression-v1.log (B original natural current ruler death/current human heir explicit format7 strategy and typed campaign; registered before creation)
+
+### Natural ruler production continuation receipts (2026-10-08)
+- out/session-b/natural-ruler-ai-pending-v1.sg11
+- out/session-b/natural-ruler-ai-finished-v1.sg11
+- out/session-b/natural-ruler-human-pending-v1.sg11
+- out/session-b/natural-ruler-human-chosen-v1.sg11
+- out/session-b/natural-ruler-human-finished-v1.sg11
+- out/session-b/duel-query-check/natural-ruler-test-compile-v1.log
+- out/session-b/duel-query-check/natural-ruler-current-v2.log (bounded fresh human seeds2–9; preserves actual outcomes, no live reroll)
+- out/session-b/natural-death-items-source0-v7.json
+- out/session-b/natural-death-items-source0-v7.failure.json
+- out/session-b/duel-query-check/natural-death-items-source0-v7.log
+- out/session-b/duel-query-check/natural-ruler-test-compile-v2.log
+- out/session-b/duel-query-check/natural-ruler-current-v3.log
+- out/session-b/duel-query-check/natural-ruler-regression-v2.log (prior verified stance2, rather than accidental default stance0)
+- out/session-b/duel-query-check/natural-ruler-test-compile-v3.log
+- out/session-b/duel-query-check/natural-ruler-bounded-probe-v1.log
+- out/session-b/natural-ruler-probe-terminal-v1.sg11
+- out/session-b/duel-query-check/natural-ruler-current-v4.log
+- out/session-b/duel-query-check/natural-ruler-test-compile-v4.log (natural format7 malformed save and cold StateToken probes)
+
+### Ordinary deployed native duel campaign (2026-10-08)
+- game-runtime/src/test/java/game/sanguo/core/PcDuelNormalDeploymentSessionTest.java (B normal typed deployment/real AI armies/map moves/native contest/full turn/save, no injected units)
+- out/session-b/duel-query-check/normal-deployed-duel-compile-v1.log
+- out/session-b/duel-query-check/normal-deployed-duel-current-v1.log
+- out/session-b/normal-deployed-duel-after-deploy-v1.sg11
+- out/session-b/normal-deployed-duel-current-v1.sg11
+- out/session-b/normal-deployed-duel-contest-v1.sg11
+- out/session-b/normal-deployed-duel-finished-v1.sg11
+- docs/handoff/20261006/session-b/NORMAL_DEPLOYED_DUEL.md
+- out/session-b/duel-query-check/normal-deployed-duel-compile-v2.log
+
+### First-launch source options without campaign state (2026-10-08)
+- game-api/src/main/java/game/sanguo/api/PcNewGameOptionsSnapshot.java (source-bound immutable catalog facts, no StateToken or saved defaults)
+- game-runtime/src/test/java/game/sanguo/core/PcNewGameOptionsCatalogTest.java (normal first-launch catalog/all16/current and genuine old-save purity, no dummy World/Token)
+- docs/handoff/20261006/session-b/FIRST_LAUNCH_OPTIONS_STRATEGY.md
+- docs/handoff/20261006/session-b/FIRST_LAUNCH_OPTIONS_GUARDS.json
+- out/session-b/duel-query-check/first-launch-options-compile-v1.log
+- out/session-b/duel-query-check/first-launch-options-current-v1.log
+- out/session-b/duel-query-check/first-launch-options-regression-v1.log
+- out/session-b/duel-query-check/normal-deployed-duel-current-v2.log (resume exact actual turn12, no fresh reset)
+- out/session-b/normal-deployed-duel-current-v2.sg11
+- out/session-b/normal-deployed-duel-contest-v2.sg11
+- out/session-b/normal-deployed-duel-finished-v2.sg11
+- out/session-b/duel-query-check/first-launch-options-compile-v2.log
+
+### Actual campaign identity/admission audit (2026-10-08)
+- game-runtime/src/test/java/game/sanguo/core/PcNormalCampaignProbe.java (read-only actual normal25 checkpoint roster/stocks/native bindings; no unit placement or RNG write)
+- out/session-b/normal-campaign-probe/game/sanguo/core/PcNormalCampaignProbe.class
+- out/session-b/duel-query-check/normal-campaign-probe-v1.log
+- out/session-b/duel-query-check/normal-campaign-probe-v2.log (exact low stable IDs/source-record binding; no guessing native by numeric range)
+- docs/handoff/20261006/session-b/NORMAL_CAMPAIGN_IDENTITY_CORRECTION.md
+- out/session-b/duel-query-check/normal-deployed-duel-compile-v3.log
+- out/session-b/duel-query-check/normal-deployed-duel-current-v3.log
+- out/session-b/normal-deployed-duel-after-deploy-v3.sg11
+- out/session-b/normal-deployed-duel-current-v3.sg11
+- out/session-b/normal-deployed-duel-contest-v3.sg11
+- out/session-b/normal-deployed-duel-finished-v3.sg11
+- out/session-b/duel-query-check/normal-deployed-duel-compile-v4.log
+- out/session-b/duel-query-check/normal-deployed-duel-current-v4.log
+- out/session-b/normal-deployed-duel-after-deploy-v4.sg11
+- out/session-b/normal-deployed-duel-current-v4.sg11
+- out/session-b/normal-deployed-duel-contest-v4.sg11
+- out/session-b/normal-deployed-duel-finished-v4.sg11
+- out/session-b/duel-query-check/normal-campaign-probe-v3.log (actual accepted normal battle participants/raw loyalty trust versus visible; no repair/backfill)
+
+### Lazy original support loyalty consumption (2026-10-08)
+- tools/content/session_b_pc_support_raw_consumption.py (full original508890 + raw-byte read observation on actual normal411/669/503 identities; no getter replacement)
+- out/session-b/support-raw-consumption-source0-v1.json
+- out/session-b/support-raw-consumption-source0-v1.failure.json
+- out/session-b/duel-query-check/support-raw-consumption-source0-v1.log
+- docs/handoff/20261006/session-b/SUPPORT_RAW_CONSUMPTION_STRATEGY.md
+- docs/handoff/20261006/session-b/SUPPORT_RAW_CONSUMPTION_GUARDS.json
+- core/src/test/java/game/sanguo/core/PcDuelSupportRawConsumptionTest.java
+- out/session-b/duel-query-check/support-raw-compile-v1.log
+- out/session-b/duel-query-check/support-raw-current-v1.log
+- out/session-b/duel-query-check/support-raw-regression-v1.log
+- out/session-b/duel-query-check/support-raw-compile-v2.log
+- out/session-b/duel-query-check/normal-deployed-duel-current-v5.log (resume exact actual accepted battle, no replacement or raw backfill)
+- out/session-b/normal-deployed-duel-contest-v5.sg11
+- out/session-b/normal-deployed-duel-finished-v5.sg11
+- out/session-b/normal-deployed-duel-current-v5.sg11
+- out/session-b/normal-deployed-duel-terminal-v5.json
+- out/session-b/duel-query-check/normal-deployed-duel-terminal-v5.log
+- out/session-b/duel-query-check/normal-deployed-duel-after-v5.log
+- game-runtime/src/test/java/game/sanguo/core/PcDuelNormalTerminalResultTest.java (actual ordinary177frame death endpoint -> typed outcome/rewards/unit/allRNG/current raw unknown + real28 continuation; read-only archived checkpoints)
+- out/session-b/duel-query-check/support-raw-compile-v3.log
+- out/session-b/duel-query-check/normal-deployed-duel-results-v1.log
+- out/session-b/duel-query-check/normal-deployed-duel-xp-v1.log
+- out/session-b/duel-query-check/normal-deployed-duel-xp-v2.log
+- out/session-b/duel-query-check/support-raw-compile-v4.log
+- out/session-b/duel-query-check/normal-deployed-duel-results-v2.log
+
+### Immutable B integration candidate for normal A opening (2026-10-08)
+- tools/content/session_b_freeze_native_candidate.py (complete effective inherited inputs + B-owned overlay/archive/ABI jars; candidate only, not full goal acceptance)
+- docs/handoff/20261006/session-b/NATIVE_INTEGRATION_CANDIDATE.md
+- docs/handoff/20261006/session-b/NATIVE_INTEGRATION_CANDIDATE.json
+- out/session-b/native-candidate60/build-inputs.json
+- out/session-b/native-candidate60/candidate-source.tar.gz
+- out/session-b/native-candidate60/b-overlay.tar.gz
+- out/session-b/native-candidate60/b-overlay.json
+- out/session-b/native-candidate60/frozen-report.json
+- out/session-b/native-candidate60/frozen/core.jar
+- out/session-b/native-candidate60/frozen/game-api.jar
+- out/session-b/native-candidate60/frozen/game-runtime.jar
+- out/session-b/native-candidate60/frozen/app-debug.apk
+- out/session-b/native-candidate60/frozen/app-debug-androidTest.apk
+- out/session-b/duel-query-check/native-candidate60-build.log
+- out/session-b/native-candidate60/archive-verification.json (post-freeze full archive per-file SHA/readback, candidate files immutable)
+- out/session-b/duel-query-check/native-candidate60-archive-verification.log
+- out/session-b/duel-query-check/native-candidate60-jars-regression.log
+
+### Native normal Android pointer acceptance preparation (2026-10-08)
+- app/src/androidTest/java/game/sanguo/mobile/SessionBNativeDuelInstrumentation.java (test-only normal menu/options/cancel/deployment/movement/actual AI encounter/human controls/cold terminal; no authority injection)
+- docs/handoff/20261006/session-b/native-duel.instrumentation.init.gradle (own test runner override; root config/AndroidManifest unchanged)
+- docs/handoff/20261006/session-b/NATIVE_ANDROID_ACCEPTANCE.md (prepared/compiled/installed evidence boundaries and A selector dependency)
+- out/session-b/duel-query-check/native-android-test-compile-v1.log
+- out/session-b/duel-query-check/native-android-test-compile-v2.log
+- out/session-b/native-android-preparation-v1.json (candidate60 production/JNI/A source guard and compile-only preparation receipt)
+- out/session-b/duel-query-check/native-runner-preflight-v1.log (old frozen test APK rejected before device/lock/backup/install)
+- out/session-b/native-android-preflight-unused-v1 (must remain absent after failed registration precheck)
+- out/session-b/duel-query-check/native-android-test-compile-v3.log (enabled terminal button selection guard)
+- out/session-b/duel-query-check/native-android-test-compile-v4.log (A stage224 actual ordering/locked constraint selectors, no A integration)
+
+### Frozen A224 integration dependency audit (2026-10-08)
+- docs/handoff/20261006/session-b/OPENING_A_DEPENDENCY_AUDIT.md
+- out/session-b/opening-a-dependency-audit-v1.json (read-only comparison of committed A224 patch and candidate60 compiled sources; no A production changes)
+
+### Sequential completed A dependency compilation support (2026-10-08)
+- docs/handoff/20261006/session-b/native-opening-combined61.init.gradle (own init only, SHA-verified A overrides from frozen completed dependency chain; no A canonical source mutation)
+- out/session-b/readonly-opening-dependencies61/manifest.json
+- out/session-b/readonly-opening-dependencies61/java/MainActivity.java
+- out/session-b/readonly-opening-dependencies61/java/ScenarioFactionPicker.java
+Additional exact A dependency staged paths must be registered after receiving A chain and before writes; no wildcard A ownership.
+
+### Complete inherited sequential combination source61 (2026-10-08)
+- tools/content/session_b_prepare_opening_combined.py (safe full immutable candidate60 extraction + only committed SHA-verified completed A closure + own latest Android test/tool inputs; independent build/out, never modify canonical A/B files)
+- docs/handoff/20261006/session-b/OPENING_COMBINED61.md
+- out/session-b/native-opening-combined61 (full inherited source exact path set from candidate60 archive plus explicit owner increments, registered manifest before any extra inputs)
+- out/session-b/native-opening-combined61-source-inputs.json
+- out/session-b/duel-query-check/native-opening-combined61-preparation.log
+- out/session-b/duel-query-check/native-opening-combined61-build.log
+- docs/handoff/20261006/session-b/native-opening-acceptance61.init.gradle (full materialized source runner/provenance only; no old partial theme override)
+- out/session-b/native-opening-combined61-source-guard.json (all combined APK production prefixes including A additional JNI; live path inventory and SHA before device lock)
+- tools/content/session_b_freeze_opening_combined.py (readback full input manifest, independently freeze APK/JAR/test plus source archive and guards)
+- out/session-b/native-opening-combined61-frozen/frozen-report.json
+- out/session-b/native-opening-combined61-frozen/combined-source.tar.gz
+- out/session-b/native-opening-combined61-frozen/core.jar
+- out/session-b/native-opening-combined61-frozen/game-api.jar
+- out/session-b/native-opening-combined61-frozen/game-runtime.jar
+- out/session-b/native-opening-combined61-frozen/app-debug.apk
+- out/session-b/native-opening-combined61-frozen/app-debug-androidTest.apk
+- out/session-b/duel-query-check/native-opening-combined61-freeze.log
+- out/session-b/duel-query-check/native-opening-combined61-test-compile.log
+- out/session-b/duel-query-check/native-opening-combined61-jars-regression.log
+- out/session-b/duel-query-check/native-opening-combined61-build-r2.log (test-only actual picker Back returns to source chooser; close ordinary Cancel, StateToken purity)
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r2.log
+- out/session-b/native-opening-combined61-frozen-r2 (immutable revised pair and complete source; original game production unchanged)
+- out/session-b/duel-query-check/native-opening-combined61-jars-session-bridge-v2.log
+- out/session-b/native-opening-combined61-frozen/original-source-inputs-readback.json (exact original frozen manifest reconstruction from immutable source archive; mutable staging manifest later r2 documented)
+- out/session-b/native-opening-combined61-frozen-r2/build-inputs.json (immutable input snapshot rather than mutable stage reference)
+- out/session-b/native-opening-combined61-frozen-r2/source-guard.json
+- out/session-b/native-duel-apk61-r2-acceptance-v1 (full lock/backup/install/three actual instrumentation processes/evidence/restore report)
+- out/session-b/duel-query-check/native-duel-apk61-r2-acceptance-v1.log
+
+### Actual API29 new-menu stream compatibility repair (2026-10-08)
+- core/src/main/java/game/sanguo/core/PcResourceBytes.java (package-internal bounded read using Android API26-compatible InputStream.read; no resource/save/rule change)
+- core/src/test/java/game/sanguo/core/PcResourceBytesTest.java (fragment/zero progress/EOF/count/unconsumed tail/original bytes/error propagation)
+- docs/handoff/20261006/session-b/API29_RESOURCE_STREAM_REPAIR.md
+- out/session-b/api29-stream-repair-guards.json
+- out/session-b/duel-query-check/native-opening-combined61-build-r3.log
+- out/session-b/duel-query-check/native-opening-combined61-test-compile-r3.log
+- out/session-b/duel-query-check/native-opening-combined61-regression-r3.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r3.log
+- out/session-b/native-opening-combined61-frozen-r3 (new necessary B core-only compatibility delta, before/after input/jar whitelist and fresh APK; r1/r2 immutable)
+- out/session-b/native-duel-apk61-r3-acceptance-v1 (fresh API29 corrected APK complete guarded install/three-process flow/restoration)
+- out/session-b/duel-query-check/native-duel-apk61-r3-acceptance-v1.log
+
+### Actual API29 Stream.toList compatibility repair (2026-10-08)
+- out/session-b/api29-stream-list-guards.json (global exact five direct calls in B owned production and Android test; null/encounter-order/unmodifiable semantics preserved)
+- out/session-b/duel-query-check/native-opening-combined61-build-r4.log
+- out/session-b/duel-query-check/native-opening-combined61-regression-r4.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r4.log
+- out/session-b/native-opening-combined61-frozen-r4 (new core Facts/runtime query compatibility delta; prior source/Save/RNG/numeric bytes unchanged)
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r4-v2.log (first freeze rejected before build completion, no partial evidence directory)
+
+### Military normal opening acceptance adaptation preparation (2026-10-08)
+- docs/handoff/20261006/session-b/MILITARY_NEW_OPENING_ACCEPTANCE.md (own existing B fieldworks runner consumes mandatory explicit A source options; prepared only, no inherited old APK scores)
+- out/session-b/duel-query-check/military-new-opening-compile-v1.log
+- out/session-b/native-duel-apk61-r4-acceptance-v1 (full backup/new APK/real menus and campaign/three processes/restore)
+- out/session-b/duel-query-check/native-duel-apk61-r4-acceptance-v1.log
+- out/session-b/military-new-opening-compile (standalone compile output only; no current frozen source/APK mutation)
+
+### Actual ordinary menu/movement navigation test follow-up (2026-10-08)
+- out/session-b/duel-query-check/native-opening-combined61-build-r5.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r5.log
+- out/session-b/native-opening-combined61-frozen-r5 (test-only navigation helper; same frozen r4 game production)
+- out/session-b/native-duel-apk61-r5-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r5-acceptance-v1.log
+- out/session-b/native-duel-apk61-r4-acceptance-v1/internal-restored-after-authored-cache.tar
+- out/session-b/native-duel-apk61-r4-acceptance-v1/authored-source-cache-recovery.json (before absent, postarchive/live/package asset SHA exact; only own derived new source cache, original15 unchanged)
+
+### Current source Military APK acceptance runner registration (2026-10-08)
+- docs/handoff/20261006/session-b/native-opening-military61.init.gradle (own test runner only; same completed A and current B production)
+- docs/handoff/20261006/session-b/NATIVE_DUEL_ANDROID_RUN.md (actual run progress/failures/source and backup proof, pending terminal)
+
+### U01 current immutable bridge source semantics audit (2026-10-08)
+- out/session-b/u01-current61-readonly.json (fresh frozen current JAR recorder, same coalition190 seed; original Unity gold remains untouched)
+- out/session-b/u01-current61-difference.json
+- docs/handoff/20261006/session-b/U01_CURRENT_SOURCE_AUDIT.md
+
+### Actual Android campaign continuation diagnostics (2026-10-08)
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualAndroidCampaignProbe.java (read-only immediate codec vs queries/canonical gzip; actual source/player/person/armies and normal deployment previews, no reset/injection)
+- out/session-b/actual-android-campaign-probe
+- out/session-b/duel-query-check/actual-android-campaign9-probe-v1.log
+- out/session-b/actual-android-campaign9-probe-v1.json
+
+### Same actual Android turn9 campaign continuation (2026-10-08)
+- out/session-b/duel-query-check/native-opening-combined61-build-r6.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r6.log
+- out/session-b/native-opening-combined61-frozen-r6 (test/controller continuation only; same game/rule/JNI bytes asr5)
+- out/session-b/native-duel-apk61-r6-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r6-acceptance-v1.log
+Exact input: r5 captured ordinary Android turn9 failed-campaign.sg11 SHA c9d219988a317d963da89ad2acd44b2354eb316728abf01ec41f70d837a549b4, no alternate/constructed world. After complete backup, stage slot3 and ordinary load; old user slot restored finally.
+- out/session-b/u01-current61-pc-terrain-source.json (read-only LINK4791 original SHA and all40000 classified cells against v65/v63, no importer write/golden modification)
+
+### Safe actual renderer readiness and same-campaign retest (2026-10-08)
+- out/session-b/native-duel-apk61-r6-acceptance-v1/actual-pid7378-crash.txt
+- out/session-b/duel-query-check/native-opening-combined61-build-r7.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r7.log
+- out/session-b/native-opening-combined61-frozen-r7 (test-only camera readiness/current host check, normal retry UI; game/rules unchanged)
+- out/session-b/native-duel-apk61-r7-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r7-acceptance-v1.log
+
+### Current immutable production command regression audit (2026-10-08)
+- out/session-b/duel-query-check/current61-global-command-regression-v1.log (current frozen JAR transport/production/city/diplomacy/merchant real session checks; separate from APK page acceptance)
+- docs/handoff/20261006/session-b/CURRENT_COMMAND_FLOW_STATUS.md
+
+### Actual map input delivery diagnostics (2026-10-08)
+- out/session-b/duel-query-check/native-opening-combined61-build-r8.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r8.log
+- out/session-b/native-opening-combined61-frozen-r8 (test-only map input state/coordinates/three actual repeats, no rules or A modifications)
+- out/session-b/native-duel-apk61-r8-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r8-acceptance-v1.log
+
+### Current complete-source military priority retest (2026-10-08)
+- out/session-b/duel-query-check/native-opening-combined61-build-r9.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r9.log
+- out/session-b/native-opening-combined61-frozen-r9 (same production; fieldworks actual source14 runner/current explicit source options and safe renderer/nav helpers)
+- out/session-b/fieldworks-apk61-r9-acceptance-v1
+- out/session-b/duel-query-check/fieldworks-apk61-r9-acceptance-v1.log
+
+### Actual output and loading gate follow-up (2026-10-08)
+- out/session-b/map-visible-admission-compile-v1 (own standalone B tester compilation; current live/frozen source unchanged)
+- out/session-b/duel-query-check/map-visible-admission-compile-v1.log
+- docs/handoff/20261006/session-b/MAP_VISIBLE_ADMISSION.md
+- docs/handoff/20261006/session-b/MAP_VISIBLE_ADMISSION.json
+
+### Frozen normal Native follow-up with actual visible-map admission (2026-10-08)
+- out/session-b/duel-query-check/native-opening-combined61-build-r10.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r10.log
+- out/session-b/native-opening-combined61-frozen-r10
+- out/session-b/native-duel-apk61-r10-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r10-acceptance-v1.log
+
+- out/session-b/duel-query-check/current61-save-coordinate-compatibility-v1.log (current frozen core, old actual format5/genuine39, map revision and topology; excludes actual legacy Android matrix)
+
+- docs/handoff/20261006/session-b/MILITARY_R9_ACCEPTANCE.json (actual candidate r9 subset acceptance and exact restoration; no whole-goal completion)
+
+### Actual r10 post-confusion route boundary diagnosis
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualMarchBoundaryProbe.java
+- out/session-b/actual-march-boundary-probe-v1
+- out/session-b/duel-query-check/actual-march-boundary-probe-v1.log
+
+- out/session-b/duel-query-check/actual-march-boundary-probe-v2.log (v1 invalid compound var compile log retained, no execution)
+
+### Exact ordinary interception checkpoint continuation
+- docs/handoff/20261006/session-b/ACTUAL_MARCH_BOUNDARY.md
+- out/session-b/duel-query-check/native-opening-combined61-build-r11.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r11.log
+- out/session-b/native-opening-combined61-frozen-r11
+- out/session-b/native-duel-apk61-r11-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r11-acceptance-v1.log
+
+### Actual API29 ordinary Native candidate collection repair
+- core/src/test/java/game/sanguo/core/SessionBActualNativeCandidateProbe.java
+- out/session-b/actual-native-candidate-probe-v1
+- out/session-b/duel-query-check/actual-native-candidate-before-v1.log
+- out/session-b/duel-query-check/actual-native-candidate-after-v1.log
+- out/session-b/duel-query-check/native-opening-combined61-build-r12.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r12.log
+- out/session-b/native-opening-combined61-frozen-r12
+- out/session-b/native-duel-apk61-r12-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r12-acceptance-v1.log
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualNativeCandidateProbe.java (correct runtime test ownership: reads GameSession; original temporary core/test path moved before stage/build, logs retained)
+
+- out/session-b/actual-native-candidate-after-compile-v1 (fresh exact repaired Contests class + candidate probe; no frozen artifact mutation)
+
+- docs/handoff/20261006/session-b/api29-native-candidate-collector-guards.json
+- out/session-b/duel-query-check/current12-contest-session-bridge-architecture-v1.log
+
+- out/session-b/duel-query-check/current11-contest-baseline-failure-v1.log (unchanged frozen baseline verify historical test issue; no fixture/schema relaxation)
+- out/session-b/duel-query-check/current12-session-bridge-architecture-v2.log
+
+- core/src/test/java/game/sanguo/core/ContestTest.java (existing test corrected to explicit PC_PARITY_STATUS V01 <31 rejection; no rule/fixture changes)
+- out/session-b/contest-v01-policy-compile-v1
+- out/session-b/duel-query-check/current12-contest-v01-policy-v1.log
+
+- out/session-b/duel-query-check/current12-contest-v01-policy-v2.log (v1 further stale half-gap assertion retained; functional injury/save/relationships check corrected without rule edits)
+
+- docs/handoff/20261006/session-b/CONTEST_TEST_POLICY_ALIGNMENT.md
+- docs/handoff/20261006/session-b/contest-test-v01-alignment.patch
+- out/session-b/duel-query-check/current12-frozen-session-bridge-candidate-v3.log
+
+- docs/handoff/20261006/session-b/NATIVE_R12_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R12_ACCEPTANCE.json
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualNativeOutcomeProbe.java
+- out/session-b/actual-native-outcome-probe-v1
+- out/session-b/duel-query-check/actual-native-outcome-probe-v1.log
+
+### Actual saved native battle alternate legal stance and exact settlement boundary
+- out/session-b/duel-query-check/native-opening-combined61-build-r13.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r13.log
+- out/session-b/native-opening-combined61-frozen-r13
+- out/session-b/native-duel-apk61-r13-spirit-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r13-spirit-acceptance-v1.log
+- docs/handoff/20261006/session-b/NATIVE_R13_SETTLEMENT_BOUNDARY.md
+
+### Exact actual saved battle retreat admission diagnosis
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualNativeRetreatDiagnostic.java
+- out/session-b/actual-native-retreat-diagnostic-v1
+- out/session-b/duel-query-check/actual-native-retreat-diagnostic-v1.log
+
+- out/session-b/duel-query-check/actual-native-retreat-early-diagnostic-v2.log
+- out/session-b/duel-query-check/actual-native-retreat-late-diagnostic-v2.log
+
+- out/session-b/duel-query-check/actual-native-retreat-early-diagnostic-v3.log (v2 only entered original special menu; no retreat roll executed, retained)
+- out/session-b/duel-query-check/actual-native-retreat-late-diagnostic-v3.log
+
+### Native special action menu and actual retreat continuation
+- docs/handoff/20261006/session-b/NATIVE_SPECIAL_ACTION_MENU.md
+- out/session-b/duel-query-check/native-opening-combined61-build-r14.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r14.log
+- out/session-b/native-opening-combined61-frozen-r14
+- out/session-b/native-duel-apk61-r14-retreat-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r14-retreat-acceptance-v1.log
+
+- out/session-b/native-special-ui-compile-v1
+- out/session-b/duel-query-check/native-special-ui-compile-v1.log
+
+- out/session-b/duel-query-check/native-special-ui-compile-v2.log (v1 used phase on nested DTO; correct immutable outer ContestSnapshot phase, original failure retained)
+
+### Actual defeat raw-loyalty boundary source diagnosis
+- tools/content/session_b_pc_loyalty_access_source.py
+- out/session-b/pc-loyalty-access-source-v1.json
+- out/session-b/duel-query-check/pc-loyalty-access-source-v1.log
+- docs/handoff/20261006/session-b/NATIVE_R13_DEFEAT_BLOCKER.md
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualDefeatRawLoyaltyProbe.java
+- out/session-b/actual-defeat-raw-loyalty-probe-v1
+- out/session-b/duel-query-check/actual-defeat-raw-loyalty-probe-v1.log
+
+- docs/handoff/20261006/session-b/RAW_LOYALTY_REPRESENTATION_POLICY.md (design only; no adoption or trusted row writes implemented)
+
+- out/session-b/pc-loyalty-access-source-v2.json (actual getter memory-read instruction sites and serialized-source/runtime record SHA separated)
+- out/session-b/duel-query-check/pc-loyalty-access-source-v2.log
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualNativeSettlementProbe.java
+- out/session-b/actual-native-settlement-probe-v1
+- out/session-b/duel-query-check/actual-native-settlement-probe-v1.log
+- docs/handoff/20261006/session-b/NATIVE_R14_RETREAT_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R14_RETREAT_ACCEPTANCE.json
+
+### Explicit source property23 loyalty input policy and normal defeat repair
+- core/src/main/java/game/sanguo/core/PcLoyaltyProperty23Policy.java
+- core/src/test/java/game/sanguo/core/PcLoyaltyProperty23PolicyTest.java
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualDefeatPolicyTest.java
+- docs/handoff/20261006/session-b/LOYALTY_INPUT_IMPLEMENTATION.md
+- out/session-b/loyalty-policy-compile-v1
+- out/session-b/duel-query-check/loyalty-policy-compile-v1.log
+
+- out/session-b/loyalty-policy-compile-v2
+- out/session-b/duel-query-check/loyalty-policy-compile-v2.log
+- out/session-b/duel-query-check/loyalty-policy-tests-v1.log
+
+- out/session-b/duel-query-check/loyalty-policy-tests-v2.log
+- out/session-b/duel-query-check/native-opening-combined61-build-r15.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r15.log
+- out/session-b/native-opening-combined61-frozen-r15
+- out/session-b/native-duel-apk61-r15-defeat-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r15-defeat-acceptance-v1.log
+
+- out/session-b/native-opening-combined61-r15-owned-overlay.json
+- out/session-b/duel-query-check/native-opening-combined61-r15-inputs.log
+- out/session-b/duel-query-check/native-opening-combined61-r15-checks.log
+
+- app/src/androidTest/java/game/sanguo/core/SessionBPolicyProbe.java (readonly numerical model evidence adapter; no World construction or outcome writes)
+
+- out/session-b/duel-query-check/native-opening-combined61-r15-legacy39-v1.log
+
+- docs/handoff/20261006/session-b/NATIVE_R15_DEFEAT_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R15_DEFEAT_ACCEPTANCE.json
+- docs/handoff/20261006/session-b/NATIVE_R15_PRODUCTION_INCREMENT.patch
+- out/session-b/native-r15-increment-manifest.json
+- out/session-b/duel-query-check/native-r15-increment-v1.log
+- out/session-b/native-r15-settlement-probe-v1
+- out/session-b/duel-query-check/native-r15-settlement-probe-v1.log
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualDefeatSettlementProbe.java
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualSaveByteDiagnostic.java
+- out/session-b/actual-save-byte-diagnostic-v1
+- out/session-b/duel-query-check/actual-save-byte-diagnostic-v1.log
+
+- out/session-b/duel-query-check/actual-save-byte-diagnostic-v2.log
+- out/session-b/native-r15-settlement-probe-v2
+- out/session-b/duel-query-check/native-r15-settlement-probe-v2.log
+
+- out/session-b/save-byte-stack-diagnostic-v1
+- out/session-b/duel-query-check/save-byte-stack-diagnostic-v1.log
+
+- out/session-b/save-byte-stack-diagnostic-v1/CanonicalSave.java
+- out/session-b/save-byte-stack-diagnostic-v1/failed-canonical.sg11
+- out/session-b/duel-query-check/save-gzip-header-parity-v1.log
+
+### Original AI disposition caller actor verification after r15
+- out/session-b/duel-ai-actor-binding-source-v1.json
+- out/session-b/duel-ai-actor-binding-source-v1.partial.json
+- out/session-b/duel-ai-actor-binding-source-v1.failure.json
+- out/session-b/duel-ai-actor-binding-source-v1.log
+- docs/handoff/20261006/session-b/AI_ACTOR_BINDING.md
+
+- tools/content/session_b_pc_ai_actor_resolver.py
+- out/session-b/duel-ai-actor-resolver-source-v1.json
+- out/session-b/duel-ai-actor-resolver-source-v1.log
+
+- out/session-b/duel-ai-actor-binding-source-v2.json
+- out/session-b/duel-ai-actor-binding-source-v2.partial.json
+- out/session-b/duel-ai-actor-binding-source-v2.failure.json
+- out/session-b/duel-ai-actor-binding-source-v2.log
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualAiActorProbe.java
+- out/session-b/actual-ai-actor-probe-v1
+- out/session-b/actual-ai-actor-probe-v1.log
+
+### Explicit original AI force ruler actor policy
+- core/src/main/java/game/sanguo/core/PcDuelAiActorPolicy.java
+- core/src/test/java/game/sanguo/core/PcDuelAiActorPolicyTest.java
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualAiActorPolicyTest.java
+- out/session-b/ai-actor-policy-compile-v1
+- out/session-b/ai-actor-policy-compile-v1.log
+- out/session-b/ai-actor-policy-tests-v1.log
+
+- out/session-b/native-opening-combined61-r16-owned-overlay.json
+- out/session-b/duel-query-check/native-opening-combined61-r16-inputs.log
+- out/session-b/duel-query-check/native-opening-combined61-build-r16.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r16.log
+- out/session-b/duel-query-check/native-opening-combined61-r16-checks.log
+- out/session-b/native-opening-combined61-frozen-r16
+- out/session-b/native-duel-apk61-r16-ai-actor-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r16-ai-actor-acceptance-v1.log
+
+- out/session-b/ai-actor-policy-compile-v2.log
+
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r16.init.gradle
+
+- docs/handoff/20261006/session-b/NATIVE_R16_AI_ACTOR_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R16_AI_ACTOR_ACCEPTANCE.json
+- docs/handoff/20261006/session-b/NATIVE_R16_PRODUCTION_INCREMENT.patch
+- out/session-b/native-r16-increment-manifest.json
+- out/session-b/duel-query-check/native-r16-increment-v1.log
+- out/session-b/native-r16-settlement-probe-v1
+- out/session-b/duel-query-check/native-r16-settlement-probe-v1.log
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualAiActorSettlementProbe.java
+
+- out/session-b/native-duel-apk61-r16-ai-actor-acceptance-v1/live-read-slot.png
+
+### Original human disposition actor/transfer observation
+- out/session-b/duel-human-actor-source-v1.json
+- out/session-b/duel-human-actor-source-v1.partial.json
+- out/session-b/duel-human-actor-source-v1.failure.json
+- out/session-b/duel-human-actor-source-v1.log
+- docs/handoff/20261006/session-b/HUMAN_DISPOSITION_BINDING.md
+
+- out/session-b/duel-human-actor-source-v2.json
+- out/session-b/duel-human-actor-source-v2.partial.json
+- out/session-b/duel-human-actor-source-v2.failure.json
+- out/session-b/duel-human-actor-source-v2.log
+
+- out/session-b/duel-human-caller-source-v1.json
+- out/session-b/duel-human-caller-source-v1.log
+
+- out/session-b/duel-human-actor-source-v3.json
+- out/session-b/duel-human-actor-source-v3.partial.json
+- out/session-b/duel-human-actor-source-v3.failure.json
+- out/session-b/duel-human-actor-source-v3.log
+
+- out/session-b/duel-human-actor-source-v4.json
+- out/session-b/duel-human-actor-source-v4.partial.json
+- out/session-b/duel-human-actor-source-v4.failure.json
+- out/session-b/duel-human-actor-source-v4.log
+
+- out/session-b/actual-human-victory-actors-v1.log
+
+### Explicit original human disposition ruler policy
+- core/src/main/java/game/sanguo/core/PcDuelHumanActorPolicy.java
+- core/src/test/java/game/sanguo/core/PcDuelHumanActorPolicyTest.java
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualHumanActorPolicyTest.java
+- out/session-b/human-actor-policy-compile-v1
+- out/session-b/human-actor-policy-compile-v1.log
+- out/session-b/human-actor-policy-tests-v1.log
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualRecruitReturnProbe.java
+- out/session-b/actual-recruit-return-probe-v1
+- out/session-b/actual-recruit-return-probe-v1.log
+
+- out/session-b/actual-recruit-return-probe-v2.log
+
+- tools/content/session_b_pc_same_region_recruit.py
+- out/session-b/same-region-recruit-source-v1.json
+- out/session-b/same-region-recruit-source-v1.failure.json
+- out/session-b/same-region-recruit-source-v1.log
+
+- out/session-b/same-region-recruit-source-v2.json
+- out/session-b/same-region-recruit-source-v2.failure.json
+- out/session-b/same-region-recruit-source-v2.log
+
+- out/session-b/same-region-recruit-source-v3.json
+- out/session-b/same-region-recruit-source-v3.failure.json
+- out/session-b/same-region-recruit-source-v3.log
+
+- out/session-b/same-region-recruit-source-v4.json
+- out/session-b/same-region-recruit-source-v4.failure.json
+- out/session-b/same-region-recruit-source-v4.log
+
+- out/session-b/same-region-recruit-source-v5.json
+- out/session-b/same-region-recruit-source-v5.failure.json
+- out/session-b/same-region-recruit-source-v5.log
+
+- out/session-b/human-actor-policy-compile-v2
+- out/session-b/human-actor-policy-compile-v2.log
+- out/session-b/human-actor-policy-tests-v2.log
+
+- core/src/test/java/game/sanguo/core/PcDuelSameCityRecruitmentTest.java
+- out/session-b/human-actor-policy-compile-v3
+- out/session-b/human-actor-policy-compile-v3.log
+- out/session-b/human-actor-policy-tests-v3.log
+
+### r17 complete inherited build and actual human terminal continuation
+- tools/content/session_b_overlay_human_actor17.py
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r17.init.gradle
+- out/session-b/native-r17-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r17
+- out/session-b/duel-query-check/native-opening-combined61-build-r17.log
+- out/session-b/native-duel-apk61-r17-human-acceptance-v1
+- out/session-b/native-r17-host-checks.log
+
+- out/session-b/human-actor-policy-compile-v4
+- out/session-b/human-actor-policy-compile-v4.log
+- out/session-b/human-actor-policy-tests-v4.log
+
+- out/session-b/human-actor-policy-compile-v5
+- out/session-b/human-actor-policy-compile-v5.log
+- out/session-b/human-actor-policy-tests-v5.log
+
+- docs/handoff/20261006/session-b/NATIVE_R17_HUMAN_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R17_HUMAN_ACCEPTANCE.json
+- docs/handoff/20261006/session-b/NATIVE_R17_PRODUCTION_INCREMENT.patch
+- out/session-b/native-r17-increment-manifest.json
+
+- out/session-b/native-r17-patch-check
+- out/session-b/native-r17-patch-check.log
+
+### r18 ordinary continuation visibility repair (B test only)
+- tools/content/session_b_overlay_continuation18.py
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r18.init.gradle
+- out/session-b/native-r18-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r18
+- out/session-b/duel-query-check/native-opening-combined61-build-r18.log
+- out/session-b/native-r18-host-checks.log
+- out/session-b/native-duel-apk61-r18-human-acceptance-v1
+- docs/handoff/20261006/session-b/NATIVE_R18_HUMAN_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R18_HUMAN_ACCEPTANCE.json
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualHumanCampaignProbe.java
+- out/session-b/actual-human-campaign-probe-v1
+- out/session-b/actual-human-campaign-probe-v1.log
+
+- docs/handoff/20261006/session-b/tools/SessionBActualHumanCampaignProbe.java
+
+### Original recruited item recipient and separate captain/ruler callback
+- out/session-b/duel-recruit-item-recipient-source-v1.json
+- out/session-b/duel-recruit-item-recipient-source-v1.partial.json
+- out/session-b/duel-recruit-item-recipient-source-v1.failure.json
+- out/session-b/duel-recruit-item-recipient-source-v1.log
+
+- out/session-b/duel-recruit-item-recipient-source-v2.json
+- out/session-b/duel-recruit-item-recipient-source-v2.partial.json
+- out/session-b/duel-recruit-item-recipient-source-v2.failure.json
+- out/session-b/duel-recruit-item-recipient-source-v2.log
+
+- out/session-b/same-city-recruit-item-callback-source-v1.json
+- out/session-b/same-city-recruit-item-callback-source-v1.failure.json
+- out/session-b/same-city-recruit-item-callback-source-v1.log
+
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualRecruitContinuationProbe.java
+- out/session-b/actual-recruit-continuation-v1
+- out/session-b/actual-recruit-continuation-v1.log
+- out/session-b/actual-recruit-continuation-compile-v1.log
+
+- out/session-b/same-city-recruit-item-callback-source-v2.json
+- out/session-b/same-city-recruit-item-callback-source-v2.failure.json
+- out/session-b/same-city-recruit-item-callback-source-v2.log
+
+- core/src/main/java/game/sanguo/core/PcDuelRecruitItemPolicy.java
+- core/src/test/java/game/sanguo/core/PcDuelRecruitItemPolicyTest.java
+- core/src/test/java/game/sanguo/core/PcDuelRecruitItemCallbackTest.java
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualRecruitItemPolicyTest.java
+- docs/handoff/20261006/session-b/RECRUIT_ITEM_RECIPIENT_BINDING.md
+- out/session-b/recruit-item-policy-compile-v1
+- out/session-b/recruit-item-policy-compile-v1.log
+- out/session-b/recruit-item-policy-tests-v1.log
+- out/session-b/actual-recruit-continuation-compile-v1
+
+- out/session-b/recruit-item-policy-compile-v2
+- out/session-b/recruit-item-policy-compile-v2.log
+- out/session-b/recruit-item-policy-tests-v2.log
+
+- out/session-b/recruit-item-policy-compile-v3
+- out/session-b/recruit-item-policy-compile-v3.log
+- out/session-b/recruit-item-policy-tests-v3.log
+
+### r19 complete inherited candidate and actual item/pending flows
+- tools/content/session_b_overlay_recruit_item19.py
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r19.init.gradle
+- out/session-b/native-r19-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r19
+- out/session-b/duel-query-check/native-opening-combined61-build-r19.log
+- out/session-b/native-r19-host-checks.log
+- out/session-b/native-duel-apk61-r19-item-acceptance-v1
+- out/session-b/native-duel-apk61-r19-pending-acceptance-v1
+- docs/handoff/20261006/session-b/NATIVE_R19_ITEM_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R19_ITEM_ACCEPTANCE.json
+- docs/handoff/20261006/session-b/NATIVE_R19_PRODUCTION_INCREMENT.patch
+- out/session-b/native-r19-increment-manifest.json
+- out/session-b/native-r19-patch-check
+- out/session-b/native-r19-patch-check.log
+
+- docs/handoff/20261006/session-b/tools/RecruitItemCapacityProbe.java
+- out/session-b/recruit-item-capacity-probe-v1
+- out/session-b/recruit-item-capacity-probe-v1.log
+
+- docs/handoff/20261006/session-b/tools/ActualRecruitItemArtifactProbe.java
+- out/session-b/actual-recruit-item-artifacts-v1
+- out/session-b/actual-recruit-item-artifacts-v1.log
+
+- docs/handoff/20261006/session-b/tools/RecruitmentRouteSurvey.java
+- out/session-b/recruitment-route-survey-v1
+- out/session-b/recruitment-route-survey-v1.log
+
+- out/session-b/recruitment-route-survey-v2
+- out/session-b/recruitment-route-survey-v2.log
+
+- docs/handoff/20261006/session-b/tools/ActualBattleRecruitPlan.java
+- out/session-b/actual-battle-recruit-plan-v1
+- out/session-b/actual-battle-recruit-plan-v1.log
+
+- out/session-b/actual-battle-recruit-plan-v2
+- out/session-b/actual-battle-recruit-plan-v2.log
+
+- out/session-b/actual-battle-recruit-plan-v3
+- out/session-b/actual-battle-recruit-plan-v3.log
+
+- out/session-b/source0-ruler-route-status-v1
+- out/session-b/source0-ruler-route-status-v1.log
+
+- out/session-b/actual-battle-recruit-plan-v4
+- out/session-b/actual-battle-recruit-plan-v4.log
+- out/session-b/recruitment-route-survey-v3
+- out/session-b/recruitment-route-survey-v3.log
+
+- out/session-b/actual-battle-recruit-plan-v5
+- out/session-b/actual-battle-recruit-plan-v5.log
+
+- out/session-b/actual-battle-recruit-plan-v6
+- out/session-b/actual-battle-recruit-plan-v6.log
+
+- out/session-b/actual-battle-recruit-plan-v7
+- out/session-b/actual-battle-recruit-plan-v7.log
+
+- out/session-b/actual-battle-recruit-plan-v8
+- out/session-b/actual-battle-recruit-plan-v8.log
+
+- docs/handoff/20261006/session-b/tools/SourceCampaignRecruitPlan.java
+- out/session-b/source-campaign-recruit-plan-v1
+- out/session-b/source-campaign-recruit-plan-v1.log
+
+- docs/handoff/20261006/session-b/tools/WanDeploymentSurvey.java
+- out/session-b/wan-deployment-survey-v1
+- out/session-b/wan-deployment-survey-v1.log
+
+- out/session-b/source-campaign-recruit-plan-v2
+- out/session-b/source-campaign-recruit-plan-v2.log
+
+- out/session-b/source-campaign-recruit-plan-v3
+- out/session-b/source-campaign-recruit-plan-v3.log
+
+- out/session-b/actual-battle-recruit-plan-v9
+- out/session-b/actual-battle-recruit-plan-v9.log
+
+- docs/handoff/20261006/session-b/tools/ConstructionCampaignProbe.java
+- out/session-b/construction-campaign-probe-v1
+- out/session-b/construction-campaign-probe-v1.log
+
+- out/session-b/actual-battle-recruit-plan-v10
+- out/session-b/actual-battle-recruit-plan-v10.log
+
+- out/session-b/actual-battle-recruit-plan-v11
+- out/session-b/actual-battle-recruit-plan-v11.log
+
+- out/session-b/ji-deployment-survey-v1
+- out/session-b/ji-deployment-survey-v1.log
+
+- out/session-b/ji-deployment-survey-v2
+- out/session-b/ji-deployment-survey-v2.log
+- out/session-b/source-campaign-recruit-plan-v4
+- out/session-b/source-campaign-recruit-plan-v4.log
+
+### r20 actual ordinary source0 LiuYan three-person recruitment route (test-only)
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r20.init.gradle
+- docs/handoff/20261006/session-b/tools/prepare_r20.py
+- out/session-b/native-r20-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r20
+- out/session-b/duel-query-check/native-opening-combined61-build-r20.log
+- out/session-b/native-duel-apk61-r20-ji-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r20-ji-acceptance-v1.log
+- docs/handoff/20261006/session-b/NATIVE_R20_ROUTE_STATUS.md
+Exact r19 inheritance; production rule files unchanged. Only B test runner/init/verifier/freeze tools change; no A paths, no Host save injection. Menu seed remains actual. Success must be observed, not forced; failure retained.
+
+- out/session-b/duel-query-check/native-opening-combined61-build-r20-failed-v1.log
+
+### Positive Host route read-only return verification
+- docs/handoff/20261006/session-b/tools/RecruitReturnArtifactProbe.java
+- out/session-b/recruit-return-host-artifacts-v1
+- out/session-b/recruit-return-host-artifacts-v1.log
+
+### r20 real turn18 failure read-only reproduction
+- docs/handoff/20261006/session-b/tools/ActualTurnFailureProbe.java
+- out/session-b/actual-turn18-failure-v1
+- out/session-b/actual-turn18-failure-v1.log
+
+### r21 precise real turn19 continuation and main-thread acceptance observation
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r21.init.gradle
+- out/session-b/native-r21-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r21
+- out/session-b/duel-query-check/native-opening-combined61-build-r21.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r21.log
+- out/session-b/native-duel-apk61-r21-ji-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r21-ji-acceptance-v1.log
+No production/A change: read-only consistent main-thread turnWork/turn observation; only exact r20 actual8a15... ordinary slot continuation, never Host saves. Natural already-terminal admission retained and saved, no forced human-input.
+
+### r21 read-only actual three-person terminal diagnostics
+- docs/handoff/20261006/session-b/tools/ActualThreePersonCampaignProbe.java
+- out/session-b/actual-three-person-campaign-v1
+- out/session-b/actual-three-person-campaign-v1.log
+
+### Original physical-health recovery source candidates after actual r21
+- tools/content/session_b_pc_physical_health_xrefs.py
+- out/session-b/physical-health-xrefs-source-v1.json
+- out/session-b/physical-health-xrefs-source-v1.log
+- out/session-b/recruit-return-host-name-v2.log
+- docs/handoff/20261006/session-b/NATIVE_R21_BOUNDED_STATUS.md
+- out/session-b/physical-health-xrefs-source-v2.log
+- out/session-b/physical-health-writer-context-v1.json
+- out/session-b/physical-health-writer-context-v1.log
+- out/session-b/physical-health-xrefs-source-v2.json
+- out/session-b/physical-health-xrefs-source-v3.log
+- tools/content/session_b_pc_physical_health_recovery.py
+- out/session-b/physical-health-recovery-context-v1.json
+- out/session-b/physical-health-recovery-context-v1.log
+- out/session-b/physical-health-recovery-context-v2.json
+- out/session-b/physical-health-recovery-context-v2.log
+- out/session-b/physical-health-recovery-context-v3.json
+- out/session-b/physical-health-recovery-context-v3.log
+- tools/content/session_b_pc_physical_health_controller.py
+- out/session-b/physical-health-controller-source-v1.json
+- out/session-b/physical-health-controller-source-v1.failure.json
+- out/session-b/physical-health-controller-source-v1.log
+- out/session-b/physical-health-controller-source-v2.json
+- out/session-b/physical-health-controller-source-v2.failure.json
+- out/session-b/physical-health-controller-source-v2.log
+
+### Exact actual r21 accepted battle legal human swap strategy planning
+- docs/handoff/20261006/session-b/tools/ActualThreePersonStrategyPlan.java
+- out/session-b/actual-three-person-strategy-v1
+- out/session-b/actual-three-person-strategy-v1.log
+- out/session-b/actual-three-person-strategy-v2
+- out/session-b/actual-three-person-strategy-v2.log
+- out/session-b/actual-three-person-strategy-v3
+- out/session-b/actual-three-person-strategy-v3.log
+
+### r22 real accepted three-person battle UI swap/critical continuation
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r22.init.gradle
+- out/session-b/native-r22-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r22
+- out/session-b/duel-query-check/native-opening-combined61-build-r22.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r22.log
+- out/session-b/native-duel-apk61-r22-swap-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r22-swap-acceptance-v1.log
+- docs/handoff/20261006/session-b/NATIVE_R22_SWAP_STATUS.md
+Test-only B exact r21 accepted battleb81... ordinary slot; enabled replacement/critical by readonly fighter stableID; natural loss/refusal retained; no production/A/Bridge/JNI changes.
+- tools/content/session_b_pc_physical_health_loop.py
+- out/session-b/physical-health-loop-source0-v1.json
+- out/session-b/physical-health-loop-source0-v1.failure.json
+- out/session-b/physical-health-loop-source0-v1.log
+- out/session-b/physical-health-loop-source0-v2.json
+- out/session-b/physical-health-loop-source0-v2.failure.json
+- out/session-b/physical-health-loop-source0-v2.log
+
+### r23 real normal special-action picker mapping
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r23.init.gradle
+- out/session-b/native-r23-overlay-manifest.json
+- out/session-b/native-opening-combined61-frozen-r23
+- out/session-b/duel-query-check/native-opening-combined61-build-r23.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r23.log
+- out/session-b/native-duel-apk61-r23-swap-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r23-swap-acceptance-v1.log
+r22 test stopped after installed readback because test mapped phase3 special label before picker; root production already correct. r23 test-only mapping uses normal picker then exact enabled move.
+
+### r22 interrupted supervisor restoration recovery (before further installs)
+- tools/content/session_b_restore_acceptance.py
+- out/session-b/native-duel-apk61-r22-swap-acceptance-v1/internal-post-test-recovery.tar
+- out/session-b/native-duel-apk61-r22-swap-acceptance-v1/external-post-test-recovery.tar
+- out/session-b/native-duel-apk61-r22-swap-acceptance-v1/internal-restored-recovery.tar
+- out/session-b/native-duel-apk61-r22-swap-acceptance-v1/external-restored-recovery.tar
+- out/session-b/native-duel-apk61-r22-swap-acceptance-v1/restoration-recovery.json
+- out/session-b/duel-query-check/native-r22-restoration-recovery.log
+- docs/handoff/20261006/session-b/tools/ActualSwapWinArtifactProbe.java
+- out/session-b/actual-swap-win-artifacts-v1
+- out/session-b/actual-swap-win-artifacts-v1.log
+- docs/handoff/20261006/session-b/tools/ActualSwapTurnReplayProbe.java
+- out/session-b/actual-swap-turn-replay-v1
+- out/session-b/actual-swap-turn-replay-v1.log
+- out/session-b/actual-swap-win-artifacts-v2
+- out/session-b/actual-swap-win-artifacts-v2.log
+- docs/handoff/20261006/session-b/NATIVE_R23_SWAP_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R23_SWAP_ACCEPTANCE.json
+
+### Physical recovery phase/status proof before production integration
+- tools/content/session_b_pc_physical_health_phase.py
+- out/session-b/physical-health-phase-source-v1.json
+- out/session-b/physical-health-phase-source-v1.failure.json
+- out/session-b/physical-health-phase-source-v1.log
+- docs/handoff/20261006/session-b/PHYSICAL_HEALTH_RECOVERY_STRATEGY.md
+- core/src/main/java/game/sanguo/core/PcDuelPhysicalRecoveryPolicy.java
+- core/src/test/java/game/sanguo/core/PcDuelPhysicalRecoveryPolicyTest.java
+- game-runtime/src/test/java/game/sanguo/core/SessionBActualPhysicalRecoveryTest.java
+Owned B exact paths; separate saved capability, no old load upgrade. Original phase/status oracle must precede implementation and independent APK acceptance.
+- out/session-b/physical-health-phase-source-v2.json
+- out/session-b/physical-health-phase-source-v2.failure.json
+- out/session-b/physical-health-phase-source-v2.log
+- out/session-b/native-r24-overlay-manifest.json
+- out/session-b/duel-query-check/physical-recovery-compile-v1.log
+- out/session-b/duel-query-check/physical-recovery-policy-v1.log
+- out/session-b/duel-query-check/physical-recovery-session-v1.log
+- out/session-b/duel-query-check/physical-recovery-policy-v2.log
+- out/session-b/duel-query-check/physical-recovery-session-v2.log
+- out/session-b/duel-query-check/physical-recovery-compile-v2.log
+
+### r24 actual old-terminal physical recovery adoption and normal turns
+- docs/handoff/20261006/session-b/native-opening-acceptance61-r24.init.gradle
+- out/session-b/native-opening-combined61-frozen-r24
+- out/session-b/duel-query-check/native-opening-combined61-build-r24.log
+- out/session-b/duel-query-check/native-opening-combined61-freeze-r24.log
+- out/session-b/native-duel-apk61-r24-recovery-acceptance-v1
+- out/session-b/duel-query-check/native-duel-apk61-r24-recovery-acceptance-v1.log
+- docs/handoff/20261006/session-b/NATIVE_R24_RECOVERY_ACCEPTANCE.md
+- docs/handoff/20261006/session-b/NATIVE_R24_RECOVERY_ACCEPTANCE.json
+Exact real r21 a1e304 terminal ordinary load, new independent future recovery only; cancel/double/model/RNG/currentHP unchanged, next3 fullturn actual source health and response eligibility/cold/full restore. No A files or original JNI edits.

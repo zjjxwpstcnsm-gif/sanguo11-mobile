@@ -1,0 +1,11 @@
+# original newgame option callbacks ec3aa4c89e4edd0a78f4b7c92031e09ff0f46036f3a52c51034c18f0323539fc
+# executable 30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb
+difficulty	0	初級	aaecafc5	280	0x214	0x20
+difficulty	1	上級	a457afc5	289	0x214	0x20
+difficulty	2	超級	b657afc5	281	0x214	0x20
+death	0	無	b54c	282	0x218	0x24
+death	1	標準	bcd0b7c7	283	0x218	0x24
+death	2	多	a668	284	0x218	0x24
+life	0	史實	a576b9ea	309	0x22c	0x38
+life	1	長壽	aaf8b9d8	315	0x22c	0x38
+life	2	假想	b0b2b751	316	0x22c	0x38

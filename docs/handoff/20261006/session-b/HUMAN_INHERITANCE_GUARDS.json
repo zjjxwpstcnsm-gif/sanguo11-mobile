@@ -1,0 +1,68 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "complete": false,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelCampaign.java": "78dc6d2553d06cc86dc89b78dfbb9be978b447b134a91888762bd1e409480b9c",
+    "core/src/main/java/game/sanguo/core/PcDuelSettlement.java": "a5f0556cda2b2739a1575186bce2d1f462573a0956ca4534d3ada8ef927a6d7e",
+    "core/src/main/java/game/sanguo/core/PcDuelExecution.java": "d7053fe3c1b44b3918abc54150bb742b5fa53f0b4faeb4fc19e00f21a7108faf",
+    "core/src/main/java/game/sanguo/core/PcRulerCoronation.java": "96df999f818ff53d8158575a2ec9baa5f4b1c2d9bb44cf8dd4c9fa9eef2d4a69",
+    "core/src/main/java/game/sanguo/core/Contests.java": "195b209273dcfcebbc35076ef42573005aee65e410fb0f7858603b3280900921",
+    "core/src/main/java/game/sanguo/core/OfficerAbilities.java": "5d9e6fea2f642593a456f925bee19ccde5d5f0c08c866bc7d2ce74bc824a8019",
+    "game-api/src/main/java/game/sanguo/api/ContestCommand.java": "214b2f7f5570d5f7174a2cfb2e442683350b9f6c25724d46cba08219fb08d02a",
+    "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java": "c82128ce12096c1a11ae8b3d4068f558a2cafb11600cfc8ea0861f94bd8a719c",
+    "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java": "a2c1edac15f3351067c8960fe792125dbfeb9d77577269efe6c55a1d0fd8af48",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java": "6bb8f4fe32c3209a17d323bbc8df50545ff89fbb5544dbd9a2b4b818a3c95578",
+    "app/src/main/java/game/sanguo/mobile/ContestUi.java": "749e9dfcecabebdaf5e77ce621e3bffe60c12142579e06362a9015386d6e8b1f",
+    "core/src/test/java/game/sanguo/core/PcRulerHumanSelectionTest.java": "3d31382920715a3ede72c6a4ddf3769c428fb8a2fb414023c03a53543e67883c",
+    "core/src/test/java/game/sanguo/core/PcDuelHeirSaveCompatibilityTest.java": "b1bef9020f3985b5db076297161ae197bedfd2dc852859720667a365c0688424",
+    "core/src/test/java/game/sanguo/core/PcRulerParentExecutionTest.java": "7963798a95f9e313c64243f004e2bfb9eda9f18950eb504c024258164bd724e8",
+    "game-runtime/src/test/java/game/sanguo/core/PcRulerHumanInheritanceSessionTest.java": "e78e69b64208abf670035ec36e986a6aca6e9ee89447f25efa6d36578522d740",
+    "tools/content/session_b_pc_ruler_human_selection.py": "bacb99a9f46185853188dba8dce93f34571cde2d6687d94fb40d77bc56ddd137",
+    "tools/content/session_b_pc_duel_campaign_probe.py": "e197c2fb5405412f8d3aed4fa3e8ba380028edc1312fa63932910707720594a8",
+    "tools/content/session_b_pc_duel_successors.py": "a5f28b8d0e1255d4bb812a8174b0625b5b524171d95b4e55de4724f33552e883",
+    "out/session-b/ruler-human-selection-source0-v3.json": "7a731cfa6515b7e4661b9ae93680a116ce343c8638210ed8652df3d3dff72644",
+    "out/session-b/ruler-kin-execute-source0-v2.json": "ecbb0520dcc238254b1e3d4b220412bddd616f48b6ee0b44d4ba7c2675d0c630",
+    "out/session-b/duel-succession-source-v11.json": "97355d65312e98d6f74d9af4466154efefc8b4540387ccf672b8ff2c4c3f66b4",
+    "out/session-b/duel-query-check/human-inheritance-formal-session-v3.log": "945d89cf2a4755bcc004cd7175786022631c80056e949362166140701bdbca37",
+    "out/session-b/duel-query-check/human-inheritance-parent-v2.log": "669619fd59fc3225888471439d4c3fa33551d02f8f96b725f288b2ea1cc870f9",
+    "out/session-b/duel-query-check/human-inheritance-selector-v1.log": "f944c96610b4e1d14a25dce2831266921187193c867a240332b4c0d28f42bf14",
+    "out/session-b/duel-query-check/human-inheritance-save-v2.log": "95bf030d8ba6873365a666f831485dabff8b2f2e2542ba22f12d427db929f3e4",
+    "out/session-b/duel-query-check/human-inheritance-legacy39-v1.log": "fdb289ca94ddd544bc6b23e1650e9f39d63c96ba753e9862e6befcd37d4a17da",
+    "out/session-b/duel-query-check/human-inheritance-game-session-v1.log": "847023053ad7fc2fe52a04885e24ec274a132f687df4070acdf8403c3a0aea4c",
+    "out/session-b/human-inheritance-formal-v6.log": "31ebc9972d6ece96b7ed7323015b0a41938ea9edf1ed23945234316d4d9f7156",
+    "out/session-b/human-legacy39-baseline.sg11": "05d36bb964bb4a618e0391a80845bd05531574ecae44ce93309ce42cb2faaa2d",
+    "out/session-b/human-legacy39-current.sg11": "05d36bb964bb4a618e0391a80845bd05531574ecae44ce93309ce42cb2faaa2d"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "checks": [
+    "fulloriginal humanselector/8currentrosterinput",
+    "naturalactualAIEXEC/human111notdefault176/pending6/foreign-stale-double-purity/cold/fourwholeturns389",
+    "originalparent493/child133/item0loot/fullcurrent687",
+    "oldformat5actualcheckpointbyteexact/noheirbackfill",
+    "genuine39alloriginalfields/nativegzip3104payload exact/completed895canonical identical155sourceblobs",
+    "genuine39PDC1humanterminal/threewholeturns55",
+    "coronation28/cross896/GameSession1690/frozenbridge",
+    "formalapp/API/core/runtime28tasks/architecture/168fixed"
+  ],
+  "failedEvidencePreserved": [
+    "wrongforce+128 humanfixturev1/v2",
+    "cachedoldAPI manualcompile/stale-run notaccepted",
+    "naturalLOSScapture0 notassumedEXEC",
+    "parentItem staleobject assertion fixedto current stableID"
+  ],
+  "limits": [
+    "No newAPK/install/userdevice changes in this batch",
+    "NormalMainActivity newgame3arg remainsnotconfigured fornativeDuel; A path notedited",
+    "Swornanchor/remaininginheritanceitems/emptyforce/deployedheir/imperialcurrentcourt pending",
+    "Full16source normalmenus/validactivatedofficers/old31-39custom/ARM/U01 remain",
+    "NativeWIP notcommitted as completedbatch"
+  ],
+  "ownJobs": "allterminal"
+}

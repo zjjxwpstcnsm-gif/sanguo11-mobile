@@ -1,0 +1,103 @@
+{
+  "commonMain": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "completedFullMainAtVerification": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "bHead": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "scope": "Completed military normal Android acceptance of immutable mixed-source candidate r9, not a completed native-duel release/integration batch",
+  "androidSerial": "emulator-5582",
+  "androidApi": 29,
+  "abi": "x86_64",
+  "actualResultPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/results.json",
+  "actualResultSha256": "3534cdff16b70670208b8fcc5f850ce85ae9dab53dbd79838c62b391c909badc",
+  "frozenReportPath": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r9/frozen-report.json",
+  "frozenReportSha256": "3948e8111e158a96a61efc122609bd6afa6f809f16416938c52a1b8c65367bfb",
+  "gameApkSha256": "6b281c714cda67fb7352ae6b5a4a42ed8adea50d2cee42904724c196165802c1",
+  "testApkSha256": "7709293047831910adf1263180295b66f988437660583670d94de0e140998c81",
+  "fullSourceArchiveSha256": "d6a17c841524ba9c6eeb302020fcdc4d6bf2850863d6debaf7ac3578e6645560",
+  "normalPassed": true,
+  "coldPassed": true,
+  "restoration": {
+    "internal": {
+      "originalFiles": 15,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "removedTestFiles": [
+        "./cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin",
+        "./files/customOfficers/library.json",
+        "./shared_prefs/map-display.xml"
+      ],
+      "preservedAdditionalFiles": []
+    },
+    "external": {
+      "originalFiles": 772,
+      "shaReadbackMatches": true,
+      "mismatches": [],
+      "removedTestFiles": [
+        "./files/session-b/fieldworks-cold/01-cold-process-resume.png",
+        "./files/session-b/fieldworks-cold/diagnosis.txt",
+        "./files/session-b/fieldworks-cold/progress.txt",
+        "./files/session-b/fieldworks-cold/result.txt",
+        "./files/session-b/fieldworks-cold/scene-facts-cold-restored.json",
+        "./files/session-b/fieldworks/01-source-new-game.png",
+        "./files/session-b/fieldworks/02-initial-build-targets.png",
+        "./files/session-b/fieldworks/02a-city-center-funding.png",
+        "./files/session-b/fieldworks/02b-city-near-wall.png",
+        "./files/session-b/fieldworks/03-legal-confirm.png",
+        "./files/session-b/fieldworks/04-real-construction.png",
+        "./files/session-b/fieldworks/04a-stopped-shell.png",
+        "./files/session-b/fieldworks/04b-resumed-repair.png",
+        "./files/session-b/fieldworks/05-completed.png",
+        "./files/session-b/fieldworks/actual-build.sg11",
+        "./files/session-b/fieldworks/diagnosis.txt",
+        "./files/session-b/fieldworks/progress.txt",
+        "./files/session-b/fieldworks/result.txt",
+        "./files/session-b/fieldworks/scene-facts-actual-build.json",
+        "./files/session-b/fieldworks/scene-facts-resumed-repair.json",
+        "./files/session-b/fieldworks/scene-facts-source-new.json",
+        "./files/session-b/fieldworks/turn-camp-construction-2-foreground120s.png"
+      ],
+      "preservedAdditionalFiles": []
+    }
+  },
+  "removedAuthoredSourceCaches": [
+    {
+      "path": "cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin",
+      "bytes": 158192,
+      "sha256": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",
+      "source": "PcEffectProcess.verifiedAsset; absent-before/postarchive/live/APK asset exact"
+    }
+  ],
+  "sourceId": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+  "actualFrames": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/02a-city-center-funding.png",
+      "sha256": "9161a8d0044c8c7a48903a106a3963ddf9d90c677522487500a6506be6001593"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/02b-city-near-wall.png",
+      "sha256": "53cd5891857efcdec21d31e55054fced75ad06ed46315334e73ba00f2f2bc603"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/03-legal-confirm.png",
+      "sha256": "b46b07745cf6672de8cc7e7ef6a04ff40f308f9a65dd312c3d9ae546f2cdbfab"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/04b-resumed-repair.png",
+      "sha256": "4ab94460a4735d7c4da940df700ca114637e85f388e3de1461ab7a0fb64fa78f"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/05-completed.png",
+      "sha256": "efe33d2d039308592e65e4a4b7d28e2757906f2f0b93bdde8b168afc0f47c0bc"
+    }
+  ],
+  "originalFourJniAnd168ResourcesUnchanged": true,
+  "aCompletedAdditionalTwoJniPinned": true,
+  "armVerified": false,
+  "wholeGoalComplete": false,
+  "remaining": [
+    "native-duel actual normal terminal/concede/full contest callbacks",
+    "all16 full scenarios/effective people fields/events",
+    "all normal command pages/legacy31-39/custom full matrix",
+    "military gate-port/destruction/all sources matrix",
+    "Unity U01 actual version binding and ARM"
+  ]
+}

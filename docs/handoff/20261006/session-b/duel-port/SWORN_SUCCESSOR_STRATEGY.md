@@ -1,0 +1,13 @@
+# 当次继承人位于剩余结义组：实现前策略
+
+先读取完整原二次登位614→source0三人组成员→另一合法组员，再原清理死亡君主。冻结现有护栏直到六个完整4b78f0/4acae0序列证明顺序和数值。预览必须按待登位身份、无官职加成的当前能力、第一轮weighted1结果，再算4ab770的weighted0和max旧raw；不能先更改World角色再运行预览，也不能把原raw150改成显示100。来源snapshot及旧策略保持不变。后续正式GameSession/人控选择/多旬/Save/RNG、普通新局菜单和APK分别验收，不把声明合法继承输入称为原GUI或正常部署。
+
+完整原六二次登位/清理receipt SHA bfcc0f6111e2d8a3ab69107fa5ecdfec0151ca9650718afc2fa6178cea3cd427，1100人物前后/零函数省略/全World和RNG恢复。原weighted1包含暂时降级的死亡君主而排除新君主，再weighted0只写剩余同势力非君主；死亡君主最终raw0，新君主保留raw150。当前计划使用完整PcRulerCoronation.Plan的投影忠诚和无官职加成魅力、投影君主身份排序，按实际crown→sworn→lifecycle顺序一次写入。未知有效性/额外NPC/旧策略保持既有护栏。
+
+## 当前验收与真实未完成
+
+六完整原双登位回调/当前生产4141检查通过；fresh原普通组6098/幸存君主4087/旧format5+genuine39/selector8/GameSession1690/formal28task/架构168输入也通过。当前未来君主计划已接入正式死亡，不由预览先改角色或RNG。
+
+连续自然战役尚未完成双EXECUTE：365原WAR90对614原WAR36应战0，seed28–104均真实拒绝后精确终止自己Java进程，不改原规则。合法原候补377孫靜WAR51应战8；seed49真实终局保存因测试用了cold前StateToken失败，旧token被真实拒绝，修正后按保存完整续行；两份fault2/3逐SHA相同a06f6083...。seed57自然52输入产生614刘焉死亡、当前AI刘备635继承，真实完整AI旬后派出登用公孙度3旬，按真实登用/返程最终turn4回来；没有清任务/强置部队。当前第二候补355WAR71对635WAR70应战20，seed57自然58输入无捕获，正常终局完整结算。自然种子矩阵v5/v6到127未找到双处斩，绝不宣布此完整流程通过。预第二场的全World/双RNG原checkpoint为sworn-double-battle-second-ready-v1.sg11。
+
+初始默认继承者624刘璋的当前captivity与相邻encounter单位为声明夹具，原正常捕获/出征/新菜单/实际APK仍必须独立补验。只读checkpoint显示刘备派差为真实可用性限制，不将此非bug修改成闲置。人物vtable79c780原virtual8=488430已完整读到RET：status6/8被排除（除非17c非零），status4俘虏可有效；原俘虏owner/17c绑定仍未闭合，继续guard。最新逐文件/SHA/JNI/old609dirty/Areadonly状态见SWORN_SUCCESSOR_GUARDS.json。

@@ -91,7 +91,7 @@ public final class Relations {
         switch(kind){
             case FATHER:p.father=b;break;case MOTHER:p.mother=b;break;
             case SPOUSE:p.spouse=b;person(b).spouse=a;break;
-            case SWORN:Set<Integer> group=swornGroup(a,b);for(int x:group){person(x).sworn.addAll(group);person(x).sworn.remove(x);}break;
+            case SWORN:Set<Integer> group=swornGroup(a,b);PcDuelSwornPolicy.invalidate(w,group);for(int x:group){person(x).sworn.addAll(group);person(x).sworn.remove(x);}break;
             case LIKE:p.likes.add(b);break;case DISLIKE:p.dislikes.add(b);break;
         }
         if(kind==Kind.SPOUSE)w.officerAbilities.refresh();
@@ -100,7 +100,7 @@ public final class Relations {
         Person p=people.get(a);if(p==null)return;
         switch(kind){case FATHER:p.father=-1;break;case MOTHER:p.mother=-1;break;
             case SPOUSE:p.spouse=-1;person(b).spouse=-1;break;
-            case SWORN:for(int member:new ArrayList<>(p.sworn))person(member).sworn.remove(a);p.sworn.clear();break;
+            case SWORN:Set<Integer> affected=new TreeSet<>(p.sworn);affected.add(a);PcDuelSwornPolicy.invalidate(w,affected);for(int member:new ArrayList<>(p.sworn))person(member).sworn.remove(a);p.sworn.clear();break;
             case LIKE:p.likes.remove(b);break;case DISLIKE:p.dislikes.remove(b);break;}
         if(kind==Kind.SPOUSE)w.officerAbilities.refresh();
     }

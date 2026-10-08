@@ -1,0 +1,24 @@
+# 首次启动无战役状态的新局来源选项契约
+
+A204/216只读审查指出：当前GameApi.pcOpeningOptions(sourceId)依赖已有GameSession和非空StateToken，首次启动没有World/session时不能绑定正常来源选项。不得创建dummy World/Token、从存档或下拉position0猜默认。本后继解决该实际接线缺口，不扩大已证实的原菜单/来源覆盖范围。
+
+实施策略：新增独立game-api PcNewGameOptionsSnapshot，只承载确切scenarioId/path/sourceVariant/sourceSHA/sharedSHA/unknown及原选项文本/控件/来源flag约束。没有StateToken，没有已存设置或新局默认。GameSession.previewNewSourceOptions(sourceId)是静态只读目录入口，经现有PcOpeningOptionsQuery读取已验证目录/header/menu资源；不创建World、session、保存策略或RNG。既有PcOpeningOptionsSnapshot非空StateToken构造器和已有GameApi实例方法保持原行为，不能引入可空token混合协议。
+
+A在首次来源选择按该DTO的scenarioId/SHA/Shared/sourceVariant与picker generation绑定draft，三个非约束域从明确未选开始；来源flag1寿命fixedMenuValue2是原约束，不是默认。存在战役时的已有同StateToken接口仍可用；切源/取消只丢draft。确认按原choice.value调用PcDuelOptions.fromMenu(life,death,difficulty)和确切PcScenarioCatalog四参新局工厂，既有旧档/三参工程及来源工厂不回填PDU/来源选项。A拥有MainActivity/picker；B不编辑其文件，冻结接口之后由A出唯一增量，再顺序接回B实际APK验收。
+
+实施前SHA：
+- game-runtime/src/main/java/game/sanguo/runtime/GameSession.java 49266f3da09dc0a191132dd6ddd2e81c8d30ccffdec51e786029db2b5d245da8
+- game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java 17b52c7ab2cccc9efa5ba241c2a3f7932080ad49fa8016c4dc07342e4dd23fb2
+- game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java 94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4
+
+默认、完整4a42d0/实际GUI、原startup RNG/事件/AP/全部出场策略仍未知或未完成；原flag/table证据不当完整剧本开局或APK验收。新增API无BridgeJSON/Unity/JNI/Save字段变化，先做首次无session/all16/取消/当前忙对局与真实旧39保存纯性验证，再交A具体接口。
+
+## 当前实现与验证
+
+GameSession.previewNewSourceOptions(String scenarioId)返回独立PcNewGameOptionsSnapshot；没有session、World或StateToken参数。runtime PcOpeningOptionsQuery.newGame读取固定catalog/header/menu，给出确切来源身份/SHA/Shared/variant/unknown，三个Group与已有same-state preview共享同一纯分组实现。旧PcOpeningOptionsSnapshot的Objects.requireNonNull(state)未动，GameApi实例接口保留原要求。没有Save/BridgeJSON/Unity/JNI/旧策略变更。
+
+独立进程在任何World/GameSession/StateToken创建前遍历16来源，来源id/path/SHA/unknown/flag与原已验证catalog/header连接完全匹配，无四选项/ordinal推断；源flag1只有life固定2，非约束域未选、savedValue皆null。切源/丢draft后真正已存format5对局全World/双RNG/StateToken纯，真实39按独立完成基线保持原全部字段/策略/既有gzip OS/CRC边界；不可变列表与null token旧护栏均验证。536检查通过。既有菜单439、来源preview151、实际format5/genuine39完整字节兼容、Session1690、正确Bridge/架构/168当前回归全通过。
+
+Android编译28tasks/27s通过。最初normal-deployed测试lambda非final编译拒绝，修正测试观察变量后15s/5tasks通过；后续first-launch compile-v1被新续行测试局部own变量作用域错误阻断，未放松生产，修正后compile-v2通过，原失败日志保留。接口实现仍在本B工作分支，Native整批未冻结或提交；正常A首次菜单、实际新局、APK和其余验收未完成，不能将536当UI通过。
+
+A精确接法（B不改A文件）：首次启动无session时读取GameSession.previewNewSourceOptions(source.identity.scenarioId)，按snapshot.scenarioId/sourceSha/sharedSha/sourceVariant与picker generation绑定draft；有已有session的相同来源preview继续可使用GameApi.pcOpeningOptions(id)。保留未选状态，不制造StateToken或从旧局读默认。确认值来自Group.choices.value；完成冻结后A修改MainActivity/ScenarioFactionPicker唯一所有权路径，B顺序接其冻结增量，再独立构建、实装、正常菜单/保存恢复。

@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.view.*;
 import android.widget.*;
 import game.sanguo.core.*;
+import game.sanguo.api.PcNewGameOptionsSnapshot;
+import game.sanguo.api.PcOpeningOptionsSnapshot;
 import java.util.*;
 import java.util.function.IntConsumer;
 import java.util.function.IntFunction;
@@ -15,12 +17,16 @@ final class ScenarioFactionPicker {
     private final MainActivity a;private final World w;private final IntConsumer choose;
     private final RealmOverview overview;private final Dialog dialog;
     private final MapHost map;private final TextView summary;private final ImageView portrait;
-    private final Button start,details;private final List<Button> chips=new ArrayList<>();
+    private final Button start,details,openingSettings;private final List<Button> chips=new ArrayList<>();
     private int selected;
     private boolean modeChosen,accepted,confirming,previewReleased;
     private IntFunction<String> confirmation;
     private Runnable back;
     private AlertDialog confirmationDialog;
+    private AlertDialog openingDialog;
+    private PcNewGameOptionsSnapshot openingFacts;
+    private PcDuelOptions openingOptions;
+    private Map<String,Integer> openingChoices=Map.of();
     private String officerTextSource;
     private String officerTextLabel="沿用工程资料";
     private WindowSurfaceRecovery windowSurfaceRecovery;
@@ -59,6 +65,9 @@ final class ScenarioFactionPicker {
             officerTextSource=source==null?null:source.id;officerTextLabel=source==null?"沿用工程资料":source.label();
             textSource.setText("人物文字资料："+officerTextLabel);
         }));root.addView(textSource,new LinearLayout.LayoutParams(-1,a.dp(48)));
+        openingSettings=a.button("原新局设置：沿用现有开局",v->showOpeningSettings());
+        openingSettings.setContentDescription("选择原新局设置");openingSettings.setTag("pc.opening.options");openingSettings.setVisibility(View.GONE);
+        root.addView(openingSettings,new LinearLayout.LayoutParams(-1,a.dp(48)));
         start=a.button("",v->accept(selected));start.setSelected(true);root.addView(start,new LinearLayout.LayoutParams(-1,a.dp(50)));
         dialog.setContentView(root);
         dialog.setOnCancelListener(d->{closePreview("cancel");if(back!=null)back.run();});
@@ -68,6 +77,61 @@ final class ScenarioFactionPicker {
     private boolean sourceOpening(){return PcScenarioIdentity.DATA_SOURCE.equals(w.dataSource);}
     private boolean selectable(int side){return w.alive(side)&&(!sourceOpening()||side<42);}
     private boolean pcOpening(){return NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty();}
+    ScenarioFactionPicker openingFacts(PcNewGameOptionsSnapshot facts){
+        if(facts!=null&&!w.scenarioId.equals(facts.scenarioId))throw new IllegalArgumentException("新局来源已变化");
+        openingFacts=facts;openingSettings.setVisibility(facts==null?View.GONE:View.VISIBLE);refreshOpeningStart();return this;
+    }
+    PcDuelOptions openingOptions(){return openingOptions;}
+    private String selectedLabel(PcOpeningOptionsSnapshot.Group group,Map<String,Integer> values){
+        Integer value=values.get(group.id);if(value==null)return "未选择";
+        return group.choices.stream().filter(c->c.value==value).map(c->c.label).findFirst().orElseThrow();
+    }
+    String openingSummary(){
+        if(openingFacts==null||openingOptions==null)return "";
+        StringBuilder summary=new StringBuilder("\n新局设置：");
+        for(var group:openingFacts.groups)summary.append(group.title).append(" ").append(selectedLabel(group,openingChoices)).append(group.fixedMenuValue!=null?"（原剧本固定）":"").append(" · ");
+        if(openingFacts.sourceFlag18!=0)summary.append("寿命按原剧本固定规则生效");
+        return summary.toString();
+    }
+    private void showOpeningSettings(){
+        if(openingFacts==null||accepted||confirming||previewReleased)return;
+        final PcNewGameOptionsSnapshot facts=openingFacts;
+        Map<String,Integer> draft=new HashMap<>(openingChoices);
+        LinearLayout rows=new LinearLayout(a);rows.setOrientation(LinearLayout.VERTICAL);rows.setPadding(a.dp(16),a.dp(8),a.dp(16),a.dp(8));
+        rows.addView(a.text("请明确选择本次新局设置",14,a.paper));
+        final Map<String,TextView> labels=new HashMap<>();
+        final Map<String,Map<Integer,Button>> choiceButtons=new HashMap<>();
+        final AlertDialog[] holder=new AlertDialog[1];
+        Runnable refresh=()->{
+            for(var group:facts.groups){
+                labels.get(group.id).setText(group.title+"："+selectedLabel(group,draft)+(group.fixedMenuValue!=null?"（原剧本固定）":""));
+                for(var entry:choiceButtons.get(group.id).entrySet())entry.getValue().setSelected(Objects.equals(draft.get(group.id),entry.getKey()));
+            }
+            if(holder[0]!=null)holder[0].getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(facts.groups.stream().allMatch(g->draft.containsKey(g.id)));
+        };
+        for(var group:facts.groups){
+            if(group.fixedMenuValue!=null)draft.put(group.id,group.fixedMenuValue);
+            TextView label=a.text("",14,a.paper);labels.put(group.id,label);rows.addView(label);
+            LinearLayout choices=new LinearLayout(a);rows.addView(choices);choiceButtons.put(group.id,new HashMap<>());
+            for(var choice:group.choices){Button option=a.button(choice.label,v->{draft.put(group.id,choice.value);refresh.run();});
+                option.setContentDescription("新局设置 "+group.id+" "+choice.value+" "+choice.label);
+                option.setTag("pc.opening."+group.id+"."+choice.value);
+                option.setEnabled(group.fixedMenuValue==null);choiceButtons.get(group.id).put(choice.value,option);
+                choices.addView(option,new LinearLayout.LayoutParams(0,a.dp(48),1));}
+        }
+        ScrollView scroll=new ScrollView(a);scroll.addView(rows);
+        holder[0]=new AlertDialog.Builder(a).setTitle("原新局设置").setView(scroll).setPositiveButton("采用设置",null)
+            .setNeutralButton("清除设置",(d,n)->{openingOptions=null;openingChoices=Map.of();openingSettings.setText("原新局设置：未选择");refreshOpeningStart();})
+            .setNegativeButton("返回选择",null).create();
+        holder[0].show();a.trackDialog(holder[0]);holder[0].getButton(AlertDialog.BUTTON_POSITIVE).setTag("pc.opening.confirm");
+        openingDialog=holder[0];
+        holder[0].setOnDismissListener(d->{if(openingDialog==holder[0])openingDialog=null;});
+        holder[0].getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
+            if(previewReleased||accepted||openingFacts!=facts)return;
+            PcDuelOptions value=PcDuelOptions.fromMenu(draft.get("life"),draft.get("death"),draft.get("difficulty"));
+            openingChoices=Map.copyOf(draft);openingOptions=value;openingSettings.setText("原新局设置：已选择");refreshOpeningStart();holder[0].dismiss();
+        });refresh.run();
+    }
     ScenarioFactionPicker confirmWith(IntFunction<String> message){confirmation=message;return this;}
     ScenarioFactionPicker onBack(Runnable action){back=action;return this;}
     String officerTextSource(){return officerTextSource;}
@@ -79,6 +143,7 @@ final class ScenarioFactionPicker {
         long began=android.os.SystemClock.uptimeMillis();
         android.util.Log.i("PickerLifetime","close begin picker="+System.identityHashCode(this)+" map="+System.identityHashCode(map)+" reason="+reason+" native="+map.is3D());
         if(confirmationDialog!=null)confirmationDialog.dismiss();
+        if(openingDialog!=null)openingDialog.dismiss();
         if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}
         map.criticalFrame(null,0);map.release();previewReleased=true;
         android.util.Log.i("PickerLifetime","close end picker="+System.identityHashCode(this)+" map="+System.identityHashCode(map)+" reason="+reason+" wallMs="+(android.os.SystemClock.uptimeMillis()-began)+" native="+map.is3D());
@@ -86,17 +151,22 @@ final class ScenarioFactionPicker {
     void dismiss(){closePreview("owner-dismiss");dialog.dismiss();}
     private void goBack(){closePreview("return");dialog.dismiss();if(back!=null)back.run();}
     private void accept(int side){
-        if(accepted||confirming)return;
+        if(accepted||confirming||sourceOpening()&&openingOptions==null)return;
         if(confirmation==null){commit(side);return;}
         confirming=true;start.setEnabled(false);
         confirmationDialog=new AlertDialog.Builder(a).setTitle("开始新局").setMessage(confirmation.apply(side))
             .setPositiveButton("开始新局",(d,n)->commit(side)).setNegativeButton("返回选择",null).create();
-        confirmationDialog.setOnDismissListener(d->{confirming=false;if(!accepted)start.setEnabled(selectable(selected));confirmationDialog=null;});
+        confirmationDialog.setOnDismissListener(d->{confirming=false;if(!accepted)refreshOpeningStart();confirmationDialog=null;});
         confirmationDialog.show();a.trackDialog(confirmationDialog);
     }
     private void commit(int side){
         if(accepted)return;accepted=true;start.setEnabled(false);
         boolean spatial=true;closePreview("commit");dialog.dismiss();a.setNextScenario3D(spatial);choose.accept(side);
+    }
+    private void refreshOpeningStart(){
+        start.setEnabled(!accepted&&!confirming&&selectable(selected)&&(!sourceOpening()||openingOptions!=null));
+        if(sourceOpening()&&openingOptions==null){openingSettings.setText("原新局设置：请先选择");start.setText("请先选择新局设置");}
+        else start.setText("以「"+w.governance.label(selected)+"」开始新局  →");
     }
     private void mapFit(){map.post(map::fit);}
     private void tap(Hex h){
@@ -110,7 +180,7 @@ final class ScenarioFactionPicker {
         portrait.setImageDrawable(leader==null?null:new OfficerPortrait(a,w,leader));
         summary.setText(w.governance.label(side)+" · "+w.governance.title(side)+"\n军师 "+w.governance.advisor(side)+"\n"+f.cities+"城  "+f.ports+"港  "+f.gates+"关  ·  "+f.officers+"将\n兵力 "+f.troops+"  ·  金 "+f.gold+" / 粮 "+f.food);
         summary.setContentDescription("已选势力 · "+f.name+" · 城池"+f.cities+" · 武将"+f.officers);
-        start.setText("以「"+w.governance.label(side)+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);start.setEnabled(selectable(side));
+        start.setText("以「"+w.governance.label(side)+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);refreshOpeningStart();
         for(int i=0;i<chips.size();i++)chips.get(i).setSelected(i==side);map.setPreviewFaction(side);
     }
     void show(){dialog.show();if(dialog.getWindow()!=null)windowSurfaceRecovery=new WindowSurfaceRecovery(dialog.getWindow());if(a.current3D())map.switchMode(true);if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.getWindow().setLayout(-1,-1);}mapFit();}

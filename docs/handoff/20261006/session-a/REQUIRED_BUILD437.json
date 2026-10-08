@@ -1,0 +1,56 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completedBCommit": "cdd7f949",
+  "aCandidate": "CURRENT_SOURCE397.json",
+  "openingAdapter": "REQUIRED_OPENING434.json",
+  "completeCandidateFiles": 12126,
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-build436/candidate-inputs.json",
+  "candidateInputManifestSha256": "84aaa2e1530fb604fe856be70d536db0f75bbd58d6fb4d06b0a6b9e6870620af",
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-opening433/source",
+  "changesAfterSerial401": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
+      "sha256": "44497e995166a5414f90d66931e589de75e60f1264b0bf3afd3e53d81844dc6f",
+      "bytes": 14399,
+      "mode": 420
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "sha256": "4c6870dc841555317e5e1d7492ed9fa19b75a31b8095fc7c6492ed56bcb4fbae",
+      "bytes": 52841,
+      "mode": 420
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionANativeDuelOpeningInstrumentation.java",
+      "sha256": "73748498c54ae2d5b1115362b16d0d5280dcd9c8340a99d1ad029b27af2ba829",
+      "bytes": 7062,
+      "mode": 420
+    }
+  ],
+  "independentGradleCache": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-build436/gradle-home",
+  "wallSeconds": 224.825240944,
+  "buildExit": 0,
+  "buildLogSha256": "349acff9622a779c84f0de98e117ad1d4ebdd778e5e493927fca00e9382e9a7c",
+  "buildSuccessful": true,
+  "actualInstalled": false,
+  "wholeGoalComplete": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-build436/app-debug.apk",
+      "sha256": "35827cc20c322b64aa886c1edc7418f14b29137e900b1c054a3a844648896c1e",
+      "bytes": 315088363
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/required-build436/app-debug-androidTest.apk",
+      "sha256": "8c0a16df663913c40eb8bfa6a6cf34c514b21a0ca9c8ea3d7385bfc6d85f7af0",
+      "bytes": 3151984
+    }
+  ],
+  "fixedPackaged168Exact": true,
+  "allAAssetsExact369": 5637,
+  "sixJniExact369": true,
+  "signatureSame": "Signer #1 certificate SHA-256 digest: 8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "fullSourceShaUnchangedAfterBuild": true,
+  "scope": "New full candidate build: required explicit PC new game, source constraints selected/locked and actual A fixture choices. Immutable completed B27 and all prior A graphics/media preserved. Not installed, no previous emulator/ARM/cold/fire/native-duel scores transferred. All required checks and real new APK user-data backup/install/restore remain necessary.",
+  "gameLargeHeap": true
+}

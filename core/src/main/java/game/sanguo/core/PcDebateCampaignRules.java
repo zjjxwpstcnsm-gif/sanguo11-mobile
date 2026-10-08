@@ -10,7 +10,7 @@ final class PcDebateCampaignRules {
   int father=w.relations.parent(target.id,false),rulerFather=w.relations.parent(ruler.id,false);
   // Display0..100 is exact even when an existing bonded raw value120..255 is unknown.
   // Never claim the capped result as a recovered current raw-loyalty byte.
-  int raw=PcOfficerJoinRules.loyalty(target.loyalty,gap,target.honor-1,t.field(45),ruler.charm,false,false,w.relations.spouse(target.id)==ruler.id,w.relations.sworn(target.id,ruler.id),w.relations.likes(target.id,ruler.id),w.relations.dislikes(target.id,ruler.id),father>=0&&father==rulerFather,t.field(49)==1&&r.field(49)==1,t.field(41)==r.field(41));
+  int raw=PcOfficerJoinRules.loyalty(target.loyalty,gap,target.honor-1,t.field(45),ruler.charm,false,false,w.relations.spouse(target.id)==ruler.id,w.relations.sworn(target.id,ruler.id),w.relations.likes(target.id,ruler.id),w.relations.dislikes(target.id,ruler.id),father>=0&&father==rulerFather,PcDebateCampaignPolicy.sameHan(w,t.field(49),r.field(49)),t.field(41)==r.field(41));
   return Math.max(0,Math.min(100,raw));
  }
  static boolean guided(World w,World.Officer person){World.Unit u=w.unit(person.unitId);if(u==null)return false;for(var mate:w.army.crew(u))if(mate.id!=person.id&&w.life.present(mate.id)&&w.skills.has(mate,Skill.ZHIDAO))return true;return false;}
@@ -23,7 +23,7 @@ final class PcDebateCampaignRules {
  /** Original5d3c90(target,actor,success), including5c4840/4a75a0 and rewards. */
  static void recruitmentResult(World w,World.Officer actor,World.Officer target,int city,boolean success)throws IOException {
   source(w,actor.id);source(w,target.id);
-  if(success){int loyalty=joinLoyalty(w,target,actor.owner);w.strategy.releaseGovernor(target.id);w.government.allegianceChanged(target.id);target.owner=actor.owner;target.role=Strategy.Role.OFFICER;target.cityId=city;target.unitId=-1;target.loyalty=loyalty;target.lastRewardTurn=-1;target.acted=true;PcGovernorPolicy.joined(w,target,actor,city);
+  if(success){int loyalty=joinLoyalty(w,target,actor.owner);w.strategy.releaseGovernor(target.id);w.government.allegianceChanged(target.id);target.owner=actor.owner;target.role=Strategy.Role.OFFICER;target.cityId=city;target.unitId=-1;target.loyalty=loyalty;PcDuelRawLoyalty.originalWrite(w,target.id,loyalty);target.lastRewardTurn=-1;target.acted=true;PcGovernorPolicy.joined(w,target,actor,city);
    w.campaign.setPoints(actor.owner,PcTechniquePoints.after(w.campaign.points(actor.owner),20+target.charm/3),TechniquePointsJournal.Cause.DEBATE,city,actor.id);
   }
   w.government.earn(actor.id,success?200:100);w.officerAbilities.gainExperience(actor.id,3,3*(guided(w,actor)?2:1));if(success)w.officerAbilities.gainExperience(actor.id,4,5*(guided(w,actor)?2:1));actor.acted=true;w.governance.reconcile(false);

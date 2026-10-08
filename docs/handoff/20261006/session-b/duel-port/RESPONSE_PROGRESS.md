@@ -1,0 +1,22 @@
+# 应战概率接入进度（WIP）
+
+共同基点0e7b9bc2df90249a50851baeda58c7d183ea6059，当前完成HEAD89534120e46e488136db0e661270757d9c4a4c50。未提交单挑增量，不属于已交A军建54。
+
+原58a8a0完整后getter算术已加入PcDuelResponseRules；包括有符号截断、编队差、人物评分、兵力clamp比值、性格、君主除数、厌恶/混乱、原50bb90开局估计输出、部队C9/CA factor、原4843a0支援。
+特殊人物432/660与莽撞性格提前返回发生在50bb90前，可能原样返回factor，不能统一夹到0..100或额外消耗RNG。
+
+原108行独立逐阶段source-v2 SHAabccae5d4c31944ceb927ff1bd2f811fcac7b68fc28602699c0a706f4eca9026，移植108对照通过。新增80边界原source-v2 SHA6444b6b02f0653f7733ee96b79d8e754a3b2e6ddf2a01b9aadda8f6c2999d397对照通过、64提前返回RNG保持23；v2观测表中声明5000/5000而真实输入0/0，因两边clamp均为1000算术相同但声明不准确，v3读取真实字段并直接观察支援predicate；不修改v2原receipt。
+新矩阵v1失败为Unicorn mem_write传bytearray非bytes；失败日志保留，v2修正。原crew/currentWAR/personality/status均为显式数值边界，不证明原激活/部署/普通人控。
+
+currentOpening使用当前稳定人物连接、base/growth/XP/current与伤病、原held kind4输入和单独RNG；真实Source0当前人物27对照完整World/RNG纯性通过。currentResponse消费当前候补/三人编队/关系，先检测提前返回再估计开局。当前部队C9/CA必须由原496570提供，代码没有Army.attackPower后备。当前编队绑定需要独立原常态实测，不能由后getter代数通过推为已闭合。
+
+Android编译通过日志response-arithmetic-android-compile.log发生在新增currentResponse前；新方法主机编译通过，后续APK仍需全量编译/独立构建/实际普通命令验收。没有初始化PDU能力，正常单挑仍工程路径；原反击58a5e0、完整58ad60人控候补、原当前496570、完整处置/回城/死亡、多旬/冷续行与实际APK未完成。不交此WIP为完成批次。
+
+原v3最终80对照通过，SHA654146d9c5226f7b6571bb7fb7f6c652fd068bbb1eb3ee16116c25da478bd75c；64提前返回/RNG23，真实输入兵力0/0，支援predicate4843a0直接观测均false，全World/RNG恢复。没有用最终输出倒推predicate。currentResponse新增主机编译通过，27当前开局适配再次通过。B源/四JNI/旧609dirty默认status SHA保持继承值；本轮未安装APK/未触碰A/冻结桥。
+
+当前适配对照发现并修正：原stack+18(index6)是敌方score92，+28(index10)是己方score88；此前纯算术测试接口将名字left/right误标，导致currentResponse返回36而原40，RNG均23。实际当前人物WAR/HP/score与原一致，己方crew247/敌236。修正response采用(rightScore-leftScore)/2、提前分支依敌方评分，同时独立测试按原栈列显式映射；保留v2/v3失败，不修改原receipt。修正后108与80语料再对照通过。原军建及历史31–39规则未因此改动。
+
+最终当前六人Source0适配与原完整58a8a0同为40/RNG23、完整World/已存双RNG纯性通过；只是声明合法位置/两部队/C9CA夹具，不冒称普通部署/原496570或APK通过。当前会话原矩阵/主机检查均exit0，未留下运行任务。
+- out/session-b/duel-query-check/response-current-v4.log SHA a2f5287309e505dcd123462367ddc39a074488c9a96b3de964a368a5c222e758
+- out/session-b/duel-query-check/response-arithmetic-108-v4.log SHA fff71047f12428941998af203e2a2de4c598e020f5aadcfe71261f3c04b86b4e
+- out/session-b/duel-query-check/response-arithmetic-80-v4.log SHA a4c445303417254f094d17a597096120e5eb7f8f6f31edc8d7b866ee129993b8

@@ -1,0 +1,74 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "main": "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+  "inheritedSourceHead": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "complete": false,
+  "committedNativeBatch": false,
+  "currentApk": null,
+  "files": {
+    "core/src/main/java/game/sanguo/core/PcDuelRelease.java": "37383a47b260b89470da702fd67bf92abcacb3f6c44b6284fcfa7993387448da",
+    "core/src/main/java/game/sanguo/core/Strategy.java": "463c61349e14925545ed7f605aa3211ded1e3cdbd57444b391cd371a48884be8",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java": "9a9c99a45abaa13e3e507f34131334757aa8b331d8b25fa156e01759f43b8687",
+    "core/src/test/java/game/sanguo/core/PcDuelSameRegionReleaseTest.java": "513736ab0a124e7a72da8db30d6c563eef336db1ac16b11169345e2a9941a56d",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelSettlementSessionTest.java": "457ba90237563f765b0e3431dbb9ddfa7261806819df6752de2179d1410ad402",
+    "tools/content/session_b_pc_same_region_release.py": "920986cd66c1e6dfe5e20093acc9819697a464dfd337fa6c441ee5a8b87cbea7",
+    "docs/handoff/20261006/session-b/SAME_REGION_RELEASE_STRATEGY.md": "14688bd9b2a5943463c2e438eaee9ff7aea913d31eb5538d94f9dda86abc7b8f",
+    "out/session-b/same-region-release-source0-v1.failure.json": "47b9badf9c686af401a75be7b3682e179e0b340f6d663768516015c4ebcd7619",
+    "out/session-b/same-region-release-source0-v2.json": "aa4b75655476a9de20c2bfd2d33b868230a52a5f6ab59f11c9a9d96badef8cac",
+    "out/session-b/same-region-release-source0-v3.json": "aa03e1884c736bd35a5505b3be22d45dac61464c48c22e95159d98d680e448f3",
+    "out/session-b/duel-release-endpoint-source0.tsv": "ab268dc5fdf52532600e252c09840c4ab1aa0a0ab081a1512b516bf7da24f978",
+    "out/session-b/duel-query-check/same-region-release-before-v1.log": "19ddc312790b6a6d2d90958b9bc573caf401f4bece46033d6fb1c8073dd82cf6",
+    "out/session-b/duel-query-check/same-region-release-api-v1.log": "7b251c002d174f4ba05749e985413f995e37d2ef082b4664f849a6bbf0fa35bb",
+    "out/session-b/duel-query-check/same-region-release-api-v2.log": "1b4da577640dca5aa2b161b98fdfd74eb18690b7d766909ce38abcef74b866f4",
+    "out/session-b/duel-query-check/same-region-release-compile-v5.log": "dc07a34626bb6fba8a116c398a8ac1f17c7d0b3381350383bc1c5bdeb4eb8d67",
+    "out/session-b/duel-query-check/same-region-release-final-v2.log": "82e0c8e683892448fe1a26ec44312956cf80736e242cf54ea098c20d55f2f779"
+  },
+  "beforeConfirmed": {
+    "core/src/main/java/game/sanguo/core/PcDuelRelease.java": "ba73c0b9c8c6fb16b16c6846e2208269f84ff423154c70b44361257ba87ed3b0",
+    "core/src/main/java/game/sanguo/core/Strategy.java": "f289087b013a7b62a558ccb9aa624c24a17390b769e90ff4d3e2d40f6776877d",
+    "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java": "e5724fe5eb62033b233da5fc5b49440fd196ff7c60d017b02bc3a5750af3c7ab",
+    "game-runtime/src/test/java/game/sanguo/core/PcDuelSettlementSessionTest.java": "a80d2dd887428f13bf1056214c1d1ceec2ef97f2e92b28044b60d20a13921988"
+  },
+  "jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "aReadonly": {
+    "app/src/main/java/game/sanguo/mobile/MainActivity.java": "85622dfecbd31f5a544088901d4a1a27bf415efd2a21bdccde6466721b657af4",
+    "app/src/main/java/game/sanguo/mobile/MapHost.java": "99fc21c5bf7509117b00f47d25e0bd4fe3ab4adeee4c4a3a78e53f4a150aa183",
+    "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java": "233267f299eaa3942fb2d74e893094c3676f1726a8b20d9f885bd726f10aa377",
+    "app/src/main/java/game/sanguo/mobile/EditorUi.java": "08b318a7ebc266447cfae659bfb50598ada4c8167a73ff648d64fef9c5d9c7d7",
+    "app/src/main/java/game/sanguo/mobile/EstatesUi.java": "8b4d34a90d8c0c96a129f2699fd1fc6120795badd42e5a419ae2593e58906576",
+    "app/src/main/java/game/sanguo/mobile/DataTable.java": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+    "app/src/main/java/game/sanguo/mobile/GameIcon.java": "3e0cdd96d2743007cc6f260cfaee4f5d48dbfa306bb22dadb1fe22f4392caf4b",
+    "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java": "149dd1c47c51b4ff18339765d7f2c24ffdcc8e24f01c9d9896e6f5c57e7e151a",
+    "app/src/main/java/game/sanguo/mobile/UnityBridge.java": "5b184d277aad3e77446539ffcf5096e146873c48340443de467c42a56689d025",
+    "app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java": "6adad4df05caa9fcfa366f57630c28ba7c3bfc802788a05a21523a89783dbe08"
+  },
+  "oldDirtyBytes": 31896,
+  "oldDirtySha": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0",
+  "exeSha": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "checks": {
+    "originalFullCallback": 2,
+    "currentOriginalEndpointAndCold": 52,
+    "nonzeroReturn": 35,
+    "typedZeroReturnChoiceAndThreeWholeTurnsCold": 103,
+    "typedNonzeroReturnAndStatusPure": 92,
+    "genuineFormat5And39Compatibility": "PASS; pre-existing gzip OS/header CRC delta retained",
+    "GameSession": 1690,
+    "BridgeSession": "PASS",
+    "architecture": "PASS",
+    "fixedInputs": 168,
+    "currentCompile": "28 tasks/45s PASS"
+  },
+  "limits": [
+    "Original units/coordinates/choice declared; full callbacks and personnel phases but not normal original GUI/deployment/full turn controller",
+    "Typed terminal derived from real original endpoint; not naturally created ordinary deployment/battle/menu proof",
+    "New zero capability only explicit PDU3/PGO3 source0 same city home; gate/port/other source/escort/recruitment zero remain guarded",
+    "Native whole batch sourcecommit/A newgame adapter/current APK installation/full backup-restoration/all16 fullmatrix/ARM/U01 remain incomplete",
+    "No A WIP copy/integration, shared ledger writes, frozen serialization/Unity/JNI edits"
+  ],
+  "ownJobs": "all original/compile/current/regression jobs terminal"
+}

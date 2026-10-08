@@ -49,7 +49,7 @@ public final class Treasures {
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         Item i=item(id);if(i==null||i.place!=Place.TREASURY||i.holder!=c.owner)return w.fail("请选择本势力府库中的宝物");
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||w.government.captive(target)||w.strategy.busy(target)||w.domestic.busy(target))return w.fail("请选择本城无任务的己方武将");
-        w.spend(c,o,0);place(i.definition,Place.OFFICER,target);t.loyalty=Math.min(100,t.loyalty+i.definition.value);
+        w.spend(c,o,0);place(i.definition,Place.OFFICER,target);PcDuelRawLoyalty.invalidate(w,t.id);t.loyalty=Math.min(100,t.loyalty+i.definition.value);
         return w.success("赏赐"+t.name+"："+i.definition.name+"，忠诚提升至"+t.loyalty);
     }
     public World.Result confiscate(int city,int actor,String id){w.reports.prepare();

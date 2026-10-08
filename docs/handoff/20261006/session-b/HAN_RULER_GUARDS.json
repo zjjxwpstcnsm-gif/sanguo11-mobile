@@ -1,0 +1,108 @@
+{
+  "head": "36f059b452f8fc5712747425a37fecbfee3ddd01",
+  "status": "WIP; not a completed production source/APK delivery",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignPolicy.java",
+      "beforeHeadSha256": "3f59dce35698df9daefa3a13046f93fd2a0159843b7e997c56bab0cd8be75dcb",
+      "bytes": 3534,
+      "afterSha256": "87197c2958cc2f91a8974740552c96a0e6919d32e72967f2846fa33cde120ce3"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignRules.java",
+      "beforeHeadSha256": "da567cdf150b3c2d818edb974783fe91c217804384f836e3c9fee91c5ce5ff88",
+      "bytes": 4114,
+      "afterSha256": "8ef012fc04b07bde70124a6ef1e20cedc0ea2a416ff5c3b4405c1497b79633e9"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRecruitment.java",
+      "beforeHeadSha256": null,
+      "bytes": 3726,
+      "afterSha256": "2772deec2391a716193b85414e20af11a3feef40dd5e47a3dfa0ef77e8a2f23e"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRulerSuccessionRules.java",
+      "beforeHeadSha256": null,
+      "bytes": 2318,
+      "afterSha256": "083edecec9b5d78caa165b5edd6c893a9d0b7c2fbd624e90ec96573829739d46"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRulerSuccession.java",
+      "beforeHeadSha256": null,
+      "bytes": 3693,
+      "afterSha256": "4c017a7be46b1f9835593edce7a2b84a41c962b1d8c6875e66d8bda34f988d3a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcRulerSuccessionRulesTest.java",
+      "beforeHeadSha256": null,
+      "bytes": 2180,
+      "afterSha256": "75f71a529fe1abf706d8535ddb9f5eab057a518570e24e2843f781860ce15e83"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcRulerSuccessionCurrentTest.java",
+      "beforeHeadSha256": null,
+      "bytes": 2898,
+      "afterSha256": "2170f328f5b914e58453053304916d67d668c918077c6ce244a10dd83437d9f4"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcHanLoyaltyPolicyTest.java",
+      "beforeHeadSha256": null,
+      "bytes": 2765,
+      "afterSha256": "0248857a8218bfeba237b4e78a9c96a205814c6aef840fc3f6f3b3afc41da3a2"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcHanLegacy39SessionTest.java",
+      "beforeHeadSha256": null,
+      "bytes": 2474,
+      "afterSha256": "9d891cd10144986f27fbeea4557e47df3c1ed06d8a3beab7d2f358be885bb8cc"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcHanLoyaltySessionTest.java",
+      "beforeHeadSha256": null,
+      "bytes": 3632,
+      "afterSha256": "2f4e8c38fe431675e3a7ad47c0374d86c2c5e1fc0aa3e194760a3901e40638f5"
+    },
+    {
+      "path": "out/session-b/loyalty-han-equality-v1.json",
+      "beforeHeadSha256": null,
+      "bytes": 2075,
+      "afterSha256": "50d827372a4e8044b88328d99dc7f0b1d6526ee5cddd54e51ee50a6dd9446a7b"
+    },
+    {
+      "path": "out/session-b/duel-successors-source0-v4.json",
+      "beforeHeadSha256": null,
+      "bytes": 217044,
+      "afterSha256": "8e1414807bdc640fb435bd04c67893a9ea607d44cf37ad2d4706120304999c04"
+    }
+  ],
+  "jni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    }
+  ],
+  "oldDirty": {
+    "bytes": 31896,
+    "sha256": "618527c6227f137aa9371cd15949d9659ee57db29ae5c146fc4b29254da89dd0"
+  },
+  "fixedInputs": 168,
+  "apkInstalled": false,
+  "armVerified": false,
+  "limits": [
+    "Original ruler force/army/raw-loyalty mutation not integrated",
+    "Changed Han equal0/2 actual normal battle/nextAPK case missing",
+    "Existing normal command regressions and original scalar/callback matrices are distinct scopes"
+  ]
+}
