@@ -589,7 +589,11 @@
     "docs/handoff/20261006/session-a/build_fire_cache_apk296.py",
     "docs/handoff/20261006/session-a/FIRE_CACHE_APK296.json",
     "docs/handoff/20261006/session-a/run_fire_cache_install297.py",
-    "docs/handoff/20261006/session-a/FIRE_CACHE_INSTALL297_LAUNCH.json"
+    "docs/handoff/20261006/session-a/FIRE_CACHE_INSTALL297_LAUNCH.json",
+    "docs/handoff/20261006/session-a/start_fire_cache_video298.py",
+    "docs/handoff/20261006/session-a/FIRE_CACHE_VIDEO298_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_fire_cache_case299.py",
+    "docs/handoff/20261006/session-a/FIRE_CACHE_ACCEPTANCE299.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
