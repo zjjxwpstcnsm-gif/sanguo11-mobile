@@ -141,7 +141,14 @@ def collect(out,r,record,timeout=20):
 def stop_and_restore(out,r):
  c=r.get('audioCapture')
  if c is None:return
- if SERVICE in shell('dumpsys activity services '+TEST):shell('am stopservice -n '+TEST+'/'+SERVICE)
+ if SERVICE in shell('dumpsys activity services '+TEST):
+  try:shell('am stopservice -n '+TEST+'/'+SERVICE)
+  except RuntimeError as error:
+   # Android am can return nonzero after an observed successful stop. Treat
+   # only the fresh service inventory as terminal; retain exact error text.
+   c['stopServiceCommandError']=str(error);save(out,r)
+   if SERVICE in shell('dumpsys activity services '+TEST):raise
+   c['serviceAbsentAfterStopCommandError']=True;save(out,r)
  else:c['serviceAlreadyStoppedAtRollback']=True;save(out,r)
  for record in c['captures']:
   end_mixer_measurement(record)

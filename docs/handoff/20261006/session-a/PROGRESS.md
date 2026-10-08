@@ -647,3 +647,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 344原WAV/原2238参考逐SHA未改，固定17段2秒diagnostic（不是acceptance）仅55/70/75s达到reliable，其余不能据噪声最大值认定offset或因果。345同observedElapsedNanos实际coverage证明：captureEnd连finalize上界172782140002356，player仍未达到原3904512frames的最后观测172789694604356、首次已达到172790704721356，至少早7.5546秒（下一观测8.5647秒）；不只是假定歌曲开始偏移。故130s采集没完整覆盖本次正常UI歌曲，既不能判播放器唯一root，也不能计whole通过；145underruns独立保留。
 
 346只改采集覆盖选择：helper默认130保持旧分数，用显式180（现有capture Activity/Service允许上限），原PCM/source/allTrackFrame/0.995和功能门不改；新fresh346完整backup后同game2f5/test6e真实normal菜单再采全曲，不宣告音频已修复/不通过拼接校正。347只在本真实case/game+test全SHA/owner/observer/权限终态后冻结实际波形PASS/FAIL。目前346队列已启动，原首读Source14失败、全部16/普通heap/全原媒体/原JNI+Bridge+Unity/B final/ARM均未完整闭合。
+
+346真实toolFAIL：180s service还未结束，normal游戏62检查已实际结束，helper固定collect30s先超时，finally的am stopservice虽 stdout Service stopped却return1，被判rollback失败。原游戏9内部2改写/3797外部0每SHA已恢复，测试侧未完成而锁重建，347正确因缺testRestoration终态拒绝输出；没有把game restored旗标当全恢复。348经实际旧owner65315退出/livecase无进程、锁精确root/case确认，读到service已不存在后只修同case optional rollback，抢救原7532544frame中断menuWAV/projectionStoppedOrCancelled=true，再testAPK6e/权限false/AppOpdefault/test原0/0和游戏每原SHA独立读回，保留原error、锁仅全验证后释放。正常游戏JSON因collect前未pull且restore删新generated已缺，只有真实stream62检查；不造menu metadata、不计曲目通过。
+
+349工具修正而非播放器假修：normal输出/通过状态及游戏evidence先pull，再用实际请求captureSeconds+30有界等录音终态（不放宽曲目0.995/功能120s）；am stop nonzero仍保留原命令error，只在fresh dumpsys service已不存在时允许继续rollback，若仍在则raise。新fresh349实际等待348完整恢复后backup再同game2f5/test6e菜单180s，350只全游戏/test/APK/权限/owner真终态后审计实际整曲PASS/FAIL。原346失败不改、源码/RootSDK/原JNI/B WIP不变，当前349队列实跑等待，不预判声音或源14/ARM/fullgoal成功。
