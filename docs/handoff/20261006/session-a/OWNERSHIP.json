@@ -718,7 +718,9 @@
     "docs/handoff/20261006/session-a/run_capture_menu358.py",
     "docs/handoff/20261006/session-a/CAPTURE_MENU358_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_capture_menu359.py",
-    "docs/handoff/20261006/session-a/CAPTURE_MENU359.json"
+    "docs/handoff/20261006/session-a/CAPTURE_MENU359.json",
+    "docs/handoff/20261006/session-a/probe_capture_platform360.py",
+    "docs/handoff/20261006/session-a/CAPTURE_PLATFORM360.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

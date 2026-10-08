@@ -1,0 +1,40 @@
+{
+  "android10Tag": "android-10.0.0_r1",
+  "source": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-10.0.0_r1/media/java/android/media/AudioRecord.java",
+      "decodedSha256": "64e16ed49c5a829baf90be0c14d73e57dfd6d2902a374feb8d3fb602a383c3e1",
+      "exactMethod": "private @NonNull AudioRecord buildAudioPlaybackCaptureRecord() {\n            AudioMix audioMix = mAudioPlaybackCaptureConfiguration.createAudioMix(mFormat);\n            MediaProjection projection = mAudioPlaybackCaptureConfiguration.getMediaProjection();\n            AudioPolicy audioPolicy = new AudioPolicy.Builder(/*context=*/ null)\n                    .setMediaProjection(projection)\n                    .addMix(audioMix).build();\n\n            int error = AudioManager.registerAudioPolicyStatic(audioPolicy);\n            if (error != 0) {\n                throw new UnsupportedOperationException(\"Error: could not register audio policy\");\n            }\n\n            AudioRecord record = audioPolicy.createAudioRecordSink(audioMix);\n            if (record == null) {\n                throw new UnsupportedOperationException(\"Cannot create AudioRecord\");\n            }\n            record.unregisterAudioPolicyOnRelease(audioPolicy);\n            return record;\n        }\n\n        "
+    },
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-10.0.0_r1/media/java/android/media/audiopolicy/AudioPolicy.java",
+      "decodedSha256": "e514a42a2df1250c3153e88d9370fc05e8333da39500b83b572ab52b611aff94",
+      "exactMethod": "public AudioRecord createAudioRecordSink(AudioMix mix) throws IllegalArgumentException {\n        if (!policyReadyToUse()) {\n            Log.e(TAG, \"Cannot create AudioRecord sink for AudioMix\");\n            return null;\n        }\n        checkMixReadyToUse(mix, false/*not for an AudioTrack*/);\n        // create an AudioFormat from the mix format compatible with recording, as the mix\n        // was defined for playback\n        AudioFormat mixFormat = new AudioFormat.Builder(mix.getFormat())\n                .setChannelMask(AudioFormat.inChannelMaskFromOutChannelMask(\n                        mix.getFormat().getChannelMask()))\n                .build();\n        // create the AudioRecord, configured for loop back, using the same format as the mix\n        AudioRecord ar = new AudioRecord(\n                new AudioAttributes.Builder()\n                        .setInternalCapturePreset(MediaRecorder.AudioSource.REMOTE_SUBMIX)\n                        .addTag(addressForTag(mix))\n                        .addTag(AudioRecord.SUBMIX_FIXED_VOLUME)\n                        .build(),\n                mixFormat,\n                AudioRecord.getMinBufferSize(mix.getFormat().getSampleRate(),\n                        // using stereo for buffer size to avoid the current poor support for masks\n                        AudioFormat.CHANNEL_IN_STEREO, mix.getFormat().getEncoding()),\n                AudioManager.AUDIO_SESSION_ID_GENERATE\n                );\n        synchronized (mLock) {\n            if (mCaptors == null) {\n                mCaptors = new ArrayList<>(1);\n            }\n            mCaptors.add(new WeakReference<AudioRecord>(ar));\n        }\n        return ar;\n    }\n\n    "
+    }
+  ],
+  "actualFresh358Trials": [
+    {
+      "run": "session_a_large_menu_ffe6b01664394dfebe50afad2cdc986d_init44100",
+      "rate": 44100,
+      "requestedFrames": 88200,
+      "actualFrames": 2820
+    },
+    {
+      "run": "session_a_large_menu_ffe6b01664394dfebe50afad2cdc986d_init48000",
+      "rate": 48000,
+      "requestedFrames": 96000,
+      "actualFrames": 3072
+    },
+    {
+      "run": "session_a_large_menu_ffe6b01664394dfebe50afad2cdc986d_menu",
+      "rate": 44100,
+      "requestedFrames": 88200,
+      "actualFrames": 2820
+    }
+  ],
+  "playbackCaptureBuilderIgnoresRequestedBufferInThisFrameworkPath": true,
+  "actualDeviceBuildExactTagNotProven": true,
+  "frameworkRootExplanationConsistentWithMeasuredBuffer": true,
+  "wholeMusicAcceptance": false,
+  "scope": "Android platform only; not PC game truth or unique timeline jump cause. Recorder getBufferSize actual2820/3072 kept; no pretend2sec ring. Disk512KiB still real candidate, output whole0.995 pending. No source/device mutations."
+}
