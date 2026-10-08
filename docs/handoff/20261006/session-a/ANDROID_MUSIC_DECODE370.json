@@ -1,0 +1,23 @@
+{
+  "stage": "restored-verified",
+  "installedNewApk": false,
+  "normalGameplayAcceptance": false,
+  "wholeGoalComplete": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "decoderAccepted": false,
+  "diagnosticFailure": "Actual decoder passed11 checks, but exec-out run-as denied package not debuggable; pulled files each55B contain error rather than PCM/JSON. Full original game9/3797 restored; this receipt is restoration only, not codec PCM evidence.",
+  "actualInstrumentedDecodePassed": true
+}

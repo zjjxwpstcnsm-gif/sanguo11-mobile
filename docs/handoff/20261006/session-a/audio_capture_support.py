@@ -54,6 +54,10 @@ def end_input_route_observation(record):
   record['inputRouteObserverJoined']=True
   if record['inputRouteObserverErrors']:raise RuntimeError('Own input-route observation failed: '+repr(record['inputRouteObserverErrors']))
 def begin_mixer_measurement(out,record):
+ if record.get('mixerObservationEnabled',True) is False:
+  record['mixerMeasurementScope']='Explicit observer isolation: periodic AudioFlinger dumps disabled; PCM/UI/source0.995 unchanged, no fabricated counters/unique cause'
+  record['periodicMixerObservationDisabled']=True
+  return
  path=out/('mixer-'+record['run']+'.jsonl');stop=threading.Event()
  record['mixerMeasurementPath']=str(path);record['mixerMeasurementScope']='read-only dumpsys AudioFlinger every5s, counters cumulative; only time-local changes eligible for attribution; no PCM rewrite/threshold change'
  def measure():
@@ -102,7 +106,7 @@ def start(out,r,rate,run,seconds):
  shell('pm grant '+TEST+' android.permission.RECORD_AUDIO')
  c=r['audioCapture'];c['appOpBeforeThisCapture']=shell('appops get '+TEST+' RECORD_AUDIO');shell('appops set '+TEST+' RECORD_AUDIO allow');c['appOpDuring']=shell('appops get '+TEST+' RECORD_AUDIO');assert re.search(r'RECORD_AUDIO:\s*allow',c['appOpDuring']);c['permissionDuring']=shell('dumpsys package '+TEST);assert re.search(r'android.permission.RECORD_AUDIO: granted=true',c['permissionDuring'])
  path='/sdcard/Android/data/'+TEST+'/files/session-a-game-mix/'+run
- record={'run':run,'rate':rate,'seconds':seconds,'devicePath':path,'ready':False,'consentFromObservedSystemUi':False};c['captures'].append(record);save(out,r)
+ record={'run':run,'rate':rate,'seconds':seconds,'devicePath':path,'ready':False,'consentFromObservedSystemUi':False,'mixerObservationEnabled':r.get('mixerObservationEnabled',True)};c['captures'].append(record);save(out,r)
  observe_input_route(out,r,record,'before-projection-request');save(out,r)
  shell('am start -n '+TEST+'/'+ACTIVITY+' --es run '+run+' --ei seconds '+str(seconds)+' --ei sampleRate '+str(rate))
  end=time.monotonic()+30

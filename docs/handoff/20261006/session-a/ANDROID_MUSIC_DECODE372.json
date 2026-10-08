@@ -1,0 +1,49 @@
+{
+  "stage": "restored-verified",
+  "installedNewApk": false,
+  "normalGameplayAcceptance": false,
+  "wholeGoalComplete": false,
+  "decoderAccepted": true,
+  "actualInstalledApks": {
+    "game.sanguo.mobile.dev": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+    "game.sanguo.mobile.dev.test": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14"
+  },
+  "actualCodecMetadata": {
+    "scope": "Packaged codec/frame-loop proof, not scene playback",
+    "checks": 11,
+    "tracks": [
+      {
+        "resourceId": 2238,
+        "musicId": 1,
+        "oggSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462",
+        "referencePcmSha256": "437125d290185a3122818abd6035635b92be1bfd564365a6130afe913f21a242",
+        "actualPcmSha256": "c90b72f072a61abbaf910aa2403a596c58590930d2ae43650d105743efecd66e",
+        "referenceByteEqual": false,
+        "frames": 3904512,
+        "bytes": 15618048,
+        "codec": "OMX.google.vorbis.decoder",
+        "decodeMillis": 8533,
+        "loopStart": -1,
+        "loopEnd": -1
+      }
+    ],
+    "result": "MUSIC_SOURCE PASS checks=11; actual Android decoder and sample-loop reads; no scene/audio playback claim"
+  },
+  "pcmPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/android-music372/music-source-2238.pcm",
+  "pcmSha256": "c90b72f072a61abbaf910aa2403a596c58590930d2ae43650d105743efecd66e",
+  "scope": "Actual existing Android decoder output2238. Detached fixture Save/RNG only, not normal UI/gameplay or audio waveform acceptance. Source conversion/codec/mixer separation; original0.995/raw capture untouched.",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  }
+}

@@ -1,0 +1,722 @@
+{
+  "androidDecoderPcmSha256": "c90b72f072a61abbaf910aa2403a596c58590930d2ae43650d105743efecd66e",
+  "originalReferenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+  "sameFrameWholeStereoCorrelation": 0.9999999604851597,
+  "all89DeclaredOneSecondWindows": [
+    {
+      "startFrame": 0,
+      "frames": 44100,
+      "correlationSameFrame": 0.999999079960394,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 44100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998577483241,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 88200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998853484326,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 132300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998616033305,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 176400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999177250765,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 220500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999144448881,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 264600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998667030695,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 308700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999989466355764,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 352800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998953498526,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 396900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999327849082,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 441000,
+      "frames": 44100,
+      "correlationSameFrame": 0.999999917672412,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 485100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998381969066,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 529200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999319454647,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 573300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999345587309,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 617400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999047297252,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 661500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999996522762735,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 705600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999160279379,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 749700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999345923948,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 793800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999632438804,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 837900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999516552572,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 882000,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999713059811,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 926100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999534067193,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 970200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999411287191,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1014300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999235084865,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1058400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999681287384,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1102500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999701691225,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1146600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999817946296,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1190700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999862699696,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1234800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999900270983,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1278900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999790302088,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1323000,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999496046275,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1367100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998776583386,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1411200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999599798226,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1455300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999626919956,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1499400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999699862776,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1543500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999770108234,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1587600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999798262625,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1631700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999608917229,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1675800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999414649496,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1719900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999593532685,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1764000,
+      "frames": 44100,
+      "correlationSameFrame": 0.999999983208242,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1808100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999808388736,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1852200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999829051345,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1896300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999864683645,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1940400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999882467902,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 1984500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999900752015,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2028600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999819580321,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2072700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999835754803,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2116800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999797162386,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2160900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999440014828,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2205000,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999997757228272,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2249100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999177657337,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2293200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999799801007,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2337300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999622573191,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2381400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999667599249,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2425500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999258764216,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2469600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999996490309032,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2513700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999983308746044,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2557800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999997088803141,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2601900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999299974313,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2646000,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999653007263,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2690100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999731128754,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2734200,
+      "frames": 44100,
+      "correlationSameFrame": 0.999999950094083,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2778300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999489570006,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2822400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999033083451,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2866500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998051952662,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2910600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998562308745,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2954700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999103329725,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 2998800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999546606066,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3042900,
+      "frames": 44100,
+      "correlationSameFrame": 0.999999938912242,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3087000,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999253894472,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3131100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999003501147,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3175200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999996913169199,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3219300,
+      "frames": 44100,
+      "correlationSameFrame": 0.999999284716551,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3263400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999997272254203,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3307500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999205197283,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3351600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999625074908,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3395700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999514453171,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3439800,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999696753868,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3483900,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999524313005,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3528000,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999170771916,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3572100,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998906528085,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3616200,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999561913525,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3660300,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999816213494,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3704400,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999872208598,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3748500,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999999762578291,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3792600,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999998779521356,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3836700,
+      "frames": 44100,
+      "correlationSameFrame": 0.9999190171884795,
+      "maximumAbsoluteSampleDifference": 1.0
+    },
+    {
+      "startFrame": 3880800,
+      "frames": 23712,
+      "correlationSameFrame": 0.8695923609830957,
+      "maximumAbsoluteSampleDifference": 1.0
+    }
+  ],
+  "fixed17OriginalWindows": {
+    "status": "MEASURED_DIAGNOSTIC",
+    "sampleRate": 44100,
+    "scope": "Independent fixed windows in unchanged PCM; no continuity pass or responsible component attribution",
+    "captureSha256": "8bacc275b7634d6553d9cbd04bf578ffe78746f14237538d57c94dfd9a3d4d84",
+    "referenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+    "rows": [
+      {
+        "referenceSeconds": 5,
+        "frames": 88200,
+        "captureSample": 220500,
+        "offsetSamples": 0,
+        "correlation": 0.9999998961531417,
+        "gain": 0.9999991099180711,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 10,
+        "frames": 88200,
+        "captureSample": 441000,
+        "offsetSamples": 0,
+        "correlation": 0.9999999087041715,
+        "gain": 0.9999970077206434,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 15,
+        "frames": 88200,
+        "captureSample": 661500,
+        "offsetSamples": 0,
+        "correlation": 0.9999998791859613,
+        "gain": 1.0000015074401631,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 20,
+        "frames": 88200,
+        "captureSample": 882000,
+        "offsetSamples": 0,
+        "correlation": 0.9999999648479404,
+        "gain": 1.0000011949042684,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 25,
+        "frames": 88200,
+        "captureSample": 1102500,
+        "offsetSamples": 0,
+        "correlation": 0.9999999800419129,
+        "gain": 0.9999988481408385,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 30,
+        "frames": 88200,
+        "captureSample": 1323000,
+        "offsetSamples": 0,
+        "correlation": 0.9999999356069653,
+        "gain": 0.9999994971836925,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 35,
+        "frames": 88200,
+        "captureSample": 1543500,
+        "offsetSamples": 0,
+        "correlation": 0.9999999827802528,
+        "gain": 1.0000003993524196,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 40,
+        "frames": 88200,
+        "captureSample": 1764000,
+        "offsetSamples": 0,
+        "correlation": 0.99999998234935,
+        "gain": 0.9999999927046361,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 45,
+        "frames": 88200,
+        "captureSample": 1984500,
+        "offsetSamples": 0,
+        "correlation": 0.99999998664085,
+        "gain": 1.0000005522465478,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 50,
+        "frames": 88200,
+        "captureSample": 2205000,
+        "offsetSamples": 0,
+        "correlation": 0.9999998861578698,
+        "gain": 1.0000001423100653,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 55,
+        "frames": 88200,
+        "captureSample": 2425500,
+        "offsetSamples": 0,
+        "correlation": 0.9999998797337163,
+        "gain": 0.9999985952595081,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 60,
+        "frames": 88200,
+        "captureSample": 2646000,
+        "offsetSamples": 0,
+        "correlation": 0.9999999702819077,
+        "gain": 0.9999995882063072,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 65,
+        "frames": 88200,
+        "captureSample": 2866500,
+        "offsetSamples": 0,
+        "correlation": 0.9999998661121262,
+        "gain": 1.0000008436359435,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 70,
+        "frames": 88200,
+        "captureSample": 3087000,
+        "offsetSamples": 0,
+        "correlation": 0.9999999132213088,
+        "gain": 0.99999961680146,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 75,
+        "frames": 88200,
+        "captureSample": 3307500,
+        "offsetSamples": 0,
+        "correlation": 0.9999999404831765,
+        "gain": 1.0000007839521863,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 80,
+        "frames": 88200,
+        "captureSample": 3528000,
+        "offsetSamples": 0,
+        "correlation": 0.9999999227086646,
+        "gain": 1.0000006202055904,
+        "reliableOffset": true
+      },
+      {
+        "referenceSeconds": 85,
+        "frames": 88200,
+        "captureSample": 3748500,
+        "offsetSamples": 0,
+        "correlation": 0.9999999541240755,
+        "gain": 0.9999996098910332,
+        "reliableOffset": true
+      }
+    ]
+  },
+  "strictOriginalWholeCheckerExitCode": 0,
+  "strictOriginalWholeCheckerLog": "PASS original music actual PCM correlation= 0.9999999622861437\n",
+  "wholeDecoderResult": {
+    "status": "PASS",
+    "resourceId": 2238,
+    "scope": "Original complete music waveform in actual emulator mix; no original scene binding/ARM speaker claim",
+    "sampleRate": 44100,
+    "correlation": 0.9999999622861437,
+    "seconds": 0.0,
+    "captureSha256": "8bacc275b7634d6553d9cbd04bf578ffe78746f14237538d57c94dfd9a3d4d84",
+    "originalReferenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+    "originalOggSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462"
+  },
+  "derivedWavIsExactPcmHeaderOnly": true,
+  "derivedWavSha256": "8bacc275b7634d6553d9cbd04bf578ffe78746f14237538d57c94dfd9a3d4d84",
+  "originalInputsUnchanged": true,
+  "normalMenuPlaybackAccepted": false,
+  "scope": "Actual Android decoded complete2238 byte stream versus unchanged original FFMpeg reference. Diagnostics of codec/source conversion only; no audio output/normal scene/mixer/ARM acceptance. Original waveform0.995 unchanged; never splice/timewarp/drop to accept output.",
+  "wholeGoalComplete": false
+}

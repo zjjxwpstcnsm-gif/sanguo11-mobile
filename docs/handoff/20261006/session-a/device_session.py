@@ -80,6 +80,7 @@ def main():
     p.add_argument('--observe-workers',action='store_true')
     p.add_argument('--menu-music',action='store_true')
     p.add_argument('--audio-capture-rate',type=int,choices=[44100,48000])
+    p.add_argument('--mixer-observation',choices=['periodic','off'],default='periodic')
     p.add_argument('--menu-capture-seconds',type=int,choices=[130,180],default=130)
     p.add_argument('--pause-fire',action='store_true')
     p.add_argument('--fresh-process-reopen',action='store_true')
@@ -169,7 +170,7 @@ def main():
         run_id=allocate_run_id(out.name,original_external)
         r['runIdAllocation']='Fresh complete UUID checked against original external roots; ASCII display label max10, base length<=53, all capture/cold suffixes<=64'
         r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
-        r['menuMusicNormalFlow']=a.menu_music;r['menuCaptureSeconds']=a.menu_capture_seconds;r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
+        r['menuMusicNormalFlow']=a.menu_music;r['menuCaptureSeconds']=a.menu_capture_seconds;r['mixerObservationEnabled']=a.mixer_observation=='periodic';r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()
         def observe():
             with (out/'meminfo-timeline.txt').open('wb') as f:

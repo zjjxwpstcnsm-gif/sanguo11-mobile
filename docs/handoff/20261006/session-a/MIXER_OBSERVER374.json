@@ -1,0 +1,21 @@
+{
+  "paths": [
+    {
+      "path": "docs/handoff/20261006/session-a/device_session.py",
+      "beforeSha256": "49c1f9c719d320c8743529ae21457acce7654e0634f9222db5a25501e06ff733",
+      "afterSha256": "0b722e10611ed83c9c6f133756cc95b867b9e9ee1f1615f0ac281b0a3454d65b"
+    },
+    {
+      "path": "docs/handoff/20261006/session-a/audio_capture_support.py",
+      "beforeSha256": "f43c860d6c270762c4e11a5e5032d55e80fb579e9cef2586201d5d1abf1b6e8f",
+      "afterSha256": "abb6f902cadb07065665fbe1e1cbe6c8e3f4c3104ca955ac6702fcc528d07ff0"
+    }
+  ],
+  "defaultUnchangedPeriodic": true,
+  "explicitOption": "--mixer-observation off",
+  "originalThresholdUnchanged": 0.995,
+  "actualAndroidDecoderMatchesOriginalWholeCorrelation": 0.9999999622861437,
+  "sourceGameTestApksUnchanged": true,
+  "reason": "Real zero-player-underrun349/366 captures still fail with time-axis jumps; fixed17 sourcewindows and periodic audioFlinger lock query may perturb mixer. Isolate measurement, not claim cause. Keep boundary route evidence/fullbackup/permissions/SaveRNG/actual fulltrack tests. No PCM edits/repetition of identical measurement conditions.",
+  "wholeGoalComplete": false
+}
