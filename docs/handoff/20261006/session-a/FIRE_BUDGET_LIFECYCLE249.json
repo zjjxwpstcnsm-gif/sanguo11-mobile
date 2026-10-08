@@ -1,0 +1,99 @@
+{
+  "cases": [
+    {
+      "case": "long128",
+      "exit": 2,
+      "framesCompleted": 660,
+      "framesRequested": 801,
+      "wallSeconds": 167.038116643,
+      "maximumPackets": 171,
+      "maximumCallBytes": 20000006,
+      "quotaHighwater": 128,
+      "quotaBytes": 20000000,
+      "semanticSha256": "73594e628fc5237d39f0b959a4a956f40bbc467dcc9655322f68b8413a8af469",
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nPC_CELL_ADMISSION active=128 highwater=128 limit=20000000\nPC_FIRE_SYNC serial=602 active=0 created=0 stopped=128 totalCreated=128 totalStopped=128\nPC_FIRE_SYNC serial=642 active=128 created=128 stopped=0 totalCreated=256 totalStopped=128\nPC_CELL_BLOCK_GUARD pc=457514 bytes=20000006 limit=20000000\nNative boundary/budget failure at45a530\nPC_CELL_BUDGET_PEAK bytes=20000006 highwater=128 limit=20000000\n",
+      "stdoutSha256": "428c727621a4e2e16b467c27b4270b7e9b100a9e8446977ea68eb11ed6925e8d",
+      "stderrSha256": "145d76df26bd24cb51a7109b23db2b66fc7aeae8f6daea5c4bd71667736c57ec",
+      "transportLifecyclePassed": false,
+      "pauseExact": true,
+      "maximumEvaluatorMs": {
+        "updateMs": 442.4200134277344,
+        "drawMs": 53.58700180053711,
+        "geometryMs": 219.33200073242188
+      },
+      "framesSha256": "745a97f40bf07a1d873e6aef1bbad165cd2d6443a1f893b63d54aef32e95dfb1"
+    },
+    {
+      "case": "over128",
+      "exit": 2,
+      "framesCompleted": 0,
+      "framesRequested": 1,
+      "wallSeconds": 0.18342978100000096,
+      "maximumPackets": 0,
+      "maximumCallBytes": 299403,
+      "quotaHighwater": 0,
+      "quotaBytes": 5000000,
+      "semanticSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_CELL_BUDGET_PEAK bytes=299403 highwater=0 limit=5000000\n",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "8cc5b072ec1d3c2ef59db7eb65d669cda0cd481ec49d307e89d2555597c08847",
+      "invalidAdmissionRejectedBeforeAnyFrame": true
+    },
+    {
+      "case": "duplicate",
+      "exit": 2,
+      "framesCompleted": 0,
+      "framesRequested": 1,
+      "wallSeconds": 0.16232464099999788,
+      "maximumPackets": 0,
+      "maximumCallBytes": 299403,
+      "quotaHighwater": 0,
+      "quotaBytes": 5000000,
+      "semanticSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_CELL_BUDGET_PEAK bytes=299403 highwater=0 limit=5000000\n",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "8cc5b072ec1d3c2ef59db7eb65d669cda0cd481ec49d307e89d2555597c08847",
+      "invalidAdmissionRejectedBeforeAnyFrame": true
+    },
+    {
+      "case": "invalid-height",
+      "exit": 2,
+      "framesCompleted": 0,
+      "framesRequested": 1,
+      "wallSeconds": 0.16985537799999406,
+      "maximumPackets": 0,
+      "maximumCallBytes": 299403,
+      "quotaHighwater": 0,
+      "quotaBytes": 5000000,
+      "semanticSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_CELL_BUDGET_PEAK bytes=299403 highwater=0 limit=5000000\n",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "8cc5b072ec1d3c2ef59db7eb65d669cda0cd481ec49d307e89d2555597c08847",
+      "invalidAdmissionRejectedBeforeAnyFrame": true
+    },
+    {
+      "case": "invalid-coordinate",
+      "exit": 2,
+      "framesCompleted": 0,
+      "framesRequested": 1,
+      "wallSeconds": 0.16960646699999415,
+      "maximumPackets": 0,
+      "maximumCallBytes": 299403,
+      "quotaHighwater": 0,
+      "quotaBytes": 5000000,
+      "semanticSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_CELL_BUDGET_PEAK bytes=299403 highwater=0 limit=5000000\n",
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "8cc5b072ec1d3c2ef59db7eb65d669cda0cd481ec49d307e89d2555597c08847",
+      "invalidAdmissionRejectedBeforeAnyFrame": true
+    }
+  ],
+  "sourceGuardsBeforeAfter": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/admitted-fire-budget246/host-probe": "398c5137fd0d815fb6481063e97cb5d64fa2c5918547e94edb1f94dbbea8b823",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-kernel.bin": "2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-fire-scene.bin": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/content/native/session_a_cell_fire_budget_worker.c": "6c53fc66f099384e6a014014c88ce5316249f1435c3c8779275c4dbec0d0338e"
+  },
+  "scope": "Host-only fixed diagnostic terrain0/camera:128 warm60source seconds, exact pause,40stop steps,recreate128 for12source seconds,40stop; unchanged candidate20M maximum quota and original5s deadline,16MiB guest/32MiBTCG/32768packet. Negative129/duplicate/out-of-range-height/coordinate. Does not prove real Android128/position/view/FPS/GPU/ARM/JavaOOM; current sixJNI/APK/rules/save/RNG unchanged. Failure retained, no automatic enlarged quota or retry.",
+  "wholeGoalComplete": false
+}

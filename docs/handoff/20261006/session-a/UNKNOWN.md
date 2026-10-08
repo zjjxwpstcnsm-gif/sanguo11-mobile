@@ -134,3 +134,6 @@ CURRENT157: 145military156 normal/cold/full9+3797restore/9rawvideo accepted, per
 
 
 246预算原型把64/128宿主固定输入跨过原5M守卫，源码新增A独立wrapper且小场景record/time字节同，已知限制必须保留：预算工程每32句柄5M/顶20M，128样本实际19569502接近顶、nativeupdate229.28ms不是性能达标；真实地形/相机/frustum/长时切换/128合法正常Android火/ARM仍待，六JNI未变、未装本原型。Source4旧176搜索失败238没有足够焦点/窗口元数据判根因；239新测试只观察且正常242已越69/128人，可能时序掩盖，不能宣布产品修复。新API当前组合B61各种retry与测试crash/gesture状态单列，不移旧成绩。247已证明r7恢复页源于原备份guard true，而非单凭页面就可判新失败；任何实际栈仍须原时点日志。
+
+
+249覆盖246短测后的状态：20M source-count预算在长时128停止重建时再次失败（660/801），不具有JNI/Android交付资格。不把20M无OOM或短71帧当容量修复，不放大预算；停止函数413470原ABI一参数/清bit4已直接核原字节，具体population与后续CPU量需251原列表只读证据。negative129/duplicate/out-height/out-coordinate拒绝通过仅输入边界，真实正常游戏、原高度/frustum/128性能/ARM仍未接受。

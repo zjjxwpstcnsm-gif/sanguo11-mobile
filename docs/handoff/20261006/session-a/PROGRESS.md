@@ -515,3 +515,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 248正式B正常地图输入请求闭合到可实施依据：直接查看r8 actual attempt0PNG（坐标540,1005.5964）仍完整黑底加载spinner/“正在准备3D地图”，不是可见地图。A原MapHost loadingCurtain为map.loading opaque clickable层，必须等待同candidate实际onVerifiedOutput移除；nonnull spatial/snapshot与CPUray不等于交互。原UiUx.nativePose结尾waitNative检查curtain，而routePoint本身未检查且nullspatial默认true；248明确当前host/actualoutput/renderedFrames/pending/assets/curtain/focus/新pose后render门与World/RNG/Token纯性。A不修改保护/不写B测试/不推新产品故障，B需自身runner按门正常复验；原原before guard provenance247单列。242当前320/670、5024/5061/5062实活，未复现69不当UI根因修复；旧176Source4失败238、错误复用安装240完整恢复都保留，音频/双堆原182已终止不是等待。
+
+
+249长时否定246可交付性：128持续600update/1pause/40stop/restart120/40stop共801请求，仅660帧exit2，重建后20Mbyte守卫20000006触发45a530；准确word/记录/负129/duplicate/height129/coordinate200在frame前拒绝均保留。原型不进JNI、不再扩大额度。停止413470原字节只需1stack参数且清handle+6bit4，本代码调用形状正确，不猜generation遗漏；251新host诊断仅读原pool/instance链条和rawflag/句柄join，当前正在运行。250加强A test ray准入已stage编译/补丁SHA读回通过，规范239/165及B当前包不改。B已读248并撤回输入bug推断，在自身pose增加真实ready门，不需要A生产输入补丁。242当前Source4约336/670仍partial，原Helper5024/5061/5062实际存活，完整恢复未结束。
