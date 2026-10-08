@@ -577,7 +577,9 @@
     "docs/handoff/20261006/session-a/build_media_candidate290.py",
     "docs/handoff/20261006/session-a/MEDIA_CANDIDATE_BUILD290.json",
     "docs/handoff/20261006/session-a/run_media_callers291.py",
-    "docs/handoff/20261006/session-a/MEDIA_CALLERS291_LAUNCH.json"
+    "docs/handoff/20261006/session-a/MEDIA_CALLERS291_LAUNCH.json",
+    "docs/handoff/20261006/session-a/export_media_source292.py",
+    "docs/handoff/20261006/session-a/MEDIA_SOURCE292.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
