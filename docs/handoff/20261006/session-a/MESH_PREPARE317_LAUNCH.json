@@ -1,8 +1,28 @@
 {
-  "stage": "waiting-actual316-build-owner-exit",
+  "stage": "restored-verified",
   "previousFailedActualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic-installed311",
   "changedOnlyMeshAllocation": true,
   "functional120sLimitUnchanged": true,
   "previousScoresTransferred": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug.apk": "5d766b516832b37ad3bdfe0115d536088e0291438397a3d418f452a095e69ba1",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug-androidTest.apk": "ea2f9830af0a4f6d9fbd6c78947963d05a69186b0b89b343ff359f31c5cc323c"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-prepare-installed317",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug-androidTest.apk",
+    "--observe-workers",
+    "--runner",
+    "SessionAScenarioPrepareInstrumentation"
+  ],
+  "helperExit": 0,
+  "functionalDiagnosticPassed": true
 }

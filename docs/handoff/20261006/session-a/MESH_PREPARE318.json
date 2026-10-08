@@ -1,0 +1,1169 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-prepare-installed317",
+  "sessionSha256": "a8a5fe58487dd8489b3679fffeb3c89f991d8200d88591e3ff8f25f470a1776e",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug.apk": "5d766b516832b37ad3bdfe0115d536088e0291438397a3d418f452a095e69ba1",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug-androidTest.apk": "ea2f9830af0a4f6d9fbd6c78947963d05a69186b0b89b343ff359f31c5cc323c"
+  },
+  "newGame316Installed": true,
+  "diagnosticObservationComplete": true,
+  "functional120sPreviewAccepted": true,
+  "summary": {
+    "sourceIndex": 14,
+    "sourcePath": "Media/scenario/Scen014.S11",
+    "firstFocusedPreviewMillis": 61522,
+    "firstVerified3DMillis": 152728,
+    "functionalHostLimitMillis": 120000,
+    "observationOnlyLimitMillis": 600000,
+    "fullSaveRngTokenPure": true,
+    "functionalSource14Accepted": true,
+    "observationComplete": true
+  },
+  "observationRows": [
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 1766,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "com.android.org.conscrypt.NativeCrypto.EVP_DigestUpdate(Native Method)",
+            "com.android.org.conscrypt.OpenSSLMessageDigestJDK.engineUpdate(OpenSSLMessageDigestJDK.java:103)",
+            "java.security.MessageDigest$Delegate.engineUpdate(MessageDigest.java:626)",
+            "java.security.MessageDigest.update(MessageDigest.java:372)",
+            "java.security.MessageDigest.digest(MessageDigest.java:447)",
+            "game.sanguo.core.PcScenarioCatalog.resource(Unknown Source:48)",
+            "game.sanguo.core.PcScenarioCatalog.read(Unknown Source:18)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:30)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 47293512,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 6832,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "java.util.regex.Matcher.setInputImpl(Native Method)",
+            "java.util.regex.Matcher.resetForInput(Matcher.java:1194)",
+            "java.util.regex.Matcher.reset(Matcher.java:1184)",
+            "java.util.regex.Matcher.reset(Matcher.java:280)",
+            "java.util.regex.Matcher.<init>(Matcher.java:186)",
+            "java.util.regex.Pattern.matcher(Pattern.java:1034)",
+            "game.sanguo.core.PcContestProfiles$Record.<init>(Unknown Source:68)",
+            "game.sanguo.core.PcContestProfiles$Source.<init>(Unknown Source:55)",
+            "game.sanguo.core.PcContestProfiles.catalog(Unknown Source:231)",
+            "game.sanguo.core.PcContestProfiles.initializeOpening(Unknown Source:36)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1528)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 57814768,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 11916,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "java.util.zip.CRC32.updateBytes(Native Method)",
+            "java.util.zip.CRC32.update(CRC32.java:76)",
+            "java.util.zip.GZIPInputStream.read(GZIPInputStream.java:133)",
+            "java.io.FilterInputStream.read(FilterInputStream.java:107)",
+            "game.sanguo.core.PcOfficerSources.all(Unknown Source:105)",
+            "game.sanguo.core.PcOfficerSources.attachOpening(Unknown Source:24)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1658)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 57566160,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 16946,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "libcore.util.CharsetUtils.asciiBytesToChars(Native Method)",
+            "java.lang.StringFactory.newStringFromBytes(StringFactory.java:236)",
+            "java.lang.StringFactory.newStringFromBytes(StringFactory.java:249)",
+            "game.sanguo.core.PcOfficerInfo.text(SourceFile:5)",
+            "game.sanguo.core.PcOfficerInfo.read(Unknown Source:38)",
+            "game.sanguo.core.PcOfficerSources.all(Unknown Source:349)",
+            "game.sanguo.core.PcOfficerSources.attachOpening(Unknown Source:24)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1658)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 76826304,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 22015,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "libcore.util.CharsetUtils.asciiBytesToChars(Native Method)",
+            "java.lang.StringFactory.newStringFromBytes(StringFactory.java:236)",
+            "java.lang.StringFactory.newStringFromBytes(StringFactory.java:249)",
+            "game.sanguo.core.PcOfficerInfo.text(SourceFile:5)",
+            "game.sanguo.core.PcOfficerInfo.read(Unknown Source:38)",
+            "game.sanguo.core.PcOfficerSources.all(Unknown Source:349)",
+            "game.sanguo.core.PcOfficerSources.attachOpening(Unknown Source:24)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1658)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 74669152,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 27019,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "java.util.zip.Inflater.inflateBytes(Native Method)",
+            "java.util.zip.Inflater.inflate(Inflater.java:278)",
+            "java.util.zip.InflaterInputStream.read(InflaterInputStream.java:171)",
+            "java.util.zip.GZIPInputStream.read(GZIPInputStream.java:126)",
+            "java.io.FilterInputStream.read(FilterInputStream.java:107)",
+            "game.sanguo.core.PcOfficerCampaignFacts.boundedBytes(Unknown Source:9)",
+            "game.sanguo.core.PcOfficerCampaignFacts.catalog(Unknown Source:26)",
+            "game.sanguo.core.PcOfficerCampaignFacts.initializeOpening(Unknown Source:46)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1661)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 91454496,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 32107,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "game.sanguo.core.PcOfficerInfo$Person.<init>(Unknown Source:0)",
+            "game.sanguo.core.PcOfficerInfo.read(Unknown Source:215)",
+            "game.sanguo.core.PcOfficerInfo.saved(Unknown Source:49)",
+            "game.sanguo.core.PcOfficerIdentities.initializeOpening(Unknown Source:103)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1664)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 75721128,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 37164,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "game.sanguo.core.MapCoordinates.axial(SourceFile:4)",
+            "game.sanguo.core.NaturalStructures.seedOpening(Unknown Source:202)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1673)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 94028528,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 42265,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "RUNNABLE",
+          "stack": [
+            "java.util.TreeMap.getEntry(TreeMap.java:352)",
+            "java.util.TreeMap.get(TreeMap.java:279)",
+            "game.sanguo.core.PcArmyActionPolicy.calculate(Unknown Source:209)",
+            "game.sanguo.core.PcArmyActionPolicy.initializeOpening(Unknown Source:65)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1725)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 89556616,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": true,
+      "jobPresent": true,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": false,
+      "elapsedMillis": 47304,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "java.util.zip.Inflater.inflateBytes(Native Method)",
+            "java.util.zip.Inflater.inflate(Inflater.java:278)",
+            "java.util.zip.InflaterInputStream.read(InflaterInputStream.java:171)",
+            "java.util.zip.GZIPInputStream.read(GZIPInputStream.java:126)",
+            "sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:291)",
+            "sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:355)",
+            "sun.nio.cs.StreamDecoder.read(StreamDecoder.java:181)",
+            "java.io.InputStreamReader.read(InputStreamReader.java:184)",
+            "java.io.BufferedReader.fill(BufferedReader.java:172)",
+            "java.io.BufferedReader.readLine(BufferedReader.java:335)",
+            "java.io.BufferedReader.readLine(BufferedReader.java:400)",
+            "game.sanguo.core.PcDirectRecruitmentPolicy.initializeOpening(Unknown Source:200)",
+            "game.sanguo.core.PcScenarioOpening.create(Unknown Source:1734)",
+            "game.sanguo.core.PcScenarioCatalog.preview(Unknown Source:37)",
+            "game.sanguo.mobile.MainActivity.lambda$chooseScenarioTemplate$268(Unknown Source:9)",
+            "game.sanguo.mobile.MainActivity.$r8$lambda$IwAdEWpCrhvwVGzT9_o91BAAaTQ(Unknown Source:0)",
+            "game.sanguo.mobile.MainActivity$$ExternalSyntheticLambda248.call(Unknown Source:52)",
+            "game.sanguo.mobile.UiReadTask.lambda$run$5(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask.$r8$lambda$hFVViFRMJuOg9eF4VjcHliAD-Z8(Unknown Source:0)",
+            "game.sanguo.mobile.UiReadTask$$ExternalSyntheticLambda5.run(Unknown Source:53)",
+            "java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)",
+            "java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 86933656,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 55,
+      "assetSyncPending": true,
+      "elapsedMillis": 57322,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 187011888,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 70,
+      "assetSyncPending": true,
+      "elapsedMillis": 62347,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 192576944,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 142,
+      "assetSyncPending": true,
+      "elapsedMillis": 67501,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 221261312,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 190,
+      "assetSyncPending": true,
+      "elapsedMillis": 72617,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 233962536,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 246,
+      "assetSyncPending": true,
+      "elapsedMillis": 77790,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 215313496,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 336,
+      "assetSyncPending": false,
+      "elapsedMillis": 83061,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 256006488,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 317,
+      "assetSyncPending": false,
+      "elapsedMillis": 88151,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 258998056,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 291,
+      "assetSyncPending": false,
+      "elapsedMillis": 93234,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 266035848,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 264,
+      "assetSyncPending": false,
+      "elapsedMillis": 98281,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 278289824,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 234,
+      "assetSyncPending": false,
+      "elapsedMillis": 103342,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 233145744,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 212,
+      "assetSyncPending": false,
+      "elapsedMillis": 108408,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 235433904,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 196,
+      "assetSyncPending": false,
+      "elapsedMillis": 113482,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 237272072,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 168,
+      "assetSyncPending": false,
+      "elapsedMillis": 118561,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 228822240,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 152,
+      "assetSyncPending": false,
+      "elapsedMillis": 123757,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 230846648,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 129,
+      "assetSyncPending": false,
+      "elapsedMillis": 128963,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 233094120,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 99,
+      "assetSyncPending": false,
+      "elapsedMillis": 134118,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 171775344,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 76,
+      "assetSyncPending": false,
+      "elapsedMillis": 139241,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 174130552,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 55,
+      "assetSyncPending": false,
+      "elapsedMillis": 144321,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 169894904,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": false,
+      "pendingMeshes": 17,
+      "assetSyncPending": false,
+      "elapsedMillis": 149477,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 171403560,
+      "javaLimitBytes": 536870912
+    },
+    {
+      "pendingDialog": false,
+      "jobPresent": false,
+      "jobDone": false,
+      "jobCancelled": false,
+      "generation": 1,
+      "visibleFocusedPreview": true,
+      "previewScenario": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "spatialExists": true,
+      "outputVerified": true,
+      "pendingMeshes": 0,
+      "assetSyncPending": false,
+      "elapsedMillis": 152727,
+      "uiReadThreads": [
+        {
+          "name": "ui-read",
+          "state": "WAITING",
+          "stack": [
+            "sun.misc.Unsafe.park(Native Method)",
+            "java.util.concurrent.locks.LockSupport.park(LockSupport.java:190)",
+            "java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2067)",
+            "java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)",
+            "java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1092)",
+            "java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1152)",
+            "java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)",
+            "java.lang.Thread.run(Thread.java:919)"
+          ],
+          "stackTruncated": false
+        }
+      ],
+      "javaUsedBytes": 172526560,
+      "javaLimitBytes": 536870912
+    }
+  ],
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 58587,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-prepare-installed317/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "84d61ccc92b4c333732ec5ad4037d748fe3c322826391e4bc0b478ece91f1b93",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 58588,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-prepare-installed317/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "actualErrorLogLines": [],
+  "evidenceFiles": [
+    {
+      "path": "evidence/actual-preparation-end-actual-text.json",
+      "sha256": "b08d11d6473edd3098cb5d78d8ee26f050ecccf53f202d75fbe33e19ff6d68ce",
+      "bytes": 7869
+    },
+    {
+      "path": "evidence/actual-preparation-end.png",
+      "sha256": "70f116a58a2c0c5588625fb95f334c053677c192b7bb5cbc198098dec11fcbf9",
+      "bytes": 1358495
+    },
+    {
+      "path": "evidence/diagnosis.txt",
+      "sha256": "4de45c361429d8986293eef21c90e559f624ddddd5d967a4914e0c5eeb665af4",
+      "bytes": 52
+    },
+    {
+      "path": "evidence/prepare-observations.jsonl",
+      "sha256": "624522612988dd8e70aefa551327a9654f67ba1da00fa9712a4ae09d6fad4893",
+      "bytes": 37707
+    },
+    {
+      "path": "evidence/prepare-summary.json",
+      "sha256": "efbe9ff5ffc93ea7c4548fd59576ac69308a8ef1fec7f6786038734489420bb9",
+      "bytes": 324
+    },
+    {
+      "path": "evidence/progress.txt",
+      "sha256": "fd6e95ed73138414d5fba134726bc12f7238b38b5c1cc67c40cea431cc493548",
+      "bytes": 779
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "af040cebcf11edb21819bfad3399e012a37241172f066d5a9c7fd0cb904a8a3c",
+      "bytes": 77
+    },
+    {
+      "path": "evidence/strict-120s-preparation-actual-text.json",
+      "sha256": "7e81642fce8b07ba34b65981d72d298248578b317a3392f77f3b6e79c164e75c",
+      "bytes": 8358
+    },
+    {
+      "path": "evidence/strict-120s-preparation.png",
+      "sha256": "8a8f0540ac3876b1285203144f3ace55ba7060f54a95b047a372696726c8fefd",
+      "bytes": 205297
+    }
+  ],
+  "rootCauseProven": false,
+  "allNormalSource14NewZoomColdPassed": false,
+  "scope": "Actual one source14 normal selection and real UiReadTask/worker-stack/focused-preview/verified3D times; strict120s unchanged,600s observation only. No World/RNG injection or core changes; A allocation-only product change314, raw parity315. Full original9+3797 SHA restore and exact new game and test APKs verified. Includes encoder/stack/screenshot overhead; not blanket source14 normal new/zoom/cold/media/all16/ARM or unique OOM proof.",
+  "wholeGoalComplete": false,
+  "actualGroundAndFrameDiagnosticRows": [
+    "10-08 13:21:55.849  7352  7352 I Sanguo3D: First submission (not visibility proof): first_submit_wall_ms=11578 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=5bacf10059d208c34758cd81eb05e44971f231ae profile=native javaHeapUsedBytes=65843560 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=86495064 retainedMeshPayloadBytes=10911936 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]",
+    "10-08 13:23:21.141  7352  9036 I Sanguo3D: Ground CPU ready chunks=330 ms=26698.784 queueWaitWallMs=22.623 backdropWallMs=7.219 backdropCpuMs=0.353007 groundWallMs=26345.964 groundCpuMs=1356.497543 geometryWallMs=14566.507 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 13:23:21.141  7352  9036 I Sanguo3D: Field CPU ready forestChunks=55 totalMs=26699.28 sceneryWallMs=341.977 sceneryCpuMs=8.17255 groundDeliveryBackpressureWallMs=0.318 processGcMs=16441 processAllocatedBytes=147847072 interrupted=false",
+    "10-08 13:24:29.036  7352  7352 I Sanguo3D: First submission (not visibility proof): first_submit_wall_ms=100516 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=5bacf10059d208c34758cd81eb05e44971f231ae profile=native javaHeapUsedBytes=171962168 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=203112440 retainedMeshPayloadBytes=66787968 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]"
+  ],
+  "wholeBudgetOrIsolatedPerformanceImprovementProven": false,
+  "timingComparisonScope": "Different actual installed runs with encoder/host scheduling/cache temperature differences; no attribution of unchanged B preparation timing or entire wall-time difference to A mesh patch. Runtime checkpoints are sampled, not whole allocator peaks; GPU unknown."
+}
