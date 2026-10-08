@@ -1,0 +1,47 @@
+{
+  "liveCompletedBHeadObserved": "664c00f415dab2f17c889d42d0a5670888061213",
+  "completedSourceDirectory": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r26-v2",
+  "smallDeliveryEvidenceFiles": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/NATIVE_R24_PRODUCTION_INCREMENT.patch",
+      "sha256": "1881691c60ff837adae0e667f531176872c30880525d23f4781716e388a530e9",
+      "bytes": 32967
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/REPLENISHMENT_R25_PRODUCTION_INCREMENT.patch",
+      "sha256": "8d1b468aa4070c8c93b1dce6215446f2da8b46a00ee86d20a77db32fc3a543d7",
+      "bytes": 8368
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/MILITARY_MANAGEMENT_INCREMENT.patch",
+      "sha256": "f2fe7c4eca0eaa9722d8371b12c5a4c7a59ee1705918b2235d085bd61fb6e6a4",
+      "bytes": 1842
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/docs/handoff/20261006/session-b/MILITARY_CURRENT_CONTINUATION.md",
+      "sha256": "74efb9053066d5afb10e600dfdfc9330c90ba977acb8a348133833efb0e92e6d",
+      "bytes": 6965
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r26-v2/frozen-report.json",
+      "sha256": "5545d6f4ed3f4770c9738029931244dbdd1b786c0524b745ebad2194d444326a",
+      "bytes": 3330
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r26-v2/increment-manifest.json",
+      "sha256": "2fcef05ab850f222e65e95eac583eb84fd69ceaabf3abbd0bf0e1ab74b39c1f5",
+      "bytes": 593
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r26-v2/source-guard.json",
+      "sha256": "186487946078c71586a3efdce6a58ed01954e5c56d9ab014e10bbe59a741e1c5",
+      "bytes": 769860
+    }
+  ],
+  "readOnly": true,
+  "productionImported": false,
+  "deviceMutated": false,
+  "BMessagesSent": false,
+  "scope": "Read-only completed B delivery pointers for final sequential integration. No whole branch WIP import; no A/B/shared production edits. Final combined source/API bindings/build/install and all new APK acceptance still pending. Prior B native arena or facility evidence does not certify A 3D/media. Large source archive and all B file-mode/SHA guards must be verified after current native fire owner exits.",
+  "wholeGoalComplete": false
+}
