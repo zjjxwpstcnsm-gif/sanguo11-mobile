@@ -515,7 +515,11 @@
     "docs/handoff/20261006/session-a/probe_instruction_boundary259.py",
     "docs/handoff/20261006/session-a/INSTRUCTION_BOUNDARY259.json",
     "docs/handoff/20261006/session-a/build_instruction_fire_candidate260.py",
-    "docs/handoff/20261006/session-a/INSTRUCTION_FIRE_CANDIDATE260.json"
+    "docs/handoff/20261006/session-a/INSTRUCTION_FIRE_CANDIDATE260.json",
+    "docs/handoff/20261006/session-a/freeze_presentation_delta261.py",
+    "docs/handoff/20261006/session-a/A_PRESENTATION_DELTA261.json",
+    "docs/handoff/20261006/session-a/run_registered_caller_followup262.py",
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE262.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

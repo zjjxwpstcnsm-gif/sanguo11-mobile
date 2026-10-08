@@ -536,3 +536,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 260对实际257 source clone独立编译x86_64/arm64新worker，ELF动态libunicorn依赖/各ABI完整SHA已冻结：x86 fe7b940d…/arm853cdef9…。全部原4+已装新2逐SHA保护，没有覆盖current additional-jni/Gradle/APK，不当Android或ARM实机通过。B消息r12新game e16…正在真实18旬普通单挑/冷终局验收，仅消息未独立核最终恢复，Native WIP仍不合入；不操作5582或发工具回复。
+
+
+261只两个A后继呈现文件，相对不可变227 tar前态逐SHA匹配，235+258组合compile通过，tar7bd03477…每条读回，canonical/JNI/B WIP不动。262串行后继队列已实际启动，仅等待当前242全部normal/cold/原9+3797每SHA恢复且5024/5061/5062真正退出，然后才accepted并启动当前239其余15来源；开始完成集合只能[4]，旧176五源不转移。当前没有新设备操作，全目标仍待最终B组合/正常事件媒体/双堆/ARM。

@@ -1,0 +1,45 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "predecessorClosure227Sha256": "fa81f88a31224cd71d7b448d30a7937bbbca290f88e5b68c7931c31bc1852dcb",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/presentation-delta261/a-presentation-delta.tar.gz",
+  "archiveSha256": "7bd03477479ca52ea13fa330689ee03104b91aeb885ae08bf9342de0b8103dc6",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "owner": "A",
+      "closure227BeforeSha256": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+      "afterSha256": "ca1977989c5b5ea4796c8a5157422b1e94869ff1162343894d082473682e55a5",
+      "bytes": 177718
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "owner": "A",
+      "closure227BeforeSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
+      "afterSha256": "d1dee02fda5cdd9c0b68a1202d694db9bbfd948454cddb07706b713c7b7509b4",
+      "bytes": 14662
+    }
+  ],
+  "combinedCompilePassed": true,
+  "compileCommand": [
+    "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+    "-Xmx512m",
+    "-m",
+    "jdk.compiler/com.sun.tools.javac.Main",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-cp",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/filament.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/core.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-api.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-runtime.jar",
+    "-d",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/presentation-delta261/classes",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/presentation-delta261/source/app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/presentation-delta261/source/app/src/main/java/game/sanguo/mobile/PcMapEffects.java"
+  ],
+  "compileLogSha256": "8d6bd166e92141da886c8740ea607602e1a6786fcb1bf93d7127f9af1378d071",
+  "everyArchiveFileReadbackExact": true,
+  "canonicalUnchanged": true,
+  "actualInstalled": false,
+  "scope": "Only two A presentation successor files after immutable37-path227. Does not include test250 or uninstalled native260. Exact predecessor checks required; conflicting production must be audited rather than overwritten. No B source/WIP/Bridge/Unity/Gradle/JNI changes. Compile/readback only; fresh final combined APK installation and normal Save/RNG/Token/memory/pixels/input/media acceptance required.",
+  "wholeGoalComplete": false
+}
