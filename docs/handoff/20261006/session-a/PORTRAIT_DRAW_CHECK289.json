@@ -1,0 +1,10 @@
+{
+  "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+  "beforeSha256": "d7ba3f1f1e3fbf065dd62107161cb0726b4bc3f325c83dbc938c4d93a3832c19",
+  "afterSha256": "97e1603e251f98a4b9af65cbc8ef6cb8e26deb2555d9e719dc0d4f3209e1a9fd",
+  "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-draw-check289/app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+  "canonicalUnchanged": true,
+  "actualInstalled": false,
+  "scope": "Same normal roster/detail caller and current saved native identity. Compare drawing of actual attached Drawable at actual current bounded dimensions against complete original bitmap scaled with Android filtering. Detect unproved rounded clipping/gold frame; no snapshot/rule injection. Ordinary screenshot remains separate; not PC small-family, Windows framebuffer, fullscreen timing, voice or ARM acceptance.",
+  "wholeGoalComplete": false
+}

@@ -571,7 +571,13 @@
     "docs/handoff/20261006/session-a/run_candidate_regression287.py",
     "docs/handoff/20261006/session-a/CANDIDATE_REGRESSION287_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_candidate_fire288.py",
-    "docs/handoff/20261006/session-a/CANDIDATE_FIRE_ACCEPTANCE288.json"
+    "docs/handoff/20261006/session-a/CANDIDATE_FIRE_ACCEPTANCE288.json",
+    "docs/handoff/20261006/session-a/stage_portrait_draw_check289.py",
+    "docs/handoff/20261006/session-a/PORTRAIT_DRAW_CHECK289.json",
+    "docs/handoff/20261006/session-a/build_media_candidate290.py",
+    "docs/handoff/20261006/session-a/MEDIA_CANDIDATE_BUILD290.json",
+    "docs/handoff/20261006/session-a/run_media_callers291.py",
+    "docs/handoff/20261006/session-a/MEDIA_CALLERS291_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

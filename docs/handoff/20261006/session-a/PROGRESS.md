@@ -583,3 +583,6 @@ B后继r16消息原AI actor属于force ruler（原4ad960链），r15 unit leader
 
 
 288新增只读terminal fire审计，等同286数据owner/observer真正退出、normal/cold+不同PID+原9内部3797外部全SHA恢复才冻结，验证实际269两APK/正常火六生命周期/原录像每SHA及系统动画偏好恢复。只输出实际known PID进程PSS与source child PSS独立样本；Fire runner无Java allocator CSV，明确javaAllocatorPeakBytes=null、GPU未知、budget false，不将Dalvik PSS充Java峰。actual286已真正reset wholeturn完成→同格玩家重燃→正常manual burning save，当前多旬到期仍活跃。用户接受增大Java堆沿用现默认largeHeap，5554实384→512MiB，普通280仍待新队列实际安装，手机物理RAM不用于猜堆额度。
+
+
+289将当前269实际androidTest单文件仅stage新校验：同真实名册/详情attached OfficerPortrait当时bounds限制1024内、输出完整Rect与独立原PNG按Android滤波scaled Bitmap逐像素sameAs，界限不变、bitmap立即回收；新增record标明Canvas不是Windows/Screen PixelCopy。canonical/test239/269不改，不把原bitmap_sameAs当裁切已证明。290独立完整269输入逐SHA/inode继承+282五A媒体/289测试六delta，独立source/build/out/GH真实Gradle构建中；原4/current2/269candidate2/168守卫，不接B WIP，不构造World。291真实等待队列已启动，同287完整所有case/实际owner退出及290实build receipt才执行新APK独立backup/install→all16每来源670/1340caller+newrect检查/current3D/save/newPID/full原SHA，first完整实装后同队列reuse都核设备SHA，不能缩all16成旧0/4或四姓名。正常58实际producer/PC smallfamily/边界/全屏/voice/地图BGM/ARM/finalB仍未知；current286原AI旬持续side logs，foreground120s与后台处理时延如实保留，host并行290负载不用于真机FPS结论。

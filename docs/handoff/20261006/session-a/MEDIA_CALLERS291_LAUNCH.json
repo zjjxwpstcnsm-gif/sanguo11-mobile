@@ -1,0 +1,9 @@
+{
+  "stage": "waiting-new290-build-and-actual287-full-regressions-terminal",
+  "completedSources": [],
+  "cases": {},
+  "all16NormalCallersAccepted": false,
+  "normalMiss58ProducerBound": false,
+  "wholeGoalComplete": false,
+  "armAccepted": false
+}
