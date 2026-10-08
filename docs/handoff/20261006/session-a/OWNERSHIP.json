@@ -834,7 +834,14 @@
     "docs/handoff/20261006/session-a/SERIAL_MATRIX419_LAUNCH.json",
     "out/session-a/serial-matrix419",
     "docs/handoff/20261006/session-a/audit_serial_opening420.py",
-    "docs/handoff/20261006/session-a/SERIAL_OPENING420.json"
+    "docs/handoff/20261006/session-a/SERIAL_OPENING420.json",
+    "docs/handoff/20261006/session-a/MATRIX_FAILURE421.json",
+    "docs/handoff/20261006/session-a/build_prepare423.py",
+    "docs/handoff/20261006/session-a/PREPARE_BUILD424.json",
+    "out/session-a/prepare-test423",
+    "docs/handoff/20261006/session-a/run_prepare425.py",
+    "docs/handoff/20261006/session-a/PREPARE425_LAUNCH.json",
+    "out/session-a/prepare425"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

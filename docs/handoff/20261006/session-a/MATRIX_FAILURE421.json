@@ -1,0 +1,42 @@
+{
+  "accepted": false,
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/app-debug-androidTest.apk": "26801d2fd1e67b4704b8aa2b822f0e45699d05e0f719935fcc823862260ba8df"
+  },
+  "actualFailure": "SESSION_A_MAP FAIL java.lang.AssertionError: Normal widget unavailable\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.await(SessionAMapRepairInstrumentation.java:33)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.host(SessionAMapRepairInstrumentation.java:65)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.onStart(SessionAMapRepairInstrumentation.java:360)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\nPASS fresh evidence directory\nPASS control reachable \u6253\u5f00\u529f\u80fd\u5bfc\u822a \u00b7 \u57ce\u5e02\u3001\u6b66\u5c06\u3001\u4efb\u52a1\u3001\u83dc\u5355\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable \u5bfc\u822a \u00b7 \u5730\u56fe\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target \u5730\u56fe\nPASS actual3D verified output and completed terrain, not renderer recovery\nPASS all16 installed sources\nPASS control reachable \u6253\u5f00\u529f\u80fd\u5bfc\u822a \u00b7 \u57ce\u5e02\u3001\u6b66\u5c06\u3001\u4efb\u52a1\u3001\u83dc\u5355\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable \u5bfc\u822a \u00b7 \u83dc\u5355\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target \u83dc\u5355\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable \u9009\u62e9PC\u6765\u6e90\u5267\u672c Media/scenario/Scen000.s11\nPASS pointer accepted\nPASS pointer accepted\n",
+  "normalChecks": 24,
+  "actualPreviewStillReadingAt120Seconds": true,
+  "fullRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 1,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 98572,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-matrix419/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "21aa18a16fad99d6efe87fb109016e726490c8f64eb01a2e2b4357c5d8540f1b",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 98573,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-matrix419/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "causeProven": false,
+  "scope": "New ce83/268 actual entire matrix failed first source0 focused preview availability120s. Actual FAIL image still reading scenario modal, initial legacy campaign3D ready. No full16/cold scores. All9/3797 raw original SHA restored. Need exact actual read-worker stacks and Java/native lifetime; no test deadline relaxation or cached success substitute.",
+  "wholeGoalComplete": false
+}

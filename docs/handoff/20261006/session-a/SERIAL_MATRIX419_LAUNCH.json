@@ -1,0 +1,48 @@
+{
+  "stage": "restored-verified",
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/app-debug-androidTest.apk": "26801d2fd1e67b4704b8aa2b822f0e45699d05e0f719935fcc823862260ba8df"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-matrix419",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/app-debug-androidTest.apk",
+    "--reuse-installed",
+    "--observe-workers",
+    "--runner",
+    "SessionAMapRepairInstrumentation",
+    "--suite",
+    "all",
+    "--begin",
+    "0",
+    "--end",
+    "16",
+    "--fresh-process-reopen"
+  ],
+  "normalColdPassed": false,
+  "helperExit": 1,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 1,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "scope": "Exact combined ce83 game/test268 new full normal16 source picker/new/cancel/first-last/fit-near-pan/person/Home/rotate/exit/entireSave/read/finalcold. No prior392 scores transferred; fire/military/voice/ARM/native-duel remain separate."
+}

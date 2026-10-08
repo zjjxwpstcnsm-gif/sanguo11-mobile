@@ -1,0 +1,33 @@
+{
+  "buildSuccessful": true,
+  "gameLargeHeap": true,
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "gameByteExact410": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk",
+      "sha256": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+      "bytes": 315088059
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test423/app-debug-androidTest.apk",
+      "sha256": "874d312773cd3d92bc06de712584d4e8a48ebc5bff96e9ec16f2d65f5b760862",
+      "bytes": 3151404
+    }
+  ],
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test423/candidate-inputs.json",
+  "candidateInputManifestSha256": "6ec9ab73f108c907d69ac562bcedd3b736d672dac835c193ad62f87f98e24f10",
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test423/source",
+  "completeCandidateFiles": 12126,
+  "changedOnlyTestPath": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java",
+  "beforeSha256": "d3580760574861497794a949cc0c98ac1fc3b717877c9eae113ec60bf699be50",
+  "afterSha256": "b0fb14494bfb22fe472a0cba62ff45147ffb915526759cac813e113bdd8a45a4",
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 211.242070903,
+  "buildLogSha256": "c64122940d0eeff46271d625f5803abba2e16454ce25e478a2290c62d568d3d3",
+  "fullSourceShaUnchangedAfterBuild": true,
+  "buildExit": 0,
+  "actualInstalled": false,
+  "scope": "Exact ce83 combined game retained. Existing two real preview/cancel600s observation fixture retargeted source0. Functional host/renderer120s limits unchanged; longer observation only records actual ui-read/scene-cpu stacks. No production or World/RNG changed, real419 failure remains false. New install/full restoration and diagnosis required.",
+  "wholeGoalComplete": false
+}
