@@ -1,0 +1,19 @@
+{
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "fd7b1984918ae46453c38d70d21641448b3f66881da5896e467215cfc0391e00",
+      "afterSha256": "ed181f5de959bcd8b9bebbf3f3e4561d24627fd604b622a8a7018c7425591347",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu384/app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java"
+    }
+  ],
+  "game369Unchanged": true,
+  "defaultMixedMenuFlowUnchanged": true,
+  "newOptInArgument": "menuCleanWhole=true",
+  "actualOrdinarySettingsOnly": true,
+  "effectsGainDuringWhole": 0,
+  "wholeOriginalFramesUnchanged": 3904512,
+  "waveformThresholdUnchanged": 0.995,
+  "scope": "Additional diagnostic condition: normal actual sliders on map before entering established menu, effect0/music65/voice30, entire original first track before effects75 restoration, then same Home/mute/noisy/reentry/exit Save/RNG/Token checks. No test play directive/PCM edits/forced snapshot. Keeps old mixed-flow0.511 failure; not evidence that mix caused it, not yet compiled/installed/accepted, no substitute for full-media/default-output or ARM.",
+  "wholeGoalComplete": false
+}

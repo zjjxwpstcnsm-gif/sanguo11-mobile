@@ -79,6 +79,7 @@ def main():
     p.add_argument('--heap-profile',action='store_true')
     p.add_argument('--observe-workers',action='store_true')
     p.add_argument('--menu-music',action='store_true')
+    p.add_argument('--clean-menu-music',action='store_true')
     p.add_argument('--audio-capture-rate',type=int,choices=[44100,48000])
     p.add_argument('--mixer-observation',choices=['periodic','off'],default='periodic')
     p.add_argument('--menu-capture-seconds',type=int,choices=[130,180],default=130)
@@ -87,6 +88,7 @@ def main():
     p.add_argument('--portrait-native',type=int,default=-1)
     p.add_argument('--search-diagnostics',action='store_true')
     p.add_argument('--suite', default='cold3D'); p.add_argument('--runner',default='GameSmokeRunner'); p.add_argument('--begin',default='0'); p.add_argument('--end',default='16'); a = p.parse_args()
+    if a.clean_menu_music and not a.menu_music:raise ValueError('Clean menu requires actual established menu music fixture')
     if a.menu_music and (a.runner!='UiUxInstrumentation' or a.suite!='audio'):raise ValueError('Menu music requires the real UiUx audio runner')
     if a.audio_capture_rate and not a.menu_music:raise ValueError('Actual music capture needs the normal menu flow')
     if a.pause_fire and a.runner!='SessionAFireFlowInstrumentation':raise ValueError('Fire pause requires real Fire flow runner')
@@ -170,7 +172,7 @@ def main():
         run_id=allocate_run_id(out.name,original_external)
         r['runIdAllocation']='Fresh complete UUID checked against original external roots; ASCII display label max10, base length<=53, all capture/cold suffixes<=64'
         r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
-        r['menuMusicNormalFlow']=a.menu_music;r['menuCaptureSeconds']=a.menu_capture_seconds;r['mixerObservationEnabled']=a.mixer_observation=='periodic';r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
+        r['menuMusicNormalFlow']=a.menu_music;r['normalMenuMusicOnlyCondition']=a.clean_menu_music;r['menuCaptureSeconds']=a.menu_capture_seconds;r['mixerObservationEnabled']=a.mixer_observation=='periodic';r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()
         def observe():
             with (out/'meminfo-timeline.txt').open('wb') as f:
@@ -244,7 +246,7 @@ def main():
                 music_capture=capture_support.start(out,r,a.audio_capture_rate,run_id+'_menu',a.menu_capture_seconds)
                 if not music_capture['ready']:raise ValueError('Normal menu capture did not initialize')
             with (out/'instrumentation.txt').open('wb') as f:
-                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','searchDiagnostics','true' if a.search_diagnostics else 'false','-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and a.suite in ['factions16','mediaAll16','fastPreview16'] else 3600)
+                run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','searchDiagnostics','true' if a.search_diagnostics else 'false','-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','menuCleanWhole','true' if a.clean_menu_music else 'false','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and a.suite in ['factions16','mediaAll16','fastPreview16'] else 3600)
             r['testOutput']=(out/'instrumentation.txt').read_text(); r['passed']=('UIUX PASS' in r['testOutput'] or 'SESSION_A_MAP PASS' in r['testOutput'] or 'PASS SESSION B FIELDWORKS normal' in r['testOutput'] or 'PASS SESSION A FIRE normal' in r['testOutput'] or 'PASS SESSION A ATTACK normal' in r['testOutput'] or 'PASS SESSION A SEARCH ordinary' in r['testOutput'] or 'PASS SESSION A DIRECT normal' in r['testOutput'] or 'PASS SESSION A ARMY normal' in r['testOutput'] or 'PASS SESSION A DEBATE ordinary' in r['testOutput'] or 'PASS SESSION B CAPACITY source0' in r['testOutput'] or 'PASS SESSION B LEGACY39 genuine' in r['testOutput']) and 'FAIL' not in r['testOutput']
             folder='session-a-map' if a.runner=='SessionAMapRepairInstrumentation' else 'uiux'
             b_folder='legacy39' if a.runner=='SessionBLegacy39Instrumentation' else 'direct' if a.runner=='SessionADirectRecruitmentPresentationInstrumentation' else 'search' if a.runner=='SessionASearchPresentationInstrumentation' else 'capacity' if a.runner=='SessionBCapacityInstrumentation' else 'governor' if a.runner=='SessionAArmyBudgetInstrumentation' else 'debate' if a.runner=='SessionADebatePresentationInstrumentation' else 'fieldworks'
