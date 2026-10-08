@@ -1,0 +1,33 @@
+{
+  "buildSuccessful": true,
+  "gameLargeHeap": true,
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "gameByteExact410": true,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk",
+      "sha256": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+      "bytes": 315088059
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/app-debug-androidTest.apk",
+      "sha256": "26801d2fd1e67b4704b8aa2b822f0e45699d05e0f719935fcc823862260ba8df",
+      "bytes": 3151468
+    }
+  ],
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/candidate-inputs.json",
+  "candidateInputManifestSha256": "f9d59e7facac33a9b1a810bacbf6bf58281550e1a980e2ba6eeefe181d105850",
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-test415/source",
+  "completeCandidateFiles": 12126,
+  "changedOnlyTestPath": "app/src/androidTest/java/game/sanguo/mobile/SessionANativeDuelOpeningInstrumentation.java",
+  "beforeSha256": "b93168a875f611351c5afeb19de57c97fb1aec1b5fc0e0d3e66c563c87b4a8fa",
+  "afterSha256": "a8ad59e2b1a8905201166b8829e7e24bb9ad219680fafe6ca3cc3c3258905e8f",
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 89.65945295,
+  "buildLogSha256": "ab1acd92292cc6437fc1c685d33b3bc8457299c351b8f5c20bdfc081e473b3cc",
+  "fullSourceShaUnchangedAfterBuild": true,
+  "buildExit": 0,
+  "actualInstalled": false,
+  "scope": "Exact ce83 combined game retained. One test-only read marshaled to original serial UI/session owner; no production/World/RNG/DTO/rule or assertion change. Actual failed412 remains false. New normal/cold with full backup/install/SHA/restore required.",
+  "wholeGoalComplete": false
+}

@@ -51,3 +51,9 @@ A 登记 `docs/handoff/20261006/session-a/NORMAL_UI_WORDING_GAP210.json`，只�
 ## 221–223 Source2当前176完整验收
 
 登记221 acceptance、222 memory、223 widget确切A路径，只消费实际已restored-verified来源2的normal/cold/both3D/everySHA/确切APK与退出0观察器证据，经既有可复现审计器冻结。各峰值独立，GPU/全局预算/未解析背景/原裁切年龄全屏/voice/ARM继续未知。旧66467/66484/66485结束不重启；Source3继续原parent31963下的实际helper84300，生产源与设备数据不改。
+
+## 401–417 完成冻结 B 与 A 新局适配串行候选
+
+共同完整基点仍0e7b9bc2。401只从A397和B r26完整冻结归档组成隔离候选；407仅接B已完成r27的ContentUi/CurrentOfficerContent两路径，不读取其工作目录生产WIP。所有B路径保持冻结SHA/模式，未修改B的16页/core/API/runtime。A仅在独立候选修改MainActivity/ScenarioFactionPicker，完整增量404.patch；无session目录用完成static previewNewSourceOptions，sourceId/path/SHA/shared/variant与真实preview逐项匹配；原三组value/固定约束从DTO消费，不猜默认。普通/旧三参/读取沿原路线；仅明确采用完整三组选项才调用完成四参工厂。确认捕获本picker/source/options/World-revision/generation，拒绝陈旧回调；所有草稿取消和ClosePreview保持释放。Bridge/Unity/根Gradle/原4JNI不改，新2JNI使用A已验候选，不复制B旧火缓存worker。
+
+410独立完整组合构建game ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916，包内原168/全部A资产/6JNI守卫通过。412真实测试在线程边界失败，全部原9/3797已恢复，418保留FAIL。415仅将测试DTO读取调度到既有串行主线程；game字节不变，新test26801d2fd1e67b4704b8aa2b822f0e45699d05e0f719935fcc823862260ba8df。417新freshbackup/实装/视频/normal+cold重新执行，尚未通过不记验收成绩。所有新包完整normal16/fire/军建/原单挑舌战/媒体/ordinary384/ARM与完整必要检查仍需新证据，旧两边包不拼成绩。

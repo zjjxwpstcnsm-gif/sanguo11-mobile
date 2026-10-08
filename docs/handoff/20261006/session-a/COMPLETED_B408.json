@@ -1,0 +1,31 @@
+{
+  "bCompletedCommit": "cdd7f949",
+  "sourceArchive": {
+    "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r27/combined-source.tar.gz",
+    "sha256": "4b6a5009772af36ddacebbd506063ce8b887fb04b5c121ab95de569fdab68ad3",
+    "bytes": 642906576
+  },
+  "everyArchivedFileVerified": 11354,
+  "changedProductionPaths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "beforeSha256": "eebe3dd0b1ecbf0ac8e20c892ab155e0973c6f376d388783520026ca860439b9",
+      "afterSha256": "9449c1d3927cc811cb6d14713e622f591bc774f0cc4ded87dc5ba0e50386f4ea",
+      "mode": 420,
+      "owner": "B"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CurrentOfficerContent.java",
+      "beforeSha256": null,
+      "afterSha256": "4d98508d30c77fce5dd979f69dff7a2c43c9d5e9b6a46a7b1d26a0b0429f0428",
+      "mode": 420,
+      "owner": "B"
+    }
+  ],
+  "allOtherBProductionExact26": true,
+  "APathsUnchanged": true,
+  "originalFourAndCandidateTwoJniUnchanged": true,
+  "dirtyBRead": false,
+  "scope": "Exact completed B27 original current roster UI only, no worktree WIP, no later core/API/runtime or A/shared path copied. Actual final combined build/install and all scopes must rerun.",
+  "wholeGoalComplete": false
+}

@@ -1,0 +1,28 @@
+{
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug-androidTest.apk": "c5fe52f0bef7055758fbc2ffbe892ffae55db339e407b20fdd0d795c53c4e434"
+  },
+  "accepted": false,
+  "coldAttempted": false,
+  "actualFailure": "FAIL SESSION A OPENING java.lang.IllegalStateException: Serial logic thread required\n\tat game.sanguo.runtime.GameSession.thread(Unknown Source:13)\n\tat game.sanguo.runtime.GameSession.pcOpeningOptions(SourceFile:1)\n\tat game.sanguo.mobile.SessionANativeDuelOpeningInstrumentation.inspect(SessionANativeDuelOpeningInstrumentation.java:15)\n\tat game.sanguo.mobile.SessionANativeDuelOpeningInstrumentation.onStart(SessionANativeDuelOpeningInstrumentation.java:41)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+  "testThreadGuardViolated": true,
+  "fullOriginalShaRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 3,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "rawSessionSha256": "8cfdfb3a69d185973d01c0f286ed5b39ff0785faba1f5e28709f0bccd78b0646",
+  "noRawVideoCaptured": true,
+  "scope": "Actual source0 settings cancel/final confirmation cancel and new explicit factory worked, then test queried serial API on instrumentation thread. Not counted as normal/cold accepted. Raw case, original test source and game/test APK retained.",
+  "wholeGoalComplete": false
+}

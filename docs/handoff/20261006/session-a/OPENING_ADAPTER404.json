@@ -1,0 +1,24 @@
+{
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-stage401/source",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+      "afterSha256": "3c0965b4f087e219addf3be8aa7fb54f89f309ff79b04ac63dfdf5168bcae018"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "beforeSha256": "0fa45a934f05aeedbbab540fa5894a1bc0c4ebaca111f162ab3685dca3acf253",
+      "afterSha256": "22067c356d425c459e1c6d1b8a28366b4b420144a4cfd59aa3df065395bdae07"
+    }
+  ],
+  "patchSha256": "56a1a8a146901cd24255bd06517291d1d7d14d386e5588dfb9359abe5769ece6",
+  "onlyAOwnedProductionChanged": true,
+  "noDefaultAssumed": true,
+  "BCompleteInput": "SERIAL_STAGE402.json",
+  "built": false,
+  "actualNormalFlowAccepted": false,
+  "scope": "Optional three explicitly selected original menu groups from frozen B source-bound no-session catalog. Source constraint life2 is a fact; effective life3 stays B policy. Unchosen path keeps legacy three-arg factory; all old reads unmodified. Cancels discard dialog draft; picker callbacks capture local source/options and stale World revision/generation. No rule RNG or B/shared edits. Requires new combined build and actual cancel/new/save/cold/options/native command acceptance.",
+  "wholeGoalComplete": false,
+  "preBuildCorrection": "Initial report contained literal backslash-n after JSON; raw preserved .initial-invalid, corrected before build. Picker-owned settings dialog now closes on all preview release paths."
+}

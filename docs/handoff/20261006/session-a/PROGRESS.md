@@ -724,3 +724,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 398确认用户允许增大Java堆，默认largeHeap=true保持；当前模拟器384→512MiB，不猜8/12/16GB真机额度。400只冻已完成392的413普通/7cold memory.csv检查点：Java已用302887112B/native独立268700048B/totalPss529852KiB，各自峰值不相加，graphics0不等于GPU为0；瞬时/ARM/原354832失败栈仍未知。399只读完成B664c00f4/r26确切交接文件，未导入任何B生产或WIP，最终集成仍需完整守卫和新组合安装。
 
 397在395所有owner退出及app停止后导出完整369游戏+385可选诊断test+当前工具/docs：11683文件，935485440B tar SHA d82626c49daef9d71f51290acebb780c3dc9750585d3679d282ab4b151d6d177，每tar成员SHA和独立inode核验；168固定输入/原4JNI及候选新2JNI/可复现C配方包含。该源候选不含B后继，不取代canonical旧9app路径；test385和本次实装test369明确区分。目标继续active：B最终组合/ARM/全部caller和媒体/默认混合PCM等仍未闭合。
+
+401/402逐项SHA验证A完整397源与B冻结r26归档11351文件后组合12122文件，482 B源码/测试/资料等增量，23个A/shared差异保持A而未覆盖；原Bridge/Unity/rootGradle/4JNI冻结，A新2JNI保持。407/408实际r27冻结11354成员全部读回SHA，仅两B生产路径ContentUi/CurrentOfficerContent后继，其他B生产完全r26，B脏目录未取。403/404 A两路径显式原选项设置入口、来源身份/约束与取消/生命周期保护已成可审查patch；首次404 report尾部literal\n修正前raw保留initial-invalid，生成器缩进问题在构建前已纠正，未计运行成功。
+
+410/411实际独立完整源/缓存构建113.8秒成功，gamece83/testc5fe；原168/全部A资产5637及6JNI包内SHA/签名同等，newB数字/API/runtime完整来自冻结。412已freshbackup/安装读取SHA，真实Source0设置取消/最终确认取消和显式开局、保存请求参数检查通过，但测试从instrumentation线程读GameSession.pcOpeningOptions触发Serial logic thread required，FAIL保留，不重定义断言/产品/规则；原9内部3rewrite/3797外部0全部SHA恢复，workerexit0，该首例未录视频。415只修测试线程，完整独立12125左右输入重建test26801d2fd…，gamece83原bytes不变；一次缺失videoObservation键的记录器异常发生在创建输出/设备操作前，后继get修正，412原FAIL一直false。417新精确配对加入默认video cohort、freshbackup/实装/完整normal两源/cold正在运行，不计通过。

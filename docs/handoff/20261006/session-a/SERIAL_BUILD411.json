@@ -1,0 +1,87 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completedBCommit": "cdd7f949",
+  "aCandidate": "CURRENT_SOURCE397.json",
+  "openingAdapter": "OPENING_ADAPTER404.json",
+  "completeCandidateFiles": 12126,
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/candidate-inputs.json",
+  "candidateInputManifestSha256": "f635b063251ec536f80c714b38aa3ad696f228f60ab92b82dff89c361eeb1d37",
+  "sourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-stage401/source",
+  "changesAfterSerial401": [
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "sha256": "2afa36ca5cde77722d8324ef73509b7c9733b8b34a6742aac4d2f8735c162336",
+      "bytes": 15858,
+      "mode": 420
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionANativeDuelOpeningInstrumentation.java",
+      "sha256": "b93168a875f611351c5afeb19de57c97fb1aec1b5fc0e0d3e66c563c87b4a8fa",
+      "bytes": 6682,
+      "mode": 420
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionBOfficerContentInstrumentation.java",
+      "sha256": "08f4fc644bcebd91252df031972e22ddc7a2bec1e4c5f2d50a9d804ce91f42ac",
+      "bytes": 6932,
+      "mode": 420
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "sha256": "9449c1d3927cc811cb6d14713e622f591bc774f0cc4ded87dc5ba0e50386f4ea",
+      "bytes": 14753,
+      "mode": 420
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CurrentOfficerContent.java",
+      "sha256": "4d98508d30c77fce5dd979f69dff7a2c43c9d5e9b6a46a7b1d26a0b0429f0428",
+      "bytes": 3838,
+      "mode": 420
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "3c0965b4f087e219addf3be8aa7fb54f89f309ff79b04ac63dfdf5168bcae018",
+      "bytes": 155776,
+      "mode": 420
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java",
+      "sha256": "22067c356d425c459e1c6d1b8a28366b4b420144a4cfd59aa3df065395bdae07",
+      "bytes": 15048,
+      "mode": 420
+    },
+    {
+      "path": "docs/handoff/20261006/session-b/native-opening-officer-content61.init.gradle",
+      "sha256": "e20f52b82458a7dc84de71df82f61c116573c2118e0fe545fb99ec534382af07",
+      "bytes": 407,
+      "mode": 420
+    }
+  ],
+  "independentGradleCache": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/gradle-home",
+  "wallSeconds": 113.801623026,
+  "buildExit": 0,
+  "buildLogSha256": "4f295adf21d782fc0ea6757e1aba516b2eb32bfccf60faea92549342cc632aec",
+  "buildSuccessful": true,
+  "actualInstalled": false,
+  "wholeGoalComplete": false,
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk",
+      "sha256": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+      "bytes": 315088059
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug-androidTest.apk",
+      "sha256": "c5fe52f0bef7055758fbc2ffbe892ffae55db339e407b20fdd0d795c53c4e434",
+      "bytes": 3151284
+    }
+  ],
+  "fixedPackaged168Exact": true,
+  "allAAssetsExact369": 5637,
+  "sixJniExact369": true,
+  "signatureSame": "Signer #1 certificate SHA-256 digest: 8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "fullSourceShaUnchangedAfterBuild": true,
+  "scope": "New combined build only: full A397, immutable completed B26/27, two A opening paths and diagnostic tests. Not installed, no previous emulator/ARM/cold/fire/native-duel scores transferred. All required checks and real new APK user-data backup/install/restore remain necessary.",
+  "gameLargeHeap": true,
+  "gameLargeHeapEvidence": "Packaged manifest checked by build_serial410, default true placeholder retained"
+}
