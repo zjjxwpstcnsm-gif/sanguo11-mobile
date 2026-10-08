@@ -532,7 +532,13 @@
     "docs/handoff/20261006/session-a/MAP_FIRE_UPLOAD_BUILD269.json",
     "tools/content/native/session_a_cell_fire_instruction_worker.c",
     "docs/handoff/20261006/session-a/build_portable_fire270.py",
-    "docs/handoff/20261006/session-a/PORTABLE_FIRE_SOURCE270.json"
+    "docs/handoff/20261006/session-a/PORTABLE_FIRE_SOURCE270.json",
+    "docs/handoff/20261006/session-a/handoff_candidate_after_current271.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_DEVICE_HANDOFF271.json",
+    "docs/handoff/20261006/session-a/run_candidate_fire272.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_FIRE272_LAUNCH.json",
+    "docs/handoff/20261006/session-a/export_candidate_source273.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_SOURCE273.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

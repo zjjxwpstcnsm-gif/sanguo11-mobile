@@ -1,0 +1,15 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00",
+  "oldCallerCohort": "SEARCH_OBSERVATION_TEST_BUILD239.json",
+  "nextCandidate": "MAP_FIRE_UPLOAD_BUILD269.json",
+  "scope": "Terminate only own parent future-source dispatcher20672, never data helper20713 or observers20790/20791, no process group signal. Current normal Source0/save/newPID/all-original SHA restoration finishes unchanged. Unstarted sources remain required on fresh candidate, no historical score transfer. New APK installation must wait actual restored-verified+passed+differentPID+observer0+data owner exit; goal stays active.",
+  "dispatcherPid": 20672,
+  "dataHelperPid": 20713,
+  "observerPids": [
+    20790,
+    20791
+  ],
+  "stage": "future-dispatcher-stopped-current-data-owner-verified-live",
+  "wholeGoalComplete": false,
+  "dataOwnerAndObserversNotSignalled": true
+}

@@ -548,3 +548,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 269独立完整11414输入逐SHA/inode隔离，4处候选delta（235/258两Java+260两ABI），独立GH/build/out打包成功224s；game5db38e0b…/test63a85ade…，168资源/原4+新2/manifest与同签名/原39fixture均核准，未实际安装或转成绩。270实际火C源码435850bc…纳入A独有工具路径，直接NDK复编译两ABI同260整字节SHA；初次直接换文件名仅FILE符号导致整ELF SHA不等被拒，原失败输出保留，固定编译basename后全SHA吻合，无原4+current2改写。来源0的旧165/239正常caller已32/670活跃，源码guard和完整保存恢复门继续。
+
+
+271只SIGTERM未来来源调度parent20672，不发进程组信号；实际Source0 data20713/video20790/native20791全部存活确认，继续原normal/cold全文件恢复，旧剩余未开始来源改由新候选重验，全16范围不缩。272实际新包串行任务已启动，只等待Source0已restored-verified+accepted/newPID+observer0与旧三owner真正退出，才重新全档备份/实装5db/63a/Source14正常火/低画质/Home暂停/真实熄灭到期/读档/冷与完整SHA恢复；没有装包、没有沿用197或source263成绩。273源码variant11418文件642959366B、tar f66c3126…，全条SHA读回，包含实际source269两Java/两新ABI+tracked C/portable270与完整168输入原4，排除SDK/cache/用户设备备份；脱Git重建SOURCE_REVISION fallback可能APK SHA不同，不宣称bit-repro APK，只实际C/ABI重编整SHA吻合。当前Source0完整96/670仅partial。

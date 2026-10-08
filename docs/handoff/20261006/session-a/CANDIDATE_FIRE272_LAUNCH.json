@@ -1,0 +1,24 @@
+{
+  "previousNormalSource": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00",
+  "newCandidate": "MAP_FIRE_UPLOAD_BUILD269.json",
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug.apk",
+      "sha256": "5db38e0bd02de09d3f4e3a462315d0fd54cdfb9358b874c3e55ced580735df98",
+      "bytes": 313480092
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug-androidTest.apk",
+      "sha256": "63a85ade1e70e22b28cad1361900302e303af330282211acc7f741b157f38298",
+      "bytes": 3089296
+    }
+  ],
+  "stage": "waiting-current-source0-normal-cold-fullSHA-owner-exits",
+  "previousOwnerPids": [
+    20713,
+    20790,
+    20791
+  ],
+  "oldScoresTransferred": false,
+  "wholeGoalComplete": false
+}

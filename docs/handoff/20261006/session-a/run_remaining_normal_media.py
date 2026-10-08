@@ -64,7 +64,7 @@ def frozen_caller_cohort(artifacts):
            'NORMAL_VIEW_OPTION_TEST_BUILD124.json','CURRENT_NORMAL_TARGET_BUILD139.json',
            'NORMAL_PREPARATION_BUILD145.json','OVERLAY_ADMISSION_BUILD155.json',
            'EMPTY_PRESENTATION_BUILD165.json','B_LEGACY39_COMBINED_TEST_BUILD168.json',
-           'LEGACY39_REGISTERED_TEST_BUILD176.json','SEARCH_OBSERVATION_TEST_BUILD239.json')
+           'LEGACY39_REGISTERED_TEST_BUILD176.json','SEARCH_OBSERVATION_TEST_BUILD239.json','MAP_FIRE_UPLOAD_BUILD269.json')
     for name in names:
         path=HELPER.with_name(name)
         if not path.is_file():continue

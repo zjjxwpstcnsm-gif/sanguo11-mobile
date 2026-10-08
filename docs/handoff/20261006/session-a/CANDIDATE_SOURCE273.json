@@ -1,0 +1,61 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "canonicalBaseRevision": "450c5afed1e05aef04b2d2c05c9c954f36b16131",
+  "currentDeliveryRevision": "68b72559822e167f89e109d67c85c6aeb7343faf",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/candidate-source273/sanguo11-mobile-candidate-source.tar.gz",
+  "archiveBytes": 642959366,
+  "archiveSha256": "f66c3126fa7fd3fd00f097ec72ee9118225376f685e23df40ec1c90f40f651f7",
+  "files": 11418,
+  "everyArchivedFileShaVerified": true,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/candidate-source273/source-files.json",
+  "fileManifestSha256": "f840b26aa7359cf5df2e795629c55057b097114dd18b907b55a624fae6469d33",
+  "variantProductionBeforeAfter": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeSha256": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+      "afterSha256": "ca1977989c5b5ea4796c8a5157422b1e94869ff1162343894d082473682e55a5"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "beforeSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
+      "afterSha256": "d1dee02fda5cdd9c0b68a1202d694db9bbfd948454cddb07706b713c7b7509b4"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "beforeSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "afterSha256": "fe7b940d82bd6afe1419c3cf4d0cd41aab84d55ebca4e03136c89f5eca84f9b3"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "beforeSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "afterSha256": "853cdef9ce9ecd71ff38684bfe47c36c21e6a1c4c975bc29f235a14972f04129"
+    }
+  ],
+  "exactCandidateApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug.apk",
+      "sha256": "5db38e0bd02de09d3f4e3a462315d0fd54cdfb9358b874c3e55ced580735df98",
+      "bytes": 313480092
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug-androidTest.apk",
+      "sha256": "63a85ade1e70e22b28cad1361900302e303af330282211acc7f741b157f38298",
+      "bytes": 3089296
+    }
+  ],
+  "portableNativeSourceIncluded": true,
+  "completeOriginalFourAndCandidateTwoJniIncluded": true,
+  "containsSdkOrBuildCaches": false,
+  "containsDeviceBackups": false,
+  "currentProtectedSixUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "actualInstalled": false,
+  "scope": "Full exact isolated269 candidate inputs with two changed A Java files and two new fire ABI binaries, plus tracked original native source/portable build recipe and delivery metadata. Original168 resource inputs preserved; B Native WIP excluded. Source archive BuildConfig revision fallback may yield a different APK digest when rebuilt outside Git; all source/member/resource/native hashes explicit. No device/ARM/final combined acceptance transferred.",
+  "wholeGoalComplete": false
+}
