@@ -1,0 +1,82 @@
+{
+  "outputs": [
+    {
+      "abi": "x86_64",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "fe7b940d82bd6afe1419c3cf4d0cd41aab84d55ebca4e03136c89f5eca84f9b3",
+      "bytes": 39744,
+      "unicornSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "compileCommand": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=x86_64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/sources/session_a_cell_fire_budget_worker.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/jniLibs/x86_64",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/jniLibs/x86_64/libpc_effect_fire_worker.so"
+      ],
+      "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elfSha256": "1ecbe50b422f597c5e7db0b54980bbc18e0acca317d2e60013118ad5e906b91b",
+      "actualRuntimeAccepted": false
+    },
+    {
+      "abi": "arm64-v8a",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "853cdef9ce9ecd71ff38684bfe47c36c21e6a1c4c975bc29f235a14972f04129",
+      "bytes": 40696,
+      "unicornSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "compileCommand": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=aarch64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/sources/session_a_cell_fire_budget_worker.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/jniLibs/arm64-v8a",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-fire-candidate260/jniLibs/arm64-v8a/libpc_effect_fire_worker.so"
+      ],
+      "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elfSha256": "c9fcded66db7d136bf43c4b011bdbb47b643ed50a0471dce2c169a107999cdb0",
+      "actualRuntimeAccepted": false
+    }
+  ],
+  "sourceSha256": {
+    "session_a_cell_fire_budget_worker.c": "435850bcdc505a3ce5397277e0ace178dcff82ef8ed57c137b390947c5a9ae35",
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc"
+  },
+  "protectedSixUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "actualInstalled": false,
+  "scope": "Separate unreferenced candidate ABI binaries using exactly host257 source. No current sixJNI overwrite or app/build/Gradle/source changes. Compilation/ELF dependency only, not device runtime/protocol/performance or ARM acceptance; serial final integration and fresh independent APK/backup/install required.",
+  "wholeGoalComplete": false
+}

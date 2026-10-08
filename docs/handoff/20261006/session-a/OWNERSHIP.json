@@ -513,7 +513,9 @@
     "docs/handoff/20261006/session-a/MAP_EFFECT_UPLOAD258.patch",
     "docs/handoff/20261006/session-a/MAP_EFFECT_UPLOAD258.md",
     "docs/handoff/20261006/session-a/probe_instruction_boundary259.py",
-    "docs/handoff/20261006/session-a/INSTRUCTION_BOUNDARY259.json"
+    "docs/handoff/20261006/session-a/INSTRUCTION_BOUNDARY259.json",
+    "docs/handoff/20261006/session-a/build_instruction_fire_candidate260.py",
+    "docs/handoff/20261006/session-a/INSTRUCTION_FIRE_CANDIDATE260.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

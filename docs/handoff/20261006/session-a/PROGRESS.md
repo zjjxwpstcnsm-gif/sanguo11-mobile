@@ -533,3 +533,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 257/259实际指令候选宿主完成：同249请求801帧全部exit0，256创建/256停止，pause同clock/packet；前660帧records/time同失败249全部相同。actual icount峰7466202/20M，byte峰20116905，update最高635.849ms（host干扰/统计查询，不当手机FPS）。259五个1/13/32/64/128各71帧全原bytes/time同246，129/重复/越界height/coordinate在任何frame前拒绝；实际原4+新2JNI逐SHA与252相同，未构建或安装这项候选。258仅stage编译。
+
+
+260对实际257 source clone独立编译x86_64/arm64新worker，ELF动态libunicorn依赖/各ABI完整SHA已冻结：x86 fe7b940d…/arm853cdef9…。全部原4+已装新2逐SHA保护，没有覆盖current additional-jni/Gradle/APK，不当Android或ARM实机通过。B消息r12新game e16…正在真实18旬普通单挑/冷终局验收，仅消息未独立核最终恢复，Native WIP仍不合入；不操作5582或发工具回复。
