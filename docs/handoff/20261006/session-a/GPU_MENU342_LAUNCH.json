@@ -1,0 +1,30 @@
+{
+  "stage": "actual-running-large-menu-pcm",
+  "cases": [],
+  "source14FailuresRemainUnresolved": true,
+  "ordinaryHeapAccepted": false,
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "activeCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-menu342/large-menu-pcm",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-menu342/large-menu-pcm",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-test-build330/app-debug-androidTest.apk",
+    "--reuse-installed",
+    "--observe-workers",
+    "--runner",
+    "UiUxInstrumentation",
+    "--suite",
+    "audio",
+    "--menu-music",
+    "--audio-capture-rate",
+    "44100"
+  ]
+}

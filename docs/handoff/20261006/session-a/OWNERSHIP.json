@@ -683,7 +683,9 @@
     "docs/handoff/20261006/session-a/check_capture_id340.py",
     "docs/handoff/20261006/session-a/CAPTURE_ID340.json",
     "docs/handoff/20261006/session-a/run_gpu_menu341.py",
-    "docs/handoff/20261006/session-a/GPU_MENU341_LAUNCH.json"
+    "docs/handoff/20261006/session-a/GPU_MENU341_LAUNCH.json",
+    "docs/handoff/20261006/session-a/run_gpu_menu342.py",
+    "docs/handoff/20261006/session-a/GPU_MENU342_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
