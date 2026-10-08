@@ -83,5 +83,7 @@
   "fullSourceShaUnchangedAfterBuild": true,
   "scope": "New combined build only: full A397, immutable completed B26/27, two A opening paths and diagnostic tests. Not installed, no previous emulator/ARM/cold/fire/native-duel scores transferred. All required checks and real new APK user-data backup/install/restore remain necessary.",
   "gameLargeHeap": true,
-  "gameLargeHeapEvidence": "Packaged manifest checked by build_serial410, default true placeholder retained"
+  "gameLargeHeapEvidence": "Packaged manifest checked by build_serial410, default true placeholder retained",
+  "actualRuntimeSourceRevision": "b8e6b76d105a8cf0b1ce8a5bb8a09bb7d8966c6e",
+  "runtimeRevisionIsMetadataNotExactCandidateSourceCommit": true
 }

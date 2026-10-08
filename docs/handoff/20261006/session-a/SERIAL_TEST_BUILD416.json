@@ -25,9 +25,11 @@
   "independentSourceBuildOutGradleCache": true,
   "wallSeconds": 89.65945295,
   "buildLogSha256": "ab1acd92292cc6437fc1c685d33b3bc8457299c351b8f5c20bdfc081e473b3cc",
-  "fullSourceShaUnchangedAfterBuild": true,
   "buildExit": 0,
   "actualInstalled": false,
   "scope": "Exact ce83 combined game retained. One test-only read marshaled to original serial UI/session owner; no production/World/RNG/DTO/rule or assertion change. Actual failed412 remains false. New normal/cold with full backup/install/SHA/restore required.",
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "parentFullInputShaUnchangedAfterBuild": true,
+  "fullSourceShaUnchangedAfterBuild": true,
+  "postBuildSourceVerificationEvidence": "Controllers417 and419 rehashed the exact complete candidate manifest and every candidate input before fresh backup/install; both passed this guard. Future415 recipe also performs the explicit stage check immediately after build."
 }

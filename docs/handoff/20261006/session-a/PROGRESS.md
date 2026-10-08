@@ -732,3 +732,5 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 417/420确切新组合ce83游戏/test268正常两来源显式菜单设置、草稿/最终确认取消整Save/所有RNG/Token纯、Source14真实禁用非固定寿命、Source0/14新工厂有效参数、普通完整保存读取全部通过；独立PID19465→27160冷自动/普通manual完整Save/allRNG SHAbd9695b4029ae501b451a7ff5840b09fe8d82594b68c745c5399c8041a968ae0通过。原9内部4rewrite/3797外部0每SHA恢复，video/workerexit0，3原MP4各device/host/postpullSHA一致。实看source0/14设置图，三组原文本和禁用/确认可读；背后预览仍加载时截图不作为原预览像素通过。只改测试线程后的新配对重新从头执行，不接412失败或A369旧分数；首次无session/全部原设置边界/旧31–39/普通384/ARM/原单挑战斗均未由此验证。
 
 419在上述417全恢复/owner退出后fresh原文件backup、逐byte核已安装新ce83/test268，正常16来源新局/首末势力/取消/全图近景平移/人物/Home/旋转/退出/整Save存读/最终cold新矩阵真实开始，helper98471、controller97967已核live；等待具体case，不因观察超时重启。目标active，仍需本新组合全流程火/军建/单挑舌战/媒体、ARM等，不以420局部通过宣布全目标完成。
+
+组合game实际BuildConfig SOURCE_REVISION=b8e6b76d105a8cf0b1ce8a5bb8a09bb7d8966c6e，只是构建元数据，不能当含B/A staged增量的git完整commit。411已补确切生成值；416原builder只核parent未显式核clone构建后，实际417/419 controller在任何backup/install前逐完整candidate manifest/每文件再次核SHA并通过，因此post-build clone守卫已有实际证据，415后继配方补同一显式构建后检查，不改任一APK或断言。
