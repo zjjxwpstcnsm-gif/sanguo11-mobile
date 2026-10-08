@@ -1,0 +1,11 @@
+{
+  "stage": "stopped-retain-actual-evidence",
+  "cases": [],
+  "source14FailuresRemainUnresolved": true,
+  "ordinaryHeapAccepted": false,
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "error": "'videoObservation'",
+  "cleanupNotInferred": true
+}

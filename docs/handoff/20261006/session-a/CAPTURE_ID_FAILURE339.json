@@ -1,0 +1,54 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-menu338/large-menu-pcm",
+  "actualDriverLog": "Full original file SHA restored\nTraceback (most recent call last):\n  File \"/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py\", line 395, in <module>\n    if __name__=='__main__': main()\n  File \"/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py\", line 231, in main\n    trial=capture_support.start(out,r,capture_rate,run_id+'_init'+str(capture_rate),3)\n  File \"/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/audio_capture_support.py\", line 101, in start\n    if not re.fullmatch('[A-Za-z0-9_]{1,64}',run) or rate not in [44100,48000]:raise ValueError('Capture identity/rate')\nValueError: Capture identity/rate\n",
+  "normalGameInstrumentationStarted": false,
+  "pcmCapturesStarted": false,
+  "runId": "session_a_large_menu_pcm_ee0f430bc2d54741a80033c285036bd0",
+  "baseLength": 57,
+  "captureInitLength": 67,
+  "allowedCaptureLength": 64,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-test-build330/app-debug-androidTest.apk": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14"
+  },
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "testTreesRestoration": {
+    "test-internal": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    },
+    "test-external": {
+      "exactRegularFileSha": true,
+      "files": 0,
+      "directoryOriginallyExisted": true
+    }
+  },
+  "previousTestApkRestoredSha256": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14",
+  "recordPermissionBefore": false,
+  "recordPermissionAfterRestored": true,
+  "appOpBefore": "default",
+  "appOpAfter": "RECORD_AUDIO: default; time=+1d13h59m19s60ms ago; duration=-20732d4h45m52s801ms",
+  "workerObservation": {
+    "hostPid": 63807,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-menu338/large-menu-pcm/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "sessionSha256": "2860151e4e23e4b5644732b20a95e4b89244ee87e6b46929ce48194eadb0f3ca",
+  "scope": "Actual tool identity precondition rejection before recording/game instrumentation; not Android audio-22/product playback failure or wholetrack acceptance. Complete game/test files/APK/permission/appop restoration retained.",
+  "wholeGoalComplete": false
+}

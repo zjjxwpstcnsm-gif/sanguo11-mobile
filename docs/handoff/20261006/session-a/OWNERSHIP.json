@@ -677,7 +677,13 @@
     "docs/handoff/20261006/session-a/guard_gpu_source337.py",
     "docs/handoff/20261006/session-a/GPU_SOURCE_GUARD337.json",
     "docs/handoff/20261006/session-a/run_gpu_menu338.py",
-    "docs/handoff/20261006/session-a/GPU_MENU338_LAUNCH.json"
+    "docs/handoff/20261006/session-a/GPU_MENU338_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_capture_id_failure339.py",
+    "docs/handoff/20261006/session-a/CAPTURE_ID_FAILURE339.json",
+    "docs/handoff/20261006/session-a/check_capture_id340.py",
+    "docs/handoff/20261006/session-a/CAPTURE_ID340.json",
+    "docs/handoff/20261006/session-a/run_gpu_menu341.py",
+    "docs/handoff/20261006/session-a/GPU_MENU341_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

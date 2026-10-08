@@ -60,6 +60,15 @@ def target_process_evidence(log):
     return {'pid': pid, 'source': 'ActivityManager exact package instrumentation launch',
             'rendererFirstSubmissionObserved': pid in submissions}
 
+def allocate_run_id(output_name,original_external):
+    # Long case labels must leave space for _init48000 and _cold suffixes.
+    # Keep the complete UUID; shorten only the display label, never identity.
+    label=re.sub(r'[^A-Za-z0-9_]', '_', output_name)[:10]
+    while True:
+        identity='session_a_'+label+'_'+uuid.uuid4().hex
+        roots=('files/session-a-map/','files/uiux/','files/session-a-game-mix/')
+        if not any(k.startswith(root+identity) for k in original_external for root in roots):return identity
+
 def main():
     p = argparse.ArgumentParser(); p.add_argument('mode', choices=['backup','reuse-backup','install-test','restore'])
     p.add_argument('--output', type=pathlib.Path, required=True)
@@ -156,10 +165,8 @@ def main():
         # Historical evidence is part of the user's full archive. Never reuse
         # a basename-only device directory across independent host batches.
         original_external=r['trees']['external']['files']
-        while True:
-            run_id='session_a_'+out.name.replace('-','_')+'_'+uuid.uuid4().hex
-            if not any(k.startswith('files/session-a-map/'+run_id) for k in original_external):break
-        r['runIdAllocation']='Fresh UUID checked against complete original external archive paths'
+        run_id=allocate_run_id(out.name,original_external)
+        r['runIdAllocation']='Fresh complete UUID checked against original external roots; ASCII display label max10, base length<=53, all capture/cold suffixes<=64'
         r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
         r['menuMusicNormalFlow']=a.menu_music;r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()

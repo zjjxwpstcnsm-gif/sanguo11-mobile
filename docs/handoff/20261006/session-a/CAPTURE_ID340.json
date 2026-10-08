@@ -1,0 +1,34 @@
+{
+  "checksPassed": 2503,
+  "examples": [
+    {
+      "label": "large-menu-pcm",
+      "baseLength": 53,
+      "longestSuffixLength": 63
+    },
+    {
+      "label": "中文长名称中文长名称中文长名称中文长名称中文长名称中文长名称",
+      "baseLength": 53,
+      "longestSuffixLength": 63
+    },
+    {
+      "label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "baseLength": 53,
+      "longestSuffixLength": 63
+    },
+    {
+      "label": "source14",
+      "baseLength": 51,
+      "longestSuffixLength": 61
+    },
+    {
+      "label": "a/b-c d!",
+      "baseLength": 51,
+      "longestSuffixLength": 61
+    }
+  ],
+  "fullUuidPreserved": true,
+  "originalRootCollisionsRejected": true,
+  "scope": "Actual helper identity generator and suffix grammar/collision checks only; no game/PCM/Android/ARM acceptance.",
+  "wholeGoalComplete": false
+}
