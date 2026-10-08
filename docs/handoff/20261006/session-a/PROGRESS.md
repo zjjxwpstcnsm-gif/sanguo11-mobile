@@ -562,3 +562,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 280普通堆候选同269完整11414生产/资源/6JNI输入逐SHA、独立source/build/out/GH，实构252s game690b9192…/testc3a0cd02…，manifest false、5636 assets同269、168 pins/原39fixture/同签名均核；BuildConfig revision标签可不同，绝不称同dex或沿旧180。未实装/不沿大堆成绩。281真实串行回归job已启动，仅等待272新包normalFire/cold/每SHA恢复和owner退出，随后SCEN7/14正常菜单缩放/平移/Home/旋转/save/cold、fast32、16来源势力preview/new/cancel、真实菜单整曲PCM0.995+原2238重读/不吞-22、普通384对应流程、最后完整备份重装大堆默认再正常验收。各case全User文件恢复，ordinary清洁内存case不加视频encoder，未算任何待执行case通过；16factions流不等670×16人物/年龄/voice/最终B/ARM，scope不缩。当前旧Source0实际416/670，仅partial，20713/20790/20791活跃。
+
+
+282仅A五路径媒体增量（274头像完整矩形、278播放器/dispatcher/manifest/原58WAV）相对确切canonical前SHA与新asset缺席守卫冻结；组合Java实际compile与每tar文件读回通过，archivec75ed695…；269/280 APK、canonical、原4/current2 JNI与B WIP均不变。原未命中producer277仍缺，不因添加原58资源或编译就称正常miss/voice/原小图caller已绑，后继实际安装验收仍需。当前Source0实际544/670纯性true、20713/20790/20791实活；272/281同等待句柄继续，不重启。

@@ -1,0 +1,59 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-delta282/a-media-delta.tar.gz",
+  "archiveSha256": "c75ed695a8681351c22a3b9f0dadd4831cc8533627ced2e1d944830914759f30",
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "beforeSha256": "b916b3a6c28f9a7f3eb3f233dfed6c5ebd60e26e4866dbe2bede0e15130dce95",
+      "afterSha256": "8e195a2017dd6e265d05e4340c558f20786f5823c78853cbfcb7ccbae7d12627"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+      "beforeSha256": "216f6c9312687869e9c3b9a4e7724c4265f8cdc8540cab389571fefb2df8dd7e",
+      "afterSha256": "8a11ce4e860b745f69b704a20e0682ab1931da0596e9b21aede118c6e457ee12"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "50b3dd47be8f1809bcd0b6573d7cc62243ff32f69572c338bd836e3cc7b7f56f",
+      "afterSha256": "6b00a8ee0ae04280328e402a72723410c6080beea192c2e8933473690e911e1a"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-sound-manifest.json",
+      "beforeSha256": "85e8262f51e296dc8e21a361e20da8e02afa9993f13259471e393f5cbbd3d23e",
+      "afterSha256": "657455b3e24ad865ec93b491f4adf21a482887a2a424d7f112eb8bf5abff6e5f"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-58.wav",
+      "beforeSha256": null,
+      "afterSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81"
+    }
+  ],
+  "pathCount": 5,
+  "combinedCompilePassed": true,
+  "compileCommand": [
+    "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+    "-Xmx512m",
+    "-m",
+    "jdk.compiler/com.sun.tools.javac.Main",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-cp",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/filament.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/source/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/core.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-api.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-runtime.jar",
+    "-d",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-delta282/classes",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-delta282/source/app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-delta282/source/app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-delta282/source/app/src/main/java/game/sanguo/mobile/SoundEffects.java"
+  ],
+  "compileLogSha256": "df8f2cdaf3666646787d07539a978382df8acefe395ff3ad43b047d9fe96953b",
+  "everyArchiveFileReadbackExact": true,
+  "canonicalUnchanged": true,
+  "apk269And280Unchanged": true,
+  "normalMissProducerBound": false,
+  "actualInstalled": false,
+  "scope": "Five owned staged paths: original portrait full rectangular drawing, original58 source-rate bounded player/dispatcher support, metadata and raw PCM asset. Exact predecessor hashes and absence guard mandatory; do not blindly overlay B current source. No API/Bridge/Unity/Rule/JNI/synthetic-label change. No normal58 trigger or PC small-family/normal output acceptance created;277 factual producer required. Independent normal APK/fullSaveRNGToken/PCM/lifecycle/ARM still pending.",
+  "wholeGoalComplete": false
+}
