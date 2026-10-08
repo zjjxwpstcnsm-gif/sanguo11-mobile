@@ -1,0 +1,26 @@
+{
+  "oldWaitingTasks": [
+    {
+      "pid": 23907,
+      "script": "run_candidate_fire272.py",
+      "receiptBeforeSha256": "2c263418ec13f9a1bccfab12d9df999f5de685bd0eb99d650a687eea317af6bb",
+      "stageBefore": "waiting-current-source0-normal-cold-fullSHA-owner-exits",
+      "outputExists": false
+    },
+    {
+      "pid": 34791,
+      "script": "run_candidate_regression281.py",
+      "receiptBeforeSha256": "b64ec7e40322564b87ffd8bdc0254340b0c723a982221955c07c27efeedf97d1",
+      "stageBefore": "waiting-actual-new272-normal-fire-cold-fullSHA-owner-exits",
+      "outputExists": true
+    }
+  ],
+  "currentDataOwnerAndObserversNotSignalled": [
+    20713,
+    20790,
+    20791
+  ],
+  "sameApksAndTestPredicates": true,
+  "reason": "Observed source writer uses in-place write_text; source-child observer already retries partial JSON. Waiting gates now do30x100ms same-file reads, no producer restart, no relaxed acceptance or new device action. Old jobs had not created any case session or installation command.",
+  "wholeGoalComplete": false
+}

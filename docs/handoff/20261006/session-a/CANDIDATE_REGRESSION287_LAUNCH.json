@@ -1,0 +1,10 @@
+{
+  "stage": "waiting-actual-new286-normal-fire-cold-fullSHA-owner-exits",
+  "previous": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286",
+  "largeCohort": "MAP_FIRE_UPLOAD_BUILD269.json",
+  "ordinaryCohort": "ORDINARY_CANDIDATE_BUILD280.json",
+  "cases": [],
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false
+}

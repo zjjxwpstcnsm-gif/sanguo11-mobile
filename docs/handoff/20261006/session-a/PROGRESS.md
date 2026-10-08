@@ -571,3 +571,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 B r15消息更正旧角色诊断：前称captor555实为上阵胜者，当前AI用unit leader189，原上游实参仍待核。277契约撤回未独立证实的旧示例，角色/speaker/profile未知不猜；不以B有限败北规则PASS或背景recovery转A地图/原Arena/媒体成绩，不拷typed忠诚WIP或改B源码。当前Source0仍576/670，same owner/observer实活，无新包安装。
+
+
+286/287修正等待门并发receipt读取：actual helper使用in-place write_text，旧gate直接json.loads存在短暂partial JSON当terminal风险。read_session_state有界30×100ms同file重读；以临时线程实际partial→still-running验证不晋升passed。仅验证并SIGTERM尚未生成session/安装command的waiting-only23907/34791，保留旧272/281checkpoint为superseded-before-device-actions；当前20713/20790/20791未信号且继续活。新286 fire与287全部原281回归scope同APK/谓词/源/原保存恢复门，仅新输出路径/reader修复；已启动同等待句柄，不重启当前DataSource或以超时当终态。CurrentSource0真实608/670纯性true，旧包后续来源仍未始，待新包完整各flow/all16/finalB/ARM范围不缩。

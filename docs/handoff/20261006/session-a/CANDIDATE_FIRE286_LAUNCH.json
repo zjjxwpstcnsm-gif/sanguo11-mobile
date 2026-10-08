@@ -13,14 +13,12 @@
       "bytes": 3089296
     }
   ],
-  "stage": "superseded-before-device-actions",
+  "stage": "waiting-current-source0-normal-cold-fullSHA-owner-exits",
   "previousOwnerPids": [
     20713,
     20790,
     20791
   ],
   "oldScoresTransferred": false,
-  "wholeGoalComplete": false,
-  "supersessionReason": "Bounded JSON receipt re-read prevents mistaking concurrent partial write for terminal case",
-  "replacement": "CANDIDATE_FIRE286_LAUNCH.json"
+  "wholeGoalComplete": false
 }

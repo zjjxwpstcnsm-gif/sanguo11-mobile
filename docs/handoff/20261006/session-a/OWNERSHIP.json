@@ -563,7 +563,13 @@
     "docs/handoff/20261006/session-a/freeze_completed_source00_283.py",
     "docs/handoff/20261006/session-a/REGISTERED_SOURCE00_ACCEPTANCE283.json",
     "docs/handoff/20261006/session-a/registered-source00-memory284.json",
-    "docs/handoff/20261006/session-a/registered-source00-widget285.json"
+    "docs/handoff/20261006/session-a/registered-source00-widget285.json",
+    "docs/handoff/20261006/session-a/read_session_state.py",
+    "docs/handoff/20261006/session-a/WAIT_GATE_READ_REPAIR286.json",
+    "docs/handoff/20261006/session-a/run_candidate_fire286.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_FIRE286_LAUNCH.json",
+    "docs/handoff/20261006/session-a/run_candidate_regression287.py",
+    "docs/handoff/20261006/session-a/CANDIDATE_REGRESSION287_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
