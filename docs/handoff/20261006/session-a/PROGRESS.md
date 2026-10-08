@@ -728,3 +728,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 401/402逐项SHA验证A完整397源与B冻结r26归档11351文件后组合12122文件，482 B源码/测试/资料等增量，23个A/shared差异保持A而未覆盖；原Bridge/Unity/rootGradle/4JNI冻结，A新2JNI保持。407/408实际r27冻结11354成员全部读回SHA，仅两B生产路径ContentUi/CurrentOfficerContent后继，其他B生产完全r26，B脏目录未取。403/404 A两路径显式原选项设置入口、来源身份/约束与取消/生命周期保护已成可审查patch；首次404 report尾部literal\n修正前raw保留initial-invalid，生成器缩进问题在构建前已纠正，未计运行成功。
 
 410/411实际独立完整源/缓存构建113.8秒成功，gamece83/testc5fe；原168/全部A资产5637及6JNI包内SHA/签名同等，newB数字/API/runtime完整来自冻结。412已freshbackup/安装读取SHA，真实Source0设置取消/最终确认取消和显式开局、保存请求参数检查通过，但测试从instrumentation线程读GameSession.pcOpeningOptions触发Serial logic thread required，FAIL保留，不重定义断言/产品/规则；原9内部3rewrite/3797外部0全部SHA恢复，workerexit0，该首例未录视频。415只修测试线程，完整独立12125左右输入重建test26801d2fd…，gamece83原bytes不变；一次缺失videoObservation键的记录器异常发生在创建输出/设备操作前，后继get修正，412原FAIL一直false。417新精确配对加入默认video cohort、freshbackup/实装/完整normal两源/cold正在运行，不计通过。
+
+417/420确切新组合ce83游戏/test268正常两来源显式菜单设置、草稿/最终确认取消整Save/所有RNG/Token纯、Source14真实禁用非固定寿命、Source0/14新工厂有效参数、普通完整保存读取全部通过；独立PID19465→27160冷自动/普通manual完整Save/allRNG SHAbd9695b4029ae501b451a7ff5840b09fe8d82594b68c745c5399c8041a968ae0通过。原9内部4rewrite/3797外部0每SHA恢复，video/workerexit0，3原MP4各device/host/postpullSHA一致。实看source0/14设置图，三组原文本和禁用/确认可读；背后预览仍加载时截图不作为原预览像素通过。只改测试线程后的新配对重新从头执行，不接412失败或A369旧分数；首次无session/全部原设置边界/旧31–39/普通384/ARM/原单挑战斗均未由此验证。
+
+419在上述417全恢复/owner退出后fresh原文件backup、逐byte核已安装新ce83/test268，正常16来源新局/首末势力/取消/全图近景平移/人物/Home/旋转/退出/整Save存读/最终cold新矩阵真实开始，helper98471、controller97967已核live；等待具体case，不因观察超时重启。目标active，仍需本新组合全流程火/军建/单挑舌战/媒体、ARM等，不以420局部通过宣布全目标完成。
