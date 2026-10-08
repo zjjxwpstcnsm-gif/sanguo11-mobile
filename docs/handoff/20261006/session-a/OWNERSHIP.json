@@ -790,7 +790,11 @@
     "docs/handoff/20261006/session-a/run_matrix_redo392.py",
     "docs/handoff/20261006/session-a/MATRIX_REDO392_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_matrix_redo393.py",
-    "docs/handoff/20261006/session-a/MATRIX_REDO393.json"
+    "docs/handoff/20261006/session-a/MATRIX_REDO393.json",
+    "docs/handoff/20261006/session-a/audit_alias_gates394.py",
+    "docs/handoff/20261006/session-a/ALIAS_GATES394.json",
+    "docs/handoff/20261006/session-a/run_current_fire395.py",
+    "docs/handoff/20261006/session-a/CURRENT_FIRE395_LAUNCH.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
