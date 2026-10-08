@@ -1,0 +1,786 @@
+{
+  "actual369Apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+      "sha256": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+      "bytes": 313550179
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk",
+      "sha256": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24",
+      "bytes": 3099092
+    }
+  ],
+  "exactInputManifestSha256": "6c8a2eec5eb8a746f5fcdee2677cd253567d0056934ac74be53e3d7d87e095f8",
+  "namedMarkerFiles": 19,
+  "namedMarkerCount": 90,
+  "inventory": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 353,
+          "code": "        if(snapshot==null||snapshot.ground.pcMap==null)return;",
+          "context": "        pcLightMonth=month;\n    }\n    private void syncPcGround(){\n        if(snapshot==null||snapshot.ground.pcMap==null)return;\n        try{\n            if(pcWaterMaterial==null){\n                byte[] water=VerifiedMaterial.read(\"3d/pc-map/water.filamat\",getContext().getAssets().open(\"3d/pc-map/water.filamat\"));\n                pcWaterMaterial=new Material.Builder().payload(ByteBuffer.wrap(water),water.length).build(engine);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 400,
+          "code": "        if(pcGroundMaterial==null||snapshot==null||snapshot.ground.pcMap==null)return;",
+          "context": "        }catch(java.io.IOException e){throw new IllegalStateException(\"PC map material unavailable\",e);}\n    }\n    private void syncPcGroundFog(){\n        if(pcGroundMaterial==null||snapshot==null||snapshot.ground.pcMap==null)return;\n        float near=(float)(camera.nearPlane()/.05),far=(float)(camera.farPlane()/.05);\n        if(pcFogMonth==snapshot.month&&pcFogNear==near&&pcFogFar==far)return;\n        float[] fog=pcEnvironment.groundFog(snapshot.month,near,far),color=pcEnvironment.baseFogColor(snapshot.month);\n        for(Material m:new Material[]{pcGroundMaterial,pcGroundOutlineMaterial}){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 410,
+          "code": "        return snapshot!=null&&snapshot.ground.pcMap!=null&&pcGroundMaterial!=null?pcGroundMaterial.getDefaultInstance():(overview?overviewGroundMaterial:groundMaterial).getDefaultInstance();",
+          "context": "        pcFogMonth=snapshot.month;pcFogNear=near;pcFogFar=far;\n    }\n    private MaterialInstance landMaterial(boolean overview){\n        return snapshot!=null&&snapshot.ground.pcMap!=null&&pcGroundMaterial!=null?pcGroundMaterial.getDefaultInstance():(overview?overviewGroundMaterial:groundMaterial).getDefaultInstance();\n    }\n    private void loadWaterMaterial(Context context)throws java.io.IOException {\n        byte[] bytes=VerifiedMaterial.read(\"3d/terrain/water.filamat\",context.getAssets().open(\"3d/terrain/water.filamat\"));\n        ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 623,
+          "code": "        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||next.ground.pcMap!=null&&scenerySeasonChanged||!excluded.equals(woodExcluded);",
+          "context": "        else if(acceptedCellFires!=null&&(sceneToken==null||!acceptedCellFires.state.equals(sceneToken)))acceptedCellFires=null;\n        snapshot=next;terrainVisibilityDirty=true;\n        if(pendingFit)fit();\n        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||next.ground.pcMap!=null&&scenerySeasonChanged||!excluded.equals(woodExcluded);\n        if(groundChanged||woodsChanged){\n            outputVerified=false;outputStatus=\"WAITING_MESH\";uniformOutputCount=0;\n            woodExcluded=excluded;generation++;\n            List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 653,
+          "code": "        if(ground.pcMap!=null){",
+          "context": "        // Original objects do not depend on completed ground chunks. Deliver\n        // their small source batches before terrain fills the driver's queue.\n        // Legacy vegetation retains its existing ground-first loading order.\n        if(ground.pcMap!=null){\n            long forestStart=System.nanoTime(),forestStartCpu=android.os.Debug.threadCpuTimeNanos();\n            List<SceneMesh> source=new ArrayList<>(nativeAssets.buildWindow(ground,excluded,trees,window,month));\n            source.addAll(nativeWalls.buildWindow(ground,trees,window,month));forest=Collections.unmodifiableList(source);\n            if(Thread.currentThread().isInterrupted())throw new InterruptedException(\"Source scenery superseded\");",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 685,
+          "code": "            +\" sceneryWallMs=\"+(ground.pcMap!=null?sourceForestWall:done-forestStarted)/1e6+\" sceneryCpuMs=\"+(ground.pcMap!=null?sourceForestCpu:android.os.Debug.threadCpuTimeNanos()-forestCpu)/1e6+\" groundDeliveryBackpressureWallMs=\"+(forestStarted-groundDone)/1e6",
+          "context": "        if(forest==null)forest=Vegetation.buildWindow(ground,excluded,trees,assets,window);\n        long done=System.nanoTime(),endGc=runtimeCounter(\"art.gc.gc-time\"),endAllocated=runtimeCounter(\"art.gc.bytes-allocated\");\n        android.util.Log.i(\"Sanguo3D\",\"Field CPU ready forestChunks=\"+forest.size()+\" totalMs=\"+(done-started)/1e6\n            +\" sceneryWallMs=\"+(ground.pcMap!=null?sourceForestWall:done-forestStarted)/1e6+\" sceneryCpuMs=\"+(ground.pcMap!=null?sourceForestCpu:android.os.Debug.threadCpuTimeNanos()-forestCpu)/1e6+\" groundDeliveryBackpressureWallMs=\"+(forestStarted-groundDone)/1e6\n            +\" processGcMs=\"+(gc<0||endGc<0?-1:endGc-gc)+\" processAllocatedBytes=\"+(allocated<0||endAllocated<0?-1:endAllocated-allocated)\n            +\" interrupted=\"+Thread.currentThread().isInterrupted());\n        return new MeshResult(scenery,built,forest,ground.surface);\n    }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 788,
+          "code": "            \" source_effects=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-SEFF-map-quads/source-critical-first/other-combat-pending\":\"legacy-compatible\")+(pcMapEffects==null?\" pc_map_fx=closed\":pcMapEffects.report())+(pcPresentations==null?\" pc_presentation=closed\":pcPresentations.report())+(presentationStage==null?\"\":presentationStage.report())+\" pc_map=\"+(snapshot!=null&&snapshot.ground.pcMap!=null)+\" pc_scenery=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-943-objects\":\"legacy-compatible\")+\" pc_sites=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source\":\"legacy-compatible\")+\" pc_units=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-rig-14-models-75-clips/event-mapping-provisional\":\"legacy-compatible\")+\" pc_season=\"+pcSeason+\" pc_texture_bytes=\"+pcBytes+",
+          "context": "            \" worker_pending=\"+meshWork.pending()+\" worker_waiting=\"+meshWork.waiting()+\" discarded=\"+meshWork.discarded()+\n            \" ground_load_cpu_ms=\"+groundLoadCpuNanos/1e6+\" ground_texture_estimate_bytes=\"+groundTextureBytes+\" ground_uploads=\"+groundTextures.size()+\" ground_fragment_samples=\"+(pcGroundMaterial!=null?11:overviewTerrain?8:quality==SceneQuality.LOW?8:12)+\n            \" pc_ground_vertex_samples=\"+(pcGroundMaterial!=null?2:0)+\" pc_ground_outline=\"+(pcGroundOutlineMaterial!=null)+\n            \" source_effects=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-SEFF-map-quads/source-critical-first/other-combat-pending\":\"legacy-compatible\")+(pcMapEffects==null?\" pc_map_fx=closed\":pcMapEffects.report())+(pcPresentations==null?\" pc_presentation=closed\":pcPresentations.report())+(presentationStage==null?\"\":presentationStage.report())+\" pc_map=\"+(snapshot!=null&&snapshot.ground.pcMap!=null)+\" pc_scenery=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-943-objects\":\"legacy-compatible\")+\" pc_sites=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source\":\"legacy-compatible\")+\" pc_units=\"+(snapshot!=null&&snapshot.ground.pcMap!=null?\"source-rig-14-models-75-clips/event-mapping-provisional\":\"legacy-compatible\")+\" pc_season=\"+pcSeason+\" pc_texture_bytes=\"+pcBytes+\n            \" frame_queued=\"+queued+\" texture_estimate_bytes=\"+(textureBytes+pcBytes)+\" \"+textureFormat+\" mip_upload_cpu_ms=\"+textureUploadCpuNanos/1e6+\" CPU\u63d0\u4ea4ms P50/P95/P99=\"+percentile(times,.50)+\"/\"+percentile(times,.95)+\"/\"+percentile(times,.99)+\" samples=\"+cpuCount+\"\uff08\u975e\u9a71\u52a8DrawCall/GPU\u5e27\u65f6\uff09\";\n    }\n    private static String percentile(long[] times,double p){return times.length==0?\"N/A\":String.format(java.util.Locale.ROOT,\"%.2f\",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}\n    @Override protected void onDetachedFromWindow(){release();super.onDetachedFromWindow();}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 859,
+          "code": "                    if(snapshot!=null&&snapshot.ground.pcMap!=null){",
+          "context": "                    // screen cue; suspend their independent visual VM clock.\n                    if(presentationCue==null)animatePcMapEffects(UiMotion.enabled()&&!effectsPaused?waterDelta:0);\n                    }\n                    if(snapshot!=null&&snapshot.ground.pcMap!=null){\n                        // A normal map has no screen presentation to prepare. The\n                        // committed cue owns its first decode/upload; playback still\n                        // waits for the original assets, capture and driver barriers.\n                        if(presentationCue!=null&&pcPresentations==null){try{presentationStage=new PcPresentationStage(getContext(),engine,srgbSwapChain);}catch(java.io.IOException error){throw new IllegalStateException(error);}pcPresentations=new PcPresentations(getContext(),engine,presentationStage.scene);if(presentationStageObserver!=null)presentationStageObserver.accept(presentationStage);}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 912,
+          "code": "        if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}",
+          "context": "    String frameSamples(){return frameMetrics.csv();}\n    String overlayAdmissionReport(){return \" overlayRejectedStaticSkipped=\"+overlayRejectedStaticSkipped+\" overlayCameraRedraws=\"+overlayCameraRedraws;}\n    private void animatePcMapEffects(float dt){\n        if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}\n        // Source startup shares no work with the initial terrain/texture/pose\n        // upload burst. The normal map becomes usable before its native visual\n        // scene starts; deadlines stay bounded instead of competing with GC.\n        if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1128,
+          "code": "        final PcUnits.Selection nativeUnit=item.unit!=null&&assetGround.pcMap!=null?pcUnits.idle(item.unit):null;",
+          "context": "    private GpuMesh shape(MapSceneSnapshot.Item item){\n        String field=item.facility!=null?FieldAssets.facility(item.facility,siteLod):item.unit!=null?FieldAssets.unit(item.unit,item.unit.naval,unitLod):null;\n        final MapSceneSnapshot.Ground assetGround=snapshot.ground;\n        final PcUnits.Selection nativeUnit=item.unit!=null&&assetGround.pcMap!=null?pcUnits.idle(item.unit):null;\n        final PcSites nativeSiteAssets=pcSites;\n        final PcSites.Placement nativeSite=nativeSiteAssets.placement(assetGround,item);\n        final PcFacilities nativeFacilityAssets=pcFacilities;\n        final boolean nativeFacility=nativeFacilityAssets.supports(assetGround,item);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1133,
+          "code": "        if(assetGround.pcMap!=null&&nativeUnit==null&&nativeSite==null&&!nativeFacility){",
+          "context": "        final PcSites.Placement nativeSite=nativeSiteAssets.placement(assetGround,item);\n        final PcFacilities nativeFacilityAssets=pcFacilities;\n        final boolean nativeFacility=nativeFacilityAssets.supports(assetGround,item);\n        if(assetGround.pcMap!=null&&nativeUnit==null&&nativeSite==null&&!nativeFacility){\n            // An unsupported source object is a recorded restoration gap. Do not\n            // load an authored mobile model as if it belonged to the PC pack.\n            if(missingAssets.add(\"pc-unresolved:\"+item.key))android.util.Log.w(\"Sanguo3D\",\"Unrecovered PC object \"+item.key);\n            return null;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1164,
+          "code": "            if(assetGround.pcMap!=null)throw new IllegalStateException(\"Original PC asset unavailable: \"+key+\": \"+error);",
+          "context": "        });\n        if(source==null){\n            String error=assetWork.error(key);if(error==null){assetSyncPending=true;return null;}\n            if(assetGround.pcMap!=null)throw new IllegalStateException(\"Original PC asset unavailable: \"+key+\": \"+error);\n            if(missingAssets.add(key))android.util.Log.w(\"Sanguo3D\",\"Asset fallback \"+key+\": \"+error);\n            source=SceneMesh.proxy(item.kind,0xffff00ff);\n        }\n        if(assetUploadBudget<=0){assetSyncPending=true;return null;}assetUploadBudget--;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1220,
+          "code": "        if(snapshot!=null&&snapshot.ground.pcMap!=null)return \"\";",
+          "context": "    private String facilityOverlay(MapSceneSnapshot.Item item,boolean nativeFacility){\n        // Source construction/damage bodies remain available. Authored mobile fire\n        // and scaffolding are compatibility assets, never source restoration.\n        if(snapshot!=null&&snapshot.ground.pcMap!=null)return \"\";\n        return item.facility==null?\"\":item.facility.burning?\"fire\":!item.facility.complete&&!nativeFacility?\"scaffold\":\"\";\n    }\n    private void animateUnits(){\n        if(snapshot==null)return;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1291,
+          "code": "        if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}",
+          "context": "    }\n\n    void critical(CriticalHit hit,float phase,android.graphics.drawable.Drawable portrait){\n        if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}\n        if(criticalHit==hit&&criticalPhase==phase&&criticalPortrait==portrait)return;\n        criticalPortrait=portrait;\n        criticalHit=hit;criticalPhase=phase;overlay.invalidate();\n    }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1305,
+          "code": "        if(snapshot.ground.pcMap!=null){clearEffects();return;}",
+          "context": "        if(snapshot==null)return;\n        // Keep the immutable gameplay journal and source unit/rig animation.\n        // Unrecovered PC emitters must not fall through to mobile approximations.\n        if(snapshot.ground.pcMap!=null){clearEffects();return;}\n        combat.detail(quality==SceneQuality.LOW||thermal.constrained?0:quality==SceneQuality.MEDIUM?1:2);\n        combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);\n        int fires=0;for(MapSceneSnapshot.FireState fire:snapshot.fires)if(visible(fire.hex)){\n            if(fires++==CombatVisual.FIRE_BUDGET)break;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1373,
+          "code": "        camera.perspective=snapshot!=null&&snapshot.ground.pcMap!=null;",
+          "context": "    void resetOrientation(){camera.facing=1;camera.yaw=0;camera.tilt=55;clampCamera();overlay.invalidate();}\n    void reverseOrientation(){camera.facing=-camera.facing;overlay.invalidate();}\n    private void clampCamera(){\n        camera.perspective=snapshot!=null&&snapshot.ground.pcMap!=null;\n        camera.sanitize();if(snapshot!=null)camera.clampTo(snapshot.ground);\n    }\n    void saveCamera(Bundle b){b.putBoolean(\"mapNavigator\",navigatorShown);b.putFloat(\"cameraX\",camera.x*TileGeometry.DX);b.putFloat(\"cameraY\",camera.z*TileGeometry.DY);b.putFloat(\"sceneSpan\",camera.span);b.putFloat(\"sceneTilt\",camera.tilt);b.putInt(\"sceneFacing\",camera.facing);b.putFloat(\"sceneYaw\",camera.yaw);}\n    void restoreCamera(Bundle b){pendingFit=false;if(b.get(\"cameraScaleDp\") instanceof Float&&(!b.containsKey(\"sceneSpan\")||Boolean.FALSE.equals(b.get(\"sceneEnabled\")))){pendingLegacyScaleDp=b.getFloat(\"cameraScaleDp\");if(getHeight()>0){camera.span=SceneCamera.legacySpan(getHeight(),getResources().getDisplayMetrics().density,pendingLegacyScaleDp);b=new Bundle(b);b.putFloat(\"sceneSpan\",camera.span);pendingLegacyScaleDp=Float.NaN;}}navigatorShown=b.getBoolean(\"mapNavigator\",navigatorShown);try{camera.x=b.getFloat(\"cameraX\")/TileGeometry.DX;camera.z=b.getFloat(\"cameraY\")/TileGeometry.DY;camera.span=b.getFloat(\"sceneSpan\",15);camera.tilt=b.getFloat(\"sceneTilt\",55);camera.yaw=b.getFloat(\"sceneYaw\",0);camera.facing=b.getInt(\"sceneFacing\",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1524,
+          "code": "            if(snapshot.ground.pcMap==null&&(item.site!=null||item.unit!=null&&!shape.source.pcUnit||item.facility!=null&&!(shape.source.pcDam&&item.facility.owner<0))){String key=\"flag:\"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flagShape.references++;flag=EntityManager.get().create();flagShape.build(flag);}",
+          "context": "        MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();final UnitAnimation animation=new UnitAnimation();String poseKey,rigRestKey;float y;final UnitFormation formation=new UnitFormation();final PcUnitFormation pcFormation=new PcUnitFormation(pcUnits);int memberCount=1;\n        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;if(shape.source.pcFacilityRig)rigRestKey=PcFacilityRigs.key(item,snapshot.month,0);if(item.unit!=null)animation.naval=item.unit.naval;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;shape.references++;entity=EntityManager.get().create();try{\n            if(shape.source.uv!=null){instance=(shape.source.pcUnit||shape.source.pcFacilityRig?pcUnitMaterial:nativeBody()?pcSceneryMaterial:item.unit==null?siteMaterial:unitMaterial).createInstance();instance.setParameter(\"atlas\",shape.source.pcUnit?pcUnitSheets[shape.source.pcUnitModel]:shape.source.pcFacility?pcFacilitiesAtlas:shape.source.pcSite?pcSitesAtlas:item.site!=null?siteAtlas:item.unit!=null?unitAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));if(!nativeBody())instance.setParameter(\"damage\",0f);if(shape.source.pcUnit||shape.source.pcFacilityRig){alphaInstance=pcUnitAlphaMaterial.createInstance();bindPcUnitTextures();if(shape.source.pcFacilityRig){float[] single=new float[76*4];single[3]=1;instance.setParameter(\"members\",MaterialInstance.FloatElement.FLOAT4,single,0,76);alphaInstance.setParameter(\"members\",MaterialInstance.FloatElement.FLOAT4,single,0,76);}}shape.build(entity,instance,1,alphaInstance);}else shape.build(entity);\n            if(snapshot.ground.pcMap==null&&(item.site!=null||item.unit!=null&&!shape.source.pcUnit||item.facility!=null&&!(shape.source.pcDam&&item.facility.owner<0))){String key=\"flag:\"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flagShape.references++;flag=EntityManager.get().create();flagShape.build(flag);}\n            // Seven-cell occupancy is shown by the selection overlay; ground blends in the terrain field.\n            if(!facilityOverlay(item,shape.source.pcFacility).isEmpty()){\n                String stateKey=item.facility.burning?\"fire\":\"scaffold\";stateShape=shapes.get(stateKey);\n                if(stateShape==null)throw new IllegalStateException(\"state decode not ready\");",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 1861,
+          "code": "            if(snapshot.ground.pcMap==null)return;",
+          "context": "        }\n        /** Persistent state information, independent of the still unbound PC fire emitter. */\n        private void drawSourceFireState(Canvas c,List<android.graphics.RectF> occupied){\n            if(snapshot.ground.pcMap==null)return;\n            float d=getResources().getDisplayMetrics().density;int labels=0;\n            for(MapSceneSnapshot.FireState fire:snapshot.fires){\n                if(fire.remaining<=0||!visible(fire.hex))continue;\n                float wx=snapshot.ground.grid.x(fire.hex),wz=snapshot.ground.grid.z(fire.hex),height=snapshot.ground.surface.at(fire.hex)+.04f;",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 1189,
+          "code": "        if(map!=null&&map.sourceVisuals())return;",
+          "context": "    }\n    private void showCritical(CriticalHit hit){\n        if(hit==null||body==null||!UiMotion.enabled())return;\n        if(map!=null&&map.sourceVisuals())return;\n        if(criticalFlash!=null)criticalFlash.dismiss();\n        CriticalFlash flash=new CriticalFlash(this,world,hit,()->{if(criticalFlash!=null){body.removeView(criticalFlash);criticalFlash=null;}});\n        criticalFlash=flash;body.addView(flash,new FrameLayout.LayoutParams(-1,-1));flash.bringToFront();\n    }",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "sha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 120,
+          "code": "        int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;",
+          "context": "    private void eventSound(TurnJournal.Event event,float fraction,boolean visualProgress){\n        SoundEffects sounds=sounds();if(sounds==null||event==null||!resumed||!replayCommitted||(visualProgress&&!renderGate.active()))return;\n        String id=\"journal:\"+event.id;\n        int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;\n        boolean critical=event.critical!=null;\n        if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}\n        if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+\":critical\",SoundEffects.Cue.CRITICAL);\n        completionSound(event);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 123,
+          "code": "        if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+\":critical\",SoundEffects.Cue.CRITICAL);",
+          "context": "        int pcSound=sourceVisuals()?PcPresentationPlan.tacticSound(event):-1;\n        boolean critical=event.critical!=null;\n        if(!critical)for(var outcome:event.plotOutcomes)if(outcome.success&&outcome.critical){critical=true;break;}\n        if(pcSound<0&&fraction>=.35f&&critical&&(!sourceVisuals()||originalCriticalDuration(event)==0))sounds.event(id+\":critical\",SoundEffects.Cue.CRITICAL);\n        completionSound(event);\n        SoundEffects.Cue cue=switch(event.kind){case MOVE,ENTER,DEPLOY->SoundEffects.Cue.MARCH;case ATTACK,FACILITY_ATTACK,FACILITY_COUNTER->SoundEffects.Cue.ATTACK;case TACTIC->SoundEffects.Cue.TACTIC;case PLOT->SoundEffects.Cue.PLOT;case RECOVER->SoundEffects.Cue.COMPLETE;default->null;};\n        float trigger=cue==SoundEffects.Cue.ATTACK||cue==SoundEffects.Cue.TACTIC?.35f:0;\n        if(pcSound>=0){if(fraction>=.35f)sounds.originalTacticEvent(id+\":tactic-source\",pcSound);}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 139,
+          "code": "                if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null&&(!sourceVisuals()||PcPresentationPlan.tacticSound(event)<0))sounds().event(\"journal:\"+event.id+\":critical\",SoundEffects.Cue.CRITICAL);}",
+          "context": "            for(var event:events){\n                // Reduced motion commits the presentation directly to its final phase.\n                // It does not also mute the already committed action.\n                if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null&&(!sourceVisuals()||PcPresentationPlan.tacticSound(event)<0))sounds().event(\"journal:\"+event.id+\":critical\",SoundEffects.Cue.CRITICAL);}\n                finishReplay(event);\n            }\n            techniqueCommandEvents=Collections.emptyList();\n            return;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 145,
+          "code": "        commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?originalCriticalDuration(e):0),e->sourceVisuals()?originalCriticalDuration(e):0);",
+          "context": "            techniqueCommandEvents=Collections.emptyList();\n            return;\n        }\n        commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?originalCriticalDuration(e):0),e->sourceVisuals()?originalCriticalDuration(e):0);\n        if(spatial!=null&&before!=null&&publishedSnapshot!=null&&before.ground==publishedSnapshot.ground){\n            commandFinalSnapshot=publishedSnapshot;spatial.snapshot(before);\n        }\n        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 149,
+          "code": "        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}",
+          "context": "        if(spatial!=null&&before!=null&&publishedSnapshot!=null&&before.ground==publishedSnapshot.ground){\n            commandFinalSnapshot=publishedSnapshot;spatial.snapshot(before);\n        }\n        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}\n        commandEffectTime=android.os.SystemClock.uptimeMillis();postOnAnimation(commandEffectTick);\n        if(sourceVisuals())setCriticalSkip(this::cancelCommandEffects);\n    }\n    int presentationDuration(TurnJournal.Event event){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 151,
+          "code": "        if(sourceVisuals())setCriticalSkip(this::cancelCommandEffects);",
+          "context": "        }\n        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){replayFrame(commandEffects.current(),0);criticalEvent(commandEffects.current(),0);}\n        commandEffectTime=android.os.SystemClock.uptimeMillis();postOnAnimation(commandEffectTick);\n        if(sourceVisuals())setCriticalSkip(this::cancelCommandEffects);\n    }\n    int presentationDuration(TurnJournal.Event event){\n        return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();\n    }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 154,
+          "code": "        return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();",
+          "context": "        if(sourceVisuals())setCriticalSkip(this::cancelCommandEffects);\n    }\n    int presentationDuration(TurnJournal.Event event){\n        return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();\n    }\n    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}\n    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:OfficerPortrait.presentationSource(world,event.critical.officerId);}\n    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 156,
+          "code": "    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}",
+          "context": "    int presentationDuration(TurnJournal.Event event){\n        return is3D()&&ground!=null&&ground.pcMap!=null?PcFacilityRigs.duration(event):event.durationMillis();\n    }\n    boolean sourceVisuals(){return is3D()&&ground!=null&&ground.pcMap!=null;}\n    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:OfficerPortrait.presentationSource(world,event.critical.officerId);}\n    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}\n    private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}\n    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 160,
+          "code": "    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}",
+          "context": "    private PortraitMediaIdentity criticalSource(TurnJournal.Event event){return world==null||event==null||event.critical==null?null:OfficerPortrait.presentationSource(world,event.critical.officerId);}\n    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}\n    private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}\n    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}\n    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}\n    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}\n    void criticalEvent(TurnJournal.Event event,float fraction){\n        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 161,
+          "code": "    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}",
+          "context": "    private int originalCriticalDuration(TurnJournal.Event event){return PcPresentationPlan.duration(event,criticalSource(event));}\n    private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}\n    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}\n    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}\n    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}\n    void criticalEvent(TurnJournal.Event event,float fraction){\n        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}\n        if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 162,
+          "code": "    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}",
+          "context": "    private List<PcPresentationPlan.Cue> originalCriticalCues(TurnJournal.Event event){return PcPresentationPlan.cues(event,criticalSource(event));}\n    int criticalDuration(TurnJournal.Event event){return sourceVisuals()?originalCriticalDuration(event):event!=null&&event.critical!=null?(int)CriticalScene.DURATION:0;}\n    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}\n    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}\n    void criticalEvent(TurnJournal.Event event,float fraction){\n        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}\n        if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null){\n            int pcSound=PcPresentationPlan.tacticSound(event);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 164,
+          "code": "        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}",
+          "context": "    boolean criticalReady(){return !sourceVisuals()||spatial.presentationReady();}\n    boolean criticalSubmitted(){return !sourceVisuals()||spatial.presentationSubmitted();}\n    void criticalEvent(TurnJournal.Event event,float fraction){\n        if(!sourceVisuals()){criticalFrame(event==null?null:event.critical,fraction);return;}\n        if(event!=null&&fraction>0&&spatial.presentationSubmitted()&&replayCommitted&&resumed&&renderGate.active()&&sounds()!=null){\n            int pcSound=PcPresentationPlan.tacticSound(event);\n            if(pcSound>=0)sounds().originalTacticEvent(\"journal:\"+event.id+\":tactic-source\",pcSound);\n            else sounds().event(\"journal:\"+event.id+\":critical\",SoundEffects.Cue.CRITICAL);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 206,
+          "code": "        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){",
+          "context": "            return;\n        }\n        boolean sourcePrelude=false;\n        if(sourceVisuals()&&originalCriticalDuration(commandEffects.current())>0){\n            TurnJournal.Event current=commandEffects.current();int prelude=originalCriticalDuration(current);\n            boolean preparing=commandPreparedEvent!=current;\n            float elapsed=commandEffects.fraction()*(prelude+presentationDuration(current));\n            if(preparing||elapsed<prelude){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 229,
+          "code": "        TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);",
+          "context": "        commandEffects.advance(wallElapsed,this::replayVisible);commandEffectTime=now;\n        if(!commandEffects.paused())for(var event:techniqueCommandEvents)if(combatLedger().completed(event))techniqueFinished(event);\n        if(commandEffects.done()){clearCommandEffects(false);return;}\n        TurnJournal.Event event=commandEffects.current();int prelude=sourceVisuals()?originalCriticalDuration(event):0,action=presentationDuration(event);\n        float elapsed=commandEffects.fraction()*(prelude+action);\n        if(prelude>0&&elapsed<prelude){replayFrame(event,0);criticalEvent(event,elapsed/prelude);}\n        else{criticalEvent(null,0);replayFrame(event,Math.max(0,(elapsed-prelude)/action));}\n        postOnAnimation(commandEffectTick);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 459,
+          "code": "    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}",
+          "context": "    void setCommandersShown(boolean value){commandersShown=value;getContext().getSharedPreferences(\"map-display\",0).edit().putBoolean(\"commanders\",value).apply();if(spatial!=null)spatial.labels(value,unitBarsShown);}\n    void setUnitBarsShown(boolean value){unitBarsShown=value;getContext().getSharedPreferences(\"map-display\",0).edit().putBoolean(\"unitBars\",value).apply();if(spatial!=null)spatial.labels(commandersShown,value);}\n    void setCriticalSkip(Runnable skip){criticalSkip=skip;if(spatial!=null)spatial.criticalSkip(skip);}\n    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}\n    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f)techniquePhase(e);if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}\n    boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}\n}",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java",
+      "sha256": "d8d4468a7bbd88f971bc668361a0866a58a381c0d3bd26cd77d3204a2deffecd",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 22,
+          "code": "        final boolean originalNational; final PcMap pcMap;",
+          "context": "        private final BitSet baseCells, gridCells;\n        final WaterVisualField.Shoreline shoreline;\n        private volatile WaterVisualField waterSamples;\n        final boolean originalNational; final PcMap pcMap;\n        final int gridForce; final boolean gridDifficultMarch;\n        final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;\n        Ground(World w) {this(w,w.player);}\n        Ground(World w,int force) {",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 29,
+          "code": "            pcMap=NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty()&&w.columnStaggered?PcMap.get():null;",
+          "context": "        Ground(World w,int force) {\n            gridForce=force;gridDifficultMarch=w.campaign.has(force,Campaign.Tech.DIFFICULT_MARCH);\n            originalNational=NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty();\n            pcMap=NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)&&w.customMapId.isEmpty()&&w.columnStaggered?PcMap.get():null;\n            width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);\n            Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);\n            baseCells=new BitSet(width*height);for(Hex h:flat)if(h.q>=0&&h.r>=0&&h.q<width&&h.r<height)baseCells.set(h.r*width+h.q);\n            terrain=new byte[width*height];gridCells=new BitSet(terrain.length);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 57,
+          "code": "            originalNational=old.originalNational;pcMap=old.pcMap;width=old.width;height=old.height;",
+          "context": "        /** A research/force change reuses immutable geometry, never mutates an older snapshot. */\n        private Ground(Ground old,int force,boolean difficultMarch){\n            gridForce=force;gridDifficultMarch=difficultMarch;\n            originalNational=old.originalNational;pcMap=old.pcMap;width=old.width;height=old.height;\n            sourceMapWidth=old.sourceMapWidth;sourceOriginX=old.sourceOriginX;sourceOriginY=old.sourceOriginY;\n            mapIdentity=old.mapIdentity;mapSeed=old.mapSeed;grid=old.grid;\n            bases=old.bases;baseCells=old.baseCells;terrain=old.terrain;gridCells=old.gridCells;\n            minX=old.minX;minZ=old.minZ;maxX=old.maxX;maxZ=old.maxZ;",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 196,
+          "code": "        if(g.pcMap==null)return Collections.emptyMap();",
+          "context": "        siege=Collections.unmodifiableSet(new HashSet<>(SiegeOverlay.selected(w,selected).cells));\n    }\n    private static Map<Hex,Integer> wallConnections(Ground g,List<Item> items){\n        if(g.pcMap==null)return Collections.emptyMap();\n        Map<SourceGridCoord,Item> healthy=new HashMap<>();\n        for(Item i:items)if(wallType(i)&&i.facility.complete&&i.facility.hp>=Math.min(i.facility.maxHp/2,500))healthy.put(g.source(i.hex),i);\n        int[][][] steps={{{-1,-1},{0,-1},{1,-1},{-1,0},{0,1},{1,0}},{{-1,0},{0,-1},{1,0},{-1,1},{0,1},{1,1}}};\n        Map<Hex,Integer> masks=new HashMap<>();",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCellFireSet.java",
+      "sha256": "ee12175db6088b1878e0305d6781e235352b74ab89b14cc93c60d92a00fd4d44",
+      "owner": "A-registered-or-other",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 16,
+          "code": "  if(snapshot==null||!snapshot.authoritativeSceneFacts||snapshot.state==null||expected==null||!expected.equals(snapshot.state)||snapshot.ground.pcMap==null)return null;",
+          "context": " }\n private PcCellFireSet(StateToken state,List<Cell> cells,int total){this.state=state;this.cells=Collections.unmodifiableList(cells);this.total=total;omitted=total-cells.size();}\n static PcCellFireSet from(MapSceneSnapshot snapshot,StateToken expected){\n  if(snapshot==null||!snapshot.authoritativeSceneFacts||snapshot.state==null||expected==null||!expected.equals(snapshot.state)||snapshot.ground.pcMap==null)return null;\n  List<MapSceneSnapshot.FireState> fires=new ArrayList<>(snapshot.fires);\n  fires.sort(Comparator.comparingInt((MapSceneSnapshot.FireState f)->f.sourceX==null?Integer.MAX_VALUE:f.sourceX).thenComparingInt(f->f.sourceY==null?Integer.MAX_VALUE:f.sourceY));\n  List<Cell> cells=new ArrayList<>();Set<Integer> seen=new HashSet<>();int total=0;\n  for(var f:fires){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 25,
+          "code": "   var map=snapshot.ground.pcMap;int terrain=map.terrain(x,y),fx=PcCellFirePosition.fineX(x),fy=PcCellFirePosition.fineY(x,y);",
+          "context": "   if(f.sourceX==null||f.sourceY==null)throw new IllegalArgumentException(\"Authoritative fire missing source cell\");\n   int x=f.sourceX,y=f.sourceY;if(!seen.add(y*200+x))throw new IllegalArgumentException(\"Duplicate source fire cell\");\n   if(x<0||y<0||x>=200||y>=200)throw new IllegalArgumentException(\"Original cell fire source bounds\");\n   var map=snapshot.ground.pcMap;int terrain=map.terrain(x,y),fx=PcCellFirePosition.fineX(x),fy=PcCellFirePosition.fineY(x,y);\n   int height=terrain==7||terrain==8?map.coarseWaterByte(fx/4,fy/4):map.heightByte(fx,fy);\n   var point=PcCellFirePosition.source(x,y,terrain,height);total++;\n   // The surface applies paint only to the matching non-water cell. A distant\n   // edit cannot invalidate this cell's unchanged original native position.",
+          "kind": "reference-definition-or-diagnostic"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcCliffWalls.java",
+      "sha256": "c556d4abc96dcb41fec071999c366eba3c736ed4bfdbe417778852d7c349f26c",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 39,
+          "code": "        if(g.pcMap==null)return Collections.emptyList();List<Hex> anchors=new ArrayList<>();",
+          "context": "    int placementCount(){return placements.length;}\n    int connectionCount(){int count=0;for(Placement p:placements)count+=Integer.bitCount(p.mask&56);return count;}\n    List<Hex> anchors(MapSceneSnapshot.Ground g){\n        if(g.pcMap==null)return Collections.emptyList();List<Hex> anchors=new ArrayList<>();\n        for(Placement p:placements){Hex h=g.grid.cell(p.x-g.sourceOriginX,p.z-g.sourceOriginY);if(g.valid(h))anchors.add(h);}\n        return Collections.unmodifiableList(anchors);\n    }\n    List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,List<SceneMesh> previous,SceneMesh.TerrainWindow window,int month)throws InterruptedException {",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 44,
+          "code": "        if(g.pcMap==null)return Collections.emptyList();int quarter=PcFacilities.quarter(month),size=window.span<14?8:16;",
+          "context": "        return Collections.unmodifiableList(anchors);\n    }\n    List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,List<SceneMesh> previous,SceneMesh.TerrainWindow window,int month)throws InterruptedException {\n        if(g.pcMap==null)return Collections.emptyList();int quarter=PcFacilities.quarter(month),size=window.span<14?8:16;\n        Map<Long,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)if(m.pcCliffWall)cache.put(key(m.chunkQ,m.chunkR),m);\n        Map<Long,List<Placement>> groups=new TreeMap<>();\n        for(Placement p:placements){\n            Hex h=g.grid.cell(p.x-g.sourceOriginX,p.z-g.sourceOriginY);if(!g.valid(h))continue;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 77,
+          "code": "            int start=g.pcMap.heightByte(ix,iz);",
+          "context": "            result.add(new Part(canonical(cache,p.body,quarter,lod),x,z,p.y,p.yaw));\n            if((p.mask&56)==0)continue;\n            SceneMesh segment=canonical(cache,114,quarter,lod);int ix=p.rawX*2,iz=p.rawZ*2;\n            int start=g.pcMap.heightByte(ix,iz);\n            for(int direction=3;direction<6;direction++)if((p.mask&(1<<direction))!=0){\n                int dx=STEPS[direction][0],dz=STEPS[direction][1],end=g.pcMap.heightByte(ix+dx,iz+dz);\n                result.add(new Part(PcWallGeometry.segment(segment,dx*.25f,dz*.25f,(end-start)*game.sanguo.core.PcMap.SCALE),x,z,start*game.sanguo.core.PcMap.SCALE,0));\n            }",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 79,
+          "code": "                int dx=STEPS[direction][0],dz=STEPS[direction][1],end=g.pcMap.heightByte(ix+dx,iz+dz);",
+          "context": "            SceneMesh segment=canonical(cache,114,quarter,lod);int ix=p.rawX*2,iz=p.rawZ*2;\n            int start=g.pcMap.heightByte(ix,iz);\n            for(int direction=3;direction<6;direction++)if((p.mask&(1<<direction))!=0){\n                int dx=STEPS[direction][0],dz=STEPS[direction][1],end=g.pcMap.heightByte(ix+dx,iz+dz);\n                result.add(new Part(PcWallGeometry.segment(segment,dx*.25f,dz*.25f,(end-start)*game.sanguo.core.PcMap.SCALE),x,z,start*game.sanguo.core.PcMap.SCALE,0));\n            }\n        }return result;\n    }",
+          "kind": "reference-definition-or-diagnostic"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcConstructibleWalls.java",
+      "sha256": "efaf36d88305009aded5c6695f5aa8520b4000fcfc16716823c4f3e19c8a8afc",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 17,
+          "code": "        int kind=PcFacilities.kind(item.facility);if(g.pcMap==null||kind!=17&&kind!=28)return null;",
+          "context": "        Placement(int k,int a,int b,float x,float z,float y,float yaw){kind=k;ix=a;iz=b;this.x=x;this.z=z;this.y=y;this.yaw=yaw;}\n    }\n    static Placement placement(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){\n        int kind=PcFacilities.kind(item.facility);if(g.pcMap==null||kind!=17&&kind!=28)return null;\n        SourceGridCoord cell=g.source(item.hex);\n        // EXE 5a0160 creates rawX=2*q+57, rawZ=2*r+(q&1)+57.\n        int ix=cell.x*4+114,iz=cell.y*4+(cell.x&1)*2+114;\n        return new Placement(kind,ix,iz,cell.x-g.sourceOriginX,cell.y+(cell.x&1)*.5f-g.sourceOriginY,",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 22,
+          "code": "            g.pcMap.vertex(ix,iz),SOURCE_YAW[SOURCE_DIRECTION[Math.floorMod(item.facility.direction,6)]]);",
+          "context": "        // EXE 5a0160 creates rawX=2*q+57, rawZ=2*r+(q&1)+57.\n        int ix=cell.x*4+114,iz=cell.y*4+(cell.x&1)*2+114;\n        return new Placement(kind,ix,iz,cell.x-g.sourceOriginX,cell.y+(cell.x&1)*.5f-g.sourceOriginY,\n            g.pcMap.vertex(ix,iz),SOURCE_YAW[SOURCE_DIRECTION[Math.floorMod(item.facility.direction,6)]]);\n    }\n    static String key(MapSceneSnapshot.Item item,int month,int lod,Placement p,int mask){\n        return \"pc-wall:\"+p.kind+\":\"+PcFacilities.state(item.facility)+\":\"+PcFacilities.quarter(month)+\":\"+(lod==0?0:1)+\":\"+p.ix+\":\"+p.iz+\":\"+mask+\":\"+Float.floatToIntBits(p.yaw);\n    }",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 34,
+          "code": "            int dx=STEPS[k][0],dz=STEPS[k][1];float rise=(g.pcMap.heightByte(p.ix+dx,p.iz+dz)-g.pcMap.heightByte(p.ix,p.iz))*game.sanguo.core.PcMap.SCALE;",
+          "context": "        SceneMesh body=mask==0?library.mesh(p.kind,state,quarter,far,0):library.meshIndex(p.kind,0,p.kind==17?136:208,quarter,far,0);\n        parts.add(rotate(body,p.yaw));\n        for(int k=3;k<6;k++)if((mask&(1<<k))!=0){\n            int dx=STEPS[k][0],dz=STEPS[k][1];float rise=(g.pcMap.heightByte(p.ix+dx,p.iz+dz)-g.pcMap.heightByte(p.ix,p.iz))*game.sanguo.core.PcMap.SCALE;\n            SceneMesh segment=PcWallGeometry.segment(library.meshIndex(p.kind,0,p.kind==17?130:196,quarter,far,0),dx*.25f,dz*.25f,rise);\n            segment.pcCliffWall=false;parts.add(segment);\n        }\n        return join(parts);",
+          "kind": "reference-definition-or-diagnostic"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcDams.java",
+      "sha256": "353504206d9aa9ad929e65f159aeffb5de5b3c30d42b5b68c8775ebf1186c90d",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 33,
+          "code": "        if(g.pcMap==null||item.facility==null||!item.facility.type.equals(\"military/DAM\"))return null;",
+          "context": "    }\n    List<Placement> placements(){return placements;}\n    Placement placement(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){\n        if(g.pcMap==null||item.facility==null||!item.facility.type.equals(\"military/DAM\"))return null;\n        var cell=g.source(item.hex);for(Placement p:placements)if(p.sourceX==cell.x&&p.sourceY==cell.y)return p;return null;\n    }\n}",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilities.java",
+      "sha256": "1b163f19768cb09a912165363ab269232f309fcef56063de2c677d6cab76d928",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 84,
+          "code": "    boolean supports(MapSceneSnapshot.Ground ground,MapSceneSnapshot.Item item){return ground.pcMap!=null&&bindings.containsKey(kind(item.facility));}",
+          "context": "        if(kind==24&&state<2)return quarter==3?4:quarter;\n        return quarter!=3?0:climate==0||climate==2||model==72?1:2;\n    }\n    boolean supports(MapSceneSnapshot.Ground ground,MapSceneSnapshot.Item item){return ground.pcMap!=null&&bindings.containsKey(kind(item.facility));}\n    String key(MapSceneSnapshot.Item item,int month,int lod){return \"pc-facility:\"+kind(item.facility)+\":\"+state(item.facility)+\":\"+quarter(month)+\":\"+(lod==0?0:1);}\n    SceneMesh mesh(MapSceneSnapshot.Item item,int month,int lod){\n        return mesh(kind(item.facility),state(item.facility),quarter(month),lod==0?0:1,0);\n    }",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcFacilityRigs.java",
+      "sha256": "3dcee8e7a0dfa89d38f52b0ab795fc874664bbc9e0b71812f81c4e4b941f5b3b",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 29,
+          "code": "    static boolean supports(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){return g.pcMap!=null&&item.facility!=null&&item.facility.complete&&item.facility.type.equals(\"military/CATAPULT_TOWER\");}",
+          "context": "    }\n    static boolean firing(TurnJournal.Event e){return e!=null&&e.kind==TurnJournal.Kind.FACILITY_ATTACK&&e.sourceType.equals(\"CATAPULT_TOWER\");}\n    static int duration(TurnJournal.Event e){return firing(e)?DURATION_MILLIS:e.durationMillis();}\n    static boolean supports(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){return g.pcMap!=null&&item.facility!=null&&item.facility.complete&&item.facility.type.equals(\"military/CATAPULT_TOWER\");}\n    static int frame(float fraction){return Math.min(LAST_FRAME,Math.max(0,(int)((CombatVisual.fraction(fraction)*DURATION_MILLIS-DELAY_MILLIS)*.06f)));}\n    static int frame(MapSceneSnapshot.Item item,TurnJournal.Event event,float fraction){return firing(event)&&item.key.equals(\"structure:\"+event.sourceKey.substring(1))?frame(fraction):0;}\n    static String key(MapSceneSnapshot.Item item,int month,int frame){return \"pc-facility-rig:\"+PcFacilities.state(item.facility)+\":\"+PcFacilities.quarter(month)+\":\"+frame;}\n    SceneMesh mesh(MapSceneSnapshot.Item item,int month,int frame,PcFacilities materials)throws InterruptedException{return mesh(PcFacilities.state(item.facility),month,frame,materials);}",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcScenery.java",
+      "sha256": "9fc5f5520fdf3406f7537012e6b647a66001937e7c0a40f3f33815f2117ee234",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 64,
+          "code": "        if(g.pcMap==null)return Collections.emptyList();",
+          "context": "    int placementCount(){return placements.length;}\n    List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,Set<Hex> excluded,List<SceneMesh> previous,\n            SceneMesh.TerrainWindow window,int month)throws InterruptedException {\n        if(g.pcMap==null)return Collections.emptyList();\n        // National views upload the identical source far meshes in larger batches.\n        // This changes ownership/culling granularity, never source model detail,\n        // attributes or triangles. Medium views retain the16-cell cache.\n        int season=season(month),chunk=window.span<14?8:window.span<36?16:32;",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcSites.java",
+      "sha256": "ca4758f74b016f081cdcd0319ad2dec2738b432fe9f4ab29e8abe83575221b1a",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 47,
+          "code": "        if(g.pcMap==null||item.site==null)return null;",
+          "context": "    }\n    int placementCount(){return placements.length;}\n    Placement placement(MapSceneSnapshot.Ground g,MapSceneSnapshot.Item item){\n        if(g.pcMap==null||item.site==null)return null;\n        for(Placement p:placements){\n            if((p.kind<6?0:p.kind==6?2:1)!=item.kind)continue;\n            Hex h=g.grid.cell(p.anchorX-g.sourceOriginX,p.anchorZ+(p.anchorX%2)*.5f-g.sourceOriginY);\n            if(h.equals(item.hex))return p;",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneCamera.java",
+      "sha256": "27708d282b488fc64828e77d60c5874783a0ca85dbe96418db6fcfaf8e5c4efa",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 58,
+          "code": "        heightLimit=ground.pcMap==null?TerrainSurface.MAX_HEIGHT:game.sanguo.core.PcMap.MAX_HEIGHT;",
+          "context": "    void sanitize(){x=Float.isFinite(x)?x:0;z=Float.isFinite(z)?z:0;span=Float.isFinite(span)?Math.max(3,Math.min(160,span)):15;tilt=Float.isFinite(tilt)?Math.max(40,Math.min(70,tilt)):55;yaw=Float.isFinite(yaw)?((yaw%360)+360)%360:0;facing=facing<0?-1:1;}\n    /** Camera bounds belong to the complete immutable map, never the transient chunk cache. */\n    void clampTo(MapSceneSnapshot.Ground ground){\n        heightLimit=ground.pcMap==null?TerrainSurface.MAX_HEIGHT:game.sanguo.core.PcMap.MAX_HEIGHT;\n        sanitize();x=Math.max(ground.minX,Math.min(ground.maxX,x));z=Math.max(ground.minZ,Math.min(ground.maxZ,z));\n    }\n    void zoom(float factor,float sx,float sy){zoom(factor,sx,sy,0);}\n    void zoom(float factor,float sx,float sy,float groundY){",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "sha256": "ef627a5995af19873aec5bec8c3365c720eea7572f0836267d765dfb9149cc14",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 204,
+          "code": "        if(g.pcMap!=null)return null; // Source scenery is streamed with the same quarter-grid as playable terrain.",
+          "context": "    /** Coarse non-playable scenery beneath the authoritative surface; never a picking input.\n     * Fills VOID perforations and the exterior margin without manufacturing playable tiles. */\n    static SceneMesh backdrop(MapSceneSnapshot.Ground g){\n        if(g.pcMap!=null)return null; // Source scenery is streamed with the same quarter-grid as playable terrain.\n        float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;\n        for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++)if(g.valid(new Hex(q,r))){\n            float x=g.grid.x(q,r),z=g.grid.z(q,r);minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);\n        }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 218,
+          "code": "            b.vertex(minX+q*step,g.pcMap==null?-.04f:g.surface.pcLandHeight(minX+q*step,minZ+r*step)-.015f,minZ+r*step,0xffffffff);",
+          "context": "        SurfaceBuilder b=new SurfaceBuilder((columns+1)*(rows+1),columns*rows*6);\n        // The regular background has no split normals: adjacent quads share payloads.\n        for(int r=0;r<=rows;r++)for(int q=0;q<=columns;q++)\n            b.vertex(minX+q*step,g.pcMap==null?-.04f:g.surface.pcLandHeight(minX+q*step,minZ+r*step)-.015f,minZ+r*step,0xffffffff);\n        for(int r=0;r<rows;r++)for(int q=0;q<columns;q++){\n            int n=r*(columns+1)+q,next=n+columns+1;\n            b.triangle(false,n,next,next+1);b.triangle(false,n,next+1,n+1);\n        }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 223,
+          "code": "        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;",
+          "context": "            int n=r*(columns+1)+q,next=n+columns+1;\n            b.triangle(false,n,next,next+1);b.triangle(false,n,next+1,n+1);\n        }\n        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;\n        if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);\n        // Identical weights, lighting frame, macro tone and shore data to the foreground.\n        new TerrainMaterialField(g).attachBackdrop(m);\n        return m;",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 224,
+          "code": "        if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);",
+          "context": "            b.triangle(false,n,next,next+1);b.triangle(false,n,next+1,n+1);\n        }\n        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;m.pcGround=g.pcMap!=null;\n        if(g.pcMap!=null)m.sourceWater=sourceWater(g,-1,-1,m);\n        // Identical weights, lighting frame, macro tone and shore data to the foreground.\n        new TerrainMaterialField(g).attachBackdrop(m);\n        return m;\n    }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 270,
+          "code": "        int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;",
+          "context": "        List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();\n        for(SceneMesh m:previous)cached.put(m.chunkQ+\":\"+m.chunkR,m);\n        List<int[]> requests=new ArrayList<>();\n        int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;\n        for(int r=-margin;r<rLimit;r+=16)for(int q=-margin;q<qLimit;q+=16)requests.add(new int[]{q,r});\n        if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));\n        SurfaceBuilder scratch=null,gridScratch=null;int[] pcCell=new int[25];\n        for(int[] request:requests){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 281,
+          "code": "            fingerprint=(fingerprint^(g.pcMap==null?0:64))*1099511628211L;",
+          "context": "            if(Thread.currentThread().isInterrupted())return Collections.emptyList();\n            long fingerprint=1469598103934665603L ^ 0x3D20261003L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;\n            fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;\n            fingerprint=(fingerprint^(g.pcMap==null?0:64))*1099511628211L;\n            fingerprint=(fingerprint^lod^(window!=null&&window.span<48?0x12100:0))*1099511628211L;\n            // Grid-bearing chunks may not retain another force/research state's lines.\n            // Overview/no-grid geometry stays reusable across research and force changes.\n            if(window!=null&&window.span<48)fingerprint=(fingerprint^(g.gridDifficultMarch?1:0))*1099511628211L;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 299,
+          "code": "            if(scratch==null){int cells=g.pcMap==null?Math.min(16,g.width)*Math.min(16,g.height):16*16;scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}",
+          "context": "            // Maximum capacity for one 16x16 chunk. The previous per-chunk\n            // allocation discarded up to 1.5 MiB of scratch on each iteration.\n            // Keep one task-local buffer; only immutable used ranges escape.\n            if(scratch==null){int cells=g.pcMap==null?Math.min(16,g.width)*Math.min(16,g.height):16*16;scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:25),cells*(g.pcMap==null?24:96));}\n            else scratch.reset();\n            SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;\n            for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){\n                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 303,
+          "code": "                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);",
+          "context": "            else scratch.reset();\n            SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;\n            for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){\n                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);\n                minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);\n                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);\n                if(g.pcMap!=null){\n                    for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 305,
+          "code": "                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);",
+          "context": "            for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){\n                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);\n                minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);\n                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);\n                if(g.pcMap!=null){\n                    for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){\n                        float vx=x-.5f+ix*.25f,vz=z-.5f+iz*.25f;\n                        pcCell[iz*5+ix]=b.pcVertex(vx,g.surface.pcLandHeight(vx,vz),vz,0xff999999);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 306,
+          "code": "                if(g.pcMap!=null){",
+          "context": "                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);\n                minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);\n                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);\n                if(g.pcMap!=null){\n                    for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){\n                        float vx=x-.5f+ix*.25f,vz=z-.5f+iz*.25f;\n                        pcCell[iz*5+ix]=b.pcVertex(vx,g.surface.pcLandHeight(vx,vz),vz,0xff999999);\n                    }",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 325,
+          "code": "                m.pcGround=g.pcMap!=null;",
+          "context": "            if(landCount+b.waterCount>0){\n                SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);\n                m.landIndexCount=landCount;\n                m.pcGround=g.pcMap!=null;\n                if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;\n                new TerrainMaterialField(g).attach(m,stats);\n                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);\n                fine.pcGround=g.pcMap!=null;",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 328,
+          "code": "                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);",
+          "context": "                m.pcGround=g.pcMap!=null;\n                if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;\n                new TerrainMaterialField(g).attach(m,stats);\n                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);\n                fine.pcGround=g.pcMap!=null;\n                if(lod==0&&g.pcMap==null)fine=detail(fine,g);\n                // Transport the entire LOD family only after canonical height/material\n                // sampling. Water/land and all shared attributes follow one rounded shore.",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 329,
+          "code": "                fine.pcGround=g.pcMap!=null;",
+          "context": "                if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;\n                new TerrainMaterialField(g).attach(m,stats);\n                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);\n                fine.pcGround=g.pcMap!=null;\n                if(lod==0&&g.pcMap==null)fine=detail(fine,g);\n                // Transport the entire LOD family only after canonical height/material\n                // sampling. Water/land and all shared attributes follow one rounded shore.\n                g.shoreline.transport(fine);",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 330,
+          "code": "                if(lod==0&&g.pcMap==null)fine=detail(fine,g);",
+          "context": "                new TerrainMaterialField(g).attach(m,stats);\n                SceneMesh fine=g.pcMap!=null||lod==2?m:detail(m,g);\n                fine.pcGround=g.pcMap!=null;\n                if(lod==0&&g.pcMap==null)fine=detail(fine,g);\n                // Transport the entire LOD family only after canonical height/material\n                // sampling. Water/land and all shared attributes follow one rounded shore.\n                g.shoreline.transport(fine);\n                fine.terrainLod=lod;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 338,
+          "code": "                if(g.pcMap!=null)fine.sourceWater=sourceWater(g,q,r,fine);",
+          "context": "                // Production holds only the requested precision, not a nationwide LOD pyramid.\n                if(window!=null)fine.distant=null;\n                fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;\n                if(g.pcMap!=null)fine.sourceWater=sourceWater(g,q,r,fine);\n                // One immutable GPU batch per streamed ground chunk. No UI-thread\n                // terrain sampling/raycast per grid cell during camera gestures.\n                if(window!=null&&window.span<48){if(gridScratch==null)gridScratch=gridScratch(g);fine.grid=grid(g,q,r,fine,lod,gridScratch);fine.gridDifficultMarch=g.gridDifficultMarch;}\n                out.add(fine);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 362,
+          "code": "            if(g.pcMap.coarseWaterByte(x,y)==0)continue;",
+          "context": "        // avoids boxing60 floats and6 indices per admitted original quad.\n        int[] quads=new int[(right-left+1)*(bottom-top+1)];int count=0;\n        for(int x=left;x<=right;x++)for(int y=top;y<=bottom;y++){\n            if(g.pcMap.coarseWaterByte(x,y)==0)continue;\n            float wx=x-originX,wz=y-originZ;Hex cell=g.grid.cell(wx+.5f,wz+.5f);\n            if(q<0){if(g.valid(cell))continue;}\n            else if(cell.q<q||cell.q>=q+16||cell.r<r||cell.r>=r+16)continue;\n            quads[count++]=(x<<8)|y;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 373,
+          "code": "            int first=quad*4,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);",
+          "context": "        for(int quad=0;quad<count;quad++){\n            int x=quads[quad]>>>8,y=quads[quad]&255;\n            float wx=x-originX,wz=y-originZ;\n            int first=quad*4,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);\n            float level=g.pcMap.coarseWaterPlane(x,y);\n            for(int corner=0;corner<4;corner++){\n                int dx=corner&1,dz=corner>>1;\n                int v=(first+corner)*7,s=(first+corner)*8;",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 374,
+          "code": "            float level=g.pcMap.coarseWaterPlane(x,y);",
+          "context": "            int x=quads[quad]>>>8,y=quads[quad]&255;\n            float wx=x-originX,wz=y-originZ;\n            int first=quad*4,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);\n            float level=g.pcMap.coarseWaterPlane(x,y);\n            for(int corner=0;corner<4;corner++){\n                int dx=corner&1,dz=corner>>1;\n                int v=(first+corner)*7,s=(first+corner)*8;\n                vertices[v]=wx+dx;vertices[v+1]=level;vertices[v+2]=wz+dz;",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 381,
+          "code": "                stream[s+6]=(float)g.pcMap.coarseWaterPhase(x,y);stream[s+7]=(float)g.pcMap.coarseWaterPeriod(x,y);",
+          "context": "                vertices[v]=wx+dx;vertices[v+1]=level;vertices[v+2]=wz+dz;\n                vertices[v+3]=vertices[v+4]=vertices[v+5]=1f;vertices[v+6]=(mask&(1<<corner))!=0?1f:32/255f;\n                stream[s]=dx+2f*sheet;stream[s+1]=(float)dz;stream[s+5]=1f;\n                stream[s+6]=(float)g.pcMap.coarseWaterPhase(x,y);stream[s+7]=(float)g.pcMap.coarseWaterPeriod(x,y);\n            }\n            int i=quad*6;indices[i]=first;indices[i+1]=first+1;indices[i+2]=first+2;\n            indices[i+3]=first+2;indices[i+4]=first+1;indices[i+5]=first+3;\n        }",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 426,
+          "code": "        int faces=16*16*8*(g.pcMap==null?1:2)*2;",
+          "context": "        for(int i=1;i<count-1;i++)b.triangle(true,start,start+i,start+i+1);\n    }\n    private static SurfaceBuilder gridScratch(MapSceneSnapshot.Ground g){\n        int faces=16*16*8*(g.pcMap==null?1:2)*2;\n        SurfaceBuilder builder=new SurfaceBuilder(faces*4,faces*6);builder.shareRibbonVertices();return builder;\n    }\n    static SceneMesh grid(MapSceneSnapshot.Ground g,int q,int r,SceneMesh bounds,int lod){\n        return grid(g,q,r,bounds,lod,gridScratch(g));",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 445,
+          "code": "                int segments=g.pcMap==null?1:2;",
+          "context": "                float ay=g.surface.sample(ax,az),dy=g.surface.sample(dx,dz);\n                // Each half-stroke stays inside its eligible cell. Shared edges\n                // join without drawing over a mountain/restricted cell interior.\n                int segments=g.pcMap==null?1:2;\n                for(int part=0;part<segments;part++){\n                    float t0=part/(float)segments,t1=(part+1)/(float)segments;\n                    float ex=ax+(dx-ax)*t0,ez=az+(dz-az)*t0,fx=ax+(dx-ax)*t1,fz=az+(dz-az)*t1;\n                    float ey=g.surface.sample(ex,ez),fy=g.surface.sample(fx,fz);",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "sha256": "199e522451b2bcc6c2845aed8f9ef4883b32ff40beb02c8ee8dbe202db1c59c4",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 12,
+          "code": "    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.pcMap==null?ground.waterField():null;}",
+          "context": "    private static final World.Terrain[] TYPES=World.Terrain.values();\n    final MapSceneSnapshot.Ground ground;\n    final WaterVisualField waterField;\n    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=ground.pcMap==null?ground.waterField():null;}\n    float[] sample(float x,float z){return sample(x,z,0);}\n    float[] sample(float x,float z,float slope){\n        if(!Float.isFinite(x)||!Float.isFinite(z))return new float[]{0,1,0,0};\n        Hex center=ground.grid.cell(x,z);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 17,
+          "code": "        if(ground.pcMap!=null){",
+          "context": "    float[] sample(float x,float z,float slope){\n        if(!Float.isFinite(x)||!Float.isFinite(z))return new float[]{0,1,0,0};\n        Hex center=ground.grid.cell(x,z);\n        if(ground.pcMap!=null){\n            if(!ground.valid(center))return new float[]{0,1,0,0};\n            switch(TYPES[ground.terrain[center.r*ground.width+center.q]]){\n                case SAND:return new float[]{0,0,1,0};\n                case MOUNTAIN:return new float[]{0,0,0,1};",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
+      "sha256": "501d4e6d7025b401d3fa393a795ae685caf7b493b0ab6eaf47f6602e2cfe4113",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 51,
+          "code": "        if(ground.pcMap!=null)return pcHeight(ground.grid.x(h),ground.grid.z(h));",
+          "context": "    boolean water(int q,int r){if(q<0||r<0||q>=ground.width||r>=ground.height)return false;switch(TYPES[ground.terrain[r*ground.width+q]]){\n        case WATER:case SEA:case SHALLOWS:case NON_NAVIGABLE_WATER:return true;default:return false;}}\n    float target(Hex h){\n        if(ground.pcMap!=null)return pcHeight(ground.grid.x(h),ground.grid.z(h));\n        if(!ground.valid(h)||water(h)||ground.bases.contains(h))return 0;\n        Float override=overrides.get(h);if(override!=null)return override;\n        switch(TYPES[ground.terrain[h.r*ground.width+h.q]]){\n            case MOUNTAIN:",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 67,
+          "code": "        float height=ground.pcMap.height(x+ground.sourceOriginX,z+ground.sourceOriginY);",
+          "context": "        }\n    }\n    float pcHeight(float x,float z){\n        float height=ground.pcMap.height(x+ground.sourceOriginX,z+ground.sourceOriginY);\n        if(overrides.isEmpty())return height;\n        Hex cell=ground.grid.cell(x,z);\n        Float paint=overrides.get(cell);\n        if(paint!=null&&!water(cell)){float dx=x-ground.grid.x(cell),dz=z-ground.grid.z(cell);float k=Math.max(0,1-(float)Math.sqrt(dx*dx+dz*dz)/.5f);k=k*k*(3-2*k);height=height*(1-k)+paint*k;}",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 74,
+          "code": "    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+          "context": "        if(paint!=null&&!water(cell)){float dx=x-ground.grid.x(cell),dz=z-ground.grid.z(cell);float k=Math.max(0,1-(float)Math.sqrt(dx*dx+dz*dz)/.5f);k=k*k*(3-2*k);height=height*(1-k)+paint*k;}\n        return height;\n    }\n    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}\n    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}\n    float sample(float x,float z){\n        if(ground.pcMap!=null)return pcHeight(x,z);\n        int ix=Math.round(x*2),iz=Math.round(z*2);",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 75,
+          "code": "    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}",
+          "context": "        return height;\n    }\n    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}\n    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}\n    float sample(float x,float z){\n        if(ground.pcMap!=null)return pcHeight(x,z);\n        int ix=Math.round(x*2),iz=Math.round(z*2);\n        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return quarterSample(x,z);",
+          "kind": "reference-definition-or-diagnostic"
+        },
+        {
+          "line": 77,
+          "code": "        if(ground.pcMap!=null)return pcHeight(x,z);",
+          "context": "    float pcLandHeight(float x,float z){return ground.pcMap.landHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}\n    float pcWaterHeight(float x,float z){return ground.pcMap.coarseWaterHeight(x+ground.sourceOriginX,z+ground.sourceOriginY);}\n    float sample(float x,float z){\n        if(ground.pcMap!=null)return pcHeight(x,z);\n        int ix=Math.round(x*2),iz=Math.round(z*2);\n        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return quarterSample(x,z);\n        int q=ix-latticeX,r=iz-latticeZ;\n        if(lattice.length()==0||q<0||r<0||q>=latticeWidth||r>=latticeHeight)return compute(x,z);",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 132,
+          "code": "        if(ground.pcMap!=null)return pcHeight(x,z);",
+          "context": "    float at(Hex h){return sample(ground.grid.x(h),ground.grid.z(h));}\n    // Exact piecewise-linear height of the eight-triangle cell fan, shared with the mesh and ray picker.\n    float meshHeight(float x,float z){\n        if(ground.pcMap!=null)return pcHeight(x,z);\n        WaterVisualField.Shoreline.Point point=ground.shoreline.inverse(x,z);x=point.x;z=point.z;\n        return canonicalMeshHeight(x,z);\n    }\n    private float canonicalMeshHeight(float x,float z){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 152,
+          "code": "        if(ground.pcMap!=null)return pcRayHeight(camera,sx,sy);",
+          "context": "        Hex h=ground.shoreline.inverse(camera.worldX(sx,sy,y),camera.worldZ(sx,sy,y)).cell;return ground.valid(h)?h:null;\n    }\n    float rayHeight(SceneCamera camera,float sx,float sy){\n        if(ground.pcMap!=null)return pcRayHeight(camera,sx,sy);\n        float x=camera.worldX(sx,sy,0),base=camera.worldZ(sx,sy,0);\n        float cotX=(float)(camera.cos()/camera.sin()*camera.backX()),cotZ=(float)(camera.cos()/camera.sin()*camera.rightX());\n        // Test the actual eight-triangle fan (both display LODs share its planes).\n        // The bounded height interval crosses only a small rectangle of source cells.",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TurnPlayback.java",
+      "sha256": "c87872490951b5f81c8520bbae2639f5dbc430bd593298944f9248642771d4ea",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 53,
+          "code": "                    if(map.sourceVisuals()&&!map.criticalSubmitted()){last=now-elapsed;map.postOnAnimation(tick);return;}",
+          "context": "                    // submission boundary without borrowing the last pose.\n                    map.replayFrame(event,0);map.criticalEvent(event,work.criticalElapsed/criticalDuration);\n                    if(!map.criticalReady()){map.postOnAnimation(tick);return;}\n                    if(map.sourceVisuals()&&!map.criticalSubmitted()){last=now-elapsed;map.postOnAnimation(tick);return;}\n                    if(!event.id.equals(work.announcedCritical)){work.announcedCritical=event.id;work.criticalsShown++;}\n                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));\n                    map.replayFrame(event,0);map.criticalEvent(event,work.criticalElapsed/criticalDuration);\n                    if(applied){map.invalidateScene();map.setWorld(work.visual,null,-1);}",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 55,
+          "code": "                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));",
+          "context": "                    if(!map.criticalReady()){map.postOnAnimation(tick);return;}\n                    if(map.sourceVisuals()&&!map.criticalSubmitted()){last=now-elapsed;map.postOnAnimation(tick);return;}\n                    if(!event.id.equals(work.announcedCritical)){work.announcedCritical=event.id;work.criticalsShown++;}\n                    work.criticalElapsed=Math.min(criticalDuration,work.criticalElapsed+(map.sourceVisuals()?PcPresentationClock.elapsedMillis(elapsed,work.speed,true):Math.max(1,Math.min(50,elapsed)))*Math.max(1,work.speed));\n                    map.replayFrame(event,0);map.criticalEvent(event,work.criticalElapsed/criticalDuration);\n                    if(applied){map.invalidateScene();map.setWorld(work.visual,null,-1);}\n                    map.postOnAnimation(tick);return;\n                }",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
+      "sha256": "f49190c7987814ba90cb15e078eebbc4aeeef780ea841dff8698b195d54455a1",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 49,
+          "code": "        if(g.pcMap!=null)throw new IllegalStateException(\"PC map requires source scenery; legacy placement rejected\");",
+          "context": "     * export contract; live edits use map identity and bounded content fingerprints. */\n    static List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,Set<Hex> excluded,\n            List<SceneMesh> previous,FieldAssets assets,SceneMesh.TerrainWindow window)throws Exception {\n        if(g.pcMap!=null)throw new IllegalStateException(\"PC map requires source scenery; legacy placement rejected\");\n        // At national scale retain every far triangle, but batch 16x16 cells.\n        // Near/mid streaming retains its existing 8x8 granularity and edit halo.\n        int chunk=window.span>=40?16:CHUNK;float radius=chunk*.75f+1;\n        SceneMesh[][] models=new SceneMesh[5][2];",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WaterVisualField.java",
+      "sha256": "955f3e8739829f6a9cfcdf8447370b6479c752634cf893761850733c76b0f58f",
+      "owner": "A",
+      "allNamedNonCommentMarkers": [
+        {
+          "line": 12,
+          "code": "    WaterVisualField(MapSceneSnapshot.Ground ground){this.ground=ground;flows=ground.pcMap==null?null:new Samples();distances=ground.pcMap==null?null:new Samples();}",
+          "context": "    static final float BAND=1.5f;\n    private final MapSceneSnapshot.Ground ground;\n    private final Samples flows,distances;\n    WaterVisualField(MapSceneSnapshot.Ground ground){this.ground=ground;flows=ground.pcMap==null?null:new Samples();distances=ground.pcMap==null?null:new Samples();}\n    /** Bounded memo of exact immutable-field results across neighboring chunks and\n     * camera windows. Float-bit keys preserve signed zero. No quantization, terrain\n     * simplification, shader change or unbounded boxed coordinate map. */\n    private static final class Samples {",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 105,
+          "code": "        float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}",
+          "context": "            int encoded=0x10000|((dx+16)<<8)|(dz+16);\n            if(at>=0)offsets.compareAndSet(at,0,encoded);return encoded;\n        }\n        float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}\n        float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}\n        /** Transport all fine vertices through the same original fan, including\n         * attributes sampled before transport. This keeps every LOD plane identical. */\n        float[] project(float x,float z){",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 106,
+          "code": "        float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}",
+          "context": "            if(at>=0)offsets.compareAndSet(at,0,encoded);return encoded;\n        }\n        float dx(float x,float z){if(g.pcMap!=null)return 0;return (((offset(x,z)>>>8)&255)-16)/32f;}\n        float dz(float x,float z){if(g.pcMap!=null)return 0;return ((offset(x,z)&255)-16)/32f;}\n        /** Transport all fine vertices through the same original fan, including\n         * attributes sampled before transport. This keeps every LOD plane identical. */\n        float[] project(float x,float z){\n            Hex h=g.grid.cell(x,z);float cx=g.grid.x(h),cz=g.grid.z(h),rx=x-cx,rz=z-cz;",
+          "kind": "predicate-or-dispatch"
+        },
+        {
+          "line": 147,
+          "code": "            if(g.pcMap!=null){",
+          "context": "            return new Point(x,z,h);\n        }\n        void transport(SceneMesh mesh){\n            if(g.pcMap!=null){\n                // Source shoreline displacement is identically zero. Keep even\n                // signed-zero addition semantics without allocating a float[2]\n                // per original vertex; topology and every GPU attribute stay exact.\n                for(int i=0;i<mesh.vertices.length;i+=7){mesh.vertices[i]+=0f;mesh.vertices[i+2]+=0f;}",
+          "kind": "predicate-or-dispatch"
+        }
+      ]
+    }
+  ],
+  "explicitSuppressionsReviewed": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "line": 1301,
+      "methodCode": "private void animateEffects(){\n        if(snapshot==null)return;\n        // Keep the immutable gameplay journal and source unit/rig animation.\n        // Unrecovered PC emitters must not fall through to mobile approximations.\n        if(snapshot.ground.pcMap!=null){clearEffects();return;}\n        combat.detail(quality==SceneQuality.LOW||thermal.constrained?0:quality==SceneQuality.MEDIUM?1:2);\n        combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);\n        int fires=0;for(MapSceneSnapshot.FireState fire:snapshot.fires)if(visible(fire.hex)){\n            if(fires++==CombatVisual.FIRE_BUDGET)break;\n            combat.fire(fire,snapshot.ground,effectsPaused?pausedEffectTick:animationTick,UiMotion.enabled());\n        }\n        for(int i=0;i<effectEntities.length;i++){\n            if(i>=combat.count){if(effectShown[i]){scene.removeEntity(effectEntities[i]);effectShown[i]=false;}continue;}\n            CombatVisual.Particle p=combat.particles[i];\n            if(!inView(p.x,p.z,1)){if(effectShown[i]){scene.removeEntity(effectEntities[i]);effectShown[i]=false;}continue;}\n            if(effectMeshes[p.mesh]==null){\n                SceneMesh source;\n                if(p.mesh==2||p.mesh==6){\n                    final String name=p.mesh==2?\"fire-v121\":\"smoke-v121\";final FieldAssets assets=fieldAssets;\n                    source=assetWork.request(\"effect/\"+name,()->{\n                        SceneMesh baked=assets.mesh(name);\n                        // Authored vertex pigment uses the existing unlit material.\n                        // Explicit vertex-color display assets, not a PBR conversion.\n                        return new SceneMesh(baked.vertices,baked.indices,0,0,2);\n                    });\n                    if(source==null){\n                        String error=assetWork.error(\"effect/\"+name);\n                        if(error==null){if(effectShown[i]){scene.removeEntity(effectEntities[i]);effectShown[i]=false;}continue;}\n                        if(missingAssets.add(name))android.util.Log.w(\"Sanguo3D\",\"Effect fallback \"+name+\": \"+error);\n                        source=CombatVisual.mesh(p.mesh);\n                    }\n                }else source=CombatVisual.mesh(p.mesh);\n                if(assetUploadBudget<=0){if(effectShown[i]){scene.removeEntity(effectEntities[i]);effectShown[i]=false;}continue;}\n                assetUploadBudget--;effectMeshes[p.mesh]=new GpuMesh(source);\n            }\n            if(effectEntities[i]==0){effectEntities[i]=EntityManager.get().create();effectKinds[i]=-1;}\n            if(effectKinds[i]!=p.mesh){engine.getRenderableManager().destroy(effectEntities[i]);effectMeshes[p.mesh].build(effectEntities[i]);effectKinds[i]=p.mesh;}\n            float c=(float)Math.cos(p.yaw)*p.scale,s=(float)Math.sin(p.yaw)*p.scale;\n            float cp=(float)Math.cos(p.pitch),sp=(float)Math.sin(p.pitch);\n            Arrays.fill(effectMatrix,0);effectMatrix[0]=c;effectMatrix[2]=-s;effectMatrix[4]=-s*sp*p.stretch;effectMatrix[5]=p.scale*cp*p.stretch;effectMatrix[6]=-c*sp*p.stretch;effectMatrix[8]=s*cp;effectMatrix[9]=p.scale*sp;effectMatrix[10]=c*cp;effectMatrix[12]=p.x;effectMatrix[13]=p.y;effectMatrix[14]=p.z;effectMatrix[15]=1;\n            TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(effectEntities[i]),effectMatrix);\n            if(!effectShown[i]){scene.addEntity(effectEntities[i]);effectShown[i]=true;}\n        }\n    }",
+      "gate": "legacy combat particles",
+      "assessment": "Suppresses authored mobile fire/smoke. Continuous native cell fire is separate; projectile/tactic/fireball/seed/ship chains and other original emitters still missing normal caller/sequence evidence.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "line": 1217,
+      "methodCode": "private String facilityOverlay(MapSceneSnapshot.Item item,boolean nativeFacility){\n        // Source construction/damage bodies remain available. Authored mobile fire\n        // and scaffolding are compatibility assets, never source restoration.\n        if(snapshot!=null&&snapshot.ground.pcMap!=null)return \"\";\n        return item.facility==null?\"\":item.facility.burning?\"fire\":!item.facility.complete&&!nativeFacility?\"scaffold\":\"\";\n    }",
+      "gate": "legacy facility overlay",
+      "assessment": "Suppresses authored scaffold/fire decal; original facility body variants and independent work/HP/fire labels exist. All-kind construction/damage/upgrade/stop/repair/complete/demolish original transitions not accepted.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "sha256": "a74def842ba1c2cad5a75b0ddf00a80c60e8e7e59d11949cd603cae164a016b4",
+      "line": 1187,
+      "methodCode": "private void showCritical(CriticalHit hit){\n        if(hit==null||body==null||!UiMotion.enabled())return;\n        if(map!=null&&map.sourceVisuals())return;\n        if(criticalFlash!=null)criticalFlash.dismiss();\n        CriticalFlash flash=new CriticalFlash(this,world,hit,()->{if(criticalFlash!=null){body.removeView(criticalFlash);criticalFlash=null;}});\n        criticalFlash=flash;body.addView(flash,new FrameLayout.LayoutParams(-1,-1));flash.bringToFront();\n    }",
+      "gate": "legacy critical flash",
+      "assessment": "Suppresses old CriticalFlash on source map. PcPresentationPlan/Stage is separate, limited to verified original bindings; unsupported identities/events remain missing rather than replacing with authored flash.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "line": 1290,
+      "methodCode": "void critical(CriticalHit hit,float phase,android.graphics.drawable.Drawable portrait){\n        if(snapshot!=null&&snapshot.ground.pcMap!=null){hit=null;portrait=null;}\n        if(criticalHit==hit&&criticalPhase==phase&&criticalPortrait==portrait)return;\n        criticalPortrait=portrait;\n        criticalHit=hit;criticalPhase=phase;overlay.invalidate();\n    }",
+      "gate": "legacy critical portrait field",
+      "assessment": "Source map clears old portrait slot. Source critical stage must have actual caller/age/actor/source profile evidence; all16 and unknown profiles not closed.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+      "sha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+      "line": 459,
+      "methodCode": "void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}",
+      "gate": "legacy critical projection",
+      "assessment": "Blocks legacy projection on source map. Source criticalEvent drives source stage. Existing known bindings do not prove complete normal fullscreen pixels/timing/lifetime.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "line": 1125,
+      "methodCode": "private GpuMesh shape(MapSceneSnapshot.Item item){\n        String field=item.facility!=null?FieldAssets.facility(item.facility,siteLod):item.unit!=null?FieldAssets.unit(item.unit,item.unit.naval,unitLod):null;\n        final MapSceneSnapshot.Ground assetGround=snapshot.ground;\n        final PcUnits.Selection nativeUnit=item.unit!=null&&assetGround.pcMap!=null?pcUnits.idle(item.unit):null;\n        final PcSites nativeSiteAssets=pcSites;\n        final PcSites.Placement nativeSite=nativeSiteAssets.placement(assetGround,item);\n        final PcFacilities nativeFacilityAssets=pcFacilities;\n        final boolean nativeFacility=nativeFacilityAssets.supports(assetGround,item);\n        if(assetGround.pcMap!=null&&nativeUnit==null&&nativeSite==null&&!nativeFacility){\n            // An unsupported source object is a recorded restoration gap. Do not\n            // load an authored mobile model as if it belonged to the PC pack.\n            if(missingAssets.add(\"pc-unresolved:\"+item.key))android.util.Log.w(\"Sanguo3D\",\"Unrecovered PC object \"+item.key);\n            return null;\n        }\n        final boolean nativeRig=PcFacilityRigs.supports(assetGround,item);\n        final PcFacilityRigs rigAssets=pcFacilityRigs;\n        final int nativeMonth=snapshot.month,nativeLod=siteLod;\n        final PcConstructibleWalls.Placement nativeWall=nativeFacility?PcConstructibleWalls.placement(assetGround,item):null;\n        final int wallMask=snapshot.wallConnections.getOrDefault(item.hex,0);\n        final PcDams.Placement nativeDam=nativeFacility?pcDams.placement(assetGround,item):null;\n        String key=nativeSite!=null?pcSites.key(nativeSite,item.site,nativeMonth,nativeLod):nativeWall!=null?PcConstructibleWalls.key(item,nativeMonth,nativeLod,nativeWall,wallMask):nativeFacility?nativeFacilityAssets.key(item,nativeMonth,nativeLod):field!=null?field+(FieldAssets.farm(item)?\":\"+item.hex+\":\"+FieldAssets.farmSurfaceKey(assetGround,item.hex):\"\")+(item.unit==null?\"\":\":idle:0:1\"):item.site==null?item.kind+\":\"+item.color:item.site.model+\":\"+siteLod+(item.site.model.equals(\"gate\")?\"/\"+item.hex+\"/\"+item.site.yaw+\"/g\"+generation:\"\");\n        if(nativeRig)key=PcFacilityRigs.key(item,nativeMonth,0);\n        if(nativeDam!=null)key=\"pc-source-dam:\"+key;\n        if(nativeUnit!=null)key=nativeUnit.key();\n        final String assetKey=key;\n        GpuMesh mesh=shapes.get(key);if(mesh!=null)return mesh;\n        final FieldAssets assets=fieldAssets;final int requestedLod=unitLod;final android.content.res.AssetManager manager=getContext().getAssets();\n        SceneMesh source=assetWork.request(key,()->{\n            if(nativeUnit!=null)return pcUnits.pose(nativeUnit);\n            if(nativeRig)return rigAssets.mesh(item,nativeMonth,0,nativeFacilityAssets);\n            if(nativeSite!=null)return nativeSiteAssets.mesh(nativeSite,item.site,nativeMonth,nativeLod);\n            if(nativeWall!=null)return PcConstructibleWalls.mesh(nativeFacilityAssets,assetGround,item,nativeMonth,nativeLod,nativeWall,wallMask);\n            if(nativeFacility){SceneMesh body=nativeFacilityAssets.mesh(item,nativeMonth,nativeLod);body.pcDam=nativeDam!=null;return body;}\n            if(field!=null){SceneMesh model=item.unit==null?assets.mesh(field):assets.pose(field,\"idle\",0,1);return FieldAssets.farm(item)?FieldAssets.conformFarm(model,assetGround,item.hex):model;}\n            if(item.site!=null)try(java.io.InputStream in=manager.open(\"3d/sites/v124/\"+item.site.model+\"-lod\"+siteLodFor(assetKey)+\".glb\")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals(\"gate\")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}\n            return SceneMesh.proxy(item.kind,item.color);\n        });\n        if(source==null){\n            String error=assetWork.error(key);if(error==null){assetSyncPending=true;return null;}\n            if(assetGround.pcMap!=null)throw new IllegalStateException(\"Original PC asset unavailable: \"+key+\": \"+error);\n            if(missingAssets.add(key))android.util.Log.w(\"Sanguo3D\",\"Asset fallback \"+key+\": \"+error);\n            source=SceneMesh.proxy(item.kind,0xffff00ff);\n        }\n        if(assetUploadBudget<=0){assetSyncPending=true;return null;}assetUploadBudget--;\n        mesh=new GpuMesh(source);shapes.put(key,mesh);return mesh;\n    }",
+      "gate": "source object without asset",
+      "assessment": "Unsupported PC object omitted and explicitly unresolved; original acquisition/binding still needed. No mobile stand-in or full16 unsupported-object normal inventory acceptance.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "line": 911,
+      "methodCode": "private void animatePcMapEffects(float dt){\n        if(snapshot==null||snapshot.ground.pcMap==null){closePcMapEffects();return;}\n        // Source startup shares no work with the initial terrain/texture/pose\n        // upload burst. The normal map becomes usable before its native visual\n        // scene starts; deadlines stay bounded instead of competing with GC.\n        if(pcMapEffects==null&&(pending!=0||assetSyncPending||!outputVerified))return;\n        PcCellFireSet fires=acceptedCellFires!=null&&sceneToken!=null&&acceptedCellFires.state.equals(sceneToken)?acceptedCellFires:null;\n        if(pcMapEffects!=null&&pcMapEffects.fireScene!=(fires!=null))closePcMapEffects();\n        if(pcMapEffects==null)pcMapEffects=new PcMapEffects(getContext(),engine,scene,fires!=null);\n        // Source441b80 perspective normalizes every coefficient by far. This\n        // preserves clip ratios while abs(w)=view distance/far feeds4420a0's\n        // strict0..1 depth queue. Orthographic w=1 cannot drive that map queue.\n        float[] sourceCamera=PcEffectCoordinates.camera(lens.getViewMatrix(new float[16]),lens.getProjectionMatrix(new double[16]),snapshot.ground.sourceOriginX,snapshot.ground.sourceOriginY,camera.perspective?1/camera.farPlane():1);\n        pcMapEffects.frame(dt,sourceCamera,snapshot.ground.sourceOriginX,snapshot.ground.sourceOriginY,fires);\n    }",
+      "gate": "source native cells admission",
+      "assessment": "Native grid-fire path exists, waits actual terrain/output admission and consumes copied facts. New369 full fire lifecycle remains separate from old296 accepted subset.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "sha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "line": 1860,
+      "methodCode": "private void drawSourceFireState(Canvas c,List<android.graphics.RectF> occupied){\n            if(snapshot.ground.pcMap==null)return;\n            float d=getResources().getDisplayMetrics().density;int labels=0;\n            for(MapSceneSnapshot.FireState fire:snapshot.fires){\n                if(fire.remaining<=0||!visible(fire.hex))continue;\n                float wx=snapshot.ground.grid.x(fire.hex),wz=snapshot.ground.grid.z(fire.hex),height=snapshot.ground.surface.at(fire.hex)+.04f;\n                float x=camera.screenX(wx,wz,height),y=camera.screenY(wx,wz,height);\n                p.setStyle(Paint.Style.FILL);p.setColor(0xff5b2815);c.drawCircle(x,y,4*d,p);\n                p.setColor(0xffffbc6a);c.drawCircle(x,y,2*d,p);\n                // Every visible cell is marked. Keep the extra text bounded,\n                // including reduced motion, pause, LOW quality and overview.\n                if(camera.span<32&&labels++<32){\n                    float font=11*getResources().getDisplayMetrics().scaledDensity;p.setTextSize(font);float width=p.measureText(fire.label);\n                    android.graphics.RectF box=new android.graphics.RectF();boolean placed=false;float left=0,baseline=0;\n                    for(int slot=0;slot<8;slot++){\n                        left=slot==0||slot==1?x-width/2:slot%2==0?x+9*d:x-width-9*d;\n                        baseline=slot==0?y-7*d:slot==1?y+font+9*d:slot<4?y+font*.4f:slot<6?y-font-9*d:y+font*2+9*d;\n                        box.set(left-3*d,baseline-font-3*d,left+width+3*d,baseline+font*.25f+3*d);\n                        if(box.left<0||box.top<0||box.right>camera.width-panelRight||box.bottom>camera.height-panelBottom||(!openingPreview&&navigatorShown&&android.graphics.RectF.intersects(box,miniRect)))continue;\n                        boolean overlap=false;for(android.graphics.RectF used:occupied)if(android.graphics.RectF.intersects(used,box)){overlap=true;break;}\n                        if(!overlap){placed=true;break;}\n                    }\n                    if(placed){occupied.add(box);p.setColor(0xffffbc6a);p.setStrokeWidth(d);c.drawLine(x,y,Math.max(box.left,Math.min(x,box.right)),Math.max(box.top,Math.min(y,box.bottom)),p);p.setColor(0xff321b14);c.drawRoundRect(box,3*d,3*d,p);p.setColor(0xffffd0a2);c.drawText(fire.label,left,baseline,p);}\n                }\n            }\n        }",
+      "gate": "source fire facts drawing",
+      "assessment": "PC facts labels provide burning-state recognition independently of native animation. No authority mutation/creation; native budget and all normal expiry/low-quality/pause cases still require exact new package.",
+      "actualNew369Complete": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/Vegetation.java",
+      "sha256": "f49190c7987814ba90cb15e078eebbc4aeeef780ea841dff8698b195d54455a1",
+      "line": 47,
+      "methodCode": "static List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,Set<Hex> excluded,\n            List<SceneMesh> previous,FieldAssets assets,SceneMesh.TerrainWindow window)throws Exception {\n        if(g.pcMap!=null)throw new IllegalStateException(\"PC map requires source scenery; legacy placement rejected\");\n        // At national scale retain every far triangle, but batch 16x16 cells.\n        // Near/mid streaming retains its existing 8x8 granularity and edit halo.\n        int chunk=window.span>=40?16:CHUNK;float radius=chunk*.75f+1;\n        SceneMesh[][] models=new SceneMesh[5][2];\n        String[] names={\"tree\",\"tree-upland\",\"shrub\",\"rock-ledge\",\"rock-talus\"};\n        for(int i=0;i<names.length;i++)for(int lod=window.span<14?0:1;lod<2;lod++)models[i][lod]=assets.mesh(names[i]+\"-lod\"+lod);\n        Map<Long,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)cache.put(key(m.chunkQ,m.chunkR),m);\n        List<SceneMesh> result=new ArrayList<>();\n        for(int r=0;r<g.height;r+=chunk)for(int q=0;q<g.width;q+=chunk){\n            if(Thread.currentThread().isInterrupted())return Collections.emptyList();\n            float cx=g.grid.x(q+chunk/2,r+chunk/2),cz=g.grid.z(q+chunk/2,r+chunk/2);\n            if(!window.contains(cx,cz,radius))continue;\n            boolean detailed=window.span<14&&Math.hypot(cx-window.x,cz-window.z)<20;\n            long hash=SEED^PLACEMENT_VERSION^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0)^((long)chunk<<48)^((long)ASSET_VERSION<<32);\n            hash=(hash^Float.floatToIntBits(g.grid.offset))*1099511628211L;hash^=g.grid.staggered?1:0;\n            hash=(hash^g.sourceMapWidth)*1099511628211L;\n            hash=(hash^(g.originalNational?1:0))*1099511628211L;\n            hash=(hash^g.sourceOriginX)*1099511628211L;hash=(hash^g.sourceOriginY)*1099511628211L;\n            for(int rr=r-8;rr<r+chunk+8;rr++)for(int qq=q-8;qq<q+chunk+8;qq++){\n                Hex h=new Hex(qq,rr);int t=g.valid(h)?g.terrain[rr*g.width+qq]:-1;\n                hash=(hash^(t+1+(excluded.contains(h)?64:0)+(g.bases.contains(h)?128:0)))*1099511628211L;\n                hash=(hash^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;\n            }\n            SceneMesh prior=cache.get(key(q,r));if(prior!=null&&prior.fingerprint==hash){result.add(prior);continue;}\n            Batch near=new Batch(g),far=new Batch(g);\n            for(int rr=r;rr<Math.min(r+chunk,g.height);rr++)for(int qq=q;qq<Math.min(q+chunk,g.width);qq++){\n                Hex h=new Hex(qq,rr);if(!g.valid(h))continue;\n                int cascade=cascadeRegion(g,h);\n                if(cascade>=0){\n                    String id=cascade==3?\"fall-hukou\":cascade==1?\"fall-wide\":\"fall-narrow\";\n                    if(detailed)near.cascade(h,excluded,assets.mesh(id+\"-lod0\"),cascade==3?1.15f:2.1f);\n                    far.cascade(h,excluded,assets.mesh(id+\"-lod1\"),cascade==3?1.15f:2.1f);\n                }\n                if(wallRegion(g,h)){\n                    for(Hex n:h.neighbors())if(wallRegion(g,n)&&g.source(n).x==g.source(h).x+1){\n                        if(detailed)near.wall(h,n,excluded,assets.mesh(\"wall-earth-lod0\"));\n                        far.wall(h,n,excluded,assets.mesh(\"wall-earth-lod1\"));\n                    }\n                    if(g.source(h).x%4==2){\n                        if(detailed)near.landmark(h,excluded,assets.mesh(\"beacon-han-lod0\"));\n                        far.landmark(h,excluded,assets.mesh(\"beacon-han-lod1\"));\n                    }\n                }\n                if(taihuShore(g,h)&&!excluded.contains(h)){\n                    String shore=(mix(h.q*73856093^h.r*19349663^SEED)&3)==0?\"shore-rock\":\"shore-reeds\";\n                    if(detailed)near.shore(h,excluded,assets.mesh(shore+\"-lod0\"));\n                    far.shore(h,excluded,assets.mesh(shore+\"-lod1\"));\n                }\n                // Only existing adjacent logical road cells connect. Each undirected edge\n                // belongs to its lower cell ID, including edges that cross a chunk boundary.\n                if(path(g,h))for(Hex n:h.neighbors())if(g.valid(n)&&path(g,n)&&key(h.q,h.r)<key(n.q,n.r)){\n                    if(detailed)near.road(h,n);far.road(h,n);\n                }\n                if(path(g,h)){if(detailed)near.junction(h);far.junction(h);}\n                for(Placement a:placements(g,excluded,h)){\n                    String cliff=a.family>=3?cliffRegion(g,h):null;\n                    if(detailed)near.append(cliff==null?models[a.family][a.detail?0:1]:assets.mesh(cliff+\"-lod\"+(a.detail?0:1)),a);\n                    far.append(cliff==null?models[a.family][1]:assets.mesh(cliff+\"-lod1\"),a);\n                }\n            }\n            SceneMesh distant=far.mesh(cx,cz,radius);distant.chunkQ=q;distant.chunkR=r;distant.landscapeChunkSize=chunk;SceneMesh m=detailed?near.mesh(cx,cz,radius):distant;m.distant=distant;m.chunkQ=q;m.chunkR=r;m.landscapeChunkSize=chunk;m.fingerprint=hash;result.add(m);\n        }\n        return Collections.unmodifiableList(result);\n    }",
+      "gate": "source scenery legacy block",
+      "assessment": "Rejects mobile placement in source map. Original PcScenery route exists; exact original density/climate/wind/frame and all16 proof incomplete.",
+      "actualNew369Complete": false
+    }
+  ],
+  "separateRoutingAssessment": {
+    "SceneMesh/TerrainSurface/SceneCamera": "Source height/grid/water/mesh/perspective geometry routing; no original fire removal proved by presence of geometry branch. Vertex/index byte parity315/325 scoped only tested windows.",
+    "WaterVisualField/TerrainMaterialField": "Legacy flow drift disabled for PC; original source plane/mask/clock route is separate. Full original water pixels/timing not accepted.",
+    "PcFacilities/PcFacilityRigs/PcSites/PcWalls/PcDams": "Original-only binding filters and completed-rig constraints. Facility climate0 caller322 remains a gap; no rule reconstruction or RNG.",
+    "MapHost/TurnPlayback": "Source prelude duration/submission gates separate from legacy cues. Could suppress fallback when original cue unavailable; all real events/speakers/voices not closed.",
+    "MapSceneSnapshot/PcCellFireSet": "Source scene/StateToken/accepted facts checks; stale or absent facts rejected. Missing facts do not authorize renderer-generated fire."
+  },
+  "completeNamedLexicalInventory": true,
+  "completeGlobalSemanticOrAliasAudit": false,
+  "scope": "Read-only every non-comment pcMap/sourceVisuals/sourceMap named line in actual369 app Java, exact file SHA/context plus9 specific suppression methods verified. Does not cover aliases(pcGround/pcUnit/local booleans), shaders/C# or every dynamic caller; no blanket124/all sourceMap closure. Sources0-10 current380 normal, fire/media/caller/ARM/finalB still pending.",
+  "wholeGoalComplete": false
+}

@@ -692,3 +692,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 384新增可选test-only menuCleanWhole：在真实地图音量对话框用实际SeekBar触控将effects0/music约65/voice约30，再正常进入menu，保持整个原3904512frame第一曲gain不变；完整head过后才真实恢复effects约75，并继续Home/mute/noisy/reentry/finish及完整Save/RNG/StateToken。默认原混合音效流程及0.511失败保留，未归因UI音效，未改原PCM或0.995，不作为全媒体/ARM或正常混合输出替代。最初全文件有2处backgroundMap文本，stage的单命中guard在写任何stage前拒绝；改为唯一menu方法中首次对应点，实际afterSHA ed181f5d已冻。385新test-only完整369继承构建只排队，明确等380全SHA/owner退出、382实测残差后才复制/Gradle，game811不重构；386完整精确test增量guard、387新fullbackup/实际test-onlyinstall/388全部SHA+权限+0.995终态工具已登记。当前385/387真实等待，无重编译或新设备测试干扰380。helper增加默认false可选--clean-menu-music，只在真实menuMusic成立时允许，不改当前已加载380任何程序/功能120秒门。
 
 最新380真实Source0至10 normal flow complete，runner72930实际44分钟仍live，原视频/worker持续；未全16/最终cold/完整restore通过。观察到真实各新3D提交，当前原日志无JavaOOM/FATAL，不能据此宣告原ARM354832分配栈/root关闭。新增测试的音乐“普通设置隔离条件”和原默认混合波形门应分别报告；387原显示/previous330旧标签已改未来源码，实际388必须以当前369 test3c937c9前像SHA恢复核验，不能把标签当实际安装或恢复证据。
+
+389实际369源补充source-map核查：每个非注释pcMap/sourceVisuals/sourceMap具名标记共19文件90处，逐SHA与上下文记录；9个明确屏蔽方法已核实际源码：旧火烟/设施overlay/旧暴击闪图与portrait清理、未恢复原对象、原格火admission/facts标签、拒绝旧植被。原13格火路径、设施原体/事实标签与原critical stage分别存在，其他火链/完整设施/原气候0/全caller/voice/fullscreen仍不能借路径存在计通过。不是别名pcGround/pcUnit/局部boolean、shader/C#及所有动态调用的完整语义闭合，scope不声称原124全部完成。首轮旧方法名criticalFrame找不到拒绝；核实际签名void critical并定vegetation buildWindow后成功，没有写生产代码。
+
+当前真实380 Source0至12 normal flow complete，runner/视频/worker仍live，最后3来源/最后新PID/完整restore仍未终态。382数值分析、385独立构建、387新test实装仍只等当前原文件全SHA与owner退出，不因等候超时重启。已完成389属源代码证据，当前整个目标保持active，未验ARM或接B r24 WIP。
