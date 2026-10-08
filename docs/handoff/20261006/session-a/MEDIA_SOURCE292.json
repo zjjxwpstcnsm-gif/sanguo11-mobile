@@ -1,0 +1,62 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "canonicalBaseRevision": "cce0196ab08c77b3e0dba9ed9a3e3efda5b1ffc7",
+  "currentDeliveryRevision": "e78f4dd5c9e86cbbca0ecd352d1e38b13fffbffd",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-source292/sanguo11-mobile-media-candidate-source.tar.gz",
+  "archiveBytes": 643524350,
+  "archiveSha256": "20455356752509ae613fb3628698ae66fc58ebc09ec9d20608a23ca98bf57f60",
+  "files": 11463,
+  "everyArchivedFileShaVerified": true,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-source292/source-files.json",
+  "fileManifestSha256": "07e755750f21f13f18d7e50f19872cba1cfe90b9391e3d62ef8172f58d6be685",
+  "exactCandidateApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-candidate-build290/app-debug.apk",
+      "sha256": "011b6a4dec7831be64213fa319ce3b97f76ae5149d27cba572fa68ef7e9a7bd9",
+      "bytes": 313547771
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/media-candidate-build290/app-debug-androidTest.apk",
+      "sha256": "8f47815f0b906eb0f1772cc2ef62854c915b349882ec95328a64a970f03555ed",
+      "bytes": 3090124
+    }
+  ],
+  "changesFrom269": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "beforeSha256": "b916b3a6c28f9a7f3eb3f233dfed6c5ebd60e26e4866dbe2bede0e15130dce95",
+      "afterSha256": "8e195a2017dd6e265d05e4340c558f20786f5823c78853cbfcb7ccbae7d12627"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+      "beforeSha256": "216f6c9312687869e9c3b9a4e7724c4265f8cdc8540cab389571fefb2df8dd7e",
+      "afterSha256": "8a11ce4e860b745f69b704a20e0682ab1931da0596e9b21aede118c6e457ee12"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "50b3dd47be8f1809bcd0b6573d7cc62243ff32f69572c338bd836e3cc7b7f56f",
+      "afterSha256": "6b00a8ee0ae04280328e402a72723410c6080beea192c2e8933473690e911e1a"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-sound-manifest.json",
+      "beforeSha256": "85e8262f51e296dc8e21a361e20da8e02afa9993f13259471e393f5cbbd3d23e",
+      "afterSha256": "657455b3e24ad865ec93b491f4adf21a482887a2a424d7f112eb8bf5abff6e5f"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-58.wav",
+      "beforeSha256": null,
+      "afterSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMapRepairInstrumentation.java",
+      "beforeSha256": "d7ba3f1f1e3fbf065dd62107161cb0726b4bc3f325c83dbc938c4d93a3832c19",
+      "afterSha256": "97e1603e251f98a4b9af65cbc8ef6cb8e26deb2555d9e719dc0d4f3209e1a9fd"
+    }
+  ],
+  "portableNativeSourceIncluded": true,
+  "completeOriginalFourAndCandidateTwoJniIncluded": true,
+  "containsSdkOrBuildCaches": false,
+  "containsDeviceBackups": false,
+  "scope": "All complete290 inherited candidate inputs (including original168/untracked media/4original+2candidate JNI) plus current tracked source/tools/documents; exact variant production/test overrides canonical paths. No B Native WIP or user device data. Source archive BuildConfig fallback outside Git can change APK digest; no bit-repro APK claim. Pending actual290 callers, voices/fullscreen/map music/miss producer/finalB/ARM stay pending.",
+  "wholeGoalComplete": false
+}
