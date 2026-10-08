@@ -1,0 +1,33 @@
+{
+  "rawCaptureRun": "session_a_large_menu_1d93fc156d904d11bfd1ba94f66b2f38_menu",
+  "captureBeganElapsedNanos": 172649981010356,
+  "captureEndUpperBoundIncludingFinalizeElapsedNanos": 172782140002356,
+  "lastObservedPlayerBelowFullTrack": {
+    "observedElapsedNanos": 172789694604356,
+    "submittedFrames": 3908064,
+    "playedFrames": 3891680,
+    "firstAcceptedBytes": 15618048,
+    "firstDecodedBytes": 15618048,
+    "timestampFrame": 3873895,
+    "timestampNanos": 172789344067356,
+    "underruns": 145
+  },
+  "firstObservedPlayerAtOrAboveFullTrack": {
+    "observedElapsedNanos": 172790704721356,
+    "submittedFrames": 3953472,
+    "playedFrames": 3937088,
+    "firstAcceptedBytes": 15618048,
+    "firstDecodedBytes": 15618048,
+    "timestampFrame": 3919498,
+    "timestampNanos": 172790378157356,
+    "underruns": 145
+  },
+  "originalFrames": 3904512,
+  "captureEndsBeforeWholeTrackPlaybackProven": true,
+  "minimumGapSeconds": 7.554602,
+  "firstAboveGapSeconds": 8.564719,
+  "originalUnderrunsStillIndependentProblem": 145,
+  "sameObservedElapsedTimebase": true,
+  "scope": "Actual342 capture duration does not cover complete first original menu track. End upper bound even includes finalization; last below-track player observation is already later. No waveform edits/threshold weakening/unique player cause, no acceptance. Longer capture is measurement coverage, not relaxation of original host120s/audio whole0.995.",
+  "wholeGoalComplete": false
+}

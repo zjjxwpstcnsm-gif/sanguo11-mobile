@@ -80,6 +80,7 @@ def main():
     p.add_argument('--observe-workers',action='store_true')
     p.add_argument('--menu-music',action='store_true')
     p.add_argument('--audio-capture-rate',type=int,choices=[44100,48000])
+    p.add_argument('--menu-capture-seconds',type=int,choices=[130,180],default=130)
     p.add_argument('--pause-fire',action='store_true')
     p.add_argument('--fresh-process-reopen',action='store_true')
     p.add_argument('--portrait-native',type=int,default=-1)
@@ -168,7 +169,7 @@ def main():
         run_id=allocate_run_id(out.name,original_external)
         r['runIdAllocation']='Fresh complete UUID checked against original external roots; ASCII display label max10, base length<=53, all capture/cold suffixes<=64'
         r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
-        r['menuMusicNormalFlow']=a.menu_music;r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
+        r['menuMusicNormalFlow']=a.menu_music;r['menuCaptureSeconds']=a.menu_capture_seconds;r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()
         def observe():
             with (out/'meminfo-timeline.txt').open('wb') as f:
@@ -239,7 +240,7 @@ def main():
                     capture_support.collect(out,r,trial,15)
                 selected=next(t for t in r['audioCapture']['captures'] if t['rate']==a.audio_capture_rate)
                 if selected['result']['failure'] or selected['result']['frames']<=0:raise ValueError('Requested raw capture input unavailable; initialization results retained')
-                music_capture=capture_support.start(out,r,a.audio_capture_rate,run_id+'_menu',130)
+                music_capture=capture_support.start(out,r,a.audio_capture_rate,run_id+'_menu',a.menu_capture_seconds)
                 if not music_capture['ready']:raise ValueError('Normal menu capture did not initialize')
             with (out/'instrumentation.txt').open('wb') as f:
                 run('shell','am','instrument','-w','-e','suite',a.suite,'-e','run',run_id,'-e','begin',a.begin,'-e','end',a.end,'-e','portraitNative',str(a.portrait_native),'-e','searchDiagnostics','true' if a.search_diagnostics else 'false','-e','heapProfile','true' if a.heap_profile else 'false','-e','mode','normal','-e','menuMusic','1' if a.menu_music else '0','-e','pauseFire','true' if a.pause_fire else 'false',PACKAGE+'.test/game.sanguo.mobile.'+a.runner,output=f,timeout=14400 if a.runner=='SessionAMapRepairInstrumentation' and a.suite in ['factions16','mediaAll16','fastPreview16'] else 3600)

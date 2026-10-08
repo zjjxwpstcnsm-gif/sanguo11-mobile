@@ -1,6 +1,19 @@
 {
-  "stage": "actual-running-large-menu-pcm",
-  "cases": [],
+  "stage": "stopped-retain-actual-evidence",
+  "cases": [
+    {
+      "name": "large-menu-pcm",
+      "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-menu342/large-menu-pcm",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-test-build330/app-debug-androidTest.apk": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14"
+      },
+      "normalPassed": true,
+      "differentPidColdPassed": false,
+      "everyOriginalFileShaRestored": true,
+      "sourceSnapshotOrArithmeticInjected": false
+    }
+  ],
   "source14FailuresRemainUnresolved": true,
   "ordinaryHeapAccepted": false,
   "all16NormalCallersAccepted": false,
@@ -26,5 +39,7 @@
     "--menu-music",
     "--audio-capture-rate",
     "44100"
-  ]
+  ],
+  "error": "",
+  "cleanupNotInferred": true
 }

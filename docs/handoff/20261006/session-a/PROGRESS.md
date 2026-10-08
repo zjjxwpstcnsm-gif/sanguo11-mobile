@@ -641,3 +641,9 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 338终态工具拒绝，normal游戏instrumentation和PCM均未开始：base runID57chars加_init44100为67>audio helper64限制。不是新-22或游戏声音失败，不降低原capture校验。339冻结driver真实栈、游戏原9/3797、test原0/0、testAPK6e0504、recordPermissionfalse/AppOpdefault全部恢复，worker真exit0。340helper仅缩短ASCII显示标签到10保留完整UUID32，并查所有原external各证据根前缀碰撞；2503实际语法/极长中文标签/全部capture/cold后缀/碰撞测试通过，base<=53/最长<=63。341新case完整backup后再同确切game2f5/test6e normal菜单+whole2238 0.995捕获；不重启无变化旧338，不冒充正常source14/火/cold/ARM。当前341工具队列已启动，须续读实际进程/恢复而非预设通过。
 
 341前置工具错误KeyError videoObservation，在OUT创建/backup/任何device action前停止：338 UiUx正常菜单explicit exactDefaultVideoRequested=false，只有worker，应按真实请求判是否必须录像。保留341拒绝，不伪造缺视频或复用331视频。342新launcher必须worker真exit0，requested或已启动video才必须exit0，否则明确要求requested=false，其他所有完整restore/source/hash/capture门不变；fresh342队列进入完整backup。当前源未变APK2f5/test6e，不借任何旧音乐44/304成绩，原source14FAIL与全部残项仍保持。
+
+342真实normal菜单62检查/状态RNG全纯通过且原9内部2改写/3797外部0改写+test0/0/testAPK6e0504/录音权限false和AppOpdefault全部恢复，worker真exit0；44.1/48init成功无-22，130s菜单捕获5244928frames。343整首0.995门真实FAIL0.034637390052729235，不把提交PCM c90与decoder逐字节同当输出稳定；首次trackUnderruns145，buffer16384frames，实际firstLoop全played及正常Home/mute/noisy/reentry/destroy均有原日志，但地图BGM/voice/ARM不接受。
+
+344原WAV/原2238参考逐SHA未改，固定17段2秒diagnostic（不是acceptance）仅55/70/75s达到reliable，其余不能据噪声最大值认定offset或因果。345同observedElapsedNanos实际coverage证明：captureEnd连finalize上界172782140002356，player仍未达到原3904512frames的最后观测172789694604356、首次已达到172790704721356，至少早7.5546秒（下一观测8.5647秒）；不只是假定歌曲开始偏移。故130s采集没完整覆盖本次正常UI歌曲，既不能判播放器唯一root，也不能计whole通过；145underruns独立保留。
+
+346只改采集覆盖选择：helper默认130保持旧分数，用显式180（现有capture Activity/Service允许上限），原PCM/source/allTrackFrame/0.995和功能门不改；新fresh346完整backup后同game2f5/test6e真实normal菜单再采全曲，不宣告音频已修复/不通过拼接校正。347只在本真实case/game+test全SHA/owner/observer/权限终态后冻结实际波形PASS/FAIL。目前346队列已启动，原首读Source14失败、全部16/普通heap/全原媒体/原JNI+Bridge+Unity/B final/ARM均未完整闭合。
