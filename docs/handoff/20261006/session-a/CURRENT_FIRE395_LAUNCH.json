@@ -1,0 +1,43 @@
+{
+  "stage": "restored-verified",
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/current-fire395",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk",
+    "--reuse-installed",
+    "--observe-workers",
+    "--runner",
+    "SessionAFireFlowInstrumentation",
+    "--fresh-process-reopen",
+    "--pause-fire"
+  ],
+  "normalAndColdPassed": true,
+  "helperExit": 0,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "scope": "Current exact369 real normal Source14/deploy/cancel/player-fire/Home/pause/lowquality/extinguish/reignite/full-turn expiry/save/read/newPID; no fabricated burning snapshot or rule RNG. Not other fire chains/128 performance/all facilities/PCM/ARM/finalB, old299 scores not transferred."
+}

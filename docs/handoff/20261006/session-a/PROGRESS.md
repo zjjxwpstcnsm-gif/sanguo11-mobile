@@ -718,3 +718,9 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 392/393现在真终态PASS仅确切game811/test3c：正常16全部菜单来源预览/取消/首末势力/新局/多次全图近景平移/人物页及末尾Home/方向/普通slot3完整存取/真实Back确认退出重开，2809checks；独立新PID21247→21103最后来源cold94checks、完整Save/RNG SHA071a17c2ee0266b622aa9a559f6fa6836181bb33069a142caa2e1e55b95b03b5精确自动读取。原9内部4rewrite/3797外部0rewrite每SHA全部恢复，video/workerexit0，16个实际source.sg11与全部normal/cold evidence已pull和逐SHA冻结。不是各16来源独立cold、全部670caller/全部势力/多旬军建火或普通384/ARM/全PC像素，不覆盖旧firstSource14/380监督FAIL，不把监督14400当低延迟修复。
 
 实际查看本392 source-14-preview.png与source-14-map.png：正常251英雄集结PK新版preview中韓玄/韓馥/陶謙、各原势力辨识色与CaoCao原矩形头像、深底summary/金额/选中/禁用/确认可读；实际近景map控件/关标签/方向提示正常、地图原材质可见，单图不证明全部文字/精确PC场景光照/GPU峰值。395已过同392全恢复/owner退出门，fresh全9/3797 backup和确切installed SHA后当前实际正常fire fixture开始，无新包或重编译并发；当前所有火生命周期/最后cold仍待终态。B r26军事设施管理入口单GovernmentUi完成通知只读保留，A不合其分支或WIP，也未通过此392就宣告B规则/军建已集成。
+
+395/396最新game811/test3c真实终态通过：Source14正常新局/两支出征/取消纯呈现/玩家火计/Home暂停/reduced-motion/低画质/玩家灭火/再次点燃/完整多旬自然到期/原燃烧完整存档读取均有六节点实际native13事实，正常和独立cold PID25865→13039均通过，完整Save/全部RNG SHA9f4c59f6d20406e2dca2a792fc412943835d12b68188eac431b25431ea030d2a读回一致。系统动画偏好及9内部4rewrite/3797外部0rewrite每原SHA恢复，8原MP4各device/host/postpullSHA一致，video/worker/helper exit0；原log没有本次effects/OOM/watchdog失败。真实完整旬约数百秒且前台120秒后后台续算保留，不能包装低延迟、128容量性能、全火链/军建/ARM或最终B组合通过。实看01-player-fire与05-real-expired，真实橙色火与火·2旬提示存在，到期两者移除；不声称全部PC像素和光照吻合。
+
+398确认用户允许增大Java堆，默认largeHeap=true保持；当前模拟器384→512MiB，不猜8/12/16GB真机额度。400只冻已完成392的413普通/7cold memory.csv检查点：Java已用302887112B/native独立268700048B/totalPss529852KiB，各自峰值不相加，graphics0不等于GPU为0；瞬时/ARM/原354832失败栈仍未知。399只读完成B664c00f4/r26确切交接文件，未导入任何B生产或WIP，最终集成仍需完整守卫和新组合安装。
+
+397在395所有owner退出及app停止后导出完整369游戏+385可选诊断test+当前工具/docs：11683文件，935485440B tar SHA d82626c49daef9d71f51290acebb780c3dc9750585d3679d282ab4b151d6d177，每tar成员SHA和独立inode核验；168固定输入/原4JNI及候选新2JNI/可复现C配方包含。该源候选不含B后继，不取代canonical旧9app路径；test385和本次实装test369明确区分。目标继续active：B最终组合/ARM/全部caller和媒体/默认混合PCM等仍未闭合。

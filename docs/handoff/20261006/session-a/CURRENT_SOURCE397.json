@@ -1,0 +1,42 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "canonicalBaseRevision": "f5ed66bdb60ff9881c93aeba81c170026d044241",
+  "currentDeliveryRevision": "055ed9e0ea60ea708cf2c2b97dd50e061f7d112c",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/current-source397/sanguo11-mobile-current-source.tar",
+  "archiveBytes": 935485440,
+  "archiveSha256": "d82626c49daef9d71f51290acebb780c3dc9750585d3679d282ab4b151d6d177",
+  "files": 11683,
+  "everyArchivedFileShaVerified": true,
+  "independentFrozenSourceInodes": true,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/current-source397/source-files.json",
+  "fileManifestSha256": "a843ecad9962a62c1ffa99f8961d1b4204de3bbc36af0d3107bf4ed324030deb",
+  "exactCandidateApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+      "sha256": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+      "bytes": 313550179
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu-build385/app-debug-androidTest.apk",
+      "bytes": 3099464,
+      "sha256": "8da93d5b925d04745c8207a7488f8b4ce480ccde459cf634e70d414e9999fc8b"
+    }
+  ],
+  "test385ChangesFrom369": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "fd7b1984918ae46453c38d70d21641448b3f66881da5896e467215cfc0391e00",
+      "afterSha256": "ed181f5de959bcd8b9bebbf3f3e4561d24627fd604b622a8a7018c7425591347",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu384/app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java"
+    }
+  ],
+  "portableNativeRecipe": "docs/handoff/20261006/session-a/build_portable_cache307.py",
+  "nativeBinariesUnchangedExact295And296": true,
+  "originalFourAndCandidateTwoJniIncluded": true,
+  "fixedBuildInputsIncluded": 168,
+  "containsSdkOrBuildCaches": false,
+  "containsDeviceBackups": false,
+  "archiveUncompressedToReduceCpuLoad": true,
+  "scope": "Complete exact369 game and385 optional ordinary-settings diagnostic test source/resources/native plus current tracked tools/docs and own session files, all independently copied and tar-member SHA readback. New packaged cache source overrides old canonical native source; no B WIP or user device data. Snapshot begins only in observed app-stopped interval; hashing/I/O can still perturb host later, no GPU/FPS proof. SourceRevision fallback outsideGit can change APK digest. Actual380 outer supervisionFAIL/no cold; same369 default mixed379 waveformFAIL, optional ordinary-settings388 waveformPASS0.997794. Fresh392 and395 outcomes recorded separately. No current normal/cold/fire/all16/ARM/finalB/media acceptance inferred.",
+  "wholeGoalComplete": false
+}
