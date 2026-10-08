@@ -1,0 +1,86 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-normal327/source14",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug-androidTest.apk": "1deb3f9c5120adb3ef2a0e846ff0e44e5883f6a45f10aebabf8778a392bac023"
+  },
+  "normalPassed": false,
+  "coldExecuted": false,
+  "failure": "first normal Scen014 source host unavailable120s; actual FAIL PNG remains reading scenario dialog. Source preview not reached.",
+  "actualResult": "SESSION_A_MAP FAIL java.lang.AssertionError: Normal widget unavailable\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.await(SessionAMapRepairInstrumentation.java:33)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.host(SessionAMapRepairInstrumentation.java:65)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.onStart(SessionAMapRepairInstrumentation.java:360)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\nPASS fresh evidence directory\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 地图\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 地图\nPASS actual3D verified output and completed terrain, not renderer recovery\nPASS all16 installed sources\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 菜单\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 选择PC来源剧本 Media/scenario/Scen014.S11\nPASS pointer accepted\nPASS pointer accepted\n",
+  "actualGroundFirstSubmissionRows": [
+    "10-08 15:09:09.635 19250 19386 I Sanguo3D: Ground CPU ready chunks=28 ms=4296.846 queueWaitWallMs=6.908 backdropWallMs=1.433 backdropCpuMs=1.391197 groundWallMs=3986.371 groundCpuMs=389.771676 geometryWallMs=748.098 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 15:09:09.641 19250 19386 I Sanguo3D: Field CPU ready forestChunks=41 totalMs=4303.561 sceneryWallMs=308.662 sceneryCpuMs=87.777711 groundDeliveryBackpressureWallMs=0.873 processGcMs=417 processAllocatedBytes=19046192 interrupted=false",
+    "10-08 15:09:20.808 19250 19250 I Sanguo3D: First submission (not visibility proof): first_submit_wall_ms=17976 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=af702ecf2cf306a023b26295fa43b5c99eaeae99 profile=native javaHeapUsedBytes=36348160 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=69271688 retainedMeshPayloadBytes=10911936 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]"
+  ],
+  "actualTargetErrorLines": [],
+  "rootCauseProven": false,
+  "originalUserOOMStackKnown": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 1,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 61646,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-normal327/source14/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 2,
+    "finalIndexSha256": "5392b52c0a405de9792522403310004c1c5bc13714895514af6969b9c28c5846",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 61647,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-normal327/source14/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "everyVideoPartDeviceHostShaVerified": true,
+  "firstPreviewReleaseVerified": false,
+  "later327FireStoppedBeforeAction": true,
+  "sessionSha256": "a2a993d26a4b38c72127989a461f01fa1a94be5cec773b47606cb10325638ba1",
+  "evidenceFiles": [
+    {
+      "path": "evidence/FAIL-actual-text.json",
+      "sha256": "d7eb2863f7d6b9783884277714fef1fbd8919455275ee055f164f9dc6e2a1e58",
+      "bytes": 1875
+    },
+    {
+      "path": "evidence/FAIL.png",
+      "sha256": "7d4247bfdd6f7746682bc8ad99ff6ce8b07b34d23a4f03ad79b0741d43411f70",
+      "bytes": 413341
+    },
+    {
+      "path": "evidence/heap-budget.txt",
+      "sha256": "15e2c0456383c65a36ff86d619b6e5323e2e61a97b8edb0aa9012e3a3b0a947b",
+      "bytes": 90
+    },
+    {
+      "path": "evidence/memory.csv",
+      "sha256": "458c80b583d51fd3229df969a71307ae52b4d15aab841ab3c4fb6d943ad84dc3",
+      "bytes": 178
+    },
+    {
+      "path": "evidence/renderer-timeline.txt",
+      "sha256": "09c86aee6dbaa0f67161c853b729ef4f910a8b07bb4a9a617a661ae3d16f6b4e",
+      "bytes": 3955
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "13fb7a9a75afc8eadd524d6565c8f62f5b2742b7c21adebac85ccc280c950e66",
+      "bytes": 1322
+    }
+  ],
+  "scope": "Exact new326 first actual source14 preparation FAIL. Full original9+3797SHA restored; observed Java/native checkpoint is not whole allocator/GPU peak. No unmodified retry, no timeout relaxation, no fire/cold/all16/ARM scores inferred.",
+  "wholeGoalComplete": false
+}

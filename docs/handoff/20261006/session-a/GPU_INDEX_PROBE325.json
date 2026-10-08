@@ -1,0 +1,12 @@
+{
+  "hostChecksPassed": true,
+  "actualAndroidSourceCompiled": true,
+  "hostLog": "checks=349 chunks=325 originalEncodedBytes=15464448 sharedEncodedBytes=107520 resourceCreates=3 resourceDestroys=3 sharedReuses=322 fullSaveRngPure=true\n",
+  "hostLogSha256": "7c5bca4864c8ae08a86985a3d92754024bbd3c842199d7a2ca6d4461126f8bcb",
+  "androidCompileLogSha256": "7b48caf4259833f0b5ee89727ab5bc17c3efa55a7ac597eb62e6af61dfa7fecb",
+  "deltaSha256": "bf5c6967358c41c52a84f397c5b6fa15ed2a7ac5c0ca40310deb71dbc141a922",
+  "installed": false,
+  "actualGpuIndexMemoryOrTimingMeasured": false,
+  "scope": "Exact actual source14 immutable index arrays, unchanged lossless encoder and all original indices validated, encoded streams byte-equal per mesh; bounded16 registry spill/lifetime/format/range/factory/thread/engine separation/last owner behavior. Actual Java compilation against frozen316 Android/Filament. Mock factory checks do not execute GPU upload or device lifetime/native allocator. Full newAPK installation/normal retry/zoom/cold required.",
+  "wholeGoalComplete": false
+}

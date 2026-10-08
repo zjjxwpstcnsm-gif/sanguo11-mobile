@@ -1,0 +1,94 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-normal320/source14",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug.apk": "5d766b516832b37ad3bdfe0115d536088e0291438397a3d418f452a095e69ba1",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-allocation-build316/app-debug-androidTest.apk": "ea2f9830af0a4f6d9fbd6c78947963d05a69186b0b89b343ff359f31c5cc323c"
+  },
+  "normalPassed": false,
+  "coldExecuted": false,
+  "failure": "second actual Scen014 preview ready120s; first submitted renderer125507ms after creation. PNG looks rendered by delayed failure capture; does not override120s readiness failure.",
+  "actualResult": "SESSION_A_MAP FAIL java.lang.AssertionError: actual3D verified output and completed terrain, not renderer recovery\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.check(SessionAMapRepairInstrumentation.java:29)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.ready(SessionAMapRepairInstrumentation.java:66)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.onStart(SessionAMapRepairInstrumentation.java:361)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\nPASS fresh evidence directory\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 地图\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 地图\nPASS actual3D verified output and completed terrain, not renderer recovery\nPASS all16 installed sources\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 菜单\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 选择PC来源剧本 Media/scenario/Scen014.S11\nPASS pointer accepted\nPASS pointer accepted\nPASS actual3D verified output and completed terrain, not renderer recovery\nPASS source preview 14 complete Save/RNG byte equal\nPASS source preview 14 full StateToken equal\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS dismissed preview releases engine, detachedWorld and ground in 4557ms released=true engineClosed=true worldClosed=true groundClosed=true\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS actual preview and source cancel complete Save/RNG byte equal\nPASS actual preview and source cancel full StateToken equal\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 菜单\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 选择PC来源剧本 Media/scenario/Scen014.S11\nPASS pointer accepted\nPASS pointer accepted\nFAIL actual3D verified output and completed terrain, not renderer recovery\n",
+  "actualGroundFirstSubmissionRows": [
+    "10-08 13:27:35.502 11174 11309 I Sanguo3D: Ground CPU ready chunks=28 ms=2740.418 queueWaitWallMs=2.451 backdropWallMs=0.924 backdropCpuMs=0.911551 groundWallMs=2551.11 groundCpuMs=321.351489 geometryWallMs=485.644 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 13:27:35.502 11174 11309 I Sanguo3D: Field CPU ready forestChunks=41 totalMs=2740.665 sceneryWallMs=187.935 sceneryCpuMs=62.491765 groundDeliveryBackpressureWallMs=0.191 processGcMs=580 processAllocatedBytes=18398048 interrupted=false",
+    "10-08 13:27:43.102 11174 11174 I Sanguo3D: First submission (not visibility proof): first_submit_wall_ms=12356 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=5bacf10059d208c34758cd81eb05e44971f231ae profile=native javaHeapUsedBytes=36586472 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=69356704 retainedMeshPayloadBytes=10911936 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]",
+    "10-08 13:29:20.591 11174 13640 I Sanguo3D: Ground CPU ready chunks=0 ms=2794.511 queueWaitWallMs=11.078 backdropWallMs=0.565 backdropCpuMs=0.560625 groundWallMs=1517.189 groundCpuMs=75.207087 geometryWallMs=232.279 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 13:29:47.060 11174 13640 I Sanguo3D: Ground CPU ready chunks=330 ms=26467.951 queueWaitWallMs=248.301 backdropWallMs=0.088 backdropCpuMs=0.068693 groundWallMs=26190.012 groundCpuMs=1459.428898 geometryWallMs=16602.879 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 13:29:47.100 11174 13640 I Sanguo3D: Field CPU ready forestChunks=55 totalMs=26507.624 sceneryWallMs=249.891 sceneryCpuMs=9.126964 groundDeliveryBackpressureWallMs=39.59 processGcMs=17089 processAllocatedBytes=128251832 interrupted=false",
+    "10-08 13:30:52.554 11174 11174 I Sanguo3D: First submission (not visibility proof): first_submit_wall_ms=99677 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=5bacf10059d208c34758cd81eb05e44971f231ae profile=native javaHeapUsedBytes=178153112 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=202498376 retainedMeshPayloadBytes=66787968 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]",
+    "10-08 13:31:35.954 11174 16136 I Sanguo3D: Ground CPU ready chunks=0 ms=1994.187 queueWaitWallMs=10.193 backdropWallMs=0.129 backdropCpuMs=0.124009 groundWallMs=1327.625 groundCpuMs=61.250537 geometryWallMs=227.999 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 13:31:51.769 11174 16136 I Sanguo3D: Ground CPU ready chunks=330 ms=15813.794 queueWaitWallMs=162.969 backdropWallMs=0.111 backdropCpuMs=0.094878 groundWallMs=15725.966 groundCpuMs=1224.258768 geometryWallMs=9957.636 sampledNormalHeightWallMs=0.0 sampledBlendWallMs=0.0 sampledShoreWallMs=0.0 reusedFieldSamples=0 timedFieldSamples=0",
+    "10-08 13:31:51.772 11174 16136 I Sanguo3D: Field CPU ready forestChunks=55 totalMs=15817.542 sceneryWallMs=87.399 sceneryCpuMs=4.158044 groundDeliveryBackpressureWallMs=3.713 processGcMs=8115 processAllocatedBytes=65428320 interrupted=false",
+    "10-08 13:33:36.024 11174 11174 I Sanguo3D: First submission (not visibility proof): first_submit_wall_ms=125507 first_verified_wall_ms=-1 resume_verified_wall_ms=-1 source=5bacf10059d208c34758cd81eb05e44971f231ae profile=native javaHeapUsedBytes=183285280 javaHeapLimitBytes=536870912 nativeHeapAllocatedBytes=204277056 retainedMeshPayloadBytes=66787968 retainedMeshPayloadScope=owner-mesh-arrays-only-worker-upload-GPU-excluded device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]"
+  ],
+  "actualTargetErrorLines": [],
+  "rootCauseProven": false,
+  "originalUserOOMStackKnown": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 1,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "videoObservation": {
+    "hostPid": 59140,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-normal320/source14/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 4,
+    "finalIndexSha256": "c23427b8a74a4e34fd47dde333cffdd3e54a4524de8ac74b4f02f9b559f55023",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 59141,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/mesh-normal320/source14/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "firstPreviewReleaseVerified": true,
+  "allLater320Fire321FieldworksStoppedBeforeAction": true,
+  "sessionSha256": "038d45a0f35f425f2a485021ec026a693f021eb986e3a5d2bded2d3a47fd1b38",
+  "evidenceFiles": [
+    {
+      "path": "evidence/FAIL-actual-text.json",
+      "sha256": "c8048c123a14ffcc70a5917d42c34693f0de8a8c492878414a1a496a32ad99bb",
+      "bytes": 8433
+    },
+    {
+      "path": "evidence/FAIL.png",
+      "sha256": "188d7a7d20dbedd3205167405108efeb78b42c288b0a4f9b1d8a4eda4fb60432",
+      "bytes": 1358535
+    },
+    {
+      "path": "evidence/heap-budget.txt",
+      "sha256": "15e2c0456383c65a36ff86d619b6e5323e2e61a97b8edb0aa9012e3a3b0a947b",
+      "bytes": 90
+    },
+    {
+      "path": "evidence/memory.csv",
+      "sha256": "1cb2ee273c3eea06f9554c077d27af824d7036f73c384b06f739a6c45282f04b",
+      "bytes": 233
+    },
+    {
+      "path": "evidence/renderer-timeline.txt",
+      "sha256": "1f7317f662c9c0016d729b247a267845049af971766583ea8dd8f2ba6eda3469",
+      "bytes": 7705
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "d3dfd2cdf5cbc73ecc18bb5ba4ff4126f55e32b24927ffd67ad6345a919ac53c",
+      "bytes": 2479
+    }
+  ],
+  "scope": "Exact new316 repeated normal source14 preview/cancel/reselect FAIL. Full original9+3797SHA restored; observed Java/native checkpoint is not whole allocator/GPU peak. No unmodified retry, no timeout relaxation, no fire/cold/all16/ARM scores inferred.",
+  "wholeGoalComplete": false,
+  "everyVideoPartDeviceHostShaVerified": true
+}

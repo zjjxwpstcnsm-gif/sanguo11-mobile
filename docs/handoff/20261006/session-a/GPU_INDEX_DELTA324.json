@@ -1,0 +1,27 @@
+{
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index324-checked/app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeSha256": "ca1977989c5b5ea4796c8a5157422b1e94869ff1162343894d082473682e55a5",
+      "afterSha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index324-checked/app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java",
+      "beforeSha256": null,
+      "afterSha256": "af1c452f0269b89ced5eb45cc81d1d9a729ff7c68a197c9f8bce99878c532dc7"
+    }
+  ],
+  "parent": "actual316",
+  "liveRegistryCapacity": 16,
+  "zeroOwnerEntriesRemoved": true,
+  "sharedOnlyPcGroundAndSameEngine": true,
+  "originalIndexEncodingAndDrawOffsetsUnchanged": true,
+  "uploadsStillBounded8Count2msWall": true,
+  "originalGpuGeometryAndTexturesDropped": false,
+  "canonicalRendererChanged": false,
+  "installedOrGpuAccepted": false,
+  "scope": "A allocation/native resource duplicate reduction only; immutable int-array identity plus exact encoding format, per engine reference-counted lifetimes, capacity16 spills privately rather than dropping. Partial creation cleans native IB. No original4JNI/B/core/Bridge/Unity rules/RNG changes. Need owner lifetime host tests, Android compile, independent fullAPK installation and actual repeat/source/zoom/state/read/cold checks.",
+  "wholeGoalComplete": false
+}

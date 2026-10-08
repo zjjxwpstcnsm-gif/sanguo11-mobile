@@ -1,0 +1,77 @@
+--- a/app/src/main/java/game/sanguo/mobile/FilamentMapView.java
++++ b/app/src/main/java/game/sanguo/mobile/FilamentMapView.java
+@@ -141,6 +141,7 @@
+     private final Map<SceneMesh,GpuMesh> vegetation=new HashMap<>();
+     private int visibleWood,unitLod=1;private long animationTick;private boolean effectsPaused;private long pausedEffectTick;
+     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
++    private final SceneIndexLeasePool<IndexBuffer> pcGroundIndices=new SceneIndexLeasePool<>(16);
+     private final Map<SceneMesh,GpuMesh> gridMeshes=new HashMap<>();
+     private long gridUploads;
+     private final Map<String,Proxy> objects=new HashMap<>();
+@@ -753,6 +754,7 @@
+         +" gridGpuChunks="+gridMeshes.size()+" gridUploads="+gridUploads+" gridMode=depth-tested-batches"
+         +" overlayDraws="+overlay.draws+overlayAdmissionReport()+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
+         +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs="+(MESH_UPLOAD_BUDGET_NANOS/1e6)
++        +" pcGroundIndexResources="+pcGroundIndices.liveResources()+" pcGroundIndexLeases="+pcGroundIndices.liveLeases()+" pcGroundIndexCreated="+pcGroundIndices.created()+" pcGroundIndexReused="+pcGroundIndices.reused()+" pcGroundIndexDestroyed="+pcGroundIndices.destroyed()
+         +" workerDeliveries="+meshWork.delivered()+" workerBackpressureWallMs="+meshWork.backpressureNanos()/1e6
+         +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" gpuPreparationFrames="+gpuPreparationFrames+" lifetimeSubmissions="+renderedFrames+" surfaceCopies="+outputCopies
+         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
+@@ -763,7 +765,9 @@
+         long pcBytes=0;for(long size:pcTextureSizes.values())pcBytes+=size;
+         Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(gridMeshes.values());if(backdrop!=null)resident.add(backdrop);resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
+         for(GpuMesh parent:new ArrayList<>(resident))if(parent.waterChild!=null)resident.add(parent.waterChild);
+-        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+MeshIndexBuffer.bytes(m.source.vertices.length/7,m.source.indices.length)+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;
++        Set<IndexBuffer> countedIndices=Collections.newSetFromMap(new IdentityHashMap<>());
++        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);
++            if(m.ib!=null&&countedIndices.add(m.ib))bufferBytes+=MeshIndexBuffer.bytes(m.source.vertices.length/7,m.source.indices.length);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;
+             // Original outline reuses land buffers but submits another primitive.
+             // Count its triangles without double-counting shared geometry bytes.
+             if(m.source.pcGround&&m.source.landIndexCount>0&&pcGroundOutlineMaterial!=null){primitives++;triangles+=m.source.landIndexCount/3;}
+@@ -1390,6 +1394,7 @@
+         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
+         for(Proxy p:objects.values())p.destroy();objects.clear();for(GpuMesh m:terrain.values())m.destroy();terrain.clear();for(GpuMesh m:gridMeshes.values())m.destroy();gridMeshes.clear();for(GpuMesh m:vegetation.values())m.destroy();vegetation.clear();for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
+         if(backdrop!=null){backdrop.destroy();backdrop=null;}
++        pcGroundIndices.close();
+         clearEffects();for(int entity:effectEntities)if(entity!=0){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}
+         for(GpuMesh mesh:effectMeshes)if(mesh!=null)mesh.destroy();criticalHit=null;criticalPortrait=null;criticalSkip=null;
+         if(skyLight!=null){scene.setIndirectLight(null);engine.destroyIndirectLight(skyLight);skyLight=null;}
+@@ -1421,9 +1426,17 @@
+         siteAtlas=null;fieldAtlas=null;unitAtlas=null;sceneryAtlas=null;textureBytes=0;cameraEntity=light=0;
+         Arrays.fill(effectMeshes,null);Arrays.fill(effectEntities,0);
+     }
++    private IndexBuffer createIndexBuffer(SceneMesh mesh){
++        Buffer data=MeshIndexBuffer.encode(mesh.vertices.length/7,mesh.indices);
++        IndexBuffer result=new IndexBuffer.Builder().indexCount(mesh.indices.length)
++            .bufferType(MeshIndexBuffer.compact(mesh.vertices.length/7)?IndexBuffer.Builder.IndexType.USHORT:IndexBuffer.Builder.IndexType.UINT).build(engine);
++        try{result.setBuffer(engine,data);return result;}
++        catch(RuntimeException|LinkageError|OutOfMemoryError error){engine.destroyIndexBuffer(result);throw error;}
++    }
+     private final class GpuMesh {
+         VertexBuffer vb;IndexBuffer ib;int entity;int references;final SceneMesh source;boolean shown,overview;
+         GpuMesh waterChild;MaterialInstance waterInstance;String waterKey;
++        SceneIndexLeasePool.Lease<IndexBuffer> indexLease;
+         GpuMesh(SceneMesh m){source=m;try{
+             VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.tangents!=null?3:m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
+             if(m.surfaceData!=null){
+@@ -1438,8 +1451,10 @@
+             // Published mesh streams stay immutable. Filament1.56 holds array/global refs
+             // until its upload callback; avoid a second Java direct-byte payload.
+             vb.setBufferAt(engine,0,FloatBuffer.wrap(m.vertices));
+-            Buffer indexData=MeshIndexBuffer.encode(m.vertices.length/7,m.indices);
+-            ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(MeshIndexBuffer.compact(m.vertices.length/7)?IndexBuffer.Builder.IndexType.USHORT:IndexBuffer.Builder.IndexType.UINT).build(engine);ib.setBuffer(engine,indexData);
++            if(m.pcGround){
++                indexLease=pcGroundIndices.acquire(m.vertices.length/7,m.indices,()->createIndexBuffer(m),engine::destroyIndexBuffer);
++                ib=indexLease.resource();
++            }else ib=createIndexBuffer(m);
+             entity=EntityManager.get().create();
+             if(m.pcWater){
+                 if(pcWaterMaterial==null)throw new IllegalStateException("PC original water material not ready");
+@@ -1498,7 +1513,7 @@
+             }
+             new RenderableManager.Builder(1).instances(count).boundingBox(bounds(count)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(!source.vegetation||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
+         void show(boolean value){if(waterChild!=null)waterChild.show(value);if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
+-        void destroy(){if(waterChild!=null){waterChild.destroy();waterChild=null;}if(entity!=0){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);entity=0;}if(waterInstance!=null){engine.destroyMaterialInstance(waterInstance);waterInstance=null;}if(vb!=null){engine.destroyVertexBuffer(vb);vb=null;}if(ib!=null){engine.destroyIndexBuffer(ib);ib=null;}}
++        void destroy(){if(waterChild!=null){waterChild.destroy();waterChild=null;}if(entity!=0){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);entity=0;}if(waterInstance!=null){engine.destroyMaterialInstance(waterInstance);waterInstance=null;}if(vb!=null){engine.destroyVertexBuffer(vb);vb=null;}if(ib!=null){if(indexLease!=null){indexLease.release();indexLease=null;}else engine.destroyIndexBuffer(ib);ib=null;}}
+     }
+     private final class Proxy {
+         final SceneLabelVisibility labelVisibility=new SceneLabelVisibility();

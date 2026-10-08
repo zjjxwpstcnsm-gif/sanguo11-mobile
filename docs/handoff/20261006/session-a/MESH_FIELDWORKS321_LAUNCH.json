@@ -1,0 +1,7 @@
+{
+  "stage": "stopped-retain-actual-evidence",
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false,
+  "error": "Actual320 failed; do not skip gate or repeat it unchanged",
+  "cleanupNotInferred": true
+}

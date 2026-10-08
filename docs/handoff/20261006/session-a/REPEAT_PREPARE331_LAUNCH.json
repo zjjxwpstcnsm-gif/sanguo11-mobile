@@ -1,0 +1,27 @@
+{
+  "stage": "actual-source14-diagnostic-running",
+  "previousFailedActualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-normal327/source14",
+  "changedOnlyDiagnosticTest": true,
+  "functional120sLimitUnchanged": true,
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-test-build330/app-debug-androidTest.apk": "6e0504f757e8bfb5ffe8c0a4c4523c1913c3bafcb4d3215254792c47d2d1ff14"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-prepare-installed331",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/repeat-test-build330/app-debug-androidTest.apk",
+    "--test-only-update",
+    "--observe-workers",
+    "--runner",
+    "SessionAScenarioPrepareInstrumentation"
+  ]
+}

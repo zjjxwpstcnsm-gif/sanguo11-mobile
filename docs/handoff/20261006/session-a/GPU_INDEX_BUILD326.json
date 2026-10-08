@@ -1,0 +1,87 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "af702ecf2cf306a023b26295fa43b5c99eaeae99",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parentCandidate": "MESH_ALLOCATION_BUILD316.json",
+  "completeInheritedFiles": 11417,
+  "completeCandidateFiles": 11418,
+  "changesFrom316": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index324-checked/app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "beforeSha256": "ca1977989c5b5ea4796c8a5157422b1e94869ff1162343894d082473682e55a5",
+      "afterSha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index324-checked/app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java",
+      "beforeSha256": null,
+      "afterSha256": "af1c452f0269b89ced5eb45cc81d1d9a729ff7c68a197c9f8bce99878c532dc7"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk",
+      "sha256": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+      "bytes": 313550155
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug-androidTest.apk",
+      "sha256": "1deb3f9c5120adb3ef2a0e846ff0e44e5883f6a45f10aebabf8778a392bac023",
+      "bytes": 3094092
+    }
+  ],
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/candidate-inputs.json",
+  "candidateInputManifestSha256": "8fd5681d31c4f5f20896b509cd0891d56416fd42835251f2e6dbc6113336d6ee",
+  "fixedPackagedInputsExact": 168,
+  "allPackagedAssetsExact296": 5637,
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "protectedOriginal4": false
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "protectedOriginal4": false
+    }
+  ],
+  "protectedCurrentSixUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gameLargeHeap": true,
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 185.679678383,
+  "buildLogSha256": "3c59064a5597e7b222d1fd2242fb80f19af01aba3081a5c1668bde09a4748f3d",
+  "freeBytesBefore": 60500070400,
+  "freeBytesAfter": 56858116096,
+  "actualInstalled": false,
+  "scope": "Full316 complete inputs/resources/tests plus A per-engine immutable index registry324 and renderer. Same original streams/encoder/budgets;325 host lifetime/encoding and Android compilation passed. Product/API/Bridge/Unity/original4/allassets unchanged otherwise; no B Native WIP. New actual normalSource14/install/save restore evidence required; no prior scores transferred.",
+  "wholeGoalComplete": false
+}
