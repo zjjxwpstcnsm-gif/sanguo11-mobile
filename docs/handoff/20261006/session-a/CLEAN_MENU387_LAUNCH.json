@@ -1,0 +1,55 @@
+{
+  "stage": "specified-regressions-terminal-passed",
+  "cases": [
+    {
+      "name": "large-menu-pcm",
+      "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu387/large-menu-pcm",
+      "apks": {
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu-build385/app-debug-androidTest.apk": "8da93d5b925d04745c8207a7488f8b4ce480ccde459cf634e70d414e9999fc8b"
+      },
+      "normalPassed": true,
+      "differentPidColdPassed": false,
+      "everyOriginalFileShaRestored": true,
+      "sourceSnapshotOrArithmeticInjected": false,
+      "freshWholeTrackCorrelation": 0.9977940993652583,
+      "scope": "Current large APK normal menu whole decoded-resource waveform; not Windows exactPCM/mapBGM/voice/ARM or old-22 unique cause"
+    }
+  ],
+  "source14FailuresRemainUnresolved": true,
+  "ordinaryHeapAccepted": false,
+  "all16NormalCallersAccepted": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "activeCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu387/large-menu-pcm",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu387/large-menu-pcm",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/clean-menu-build385/app-debug-androidTest.apk",
+    "--test-only-update",
+    "--observe-workers",
+    "--runner",
+    "UiUxInstrumentation",
+    "--suite",
+    "audio",
+    "--menu-music",
+    "--audio-capture-rate",
+    "44100",
+    "--menu-capture-seconds",
+    "180",
+    "--mixer-observation",
+    "off",
+    "--clean-menu-music"
+  ],
+  "testedCohort": "CLEAN_MENU_BUILD385.json",
+  "scope": "Actual game369/test385 normal menu via ordinary real sliders effect0/music65 before scene, unchanged original whole2238 waveform/0.995, normal Home/mute/noisy/reentry/destroy and complete Save/RNG/StateToken. Tested optional music-only condition, not default mixed/UI effects, map BGM/voice/all-source/cold/ARM/finalB. Original379 mixed0.511 failure retained. Actual test original3c937c9 restored; previous330 text label was stale and corrected only after owner exit.",
+  "terminalLaunchReceiptBeforeLabelCorrectionSha256": "5525c12ba944346e16ebca5b61d823e9a715ab1e7f5334d9b59fc2028f549609",
+  "oldPrevious330LabelWasIncorrect": true,
+  "testApkRestoredToPrevious369": true
+}
