@@ -579,7 +579,11 @@
     "docs/handoff/20261006/session-a/run_media_callers291.py",
     "docs/handoff/20261006/session-a/MEDIA_CALLERS291_LAUNCH.json",
     "docs/handoff/20261006/session-a/export_media_source292.py",
-    "docs/handoff/20261006/session-a/MEDIA_SOURCE292.json"
+    "docs/handoff/20261006/session-a/MEDIA_SOURCE292.json",
+    "docs/handoff/20261006/session-a/audit_fire_watchdog_failure293.py",
+    "docs/handoff/20261006/session-a/FIRE_WATCHDOG_FAILURE293.json",
+    "docs/handoff/20261006/session-a/probe_fire_cache294.py",
+    "docs/handoff/20261006/session-a/FIRE_CACHE_CANDIDATE294.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

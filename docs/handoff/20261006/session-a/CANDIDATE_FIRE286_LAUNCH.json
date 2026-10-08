@@ -13,7 +13,7 @@
       "bytes": 3089296
     }
   ],
-  "stage": "new-apk-normal-fire-running",
+  "stage": "restored-verified",
   "previousOwnerPids": [
     20713,
     20790,
@@ -36,5 +36,7 @@
     "SessionAFireFlowInstrumentation",
     "--fresh-process-reopen",
     "--pause-fire"
-  ]
+  ],
+  "normalAndColdPassed": false,
+  "helperExit": 1
 }

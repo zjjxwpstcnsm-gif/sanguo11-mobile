@@ -1,0 +1,201 @@
+{
+  "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286",
+  "actualSessionSha256": "479480365322362a261f00fb1c778aa396eca407986367e9203ef5c5f7948bae",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug.apk": "5db38e0bd02de09d3f4e3a462315d0fd54cdfb9358b874c3e55ced580735df98",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug-androidTest.apk": "63a85ade1e70e22b28cad1361900302e303af330282211acc7f741b157f38298"
+  },
+  "passed": false,
+  "normalFailure": "FAIL SESSION A FIRE java.lang.AssertionError: java.lang.AssertionError: current native source fire target lifecycle 05-real-expired\n\tat game.sanguo.mobile.SessionBFieldworksInstrumentation.invoke(SessionBFieldworksInstrumentation.java:24)\n\tat game.sanguo.mobile.SessionBFieldworksInstrumentation.check(SessionBFieldworksInstrumentation.java:33)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.nativeTarget(SessionAFireFlowInstrumentation.java:62)\n\tat game.sanguo.mobile.SessionAFireFlowInstrumentation.onStart(SessionAFireFlowInstrumentation.java:84)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\nCaused by: java.lang.AssertionError: current native source fire target lifecycle 05-real-expired\n\tat game.sanguo.mobile.UiUxInstrumentation.check(UiUxInstrumentation.java:852)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\t... 5 more\n\n",
+  "coldInvoked": false,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualOwnersAndObserversExited": true,
+  "videoObservation": {
+    "hostPid": 43507,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 14,
+    "finalIndexSha256": "715012745c87a243893df8805bc029848a064c3dbf645c34188f0426ca007679",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "workerObservation": {
+    "hostPid": 43508,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "systemAnimationPreferenceRestored": true,
+  "failureLogWindow": "E Sanguo3D: Original map effects stopped\n10-08 11:12:50.104 28727 22513 E Sanguo3D: java.io.IOException: PC visual child EOF: PC_TCG_BUDGET requested=33554432 actual=33554432\n10-08 11:12:50.104 28727 22513 E Sanguo3D: PC_FIRE_SYNC serial=1 active=1 created=1 stopped=0 totalCreated=1 totalStopped=0\n10-08 11:12:50.104 28727 22513 E Sanguo3D: PC_CELL_ADMISSION active=1 highwater=1 limit=5000000\n10-08 11:12:50.104 28727 22513 E Sanguo3D: PC_FIRE_SYNC serial=810 active=2 created=1 stopped=0 totalCreated=2 totalStopped=0\n10-08 11:12:50.104 28727 22513 E Sanguo3D: PC_CELL_ADMISSION active=2 highwater=2 limit=5000000\n10-08 11:12:50.104 28727 22513 E Sanguo3D: Native5s watchdog deadline at32000100\n10-08 11:12:50.104 28727 22513 E Sanguo3D: INSTRUCTION_ACCOUNTING peak=278525 queries=1924023 mismatches=0\n10-08 11:12:50.104 28727 22513 E Sanguo3D: PC_CELL_BUDGET_PEAK bytes=793265 highwater=2 limit=5000000\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat game.sanguo.mobile.PcEffectProcess.read(Unknown Source:40)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat game.sanguo.mobile.PcEffectProcess.frame(SourceFile:12)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat game.sanguo.mobile.PcMapEffects.lambda$frame$1(Unknown Source:42)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat game.sanguo.mobile.PcMapEffects.$r8$lambda$wZBYaRQJfGLGoRdwK5RdobuYvFg(Unknown Source:0)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat game.sanguo.mobile.PcMapEffects$$ExternalSyntheticLambda0.run(Unknown Source:8)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)\n10-08 11:12:50.104 28727 22513 E Sanguo3D: \tat java.lang.Thread.run(Thread.java:919)\n10-08 11:12:50.228  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:50.239 28727 28727 W SceneTiming: main_looper_delay_ms=227\n10-08 11:12:50.456  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:50.508 28727 28727 W SceneTiming: main_looper_delay_ms=106\n10-08 11:12:50.677  1778  1821 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:50.872  1778  2044 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:50.955  1778  2044 I chatty  : uid=1000(system) Binder:1778_5 identical 1 line\n10-08 11:12:51.156  1778  2044 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:51.345  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:51.578  1778  1821 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:51.754  1778  1821 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:52.034  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:52.247  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:52.397 28727 28727 W SceneTiming: main_looper_delay_ms=133\n10-08 11:12:52.480  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:52.638  1778  2042 I chatty  : uid=1000(system) Binder:1778_3 identical 1 line\n10-08 11:12:52.911  1778  2042 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property\n10-08 11:12:52.990 28727 28741 I nguo.mobile.de: Background young concurrent copying GC freed ",
+  "logcatSha256": "a91d9408e438d85373a92bc19f007ed33b486176f6078d8ae86e5ab2a5cff2f0",
+  "evidenceFiles": [
+    {
+      "path": "evidence/01-player-fire-actual-text.json",
+      "sha256": "9438faf342d2429b56cf2e6a03731f4cf5608f0da27834e16bb9f126d82a4f9b",
+      "bytes": 10214
+    },
+    {
+      "path": "evidence/01-player-fire.png",
+      "sha256": "dd40848fa270e8291b2a6437bcb1e897ef6d7db7571bd93191b2fec335704490",
+      "bytes": 1555814
+    },
+    {
+      "path": "evidence/02-low-quality-fire-actual-text.json",
+      "sha256": "849a241c6645b9de8a7e3b4db11c257b16f63c505e12ca38411a3e96943a420d",
+      "bytes": 10219
+    },
+    {
+      "path": "evidence/02-low-quality-fire.png",
+      "sha256": "b8e9d8bda4d7b72eb5f9f4125c475c233cb41893811aff4cccc31e6d6eba3c6a",
+      "bytes": 1336735
+    },
+    {
+      "path": "evidence/03-player-extinguished-actual-text.json",
+      "sha256": "ef81f84807a9ac889707655e7a25d7fd66827972bbc7c2b45f3f6a56a868434e",
+      "bytes": 10222
+    },
+    {
+      "path": "evidence/03-player-extinguished.png",
+      "sha256": "4f656491598999ea1952368763016a679ca398519b4d950f2610f9b0c3fe0963",
+      "bytes": 1348995
+    },
+    {
+      "path": "evidence/04-real-reignite-actual-text.json",
+      "sha256": "e18e13ed781d10861d7ea1c308e575d8b3e749b307844f557271dab85846332c",
+      "bytes": 10770
+    },
+    {
+      "path": "evidence/04-real-reignite.png",
+      "sha256": "49c88bae0e48450b7d3c2c7c0e9671fc5bcd6a151cad06026c4eb32e52f166b9",
+      "bytes": 1278376
+    },
+    {
+      "path": "evidence/burning-save.sg11",
+      "sha256": "07dc392e9d219ca60a97f102114067014ee5bb8b5daa4701400b505d453ea5d4",
+      "bytes": 2306818
+    },
+    {
+      "path": "evidence/diagnosis.txt",
+      "sha256": "9d4bcee768e2d817116f7c14682178ca1bea70e3310a7760e9f104df4227e364",
+      "bytes": 37029
+    },
+    {
+      "path": "evidence/failed-actual-text.json",
+      "sha256": "857fcf71410bff734a0d26aef37597a38190aa598b104f23708788fe8979ae23",
+      "bytes": 10176
+    },
+    {
+      "path": "evidence/failed.png",
+      "sha256": "5ec7c056c25d2aa8cec37f178489438f5159f69b21e4429685d6d4fe7bebbc2d",
+      "bytes": 1412091
+    },
+    {
+      "path": "evidence/pause-home-restored-fire-actual-text.json",
+      "sha256": "5236682dde072e91ace5e3707266c574bffd6013644918086c4856e24c979530",
+      "bytes": 10224
+    },
+    {
+      "path": "evidence/pause-home-restored-fire.png",
+      "sha256": "272a101c07baf09c9c8214e227e89d55394c06d65b4ef618e3add32ba1b4b0e2",
+      "bytes": 1556973
+    },
+    {
+      "path": "evidence/pause-reduced-motion-real-fire-actual-text.json",
+      "sha256": "183a4efb4a1e1dc10aced0d346eb26a28a5de31727caa42b6769390d8fc6f693",
+      "bytes": 10230
+    },
+    {
+      "path": "evidence/pause-reduced-motion-real-fire.png",
+      "sha256": "70cce03d35eae33e0b687494c2c37d5d40501fe3f77c37fb0e0147e06c320ee7",
+      "bytes": 1557382
+    },
+    {
+      "path": "evidence/pause-resumed-original-fire-actual-text.json",
+      "sha256": "7199edd009eedd3fb75ddee01451240e6b3798b06f2d4083f3a872dae4b8af3f",
+      "bytes": 10227
+    },
+    {
+      "path": "evidence/pause-resumed-original-fire.png",
+      "sha256": "911e2c66ec74d9799387b884322753337a9241730f4f8b24bfc5a3264749a6b0",
+      "bytes": 1555722
+    },
+    {
+      "path": "evidence/progress.txt",
+      "sha256": "bcb537ed82187eea2dea377dcb3372937b625a7aad4bd64499f912c66754b6bb",
+      "bytes": 15316
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "adc7bc0498e5f1042f003218021593114f660750dd1ee11b3399e3f41fff5ccf",
+      "bytes": 882
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-0-foreground120s-actual-text.json",
+      "sha256": "efe6d664760c38b71e78f66526c0488b32cb21e352c26d6d3db66296b7936163",
+      "bytes": 10751
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-0-foreground120s.png",
+      "sha256": "29efee665203d97cec2fc709f4d9855478bc7deecf68dec2aeb66c2bcbcb9128",
+      "bytes": 1297038
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-1-foreground120s-actual-text.json",
+      "sha256": "919985f554c6b098fbb67b4024579a6b6f3ff7b8b4e89d8f7e62498db08c39ca",
+      "bytes": 10169
+    },
+    {
+      "path": "evidence/turn-real-fire-expiry-1-foreground120s.png",
+      "sha256": "3b23c3dee236ffe064ffcaaedc8eeba76b9d1866904b4417a7d17b1027716524",
+      "bytes": 1427613
+    },
+    {
+      "path": "evidence/turn-reset-before-reignite-foreground120s-actual-text.json",
+      "sha256": "522785c7a92953a7486187bfc92e55ee201838c16b0dd5e2813a0d7425df94a5",
+      "bytes": 10753
+    },
+    {
+      "path": "evidence/turn-reset-before-reignite-foreground120s.png",
+      "sha256": "e38c8673f4e1b60811c3c9d8325ad05bad9678e1e0605fe1ecd61c802a19e684",
+      "bytes": 1304585
+    }
+  ],
+  "runtimeDiagnosticCheckpointCount": 8,
+  "largestObservedRuntimeCheckpoint": {
+    "javaHeapUsedBytes": 154758688,
+    "javaHeapLimitBytes": 536870912,
+    "nativeHeapAllocatedBytes": 159356312
+  },
+  "checkpointScope": "Sparse actual MapHost diagnostic Runtime readings; not continuous Java peak or memory.csv.",
+  "independentProcessPssSampleCount": 662,
+  "independentProcessPssPeak": {
+    "pid": "28727",
+    "pssKiB": 470870,
+    "hostUnix": 1791428309.157193
+  },
+  "meminfoTimelineSha256": "aee91c2e8adfd3f99474ff817950eef93152b1ec1266ef808583dc86dd779449",
+  "javaHeapOOMObservedInTargetLog": false,
+  "nativeFailure": "Native5s wall watchdog at adapter32000100; instruction peak278525 below5M, metadata mismatches0; Java EOF follows",
+  "rootCauseProven": false,
+  "backgroundPauseCauseProven": false,
+  "hostConcurrentBuildRecorded": true,
+  "regression287AndMedia291InstalledAnyCase": false,
+  "subsequent290And280AlsoUnaudited": "Both include same fire native candidate; no score transfer or bypass of failed fire gate.",
+  "scope": "Actual269 one-cell fire/Home/reduced-motion/quality/extinguish/reignite and two rule whole-turn expiry passed partially, source controller failed before expiry rendering/readback/cold. All user regular-file SHA restored. Native deadline failure is separate from original354832 Java OOM; actual host/guest scheduling/cache/lifecycle cause unresolved.",
+  "memoryBudgetClosed": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false
+}

@@ -1,9 +1,11 @@
 {
-  "stage": "waiting-new290-build-and-actual287-full-regressions-terminal",
+  "stage": "stopped-retain-actual-evidence",
   "completedSources": [],
   "cases": {},
   "all16NormalCallersAccepted": false,
   "normalMiss58ProducerBound": false,
   "wholeGoalComplete": false,
-  "armAccepted": false
+  "armAccepted": false,
+  "error": "Actual287 failed; no media installation",
+  "cleanupNotInferred": true
 }
