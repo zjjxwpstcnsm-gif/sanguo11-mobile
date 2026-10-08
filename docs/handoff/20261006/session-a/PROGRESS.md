@@ -672,3 +672,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 372已取回完整Android2238 PCM15618048B/c90b72f，与正常播放器accepted/decoded整SHA同，OMX.google.vorbis.decoder8533ms、fixture11检查过。原9/3797逐SHA全恢复；这是独立codec诊断，不是正常游戏。371与原FFmpeg437125完整3904512stereo frame同位置相关0.9999999604851597，原unchanged whole checker也PASS0.9999999622861437，17固定窗offset全0。全部89一秒窗保留，近静音窗低相关0.8696不隐藏；不声明字节同或Windows精确PCM。此证据排除该曲明显codec时间轴断裂，不替代音频输出：366原whole0.583仍FAIL。
 
 373原366固定17窗口10至40秒offset414244、50至85秒416716，45秒边缘不可靠，2472sample约56ms跳变。playerUnderrun0、writerBytes相同/highwater3，不认定capture或mixer唯一root。374仅增加显式--mixer-observation off，默认periodic不变；本轮关闭每5秒AudioFlinger查询以隔离音频服务锁/测量扰动，保留边界input-route、全PCM/UI/SaveRNG/权限/每原文件SHA/0.995。375新fresh backup/test-only安装同3631105/原game2f5/正常menu；366已恢复，不重启旧case，测量条件确切不同。376只在新终态审计。368一秒player reserve仍候选，369暂缓构建，先根据证据确定方向。首次追加本段的shell stdin编码拒绝，未写入；改文件工具补齐，不影响原capture或receipt。
+
+375/376实际终态：关闭周期AudioFlinger观察后normal菜单62检查/fullSaveRNGToken纯仍过，whole原0.995仍FAIL0.3935926098147148；playerUnderrun0，capture7927808frame/180秒、writerBytes31711232与read同、queue highwater2/64，maxread172ms。原9内部2rewrite/3797外部0rewrite全部SHA、test0/0/旧test6e0504/权限false/AppOpdefault全恢复，worker70842exit0/各owner已终止。故关闭该观察器不能单独解决，既不认定唯一原因也不弱化门槛；原Android源PCM371全曲高相关证据独立保留。
+
+在375全恢复与真实owner退出之后才实际启动369完整parent363/11420独立source/build/out/GH、368一秒PCM reserve新游戏+测试APK构建。仍保持原5637assets/168固定/6JNI/签名/39fixture守卫，不改变任何core/API/runtime/Bridge/Unity/B工作。真实构建工具句柄56076，应续读当前进程，不因等待超时重启；新APK未产生/未安装/未验收，不能接任何旧menu/16来源/ordinary384/火成绩。当前A无设备验收在跑，ARM仍无连接，最终B串行组合仍待。
