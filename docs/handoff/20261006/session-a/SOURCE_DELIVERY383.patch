@@ -1,0 +1,352 @@
+--- a/app/src/main/assets/audio/pc/tactic-sound-manifest.json
++++ b/app/src/main/assets/audio/pc/tactic-sound-manifest.json
+@@ -134,6 +134,52 @@
+       "wavSha256": "d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638",
+       "pcmSha256": "6fb5de12076513257e439e94150e5b069a30b48d051a1efec8abbcae83a6f291",
+       "conversion": "libswresample s16 mono22050->44100; complete flush, exact doubled timeline, no gain/trim/pad"
++    },
++    {
++      "nativeSoundId": 58,
++      "original": {
++        "bank": 4,
++        "slot": 24,
++        "headerResource": 2284,
++        "waveResource": 2283,
++        "soundIds": [
++          58
++        ],
++        "eventRole": "UNVERIFIED",
++        "status": "ORIGINAL_PCM_BYTES_AND_NATIVE_FORMAT_VERIFIED_PLAYBACK_PENDING",
++        "descriptorOffset": 1300,
++        "descriptorHex": "0000320122560048020001000000000011830000181c190022060100000000000000000000100000",
++        "descriptorSha256": "ce9082c8245a1fb23b58d76d7d1c1f04432825c3ad8a27729227b3cde374e068",
++        "rawSampleOffset": 1645592,
++        "rawSampleBytes": 67106,
++        "pcmS16leSha256": "bb85d00491a2bc6f6eabc1abf22b5a7eeff82fba87293b3d45db51b4e5557ec6",
++        "sampleRate": 22050,
++        "channels": 1,
++        "samples": 33553,
++        "durationSeconds": 1.5216780045351475,
++        "asset": "wav/bank-04-slot-024.wav",
++        "wavSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81",
++        "peakS16": 32106,
++        "rmsDbfs": -15.18809220916074,
++        "sampleFlagsRaw": 0,
++        "loopFlagRaw": 0,
++        "loopStartRaw": 0,
++        "loopStartSample": null,
++        "loopEndSample": null,
++        "loopStatus": "ORIGINAL_LOOP_FIELDS_RETAINED_COMPLETE_PLAY_POLICY_PENDING",
++        "gainPitchRawHex": "000000000000000000100000",
++        "nativeFormatHex": "010001002256000044ac0000020010000000"
++      },
++      "originalAsset": "audio/pc/tactic-58.wav",
++      "asset": "audio/pc/tactic-58.wav",
++      "sampleRate": 22050,
++      "channels": 1,
++      "samples": 33553,
++      "wavBytes": 67150,
++      "wavSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81",
++      "pcmSha256": "bb85d00491a2bc6f6eabc1abf22b5a7eeff82fba87293b3d45db51b4e5557ec6",
++      "conversion": "Original native-rate PCM preserved; no resample/gain/trim/pad",
++      "normalProducerBound": false
+     }
+   ],
+   "nativeBinding": "Original order4 action0/1/2 -> renderer6/7/8, applied record0 critical -> callback564cb0 sound49/78",
+--- a/app/src/main/java/game/sanguo/mobile/FilamentMapView.java
++++ b/app/src/main/java/game/sanguo/mobile/FilamentMapView.java
+@@ -141,6 +141,7 @@
+     private final Map<SceneMesh,GpuMesh> vegetation=new HashMap<>();
+     private int visibleWood,unitLod=1;private long animationTick;private boolean effectsPaused;private long pausedEffectTick;
+     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
++    private final SceneIndexLeasePool<IndexBuffer> pcGroundIndices=new SceneIndexLeasePool<>(16);
+     private final Map<SceneMesh,GpuMesh> gridMeshes=new HashMap<>();
+     private long gridUploads;
+     private final Map<String,Proxy> objects=new HashMap<>();
+@@ -753,6 +754,7 @@
+         +" gridGpuChunks="+gridMeshes.size()+" gridUploads="+gridUploads+" gridMode=depth-tested-batches"
+         +" overlayDraws="+overlay.draws+overlayAdmissionReport()+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
+         +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs="+(MESH_UPLOAD_BUDGET_NANOS/1e6)
++        +" pcGroundIndexResources="+pcGroundIndices.liveResources()+" pcGroundIndexLeases="+pcGroundIndices.liveLeases()+" pcGroundIndexCreated="+pcGroundIndices.created()+" pcGroundIndexReused="+pcGroundIndices.reused()+" pcGroundIndexDestroyed="+pcGroundIndices.destroyed()
+         +" workerDeliveries="+meshWork.delivered()+" workerBackpressureWallMs="+meshWork.backpressureNanos()/1e6
+         +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" gpuPreparationFrames="+gpuPreparationFrames+" lifetimeSubmissions="+renderedFrames+" surfaceCopies="+outputCopies
+         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
+@@ -763,7 +765,9 @@
+         long pcBytes=0;for(long size:pcTextureSizes.values())pcBytes+=size;
+         Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(gridMeshes.values());if(backdrop!=null)resident.add(backdrop);resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
+         for(GpuMesh parent:new ArrayList<>(resident))if(parent.waterChild!=null)resident.add(parent.waterChild);
+-        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+MeshIndexBuffer.bytes(m.source.vertices.length/7,m.source.indices.length)+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;
++        Set<IndexBuffer> countedIndices=Collections.newSetFromMap(new IdentityHashMap<>());
++        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);
++            if(m.ib!=null&&countedIndices.add(m.ib))bufferBytes+=MeshIndexBuffer.bytes(m.source.vertices.length/7,m.source.indices.length);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;
+             // Original outline reuses land buffers but submits another primitive.
+             // Count its triangles without double-counting shared geometry bytes.
+             if(m.source.pcGround&&m.source.landIndexCount>0&&pcGroundOutlineMaterial!=null){primitives++;triangles+=m.source.landIndexCount/3;}
+@@ -1390,6 +1394,7 @@
+         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
+         for(Proxy p:objects.values())p.destroy();objects.clear();for(GpuMesh m:terrain.values())m.destroy();terrain.clear();for(GpuMesh m:gridMeshes.values())m.destroy();gridMeshes.clear();for(GpuMesh m:vegetation.values())m.destroy();vegetation.clear();for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
+         if(backdrop!=null){backdrop.destroy();backdrop=null;}
++        pcGroundIndices.close();
+         clearEffects();for(int entity:effectEntities)if(entity!=0){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}
+         for(GpuMesh mesh:effectMeshes)if(mesh!=null)mesh.destroy();criticalHit=null;criticalPortrait=null;criticalSkip=null;
+         if(skyLight!=null){scene.setIndirectLight(null);engine.destroyIndirectLight(skyLight);skyLight=null;}
+@@ -1421,9 +1426,17 @@
+         siteAtlas=null;fieldAtlas=null;unitAtlas=null;sceneryAtlas=null;textureBytes=0;cameraEntity=light=0;
+         Arrays.fill(effectMeshes,null);Arrays.fill(effectEntities,0);
+     }
++    private IndexBuffer createIndexBuffer(SceneMesh mesh){
++        Buffer data=MeshIndexBuffer.encode(mesh.vertices.length/7,mesh.indices);
++        IndexBuffer result=new IndexBuffer.Builder().indexCount(mesh.indices.length)
++            .bufferType(MeshIndexBuffer.compact(mesh.vertices.length/7)?IndexBuffer.Builder.IndexType.USHORT:IndexBuffer.Builder.IndexType.UINT).build(engine);
++        try{result.setBuffer(engine,data);return result;}
++        catch(RuntimeException|LinkageError|OutOfMemoryError error){engine.destroyIndexBuffer(result);throw error;}
++    }
+     private final class GpuMesh {
+         VertexBuffer vb;IndexBuffer ib;int entity;int references;final SceneMesh source;boolean shown,overview;
+         GpuMesh waterChild;MaterialInstance waterInstance;String waterKey;
++        SceneIndexLeasePool.Lease<IndexBuffer> indexLease;
+         GpuMesh(SceneMesh m){source=m;try{
+             VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.tangents!=null?3:m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
+             if(m.surfaceData!=null){
+@@ -1438,8 +1451,10 @@
+             // Published mesh streams stay immutable. Filament1.56 holds array/global refs
+             // until its upload callback; avoid a second Java direct-byte payload.
+             vb.setBufferAt(engine,0,FloatBuffer.wrap(m.vertices));
+-            Buffer indexData=MeshIndexBuffer.encode(m.vertices.length/7,m.indices);
+-            ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(MeshIndexBuffer.compact(m.vertices.length/7)?IndexBuffer.Builder.IndexType.USHORT:IndexBuffer.Builder.IndexType.UINT).build(engine);ib.setBuffer(engine,indexData);
++            if(m.pcGround){
++                indexLease=pcGroundIndices.acquire(m.vertices.length/7,m.indices,()->createIndexBuffer(m),engine::destroyIndexBuffer);
++                ib=indexLease.resource();
++            }else ib=createIndexBuffer(m);
+             entity=EntityManager.get().create();
+             if(m.pcWater){
+                 if(pcWaterMaterial==null)throw new IllegalStateException("PC original water material not ready");
+@@ -1498,7 +1513,7 @@
+             }
+             new RenderableManager.Builder(1).instances(count).boundingBox(bounds(count)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(!source.vegetation||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
+         void show(boolean value){if(waterChild!=null)waterChild.show(value);if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
+-        void destroy(){if(waterChild!=null){waterChild.destroy();waterChild=null;}if(entity!=0){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);entity=0;}if(waterInstance!=null){engine.destroyMaterialInstance(waterInstance);waterInstance=null;}if(vb!=null){engine.destroyVertexBuffer(vb);vb=null;}if(ib!=null){engine.destroyIndexBuffer(ib);ib=null;}}
++        void destroy(){if(waterChild!=null){waterChild.destroy();waterChild=null;}if(entity!=0){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);entity=0;}if(waterInstance!=null){engine.destroyMaterialInstance(waterInstance);waterInstance=null;}if(vb!=null){engine.destroyVertexBuffer(vb);vb=null;}if(ib!=null){if(indexLease!=null){indexLease.release();indexLease=null;}else engine.destroyIndexBuffer(ib);ib=null;}}
+     }
+     private final class Proxy {
+         final SceneLabelVisibility labelVisibility=new SceneLabelVisibility();
+@@ -1954,7 +1969,13 @@
+                 p.setColor(selected?0xffffd576:item.textColor);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
+             }
+             drawSourceFireState(c,occupied);p.setTextSize(font);
+-            p.setColor(0xfff0e5c8);c.drawText((snapshot.ground.pcMap!=null?"原版美术恢复中 · 部分演出暂缺 | ":"")+((pending>0)?"3D 地形装载中… · 请稍候":(draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转")),12,24*getResources().getDisplayMetrics().density,p);
++            String hint=pending>0?"地图载入中… · 请稍候":draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转";
++            float hintY=24*getResources().getDisplayMetrics().density;
++            float hintRight=Math.max(12,Math.min(getWidth()-8,12+p.measureText(hint)+pad));
++            // The map can be bright terrain/cloud pixels. An opaque HUD strip
++            // gives the instruction stable contrast without changing the map.
++            p.setColor(0xff0e1b24);c.drawRoundRect(8,hintY-font-pad,hintRight,hintY+pad,pad,pad,p);
++            p.setColor(UiTheme.TEXT);c.save();c.clipRect(12,hintY-font-pad,hintRight,hintY+pad);c.drawText(hint,12,hintY,p);c.restore();
+             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
+             drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();
+         }
+--- a/app/src/main/java/game/sanguo/mobile/OfficerPortrait.java
++++ b/app/src/main/java/game/sanguo/mobile/OfficerPortrait.java
+@@ -72,18 +72,24 @@
+     private void oval(Canvas c,float l,float t,float r,float b,int color){fill(color);c.drawOval(l,t,r,b,paint);}
+     private void poly(Canvas c,int color,float... xy){path.reset();path.moveTo(xy[0],xy[1]);for(int i=2;i<xy.length;i+=2)path.lineTo(xy[i],xy[i+1]);path.close();fill(color);c.drawPath(path,paint);}
+     @Override public void draw(Canvas c){
+-        area.set(getBounds());c.save();path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);
++        area.set(getBounds());
+         World view=sourceView.get();boolean waiting=sourceEnabled&&view!=null&&PortraitMediaSources.pending(view,this);
+         if(sourceEnabled&&view!=null)sourceIdentity=PortraitMediaSources.source(view,officer.id);
+         boolean rejected=sourceEnabled&&view!=null&&!PortraitMediaSources.error(view).isEmpty();
+         Bitmap atlas=index>=0?atlases[index/16]:null;
+         Bitmap pixel=original==null?null:original.get(sourceIdentity,sourceYear,0,this);
++        boolean sourceImage=customImage==null&&pixel!=null;
++        c.save();
++        if(sourceImage)c.clipRect(area);
++        else{path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);}
+         if(customImage!=null){fill(Color.WHITE);c.drawBitmap(customImage,null,area,paint);}
+         else if(pixel!=null){fill(Color.WHITE);c.drawBitmap(pixel,null,area,paint);}
+         else if(sourceIdentity!=null||waiting||rejected){fill(0xff213c40);c.drawRect(area,paint);}
+         else if(atlas!=null){int col=index%4,row=(index%16)/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
+         else {c.translate(area.left,area.top);c.scale(area.width()/100,area.height()/100);fallback(c);}
+-        c.restore();fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);
++        c.restore();
++        if(sourceImage)return; // Verified source pixels have no invented corner mask or overlaid frame.
++        fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);
+     }
+     private void fallback(Canvas c){
+         int[] robes={0xff435e59,0xff6c4645,0xff665c4c,0xff4a536c,0xff666b51,0xff795d41};
+--- a/app/src/main/java/game/sanguo/mobile/PcMapEffects.java
++++ b/app/src/main/java/game/sanguo/mobile/PcMapEffects.java
+@@ -33,6 +33,22 @@
+     private VertexBuffer vertices;
+     private IndexBuffer indices;
+     private int capacity,shown,serial;
++    private static final int MAX_QUADS=32768;
++    private static final class UploadSlot { FloatBuffer buffer; boolean busy; }
++    private final UploadSlot[] uploadSlots={new UploadSlot(),new UploadSlot(),new UploadSlot()};
++    private final android.os.Handler uploadHandler=new android.os.Handler(android.os.Looper.getMainLooper());
++    private float[] vertexOutput=new float[0];
++    private UploadSlot availableUpload(int floats) {
++        for(UploadSlot slot:uploadSlots)if(!slot.busy) {
++            if(slot.buffer==null||slot.buffer.capacity()<floats) {
++                int size=slot.buffer==null?16*36:slot.buffer.capacity();
++                while(size<floats)size*=2;
++                slot.buffer=ByteBuffer.allocateDirect(size*4).order(ByteOrder.nativeOrder()).asFloatBuffer();
++            }
++            return slot;
++        }
++        return null;
++    }
+     private long frames,textureBytes;
+     private float sourceElapsed,updateMillis,drawMillis,geometryMillis;
+     private static final class Delivery {
+@@ -99,12 +115,18 @@
+                     loadTexture(image);uploads++;
+                 }
+             }
++            if(frame.count<0||frame.count>MAX_QUADS)throw new IllegalArgumentException("Original map packet count out of bounds");
++            int floats=frame.count*36;
++            UploadSlot slot=frame.count==0?null:availableUpload(floats);
++            if(frame.count>0&&slot==null)return;
+             ensureCapacity(frame.count);
+             if(frame.count>0) {
+-                float[] output=new float[frame.count*4*9];
+-                for(int i=0;i<frame.count;i++)for(int v=0;v<4;v++)PcEffectCoordinates.vertex(data,i*184,v,originX,originZ,output,(i*4+v)*9);
+-                FloatBuffer buffer=ByteBuffer.allocateDirect(output.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();buffer.put(output).flip();
+-                vertices.setBufferAt(engine,0,buffer);
++                if(vertexOutput.length<floats)vertexOutput=new float[slot.buffer.capacity()];
++                for(int i=0;i<frame.count;i++)for(int v=0;v<4;v++)PcEffectCoordinates.vertex(data,i*184,v,originX,originZ,vertexOutput,(i*4+v)*9);
++                FloatBuffer buffer=slot.buffer;buffer.clear();buffer.put(vertexOutput,0,floats).flip();
++                slot.busy=true;
++                try { vertices.setBufferAt(engine,0,buffer,0,0,uploadHandler,()->{slot.busy=false;if(closed)slot.buffer=null;}); }
++                catch(RuntimeException failure){slot.busy=false;throw failure;}
+             }
+             RenderableManager manager=engine.getRenderableManager();
+             for(int i=0;i<frame.count;i++) {
+@@ -176,6 +198,7 @@
+     @Override public void close() {
+         synchronized(this){if(closed)return;closed=true;ready=null;pending=null;acceptedFires=null;}
+         PcEffectProcess worker=process;if(worker!=null)worker.close();background.shutdownNow();
++        vertexOutput=new float[0];for(UploadSlot slot:uploadSlots)if(!slot.busy)slot.buffer=null;
+         hide();for(int entity:entities){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}entities.clear();
+         if(vertices!=null)engine.destroyVertexBuffer(vertices);if(indices!=null)engine.destroyIndexBuffer(indices);vertices=null;indices=null;
+         for(MaterialInstance[] blend:instances)for(MaterialInstance instance:blend)if(instance!=null)engine.destroyMaterialInstance(instance);
+--- a/app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java
++++ b/app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java
+@@ -113,7 +113,10 @@
+             int minimum=AudioTrack.getMinBufferSize(track.sampleRate,AudioFormat.CHANNEL_OUT_STEREO,AudioFormat.ENCODING_PCM_16BIT);if(minimum<=0)throw new IOException("Unsupported original audio format");
+             audio=new AudioTrack.Builder().setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build())
+                 .setAudioFormat(new AudioFormat.Builder().setEncoding(AudioFormat.ENCODING_PCM_16BIT).setSampleRate(track.sampleRate).setChannelMask(AudioFormat.CHANNEL_OUT_STEREO).build())
+-                .setTransferMode(AudioTrack.MODE_STREAM).setBufferSizeInBytes(Math.max(minimum,65536)).build();
++                // Original stereo PCM stays exact. Keep one source-second of bounded
++                // reserve for measured scheduling stalls, rather than only371ms at44.1kHz.
++                .setTransferMode(AudioTrack.MODE_STREAM).setBufferSizeInBytes(Math.max(minimum,
++                    Math.multiplyExact(track.sampleRate,Math.multiplyExact(track.channels,2)))).build();
+             if(audio.getState()!=AudioTrack.STATE_INITIALIZED)throw new IOException("AudioTrack not initialized");job.audio=audio;
+             job.bufferFrames=audio.getBufferSizeInFrames();
+             AudioTrack output=audio;PcVorbisDecoder.Result decoded=PcVorbisDecoder.decode(context,track,pcm,job.cancel,(bytes,length)->write(job,output,bytes,length));
+--- a/app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java
++++ b/app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java
+@@ -12,10 +12,10 @@
+ import java.security.MessageDigest;
+ import java.util.ArrayList;
+ 
+-/** Six worker-prepared original49/78 PCM tracks; immutable sources, no rules or RNG. */
++/** Nine worker-prepared original49/78/58 PCM tracks; immutable sources, no rules or RNG. */
+ final class PcTacticPcmPlayer implements AutoCloseable {
+-    private static final int[] IDS={49,78},FRAMES={45350,45644};
+-    private static final String[] HASHES={"1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705","d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638"};
++    private static final int[] IDS={49,78,58},FRAMES={45350,45644,33553},RATES={44100,44100,22050};
++    private static final String[] HASHES={"1d13dcc14f9f40c74062c6715d9bf245a299573882769ebc2c128e854a86a705","d62f28032fce9e132a9930565770d4e5a7a2a607623354c8c568a45cb616c638","e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81"};
+     private static final class Slot {
+         final int sound,frames;final AudioTrack track;boolean active;
+         Slot(int sound,int frames,AudioTrack track){this.sound=sound;this.frames=frames;this.track=track;}
+@@ -35,12 +35,12 @@
+                     }
+                     StringBuilder digest=new StringBuilder();for(byte value:MessageDigest.getInstance("SHA-256").digest(wave))digest.append(String.format(java.util.Locale.ROOT,"%02x",value&255));
+                     ByteBuffer header=ByteBuffer.wrap(wave).order(ByteOrder.LITTLE_ENDIAN);
+-                    if(!HASHES[source].contentEquals(digest)||wave.length!=44+FRAMES[source]*2||header.getInt(20)!=0x10001||header.getInt(24)!=44100||header.getInt(40)!=FRAMES[source]*2)
++                    if(!HASHES[source].contentEquals(digest)||wave.length!=44+FRAMES[source]*2||header.getInt(20)!=0x10001||header.getInt(24)!=RATES[source]||header.getInt(40)!=FRAMES[source]*2)
+                         throw new java.io.IOException("Original tactic WAV/hash differs");
+                     for(int i=0;i<3;i++){
+                         if(closed)return;
+                         AudioTrack track=new AudioTrack.Builder().setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+-                            .setAudioFormat(new AudioFormat.Builder().setSampleRate(44100).setChannelMask(AudioFormat.CHANNEL_OUT_MONO).setEncoding(AudioFormat.ENCODING_PCM_16BIT).build())
++                            .setAudioFormat(new AudioFormat.Builder().setSampleRate(RATES[source]).setChannelMask(AudioFormat.CHANNEL_OUT_MONO).setEncoding(AudioFormat.ENCODING_PCM_16BIT).build())
+                             .setTransferMode(AudioTrack.MODE_STATIC).setBufferSizeInBytes(FRAMES[source]*2).build();
+                         prepared.add(new Slot(IDS[source],FRAMES[source],track));
+                         if(track.getState()!=AudioTrack.STATE_NO_STATIC_DATA||track.write(wave,44,FRAMES[source]*2,AudioTrack.WRITE_BLOCKING)!=FRAMES[source]*2)throw new java.io.IOException("Original tactic PCM preparation failed");
+@@ -52,10 +52,10 @@
+         },"pc-tactic-pcm").start();
+     }
+     private static void ui(){if(Looper.myLooper()!=Looper.getMainLooper())throw new IllegalStateException("Serial source effect owner required");}
+-    boolean ready(){ui();return !closed&&slots.size()==6;}
++    boolean ready(){ui();return !closed&&slots.size()==IDS.length*3;}
+     String error(){return error;}
+     boolean active(){ui();for(Slot slot:slots)if(slot.active&&Integer.toUnsignedLong(slot.track.getPlaybackHeadPosition())<slot.frames)return true;return false;}
+-    int play(int sound,float gain){ui();if(sound!=49&&sound!=78)throw new IllegalArgumentException("Unverified native tactic sound");if(!ready())return 0;
++    int play(int sound,float gain){ui();if(sound!=49&&sound!=78&&sound!=58)throw new IllegalArgumentException("Unverified native tactic sound");if(!ready())return 0;
+         Slot selected=null;for(Slot slot:slots)if(slot.sound==sound&&(!slot.active||Integer.toUnsignedLong(slot.track.getPlaybackHeadPosition())>=slot.frames)){selected=slot;break;}
+         if(selected==null){int nth=cursor++%3;for(Slot slot:slots)if(slot.sound==sound&&nth--==0){selected=slot;break;}}
+         selected.track.stop();selected.track.setPlaybackHeadPosition(0);selected.track.setVolume(gain);selected.track.play();selected.active=true;return ++serial;
+--- a/app/src/main/java/game/sanguo/mobile/SceneMesh.java
++++ b/app/src/main/java/game/sanguo/mobile/SceneMesh.java
+@@ -9,8 +9,19 @@
+     // Source quarter-cell topology repeats across every full16x16 chunk.
+     // Share only byte-identical immutable index arrays, bounded to16 patterns.
+     private static final List<int[]> PC_INDEX_PATTERNS=new ArrayList<>();
+-    private static synchronized int[] pcIndices(int[] indices){
+-        for(int[] pattern:PC_INDEX_PATTERNS)if(Arrays.equals(pattern,indices))return pattern;
++    private static synchronized int[] pcIndices(int[] land,int landCount,int[] water,int waterCount){
++        // Compare bounded task scratch before allocating a repeated immutable
++        // topology. Never publish scratch; a miss owns an exact used-range copy.
++        int count=landCount+waterCount;
++        for(int[] pattern:PC_INDEX_PATTERNS){
++            if(pattern.length!=count)continue;
++            int n=0;while(n<landCount&&pattern[n]==land[n])n++;
++            if(n!=landCount)continue;
++            int w=0;while(w<waterCount&&pattern[landCount+w]==water[w])w++;
++            if(w==waterCount)return pattern;
++        }
++        int[] indices=Arrays.copyOf(land,count);
++        if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
+         if(PC_INDEX_PATTERNS.size()<16)PC_INDEX_PATTERNS.add(indices);
+         return indices;
+     }
+@@ -164,9 +175,13 @@
+             triangle(false,n,n+1,n+2);triangle(false,n,n+2,n+3);
+         }
+         SceneMesh mesh(float x,float z,float radius){
+-            int[] indices=Arrays.copyOf(land,landCount+waterCount);
+-            if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
+-            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),pcSlots==null?indices:pcIndices(indices),x,z,radius);
++            int[] indices;
++            if(pcSlots!=null)indices=pcIndices(land,landCount,water,waterCount);
++            else{
++                indices=Arrays.copyOf(land,landCount+waterCount);
++                if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
++            }
++            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),indices,x,z,radius);
+             mesh.landIndexCount=landCount;return mesh;
+         }
+     }
+@@ -273,7 +288,8 @@
+             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
+                 Hex h=new Hex(qq,rr);int value=g.valid(h)?g.terrain[rr*g.width+qq]+(g.bases.contains(h)?64:0):-1;
+                 fingerprint=(fingerprint^value)*1099511628211L;
+-                fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
++                Float override=g.surface.overrides.get(h);
++                fingerprint=(fingerprint^Float.floatToIntBits(override==null?-1f:override))*1099511628211L;
+             }
+             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
+             long geometryStarted=stats==null?0:System.nanoTime();
+--- a/app/src/main/java/game/sanguo/mobile/SoundEffects.java
++++ b/app/src/main/java/game/sanguo/mobile/SoundEffects.java
+@@ -95,7 +95,7 @@
+     }
+     /** Once per committed named tactic phase; no synthesized tactic/critical overlay. */
+     void originalTacticEvent(String identity,int sound){
+-        if(sound!=49&&sound!=78)throw new IllegalArgumentException("Unverified source tactic ID");
++        if(sound!=49&&sound!=78&&sound!=58)throw new IllegalArgumentException("Unverified source tactic ID");
+         if(identity==null||!heard.add(identity))return;while(heard.size()>4096)heard.remove(heard.iterator().next());
+         if(effectsPaused||foreground.isEmpty()||muted()||volume()==0||pcTactics==null||!pcTactics.ready()||!focus())return;
+         int stream=pcTactics.play(sound,effectGain());if(stream!=0){played++;Log.i("GameAudio","ORIGINAL_TACTIC id="+identity+" soundId="+sound+" stream="+stream+" gain="+effectGain());}

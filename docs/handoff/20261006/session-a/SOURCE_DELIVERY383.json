@@ -1,0 +1,170 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "canonicalGitHead": "100c80d3a1b297725027fa7b115c79837b63b775",
+  "built369Apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+      "sha256": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+      "bytes": 313550179
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk",
+      "sha256": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24",
+      "bytes": 3099092
+    }
+  ],
+  "builtFullInputManifestSha256": "6c8a2eec5eb8a746f5fcdee2677cd253567d0056934ac74be53e3d7d87e095f8",
+  "nineExactOwnedAppDeliveryDeltas": [
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-58.wav",
+      "owner": "A-assets",
+      "beforeSha256": null,
+      "afterSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81",
+      "bytes": 67150,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/assets/audio/pc/tactic-58.wav"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-sound-manifest.json",
+      "owner": "A-assets",
+      "beforeSha256": "85e8262f51e296dc8e21a361e20da8e02afa9993f13259471e393f5cbbd3d23e",
+      "afterSha256": "657455b3e24ad865ec93b491f4adf21a482887a2a424d7f112eb8bf5abff6e5f",
+      "bytes": 7362,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/assets/audio/pc/tactic-sound-manifest.json"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "owner": "A",
+      "beforeSha256": "6c01e6f0dabd0ad6ae73e6bd58401976b3fb8d3fd49f75dfbe4657cd8cf69c09",
+      "afterSha256": "bbf7ea80ac80afe4cd9f75f823d06de138ae5e737da8b49d1704889db9c77c5e",
+      "bytes": 178890,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/FilamentMapView.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+      "owner": "A",
+      "beforeSha256": "b916b3a6c28f9a7f3eb3f233dfed6c5ebd60e26e4866dbe2bede0e15130dce95",
+      "afterSha256": "8e195a2017dd6e265d05e4340c558f20786f5823c78853cbfcb7ccbae7d12627",
+      "bytes": 9401,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/OfficerPortrait.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+      "owner": "A",
+      "beforeSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
+      "afterSha256": "d1dee02fda5cdd9c0b68a1202d694db9bbfd948454cddb07706b713c7b7509b4",
+      "bytes": 14662,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/PcMapEffects.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "owner": "A",
+      "beforeSha256": "aac85b82fa97f0b9d7ca78495317ba3d900a89b73e8d10b88ec79fd138f1557e",
+      "afterSha256": "639e9f84daaaa8724656cf33729734e9f4afcc17125d06172471a643dd8868a9",
+      "bytes": 11943,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+      "owner": "A",
+      "beforeSha256": "216f6c9312687869e9c3b9a4e7724c4265f8cdc8540cab389571fefb2df8dd7e",
+      "afterSha256": "8a11ce4e860b745f69b704a20e0682ab1931da0596e9b21aede118c6e457ee12",
+      "bytes": 5594,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "owner": "A",
+      "beforeSha256": "edf3034a3c273b67b9e6b5c6bbd223128c135280d9b90e738de67817fa4471e2",
+      "afterSha256": "ef627a5995af19873aec5bec8c3365c720eea7572f0836267d765dfb9149cc14",
+      "bytes": 35310,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/SceneMesh.java"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "owner": "A",
+      "beforeSha256": "50b3dd47be8f1809bcd0b6573d7cc62243ff32f69572c338bd836e3cc7b7f56f",
+      "afterSha256": "6b00a8ee0ae04280328e402a72723410c6080beea192c2e8933473690e911e1a",
+      "bytes": 13993,
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/app/src/main/java/game/sanguo/mobile/SoundEffects.java"
+    }
+  ],
+  "textDiffPatchSha256": "6d79c1d7cd8a286319ef7333b9a0b0f1aefee31fbf63e58532cf7dcf63d835d4",
+  "all16BPagesUnchanged": [
+    "app/src/main/java/game/sanguo/mobile/AbilityUi.java",
+    "app/src/main/java/game/sanguo/mobile/ArmyUi.java",
+    "app/src/main/java/game/sanguo/mobile/BuildPicker.java",
+    "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
+    "app/src/main/java/game/sanguo/mobile/CargoWizard.java",
+    "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+    "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+    "app/src/main/java/game/sanguo/mobile/CustomOfficerPlacementUi.java",
+    "app/src/main/java/game/sanguo/mobile/DeployWizard.java",
+    "app/src/main/java/game/sanguo/mobile/DiplomacyUi.java",
+    "app/src/main/java/game/sanguo/mobile/DomesticUi.java",
+    "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+    "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+    "app/src/main/java/game/sanguo/mobile/LifecycleUi.java",
+    "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+    "app/src/main/java/game/sanguo/mobile/WarUi.java"
+  ],
+  "coreApiRuntimeProductionPathsVerifiedUnchanged": 270,
+  "sixJniCanonicalProtected": true,
+  "packagedSixJni": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "currentSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "builtSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "differs": false,
+      "parallelApplyAllowed": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "currentSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "builtSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "differs": false,
+      "parallelApplyAllowed": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "currentSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "builtSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "differs": false,
+      "parallelApplyAllowed": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "currentSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "builtSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "differs": false,
+      "parallelApplyAllowed": false
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "currentSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "builtSha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "differs": true,
+      "parallelApplyAllowed": false
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "currentSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "builtSha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "differs": true,
+      "parallelApplyAllowed": false
+    }
+  ],
+  "originalFourUnchangedAndAdditionalTwoNeedSerialIntegration": true,
+  "originalNativeCompileSourceDeltas": [
+    {
+      "path": "tools/content/native/session_a_cell_fire_instruction_worker.c",
+      "beforeSha256": "435850bcdc505a3ce5397277e0ace178dcff82ef8ed57c137b390947c5a9ae35",
+      "afterSha256": "ea99f4d6268696ca2bbd42e01690203e3f9b8c0b512ad40ad132188ddfb56f8e",
+      "builtSourcePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/source/tools/content/native/session_a_cell_fire_instruction_worker.c",
+      "parallelApplyAllowed": false
+    }
+  ],
+  "appliedToCanonical": false,
+  "scope": "Exact staged A app delivery plan only, not stability approval. Canonical already has palette/theme/base fixes;9 later app assets/renderer/portrait/audio/mesh paths differ from actual369. No B production copy/overwrite. Four original and existing2 JNI canonical remain protected;2 compiled replacements and original C recipe require final serial integration. Music379 fails, full16/cold380 pending; applying9 does not accept whole goal or resolve ARM/source14first/media/commands/finalB.",
+  "wholeGoalComplete": false,
+  "firstAuditErrorsRetained": "Two guessed APK lib to JNI filesystem mappings were rejected with FileNotFound; fixed using unique exact suffix against actual protectedCurrentSixUnchanged inputs. Source/JNI were never modified."
+}

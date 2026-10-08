@@ -767,7 +767,10 @@
     "docs/handoff/20261006/session-a/RESERVE_MAP381.json",
     "docs/handoff/20261006/session-a/diagnose_mix_residual382.py",
     "docs/handoff/20261006/session-a/MIX_RESIDUAL382.json",
-    "out/session-a/reserve-map380/live-observed-1.png"
+    "out/session-a/reserve-map380/live-observed-1.png",
+    "docs/handoff/20261006/session-a/audit_source_delivery383.py",
+    "docs/handoff/20261006/session-a/SOURCE_DELIVERY383.json",
+    "docs/handoff/20261006/session-a/SOURCE_DELIVERY383.patch"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
