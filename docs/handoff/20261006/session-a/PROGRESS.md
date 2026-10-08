@@ -577,3 +577,6 @@ B r15消息更正旧角色诊断：前称captor555实为上阵胜者，当前AI�
 
 
 283/284/285 current old165+239 Source0完整670/1340、normal25157/cold94、PID22948→23748/both3D submission、原9内部+3797外部每SHA恢复、37原录像indexa41ce259…、old20713/20790/20791终止，readonly审计完成。Java101采样峰241846248/512MiB余295024664；native/PSS各独立，GPU预算未闭合。widget36/312 rows/41实色min8.849737/271未解/2disabled；当前source0 map PNG现场看深底可读，旧工程hint仍未随旧包变更。新286已全档SHA备份后独立实装game5db38e0b…+test63a85ade…，两install Success，设备整APK SHA一致且runner已注册，43468 helper真正正常Fire任务正在运行。未宣布新包fire/内存/冷/最终恢复通过；旧source0与197成绩不转新包。
+
+
+B后继r16消息原AI actor属于force ruler（原4ad960链），r15 unit leader189不是原正确绑定；277将旧AI实现与新原证据角色明确区分，仍不给speech/voice profile补猜，不导入B新policy/WIP。新286实装正常player火/Home/reduced-motion/lowquality/实际extinguish与pureSaveRNGToken中间检查已过，现场01-player-fire PNG可见原火和深底正常hint（无工程前缀），当前reset-before-reignite whole AI turn >120s截图已产，规则/前台时延目标未闭合，不当OOM或通过。Data43468/video43507/native43508实际仍在运行。
