@@ -1,0 +1,31 @@
+{
+  "path": "app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+  "beforeSha256": "b916b3a6c28f9a7f3eb3f233dfed6c5ebd60e26e4866dbe2bede0e15130dce95",
+  "afterSha256": "8e195a2017dd6e265d05e4340c558f20786f5823c78853cbfcb7ccbae7d12627",
+  "patchSha256": "f08717a6b1da672def5c5310aa15d591c08800a59acb47bb0f4e5877150eec8a",
+  "patchPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/ORIGINAL_PORTRAIT_BOUNDS274.patch",
+  "stagePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-portrait-bounds274/app/src/main/java/game/sanguo/mobile/OfficerPortrait.java",
+  "compiled": true,
+  "compileCommand": [
+    "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+    "-Xmx512m",
+    "-m",
+    "jdk.compiler/com.sun.tools.javac.Main",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-cp",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/filament.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/source/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/core.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-api.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-runtime.jar",
+    "-d",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-portrait-bounds274/classes",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-portrait-bounds274/app/src/main/java/game/sanguo/mobile/OfficerPortrait.java"
+  ],
+  "compileLogSha256": "8d35b84f5ae22f9a291cf0af426f86edc1790903f6a08bd816df9f3adb9aad9c",
+  "patchReadbackExact": true,
+  "canonicalUnchanged": true,
+  "apk269Unchanged": true,
+  "actualInstalled": false,
+  "scope": "Only verified original PcPortraitLoader bitmap drawing preserves its complete rectangular bounds: remove mobile10-percent corner clip and overlaid invented gold frame. Current group0, identity/sex/source/year/dynamic form, decoder/cache/scaling/filter/custom/fallback behavior unchanged. Does not prove original ordinary small-family caller, PC UI frame/shape/scaling/color/gamma/all-age/fullscreen or actual Android pixels. Normal roster/detail output corner+full image acceptance still required in a later full APK; current269 fire queue untouched.",
+  "wholeGoalComplete": false
+}

@@ -1,0 +1,1906 @@
+{
+  "scope": "Fresh supplied original serializer, face/age lookup and all source image groups for current committed identity requests; no normal Android/PC UI caller, crop/color/fullscreen/timing, MOD reachability, rule commands or RNG acceptance.",
+  "sourceReadOnly": true,
+  "wineUsed": false,
+  "guardedInputs": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/portraits/pc/media-manifest.json": "c9571f25150eedbf70105a616b00324764de91ddcc330bb69c66e6c404dc0aa8",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261004/session1/portrait-requirements.json.gz": "e63fae48211df94dc66109a14fff2c8b522fe429e0051dd8e9128a5fec6420b0",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261004/session2/portrait-gaiji-requests-30.json": "a795267e122ccbf0e3e2ad1d1f17dfa27259cd754247358fce1ce2a8cc7f1cee",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261004/session2/portrait-pixels-current.json.gz": "5e9cb3d694b55fe41d6dc3ba998545f3d22e1f0d5dd7562132e67d56d68bbe35",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/media/inspect_pc_portrait_inputs.py": "52dcdeba809190dac276be0cfe0ae6faf92aac38dd2091353cae98d9d76b7ff7",
+    "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/san11pk.exe": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+    "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/face/San11Face00.fce": "5e6a69ac3555910196465a40a7d02092cc7b8e7dc7de8e106eac1173b6e29519"
+  },
+  "currentIdentities": 10720,
+  "sources": {
+    "Media/scenario/Scen000.s11": 670,
+    "Media/scenario/SCEN001.S11": 670,
+    "Media/scenario/SCEN002.S11": 670,
+    "Media/scenario/SCEN003.S11": 670,
+    "Media/scenario/SCEN004.S11": 670,
+    "Media/scenario/SCEN005.S11": 670,
+    "Media/scenario/SCEN006.S11": 670,
+    "Media/scenario/SCEN007.S11": 670,
+    "Media/scenario/Scen008.s11": 670,
+    "Media/scenario/Scen009.s11": 670,
+    "Media/scenario/Scen010.s11": 670,
+    "Media/scenario/Scen011.s11": 670,
+    "Media/scenario/Scen012.s11": 670,
+    "Media/scenario/Scen013.s11": 670,
+    "Media/scenario/Scen014.S11": 670,
+    "Media/scenario/Scen015.s11": 670
+  },
+  "gaijiRecords": [
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen000.s11",
+      "recordSha256": "5fe2c23946dbd4c4118e41d74ffe1984cc67c098c073318cc28a38bd694fcd94",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen000.s11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen000.s11",
+      "recordSha256": "72b143ef7f63f9665b1e8afd77a243f1063f04a69962582eb5254de97330a71e",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen000.s11",
+      "recordSha256": "8f9d536a69c8cdbcc85ef93aafd1119c20e647fa3d5893359316a0691e33cf55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN001.S11",
+      "recordSha256": "5ee4d2a0c6b6125c6df292daf5566d0802ea0439c3a83950831f6bbcae8d1871",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN001.S11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN001.S11",
+      "recordSha256": "6e7546b355357f4ed0614527f917ea8cd0a37951b4ff3476b089bddcf8ffe8a2",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN001.S11",
+      "recordSha256": "5e9dc9b35c6e65de1d75e67d343a4184af0ffcaecbb4b0902dd099991b356d4f",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN002.S11",
+      "recordSha256": "0cc18678aabeb7fa8a9074ecf36f133cc4968a681958d30ebc358c104bb8ec89",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN002.S11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN002.S11",
+      "recordSha256": "edb7c032dc14f0d4f873232d75a33fdc0adef432586345086a9c15c6003122f1",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN002.S11",
+      "recordSha256": "df25253fe7043aeb66a48e5b2f86790fcdabd5d7cbe13230bf9fa67ec99fe10f",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN003.S11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN003.S11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN003.S11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN003.S11",
+      "recordSha256": "b32a6c4f818ac3421f2a113bfc03b3f87421ea5aea54518b3e907c1a9e13d72e",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN004.S11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN004.S11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN004.S11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN004.S11",
+      "recordSha256": "cb12b1958d6759f027cae2a8f90d8034889d0a9e24b5df9d7be2fd4b0e2e7ecf",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN005.S11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN005.S11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN005.S11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN005.S11",
+      "recordSha256": "2a89e2d9b16b53ba01ae32d993cabafa4086b390f6bb52fa433d16a2eeb6bf6d",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN006.S11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN006.S11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN006.S11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN006.S11",
+      "recordSha256": "8e19fa8312336a3e10a74412f2e3fc81ca1986ed233a9c67574c45a1618d0029",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/SCEN007.S11",
+      "recordSha256": "f166e4e475ab3494bbd30e6335abe1b81f3a9014c8a2fc7bba6da4f33c30e1ff",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/SCEN007.S11",
+      "recordSha256": "92e506de2149a1deb23bd494fca2e2f27938ee649b1b4ff0d7b79c23746ab546",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/SCEN007.S11",
+      "recordSha256": "15be78c75b67958319fff2129d7686f0296d994decbf75927cfdf782a05ffb35",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/SCEN007.S11",
+      "recordSha256": "5e9dc9b35c6e65de1d75e67d343a4184af0ffcaecbb4b0902dd099991b356d4f",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen008.s11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen008.s11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen008.s11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen008.s11",
+      "recordSha256": "6c66cd2dd3792a13d365095dccf06c53a417c35a8681e416a7bb8da98f1ac4ad",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen009.s11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen009.s11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen009.s11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen009.s11",
+      "recordSha256": "8b28c970e0f95ae1672cd90a557808cb0f7d0b7ecda50cda791e729818f364cc",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen010.s11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen010.s11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen010.s11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen010.s11",
+      "recordSha256": "8e19fa8312336a3e10a74412f2e3fc81ca1986ed233a9c67574c45a1618d0029",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen011.s11",
+      "recordSha256": "7571a5f25c2bb6d2cc87000ca27215e97b4519de9aa58d2c2816f7608ae4c3c9",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen011.s11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen011.s11",
+      "recordSha256": "3bbb1abdc69367968fe87221d3d73db4eb99a4b899ea006a3fbab587bfb6d72b",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen011.s11",
+      "recordSha256": "8f9d536a69c8cdbcc85ef93aafd1119c20e647fa3d5893359316a0691e33cf55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen012.s11",
+      "recordSha256": "9caa5ac88e371fd54ae080a44cc1a7ddfdc1847284833d913633f7a6502434b7",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen012.s11",
+      "recordSha256": "c2ca9b2b78ac643766805bd2ee4848e7694fc800b22f2c19a54485714abf3316",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen012.s11",
+      "recordSha256": "bdad331a7d5b43e63a0fc21d49e997480b0c02675bb67992bb67988b72ceee5c",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen012.s11",
+      "recordSha256": "6c4cc85dac1baf3ab417d2f70a0bd4a658c277f8c3d0c78b8632ef966b14a989",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen013.s11",
+      "recordSha256": "774934ddf11f75b18d223e6de69990fc72d984b87147669a89e90d270f4f5811",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen013.s11",
+      "recordSha256": "105f627a70baac03853f13d2db5eec06489c9962f378142e75073d5a4a7c322e",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen013.s11",
+      "recordSha256": "dc5c87cc5e697595bf20cf8e8700e6a09c68549887fa5aa9bbd4c99f65145911",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen013.s11",
+      "recordSha256": "1a56aa098fc889dd3d9d9f0d4d4da05ff2408bd82e7a02d9cc4d5368abbdfa9a",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen014.S11",
+      "recordSha256": "f166e4e475ab3494bbd30e6335abe1b81f3a9014c8a2fc7bba6da4f33c30e1ff",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen014.S11",
+      "recordSha256": "5dee4a92b0f585733f733329bbe919a922f1c5925f65b2866254cb760bb42bc6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen014.S11",
+      "recordSha256": "47f33ecf8b34b1767a33e64ca2513ac6eead47aced7346c491e0e8148f0962fa",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen014.S11",
+      "recordSha256": "5e9dc9b35c6e65de1d75e67d343a4184af0ffcaecbb4b0902dd099991b356d4f",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 156234,
+      "nativeId": 184,
+      "sourcePath": "Media/scenario/Scen015.s11",
+      "recordSha256": "177918841749d1b7443bae1f3388a06b57429e71cd988fd0932b1b3ca1b2a6a6",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 57,
+          "resolvedNormalFaceId": 57,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1057,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 844857,
+      "nativeId": 229,
+      "sourcePath": "Media/scenario/Scen015.s11",
+      "recordSha256": "38d13599873ffebfaabb94e965012ca8fed72fe70bfadb27bd951b13837c799f",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 606,
+          "resolvedNormalFaceId": 606,
+          "dynamicSelector": 190,
+          "textureResource": 559
+        },
+        {
+          "age": 255,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1606,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 598828,
+      "nativeId": 249,
+      "sourcePath": "Media/scenario/Scen015.s11",
+      "recordSha256": "874bbc9f343e5ef732ff216b458aba1ba8648ae390d99c5d6af48adfc8d31a55",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 267,
+          "resolvedNormalFaceId": 267,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1267,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    },
+    {
+      "officerId": 850922,
+      "nativeId": 616,
+      "sourcePath": "Media/scenario/Scen015.s11",
+      "recordSha256": "8e19fa8312336a3e10a74412f2e3fc81ca1986ed233a9c67574c45a1618d0029",
+      "ageBoundaries": [
+        {
+          "age": 254,
+          "faceId": 544,
+          "resolvedNormalFaceId": 544,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 255,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        },
+        {
+          "age": 256,
+          "faceId": 1544,
+          "resolvedNormalFaceId": 2000,
+          "dynamicSelector": 189,
+          "textureResource": 558
+        }
+      ]
+    }
+  ],
+  "nativeUniqueRecords": 5446,
+  "nativeAgeSlicesExecuted": 2079,
+  "comparedIdentityAgeVectors": 32160,
+  "allCurrentNativeFieldsEqual": true,
+  "originalPngShaVerified": 2892,
+  "outputs": {
+    "out/session-a/portrait-native-refresh276/latest-approved-requests.json": "5ad9723e39bb2ea95693541b0326d1c1f6513553b741f998677001169720d39d",
+    "out/session-a/portrait-native-refresh276/source-pixels.json": "19e343e9a8847018ceb7f10e5e40506c1ea2e0fad66367704abf5426a2f1098e",
+    "out/session-a/portrait-native-refresh276/native-result.json": "69442e0bb9af0fc36ba0b1cfed288357e853e83f65e31073574ca6e9e56e056f"
+  },
+  "sourcePeHeaderOffset": 280,
+  "old652And4CountsReused": false,
+  "normalAndroidCallerCoverageAccepted": false,
+  "fullScreenCropTimingAccepted": false,
+  "wholeGoalComplete": false
+}

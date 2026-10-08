@@ -1,0 +1,92 @@
+{
+  "originalSource": "/Users/paopao/Downloads/San11pk\u6574\u5408\u7248/San11pk \u8d85\u7ea7\u6574\u5408\u7248/Media/san11pkres.bin",
+  "originalSourceSha256BeforeAfter": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+  "bankAuthoritySha256": "8f8fba35c910fe954d1b470a766edd60f46491b6c21f89b6b58043978f08e0c1",
+  "originalDescriptor": {
+    "bank": 4,
+    "slot": 24,
+    "headerResource": 2284,
+    "waveResource": 2283,
+    "soundIds": [
+      58
+    ],
+    "eventRole": "UNVERIFIED",
+    "status": "ORIGINAL_PCM_BYTES_AND_NATIVE_FORMAT_VERIFIED_PLAYBACK_PENDING",
+    "descriptorOffset": 1300,
+    "descriptorHex": "0000320122560048020001000000000011830000181c190022060100000000000000000000100000",
+    "descriptorSha256": "ce9082c8245a1fb23b58d76d7d1c1f04432825c3ad8a27729227b3cde374e068",
+    "rawSampleOffset": 1645592,
+    "rawSampleBytes": 67106,
+    "pcmS16leSha256": "bb85d00491a2bc6f6eabc1abf22b5a7eeff82fba87293b3d45db51b4e5557ec6",
+    "sampleRate": 22050,
+    "channels": 1,
+    "samples": 33553,
+    "durationSeconds": 1.5216780045351475,
+    "asset": "wav/bank-04-slot-024.wav",
+    "wavSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81",
+    "peakS16": 32106,
+    "rmsDbfs": -15.18809220916074,
+    "sampleFlagsRaw": 0,
+    "loopFlagRaw": 0,
+    "loopStartRaw": 0,
+    "loopStartSample": null,
+    "loopEndSample": null,
+    "loopStatus": "ORIGINAL_LOOP_FIELDS_RETAINED_COMPLETE_PLAY_POLICY_PENDING",
+    "gainPitchRawHex": "000000000000000000100000",
+    "nativeFormatHex": "010001002256000044ac0000020010000000"
+  },
+  "stageAsset": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-miss-audio278/app/src/main/assets/audio/pc/tactic-58.wav",
+  "assetSha256": "e51aa76c832a0c2e61b31fa36b8435517774745fb5d90e206453a6c5379d9c81",
+  "pcmSha256": "bb85d00491a2bc6f6eabc1abf22b5a7eeff82fba87293b3d45db51b4e5557ec6",
+  "sourceSampleRate": 22050,
+  "channels": 1,
+  "frames": 33553,
+  "nativeRateNoResamplingGainTrimPadding": true,
+  "changes": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+      "beforeSha256": "216f6c9312687869e9c3b9a4e7724c4265f8cdc8540cab389571fefb2df8dd7e",
+      "afterSha256": "8a11ce4e860b745f69b704a20e0682ab1931da0596e9b21aede118c6e457ee12"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "50b3dd47be8f1809bcd0b6573d7cc62243ff32f69572c338bd836e3cc7b7f56f",
+      "afterSha256": "6b00a8ee0ae04280328e402a72723410c6080beea192c2e8933473690e911e1a"
+    },
+    {
+      "path": "app/src/main/assets/audio/pc/tactic-sound-manifest.json",
+      "beforeSha256": "85e8262f51e296dc8e21a361e20da8e02afa9993f13259471e393f5cbbd3d23e",
+      "afterSha256": "657455b3e24ad865ec93b491f4adf21a482887a2a424d7f112eb8bf5abff6e5f"
+    }
+  ],
+  "patchSha256": "0072d1a2400c480ed804230a6a09bca006453190bb284358f5438a72ce366759",
+  "compiled": true,
+  "compileCommand": [
+    "/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java",
+    "-Xmx512m",
+    "-m",
+    "jdk.compiler/com.sun.tools.javac.Main",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-cp",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platforms/android-35/android.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/compile/filament.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/source/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/core.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-api.jar:/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/native-opening-stage224/dependencies/game-runtime.jar",
+    "-d",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-miss-audio278/classes",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-miss-audio278/app/src/main/java/game/sanguo/mobile/PcTacticPcmPlayer.java",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/original-miss-audio278/app/src/main/java/game/sanguo/mobile/SoundEffects.java"
+  ],
+  "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "patchReadbackExact": true,
+  "maxPreparedTracks": 9,
+  "extraRawPcmTrackBytes": 201318,
+  "current49And78AssetsUnchanged": true,
+  "normalMissProducerBound": false,
+  "canonicalUnchanged": true,
+  "apk269Unchanged": true,
+  "actualInstalled": false,
+  "scope": "Original nativeSound58 bank4/slot24 PCM and native22050 mono source-rate AudioTrack stage; first49/78 sources/rates/frames unchanged. Three bounded static tracks added;100000-byte per-WAV extent remains. No MapHost/policy/API/B rules change or fake trigger. Needs explicit committed miss/state/event identity fromB and new actual APK playback/fullSaveRNGToken/PCM/lifecycle/ARM acceptance. Nine engineering WAV labels stay synthetic.",
+  "wholeGoalComplete": false,
+  "stageManifestAddsExplicitUnbound58": true
+}

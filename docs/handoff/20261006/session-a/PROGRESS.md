@@ -551,3 +551,8 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 271只SIGTERM未来来源调度parent20672，不发进程组信号；实际Source0 data20713/video20790/native20791全部存活确认，继续原normal/cold全文件恢复，旧剩余未开始来源改由新候选重验，全16范围不缩。272实际新包串行任务已启动，只等待Source0已restored-verified+accepted/newPID+observer0与旧三owner真正退出，才重新全档备份/实装5db/63a/Source14正常火/低画质/Home暂停/真实熄灭到期/读档/冷与完整SHA恢复；没有装包、没有沿用197或source263成绩。273源码variant11418文件642959366B、tar f66c3126…，全条SHA读回，包含实际source269两Java/两新ABI+tracked C/portable270与完整168输入原4，排除SDK/cache/用户设备备份；脱Git重建SOURCE_REVISION fallback可能APK SHA不同，不宣称bit-repro APK，只实际C/ABI重编整SHA吻合。当前Source0完整96/670仅partial。
+
+
+274独立OfficerPortrait stage：仅已验证原bitmap取消工程10%圆角裁切与覆盖金框，保持group0/来源年龄形态/decoder/滤波/custom；b916…→8e195…，patchf087…，独立编译/patch回读通过，canonical/269不变、普通小图caller与实际像素仍未验收。275本轮原FCE196269012B只读重解，2892 PNG每个RGBA逐字节同原，0/1/2各964均opaque且四角opaque，source5e6a…/manifestc957…未变，不代caller/裁切；276本轮重新执行原serializer/lookup5446唯一records/2079 native age slices，16×670=10720身份（四字形64记录）/32160年龄向量全同最新元数据，不沿旧652/4，不当Android/WindowsUI/MOD达到。
+
+277从不可变B candidate60 tar34655…核API哈希：parent/state/event已有，AppliedEventSnapshot.speaker/originalParent明确null，没有typed primaryMiss；SceneFacts已有year/month/period，不再称全无日历，但原音乐控制槽/3谓词/offset/真实scene仍缺。own契约请求不改或导入B WIP/不发送工具消息。278原sound58 bank4/slot24从真实LINK/descriptor/PCM提取33553帧22050 mono，WAVe51aa…/PCMbb85…同原，native-rate不resample/增益/裁剪；stage两Java+manifest追加3静态槽extra201318原PCM字节，49/78样本/速率/帧不动，100000单WAV界限保持，编译与三文件patch完整读回通过，无MapHost/policy/规则绑定，无实际播放/ARM成绩，无新269包改变，九工程合成标签不改标原声。

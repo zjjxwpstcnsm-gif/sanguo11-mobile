@@ -1,0 +1,39 @@
+{
+  "frozenBArchive": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-candidate60/candidate-source.tar.gz",
+  "frozenBArchiveSha256": "34655cdefdd0acf763edf2d6571bc1709577d9ac22af3cc6fc41fc97e010b8ef",
+  "files": {
+    "game-api/src/main/java/game/sanguo/api/AppliedEventSnapshot.java": {
+      "frozenBSha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "canonicalASha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df"
+    },
+    "game-api/src/main/java/game/sanguo/api/GameEvent.java": {
+      "frozenBSha256": "5d379458f20e01857a5eb5243045369a161443797e62c4a7e1a80f22c4d19c5b",
+      "canonicalASha256": "5d379458f20e01857a5eb5243045369a161443797e62c4a7e1a80f22c4d19c5b"
+    },
+    "game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java": {
+      "frozenBSha256": "81a5723d5f09c2be7fc61c5a79804cd1d05679ae9f5c063167c6f99377d9010c",
+      "canonicalASha256": "6e302a32a65a6bde1d3194c6f73449c9d0763a89236a2221c145161090037893"
+    }
+  },
+  "alreadyAvailable": [
+    "StateToken",
+    "GameEvent.id",
+    "AppliedEventSnapshot.committedParentId",
+    "actual applied physical Strike (hit only)",
+    "scene year/month/period",
+    "source path/sha/native site mapping"
+  ],
+  "stillMissing": [
+    "explicit applied primary miss result from existing tactic failure branch",
+    "actual native sound/speech caller identity",
+    "actual speech speaker/profile/side/slot/already-produced choice/current source validity/abilities",
+    "map controlSlotRaw/native source faction validity/three original music predicates/season offset/established source scene binding"
+  ],
+  "noMissFromEmptyStrikesHpOrText": true,
+  "noSpeakerFromSelectedUnitNameOrOrdinal": true,
+  "canonicalAndBUnchanged": true,
+  "newAsset278OnlyStage": true,
+  "actualNormal58VoiceMapBgmBound": false,
+  "scope": "Fresh read-only immutableB candidate60 API verification. Frozen source remains WIP candidate rather than completedB production; not copied/imported. Exact missing factual producer requirements handed off through own document277; source58 PCM alone does not create a normal miss, voice or music binding.",
+  "wholeGoalComplete": false
+}
