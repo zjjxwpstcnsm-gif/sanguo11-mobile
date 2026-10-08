@@ -1,0 +1,74 @@
+{
+  "actualApks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug-androidTest.apk": "1ff042d912f2534b934ef6b95a2d4a4fafc71d4e8ecc9549a032431d99a95779"
+  },
+  "source07": {
+    "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source07",
+    "normalColdFullShaPassed": true,
+    "memoryReportPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source07/memory-evidence.json",
+    "memoryReportSha256": "4525a6ed842cf528c8691c85cdb3e900a88d717be98984a2853654b405b726f0"
+  },
+  "source14": {
+    "actualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source14",
+    "passed": false,
+    "coldInvoked": false,
+    "sessionSha256": "cbe0cc39342f126674c5562f95cab93282dd16a87c909289e15c8964173023f4",
+    "restoration": {
+      "internal": {
+        "exactRegularFileSha": true,
+        "files": 9,
+        "rewrittenOriginalFiles": 1,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      },
+      "external": {
+        "exactRegularFileSha": true,
+        "files": 3797,
+        "rewrittenOriginalFiles": 0,
+        "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+      }
+    },
+    "failureResult": "SESSION_A_MAP FAIL java.lang.AssertionError: Normal widget unavailable\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.await(SessionAMapRepairInstrumentation.java:33)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.host(SessionAMapRepairInstrumentation.java:65)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.onStart(SessionAMapRepairInstrumentation.java:360)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\nPASS fresh evidence directory\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 地图\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 地图\nPASS actual3D verified output and completed terrain, not renderer recovery\nPASS all16 installed sources\nPASS control reachable 打开功能导航 · 城市、武将、任务、菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 导航 · 菜单\nPASS pointer accepted\nPASS pointer accepted\nPASS actual navigation page matches touched target 菜单\nPASS control reachable null\nPASS pointer accepted\nPASS pointer accepted\nPASS control reachable 选择PC来源剧本 Media/scenario/Scen014.S11\nPASS pointer accepted\nPASS pointer accepted\n",
+    "evidenceFiles": [
+      {
+        "path": "evidence/FAIL-actual-text.json",
+        "sha256": "adb261ece22a57347aa5624d36233f4323e70a06982b577d13a27e346f99ed08",
+        "bytes": 14258
+      },
+      {
+        "path": "evidence/FAIL.png",
+        "sha256": "1295b874c0cc4d0fe936ae0036d117a88bec1e914ac4d10076480a162c356211",
+        "bytes": 414518
+      },
+      {
+        "path": "evidence/heap-budget.txt",
+        "sha256": "15e2c0456383c65a36ff86d619b6e5323e2e61a97b8edb0aa9012e3a3b0a947b",
+        "bytes": 90
+      },
+      {
+        "path": "evidence/memory.csv",
+        "sha256": "821e7ae3f38a5dd7b663e6a9b153294b9fad2493d5234205e392aa5e73b6bb2f",
+        "bytes": 178
+      },
+      {
+        "path": "evidence/renderer-timeline.txt",
+        "sha256": "b61112ccc6e41a78201a0485ec9840b88796390ca72d057da19e14cb952ee1eb",
+        "bytes": 3836
+      },
+      {
+        "path": "evidence/result.txt",
+        "sha256": "13fb7a9a75afc8eadd524d6565c8f62f5b2742b7c21adebac85ccc280c950e66",
+        "bytes": 1322
+      }
+    ],
+    "logcatSha256": "76be91de25469411432d585a714afb5a0664377a316860cd9246615937f5ae25"
+  },
+  "viewedFailureImage": "Still real pending dialog 正在读取剧本… with cancel; no faction preview yet. Native renderer initialization later visible in log. No independent allocating/worker stack captured.",
+  "rootCauseProven": false,
+  "javaOOMObserved": false,
+  "nativeWatchdogObserved": false,
+  "allRemaining304CasesAccepted": false,
+  "any305NormalCallerCaseStarted": false,
+  "scope": "Actual new296 source7 normal menu/preview/new/zoom/pan/Home/orientation/save/exit/newPID plus full original9+3797 restoration passed. Source14 actual source click accepted then120s host await failed while preparation dialog remained; whole source14 and remaining normal/ordinary/audio/all16 callers not accepted. Must observe actual read worker/callback/loading and latency without relaxing functional threshold or changing rules; all artifacts retained.",
+  "wholeGoalComplete": false
+}

@@ -1,0 +1,51 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "canonicalBaseRevision": "27bc6b6189b048b9e45e23293405c138306f0051",
+  "currentDeliveryRevision": "f8ad7be57df364e549fee9f000956730705e4e41",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-source306/sanguo11-mobile-cache-source.tar",
+  "archiveBytes": 932741120,
+  "archiveSha256": "b01216d87f84ec8c6069792f95ac5c46cb793edf005560ca23448bc1cd992e42",
+  "files": 11497,
+  "everyArchivedFileShaVerified": true,
+  "independentFrozenSourceInodes": true,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-source306/source-files.json",
+  "fileManifestSha256": "2cfd76c4a87814de812a8f26461abb5f088b8acb749d8d0382b2b9382e0710d5",
+  "exactCandidateApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug.apk",
+      "sha256": "4da737ec9d8bfdf38d4c2e7796ba6b70679f3ba5b54a86ee97323a82414dedbb",
+      "bytes": 313548279
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/app-debug-androidTest.apk",
+      "sha256": "1ff042d912f2534b934ef6b95a2d4a4fafc71d4e8ecc9549a032431d99a95779",
+      "bytes": 3090144
+    }
+  ],
+  "changesFrom290": [
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "beforeSha256": "fe7b940d82bd6afe1419c3cf4d0cd41aab84d55ebca4e03136c89f5eca84f9b3",
+      "afterSha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073"
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "beforeSha256": "853cdef9ce9ecd71ff38684bfe47c36c21e6a1c4c975bc29f235a14972f04129",
+      "afterSha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a"
+    },
+    {
+      "path": "tools/content/native/session_a_cell_fire_instruction_worker.c",
+      "beforeSha256": null,
+      "afterSha256": "ea99f4d6268696ca2bbd42e01690203e3f9b8c0b512ad40ad132188ddfb56f8e"
+    }
+  ],
+  "portableNativeRecipe": "docs/handoff/20261006/session-a/build_portable_cache307.py",
+  "bothNativeBinariesRecompiledByteExact295And296": true,
+  "originalFourAndCandidateTwoJniIncluded": true,
+  "fixedBuildInputsIncluded": 168,
+  "containsSdkOrBuildCaches": false,
+  "containsDeviceBackups": false,
+  "archiveUncompressedToReduceCpuLoad": true,
+  "scope": "Complete exact296 input source/resources/test/native plus current tracked tools/docs and own session files, all independently copied and tar-member SHA readback. New packaged cache source overrides old canonical native source; no B WIP or user device data. Snapshot begins only in observed app-stopped interval; hashing/I/O can still perturb host later, no GPU/FPS proof. SourceRevision fallback outsideGit can change APK digest. Actual299 Source14 fire normal/cold pass remains narrow; ongoing304/305/ARM/finalB/media/heap budget incomplete.",
+  "wholeGoalComplete": false
+}

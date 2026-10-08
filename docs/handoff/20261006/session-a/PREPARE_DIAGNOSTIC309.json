@@ -1,0 +1,21 @@
+{
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "b6f2c743513900ef3ba31d188feb5b2d744f720df5faa7dff23be764a1667682",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic309/app/src/androidTest/java/game/sanguo/mobile/SessionAScenarioPrepareInstrumentation.java"
+    },
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "f188a6e90b688e22f96f8c39570d52a648da07e12f49e5485a34470940661d3d",
+      "afterSha256": "efdd5ba9e5e093e1f650b1f7d351415c94c1806759cd1e0498618ade2adc6f0e",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-diagnostic309/app/src/androidTest/AndroidManifest.xml"
+    }
+  ],
+  "currentApkOrCanonicalUnchanged": true,
+  "functionalThresholdRelaxed": false,
+  "actualInstalled": false,
+  "scope": "Fresh diagnostic test only: actual menu source14 pointer, UIReadTask pending/job/done/generation, exact ui-read stacks every5s, actual focused preview/current source and verified output times, full SaveRNGToken before/after/cancel.600s observation can identify slow completion but >120s host remains functionalFAIL. Stack/screenshot/measurement overhead recorded; no World/snapshot/command/RNG injection, original rule/renderer code unchanged.",
+  "wholeGoalComplete": false
+}

@@ -1,9 +1,11 @@
 {
-  "stage": "waiting-new296-build-and-actual304-full-regressions-terminal",
+  "stage": "stopped-retain-actual-evidence",
   "completedSources": [],
   "cases": {},
   "all16NormalCallersAccepted": false,
   "normalMiss58ProducerBound": false,
   "wholeGoalComplete": false,
-  "armAccepted": false
+  "armAccepted": false,
+  "error": "Actual304 failed; no media installation",
+  "cleanupNotInferred": true
 }

@@ -1,0 +1,8 @@
+{
+  "stage": "waiting-actual310-build-owner-exit",
+  "previousFailedActualCase": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/cache-regression304/large-source14",
+  "changedOnlyDiagnosticTest": true,
+  "functional120sLimitUnchanged": true,
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false
+}

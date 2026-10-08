@@ -1,0 +1,77 @@
+{
+  "sourceRoot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-cache-apk296/source",
+  "sourceSha256": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc",
+    "session_a_cell_fire_instruction_worker.c": "ea99f4d6268696ca2bbd42e01690203e3f9b8c0b512ad40ad132188ddfb56f8e"
+  },
+  "outputs": [
+    {
+      "abi": "x86_64",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "byteExact295AndPackaged296": true,
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=x86_64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/sources/session_a_cell_fire_instruction_worker.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/jniLibs/x86_64",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/jniLibs/x86_64/libpc_effect_fire_worker.so"
+      ],
+      "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "abi": "arm64-v8a",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "byteExact295AndPackaged296": true,
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=aarch64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/sources/session_a_cell_fire_instruction_worker.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/jniLibs/arm64-v8a",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-cache-build307/jniLibs/arm64-v8a/libpc_effect_fire_worker.so"
+      ],
+      "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "originalFourUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "independentOutput": true,
+  "actualAndroidInstalledByThisRecipe": false,
+  "armExecutionAccepted": false,
+  "scope": "Explicit exact candidate296 or full306 source root; compile file basename matches295, same pinnedNDK27.3/unicorn8028 headers and included original libraries. Both complete ELF bytes exactly equal packaged296 cache workers, no original/current JNI overwrite. Not new runtime/performance/ARM or APK bit-repro acceptance.",
+  "wholeGoalComplete": false
+}
