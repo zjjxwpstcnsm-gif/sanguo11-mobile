@@ -1,0 +1,81 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "313f8cc996b18a90bc15bac5b36c3e20edb1d660",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "parentCandidate": "CAPTURE_QUEUE_BUILD363.json",
+  "completeInheritedFiles": 11420,
+  "completeCandidateFiles": 11420,
+  "changesFrom363": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "beforeSha256": "aac85b82fa97f0b9d7ca78495317ba3d900a89b73e8d10b88ec79fd138f1557e",
+      "afterSha256": "639e9f84daaaa8724656cf33729734e9f4afcc17125d06172471a643dd8868a9",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-buffer368/app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk",
+      "sha256": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+      "bytes": 313550179
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk",
+      "sha256": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24",
+      "bytes": 3099092
+    }
+  ],
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/candidate-inputs.json",
+  "candidateInputManifestSha256": "6c8a2eec5eb8a746f5fcdee2677cd253567d0056934ac74be53e3d7d87e095f8",
+  "fixedPackagedInputsExact": 168,
+  "allPackagedAssetsExact296": 5637,
+  "sixJniExact": [
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_worker.so",
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libunicorn.so",
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_worker.so",
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/x86_64/libunicorn.so",
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "protectedOriginal4": true
+    },
+    {
+      "entry": "lib/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "protectedOriginal4": false
+    },
+    {
+      "entry": "lib/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "protectedOriginal4": false
+    }
+  ],
+  "protectedCurrentSixUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gameLargeHeap": true,
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 224.305297063,
+  "buildLogSha256": "199d7ab56a09c9c4455983ded3d6b0a22e2bcfb3af67934a3b7fa5f73aa9e464",
+  "freeBytesBefore": 45667459072,
+  "freeBytesAfter": 43154493440,
+  "actualInstalled": false,
+  "scope": "Full363 complete inputs/resources/queue tests plus exactA originalmusic bounded1sec reserve368. Native/codec/PCM/loop/identity/focus/cancel unchanged. Additional requested110864B actual AudioTrack size and whole original0.995 must be newly measured. Product/API/Bridge/Unity/original4/allassets unchanged otherwise; no B Native WIP. New actual normalSource14/install/save restore evidence required; no prior scores transferred.",
+  "wholeGoalComplete": false
+}

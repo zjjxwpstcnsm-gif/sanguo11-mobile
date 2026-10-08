@@ -676,3 +676,7 @@ Android官方memory-overview当前文档说明每app heap硬上限由系统/设�
 375/376实际终态：关闭周期AudioFlinger观察后normal菜单62检查/fullSaveRNGToken纯仍过，whole原0.995仍FAIL0.3935926098147148；playerUnderrun0，capture7927808frame/180秒、writerBytes31711232与read同、queue highwater2/64，maxread172ms。原9内部2rewrite/3797外部0rewrite全部SHA、test0/0/旧test6e0504/权限false/AppOpdefault全恢复，worker70842exit0/各owner已终止。故关闭该观察器不能单独解决，既不认定唯一原因也不弱化门槛；原Android源PCM371全曲高相关证据独立保留。
 
 在375全恢复与真实owner退出之后才实际启动369完整parent363/11420独立source/build/out/GH、368一秒PCM reserve新游戏+测试APK构建。仍保持原5637assets/168固定/6JNI/签名/39fixture守卫，不改变任何core/API/runtime/Bridge/Unity/B工作。真实构建工具句柄56076，应续读当前进程，不因等待超时重启；新APK未产生/未安装/未验收，不能接任何旧menu/16来源/ordinary384/火成绩。当前A无设备验收在跑，ARM仍无连接，最终B串行组合仍待。
+
+369已独立构建224.30秒成功：game811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672/313550179B，test3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24/3099092B。完整11420输入、5637全部资产/168pins/原4+295额外2JNI/签名/39fixture全守卫同；源main仍ef413与完整0e7未变，不合B WIP。377完整369对363仅PcMusicStreamPlayer368一条生产路径精确差分，其余app/core/API/runtime拒绝、canonical旧源保持未改。378fresh全部9/3797backup后两个新APK实际安装Success、设备整SHA/runner核验、44.1/48init无failure，正在normal menu180秒；实际bufferFrames>=44100和原0.995仍待新终态，不预判通过。
+
+380/381独立新369全部16正常地图矩阵已排队等待378/379全game/test/APK/权限SHA恢复和owner退出。只有正常menu UI passed与全恢复后可进入（whole音乐独立失败仍保留），新freshbackup/test-only实际装回369测试包并读新game/test整SHA，正常16来源菜单预览/cancel/new/zoom/pan/Home/方向/存读及最终来源新PID。不是16个来源各自670caller/全部势力/命令/多旬/新火/普通384/ARM或第一次直选14低延迟通过。新增369确切视频白名单只未来正常地图此pair生效，旧378菜单仍无录像，不追填旧成绩；encoder扰动须保留。当前380/381真实等待，尚无normal16成绩。

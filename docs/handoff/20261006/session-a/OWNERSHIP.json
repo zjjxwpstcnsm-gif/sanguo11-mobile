@@ -754,7 +754,17 @@
     "docs/handoff/20261006/session-a/run_mixer_isolation375.py",
     "docs/handoff/20261006/session-a/MIXER_ISOLATION375_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_mixer_isolation376.py",
-    "docs/handoff/20261006/session-a/MIXER_ISOLATION376.json"
+    "docs/handoff/20261006/session-a/MIXER_ISOLATION376.json",
+    "docs/handoff/20261006/session-a/guard_music_reserve377.py",
+    "docs/handoff/20261006/session-a/MUSIC_RESERVE_GUARD377.json",
+    "docs/handoff/20261006/session-a/run_music_reserve378.py",
+    "docs/handoff/20261006/session-a/MUSIC_RESERVE378_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_music_reserve379.py",
+    "docs/handoff/20261006/session-a/MUSIC_RESERVE379.json",
+    "docs/handoff/20261006/session-a/run_reserve_map380.py",
+    "docs/handoff/20261006/session-a/RESERVE_MAP380_LAUNCH.json",
+    "docs/handoff/20261006/session-a/audit_reserve_map381.py",
+    "docs/handoff/20261006/session-a/RESERVE_MAP381.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

@@ -1,0 +1,67 @@
+{
+  "parentGuard": {
+    "parentGuard": {
+      "sourceRevision": "9bf6832aec24b931959c9a03da4dbaada4dcbdc9",
+      "parentGuard": {
+        "approvedChanges": [
+          "app/src/main/java/game/sanguo/mobile/SceneIndexLeasePool.java"
+        ],
+        "approvedExactClassSha256": "af1c452f0269b89ced5eb45cc81d1d9a729ff7c68a197c9f8bce99878c532dc7",
+        "candidate326ManifestSha256": "8fd5681d31c4f5f20896b509cd0891d56416fd42835251f2e6dbc6113336d6ee",
+        "diagnostic330ManifestSha256": "5548db052be636c9bfb558543e97988769273db28dc5222b92627705d851e9f5",
+        "protectedSixUnchanged": true,
+        "completeSourceMainUnchanged": [
+          "ef413be3653820dd6449ba7f02aa60bed5b26ef5",
+          "0e7b9bc2df90249a50851baeda58c7d183ea6059"
+        ],
+        "allOtherTrackedProductionChangesRejected": true
+      },
+      "full356ManifestSha256": "bec811256986556bf26c507fba725b9955d55468d93d83afd84ce6f5986fb947",
+      "completeInputFilesVerified": 11419,
+      "exactOnlyCaptureDelta": [
+        {
+          "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+          "beforeSha256": "c93c7062f4ecfe47a7cd7a34d47529fe9b22524f06b6893f27a97e91db118c0f",
+          "afterSha256": "1d6c4d16c7f450b149d25930e1d20d3ce3373f26e88335b61f59b2d66b00f45c",
+          "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-buffer355/app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java"
+        }
+      ],
+      "game326ByteIdentical": true,
+      "canonicalProductionChangedSince356": false,
+      "wholeGoalComplete": false
+    },
+    "completeInputFilesVerified": 11420,
+    "full363ManifestSha256": "1a3732bec147d9e8675e0f3205e0f5df328d70a6b56d3087071b33108c139089",
+    "onlyExactTestQueueDelta": [
+      {
+        "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+        "beforeSha256": "1d6c4d16c7f450b149d25930e1d20d3ce3373f26e88335b61f59b2d66b00f45c",
+        "afterSha256": "b571a40b1bfab8672acd798f73c0fb87ab14a2917500d60fd38930c2a280fe6b",
+        "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue361/app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java"
+      },
+      {
+        "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAPcmCaptureWriter.java",
+        "beforeSha256": null,
+        "afterSha256": "1931c35e2e646c2a0942882af7c032117462bded4ea7caa46e6b5e4095509f6c",
+        "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue361/app/src/androidTest/java/game/sanguo/mobile/SessionAPcmCaptureWriter.java"
+      }
+    ],
+    "game326ByteIdentical": true,
+    "canonicalProductionChanged": false,
+    "wholeGoalComplete": false
+  },
+  "sourceRevision": "313f8cc996b18a90bc15bac5b36c3e20edb1d660",
+  "completeInputFilesVerified": 11420,
+  "full369ManifestSha256": "6c8a2eec5eb8a746f5fcdee2677cd253567d0056934ac74be53e3d7d87e095f8",
+  "onlyExactAProductDelta": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "beforeSha256": "aac85b82fa97f0b9d7ca78495317ba3d900a89b73e8d10b88ec79fd138f1557e",
+      "afterSha256": "639e9f84daaaa8724656cf33729734e9f4afcc17125d06172471a643dd8868a9",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-buffer368/app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java"
+    }
+  ],
+  "original5637Assets168PinsSixJniInherited": true,
+  "canonicalProductionChanged": false,
+  "wholeGoalComplete": false
+}
