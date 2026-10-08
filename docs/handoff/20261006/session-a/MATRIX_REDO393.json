@@ -1,0 +1,697 @@
+{
+  "actualNew369Apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug.apk": "811e02d1bcae8e0d6a3954cb4d225aa54e3f56da762659e58b1b10c27c51e672",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/music-reserve-build369/app-debug-androidTest.apk": "3c937c9dd8dd140e88e4717df775c4b4326305058d509abee7c7c0a156987b24"
+  },
+  "actualFull16AndFinalColdAccepted": true,
+  "actualSavedNormalSourceFiles": [
+    "source-0.sg11",
+    "source-1.sg11",
+    "source-10.sg11",
+    "source-11.sg11",
+    "source-12.sg11",
+    "source-13.sg11",
+    "source-14.sg11",
+    "source-15.sg11",
+    "source-2.sg11",
+    "source-3.sg11",
+    "source-4.sg11",
+    "source-5.sg11",
+    "source-6.sg11",
+    "source-7.sg11",
+    "source-8.sg11",
+    "source-9.sg11"
+  ],
+  "gameRestoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 4,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "actualColdProcess": {
+    "beforePid": "21247",
+    "afterPid": "21103",
+    "beforeProcessEvidence": {
+      "pid": "21247",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "afterProcessEvidence": {
+      "pid": "21103",
+      "source": "ActivityManager exact package instrumentation launch",
+      "rendererFirstSubmissionObserved": true
+    },
+    "differentPid": true,
+    "expectedStartupSaveSha256": "071a17c2ee0266b622aa9a559f6fa6836181bb33069a142caa2e1e55b95b03b5",
+    "passed": true
+  },
+  "wholeMusicGateKeptSeparate": true,
+  "workerObservation": {
+    "hostPid": 84428,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/matrix-redo392/native-workers.jsonl",
+    "scope": "Independent source-child smaps_rollup after exact installed APK verification; no GC, not native allocator bytes/GPU or memory-budget acceptance",
+    "exitCode": 0
+  },
+  "videoObservation": {
+    "hostPid": 84427,
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/matrix-redo392/video/video.json",
+    "scope": "Exact default APK raw recording; own temporary UUID segments removed only after matching pre/post-pull SHA; host originals retained. Encoder perturbs performance; startup/segment gaps/audio/PC/ARM unknown.",
+    "exitCode": 0,
+    "completedOriginalParts": 14,
+    "finalIndexSha256": "11838d59882f63189f1d16fa921da050ddfff96fa1f068097d04baa455f80eff",
+    "captureLimitReachedBeforeRestoration": false
+  },
+  "evidenceFiles": [
+    {
+      "path": "evidence/heap-budget.txt",
+      "sha256": "15e2c0456383c65a36ff86d619b6e5323e2e61a97b8edb0aa9012e3a3b0a947b",
+      "bytes": 90
+    },
+    {
+      "path": "evidence/landscape-actual-text.json",
+      "sha256": "17ca70dc7f80e3fa5993605fc73a628d5c5e88aa2231b22c05982e049fbfc2f0",
+      "bytes": 11310
+    },
+    {
+      "path": "evidence/landscape.png",
+      "sha256": "2cc23792b88c636aed7ce74b237fc7f6ec5c60ae2edeb9bd86b650af16bf481f",
+      "bytes": 1681443
+    },
+    {
+      "path": "evidence/memory.csv",
+      "sha256": "caf8640a5bbc01afd8b464704698a7bcf2e3f7c76f1fe288d51617930d5317f8",
+      "bytes": 22624
+    },
+    {
+      "path": "evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "5d2824015f28e93d2018e86c387016b74be3e53b1e5f8f340d529d43f3acc8b9",
+      "bytes": 2386
+    },
+    {
+      "path": "evidence/normal-exit-confirmation.png",
+      "sha256": "512a25d3d848f0c47139c643dacb5c57fb9e1ca3e8a630cab0b70b31ec4a1b9a",
+      "bytes": 1173997
+    },
+    {
+      "path": "evidence/renderer-timeline.txt",
+      "sha256": "cfe9d5350f66b233e5d3f4d05bf8d120881e32bab24025be39db6ba4cb3e2dd4",
+      "bytes": 363174
+    },
+    {
+      "path": "evidence/reopened-actual-text.json",
+      "sha256": "4aefd74dd61ab37cd962513c652ed3c13449ce0b839af1e0541fbcad03145d58",
+      "bytes": 10168
+    },
+    {
+      "path": "evidence/reopened.png",
+      "sha256": "bb3ffa664a88c12cf4a5a859b769b3f09b8cdc55c19d833b816559781f059426",
+      "bytes": 1697932
+    },
+    {
+      "path": "evidence/result.txt",
+      "sha256": "dba97a0c850397a59bf450b06957fde5d67e4fce57e4ddaa8d184f66efe91fb1",
+      "bytes": 135059
+    },
+    {
+      "path": "evidence/resumed-actual-text.json",
+      "sha256": "8c542f24710c7901e3c5bbdc48ea8a8cdcebcbc992badce741c366063c95feb3",
+      "bytes": 10195
+    },
+    {
+      "path": "evidence/resumed.png",
+      "sha256": "97d496216f056b86083e5d6609cfc8cae48175482ae93548a0634a81e617d8ed",
+      "bytes": 1700116
+    },
+    {
+      "path": "evidence/source-0-map-actual-text.json",
+      "sha256": "8c264443869f7936398faf71cab8f7bef1b66f8ade5e3aca6a0227119961470a",
+      "bytes": 9663
+    },
+    {
+      "path": "evidence/source-0-map.png",
+      "sha256": "7f4db7c4d096bfa5733b14076e0f27800ba9005d87d7cca3216ee308e218cfc9",
+      "bytes": 1695814
+    },
+    {
+      "path": "evidence/source-0-officers-actual-text.json",
+      "sha256": "83a12ba6b74843c1aa93dc8a5ac2a89c65290dc71f20bb9300d0c4b2c4c2dbad",
+      "bytes": 25782
+    },
+    {
+      "path": "evidence/source-0-officers.png",
+      "sha256": "32765c5348bc44e7440f84d83b10a7881957e0e2ff1672afbb6a4391ad29ff91",
+      "bytes": 472261
+    },
+    {
+      "path": "evidence/source-0-preview-actual-text.json",
+      "sha256": "bf602e9d604b163b21084d75e97dc8a70f6c37867d9496855187057fcf2098fe",
+      "bytes": 8464
+    },
+    {
+      "path": "evidence/source-0-preview.png",
+      "sha256": "96802f05996b3600f276f7f1e0b2d9472e8fa2f61cea83c962029424ecd82804",
+      "bytes": 1467873
+    },
+    {
+      "path": "evidence/source-0.sg11",
+      "sha256": "2c4e17f85fdc6e306dde898c6ddbe35c2a1a3eb816fa4e45557aafd169e0026e",
+      "bytes": 2237532
+    },
+    {
+      "path": "evidence/source-1-map-actual-text.json",
+      "sha256": "0a766d5ed4d9e0efe752ec1ef404e7c33d8d9e10025d7520b15e2d5feee195cf",
+      "bytes": 9128
+    },
+    {
+      "path": "evidence/source-1-map.png",
+      "sha256": "dcfa294fbd35ea2ad1f2190c5e8db57e49bb6f9c0a1ab9089dd939482647228c",
+      "bytes": 1711211
+    },
+    {
+      "path": "evidence/source-1-officers-actual-text.json",
+      "sha256": "c10789251c31fee4c1105351221d0f4453027909900a31eeddc709989aab7b11",
+      "bytes": 25786
+    },
+    {
+      "path": "evidence/source-1-officers.png",
+      "sha256": "24f3d4d00796ee9c84875b3b57bea996d8f05df4643aa4026b25e2d0dcbb0c47",
+      "bytes": 472143
+    },
+    {
+      "path": "evidence/source-1-preview-actual-text.json",
+      "sha256": "ed2fc0529c70c5fad857143b8b97fdd76e789882e3351fa5881d6d37d10d7da7",
+      "bytes": 8443
+    },
+    {
+      "path": "evidence/source-1-preview.png",
+      "sha256": "96f8c67cf7fa8af4f6fa2edc4cd9281c92b97408e3885b9059866b334b10d461",
+      "bytes": 1428220
+    },
+    {
+      "path": "evidence/source-1.sg11",
+      "sha256": "fd76a5d151c8b926ee1b30327abffaeb24e51c677254ad0e514545a57d55e2f9",
+      "bytes": 2251408
+    },
+    {
+      "path": "evidence/source-10-map-actual-text.json",
+      "sha256": "98b4080c55162f6568d0e5e21e724f64649b65142a6670e8a8b31059f3800244",
+      "bytes": 10196
+    },
+    {
+      "path": "evidence/source-10-map.png",
+      "sha256": "ab4a3aba0a4cb52c6d962ab9d303bdb4176da5897ca4bc13eb5a6aad6fde0e1b",
+      "bytes": 1662121
+    },
+    {
+      "path": "evidence/source-10-officers-actual-text.json",
+      "sha256": "7a6d0641d04574a7b3f09ee1452f9b1f8107bfa5b67dbf561059c3e897e6da15",
+      "bytes": 25821
+    },
+    {
+      "path": "evidence/source-10-officers.png",
+      "sha256": "3ba8e48d213c27ead3a09133abee2318740419605069fbe8d15a86c4049fbfe3",
+      "bytes": 398650
+    },
+    {
+      "path": "evidence/source-10-preview-actual-text.json",
+      "sha256": "e2ef304ba8d8dd0bf14bcff6996283f5fdd07b186542640f6062b9f1f3125e4c",
+      "bytes": 8499
+    },
+    {
+      "path": "evidence/source-10-preview.png",
+      "sha256": "c5d4d7aecd5e29af2b6c3d5fcb97a3c630d45525542776022fa2c0665f0c60ab",
+      "bytes": 1464089
+    },
+    {
+      "path": "evidence/source-10.sg11",
+      "sha256": "4521c14895bda00e79869e3015f6c7ba7f4cfd307e59e1822f23654d650716f1",
+      "bytes": 2230183
+    },
+    {
+      "path": "evidence/source-11-map-actual-text.json",
+      "sha256": "c954b3627670467f90ffb6cffba5997f0c822894353942019c078da6b3a89163",
+      "bytes": 9123
+    },
+    {
+      "path": "evidence/source-11-map.png",
+      "sha256": "db2efab7dd9ceac6d340781b6bd79230c4d3d864b4db0cc21ed45301288ccb86",
+      "bytes": 1729891
+    },
+    {
+      "path": "evidence/source-11-officers-actual-text.json",
+      "sha256": "6dff7b3839c3e0e4e48f11ea9d8fb5b1ba5f33225712fc8cf215b0037a54bf11",
+      "bytes": 25789
+    },
+    {
+      "path": "evidence/source-11-officers.png",
+      "sha256": "b516078d898fbd54ca8dddb8856285af30f33a283e7e122629a2ea27a628844d",
+      "bytes": 486906
+    },
+    {
+      "path": "evidence/source-11-preview-actual-text.json",
+      "sha256": "d09f6aadc965dc60767501bc3092bbc59557c8d276b8e4c79ffd82eac4bfd041",
+      "bytes": 8442
+    },
+    {
+      "path": "evidence/source-11-preview.png",
+      "sha256": "fde1e128adb4d3f91fe78383d9847d027e94255356a650f45af1716dc79b8d79",
+      "bytes": 1431821
+    },
+    {
+      "path": "evidence/source-11.sg11",
+      "sha256": "d4bbe0934460906836c6e67c806c9997308c48238299ba7d751b027aac518fd1",
+      "bytes": 2254845
+    },
+    {
+      "path": "evidence/source-12-map-actual-text.json",
+      "sha256": "f9a881b566686f660f8f5d7f55fc280b0f2f21513555f1ede772041351f31437",
+      "bytes": 9123
+    },
+    {
+      "path": "evidence/source-12-map.png",
+      "sha256": "994e14f9d821779d2c1883fb7dbc6f4033254710e9666b4bb75fa70c48dada6d",
+      "bytes": 1662322
+    },
+    {
+      "path": "evidence/source-12-officers-actual-text.json",
+      "sha256": "ca962f051149f7090e72da5c15de8cebfa4f34ecf0e7eefafd6698bcb74204a2",
+      "bytes": 25781
+    },
+    {
+      "path": "evidence/source-12-officers.png",
+      "sha256": "d81daf5d15a90aaf458f69f4f6701cd3998cd9cd685ca00f252ada45fa06f91f",
+      "bytes": 473719
+    },
+    {
+      "path": "evidence/source-12-preview-actual-text.json",
+      "sha256": "97f5b321e9b62c298f266be799f1a102bb1dcce6c5790c31568a60e838b33a1d",
+      "bytes": 8442
+    },
+    {
+      "path": "evidence/source-12-preview.png",
+      "sha256": "92fa9b445160a7e6851f25c0d17678457e9c61fb64c415fcd8e215611fbec5a5",
+      "bytes": 1428077
+    },
+    {
+      "path": "evidence/source-12.sg11",
+      "sha256": "deecbc1a8de91766f39d4e90787e24405ad2bdaafab03fb3b03258f306d85ecb",
+      "bytes": 2245893
+    },
+    {
+      "path": "evidence/source-13-map-actual-text.json",
+      "sha256": "94b374c90976af05329b158fe07f0874fcf454c3381dc23ac9092004cc3f280b",
+      "bytes": 8570
+    },
+    {
+      "path": "evidence/source-13-map.png",
+      "sha256": "726e9c4faf1e4e5bc2d0e3057b18a57ac82fbb3d4114e743b1734c186a1a0795",
+      "bytes": 1688510
+    },
+    {
+      "path": "evidence/source-13-officers-actual-text.json",
+      "sha256": "6f0df5a4df514e082bf3e81bcfac11d6682b636131ddccc599c6fa6e19e40793",
+      "bytes": 25775
+    },
+    {
+      "path": "evidence/source-13-officers.png",
+      "sha256": "205069b99efb31120be0e7d7639712ead387fce19bf8ff449c51e4006a69e475",
+      "bytes": 470652
+    },
+    {
+      "path": "evidence/source-13-preview-actual-text.json",
+      "sha256": "ce625fc222edc613206f65d2757c245fd005c8965c01d95885da2d0625d6763f",
+      "bytes": 8477
+    },
+    {
+      "path": "evidence/source-13-preview.png",
+      "sha256": "ca7632aa34130c4ddd340997822cd272773db454e0d9134e2c324c8130e4c879",
+      "bytes": 1414525
+    },
+    {
+      "path": "evidence/source-13.sg11",
+      "sha256": "69575a3c4e48727ad0d641136dcc2cb0fe29601cc27d36e6905e18e563aed93c",
+      "bytes": 2293081
+    },
+    {
+      "path": "evidence/source-14-map-actual-text.json",
+      "sha256": "d0ba1d6ed66712c1eac21a29502fe31b7a1384832a9c87628f602a03dc948fd3",
+      "bytes": 8586
+    },
+    {
+      "path": "evidence/source-14-map.png",
+      "sha256": "b5eeae6c929aa7609eca52be570c419f2509f20861657bc5e8e9a534339d5110",
+      "bytes": 1691678
+    },
+    {
+      "path": "evidence/source-14-officers-actual-text.json",
+      "sha256": "3f0629a6c4ddbb5362cb34a17d802a2f7750cb03ddf94f8b129a46aea712c901",
+      "bytes": 25799
+    },
+    {
+      "path": "evidence/source-14-officers.png",
+      "sha256": "ffb1653a677cf7b5fbced5f47aa97bc3d51d5981b93d817144cfc2cdf63ecd4d",
+      "bytes": 474843
+    },
+    {
+      "path": "evidence/source-14-preview-actual-text.json",
+      "sha256": "dd33c9b1b31f4fa8983213d564ac2b8128612b384b695be946a30f713ab7f7f5",
+      "bytes": 8446
+    },
+    {
+      "path": "evidence/source-14-preview.png",
+      "sha256": "901f66a802e9fc2e367e71fd869bbd0e8e5f8fc70984c4712a9ba9526b773159",
+      "bytes": 1358818
+    },
+    {
+      "path": "evidence/source-14.sg11",
+      "sha256": "1994f1c94491b431d8d926cf9b06ec942c80dfd8cbd82224a6daee5046c37e6e",
+      "bytes": 2287499
+    },
+    {
+      "path": "evidence/source-15-map-actual-text.json",
+      "sha256": "ddf9f53eafbbb19bd58dff5694f85af1c8780f1b3ff474d47df886496d8a820e",
+      "bytes": 10201
+    },
+    {
+      "path": "evidence/source-15-map.png",
+      "sha256": "5f0081f2cb85ff3dead844f25fe579f2e53fbd5d7628dea091b2553df1af4d9c",
+      "bytes": 1697964
+    },
+    {
+      "path": "evidence/source-15-officers-actual-text.json",
+      "sha256": "50f80c513e81c28f9489855ed95be5063886ea86fd6cc07eedc9e4b248c39936",
+      "bytes": 25775
+    },
+    {
+      "path": "evidence/source-15-officers.png",
+      "sha256": "7fd583030fbcb92654b32279f665b2d083dd1a9d11cbe93b370f3d1aa5d955bd",
+      "bytes": 473369
+    },
+    {
+      "path": "evidence/source-15-preview-actual-text.json",
+      "sha256": "8a44db69cc418425dc4c76cf6ea8ff66adf5258ba93e43263fd9ae2558561902",
+      "bytes": 8530
+    },
+    {
+      "path": "evidence/source-15-preview.png",
+      "sha256": "643eaf61dcbcf5c01f6e4bffe18e03e636d375fe09d3e80a71eb80e5f566cb11",
+      "bytes": 1489102
+    },
+    {
+      "path": "evidence/source-15.sg11",
+      "sha256": "071a17c2ee0266b622aa9a559f6fa6836181bb33069a142caa2e1e55b95b03b5",
+      "bytes": 2221231
+    },
+    {
+      "path": "evidence/source-2-map-actual-text.json",
+      "sha256": "317635ad842446e130da2426ca10c99610367f64ad2490001a06385fe648892a",
+      "bytes": 9116
+    },
+    {
+      "path": "evidence/source-2-map.png",
+      "sha256": "a647bedbc5e01f2e0188ca1f3c758db21f8d78e17a4045710b3c7649364528ad",
+      "bytes": 1734466
+    },
+    {
+      "path": "evidence/source-2-officers-actual-text.json",
+      "sha256": "a3cae99bb0a06ef6498be0c51fa6daac08c46d553df530783f6e737da37a1165",
+      "bytes": 25774
+    },
+    {
+      "path": "evidence/source-2-officers.png",
+      "sha256": "d949698bef34de5cacc9bf19c908e499a4b38ba961a52c5afafb2a8e6b2e27ab",
+      "bytes": 452964
+    },
+    {
+      "path": "evidence/source-2-preview-actual-text.json",
+      "sha256": "d28a224be0797c826c1b7efd435319607dfd4a39eb6686555bac1e7bb163741d",
+      "bytes": 8437
+    },
+    {
+      "path": "evidence/source-2-preview.png",
+      "sha256": "4d722b4357000ac04f82422dcbee512c35e1d4bd532cd2666fc4ea1b9acf77ff",
+      "bytes": 1426253
+    },
+    {
+      "path": "evidence/source-2.sg11",
+      "sha256": "795379db0b1584c55af993fd247fb4b84240743dc0d127680c71ba0ae05fb0ca",
+      "bytes": 2251166
+    },
+    {
+      "path": "evidence/source-3-map-actual-text.json",
+      "sha256": "d2c3407f3ad4ad5c59ea06052ebb079eb38d06c2137f27fdcd72cd36fda70d0b",
+      "bytes": 10198
+    },
+    {
+      "path": "evidence/source-3-map.png",
+      "sha256": "b6bbbac1da54eaad7245dbf8d894a84bde994dd7961e2604b25b8a7f83d809c6",
+      "bytes": 1698139
+    },
+    {
+      "path": "evidence/source-3-officers-actual-text.json",
+      "sha256": "8bb1040cc0eb1f9238cc73933d0407153429a5134c4e827e0a3930fff10da57b",
+      "bytes": 25776
+    },
+    {
+      "path": "evidence/source-3-officers.png",
+      "sha256": "9407bb7faac15ec4620aabd60ce51351458f10df4f8d14abf90d77fc6db2f9f8",
+      "bytes": 472319
+    },
+    {
+      "path": "evidence/source-3-preview-actual-text.json",
+      "sha256": "17ac8864b52c483af92bc88b2203eed646a51a2f959b8986ae74be9769745ae7",
+      "bytes": 8446
+    },
+    {
+      "path": "evidence/source-3-preview.png",
+      "sha256": "5a24be3f9cdb096decdcf8cf1f5adb19eafcb53106d58eb1da82c00ae3b4a5c9",
+      "bytes": 1461008
+    },
+    {
+      "path": "evidence/source-3.sg11",
+      "sha256": "378ff9028451815d4f85702e5a32b2a9306a1b36c3192cc4a74cd3377092cecf",
+      "bytes": 2238801
+    },
+    {
+      "path": "evidence/source-4-map-actual-text.json",
+      "sha256": "09b356393316e3d04394b374d34b31214351ab90ebb617744bee42c3ef2c04bf",
+      "bytes": 10189
+    },
+    {
+      "path": "evidence/source-4-map.png",
+      "sha256": "1d174124fc61c2bbfb78ca731607846b58c22ffbe205b76c76523781c1ff129e",
+      "bytes": 1661738
+    },
+    {
+      "path": "evidence/source-4-officers-actual-text.json",
+      "sha256": "beb0c0d006447c0d6dd4b08e367c32bfb741e2acea1ff5c7cb0948f8dc3c7759",
+      "bytes": 25785
+    },
+    {
+      "path": "evidence/source-4-officers.png",
+      "sha256": "9b9a453161c6090302491a4d4d37b30a9a9bbe35a84af8c3a655c08738f5ed1e",
+      "bytes": 475226
+    },
+    {
+      "path": "evidence/source-4-preview-actual-text.json",
+      "sha256": "eb0664005570bed8f317d2fd3bda6450325485b70edaa4d8baca8ab047f8016e",
+      "bytes": 8443
+    },
+    {
+      "path": "evidence/source-4-preview.png",
+      "sha256": "082596bb506da502278af6a5b690911521ff4c133d0bcb5bc69678713876972b",
+      "bytes": 1437843
+    },
+    {
+      "path": "evidence/source-4.sg11",
+      "sha256": "335bd3603c05bea1f8fb770a5ae7f8ad350cd8ebcfd64cb24ae108a207d3f70d",
+      "bytes": 2240152
+    },
+    {
+      "path": "evidence/source-5-map-actual-text.json",
+      "sha256": "00cbbe14a330bf649bec2f7b2fbf5efb93be2c1efe402aadcec7c2f3c01f4b0f",
+      "bytes": 10189
+    },
+    {
+      "path": "evidence/source-5-map.png",
+      "sha256": "a8d673ca3b8e4202df5321829cf801a729a1a25db4671f953db5cbe9163f8bf6",
+      "bytes": 1661134
+    },
+    {
+      "path": "evidence/source-5-officers-actual-text.json",
+      "sha256": "2f84b79caad215b35c7ced29f0366ee0bf58fb51c35023be32128ba05d6e101f",
+      "bytes": 25797
+    },
+    {
+      "path": "evidence/source-5-officers.png",
+      "sha256": "289d6e0a12426eec79cb9b794bfb03ef2b48df359933aec660ddb26a2408e0c6",
+      "bytes": 391439
+    },
+    {
+      "path": "evidence/source-5-preview-actual-text.json",
+      "sha256": "e8cb3fdeb0d5ef73f3a0386d260f4dd13062b7ba945920e0dc3cffd2fcc0918f",
+      "bytes": 8443
+    },
+    {
+      "path": "evidence/source-5-preview.png",
+      "sha256": "2d020bc7a94b5b7783b38e4a0070607c6d0e8960c12c8a9c9d4838cd8dd55b42",
+      "bytes": 1454493
+    },
+    {
+      "path": "evidence/source-5.sg11",
+      "sha256": "07d1edbdd80f55bda47c19e69afecafb7dfe4846283669fbe14d1a134f45580f",
+      "bytes": 2232973
+    },
+    {
+      "path": "evidence/source-6-map-actual-text.json",
+      "sha256": "faf2356a268755b35f84b3043dfc44ff6aebb95e11ce4a059d4ff72b8c75ea3d",
+      "bytes": 10189
+    },
+    {
+      "path": "evidence/source-6-map.png",
+      "sha256": "20de4c32bfa9504e1e92dc0c7f40c2a7b09116860547630646e9189904dd2b59",
+      "bytes": 1659260
+    },
+    {
+      "path": "evidence/source-6-officers-actual-text.json",
+      "sha256": "dbd72a694eccfaca89989f8c835caebba3c42da5409fc9d1bb8d87504718d886",
+      "bytes": 25807
+    },
+    {
+      "path": "evidence/source-6-officers.png",
+      "sha256": "8be253a3ac06279cf8cb503b60a04af25aae99d3108304dfdaaaef4a99e2ed91",
+      "bytes": 476608
+    },
+    {
+      "path": "evidence/source-6-preview-actual-text.json",
+      "sha256": "aa9cc84a0671daea17edc6380ae5f3617604abb26bc06cf34df506ffc33b2dca",
+      "bytes": 8500
+    },
+    {
+      "path": "evidence/source-6-preview.png",
+      "sha256": "ed8dba9f598fac0c1b8dfcde6f86156dc6f64ac9a805cd9dc05e81298005355a",
+      "bytes": 1459015
+    },
+    {
+      "path": "evidence/source-6.sg11",
+      "sha256": "898152f720d78c7f2cdeac48de147031c6a5906d539bbcfcfdcb169856cd3022",
+      "bytes": 2229783
+    },
+    {
+      "path": "evidence/source-7-map-actual-text.json",
+      "sha256": "0d737d571b55db60d1c3abc011bb9122028f4990a6742e25f660acf17d4a7527",
+      "bytes": 8569
+    },
+    {
+      "path": "evidence/source-7-map.png",
+      "sha256": "c4836ce0f73e8f81da03a4f50193a2a17ad75ec4cb97e5a5745cd8ac9b5d6fbe",
+      "bytes": 1690223
+    },
+    {
+      "path": "evidence/source-7-officers-actual-text.json",
+      "sha256": "407e1cd1fd4c1252699cd31c17300885fd0dbeabe7558364ece605b81dcd477a",
+      "bytes": 25782
+    },
+    {
+      "path": "evidence/source-7-officers.png",
+      "sha256": "03e098fb92dc171227b70d094495404f41cf720377b31400b013a90e49db8018",
+      "bytes": 473008
+    },
+    {
+      "path": "evidence/source-7-preview-actual-text.json",
+      "sha256": "8c4f34eeb655cae60e55cb64dce5d5c70eecb913ba75e7f6198d3f704f6fe121",
+      "bytes": 8437
+    },
+    {
+      "path": "evidence/source-7-preview.png",
+      "sha256": "3ca5fe173d0aaa441595bf0d5c7a517f690061532edfe16df071ac711a24e73f",
+      "bytes": 1380248
+    },
+    {
+      "path": "evidence/source-7.sg11",
+      "sha256": "87128f98ffb6e8b74c9d83fb8bbb097b2379d0005bcf9f4327579f7872ecf1ec",
+      "bytes": 2287935
+    },
+    {
+      "path": "evidence/source-8-map-actual-text.json",
+      "sha256": "23b5a4ec90f5710f70f805560daaf599da337fde729c4549380dce34dd21f154",
+      "bytes": 10202
+    },
+    {
+      "path": "evidence/source-8-map.png",
+      "sha256": "b12a55d38eb25f2c1231070424b064067efa7697b5ebb7c2c3471da1d824f22c",
+      "bytes": 1698636
+    },
+    {
+      "path": "evidence/source-8-officers-actual-text.json",
+      "sha256": "f4c0e9c0472e30454b6aed2af88bc5d71568e6a26651c12b7aec4a7f4b3b4950",
+      "bytes": 25780
+    },
+    {
+      "path": "evidence/source-8-officers.png",
+      "sha256": "155afea5dd467841965d3837ff63154828379fbb7b42742f2c5ac7aa7006e3ad",
+      "bytes": 473128
+    },
+    {
+      "path": "evidence/source-8-preview-actual-text.json",
+      "sha256": "41a9a7d1bdf5801aaabe4dd12e80cbdc3dc00cc62ccd7fc903d44e940c777ecc",
+      "bytes": 8449
+    },
+    {
+      "path": "evidence/source-8-preview.png",
+      "sha256": "8605766da6c61e7db8445c6944c48b27d2a904b89c84adb86d32d99ef1e9f031",
+      "bytes": 1447091
+    },
+    {
+      "path": "evidence/source-8.sg11",
+      "sha256": "2d9f404fba3ccb4f5e5bd60d4ceecd01d1b68f59a0dde62259fd7a51d602064d",
+      "bytes": 2244470
+    },
+    {
+      "path": "evidence/source-9-map-actual-text.json",
+      "sha256": "ce6e65b1bf6da37d7e89e2fff89868dd1ba4c24de281eb4f5fa6fbc4cd1fb845",
+      "bytes": 10197
+    },
+    {
+      "path": "evidence/source-9-map.png",
+      "sha256": "5ab8d0bd37208fa3456ea62e62b917634b5b5bec6ae49c303ceae14507696d8b",
+      "bytes": 1696910
+    },
+    {
+      "path": "evidence/source-9-officers-actual-text.json",
+      "sha256": "7cbd0e3b99877aecccc1be8e27e609c16303046b83ccec404a17a96a81ea0e4e",
+      "bytes": 25776
+    },
+    {
+      "path": "evidence/source-9-officers.png",
+      "sha256": "aa9de66cc8026ad465891f0d4d37f37c0ca646cfa1e059efd5f714792d5a2eab",
+      "bytes": 472947
+    },
+    {
+      "path": "evidence/source-9-preview-actual-text.json",
+      "sha256": "d1b7e5e7110cfb08f859c15a33fe1d989e67f989f83ff3e6c6469b8832715e42",
+      "bytes": 8442
+    },
+    {
+      "path": "evidence/source-9-preview.png",
+      "sha256": "834432874bd476a80fa83e6124e534d327d0c4f5c4001ebff42d6d1dcacff9c8",
+      "bytes": 1440746
+    },
+    {
+      "path": "evidence/source-9.sg11",
+      "sha256": "408c3323a560b70709f068745e1c3f9bd64ff9bbe00ea137e9ce28348d05f1fd",
+      "bytes": 2238220
+    }
+  ],
+  "originalFunctionalThresholdsUnchanged": true,
+  "scope": "Exact new369 actual full16 normal source preview/cancel/newgame/zoom/pan/Home/direction/manualsave/load plus final-source fresh PID if passed. Not each-source670caller/voice/fullscreen/allfactions/ordinary384/commands/multiturn/new fire/complete memory or GPU/ARM/finalB. Source14-first failures remain, matrix warmed sequentially does not override them.",
+  "wholeGoalComplete": false
+}
