@@ -1,0 +1,26 @@
+{
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java",
+      "beforeSha256": "f785ee8943d509baa0d30a1a1a19ce8f71b150b5718ebc148ef2f7d8a7c9db5f",
+      "afterSha256": "c0aab152decf9315a9ffcf3b2b1a31acd09c681a858b51d5f098371670d19603",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-memory-sampler300/app/src/androidTest/java/game/sanguo/mobile/SessionAFireFlowInstrumentation.java"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAMemorySampler.java",
+      "beforeSha256": null,
+      "afterSha256": "8e5384a0c7ca412ece660a370c95d92359af378d8b671fe078a5978671eec008",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/fire-memory-sampler300/app/src/androidTest/java/game/sanguo/mobile/SessionAMemorySampler.java"
+    }
+  ],
+  "samplePeriodMillis": 250,
+  "maximumSamplesPerProcess": 20000,
+  "requestsGcOrHeapDump": false,
+  "recordsProcessPssOrGpu": false,
+  "canonicalOrCurrent297Changed": false,
+  "compiled": false,
+  "actualInstalled": false,
+  "scope": "Future independent test-only staged delta. Sampled Runtime used/total/limit and native allocator every250ms through fire normal lifecycle and Activity.finish; cold separate process. Bounded20000 rows and observer3s join; failure fails case instead of accepting missing evidence. Adds measurement allocation/scheduling overhead; no capture of instantaneous peak/allocating stack, GPU, source child RSS or ARM; actual separate APK/pair/normal SaveRNGToken/restoration required.",
+  "wholeGoalComplete": false,
+  "inconsistentRows": "Preserved raw total/free/after; consistent=0, javaUsed=-1 excludes from sampled peak; no case failure or GC/retry due heap resize."
+}

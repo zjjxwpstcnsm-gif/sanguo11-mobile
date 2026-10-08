@@ -593,7 +593,12 @@
     "docs/handoff/20261006/session-a/start_fire_cache_video298.py",
     "docs/handoff/20261006/session-a/FIRE_CACHE_VIDEO298_LAUNCH.json",
     "docs/handoff/20261006/session-a/audit_fire_cache_case299.py",
-    "docs/handoff/20261006/session-a/FIRE_CACHE_ACCEPTANCE299.json"
+    "docs/handoff/20261006/session-a/FIRE_CACHE_ACCEPTANCE299.json",
+    "docs/handoff/20261006/session-a/stage_fire_memory_sampler300.py",
+    "docs/handoff/20261006/session-a/FIRE_MEMORY_SAMPLER300.json",
+    "app/src/androidTest/java/game/sanguo/mobile/SessionAMemorySampler.java",
+    "docs/handoff/20261006/session-a/compile_fire_memory_sampler301.py",
+    "docs/handoff/20261006/session-a/FIRE_MEMORY_COMPILE301.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
