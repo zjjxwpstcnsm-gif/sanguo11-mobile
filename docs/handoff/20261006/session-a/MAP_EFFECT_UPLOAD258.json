@@ -1,0 +1,16 @@
+{
+  "path": "app/src/main/java/game/sanguo/mobile/PcMapEffects.java",
+  "beforeSha256": "bf036ccf6ed34a200d47cd8a10288d8839d2f362451a20f80afd848b18c64f59",
+  "afterSha256": "d1dee02fda5cdd9c0b68a1202d694db9bbfd948454cddb07706b713c7b7509b4",
+  "patchSha256": "2f03c7dd8129fb403bccbcf249afd6775c40175dddf2342a06351d2909540a39",
+  "compiled": true,
+  "patchReadbackExact": true,
+  "maxPackets": 32768,
+  "maxDirectSlots": 3,
+  "maxDirectVertexBytes": 14155776,
+  "maxJavaVertexBytes": 4718592,
+  "actualInstalled": false,
+  "canonicalUnchanged": true,
+  "scope": "Three callback-owned direct upload slots; no slot reused before actual Filament completion. Backpressure returns with pending source frame retained; same original vertex conversion/order/count/materials/time/state. One bounded reusable Java vertex array. Close frees idle slots; completion clears busy references after close. No rules/RNG/JNI/old snapshots changed. Declared bounds require actual Android allocation/slow GPU/rotation/close acceptance; no claim of original OOM root cause or runtime performance.",
+  "wholeGoalComplete": false
+}

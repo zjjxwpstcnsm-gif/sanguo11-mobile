@@ -527,3 +527,9 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 254/255原火指令核查完成：原byte20M/5s预算未变，Unicorn实际TB icount与size查询无mismatch。长128仍660帧失败、7425589指令峰；660帧原records与clock同249逐字节一致，semantic73594e…，不含host耗时；没有扩大quota或改JNI。短1/32/128第一帧也原record/time完全同。256同包caller后继工具支持已完成任意来源起点，239回执识别正确、当前未完242起点被拒绝，无设备新操作；旧176五来源不能移用。
+
+
+258独立候选只PcMapEffects上传：替换每帧float[]与directBuffer新建为3个实际callback拥有的复用槽+一个Java输出数组，原转换/顺序/state不变，满槽返回背压；32768packet时Java4718592/direct14155776字节声明，不包括GPU/旧direct回收或整体内存。stage编译与patch回读通过，canonicalbf036…未变，patch2f03…，尚未安装验收，不当用户OOM根因。257宿主actual-instruction预算候选正在运行，明确20M指令额度允许更多工作，原5s与内存/packet守卫保留，不改变PC或JNI。
+
+
+257/259实际指令候选宿主完成：同249请求801帧全部exit0，256创建/256停止，pause同clock/packet；前660帧records/time同失败249全部相同。actual icount峰7466202/20M，byte峰20116905，update最高635.849ms（host干扰/统计查询，不当手机FPS）。259五个1/13/32/64/128各71帧全原bytes/time同246，129/重复/越界height/coordinate在任何frame前拒绝；实际原4+新2JNI逐SHA与252相同，未构建或安装这项候选。258仅stage编译。

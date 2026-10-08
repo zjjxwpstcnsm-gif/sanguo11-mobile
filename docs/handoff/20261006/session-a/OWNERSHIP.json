@@ -505,7 +505,15 @@
     "docs/handoff/20261006/session-a/INSTRUCTION_ACCOUNTING254.json",
     "docs/handoff/20261006/session-a/probe_instruction_lifecycle255.py",
     "docs/handoff/20261006/session-a/INSTRUCTION_LIFECYCLE255.json",
-    "docs/handoff/20261006/session-a/CALLER_COHORT_CONTINUATION256.md"
+    "docs/handoff/20261006/session-a/CALLER_COHORT_CONTINUATION256.md",
+    "docs/handoff/20261006/session-a/probe_instruction_budget257.py",
+    "docs/handoff/20261006/session-a/INSTRUCTION_BUDGET257.json",
+    "docs/handoff/20261006/session-a/stage_map_effect_upload258.py",
+    "docs/handoff/20261006/session-a/MAP_EFFECT_UPLOAD258.json",
+    "docs/handoff/20261006/session-a/MAP_EFFECT_UPLOAD258.patch",
+    "docs/handoff/20261006/session-a/MAP_EFFECT_UPLOAD258.md",
+    "docs/handoff/20261006/session-a/probe_instruction_boundary259.py",
+    "docs/handoff/20261006/session-a/INSTRUCTION_BOUNDARY259.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

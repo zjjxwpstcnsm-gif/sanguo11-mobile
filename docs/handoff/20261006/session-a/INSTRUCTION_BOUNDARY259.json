@@ -1,0 +1,92 @@
+{
+  "cases": [
+    {
+      "case": "cells-001",
+      "exit": 0,
+      "frames": 71,
+      "wallSeconds": 1.477437891,
+      "stdoutSha256": "6cb79a3b7e7b544a4231739e411fd712c89ed09f7ed548944e8b2b9d331c607a",
+      "stderrSha256": "7238abb2db04bf34fdc806c4e5d2e5c11fe1533aa45ad0072d9171a418a61c18",
+      "allOriginalRecordsAndClockExact246": true
+    },
+    {
+      "case": "cells-013",
+      "exit": 0,
+      "frames": 71,
+      "wallSeconds": 2.250112862,
+      "stdoutSha256": "fb160245cbd939739efbbc0ef31ee9797c8e6f64001b8e557edf00406b4b55ce",
+      "stderrSha256": "ee08475d8a3605a84554d401b4cdf14267a25ede71c873c415b1dc93c6656f9d",
+      "allOriginalRecordsAndClockExact246": true
+    },
+    {
+      "case": "cells-032",
+      "exit": 0,
+      "frames": 71,
+      "wallSeconds": 2.795948711,
+      "stdoutSha256": "b289c11c809dc6edd177bd4b241d52525bd673c7ee7e0c02d67c2176e1a7824a",
+      "stderrSha256": "52568746d06ecdca2071ed8e9f5dd8ba6a87c5736f00447f7fa5c773e2f3b8de",
+      "allOriginalRecordsAndClockExact246": true
+    },
+    {
+      "case": "cells-064",
+      "exit": 0,
+      "frames": 71,
+      "wallSeconds": 3.9563061159999995,
+      "stdoutSha256": "82c23fb5d40d07e4296d83eccde5de5a92936dcaa63ba38205b81073d637f51a",
+      "stderrSha256": "589803c7401dee47b93fe1c07c25b130c2f5ad61d40eb9d3ab1c8ab4e94bff78",
+      "allOriginalRecordsAndClockExact246": true
+    },
+    {
+      "case": "cells-128",
+      "exit": 0,
+      "frames": 71,
+      "wallSeconds": 6.558934676000002,
+      "stdoutSha256": "2cac7e8602f773e82f87f44b17c6834a140bacfb6e44b74b7563592bbbb70b09",
+      "stderrSha256": "bbe37d4d43d73be09c85ae595f115027158e78963da9e7fe8bae41baab9d1d77",
+      "allOriginalRecordsAndClockExact246": true
+    },
+    {
+      "case": "over128",
+      "exit": 2,
+      "frames": 0,
+      "wallSeconds": 0.10625789399999874,
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "770b602ffbb327764a2763091c68b2755e112a47e2dd9afb89caf67b8e748ccc",
+      "invalidAdmissionRejectedBeforeFrame": true
+    },
+    {
+      "case": "duplicate",
+      "exit": 2,
+      "frames": 0,
+      "wallSeconds": 0.10146533700000049,
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "4207b2969055abccab451f8852c064aafd3ee019a533e90b035b05ad292f2690",
+      "invalidAdmissionRejectedBeforeFrame": true
+    },
+    {
+      "case": "invalid-height",
+      "exit": 2,
+      "frames": 0,
+      "wallSeconds": 0.101086703,
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "770b602ffbb327764a2763091c68b2755e112a47e2dd9afb89caf67b8e748ccc",
+      "invalidAdmissionRejectedBeforeFrame": true
+    },
+    {
+      "case": "invalid-coordinate",
+      "exit": 2,
+      "frames": 0,
+      "wallSeconds": 0.10227000200000091,
+      "stdoutSha256": "a58f73f3e44893741170cf0f2fdadf4343aa5ad3b192f6c293c92391ea3b074e",
+      "stderrSha256": "770b602ffbb327764a2763091c68b2755e112a47e2dd9afb89caf67b8e748ccc",
+      "invalidAdmissionRejectedBeforeFrame": true
+    }
+  ],
+  "sourceGuardsBeforeAfter": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-budget257/host-probe": "ff34addd45858fd643504258b4e3d37c74e52aea3c84175fae9dd9af60a2f922",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-kernel.bin": "2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/app/src/main/assets/3d/pc-effects/source-fire-scene.bin": "ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8"
+  },
+  "scope": "Host257 actual instruction budget only; same original packet bytes/time vs246 all five71-frame cases; malformed129/duplicate/height/coordinate rejected before output. No JNI/APK/Android/normal path/ARM acceptance.",
+  "wholeGoalComplete": false
+}

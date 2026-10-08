@@ -1,0 +1,56 @@
+--- a/app/src/main/java/game/sanguo/mobile/PcMapEffects.java
++++ b/app/src/main/java/game/sanguo/mobile/PcMapEffects.java
+@@ -33,6 +33,22 @@
+     private VertexBuffer vertices;
+     private IndexBuffer indices;
+     private int capacity,shown,serial;
++    private static final int MAX_QUADS=32768;
++    private static final class UploadSlot { FloatBuffer buffer; boolean busy; }
++    private final UploadSlot[] uploadSlots={new UploadSlot(),new UploadSlot(),new UploadSlot()};
++    private final android.os.Handler uploadHandler=new android.os.Handler(android.os.Looper.getMainLooper());
++    private float[] vertexOutput=new float[0];
++    private UploadSlot availableUpload(int floats) {
++        for(UploadSlot slot:uploadSlots)if(!slot.busy) {
++            if(slot.buffer==null||slot.buffer.capacity()<floats) {
++                int size=slot.buffer==null?16*36:slot.buffer.capacity();
++                while(size<floats)size*=2;
++                slot.buffer=ByteBuffer.allocateDirect(size*4).order(ByteOrder.nativeOrder()).asFloatBuffer();
++            }
++            return slot;
++        }
++        return null;
++    }
+     private long frames,textureBytes;
+     private float sourceElapsed,updateMillis,drawMillis,geometryMillis;
+     private static final class Delivery {
+@@ -99,12 +115,18 @@
+                     loadTexture(image);uploads++;
+                 }
+             }
++            if(frame.count<0||frame.count>MAX_QUADS)throw new IllegalArgumentException("Original map packet count out of bounds");
++            int floats=frame.count*36;
++            UploadSlot slot=frame.count==0?null:availableUpload(floats);
++            if(frame.count>0&&slot==null)return;
+             ensureCapacity(frame.count);
+             if(frame.count>0) {
+-                float[] output=new float[frame.count*4*9];
+-                for(int i=0;i<frame.count;i++)for(int v=0;v<4;v++)PcEffectCoordinates.vertex(data,i*184,v,originX,originZ,output,(i*4+v)*9);
+-                FloatBuffer buffer=ByteBuffer.allocateDirect(output.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();buffer.put(output).flip();
+-                vertices.setBufferAt(engine,0,buffer);
++                if(vertexOutput.length<floats)vertexOutput=new float[slot.buffer.capacity()];
++                for(int i=0;i<frame.count;i++)for(int v=0;v<4;v++)PcEffectCoordinates.vertex(data,i*184,v,originX,originZ,vertexOutput,(i*4+v)*9);
++                FloatBuffer buffer=slot.buffer;buffer.clear();buffer.put(vertexOutput,0,floats).flip();
++                slot.busy=true;
++                try { vertices.setBufferAt(engine,0,buffer,0,0,uploadHandler,()->{slot.busy=false;if(closed)slot.buffer=null;}); }
++                catch(RuntimeException failure){slot.busy=false;throw failure;}
+             }
+             RenderableManager manager=engine.getRenderableManager();
+             for(int i=0;i<frame.count;i++) {
+@@ -176,6 +198,7 @@
+     @Override public void close() {
+         synchronized(this){if(closed)return;closed=true;ready=null;pending=null;acceptedFires=null;}
+         PcEffectProcess worker=process;if(worker!=null)worker.close();background.shutdownNow();
++        vertexOutput=new float[0];for(UploadSlot slot:uploadSlots)if(!slot.busy)slot.buffer=null;
+         hide();for(int entity:entities){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}entities.clear();
+         if(vertices!=null)engine.destroyVertexBuffer(vertices);if(indices!=null)engine.destroyIndexBuffer(indices);vertices=null;indices=null;
+         for(MaterialInstance[] blend:instances)for(MaterialInstance instance:blend)if(instance!=null)engine.destroyMaterialInstance(instance);

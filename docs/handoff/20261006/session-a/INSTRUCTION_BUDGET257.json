@@ -1,0 +1,55 @@
+{
+  "cases": [
+    {
+      "cells": 128,
+      "exit": 0,
+      "wallSeconds": 192.502964579,
+      "stderr": "PC_TCG_BUDGET requested=33554432 actual=33554432\nPC_FIRE_SYNC serial=1 active=128 created=128 stopped=0 totalCreated=128 totalStopped=0\nPC_CELL_ADMISSION active=128 highwater=128 limit=20000000\nPC_FIRE_SYNC serial=602 active=0 created=0 stopped=128 totalCreated=128 totalStopped=128\nPC_FIRE_SYNC serial=642 active=128 created=128 stopped=0 totalCreated=256 totalStopped=128\nPC_FIRE_SYNC serial=762 active=0 created=0 stopped=128 totalCreated=256 totalStopped=256\nINSTRUCTION_ACCOUNTING peak=7466202 queries=19713440 mismatches=0\nPC_CELL_BUDGET_PEAK bytes=20116905 highwater=128 limit=20000000\n",
+      "stderrSha256": "2edde5ca1795930de626e67c82b0ca858a71752dffa561557d3881f01f64a1a2",
+      "stdoutSha256": "0a5ee41158e196eed74d7bc05c6d23584342bd67e66283657f24494c9976c733"
+    }
+  ],
+  "sourceBeforeAfter": {
+    "pc_effect_scene_probe.c": "179c966e976ac5e4846afe822db51cf274cfa56eecdd6683c53e29efd4a0cdf4",
+    "pc_effect_vm_probe.c": "c5b5868221b476a9e2467731644af98a89d399603e6eef9e3ad87d303a6e7cfc",
+    "session_a_cell_fire_budget_worker.c": "6c53fc66f099384e6a014014c88ce5316249f1435c3c8779275c4dbec0d0338e"
+  },
+  "compileCommand": [
+    "clang",
+    "-std=c11",
+    "-O3",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-budget257/session_a_cell_fire_budget_worker.c",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portrait-native-deps/unicorn/lib/libunicorn.a",
+    "-lm",
+    "-lpthread",
+    "-o",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/instruction-budget257/host-probe"
+  ],
+  "instructionCacheSlots": 65536,
+  "scope": "Host-only candidate257 uses actual uc_tb.icount/size instead of conservative executed-byte accounting: bounded5M instructions per32 admitted controllers, maximum20M instructions per native call, original5s deadline and16MiB guest/32MiB TCG/32768 packets retained. This permits more original work than246 byte quota and is an explicit engineering change, not PC rule or production acceptance. Same249 long128 payload; bounded65536 metadata cache, mutable adapters expire each native call; metadata mismatch rejects. Current canonical source/sixJNI/APK/World/RNG unchanged.",
+  "wholeGoalComplete": false,
+  "lifecycle": {
+    "framesCompleted": 801,
+    "framesRequested": 801,
+    "exit0": true,
+    "nativeCreatedAndStopped": 256,
+    "pauseClockAndPacketExact": true,
+    "first660FrameOriginalRecordsAndClockExact": true,
+    "maximumEvaluatorMs": {
+      "updateMs": 635.8489990234375,
+      "drawMs": 125.70800018310547,
+      "geometryMs": 171.0449981689453
+    },
+    "instructionPeak": 7466202,
+    "instructionLimit": 20000000,
+    "executedBytePeak": 20116905,
+    "maximumPackets": 171,
+    "semanticSha256": "deeda4e77e335c2da0f3a81de736e4506d2ef9c0a6981dbe5cf534f5e42ef615",
+    "androidAccepted": false
+  }
+}
