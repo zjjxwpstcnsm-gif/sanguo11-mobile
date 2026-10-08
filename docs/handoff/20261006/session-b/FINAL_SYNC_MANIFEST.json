@@ -1,0 +1,2185 @@
+{
+  "mainCommit": "05236ca41c7795c9fc3030b9c274b7a8a25be262",
+  "completedBProductionMatches": 356,
+  "paths": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/AbilityUi.java",
+      "completedFrozenSha256": "0c32f562b48235a5ea6597ae6c5529b66b7b48a10162e9e3505d1cadbe4e5921",
+      "mainSha256": "0c32f562b48235a5ea6597ae6c5529b66b7b48a10162e9e3505d1cadbe4e5921",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ArmyUi.java",
+      "completedFrozenSha256": "dcd2d0c8d8e12661967141f1c2ac3bfbab07b5056ad04145a7c438fe7930ab8b",
+      "mainSha256": "dcd2d0c8d8e12661967141f1c2ac3bfbab07b5056ad04145a7c438fe7930ab8b",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildPicker.java",
+      "completedFrozenSha256": "51f4b47bca0147866a3de1b4e40a40fcdf813b7d45cb4a2da9abcff5575c09c9",
+      "mainSha256": "51f4b47bca0147866a3de1b4e40a40fcdf813b7d45cb4a2da9abcff5575c09c9",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
+      "completedFrozenSha256": "8d12833055b91489662a6f98656d52ecd0fea84952a2542f8c4f6806c60cf5dd",
+      "mainSha256": "8d12833055b91489662a6f98656d52ecd0fea84952a2542f8c4f6806c60cf5dd",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CargoWizard.java",
+      "completedFrozenSha256": "5ecf691b19499ddfcc8c14bfcd627e4b42104ced05fadbe5fbc9a5b0edf6d516",
+      "mainSha256": "5ecf691b19499ddfcc8c14bfcd627e4b42104ced05fadbe5fbc9a5b0edf6d516",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContentUi.java",
+      "completedFrozenSha256": "9449c1d3927cc811cb6d14713e622f591bc774f0cc4ded87dc5ba0e50386f4ea",
+      "mainSha256": "9449c1d3927cc811cb6d14713e622f591bc774f0cc4ded87dc5ba0e50386f4ea",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "completedFrozenSha256": "9891ab11abcf1c995173c81ce5373c1025cc3108ea237942935cc5bed02a9648",
+      "mainSha256": "9891ab11abcf1c995173c81ce5373c1025cc3108ea237942935cc5bed02a9648",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CustomOfficerPlacementUi.java",
+      "completedFrozenSha256": "6170e2a3e31fb89bd432c8827d38e9034b313b3e5ff4c8968a8b5f8795ce7669",
+      "mainSha256": "6170e2a3e31fb89bd432c8827d38e9034b313b3e5ff4c8968a8b5f8795ce7669",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DeployWizard.java",
+      "completedFrozenSha256": "07704e64ffbc02290f6cb5df33b53a479d4e56159bb5acfd43f770a11bc509bb",
+      "mainSha256": "07704e64ffbc02290f6cb5df33b53a479d4e56159bb5acfd43f770a11bc509bb",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DiplomacyUi.java",
+      "completedFrozenSha256": "9a78b0997ba889b3077e7aefc8abd81b8fd767309fe26f04d101b028c6aba22c",
+      "mainSha256": "9a78b0997ba889b3077e7aefc8abd81b8fd767309fe26f04d101b028c6aba22c",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/DomesticUi.java",
+      "completedFrozenSha256": "6b569795a3bf3511a19acb1d901b470a780932a0df3616d18ab91fd01b27f579",
+      "mainSha256": "6b569795a3bf3511a19acb1d901b470a780932a0df3616d18ab91fd01b27f579",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/FieldworkUi.java",
+      "completedFrozenSha256": "bc94c50bfec10b1dca4ded5db30b86b8238967767d3dba0f8dd8e83512b2d0d8",
+      "mainSha256": "bc94c50bfec10b1dca4ded5db30b86b8238967767d3dba0f8dd8e83512b2d0d8",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GovernmentUi.java",
+      "completedFrozenSha256": "62fefb1f4a3a342a49975592f4347566268a47009204b2f95e979b48ddf48441",
+      "mainSha256": "62fefb1f4a3a342a49975592f4347566268a47009204b2f95e979b48ddf48441",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/LifecycleUi.java",
+      "completedFrozenSha256": "d6501c3a912ed803cc2c4e6429df4dd87d4eebb0e55f650141bfd3801289ca68",
+      "mainSha256": "d6501c3a912ed803cc2c4e6429df4dd87d4eebb0e55f650141bfd3801289ca68",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/StrategyUi.java",
+      "completedFrozenSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
+      "mainSha256": "0bfe800059217920b1a84b853e047371045324808792d6adab407c779e8eb8fa",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/WarUi.java",
+      "completedFrozenSha256": "e8cc4a4219f1be8f7e4c2b928439f99b4db07a77f18ba6064f1da06e96c6838c",
+      "mainSha256": "e8cc4a4219f1be8f7e4c2b928439f99b4db07a77f18ba6064f1da06e96c6838c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AbilityResearch.java",
+      "completedFrozenSha256": "e6f855b75789ae0966b4f53194a84eddb9954836cfbb428aa30f38e3de10fa48",
+      "mainSha256": "e6f855b75789ae0966b4f53194a84eddb9954836cfbb428aa30f38e3de10fa48",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AbilitySave.java",
+      "completedFrozenSha256": "b89b0b9e2e837a2e591b492201eb56b40fe59f5074607974da77545bea36feab",
+      "mainSha256": "b89b0b9e2e837a2e591b492201eb56b40fe59f5074607974da77545bea36feab",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AdvancedBattle.java",
+      "completedFrozenSha256": "8a58d5aa22cbe6c7f687b747af5d3acbd46d5d3d4b102a3a6fad17af9a8f7837",
+      "mainSha256": "8a58d5aa22cbe6c7f687b747af5d3acbd46d5d3d4b102a3a6fad17af9a8f7837",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/AiOrders.java",
+      "completedFrozenSha256": "b8004d7ff946232b53a700004a872369fea63991cd71b3dbfc69bab9d1be91cf",
+      "mainSha256": "b8004d7ff946232b53a700004a872369fea63991cd71b3dbfc69bab9d1be91cf",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Army.java",
+      "completedFrozenSha256": "36bbaaa66066827ad71b6ce998101756afaecad744764c560beab12dc3295bcd",
+      "mainSha256": "36bbaaa66066827ad71b6ce998101756afaecad744764c560beab12dc3295bcd",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ArmySave.java",
+      "completedFrozenSha256": "a58aa18599d267072aafef2eddb673a80e335e7442f8a4a1a02377121a23fd17",
+      "mainSha256": "a58aa18599d267072aafef2eddb673a80e335e7442f8a4a1a02377121a23fd17",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/BasicCityPolicy.java",
+      "completedFrozenSha256": "1e94c3383a8a6660705b8a305bb8ac7b836e1e38ad31779689b189a4a7fcf366",
+      "mainSha256": "1e94c3383a8a6660705b8a305bb8ac7b836e1e38ad31779689b189a4a7fcf366",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/BattleReports.java",
+      "completedFrozenSha256": "2cb70145765e6fde83859fef2a517a88bbf1322df91558eebf21f087165f7023",
+      "mainSha256": "2cb70145765e6fde83859fef2a517a88bbf1322df91558eebf21f087165f7023",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Campaign.java",
+      "completedFrozenSha256": "de57a07dc766fca2c908bca2222758110efba8d7cdfbf9b8f55f1004df9f0af1",
+      "mainSha256": "de57a07dc766fca2c908bca2222758110efba8d7cdfbf9b8f55f1004df9f0af1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CampaignAi.java",
+      "completedFrozenSha256": "11feabd75e0aae9f665a58c0f269554d262d8bb0a14b59deb050bed30163a63e",
+      "mainSha256": "11feabd75e0aae9f665a58c0f269554d262d8bb0a14b59deb050bed30163a63e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CampaignSave.java",
+      "completedFrozenSha256": "575935e608ea1cdd6b2adec231479580f54c5aba28088d90106f1eb0149d96d8",
+      "mainSha256": "575935e608ea1cdd6b2adec231479580f54c5aba28088d90106f1eb0149d96d8",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "completedFrozenSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
+      "mainSha256": "b2c9150604f89eaed6f3b0d3ce51b921790e589bba8c4bb83935c43c03cac832",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityArtCatalog.java",
+      "completedFrozenSha256": "cc36f48ff6f7dfeacb839b8ec1b4650809ff6a32b7658724c25e8572f6783aa8",
+      "mainSha256": "cc36f48ff6f7dfeacb839b8ec1b4650809ff6a32b7658724c25e8572f6783aa8",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityDefense.java",
+      "completedFrozenSha256": "79c24933b5225907279c48a3d727435efcfc14c83115b271197e6015d56dec77",
+      "mainSha256": "79c24933b5225907279c48a3d727435efcfc14c83115b271197e6015d56dec77",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityOverview.java",
+      "completedFrozenSha256": "afa8966508a3174e6b0d147ca038091095b8532b96a0e874883ebb323baff609",
+      "mainSha256": "afa8966508a3174e6b0d147ca038091095b8532b96a0e874883ebb323baff609",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CombatEffects.java",
+      "completedFrozenSha256": "24d8903812cc8cd43aa9e93805201aef3c037aa6192a89ecef406ab52ba59d16",
+      "mainSha256": "24d8903812cc8cd43aa9e93805201aef3c037aa6192a89ecef406ab52ba59d16",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CombatRules.java",
+      "completedFrozenSha256": "db192b1f2db03abae9713f4350b23fcf2692fe9f0101df5bf14d85c7d1451102",
+      "mainSha256": "db192b1f2db03abae9713f4350b23fcf2692fe9f0101df5bf14d85c7d1451102",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Conscription.java",
+      "completedFrozenSha256": "a8e19a57705d52aedadf815033d61940d91276ce261ae82119cedc7fb02f3d03",
+      "mainSha256": "a8e19a57705d52aedadf815033d61940d91276ce261ae82119cedc7fb02f3d03",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ConstructionPlan.java",
+      "completedFrozenSha256": "df0a1aa7a95c79f30d668a4cfbada87515178c48795dd0b5f6f57a3745b4ba8e",
+      "mainSha256": "df0a1aa7a95c79f30d668a4cfbada87515178c48795dd0b5f6f57a3745b4ba8e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContentCatalog.java",
+      "completedFrozenSha256": "d63242d20f5e64eb969e7977efe536b946137d741e2df368611b5baaf384191b",
+      "mainSha256": "d63242d20f5e64eb969e7977efe536b946137d741e2df368611b5baaf384191b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContentProfiles.java",
+      "completedFrozenSha256": "c636abfa2374af8c9308ac4c757b89db2b2c583266ab0a62ea2015bca00c7510",
+      "mainSha256": "c636abfa2374af8c9308ac4c757b89db2b2c583266ab0a62ea2015bca00c7510",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContentRuntime.java",
+      "completedFrozenSha256": "8414989de8d3159b1f2de90a9c7e65d9379b5fe66a62e6676165a9484241cfaf",
+      "mainSha256": "8414989de8d3159b1f2de90a9c7e65d9379b5fe66a62e6676165a9484241cfaf",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "completedFrozenSha256": "c7796e972ecfd07b2f3a68d988d270141c512afed2866948f7019948a39d98db",
+      "mainSha256": "c7796e972ecfd07b2f3a68d988d270141c512afed2866948f7019948a39d98db",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "completedFrozenSha256": "4eae492d1e1e3b268ea1b48133711c3f9abb8c8dbac38ae51425cb9dc63fad37",
+      "mainSha256": "4eae492d1e1e3b268ea1b48133711c3f9abb8c8dbac38ae51425cb9dc63fad37",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CriticalHit.java",
+      "completedFrozenSha256": "d00162d30f66d895327149aca70f72f31fd763163eca08c8b0bd448e30e27a4a",
+      "mainSha256": "d00162d30f66d895327149aca70f72f31fd763163eca08c8b0bd448e30e27a4a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CustomMapSave.java",
+      "completedFrozenSha256": "f38a9491f92771be0e24c2dbca9680987a793494e7a00143698635b17f0f0613",
+      "mainSha256": "f38a9491f92771be0e24c2dbca9680987a793494e7a00143698635b17f0f0613",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CustomMaps.java",
+      "completedFrozenSha256": "ac5fa26b3913785e088ad6bb209b48e6e862e21f8dac036ad77da7ebfd6182ea",
+      "mainSha256": "ac5fa26b3913785e088ad6bb209b48e6e862e21f8dac036ad77da7ebfd6182ea",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CustomOfficers.java",
+      "completedFrozenSha256": "3e6dd8a445613a01aaff4fca1da670c043602288f2e2dc3c16e2319e5d72c1cb",
+      "mainSha256": "3e6dd8a445613a01aaff4fca1da670c043602288f2e2dc3c16e2319e5d72c1cb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Debate.java",
+      "completedFrozenSha256": "30abaa613bb05ada11f3783ee166fcb7d1eada6b249c107efbe688748f49007a",
+      "mainSha256": "30abaa613bb05ada11f3783ee166fcb7d1eada6b249c107efbe688748f49007a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DeploymentPlan.java",
+      "completedFrozenSha256": "13d56168e3a5ee9153db9dd3f1f1f92b8b5019e264c7c93d2493039bb7cf9d01",
+      "mainSha256": "13d56168e3a5ee9153db9dd3f1f1f92b8b5019e264c7c93d2493039bb7cf9d01",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Development.java",
+      "completedFrozenSha256": "8e70107eed2b051ab7d55c4f27d4817218356905928c4ab0cf6da424332538f9",
+      "mainSha256": "8e70107eed2b051ab7d55c4f27d4817218356905928c4ab0cf6da424332538f9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Diplomacy.java",
+      "completedFrozenSha256": "b98809fd20fe1e33aa6189212dc23efc2a4bb8e95304225104a278fe15f40d66",
+      "mainSha256": "b98809fd20fe1e33aa6189212dc23efc2a4bb8e95304225104a278fe15f40d66",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DiplomacyPlan.java",
+      "completedFrozenSha256": "b3b993993fa863e755a33f2693fdcccc5d3c9d523519e1698f28b4a175e354c3",
+      "mainSha256": "b3b993993fa863e755a33f2693fdcccc5d3c9d523519e1698f28b4a175e354c3",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Displacement.java",
+      "completedFrozenSha256": "112f711ad84d543629c021f7d203d526349e39489e413074cf271d9a2018ac04",
+      "mainSha256": "112f711ad84d543629c021f7d203d526349e39489e413074cf271d9a2018ac04",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/DistrictManagement.java",
+      "completedFrozenSha256": "39910bd39742a4ed5d7c48189b04d354f959b0ccdccb86ddd4a1b159c02a8637",
+      "mainSha256": "39910bd39742a4ed5d7c48189b04d354f959b0ccdccb86ddd4a1b159c02a8637",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Districts.java",
+      "completedFrozenSha256": "93c4c67756bd8a9c29d4bff59ecaf161978399f49d5fec349ecaeba6dc566feb",
+      "mainSha256": "93c4c67756bd8a9c29d4bff59ecaf161978399f49d5fec349ecaeba6dc566feb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Domestic.java",
+      "completedFrozenSha256": "c0c8338b45684e0a09f6f4da6a4440e0953bcf972137f67b657f4b888b70c98c",
+      "mainSha256": "c0c8338b45684e0a09f6f4da6a4440e0953bcf972137f67b657f4b888b70c98c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Duel.java",
+      "completedFrozenSha256": "3e07d95962c4f32a7773beb6afc2e3107726d36dda6384554edcfeb5f23966cf",
+      "mainSha256": "3e07d95962c4f32a7773beb6afc2e3107726d36dda6384554edcfeb5f23966cf",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Editor.java",
+      "completedFrozenSha256": "ca3cd63cc509fdefbe43102156f9e16479ea0bdbe518915c23af6a63ee82e356",
+      "mainSha256": "ca3cd63cc509fdefbe43102156f9e16479ea0bdbe518915c23af6a63ee82e356",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/EnergyRules.java",
+      "completedFrozenSha256": "6391bf495ba57f8429485db1f28f3a5534fe30c21773a31406e85112caee065c",
+      "mainSha256": "6391bf495ba57f8429485db1f28f3a5534fe30c21773a31406e85112caee065c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Envoys.java",
+      "completedFrozenSha256": "a7e9add880cb5995afd9dd180f6f275a453450bad96eaa5e5d8dac3f670bed49",
+      "mainSha256": "a7e9add880cb5995afd9dd180f6f275a453450bad96eaa5e5d8dac3f670bed49",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/EstatesSave.java",
+      "completedFrozenSha256": "abf762947c9a4fa23ab9d9671419036fe3f9aa5fc9337ecc692f31f33d305637",
+      "mainSha256": "abf762947c9a4fa23ab9d9671419036fe3f9aa5fc9337ecc692f31f33d305637",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/FactionCollapse.java",
+      "completedFrozenSha256": "d09089cba050d9deec8fe2180cfd3d7c9520d742e60fe3070a5f0c36797e39ee",
+      "mainSha256": "d09089cba050d9deec8fe2180cfd3d7c9520d742e60fe3070a5f0c36797e39ee",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Fieldworks.java",
+      "completedFrozenSha256": "00b8d157beaa6e9c0248138cf91b79dc460b64f9b363688bad959aa2ccef784c",
+      "mainSha256": "00b8d157beaa6e9c0248138cf91b79dc460b64f9b363688bad959aa2ccef784c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/FieldworksSave.java",
+      "completedFrozenSha256": "7ce0c412b69ff190747994a241c534b7e9bd810a9098e2a008d242f5d2322811",
+      "mainSha256": "7ce0c412b69ff190747994a241c534b7e9bd810a9098e2a008d242f5d2322811",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Governance.java",
+      "completedFrozenSha256": "c0c7d3191693adb0d7d172960bc81c18ebec31c4c491e37a7d3cad852dd5e14c",
+      "mainSha256": "c0c7d3191693adb0d7d172960bc81c18ebec31c4c491e37a7d3cad852dd5e14c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Government.java",
+      "completedFrozenSha256": "db27a9426b67f1071aac02e66ba7be7f4b3dd37ba778b41e7e2e4a2c7ee37a0c",
+      "mainSha256": "db27a9426b67f1071aac02e66ba7be7f4b3dd37ba778b41e7e2e4a2c7ee37a0c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/GovernmentSave.java",
+      "completedFrozenSha256": "fa59e9bd7106493129862c2ea1006c3e3d43d309b341660333efefbe852d5118",
+      "mainSha256": "fa59e9bd7106493129862c2ea1006c3e3d43d309b341660333efefbe852d5118",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Hex.java",
+      "completedFrozenSha256": "531fefbdc02489fe956f7c596f1b6e77d3078651b07f65244d78fe3ad5a56c83",
+      "mainSha256": "531fefbdc02489fe956f7c596f1b6e77d3078651b07f65244d78fe3ad5a56c83",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Lifecycle.java",
+      "completedFrozenSha256": "ca7965265f23a0cf01067df806b6ae4f1d08f7c72116f5cd1d81f66bb9106e29",
+      "mainSha256": "ca7965265f23a0cf01067df806b6ae4f1d08f7c72116f5cd1d81f66bb9106e29",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Logistics.java",
+      "completedFrozenSha256": "7104b7fa8ec4c37699cc84c978e1d18b348c73bdc44bc0539c06baf9c0fd4b6f",
+      "mainSha256": "7104b7fa8ec4c37699cc84c978e1d18b348c73bdc44bc0539c06baf9c0fd4b6f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Loyalty.java",
+      "completedFrozenSha256": "9c78e4ef70df23c8070671088c7b67620ed784f80f61930769c9ef5a60fdb1fb",
+      "mainSha256": "9c78e4ef70df23c8070671088c7b67620ed784f80f61930769c9ef5a60fdb1fb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapCoordinates.java",
+      "completedFrozenSha256": "a41bedb2220d1d8a4b16431836760af456def1e6732c8bb0ea95267bca5a5c96",
+      "mainSha256": "a41bedb2220d1d8a4b16431836760af456def1e6732c8bb0ea95267bca5a5c96",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapEditSession.java",
+      "completedFrozenSha256": "f1286b46215af906e0bf12d005ea4f0a42906ad83179adb4f2295bffac9aad66",
+      "mainSha256": "f1286b46215af906e0bf12d005ea4f0a42906ad83179adb4f2295bffac9aad66",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapJson.java",
+      "completedFrozenSha256": "ebbb838ccf02dc14c3710f95fb32391801eccfe63c4ab0863014ebc42b27dcfb",
+      "mainSha256": "ebbb838ccf02dc14c3710f95fb32391801eccfe63c4ab0863014ebc42b27dcfb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapPatch.java",
+      "completedFrozenSha256": "dd73b9b5d9588844e9b9049f6d4b1af3a6ebaf86cd6b045f08febd8459ba5c48",
+      "mainSha256": "dd73b9b5d9588844e9b9049f6d4b1af3a6ebaf86cd6b045f08febd8459ba5c48",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapRevisionLedger.java",
+      "completedFrozenSha256": "4d7a35f837ecff57b6b828f319ac4637579ebf89bde296604cd085ef92da97bd",
+      "mainSha256": "4d7a35f837ecff57b6b828f319ac4637579ebf89bde296604cd085ef92da97bd",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapWater.java",
+      "completedFrozenSha256": "185fc7f5a4d527bb49d4b2685d95fb3ebdc5641a41e98a063130c108cd253450",
+      "mainSha256": "185fc7f5a4d527bb49d4b2685d95fb3ebdc5641a41e98a063130c108cd253450",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MarchOrders.java",
+      "completedFrozenSha256": "d153c5f54bdb38a33bb8a317f5513cc37cdd85c1b89b9bfb269b6db849b4cc22",
+      "mainSha256": "d153c5f54bdb38a33bb8a317f5513cc37cdd85c1b89b9bfb269b6db849b4cc22",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MerchantMarket.java",
+      "completedFrozenSha256": "49ec34601f36cbc9be6d782b9ab3eb6b3615fc51c7a3968e294c7a38aee9defc",
+      "mainSha256": "49ec34601f36cbc9be6d782b9ab3eb6b3615fc51c7a3968e294c7a38aee9defc",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NationalExterior.java",
+      "completedFrozenSha256": "5ddfddb1d14c099b6e8049d3ce515a9a06041969e81cf8923ac66cd8addc1cf5",
+      "mainSha256": "5ddfddb1d14c099b6e8049d3ce515a9a06041969e81cf8923ac66cd8addc1cf5",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NationalMap.java",
+      "completedFrozenSha256": "efbcf1ec8af29cfb848a61cf11b3ca6de1e14b6b4b9ebd0e119a9a090272eaa7",
+      "mainSha256": "efbcf1ec8af29cfb848a61cf11b3ca6de1e14b6b4b9ebd0e119a9a090272eaa7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NaturalStructures.java",
+      "completedFrozenSha256": "2aec667151976bc7cb92c048d06f892f096f946c94f786f8b884c7b8ac2161a1",
+      "mainSha256": "2aec667151976bc7cb92c048d06f892f096f946c94f786f8b884c7b8ac2161a1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerAbilities.java",
+      "completedFrozenSha256": "5d9e6fea2f642593a456f925bee19ccde5d5f0c08c866bc7d2ce74bc824a8019",
+      "mainSha256": "5d9e6fea2f642593a456f925bee19ccde5d5f0c08c866bc7d2ce74bc824a8019",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerExperiencePlan.java",
+      "completedFrozenSha256": "23ecd910b870f6fe870ed0198597194660eef0cffa9f8c88e4035b6865a85c44",
+      "mainSha256": "23ecd910b870f6fe870ed0198597194660eef0cffa9f8c88e4035b6865a85c44",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerPackArchive.java",
+      "completedFrozenSha256": "aae5c64b432b9054bae2586f480ffe66786a790a6e614bb0b1f3a05f3ba3bf39",
+      "mainSha256": "aae5c64b432b9054bae2586f480ffe66786a790a6e614bb0b1f3a05f3ba3bf39",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerTemplateCodec.java",
+      "completedFrozenSha256": "ce4716c2e3cba8ab498f6d90c8e2cdf5c094ea155c6cc9e084d5e412c89a3143",
+      "mainSha256": "ce4716c2e3cba8ab498f6d90c8e2cdf5c094ea155c6cc9e084d5e412c89a3143",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcArmyActionPolicy.java",
+      "completedFrozenSha256": "019946eda09afb0495303f0a7fe60d7874e88051fa49092f92dbed7cb7e87f60",
+      "mainSha256": "019946eda09afb0495303f0a7fe60d7874e88051fa49092f92dbed7cb7e87f60",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcArmyActionRules.java",
+      "completedFrozenSha256": "f2907f591e1d0176d14be9a87776250966604a9350803cdc863d58e3820abbcc",
+      "mainSha256": "f2907f591e1d0176d14be9a87776250966604a9350803cdc863d58e3820abbcc",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCityActionCosts.java",
+      "completedFrozenSha256": "8097ee8cd444f56e56b739ccfc59fe3e1f1f007b3c1c0250a08766bde581eeff",
+      "mainSha256": "8097ee8cd444f56e56b739ccfc59fe3e1f1f007b3c1c0250a08766bde581eeff",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCityCapacities.java",
+      "completedFrozenSha256": "de9d5098139da6b4558768f0d152d62f3e5684a43df62e46a4623362e1af83f5",
+      "mainSha256": "de9d5098139da6b4558768f0d152d62f3e5684a43df62e46a4623362e1af83f5",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCommandCapacityPolicy.java",
+      "completedFrozenSha256": "be740e3484a3e3f55478e7467bd660977b82bdbe28325241a41e00207326b082",
+      "mainSha256": "be740e3484a3e3f55478e7467bd660977b82bdbe28325241a41e00207326b082",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcCommandRoll.java",
+      "completedFrozenSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
+      "mainSha256": "568eb3c5babf6da0630e4909711d8fb0668731ba095ce3f682662f42ee384b41",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcContestProfiles.java",
+      "completedFrozenSha256": "8cd03daa743e7cedc7de6de2899b8074a87520df338c6c309aa8861f005c3958",
+      "mainSha256": "8cd03daa743e7cedc7de6de2899b8074a87520df338c6c309aa8861f005c3958",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDamCatalog.java",
+      "completedFrozenSha256": "5b37ebacbb066cc83c3045c480885abf70901dc0cea904e8901553fe37b241ea",
+      "mainSha256": "5b37ebacbb066cc83c3045c480885abf70901dc0cea904e8901553fe37b241ea",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateAi.java",
+      "completedFrozenSha256": "2b247c6b6c3799c5e73d1adfeb2c23206994cd2f71c88f76c7619ca0ebe19ba7",
+      "mainSha256": "2b247c6b6c3799c5e73d1adfeb2c23206994cd2f71c88f76c7619ca0ebe19ba7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "completedFrozenSha256": "c3cb8f9e3a70c73f1212f5e928eb53bdca193e3cdc20a4bafa9cb0093e133213",
+      "mainSha256": "c3cb8f9e3a70c73f1212f5e928eb53bdca193e3cdc20a4bafa9cb0093e133213",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignPolicy.java",
+      "completedFrozenSha256": "87197c2958cc2f91a8974740552c96a0e6919d32e72967f2846fa33cde120ce3",
+      "mainSha256": "87197c2958cc2f91a8974740552c96a0e6919d32e72967f2846fa33cde120ce3",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaignRules.java",
+      "completedFrozenSha256": "8ef012fc04b07bde70124a6ef1e20cedc0ea2a416ff5c3b4405c1497b79633e9",
+      "mainSha256": "8ef012fc04b07bde70124a6ef1e20cedc0ea2a416ff5c3b4405c1497b79633e9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModel.java",
+      "completedFrozenSha256": "69f88152f22f771092f5330faf5d1a09cb3e860862442febff65645be609ebf3",
+      "mainSha256": "69f88152f22f771092f5330faf5d1a09cb3e860862442febff65645be609ebf3",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateModelSave.java",
+      "completedFrozenSha256": "00baa79acf97f5f886af102fee06567970f7f531665d8fec14cf45f7cc628b45",
+      "mainSha256": "00baa79acf97f5f886af102fee06567970f7f531665d8fec14cf45f7cc628b45",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateRules.java",
+      "completedFrozenSha256": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31",
+      "mainSha256": "3af60e9c17d703519e8e07f2e997cfcd3badc08c18dbe141d530a946eaa18e31",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateSettlement.java",
+      "completedFrozenSha256": "631ff1d0b2d394a41f356a809bc29e737d05ec9ecc3dc2e651499fa135cce867",
+      "mainSha256": "631ff1d0b2d394a41f356a809bc29e737d05ec9ecc3dc2e651499fa135cce867",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "completedFrozenSha256": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62",
+      "mainSha256": "c217f235f0be2c7bc59161dcf604792e4244f0b8bb24d5cf0c6e27ad18d97d62",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateUiEffects.java",
+      "completedFrozenSha256": "f745a6d6f8c1332bdb023455eafaf51791660cdf4845095ba9f129fc4910a202",
+      "mainSha256": "f745a6d6f8c1332bdb023455eafaf51791660cdf4845095ba9f129fc4910a202",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateUiRandom.java",
+      "completedFrozenSha256": "bb2b535d7b43064f94562f35a004a0a125164385be6f1b32da40808c9d8bcd5f",
+      "mainSha256": "bb2b535d7b43064f94562f35a004a0a125164385be6f1b32da40808c9d8bcd5f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentPolicy.java",
+      "completedFrozenSha256": "d7a904488cd21606e87f9b6ad49ec92e7b79387831501bddafe09508e042b494",
+      "mainSha256": "d7a904488cd21606e87f9b6ad49ec92e7b79387831501bddafe09508e042b494",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDirectRecruitmentRules.java",
+      "completedFrozenSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
+      "mainSha256": "3c7961dc27245a09c245d5b548feac6a90da442c8baaf7cc76977a0de698342d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelAdmissionRules.java",
+      "completedFrozenSha256": "426bedbbd82d2ee6fb3c106b531c2a9ddf7c1e5c140704d0ad62960b85dd05c0",
+      "mainSha256": "426bedbbd82d2ee6fb3c106b531c2a9ddf7c1e5c140704d0ad62960b85dd05c0",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelAiDisposition.java",
+      "completedFrozenSha256": "19575b1d0aa900b8f86035d51e0bf28342f58b6b250661a5d0c4e86031c81156",
+      "mainSha256": "19575b1d0aa900b8f86035d51e0bf28342f58b6b250661a5d0c4e86031c81156",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelAiDispositionRules.java",
+      "completedFrozenSha256": "ecb4c4bc5e22a44caa8223417af959c8211f00bec5faf4ca795c570b21d9638a",
+      "mainSha256": "ecb4c4bc5e22a44caa8223417af959c8211f00bec5faf4ca795c570b21d9638a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelBindings.java",
+      "completedFrozenSha256": "197c6a5c959dcbccb3fcfaa514402f6d372c92159b71b4836a2d8be9d43cc629",
+      "mainSha256": "197c6a5c959dcbccb3fcfaa514402f6d372c92159b71b4836a2d8be9d43cc629",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelCampaign.java",
+      "completedFrozenSha256": "77336612f3e30eb7da5a17b21b23b5d5aadec1e16a14f0d8e866f0c9c5a7add6",
+      "mainSha256": "77336612f3e30eb7da5a17b21b23b5d5aadec1e16a14f0d8e866f0c9c5a7add6",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelCampaignPolicy.java",
+      "completedFrozenSha256": "ecdc05a53d888fefa4ff265c90d50cf87adcb07545eb88dec0f34a83d0a7c805",
+      "mainSha256": "ecdc05a53d888fefa4ff265c90d50cf87adcb07545eb88dec0f34a83d0a7c805",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelCapture.java",
+      "completedFrozenSha256": "2d710969d32d50a1bcc53d9e69945a641f2cab9080772e72e02c10d2b44b1738",
+      "mainSha256": "2d710969d32d50a1bcc53d9e69945a641f2cab9080772e72e02c10d2b44b1738",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelChallenge.java",
+      "completedFrozenSha256": "1a0efa169f291fda50f69d726d5e7d9e7a0506fa4861bf01f5a9e4540a4fd1b2",
+      "mainSha256": "1a0efa169f291fda50f69d726d5e7d9e7a0506fa4861bf01f5a9e4540a4fd1b2",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelCommandRules.java",
+      "completedFrozenSha256": "c8ca7f0752fe89efebea6888ca5552b8683a9ba1387a8c11bfa1e1e041e57d72",
+      "mainSha256": "c8ca7f0752fe89efebea6888ca5552b8683a9ba1387a8c11bfa1e1e041e57d72",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelDeath.java",
+      "completedFrozenSha256": "569f59071265271895569924722d2141decf04211061f8b0ac030ee158ca44ee",
+      "mainSha256": "569f59071265271895569924722d2141decf04211061f8b0ac030ee158ca44ee",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelDisposition.java",
+      "completedFrozenSha256": "33a8be739c28dadcb42c9bb4e697faef10b23fe36a2b9a3cc7510fca1f9cd952",
+      "mainSha256": "33a8be739c28dadcb42c9bb4e697faef10b23fe36a2b9a3cc7510fca1f9cd952",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelEntryRules.java",
+      "completedFrozenSha256": "7c9bfa42b486f53c047ebaaa306bfcb26d95691fbc7c5e2e7c41378d1c669066",
+      "mainSha256": "7c9bfa42b486f53c047ebaaa306bfcb26d95691fbc7c5e2e7c41378d1c669066",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelEscortRelease.java",
+      "completedFrozenSha256": "fa0d7ddd0c1355b2bd3150ef654258f2921c3aeb4dd5143b14c1c23c5b34bdab",
+      "mainSha256": "fa0d7ddd0c1355b2bd3150ef654258f2921c3aeb4dd5143b14c1c23c5b34bdab",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelExecution.java",
+      "completedFrozenSha256": "9bc10e33d02b0f117bf50cc13ac43facba946cf0e4ee887793109fbad47e53f6",
+      "mainSha256": "9bc10e33d02b0f117bf50cc13ac43facba946cf0e4ee887793109fbad47e53f6",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelHealthPolicy.java",
+      "completedFrozenSha256": "dbc93a017662d121e5f0ee37616f647aea7ff7fd7c2f3b3e3bf05eb3a75d8de7",
+      "mainSha256": "dbc93a017662d121e5f0ee37616f647aea7ff7fd7c2f3b3e3bf05eb3a75d8de7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelKernel.java",
+      "completedFrozenSha256": "8b1d5b862efa692d3725b5a55e9940cd91382ba5300a119ac68502680457f274",
+      "mainSha256": "8b1d5b862efa692d3725b5a55e9940cd91382ba5300a119ac68502680457f274",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelKinship.java",
+      "completedFrozenSha256": "4fef7abe980232ccbbce5203cf2478cc3159dade65374fa75aa8945ea975d67c",
+      "mainSha256": "4fef7abe980232ccbbce5203cf2478cc3159dade65374fa75aa8945ea975d67c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelMenuOptions.java",
+      "completedFrozenSha256": "00bcb62f514e90efccfb8414fdd1f607c99cf3082854a957efafd2fe67476bd5",
+      "mainSha256": "00bcb62f514e90efccfb8414fdd1f607c99cf3082854a957efafd2fe67476bd5",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelModelSave.java",
+      "completedFrozenSha256": "52cbd2680792fa44fe1ae382df1fae47e2d459b32fab29cfeb50a8f9f1e39005",
+      "mainSha256": "52cbd2680792fa44fe1ae382df1fae47e2d459b32fab29cfeb50a8f9f1e39005",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelOptions.java",
+      "completedFrozenSha256": "444fce16bc89d70ea6ace76aa73fee1991d3f322f9335cfb64838b40af6faa8b",
+      "mainSha256": "444fce16bc89d70ea6ace76aa73fee1991d3f322f9335cfb64838b40af6faa8b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRawLoyalty.java",
+      "completedFrozenSha256": "5076f50e61570f9ae7eee92d0c566b099b8af92b120ea4b83ce02bf62299c7d3",
+      "mainSha256": "5076f50e61570f9ae7eee92d0c566b099b8af92b120ea4b83ce02bf62299c7d3",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRecruitment.java",
+      "completedFrozenSha256": "7b5be7df2f4b41e8786ab6c856950dcf825baab53f5b377487159f1e4ce323af",
+      "mainSha256": "7b5be7df2f4b41e8786ab6c856950dcf825baab53f5b377487159f1e4ce323af",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRecruitmentAdmission.java",
+      "completedFrozenSha256": "3d17236e8c85eabe2cdf617fd327fe74557401e99ef43a00097223635f3b31d9",
+      "mainSha256": "3d17236e8c85eabe2cdf617fd327fe74557401e99ef43a00097223635f3b31d9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRecruitmentRules.java",
+      "completedFrozenSha256": "ef6fd8e2487eba0aef89823e44b27395ab9a9347b3898ca15f3535a6fe6f153f",
+      "mainSha256": "ef6fd8e2487eba0aef89823e44b27395ab9a9347b3898ca15f3535a6fe6f153f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRelease.java",
+      "completedFrozenSha256": "9911139f841b2f0d5bd70d1de7ff7566e4e4ca33f734ea7df259dfa83728201c",
+      "mainSha256": "9911139f841b2f0d5bd70d1de7ff7566e4e4ca33f734ea7df259dfa83728201c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelReplacement.java",
+      "completedFrozenSha256": "d12a30309cf72770eb65181bd4af4bb405d1bc9dcb6b9d3e90559d0b89abb53c",
+      "mainSha256": "d12a30309cf72770eb65181bd4af4bb405d1bc9dcb6b9d3e90559d0b89abb53c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelResponseRules.java",
+      "completedFrozenSha256": "41fbed9e5ae1efe5df532e95f43b26c704e3bc53363ded52d0f4721c0da83117",
+      "mainSha256": "41fbed9e5ae1efe5df532e95f43b26c704e3bc53363ded52d0f4721c0da83117",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRuntimeFacts.java",
+      "completedFrozenSha256": "a1f0774a9f96dc38018e6bf911f1c62279767d152d60df8af37398f8a4add31d",
+      "mainSha256": "a1f0774a9f96dc38018e6bf911f1c62279767d152d60df8af37398f8a4add31d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelSettlement.java",
+      "completedFrozenSha256": "004c44abec28e66f883de53aab47383f4fa811f9a9e532c12d7d15dec228d549",
+      "mainSha256": "004c44abec28e66f883de53aab47383f4fa811f9a9e532c12d7d15dec228d549",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelSourceFacts.java",
+      "completedFrozenSha256": "657d5f8147487861217caf05449426eba0f44d573b668166cf4c66c1ce0d2693",
+      "mainSha256": "657d5f8147487861217caf05449426eba0f44d573b668166cf4c66c1ce0d2693",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelSwornPolicy.java",
+      "completedFrozenSha256": "68a086d19b068ae5c4a0f5f55109da7f2a193cf01e0f78ce4e0525ef42bca78a",
+      "mainSha256": "68a086d19b068ae5c4a0f5f55109da7f2a193cf01e0f78ce4e0525ef42bca78a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelUnitStats.java",
+      "completedFrozenSha256": "7c571db2ae7a5d9b67d0382c4cab23d8a768289623f9f6eb9eaae2a495dce89c",
+      "mainSha256": "7c571db2ae7a5d9b67d0382c4cab23d8a768289623f9f6eb9eaae2a495dce89c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcFacilityCosts.java",
+      "completedFrozenSha256": "160bab071d47e950d3ce0f0d0f50c452f9db854ca3314570644b377401f3c04e",
+      "mainSha256": "160bab071d47e950d3ce0f0d0f50c452f9db854ca3314570644b377401f3c04e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcGovernorPolicy.java",
+      "completedFrozenSha256": "07ec79c21c5c3faa05396ca40ff5ae677d864b525d3736db4fead459a6ac9d5b",
+      "mainSha256": "07ec79c21c5c3faa05396ca40ff5ae677d864b525d3736db4fead459a6ac9d5b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcHealthRules.java",
+      "completedFrozenSha256": "ae5b475beb275a7edc5cabc30a81978f40e22b93311b6408a6b894477b46ac01",
+      "mainSha256": "ae5b475beb275a7edc5cabc30a81978f40e22b93311b6408a6b894477b46ac01",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMap.java",
+      "completedFrozenSha256": "05b6e208d334c4cbc2490c304c86fb4258fb7a49c889305827fb74634771049e",
+      "mainSha256": "05b6e208d334c4cbc2490c304c86fb4258fb7a49c889305827fb74634771049e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMerchantRules.java",
+      "completedFrozenSha256": "62e7cdbae484481de713bda9454cfd6d93719b1168a92a1223dc4093c02be8cb",
+      "mainSha256": "62e7cdbae484481de713bda9454cfd6d93719b1168a92a1223dc4093c02be8cb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcMilitaryCostPolicy.java",
+      "completedFrozenSha256": "4db1dcbf45ee3f4007e8c2c87e3dd33b68d89774c790a7165eeb2172297fbbe3",
+      "mainSha256": "4db1dcbf45ee3f4007e8c2c87e3dd33b68d89774c790a7165eeb2172297fbbe3",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java",
+      "completedFrozenSha256": "ea49e3ad26bfd41eb6ffb5be7ee989d36c317b59f7e6da97e6781f39c3028ee1",
+      "mainSha256": "ea49e3ad26bfd41eb6ffb5be7ee989d36c317b59f7e6da97e6781f39c3028ee1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeHealthPolicy.java",
+      "completedFrozenSha256": "3089f7ebff804a53b6d0b26e4099659725db59526eac21cdffff6feb3ee98b03",
+      "mainSha256": "3089f7ebff804a53b6d0b26e4099659725db59526eac21cdffff6feb3ee98b03",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeItemPolicy.java",
+      "completedFrozenSha256": "5d677b7ff1408ebccd89a07e6153f0abbfb70fdd2bef13b00b97c169cb0e1395",
+      "mainSha256": "5d677b7ff1408ebccd89a07e6153f0abbfb70fdd2bef13b00b97c169cb0e1395",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerAbilityRules.java",
+      "completedFrozenSha256": "2a32d2828f1195a367ed84cfa70ab18a69592e09e5c8c42ee2d59066f3b04c22",
+      "mainSha256": "2a32d2828f1195a367ed84cfa70ab18a69592e09e5c8c42ee2d59066f3b04c22",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerCampaignFacts.java",
+      "completedFrozenSha256": "04aad8b221800529ffabaef7119ff068cdb97394925047741f24575640d92060",
+      "mainSha256": "04aad8b221800529ffabaef7119ff068cdb97394925047741f24575640d92060",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerGrowth.java",
+      "completedFrozenSha256": "187aa03147034e5cdc0263b7d16b5d6a498b57cf39d1c5a8b15ba57da50b9274",
+      "mainSha256": "187aa03147034e5cdc0263b7d16b5d6a498b57cf39d1c5a8b15ba57da50b9274",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerIdentities.java",
+      "completedFrozenSha256": "e0c56a8c252ae457f999e71361c4e3f576d6d32ed72621d8deedcdbb64101e2b",
+      "mainSha256": "e0c56a8c252ae457f999e71361c4e3f576d6d32ed72621d8deedcdbb64101e2b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerInfo.java",
+      "completedFrozenSha256": "605870859e9e0f9cb42ca885a58c790f5def13e68edbc74cd6149720c832a51e",
+      "mainSha256": "605870859e9e0f9cb42ca885a58c790f5def13e68edbc74cd6149720c832a51e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerJoinRules.java",
+      "completedFrozenSha256": "b7702df5087e54b12425b8f4966f6db538ad9b4c12e4115d0cfe17697c93d857",
+      "mainSha256": "b7702df5087e54b12425b8f4966f6db538ad9b4c12e4115d0cfe17697c93d857",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerRanks.java",
+      "completedFrozenSha256": "deabad605b085fdb3aa22e704dab21bd87f2ce98b36a6932caef98aa2c623064",
+      "mainSha256": "deabad605b085fdb3aa22e704dab21bd87f2ce98b36a6932caef98aa2c623064",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcOfficerSources.java",
+      "completedFrozenSha256": "68b2938a0ea04959093a676f010bbdd54cee177d9e09b8925697ca0d0b95273a",
+      "mainSha256": "68b2938a0ea04959093a676f010bbdd54cee177d9e09b8925697ca0d0b95273a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcPatrolRules.java",
+      "completedFrozenSha256": "a27de6d58b102f541bb54c9304f23fd63a9499d541c0c14115f81af5d8d646cb",
+      "mainSha256": "a27de6d58b102f541bb54c9304f23fd63a9499d541c0c14115f81af5d8d646cb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcPersonnelReturnRules.java",
+      "completedFrozenSha256": "d9fcf34e29b37f1d6505441cf3756415ab0d9cf6e048295aaa6fd2d7d84faa8d",
+      "mainSha256": "d9fcf34e29b37f1d6505441cf3756415ab0d9cf6e048295aaa6fd2d7d84faa8d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcProduction.java",
+      "completedFrozenSha256": "95f8bb74304e8a4fde736fc6e877b4cdf036bf7cc34826cc403a7c72011a9906",
+      "mainSha256": "95f8bb74304e8a4fde736fc6e877b4cdf036bf7cc34826cc403a7c72011a9906",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRecruitmentBanPolicy.java",
+      "completedFrozenSha256": "035b01597a4c76b4a4f6ab4be82805340b77019ccec1fa328dab3ec86f92c147",
+      "mainSha256": "035b01597a4c76b4a4f6ab4be82805340b77019ccec1fa328dab3ec86f92c147",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRecruitmentFormula.java",
+      "completedFrozenSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
+      "mainSha256": "d9dd106606945066896f949e8048e073eb5e21591427e9464c7900baf5d3313c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRulerCoronation.java",
+      "completedFrozenSha256": "a8e67f913e3e50e4b7bec4e23296dcea35b31a410e96330a45a50c85cd155ec2",
+      "mainSha256": "a8e67f913e3e50e4b7bec4e23296dcea35b31a410e96330a45a50c85cd155ec2",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRulerSuccession.java",
+      "completedFrozenSha256": "992b42a3b03ab845bdb6a28cdd0b0193224c9f505fe7da990e0f537afff08afd",
+      "mainSha256": "992b42a3b03ab845bdb6a28cdd0b0193224c9f505fe7da990e0f537afff08afd",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcRulerSuccessionRules.java",
+      "completedFrozenSha256": "083edecec9b5d78caa165b5edd6c893a9d0b7c2fbd624e90ec96573829739d46",
+      "mainSha256": "083edecec9b5d78caa165b5edd6c893a9d0b7c2fbd624e90ec96573829739d46",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioCatalog.java",
+      "completedFrozenSha256": "03c05a74085e3fe392fa2f67ff0dda14276267c6af659017d26e03f37498efb5",
+      "mainSha256": "03c05a74085e3fe392fa2f67ff0dda14276267c6af659017d26e03f37498efb5",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioIdentity.java",
+      "completedFrozenSha256": "020b60f4b7f07b2e0c47adb05333a3e7b16a08b7c7c2fbd6c09fd95a43fad026",
+      "mainSha256": "020b60f4b7f07b2e0c47adb05333a3e7b16a08b7c7c2fbd6c09fd95a43fad026",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioOpening.java",
+      "completedFrozenSha256": "f2acd9466c513d575f4bd837bdd0b0a1621d25cd7feaa4f412b9d704417b6723",
+      "mainSha256": "f2acd9466c513d575f4bd837bdd0b0a1621d25cd7feaa4f412b9d704417b6723",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioPeople.java",
+      "completedFrozenSha256": "cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44",
+      "mainSha256": "cb772baf8097315133f4a6d042a83eb808de663195449a5603843d0005ed8c44",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSearchPolicy.java",
+      "completedFrozenSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
+      "mainSha256": "9165b2d8e38997559895a5b0c178387ce66e832c8b51294b5344d86bee00aad6",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSearchRules.java",
+      "completedFrozenSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
+      "mainSha256": "69db1039a06d86c7512a35d63fa843d55e2453decbc879135f79361d27587e52",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSourceOpeningOptions.java",
+      "completedFrozenSha256": "f48aac51a16b60d63e72607fed1176ae20c957392847ea1e042dcff01695f2e5",
+      "mainSha256": "f48aac51a16b60d63e72607fed1176ae20c957392847ea1e042dcff01695f2e5",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcSourceTechnologyPolicy.java",
+      "completedFrozenSha256": "bf7c4c0823d72df83629c1f96daf9595b2534b4db49ca571bb53ba58e86f844c",
+      "mainSha256": "bf7c4c0823d72df83629c1f96daf9595b2534b4db49ca571bb53ba58e86f844c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcTacticCosts.java",
+      "completedFrozenSha256": "3a6bf3b9e9ea61728ae9f28b58aee2ddf02e8eabb5f5b98114145c65a5b9660a",
+      "mainSha256": "3a6bf3b9e9ea61728ae9f28b58aee2ddf02e8eabb5f5b98114145c65a5b9660a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcTechniquePoints.java",
+      "completedFrozenSha256": "fe1655a78a9d1c1381eaaac4a506cf70a15f50ed5ca98ea75c830cc99e2eea38",
+      "mainSha256": "fe1655a78a9d1c1381eaaac4a506cf70a15f50ed5ca98ea75c830cc99e2eea38",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PersonnelTravel.java",
+      "completedFrozenSha256": "70dfd1d4249d775a7caff4e3ec571f2d6f2a6d663b29cd82cc1531febf04b8c8",
+      "mainSha256": "70dfd1d4249d775a7caff4e3ec571f2d6f2a6d663b29cd82cc1531febf04b8c8",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ProductionPlan.java",
+      "completedFrozenSha256": "3d8c9363eb754da631325ecd21431eeb72b3d643fa75c851903a9195c46a5a39",
+      "mainSha256": "3d8c9363eb754da631325ecd21431eeb72b3d643fa75c851903a9195c46a5a39",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RealmOverview.java",
+      "completedFrozenSha256": "a8cec0c6978a6bf6d541996e06b3076b8e97b629421ebc76c3293d18c245f7fe",
+      "mainSha256": "a8cec0c6978a6bf6d541996e06b3076b8e97b629421ebc76c3293d18c245f7fe",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Recruitment.java",
+      "completedFrozenSha256": "75f1ed8b7f406bc98d9bfcd79633e80ab131b0154f281118a4aa424e92896dc9",
+      "mainSha256": "75f1ed8b7f406bc98d9bfcd79633e80ab131b0154f281118a4aa424e92896dc9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RecruitmentPlan.java",
+      "completedFrozenSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
+      "mainSha256": "4cd060679ae561f47285977dbd96f7574982a8e4133f8ac9376721aa765e3458",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Relations.java",
+      "completedFrozenSha256": "24ab15adeb758a57db6423696b3c29e35ae2c79db3d8eb2cf05b9b793749998d",
+      "mainSha256": "24ab15adeb758a57db6423696b3c29e35ae2c79db3d8eb2cf05b9b793749998d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RuleFailure.java",
+      "completedFrozenSha256": "14201890d1a9b783b65443a283cfb938197e3663e4ab40fe5ffb759d0c5eb4af",
+      "mainSha256": "14201890d1a9b783b65443a283cfb938197e3663e4ab40fe5ffb759d0c5eb4af",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RulerTitles.java",
+      "completedFrozenSha256": "029bc1baa2494434c16ac9693fdb805812c006b57724444e3f62ef658a6f5d38",
+      "mainSha256": "029bc1baa2494434c16ac9693fdb805812c006b57724444e3f62ef658a6f5d38",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/RulesSave.java",
+      "completedFrozenSha256": "a165815b9c90925ec77ac4345db59252baa2e96cf5820dae83c74d013031533f",
+      "mainSha256": "a165815b9c90925ec77ac4345db59252baa2e96cf5820dae83c74d013031533f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "completedFrozenSha256": "f34a11c0697348e0e5a61be44df713cee8fdbd110695e8762aefa20d4e861aaa",
+      "mainSha256": "f34a11c0697348e0e5a61be44df713cee8fdbd110695e8762aefa20d4e861aaa",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveExtensions.java",
+      "completedFrozenSha256": "1272b62d15f821c8446826be0ae2680b56d68b644c015402261264167fd02b3e",
+      "mainSha256": "1272b62d15f821c8446826be0ae2680b56d68b644c015402261264167fd02b3e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioCatalog.java",
+      "completedFrozenSha256": "495d05c25c8d874ba26ca7ea88145592e01687b436e3d571cdeb6acf5efcd443",
+      "mainSha256": "495d05c25c8d874ba26ca7ea88145592e01687b436e3d571cdeb6acf5efcd443",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioData.java",
+      "completedFrozenSha256": "fec58ac219be23d4d423c331896853266e5fef9b741ae013456a38d98f4ea179",
+      "mainSha256": "fec58ac219be23d4d423c331896853266e5fef9b741ae013456a38d98f4ea179",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiegeRules.java",
+      "completedFrozenSha256": "c43673291a116995151e346796fbc13040690774dabab40ecf8dfe0cd864d3a1",
+      "mainSha256": "c43673291a116995151e346796fbc13040690774dabab40ecf8dfe0cd864d3a1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiteAffiliation.java",
+      "completedFrozenSha256": "ee344a8339ee824af4bdf837ba6f4b65cee7adfbe21a5d21cff19dd4aaee3798",
+      "mainSha256": "ee344a8339ee824af4bdf837ba6f4b65cee7adfbe21a5d21cff19dd4aaee3798",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiteFootprint.java",
+      "completedFrozenSha256": "a226009f5f1ef89ab82695f37ae769b25c8c98d113a6b097eb44b263b6bb87a7",
+      "mainSha256": "a226009f5f1ef89ab82695f37ae769b25c8c98d113a6b097eb44b263b6bb87a7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Skill.java",
+      "completedFrozenSha256": "e2a0bedebe623a949bfeea5cb32fd69f6938d970f52761196661b135a6cd21dd",
+      "mainSha256": "e2a0bedebe623a949bfeea5cb32fd69f6938d970f52761196661b135a6cd21dd",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SkillSupport.java",
+      "completedFrozenSha256": "8863512da49bbf7fd9a12a7ab8ff6a8fe6006ef8bec9fe989296540c634b0879",
+      "mainSha256": "8863512da49bbf7fd9a12a7ab8ff6a8fe6006ef8bec9fe989296540c634b0879",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Skills.java",
+      "completedFrozenSha256": "68226fd8a6a384212cb41a68c5a41b11791bf77e67ee075f0d72ae2408f70984",
+      "mainSha256": "68226fd8a6a384212cb41a68c5a41b11791bf77e67ee075f0d72ae2408f70984",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategicAi.java",
+      "completedFrozenSha256": "1257e4db88510a02872bd6b8e4ab1aebfeec2d504fb00bb7201d9aed1f5c3f86",
+      "mainSha256": "1257e4db88510a02872bd6b8e4ab1aebfeec2d504fb00bb7201d9aed1f5c3f86",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "completedFrozenSha256": "463c61349e14925545ed7f605aa3211ded1e3cdbd57444b391cd371a48884be8",
+      "mainSha256": "463c61349e14925545ed7f605aa3211ded1e3cdbd57444b391cd371a48884be8",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/StrategySave.java",
+      "completedFrozenSha256": "db4cd0b07e825969edbe22db7a9d0c48980e3162635ae26e5af3f64d961627e5",
+      "mainSha256": "db4cd0b07e825969edbe22db7a9d0c48980e3162635ae26e5af3f64d961627e5",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Supply.java",
+      "completedFrozenSha256": "1bf7486569e2be09850a2dd92d9ee61c6917e21961edcbb0c80516cbaf4c3216",
+      "mainSha256": "1bf7486569e2be09850a2dd92d9ee61c6917e21961edcbb0c80516cbaf4c3216",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TechniquePointsJournal.java",
+      "completedFrozenSha256": "0c3078f36a29dbe5fe1ced36d4f30ce42e17358c77763322623b2bb345ed9ea0",
+      "mainSha256": "0c3078f36a29dbe5fe1ced36d4f30ce42e17358c77763322623b2bb345ed9ea0",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TerrainPresentation.java",
+      "completedFrozenSha256": "9261713244af5a4ddb6549ffbce2d935e578043173124d64f09f486491c38aeb",
+      "mainSha256": "9261713244af5a4ddb6549ffbce2d935e578043173124d64f09f486491c38aeb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Territory.java",
+      "completedFrozenSha256": "6d7d643e72ab915a3666c6179aa9709f21de7af503aabadad259496dc25a850d",
+      "mainSha256": "6d7d643e72ab915a3666c6179aa9709f21de7af503aabadad259496dc25a850d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TradePlan.java",
+      "completedFrozenSha256": "ec6270b30c862c378a20adf38f7e8be6b5c17f80ee00105ab13c4bca1470b173",
+      "mainSha256": "ec6270b30c862c378a20adf38f7e8be6b5c17f80ee00105ab13c4bca1470b173",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TransportPlan.java",
+      "completedFrozenSha256": "3d41a17586887d1a9bd9679ff0c2e3ef658b3f5af766f70ddf25ce245937c16f",
+      "mainSha256": "3d41a17586887d1a9bd9679ff0c2e3ef658b3f5af766f70ddf25ce245937c16f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Treasures.java",
+      "completedFrozenSha256": "ecab22592c258879f94f2a24ddfe88d73ec72066ac08f3b97c6b6d16c8c456fc",
+      "mainSha256": "ecab22592c258879f94f2a24ddfe88d73ec72066ac08f3b97c6b6d16c8c456fc",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/TurnJournal.java",
+      "completedFrozenSha256": "9fcc564cdf349905a5e22d67fc4800f6f2131bfba784d6fce4fa56651db02dca",
+      "mainSha256": "9fcc564cdf349905a5e22d67fc4800f6f2131bfba784d6fce4fa56651db02dca",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/UnitOrders.java",
+      "completedFrozenSha256": "6deb247c68b757cfca75829fabb0349907cb0b950a521bb85a99b42c4db879d7",
+      "mainSha256": "6deb247c68b757cfca75829fabb0349907cb0b950a521bb85a99b42c4db879d7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/War.java",
+      "completedFrozenSha256": "facbb1b51d4a3562751eeea78ab6086e3f9262174c568ad9c72f9fe0f5b6f764",
+      "mainSha256": "facbb1b51d4a3562751eeea78ab6086e3f9262174c568ad9c72f9fe0f5b6f764",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "completedFrozenSha256": "1572c197c8ba3d87bbcf36bc7f526c9c03ea8a8f93fcb0692d2750b2925f022c",
+      "mainSha256": "1572c197c8ba3d87bbcf36bc7f526c9c03ea8a8f93fcb0692d2750b2925f022c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/WorldEvents.java",
+      "completedFrozenSha256": "9014b481160e9bab46e2d9bb83bcff517f35c58d25e8f1f9aad382c216b6c488",
+      "mainSha256": "9014b481160e9bab46e2d9bb83bcff517f35c58d25e8f1f9aad382c216b6c488",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/WorldSystemsSave.java",
+      "completedFrozenSha256": "3365cb8cc5cab333cd91f1c64cece6cecfd312268d5e947bcf7863a67ad57441",
+      "mainSha256": "3365cb8cc5cab333cd91f1c64cece6cecfd312268d5e947bcf7863a67ad57441",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/army/MarchScale.java",
+      "completedFrozenSha256": "239bc319ad916854ffa64f228b22778474c2f673507ab51f0fc177e1150def18",
+      "mainSha256": "239bc319ad916854ffa64f228b22778474c2f673507ab51f0fc177e1150def18",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/map/MapBrushGeometry.java",
+      "completedFrozenSha256": "7b27148a073e27f44fa8a612ba71555cf9f9258b515b80740587c254544f4c1c",
+      "mainSha256": "7b27148a073e27f44fa8a612ba71555cf9f9258b515b80740587c254544f4c1c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/map/SourceGridCoord.java",
+      "completedFrozenSha256": "d1f561da51f83b18c8ee989b7f92ec55ecaec8154e2fcce3afea8710dee90477",
+      "mainSha256": "d1f561da51f83b18c8ee989b7f92ec55ecaec8154e2fcce3afea8710dee90477",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/map/TerrainCode.java",
+      "completedFrozenSha256": "9f7fd9d2d9b2e4940d4e157fce87fb4fe8caf6bddd08402da317ab53e3274ac2",
+      "mainSha256": "9f7fd9d2d9b2e4940d4e157fce87fb4fe8caf6bddd08402da317ab53e3274ac2",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/strategy/StrategyRules.java",
+      "completedFrozenSha256": "a364626ddcfa28e73908d732257b5cdbbc541c562aed9e8e743e35656abe6695",
+      "mainSha256": "a364626ddcfa28e73908d732257b5cdbbc541c562aed9e8e743e35656abe6695",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/aliases.tsv",
+      "completedFrozenSha256": "ef10ee62da34b5878267d4e4283b07ca37be0c9b0e6b0112434f93344c1f9dc6",
+      "mainSha256": "ef10ee62da34b5878267d4e4283b07ca37be0c9b0e6b0112434f93344c1f9dc6",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/index.txt",
+      "completedFrozenSha256": "f6ffa40a07b8213eeaf9c046c36154684f5740daeae1a596965f17654c553d83",
+      "mainSha256": "f6ffa40a07b8213eeaf9c046c36154684f5740daeae1a596965f17654c553d83",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/items.tsv",
+      "completedFrozenSha256": "6d9d51b2432eab02028d0ada66a0f4676c3bad8cc86a257d62727952e4f81bdb",
+      "mainSha256": "6d9d51b2432eab02028d0ada66a0f4676c3bad8cc86a257d62727952e4f81bdb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/manifest.tsv",
+      "completedFrozenSha256": "7de25820433672ff9140152de6d5bda95ae1c911de4016b3d1b9dfea0931477a",
+      "mainSha256": "7de25820433672ff9140152de6d5bda95ae1c911de4016b3d1b9dfea0931477a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/officers.tsv",
+      "completedFrozenSha256": "eaa1a7a6f456ac0d0351e3f69f86b5a72b7bdd11848b85f1ada30c9eab03ce17",
+      "mainSha256": "eaa1a7a6f456ac0d0351e3f69f86b5a72b7bdd11848b85f1ada30c9eab03ce17",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/pc-officer-growth.tsv",
+      "completedFrozenSha256": "ba89f918e9852ce5144e94441e132f8fdb87accc243bbec3bb0596b7e2307721",
+      "mainSha256": "ba89f918e9852ce5144e94441e132f8fdb87accc243bbec3bb0596b7e2307721",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/pc-officer-ranks.tsv",
+      "completedFrozenSha256": "78ce6ffb93c7164d81858df7d5ca5387ffe830f2fabb821ece3b3fb8122f1288",
+      "mainSha256": "78ce6ffb93c7164d81858df7d5ca5387ffe830f2fabb821ece3b3fb8122f1288",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/profiles.tsv",
+      "completedFrozenSha256": "7369f593b90a4480b2b7bfd7357b7c546e0c23cd2f3ae18a3e83b8630f79a7f4",
+      "mainSha256": "7369f593b90a4480b2b7bfd7357b7c546e0c23cd2f3ae18a3e83b8630f79a7f4",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/relations.tsv",
+      "completedFrozenSha256": "273841aa37d113ff491840d1a068829a0eb41532e4e6ea9aa6f4337b96372916",
+      "mainSha256": "273841aa37d113ff491840d1a068829a0eb41532e4e6ea9aa6f4337b96372916",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/scenarios.tsv",
+      "completedFrozenSha256": "294fb60f477c1a719eaa2b3546383ca3541dd97ce961a3a5366af4aa0bac33eb",
+      "mainSha256": "294fb60f477c1a719eaa2b3546383ca3541dd97ce961a3a5366af4aa0bac33eb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/sites.tsv",
+      "completedFrozenSha256": "bbb2fdd599b016b482b1742649982eb09e6fec982c9adaef6a3a12844c52cf22",
+      "mainSha256": "bbb2fdd599b016b482b1742649982eb09e6fec982c9adaef6a3a12844c52cf22",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/skills.tsv",
+      "completedFrozenSha256": "4c59b639787e7dc1a5c1e18ac532c1830b28a6613f3efb4c7751faf24d5bc0cb",
+      "mainSha256": "4c59b639787e7dc1a5c1e18ac532c1830b28a6613f3efb4c7751faf24d5bc0cb",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/content/sources.tsv",
+      "completedFrozenSha256": "3d6cd9c05cd8eac8c7672841f01f9a8be1c177d9aefbac780d35d29f44246b15",
+      "mainSha256": "3d6cd9c05cd8eac8c7672841f01f9a8be1c177d9aefbac780d35d29f44246b15",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/maps/national-exterior-v061.properties",
+      "completedFrozenSha256": "451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f",
+      "mainSha256": "451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/maps/national-map-v056.properties",
+      "completedFrozenSha256": "800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d",
+      "mainSha256": "800f3471a1aa11882419d195f6c7ad5e78cae1871941095daf866c4d93babc1d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/maps/national-restrictions-v063.properties",
+      "completedFrozenSha256": "be04aaf7361f13b64cac6bc51c12cbefc5aa4a7bc80e1aacdde9233bfb666a76",
+      "mainSha256": "be04aaf7361f13b64cac6bc51c12cbefc5aa4a7bc80e1aacdde9233bfb666a76",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-dams-v065.properties",
+      "completedFrozenSha256": "2c73957fcfb5873185fe72231e2f4b1b980f960e9962a063ecef4304b58f408a",
+      "mainSha256": "2c73957fcfb5873185fe72231e2f4b1b980f960e9962a063ecef4304b58f408a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-map.bin.gz",
+      "completedFrozenSha256": "c035549c3ccc0c31a96ad9d8f0fb5f774e5f00ab0eae1f050a0b58fcb2ee68f7",
+      "mainSha256": "c035549c3ccc0c31a96ad9d8f0fb5f774e5f00ab0eae1f050a0b58fcb2ee68f7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-water.bin.gz",
+      "completedFrozenSha256": "59e26262d70f93334c7c80d5141a1e695610b81be814f014c6abdda0622bf2d1",
+      "mainSha256": "59e26262d70f93334c7c80d5141a1e695610b81be814f014c6abdda0622bf2d1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-command-capacity/index.txt",
+      "completedFrozenSha256": "74e7ed31586415bac0e1cd70a96884bec4d74b6e6b9c5e000c0e53992d65793b",
+      "mainSha256": "74e7ed31586415bac0e1cd70a96884bec4d74b6e6b9c5e000c0e53992d65793b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-command-capacity/references.bin.gz",
+      "completedFrozenSha256": "1538f1e6dbb120600e47421ad5cf835f29af443ad666dd60b6af21e4f6e7ec9b",
+      "mainSha256": "1538f1e6dbb120600e47421ad5cf835f29af443ad666dd60b6af21e4f6e7ec9b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-contest-profiles/index.txt",
+      "completedFrozenSha256": "146900a8a1d15a57b5927bb8964e7998d44d3f7adff93d0c1c200e505839dad8",
+      "mainSha256": "146900a8a1d15a57b5927bb8964e7998d44d3f7adff93d0c1c200e505839dad8",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-contest-profiles/profiles.bin.gz",
+      "completedFrozenSha256": "5bdeef55518d85c1ddde019f13cc709c076437a36ed2ff0b8cd824e6d5220f24",
+      "mainSha256": "5bdeef55518d85c1ddde019f13cc709c076437a36ed2ff0b8cd824e6d5220f24",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/kinship-16.bin.gz",
+      "completedFrozenSha256": "3aacd4a9c561a30fe7ecfe137ce141816827d02e399a340da744837806773295",
+      "mainSha256": "3aacd4a9c561a30fe7ecfe137ce141816827d02e399a340da744837806773295",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/kinship-16.index.json",
+      "completedFrozenSha256": "61e20710ccb4e3a7f5305e02e2de4640b87efdc8477a9c61bf6d7645dafedb34",
+      "mainSha256": "61e20710ccb4e3a7f5305e02e2de4640b87efdc8477a9c61bf6d7645dafedb34",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/native-items.tsv",
+      "completedFrozenSha256": "bd4cfadb7f1024a9403bfb4b5cbee13fb152f941040ffb9948d67c43a712e74b",
+      "mainSha256": "bd4cfadb7f1024a9403bfb4b5cbee13fb152f941040ffb9948d67c43a712e74b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/newgame-options.tsv",
+      "completedFrozenSha256": "9f3378a20f400498c5660dc1f7ea8641600b24054ae4975e31ebeef4fb11a424",
+      "mainSha256": "9f3378a20f400498c5660dc1f7ea8641600b24054ae4975e31ebeef4fb11a424",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/person-state-index.json",
+      "completedFrozenSha256": "b342c64f4b0b32c4f77472346107101f9a56f3cb789dd9b4b18c35106497769e",
+      "mainSha256": "b342c64f4b0b32c4f77472346107101f9a56f3cb789dd9b4b18c35106497769e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/person-state.tsv.gz",
+      "completedFrozenSha256": "d86553a7445650d4927c37e14be7614dc3ffc0da1530ce4f0f652e8e34739433",
+      "mainSha256": "d86553a7445650d4927c37e14be7614dc3ffc0da1530ce4f0f652e8e34739433",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/personnel-neighbors-source.json",
+      "completedFrozenSha256": "898a69f7621a64c89a89042a5200a9f86dcbb864febc4243bc0399bdce434771",
+      "mainSha256": "898a69f7621a64c89a89042a5200a9f86dcbb864febc4243bc0399bdce434771",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/personnel-neighbors.bin",
+      "completedFrozenSha256": "e8c5633deef89b1058f5560054d7ad84f80a8b5c60a54f7bd37f457a6c36133a",
+      "mainSha256": "e8c5633deef89b1058f5560054d7ad84f80a8b5c60a54f7bd37f457a6c36133a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/personnel-travel-source.json",
+      "completedFrozenSha256": "73fce2537552ae7bec3b59d88482ce5c9b0b8b228ba73a399bfcebee9c98480f",
+      "mainSha256": "73fce2537552ae7bec3b59d88482ce5c9b0b8b228ba73a399bfcebee9c98480f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/personnel-travel.bin",
+      "completedFrozenSha256": "ff7a1c159d649cf24461b638214dcf07ca97e45fea93477dcbcb156cd6ba670c",
+      "mainSha256": "ff7a1c159d649cf24461b638214dcf07ca97e45fea93477dcbcb156cd6ba670c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/recruitment-bans.tsv",
+      "completedFrozenSha256": "fcd40647848c6492ab45b5b000eee8f7cbe6679eb5e068ddeb7903a43f8c0d32",
+      "mainSha256": "fcd40647848c6492ab45b5b000eee8f7cbe6679eb5e068ddeb7903a43f8c0d32",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/runtime-bindings-index.json",
+      "completedFrozenSha256": "f8ca258529c53363916bd3bf702d0cd7d05b96696bba24eea3789a0135617fce",
+      "mainSha256": "f8ca258529c53363916bd3bf702d0cd7d05b96696bba24eea3789a0135617fce",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/runtime-bindings-sha.txt",
+      "completedFrozenSha256": "8f4a63f23fd5c0c3e470ea99330d0a32dbf7bef620f9845a319602728d806844",
+      "mainSha256": "8f4a63f23fd5c0c3e470ea99330d0a32dbf7bef620f9845a319602728d806844",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/runtime-bindings.tsv.gz",
+      "completedFrozenSha256": "74dfcdf5217af2d96c86c0ccb4324b160550f0dc4315e4c2049bdb9ef8ef6c35",
+      "mainSha256": "74dfcdf5217af2d96c86c0ccb4324b160550f0dc4315e4c2049bdb9ef8ef6c35",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/source-header-flags.tsv",
+      "completedFrozenSha256": "cc30cedaaf49a34f01aa62c10c14a64d3e8a6eb558cd1547da11c8ef92fd54b1",
+      "mainSha256": "cc30cedaaf49a34f01aa62c10c14a64d3e8a6eb558cd1547da11c8ef92fd54b1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/source-technologies-manifest.json",
+      "completedFrozenSha256": "71d44b2769c752b0ed3e4dd5fd484d7e15eb77cb177fa0b0e77622a7c74e5912",
+      "mainSha256": "71d44b2769c752b0ed3e4dd5fd484d7e15eb77cb177fa0b0e77622a7c74e5912",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/source-technologies.tsv",
+      "completedFrozenSha256": "28239e64d1e8808fd8eda496b6e5c91c809d207fe678db5e22a7afbad89d0f42",
+      "mainSha256": "28239e64d1e8808fd8eda496b6e5c91c809d207fe678db5e22a7afbad89d0f42",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/unit-templates-source.json",
+      "completedFrozenSha256": "1c511d0c9debca92da795131e52d9e3acceb49e55e24e93f74d3200a6eb2f51e",
+      "mainSha256": "1c511d0c9debca92da795131e52d9e3acceb49e55e24e93f74d3200a6eb2f51e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-duel/unit-templates.tsv",
+      "completedFrozenSha256": "1ad67f7ca4fb441a18c56ed9fb9faf8449083db992ff0112a7c4db77e754c7cf",
+      "mainSha256": "1ad67f7ca4fb441a18c56ed9fb9faf8449083db992ff0112a7c4db77e754c7cf",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-governor-rosters/index.txt",
+      "completedFrozenSha256": "25fe996e158f1799cdfb13424d0d97bc8116ba63e7344bdc37368864261fa370",
+      "mainSha256": "25fe996e158f1799cdfb13424d0d97bc8116ba63e7344bdc37368864261fa370",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-governor-rosters/rosters.bin.gz",
+      "completedFrozenSha256": "f642b0d78a35df48210ddf81fd3872a81a2db78ee0e0028d6e37d8f01755927e",
+      "mainSha256": "f642b0d78a35df48210ddf81fd3872a81a2db78ee0e0028d6e37d8f01755927e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-campaign/build-report.json",
+      "completedFrozenSha256": "d17dfab75f712ab01b3dbe994718eb810ad35a74d9f5ec933c48ea6946e2d7ea",
+      "mainSha256": "d17dfab75f712ab01b3dbe994718eb810ad35a74d9f5ec933c48ea6946e2d7ea",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-campaign/facts.bin.gz",
+      "completedFrozenSha256": "0f07a9c0c9775a69b010ba533b3895594b8da209f979dc42eda3600320648f5e",
+      "mainSha256": "0f07a9c0c9775a69b010ba533b3895594b8da209f979dc42eda3600320648f5e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-campaign/index.txt",
+      "completedFrozenSha256": "66d790025b2eacf3cfb8a7889ac4cbc99c2ca73b14ee585613df8eb70c6d9a7c",
+      "mainSha256": "66d790025b2eacf3cfb8a7889ac4cbc99c2ca73b14ee585613df8eb70c6d9a7c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/identities.bin.gz",
+      "completedFrozenSha256": "be807419be8bea55e6de69e37be9d539e53e214d863dd916ace3fe282af9e3cd",
+      "mainSha256": "be807419be8bea55e6de69e37be9d539e53e214d863dd916ace3fe282af9e3cd",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officer-identities/index.txt",
+      "completedFrozenSha256": "2fa9bf328fc0818ccae52359feb1d91daf9d66e2dcb7f273f8f46d7a3e450c68",
+      "mainSha256": "2fa9bf328fc0818ccae52359feb1d91daf9d66e2dcb7f273f8f46d7a3e450c68",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officers/index.txt",
+      "completedFrozenSha256": "8fd6167908a6802673af27e0c58fc6ebb5166d1d7614e351ed2f65875b8f07f1",
+      "mainSha256": "8fd6167908a6802673af27e0c58fc6ebb5166d1d7614e351ed2f65875b8f07f1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-officers/source-text.bin.gz",
+      "completedFrozenSha256": "77d42c74cc3c44e094354d624d5dff0e2f990c371be9c3f28e5f532d5d0f79d9",
+      "mainSha256": "77d42c74cc3c44e094354d624d5dff0e2f990c371be9c3f28e5f532d5d0f79d9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/catalog.bin.gz",
+      "completedFrozenSha256": "134f2553ab3e61e5eb8239db2633ad7721c7284acf08380a0af1706c3fa768a3",
+      "mainSha256": "134f2553ab3e61e5eb8239db2633ad7721c7284acf08380a0af1706c3fa768a3",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/index.txt",
+      "completedFrozenSha256": "fa609060dd110d8698d544aa74726976fbd0255795bf026917eb7a6b6122428e",
+      "mainSha256": "fa609060dd110d8698d544aa74726976fbd0255795bf026917eb7a6b6122428e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c.bin.gz",
+      "completedFrozenSha256": "2061f17815ab0e94cad877b4444e25af9176a0a38559fc6e768c62a61c067af9",
+      "mainSha256": "2061f17815ab0e94cad877b4444e25af9176a0a38559fc6e768c62a61c067af9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen001-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae.bin.gz",
+      "completedFrozenSha256": "d78f238579270fdf8f90600f9914b43d88626752c0b9b5bd42001ff86ec06a79",
+      "mainSha256": "d78f238579270fdf8f90600f9914b43d88626752c0b9b5bd42001ff86ec06a79",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen002-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c.bin.gz",
+      "completedFrozenSha256": "751e24e5c5dcf68c00dc497fa639bfa9f8987cabace3b81b163e5796f7f78c96",
+      "mainSha256": "751e24e5c5dcf68c00dc497fa639bfa9f8987cabace3b81b163e5796f7f78c96",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen003-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e.bin.gz",
+      "completedFrozenSha256": "892c8b799d3a61bc215091e8d34d7e3ceadeed1729d84e58a923ffea250bf05f",
+      "mainSha256": "892c8b799d3a61bc215091e8d34d7e3ceadeed1729d84e58a923ffea250bf05f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen004-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae.bin.gz",
+      "completedFrozenSha256": "3132b668aa087a21e20f4280ca0dac20825b3b3e7e58b2fc16794499d75529cc",
+      "mainSha256": "3132b668aa087a21e20f4280ca0dac20825b3b3e7e58b2fc16794499d75529cc",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen005-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01.bin.gz",
+      "completedFrozenSha256": "4237748b36bdad0ba6132d58ef9a3b131aada36293d2bfa2d4b25e02c85e3a5e",
+      "mainSha256": "4237748b36bdad0ba6132d58ef9a3b131aada36293d2bfa2d4b25e02c85e3a5e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen006-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88.bin.gz",
+      "completedFrozenSha256": "1da9cb0170541423dfce72fb86688384911031d5a1d5d7499fe1a4b1ae5910a2",
+      "mainSha256": "1da9cb0170541423dfce72fb86688384911031d5a1d5d7499fe1a4b1ae5910a2",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen007-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709.bin.gz",
+      "completedFrozenSha256": "8c9f65c1a0279b7de70c5ca63f557e8511b6f0518f86e1088cd8e70cd831115c",
+      "mainSha256": "8c9f65c1a0279b7de70c5ca63f557e8511b6f0518f86e1088cd8e70cd831115c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen008-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba.bin.gz",
+      "completedFrozenSha256": "78fb767d93fd335ece58f0d582a25f241f37d1c0196ac92ddf2569c736a97d6b",
+      "mainSha256": "78fb767d93fd335ece58f0d582a25f241f37d1c0196ac92ddf2569c736a97d6b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen009-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a.bin.gz",
+      "completedFrozenSha256": "d052bb3f02257c29b731ff87557741404f45613aa16a6b0730a1b70cdaa1aef7",
+      "mainSha256": "d052bb3f02257c29b731ff87557741404f45613aa16a6b0730a1b70cdaa1aef7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen010-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba.bin.gz",
+      "completedFrozenSha256": "d4d1b4f4f787986fb399b99622ae8cf7ca46e9d015687329dcba271e0c1af286",
+      "mainSha256": "d4d1b4f4f787986fb399b99622ae8cf7ca46e9d015687329dcba271e0c1af286",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen011-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4.bin.gz",
+      "completedFrozenSha256": "2c94e7635cbf69c60d6580e236251f502b4d5da39bf0bddc48e01054e71368cc",
+      "mainSha256": "2c94e7635cbf69c60d6580e236251f502b4d5da39bf0bddc48e01054e71368cc",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen012-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772.bin.gz",
+      "completedFrozenSha256": "1a85f32eb502443c5b8cc8f835c20e9e5a8a334a1fa6ca9dc812fabb241a132a",
+      "mainSha256": "1a85f32eb502443c5b8cc8f835c20e9e5a8a334a1fa6ca9dc812fabb241a132a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen013-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f.bin.gz",
+      "completedFrozenSha256": "22f4fa650d19c08aebb427b7c0ed4b0bdf76ea22bd6d876364878a51e1f718c2",
+      "mainSha256": "22f4fa650d19c08aebb427b7c0ed4b0bdf76ea22bd6d876364878a51e1f718c2",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b.bin.gz",
+      "completedFrozenSha256": "5ba781df3319db4d61a471d8557dd9f544360ebf97fb692d80625c5c19b3c7c7",
+      "mainSha256": "5ba781df3319db4d61a471d8557dd9f544360ebf97fb692d80625c5c19b3c7c7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/pc-scen015-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a.bin.gz",
+      "completedFrozenSha256": "915a58f24633ec601ba370bd35e53ff30a825734b4290e46626b98f1e2930606",
+      "mainSha256": "915a58f24633ec601ba370bd35e53ff30a825734b4290e46626b98f1e2930606",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/raw-loyalty.tsv.gz",
+      "completedFrozenSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
+      "mainSha256": "5b67c64a732b0cb326e176c161aa3517a06442989f3701765b1d7b6864386d8a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/pc-scenarios/search-regions.tsv",
+      "completedFrozenSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
+      "mainSha256": "7c99b9605ba37e29da637de1f099bf37175ee73ce3fe640c88f112b3ff98a52c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/rules/pc-city-production-flags.tsv",
+      "completedFrozenSha256": "469e0fe812bf20661c0427b3ff8d79c0be51e7080411a340fdaa4e6598d46ed1",
+      "mainSha256": "469e0fe812bf20661c0427b3ff8d79c0be51e7080411a340fdaa4e6598d46ed1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/rules/pc-production-prices.tsv",
+      "completedFrozenSha256": "eb73f93c358be45bf40aebf286e930a80de0b9fd47429300cb9b78fc7a9c850f",
+      "mainSha256": "eb73f93c358be45bf40aebf286e930a80de0b9fd47429300cb9b78fc7a9c850f",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/rules/skill-support.tsv",
+      "completedFrozenSha256": "56b0e51647dbb0bbfa2658d83f63d69788b6a0a1ee997ebd94ab97d2d09f620c",
+      "mainSha256": "56b0e51647dbb0bbfa2658d83f63d69788b6a0a1ee997ebd94ab97d2d09f620c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/central-mobile-sandbox.properties",
+      "completedFrozenSha256": "a6d50e6037c567aae6be7229e01ed0c21fca1814abbe3302bbd9bbbfae85492d",
+      "mainSha256": "a6d50e6037c567aae6be7229e01ed0c21fca1814abbe3302bbd9bbbfae85492d",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/chibi-207.properties",
+      "completedFrozenSha256": "6e979682ca6e9dea1cf4721e8b7584ff8bbc7fbc2d22177896073cdbd7b4e1f1",
+      "mainSha256": "6e979682ca6e9dea1cf4721e8b7584ff8bbc7fbc2d22177896073cdbd7b4e1f1",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/coalition-190.properties",
+      "completedFrozenSha256": "84bbe2aa8daba3be0d47e2f7fc2f700cbdd2b53c748e6f42f568a7115b04d8c8",
+      "mainSha256": "84bbe2aa8daba3be0d47e2f7fc2f700cbdd2b53c748e6f42f568a7115b04d8c8",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/guandu-200.properties",
+      "completedFrozenSha256": "72df21e9b16bf3492e561ac81ee70dd89a0c64b4ddb0d7c35a88fe980369acd7",
+      "mainSha256": "72df21e9b16bf3492e561ac81ee70dd89a0c64b4ddb0d7c35a88fe980369acd7",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/heroes-250.properties",
+      "completedFrozenSha256": "cef9f57976f059e5806154082a0250404ee14c350e66204594880e30d4df61cf",
+      "mainSha256": "cef9f57976f059e5806154082a0250404ee14c350e66204594880e30d4df61cf",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/heroes-mobile-sandbox.properties",
+      "completedFrozenSha256": "feaaf673a9712fc04dfd37ab4865499be25e92eb2889332d742a5dbfa478a5a2",
+      "mainSha256": "feaaf673a9712fc04dfd37ab4865499be25e92eb2889332d742a5dbfa478a5a2",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/huangjin-184.properties",
+      "completedFrozenSha256": "cb50051c2c0f0f1dbf08fbdb2ea787ab31e61b36f7ea1d6c3c7065cbb6dd518a",
+      "mainSha256": "cb50051c2c0f0f1dbf08fbdb2ea787ab31e61b36f7ea1d6c3c7065cbb6dd518a",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/index.txt",
+      "completedFrozenSha256": "1b4c20f6916b9cfec12c927def966dc0d14368cee5aea89272562d36d060b108",
+      "mainSha256": "1b4c20f6916b9cfec12c927def966dc0d14368cee5aea89272562d36d060b108",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/jingxiang-mobile-sandbox.properties",
+      "completedFrozenSha256": "ba781ce741cc24762f01ad68517dc191ce970d5b3880c7f0ed74f9aaf5e91663",
+      "mainSha256": "ba781ce741cc24762f01ad68517dc191ce970d5b3880c7f0ed74f9aaf5e91663",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/resources/scenarios/warlords-194.properties",
+      "completedFrozenSha256": "2c8b2d466c199cca78bebf63ea66a0d17a4d15f52dfde08465fb0f5a6f154f8f",
+      "mainSha256": "2c8b2d466c199cca78bebf63ea66a0d17a4d15f52dfde08465fb0f5a6f154f8f",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/AppliedEventSnapshot.java",
+      "completedFrozenSha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "mainSha256": "999bbf2806a6b66f8d561caa88318366daad4b890f379b42210b846d21ba92df",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CityActionCommand.java",
+      "completedFrozenSha256": "45fa6cf7ef44990bfb7553162a37f6108935e44d6a031a5538aac48acab7c111",
+      "mainSha256": "45fa6cf7ef44990bfb7553162a37f6108935e44d6a031a5538aac48acab7c111",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CityActionPreview.java",
+      "completedFrozenSha256": "2b8799daf124844e1e5191652cf0562d4dbcd400a5f1d374b07a05c21062288d",
+      "mainSha256": "2b8799daf124844e1e5191652cf0562d4dbcd400a5f1d374b07a05c21062288d",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/CommandResult.java",
+      "completedFrozenSha256": "9ce5d9e6d5b9ca9638399d3f0377e3196bedd84f885596db2246ad6f93a53f14",
+      "mainSha256": "9ce5d9e6d5b9ca9638399d3f0377e3196bedd84f885596db2246ad6f93a53f14",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ConstructionCommand.java",
+      "completedFrozenSha256": "12249deba5d57d74ad68e46164630df4c32178c0f4a70ccd89c77fd8279555a9",
+      "mainSha256": "12249deba5d57d74ad68e46164630df4c32178c0f4a70ccd89c77fd8279555a9",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ConstructionPreview.java",
+      "completedFrozenSha256": "b2cffd466023fcd91adcc7d883bf98b5dad21f7b6cba8d6ea94fa3a0b9e3dba1",
+      "mainSha256": "b2cffd466023fcd91adcc7d883bf98b5dad21f7b6cba8d6ea94fa3a0b9e3dba1",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestCommand.java",
+      "completedFrozenSha256": "b498157f853a5d95d05d84365fc1d7a6085a33720da7a05c0e8d980ea4e31b95",
+      "mainSha256": "b498157f853a5d95d05d84365fc1d7a6085a33720da7a05c0e8d980ea4e31b95",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java",
+      "completedFrozenSha256": "2696467d4b28ee2851f0cd6bf4f6a5200aab0180c3fc21528ba287143bf792fe",
+      "mainSha256": "2696467d4b28ee2851f0cd6bf4f6a5200aab0180c3fc21528ba287143bf792fe",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DeploymentCommand.java",
+      "completedFrozenSha256": "b71de1710ef0c74d14fd5187be9474f038603fd3a2d8fdf35ead5f597c620494",
+      "mainSha256": "b71de1710ef0c74d14fd5187be9474f038603fd3a2d8fdf35ead5f597c620494",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DeploymentPreview.java",
+      "completedFrozenSha256": "af04c2c43065f2466ceb278df658799d3cb6f626e72c9972168cfda8a4df8049",
+      "mainSha256": "af04c2c43065f2466ceb278df658799d3cb6f626e72c9972168cfda8a4df8049",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DiplomacyCommand.java",
+      "completedFrozenSha256": "66823fe880539ae50cfd3762b3f5ea803ad2c5c4aec94585f257efaaba44ce06",
+      "mainSha256": "66823fe880539ae50cfd3762b3f5ea803ad2c5c4aec94585f257efaaba44ce06",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/DiplomacyPreview.java",
+      "completedFrozenSha256": "a44254063ebe9b2eb15f8130a26e13ec06eba3721cee69fd82c42650a7c62c62",
+      "mainSha256": "a44254063ebe9b2eb15f8130a26e13ec06eba3721cee69fd82c42650a7c62c62",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "completedFrozenSha256": "dda25b05b41af2083e99cfc19be23deea61e3bf1aa4034a9425891a9d5b1b5b6",
+      "mainSha256": "dda25b05b41af2083e99cfc19be23deea61e3bf1aa4034a9425891a9d5b1b5b6",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameCommand.java",
+      "completedFrozenSha256": "867123143c660106ac41027d3aa5518bdc40b797e2e3b46b8e74b077e018e681",
+      "mainSha256": "867123143c660106ac41027d3aa5518bdc40b797e2e3b46b8e74b077e018e681",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameEvent.java",
+      "completedFrozenSha256": "5d379458f20e01857a5eb5243045369a161443797e62c4a7e1a80f22c4d19c5b",
+      "mainSha256": "5d379458f20e01857a5eb5243045369a161443797e62c4a7e1a80f22c4d19c5b",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameSnapshot.java",
+      "completedFrozenSha256": "489ac116d8fae715ed8862c09b0842e4ce77256c5c88962d37aeec476d6efc06",
+      "mainSha256": "489ac116d8fae715ed8862c09b0842e4ce77256c5c88962d37aeec476d6efc06",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GridLayout.java",
+      "completedFrozenSha256": "2290fe72b479d7b851faa4e911942164adf729965956a8a2cf77a2f765205b9a",
+      "mainSha256": "2290fe72b479d7b851faa4e911942164adf729965956a8a2cf77a2f765205b9a",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerExperienceChange.java",
+      "completedFrozenSha256": "3fd20d71218f0822dc0080a7153059bff72cc4ef70ad83553be697ceac505a47",
+      "mainSha256": "3fd20d71218f0822dc0080a7153059bff72cc4ef70ad83553be697ceac505a47",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/OfficerSnapshot.java",
+      "completedFrozenSha256": "56d6961270c49b7974ba58e464310555dafdade9d81ad422bc3df7464edcc1c3",
+      "mainSha256": "56d6961270c49b7974ba58e464310555dafdade9d81ad422bc3df7464edcc1c3",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/PcNewGameOptionsSnapshot.java",
+      "completedFrozenSha256": "f2ba21a16ed34e879f7703f5b863c01d618bfb29a8bec5f53ff485427191738d",
+      "mainSha256": "f2ba21a16ed34e879f7703f5b863c01d618bfb29a8bec5f53ff485427191738d",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/PcOpeningOptionsSnapshot.java",
+      "completedFrozenSha256": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+      "mainSha256": "94f277103e358d8449c654bf3afa8f5156eab196816f405623fa00ad13742fc4",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ProductionCommand.java",
+      "completedFrozenSha256": "dd3c05a8019019730845b5cf2d15aa4676a341c0ea8b03027d7c535ca2330cb1",
+      "mainSha256": "dd3c05a8019019730845b5cf2d15aa4676a341c0ea8b03027d7c535ca2330cb1",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ProductionPreview.java",
+      "completedFrozenSha256": "b6a591ee90e5ba758382e6b137534551436e1708daa400548af79e25fbbf16bd",
+      "mainSha256": "b6a591ee90e5ba758382e6b137534551436e1708daa400548af79e25fbbf16bd",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/SceneFactsSnapshot.java",
+      "completedFrozenSha256": "81a5723d5f09c2be7fc61c5a79804cd1d05679ae9f5c063167c6f99377d9010c",
+      "mainSha256": "81a5723d5f09c2be7fc61c5a79804cd1d05679ae9f5c063167c6f99377d9010c",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/StateToken.java",
+      "completedFrozenSha256": "028cab35b04551f93c4d94f2c51069c1a680db8072d1687da582e1cfe376a590",
+      "mainSha256": "028cab35b04551f93c4d94f2c51069c1a680db8072d1687da582e1cfe376a590",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TechniquePointsChange.java",
+      "completedFrozenSha256": "f823d32253cd5149dbe9fc27443c0c998f02d7c23bdde1a157d14275affd960f",
+      "mainSha256": "f823d32253cd5149dbe9fc27443c0c998f02d7c23bdde1a157d14275affd960f",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TechniquePointsFact.java",
+      "completedFrozenSha256": "3a77a3bfe7a6364e12a4ffba5999a00c9b60e6d460e60a6868e1452d706c6ddc",
+      "mainSha256": "3a77a3bfe7a6364e12a4ffba5999a00c9b60e6d460e60a6868e1452d706c6ddc",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TradeCommand.java",
+      "completedFrozenSha256": "b3ec1c98810f99a0db154270d96427e9a87b31ed9fcc3142d2b47053d281a820",
+      "mainSha256": "b3ec1c98810f99a0db154270d96427e9a87b31ed9fcc3142d2b47053d281a820",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TradePreview.java",
+      "completedFrozenSha256": "407caca17f2bc2f8be539329f3a926004695c4869904da1f1bcc7f4cf58f2035",
+      "mainSha256": "407caca17f2bc2f8be539329f3a926004695c4869904da1f1bcc7f4cf58f2035",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TransportCommand.java",
+      "completedFrozenSha256": "d21f7fd8ddd30122c5d81b63724a64677002bbc629c7b379591d4994a1833c37",
+      "mainSha256": "d21f7fd8ddd30122c5d81b63724a64677002bbc629c7b379591d4994a1833c37",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/TransportPreview.java",
+      "completedFrozenSha256": "b7a658366857406e9dc9bab9787fa2c083fa6d66c025b415edb78041e4fca62e",
+      "mainSha256": "b7a658366857406e9dc9bab9787fa2c083fa6d66c025b415edb78041e4fca62e",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/bridge/BridgeEntity.java",
+      "completedFrozenSha256": "647717f4e59c7f20d2a86e721c5befee8cfa699b592a4c892b20a5658f1801bf",
+      "mainSha256": "647717f4e59c7f20d2a86e721c5befee8cfa699b592a4c892b20a5658f1801bf",
+      "exact": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/bridge/BridgeMessage.java",
+      "completedFrozenSha256": "cbb9340115b20fbf3af6ae4c2305347a59ca531b32db29f11cb9e9cb437f9f3b",
+      "mainSha256": "cbb9340115b20fbf3af6ae4c2305347a59ca531b32db29f11cb9e9cb437f9f3b",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "completedFrozenSha256": "b76a0bdb04e18f84470284d0ee84fdbc75e58fb70b5c4dba1db92873e72b2206",
+      "mainSha256": "b76a0bdb04e18f84470284d0ee84fdbc75e58fb70b5c4dba1db92873e72b2206",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/LegacyView.java",
+      "completedFrozenSha256": "b9215fa85f8b71d50d865c8dd7452298dd54a454104774c94bfd1cfe0492a063",
+      "mainSha256": "b9215fa85f8b71d50d865c8dd7452298dd54a454104774c94bfd1cfe0492a063",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/TurnTicket.java",
+      "completedFrozenSha256": "9e4f0fb3f7048cd29958fa0495fcb300ff14b6198dc367cdfef1b4bf232b2430",
+      "mainSha256": "9e4f0fb3f7048cd29958fa0495fcb300ff14b6198dc367cdfef1b4bf232b2430",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/WorldCopies.java",
+      "completedFrozenSha256": "cfc270640c4aed6b3cd3a896fb8fcfc6bbecfd78790d2731eec6742ec2a1ad74",
+      "mainSha256": "cfc270640c4aed6b3cd3a896fb8fcfc6bbecfd78790d2731eec6742ec2a1ad74",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/bridge/BridgeSession.java",
+      "completedFrozenSha256": "bfdcd22e0c8d9acc711189e832bcba4f7919b3b9d7e0602fc0cf90c266b1e466",
+      "mainSha256": "bfdcd22e0c8d9acc711189e832bcba4f7919b3b9d7e0602fc0cf90c266b1e466",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/AppliedEventQuery.java",
+      "completedFrozenSha256": "5588db228f5b6e1f4b133457c0c73ea0327fcf6b98e44cbe390f921ad1965dd6",
+      "mainSha256": "5588db228f5b6e1f4b133457c0c73ea0327fcf6b98e44cbe390f921ad1965dd6",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/CityActionQuery.java",
+      "completedFrozenSha256": "028d4de8a5f18bac3e33313531cb825d2ce6898d4cabdf4975aa5197cb4f05da",
+      "mainSha256": "028d4de8a5f18bac3e33313531cb825d2ce6898d4cabdf4975aa5197cb4f05da",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ConstructionQuery.java",
+      "completedFrozenSha256": "9fc5b77ffd752fa31fefdf00ae556e33d63d41bf5cba01662096ebc6e8b0a255",
+      "mainSha256": "9fc5b77ffd752fa31fefdf00ae556e33d63d41bf5cba01662096ebc6e8b0a255",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
+      "completedFrozenSha256": "f7e1e52116e2b54854bef2178642df800a6756dab7a39752c62b7f7edf6b0bd0",
+      "mainSha256": "f7e1e52116e2b54854bef2178642df800a6756dab7a39752c62b7f7edf6b0bd0",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/DeploymentQuery.java",
+      "completedFrozenSha256": "dcfc8d8e5d71bbe185875e228def76ed13fa9c34b043efea70533dc4f6176549",
+      "mainSha256": "dcfc8d8e5d71bbe185875e228def76ed13fa9c34b043efea70533dc4f6176549",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/DiplomacyQuery.java",
+      "completedFrozenSha256": "d35e50eaddd4e85cd60639f70206b04b50838278f06207585c463a909e0eb556",
+      "mainSha256": "d35e50eaddd4e85cd60639f70206b04b50838278f06207585c463a909e0eb556",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/OfficerQuery.java",
+      "completedFrozenSha256": "9a9c99a45abaa13e3e507f34131334757aa8b331d8b25fa156e01759f43b8687",
+      "mainSha256": "9a9c99a45abaa13e3e507f34131334757aa8b331d8b25fa156e01759f43b8687",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/PcOpeningOptionsQuery.java",
+      "completedFrozenSha256": "06e459fcc39979a0e5f3303346f65030a4eddd9d3125b8c7ba4245d6325b979c",
+      "mainSha256": "06e459fcc39979a0e5f3303346f65030a4eddd9d3125b8c7ba4245d6325b979c",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ProductionQuery.java",
+      "completedFrozenSha256": "ec32c5da2f8dfd37a8c7f1592c17e2f9be601d6af91e92c3500a1694986cd2a7",
+      "mainSha256": "ec32c5da2f8dfd37a8c7f1592c17e2f9be601d6af91e92c3500a1694986cd2a7",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SceneFactsQuery.java",
+      "completedFrozenSha256": "1e2817047bd1d0cb8d8dd28b314b25c16bb8164088ade2aa55622822f0a57c05",
+      "mainSha256": "1e2817047bd1d0cb8d8dd28b314b25c16bb8164088ade2aa55622822f0a57c05",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/SnapshotQuery.java",
+      "completedFrozenSha256": "a8eb7b5dd269519f5531abc6b388aee420b85b381cdcf9ac353717c9add8ba1b",
+      "mainSha256": "a8eb7b5dd269519f5531abc6b388aee420b85b381cdcf9ac353717c9add8ba1b",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TerrainWireCode.java",
+      "completedFrozenSha256": "b11410722a005c7def9bc32f84cade7496b06fd80a7d0b9692f138304b5c38ca",
+      "mainSha256": "b11410722a005c7def9bc32f84cade7496b06fd80a7d0b9692f138304b5c38ca",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TradeQuery.java",
+      "completedFrozenSha256": "23161fc4052b643b161e85a042019b2b8fb466c3ac8754c65f18cb51d941db24",
+      "mainSha256": "23161fc4052b643b161e85a042019b2b8fb466c3ac8754c65f18cb51d941db24",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/TransportQuery.java",
+      "completedFrozenSha256": "71002e9bd7e7b1fcb1c7cba712932a57efb8ac9e2e938c8a707b12b17e8eb2d1",
+      "mainSha256": "71002e9bd7e7b1fcb1c7cba712932a57efb8ac9e2e938c8a707b12b17e8eb2d1",
+      "exact": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/save/SessionSaves.java",
+      "completedFrozenSha256": "796e7bf081098632c1634df39618a468ff9464e229c019cc8cc6b8dc885c69ea",
+      "mainSha256": "796e7bf081098632c1634df39618a468ff9464e229c019cc8cc6b8dc885c69ea",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcResourceBytes.java",
+      "completedFrozenSha256": "920262ffe6a6b97b37010a70b30b18d6de5acae6090b3c3ed984ba7085de6fae",
+      "mainSha256": "920262ffe6a6b97b37010a70b30b18d6de5acae6090b3c3ed984ba7085de6fae",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcLoyaltyProperty23Policy.java",
+      "completedFrozenSha256": "977762fad11c29fed62ed863886ee3bc8a39cb5357fc7c4aed144497e9248e6b",
+      "mainSha256": "977762fad11c29fed62ed863886ee3bc8a39cb5357fc7c4aed144497e9248e6b",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelAiActorPolicy.java",
+      "completedFrozenSha256": "ddc4a822c0726f435731c53cee60978bc22ec345b6ae79f4db381e94858a5da9",
+      "mainSha256": "ddc4a822c0726f435731c53cee60978bc22ec345b6ae79f4db381e94858a5da9",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelHumanActorPolicy.java",
+      "completedFrozenSha256": "3de9be07cdd48e6a41a17b919ca5ccb02fa7fa671f2ee5574e1c9a97c171581c",
+      "mainSha256": "3de9be07cdd48e6a41a17b919ca5ccb02fa7fa671f2ee5574e1c9a97c171581c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelRecruitItemPolicy.java",
+      "completedFrozenSha256": "1c27c0ef364973956aa90e82b25bb4a20a1833be840bc843d5ebc06b87d8368e",
+      "mainSha256": "1c27c0ef364973956aa90e82b25bb4a20a1833be840bc843d5ebc06b87d8368e",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDuelPhysicalRecoveryPolicy.java",
+      "completedFrozenSha256": "382b8b0bf82cbb30880ba616b669842c6cf735ff770aecee43a585a1349e081c",
+      "mainSha256": "382b8b0bf82cbb30880ba616b669842c6cf735ff770aecee43a585a1349e081c",
+      "exact": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ReplenishmentPlan.java",
+      "completedFrozenSha256": "100511bacef0e0b81c86185aeaeeb2b1dffe9af0a689994be563c8c2289a5b39",
+      "mainSha256": "100511bacef0e0b81c86185aeaeeb2b1dffe9af0a689994be563c8c2289a5b39",
+      "exact": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CurrentOfficerContent.java",
+      "completedFrozenSha256": "4d98508d30c77fce5dd979f69dff7a2c43c9d5e9b6a46a7b1d26a0b0429f0428",
+      "mainSha256": "4d98508d30c77fce5dd979f69dff7a2c43c9d5e9b6a46a7b1d26a0b0429f0428",
+      "exact": true
+    }
+  ],
+  "performanceCandidatesExcluded": true,
+  "wholeGoalComplete": false,
+  "targetNameClarificationPending": "user wrote mmain; actual existing main now contains every completed B production path",
+  "mainJniGuard": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "completedFrozenSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "mainSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "originalFour": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "completedFrozenSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "mainSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "originalFour": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "completedFrozenSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "mainSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "originalFour": true
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "completedFrozenSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "mainSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "originalFour": true
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "completedFrozenSha256": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+      "mainSha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "originalFour": false
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "completedFrozenSha256": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e",
+      "mainSha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "originalFour": false
+    }
+  ],
+  "originalFourJniExactlyPreserved": true,
+  "aAdditionalTwoNewerMainPreservedWithoutOverwrite": true
+}

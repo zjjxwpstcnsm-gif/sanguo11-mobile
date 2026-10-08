@@ -1,0 +1,23 @@
+# 用户要求收尾与主分支同步（进行中）
+
+用户2026-10-08要求“收尾，并把代码同步到mmain分支”。本地mmain不存在，main在ba8a干净目录，HEAD ef413be3653820dd6449ba7f02aa60bed5b26ef5。目标分支与是否暂停原目标正在等待用户澄清；没有改主分支。
+
+已完成交付主快照为完整冻结r28：out/session-b/native-opening-combined61-frozen-r28-search-v2，源archive1f3683daaae0d3bbbfb2a882a2b4bc465e0cc90cffa3b5018d16216c42d79bc0；生产APK d2e3aa4b8780634842555b1ead7969251a729b091ccd6c6de02909a5d518bd58。来源共同main ef413be3、完整后继0e7b9bc2；完成B分支0693afc941763a7b1ab973f0b2e1841042749834，A完成适配925748c6与Source2完成9ab4a3d6/closure227均为已冻结依赖，非当前A WIP。
+
+实际APK已验收的正常军建/携金/施工/修理/中止/拆除/存取，多旬、补给共享预览正式提交、保存权威人物列表搜索详情/字形与来源文本、正常搜索发现→招揽→原舌战2败1胜、完整World/全部RNG/保存冷续行、过期与双击，以及每次15内部/772外部原文件恢复，以各独立批次实际receipt为准。可用不等于完整原版还原。
+
+未完成的全源激活/完整开局事件与准入、武将全部原效果、完整单挑所有分支/成功登用、原舌战中途认输与外交、31–39/custom完整APK矩阵、ARM、A地图/声画余项、Unity旧黄金及继承core夹具失败均保留。原Windows Documents/Expansion未知；原PC只读；旧目录HEAD52315bf0与609dirty保持原SHA。整体原目标不可标记完成。
+
+本次性能实验不进入完成代码：只读初值表缓存候选更慢，已保存精确patch并恢复两B路径；UTF8/variant候选虽全50Save一致、1415040严格编码对照和ART诊断通过，但尚未通过正常首次新局门槛。所有候选源、日志、诊断APK与新菜单测试保留在当前隔离目录，不能以这些实验替换已完成r28生产源。
+
+同步策略：建立干净收尾目录，从完成Git历史和已验收完整r28构建源逐SHA/模式审计接入依赖，不拿当前dirty目录整体覆盖main；目标分支须保留新main，冲突按归属与完成前后SHA处理。主分支实际更新完成后记录确切提交和路径；不推送远端，不改原旧根或A当前工作目录。
+
+## 当前main同步事实
+
+同步准备期间A已将main更新到05236ca41c7795c9fc3030b9c274b7a8a25be262（Integrate completed map UI media repair and frozen B27 rules for main closeout）。当前main目录干净，B拥有的全部356项生产输入与r28逐SHA一致。r28本身没有相对r27生产变化，故本会话已完成生产代码已经全部在当前main；没有用旧关闭目录覆盖A新main。FINAL_SYNC_MANIFEST.json逐路径核验此事实。
+
+另一个收尾目录仅作精确快照编译/审计保存，不作为新main替换：6172生产输入相同、架构检查通过、独立76任务完整重建通过。APK重建SHA58590f5fde551cda5c9bb167ad758ded4470f4934bd66f3c87434054e963b439，和原已实装d2e3…bd58的ZIP全部5747项内容仅META-INF/version-control-info.textproto不同；测试APK仍同ebccdc…562。未安装这个重建包，不转用旧包实装成绩；仍交付实际已验收的d2e3原包。
+
+mmain目标名与是否暂停尚无用户回答。保留两个问题，不凭预选项或时间把main当成mmain。没有新建mmain/推送远端，未把原完整还原goal标为完成。
+
+最后JNI核查：原4份JNI在main与已验收r28均逐SHA相同；A新增火worker两ABI在新main已换成其后继版本（arm64 f1ddc25c…4383a / x86_64 7660297b…eb073），与旧r28不同，原样保留，不以旧r28的2JNI守卫替代新main证明。FINAL_SYNC_MANIFEST.json记录全部前后SHA；没有覆盖A新JNI或宣称新组合已用B旧成绩验收。
