@@ -1,0 +1,275 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00",
+  "sessionSha256": "f7e5d72f9f26798f4c41789203cfc80afbb533fc8b2607629071e1b76eed4cea",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
+  },
+  "counts": {
+    "recordings": 36,
+    "widgetRows": 312,
+    "enabledRows": 310,
+    "unresolvedText": 271,
+    "resolvedSolidText": 41,
+    "disabledRows": 2
+  },
+  "minimumResolvedSolidContrast": 8.84973742093998,
+  "findings": [],
+  "recordings": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/landscape-actual-text.json",
+      "sha256": "b6e54ab817685ccb50c25ea6de05e549f912b967abc14aa046adea9c3145a8d1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/landscape.png",
+      "screenshotSha256": "c3ec6bcf6435813bf031da136e7a7ca5d076a0276eeff9a8958aa3cbd90f226d",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "9392fa90f75550d6c2500270226800318f1ea16c8f0dced4b7b7f28a2b8d88fd",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/normal-exit-confirmation.png",
+      "screenshotSha256": "d2de6e7eb331bb780d290cdca79e0e721e461c7c53a8fdbb5b3d877d8b07bffe",
+      "widgetRows": 3
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/reopened-actual-text.json",
+      "sha256": "804387a136916bbd56b58edf2b6e35f57aec7b40d45a9fbd89a37edb236c7dd4",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/reopened.png",
+      "screenshotSha256": "83a5c7ab8a4c2d2fbfb4e25f04c201422c0f0714687d869ce8686c789c4d05b5",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/resumed-actual-text.json",
+      "sha256": "3049890cd303a4e88a6f45fb8c2026bc48325a07c5306e7955485c55f3d92b96",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/resumed.png",
+      "screenshotSha256": "f52ad22e5966503fbcd9db7ec2254e486161e876fee38748714cc4171802b7d5",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/landscape-actual-text.json",
+      "sha256": "48a31374401e17f0bd86778d015b10906263da001a9e98b2943d8a499d05c587",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/landscape.png",
+      "screenshotSha256": "3e9f72f0b3a7c69cb870f6b458705d14e69b97e2daa975e3e268d915a001f3ad",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/normal-exit-confirmation-actual-text.json",
+      "sha256": "0aece2f2045efe104c93721f484502630bc1cefc348bd7b0411a9ac144fbb423",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/normal-exit-confirmation.png",
+      "screenshotSha256": "eeb4833e70d360521f95c89d46d8435064bd2584b591fce234bb60a65e419a9b",
+      "widgetRows": 3
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/reopened-actual-text.json",
+      "sha256": "55e3c648dbf8ce6578f32a5723fb1723e6466a0f648da9c8500b6a83dbae39da",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/reopened.png",
+      "screenshotSha256": "672a3790fd50e8ed52432c2d40a4595f31597d63c7a1c56bf71aefe3ac7360f6",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/resumed-actual-text.json",
+      "sha256": "98f48cc5f6d1cf66b46658fd769df0b5c1d5d892c36f52fa995057e538dec767",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/resumed.png",
+      "screenshotSha256": "5668088e11e32a20d196102677cada218aef09a6ab557649893fb4a004b10e2e",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-map-actual-text.json",
+      "sha256": "d968694f28c4287a15d79ecb9787045b21fc1f87f96e3333dc1a75ed7d9fdf98",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-map.png",
+      "screenshotSha256": "f097bcb24ae69e85bcce7bb35bd491962442a8484aab9541d02ed9317b438b9b",
+      "widgetRows": 16
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-113-normal-detail-actual-text.json",
+      "sha256": "9e481a2245018bb1d5855e877f5a9a5711f334a7b25c7d7547a4bc12961ca3bc",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-113-normal-detail.png",
+      "screenshotSha256": "503f4e3793262eda7e441b547a947460387f86072101fbb70433b669b98d4d76",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-13-normal-detail-actual-text.json",
+      "sha256": "ed24a456ba3711e77326cf4fbe2b4e7c59ebb942658255a6e67647aca3e5ca73",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-13-normal-detail.png",
+      "screenshotSha256": "9f387ce8a4c7b09fa26539e5492f7278de678826e2fcf3b79726526791bf32a7",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-146-normal-detail-actual-text.json",
+      "sha256": "4721a5a076158949495f93424b0ca93a272684e2847210ca13e3e436297def37",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-146-normal-detail.png",
+      "screenshotSha256": "acdc7fde02c3f6af2f0090543ee8df4bf927fc6f356e4bbdb799c08c0c17e836",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-178-normal-detail-actual-text.json",
+      "sha256": "130452208f83984183092fd82175f4b319bb80fb7b631f121f044f5074a4e226",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-178-normal-detail.png",
+      "screenshotSha256": "d67fdfdb1ca85efb75a97f9203f51af3765d18e2b4d4854a913ca8e0e622d59a",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-184-normal-detail-actual-text.json",
+      "sha256": "3abd1ed9b540cfff2c3fff6f3ad97fdab7818035863b04964f3c8beeace5984d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-184-normal-detail.png",
+      "screenshotSha256": "9f5a369e5661dcbf7921e9260cc32939620a067ebfc6a3bb072b72d959583d67",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-212-normal-detail-actual-text.json",
+      "sha256": "261f845f09b2eeab2ced89c360a86669c8b2b7547fee6d73f74eb08ba57c6b15",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-212-normal-detail.png",
+      "screenshotSha256": "60c6fcc32fe2c94a8a1a2ca3497a5c252efa74662767d4709a6ff998ddf6e6a0",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-229-normal-detail-actual-text.json",
+      "sha256": "8ef0968190e0467798e4feac6cffc5460fe568dd595d7127dba021d1bbf2d537",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-229-normal-detail.png",
+      "screenshotSha256": "d14c894cb0dc0752b0f08eb755d11b41a2548b311cf1b9dcb78dbf3c46fc195b",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-246-normal-detail-actual-text.json",
+      "sha256": "ce0657875787e041e7c423d5ed45be0b345612a1468f8f5e5ecf13b4f9387a56",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-246-normal-detail.png",
+      "screenshotSha256": "d36d9a1f7810a754d2572dd0419c40e0b545d18479afae0089d4d81f77222070",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-249-normal-detail-actual-text.json",
+      "sha256": "10628a98b486b71a9e50bdd6ae2400d66cb37431cba646f712d89f25cb7e0bce",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-249-normal-detail.png",
+      "screenshotSha256": "3c9e7d6123ac863f2f3e3840c25f9458fb7e1094138aaccb6a6107670593f7aa",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-280-normal-detail-actual-text.json",
+      "sha256": "18e1a5f4efb91a7e848ccb03417aa3be3aa8f38dc0aa264e16dca26b8e047f48",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-280-normal-detail.png",
+      "screenshotSha256": "574e9e26eaf5682593d6640cf4e55831fef03c7631bf6ec383e7b3be52d555ac",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-313-normal-detail-actual-text.json",
+      "sha256": "951cd686337f056ca0d833b7a9b4d11bddc9dec55b82ed9dc62cf75c411d592d",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-313-normal-detail.png",
+      "screenshotSha256": "321c3dd08660b203cf0fcfb84752a85507127c60e74eae2ca813a70b470458ba",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-346-normal-detail-actual-text.json",
+      "sha256": "e1d087ea12659035a701f0936c7987d79196b17cb7722c529af20055180511b1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-346-normal-detail.png",
+      "screenshotSha256": "b567e83c0ef88e4c4fffef01242e8d305e2a07fbfca553b0371267ec365a1502",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-379-normal-detail-actual-text.json",
+      "sha256": "916377ee1e49e70f1d3e10c9163bf5e9296f2d2b19f96b2aa6332612f7ac5cad",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-379-normal-detail.png",
+      "screenshotSha256": "d9619bb150759cd527ca4f1773d8b6020a22035004a064ad20a5f2a384de8dde",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-413-normal-detail-actual-text.json",
+      "sha256": "70f5bc7cd802f969dad74c28e0874ef7697b459522b823114c81f5eca1fae139",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-413-normal-detail.png",
+      "screenshotSha256": "ff39e10fbcf3e11fdc08deef36c7402d39b21c49538f14816b27a2df795e726a",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-447-normal-detail-actual-text.json",
+      "sha256": "5e4bf196238a3d75730b82c1fed5d895900dcd7547f5dfb87488204d46456613",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-447-normal-detail.png",
+      "screenshotSha256": "f3b22d57dee595e0191f6151eb4ee891dddaeb68698608d2b657a56e73db55af",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-45-normal-detail-actual-text.json",
+      "sha256": "81fc5f10e25c72c6d91db47e9cf7ae12113022fcb1f4d9a648ab5cca2b918670",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-45-normal-detail.png",
+      "screenshotSha256": "86fece3416d80f7ab4c7c6875c8fceb826b9c825012083ed26bcc31f3223e1ba",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-479-normal-detail-actual-text.json",
+      "sha256": "c6dae4d90b87a185eb3e698ee78c77f5e556e36c16daab2a6d2e203dca4438d6",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-479-normal-detail.png",
+      "screenshotSha256": "dd8a7e4350d32e512463f7bb60d678ac92152419206d0df22b79ed02e7322834",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-511-normal-detail-actual-text.json",
+      "sha256": "7a4c078c6b14b01028935d92a4fc3f3094c596239ca6061b4dcd8f1ae3d4a12a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-511-normal-detail.png",
+      "screenshotSha256": "6a169bb4186b9699643f66b4e88abfc02e21a9b3db073699d0efc371264c0d7f",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-543-normal-detail-actual-text.json",
+      "sha256": "04a3364972fb822806c24b541b6e79fa3cd8655166ac969689c67471c2932e08",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-543-normal-detail.png",
+      "screenshotSha256": "f9a22bd7dea8102e3a311e88c14f43a646a1edb41abb56854347c47a2ef94262",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-575-normal-detail-actual-text.json",
+      "sha256": "d3c2e5f3f60835d6e0753d3cb7b5ed33adff77599dbdf9e149d33cadcc53ed04",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-575-normal-detail.png",
+      "screenshotSha256": "589f2e44f0ae9376747638ceb805d9c0c6adfda18ead89b9f62a81e8cd009671",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-607-normal-detail-actual-text.json",
+      "sha256": "cd463bb591f3cff7af2e895e93fbc3e17d998bf3dce9cfb7c068b6ab229423a1",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-607-normal-detail.png",
+      "screenshotSha256": "6102c4a35142b661fe27db744c7dc6cee01fce51a360889b7a9062f46023591f",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-616-normal-detail-actual-text.json",
+      "sha256": "f44521dc11ccbec92ab096e4e942714e19a5b17041b6e73ad68ce4f2b2e737a8",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-616-normal-detail.png",
+      "screenshotSha256": "de300a369644ef40378871e3f9c7364fd971dcc6fb1cd5a8c1634080eaa16d4a",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-635-normal-detail-actual-text.json",
+      "sha256": "f704e003419edc2d794289f75cb817672bdd223b134d905ee58657142edb42d3",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-635-normal-detail.png",
+      "screenshotSha256": "ae0ab86e6d5d24ca6e01647265196f112bf1e8bf77a101c4d6fd5766476f3ca5",
+      "widgetRows": 6
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-641-normal-detail-actual-text.json",
+      "sha256": "cc99984a58517426ee04333187ed4c694aabfd8c6841adcd2fe1d444db7ce643",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-641-normal-detail.png",
+      "screenshotSha256": "c9f2785ab52debbcf51934dfdbdc3dcd1b2f05f6d61c1d05c5a34390b32cb069",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-79-normal-detail-actual-text.json",
+      "sha256": "e40e274b5b51342ba29d4a5a0cd6e6cbf26f4c5fb63fde55335b823f04facc1a",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-native-79-normal-detail.png",
+      "screenshotSha256": "48e45d9727c3a40173bef4d0cd25a1b22582c5eb2e7b9e8413d73d921814d386",
+      "widgetRows": 5
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-officers-actual-text.json",
+      "sha256": "ae64b6874501fda64e896469e8b1ac1e18e085b437304661a4b0efed7d2724b9",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-officers.png",
+      "screenshotSha256": "5f5ea70b2105df64a015e122889c9b88b30708ab67ac22002c859aa22d33cb29",
+      "widgetRows": 49
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-preview-actual-text.json",
+      "sha256": "03e8fb2a4aecb9b5a669797af27a4f27361a2246ddcbce1c0871878b8cd2ff95",
+      "screenshot": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/source-0-preview.png",
+      "screenshotSha256": "64f71a1f5b4e76f2d757cfbc19c4be671067dd5920f156bbacb3ad0b152cf4c0",
+      "widgetRows": 14
+    }
+  ],
+  "resolvedWidgetMetadataPassed": true,
+  "scope": "Actual focused shown Android widgets in this exact installed cohort. Solid contrast recomputed from recorded drawable colors, not pixel measurement. Unresolved gradients/images/alpha, Canvas labels, offscreen/unvisited pages and rich text absent from these captures remain unaccepted. No transfer to a newer APK, full global UI or ARM acceptance.",
+  "wholeGoalComplete": false
+}

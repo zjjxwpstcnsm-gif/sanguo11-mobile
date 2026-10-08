@@ -574,3 +574,6 @@ B r15消息更正旧角色诊断：前称captor555实为上阵胜者，当前AI�
 
 
 286/287修正等待门并发receipt读取：actual helper使用in-place write_text，旧gate直接json.loads存在短暂partial JSON当terminal风险。read_session_state有界30×100ms同file重读；以临时线程实际partial→still-running验证不晋升passed。仅验证并SIGTERM尚未生成session/安装command的waiting-only23907/34791，保留旧272/281checkpoint为superseded-before-device-actions；当前20713/20790/20791未信号且继续活。新286 fire与287全部原281回归scope同APK/谓词/源/原保存恢复门，仅新输出路径/reader修复；已启动同等待句柄，不重启当前DataSource或以超时当终态。CurrentSource0真实608/670纯性true，旧包后续来源仍未始，待新包完整各flow/all16/finalB/ARM范围不缩。
+
+
+283/284/285 current old165+239 Source0完整670/1340、normal25157/cold94、PID22948→23748/both3D submission、原9内部+3797外部每SHA恢复、37原录像indexa41ce259…、old20713/20790/20791终止，readonly审计完成。Java101采样峰241846248/512MiB余295024664；native/PSS各独立，GPU预算未闭合。widget36/312 rows/41实色min8.849737/271未解/2disabled；当前source0 map PNG现场看深底可读，旧工程hint仍未随旧包变更。新286已全档SHA备份后独立实装game5db38e0b…+test63a85ade…，两install Success，设备整APK SHA一致且runner已注册，43468 helper真正正常Fire任务正在运行。未宣布新包fire/内存/冷/最终恢复通过；旧source0与197成绩不转新包。

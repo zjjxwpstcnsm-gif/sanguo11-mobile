@@ -13,12 +13,28 @@
       "bytes": 3089296
     }
   ],
-  "stage": "waiting-current-source0-normal-cold-fullSHA-owner-exits",
+  "stage": "new-apk-normal-fire-running",
   "previousOwnerPids": [
     20713,
     20790,
     20791
   ],
   "oldScoresTransferred": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-installed286",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/map-fire-upload-build269/app-debug-androidTest.apk",
+    "--observe-workers",
+    "--runner",
+    "SessionAFireFlowInstrumentation",
+    "--fresh-process-reopen",
+    "--pause-fire"
+  ]
 }

@@ -1,0 +1,140 @@
+{
+  "actualSession": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00",
+  "actualSessionSha256": "f7e5d72f9f26798f4c41789203cfc80afbb533fc8b2607629071e1b76eed4cea",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
+  },
+  "normalColdFullRestorationPassed": true,
+  "heapProfileDiagnostic": false,
+  "samples": 101,
+  "limitsBytes": [
+    536870912
+  ],
+  "peakJavaSample": {
+    "group": "evidence",
+    "sampleIndex": 27,
+    "phase": "zoom",
+    "javaUsed": 241846248,
+    "javaTotal": 243300320,
+    "javaLimit": 536870912,
+    "nativeAllocated": 136256672,
+    "totalPss": 390086,
+    "graphicsPss": 0
+  },
+  "sampledJavaHeadroomAtPeakBytes": 295024664,
+  "peakNativeAllocatorSampleIndependent": {
+    "group": "evidence",
+    "sampleIndex": 3,
+    "phase": "ready",
+    "javaUsed": 187274816,
+    "javaTotal": 187274816,
+    "javaLimit": 536870912,
+    "nativeAllocated": 202089488,
+    "totalPss": 402201,
+    "graphicsPss": 0
+  },
+  "peakInstrumentationPssSampleIndependent": {
+    "group": "evidence",
+    "sampleIndex": 3,
+    "phase": "ready",
+    "javaUsed": 187274816,
+    "javaTotal": 187274816,
+    "javaLimit": 536870912,
+    "nativeAllocated": 202089488,
+    "totalPss": 402201,
+    "graphicsPss": 0
+  },
+  "peakMeminfoPssKiBIndependent": 438422,
+  "recognizedExactPidMeminfoSamples": 2540,
+  "peakMeminfoObservationIndependent": {
+    "pid": "22948",
+    "pssKiB": 438422,
+    "hostUnix": 1791420505.912151
+  },
+  "sourceChildObservationBatches": 2266,
+  "sourceChildPeakBatchIndependent": {
+    "sampleIndex": 88,
+    "time": 1791420706.943011,
+    "sourceChildren": [
+      {
+        "pid": 23537,
+        "parentPid": 22948,
+        "command": "/data/app/game.sanguo.mobile.dev-Xfq91iVGCtGL2jKnVCm_JA==/lib/x86_64/libpc_effect_fire_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/ef4b16f0157d560f2e03e49307dd3352e8efa794ad16544c17a495aab326cba8-source-fire-scene.bin 774.4833 627.4234 3638.0996 --stream",
+        "KiB": {
+          "Rss": 20084,
+          "Pss": 17065,
+          "Shared_Clean": 3476,
+          "Shared_Dirty": 112,
+          "Private_Clean": 36,
+          "Private_Dirty": 16460,
+          "Referenced": 19704,
+          "Anonymous": 16460,
+          "LazyFree": 0,
+          "AnonHugePages": 4096,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      },
+      {
+        "pid": 27905,
+        "parentPid": 22948,
+        "command": "/data/app/game.sanguo.mobile.dev-Xfq91iVGCtGL2jKnVCm_JA==/lib/x86_64/libpc_effect_worker.so /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207-source-kernel.bin /data/user/0/game.sanguo.mobile.dev/cache/pc-source-effects/98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae-source-scene.bin 2599.073 5344.7393 6296.0186 --stream",
+        "KiB": {
+          "Rss": 47232,
+          "Pss": 44131,
+          "Shared_Clean": 3576,
+          "Shared_Dirty": 112,
+          "Private_Clean": 32,
+          "Private_Dirty": 43512,
+          "Referenced": 47076,
+          "Anonymous": 43512,
+          "LazyFree": 0,
+          "AnonHugePages": 28672,
+          "ShmemPmdMapped": 0,
+          "Shared_Hugetlb": 0,
+          "Private_Hugetlb": 0,
+          "Swap": 0,
+          "SwapPss": 0,
+          "Locked": 0
+        }
+      }
+    ],
+    "batchChildPssKiB": 61196
+  },
+  "sourceChildReadErrors": [
+    {
+      "sampleIndex": 2206,
+      "reason": "Command '['/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb', '-s', 'emulator-5554', 'shell', 'cat', '/proc/24259/smaps_rollup']' returned non-zero exit status 1."
+    }
+  ],
+  "graphicsPssReportedValues": [
+    0
+  ],
+  "gpu": "Not established. Android reported graphicsPss, including zero, is not proof of GPU VRAM usage.",
+  "rawFiles": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/evidence/memory.csv",
+      "sha256": "276478aae1eede8e5345087b7508ba044849b9e6c1160c0384086cca3c7d827f"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/cold-evidence/memory.csv",
+      "sha256": "18f7962b3fa666674106f3aacb0cc286bb6446e10fe3e1a5971a9fec03c8dfe5"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/meminfo-timeline.txt",
+      "sha256": "6abfc347a203a0e42a7861ad07606b2693f9f07f111cbb0a036d4c9ddf599d16"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268/source-00/native-workers.jsonl",
+      "sha256": "a6c30610ecce844905e1b850de5af9de148b3557c9bf826aec6e3c9baec2561f"
+    }
+  ],
+  "memoryBudgetClosed": false,
+  "wholeGoalComplete": false,
+  "scope": "Only exact-cohort completed sampled telemetry. CSV allocator/Java/mainPSS, local meminfo and source-child smaps are independent observations. Child batch reads are sequential, not synchronized with main peaks. No sum of independent peaks, allocation stack, dominator/leak attribution, untouched peak when recording/GC present, ARM or newer APK acceptance. Budget remains open pending required full stress and device evidence."
+}
