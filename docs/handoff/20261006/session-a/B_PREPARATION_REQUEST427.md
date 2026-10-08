@@ -1,0 +1,15 @@
+# 可审阅请求：完成冻结组合的首局读取与媒体事实
+
+尚未发送；跨会话消息须得到用户明确授权。此文不代表发送授权。
+
+共同完整基点0e7b9bc2，A完整397游戏+已完成B26/27+两A显式新局选项组成实际游戏 `ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916`。A未取B生产WIP，未编辑B16页/core/API/runtime或冻结Bridge/Unity/原4JNI。候选完整源、逐路径前后SHA在 SERIAL_STAGE402.json、COMPLETED_B408.json、OPENING_ADAPTER404.json、SERIAL_BUILD411.json。
+
+正常两来源显式选项、取消、保存读取、独立冷进程完整Save/全部RNG已新验通过420；但正式16矩阵419首个Scen000在120秒仍停读取剧本，FAIL保留。425专用原流程观测保持正式120秒限制，600秒仅记录：第一focused preview169703ms、verified3D225459ms；第二31125/82608ms。两次Save/全部RNG/StateToken未变，原9内部/3797外部逐SHA恢复，3原视频device/host/postpull SHA一致。426包含61观察点与完整线程栈。
+
+ui-read的第一轮实际栈先后包括 PcContestProfiles.catalog、PcOfficerSources.all、PcOfficerInfo.read/text/write、PcOfficerCampaignFacts.boundedBytes、PcCommandCapacityPolicy.references、PcGovernorPolicy.sources/initializeOpening、PcDirectRecruitmentPolicy.initializeOpening、PcDuelSourceFacts.catalog、PcDuelRuntimeFacts.catalog、PcRecruitmentBanPolicy.initializeOpening。113484ms点仍在Inflater/GZIP/BufferedReader→PcDirectRecruitmentPolicy.initializeOpening。样本不是逐函数CPU计时，不能只修该一个函数或称解压为唯一根因。A的SceneRenderGate已使失焦原地图停帧，实际renderer在host出现后约56秒完成，不能用预热掩盖第一次读取或跳过原规则初始化。
+
+请求B在自己所有路径中定位并优化完整来源/人物/策略读取初始化，保留全部原数据验证、Save/全部RNG/StateToken与三参/四参行为，不能省略初始化、改数字/文本/来源身份或将未知变为默认。交付完成冻结依赖、逐路径前后SHA、正常冷首次Source0/14/16源准备与保存证据；A再从完成冻结串行生成新组合，重新安装全部矩阵。不能合整个dirty目录。
+
+另请按既有 MEDIA_INPUT_CONTRACT.md 提供地图BGM与voice/未命中58原事件的已提交事实或明确未知：同Token真实场景/controlSlotRaw/42城关系/原日历与地域方向谓词、事件id/parent/原caller域/真正发言者及profile。A不按姓名/ordinal猜映射、不重抽规则RNG，不以菜单曲充地图BGM。完整既有请求为 B_MEDIA_FACT_REQUEST.md 的媒体事实条目；其中旧包/旧计数不作为本次验收证据。
+
+本请求不要求改A路径或冻结共享文件，不授权B发送其他消息或修改另一工作目录。ARM、完整原规则/媒体、其余原火链及128性能均未由上述有限证据闭合。

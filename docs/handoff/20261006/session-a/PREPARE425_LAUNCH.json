@@ -1,0 +1,40 @@
+{
+  "stage": "restored-verified",
+  "previousScoresTransferred": false,
+  "wholeGoalComplete": false,
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk": "ce83cada09991d0438ec50c1c3fce66917fcb26e1b43f86fe5e7397d6e790916",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test423/app-debug-androidTest.apk": "874d312773cd3d92bc06de712584d4e8a48ebc5bff96e9ec16f2d65f5b760862"
+  },
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/docs/handoff/20261006/session-a/device_session.py",
+    "install-test",
+    "--output",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare425",
+    "--apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/serial-build410/app-debug.apk",
+    "--test-apk",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/prepare-test423/app-debug-androidTest.apk",
+    "--observe-workers",
+    "--runner",
+    "SessionAScenarioPrepareInstrumentation"
+  ],
+  "normalColdPassed": false,
+  "helperExit": 0,
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 2,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "scope": "Only actual source0 two preview read-worker/scene-cpu250ms checkpoint observation, full Save/RNG/Token pure and complete original restore.600s cap is diagnosis, original120s host/renderer remains same. No normal16/cold/ARM/native events scores transferred."
+}

@@ -841,7 +841,12 @@
     "out/session-a/prepare-test423",
     "docs/handoff/20261006/session-a/run_prepare425.py",
     "docs/handoff/20261006/session-a/PREPARE425_LAUNCH.json",
-    "out/session-a/prepare425"
+    "out/session-a/prepare425",
+    "docs/handoff/20261006/session-a/PREPARE_AUDIT426.json",
+    "docs/handoff/20261006/session-a/B_PREPARATION_REQUEST427.md",
+    "docs/handoff/20261006/session-a/run_combined_fire428.py",
+    "docs/handoff/20261006/session-a/COMBINED_FIRE428_LAUNCH.json",
+    "out/session-a/combined-fire428"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",
