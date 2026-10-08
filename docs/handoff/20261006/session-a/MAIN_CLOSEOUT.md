@@ -17,3 +17,5 @@
 本次 main 同步是可审查的完成代码收尾，不等于整个原目标已经通过。实际同步提交、最终main独立构建/安装结果及可下载APK路径由后继MAIN_SYNC_RESULT记录；不能仅看本文件或旧包报告判定。
 
 最终代码提交05236ca41c7795c9fc3030b9c274b7a8a25be262已快进main。从该main独立构建并实际安装游戏APK fe86851340f82d1c1a054f58ec7fdb144d5a35d42917121b1d61b2842d51b9ce、测试b43568ba94c6ec81a657ff4b3e27c181659dd310d465f81d94bb14081bd710f2，正常两源选项/取消/存取/新PID自动及手动读回通过449；原9+3797全部SHA恢复、两原视频SHA一致、全部设备owner退出。确切APK路径在MAIN_SYNC_RESULT.json。后继收尾文档提交不改变代码或APK；未推送远端。原旧目录HEAD52315bf0及实际609项dirty仍保留。
+
+最终完整源码归档为 `/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-source450/sanguo11-mobile-main-source.tar`，SHA4445502299029793e74e65e5efe4d37921cdfbd0a057835df8d993c5b29a7411。12186个文件，逐文件内容/模式/每个tar成员读回通过；含168固定资源及忽略的原4+新2JNI，独立inode，不含SDK/构建缓存/用户保存备份。main代码05236+文档7f8，导出工具与所有权登记为两项自身文档补充；完整manifest见MAIN_SOURCE451.json。没有以源码导出替代APK实际安装，也没有改变未完成项。

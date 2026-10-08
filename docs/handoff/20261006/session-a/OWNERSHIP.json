@@ -879,7 +879,10 @@
     "docs/handoff/20261006/session-a/MAIN447_LAUNCH.json",
     "out/session-a/main447",
     "docs/handoff/20261006/session-a/audit_main448.py",
-    "docs/handoff/20261006/session-a/MAIN_ACCEPTANCE449.json"
+    "docs/handoff/20261006/session-a/MAIN_ACCEPTANCE449.json",
+    "docs/handoff/20261006/session-a/export_main450.py",
+    "docs/handoff/20261006/session-a/MAIN_SOURCE451.json",
+    "out/session-a/main-source450"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

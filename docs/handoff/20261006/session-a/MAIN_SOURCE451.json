@@ -1,0 +1,72 @@
+{
+  "sourceMainCommit": "7f8cb2068321ba6753b286e18bcb181aba5c6276",
+  "apkCodeCommit": "05236ca41c7795c9fc3030b9c274b7a8a25be262",
+  "mainWorktree": "/Users/paopao/.codex/worktrees/ba8a/sanguo11-mobile",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-source450/sanguo11-mobile-main-source.tar",
+  "archiveBytes": 945694720,
+  "archiveSha256": "4445502299029793e74e65e5efe4d37921cdfbd0a057835df8d993c5b29a7411",
+  "files": 12186,
+  "fileManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-source450/source-files.json",
+  "fileManifestSha256": "5cae75a74a2005f566645736cccba6d05430aa7e92029c4041b2d43fb9dd07f1",
+  "everyTarMemberShaAndModeVerified": true,
+  "independentSourceInodes": true,
+  "fixedInputsVerified": 168,
+  "jniInputs": [
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "beforeSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "afterSha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "beforeSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "afterSha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "beforeSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "afterSha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "beforeSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "afterSha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+      "copiedOnlyWhenMissing": false
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "beforeSha256": null,
+      "afterSha256": "f1ddc25c1ae7a0184ce6735b1e4bf6c20bf69439cfc86ac100fcc8bc7544383a",
+      "copiedOnlyWhenMissing": true
+    },
+    {
+      "path": "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "beforeSha256": null,
+      "afterSha256": "7660297b261473ec94b9c640832ef647cedc9d3cbfb8b36a3fbc3dfd590eb073",
+      "copiedOnlyWhenMissing": true
+    }
+  ],
+  "deliveredApks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug.apk",
+      "sha256": "fe86851340f82d1c1a054f58ec7fdb144d5a35d42917121b1d61b2842d51b9ce",
+      "bytes": 315088355
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/main-build445/app-debug-androidTest.apk",
+      "sha256": "b43568ba94c6ec81a657ff4b3e27c181659dd310d465f81d94bb14081bd710f2",
+      "bytes": 3151916
+    }
+  ],
+  "installedAcceptance": "MAIN_ACCEPTANCE449.json",
+  "containsSDKBuildCachesOrUserBackups": false,
+  "sourceOnlyOwnDocExceptions": [
+    "docs/handoff/20261006/session-a/OWNERSHIP.json",
+    "docs/handoff/20261006/session-a/export_main450.py"
+  ],
+  "scope": "Full final main source/resources/tests/tools/docs plus ignored original4/testedA2 JNI, original modes and every tar member verified. No .git history or SDK/cache/userdata. Generated SOURCE_REVISION differs outside Git, so digest changes on rebuild must be separately recorded/installed. Main code05236 and docs7f8; this exporter and registration are the only own-doc additions. Known performance/ARM/media/rule gaps retained; not whole-goal acceptance.",
+  "wholeGoalComplete": false
+}
