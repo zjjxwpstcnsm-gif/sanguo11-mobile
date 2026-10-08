@@ -1,0 +1,17 @@
+{
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+      "beforeSha256": "c93c7062f4ecfe47a7cd7a34d47529fe9b22524f06b6893f27a97e91db118c0f",
+      "afterSha256": "1d6c4d16c7f450b149d25930e1d20d3ce3373f26e88335b61f59b2d66b00f45c",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-buffer355/app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java"
+    }
+  ],
+  "game326Unchanged": true,
+  "recorderRequestedSeconds": 2,
+  "recorderRequestedMaxBytesAt48k": 384000,
+  "diskBufferBytes": 524288,
+  "noSampleEditingDroppingOrResampling": true,
+  "scope": "Measurement-only finite capture ring and buffered sequential file I/O, actual buffer/read/write stats. No gameplay/player/code/resources/source/rule changes, no new whole acceptance; strict0.995 and full raw timeline retained. Must build/install/restore new test and verify recording header/bytes.",
+  "wholeGoalComplete": false
+}

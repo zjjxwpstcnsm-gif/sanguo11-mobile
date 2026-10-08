@@ -1,0 +1,10 @@
+{
+  "numericalRegressionPassed": true,
+  "syntheticSignalRows": 34,
+  "sourceVerifierSha256": "fadc864c337373ae18b015d0a47c92949ac35212a5b070b678a7b0e69c445c59",
+  "allPredeclaredWindowsChecked": true,
+  "continuousAndKnownDiscontinuityLocated": true,
+  "inputWavsUnchanged": true,
+  "scope": "Synthetic verifier numerical regression only; no Android fullTrack or waveform threshold acceptance.",
+  "wholeGoalComplete": false
+}

@@ -1,0 +1,38 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "9bf6832aec24b931959c9a03da4dbaada4dcbdc9",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completeInheritedFiles": 11419,
+  "completeCandidateFiles": 11419,
+  "changedOnlyDiagnosticTestPaths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+      "beforeSha256": "c93c7062f4ecfe47a7cd7a34d47529fe9b22524f06b6893f27a97e91db118c0f",
+      "afterSha256": "1d6c4d16c7f450b149d25930e1d20d3ce3373f26e88335b61f59b2d66b00f45c",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-buffer355/app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk",
+      "sha256": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+      "bytes": 313550155
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-test-build356/app-debug-androidTest.apk",
+      "bytes": 3097340,
+      "sha256": "3610b5ee3e9b92fcbfb67dc3e9997e5c06f444be23f1878291f86a45445559e7"
+    }
+  ],
+  "gameReusedExact326": true,
+  "gameLargeHeap": true,
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-test-build356/candidate-inputs.json",
+  "candidateInputManifestSha256": "bec811256986556bf26c507fba725b9955d55468d93d83afd84ce6f5986fb947",
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 143.216840987,
+  "buildLogSha256": "5eaa52f79f884e47339acf4ee8275d9b3fceb87bb752146b4709e75c932c53b8",
+  "functional120sThresholdRelaxed": false,
+  "actualInstalled": false,
+  "scope": "Fresh diagnostic test-only APK built against full326 source/resource/JNI inputs; exact previously installed326 game APK bytes reused, not rebuilt/relabeled. New test may have different BuildConfig revision label; product code unchanged. Only finite recorder2s buffer/disk512KiB and actual timing metrics; original game2f5 unchanged, source audio/strict0.995 untouched. Need actual normal full-track capture and complete game/test/APK/permission restoration. Fresh full user backup/test-only install/SHA/restoration still required.",
+  "wholeGoalComplete": false
+}

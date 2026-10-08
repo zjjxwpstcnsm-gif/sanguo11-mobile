@@ -1,0 +1,254 @@
+{
+  "scope": "Numerical diagnostic of unchanged actual PCM coarse search only; no repaired recording/whole acceptance/threshold relaxation or unique playback attribution",
+  "results": [
+    {
+      "referenceSeconds": null,
+      "candidates": [
+        {
+          "coarseSample": 530488,
+          "coarsePrefixScore": 0.5812625226423499,
+          "prefixEnergy": 1599.1221419933456,
+          "actualWindowEnergy": 1599.1221419933042,
+          "actualCoarseCorrelation": 0.5812625226423519
+        },
+        {
+          "coarseSample": 530480,
+          "coarsePrefixScore": 0.39735599858543696,
+          "prefixEnergy": 1599.1221422441718,
+          "actualWindowEnergy": 1599.1221422441304,
+          "actualCoarseCorrelation": 0.3973559985854387
+        },
+        {
+          "coarseSample": 531600,
+          "coarsePrefixScore": 0.36925956515126734,
+          "prefixEnergy": 1599.1220868787118,
+          "actualWindowEnergy": 1599.1220868786702,
+          "actualCoarseCorrelation": 0.369259565151274
+        },
+        {
+          "coarseSample": 531608,
+          "coarsePrefixScore": 0.36340074835831804,
+          "prefixEnergy": 1599.1220865081016,
+          "actualWindowEnergy": 1599.12208650806,
+          "actualCoarseCorrelation": 0.3634007483583231
+        },
+        {
+          "coarseSample": 531160,
+          "coarsePrefixScore": 0.35863132861843044,
+          "prefixEnergy": 1599.1221118607557,
+          "actualWindowEnergy": 1599.1221118607145,
+          "actualCoarseCorrelation": 0.3586313286184365
+        },
+        {
+          "coarseSample": 530496,
+          "coarsePrefixScore": 0.35270354389380193,
+          "prefixEnergy": 1599.1221418715875,
+          "actualWindowEnergy": 1599.122141871546,
+          "actualCoarseCorrelation": 0.35270354389380654
+        },
+        {
+          "coarseSample": 529816,
+          "coarsePrefixScore": 0.322488206201208,
+          "prefixEnergy": 1599.1221506915285,
+          "actualWindowEnergy": 1599.1221506914874,
+          "actualCoarseCorrelation": 0.3224882062012117
+        },
+        {
+          "coarseSample": 532504,
+          "coarsePrefixScore": 0.29605978030232083,
+          "prefixEnergy": 1599.122021954533,
+          "actualWindowEnergy": 1599.1220219544912,
+          "actualCoarseCorrelation": 0.29605978030232544
+        }
+      ],
+      "captureMaximumCoarsePrefixScore": 0.5812625226423499
+    },
+    {
+      "referenceSeconds": 5,
+      "candidates": [
+        {
+          "coarseSample": 4441216,
+          "coarsePrefixScore": 34.99017450780961,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 4.656650555975677e-14,
+          "actualCoarseCorrelation": 0.0044975488243164195
+        },
+        {
+          "coarseSample": 4569496,
+          "coarsePrefixScore": 18.909630528085586,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 5.909921320654037e-14,
+          "actualCoarseCorrelation": 0.0021575395112958936
+        },
+        {
+          "coarseSample": 4968000,
+          "coarsePrefixScore": 11.22256843011371,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 6.672130795353778e-15,
+          "actualCoarseCorrelation": 0.003810890609398203
+        },
+        {
+          "coarseSample": 5446328,
+          "coarsePrefixScore": 8.532883843948014,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 3.857197915191211e-15,
+          "actualCoarseCorrelation": 0.003810890609398203
+        },
+        {
+          "coarseSample": 4569488,
+          "coarsePrefixScore": 4.601222181044307,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 6.074474199783961e-15,
+          "actualCoarseCorrelation": 0.0016375157462110385
+        },
+        {
+          "coarseSample": 5080840,
+          "coarsePrefixScore": 2.504217389009966,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 1.7993090358777247e-15,
+          "actualCoarseCorrelation": 0.0016375157462110383
+        },
+        {
+          "coarseSample": 4441224,
+          "coarsePrefixScore": 1.525909815169868,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 1.2334918820777722e-16,
+          "actualCoarseCorrelation": 0.0038108906093982024
+        },
+        {
+          "coarseSample": 750704,
+          "coarsePrefixScore": 0.9152523795309215,
+          "prefixEnergy": 12.995328369144147,
+          "actualWindowEnergy": 12.9953283691444,
+          "actualCoarseCorrelation": 0.915252379530911
+        }
+      ],
+      "captureMaximumCoarsePrefixScore": 34.99017450780961
+    },
+    {
+      "referenceSeconds": 55,
+      "candidates": [
+        {
+          "coarseSample": 4441216,
+          "coarsePrefixScore": 119.50898604062843,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 4.656650555975677e-14,
+          "actualCoarseCorrelation": 0.016512061621781548
+        },
+        {
+          "coarseSample": 4569496,
+          "coarsePrefixScore": 56.39732875151182,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 5.909921320654037e-14,
+          "actualCoarseCorrelation": 0.006916800267431538
+        },
+        {
+          "coarseSample": 4968000,
+          "coarsePrefixScore": 45.87018792578945,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 6.672130795353778e-15,
+          "actualCoarseCorrelation": 0.01674309637415126
+        },
+        {
+          "coarseSample": 5446328,
+          "coarsePrefixScore": 34.87660493739497,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 3.857197915191211e-15,
+          "actualCoarseCorrelation": 0.016743096374151258
+        },
+        {
+          "coarseSample": 4569488,
+          "coarsePrefixScore": 15.079350962343696,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 6.074474199783961e-15,
+          "actualCoarseCorrelation": 0.005768539104817305
+        },
+        {
+          "coarseSample": 5080840,
+          "coarsePrefixScore": 8.206938323374047,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 1.7993090358777247e-15,
+          "actualCoarseCorrelation": 0.005768539104817304
+        },
+        {
+          "coarseSample": 4441224,
+          "coarsePrefixScore": 6.2368689379699305,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 1.2334918820777722e-16,
+          "actualCoarseCorrelation": 0.016743096374151258
+        },
+        {
+          "coarseSample": 2957096,
+          "coarsePrefixScore": 0.9023591274114389,
+          "prefixEnergy": 11.249677951587046,
+          "actualWindowEnergy": 11.24967795156874,
+          "actualCoarseCorrelation": 0.9023591274121733
+        }
+      ],
+      "captureMaximumCoarsePrefixScore": 119.50898604062843
+    },
+    {
+      "referenceSeconds": 75,
+      "candidates": [
+        {
+          "coarseSample": 4569496,
+          "coarsePrefixScore": 193.02034137691493,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 5.909921320654037e-14,
+          "actualCoarseCorrelation": 0.0166699891807159
+        },
+        {
+          "coarseSample": 4441216,
+          "coarsePrefixScore": 125.0429776389339,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 4.656650555975677e-14,
+          "actualCoarseCorrelation": 0.012165937794560098
+        },
+        {
+          "coarseSample": 4968000,
+          "coarsePrefixScore": 49.72259437519,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 6.672130795353778e-15,
+          "actualCoarseCorrelation": 0.012780403108616625
+        },
+        {
+          "coarseSample": 4569488,
+          "coarsePrefixScore": 47.48364756945733,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 6.074474199783961e-15,
+          "actualCoarseCorrelation": 0.012791246036500777
+        },
+        {
+          "coarseSample": 5446328,
+          "coarsePrefixScore": 37.805709118821085,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 3.857197915191211e-15,
+          "actualCoarseCorrelation": 0.012780403108616625
+        },
+        {
+          "coarseSample": 5080840,
+          "coarsePrefixScore": 25.8429884436584,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 1.7993090358777247e-15,
+          "actualCoarseCorrelation": 0.012791246036500779
+        },
+        {
+          "coarseSample": 4441224,
+          "coarsePrefixScore": 6.760673965100494,
+          "prefixEnergy": 0.0,
+          "actualWindowEnergy": 1.2334918820777722e-16,
+          "actualCoarseCorrelation": 0.012780403108616625
+        },
+        {
+          "coarseSample": 3839104,
+          "coarsePrefixScore": 0.9682047870544667,
+          "prefixEnergy": 22.686074006336412,
+          "actualWindowEnergy": 22.686074006333705,
+          "actualCoarseCorrelation": 0.968204787054525
+        }
+      ],
+      "captureMaximumCoarsePrefixScore": 193.02034137691493
+    }
+  ],
+  "wholeGoalComplete": false
+}

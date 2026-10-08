@@ -47,7 +47,16 @@ def inspect(capture, reference, output):
                              np.fft.rfft(short[::-1], size), size)
         cross = cross[len(short) - 1:len(coarse)]
         energy = prefix[len(short):] - prefix[:-len(short)]
-        scores = cross / np.sqrt(np.maximum(1e-20, energy * float(short @ short)))
+        # Prefix subtraction can round a near-silent window to zero after
+        # preceding audible PCM. FFT roundoff must not give silence a score>1.
+        template_energy=float(short @ short)
+        valid=energy>max(1e-14,float(prefix[-1])*1e-12)
+        scores=np.full(cross.shape,-np.inf)
+        scores[valid]=cross[valid]/np.sqrt(energy[valid]*template_energy)
+        # Refine only physically possible positive correlation candidates.
+        scores[(scores>1.000001)|(scores<0)]=-np.inf
+        if not np.any(np.isfinite(scores)):
+            raise ValueError('No non-silent positive diagnostic candidate')
         seed = int(np.argmax(scores)) * 8
         best = None
         for at in range(max(0, seed - 64), min(len(x) - len(template), seed + 64) + 1):
