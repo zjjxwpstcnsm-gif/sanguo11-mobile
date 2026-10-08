@@ -1,0 +1,75 @@
+{
+  "trackedSource": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/tools/content/native/session_a_cell_fire_instruction_worker.c",
+  "trackedSourceSha256": "435850bcdc505a3ce5397277e0ace178dcff82ef8ed57c137b390947c5a9ae35",
+  "outputs": [
+    {
+      "abi": "x86_64",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/jniLibs/x86_64/libpc_effect_fire_worker.so",
+      "sha256": "fe7b940d82bd6afe1419c3cf4d0cd41aab84d55ebca4e03136c89f5eca84f9b3",
+      "compiledByteExact260": true,
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=x86_64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/sources/session_a_cell_fire_budget_worker.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/jniLibs/x86_64",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/jniLibs/x86_64/libpc_effect_fire_worker.so"
+      ]
+    },
+    {
+      "abi": "arm64-v8a",
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/jniLibs/arm64-v8a/libpc_effect_fire_worker.so",
+      "sha256": "853cdef9ce9ecd71ff38684bfe47c36c21e6a1c4c975bc29f235a14972f04129",
+      "compiledByteExact260": true,
+      "command": [
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-ndk-r27d/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+        "--target=aarch64-linux-android26",
+        "-std=c11",
+        "-O3",
+        "-fPIE",
+        "-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "/Users/paopao/workspace/sanguo11-mobile/out/toolchain/unicorn-2.1.4/include",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/sources/session_a_cell_fire_budget_worker.c",
+        "-L",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/jniLibs/arm64-v8a",
+        "-Wl,-rpath,$ORIGIN",
+        "-lunicorn",
+        "-lm",
+        "-o",
+        "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270-v2/jniLibs/arm64-v8a/libpc_effect_fire_worker.so"
+      ]
+    }
+  ],
+  "originalFourUnchanged": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+  },
+  "usesTemporaryDiagnosticSource": false,
+  "actualInstalled": false,
+  "scope": "Direct tracked-source NDK build for both ABIs byte-identical to actual host-validated260 outputs. Output is a separate directory, never default current JNI. Shared two B native files included read-only with immutable hashes. No Android/ARM runtime/performance claim.",
+  "wholeGoalComplete": false,
+  "firstAttemptRetained": {
+    "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/portable-fire-build270/jniLibs/x86_64/libpc_effect_fire_worker.so",
+    "sha256": "6423e2952ad9c7808bdd5c57110a0c86af30437d965898fa5bea341e45a7a8d9",
+    "reason": "Changed main C filename changed ELF FILE symbol metadata; whole-file equality guard rejected. Rebuilt from byte-identical tracked source copied to original compiler basename; both ABI whole binaries then exactly matched260. No failed output overwritten."
+  }
+}

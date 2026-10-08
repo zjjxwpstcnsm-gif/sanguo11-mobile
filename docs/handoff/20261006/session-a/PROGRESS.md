@@ -545,3 +545,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 266独立只读B r12两APK全SHA及15/772原/restored每路径byteSHA核同，before/post/restored map-renderer均failure/session true；before已真，无allocation/native栈不能推新OOM。现场normal-settled recovery PNG86d708…确认3D/原单挑演出未通过，不改保护或合WIP。262后继source0在fresh evidence directory第2check失败，正常源未开始，原9/3797零改写SHA恢复、observer0；267保留失败，其regular archive/tar无同名member，目录来源未知（可能旧测试空目录残留），不冒称有原文件。helper新runId UUID且检查原pathset，不删任何原node。268新队列已按同完整263来源4起点启动，不重复已完4、不计source0失败为通过。
+
+
+269独立完整11414输入逐SHA/inode隔离，4处候选delta（235/258两Java+260两ABI），独立GH/build/out打包成功224s；game5db38e0b…/test63a85ade…，168资源/原4+新2/manifest与同签名/原39fixture均核准，未实际安装或转成绩。270实际火C源码435850bc…纳入A独有工具路径，直接NDK复编译两ABI同260整字节SHA；初次直接换文件名仅FILE符号导致整ELF SHA不等被拒，原失败输出保留，固定编译basename后全SHA吻合，无原4+current2改写。来源0的旧165/239正常caller已32/670活跃，源码guard和完整保存恢复门继续。
