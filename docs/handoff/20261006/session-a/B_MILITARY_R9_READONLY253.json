@@ -1,0 +1,67 @@
+{
+  "bCompletedEvidenceCommit": "f87a1b8cf51ed50ceb78b0064ed8efb5f293bae9",
+  "commitOnlyTwoDocs": [
+    "docs/handoff/20261006/session-b/MILITARY_NEW_OPENING_ACCEPTANCE.md",
+    "docs/handoff/20261006/session-b/MILITARY_R9_ACCEPTANCE.json"
+  ],
+  "receiptBlobSha256": "ab3a629799a5c9b54086d710d7aab7984be696a6937b2b1150c1a16b291e4509",
+  "actualResult": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/results.json",
+  "actualResultSha256": "3534cdff16b70670208b8fcc5f850ce85ae9dab53dbd79838c62b391c909badc",
+  "frozenReportSha256": "3948e8111e158a96a61efc122609bd6afa6f809f16416938c52a1b8c65367bfb",
+  "actualApksIndependentlyHashed": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r9/app-debug.apk",
+      "sha256": "6b281c714cda67fb7352ae6b5a4a42ed8adea50d2cee42904724c196165802c1",
+      "bytes": 315003320
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r9/app-debug-androidTest.apk",
+      "sha256": "7709293047831910adf1263180295b66f988437660583670d94de0e140998c81",
+      "bytes": 3050176
+    }
+  ],
+  "normalColdReportedPassed": true,
+  "everyArchivePathAndOriginalBytesIndependentlyCompared": [
+    {
+      "tree": "internal",
+      "everyOriginalPathAndBytesSha": true,
+      "files": 15
+    },
+    {
+      "tree": "external",
+      "everyOriginalPathAndBytesSha": true,
+      "files": 772
+    }
+  ],
+  "scope": "Completed military normal Android acceptance of immutable mixed-source candidate r9, not a completed native-duel release/integration batch",
+  "sourceId": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+  "abi": "x86_64",
+  "androidSerial": "emulator-5582",
+  "actualFrames": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/02a-city-center-funding.png",
+      "sha256": "9161a8d0044c8c7a48903a106a3963ddf9d90c677522487500a6506be6001593"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/02b-city-near-wall.png",
+      "sha256": "53cd5891857efcdec21d31e55054fced75ad06ed46315334e73ba00f2f2bc603"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/03-legal-confirm.png",
+      "sha256": "b46b07745cf6672de8cc7e7ef6a04ff40f308f9a65dd312c3d9ae546f2cdbfab"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/04b-resumed-repair.png",
+      "sha256": "4ab94460a4735d7c4da940df700ca114637e85f388e3de1461ab7a0fb64fa78f"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/fieldworks-apk61-r9-acceptance-v1/evidence/fieldworks/05-completed.png",
+      "sha256": "efe33d2d039308592e65e4a4b7d28e2757906f2f0b93bdde8b168afc0f47c0bc"
+    }
+  ],
+  "bWipImported": false,
+  "aApkAcceptedByThisReceipt": false,
+  "armAccepted": false,
+  "wholeGoalComplete": false,
+  "limitations": "Verified only actualB candidateR9 normal/cold military evidence and exact15/772 archive restoration. No Native WIP import, score transfer to r10/currentA165/239, duel/fire/media/JavaOOM/FPS/whole-rule/ARM completion."
+}

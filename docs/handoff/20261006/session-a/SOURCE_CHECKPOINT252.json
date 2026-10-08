@@ -1,0 +1,25 @@
+{
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "revision": "1300d5ae43bd8c1a4530c8d3a4c2807b590cf24c",
+  "branch": "codex/map-ui-media-repair",
+  "fileCount": 11384,
+  "bytes": 908705734,
+  "scope": "tracked plus every inherited SOURCE_GUARD file and original4/new2 JNI, no Git database/Gradle/build/SDK/device backups; checkpoint not final whole-goal or ARM acceptance",
+  "archivePath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current252-complete/sanguo11-mobile-source.tar.gz",
+  "archiveBytes": 654107167,
+  "archiveSha256": "d07cd9700189e787d8974ad10230c2cc03c6bd94920b8db8c0f956237c7af8d2",
+  "verifiedEveryFileSha": 11384,
+  "original4AndNew2Jni": {
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53",
+    "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966",
+    "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880",
+    "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/arm64-v8a/libpc_effect_fire_worker.so": "02e60dcf2189a9292a9f5f298a9dea1edf86dd58083d89ee9249f996f4548770",
+    "out/session-a/pc-fire-runtime/additional-jniLibs/x86_64/libpc_effect_fire_worker.so": "4c9acb4491c25ccca1e2625b3fcdf0a767f673d5f3e02afc997f6309a5aec81e"
+  },
+  "gitDatabaseIncluded": false,
+  "deviceBackupsIncluded": false,
+  "overallGoalComplete": false,
+  "currentDiagnosticStillRunning": "Source4 242/239 at448/670; 252 tracked launch receipt is an in-flight checkpoint, not final acceptance",
+  "prototype246RejectedBy249": "Included A wrapper source is not wired into current JNI; long capacity failure retained, not production accepted"
+}

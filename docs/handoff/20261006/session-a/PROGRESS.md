@@ -521,3 +521,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 251原列表诊断完成：同249输入132s后同守卫exit2，frame602total0证明停止后的下一update清掉旧128instance，重建total128/joined128且4533780guest累计bytes/107allocations稳定。读的是原46099c..460b21链与rawflag，不改PC/World/RNG。此证据否定“以此就判实例泄漏”，没有关闭其他内存/帧成本或当128 Android通过。5024/5061/5062当前Source4诊断实际约432/670存活，最新整个main核查仍ef413，未回退/复制B WIP。
+
+
+252完整源导出：1300d5ae、11384文件、654107167B、SHA d07cd970…，每条源/tar SHA回读一致、原4/新增2JNI逐SHA保持；含新wrapper未启用、长时失败249/列表251、stage250及running242launch检查点，不冒称有后续最终结果。253独立核B f87两验收文档/实际R9结果与冻结report哈希、两个APK整包SHA，以及所有15/772 before/restored tar路径集合/字节SHA同等。没有拷B WIP或融合root源码，只作为R9候选军建范围证据，R10/ARM/完整目标仍未完成。242目前464/670普通case，phase尚未终结，不因其越过旧69/无OOM就称keyboard根因或128容量修复。

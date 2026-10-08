@@ -8,7 +8,7 @@
 
 同生产修复普通384回归包已独立构建、尚未安装：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-f58aff64-registered-ordinary180/app-debug.apk`，SHA `b9747addade121653a21043646acfc71b266941858d11c518492e4bdd262c384`，配test SHA `62546caac33eccbedf61900c682f06f3ca38114ef1cda2fc9dd58e30a7c0c0fe`。二进制largeHeap=false、5636资产/168固定输入/六JNI精确。注册后176整正常军建/火/攻击/16来源人物、.995整首菜单曲、普通与默认fast32/all244/cold/全数据恢复由182真实队列串行，不把build/计划当接受。
 
-最新完整源码快照：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current225-complete/sanguo11-mobile-source.tar.gz`，source `925748c6139b66a799e59de509c47151b00d8acb`，11330文件全部逐SHA回读，653951588B，SHA `05a6c153f576089e13971e09488cff1273521c7e359b1b815d6eef5f4cbe3b7f`。含完整继承/未跟踪/原4及新增2JNI、当前165规范生产/176注册测试、182与203调度、截至223正常来源证据、224独立选项补丁/工具。未包含226/227后继台账；当前完整工作目录和Git提交保留后继。无Git数据库、Gradle/build/SDK或设备备份。225仍是当前规范生产加stage补丁，未安装新选项。
+最新完整源码快照：`/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/source-checkpoint-current252-complete/sanguo11-mobile-source.tar.gz`，source `1300d5ae43bd8c1a4530c8d3a4c2807b590cf24c`，11384文件逐条tar与原输入SHA回读一致，654107167B，SHA `d07cd9700189e787d8974ad10230c2cc03c6bd94920b8db8c0f956237c7af8d2`。含完整继承未跟踪/168资源/原4新增2JNI、当前165规范生产/239观察测试源码、224/227/235/250独立stage补丁工具与截至251实测/失败回执、在跑242启动检查点。246wrapper原型仅源码不接当前JNI，249长时失败明确不交付。原225保留历史，252尚无后继252摘要/253跨会话只读证据；最终完整包仍需包含最终验收。无Git数据库/构建缓存/用户设备备份，任何源快照不等于最终APK或ARM验收。
 
 新局适配已在独立stage224针对B candidate60冻结JAR及两页编译通过，196Boverlay与612未变依赖逐SHA一致；当前规范Main/picker、5554游戏/test及媒体队列不变。串行组合**使用CANDIDATE_A_CLOSURE227.json及其37路径A-only冻结包**，完整SHA/两种B精确前态/构建与真实控件步骤见227/224。226只保留历史前态核查，227补齐候选原始源与外部主题编译子集差异；合成候选源+227与已编译stage全部5810app文件逐SHA一致。尚无新组合APK或Android选项/单挑成绩，不合B活动WIP，不把编译当功能闭合。
 
@@ -305,3 +305,6 @@ Latest full own source8979dae2 includes completed finite Gov45173c6c+3b5d9b70, e
 176 Source4在native69真实搜索settle断言失败，238保留实际PNG/64人检查点/日志与全9/3797SHA恢复；原normal父链、audio、heap均已终止且后两者未有设备动作。239观察测试APK c689e103…新独立构建，生产game931bc不变/168资源与六JNI/注册/签名/原39夹具核验。240错误reuse模式被已装test SHA守卫拒绝且全文件零改写恢复；242已使用正确test-only-update实际安装SHA核对，正常Source4仅320/670partial，原条件/超时/动作未放宽，观察影响时序仍可能掩盖，尚不宣称根因修复或转旧5来源成绩。
 
 246独立A原火预算wrapper宿主跨过64/128，1/13/32原记录/时间字节同；最高20M计费byte、native5s/Java6s/原内存/packet上限不变。128计费19569502靠近上限且update229ms，不作长时/Android128/FPS/ARM/JavaOOM闭合；额外2JNI未重建或改写。248读取B实际r8地图点击失败截图，确认加载遮罩仍覆盖目标，给同actualhost/curtain消失/真实输出/资源完成的具体正常准入，未改B或产品、不绕遮罩。原完整源225尚无238–248后继；当前目录/Git完整保存，新最终源/APK/全流程仍待。
+
+
+253已只读核f87a1b8c两份B完成验收文档及本轮R9实际结果/冻结报告SHA，两个候选APK独立整包SHA，并从内部15/外部772 before/restored tar逐文件完整path set、bytesSHA比对相同。范围仅B候选R9 Source14正常军建/冷重开；未导入Native WIP或完整规则完成提交，不能移给R10、当前A165/239或宣布单挑/媒体/火/JavaOOM/ARM闭合。当前242 Source4观察约464/670、同5024/5061/5062实际存活，最终冷/恢复未结束。
