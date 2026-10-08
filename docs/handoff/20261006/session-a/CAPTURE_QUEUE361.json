@@ -1,0 +1,23 @@
+{
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+      "beforeSha256": "1d6c4d16c7f450b149d25930e1d20d3ce3373f26e88335b61f59b2d66b00f45c",
+      "afterSha256": "b571a40b1bfab8672acd798f73c0fb87ab14a2917500d60fd38930c2a280fe6b",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue361/app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAPcmCaptureWriter.java",
+      "beforeSha256": null,
+      "afterSha256": "1931c35e2e646c2a0942882af7c032117462bded4ea7caa46e6b5e4095509f6c",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue361/app/src/androidTest/java/game/sanguo/mobile/SessionAPcmCaptureWriter.java"
+    }
+  ],
+  "testOnly": true,
+  "game326Unchanged": true,
+  "queueBytes": 524288,
+  "queueOverflowIsFailure": true,
+  "noBlockingDiskWriteOnCaptureReadThread": true,
+  "scope": "Actual358 max diskwrite57ms versus actual nativebuffer64ms motivates isolate disk from read. Bounded64x8192 preallocated FIFO, no PCM splice/resample/drop, original0.995 still required. Not unique capture/player root proof or Android acceptance.",
+  "wholeGoalComplete": false
+}

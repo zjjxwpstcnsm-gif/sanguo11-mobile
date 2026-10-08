@@ -1,0 +1,44 @@
+{
+  "buildSuccessful": true,
+  "sourceRevision": "27a42c58c244987d7dfd053fc0e4a9ad103a6647",
+  "commonBase": "0e7b9bc2df90249a50851baeda58c7d183ea6059",
+  "completeInheritedFiles": 11419,
+  "completeCandidateFiles": 11420,
+  "changedOnlyDiagnosticTestPaths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java",
+      "beforeSha256": "1d6c4d16c7f450b149d25930e1d20d3ce3373f26e88335b61f59b2d66b00f45c",
+      "afterSha256": "b571a40b1bfab8672acd798f73c0fb87ab14a2917500d60fd38930c2a280fe6b",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue361/app/src/androidTest/java/game/sanguo/mobile/SessionAAudioCaptureService.java"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SessionAPcmCaptureWriter.java",
+      "beforeSha256": null,
+      "afterSha256": "1931c35e2e646c2a0942882af7c032117462bded4ea7caa46e6b5e4095509f6c",
+      "stagedPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue361/app/src/androidTest/java/game/sanguo/mobile/SessionAPcmCaptureWriter.java"
+    }
+  ],
+  "apks": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/gpu-index-build326/app-debug.apk",
+      "sha256": "2f5228fc8efc474743a9cfda95f6c27a33b54885462fb005eda419d961921685",
+      "bytes": 313550155
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue-build363/app-debug-androidTest.apk",
+      "bytes": 3099048,
+      "sha256": "1105f9d1c23e8d0138041a0eaa7551408368d17ca3f3043a07b2b553bdac1c04"
+    }
+  ],
+  "gameReusedExact326": true,
+  "gameLargeHeap": true,
+  "candidateInputManifest": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/capture-queue-build363/candidate-inputs.json",
+  "candidateInputManifestSha256": "1a3732bec147d9e8675e0f3205e0f5df328d70a6b56d3087071b33108c139089",
+  "independentSourceBuildOutGradleCache": true,
+  "wallSeconds": 204.407025188,
+  "buildLogSha256": "3b985148ce1c5e05e416835dabf9b517d5081d37622a207731bf5549ab330c70",
+  "functional120sThresholdRelaxed": false,
+  "actualInstalled": false,
+  "scope": "Fresh diagnostic test-only APK built against full326 source/resource/JNI inputs; exact previously installed326 game APK bytes reused, not rebuilt/relabeled. New test may have different BuildConfig revision label; product code unchanged. Only bounded64x8192 FIFO disk isolation and actual timing metrics; original game2f5 unchanged, source audio/strict0.995 untouched. Need actual normal full-track capture and complete game/test/APK/permission restoration. Fresh full user backup/test-only install/SHA/restoration still required.",
+  "wholeGoalComplete": false
+}

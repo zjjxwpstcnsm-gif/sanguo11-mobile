@@ -1,0 +1,8 @@
+{
+  "actualJavaStdout": "PASS 15 exact bounded capture-writer checks\n",
+  "exitCode": 0,
+  "stagedWriterSha256": "1931c35e2e646c2a0942882af7c032117462bded4ea7caa46e6b5e4095509f6c",
+  "androidAccepted": false,
+  "scope": "Actual bounded writer byte order/reused buffer/slow disk overflow/exception/partial frame/terminal thread tests; not Android recording/whole music acceptance.",
+  "wholeGoalComplete": false
+}
