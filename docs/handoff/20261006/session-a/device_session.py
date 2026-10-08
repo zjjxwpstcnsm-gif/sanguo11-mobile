@@ -5,7 +5,7 @@ No data clear. Backup covers the whole private and external application trees.
 Restoration removes only regular files added during this exclusive session,
 extracts the original archive, and reads every regular file SHA back.
 """
-import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading, re, sys
+import argparse, hashlib, json, os, pathlib, shlex, subprocess, tarfile, time, threading, re, sys, uuid
 
 ROOT = pathlib.Path(__file__).resolve().parents[4]
 ADB = '/Users/paopao/workspace/sanguo11-mobile/out/toolchain/android-sdk/platform-tools/adb'
@@ -153,7 +153,13 @@ def main():
             if device_manifest(record['path']) != {k:v['sha256'] for k,v in record['files'].items()}:
                 raise ValueError('User tree changed after backup')
         r['apks'] = {str(v.resolve()):digest(v) for v in [a.apk,a.test_apk]}
-        run_id='session_a_'+out.name.replace('-','_')
+        # Historical evidence is part of the user's full archive. Never reuse
+        # a basename-only device directory across independent host batches.
+        original_external=r['trees']['external']['files']
+        while True:
+            run_id='session_a_'+out.name.replace('-','_')+'_'+uuid.uuid4().hex
+            if not any(k.startswith('files/session-a-map/'+run_id) for k in original_external):break
+        r['runIdAllocation']='Fresh UUID checked against complete original external archive paths'
         r['runId']=run_id;r['reuseInstalled']=a.reuse_installed;r['heapProfileDiagnostic']=a.heap_profile
         r['menuMusicNormalFlow']=a.menu_music;r['stage']='installing'; report_path.write_text(json.dumps(r,indent=2))
         stop=threading.Event()

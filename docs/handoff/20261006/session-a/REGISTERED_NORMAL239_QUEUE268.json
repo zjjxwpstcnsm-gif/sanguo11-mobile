@@ -6,7 +6,7 @@
     "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
     "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
   },
-  "stage": "remaining-driver-terminal",
+  "stage": "remaining15-running",
   "completedSources": [
     4
   ],
@@ -27,9 +27,6 @@
     "--initial-source",
     "4",
     "--output",
-    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16"
-  ],
-  "driverExit": 1,
-  "batchPath": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16/batch.json",
-  "completeAll16NormalCallers": false
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16-unique268"
+  ]
 }

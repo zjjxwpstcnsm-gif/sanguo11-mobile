@@ -522,7 +522,12 @@
     "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE262.json",
     "docs/handoff/20261006/session-a/REGISTERED_SOURCE04_ACCEPTANCE263.json",
     "docs/handoff/20261006/session-a/registered-source04-memory264.json",
-    "docs/handoff/20261006/session-a/registered-source04-widget265.json"
+    "docs/handoff/20261006/session-a/registered-source04-widget265.json",
+    "docs/handoff/20261006/session-a/audit_b_cold_presentation266.py",
+    "docs/handoff/20261006/session-a/B_COLD_PRESENTATION_GAP266.json",
+    "docs/handoff/20261006/session-a/EVIDENCE_DIRECTORY_COLLISION267.json",
+    "docs/handoff/20261006/session-a/run_registered_caller_followup268.py",
+    "docs/handoff/20261006/session-a/REGISTERED_NORMAL239_QUEUE268.json"
   ],
   "productionOwnership": "../parallel-repair/APP_OWNERSHIP.json",
   "toolOwnership": "../parallel-repair/TOOL_OWNERSHIP.json",

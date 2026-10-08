@@ -1,0 +1,80 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-duel-apk61-r12-acceptance-v1",
+  "resultSha256": "fe749b0532fa0a744dabae8b20ed0da7fff8b2bddc3a888b0f2ae8eb7f06b828",
+  "apks": {
+    "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/app-debug.apk": "e16fc4194b0f15d21d7aa3f70edc2e36d26d9accd35dc129b189f589573c08dc",
+    "/Users/paopao/.codex/worktrees/f55b/sanguo11-mobile/out/session-b/native-opening-combined61-frozen-r12/app-debug-androidTest.apk": "c96a4e29194dc12587c8a41d13b240f4615fa54bc3c09ce12754be61ea5a6c89"
+  },
+  "restoration": {
+    "internal": {
+      "files": 15,
+      "everyPathAndShaExact": true,
+      "beforeTarSha256": "ae42700b24219913ca19c63388e4b1b7ace1164b76c4dd5ea98173e3c425c9f0",
+      "restoredTarSha256": "f3f9e4fffa0bd458e01c58ad77b1c0bef94fa57418be6abec6bcf1769409987d"
+    },
+    "external": {
+      "files": 772,
+      "everyPathAndShaExact": true,
+      "beforeTarSha256": "1b7c535a2a041cac48343ac8e993b2aaa6f5199198d6692301238a8cd5580c3f",
+      "restoredTarSha256": "457c70b613cbc588bdc8a014085b06545de998907abc2488b19c4f3ac4f24fbb"
+    }
+  },
+  "guards": [
+    {
+      "archive": "internal-before.tar",
+      "path": "./shared_prefs/map-renderer.xml",
+      "sha256": "8176d95e098a10bfa25ade2796cfe1e847687dc68421383b36d58f8e74781f9c",
+      "values": {
+        "nativeFailure": "true",
+        "nativeSession": "true",
+        "facing": "1",
+        "sceneEnabled": "true",
+        "tilt": "55.0",
+        "version": "2",
+        "yaw": "0.0"
+      }
+    },
+    {
+      "archive": "internal-post-test.tar",
+      "path": "./shared_prefs/map-renderer.xml",
+      "sha256": "6770f31bfab5547eea41481facc4b47910b8f4e03ef2b50ca5cb61cb62d194eb",
+      "values": {
+        "nativeFailure": "true",
+        "nativeSession": "true",
+        "facing": "1",
+        "sceneEnabled": "true",
+        "tilt": "55.0",
+        "version": "3",
+        "yaw": "0.0"
+      }
+    },
+    {
+      "archive": "internal-restored.tar",
+      "path": "./shared_prefs/map-renderer.xml",
+      "sha256": "8176d95e098a10bfa25ade2796cfe1e847687dc68421383b36d58f8e74781f9c",
+      "values": {
+        "nativeFailure": "true",
+        "nativeSession": "true",
+        "facing": "1",
+        "sceneEnabled": "true",
+        "tilt": "55.0",
+        "version": "2",
+        "yaw": "0.0"
+      }
+    }
+  ],
+  "screenshots": {
+    "human-terminal.png": "d4a64004659d637329fa517a515a10ca4e80ed3bec704bac41e6af02eff9e712",
+    "normal-settled.png": "86d708ec4b8703f97b7451ee772099d21180b50f7f51d39996ae4418072a9c3f"
+  },
+  "ownMapHostSha256": "f1e4cdc429e4457823f9f9668444adcfb224db82551764c6ec7a5ef50ea358e9",
+  "actualViewedNormalSettledShowsRecovery": true,
+  "actualNativeCrashOrJavaOomStackProvided": false,
+  "newFailureCannotBeInferredFromRecoveryAlone": true,
+  "beforeHadSameFailureAndSessionBooleans": true,
+  "threeDimensionalColdAcceptance": false,
+  "nativeDuelOriginalPresentationAcceptance": false,
+  "canonicalOrBChanges": false,
+  "scope": "Read-only B r12 actual menu/rules/save receipts and guarded APK hashes/restoration. Inspected normal-settled pixels show recovery with real retained campaign. Before archive already has both health booleans true; post true lacks renderer timing/allocation/crash provenance. A does not equate rule PASS/recovery with renderer stability, infer a new OOM, clear user prefs, replace guards or merge Native WIP. Cold retry lifecycle and original duel display still need current-host real output acceptance.",
+  "wholeGoalComplete": false
+}

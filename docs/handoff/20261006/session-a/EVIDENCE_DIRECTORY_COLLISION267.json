@@ -1,0 +1,31 @@
+{
+  "case": "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/registered-normal239-all16/source-00",
+  "runId": "session_a_source_00",
+  "actualFailure": "SESSION_A_MAP FAIL java.lang.AssertionError: fresh evidence directory\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.check(SessionAMapRepairInstrumentation.java:29)\n\tat game.sanguo.mobile.SessionAMapRepairInstrumentation.onStart(SessionAMapRepairInstrumentation.java:341)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\nFAIL fresh evidence directory\n",
+  "restoration": {
+    "internal": {
+      "exactRegularFileSha": true,
+      "files": 9,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    },
+    "external": {
+      "exactRegularFileSha": true,
+      "files": 3797,
+      "rewrittenOriginalFiles": 0,
+      "strategy": "Full archive guarded; every current original SHA read; only mismatch/missing members restored; all final SHA read"
+    }
+  },
+  "resultSha256": "e8f2c93add78d348c4c0b874939efc8daf3ba5bf13286a584b7d0108d67408ee",
+  "existingOriginalEvidencePaths": [],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-e62f2809-idempotent-presentation-default165/app-debug.apk": "931bc087005cba1f0ee0a127ccce15f304be106c186c91ba0f2762676bc67f7a",
+    "/Users/paopao/.codex/worktrees/2191/sanguo11-mobile/out/session-a/apk-0c788b06-search-observation-test239/app-debug-androidTest.apk": "c689e1031dbd415c39c742c1af02c949d80575a8339f51d5a87fe85151fb0594"
+  },
+  "instrumentationOnlyTwoChecks": true,
+  "source0Passed": false,
+  "scope": "Fixed basename runId collided with an existing evidence directory; original archived directory entries and regular paths recorded separately. Exact fresh-directory assertion stopped before normal source workflow, not renderer/rule/OOM failure. All original9/3797 regular-file SHA restored unchanged; observer exits0. New helper allocates UUID and checks complete original external regular paths; no original node/evidence removal, no APK/test predicate change. Historical262 failure retained.",
+  "wholeGoalComplete": false,
+  "existingOriginalArchiveEntries": [],
+  "existingDirectoryOrigin": "Unproved: archived regular paths and matching tar entries are absent; likely an empty prior test directory, not asserted to be a preserved original file."
+}

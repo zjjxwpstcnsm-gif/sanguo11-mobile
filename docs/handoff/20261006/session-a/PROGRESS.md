@@ -542,3 +542,6 @@ B完成c6f966ce+89534120串行接入为07b00d1d+95c5a187：父aa9与4核心前SH
 
 
 263/264/265当前165game+239test Source4真实670/1340、normal25157/cold94、完整原9+3797每SHA恢复、26原录像index87217e76…、video/native均exit0且5024/5061/5062真正终止。101采样Java峰251137952/512MiB、余285732960，其他native/PSS独立不相加，GPU仍未闭合。实际widget36/330 rows，41实色最低8.849737、289未解、1disabled；source4实际map PNG现场查看蓝虎牢關/深底正文可读，旧工程hint仍属待安装235/261修复。rootCauseFixed=false：这次未复现69搜索race不当根因修复。262队列已通过终态门进入当前239来源0的完整备份，初始仅[4]；绝不沿用176五来源成绩/旧音频双堆结束队列。
+
+
+266独立只读B r12两APK全SHA及15/772原/restored每路径byteSHA核同，before/post/restored map-renderer均failure/session true；before已真，无allocation/native栈不能推新OOM。现场normal-settled recovery PNG86d708…确认3D/原单挑演出未通过，不改保护或合WIP。262后继source0在fresh evidence directory第2check失败，正常源未开始，原9/3797零改写SHA恢复、observer0；267保留失败，其regular archive/tar无同名member，目录来源未知（可能旧测试空目录残留），不冒称有原文件。helper新runId UUID且检查原pathset，不删任何原node。268新队列已按同完整263来源4起点启动，不重复已完4、不计source0失败为通过。
